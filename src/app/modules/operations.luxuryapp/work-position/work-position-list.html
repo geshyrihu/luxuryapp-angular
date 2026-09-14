@@ -14,11 +14,11 @@
   groupRowsBy="departament"
   sortField="departament"
   sortMode="single"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 mb-3 w-full"
+      class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 mb-3 w-full"
     >
       <app-segmented-control
         [items]="departmentFilterItems()"
@@ -27,7 +27,7 @@
       />
 
       <div
-        class="flex flex-column md:flex-row align-items-center justify-content-end gap-3 w-full xl:w-auto"
+        class="d-flex flex-column flex-md-row align-items-center justify-content-end gap-3 w-full xl:w-auto"
       >
         <div class="staff-caption-search w-full md:w-auto">
           <primeng-custom-caption
@@ -38,7 +38,7 @@
         </div>
 
         <div
-          class="staff-board-actions flex flex-wrap gap-2 align-items-center justify-content-center md:justify-content-end"
+          class="staff-board-actions d-flex flex-wrap gap-2 align-items-center justify-content-center justify-content-md-end"
         >
           @if (statusFilter() === 'Activo') {
           <il-button
@@ -94,7 +94,7 @@
       <!-- PUESTO -->
       <td>
         @if (necesitaActualizacion(item)) {
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <lx-tag
             severity="warn"
             value="Actualizar puesto"
@@ -115,14 +115,14 @@
       <!-- SUELDOS -->
       @if (showSalaryColumn()) {
       <td class="no-print">
-        <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column gap-1">
           <div
-            class="flex justify-content-between border-bottom-1 border-200 pb-1"
+            class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
           >
             <small class="text-500 font-bold">PRE:</small>
             <span class="text-xs">{{ item.sueldoBase }}</span>
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <small class="text-500 font-bold">ACT:</small>
             <span class="text-xs font-bold text-primary"
               >{{ item.sueldo }}</span
@@ -134,7 +134,7 @@
 
       <!-- ACCIONES -->
       <td>
-        <div class="flex align-items-center justify-content-center gap-1">
+        <div class="d-flex align-items-center justify-content-center gap-1">
           <iw-button-item
             iconClass="material-symbols-light:tune"
             lxTooltip="Ajustes Generales"
@@ -148,13 +148,13 @@
       <!-- COLABORADOR -->
       <td class="border-left-2">
         @if (!isVacant(item)) {
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           @if (item.applicationUserPhoto) {
           <app-avatar
             [image]="item.applicationUserPhoto"
             shape="circle"
             size="large"
-            class="cursor-pointer mr-2"
+            class="cursor-pointer me-2"
             (click)="onCardEmployee(item.applicationUserId!)"
             lxTooltip="Ver tarjeta"
           />
@@ -163,7 +163,7 @@
             icon="material-symbols-light:person"
             shape="circle"
             size="large"
-            class="mr-2"
+            class="me-2"
           />
           }
           <span class="font-semibold truncate flex-1 min-w-0"
@@ -197,7 +197,7 @@
      VISTA MÓVIL
      ═══════════════════════════════════════════════════════════════════ -->
 <app-data-view-mobile
-  class="block md:hidden"
+  class="d-block d-md-none"
   [data]="filteredData()"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"

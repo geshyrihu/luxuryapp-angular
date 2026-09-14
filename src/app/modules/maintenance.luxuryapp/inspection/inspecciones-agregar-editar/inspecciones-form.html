@@ -45,11 +45,11 @@
 
       <!-- Opciones de Frecuencia -->
       @if (selectedFrequency() === 'weekly') {
-      <fieldset class="grid align-items-start mb-3">
-        <legend class="col-12 md:col-3 font-medium mb-2 md:mb-0"
+      <fieldset class="row align-items-start mb-3">
+        <legend class="col-12 col-md-3 font-medium mb-2 mb-md-0"
           >Días de la semana *</legend
         >
-        <div class="col-12 md:col-9 flex flex-wrap gap-2 md:gap-3">
+        <div class="col-12 col-md-9 d-flex flex-wrap gap-2 md:gap-3">
           @for (day of weekDays; track day.value) {
           <custom-input-check-signal
             [control]="getDayControl(day.key)"
@@ -59,11 +59,11 @@
         </div>
       </fieldset>
       } @if (selectedFrequency() === 'monthly') {
-      <div class="grid mb-3 align-items-center">
-        <label for="dayOfMonth" class="col-12 md:col-3 font-medium"
+      <div class="row mb-3 align-items-center">
+        <label for="dayOfMonth" class="col-12 col-md-3 font-medium"
           >Día del Mes</label
         >
-        <div class="col-12 md:col-9">
+        <div class="col-12 col-md-9">
           <custom-input-number-signal
             [control]="form.controls.dayOfMonth"
             placeholder="Ingrese el día (1-31)"

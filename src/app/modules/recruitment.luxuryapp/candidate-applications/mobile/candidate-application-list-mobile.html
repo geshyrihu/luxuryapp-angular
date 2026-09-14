@@ -16,14 +16,14 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div class="flex flex-column gap-1">
+      <div class="d-flex flex-column gap-1">
         <p class="font-semibold m-0 text-color line-height-2">
           {{ item.candidateName }}
         </p>
         <p class="text-xs m-0 text-color-secondary">
           {{ item.positionName }} - {{ item.customerName }}
         </p>
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <app-candidate-stage-badge [stage]="item.currentStage" />
         </div>
       </div>

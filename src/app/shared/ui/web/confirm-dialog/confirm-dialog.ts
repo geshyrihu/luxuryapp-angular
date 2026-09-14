@@ -25,7 +25,7 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
       [style]="{ width: '420px' }"
       [breakpoints]="{ '480px': '90vw' }"
     >
-      <div class="flex flex-column align-items-center text-center gap-3 py-3">
+      <div class="d-flex flex-column align-items-center text-center gap-3 py-3">
         <app-icon
           [icon]="config().icon"
           class="text-4xl"
@@ -34,7 +34,7 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
         <p class="m-0 text-color-secondary line-height-3">{{ message() }}</p>
       </div>
       <ng-template #footer>
-        <div class="flex gap-2 justify-content-end">
+        <div class="d-flex gap-2 justify-content-end">
           <p-button
             [label]="cancelLabel()"
             severity="secondary"

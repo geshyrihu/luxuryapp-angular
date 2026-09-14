@@ -1,6 +1,6 @@
 <div class="container">
   <app-report-header></app-report-header>
-  <div class="flex justify-content-end my-3">
+  <div class="d-flex justify-content-end my-3">
     <il-button-download
       label="Exportar a Excel"
       severity="success"
@@ -15,10 +15,10 @@
         {{ item.responsibleArea | titlecase }}
       </h5>
     </div>
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       @for (asunto of item.items; track asunto; let i = $index) {
       <div class="page-break">
-        <div class="flex align-items-center justify-content-between mb-2">
+        <div class="d-flex align-items-center justify-content-between mb-2">
           <div class="text-lg font-bold text-900">
             {{ i + 1 }}.- {{ asunto.title | titlecase }}
           </div>
@@ -28,18 +28,18 @@
             }
           </div>
         </div>
-        <div class="grid">
-          <div class="col-12 md:col-6">
+        <div class="row">
+          <div class="col-12 col-md-6">
             <div
               class="text-justify text-sm line-height-3"
               [innerHTML]="asunto.requestService | sanitizeHtml"
             ></div>
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             @if (todoElSeguimiento && asunto.seguimientos.length > 0) {
             <div class="surface-50 p-3 rounded border-1 surface-border">
               <p class="m-0 text-sm font-italic">
-                <span class="font-bold block mb-1">{{
+                <span class="font-bold d-block mb-1">{{
                   asunto.seguimientos[asunto.seguimientos.length - 1].fecha
                 }}</span>
                 {{ asunto.seguimientos[asunto.seguimientos.length - 1].seguimiento }}

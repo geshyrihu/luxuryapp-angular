@@ -55,7 +55,7 @@
       <div class="logo-text-luxury">Cronograma Anual - Estado de Servicios</div>
       <div class="logo-sub-luxury">Filtro: {{ getFilterLabel() }} | Año: {{ selectedYear }}</div>
     </div>
-    <div class="flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2">
       <label for="year-select-status" class="text-sm font-semibold">Año:</label>
       <select
         id="year-select-status"
@@ -86,7 +86,7 @@
     <span class="legend-item"><span class="legend-emoji">❌</span> Cancelado</span>
   </div>
 
-  <div class="grid mt-2">
+  <div class="row mt-2">
     <div class="col-12">
       <p-table
         [value]="data()"
@@ -99,7 +99,7 @@
         [loading]="loading()"
       >
         <ng-template #caption>
-          <div class="grid mt-1">
+          <div class="row mt-1">
             <div class="col-12">
               <primeng-custom-caption [dt]="dt" [showAdd]="false" [showSearch]="true" />
             </div>

@@ -1,6 +1,6 @@
-<div class="p-3 md:p-4">
+<div class="p-3 p-md-4">
   <lx-card class="card card--elevated mb-4">
-    <div class="flex gap-2 align-items-start">
+    <div class="d-flex gap-2 align-items-start">
       <app-icon [icon]="'material-symbols-light:settings'" class="text-primary mt-1 text-xl" />
       <div>
         <div class="font-bold mb-1">Servicios Automatizados del Sistema</div>
@@ -14,12 +14,12 @@
     </div>
   </lx-card>
 
-  <div class="grid">
-    <div class="col-12 md:col-6">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="flex align-items-center gap-2 mb-3">
+        <div class="d-flex align-items-center gap-2 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center"
+            class="w-2rem h-2rem rounded-lg bg-green-100 d-flex align-items-center justify-content-center"
           >
             <app-icon [icon]="'material-symbols-light:add-circle'" class="text-green-600" />
           </div>
@@ -31,11 +31,11 @@
           cuotas extraordinarias, etc.). Calcula montos por indiviso cuando
           aplica.
         </p>
-        <div class="flex flex-wrap gap-2 mb-3">
+        <div class="d-flex flex-wrap gap-2 mb-3">
           <lx-tag value="Cron: 1er dia, 06:00 AM" severity="success" />
           <lx-tag value="Permiso: Administrador" severity="info" />
         </div>
-        <div class="grid formgrid align-items-end mb-3">
+        <div class="row formgrid align-items-end mb-3">
           <div class="field col-6">
             <custom-input-select-signal
               label="Mes"
@@ -64,11 +64,11 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="flex align-items-center gap-2 mb-3">
+        <div class="d-flex align-items-center gap-2 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center"
+            class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center"
           >
             <app-icon [icon]="'material-symbols-light:percent'" class="text-orange-600" />
           </div>
@@ -80,7 +80,7 @@
           nuevos cargos de tipo "Recargo Mora" y los registra en el ledger
           financiero.
         </p>
-        <div class="flex flex-wrap gap-2 mb-3">
+        <div class="d-flex flex-wrap gap-2 mb-3">
           <lx-tag value="Cron: Diario, 03:00 AM" severity="warning" />
           <lx-tag value="Permiso: Administrador / Finanzas" severity="info" />
         </div>
@@ -95,11 +95,11 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="flex align-items-center gap-2 mb-3">
+        <div class="d-flex align-items-center gap-2 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center"
+            class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center"
           >
             <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
           </div>
@@ -110,7 +110,7 @@
           superan el umbral configurado se promueven automaticamente a un Caso
           de Cobranza para seguimiento por un gestor.
         </p>
-        <div class="flex flex-wrap gap-2 mb-3">
+        <div class="d-flex flex-wrap gap-2 mb-3">
           <lx-tag value="Cron: Lunes, 07:00 AM" severity="danger" />
           <lx-tag value="Permiso: Administrador" severity="info" />
         </div>
@@ -125,11 +125,11 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="flex align-items-center gap-2 mb-3">
+        <div class="d-flex align-items-center gap-2 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center"
+            class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center"
           >
             <app-icon [icon]="'material-symbols-light:sync'" class="text-blue-600" />
           </div>
@@ -141,7 +141,7 @@
           propiedad usando logica FIFO. Util tras importaciones masivas de
           estado de cuenta.
         </p>
-        <div class="flex flex-wrap gap-2 mb-3">
+        <div class="d-flex flex-wrap gap-2 mb-3">
           <lx-tag value="Cron: Cada 4 horas" severity="info" />
           <lx-tag value="Permiso: Finanzas" severity="success" />
         </div>
@@ -158,9 +158,9 @@
 
     <div class="col-12">
       <lx-card class="card">
-        <div class="flex align-items-center gap-2 mb-3 flex-wrap">
+        <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
           <div
-            class="w-2rem h-2rem rounded-lg bg-purple-100 flex align-items-center justify-content-center"
+            class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center"
           >
             <app-icon [icon]="'material-symbols-light:bolt'" class="text-purple-600" />
           </div>
@@ -194,9 +194,9 @@
     <label class="text-500 text-xs uppercase font-medium"
       >Historial de esta sesion</label
     >
-    <div class="mt-2 flex flex-column gap-2">
+    <div class="mt-2 d-flex flex-column gap-2">
       @for (r of results(); track r.executedAt) {
-      <div class="flex align-items-center gap-3 p-2 surface-50 rounded border-1 surface-border text-sm">
+      <div class="d-flex align-items-center gap-3 p-2 surface-50 rounded border-1 surface-border text-sm">
         <app-icon
           [icon]="'material-symbols-light:check-circle'"
           class="pi"
@@ -206,7 +206,7 @@
         <span class="text-500"
           >{{ r.recordsAffected }} registros afectados</span
         >
-        <span class="text-400 ml-auto"
+        <span class="text-400 ms-auto"
           >{{ r.executedAt | apiDate:'HH:mm:ss' }}</span
         >
       </div>

@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="grid">
+  <div class="row">
     <!-- Empleado -->
     <div class="col-12">
       <custom-input-select-signal
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Parentesco / Relación -->
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-select-signal
         label="Parentesco"
         [control]="f.relation"
@@ -23,7 +23,7 @@
     </div>
 
     <!-- Nombre del Beneficiario -->
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-text-signal
         label="Nombre del Beneficiario"
         [control]="f.fullName"
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Teléfono -->
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-mask-signal
         label="Teléfono del Beneficiario"
         [control]="f.phoneNumber"
@@ -41,7 +41,7 @@
       />
     </div>
 
-    <div class="col-12 flex justify-content-end mt-4">
+    <div class="col-12 d-flex justify-content-end mt-4">
       <il-button-save
         [disabled]="form.invalid"
         [submitting]="submitting()"

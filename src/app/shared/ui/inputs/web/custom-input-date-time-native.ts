@@ -25,7 +25,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [horizontal]="horizontal()"
       [required]="required()"
     >
-      <div class="flex gap-2 w-full">
+      <div class="d-flex gap-2 w-full">
         <input
           pInputText
           mwlFlatpickr

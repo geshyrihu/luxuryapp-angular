@@ -14,7 +14,7 @@
 <p-table
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  class="p-datatable-sm p-datatable-gridlines hidden md:block"
+  class="p-datatable-sm p-datatable-gridlines d-none d-md-block"
   [paginator]="true"
   [rows]="10"
   sortMode="multiple"
@@ -54,7 +54,7 @@
         </span>
       </td>
       <td class="text-center">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-edit
             (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
           />
@@ -82,7 +82,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon
           icon="material-symbols-light:analytics"

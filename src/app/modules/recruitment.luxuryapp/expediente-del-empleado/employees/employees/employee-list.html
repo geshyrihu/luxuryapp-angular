@@ -2,12 +2,12 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   rowGroupMode="subheader"
   groupRowsBy="departament"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-end flex-wrap">
+    <div class="d-flex align-items-center justify-content-end flex-wrap">
       <primeng-custom-caption
         (add)="showModalAddEmployee()"
         [dt]="dt"
@@ -78,7 +78,7 @@
         <lx-avatar
           [image]="item.photoPath"
           alt=""
-          class="mr-2"
+          class="me-2"
           size="large"
           (click)="onCardEmployee(item.applicationUserId)"
         />
@@ -107,7 +107,7 @@
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, AspRole.Reclutamiento ]) ) {
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if ( aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Administrador,
           AspRole.Asistente, AspRole.Reclutamiento ]) ) {
           <iw-button-item

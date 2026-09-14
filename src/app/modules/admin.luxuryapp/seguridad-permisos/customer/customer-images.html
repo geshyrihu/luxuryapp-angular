@@ -1,7 +1,7 @@
 <div class="p-4">
   <!-- Zona de carga drag-and-drop -->
   <div
-    class="drop-zone border-2 border-dashed rounded-xl p-5 mb-4 flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+    class="drop-zone border-2 border-dashed rounded-xl p-5 mb-4 d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
     [class.drag-active]="isDragOver()"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
@@ -34,15 +34,15 @@
             accept="image/*,.heic,.heif"
       multiple
       (change)="onFileSelect($event)"
-      class="hidden"
+      class="d-none"
     />
   </div>
 
   <!-- Encabezado galería -->
-  <div class="flex align-items-center mb-3">
+  <div class="d-flex align-items-center mb-3">
     <h3 class="m-0 font-bold text-900">Galería de Imágenes</h3>
     @if (hasImages()) {
-    <span class="ml-2 text-500 text-sm">({{ images().length }})</span>
+    <span class="ms-2 text-500 text-sm">({{ images().length }})</span>
     }
   </div>
 
@@ -50,7 +50,7 @@
 
   <!-- Galería -->
   @if (loading()) {
-  <div class="flex justify-content-center align-items-center py-8">
+  <div class="d-flex justify-content-center align-items-center py-8">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary"
@@ -58,9 +58,9 @@
     />
   </div>
   } @else { @if (hasImages()) {
-  <div class="grid">
+  <div class="row">
     @for (img of images(); track img.id) {
-    <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div
         class="card-image-container relative rounded overflow-hidden shadow-sm hover:shadow transition-all transition-duration-300"
       >
@@ -87,7 +87,7 @@
   </div>
   } @else {
   <div
-    class="flex flex-column align-items-center justify-content-center py-6 text-center"
+    class="d-flex flex-column align-items-center justify-content-center py-6 text-center"
   >
     <app-icon
       [icon]="'material-symbols-light:photo'"

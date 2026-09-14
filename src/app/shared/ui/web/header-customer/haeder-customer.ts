@@ -23,7 +23,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
   imports: [AvatarModule],
   template: `
     <div
-      class="header-customer flex align-items-center justify-content-between"
+      class="header-customer d-flex align-items-center justify-content-between"
     >
       <p-avatar
         [image]="

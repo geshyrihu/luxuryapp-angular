@@ -69,7 +69,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
       <div class="mobile-card-header">Mobile Buttons · componentes reales</div>
       <div class="mobile-card-body">
         <div class="phone-frame">
-          <div class="phone-frame__screen flex flex-column gap-4">
+          <div class="phone-frame__screen d-flex flex-column gap-4">
             <!-- Variantes semánticas (ili-button variant="…") -->
             <div>
               <div class="section-label">Variantes semánticas</div>
@@ -77,7 +77,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 <code>&lt;ili-button variant="…"&gt;</code> — primary,
                 secondary, outline, text, danger, ghost.
               </p>
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <ili-button variant="primary" label="Primary" expand="block" />
                 <ili-button
                   variant="secondary"
@@ -95,7 +95,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
             <div>
               <div class="section-label">Tamaños</div>
               <p class="section-desc">small · default · large.</p>
-              <div class="flex align-items-center gap-2 flex-wrap">
+              <div class="d-flex align-items-center gap-2 flex-wrap">
                 <ili-button variant="primary" size="small" label="Small" />
                 <ili-button variant="primary" label="Default" />
                 <ili-button variant="primary" size="large" label="Large" />
@@ -109,7 +109,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 Cada botón trae icono, label y variante por defecto (delete →
                 rojo).
               </p>
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <ili-button-add expand="block" />
                 <ili-button-edit expand="block" />
                 <ili-button-confirm expand="block" />
@@ -129,7 +129,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
             <!-- Guardar / toggle -->
             <div>
               <div class="section-label">Guardar y estado</div>
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <ili-button-save expand="block" />
                 <ili-button-save
                   label="Actualizando…"
@@ -148,7 +148,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
             <!-- Iconos compactos -->
             <div>
               <div class="section-label">Iconos compactos (ii-*)</div>
-              <div class="flex align-items-center gap-3 flex-wrap">
+              <div class="d-flex align-items-center gap-3 flex-wrap">
                 <ii-button />
                 <ii-button-add />
                 <ii-button-edit />
@@ -170,7 +170,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 Toca el menú ⋮ — se abre como bottom-sheet nativo (CDK Overlay).
               </p>
               <div
-                class="flex align-items-center justify-content-between p-2 border-round"
+                class="d-flex align-items-center justify-content-between p-2 border-round"
                 style="background: var(--ds-bg-elevated)"
               >
                 <span class="text-sm">Registro de ejemplo</span>

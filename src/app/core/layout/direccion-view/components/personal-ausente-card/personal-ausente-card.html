@@ -1,24 +1,24 @@
 @if (cargando()) {
-<div class="flex align-items-center gap-2 py-3">
+<div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
   <span class="text-sm text-500">Cargando...</span>
 </div>
 } @else if (total() === 0) {
-<div class="flex align-items-center gap-2 py-2 text-400">
+<div class="d-flex align-items-center gap-2 py-2 text-400">
   <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin ausencias hoy</span>
 </div>
 } @else {
 
 <!-- Totales -->
-<div class="flex align-items-center gap-4 mb-3">
-  <div class="flex align-items-center gap-2">
+<div class="d-flex align-items-center gap-4 mb-3">
+  <div class="d-flex align-items-center gap-2">
     <span class="text-2xl font-bold text-900">{{ total() }}</span>
     <span class="text-sm text-500"
       >ausencia{{ total() === 1 ? '' : 's' }} en los proximos 10 dias</span
     >
   </div>
-  <div class="flex gap-3 text-xs text-500">
+  <div class="d-flex gap-3 text-xs text-500">
     @if (resumen()!.totalPermisos > 0) {
     <span>
       <span class="font-semibold text-ds-warning"
@@ -38,7 +38,7 @@
 </div>
 
 <!-- Por cliente -->
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   @for (customer of resumen()!.customers; track customer.customerName) {
 
   <div>
@@ -46,11 +46,11 @@
       >{{ customer.customerName }}</span
     >
 
-    <div class="flex flex-column gap-1 mt-1 pl-2 border-left-2 surface-border">
+    <div class="d-flex flex-column gap-1 mt-1 ps-2 border-left-2 surface-border">
       @for (persona of customer.personas; track persona.employeeName) {
-      <div class="flex align-items-center justify-content-between py-1">
+      <div class="d-flex align-items-center justify-content-between py-1">
         <!-- Nombre y rol -->
-        <div class="flex flex-column gap-0 min-w-0 flex-auto">
+        <div class="d-flex flex-column gap-0 min-w-0 flex-auto">
           <span
             class="text-sm text-900 font-semibold white-space-nowrap overflow-hidden text-overflow-ellipsis"
           >
@@ -60,7 +60,7 @@
         </div>
 
         <!-- Tipo y fechas -->
-        <div class="flex flex-column align-items-end flex-none ml-2 gap-1">
+        <div class="d-flex flex-column align-items-end flex-none ms-2 gap-1">
           <span
             class="text-xs font-semibold rounded px-2 py-0"
             [class.text-ds-warning]="persona.tipoAusencia === 'Permiso'"

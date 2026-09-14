@@ -1,7 +1,7 @@
 <!-- Panel de Filtros -->
 <lx-card>
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <div class="hidden md:block mt-3">
+  <div class="d-none d-md-block mt-3">
     <p-table
       #dt
       [value]="data()"
@@ -19,7 +19,7 @@
     >
       <ng-template #caption>
         <div
-          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
         >
           <div class="flex-grow-1">
             <primeng-custom-caption
@@ -30,7 +30,7 @@
               [noMargin]="true"
             />
           </div>
-          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+          <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
             <div>
               <custom-input-select-signal
                 [data]="customerOptions"
@@ -68,7 +68,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div class="flex flex-shrink-0">
+            <div class="d-flex flex-shrink-0">
               <span
                 [tooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
               >
@@ -143,7 +143,7 @@
   </div>
 
   <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-  <div class="block md:hidden mt-3">
+  <div class="d-block d-md-none mt-3">
     <app-data-view-mobile
       [data]="data()"
       [globalFilterFields]="globalFilterFields()"
@@ -155,17 +155,17 @@
           <div start class="mobile-avatar-slot">
             <span>{{ item.userName.charAt(0).toUpperCase() }}</span>
           </div>
-          <div class="flex justify-content-between align-items-center mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
             <lx-tag [value]="item.userType"></lx-tag>
           </div>
 
           <p class="text-medium text-500 m-0 text-sm mb-1">
-            <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" /> {{
+            <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" /> {{
             item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
           </p>
 
-          <div class="flex align-items-center gap-2 mb-1">
+          <div class="d-flex align-items-center gap-2 mb-1">
             <span class="font-bold text-sm">{{ item.module }}</span>
             <lx-tag
               [value]="item.activityType"

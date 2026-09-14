@@ -1,20 +1,20 @@
 <div class="card">
   <div class="card-body">
-    <div class="grid">
-      <div class="col-12 md:col-12">
+    <div class="row">
+      <div class="col-12 col-md-12">
         @if (loading()) {
-        <div class="flex justify-content-center align-items-center p-4">
+        <div class="d-flex justify-content-center align-items-center p-4">
           <app-icon
             [icon]="'material-symbols-light:progress-activity'"
             class="text-primary m-1"
             aria-label="Cargando..."
           />
-          <span class="ml-2 text-600">Cargando seguimientos...</span>
+          <span class="ms-2 text-600">Cargando seguimientos...</span>
         </div>
         }
       </div>
 
-      <div class="col-12 md:col-12 mt-2">
+      <div class="col-12 col-md-12 mt-2">
         @if (!loading()) { @if (seguimientos().length > 0) {
         <ul class="square-timeline">
           @for (follow of seguimientos(); track $index) {

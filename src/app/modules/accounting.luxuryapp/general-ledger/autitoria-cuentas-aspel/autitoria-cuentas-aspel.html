@@ -2,10 +2,10 @@
   class="surface-card border-bottom-1 surface-border shadow-sm"
   
 >
-  <div class="flex flex-wrap align-items-center gap-3">
-    <div class="flex align-items-center gap-2" >
+  <div class="d-flex flex-wrap align-items-center gap-3">
+    <div class="d-flex align-items-center gap-2" >
       <div
-        class="flex align-items-center justify-content-center bg-primary-50 rounded-lg"
+        class="d-flex align-items-center justify-content-center bg-primary-50 rounded-lg"
         
       >
         <app-icon [icon]="'material-symbols-light:account-tree'" class="text-primary-600" />
@@ -33,7 +33,7 @@
       optionValue="value"
     />
 
-    <div class="flex align-items-center gap-1" >
+    <div class="d-flex align-items-center gap-1" >
       <iw-button
         iconClass="material-symbols-light:chevron-left"
         variant="text"
@@ -83,8 +83,8 @@
 </div>
 
 @if (!loading() && rawData(); as data) {
-<div class="grid mb-4">
-  <div class="col-12 md:col-3">
+<div class="row mb-4">
+  <div class="col-12 col-md-3">
     <div
       class="surface-card border-1 surface-border rounded-xl p-3 h-full"
     >
@@ -97,7 +97,7 @@
       </div>
     </div>
   </div>
-  <div class="col-12 md:col-3">
+  <div class="col-12 col-md-3">
     <div
       class="surface-card border-1 surface-border rounded-xl p-3 h-full"
     >
@@ -108,7 +108,7 @@
       <div class="text-xs text-500 mt-2">Union de cuentas entre customers</div>
     </div>
   </div>
-  <div class="col-12 md:col-3">
+  <div class="col-12 col-md-3">
     <div
       class="surface-card border-1 surface-border rounded-xl p-3 h-full"
     >
@@ -119,7 +119,7 @@
       <div class="text-xs text-500 mt-2">Todos los customers la tienen</div>
     </div>
   </div>
-  <div class="col-12 md:col-3">
+  <div class="col-12 col-md-3">
     <div
       class="surface-card border-1 surface-border rounded-xl p-3 h-full"
     >
@@ -133,14 +133,14 @@
 </div>
 
 <div class="surface-card border-1 surface-border rounded-xl p-3">
-  <div class="flex align-items-center justify-content-between gap-3 mb-3">
-    <div class="flex align-items-center gap-2">
+  <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+    <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:table'" class="text-primary-600" />
       <h2 class="text-lg font-bold text-900 m-0">
         Catalogo general comparativo
       </h2>
     </div>
-    <div class="flex align-items-center gap-2 flex-wrap justify-content-end">
+    <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
       <il-button-download
         label="Excel"
         iconClass="material-symbols-light:table-view"
@@ -154,24 +154,24 @@
         (clicked)="exportPdf()"
       />
       <div class="text-xs text-500">
-        <span class="mr-3"
+        <span class="me-3"
           ><app-icon
             [icon]="'material-symbols-light:check'"
-            class="mr-1"
+            class="me-1"
             
           />Existe</span
         >
-        <span class="mr-3"
+        <span class="me-3"
           ><app-icon
             [icon]="'material-symbols-light:close'"
-            class="mr-1"
+            class="me-1"
             
           />No existe</span
         >
         <span
           ><app-icon
             [icon]="'material-symbols-light:warning'"
-            class="mr-1"
+            class="me-1"
             
           />Estructura distinta</span
         >
@@ -265,7 +265,7 @@
 </div>
 } @if (!loading() && !rawData()) {
 <div
-  class="flex flex-column align-items-center justify-content-center py-8 text-500"
+  class="d-flex flex-column align-items-center justify-content-center py-8 text-500"
 >
   <app-icon [icon]="'material-symbols-light:account-tree'" class="text-4xl mb-3" />
   <p class="m-0">No fue posible cargar la auditoria de cuentas Aspel.</p>

@@ -17,9 +17,9 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <!-- SECCIóN 1: DATOS PRINCIPALES DEL ANUNCIO -->
-  <div class="grid min-h-screen">
+  <div class="row min-h-screen">
     <!-- Columna Izquierda -->
-    <div class="col-12 md:col-3">
+    <div class="col-12 col-md-3">
       <custom-input-text-signal
         [control]="form.controls.title"
         placeholder="Título"
@@ -37,7 +37,7 @@
       <!-- Estado del Anuncio (Control interno o visualización) -->
       @if (data()) {
       <div class="mb-4">
-        <label class="block">Estado Actual</label>
+        <label class="d-block">Estado Actual</label>
         <span
           [class]="'badge status-' + (data()?.status === 'Publicado' ? 'success' : 'warning')"
         >
@@ -56,12 +56,12 @@
         <custom-input-toggle-switch-signal
           [control]="form.controls.sendByEmail"
         />
-        <label class="ml-2">Enviar por Email</label>
+        <label class="ms-2">Enviar por Email</label>
       </div>
     </div>
 
     <!-- Columna Derecha -->
-    <div class="col-12 md:col-3">
+    <div class="col-12 col-md-3">
       <custom-input-date-signal
         [control]="form.controls.publishedAt"
         label="Fecha de Publicación"
@@ -76,7 +76,7 @@
       />
 
       <div class="mb-4">
-        <div class="flex justify-content-between align-items-center mb-2">
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <label>Imagen principal (Banner)</label>
           <il-button
             iconClass="material-symbols-light:photo"
@@ -91,14 +91,14 @@
         <!-- Vista previa de la imagen existente -->
         @if (data()?.imagePath && !mainImageToDelete()) {
         <div
-          class="flex flex-column align-items-center mb-3 p-3 surface-100 rounded border-1 surface-border"
+          class="d-flex flex-column align-items-center mb-3 p-3 surface-100 rounded border-1 surface-border"
         >
           <img
             [src]="data()?.imagePath"
             alt="Imagen actual"
             class="max-w-10rem h-auto rounded"
           />
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <span class="text-sm text-500">Imagen actual</span>
             <il-button-delete (confirmed)="requestDeleteMainImage()" />
           </div>
@@ -138,8 +138,8 @@
     </div>
 
     <!-- Columna central con el editor -->
-    <div class="col-12 md:col-6">
-      <div class="flex justify-content-between align-items-center mb-2">
+    <div class="col-12 col-md-6">
+      <div class="d-flex justify-content-between align-items-center mb-2">
         <label class="font-bold">Contenido del Anuncio</label>
         <il-button
           iconClass="material-symbols-light:auto-awesome-motion"
@@ -153,30 +153,30 @@
       <div class="editor-container">
         <lx-editor
           formControlName="content"
-          class="h-20rem block"
+          class="h-20rem d-block"
           [placeholder]="'Ingrese el contenido del anuncio aquó...'"
         ></lx-editor>
       </div>
     </div>
 
     <!-- Fila inferior: Adjuntos y Destinatarios -->
-    <div class="col-12 md:col-4">
-      <div class="my-4 flex align-items-center gap-2">
+    <div class="col-12 col-md-4">
+      <div class="my-4 d-flex align-items-center gap-2">
         <lx-divider class="flex-1" />
         <span class="font-bold text-primary">Archivos Adjuntos</span>
         <lx-divider class="flex-1" />
       </div>
 
-      <div class="flex flex-column">
+      <div class="d-flex flex-column">
         <div class="w-full">
           <!-- Lista de adjuntos existentes -->
           @if(data()?.attachments && data()!.attachments.length > 0) {
           <div class="mb-3">
             <p class="font-bold text-sm mb-2">Archivos guardados:</p>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               @for(item of data()!.attachments; track item.id) {
               <div
-                class="flex align-items-center justify-content-between p-2 surface-50 rounded border-1 surface-border"
+                class="d-flex align-items-center justify-content-between p-2 surface-50 rounded border-1 surface-border"
               >
                 <a
                   [href]="item.filePath"
@@ -185,7 +185,7 @@
                 >
                   <app-icon
                     [icon]="'material-symbols-light:description'"
-                    class="mr-2"
+                    class="me-2"
                   />
                   {{ item.fileName }}
                 </a>
@@ -233,14 +233,14 @@
       </div>
     </div>
 
-    <div class="col-12 md:col-8">
-      <div class="my-4 flex align-items-center gap-2">
+    <div class="col-12 col-md-8">
+      <div class="my-4 d-flex align-items-center gap-2">
         <lx-divider class="flex-1" />
         <span class="font-bold text-primary">Destinatarios</span>
         <lx-divider class="flex-1" />
       </div>
 
-      <div class="grid">
+      <div class="row">
         <div class="col-12">
           <div class="mb-4">
             <label>Clientes Objetivo</label>
@@ -250,18 +250,18 @@
               [multiple]="true"
               [metaKeySelection]="false"
               optionValue="value"
-              class="h-20rem block"
+              class="h-20rem d-block"
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >
               <ng-template let-customer #item>
                 <div
-                  class="custom-list-item flex align-items-center"
+                  class="custom-list-item d-flex align-items-center"
                   [class.selected-item-green]="form.controls.targetedCustomerIds.value.includes(customer.value)"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:apartment'"
-                    class="mr-2 text-500"
+                    class="me-2 text-500"
                   />
                   <span class="flex-1">{{ customer.label }}</span>
                   @if(form.controls.targetedCustomerIds.value.includes(customer.value))
@@ -274,7 +274,7 @@
                 </div>
               </ng-template>
             </lx-listbox>
-            <small class="text-color-secondary block mt-2 text-right">
+            <small class="text-color-secondary d-block mt-2 text-right">
               {{ form.controls.targetedCustomerIds.value.length }} seleccionados
             </small>
           </div>
@@ -290,18 +290,18 @@
               [multiple]="true"
               [metaKeySelection]="false"
               optionValue="value"
-              class="h-20rem block"
+              class="h-20rem d-block"
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >
               <ng-template let-role #item>
                 <div
-                  class="custom-list-item flex align-items-center"
+                  class="custom-list-item d-flex align-items-center"
                   [class.selected-item-green]="form.controls.recipientRoleIds.value.includes(role.value)"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:badge'"
-                    class="mr-2 text-500"
+                    class="me-2 text-500"
                   />
                   <span class="flex-1">{{ role.label }}</span>
                   @if(form.controls.recipientRoleIds.value.includes(role.value))
@@ -314,7 +314,7 @@
                 </div>
               </ng-template>
             </lx-listbox>
-            <small class="text-color-secondary block mt-2 text-right">
+            <small class="text-color-secondary d-block mt-2 text-right">
               {{ form.controls.recipientRoleIds.value.length }} seleccionados
             </small>
           </div>
@@ -324,7 +324,7 @@
   </div>
 
   <il-button-save
-    class="mt-3 block w-full"
+    class="mt-3 d-block w-full"
     [propertyId]="id()"
     [disabled]="form.invalid"
     [submitting]="submitting()"

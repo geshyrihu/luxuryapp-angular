@@ -7,11 +7,11 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="flex justify-content-between align-items-center w-full">
-      <div class="flex align-items-center gap-2">
+    <div class="d-flex justify-content-between align-items-center w-full">
+      <div class="d-flex align-items-center gap-2">
         <iw-button-download
           (clicked)="onPdfReport()"
           lxTooltip="PDF"
@@ -102,7 +102,7 @@
       </td>
       <td><small>{{ item.cabinetState }}</small></td>
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
           />
@@ -128,14 +128,14 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
         <app-icon icon="material-symbols-light:precision-manufacturing" />
       </div>
 
       <h3>{{ item.date | apiDate:'dd-MMM-yy' }} {{ item.hour }}</h3>
       <p>{{ item.cabinetState }}</p>
-      <div class="flex gap-2 mt-1">
+      <div class="d-flex gap-2 mt-1">
         <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"
           >Etiqueta</small
         >

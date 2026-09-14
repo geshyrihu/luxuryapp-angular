@@ -2,7 +2,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
@@ -72,7 +72,7 @@
     <ili-list-item lines="full" detail="false">
       <div
         slot="start"
-        class="w-3rem h-3rem rounded-md bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-3rem h-3rem rounded-md bg-green-50 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon icon="material-symbols-light:store-outline" class="text-xl text-green-500" />
       </div>

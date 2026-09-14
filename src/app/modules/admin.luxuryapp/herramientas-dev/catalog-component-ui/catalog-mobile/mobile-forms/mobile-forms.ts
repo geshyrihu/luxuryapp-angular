@@ -94,7 +94,7 @@ import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
         Formulario nativo Ionic é Material Design moderno
       </div>
       <div class="mobile-card-body">
-        <div class="flex flex-column gap-3">
+        <div class="d-flex flex-column gap-3">
           <!-- Text inputs: fill="outline" + label-placement="floating" (Material 3) -->
           <ion-input
             label="Nombre"
@@ -154,7 +154,7 @@ import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
             >
               Tipo de usuario
             </p>
-            <div class="flex flex-column gap-1">
+            <div class="d-flex flex-column gap-1">
               <ion-radio value="a" labelPlacement="end" justify="start"
                 >Administrador</ion-radio
               >
@@ -195,14 +195,14 @@ import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
             <p class="text-xs text-secondary mb-2">
               Abre ion-datetime en un modal nativo al tocar.
             </p>
-            <div class="flex align-items-center gap-3 flex-wrap">
-              <div class="flex align-items-center gap-1">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+              <div class="d-flex align-items-center gap-1">
                 <span class="text-sm">Fecha:</span>
                 <ion-datetime-button
                   datetime="cat-dt-date"
                 ></ion-datetime-button>
               </div>
-              <div class="flex align-items-center gap-1">
+              <div class="d-flex align-items-center gap-1">
                 <span class="text-sm">Hora:</span>
                 <ion-datetime-button
                   datetime="cat-dt-time"
@@ -341,7 +341,7 @@ import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
           </div>
 
           <div class="stiich-field">
-            <div class="flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <label class="stiich-field__label">Password</label>
               <a class="stiich-field__forgot" href="javascript:void(0)"
                 >Forgot Password?</a
@@ -403,7 +403,7 @@ import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
 
     <div class="mobile-card mt-4">
       <div class="mobile-card-header">Form Wrappers (ili-*)</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-checkbox</div>
           <ili-checkbox label="Ili Checkbox" [checked]="true"></ili-checkbox>

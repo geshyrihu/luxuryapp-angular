@@ -1,18 +1,18 @@
-<div class="grid p-2">
+<div class="row p-2">
   @if (loading()) {
-  <div class="col-12 flex justify-content-center">
+  <div class="col-12 d-flex justify-content-center">
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
   </div>
   } @else { @for (item of data(); track item.id) {
-  <div class="col-12 md:col-4 lg:col-3">
+  <div class="col-12 col-md-4 col-lg-3">
     <div
       class="card shadow-sm border-none surface-card rounded p-0 overflow-hidden"
     >
-      <div class="flex justify-content-end p-2">
+      <div class="d-flex justify-content-end p-2">
         <il-button-delete (confirmed)="confirmDelete(item.id)" />
       </div>
 
-      <div class="flex justify-content-center pb-3 px-3">
+      <div class="d-flex justify-content-center pb-3 px-3">
         <app-image
           [src]="item.img || 'assets/images/default-avatar.png'"
           alt="Vista previa"

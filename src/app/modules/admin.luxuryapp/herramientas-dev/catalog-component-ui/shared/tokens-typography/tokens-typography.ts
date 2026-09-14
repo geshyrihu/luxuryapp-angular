@@ -22,10 +22,10 @@ import { AppTag } from "@ui/web/tag/tag";
         <strong>Hanken Grotesk</strong>). Usa un ónico nivel de heading por
         vista para mantener jerarquía clara.
       </p>
-      <div class="flex flex-column gap-3">
+      <div class="d-flex flex-column gap-3">
         @for (h of headings; track h.tag) {
           <div
-            class="surface-card border-1 border-round p-3 flex align-items-center gap-3"
+            class="surface-card border-1 border-round p-3 d-flex align-items-center gap-3"
           >
             <div class="flex-grow-1">
               <div
@@ -38,7 +38,7 @@ import { AppTag } from "@ui/web/tag/tag";
                 {{ h.ejemplo }}
               </div>
             </div>
-            <div class="flex flex-column align-items-end gap-1 flex-shrink-0">
+            <div class="d-flex flex-column align-items-end gap-1 flex-shrink-0">
               <app-tag [value]="h.size" severity="secondary" />
               <code class="text-xs">{{ h.token }}</code>
             </div>
@@ -94,9 +94,9 @@ import { AppTag } from "@ui/web/tag/tag";
       <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
         Familias Tipogróficas
       </h3>
-      <div class="grid">
+      <div class="row">
         @for (f of families; track f.token) {
-          <div class="col-12 md:col-6 xl:col-4">
+          <div class="col-12 col-md-6 col-xl-4">
             <div class="surface-card border-1 border-round p-4">
               <span
                 class="text-xs font-bold text-color-secondary uppercase"
@@ -110,7 +110,7 @@ import { AppTag } from "@ui/web/tag/tag";
               >
                 AaBbCc 0123
               </div>
-              <code class="text-xs block mb-1">{{ f.token }}</code>
+              <code class="text-xs d-block mb-1">{{ f.token }}</code>
               <span class="text-xs text-color-secondary">{{ f.uso }}</span>
             </div>
           </div>

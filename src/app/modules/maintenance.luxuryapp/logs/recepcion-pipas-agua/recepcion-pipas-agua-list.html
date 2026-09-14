@@ -9,19 +9,19 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm"
     >
       <!-- IZQUIERDA: Tútulo y Navegación entre vistas -->
-      <div class="flex flex-column sm:flex-row align-items-center gap-3">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
         <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
           Recepcion de Pipas
         </h4>
 
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <a
             routerLink="/logbook/water-truck-reception"
             routerLinkActive="p-button-primary"
@@ -30,7 +30,7 @@
           >
             <app-icon
               [icon]="'material-symbols-light:format-list-bulleted'"
-              class="mr-1"
+              class="me-1"
             />
             Registros
           </a>
@@ -39,7 +39,7 @@
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'material-symbols-light:table'" class="mr-1" />
+            <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
             Reporte
           </a>
           <a
@@ -49,7 +49,7 @@
           >
             <app-icon
               [icon]="'material-symbols-light:bar-chart'"
-              class="mr-1"
+              class="me-1"
             />
             Analisis
           </a>
@@ -108,14 +108,14 @@
         <small>{{ item.capacidadPipa | number: '1.0-0' }}</small>
       </td>
       <td class="text-center">
-        <small class="flex justify-content-center align-items-center gap-1">
+        <small class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.nivelCisternaAntes | number: '1.0-0' }}%</span>
           <span class="text-400">?</span>
           <span>{{ item.nivelCisternaDespues | number: '1.0-0' }}%</span>
         </small>
       </td>
       <td class="text-center">
-        <small class="flex justify-content-center align-items-center gap-1">
+        <small class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.lecturaMedidorInicial | number: '1.0-0' }}</span>
           <span class="text-400">?</span>
           <span>{{ item.lecturaMedidorFinal | number: '1.0-0' }}</span>
@@ -134,7 +134,7 @@
       <td><small>{{ item.guardiaSeguridad }}</small></td>
 
       <td>
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-item
             iconClass="material-symbols-light:picture-as-pdf"
             tooltip="Descargar soporte PDF"
@@ -150,7 +150,7 @@
 
     <tr>
       <td colspan="13" class="p-2">
-        <div class="flex flex-wrap gap-1">
+        <div class="d-flex flex-wrap gap-1">
           @if (item.fotoPipaLlenaUrl) {
           <app-image
             [src]="item.fotoPipaLlenaUrl"
@@ -234,7 +234,7 @@
   (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
 >
   <div customFilters>
-    <div class="flex gap-1 mb-2 px-3 pt-2">
+    <div class="d-flex gap-1 mb-2 px-3 pt-2">
       <a
         routerLink="/logbook/water-truck-reception"
         routerLinkActive="p-button-primary"
@@ -243,7 +243,7 @@
       >
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
-          class="mr-1"
+          class="me-1"
         />
         Registros
       </a>
@@ -252,7 +252,7 @@
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:table'" class="mr-1" />
+        <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
         Reporte
       </a>
       <a
@@ -260,7 +260,7 @@
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" />
+        <app-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
         Analisis
       </a>
     </div>
@@ -283,7 +283,7 @@
         <span class="text-orange-500"> (en curso)</span>
         }
       </p>
-      <div class="grid m-0 text-sm mt-1">
+      <div class="row m-0 text-sm mt-1">
         <div class="col-6 p-0">
           <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
         </div>

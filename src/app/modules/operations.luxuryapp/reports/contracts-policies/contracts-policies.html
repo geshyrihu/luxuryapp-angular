@@ -1,12 +1,12 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" />

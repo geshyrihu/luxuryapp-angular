@@ -17,10 +17,10 @@
     <ng-template #header>
       <tr>
         <th colspan="6" class="text-center">
-          <div class="grid">
+          <div class="row">
             <!-- Información del Cliente -->
             <!-- óCAMBIO! Leemos de reportData().customer -->
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               @if (reportData().customer.customerImage) {
               <img
                 [src]="reportData().customer.customerImage"
@@ -32,22 +32,22 @@
               <h5>{{ reportData().customer.nombreCorto }}</h5>
             </div>
             <!-- Título del Reporte -->
-            <div class="col-12 md:col-4 text-center">
+            <div class="col-12 col-md-4 text-center">
               <app-icon
                 [icon]="'material-symbols-light:close'"
-                class="icon icon- icon-lg text-danger mr-2"
+                class="icon icon- icon-lg text-danger me-2"
               />
               SOLICITUDES PENDIENTES
             </div>
             <!-- Información de los Administradores -->
             @if (reportData().administrador) {
-            <div class="col-12 md:col-4 text-right">
+            <div class="col-12 col-md-4 text-right">
               @for (admin of reportData().administrador; track admin) {
-              <div class="flex align-items-center mb-2">
+              <div class="d-flex align-items-center mb-2">
                 <img
                   [src]="admin.photoEmployee"
                   alt="Foto del administrador"
-                  class="border-circle border mr-2"
+                  class="border-circle border me-2"
                   
                 />
                 <div class="text-start">
@@ -68,7 +68,7 @@
                     
                     
                   >
-                    <app-icon [icon]="'material-symbols-light:alternate-email'" class="icon icon- mr-1" />{{
+                    <app-icon [icon]="'material-symbols-light:alternate-email'" class="icon icon- me-1" />{{
                     admin.phoneNumber }}
                   </p>
                 </div>

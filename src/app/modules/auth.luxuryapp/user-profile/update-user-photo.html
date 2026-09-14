@@ -1,9 +1,9 @@
 <lx-card>
-  <div class="flex align-items-center p-3 gap-2">
+  <div class="d-flex align-items-center p-3 gap-2">
     <app-icon [icon]="'material-symbols-light:photo-camera'" class="text-primary text-2xl" />
     <span class="text-xl font-bold">Foto de perfil</span>
   </div>
-  <div class="flex flex-column align-items-center gap-4 py-3">
+  <div class="d-flex flex-column align-items-center gap-4 py-3">
       <custom-input-img-signal
         (fileSelected)="changeImg($event)"
         [urlImgCurrent]="imgTemp ?? infoEmployeeDTO.photoPath"
@@ -12,7 +12,7 @@
       />
 
       <div
-        class="flex flex-column sm:flex-row gap-3 w-full justify-content-center px-4"
+        class="d-flex flex-column flex-sm-row gap-3 w-full justify-content-center px-4"
       >
         <!-- Input oculto para cámara (móvil) -->
         <input

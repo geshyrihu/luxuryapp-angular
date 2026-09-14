@@ -32,7 +32,7 @@
         <td>{{ dataSignal().lawyerAssistance ? "Si" : "No" }}</td>
         @if (aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])) {
         <td>
-          <div class="flex justify-content-end">
+          <div class="d-flex justify-content-end">
             <iw-button
               iconClass="edit"
               lxTooltip="Editar"
@@ -53,8 +53,8 @@
 </div>
 <div class="mt-4">
   <h3>Autorizaciones</h3>
-  <div class="grid">
-    <div class="col-12 md:col-6">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <div class="card h-100">
         <h4>Visto Bueno Legal</h4>
         <p>
@@ -76,7 +76,7 @@
         }
       </div>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <div class="card h-100">
         <h4>Visto Bueno Nóminas</h4>
         <p>
@@ -107,7 +107,7 @@
     <ul class="list-unstyle">
       @for (item of dataSignal().discounts; track item) {
       <li class="list-group-item mb-2">
-        <div class="grid align-items-center">
+        <div class="row align-items-center">
           <div class="col-9">
             <!-- <strong>ID:</strong> {{ item.id }}<br /> -->
             <strong>DESCRIPCIÓN:</strong>
@@ -119,7 +119,7 @@
           @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento]) )
           {
           <div class="col-3">
-            <div class="flex justify-content-end">
+            <div class="d-flex justify-content-end">
               <iw-button
                 iconClass="edit"
                 (clicked)="

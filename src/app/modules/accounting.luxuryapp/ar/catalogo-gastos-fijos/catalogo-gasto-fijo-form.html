@@ -4,8 +4,8 @@
       <!-- SECCIóN 1: DATOS GENERALES -->
       <h5>Datos Generales</h5>
       <hr />
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.equipoOInstalacion"
             label="Equipo Area o Instalación"
@@ -22,7 +22,7 @@
             [horizontal]="false"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-text-signal
             [control]="form.controls.idFondeo"
             label="Índice de Fondeo"
@@ -70,9 +70,9 @@
       </div>
 
       <!-- SECCIóN 4: BOTóN DE ENVÍO -->
-      <div class="flex justify-content-end">
+      <div class="d-flex justify-content-end">
         @if (!id()) {
-        <lx-message severity="info" class="mr-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
+        <lx-message severity="info" class="me-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
         } @if (id()) {
         <il-button
           iconClass="material-symbols-light:attach-money"
@@ -106,7 +106,7 @@
     <hr class="my-4" />
 
     <!-- SECCIóN 3: PRODUCTOS/SERVICIOS -->
-    <div class="flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="mb-0">Productos y Servicios</h5>
     </div>
 
@@ -147,7 +147,7 @@
             {{ calcularSubtotal(item) | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
           <td>
-            <div class="flex justify-content-center">
+            <div class="d-flex justify-content-center">
               <iw-button-item
                 iconClass="material-symbols-light:edit"
                 (clicked)="onEditDetalle(item)"
@@ -174,7 +174,7 @@
     <hr class="my-4" />
 
     <!-- SECCIóN 2: PRESUPUESTO -->
-    <div class="flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="mb-0">Cuentas de Presupuesto</h5>
     </div>
     <p-table [value]="budgets()" class="card custom-table">

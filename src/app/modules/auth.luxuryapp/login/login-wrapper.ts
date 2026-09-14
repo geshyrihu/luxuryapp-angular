@@ -8,12 +8,12 @@ import { LoginMobile } from "./login-mobile";
   imports: [LoginComponent, LoginMobile],
   template: `
     <!-- Vista Web Premium -->
-    <div class="hidden md:block h-full w-full">
+    <div class="d-none d-md-block h-full w-full">
       <app-login />
     </div>
 
     <!-- Vista Móvil Premium (Ionic) -->
-    <div class="flex md:hidden h-full w-full">
+    <div class="d-flex d-md-none h-full w-full">
       <app-login-mobile />
     </div>
   `,

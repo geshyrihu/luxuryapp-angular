@@ -1,6 +1,6 @@
 <div class="card p-3 mb-4">
   <div
-    class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+    class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3"
   >
     <div>
       <h2 class="m-0 font-semibold text-xl">Entrevistas de Reclutamiento</h2>
@@ -9,7 +9,7 @@
         candidatos ligados sin depender del rol entrevistador.
       </p>
     </div>
-    <div class="flex flex-wrap gap-2 justify-content-end">
+    <div class="d-flex flex-wrap gap-2 justify-content-end">
       <il-button
         label="Lista"
         iconClass="material-symbols-light:view-list"
@@ -39,7 +39,7 @@
 @if (focusedRequestPositionId()) {
 <div class="card p-3 mb-4 border-left-3 border-primary">
   <div
-    class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-2"
+    class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-2"
   >
     <div>
       <div class="font-semibold">Seguimiento filtrado por vacante</div>
@@ -60,38 +60,38 @@
 }
 
 @if (viewMode() === 'board') {
-<div class="grid mb-2">
-  <div class="col-12 md:col-6 xl:col">
-    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+<div class="row mb-2">
+  <div class="col-12 col-md-6 xl:col">
+    <div class="card p-2 h-full d-flex align-items-center justify-content-between gap-2">
       <div>
-        <small class="text-color-secondary block">Vacantes</small>
+        <small class="text-color-secondary d-block">Vacantes</small>
         <small class="text-color-secondary">{{ totalCandidates() }} candidatos ligados</small>
       </div>
       <div class="text-xl font-semibold">{{ totalVacancies() }}</div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
-    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+  <div class="col-12 col-md-6 xl:col">
+    <div class="card p-2 h-full d-flex align-items-center justify-content-between gap-2">
       <div>
-        <small class="text-color-secondary block">Pendientes de enviar</small>
+        <small class="text-color-secondary d-block">Pendientes de enviar</small>
         <small class="text-color-secondary">Por enviar a entrevista</small>
       </div>
       <div class="text-xl font-semibold text-orange-500">{{ pendingSend() }}</div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
-    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+  <div class="col-12 col-md-6 xl:col">
+    <div class="card p-2 h-full d-flex align-items-center justify-content-between gap-2">
       <div>
-        <small class="text-color-secondary block">Agendadas</small>
+        <small class="text-color-secondary d-block">Agendadas</small>
         <small class="text-color-secondary">Con cita programada</small>
       </div>
       <div class="text-xl font-semibold text-blue-500">{{ scheduled() }}</div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
-    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+  <div class="col-12 col-md-6 xl:col">
+    <div class="card p-2 h-full d-flex align-items-center justify-content-between gap-2">
       <div>
-        <small class="text-color-secondary block">Vencidas</small>
+        <small class="text-color-secondary d-block">Vencidas</small>
         <small class="text-color-secondary">Sin seguimiento</small>
       </div>
       <div class="text-xl font-semibold text-red-500">{{ overdue() }}</div>
@@ -100,8 +100,8 @@
 </div>
 
 <div class="card p-2 mb-3">
-  <div class="flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3 w-full">
-    <div class="flex flex-wrap gap-2">
+  <div class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between gap-3 w-full">
+    <div class="d-flex flex-wrap gap-2">
       <button
         type="button"
         class="btn btn-sm"
@@ -182,14 +182,14 @@
   </div>
 </div>
 } @else {
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   @for (vacancy of filteredVacancies(); track vacancy.requestPositionId) {
   <div class="card p-3">
     <div
-      class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3"
+      class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-lg-between gap-3 mb-3"
     >
       <div>
-        <div class="flex flex-wrap align-items-center gap-2 mb-2">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
           <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
           <span class="text-sm text-color-secondary"
             >{{ vacancy.positionName }}</span
@@ -197,7 +197,7 @@
           <span class="badge badge-info">{{ vacancy.customerName }}</span>
           <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
         </div>
-        <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
+        <div class="d-flex flex-wrap gap-2 text-sm text-color-secondary">
           <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
           <span>Pendientes enviar: {{ vacancy.pendingInterviewCount }}</span>
           <span>Agendadas: {{ vacancy.scheduledCount }}</span>
@@ -209,7 +209,7 @@
       </div>
     </div>
 
-    <div class="flex flex-column gap-2">
+    <div class="d-flex flex-column gap-2">
       @for (candidate of vacancy.filteredCandidates; track
       candidate.candidateApplicationId) {
       <div
@@ -220,10 +220,10 @@
         [class.border-green-300]="candidate.agendaStatusCode === 'feedback'"
       >
         <div
-          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3"
         >
           <div class="flex-grow-1">
-            <div class="flex flex-wrap align-items-center gap-2 mb-2">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
               <span class="font-semibold">{{ candidate.candidateName }}</span>
               <app-candidate-stage-badge [stage]="candidate.currentStage" />
               <app-mapped-p-tag
@@ -232,9 +232,9 @@
               />
             </div>
 
-            <div class="grid text-sm">
-              <div class="col-12 md:col-6 lg:col-3">
-                <small class="text-color-secondary block"
+            <div class="row text-sm">
+              <div class="col-12 col-md-6 col-lg-3">
+                <small class="text-color-secondary d-block"
                   >Fecha de registro</small
                 >
                 <div class="font-medium">
@@ -244,8 +244,8 @@
                   }
                 </div>
               </div>
-              <div class="col-12 md:col-6 lg:col-3">
-                <small class="text-color-secondary block">Cita</small>
+              <div class="col-12 col-md-6 col-lg-3">
+                <small class="text-color-secondary d-block">Cita</small>
                 <div class="font-medium">
                   @if (interviewDate(candidate)) { {{ interviewDate(candidate) |
                   apiDate: "dd/MM/yyyy HH:mm" }} } @else {
@@ -253,14 +253,14 @@
                   }
                 </div>
               </div>
-              <div class="col-12 md:col-6 lg:col-3">
-                <small class="text-color-secondary block">Entrevistador</small>
+              <div class="col-12 col-md-6 col-lg-3">
+                <small class="text-color-secondary d-block">Entrevistador</small>
                 <div class="font-medium">
                   {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
                 </div>
               </div>
-              <div class="col-12 md:col-6 lg:col-3">
-                <small class="text-color-secondary block">CV</small>
+              <div class="col-12 col-md-6 col-lg-3">
+                <small class="text-color-secondary d-block">CV</small>
                 @if (candidate.cvFileName) {
                 <iw-button-view-pdf
                   size="sm"
@@ -276,7 +276,7 @@
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-2 lg:justify-content-end">
+          <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
             @if (candidate.canSendToInterview) {
             <il-button
               label="Enviar a entrevista"

@@ -1,6 +1,6 @@
 <div class="image-gen-dialog p-3">
-  <div class="flex justify-content-between align-items-center mb-4">
-    <div class="flex gap-1">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex gap-1">
       @for(step of [1,2,3,4]; track step) {
       <div
         class="border-circle w-1rem h-1rem transition-all transition-duration-300"
@@ -13,11 +13,11 @@
 
   <div class="step-content mb-4">
     @if (currentStep() === 1) {
-    <div class="grid">
+    <div class="row">
       @for (option of styles; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded d-flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedStyle() === option.value"
           (click)="selectStyle(option.value)"
         >
@@ -28,11 +28,11 @@
       }
     </div>
     } @if (currentStep() === 2) {
-    <div class="grid">
+    <div class="row">
       @for (option of moods; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded d-flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedMood() === option.value"
           (click)="selectMood(option.value)"
         >
@@ -43,11 +43,11 @@
       }
     </div>
     } @if (currentStep() === 3) {
-    <div class="grid">
+    <div class="row">
       @for (option of elements; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded d-flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedElement() === option.value"
           (click)="selectElement(option.value)"
         >
@@ -58,7 +58,7 @@
       }
     </div>
     } @if (currentStep() === 4) {
-    <div class="flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center">
       <div class="text-center">
         <p class="text-lg">óAlgón detalle adicional?</p>
         <p class="text-color-secondary text-sm">
@@ -76,7 +76,7 @@
           [noMargin]="true"
         />
 
-        <div class="flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-3">
           <iw-button
             [iconClass]="isListening() ? 'material-symbols-light:stop' : 'material-symbols-light:mic'"
             [class]="isListening() ? 'mic-button shadow-sm listening' : 'mic-button shadow-sm'"
@@ -95,7 +95,7 @@
     }
   </div>
 
-  <div class="flex justify-content-between pt-3 border-top-1 border-200">
+  <div class="d-flex justify-content-between pt-3 border-top-1 border-200">
     <il-button
       label="Atrós"
       iconClass="material-symbols-light:arrow-back"

@@ -2,7 +2,7 @@
   <p-table
     #dt
     [value]="items()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     [scrollable]="true"
     [scrollHeight]="tableScrollH.scrollHeight()"
     [paginator]="true"
@@ -34,7 +34,7 @@
       <tr>
         <td>{{ item.contractNumber }}</td>
         <td>
-          <div class="flex flex-column">
+          <div class="d-flex flex-column">
             <span class="font-semibold">{{ item.employeeName }}</span>
             <small class="text-500">{{ item.workPositionName }}</small>
           </div>
@@ -87,7 +87,7 @@
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon

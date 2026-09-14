@@ -1,7 +1,7 @@
-<section id="manual-content" class="surface-ground min-h-screen p-3 md:p-4">
+<section id="manual-content" class="surface-ground min-h-screen p-3 p-md-4">
   @if (loading()) {
   <div
-    class="flex align-items-center justify-content-center py-8"
+    class="d-flex align-items-center justify-content-center py-8"
 
   >
     <app-icon
@@ -10,22 +10,22 @@
     />
   </div>
   } @else if (manual()) {
-  <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
+  <div class="w-full xl:w-10 mx-auto d-flex flex-column gap-4">
     <header
       class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
     >
       <div class="bg-yellow-500" ></div>
 
-      <div class="p-4 md:p-5 border-bottom-1 surface-border">
+      <div class="p-4 p-md-5 border-bottom-1 surface-border">
         <div
-          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-4 print-header-row"
+          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4 print-header-row"
         >
-          <div class="flex flex-column md:flex-row md:align-items-center gap-3">
+          <div class="d-flex flex-column flex-md-row align-items-md-center gap-3">
             <div>
               <img
                 [src]="logoPath"
                 alt="Luxury Building Group"
-                class="block h-3rem md:h-4rem w-auto"
+                class="d-block h-3rem md:h-4rem w-auto"
                 
               />
             </div>
@@ -40,15 +40,15 @@
           </div>
 
           <div
-            class="flex flex-column sm:flex-row align-items-start sm:align-items-center gap-3"
+            class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3"
           >
             <div
-              class="surface-100 border-1 surface-border rounded-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
+              class="surface-100 border-1 surface-border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-color"
             >
               <app-icon [icon]="'material-symbols-light:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               @if (isAdmin()) {
               <il-button
                 class="no-print"
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div class="p-4 md:p-5">
+      <div class="p-4 p-md-5">
         <div class="mb-3">
           <iw-button
             class="no-print"
@@ -96,51 +96,51 @@
           manual()!.departament || "trabajo" }}.
         </p>
 
-        <div class="border-top-1 surface-border pt-3 flex flex-wrap gap-3">
+        <div class="border-top-1 surface-border pt-3 d-flex flex-wrap gap-3">
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:account-tree'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:label'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:verified'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:apartment'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
-            class="inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-color-secondary"
           >
             <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
@@ -151,15 +151,15 @@
       <div class="bg-yellow-500" ></div>
     </header>
 
-    <div class="grid">
+    <div class="row">
       @if (manual()!.objetivo) {
-      <div class="col-12 lg:col-6">
+      <div class="col-12 col-lg-6">
         <article
           class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
-          <div class="flex align-items-center gap-3 mb-3">
+          <div class="d-flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
               
             >
               01
@@ -180,13 +180,13 @@
         </article>
       </div>
       } @if (manual()!.marcoLegal) {
-      <div class="col-12 lg:col-6">
+      <div class="col-12 col-lg-6">
         <article
           class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
-          <div class="flex align-items-center gap-3 mb-3">
+          <div class="d-flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
               
             >
               02
@@ -213,11 +213,11 @@
       class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm"
     >
       <div
-        class="flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
+        class="d-flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
       >
-        <div class="flex align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
           <span
-            class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
+            class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
             
           >
             03
@@ -236,7 +236,7 @@
       </div>
 
       @if (manual()!.pasos?.length) {
-      <div class="flex flex-column gap-4">
+      <div class="d-flex flex-column gap-4">
         @for (paso of manual()!.pasos; track paso.id) {
         <article
           [class]="noteClass(paso.tipoNota)"
@@ -248,15 +248,15 @@
           [style.box-shadow]="paso.tipoNota === 0 ? null : '-6px 0 0 0 ' + noteBorder(paso.tipoNota)"
         >
           @if (paso.tipoNota === 0) {
-          <div class="flex align-items-start gap-3">
+          <div class="d-flex align-items-start gap-3">
             <div
-              class="w-3rem h-3rem border-circle text-white flex align-items-center justify-content-center font-bold flex-shrink-0"
+              class="w-3rem h-3rem border-circle text-white d-flex align-items-center justify-content-center font-bold flex-shrink-0"
               
             >
               {{ displayStepNumber(paso.id) }}
             </div>
             <div class="flex-1">
-              <div class="flex align-items-center gap-2 flex-wrap mb-2">
+              <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
                 <h4 class="text-base text-900 m-0">{{ paso.titulo }}</h4>
                 @for (nombre of paso.responsableRoleNombres; track nombre) {
                 <lx-tag [value]="nombre" severity="secondary" />
@@ -274,9 +274,9 @@
           </div>
           } @else {
           <div
-            class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
+            class="d-flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
           >
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <span class="text-sm line-height-1"
                 >{{ noteEmoji(paso.tipoNota) }}</span
               >
@@ -304,11 +304,11 @@
             <app-diagram-preview [xml]="paso.diagramaXml" />
           </div>
           } @if (paso.imagenes?.length) {
-          <div class="grid mt-1">
+          <div class="row mt-1">
             @for (img of paso.imagenes; track img.id) {
-            <div class="col-12 sm:col-6 xl:col-4">
+            <div class="col-12 col-sm-6 col-xl-4">
               <div
-                class="surface-card border-1 surface-border rounded-xl overflow-hidden p-2 flex justify-content-center"
+                class="surface-card border-1 surface-border rounded-xl overflow-hidden p-2 d-flex justify-content-center"
               >
                 <app-image
                   [src]="img.url"
@@ -321,7 +321,7 @@
             }
           </div>
           } @if (paso.enlaces?.length) {
-          <div class="flex flex-column gap-3 mt-3">
+          <div class="d-flex flex-column gap-3 mt-3">
             @for (enlace of paso.enlaces; track enlace.id) { @if
             (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
             <div
@@ -343,7 +343,7 @@
               ></iframe>
             </div>
             } } @else {
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:open-in-new'" class="text-primary" />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
                 <il-button
@@ -373,15 +373,15 @@
     </article>
 
     @if (manual()!.adjuntos?.length || manual()!.versiones?.length) {
-    <div class="grid">
+    <div class="row">
       @if (manual()!.adjuntos?.length) {
-      <div class="col-12 xl:col-6">
+      <div class="col-12 col-xl-6">
         <article
           class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
-          <div class="flex align-items-center gap-3 mb-4">
+          <div class="d-flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
               
             >
               04
@@ -393,12 +393,12 @@
               </p>
             </div>
           </div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (adj of manual()!.adjuntos; track adj.id) {
             <div
-              class="surface-ground rounded-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
+              class="surface-ground rounded-xl border-1 surface-border p-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
             >
-              <div class="flex align-items-center gap-3">
+              <div class="d-flex align-items-center gap-3">
                 <app-icon
                   [icon]="'material-symbols-light:description'"
                   class="text-xl text-primary"
@@ -419,13 +419,13 @@
         </article>
       </div>
       } @if (manual()!.versiones?.length) {
-      <div class="col-12 xl:col-6">
+      <div class="col-12 col-xl-6">
         <article
           class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
-          <div class="flex align-items-center gap-3 mb-4">
+          <div class="d-flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
               
             >
               05
@@ -437,12 +437,12 @@
               </p>
             </div>
           </div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (v of manual()!.versiones; track v.id) {
             <div
               class="surface-ground rounded-xl border-1 surface-border p-3"
             >
-              <div class="flex align-items-start gap-3">
+              <div class="d-flex align-items-start gap-3">
                 <span
                   class="bg-primary text-white rounded-xl px-3 py-2 text-xs font-bold flex-shrink-0"
                 >

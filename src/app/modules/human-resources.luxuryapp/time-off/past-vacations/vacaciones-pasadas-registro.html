@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <lx-card>
-    <div class="grid">
+    <div class="row">
       <!-- Employee Selection -->
-      <div class="col-12 md:col-4">
-        <div class="flex flex-column mb-2">
+      <div class="col-12 col-md-4">
+        <div class="d-flex flex-column mb-2">
           <custom-input-select-signal
             id="employeeId"
             [control]="form.controls.employeeId"
@@ -47,10 +47,10 @@
       <!-- Spacer -->
 
       <!-- Date Range Picker -->
-      <div class="col-12 md:col-4">
-        <div class="flex flex-column mb-2">
+      <div class="col-12 col-md-4">
+        <div class="d-flex flex-column mb-2">
           <div class="p-inputgroup">
-            <div class="flex">
+            <div class="d-flex">
               <custom-input-datepicker-signal
                 id="dateRange"
                 [control]="form.controls.dateRange"
@@ -90,8 +90,8 @@
         }
       </div>
       <!-- Comments -->
-      <div class="col-12 md:col-4">
-        <div class="flex flex-column">
+      <div class="col-12 col-md-4">
+        <div class="d-flex flex-column">
           <custom-input-textarea-signal
             id="comments"
             [control]="form.controls.comments"
@@ -104,29 +104,29 @@
       </div>
 
       <!-- Balance Information -->
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         @if (loadingBalance()) {
         <lx-skeleton height="8.5rem" styleClass="h-full" />
         } @else if (balance(); as b) {
         <div class="surface-ground p-3 rounded h-full">
-          <div class="flex justify-content-between align-items-center mb-2">
+          <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="mb-0 font-semibold">Balance Anual</h5>
           </div>
           @if(eligibilityStatus() === 'eligible'){
-          <div class="grid text-center">
-            <div class="col-12 sm:col-3">
+          <div class="row text-center">
+            <div class="col-12 col-sm-3">
               <h4 class="text-lg font-semibold text-900 mb-1">
                 {{ b.totalDays }}
               </h4>
               <p class="text-600 mb-0">Días por Ley</p>
             </div>
-            <div class="col-12 sm:col-3">
+            <div class="col-12 col-sm-3">
               <h4 class="text-lg font-semibold text-900 mb-1">
                 {{ b.usedDays }}
               </h4>
               <p class="text-600 mb-0">Días Usados</p>
             </div>
-            <div class="col-12 sm:col-3">
+            <div class="col-12 col-sm-3">
               <h4
                 class="text-lg font-bold mb-1"
                 [class.text-green-500]="b.availableDays > 0"
@@ -136,7 +136,7 @@
               </h4>
               <p class="text-600 mb-0">Disponibles</p>
             </div>
-            <div class="col-12 sm:col-3">
+            <div class="col-12 col-sm-3">
               <h4
                 class="text-lg font-bold mb-1"
                 [class.text-green-500]="effectiveAvailableDaysAfterSelection() >= 0"
@@ -228,7 +228,7 @@
     </div>
 
     <ng-template #footer>
-      <div class="flex justify-content-end">
+      <div class="d-flex justify-content-end">
         <il-button-save
           [disabled]="form.invalid || submitting()"
           [submitting]="submitting()"

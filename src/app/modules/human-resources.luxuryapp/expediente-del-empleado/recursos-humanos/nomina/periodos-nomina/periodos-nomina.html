@@ -1,5 +1,5 @@
 <!-- Filtro de año -->
-<div class="flex gap-2 mb-3">
+<div class="d-flex gap-2 mb-3">
   @for (anio of aniosDisponibles; track anio) {
   <il-button
     [label]="String(anio)"
@@ -23,7 +23,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="card hidden md:block custom-table"
+  class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
@@ -64,7 +64,7 @@
       </td>
       <td>{{ item.totalNominas }}</td>
       <td>
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <iw-button-edit (clicked)="openEdit(item)" />
           <iw-button
             iconClass="material-symbols-light:event-busy"
@@ -94,7 +94,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
         <app-icon icon="material-symbols-light:attach-money" />
       </div>
@@ -106,7 +106,7 @@
         {{ item.fechaInicio | apiDate: "dd/MM/yyyy" }} - {{ item.fechaFin |
         apiDate: "dd/MM/yyyy" }}
       </p>
-      <div class="flex align-items-center gap-2 mt-1">
+      <div class="d-flex align-items-center gap-2 mt-1">
         <lx-tag
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
@@ -114,7 +114,7 @@
         <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
       </div>
 
-      <div end class="flex align-items-center gap-1">
+      <div end class="d-flex align-items-center gap-1">
         <il-button-edit (clicked)="openEdit(item)" />
         <il-button-delete (clicked)="onDelete(item)" />
       </div>

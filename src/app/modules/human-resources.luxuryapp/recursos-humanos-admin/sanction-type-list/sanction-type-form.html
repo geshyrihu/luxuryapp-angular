@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
   <custom-input-text-signal
     label="Nombre"
     [control]="form.controls.name"
@@ -27,7 +27,7 @@
     label="Activo"
     [control]="form.controls.isActive"
   />
-  <div class="flex justify-content-end mt-2">
+  <div class="d-flex justify-content-end mt-2">
     <il-button-save
       [propertyId]="id"
       [disabled]="form.invalid"

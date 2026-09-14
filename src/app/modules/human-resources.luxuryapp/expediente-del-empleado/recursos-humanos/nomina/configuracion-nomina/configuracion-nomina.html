@@ -1,18 +1,18 @@
 @if (loading()) {
 <div
-  class="flex justify-content-center align-items-center"
+  class="d-flex justify-content-center align-items-center"
   
 >
   <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
 </div>
 } @else {
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="grid">
+  <div class="row">
     <!-- Frecuencia y Dias de Pago -->
     <div class="col-12">
       <lx-fieldset legend="Frecuencia de Pago">
-        <div class="grid">
-          <div class="col-12 md:col-4">
+        <div class="row">
+          <div class="col-12 col-md-4">
             <custom-input-select-signal
               [control]="form.controls['frecuenciaPago']"
               label="Frecuencia de Pago"
@@ -20,14 +20,14 @@
               [filter]="true"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-number-signal
               [control]="form.controls['diaPago1']"
               label="Dia de Pago 1"
               hint="Generalmente dia 15 para nomina quincenal"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-number-signal
               [control]="form.controls['diaPago2']"
               label="Dia de Pago 2"
@@ -41,15 +41,15 @@
     <!-- Prestaciones de Ley -->
     <div class="col-12">
       <lx-fieldset legend="Prestaciones de Ley (LFT)">
-        <div class="grid">
-          <div class="col-12 md:col-6">
+        <div class="row">
+          <div class="col-12 col-md-6">
             <custom-input-number-signal
               [control]="form.controls['diasAguinaldo']"
               label="Dias de Aguinaldo"
               hint="Minimo 15 dias segun LFT"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-decimal-signal
               [control]="form.controls['factorPrimaVacacional']"
               label="Factor Prima Vacacional"
@@ -65,15 +65,15 @@
     <!-- Control de Asistencia -->
     <div class="col-12">
       <lx-fieldset legend="Control de Asistencia">
-        <div class="grid">
-          <div class="col-12 md:col-6">
+        <div class="row">
+          <div class="col-12 col-md-6">
             <custom-input-number-signal
               [control]="form.controls['minutosToleranciaRetardo']"
               label="Minutos de Tolerancia"
               hint="Minutos de gracia antes de registrar retardo"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-number-signal
               [control]="form.controls['retardosPorFalta']"
               label="Retardos por Falta"
@@ -87,8 +87,8 @@
     <!-- Cuotas IMSS (Parte Obrera) -->
     <div class="col-12">
       <lx-fieldset legend="Cuotas IMSS - Parte Obrera">
-        <div class="grid">
-          <div class="col-12 md:col-4">
+        <div class="row">
+          <div class="col-12 col-md-4">
             <custom-input-decimal-signal
               [control]="form.controls['porcentajeEnfermedadMaternidad']"
               label="Enfermedad y Maternidad"
@@ -97,7 +97,7 @@
               [maxFractionDigits]="5"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-decimal-signal
               [control]="form.controls['porcentajeIvcm']"
               label="IVCM (Invalidez, Vejez, C y M)"
@@ -106,7 +106,7 @@
               [maxFractionDigits]="5"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-decimal-signal
               [control]="form.controls['porcentajeCesantiaVejez']"
               label="Cesantia y Vejez"
@@ -120,7 +120,7 @@
     </div>
 
     <!-- Guardar -->
-    <div class="col-12 flex justify-content-end">
+    <div class="col-12 d-flex justify-content-end">
       <il-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
     </div>
   </div>

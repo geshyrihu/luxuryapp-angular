@@ -11,19 +11,19 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   rowGroupMode="subheader"
   groupRowsBy="departament"
   #dt
 >
   <ng-template #caption>
     <div
-      class="flex flex-wrap align-items-end justify-content-between w-full gap-3"
+      class="d-flex flex-wrap align-items-end justify-content-between w-full gap-3"
     >
       <div class="flex-grow-1">
         <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
-      <div class="flex flex-wrap gap-2 align-items-end pb-2">
+      <div class="d-flex flex-wrap gap-2 align-items-end pb-2">
         <il-button
           (clicked)="onGoToMyPendingInterviews()"
           iconClass="material-symbols-light:calendar-clock"
@@ -73,7 +73,7 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />GESTIÓN
+        <app-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
@@ -82,7 +82,7 @@
       >
         <app-icon
           [icon]="'material-symbols-light:person'"
-          class="mr-2"
+          class="me-2"
         />COLABORADOR ASIGNADO
       </th>
     </tr>
@@ -121,7 +121,7 @@
       <!-- PUESTO -->
       <td>
         @if (necesitaActualizacion(item)) {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <lx-tag
             severity="warn"
             value="Actualizar puesto"
@@ -147,14 +147,14 @@
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
       <td class="no-print">
-        <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column gap-1">
           <div
-            class="flex justify-content-between border-bottom-1 border-200 pb-1"
+            class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
           >
             <small class="text-500 font-bold">PRE:</small>
             <span class="text-xs">{{ item.sueldoBase }}</span>
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <small class="text-500 font-bold">ACT:</small>
             <span class="text-xs font-bold text-primary"
               >{{ item.sueldo }}</span
@@ -166,7 +166,7 @@
 
       <!-- ACCIONES PUESTO ------------------------------------------------ -->
       <td>
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <app-action-menu>
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
@@ -206,16 +206,16 @@
 
       <!-- COLABORADOR ---------------------------------------------------- -->
       <td class="border-left-2">
-        <div class="flex flex-column gap-2">
+        <div class="d-flex flex-column gap-2">
           @if (!isVacant(item)) {
           <!-- -- Puesto ocupado -- -->
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             @if (item.applicationUserPhoto) {
             <lx-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
-              class="cursor-pointer mr-2"
+              class="cursor-pointer me-2"
               (click)="onCardEmployee(item.applicationUserId!)"
               lxTooltip="Ver tarjeta"
             />
@@ -224,10 +224,10 @@
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
-              class="mr-2"
+              class="me-2"
             />
             }
-            <div class="flex flex-column min-w-0 flex-grow-1">
+            <div class="d-flex flex-column min-w-0 flex-grow-1">
               <span class="font-semibold truncate"
                 >{{ item.applicationUser }}</span
               >
@@ -293,16 +293,16 @@
               [cdkDropListData]="[]"
               [cdkDropListConnectedTo]="['employee-pool']"
               (cdkDropListDropped)="onDropToPosition($event, item)"
-              class="drop-zone vacant-drop-zone flex align-items-center justify-content-between p-2"
+              class="drop-zone vacant-drop-zone d-flex align-items-center justify-content-between p-2"
             >
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:group'"
                   class="text-400"
                 />
                 <span class="text-sm font-bold">VACANTE</span>
               </div>
-              <div class="flex gap-1">
+              <div class="d-flex gap-1">
                 <iw-button-item
                   iconClass="material-symbols-light:link"
                   lxTooltip="Vincular del pool"
@@ -323,14 +323,14 @@
             @if (item.positionRequest) { @if (item.positionRequest.status === 3)
             {
             <span
-              class="badge badge-warning vacant-inline-badge text-xs text-center block py-2"
+              class="badge badge-warning vacant-inline-badge text-xs text-center d-block py-2"
               lxTooltip="Vacante abierta é esperando alta de colaborador"
             >
               ðŸŸ¡ VA-{{ item.positionRequest.folio }} | Vacante abierta
             </span>
             } @else {
             <span
-              class="badge badge-info vacant-inline-badge text-xs text-center block py-2"
+              class="badge badge-info vacant-inline-badge text-xs text-center d-block py-2"
               lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
             >
               🔵 VA-{{ item.positionRequest.folio }} Alta en proceso
@@ -340,9 +340,9 @@
               class="vacant-queue-summary mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
             >
               <div
-                class="flex flex-wrap align-items-center justify-content-between gap-2"
+                class="d-flex flex-wrap align-items-center justify-content-between gap-2"
               >
-                <div class="flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2">
                   <app-icon
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
@@ -378,7 +378,7 @@
 <div class="card mt-3">
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
-    <div class="flex align-items-center">
+    <div class="d-flex align-items-center">
       <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
       <span class="font-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
@@ -460,10 +460,10 @@
   header="Asignar Colaborador"
 >
   @if (selectedPosition(); as pos) {
-  <div class="flex flex-column">
+  <div class="d-flex flex-column">
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
-      <div class="flex align-items-center mb-1">
+      <div class="d-flex align-items-center mb-1">
         <app-icon [icon]="'material-symbols-light:work'" />
         <span class="font-bold">{{ pos.folio }}</span>
       </div>
@@ -476,7 +476,7 @@
     </p>
 
     @if (assignLoading()) {
-    <div class="flex justify-content-center py-4">
+    <div class="d-flex justify-content-center py-4">
       <app-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-2xl"
@@ -490,7 +490,7 @@
     <!-- DS: menu-item (dropdown/_dropdowns.scss) é flex, hover bg, cursor pointer -->
     <div class="menu-item" (click)="onAssignFromDrawer(emp)">
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
-      <div class="flex flex-column min-w-0 flex-grow-1">
+      <div class="d-flex flex-column min-w-0 flex-grow-1">
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
       </div>
@@ -510,7 +510,7 @@
   header="Inactivos"
 >
   <!-- Tabs de selección -->
-  <div class="flex mb-4">
+  <div class="d-flex mb-4">
     <il-button
       iconClass="material-symbols-light:apartment"
       [label]="'Puestos (' + inactivePositions().length + ')'"
@@ -530,7 +530,7 @@
   </div>
 
   @if (inactivosLoading()) {
-  <div class="flex justify-content-center py-8">
+  <div class="d-flex justify-content-center py-8">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl"
@@ -548,10 +548,10 @@
     <div class="alert__body">No hay puestos inactivos.</div>
   </div>
   } @else {
-  <div class="flex flex-column">
+  <div class="d-flex flex-column">
     @for (pos of inactivePositions(); track pos.id) {
     <div class="card card--bordered">
-      <div class="flex flex-column gap-1 min-w-0">
+      <div class="d-flex flex-column gap-1 min-w-0">
         <span class="text-label">{{ pos.folio }}</span>
         <span class="font-semibold">{{ pos.applicationRoleName }}</span>
         <span class="text-sm text-500"
@@ -578,11 +578,11 @@
     <div class="alert__body">No hay colaboradores inactivos.</div>
   </div>
   } @else {
-  <div class="flex flex-column">
+  <div class="d-flex flex-column">
     @for (emp of inactiveEmployees(); track emp.applicationUserId) {
     <div class="card card--bordered">
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
-      <div class="flex flex-column min-w-0 flex-grow-1">
+      <div class="d-flex flex-column min-w-0 flex-grow-1">
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
         @if (emp.departament !== null) {
@@ -591,7 +591,7 @@
         >
         }
       </div>
-      <div class="flex gap-1">
+      <div class="d-flex gap-1">
         <il-button-item
           iconClass="material-symbols-light:check"
           label="Activar"

@@ -1,7 +1,7 @@
-<div class="flex flex-column" [formGroup]="form">
+<div class="d-flex flex-column" [formGroup]="form">
   <!-- Selector de fechas + notas -->
-  <div class="grid mt-2">
-    <div class="col-12 md:col-6">
+  <div class="row mt-2">
+    <div class="col-12 col-md-6">
       <custom-input-date-signal
         label="Fechas de suspensión"
         [control]="form.controls.dates"
@@ -10,13 +10,13 @@
         [horizontal]="false"
         placeholder="Selecciona una o varias fechas"
       />
-      <small class="text-color-secondary text-xs mt-1 block">
+      <small class="text-color-secondary text-xs mt-1 d-block">
         Las fechas ya registradas están deshabilitadas. Puedes seleccionar
         varias.
       </small>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-textarea-signal
         label="Notas (opcional)"
         [control]="form.controls.notes"
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="flex justify-content-end mb-3">
+  <div class="d-flex justify-content-end mb-3">
     <il-button-add
       label="Agregar días"
       [disabled]="!form.controls.dates.value || !form.controls.dates.value.length || saving()"

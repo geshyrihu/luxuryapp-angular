@@ -69,6 +69,12 @@ export class AppPopover extends PopoverBase {
     }
   }
 
+  show(): void {
+    if (!this.overlayRef) {
+      this.openPanel();
+    }
+  }
+
   hide(): void {
     this.dispose();
   }
@@ -78,14 +84,8 @@ export class AppPopover extends PopoverBase {
       .position()
       .flexibleConnectedTo(this.trigger())
       .withFlexibleDimensions(false)
+      .withViewportMargin(20)
       .withPositions([
-        {
-          originX: "start",
-          originY: "bottom",
-          overlayX: "start",
-          overlayY: "top",
-          offsetY: 4,
-        },
         {
           originX: "end",
           originY: "bottom",
@@ -95,8 +95,15 @@ export class AppPopover extends PopoverBase {
         },
         {
           originX: "start",
-          originY: "top",
+          originY: "bottom",
           overlayX: "start",
+          overlayY: "top",
+          offsetY: 4,
+        },
+        {
+          originX: "end",
+          originY: "top",
+          overlayX: "end",
           overlayY: "bottom",
           offsetY: -4,
         },

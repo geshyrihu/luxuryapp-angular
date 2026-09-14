@@ -1,4 +1,4 @@
-<p-table [value]="dataSignal()" class="custom-table card hidden md:block">
+<p-table [value]="dataSignal()" class="custom-table card d-none d-md-block">
   <ng-template #header>
     <tr>
       <th ></th>
@@ -12,7 +12,7 @@
         {{ seguimiento.fecha }}, {{ seguimiento.seguimiento | titlecase }}
       </td>
       <td>
-        <div class="flex content-center">
+        <div class="d-flex content-center">
           <iw-button
             iconClass="edit"
             ngbTooltip="Editar"

@@ -1,21 +1,21 @@
 @if (loading()) {
 <div class="card p-3 mb-3">
-  <div class="flex align-items-center justify-content-center py-5">
+  <div class="d-flex align-items-center justify-content-center py-5">
     <lx-spinner [size]="40" />
-    <span class="ml-3 text-color-secondary">Calculando indicadores...</span>
+    <span class="ms-3 text-color-secondary">Calculando indicadores...</span>
   </div>
 </div>
 }
 
 @if (!loading() && kpis()) {
   <!-- Tarjetas KPIs principales -->
-  <div class="grid mb-4">
+  <div class="row mb-4">
     @for (card of kpiCards(); track card.title) {
-      <div class="col-12 md:col-6 lg:col-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="card p-3 h-full">
-          <div class="flex align-items-start gap-3">
+          <div class="d-flex align-items-start gap-3">
             <div
-              class="flex align-items-center justify-content-center rounded-xl w-3rem h-3rem"
+              class="d-flex align-items-center justify-content-center rounded-xl w-3rem h-3rem"
               [ngClass]="{
                 'bg-red-100 text-red-600': card.severity === 'danger',
                 'bg-yellow-100 text-yellow-600': card.severity === 'warn',
@@ -50,9 +50,9 @@
   <!-- Pipeline por etapas -->
   <div class="card p-3 mb-4">
     <div class="font-semibold mb-3">Pipeline por etapas</div>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       @for (stage of pipelineStages(); track stage.label) {
-        <div class="flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+        <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
              [ngClass]="{
                'border-left-3 border-red-500': stage.color === 'danger',
                'border-left-3 border-yellow-500': stage.color === 'warn',
@@ -71,9 +71,9 @@
   @if (agendaBreakdown().length > 0) {
     <div class="card p-3 mb-4">
       <div class="font-semibold mb-3">Desglose Entrevista Operaciones ({{ kpis()?.postulacionesEnEntrevistaOperaciones }} total)</div>
-      <div class="flex flex-wrap gap-2">
+      <div class="d-flex flex-wrap gap-2">
         @for (item of agendaBreakdown(); track item.label) {
-          <div class="flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+          <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
                [ngClass]="{
                  'border-left-3 border-red-500': item.severity === 'danger',
                  'border-left-3 border-yellow-500': item.severity === 'warn',
@@ -91,22 +91,22 @@
   }
 
   <!-- Promedios y métricas de tiempo -->
-  <div class="grid mb-4">
-    <div class="col-12 md:col-4">
+  <div class="row mb-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
         <div class="text-sm text-color-secondary mb-1">Promedio días en etapa actual</div>
         <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasEnEtapaActual | number:'1.1-1' }}</div>
         <small class="text-color-secondary">Postulaciones activas</small>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
         <div class="text-sm text-color-secondary mb-1">Promedio días hasta Entrevista Ops.</div>
         <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasHastaEntrevistaOperaciones ?? 'N/A' }}</div>
         <small class="text-color-secondary">Solo con fecha programada</small>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
         <div class="text-sm text-color-secondary mb-1">Postulaciones sin feedback en entrevista</div>
         <div class="text-3xl font-bold" [class.text-red-500]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) > 0" [class.text-green-600]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) === 0">{{ kpis()?.postulacionesSinFeedbackEnEntrevista }}</div>
@@ -157,7 +157,7 @@
 
   <!-- Botón ejecutar automatización -->
   <div class="card p-3 mb-4">
-    <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3">
       <div>
         <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
         <p class="m-0 text-sm text-color-secondary">
@@ -258,7 +258,7 @@
 
   <!-- Botón ejecutar automatización -->
   <div class="card p-3 mb-4">
-    <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3">
       <div>
         <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
         <p class="m-0 text-sm text-color-secondary">

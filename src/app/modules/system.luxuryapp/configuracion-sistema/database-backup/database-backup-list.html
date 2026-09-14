@@ -11,7 +11,7 @@
   [scrollHeight]="scrollHeight()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -86,7 +86,7 @@
         }
       </td>
       <td class="no-print">
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <iw-button-edit (clicked)="onModalEditForm(item)" />
           @if (item.destinationType === 'GraphApi') {
           <iw-button
@@ -125,7 +125,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-blue-100"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-blue-100"
       >
         <app-icon icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
       </div>

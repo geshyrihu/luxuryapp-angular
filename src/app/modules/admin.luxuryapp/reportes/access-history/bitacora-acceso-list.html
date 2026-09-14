@@ -1,10 +1,10 @@
-<div class="grid">
+<div class="row">
   <div class="col-4">
     <app-calendar-range></app-calendar-range>
   </div>
 </div>
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <p-table
     [value]="data()"
     dataKey="employeeId"
@@ -98,7 +98,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   @if(data().length > 0) {
   <div>
     @for(item of data(); track item.employeeId) {
@@ -115,10 +115,10 @@
       </ili-list-item>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {
-        <div class="flex flex-column p-2 surface-card">
+        <div class="d-flex flex-column p-2 surface-card">
           @for(registro of item.historial; track registro) {
           <div
-            class="flex justify-content-between align-items-center surface-card p-2 rounded shadow-sm"
+            class="d-flex justify-content-between align-items-center surface-card p-2 rounded shadow-sm"
           >
             <span class="font-medium text-sm"
               >{{ registro.fechaRegistro }}</span

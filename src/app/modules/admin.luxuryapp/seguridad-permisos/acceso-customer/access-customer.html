@@ -1,14 +1,14 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <!-- Encabezado Informativo -->
   <div
-    class="surface-card p-3 rounded border-1 surface-border flex align-items-center gap-3"
+    class="surface-card p-3 rounded border-1 surface-border d-flex align-items-center gap-3"
   >
     <div
-      class="w-3rem h-3rem rounded bg-primary-50 flex align-items-center justify-content-center text-primary"
+      class="w-3rem h-3rem rounded bg-primary-50 d-flex align-items-center justify-content-center text-primary"
     >
       <app-icon [icon]="'material-symbols-light:apartment'" class="text-xl" />
     </div>
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       <span class="text-900 font-bold uppercase tracking-wider text-sm"
         >Acceso a Clientes</span
       >
@@ -19,20 +19,20 @@
   </div>
 
   <!-- Grid de Clientes -->
-  <div class="grid p-1">
+  <div class="row p-1">
     @for (item of dataSignal(); track item.customerId) {
-    <div class="col-12 sm:col-6 lg:col-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div
-        class="flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surface-100 transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+        class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surface-100 transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
         [class.surface-50]="item.isSelected"
         [class.border-primary]="item.isSelected"
         [class.shadow-sm]="item.isSelected"
         (click)="toggleCliente(item)"
       >
-        <div class="flex align-items-center min-w-0 gap-3 w-full">
+        <div class="d-flex align-items-center min-w-0 gap-3 w-full">
           <!-- Indicador Visual -->
           <span
-            class="flex-shrink-0 inline-flex align-items-center justify-content-center w-2rem h-2rem rounded-circle border-1"
+            class="flex-shrink-0 d-inline-flex align-items-center justify-content-center w-2rem h-2rem rounded-circle border-1"
             [class.bg-green-100]="item.isSelected"
             [class.text-green-700]="item.isSelected"
             [class.border-green-200]="item.isSelected"
@@ -46,7 +46,7 @@
             />
           </span>
 
-          <div class="flex flex-column min-w-0 flex-1">
+          <div class="d-flex flex-column min-w-0 flex-1">
             <span
               class="font-bold text-sm text-900 truncate"
               [title]="item.customerName"

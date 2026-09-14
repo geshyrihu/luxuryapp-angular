@@ -1,5 +1,5 @@
 <div class="p-3">
-  <div class="flex align-items-center gap-2 mb-3">
+  <div class="d-flex align-items-center gap-2 mb-3">
     <iw-button iconClass="material-symbols-light:arrow-back" variant="text" (clicked)="location.back()" />
     <h2 class="m-0">{{ period()?.name ?? 'Periodo de Detectores de Humo' }}</h2>
     @if (period()?.isActive) {
@@ -16,13 +16,13 @@
   <div class="card mb-3">
     <h4 class="mt-0 mb-2">Ciclo Activo</h4>
     @if (activeCycle()) {
-      <div class="flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
         <lx-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'"  />
         <span class="text-600">{{ activeCycle().periodStart | apiDate:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | apiDate:'dd/MM/yyyy' }}</span>
         <span class="text-600">{{ activeCycle().items?.length ?? 0 }} equipos</span>
       </div>
     } @else {
-      <div class="flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
         <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
         <il-button label="Generar Ciclo" iconClass="material-symbols-light:play-arrow" size="small" (clicked)="onGenerateCycle()" />
       </div>
@@ -30,16 +30,16 @@
   </div>
 
   <div class="card mb-3">
-    <div class="flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="m-0">Detectores de Humo en este Periodo ({{ periodItems().length }})</h4>
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button label="Escanear QR" iconClass="material-symbols-light:qr-code-scanner" variant="outline" (clicked)="scanning() ? stopScan() : startScan()" />
         <il-button [label]="showAddForm() ? 'Cancelar' : 'Agregar Detector'" [iconClass]="showAddForm() ? 'material-symbols-light:close' : 'material-symbols-light:add'" variant="outline" (clicked)="showAddForm.set(!showAddForm())" />
       </div>
     </div>
 
     @if (showAddForm()) {
-      <div class="flex align-items-center gap-2 mb-3 p-3 surface-100 rounded">
+      <div class="d-flex align-items-center gap-2 mb-3 p-3 surface-100 rounded">
         <select class="p-inputtext w-full" [(ngModel)]="selectedEquipmentId">
           <option value="">-- Selecciona un detector de humo --</option>
           @for (e of availableEquipment(); track e.id) {
@@ -79,7 +79,7 @@
                 <lx-tag [value]="statusLabel(item.cycleStatus)" [severity]="statusSeverity(item.cycleStatus)"  />
               </td>
               <td class="p-2">
-                <div class="flex gap-1 justify-content-end">
+                <div class="d-flex gap-1 justify-content-end">
                   <il-button label="Inspeccionar" iconClass="material-symbols-light:check-circle" size="small" variant="outline" (clicked)="openChecklist(item)" />
                   <iw-button iconClass="material-symbols-light:delete" severity="danger" size="small" variant="text" (clicked)="onRemoveItem(item.id)" />
                 </div>

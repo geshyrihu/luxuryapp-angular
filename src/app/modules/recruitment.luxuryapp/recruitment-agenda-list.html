@@ -1,37 +1,37 @@
-<div class="grid mb-3">
-  <div class="col-12 md:col-6 xl:col">
+<div class="row mb-3">
+  <div class="col-12 col-md-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2"
+      <small class="text-color-secondary d-block mb-2"
         >Pendientes de agenda</small
       >
       <div class="text-2xl font-semibold">{{ summary().pendingSchedule }}</div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
+  <div class="col-12 col-md-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2">Agendadas</small>
+      <small class="text-color-secondary d-block mb-2">Agendadas</small>
       <div class="text-2xl font-semibold">{{ summary().scheduled }}</div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
+  <div class="col-12 col-md-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2">Vencidas</small>
+      <small class="text-color-secondary d-block mb-2">Vencidas</small>
       <div class="text-2xl font-semibold text-red-500">
         {{ summary().overdue }}
       </div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
+  <div class="col-12 col-md-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2">Sin entrevistador</small>
+      <small class="text-color-secondary d-block mb-2">Sin entrevistador</small>
       <div class="text-2xl font-semibold text-orange-500">
         {{ summary().missingInterviewer }}
       </div>
     </div>
   </div>
-  <div class="col-12 md:col-6 xl:col">
+  <div class="col-12 col-md-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2"
+      <small class="text-color-secondary d-block mb-2"
         >Con retroalimentacion</small
       >
       <div class="text-2xl font-semibold text-green-500">
@@ -42,7 +42,7 @@
 </div>
 
 <div
-  class="card p-3 mb-2 flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2"
+  class="card p-3 mb-2 d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2"
 >
   <div>
     <div class="font-semibold mb-1">Agenda de entrevistas</div>
@@ -68,8 +68,8 @@
   [rowTrackBy]="trackById"
 >
   <ng-template #caption>
-    <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
-      <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
+      <div class="d-flex flex-wrap gap-2">
         <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
         <app-select-button
           [options]="filterOptions()"

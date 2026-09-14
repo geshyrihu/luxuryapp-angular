@@ -1,10 +1,10 @@
-<div class="grid">
+<div class="row">
   <div class="col-12">
     <div class="card">
       <div
-        class="flex flex-column gap-2 md:flex-row md:justify-content-between md:align-items-center"
+        class="d-flex flex-column gap-2 flex-md-row justify-content-md-between align-items-md-center"
       >
-        <div class="text-center md:text-left mb-2 px-2 md:px-0">
+        <div class="text-center md:text-left mb-2 px-2 px-md-0">
           <h2 class="m-0 text-xl md:text-2xl font-bold line-height-3">
             Agenda central para reuniones con el comite y asambleas
           </h2>
@@ -35,7 +35,7 @@
       [value]="listData()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table card hidden md:block"
+      class="custom-table card d-none d-md-block"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -127,7 +127,7 @@
             }
           </td>
           @if (canManageItem(item)) {
-          <td class="flex gap-2">
+          <td class="d-flex gap-2">
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             <iw-button-delete (confirmed)="onDelete(item.id)" />
           </td>
@@ -150,7 +150,7 @@
         <ili-list-item>
           <div
             start
-            class="flex flex-column align-items-center justify-content-center mx-3 my-2 border-round-xl bg-primary-50 px-3 py-2 shadow-1"
+            class="d-flex flex-column align-items-center justify-content-center mx-3 my-2 border-round-xl bg-primary-50 px-3 py-2 shadow-1"
           >
             <span
               class="text-xs font-bold text-primary uppercase tracking-widest"
@@ -163,8 +163,8 @@
             >
           </div>
 
-          <div class="flex flex-column gap-2 py-3 w-full">
-            <div class="flex flex-wrap align-items-center gap-2">
+          <div class="d-flex flex-column gap-2 py-3 w-full">
+            <div class="d-flex flex-wrap align-items-center gap-2">
               <span
                 class="text-xs font-bold px-2 py-1 border-round-xl {{ getSubjectTypeClass(item) }}"
               >
@@ -181,22 +181,22 @@
               {{ item.title }}
             </h2>
 
-            <div class="flex flex-wrap gap-3 mt-1">
+            <div class="d-flex flex-wrap gap-3 mt-1">
               <div
-                class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
                 <app-icon icon="material-symbols-light:schedule" />
                 <span>{{ formatBusinessTime(item.startAt) }}</span>
               </div>
               <div
-                class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
                 <app-icon icon="material-symbols-light:group-outline" />
                 <span>{{ item.guestCount }} Invitados</span>
               </div>
               @if (item.recurrenceSummary) {
               <div
-                class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
                 <app-icon icon="material-symbols-light:refresh" />
                 <span>{{ item.recurrenceSummary }}</span>
@@ -204,7 +204,7 @@
               }
             </div>
 
-            <div class="flex flex-wrap align-items-center gap-2 mt-2">
+            <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
               <lx-tag
                 [value]="getStatusLabel(item)"
                 [severity]="getStatusSeverity(item)"
@@ -215,7 +215,7 @@
                 [href]="item.googleMeetUrl"
                 rel="noopener noreferrer"
                 target="_blank"
-                class="no-underline text-xs font-bold px-2 py-1 border-round-xl bg-green-100 text-green-800 flex align-items-center gap-1"
+                class="no-underline text-xs font-bold px-2 py-1 border-round-xl bg-green-100 text-green-800 d-flex align-items-center gap-1"
               >
                 <app-icon icon="material-symbols-light:videocam" /> Meet
               </a>

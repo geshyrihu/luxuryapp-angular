@@ -9,7 +9,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="card hidden md:block custom-table"
+  class="card d-none d-md-block custom-table"
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
@@ -58,7 +58,7 @@
 
       <!-- Opciones -->
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Conocimiento' })"
           />
@@ -87,7 +87,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon icon="material-symbols-light:psychology" class="text-xl text-primary" />

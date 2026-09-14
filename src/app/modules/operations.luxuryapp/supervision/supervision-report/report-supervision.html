@@ -1,5 +1,5 @@
 <!-- Encabezado cliente -->
-<div class="flex align-items-center gap-3 mb-4">
+<div class="d-flex align-items-center gap-3 mb-4">
   @if (photoPath()) {
   <img
     [src]="photoPath()"
@@ -18,14 +18,14 @@
 <div class="card" class="mb-4 shadow-sm">
   <div class="card-header">
     <div
-      class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
+      class="d-flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Minutas Pendientes</span>
     </div>
   </div>
 
   @if (loadingMinutas()) {
-  <div class="flex align-items-center justify-content-center gap-3 py-4">
+  <div class="d-flex align-items-center justify-content-center gap-3 py-4">
     <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando minutas...</span>
   </div>
@@ -48,7 +48,7 @@
           <td>{{ i + 1 }}</td>
           <td>{{ minuta.date }}</td>
           <td>
-            <strong class="block">{{ minuta.title }}</strong>
+            <strong class="d-block">{{ minuta.title }}</strong>
             <span class="text-secondary text-sm"
               >{{ minuta.requestService }}</span
             >
@@ -65,7 +65,7 @@
   </div>
   } } @if (!loadingMinutas() && minutas()?.length === 0) {
   <div
-    class="flex align-items-center justify-content-center py-4 text-secondary"
+    class="d-flex align-items-center justify-content-center py-4 text-secondary"
   >
     No hay minutas pendientes.
   </div>
@@ -76,14 +76,14 @@
 <div class="card" class="mb-4 shadow-sm">
   <div class="card-header">
     <div
-      class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
+      class="d-flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Tickets Pendientes</span>
     </div>
   </div>
 
   @if (loadingTickets()) {
-  <div class="flex align-items-center justify-content-center gap-3 py-4">
+  <div class="d-flex align-items-center justify-content-center gap-3 py-4">
     <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando tickets...</span>
   </div>
@@ -106,7 +106,7 @@
           <td>{{ i + 1 }}</td>
           <td>{{ ticket.date }}</td>
           <td>
-            <strong class="block">{{ ticket.title }}</strong>
+            <strong class="d-block">{{ ticket.title }}</strong>
             <span class="text-secondary text-sm">{{ ticket.description }}</span>
           </td>
           <td>{{ ticket.scheduledDate }}</td>
@@ -121,7 +121,7 @@
   </div>
   } } @if (!loadingTickets() && tickets()?.length === 0) {
   <div
-    class="flex align-items-center justify-content-center py-4 text-secondary"
+    class="d-flex align-items-center justify-content-center py-4 text-secondary"
   >
     No hay solicitudes pendientes.
   </div>
@@ -132,14 +132,14 @@
 <div class="card" class="mb-4 shadow-sm">
   <div class="card-header">
     <div
-      class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
+      class="d-flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Pendientes Legales</span>
     </div>
   </div>
 
   @if (loadingPendingLegal()) {
-  <div class="flex align-items-center justify-content-center gap-3 py-4">
+  <div class="d-flex align-items-center justify-content-center gap-3 py-4">
     <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando pendientes legales...</span>
   </div>
@@ -161,7 +161,7 @@
           <td>{{ i + 1 }}</td>
           <td>{{ ticket.date }}</td>
           <td>
-            <strong class="block">{{ ticket.title }}</strong>
+            <strong class="d-block">{{ ticket.title }}</strong>
             <span class="text-secondary text-sm">{{ ticket.description }}</span>
           </td>
           <td>
@@ -175,7 +175,7 @@
   </div>
   } @if (!loadingPendingLegal() && pendingLegal()?.length === 0) {
   <div
-    class="flex align-items-center justify-content-center py-4 text-secondary"
+    class="d-flex align-items-center justify-content-center py-4 text-secondary"
   >
     No hay pendientes legales.
   </div>
@@ -186,14 +186,14 @@
 <div class="card" class="mb-4 shadow-sm">
   <div class="card-header">
     <div
-      class="flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
+      class="d-flex align-items-center gap-2 px-4 py-3 border-left-4 border-primary"
     >
       <span class="font-bold text-lg">Estados Financieros</span>
     </div>
   </div>
 
   @if (loadingEnvioFinancieros()) {
-  <div class="flex align-items-center justify-content-center gap-3 py-4">
+  <div class="d-flex align-items-center justify-content-center gap-3 py-4">
     <app-spinner [size]="48" [strokeWidth]="4" />
     <span class="text-secondary">Cargando estados financieros...</span>
   </div>
@@ -229,7 +229,7 @@
   </div>
   } @if (!loadingEnvioFinancieros() && envioFinancieros()?.length === 0) {
   <div
-    class="flex align-items-center justify-content-center py-4 text-secondary"
+    class="d-flex align-items-center justify-content-center py-4 text-secondary"
   >
     No hay estados financieros pendientes.
   </div>

@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 @if (dataSignal()) {
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <div class="card">
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -54,7 +54,7 @@
           <td>{{ item.budgetedAmount | number: "1.0-0" }}</td>
           <td>{{ item.expenseTypeName }}</td>
           <td class="text-center">
-            <div class="flex">
+            <div class="d-flex">
               @if (!item.isFromCalendar) {
 
               <iw-button-edit
@@ -87,7 +87,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon

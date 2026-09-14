@@ -80,7 +80,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
             </td>
           }
           <td class="text-center">
-            <div class="flex gap-1 justify-center">
+            <div class="d-flex gap-1 justify-center">
               @if (request.attachmentPath) {
                 <il-button-view-pdf
                   [url]="request.attachmentPath"

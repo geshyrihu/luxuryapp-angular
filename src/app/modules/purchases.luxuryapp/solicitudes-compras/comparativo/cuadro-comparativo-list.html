@@ -3,7 +3,7 @@
   class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden mb-4 w-full"
 >
   <div class="bg-primary"></div>
-  <div class="surface-100 p-1 md:p-2 text-center">
+  <div class="surface-100 p-1 p-md-2 text-center">
     <div class="w-full">
       <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
         {{ solicitudCompra.equipoOInstalacion }}
@@ -17,14 +17,14 @@
 }
 <div class="surface-card rounded-xl border-1 surface-border shadow-sm p-2 mb-4">
   <div
-    class="flex align-items-center justify-content-between gap-2 flex-wrap md:flex-nowrap"
+    class="d-flex align-items-center justify-content-between gap-2 flex-wrap md:flex-nowrap"
   >
     <!-- Folio alineado a la izquierda -->
     <p class="text-color-secondary m-0 mt-0">{{ folio }}</p>
 
     <!-- Contenedor de botones alineados a la derecha (con scroll horizontal en móvil) -->
     <div
-      class="flex align-items-center justify-content-end gap-2 overflow-x-auto"
+      class="d-flex align-items-center justify-content-end gap-2 overflow-x-auto"
     >
       <il-button
         [iconClass]="cleanView ? 'material-symbols-light:visibility-outline' : 'material-symbols-light:visibility-off'"
@@ -80,7 +80,7 @@
       <input
         type="file"
         #evidenceInput
-        class="hidden"
+        class="d-none"
         accept=".jpg,.jpeg,.png"
         multiple
         (change)="onEvidenceFilesSelected($event)"
@@ -115,14 +115,14 @@
     </div>
   </div>
 </div>
-<div class="grid mb-4">
+<div class="row mb-4">
   <div class="col-12">
     <div class="surface-card rounded p-3">
       <div
-        class="flex flex-wrap xl:flex-nowrap align-items-center justify-content-between gap-3"
+        class="d-flex flex-wrap xl:flex-nowrap align-items-center justify-content-between gap-3"
       >
-        <div class="flex flex-column gap-1 min-w-0">
-          <div class="flex align-items-center gap-2 min-w-0">
+        <div class="d-flex flex-column gap-1 min-w-0">
+          <div class="d-flex align-items-center gap-2 min-w-0">
             <span class="font-semibold">Autorizada por</span>
             <span
               class="text-600 white-space-nowrap overflow-hidden text-overflow-ellipsis"
@@ -142,10 +142,10 @@
       </div>
 
       <div
-        class="flex flex-wrap gap-3 mt-3 align-items-center border-top-1 surface-border pt-3"
+        class="d-flex flex-wrap gap-3 mt-3 align-items-center border-top-1 surface-border pt-3"
       >
         <!-- Requiere contrato -->
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <span class="font-semibold text-sm">Requiere contrato:</span>
           @if (!cleanView) {
           <il-button
@@ -167,7 +167,7 @@
         </div>
 
         <!-- Junta de comite -->
-        <div class="flex align-items-center gap-2 flex-wrap">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
           <span class="font-semibold text-sm">Junta de comite:</span>
           @if (solicitudCompra?.comiteEvento) {
           <span class="text-sm text-color-secondary">
@@ -200,8 +200,8 @@
 
       @if (!cleanView && selectedEvidenceFiles.length > 0) {
       <div class="mt-3">
-        <small class="block font-semibold mb-2">Fotos listas para subir</small>
-        <div class="flex flex-wrap gap-2">
+        <small class="d-block font-semibold mb-2">Fotos listas para subir</small>
+        <div class="d-flex flex-wrap gap-2">
           @for (file of selectedEvidenceFiles; track file.name + file.size) {
           <span class="text-sm">{{ file.name }}</span>
           }
@@ -210,14 +210,14 @@
       }
 
       <div class="mt-3">
-        <div class="grid mx-0">
+        <div class="row mx-0">
           @if (getVisualEvidenceCards().length === 0) {
           <p class="mb-0 text-600 col-12">
             No hay evidencias cargadas para esta solicitud.
           </p>
           } @else { @for (evidencia of getVisualEvidenceCards(); track
           evidencia.id) {
-          <div class="col-12 md:col-3 px-2">
+          <div class="col-12 col-md-3 px-2">
             <div
               class="border-1 surface-border rounded p-2 h-full surface-card"
             >
@@ -234,7 +234,7 @@
               }"
                 [preview]="true"
               />
-              <div class="flex justify-content-between align-items-center mt-2">
+              <div class="d-flex justify-content-between align-items-center mt-2">
                 <small class="text-600">
                   {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
                 </small>
@@ -257,13 +257,13 @@
   </div>
 </div>
 
-<div class="block md:hidden p-4 text-center text-gray-500">
+<div class="d-block d-md-none p-4 text-center text-gray-500">
   <p>El cuadro comparativo esta optimizado para pantallas de escritorio.</p>
 </div>
 
 <p-table
   [value]="getDisplayedSolicitudDetalle()"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #header>
     <tr>
@@ -462,7 +462,7 @@
   </div>
 
   <ng-template pTemplate="footer">
-    <div class="flex justify-content-end pt-3">
+    <div class="d-flex justify-content-end pt-3">
       <il-button
         label="Cerrar Reporte"
         icon="material-symbols-light:check"

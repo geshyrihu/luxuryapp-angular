@@ -1,4 +1,4 @@
-<div class="flex justify-content-start gap-1 flex-wrap">
+<div class="d-flex justify-content-start gap-1 flex-wrap">
   <il-button
     label="Pendientes"
     [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
@@ -40,7 +40,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table custom-table-fixed card hidden md:block"
+  class="custom-table custom-table-fixed card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [title]="'Legal'" [showAdd]="false" [dt]="dt" />
@@ -170,7 +170,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-yellow-100"
       >
         <app-icon

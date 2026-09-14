@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Vista para escritorio -->
-<div class="hidden md:block p-2">
+<div class="d-none d-md-block p-2">
   <!-- Título del cliente -->
   <div
     class="p-3 mb-4 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center uppercase tracking-widest"
@@ -8,7 +8,7 @@
   </div>
 
   @if (loading()) {
-  <div class="flex justify-content-center my-5">
+  <div class="d-flex justify-content-center my-5">
     <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
   </div>
   } @if (!loading() && groupedData().length === 0) {
@@ -19,22 +19,22 @@
   @for (group of groupedData(); track group.groupTitle + $index) {
   <div class="mb-5">
     <!-- Título del grupo -->
-    <div class="flex align-items-center gap-2 mb-3 px-1">
+    <div class="d-flex align-items-center gap-2 mb-3 px-1">
       <div class="w-1rem h-1rem rounded bg-primary"></div>
       <h5 class="m-0 font-bold text-primary uppercase tracking-widest text-sm">
         {{ group.groupTitle }}
       </h5>
-      <span class="text-xs text-500 ml-2"
+      <span class="text-xs text-500 ms-2"
         >({{ group.items.length }} módulos)</span
       >
     </div>
 
     <!-- Grid de módulos -->
-    <div class="grid">
+    <div class="row">
       @for (item of group.items; track item.moduleAppId) {
-      <div class="col-12 md:col-6 lg:col-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <div
-          class="border-1 cursor-pointer p-3 rounded-lg transition-all transition-duration-200 shadow-hover h-full flex align-items-center"
+          class="border-1 cursor-pointer p-3 rounded-lg transition-all transition-duration-200 shadow-hover h-full d-flex align-items-center"
           [class.border-green-500]="item.isAssigned"
           [class.bg-green-50]="item.isAssigned"
           [class.shadow-sm]="item.isAssigned"
@@ -42,10 +42,10 @@
           [class.surface-50]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
-          <div class="flex justify-content-between align-items-center w-full">
-            <div class="flex align-items-center gap-3">
+          <div class="d-flex justify-content-between align-items-center w-full">
+            <div class="d-flex align-items-center gap-3">
               <span
-                class="w-2rem h-2rem rounded-circle flex align-items-center justify-content-center border-1"
+                class="w-2rem h-2rem rounded-circle d-flex align-items-center justify-content-center border-1"
                 [class.bg-green-100]="item.isAssigned"
                 [class.text-green-700]="item.isAssigned"
                 [class.border-green-200]="item.isAssigned"
@@ -77,7 +77,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="md:hidden">
+<div class="d-md-none">
   <div class="ion-padding">
     <div
       class="p-3 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center"
@@ -86,7 +86,7 @@
     </div>
 
     @if (loading()) {
-    <div class="flex justify-content-center my-5">
+    <div class="d-flex justify-content-center my-5">
       <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
     </div>
     } @if (!loading() && groupedData().length === 0) {
@@ -98,7 +98,7 @@
       </h3>
       <div class="m-0">
         @for (item of group.items; track item.moduleAppId) {
-        <div class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
+        <div class="d-flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
           <h2
             [class.font-bold]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
             [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"

@@ -63,10 +63,10 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
           <div class="field-content">
             <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
-              <small class="block mt-1 text-500 line-height-2 italic px-1">
+              <small class="d-block mt-1 text-500 line-height-2 italic px-1">
                 <app-icon
                   [icon]="'material-symbols-light:info'"
-                  class="pi mr-1 text-xs"
+                  class="pi me-1 text-xs"
                 />
                 {{ description() }}
               </small>

@@ -7,15 +7,15 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between mt-1"
+      class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-1"
     >
       <div class="w-full md:w-auto"></div>
       <div
-        class="flex flex-wrap align-items-start md:align-items-center w-full md:w-auto justify-content-start md:justify-content-end gap-2"
+        class="d-flex flex-wrap align-items-start align-items-md-center w-full md:w-auto justify-content-start justify-content-md-end gap-2"
       >
         <primeng-custom-caption
           (add)="onModalCreate()"
@@ -50,36 +50,36 @@
         <p class="text-lg m-0 text-600">{{ item.period | uppercase}}</p>
       </td>
       <td>
-        <p class="text-sm font-semibold m-0 flex align-items-center">
+        <p class="text-sm font-semibold m-0 d-flex align-items-center">
           @if (item.verifiedByName) {
-          <span class="text-xl mr-2">✅</span>
+          <span class="text-xl me-2">✅</span>
           <span>{{ item.verifiedByName }} {{ item.verifiedAt }}</span>
           } @else {
-          <span class="text-xl mr-2">⏳</span>
+          <span class="text-xl me-2">⏳</span>
           <span class="text-500 font-normal">En espera</span>
           }
         </p>
       </td>
 
       <td>
-        <p class="text-sm font-semibold m-0 flex align-items-center">
+        <p class="text-sm font-semibold m-0 d-flex align-items-center">
           @if (item.authorizedByName) {
-          <span class="text-xl mr-2">🛡️</span>
+          <span class="text-xl me-2">🛡️</span>
           <span>{{ item.authorizedByName }} {{ item.authorizedAt }}</span>
           } @else {
-          <span class="text-xl mr-2">⏳</span>
+          <span class="text-xl me-2">⏳</span>
           <span class="text-500 font-normal">En espera</span>
           }
         </p>
       </td>
 
       <td>
-        <p class="text-sm font-semibold m-0 flex align-items-center">
+        <p class="text-sm font-semibold m-0 d-flex align-items-center">
           @if (item.confirmedByName) {
-          <span class="text-xl mr-2">💰</span>
+          <span class="text-xl me-2">💰</span>
           <span>{{ item.confirmedByName }} {{ item.confirmedAt }}</span>
           } @else {
-          <span class="text-xl mr-2">⏳</span>
+          <span class="text-xl me-2">⏳</span>
           <span class="text-500 font-normal">En espera</span>
           }
         </p>
@@ -110,14 +110,14 @@
     <ili-list-item class="ion-no-padding" (click)="onDetails(item.id)">
       <div
         start
-        class="w-2rem h-2rem rounded bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded bg-green-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon
           [icon]="'material-symbols-light:wallet'"
           class="text-green-600 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0 ml-2">
+      <div class="flex-1 min-w-0 ms-2">
         <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>
         <p class="text-sm text-500">
           Autorizado: {{ item.authorizedByName || '? En espera' }}

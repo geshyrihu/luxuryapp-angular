@@ -54,7 +54,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 class="surface-card shadow-1 border-round-lg border-left-3 border-primary p-3"
               >
                 <h3 class="m-0">Medidor Elóctrico A1</h3>
-                <div class="flex align-items-center gap-2 mb-3 mt-2">
+                <div class="d-flex align-items-center gap-2 mb-3 mt-2">
                   <app-icon
                     icon="material-symbols-light:flash-on"
                     class="text-xl text-primary"
@@ -177,19 +177,19 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="text-base font-bold mb-2">
                 2. Card web é patrón visual
               </h3>
-              <div class="grid mb-4">
+              <div class="row mb-4">
                 @for (card of navHubDemo; track card.title) {
-                  <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div
                       class="surface-card border-round-xl p-3 h-full shadow-1 hover:shadow-3
-                              transition-all transition-duration-200 flex flex-column gap-3 cursor-pointer"
+                              transition-all transition-duration-200 d-flex flex-column gap-3 cursor-pointer"
                       [style]="{ 'border-top': '3px solid ' + card.color }"
                     >
                       <div
-                        class="flex align-items-center justify-content-between"
+                        class="d-flex align-items-center justify-content-between"
                       >
                         <div
-                          class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+                          class="d-flex align-items-center justify-content-center border-round-lg flex-shrink-0"
                           style="width:44px;height:44px;"
                           [style.backgroundColor]="card.bgColor"
                         >
@@ -219,14 +219,14 @@ const PATTERNS_LABELS: Record<string, string> = {
 
               <!-- 3. Reglas -->
               <h3 class="text-base font-bold mb-2">3. Reglas del esténdar</h3>
-              <div class="grid text-sm">
-                <div class="col-12 md:col-6">
+              <div class="row text-sm">
+                <div class="col-12 col-md-6">
                   <div class="card border-round-lg p-2">
                     <div class="card-header">
                       <h3 class="card-title">? Web (= md)</h3>
                     </div>
                     <div class="card-body">
-                      <ul class="m-0 pl-3 text-xs line-height-3">
+                      <ul class="m-0 ps-3 text-xs line-height-3">
                         <li>
                           <code>border-top: 3px solid card.color</code> (acento
                           del grupo)
@@ -257,13 +257,13 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </div>
-                <div class="col-12 md:col-6">
+                <div class="col-12 col-md-6">
                   <div class="card border-round-lg p-2">
                     <div class="card-header">
                       <h3 class="card-title">?? Mobile (< md)</h3>
                     </div>
                     <div class="card-body">
-                      <ul class="m-0 pl-3 text-xs line-height-3">
+                      <ul class="m-0 ps-3 text-xs line-height-3">
                         <li>
                           <code>ion-list</code> con
                           <code>ion-item-divider</code> por grupo
@@ -295,10 +295,10 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="text-base font-bold mt-4 mb-2">
                 4. Implementaciones en producción
               </h3>
-              <div class="flex flex-wrap gap-2">
+              <div class="d-flex flex-wrap gap-2">
                 @for (impl of navHubImplementations; track impl.route) {
                   <div
-                    class="surface-ground border-round px-3 py-1 text-xs flex align-items-center gap-2"
+                    class="surface-ground border-round px-3 py-1 text-xs d-flex align-items-center gap-2"
                   >
                     <app-icon [icon]="impl.icon" class="text-primary" />
                     <span class="font-medium">{{ impl.label }}</span>

@@ -1,6 +1,6 @@
 export const EndpointsLegal = {
   LegalMatters: {
-    categories: "LegalMatterCategory",
+    categories: "legal-matter-categories",
     categoryById: (id: string) => `legal-matter/category/${id}`,
     create: "legal-matter",
     createCategory: "legal-matter/category",

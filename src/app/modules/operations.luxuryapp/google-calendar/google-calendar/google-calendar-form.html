@@ -1,34 +1,34 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
-  <div class="col-12 lg:col-8 grid m-0 p-0 align-content-start">
-    <div class="col-12 md:col-3">
-      <label class="block mb-2 field-label">Tipo de asunto *</label>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+  <div class="col-12 col-lg-8 row m-0 p-0 align-content-start">
+    <div class="col-12 col-md-3">
+      <label class="d-block mb-2 field-label">Tipo de asunto *</label>
       <app-segmented-control
         [items]="subjectTypeOptions()"
         [value]="form.controls.subjectType.value"
         (changed)="selectSubjectType($event)"
       />
       @if (getSubjectTypeDescription()) {
-      <small class="text-color-secondary block mt-2">
+      <small class="text-color-secondary d-block mt-2">
         {{ getSubjectTypeDescription() }}
       </small>
       }
     </div>
 
-    <div class="col-12 md:col-2">
-      <label class="block mb-2 field-label">Modalidad *</label>
+    <div class="col-12 col-md-2">
+      <label class="d-block mb-2 field-label">Modalidad *</label>
       <app-segmented-control
         [items]="modalityOptions()"
         [value]="form.controls.modality.value"
         (changed)="selectModality($event)"
       />
       @if (getModalityDescription()) {
-      <small class="text-color-secondary block mt-2">
+      <small class="text-color-secondary d-block mt-2">
         {{ getModalityDescription() }}
       </small>
       }
     </div>
 
-    <div class="col-12 md:col-3">
+    <div class="col-12 col-md-3">
       <custom-input-date-signal
         [control]="form.controls.meetingDate"
         label="Fecha de la junta"
@@ -36,8 +36,8 @@
         [horizontal]="false"
       />
     </div>
-    <div class="col-12 md:col-4">
-      <label class="block mb-2 font-semibold">Hora de inicio *</label>
+    <div class="col-12 col-md-4">
+      <label class="d-block mb-2 font-semibold">Hora de inicio *</label>
       <custom-input-select-signal
         [control]="form.controls.startTime"
         [data]="startTimeOptions()"
@@ -56,13 +56,13 @@
         size="small"
       >
         <ng-template let-selected #selectedItem>
-          <div class="flex align-items-center min-h-2rem">
+          <div class="d-flex align-items-center min-h-2rem">
             <span>{{ selected?.label || "Selecciona una hora" }}</span>
           </div>
         </ng-template>
         <ng-template let-slot #item>
           <div
-            class="flex justify-content-between align-items-center w-full py-1"
+            class="d-flex justify-content-between align-items-center w-full py-1"
           >
             <span>{{ slot.label }}</span>
             @if (slot.conflictCount > 0) {
@@ -78,14 +78,14 @@
     @if (isAssemblySelected()) {
     <div class="col-12">
       <div class="border-1 border-blue-200 bg-blue-50 rounded p-3">
-        <strong class="block text-blue-900 mb-2">
+        <strong class="d-block text-blue-900 mb-2">
           Configuracion inmediata de asamblea
         </strong>
-        <small class="block text-blue-900">
+        <small class="d-block text-blue-900">
           Completa aqui, antes de guardar, si la asamblea requiere paletas,
           apoyo de Sistemas o equipo de audio y video.
         </small>
-        <small class="block text-blue-900 mt-2">
+        <small class="d-block text-blue-900 mt-2">
           Esta informacion se guarda desde la agenda y despues se refleja en el
           checklist operativo de la asamblea.
         </small>
@@ -94,8 +94,8 @@
 
     <div class="col-12">
       <div class="border-1 surface-border rounded p-3">
-        <div class="grid">
-          <div class="col-12 md:col-3">
+        <div class="row">
+          <div class="col-12 col-md-3">
             <custom-input-switch-signal
               [control]="form.controls.assemblyRequiresPaddles"
               label="Solicitar paletas"
@@ -105,7 +105,7 @@
           </div>
 
           @if (assemblyRequiresPaddles()) {
-          <div class="col-12 md:col-3">
+          <div class="col-12 col-md-3">
             <custom-input-text-signal
               [control]="form.controls.assemblyPaddlesQuantity"
               label="Cantidad de paletas"
@@ -116,7 +116,7 @@
           </div>
           }
 
-          <div class="col-12 md:col-3">
+          <div class="col-12 col-md-3">
             <custom-input-switch-signal
               [control]="form.controls.assemblyRequiresAudioVisual"
               label="Solicitar audio y video"
@@ -125,8 +125,8 @@
             />
           </div>
 
-          <div class="col-12 md:col-3 flex align-items-end">
-            <small class="text-color-secondary block">
+          <div class="col-12 col-md-3 d-flex align-items-end">
+            <small class="text-color-secondary d-block">
               Si solicitas paletas o audio/video, tambien se notificara a
               Sistemas General.
             </small>
@@ -144,7 +144,7 @@
           </div>
           }
 
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-textarea-signal
               [control]="form.controls.assemblyOperationalNotes"
               label="Notas operativas"
@@ -154,7 +154,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-textarea-signal
               [control]="form.controls.assemblySpecialInstructions"
               label="Instrucciones especiales"
@@ -175,12 +175,12 @@
         placeholder="Configurar esta junta como repetitiva"
         [horizontal]="false"
       />
-      <small class="text-color-secondary block mt-2">
+      <small class="text-color-secondary d-block mt-2">
         Usa esta opcion para juntas fijas, por ejemplo cada tercer martes a las
         7:30 PM.
       </small>
       @if (isEditMode()) {
-      <small class="text-blue-700 block mt-2">
+      <small class="text-blue-700 d-block mt-2">
         Guardar actualiza solo esta ocurrencia. Guardar toda la serie aplica los
         cambios de recurrencia, fecha base y configuracion comun a todas las
         ocurrencias.
@@ -189,7 +189,7 @@
     </div>
 
     @if (isRecurring()) {
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <custom-input-select-signal
         [control]="form.controls.recurrence"
         label="Frecuencia"
@@ -199,7 +199,7 @@
       />
     </div>
 
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <custom-input-select-signal
         [control]="form.controls.recurrenceMode"
         label="Patron mensual"
@@ -209,7 +209,7 @@
       />
     </div>
 
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <custom-input-date-signal
         [control]="form.controls.recurrenceEndDate"
         label="Repetir hasta"
@@ -221,7 +221,7 @@
     @if (recurrencePreview()) {
     <div class="col-12">
       <div class="border-1 surface-border rounded p-3 bg-blue-50">
-        <strong class="block text-blue-900 mb-1">Resumen de la serie</strong>
+        <strong class="d-block text-blue-900 mb-1">Resumen de la serie</strong>
         <small class="text-blue-900">{{ recurrencePreview() }}</small>
       </div>
     </div>
@@ -254,7 +254,7 @@
 
     @if (isAssemblySelected()) {
     <div class="col-12">
-      <div class="flex justify-content-between align-items-center mb-2">
+      <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h3 class="m-0">Invitados especificos de asamblea</h3>
           <small class="text-color-secondary">
@@ -269,15 +269,15 @@
           (clicked)="addAssemblyInvitee()"
         />
       </div>
-      <div class="flex flex-column gap-3" formArrayName="assemblyInvitees">
+      <div class="d-flex flex-column gap-3" formArrayName="assemblyInvitees">
         @for (invitee of assemblyInviteesArray.controls; track invitee; let
         index = $index) {
         <div
           [formGroupName]="index"
-          class="grid align-items-center border-bottom-1 surface-border pb-3 mb-3"
+          class="row align-items-center border-bottom-1 surface-border pb-3 mb-3"
         >
           <div
-            class="col-12 flex justify-content-between align-items-center mb-2"
+            class="col-12 d-flex justify-content-between align-items-center mb-2"
           >
             <span class="font-semibold text-color-secondary"
               >Invitado {{ index + 1 }}</span
@@ -291,7 +291,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-4 py-1 px-1">
+          <div class="col-12 col-md-4 py-1 px-1">
             <custom-input-text-signal
               [control]="invitee.controls.name"
               [id]="'assembly-invitee-name-' + index"
@@ -301,7 +301,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-4 py-1 px-1">
+          <div class="col-12 col-md-4 py-1 px-1">
             <custom-input-text-signal
               [control]="invitee.controls.email"
               [id]="'assembly-invitee-email-' + index"
@@ -313,7 +313,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-4 py-1 px-1">
+          <div class="col-12 col-md-4 py-1 px-1">
             <custom-input-text-signal
               [control]="invitee.controls.phone"
               [id]="'assembly-invitee-phone-' + index"
@@ -323,7 +323,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-5 py-1 px-1">
+          <div class="col-12 col-md-5 py-1 px-1">
             <custom-input-text-signal
               [control]="invitee.controls.organization"
               [id]="'assembly-invitee-org-' + index"
@@ -333,7 +333,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-5 py-1 px-1">
+          <div class="col-12 col-md-5 py-1 px-1">
             <custom-input-text-signal
               [control]="invitee.controls.position"
               [id]="'assembly-invitee-position-' + index"
@@ -343,7 +343,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-2 py-1 px-1 flex align-items-center">
+          <div class="col-12 col-md-2 py-1 px-1 d-flex align-items-center">
             <custom-input-switch-signal
               [control]="invitee.controls.isInternal"
               label="Interno"
@@ -365,7 +365,7 @@
       </div>
 
       @if (!assemblyInviteesArray.controls.length) {
-      <small class="text-color-secondary block mt-3">
+      <small class="text-color-secondary d-block mt-3">
         No hay invitados especificos registrados para la asamblea.
       </small>
       }
@@ -392,15 +392,15 @@
     } @if (overlapConflicts.length > 0) {
     <div class="col-12">
       <div class="border-1 border-yellow-300 bg-yellow-50 rounded p-3">
-        <strong class="block mb-2 text-yellow-900">
+        <strong class="d-block mb-2 text-yellow-900">
           Ya existe una junta en ese horario dentro del calendario central.
         </strong>
         @if (canOverrideScheduleConflicts()) {
-        <small class="block mb-2 text-yellow-900">
+        <small class="d-block mb-2 text-yellow-900">
           Como SuperUsuario puedes guardar aun con traslape.
         </small>
         }
-        <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column gap-1">
           @for (conflict of overlapConflicts; track conflict) {
           <small class="text-yellow-900">{{ conflict }}</small>
           }
@@ -409,7 +409,7 @@
     </div>
     } @if (!isAssemblySelected()) {
     <div class="col-12">
-      <div class="flex justify-content-between align-items-center mb-2">
+      <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h3 class="m-0">Invitados</h3>
           <small class="text-color-secondary">
@@ -425,11 +425,11 @@
         />
       </div>
 
-      <div class="flex flex-column gap-3" formArrayName="guests">
+      <div class="d-flex flex-column gap-3" formArrayName="guests">
         @for (guest of guestsArray.controls; track guest; let index = $index) {
         <div
           [formGroupName]="index"
-          class="flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border"
+          class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border"
         >
           <div class="flex-1 px-1">
             <custom-input-text-signal
@@ -453,7 +453,7 @@
             />
           </div>
 
-          <div class="flex-none flex align-items-center h-full">
+          <div class="flex-none d-flex align-items-center h-full">
             <iw-button
               iconClass="material-symbols-light:delete"
               severity="danger"
@@ -466,7 +466,7 @@
       </div>
 
       @if (!guestsArray.controls.length) {
-      <small class="text-color-secondary block mt-3">
+      <small class="text-color-secondary d-block mt-3">
         No hay invitados registrados. Agrega solo los que realmente necesites.
       </small>
       }
@@ -474,20 +474,20 @@
     }
   </div>
 
-  <div class="col-12 lg:col-4">
+  <div class="col-12 col-lg-4">
     @if (implicitGuests().length > 0) {
     <div class="border-1 surface-border rounded p-3 bg-blue-50">
-      <strong class="block text-blue-900 mb-2">Invitados obligatorios</strong>
-      <small class="block text-blue-900 mb-3">
+      <strong class="d-block text-blue-900 mb-2">Invitados obligatorios</strong>
+      <small class="d-block text-blue-900 mb-3">
         Se incluiran automaticamente por su rol en el sistema.
       </small>
 
-      <div class="flex flex-column gap-2">
+      <div class="d-flex flex-column gap-2">
         @for (guest of implicitGuests(); track guest.email) {
         <div
-          class="flex flex-row align-items-center bg-white p-2 border-1 surface-border border-round"
+          class="d-flex flex-row align-items-center bg-white p-2 border-1 surface-border border-round"
         >
-          <div class="flex-1 flex flex-column overflow-hidden">
+          <div class="flex-1 d-flex flex-column overflow-hidden">
             <span
               class="font-semibold text-sm text-overflow-ellipsis white-space-nowrap overflow-hidden"
               >{{ guest.nameEmployee }}</span
@@ -498,7 +498,7 @@
               >{{ guest.email }}</small
             >
           </div>
-          <div class="flex-none ml-2">
+          <div class="flex-none ms-2">
             <span
               class="text-xs px-2 py-1 bg-blue-100 text-blue-800 border-round white-space-nowrap"
               >{{ guest.applicationRoleName }}</span
@@ -510,17 +510,17 @@
     </div>
     } @else if (loadingSuggestedInvitees()) {
     <div
-      class="border-1 surface-border rounded p-3 flex justify-content-center"
+      class="border-1 surface-border rounded p-3 d-flex justify-content-center"
     >
       <i class="mdi mdi-loading mdi-spin text-2xl text-color-secondary"></i>
     </div>
     }
   </div>
 
-  <div class="col-12 flex flex-wrap justify-content-between gap-2">
+  <div class="col-12 d-flex flex-wrap justify-content-between gap-2">
     @if (isEditMode() && (originalEventDetail()?.isRecurring || isRecurring()))
     {
-    <div class="flex gap-2">
+    <div class="d-flex gap-2">
       <il-button
         variant="outline"
         size="small"

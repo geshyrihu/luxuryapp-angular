@@ -1,5 +1,5 @@
 <lx-card class="card">
-  <div class="flex align-items-center justify-content-between mb-3 gap-3 flex-wrap">
+  <div class="d-flex align-items-center justify-content-between mb-3 gap-3 flex-wrap">
     <div>
       <h3 class="text-lg font-bold m-0">Saldos Iniciales por Propiedad</h3>
       <p class="text-500 text-sm m-0 mt-1">
@@ -20,12 +20,12 @@
   </div>
 
   @if (loading()) {
-  <div class="flex justify-content-center p-5">
+  <div class="d-flex justify-content-center p-5">
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
   </div>
   } @else {
   @if (rows().length > 0) {
-  <div class="flex gap-3 mb-3 flex-wrap">
+  <div class="d-flex gap-3 mb-3 flex-wrap">
     <lx-tag [value]="'Total propiedades: ' + rows().length" severity="contrast" />
     <lx-tag
       [value]="'Con saldo inicial: ' + contarConSaldo()"
@@ -47,7 +47,7 @@
   <p-table
     [value]="rows()"
     [globalFilterFields]="['propertyFullName', 'accountNumber']"
-    class="custom-table card hidden md:block"
+    class="custom-table card d-none d-md-block"
     [paginator]="true"
     [rows]="20"
     [rowsPerPageOptions]="[10, 20, 50]"
@@ -63,7 +63,7 @@
         <th class="w-9rem">No. Cuenta</th>
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
-          <div class="flex align-items-center gap-1">
+          <div class="d-flex align-items-center gap-1">
             <app-icon [icon]="'material-symbols-light:edit'" class="text-xs text-500" />
             Monto ($) editable
           </div>
@@ -113,7 +113,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-yellow-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
           <app-icon icon="material-symbols-light:wallet" class="text-yellow-600 text-xl" />
         </div>
@@ -121,7 +121,7 @@
           <h3>{{ row.propertyFullName }}</h3>
           <p>Cta: {{ row.accountNumber }}</p>
         </div>
-        <div end class="pr-2 py-2">
+        <div end class="pe-2 py-2">
           <custom-input-currency-signal
             [(ngModel)]="row.amount"
             [minFractionDigits]="2"

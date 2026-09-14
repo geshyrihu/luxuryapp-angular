@@ -13,18 +13,18 @@
       <div>
         <p class="font-size-14 m-0">{{ dataCustomer.nameCustomer }}</p>
         <p class="font-size-11 m-0">{{ dataCustomer.adreess }}</p>
-        <div class="flex flex-wrap align-items-start gap-3 font-size-11 m-0">
+        <div class="d-flex flex-wrap align-items-start gap-3 font-size-11 m-0">
           <div class="m-0">
             <app-icon
               icon="material-symbols-light:circle"
-              class="mr-1 text-success align-middle"
+              class="me-1 text-success align-middle"
             />
             {{ dataCustomer.phoneOne }}
           </div>
           <div class="m-0">
             <app-icon
               icon="material-symbols-light:circle"
-              class="mr-1 text-success align-middle"
+              class="me-1 text-success align-middle"
             />
             {{ dataCustomer.phoneTwo }}
           </div>
@@ -127,12 +127,12 @@
                 @if (item.cumplimientoActividades) {
                 <app-icon
                   [icon]="'material-symbols-light:check'"
-                  class="text-success mr-1 icon icon-"
+                  class="text-success me-1 icon icon-"
                 />
                 } @if (!item.cumplimientoActividades) {
                 <app-icon
                   [icon]="'material-symbols-light:close'"
-                  class="text-danger mr-1 icon icon-"
+                  class="text-danger me-1 icon icon-"
                 />
                 } Se cumplio con las actividades correspondientes a la orden
               </p>
@@ -140,12 +140,12 @@
                 @if (item.equiposOperando) {
                 <app-icon
                   [icon]="'material-symbols-light:check'"
-                  class="text-success mr-1 icon icon-"
+                  class="text-success me-1 icon icon-"
                 />
                 } @if (!item.equiposOperando) {
                 <app-icon
                   [icon]="'material-symbols-light:close'"
-                  class="text-danger mr-1 icon icon-"
+                  class="text-danger me-1 icon icon-"
                 />
                 } Equipos/Areas operando sin ningun inconveniente
               </p>
@@ -157,12 +157,12 @@
                 @if (item.ocacionoDanos) {
                 <app-icon
                   [icon]="'material-symbols-light:check'"
-                  class="text-success mr-1 icon icon-"
+                  class="text-success me-1 icon icon-"
                 />
                 } @if (!item.ocacionoDanos) {
                 <app-icon
                   [icon]="'material-symbols-light:close'"
-                  class="text-danger mr-1 icon icon-"
+                  class="text-danger me-1 icon icon-"
                 />
                 } Afectación en el Area donde se realizo el trabajo
               </p>
@@ -170,12 +170,12 @@
                 @if (item.calidadTrabajos) {
                 <app-icon
                   [icon]="'material-symbols-light:check'"
-                  class="text-success mr-1 icon icon-"
+                  class="text-success me-1 icon icon-"
                 />
                 } @if (!item.calidadTrabajos) {
                 <app-icon
                   [icon]="'material-symbols-light:close'"
-                  class="text-danger mr-1 icon icon-"
+                  class="text-danger me-1 icon icon-"
                 />
                 } Se cumplio con la calidad de los trabajos realizados
               </p>

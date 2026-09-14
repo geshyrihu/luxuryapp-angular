@@ -6,7 +6,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       <app-report-header></app-report-header>
       <h5 class="m-0 h5">Inventario Equipos</h5>
     </div>
@@ -34,7 +34,7 @@
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="7">
-        <span class="font-bold ml-2">{{ item.clasificacion }}</span>
+        <span class="font-bold ms-2">{{ item.clasificacion }}</span>
       </td>
     </tr>
   </ng-template>

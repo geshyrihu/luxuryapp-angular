@@ -13,7 +13,7 @@ import {
 @Component({
   selector: "app-candidate-stage-badge",
   template: `<span
-    class="inline-flex font-bold text-xs px-2 py-1 border-round"
+    class="d-inline-flex font-bold text-xs px-2 py-1 border-round"
     [ngClass]="class()"
   >
     {{ label() }}

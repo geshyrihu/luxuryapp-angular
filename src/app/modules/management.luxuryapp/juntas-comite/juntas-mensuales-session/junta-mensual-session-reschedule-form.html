@@ -1,5 +1,5 @@
-<form [formGroup]="form" class="grid" (ngSubmit)="onSubmit()">
-  <div class="col-12 md:col-6">
+<form [formGroup]="form" class="row" (ngSubmit)="onSubmit()">
+  <div class="col-12 col-md-6">
     <custom-input-date-signal
       [control]="form.controls.meetingDate"
       label="Fecha de la sesion"
@@ -7,25 +7,25 @@
     />
   </div>
 
-  <div class="col-12 md:col-3">
-    <label class="block font-semibold mb-2">Hora inicio</label>
+  <div class="col-12 col-md-3">
+    <label class="d-block font-semibold mb-2">Hora inicio</label>
     <input class="w-full p-inputtext p-component" formControlName="startTime" type="time" />
   </div>
 
-  <div class="col-12 md:col-3">
-    <label class="block font-semibold mb-2">Hora fin</label>
+  <div class="col-12 col-md-3">
+    <label class="d-block font-semibold mb-2">Hora fin</label>
     <input class="w-full p-inputtext p-component" formControlName="endTime" type="time" />
   </div>
 
-  <div class="col-12 md:col-4">
-    <label class="block font-semibold mb-2">Modalidad</label>
+  <div class="col-12 col-md-4">
+    <label class="d-block font-semibold mb-2">Modalidad</label>
     <select class="w-full p-inputtext p-component" formControlName="modality">
       <option [ngValue]="0">Virtual</option>
       <option [ngValue]="1">Presencial</option>
     </select>
   </div>
 
-  <div class="col-12 md:col-8">
+  <div class="col-12 col-md-8">
     <custom-input-text-signal
       [control]="form.controls.location"
       label="Ubicacion"

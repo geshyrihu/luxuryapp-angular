@@ -30,7 +30,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <div class="w-full flex flex-column gap-2">
+      <div class="w-full d-flex flex-column gap-2">
         @if (!fileSelectedValue) {
           <ion-button
             expand="block"
@@ -42,7 +42,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
             {{ chooseLabel() }}
           </ion-button>
         } @else {
-          <div class="flex justify-content-between align-items-center surface-100 p-2 rounded">
+          <div class="d-flex justify-content-between align-items-center surface-100 p-2 rounded">
             <span class="text-sm overflow-hidden text-overflow-ellipsis white-space-nowrap flex-1">
               {{ fileSelectedValue.name }} ({{
                 formatFileSize(fileSelectedValue.size)

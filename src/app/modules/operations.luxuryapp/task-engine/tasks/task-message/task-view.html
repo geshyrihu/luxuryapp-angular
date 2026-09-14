@@ -1,6 +1,6 @@
 @if (notTicket()) {
 <!-- Error View (Responsive) -->
-<div class="flex justify-content-center align-items-center h-full p-4">
+<div class="d-flex justify-content-center align-items-center h-full p-4">
   <div class="text-center">
     <app-icon
       icon="material-symbols-light:error-outline"
@@ -15,8 +15,8 @@
 } @else if (ticket(); as t) {
 
 <!-- DESKTOP VIEW -->
-<div class="hidden md:block animate__animated animate__fadeIn">
-  <div class="flex justify-content-between align-items-center mb-3">
+<div class="d-none d-md-block animate__animated animate__fadeIn">
+  <div class="d-flex justify-content-between align-items-center mb-3">
     <il-button
       (clicked)="goBack()"
       label="Volver al Listado"
@@ -27,9 +27,9 @@
   <div class="card" class="shadow-sm rounded-xl mb-4 overflow-hidden">
     <div class="card-header">
       <div class="surface-100 p-4 border-bottom-1 surface-border">
-        <div class="flex justify-content-between align-items-start">
+        <div class="d-flex justify-content-between align-items-start">
           <div>
-            <div class="flex align-items-center mb-2">
+            <div class="d-flex align-items-center mb-2">
               <span
                 class="bg-primary text-white rounded px-2 py-1 text-sm font-bold"
                 >{{ t.folio }}</span
@@ -38,8 +38,8 @@
               <span class="text-700 font-semibold">{{ t.ticketGroup }}</span>
             </div>
             <h2 class="text-2xl font-bold text-900 m-0">{{ t.title }}</h2>
-            <div class="text-500 mt-1 flex align-items-center">
-              <app-icon [icon]="'material-symbols-light:person'" class="mr-2" />
+            <div class="text-500 mt-1 d-flex align-items-center">
+              <app-icon [icon]="'material-symbols-light:person'" class="me-2" />
               {{ t.customer }}
             </div>
           </div>
@@ -71,8 +71,8 @@
       </div>
 
       <!-- Images -->
-      <div class="grid mb-5">
-        <div class="col-12 md:col-6">
+      <div class="row mb-5">
+        <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm surface-card h-full"
           >
@@ -83,12 +83,12 @@
             </div>
             <img
               [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
-              class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+              class="w-full h-15rem object-cover d-block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
               alt="Antes"
             />
           </div>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm surface-card h-full"
           >
@@ -99,7 +99,7 @@
             </div>
             <img
               [src]="t.afterWorkPreview || 'assets/images/default-avatar.png'"
-              class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+              class="w-full h-15rem object-cover d-block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
               alt="Despues"
             />
           </div>
@@ -107,23 +107,23 @@
       </div>
 
       <!-- Info Grid -->
-      <div class="grid text-sm mb-4 border-top-1 surface-border pt-4">
-        <div class="col-12 sm:col-6 md:col-3">
+      <div class="row text-sm mb-4 border-top-1 surface-border pt-4">
+        <div class="col-12 col-sm-6 col-md-3">
           <div class="text-500 mb-1">Solicita</div>
           <div class="font-semibold text-900">{{ t.creator }}</div>
           <div class="text-xs text-500">{{ t.createDate }}</div>
         </div>
-        <div class="col-12 sm:col-6 md:col-3">
+        <div class="col-12 col-sm-6 col-md-3">
           <div class="text-500 mb-1">Responsable</div>
           <div class="font-semibold text-900">{{ t.assignee }}</div>
         </div>
         @if (t.scheduledDate) {
-        <div class="col-12 sm:col-6 md:col-3">
+        <div class="col-12 col-sm-6 col-md-3">
           <div class="text-500 mb-1">Programado</div>
           <div class="font-semibold text-900">{{ t.scheduledDate }}</div>
         </div>
         } @if (t.closedBy) {
-        <div class="col-12 sm:col-6 md:col-3">
+        <div class="col-12 col-sm-6 col-md-3">
           <div class="text-500 mb-1">Cerrado por</div>
           <div class="font-semibold text-900">{{ t.closedBy }}</div>
           <div class="text-xs text-500">{{ t.closedDate }}</div>
@@ -133,7 +133,7 @@
 
       <!-- Actions -->
       @if (t.seeEditingOptions) {
-      <div class="flex flex-wrap gap-2 mb-5">
+      <div class="d-flex flex-wrap gap-2 mb-5">
         <il-button
           (clicked)="onModalForm(t)"
           label="Editar Ticket"
@@ -188,14 +188,14 @@
       />
 
       <!-- Timeline -->
-      <h3 class="text-xl font-bold mb-3 border-left-3 border-primary pl-3">
+      <h3 class="text-xl font-bold mb-3 border-left-3 border-primary ps-3">
         Bitacora de Seguimiento
       </h3>
       @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
       <ul class="list-none p-0 m-0">
         @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
-        <li class="mb-4 flex">
-          <div class="flex flex-column align-items-center">
+        <li class="mb-4 d-flex">
+          <div class="d-flex flex-column align-items-center">
             <app-avatar
               [image]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
               shape="circle"
@@ -209,7 +209,7 @@
           <div
             class="flex-1 surface-card border-1 surface-border rounded-xl p-3 shadow-sm relative arrow-left"
           >
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="font-bold text-900"
                 >{{ follow.applicationUser }}</span
               >
@@ -230,10 +230,10 @@
 </div>
 
 <!-- MOBILE VIEW (Ionic) -->
-<div class="block md:hidden pb-6 p-3">
+<div class="d-block d-md-none pb-6 p-3">
   <div class="m-0 mb-2 border-radius-0 shadow-none border-bottom">
     <div class="pb-2">
-      <div class="flex justify-content-between mb-1">
+      <div class="d-flex justify-content-between mb-1">
         <lx-tag [value]="t.folio"></lx-tag>
         <lx-tag
           [value]="t.priority"
@@ -241,7 +241,7 @@
         ></lx-tag>
       </div>
       <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
-      <p class="text-sm text-color-secondary m-0 flex align-items-center gap-1">
+      <p class="text-sm text-color-secondary m-0 d-flex align-items-center gap-1">
         <app-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
       </p>
     </div>
@@ -249,9 +249,9 @@
       class="border-1 surface-border shadow-sm rounded-xl mt-3 overflow-hidden"
     >
       <div
-        class="flex align-items-center mb-0 p-3 surface-100 border-bottom-1 surface-border"
+        class="d-flex align-items-center mb-0 p-3 surface-100 border-bottom-1 surface-border"
       >
-        <div class="mr-3">
+        <div class="me-3">
           <img
             src="assets/images/default-avatar.png"
             class="w-3rem h-3rem border-circle"
@@ -272,9 +272,9 @@
   </div>
 
   <div class="px-2 mb-3">
-    <div class="grid ion-no-padding">
-      <div class="flex flex-wrap w-full">
-        <div class="col-6 pr-1">
+    <div class="row ion-no-padding">
+      <div class="d-flex flex-wrap w-full">
+        <div class="col-6 pe-1">
           <div class="relative rounded overflow-hidden h-8rem bg-light">
             <div
               class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
@@ -287,7 +287,7 @@
             />
           </div>
         </div>
-        <div class="col-6 pl-1">
+        <div class="col-6 ps-1">
           <div class="relative rounded overflow-hidden h-8rem bg-light">
             <div
               class="absolute top-0 left-0 bg-success text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
@@ -306,7 +306,7 @@
 
   <div class="surface-card mb-3 rounded">
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Responsable</h3>
@@ -315,7 +315,7 @@
     </div>
     @if (t.scheduledDate) {
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Programado</h3>
@@ -324,7 +324,7 @@
     </div>
     }
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
         <h3 class="text-xs uppercase text-medium">Estado</h3>
@@ -341,8 +341,8 @@
   </div>
 
   <div class="px-3">
-    <div class="flex justify-content-between align-items-center mb-3">
-      <h3 class="text-lg font-bold m-0 flex align-items-center">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="text-lg font-bold m-0 d-flex align-items-center">
         <app-icon icon="material-symbols-light:forum-outline" /> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
@@ -359,11 +359,11 @@
     </div>
 
     @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
-      <div class="flex">
-        <div class="flex flex-column align-items-center">
-          <div class="mr-3">
+      <div class="d-flex">
+        <div class="d-flex flex-column align-items-center">
+          <div class="me-3">
             <img
               [src]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
             />
@@ -372,7 +372,7 @@
         <div
           class="flex-1 bg-white p-3 rounded shadow-sm relative arrow-left-mobile"
         >
-          <div class="flex justify-content-between mb-1">
+          <div class="d-flex justify-content-between mb-1">
             <span class="font-bold text-sm">{{ follow.applicationUser }}</span>
             <span class="text-xs text-medium">{{ follow.createdAt }}</span>
           </div>
@@ -392,8 +392,8 @@
   <div
     class="fixed bottom-0 left-0 w-full bg-white p-2 border-top-1 surface-border shadow-md"
   >
-    <div class="flex flex-column gap-1">
-      <div class="flex gap-1">
+    <div class="d-flex flex-column gap-1">
+      <div class="d-flex gap-1">
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
           (click)="onModalForm(t)"
@@ -410,7 +410,7 @@
         </button>
       </div>
 
-      <div class="flex gap-1">
+      <div class="d-flex gap-1">
         @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"

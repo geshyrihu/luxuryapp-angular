@@ -1,6 +1,6 @@
-<div class="no-print hidden md:block">
+<div class="no-print d-none d-md-block">
   <div
-    class="flex justify-content-end align-items-center gap-2"
+    class="d-flex justify-content-end align-items-center gap-2"
     [class.p-2]="!noPadding()"
     [class.mb-2]="!noMargin()"
   >
@@ -18,8 +18,8 @@
   </div>
 </div>
 <!-- 📱 Vista Mobile -->
-<div class="flex md:hidden flex-column gap-2 mb-2 no-print">
-  <div class="flex align-items-center gap-2">
+<div class="d-flex d-md-none flex-column gap-2 mb-2 no-print">
+  <div class="d-flex align-items-center gap-2">
     <!-- Campo de búsqueda -->
     @if (showSearch() || isDataView()) {
     <div class="flex-flex-grow-1-1">

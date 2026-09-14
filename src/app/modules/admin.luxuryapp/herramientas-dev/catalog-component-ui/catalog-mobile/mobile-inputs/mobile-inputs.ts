@@ -46,14 +46,14 @@ import {
       <div class="mobile-card-header">
         Mobile Inputs - wrappers Ionic reales
       </div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <div>
           <div class="section-label">Field states</div>
           <p class="section-desc">
             Estados base para una interfaz mobile real: default, icono, error,
             disabled y textarea.
           </p>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             <div class="ds-field">
               <label class="ds-field__label">Full Name</label>
               <input
@@ -124,7 +124,7 @@ import {
 
         <div>
           <div class="section-label">Texto y password</div>
-          <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <form [formGroup]="mobileForm" class="d-flex flex-column gap-1">
             <ion-input-text
               [control]="mobileForm.controls['nombre']"
               label="Nombre"
@@ -148,7 +148,7 @@ import {
 
         <div>
           <div class="section-label">Numericos</div>
-          <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <form [formGroup]="mobileForm" class="d-flex flex-column gap-1">
             <ion-input-number
               [control]="mobileForm.controls['edad']"
               label="Edad"
@@ -166,7 +166,7 @@ import {
 
         <div>
           <div class="section-label">Fecha y hora</div>
-          <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <form [formGroup]="mobileForm" class="d-flex flex-column gap-1">
             <ion-input-date
               [control]="mobileForm.controls['fecha']"
               label="Fecha"
@@ -182,7 +182,7 @@ import {
 
         <div>
           <div class="section-label">Seleccion</div>
-          <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <form [formGroup]="mobileForm" class="d-flex flex-column gap-1">
             <ion-input-select
               [control]="mobileForm.controls['categoria']"
               label="Categoria"
@@ -207,7 +207,7 @@ import {
 
         <div>
           <div class="section-label">Toggle, checkbox y archivo</div>
-          <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <form [formGroup]="mobileForm" class="d-flex flex-column gap-1">
             <ion-input-toggle
               [control]="mobileForm.controls['activo']"
               label="Notificaciones push"

@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="grid">
+      <div class="row">
         <!-- Ciudad -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.city"
             label="Ciudad"
@@ -13,7 +13,7 @@
         </div>
 
         <!-- Municipio / Alcaldía -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.townHall"
             label="Municipio / Alcaldía"
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Colonia -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.district"
             label="Colonia"
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Calle -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.street"
             label="Calle"
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Número -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.number"
             label="Número"
@@ -53,7 +53,7 @@
         </div>
 
         <!-- Número interior -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.unitNumber"
             label="Número interior"
@@ -63,7 +63,7 @@
         </div>
 
         <!-- Código postal -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.zipCode"
             label="Código postal"
@@ -74,7 +74,7 @@
       </div>
 
       @if (!isReadOnly()) {
-        <div class="flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end mt-3">
           <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
         </div>
       }

@@ -1,6 +1,6 @@
 <div class="p-4 md:p-6 fadein">
   <div class="mb-4">
-    <div class="flex align-items-center gap-2 mb-2">
+    <div class="d-flex align-items-center gap-2 mb-2">
       <app-icon icon="material-symbols-light:calculate" class="text-primary text-3xl"></app-icon>
       <h1 class="text-2xl font-bold text-900 m-0">Cotizador de Módulos</h1>
     </div>
@@ -10,9 +10,9 @@
     </p>
   </div>
 
-  <div class="grid">
+  <div class="row">
     <!-- Columna Izquierda: Controles -->
-    <div class="col-12 lg:col-8">
+    <div class="col-12 col-lg-8">
       <div
         class="surface-card p-4 rounded-xl shadow-sm mb-4 border-1 border-200"
         
@@ -23,11 +23,11 @@
           1. Selección de Módulos
         </h2>
 
-        <div class="grid">
+        <div class="row">
           @for (mod of modules(); track mod.id) {
-            <div class="col-12 md:col-6 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <div
-                class="flex align-items-center p-3 rounded-lg hover:surface-hover transition-colors transition-duration-200 cursor-pointer border-1 surface-border"
+                class="d-flex align-items-center p-3 rounded-lg hover:surface-hover transition-colors transition-duration-200 cursor-pointer border-1 surface-border"
                 [ngClass]="{ 'bg-primary-50 border-primary': mod.selected }"
               >
                 <!-- Usando custom-input-check-signal como lo solicita el catálogo de la empresa -->
@@ -37,7 +37,7 @@
                   [label]="mod.name"
                 >
                 </custom-input-check-signal>
-                <div class="ml-auto font-bold text-700">${{ mod.price }}</div>
+                <div class="ms-auto font-bold text-700">${{ mod.price }}</div>
               </div>
             </div>
           }
@@ -53,7 +53,7 @@
         >
           2. Cantidad de Departamentos
         </h2>
-        <div class="flex flex-column gap-2 max-w-20rem">
+        <div class="d-flex flex-column gap-2 max-w-20rem">
           <!-- Usando custom-input-number-signal -->
           <custom-input-number-signal
             label="Número de departamentos"
@@ -71,22 +71,22 @@
     </div>
 
     <!-- Columna Derecha: Resumen / Recibo -->
-    <div class="col-12 lg:col-4">
+    <div class="col-12 col-lg-4">
       <div
         class="surface-card p-4 rounded-xl shadow-sm sticky top-0"
         
       >
         <h2
-          class="text-xl font-bold text-900 mt-0 mb-4 flex align-items-center gap-2"
+          class="text-xl font-bold text-900 mt-0 mb-4 d-flex align-items-center gap-2"
         >
           <app-icon icon="material-symbols-light:receipt" class="text-primary"></app-icon>
           Resumen de Cotización
         </h2>
 
-        <div class="flex flex-column gap-3 mb-4">
+        <div class="d-flex flex-column gap-3 mb-4">
           @for (mod of modules(); track mod.id) {
             @if (mod.selected) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <span class="text-700">{{ mod.name }}</span>
                 <span class="font-bold text-900"
                   >${{ mod.price.toFixed(2) }}</span
@@ -97,7 +97,7 @@
 
           @if (departmentsPrice() > 0) {
             <div
-              class="flex justify-content-between align-items-center mt-2 pt-2 border-top-1 surface-border"
+              class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top-1 surface-border"
             >
               <span class="text-700"
                 >Departamentos ({{ departmentsCount() }} x ${{
@@ -118,7 +118,7 @@
         </div>
 
         <div class="border-top-2 surface-border pt-3 mt-3">
-          <div class="flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
             <span class="text-xl font-bold text-900">Total Mensual</span>
             <span class="text-2xl font-bold text-primary"
               >${{ totalPrice().toFixed(2) }}

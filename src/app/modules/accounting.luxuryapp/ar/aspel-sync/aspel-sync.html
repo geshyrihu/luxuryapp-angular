@@ -6,21 +6,21 @@
       puede tardar varios minutos.
     </ng-template>
 
-    <div class="grid mt-2 mb-2">
-      <div class="col-12 md:col-6">
+    <div class="row mt-2 mb-2">
+      <div class="col-12 col-md-6">
         <div
           class="surface-ground p-3 rounded-lg border-1 border-blue-100 h-full"
         >
-          <div class="flex align-items-center gap-2 mb-2 text-blue-700">
+          <div class="d-flex align-items-center gap-2 mb-2 text-blue-700">
             <app-icon [icon]="'material-symbols-light:info'" class="text-xl" />
             <span class="font-bold">Cliente Seleccionado</span>
           </div>
           <div class="text-sm line-height-3">
-            <div class="flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <span class="text-secondary">ID Interno:</span>
               <span class="font-mono">{{ currentCustomerId() || '---' }}</span>
             </div>
-            <div class="flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <span class="text-secondary">Nombre:</span>
               <span class="font-bold"
                 >{{ currentCustomerName() || 'Sin cliente activo' }}</span
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-number-signal
           [control]="form.controls.year"
           label="Año fiscal a sincronizar"
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-2 mt-4">
+    <div class="d-flex flex-wrap gap-2 mt-4">
       <il-button
         label="Sincronización Completa"
         iconClass="material-symbols-light:sync"

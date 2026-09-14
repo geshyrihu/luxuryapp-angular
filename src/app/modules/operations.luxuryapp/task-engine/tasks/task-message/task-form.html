@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <!-- Overlay de procesamiento con indicador de progreso -->
   <lx-processing-overlay
     [isProcessing]="submitting()"
@@ -10,7 +10,7 @@
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <!-- Guía de usuario para mejorar la consistencia de datos -->
     <div
-      class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-sm"
+      class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 d-flex align-items-start gap-3 shadow-sm"
     >
       <app-icon
         [icon]="'material-symbols-light:info'"
@@ -24,10 +24,10 @@
           Para facilitar el seguimiento y generar reportes precisos, por favor:
         </p>
         <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
-          <li class="mb-1 flex align-items-start">
+          <li class="mb-1 d-flex align-items-start">
             <app-icon
               [icon]="'material-symbols-light:check'"
-              class="text-blue-500 mr-2 mt-1 text-xs"
+              class="text-blue-500 me-2 mt-1 text-xs"
             />
             <span>
               <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
@@ -35,10 +35,10 @@
               <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
             </span>
           </li>
-          <li class="mb-1 flex align-items-start">
+          <li class="mb-1 d-flex align-items-start">
             <app-icon
               [icon]="'material-symbols-light:check'"
-              class="text-blue-500 mr-2 mt-1 text-xs"
+              class="text-blue-500 me-2 mt-1 text-xs"
             />
             <span>
               <strong>Evidencia visual:</strong> Toma las fotos en
@@ -92,8 +92,8 @@
       [maxLength]="250"
     />
 
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <custom-input-select-signal
           [control]="form.controls.priority"
           label="Prioridad"
@@ -101,7 +101,7 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-date-signal
           [control]="form.controls.scheduledDate"
           label="Fecha de programación"
@@ -110,8 +110,8 @@
       </div>
     </div>
 
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <!-- Responsable -->
         <custom-input-select-signal
           (selectionChange)="onAssigneeChange($event.value)"
@@ -123,7 +123,7 @@
           description="Si se deja vacño, se asignaré a los responsables del grupo."
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <!-- Este es por si es ticket concluido -->
         <custom-input-date-signal
           [control]="form.controls.closedDate"
@@ -148,7 +148,7 @@
       <div class="text-xs font-bold text-orange-700 uppercase mb-2">
         Campos legales
       </div>
-      <div class="flex flex-wrap gap-4">
+      <div class="d-flex flex-wrap gap-4">
         <custom-input-check-signal
           [control]="form.controls.isInternal"
           label=""
@@ -168,12 +168,12 @@
     </div>
     }
 
-    <div class="grid">
+    <div class="row">
       <div class="col-12 mb-2">
         <small class="text-500 italic">
           <app-icon
             [icon]="'material-symbols-light:photo-camera'"
-            class="mr-1"
+            class="me-1"
           />
           Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
           óngulo.
@@ -192,13 +192,13 @@
         </p>
       </div>
       }
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 block mb-2"
+          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
             >Foto del antes</label
           >
           @if (beforeWorkPreview()) {
-          <div class="mb-2 flex justify-content-center">
+          <div class="mb-2 d-flex justify-content-center">
             <img
               [src]="beforeWorkPreview()"
               class="w-15rem h-10rem object-cover rounded shadow-sm"
@@ -217,13 +217,13 @@
         </div>
       </div>
 
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 block mb-2"
+          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
             >Foto del después</label
           >
           @if (afterWorkPreview()) {
-          <div class="mb-2 flex justify-content-center">
+          <div class="mb-2 d-flex justify-content-center">
             <img
               [src]="afterWorkPreview()"
               class="w-15rem h-10rem object-cover rounded shadow-sm"
@@ -242,7 +242,7 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-content-end mt-2 gap-2">
+    <div class="d-flex justify-content-end mt-2 gap-2">
       <il-button
         [variant]="'outlined'"
         label="Seguimientos"

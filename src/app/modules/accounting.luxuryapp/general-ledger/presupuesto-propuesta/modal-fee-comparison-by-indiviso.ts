@@ -29,11 +29,11 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
 @Component({
   selector: "app-fee-comparison-by-indiviso-modal",
   template: `
-    <div class="flex flex-col ">
+    <div class="d-flex flex-col ">
       @if (comparisonData(); as data) {
         <div class="card">
           <div class="card-body">
-            <p class="text-600 flex items-center ">
+            <p class="text-600 d-flex items-center ">
               Cólculo basado en el porcentaje de indiviso de cada propiedad.
               <span
                 class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-700"
@@ -44,9 +44,9 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </span>
             </p>
 
-            <div class="grid text-center mt-4">
+            <div class="row text-center mt-4">
               <!-- Columna Cuota Actual -->
-              <div class="col-12 md:col-4 p-4 border-right-1 surface-border">
+              <div class="col-12 col-md-4 p-4 border-right-1 surface-border">
                 <h6 class="text-uppercase font-semibold">
                   Presupuesto Actual (Mensual por Indiviso)
                 </h6>
@@ -70,7 +70,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </div>
 
               <!-- Columna Nueva Cuota -->
-              <div class="col-12 md:col-4 p-4 border-right-1 surface-border">
+              <div class="col-12 col-md-4 p-4 border-right-1 surface-border">
                 <h6 class="text-uppercase font-semibold text-primary">
                   Presupuesto Propuesto (Mensual por Indiviso)
                 </h6>
@@ -93,7 +93,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </div>
 
               <!-- Columna Diferencia Mensual -->
-              <div class="col-12 md:col-4 p-4">
+              <div class="col-12 col-md-4 p-4">
                 <h6 class="text-uppercase font-semibold">
                   Diferencia Mensual (por Indiviso)
                 </h6>

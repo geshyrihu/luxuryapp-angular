@@ -1,5 +1,5 @@
 <!-- data-view-mobile.html -->
-<div class="flex md:hidden flex-column no-print h-full min-h-0">
+<div class="d-flex d-md-none flex-column no-print h-full min-h-0">
   <!-- Sticky Header: Breadcrumb + Search + Add -->
   <div
     style="
@@ -12,12 +12,12 @@
   >
     <!-- 🧭 Breadcrumb Premium -->
     @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
-    <div class="flex justify-content-center px-3 py-1 bg-transparent">
+    <div class="d-flex justify-content-center px-3 py-1 bg-transparent">
       <div
-        class="flex align-items-center gap-1 overflow-x-auto no-scrollbar max-w-full"
+        class="d-flex align-items-center gap-1 overflow-x-auto no-scrollbar max-w-full"
       >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           @if (item.icon) {
           <a [routerLink]="item.routerLink">
             <app-icon
@@ -46,7 +46,7 @@
     }
 
     <!-- Controls: Search & Add -->
-    <div class="flex align-items-center gap-2 px-2 pb-1">
+    <div class="d-flex align-items-center gap-2 px-2 pb-1">
       @if (globalFilterFields()?.length > 0) {
       <ion-searchbar
         [value]="filterValue()"
@@ -86,7 +86,7 @@
 
       <!-- Group Header Premium -->
       <div
-        class="sticky z-2 flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-sm mb-2 mt-2 mx-2 rounded"
+        class="sticky z-2 d-flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-sm mb-2 mt-2 mx-2 rounded"
         style="top: 0"
       >
         <span class="text-sm font-bold text-800 uppercase tracking-wider"

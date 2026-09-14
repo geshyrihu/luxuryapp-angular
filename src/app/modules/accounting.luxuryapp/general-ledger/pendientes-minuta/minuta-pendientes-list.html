@@ -7,12 +7,12 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table custom-table-fixed card hidden md:block"
+  class="custom-table custom-table-fixed card d-none d-md-block"
 >
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
@@ -26,7 +26,7 @@
       </div>
 
       <!-- LADO DERECHO: Filtros, Acciones y Toggles -->
-      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
         <!-- Filtro Select (Ancho mínimo fluido) -->
         <div>
           <custom-input-select-signal
@@ -136,7 +136,7 @@
 
       <!-- Opciones -->
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-item
             iconClass="material-symbols-light:comment"
             lxTooltip="Seguimientos"
@@ -175,7 +175,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon
           icon="material-symbols-light:error-outline"

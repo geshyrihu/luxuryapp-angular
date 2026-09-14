@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
@@ -44,7 +44,7 @@
         <td class="text-sm">{{ detalle.title }}</td>
         <td class="text-sm">
           <p
-            class="mr-2 text-justify"
+            class="me-2 text-justify"
             [innerHTML]="detalle.requestService | sanitizeHtml"
           ></p>
         </td>

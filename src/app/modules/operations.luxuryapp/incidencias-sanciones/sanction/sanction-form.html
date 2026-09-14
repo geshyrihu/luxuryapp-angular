@@ -2,7 +2,7 @@
 <form
   [formGroup]="changeStatusForm"
   (ngSubmit)="onSubmit()"
-  class="flex flex-column"
+  class="d-flex flex-column"
 >
   <custom-input-select-signal
     label="Nuevo Estatus"
@@ -15,7 +15,7 @@
     [control]="changeStatusForm.controls.internalNotes"
     [rows]="3"
   />
-  <div class="flex justify-content-end mt-2 gap-2">
+  <div class="d-flex justify-content-end mt-2 gap-2">
     <il-button label="Cancelar" (clicked)="onCancel()" />
     <il-button-save
       [propertyId]="sanctionId()"
@@ -30,7 +30,7 @@
 <form
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
-  class="grid"
+  class="row"
 >
   <div class="col-12">
     <custom-input-select-signal
@@ -40,13 +40,13 @@
       [filter]="true"
     />
   </div>
-  <div class="col-12 md:col-6">
+  <div class="col-12 col-md-6">
     <custom-input-date-signal
       label="Inicio de Efecto"
       [control]="form.controls.effectiveStartDate"
     />
   </div>
-  <div class="col-12 md:col-6">
+  <div class="col-12 col-md-6">
     <custom-input-date-signal
       label="Fin de Efecto"
       [control]="form.controls.effectiveEndDate"
@@ -72,7 +72,7 @@
       [rows]="3"
     />
   </div>
-  <div class="col-12 flex justify-content-end gap-2">
+  <div class="col-12 d-flex justify-content-end gap-2">
     <il-button label="Cancelar" (clicked)="onCancel()" />
     <il-button-save
       [disabled]="form.invalid"

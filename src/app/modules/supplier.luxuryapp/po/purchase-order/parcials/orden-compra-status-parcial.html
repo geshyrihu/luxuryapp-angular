@@ -2,9 +2,9 @@
 
 <div class="card p-0 overflow-hidden">
   <div
-    class="flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
+    class="d-flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
   >
-    <div class="flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:bar-chart'" class="text-white text-sm" />
       <span class="font-semibold text-sm text-white">ESTATUS DE COMPRA</span>
     </div>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="p-3">
-    <div class="mb-2 flex align-items-center">
+    <div class="mb-2 d-flex align-items-center">
       <div class="text-color-secondary text-xs font-semibold table-col-40">
         PAGADO
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="mb-2 flex align-items-center">
+    <div class="mb-2 d-flex align-items-center">
       <div class="text-color-secondary text-xs font-semibold table-col-40">
         ENTREGADO
       </div>
@@ -41,7 +41,7 @@
     </div>
 
     @if (ordenCompra().ordenCompraStatus.recibidoPor) {
-    <div class="mb-2 flex">
+    <div class="mb-2 d-flex">
       <div class="text-color-secondary text-xs font-semibold table-col-40">
         RECIBIDO POR
       </div>

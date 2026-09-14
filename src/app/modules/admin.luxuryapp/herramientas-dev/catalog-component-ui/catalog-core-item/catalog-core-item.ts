@@ -257,7 +257,7 @@ const CORE_LABELS: Record<string, string> = {
                 <code>[showLabelOnDesktop]="true"</code> y un
                 <code>label</code> explócito.
               </p>
-              <div class="flex gap-4">
+              <div class="d-flex gap-4">
                 <div>
                   <p class="text-xs font-bold text-secondary mb-2">Correcto</p>
                   <app-action-menu>
@@ -296,7 +296,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex gap-3 text-2xl text-primary">
+              <div class="d-flex gap-3 text-2xl text-primary">
                 <app-icon icon="material-symbols-light:person" />
                 <app-icon icon="material-symbols-light:settings" />
                 <app-icon icon="material-symbols-light:notifications" />
@@ -367,7 +367,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex gap-2 flex-wrap">
+              <div class="d-flex gap-2 flex-wrap">
                 <app-status-badge [status]="EStatus.Concluido" />
                 <app-status-badge [status]="EStatus.Pendiente" />
                 <app-status-badge [status]="EStatus.Proceso" />
@@ -481,8 +481,8 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("kpicard") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
               <app-kpi-card
                 label="Ingresos"
                 [value]="124500"
@@ -492,7 +492,7 @@ const CORE_LABELS: Record<string, string> = {
                 icon="material-symbols-light:trending-up"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <app-kpi-card
                 label="Clientes"
                 [value]="348"
@@ -500,7 +500,7 @@ const CORE_LABELS: Record<string, string> = {
                 icon="material-symbols-light:group"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <app-kpi-card
                 label="Conversión"
                 [value]="68"
@@ -510,7 +510,7 @@ const CORE_LABELS: Record<string, string> = {
                 icon="material-symbols-light:percent"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <app-kpi-card
                 label="Tickets"
                 [value]="12"
@@ -528,7 +528,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-4">
+              <div class="d-flex flex-column gap-4">
                 <div>
                   <p class="text-sm font-bold mb-2">Mx. 4 visibles:</p>
                   <app-avatar-group
@@ -569,7 +569,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-4">
+              <div class="d-flex flex-column gap-4">
                 <div>
                   <p class="text-sm font-bold mb-2">Simple:</p>
                   <app-slider
@@ -614,7 +614,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <app-rating
                   label="Calidad del servicio"
                   [(value)]="ratingValue"
@@ -664,8 +664,8 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("statcard") {
-          <div class="grid">
-            <div class="col-12 md:col-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <app-stat-card
                 label="Ventas del mes"
                 [value]="84320"
@@ -676,7 +676,7 @@ const CORE_LABELS: Record<string, string> = {
                 [trend]="8.3"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <app-stat-card
                 label="Nuevos clientes"
                 [value]="47"
@@ -688,20 +688,20 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("skeletonpresets") {
-          <div class="grid">
-            <div class="col-12 md:col-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <web-skeleton-presets variant="card" />
               <p class="text-xs text-secondary mt-1 text-center">card</p>
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <web-skeleton-presets variant="table" [rows]="3" />
               <p class="text-xs text-secondary mt-1 text-center">table</p>
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <web-skeleton-presets variant="form" [fields]="2" />
               <p class="text-xs text-secondary mt-1 text-center">form</p>
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <web-skeleton-presets variant="avatar" />
               <p class="text-xs text-secondary mt-1 text-center">avatar</p>
             </div>
@@ -770,7 +770,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <p class="text-sm text-secondary m-0">
                   Haz clic derecho sobre el siguiente elemento:
                 </p>
@@ -835,7 +835,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <p class="text-sm text-secondary m-0">
                   El Command Palette es un dilogo global. Haz clic para abrirlo:
                 </p>
@@ -866,7 +866,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <p class="text-sm text-secondary m-0">
                   Inicia el tour para ver el componente de onboarding en accin:
                 </p>
@@ -884,15 +884,15 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("gauge") {
-          <div class="grid">
-            <div class="col-12 md:col-4">
+          <div class="row">
+            <div class="col-12 col-md-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">CPU - 72%</h3>
                 </div>
 
                 <div class="card-body">
-                  <div class="flex justify-content-center">
+                  <div class="d-flex justify-content-center">
                     <app-gauge
                       [value]="72"
                       [min]="0"
@@ -903,14 +903,14 @@ const CORE_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Ocupacin - 45%</h3>
                 </div>
 
                 <div class="card-body">
-                  <div class="flex justify-content-center">
+                  <div class="d-flex justify-content-center">
                     <app-gauge
                       [value]="45"
                       [min]="0"
@@ -921,14 +921,14 @@ const CORE_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Temperatura - 88%</h3>
                 </div>
 
                 <div class="card-body">
-                  <div class="flex justify-content-center">
+                  <div class="d-flex justify-content-center">
                     <app-gauge
                       [value]="88"
                       [min]="0"
@@ -971,7 +971,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-4">
+              <div class="d-flex flex-column gap-4">
                 <div>
                   <p class="text-sm font-bold mb-2">
                     6 dgitos (predeterminado):
@@ -987,8 +987,8 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("profilecard") {
-          <div class="grid">
-            <div class="col-12 md:col-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <app-profile-card
                 name="Ana Martnez"
                 role="Gerente de Ventas"
@@ -997,7 +997,7 @@ const CORE_LABELS: Record<string, string> = {
                 company="Grupo LuxuryApp SA"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <app-profile-card
                 name="Carlos Ruiz"
                 role="Director Tcnico"
@@ -1041,7 +1041,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-4">
+              <div class="d-flex flex-column gap-4">
                 <div>
                   <p class="text-sm font-bold mb-2">Inline:</p>
                   <app-color-picker
@@ -1073,7 +1073,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <app-tristate-switch
                   [(value)]="tristateValue"
                   label="Autorizacin del cliente"
@@ -1119,8 +1119,8 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="grid">
-                <div class="col-12 md:col-4">
+              <div class="row">
+                <div class="col-12 col-md-4">
                   <app-qr-code
                     data="https://luxuryapp.mx"
                     label="Sitio web"
@@ -1128,14 +1128,14 @@ const CORE_LABELS: Record<string, string> = {
                     [showData]="true"
                   />
                 </div>
-                <div class="col-12 md:col-4">
+                <div class="col-12 col-md-4">
                   <app-qr-code
                     data="OC-2026-0892"
                     label="Orden de compra"
                     [size]="120"
                   />
                 </div>
-                <div class="col-12 md:col-4">
+                <div class="col-12 col-md-4">
                   <app-qr-code
                     data="CURP-MARI800101HDFRZN09"
                     label="CURP del empleado"
@@ -1166,7 +1166,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <div class="flex flex-column gap-3">
+              <div class="d-flex flex-column gap-3">
                 <app-realtime-indicator
                   status="live"
                   lastUpdate="hace 2s"
@@ -1182,8 +1182,8 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("inventorylevel") {
-          <div class="grid">
-            <div class="col-12 md:col-4">
+          <div class="row">
+            <div class="col-12 col-md-4">
               <app-inventory-level
                 name="Cable 12AWG"
                 sku="ELT-001"
@@ -1192,7 +1192,7 @@ const CORE_LABELS: Record<string, string> = {
                 [reorderPoint]="100"
               />
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               <app-inventory-level
                 name="Interruptor termo."
                 sku="ELT-002"
@@ -1201,7 +1201,7 @@ const CORE_LABELS: Record<string, string> = {
                 [reorderPoint]="50"
               />
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               <app-inventory-level
                 name="Pintura blanca 1L"
                 sku="MTL-010"
@@ -1237,8 +1237,8 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("orderstatus") {
-          <div class="grid">
-            <div class="col-12 md:col-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Horizontal</h3>
@@ -1249,7 +1249,7 @@ const CORE_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Vertical</h3>

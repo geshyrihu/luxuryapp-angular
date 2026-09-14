@@ -1,7 +1,7 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-3">
-    <div class="grid formgrid align-items-end">
-      <div class="field col-12 md:col-4">
+    <div class="row formgrid align-items-end">
+      <div class="field col-12 col-md-4">
         <custom-input-select-signal
           label="Propiedad"
           [data]="properties()"
@@ -10,21 +10,21 @@
           [filter]="true"
         />
       </div>
-      <div class="field col-6 md:col-2">
+      <div class="field col-6 col-md-2">
         <custom-input-date-signal
           label="Desde"
           [control]="fromCtrl"
           [noMargin]="true"
         />
       </div>
-      <div class="field col-6 md:col-2">
+      <div class="field col-6 col-md-2">
         <custom-input-date-signal
           label="Hasta"
           [control]="toCtrl"
           [noMargin]="true"
         />
       </div>
-      <div class="field col-12 md:col-3">
+      <div class="field col-12 col-md-3">
         <custom-input-select-signal
           label="Tipo de evento"
           [data]="eventTypeOptions"
@@ -33,7 +33,7 @@
           [filter]="true"
         />
       </div>
-      <div class="field col-12 md:col-1 flex align-items-end gap-2">
+      <div class="field col-12 col-md-1 d-flex align-items-end gap-2">
         <il-button
           label="Buscar"
           iconClass="material-symbols-light:search"
@@ -52,7 +52,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -125,7 +125,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
           <app-icon
             icon="material-symbols-light:format-list-bulleted"
@@ -138,7 +138,7 @@
           {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }} · {{ entry.createdBy
           }}
         </p>
-        <div end class="pr-3 text-right">
+        <div end class="pe-3 text-right">
           @if (entry.debitAmount > 0) {
           <div class="text-red-700 text-sm font-medium">
             -{{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}

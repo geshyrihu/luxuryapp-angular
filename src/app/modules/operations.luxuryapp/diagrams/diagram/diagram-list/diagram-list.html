@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4 border-none shadow-none">
+<div class="card p-0 p-md-4 border-none shadow-none">
   <p-table
     #dt
     [value]="diagrams()"
@@ -10,12 +10,12 @@
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} diagramas"
     [showCurrentPageReport]="true"
     [loading]="loading()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
   >
     <ng-template #caption>
-      <div class="flex align-items-center justify-content-between p-2">
+      <div class="d-flex align-items-center justify-content-between p-2">
         <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
-        <div class="flex gap-2">
+        <div class="d-flex gap-2">
           <il-button
             label="Galeróa"
             iconClass="material-symbols-light:photo-library"
@@ -47,7 +47,7 @@
           {{ diagram.updateAt | apiDate: 'dd/MM/yyyy HH:mm' }}
         </td>
         <td>
-          <div class="flex justify-content-center gap-2">
+          <div class="d-flex justify-content-center gap-2">
             <iw-button
               iconClass="material-symbols-light:edit"
               (clicked)="onEditDiagram(diagram.id)"
@@ -83,7 +83,7 @@
 
     <ng-template #summary>
       <div
-        class="flex align-items-center justify-content-between text-500 italic"
+        class="d-flex align-items-center justify-content-between text-500 italic"
       >
         En total hay {{ diagrams() ? diagrams().length : 0 }} diagramas.
       </div>
@@ -103,7 +103,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center bg-green-50 rounded-md ml-3 w-3rem h-3rem flex-shrink-0"
+        class="d-flex align-items-center justify-content-center bg-green-50 rounded-md ms-3 w-3rem h-3rem flex-shrink-0"
       >
         <app-icon icon="material-symbols-light:call-split" class="text-2xl text-green-600" />
       </div>

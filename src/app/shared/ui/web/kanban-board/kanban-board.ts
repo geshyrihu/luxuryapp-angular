@@ -59,7 +59,7 @@ const PRIORITY_COLORS: Record<string, string> = {
               class="kanban-column-header"
               [style.background]="stage.color + '15'"
             >
-              <div class="flex align-items-center gap-2 flex-1">
+              <div class="d-flex align-items-center gap-2 flex-1">
                 <div
                   class="kanban-stage-dot"
                   [style.background]="stage.color"
@@ -113,7 +113,7 @@ const PRIORITY_COLORS: Record<string, string> = {
                   }
 
                   @if (card.tags?.length) {
-                    <div class="flex gap-1 flex-wrap">
+                    <div class="d-flex gap-1 flex-wrap">
                       @for (tag of card.tags; track tag) {
                         <span class="kanban-tag">{{ tag }}</span>
                       }

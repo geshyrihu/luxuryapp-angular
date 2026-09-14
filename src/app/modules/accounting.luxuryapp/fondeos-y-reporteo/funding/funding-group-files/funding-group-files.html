@@ -1,5 +1,5 @@
-<div class="flex flex-column h-full">
-  <div class="flex align-items-center w-full pr-4 mb-3">
+<div class="d-flex flex-column h-full">
+  <div class="d-flex align-items-center w-full pe-4 mb-3">
     <span class="text-xl font-bold"></span>
     <div class="flex-grow-1"></div>
 
@@ -33,11 +33,11 @@
 
   <div class="flex-grow-1 overflow-auto p-1">
     @if (viewMode() === "grid") {
-    <div class="grid col-2 sm:col-3 md:col-4 lg:col-6">
+    <div class="row col-2 col-sm-3 col-md-4 col-lg-6">
       @for (file of selectedGroupFiles(); track $index) {
       <div class="p-2">
         <div
-          class="surface-card border-1 surface-border rounded p-3 flex flex-column align-items-center justify-content-between hover:surface-100 transition-colors transition-duration-200 h-full text-center shadow-sm relative"
+          class="surface-card border-1 surface-border rounded p-3 d-flex flex-column align-items-center justify-content-between hover:surface-100 transition-colors transition-duration-200 h-full text-center shadow-sm relative"
         >
           <div class="absolute top-0 right-0 p-2 z-1">
             <lx-checkbox

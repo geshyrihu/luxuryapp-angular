@@ -24,8 +24,8 @@
   ></app-recurrence-input>
 
   <!-- Add custom components for time inputs if they exist, otherwise leave calendars -->
-  <div class="grid mt-3">
-    <div class="col-12 md:col-6 flex flex-column gap-1">
+  <div class="row mt-3">
+    <div class="col-12 col-md-6 d-flex flex-column gap-1">
       <label for="timeWindowStart">Inicio Ventana Horaria</label>
       <custom-input-datepicker-signal
         inputId="timeWindowStart"
@@ -34,7 +34,7 @@
         [showButtonBar]="false"
       ></custom-input-datepicker-signal>
     </div>
-    <div class="col-12 md:col-6 flex flex-column gap-1">
+    <div class="col-12 col-md-6 d-flex flex-column gap-1">
       <label for="timeWindowEnd">Fin Ventana Horaria</label>
       <custom-input-datepicker-signal
         inputId="timeWindowEnd"

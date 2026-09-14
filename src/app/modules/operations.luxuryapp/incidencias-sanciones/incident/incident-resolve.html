@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
   <custom-input-select-signal
     label="Nuevo Estatus de Investigacion"
     [control]="form.controls.investigationStatus"
@@ -21,7 +21,7 @@
     [rows]="3"
     placeholder="Obligatorio si no se aplica sancion"
   />
-  <div class="flex justify-content-end mt-2">
+  <div class="d-flex justify-content-end mt-2">
     <il-button-save
       [propertyId]="incidentId()"
       [disabled]="form.invalid"

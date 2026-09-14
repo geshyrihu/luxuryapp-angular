@@ -10,7 +10,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="card hidden md:block custom-table"
+  class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
@@ -45,7 +45,7 @@
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <div class="rounded overflow-hidden flex-1">
             <div
               class="rounded bg-primary"
@@ -64,7 +64,7 @@
         />
       </td>
       <td>
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <iw-button
             iconClass="material-symbols-light:visibility-outline"
             severity="info"
@@ -95,14 +95,14 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
         <app-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
       <p class="text-xs m-0">{{ item.motivo }}</p>
-      <div class="flex align-items-center gap-2 mt-1">
+      <div class="d-flex align-items-center gap-2 mt-1">
         <span class="font-bold"
           >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
           }}</span

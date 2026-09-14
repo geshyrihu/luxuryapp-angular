@@ -1,7 +1,7 @@
-<section class="p-3 md:p-4">
+<section class="p-3 p-md-4">
   @if (!hasCustomer()) {
   <div
-    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4"
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4"
   >
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
@@ -10,10 +10,10 @@
   </div>
   } @else { @if (dashboard()?.currentCharges; as currentCharges) {
   <div
-    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 mb-3"
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4 mb-3"
   >
     <div
-      class="flex flex-column md:flex-row md:align-items-start md:justify-content-between gap-3 mb-3"
+      class="d-flex flex-column flex-md-row align-items-md-start justify-content-md-between gap-3 mb-3"
     >
       <div>
         <div class="text-lg font-semibold">Cuotas vigentes visibles</div>
@@ -24,34 +24,34 @@
       </div>
     </div>
 
-    <div class="grid mb-3">
+    <div class="row mb-3">
       <!-- Mantenimiento -->
       <div
         class="col-12"
         [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-8'"
       >
         <div
-          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full d-flex flex-column flex-md-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
               Mantenimiento Neto del Mes
             </h3>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">A recaudar:</span>
               <span class="font-bold"
                 >{{ currentCharges.maintenance.total | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Abonado:</span>
               <span class="font-bold text-success"
                 >{{ currentCharges.maintenance.collected | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Faltante por cobrar:</span>
               <span class="font-bold text-warning"
                 >{{ currentCharges.maintenance.pending | currency:
@@ -70,29 +70,29 @@
 
       <!-- Extraordinaria -->
       @if (extraordinaryChartData()) {
-      <div class="col-12 xl:col-6">
+      <div class="col-12 col-xl-6">
         <div
-          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full d-flex flex-column flex-md-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
               Cuotas Extraordinarias del Mes
             </h3>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">A recaudar:</span>
               <span class="font-bold"
                 >{{ currentCharges.extraordinary.total | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Abonado:</span>
               <span class="font-bold text-success"
                 >{{ currentCharges.extraordinary.collected | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Faltante por cobrar:</span>
               <span class="font-bold text-warning"
                 >{{ currentCharges.extraordinary.pending | currency:
@@ -115,9 +115,9 @@
         class="col-12"
         [ngClass]="extraordinaryChartData() ? 'xl:col-12' : 'xl:col-4'"
       >
-        <div class="grid">
+        <div class="row">
           <div
-            class="col-12 sm:col-6"
+            class="col-12 col-sm-6"
             [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-12'"
           >
             <div
@@ -134,7 +134,7 @@
             </div>
           </div>
           <div
-            class="col-12 sm:col-6"
+            class="col-12 col-sm-6"
             [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-12'"
           >
             <div
@@ -165,7 +165,7 @@
           @for (income of additionalIncomes(); track income.conceptName; let
           last = $last) {
           <li
-            class="flex justify-content-between align-items-center p-3 hover:surface-hover transition-colors"
+            class="d-flex justify-content-between align-items-center p-3 hover:surface-hover transition-colors"
             [ngClass]="{'border-bottom-1 surface-border': !last}"
           >
             <span class="text-sm font-medium text-color"
@@ -180,12 +180,12 @@
       </div>
     </div>
     } @if (currentCharges.activeTemplates.length) {
-    <div class="grid">
+    <div class="row">
       @for (template of currentCharges.activeTemplates; track template.id) {
       <div
-        class="col-12 sm:col-6 md:col-4 surface-card border-1 surface-border rounded-xl shadow-1 p-2"
+        class="col-12 col-sm-6 col-md-4 surface-card border-1 surface-border rounded-xl shadow-1 p-2"
       >
-        <div class="flex justify-content-between align-items-start gap-2 mb-2">
+        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
           <div>
             <div class="font-semibold">{{ template.name }}</div>
             <div class="text-color-secondary text-sm mt-1">
@@ -201,7 +201,7 @@
           />
         </div>
 
-        <div class="flex align-items-end justify-content-between gap-3">
+        <div class="d-flex align-items-end justify-content-between gap-3">
           <div class="text-xl font-semibold">
             {{ template.amount | currency: "MXN":"symbol":"1.0-0" }}
           </div>
@@ -220,11 +220,11 @@
     }
   </div>
   } @if (dashboard()) {
-  <div class="grid mb-4">
+  <div class="row mb-4">
     <!-- Analysis Panel -->
-    <div class="col-12 xl:col-8">
+    <div class="col-12 col-xl-8">
       <div
-        class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 h-full"
+        class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4 h-full"
       >
         <div class="mb-4">
           <div class="text-lg font-semibold">Análisis Financiero</div>
@@ -233,11 +233,11 @@
           </div>
         </div>
 
-        <div class="grid">
+        <div class="row">
           <!-- Table 1: Cobranza -->
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <div
-              class="surface-card border-round-xl border-1 surface-border shadow-none overflow-hidden h-full flex flex-column"
+              class="surface-card border-round-xl border-1 surface-border shadow-none overflow-hidden h-full d-flex flex-column"
             >
               <div class="bg-info-light border-bottom-1 surface-border p-3">
                 <h3 class="text-sm font-semibold text-info m-0">
@@ -290,7 +290,7 @@
                     title="Ver detalle de {{ row.clasificacion }}"
                   >
                     <td>
-                      <div class="flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2">
                         <span>{{ row.clasificacion }}</span>
                         <i
                           class="mdi mdi-magnify text-xs text-color-secondary"
@@ -322,7 +322,7 @@
                   />
                 </ng-template>
               </p-table>
-              <div class="md:hidden">
+              <div class="d-md-none">
                 <app-data-view-mobile
                   [data]="tableCobranzaPerfecta()"
                   [globalFilterFields]="['clasificacion', 'saldo', 'porcentaje']"
@@ -335,7 +335,7 @@
                     >
                       <div
                         start
-                        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+                        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
                       >
                         <app-icon icon="material-symbols-light:group" />
                       </div>
@@ -364,9 +364,9 @@
           </div>
 
           <!-- Table 2: Deuda -->
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <div
-              class="surface-card border-round-xl border-1 surface-border shadow-none overflow-hidden h-full flex flex-column"
+              class="surface-card border-round-xl border-1 surface-border shadow-none overflow-hidden h-full d-flex flex-column"
             >
               <div class="bg-danger-light border-bottom-1 surface-border p-3">
                 <h3 class="text-sm font-semibold text-danger m-0">
@@ -419,7 +419,7 @@
                     title="Ver detalle de {{ row.clasificacion }}"
                   >
                     <td>
-                      <div class="flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2">
                         <span>{{ row.clasificacion }}</span>
                         <i
                           class="mdi mdi-magnify text-xs text-color-secondary"
@@ -451,7 +451,7 @@
                   />
                 </ng-template>
               </p-table>
-              <div class="md:hidden">
+              <div class="d-md-none">
                 <app-data-view-mobile
                   [data]="tableDeudaCondominos()"
                   [globalFilterFields]="['clasificacion', 'saldo', 'porcentaje']"
@@ -464,7 +464,7 @@
                     >
                       <div
                         start
-                        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+                        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
                       >
                         <app-icon icon="material-symbols-light:error" />
                       </div>
@@ -496,16 +496,16 @@
     </div>
 
     <!-- Pie Chart Panel -->
-    <div class="col-12 xl:col-4">
+    <div class="col-12 col-xl-4">
       <div
-        class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 h-full flex flex-column"
+        class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4 h-full d-flex flex-column"
       >
         <div class="mb-4">
           <div class="text-lg font-semibold">Composición de Cobranza</div>
         </div>
         <div class="flex-grow-1 w-full h-full min-h-full">
           <app-pie-chart
-            class="block w-full h-20rem"
+            class="d-block w-full h-20rem"
             [dataGrafico]="collectionPieChart().data"
             [colorScheme]="{domain: collectionPieChart().colors}"
           ></app-pie-chart>

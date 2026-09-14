@@ -1,6 +1,6 @@
 <div class="fadein">
   <!-- Filtros propios del componente -->
-  <div class="flex mb-4 align-items-end gap-2">
+  <div class="d-flex mb-4 align-items-end gap-2">
     <div class="mb-0">
       <custom-input-text-signal
         [ngModel]="year()"
@@ -25,12 +25,12 @@
     </div>
     <!-- Controles de la tabla -->
     @if (data(); as catalog) {
-    <div class="flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <div class="text-xs text-500 p-2">
         <strong>{{ catalog.nombreEmpresa }}</strong> &mdash; {{
         catalog.periodoPresupuesto }}
       </div>
-      <div class="flex gap-1">
+      <div class="d-flex gap-1">
         <il-button
           label="Expandir Todo"
           iconClass="material-symbols-light:keyboard-double-arrow-down"
@@ -53,7 +53,7 @@
   </div>
 
   @if (loading()) {
-  <div class="flex align-items-center text-color-secondary mb-4 gap-2">
+  <div class="d-flex align-items-center text-color-secondary mb-4 gap-2">
     <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando catálogo en Aspel...</span>
   </div>
@@ -66,12 +66,12 @@
   <!-- Panel de cuentas faltantes -->
   @if (cuentasFaltantes().length > 0) {
   <div class="surface-ground p-4 rounded mb-4 border-left-4 border-orange-500">
-    <div class="flex align-items-center mb-3">
+    <div class="d-flex align-items-center mb-3">
       <app-icon
         [icon]="'material-symbols-light:warning'"
         class="text-orange-500 text-xl"
       />
-      <h4 class="m-0 text-orange-600 ml-2">
+      <h4 class="m-0 text-orange-600 ms-2">
         {{ cuentasFaltantes().length }} cuenta(s) Nivel 1 no encontrada(s) en
         Aspel
       </h4>
@@ -82,10 +82,10 @@
       <strong>no fueron devueltas</strong> por la API de Aspel para este cliente
       y año. Si deben existir, el contador debe darlas de alta en Aspel COI.
     </p>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       @for (faltante of cuentasFaltantes(); track faltante.numeroCuenta) {
       <div
-        class="flex align-items-center surface-card rounded p-2 border-1 border-orange-300 gap-2"
+        class="d-flex align-items-center surface-card rounded p-2 border-1 border-orange-300 gap-2"
       >
         <lx-tag
           [value]="faltante.clasificacion"
@@ -102,7 +102,7 @@
   </div>
   } @else {
   <div class="surface-ground p-3 rounded mb-4 border-left-4 border-green-500">
-    <div class="flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2">
       <app-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
@@ -143,7 +143,7 @@
         [class.surface-100]="account.nivel === 1"
       >
         <td>
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
             <iw-button

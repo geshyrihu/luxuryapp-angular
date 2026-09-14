@@ -2,9 +2,9 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="grid">
+      <div class="row">
         <!-- Primera columna -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-select-signal
             [control]="form.controls.inventoryCategory"
             label="Categoría"
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Segunda columna -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-text-signal
             [control]="form.controls.model"
             label="Modelo"
@@ -49,7 +49,7 @@
         </div>
 
         <!-- Tercera columna -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-date-signal
             [control]="form.controls.dateOfPurchase"
             label="Compra o instalación"
@@ -73,7 +73,7 @@
         </div>
 
         <!-- Imagen -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <label>Imagen</label>
           <custom-input-img-signal
             (fileSelected)="uploadFile($event)"
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Textareas -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.technicalSpecifications"
             label="Especificaciones Técnicas"
@@ -94,7 +94,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.observations"
             label="Observaciones"
@@ -105,7 +105,7 @@
         </div>
       </div>
 
-      <div class="flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end mt-4">
         <il-button-save [disabled]="form.invalid || submitting()" />
       </div>
     </form>
@@ -116,9 +116,9 @@ category == 7) {
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="grid">
+      <div class="row">
         <!-- Columna 1 -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-select-signal
             [control]="form.controls.inventoryCategory"
             label="Categoría"
@@ -135,7 +135,7 @@ category == 7) {
         </div>
 
         <!-- Columna 2 -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-text-signal
             [control]="form.controls.ubication"
             label="Ubicación"
@@ -151,7 +151,7 @@ category == 7) {
         </div>
 
         <!-- Columna 3 -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <custom-input-select-signal
             [control]="form.controls.state"
             label="Estado"
@@ -169,7 +169,7 @@ category == 7) {
         </div>
 
         <!-- Imagen -->
-        <div class="col-12 md:col-3">
+        <div class="col-12 col-md-3">
           <label>Imagen</label>
           <custom-input-img-signal
             (fileSelected)="uploadFile($event)"
@@ -180,7 +180,7 @@ category == 7) {
         </div>
 
         <!-- Textareas -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.technicalSpecifications"
             label="Especificaciones Técnicas"
@@ -190,7 +190,7 @@ category == 7) {
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.observations"
             label="Observaciones"
@@ -201,7 +201,7 @@ category == 7) {
         </div>
       </div>
 
-      <div class="flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end mt-4">
         <il-button-save [disabled]="form.invalid || submitting()" />
       </div>
     </form>

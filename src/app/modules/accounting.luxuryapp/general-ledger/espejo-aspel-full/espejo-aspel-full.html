@@ -1,11 +1,11 @@
 <div class="rf-shell">
   <!-- Barra superior fija -->
   <div class="rf-card border-bottom-1 surface-border">
-    <div class="flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-3">
       <!-- Icono + Titulo -->
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         <div
-          class="flex align-items-center justify-content-center bg-primary-50 rounded-lg"
+          class="d-flex align-items-center justify-content-center bg-primary-50 rounded-lg"
         >
           <app-icon
             [icon]="'material-symbols-light:table'"
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Ejercicio -->
-      <div class="flex align-items-center gap-1">
+      <div class="d-flex align-items-center gap-1">
         <iw-button
           iconClass="material-symbols-light:chevron-left"
           variant="text"
@@ -91,16 +91,16 @@
       <span class="border-left-1 surface-border"></span>
 
       <!-- Leyenda -->
-      <div class="flex align-items-center gap-3">
-        <span class="flex align-items-center gap-1 text-xs text-500">
+      <div class="d-flex align-items-center gap-3">
+        <span class="d-flex align-items-center gap-1 text-xs text-500">
           <span class="legend-dot legend-dot-cargo"></span>
           C=Cargo
         </span>
-        <span class="flex align-items-center gap-1 text-xs text-500">
+        <span class="d-flex align-items-center gap-1 text-xs text-500">
           <span class="legend-dot legend-dot-abono"></span>
           A=Abono
         </span>
-        <span class="flex align-items-center gap-1 text-xs text-500">
+        <span class="d-flex align-items-center gap-1 text-xs text-500">
           <span class="legend-dot legend-dot-presupuesto"></span>
           P=Presupuesto (solo gastos)
         </span>
@@ -113,7 +113,7 @@
 
   <!-- Caption del grupo -->
   <div
-    class="flex align-items-center gap-2 mb-3 mt-5"
+    class="d-flex align-items-center gap-2 mb-3 mt-5"
     [id]="'grupo-' + grupo.codigo"
   >
     <app-icon
@@ -123,9 +123,9 @@
     <h2 class="text-base font-bold text-900 m-0 uppercase">
       {{ grupo.nombre }}
     </h2>
-    <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
+    <div class="flex-grow-1 border-bottom-1 surface-border ms-2"></div>
     <!-- Nivel visible -->
-    <div class="flex align-items-center gap-1">
+    <div class="d-flex align-items-center gap-1">
       @for (n of getNivelesDisponibles(grupo.codigo); track n) {
       <il-button
         [label]="'N' + n"
@@ -261,7 +261,7 @@
   </div>
   } } @if (!loading() && !rawData()) {
   <div
-    class="rf-card rf-empty flex flex-column align-items-center justify-content-center"
+    class="rf-card rf-empty d-flex flex-column align-items-center justify-content-center"
   >
     <app-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
     <p class="m-0">

@@ -78,11 +78,11 @@ const GUIA_LABELS: Record<string, string> = {
 
       @switch (item()) {
         @case ("identitypillars") {
-          <div class="grid mb-5">
+          <div class="row mb-5">
             @for (m of metrics; track m.label) {
-              <div class="col-12 md:col-4">
+              <div class="col-12 col-md-4">
                 <div class="card h-full">
-                  <div class="flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-3">
                     <app-icon [icon]="m.icon" class="text-primary text-3xl" />
                     <div>
                       <div class="text-2xl font-bold">{{ m.value }}</div>
@@ -96,13 +96,13 @@ const GUIA_LABELS: Record<string, string> = {
           </div>
 
           <h3 class="text-xl font-bold mb-3">Casos de Uso de Negocio</h3>
-          <div class="grid mb-5">
+          <div class="row mb-5">
             @for (s of businessScenarios; track s.title) {
-              <div class="col-12 lg:col-4">
+              <div class="col-12 col-lg-4">
                 <div
                   class="card h-full border-top-3 border-primary surface-card"
                 >
-                  <div class="flex align-items-center gap-3 mb-3">
+                  <div class="d-flex align-items-center gap-3 mb-3">
                     <app-icon [icon]="s.icon" class="text-primary text-2xl" />
                     <strong class="text-xl">{{ s.title }}</strong>
                   </div>
@@ -123,26 +123,26 @@ const GUIA_LABELS: Record<string, string> = {
           <app-message
             severity="success"
             text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
-            class="mb-4 block"
+            class="mb-4 d-block"
           />
-          <div class="grid mb-4">
+          <div class="row mb-4">
             @for (p of identityPillars; track p.title) {
-              <div class="col-12 lg:col-4">
+              <div class="col-12 col-lg-4">
                 <div
                   class="h-full border-left-3 border-primary surface-card shadow-1"
                   class="card"
                 >
-                  <div class="flex align-items-start gap-3">
+                  <div class="d-flex align-items-start gap-3">
                     <app-icon [icon]="p.icon" class="text-primary text-2xl" />
                     <div>
-                      <div class="flex align-items-center gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
                         <app-tag [value]="p.severity" [severity]="p.severity" />
                       </div>
                       <p class="m-0 line-height-3 text-color-secondary">
                         {{ p.summary }}
                       </p>
-                      <small class="block mt-3 text-color-secondary">{{
+                      <small class="d-block mt-3 text-color-secondary">{{
                         p.application
                       }}</small>
                     </div>
@@ -156,7 +156,7 @@ const GUIA_LABELS: Record<string, string> = {
         @case ("colorvalidation") {
           <app-message
             severity="info"
-            class="mb-4 block"
+            class="mb-4 d-block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
           />
           <div class="card">
@@ -191,7 +191,7 @@ const GUIA_LABELS: Record<string, string> = {
           <app-message
             severity="info"
             text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
-            class="mb-3 block"
+            class="mb-3 d-block"
           />
           <div class="card">
             <p-table
@@ -240,21 +240,21 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("buttonrules") {
-          <div class="grid">
+          <div class="row">
             @for (r of buttonRules; track r.variant) {
-              <div class="col-12 md:col-6 xl:col-3">
+              <div class="col-12 col-md-6 col-xl-3">
                 <div [class]="'card ' + r.cardClass">
-                  <div class="flex align-items-start gap-3">
+                  <div class="d-flex align-items-start gap-3">
                     <app-icon [icon]="r.iconClass" />
                     <div>
-                      <div class="flex align-items-center gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>
                         <app-tag [value]="r.variant" [severity]="r.severity" />
                       </div>
                       <p class="m-0 text-color-secondary line-height-3">
                         {{ r.usage }}
                       </p>
-                      <small class="block mt-2 text-color-secondary">{{
+                      <small class="d-block mt-2 text-color-secondary">{{
                         r.avoid
                       }}</small>
                     </div>
@@ -271,8 +271,8 @@ const GUIA_LABELS: Record<string, string> = {
 
         @case ("referenceform") {
           <div class="card mb-5">
-            <div class="grid formgrid">
-              <div class="field col-12 md:col-6 xl:col-4">
+            <div class="row formgrid">
+              <div class="field col-12 col-md-6 col-xl-4">
                 <custom-input-text-signal
                   [ngModel]="sampleName"
                   (ngModelChange)="sampleName = $event"
@@ -283,7 +283,7 @@ const GUIA_LABELS: Record<string, string> = {
                   description="Usar nombres cortos, auditables y faciles de buscar."
                 />
               </div>
-              <div class="field col-12 md:col-6 xl:col-4">
+              <div class="field col-12 col-md-6 col-xl-4">
                 <custom-input-select-signal
                   [ngModel]="selectedArea"
                   (ngModelChange)="selectedArea = $event"
@@ -297,7 +297,7 @@ const GUIA_LABELS: Record<string, string> = {
                   customClass="w-full"
                 />
               </div>
-              <div class="field col-12 md:col-6 xl:col-4">
+              <div class="field col-12 col-md-6 col-xl-4">
                 <custom-input-multiselect-signal
                   [ngModel]="selectedModules"
                   (ngModelChange)="selectedModules = $event"
@@ -311,7 +311,7 @@ const GUIA_LABELS: Record<string, string> = {
                   customClass="w-full"
                 />
               </div>
-              <div class="field col-12 md:col-6 xl:col-4">
+              <div class="field col-12 col-md-6 col-xl-4">
                 <custom-input-number-signal
                   [ngModel]="sampleBudget"
                   (ngModelChange)="sampleBudget = $event"
@@ -324,7 +324,7 @@ const GUIA_LABELS: Record<string, string> = {
                   customClass="w-full"
                 />
               </div>
-              <div class="field col-12 md:col-6 xl:col-4">
+              <div class="field col-12 col-md-6 col-xl-4">
                 <custom-input-datepicker-signal
                   [ngModel]="selectedDate"
                   (ngModelChange)="selectedDate = $event"
@@ -335,8 +335,8 @@ const GUIA_LABELS: Record<string, string> = {
                   [dateStyle]="{ width: '100%' }"
                 />
               </div>
-              <div class="field col-12 md:col-6 xl:col-4">
-                <label class="block mb-2">Busqueda</label>
+              <div class="field col-12 col-md-6 col-xl-4">
+                <label class="d-block mb-2">Busqueda</label>
                 <custom-search-input-signal
                   placeholder="Buscar por folio, area o responsable"
                   (searchChange)="search = $event"
@@ -353,7 +353,7 @@ const GUIA_LABELS: Record<string, string> = {
                   customClass="w-full"
                 />
               </div>
-              <div class="field col-12 md:col-4">
+              <div class="field col-12 col-md-4">
                 <custom-input-toggle-switch-signal
                   [ngModel]="enabled"
                   (ngModelChange)="enabled = $event"
@@ -362,23 +362,23 @@ const GUIA_LABELS: Record<string, string> = {
                   [noMargin]="true"
                 />
               </div>
-              <div class="field col-12 md:col-4 flex align-items-center gap-3">
+              <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
                 <app-checkbox [(checked)]="accepted" inputId="accepted" />
                 <label for="accepted" class="font-normal"
                   >Confirmacion requerida</label
                 >
               </div>
-              <div class="field col-12 md:col-4 flex align-items-center gap-3">
+              <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
                 <label>Prioridad</label>
-                <div class="flex gap-3">
-                  <div class="flex align-items-center gap-1">
+                <div class="d-flex gap-3">
+                  <div class="d-flex align-items-center gap-1">
                     <app-radio-button
                       value="baja"
                       [control]="priorityControl"
                       inputId="pbaja"
                     /><label for="pbaja" class="font-normal">Baja</label>
                   </div>
-                  <div class="flex align-items-center gap-1">
+                  <div class="d-flex align-items-center gap-1">
                     <app-radio-button
                       value="media"
                       [control]="priorityControl"
@@ -388,7 +388,7 @@ const GUIA_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="flex justify-content-end gap-2 mt-4">
+            <div class="d-flex justify-content-end gap-2 mt-4">
               <il-button
                 label="Cancelar"
                 severity="secondary"
@@ -403,7 +403,7 @@ const GUIA_LABELS: Record<string, string> = {
           <app-message
             severity="warn"
             text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
-            class="block"
+            class="d-block"
           />
         }
       }

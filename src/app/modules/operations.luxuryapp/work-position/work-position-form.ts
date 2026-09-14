@@ -75,19 +75,27 @@ export class WorkPositionForm implements OnInit {
   readonly canEditCurrentSalary = computed(() =>
     this.aspRoleS.hasAny([ApplicationRole.RecursosHumanos, ApplicationRole.SuperUsuario]),
   );
-  readonly scheduleDays = computed(() => {
+  readonly scheduleWeeks = computed(() => {
     const schedule = this.selectedSchedule();
-    const findDay = (dw: number) => schedule?.diasDeTrabajo?.find((d) => d.diaSemana === dw);
+    const findDay = (dw: number, nw: number) =>
+      schedule?.diasDeTrabajo?.find((d) => d.diaSemana === dw && d.numeroSemanaCiclo === nw);
 
-    return [
-      { day: "Lunes", entry: findDay(1)?.horaEntrada ?? null, exit: findDay(1)?.horaSalida ?? null },
-      { day: "Martes", entry: findDay(2)?.horaEntrada ?? null, exit: findDay(2)?.horaSalida ?? null },
-      { day: "Miercoles", entry: findDay(3)?.horaEntrada ?? null, exit: findDay(3)?.horaSalida ?? null },
-      { day: "Jueves", entry: findDay(4)?.horaEntrada ?? null, exit: findDay(4)?.horaSalida ?? null },
-      { day: "Viernes", entry: findDay(5)?.horaEntrada ?? null, exit: findDay(5)?.horaSalida ?? null },
-      { day: "Sabado", entry: findDay(6)?.horaEntrada ?? null, exit: findDay(6)?.horaSalida ?? null },
-      { day: "Domingo", entry: findDay(7)?.horaEntrada ?? null, exit: findDay(7)?.horaSalida ?? null },
-    ];
+    const weeks = [];
+    for (let w = 1; w <= 4; w++) {
+      weeks.push({
+        weekNumber: w,
+        days: [
+          { name: "Lun", ...findDay(1, w) },
+          { name: "Mar", ...findDay(2, w) },
+          { name: "Mié", ...findDay(3, w) },
+          { name: "Jue", ...findDay(4, w) },
+          { name: "Vie", ...findDay(5, w) },
+          { name: "Sáb", ...findDay(6, w) },
+          { name: "Dom", ...findDay(7, w) },
+        ],
+      });
+    }
+    return weeks;
   });
 
   // --- FORMULARIO REACTIVO ---
@@ -158,7 +166,7 @@ export class WorkPositionForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result = await this.apiS.onGetItem<any>(
-      `operation/recruitment/work-positions/for-edit/${this.id()}`,
+      Endpoints.WorkPositions.forEdit(this.id()),
     );
 
     if (result) {
@@ -208,7 +216,7 @@ export class WorkPositionForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiS,
-      endpoint: "operation/recruitment/work-positions",
+      endpoint: Endpoints.WorkPositions.base,
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,

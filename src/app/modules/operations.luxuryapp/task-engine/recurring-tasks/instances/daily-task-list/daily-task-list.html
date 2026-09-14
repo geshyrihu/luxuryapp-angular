@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <div class="flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
       <h5 class="card-title mb-0">Mis Tareas Diarias</h5>
       <div>
         <custom-input-date-signal
@@ -14,7 +14,7 @@
   </div>
   <div class="card-body">
     <!-- Desktop View -->
-    <div class="hidden md:block">
+    <div class="d-none d-md-block">
       <p-table
         [value]="tasks()"
         [loading]="loading()"
@@ -61,11 +61,11 @@
             </td>
           </tr>
           <div class="card-header">
-            <div class="flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title mb-0">Mis Tareas Diarias</h5>
               ...
               <!-- Mobile View -->
-              <div class="block md:hidden">
+              <div class="d-block d-md-none">
                 @if (loading()) {
                 <div class="text-center p-4">Cargando...</div>
                 } @if (!loading() && tasks().length === 0) {
@@ -76,7 +76,7 @@
                 <div
                   class="p-4 mb-2 border-1 surface-border rounded-lg surface-card"
                 >
-                  <div class="flex justify-content-between align-items-start">
+                  <div class="d-flex justify-content-between align-items-start">
                     <h6 class="font-bold m-0">{{ task.title }}</h6>
                     <span class="text-sm font-semibold text-color-secondary"
                       >{{ task.scheduledDate | apiDate : "shortTime" }}</span
@@ -85,7 +85,7 @@
                   <p class="text-sm text-600 mt-1 mb-3">
                     {{ task.description }}
                   </p>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
                     <app-status-badge
                       [value]="task.status"
                       [status]="task.statusDescription"

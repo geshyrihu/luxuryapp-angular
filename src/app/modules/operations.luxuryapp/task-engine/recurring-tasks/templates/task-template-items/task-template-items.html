@@ -11,14 +11,14 @@
   (onRowReorder)="onRowReorder($event)"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="hidden md:block custom-table"
+  class="d-none d-md-block custom-table"
 >
   <ng-template #caption>
     <div
-      class="flex flex-wrap justify-content-between align-items-center gap-2"
+      class="d-flex flex-wrap justify-content-between align-items-center gap-2"
     >
       <!-- Textos a la izquierda -->
-      <div class="flex flex-column gap-1">
+      <div class="d-flex flex-column gap-1">
         <h5 class="m-0 text-900">Items de Plantilla: {{ template.name }}</h5>
         <small class="text-color-secondary">
           Rol Asignado: {{ template.roleName }}
@@ -26,7 +26,7 @@
       </div>
 
       <!-- Caption a la derecha -->
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <primeng-custom-caption (add)="showItemForm()" [dt]="dt" />
       </div>
     </div>
@@ -80,7 +80,7 @@
 
 <!-- Mobile View -->
 @if (items().length === 0 && !items()) {
-<div class="block md:hidden p-4 text-center">
+<div class="d-block d-md-none p-4 text-center">
   No se encontraron items para esta plantilla.
 </div>
 } @else {
@@ -88,13 +88,13 @@
   [data]="items()"
   [dt]="dt"
   (add)="showItemForm()"
-  class="block md:hidden"
+  class="d-block d-md-none"
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon

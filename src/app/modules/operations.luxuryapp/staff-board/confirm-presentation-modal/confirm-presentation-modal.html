@@ -7,12 +7,12 @@
   <form
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
-    class="flex flex-column gap-4"
+    class="d-flex flex-column gap-4"
   >
-    <div class="flex flex-column gap-2">
+    <div class="d-flex flex-column gap-2">
       <label class="font-semibold">¿Se presentó el candidato?</label>
-      <div class="flex gap-4">
-        <div class="flex align-items-center gap-2">
+      <div class="d-flex gap-4">
+        <div class="d-flex align-items-center gap-2">
           <lx-radio-button
             [control]="form.controls.isPresented"
             [value]="true"
@@ -20,7 +20,7 @@
           />
           <label for="rbYes">Sí se presentó</label>
         </div>
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <lx-radio-button
             [control]="form.controls.isPresented"
             [value]="false"
@@ -32,10 +32,10 @@
     </div>
 
     @if (form.controls.isPresented.value === false) {
-    <div class="flex flex-column gap-2 p-3 surface-100 border-round">
+    <div class="d-flex flex-column gap-2 p-3 surface-100 border-round">
       <label class="font-semibold">Motivo / Acción</label>
-      <div class="flex flex-column gap-3">
-        <div class="flex align-items-center gap-2">
+      <div class="d-flex flex-column gap-3">
+        <div class="d-flex align-items-center gap-2">
           <lx-radio-button
             [control]="form.controls.status"
             value="Rescheduled"
@@ -43,7 +43,7 @@
           />
           <label for="rbRescheduled">Cambió fecha de ingreso (Reprogramar)</label>
         </div>
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <lx-radio-button
             [control]="form.controls.status"
             value="NoShow"
@@ -64,7 +64,7 @@
     </div>
     }
 
-    <div class="flex justify-content-end gap-2 mt-3">
+    <div class="d-flex justify-content-end gap-2 mt-3">
       <il-button
         label="Cancelar"
         severity="secondary"

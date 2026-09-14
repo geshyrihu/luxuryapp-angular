@@ -5,7 +5,7 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -67,7 +67,7 @@
       <td>{{ item.departament }}</td>
       <td>{{ item.applicationUser }}</td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />

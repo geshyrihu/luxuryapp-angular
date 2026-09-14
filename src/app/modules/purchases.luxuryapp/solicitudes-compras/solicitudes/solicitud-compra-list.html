@@ -10,11 +10,11 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [tableStyle]="{ 'table-layout': 'fixed', 'min-width': 'auto' }"
-  class="custom-table custom-table-fixed card hidden md:block"
+  class="custom-table custom-table-fixed card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <div class="flex-grow-1">
         <primeng-custom-caption
@@ -24,7 +24,7 @@
           [noMargin]="true"
         />
       </div>
-      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
         <il-button
           iconClass="material-symbols-light:close"
           label="Denegadas"
@@ -166,7 +166,7 @@
 
       <td>
         @for (orden of item.ordenesRelacionadas; track orden.id) {
-        <div class="inline-flex align-items-center mb-1 mr-1">
+        <div class="d-inline-flex align-items-center mb-1 me-1">
           <il-button
             [label]="orden.folio"
             [lxTooltip]="orden.folio"
@@ -180,7 +180,7 @@
           />
           <app-icon
             icon="material-symbols-light:close"
-            class="cursor-pointer text-red-500 hover:text-red-700 ml-1"
+            class="cursor-pointer text-red-500 hover:text-red-700 ms-1"
             (click)="$event.stopPropagation(); onUnlinkPurchaseOrder(orden.id)"
             title="Desvincular Orden de Compra"
           />
@@ -189,7 +189,7 @@
       </td>
 
       <td>
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -212,7 +212,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       @if (isPendingView()) {
-      <div start class="flex align-items-center justify-content-center">
+      <div start class="d-flex align-items-center justify-content-center">
         <input
           type="checkbox"
           [checked]="isSelected(item.id)"
@@ -230,7 +230,7 @@
       <h3>{{ item.equipoOInstalacion }}</h3>
       <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
       <p>{{ item.fechaSolicitud | apiDate }}</p>
-      <div class="flex gap-2 mt-1">
+      <div class="d-flex gap-2 mt-1">
         <lx-tag
           [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
           [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
@@ -257,7 +257,7 @@
 </app-data-view-mobile>
 
 @if (isPendingView()) {
-<div class="md:hidden mt-3 flex justify-content-end">
+<div class="d-md-none mt-3 d-flex justify-content-end">
   <il-button
     iconClass="material-symbols-light:play-lesson"
     label="Modo presentacion"

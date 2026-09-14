@@ -7,8 +7,8 @@
         >Seleccione un empleado y una plantilla para comenzar.</lx-message
       >
       <!-- Fila para los selectores de Empleado y Plantilla -->
-      <div class="grid mb-4">
-        <div class="col-12 md:col-6">
+      <div class="row mb-4">
+        <div class="col-12 col-md-6">
           <label for="evaluatedId">Empleado a Evaluar</label>
           <custom-input-select-signal
             [id]="'evaluatedId'"
@@ -19,7 +19,7 @@
             placeholder="Seleccione un empleado..."
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <label for="evaluationTemplateId">Plantilla de Evaluación</label>
           <custom-input-select-signal
             [id]="'evaluationTemplateId'"
@@ -70,8 +70,8 @@
                       "
               >
                 <label>❓| {{ question.questionText }}</label>
-                <div class="grid">
-                  <div class="col-12 sm:col-2">
+                <div class="row">
+                  <div class="col-12 col-sm-2">
                     <app-touchspin
                       [control]="getScoreControl(catIndex, qIndex)"
                       [minValue]="1"
@@ -80,7 +80,7 @@
                       (valueChanged)="onScoreChange($event, catIndex, qIndex)"
                     />
                   </div>
-                  <div class="col-12 sm:col-10">
+                  <div class="col-12 col-sm-10">
                     <custom-input-textarea-signal
                       customClass="w-full"
                       [rows]="1"

@@ -1,4 +1,4 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <div>
     <p class="m-0 text-color-secondary">
       Checklist operativo generado para la asamblea. Cada cambio se guarda por item.
@@ -83,7 +83,7 @@
             }
           </td>
           <td>
-            <div class="flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
               <lx-tag
                 [value]="item.statusDisplayName"
                 [severity]="getSeverity(item.status)"
@@ -118,7 +118,7 @@
   </div>
   }
 
-  <div class="flex justify-content-end">
+  <div class="d-flex justify-content-end">
     <il-button
       type="button"
       iconClass="material-symbols-light:check"

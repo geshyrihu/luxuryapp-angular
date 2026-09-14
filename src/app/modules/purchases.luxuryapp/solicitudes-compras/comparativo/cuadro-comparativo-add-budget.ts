@@ -24,7 +24,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
       />
     </div>
 
-    <div class="flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border">
+    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border">
       <iw-button
         label="Cancelar"
         severity="secondary"

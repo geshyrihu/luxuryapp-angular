@@ -66,7 +66,7 @@ import { Task } from "./interfaces/task.interface";
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Ionic List Patterns</div>
-      <div class="mobile-card-body flex flex-column gap-4">
+      <div class="mobile-card-body d-flex flex-column gap-4">
         <div>
           <div class="font-bold text-sm mb-2">
             Sliding Items (Swipe Actions)
@@ -145,7 +145,7 @@ import { Task } from "./interfaces/task.interface";
         </div>
 
         <!-- Barra de bósqueda + botón -->
-        <div class="flex align-items-center gap-2 mb-2">
+        <div class="d-flex align-items-center gap-2 mb-2">
           <ion-searchbar
             [value]="searchTerm()"
             (ionInput)="searchTerm.set($any($event).target.value)"
@@ -234,7 +234,7 @@ import { Task } from "./interfaces/task.interface";
           Efecto material al tocar. Requiere <code>position:relative</code> +
           <code>overflow:hidden</code> en el padre.
         </p>
-        <div class="flex flex-column gap-2">
+        <div class="d-flex flex-column gap-2">
           <div
             class="ripple-item ion-activatable"
             (click)="onRippleTap('primario')"
@@ -342,7 +342,7 @@ import { Task } from "./interfaces/task.interface";
         </p>
         <div class="stiich-contacts-card">
           <div class="stiich-contacts-card__header">
-            <div class="flex items-center gap-2">
+            <div class="d-flex items-center gap-2">
               <span class="material-symbols-outlined stiich-contacts-card__icon"
                 >contacts</span
               >

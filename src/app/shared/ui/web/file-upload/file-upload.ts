@@ -36,7 +36,7 @@ export interface UploadFile {
     <div class="file-upload-root">
       <!-- Drop Zone -->
       <div
-        class="file-upload-dropzone border-2 border-dashed rounded p-4 flex flex-column align-items-center gap-2 cursor-pointer"
+        class="file-upload-dropzone border-2 border-dashed rounded p-4 d-flex flex-column align-items-center gap-2 cursor-pointer"
         [class.file-upload-dragover]="isDragOver()"
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)"
@@ -64,7 +64,7 @@ export interface UploadFile {
 
       <!-- Mobile Actions (camera / gallery) -->
       @if (isMobile() && mobileSource() !== "none") {
-        <div class="flex gap-2 mt-2">
+        <div class="d-flex gap-2 mt-2">
           @if (mobileSource() === "camera" || mobileSource() === "both") {
             <p-button
               [label]="'Tomar foto'"
@@ -114,10 +114,10 @@ export interface UploadFile {
 
       <!-- File List -->
       @if (files().length > 0) {
-        <div class="file-list flex flex-column gap-2 mt-3">
+        <div class="file-list d-flex flex-column gap-2 mt-3">
           @for (file of files(); track file.name) {
             <div
-              class="file-item flex align-items-center gap-2 p-2 surface-ground rounded"
+              class="file-item d-flex align-items-center gap-2 p-2 surface-ground rounded"
             >
               @if (isImage(file.type)) {
                 <img
@@ -132,7 +132,7 @@ export interface UploadFile {
                 />
               }
 
-              <div class="flex flex-column gap-1 flex-1 min-w-0">
+              <div class="d-flex flex-column gap-1 flex-1 min-w-0">
                 <strong class="text-sm truncate">{{ file.name }}</strong>
                 <span class="text-xs text-color-secondary">{{
                   formatSize(file.size)

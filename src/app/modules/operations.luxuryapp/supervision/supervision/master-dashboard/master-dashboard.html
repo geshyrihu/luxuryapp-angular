@@ -1,8 +1,8 @@
 <!-- Encabezado -->
 <div class="mb-6">
-  <div class="flex align-items-center gap-3 mb-2">
+  <div class="d-flex align-items-center gap-3 mb-2">
     <div
-      class="flex align-items-center justify-content-center bg-primary-50 rounded-xl"
+      class="d-flex align-items-center justify-content-center bg-primary-50 rounded-xl"
       
     >
       <app-icon [icon]="'material-symbols-light:verified'" class="text-3xl text-primary-600" />
@@ -20,26 +20,26 @@
 <!-- Grupos de modulos -->
 @for (group of getVisibleGroups(); track group.label) {
 <!-- Titulo del grupo -->
-<div class="flex align-items-center gap-2 mb-4 mt-6">
+<div class="d-flex align-items-center gap-2 mb-4 mt-6">
   <app-icon [icon]="group.icon" class="text-xl text-primary-600" />
   <h2 class="text-lg font-bold text-900 m-0 uppercase">{{ group.label }}</h2>
-  <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
+  <div class="flex-grow-1 border-bottom-1 surface-border ms-3"></div>
 </div>
 
 <!-- Cards del grupo -->
-<div class="grid">
+<div class="row">
   @for (module of group.cards; track module.route) {
-  <div class="col-12 sm:col-6 md:col-3">
+  <div class="col-12 col-sm-6 col-md-3">
     <div class="card"
       class="h-full border-top-3 surface-card shadow-sm cursor-pointer hover:shadow transition-all transition-duration-200"
       
       (click)="navigateTo(module.route)"
     >
-      <div class="flex flex-column gap-3">
+      <div class="d-flex flex-column gap-3">
         <!-- Icono y meta -->
-        <div class="flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
           <div
-            class="flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
+            class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
             
             [style.backgroundColor]="module.bgColor"
           >

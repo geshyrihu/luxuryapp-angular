@@ -3,7 +3,7 @@
      ══════════════════════════════════════════════════════ -->
 @if (fase() === 1) {
 <div class="card p-3">
-  <div class="grid col-12">
+  <div class="row col-12">
     <div class="col-12 mb-3">
       <p class="text-danger card-text">
         ----------- Valida con el Administrador del sistema que este
@@ -16,7 +16,7 @@
         sistema)
       </p>
     </div>
-    <div class="col-12 sm:col-7">
+    <div class="col-12 col-sm-7">
       <form autocomplete="off" (ngSubmit)="register()" [formGroup]="form">
         <custom-input-text-signal
           [control]="form.controls.firstName"
@@ -69,7 +69,7 @@
         />
       </form>
     </div>
-    <div class="col-12 sm:col-5">
+    <div class="col-12 col-sm-5">
       <div class="mb-4">
         <p class="text-danger text-justify">
           <strong>Coincidencias registradas</strong>
@@ -77,7 +77,7 @@
           sistema
         </p>
       </div>
-      <div class="grid col-12 md:col-6">
+      <div class="row col-12 col-md-6">
         <div>
           <p class="text-danger font-bold">POR NOMBRE:</p>
           @for (item of existingPerson; track item) {
@@ -106,9 +106,9 @@
   </p>
 
   <!-- Opciones de radio -->
-  <div class="flex flex-column mb-4">
+  <div class="d-flex flex-column mb-4">
     <!-- Opción: Solo cerrar -->
-    <label class="flex align-items-center cursor-pointer">
+    <label class="d-flex align-items-center cursor-pointer">
       <input
         type="radio"
         name="opcion"
@@ -120,7 +120,7 @@
     </label>
 
     <!-- Opción: Registrar vacante -->
-    <label class="flex align-items-center cursor-pointer">
+    <label class="d-flex align-items-center cursor-pointer">
       <input
         type="radio"
         name="opcion"
@@ -132,7 +132,7 @@
     </label>
 
     <!-- Opción: Alta completa -->
-    <label class="flex align-items-center cursor-pointer">
+    <label class="d-flex align-items-center cursor-pointer">
       <input
         type="radio"
         name="opcion"

@@ -2,7 +2,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -37,7 +37,7 @@
 
       <!-- Opciones -->
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (!isReadOnly()) { <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
@@ -103,7 +103,7 @@
   #dt
   [value]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -138,7 +138,7 @@
 
       <!-- Opciones -->
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (!isReadOnly()) { <iw-button
             iconClass="edit"
             ngbTooltip="Editar"

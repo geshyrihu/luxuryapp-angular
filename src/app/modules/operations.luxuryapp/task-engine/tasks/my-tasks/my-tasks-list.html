@@ -1,6 +1,6 @@
 <div>
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <div class="hidden md:block">
+  <div class="d-none d-md-block">
     @if (dataSignal() && dataSignal() !== undefined) {
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -13,7 +13,7 @@
       [scrollHeight]="scrollHeight"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table hidden md:block"
+      class="custom-table d-none d-md-block"
     >
       <ng-template #caption>
         <primeng-custom-caption
@@ -33,13 +33,13 @@
       <ng-template #header>
         <tr>
           <th class="font-size-12">FOLIO</th>
-          <th class="font-size-12 hidden md:table-cell">SOLICITA</th>
+          <th class="font-size-12 d-none md:table-cell">SOLICITA</th>
           <th class="font-size-12">FECHA SOL.</th>
           <th class="font-size-12">SOLICITUD</th>
-          <th class="font-size-12 hidden md:table-cell">EVIDENCIA</th>
+          <th class="font-size-12 d-none md:table-cell">EVIDENCIA</th>
           <th class="font-size-12">PRIORIDAD</th>
           <th class="font-size-12">PROGRAMADO</th>
-          <th class="font-size-12 hidden md:table-cell">CIERRE</th>
+          <th class="font-size-12 d-none md:table-cell">CIERRE</th>
           <th class="font-size-12">DIAS</th>
           <th class="font-size-12"></th>
         </tr>
@@ -47,7 +47,7 @@
       <ng-template #body let-item>
         <tr>
           <td>{{ item.folio }}</td>
-          <td class="text-center hidden md:table-cell">
+          <td class="text-center d-none md:table-cell">
             <app-avatar
               (click)="onCardEmployee(item.creatorId)"
               [image]="
@@ -58,7 +58,7 @@
               alt="Creador"
               shape="square"
               size="large"
-              class="mr-2 cursor-pointer"
+              class="me-2 cursor-pointer"
             />
           </td>
           <td>{{ item.createdAtDate }}</td>
@@ -68,7 +68,7 @@
             </strong>
             <p class="card-text">{{ item.description }}</p>
           </td>
-          <td class="text-center hidden md:table-cell">
+          <td class="text-center d-none md:table-cell">
             @if (item.beforeWork) {
             <app-image
               [src]="
@@ -78,7 +78,7 @@
                   "
               alt="."
               width="40"
-              class="mr-2 border border-danger"
+              class="me-2 border border-danger"
               [preview]="true"
             ></app-image>
             }
@@ -97,7 +97,7 @@
             }
           </td>
           <td>{{ item.scheduledAt }}</td>
-          <td class="text-center hidden md:table-cell">
+          <td class="text-center d-none md:table-cell">
             {{ item.closedAtDate }}
           </td>
           <td class="text-center">
@@ -106,7 +106,7 @@
             </p>
           </td>
           <td class="text-center no-print">
-            <div class="flex justify-content-center">
+            <div class="d-flex justify-content-center">
               <!--
   p-button: El contenedor de la acción.
   p-button-secondary: Color grisíceo, menos prominente que el primario.
@@ -169,13 +169,13 @@
   </div>
 
   <!-- Contenido para pantallas pequeóas (sm y menores) -->
-  <div class="block md:hidden mt-3">
+  <div class="d-block d-md-none mt-3">
     <div class="container-fluid py-1">
-      <div class="flex justify-content-between align-items-center mb-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
         <h4 class="mb-0">Mis Tickets Asignados</h4>
       </div>
 
-      <div class="flex justify-content-between align-items-center mb-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
         <custom-input-text-signal
           placeholder="Ingresa texto para buscar..."
           [customClass]="'mr-1'"
@@ -196,7 +196,7 @@
         />
       </div>
 
-      <div class="flex mb-1">
+      <div class="d-flex mb-1">
         <il-button
           iconClass="material-symbols-light:hourglass-empty"
           label="Pend.."
@@ -234,14 +234,14 @@
       <div class="ticket-list">
         @for (item of filteredDataSignal(); track item) {
         <div
-          class="py-1 border-left-2 mb-1 pl-2"
+          class="py-1 border-left-2 mb-1 ps-2"
           [class.border-red-500]="item.status === 'Completed'"
           [class.border-gray-500]="item.status === 'Reopened'"
           [class.border-green-500]="item.status === 'Closed'"
           [class.border-yellow-500]="item.status === 'InProgress'"
         >
           <!-- Fecha del Ticket -->
-          <div class="flex justify-content-between align-items-center mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
             <small class="text-color-secondary"
               >{{ item.folio }} | {{ item.createdAtDate }}</small
             >
@@ -251,9 +251,9 @@
               {{ item.daysDifference }}
             </span>
           </div>
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <!-- Foto de la evidencia -->
-            <div class="mr-3">
+            <div class="me-3">
               @if (item.beforeWork) {
               <app-image
                 [src]="

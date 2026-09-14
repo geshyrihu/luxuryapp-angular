@@ -5,10 +5,10 @@
   sortField="descripcion"
   rowGroupMode="subheader"
   groupRowsBy="descripcion"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       <h5 class="m-0 h5">Llaves</h5>
     </div>
   </ng-template>
@@ -25,7 +25,7 @@
   <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="7">
-        <span class="font-bold ml-2">{{ customer.descripcion }}</span>
+        <span class="font-bold ms-2">{{ customer.descripcion }}</span>
       </td>
     </tr>
   </ng-template>

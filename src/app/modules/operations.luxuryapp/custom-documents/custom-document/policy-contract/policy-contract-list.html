@@ -1,7 +1,7 @@
 <p-table
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   rowGroupMode="subheader"
   groupRowsBy="typeOfContract"
   sortField="typeOfContract"
@@ -10,7 +10,7 @@
   [tableStyle]="{ 'min-width': '60rem' }"
 >
   <ng-template #caption>
-    <div class="grid col-12">
+    <div class="row col-12">
       <div class="col-10">
         <primeng-custom-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -72,7 +72,7 @@
       <td [attr.colspan]="9">
         <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
         <!-- Muestra el nombre del grupo -->
-        <strong class="font-bold ml-2 p-0 font-size-24">
+        <strong class="font-bold ms-2 p-0 font-size-24">
           {{ group.typeOfContract }}
         </strong>
       </td>
@@ -120,7 +120,7 @@
       </td>
       <!-- Opciones -->
       <td>
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
@@ -153,12 +153,12 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
         <app-icon icon="material-symbols-light:edit-note" class="text-xl text-yellow-500" />
       </div>
 
-      <div class="flex justify-content-between align-items-center mb-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
         <lx-tag
           [severity]="getTagSeverity(item.tagLabel)"
@@ -168,7 +168,7 @@
       </div>
       <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
       <p class="text-xs text-500 m-0">
-        <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" /> Inicio: {{
+        <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1" /> Inicio: {{
         item.startDate }}
       </p>
 

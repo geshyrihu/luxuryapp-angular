@@ -26,7 +26,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
 
   imports: [LxTree, LxBadge, DragDropModule, AppIcon, CustomInputTextSignal],
   template: `
-    <div class="flex flex-column gap-2 p-1 h-full">
+    <div class="d-flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
         <span class="p-inputgroup-addon"
           ><app-icon [icon]="'material-symbols-light:search'"
@@ -42,7 +42,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
 
       @if (loading()) {
         <div
-          class="flex flex-column align-items-center justify-content-center p-4 gap-2"
+          class="d-flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
           <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl text-primary-500" />
           <span class="text-xs text-500 uppercase font-bold tracking-wider"
@@ -65,7 +65,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
           >
             <ng-template #default let-node>
               <div
-                class="flex align-items-center gap-2 py-1 w-full account-node"
+                class="d-flex align-items-center gap-2 py-1 w-full account-node"
                 cdkDrag
                 (cdkDragStarted)="onAccountDragStart()"
                 (cdkDragEnded)="onAccountDragEnd()"
@@ -75,7 +75,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
               >
                 <div
                   *cdkDragPreview
-                  class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm flex align-items-center gap-2 opacity-90 z-5"
+                  class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm d-flex align-items-center gap-2 opacity-90 z-5"
                 >
                   <app-icon [icon]="'material-symbols-light:menu'" class="text-primary-500" />
                   <span class="font-mono text-xs font-bold text-primary-900">{{
@@ -92,7 +92,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                   class="text-xs"
                 />
 
-                <div class="flex flex-column gap-0 overflow-hidden">
+                <div class="d-flex flex-column gap-0 overflow-hidden">
                   <span
                     class="font-mono text-xs font-bold text-primary-700 line-height-1"
                     >{{ node.data.code }}</span

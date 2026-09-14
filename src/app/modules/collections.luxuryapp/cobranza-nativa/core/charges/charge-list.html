@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -6,11 +6,11 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
-      <div class="flex justify-content-between align-items-end mb-4">
+      <div class="d-flex justify-content-between align-items-end mb-4">
         <primeng-custom-caption
           title="Emisión de Cargos (Motor Nativo)"
           (add)="onModalForm()"
@@ -57,7 +57,7 @@
         <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
         <td>{{ item.concept }}</td>
         <td class="text-xs">
-          <div class="flex flex-column">
+          <div class="d-flex flex-column">
             <span>{{ item.chargeTypeName || "Sin tipo" }}</span>
             <span class="text-400">{{ item.chargeTypeAccountNumber }}</span>
           </div>
@@ -84,7 +84,7 @@
           />
         </td>
         <td class="text-center">
-          <div class="flex justify-content-center gap-1">
+          <div class="d-flex justify-content-center gap-1">
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EChargeStatus.Cancelado) {
             <iw-button
@@ -117,7 +117,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon
           icon="material-symbols-light:credit-card-outline"

@@ -1,7 +1,7 @@
 <div class="surface-ground min-h-screen p-4">
   <div class="w-full xl:w-10 mx-auto">
     <!-- Header -->
-    <div class="flex align-items-center mb-5">
+    <div class="d-flex align-items-center mb-5">
       <iw-button
         iconClass="material-symbols-light:arrow-back"
         [text]="true"
@@ -9,7 +9,7 @@
         size="large"
         (clicked)="onBack()"
         title="Volver al listado"
-        class="mr-3 rounded-lg"
+        class="me-3 rounded-lg"
       />
       <div>
         <h1 class="text-4xl font-bold text-primary m-0">
@@ -24,14 +24,14 @@
 
     <!-- Section 1: Conceptos -->
     <lx-panel header="1. Conceptos Fundamentales" class="mb-4 shadow-sm">
-      <div class="grid pt-2">
-        <div class="col-12 md:col-6">
+      <div class="row pt-2">
+        <div class="col-12 col-md-6">
           <lx-fieldset
             legend="La Plantilla (Borrador Dinámico)"
             class="h-full bg-blue-50 border-blue-200"
           >
             <div class="card-header">
-              <div class="flex align-items-center gap-2 px-2 text-blue-900">
+              <div class="d-flex align-items-center gap-2 px-2 text-blue-900">
                 <app-icon [icon]="'material-symbols-light:edit'" />
                 <span class="font-bold">La "Plantilla"</span>
               </div>
@@ -44,13 +44,13 @@
             </p>
           </lx-fieldset>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <lx-fieldset
             legend="La Instancia (PDF Oficial)"
             class="h-full bg-green-50 border-green-200"
           >
             <div class="card-header">
-              <div class="flex align-items-center gap-2 px-2 text-green-900">
+              <div class="d-flex align-items-center gap-2 px-2 text-green-900">
                 <app-icon [icon]="'material-symbols-light:picture-as-pdf'" />
                 <span class="font-bold">La "Instancia"</span>
               </div>
@@ -67,9 +67,9 @@
       </div>
     </lx-panel>
 
-    <div class="grid">
+    <div class="row">
       <!-- Section 2: Editor Dinámico -->
-      <div class="col-12 lg:col-8">
+      <div class="col-12 col-lg-8">
         <lx-panel header="2. El Editor de Bloques" class="h-full shadow-sm">
           <p class="text-600 mb-4 line-height-3 mt-0">
             En lugar de usar Word, nuestro sistema te permite armar tu manual
@@ -78,10 +78,10 @@
           </p>
 
           <div class="card" class="mb-3 bg-gray-50 shadow-none border-1 border-300">
-            <div class="flex align-items-start">
+            <div class="d-flex align-items-start">
               <app-icon
                 [icon]="'material-symbols-light:account-tree'"
-                class="text-3xl text-primary mr-3 mt-1"
+                class="text-3xl text-primary me-3 mt-1"
               />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
@@ -98,10 +98,10 @@
           </div>
 
           <div class="card" class="mb-3 bg-gray-50 shadow-none border-1 border-300">
-            <div class="flex align-items-start">
+            <div class="d-flex align-items-start">
               <app-icon
                 [icon]="'material-symbols-light:table'"
-                class="text-3xl text-orange-500 mr-3 mt-1"
+                class="text-3xl text-orange-500 me-3 mt-1"
               />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">Matriz RACI</h4>
@@ -115,10 +115,10 @@
           </div>
 
           <div class="card" class="mb-0 bg-gray-50 shadow-none border-1 border-300">
-            <div class="flex align-items-start">
+            <div class="d-flex align-items-start">
               <app-icon
                 [icon]="'material-symbols-light:attach-file'"
-                class="text-3xl text-teal-500 mr-3 mt-1"
+                class="text-3xl text-teal-500 me-3 mt-1"
               />
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
@@ -137,11 +137,11 @@
       </div>
 
       <!-- Section 3: Flujo de Trabajo -->
-      <div class="col-12 lg:col-4">
+      <div class="col-12 col-lg-4">
         <lx-panel header="3. Flujo de Trabajo" class="h-full shadow-sm">
-          <div class="flex flex-column gap-4 pt-3">
-            <div class="flex">
-              <div class="flex flex-column align-items-center mr-3">
+          <div class="d-flex flex-column gap-4 pt-3">
+            <div class="d-flex">
+              <div class="d-flex flex-column align-items-center me-3">
                 <lx-tag
                   severity="info"
                   [rounded]="true"
@@ -160,8 +160,8 @@
               </div>
             </div>
 
-            <div class="flex">
-              <div class="flex flex-column align-items-center mr-3">
+            <div class="d-flex">
+              <div class="d-flex flex-column align-items-center me-3">
                 <lx-tag
                   severity="info"
                   [rounded]="true"
@@ -183,8 +183,8 @@
               </div>
             </div>
 
-            <div class="flex">
-              <div class="flex flex-column align-items-center mr-3">
+            <div class="d-flex">
+              <div class="d-flex flex-column align-items-center me-3">
                 <lx-tag
                   severity="warn"
                   [rounded]="true"
@@ -204,8 +204,8 @@
               </div>
             </div>
 
-            <div class="flex">
-              <div class="flex flex-column align-items-center mr-3">
+            <div class="d-flex">
+              <div class="d-flex flex-column align-items-center me-3">
                 <lx-tag
                   severity="success"
                   [rounded]="true"
@@ -231,8 +231,8 @@
       header="4. Estándar Documental LuxuryApp"
       class="mt-4 shadow-sm border-top-3 border-yellow-500"
     >
-      <div class="grid pt-3">
-        <div class="col-12 lg:col-6">
+      <div class="row pt-3">
+        <div class="col-12 col-lg-6">
           <h4 class="mt-0 mb-3 text-900">Nomenclatura de Archivos</h4>
           <p class="text-700 line-height-3">
             Todo documento oficial publicado debe seguir estrictamente el
@@ -247,11 +247,11 @@
             Ejemplo: PROC-ADMI-001_v1.0_2026-04_VIGENTE.pdf
           </p>
         </div>
-        <div class="col-12 lg:col-6">
+        <div class="col-12 col-lg-6">
           <h4 class="mt-0 mb-3 text-900">Paleta Documental Premium</h4>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <div
-              class="flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
+              class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
                 class="w-1rem h-1rem rounded-sm border-1 surface-border"
@@ -260,7 +260,7 @@
               <span class="text-xs font-bold">Azul Luxury</span>
             </div>
             <div
-              class="flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
+              class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
                 class="w-1rem h-1rem rounded-sm border-1 surface-border"
@@ -269,7 +269,7 @@
               <span class="text-xs font-bold">Dorado Premium</span>
             </div>
             <div
-              class="flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
+              class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
                 class="w-1rem h-1rem rounded-sm border-1 surface-border"
@@ -278,7 +278,7 @@
               <span class="text-xs font-bold">Gris Neutral</span>
             </div>
             <div
-              class="flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
+              class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
                 class="w-1rem h-1rem rounded-sm border-1 surface-border"
@@ -293,7 +293,7 @@
           </p>
         </div>
       </div>
-      <div class="mt-4 flex justify-content-end">
+      <div class="mt-4 d-flex justify-content-end">
         <il-button
           label="Ver Estándar Documental Completo"
           iconClass="material-symbols-light:open-in-new"

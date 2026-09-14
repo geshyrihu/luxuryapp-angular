@@ -49,6 +49,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   SegmentedControl,
   SegmentItem,
@@ -203,7 +204,7 @@ export class WorkPositionList {
 
     // Normalizado a kebab-case y sincronizado con el backend refactorizado
     const result = await this.apiS.onGetList<IWorkPosition[]>(
-      `operation/recruitment/work-positions/list-by-customer/${customerId}/${stateStr}`,
+      Endpoints.WorkPositions.listByCustomer(customerId, stateStr)
     );
 
     // Normalizar departamentos null a Department.NA para que se agrupen correctamente
@@ -257,7 +258,7 @@ export class WorkPositionList {
   }
 
   async onDelete(id: string): Promise<void> {
-    const res = await this.apiS.onDelete(`operation/recruitment/work-positions/${id}`);
+    const res = await this.apiS.onDelete(Endpoints.WorkPositions.delete(id));
     if (res) this.onLoadData();
   }
 

@@ -1,9 +1,9 @@
-<div class="grid">
+<div class="row">
   @for (item of data(); track item.month + '_' + $index) {
-  <div class="col-12 md:col-3">
+  <div class="col-12 col-md-3">
     <!-- Cabecera del mes -->
     <div
-      class="flex align-items-center justify-content-between p-2 font-bold text-primary surface-100 rounded mb-2"
+      class="d-flex align-items-center justify-content-between p-2 font-bold text-primary surface-100 rounded mb-2"
     >
       <span>{{ item.month }}</span>
       @if (item.items?.length > 0) {
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Items del mes -->
-    <div class="flex flex-column gap-2">
+    <div class="d-flex flex-column gap-2">
       @for (evento of item.items; track evento.id) {
       <div
         class="p-3 border-1 surface-border rounded cursor-pointer hover:surface-100 transition-colors transition-duration-150"
@@ -20,7 +20,7 @@
         lxTooltip="Ver detalles del servicio"
         tooltipPosition="right"
       >
-        <div class="flex align-items-start gap-2">
+        <div class="d-flex align-items-start gap-2">
           <div class="flex-1">
             <div class="font-medium text-900 mb-1 text-sm">
               {{ evento.nombreEquipo }}
@@ -56,7 +56,7 @@
   </div>
   } @empty {
   <div class="col-12 text-center text-400 p-5">
-    <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 block" />
+    <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 d-block" />
     <span>Sin datos en el calendario</span>
   </div>
   }

@@ -4,17 +4,17 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid align-items-center mb-3">
-      <div class="col-12 sm:col-6">
+    <div class="row align-items-center mb-3">
+      <div class="col-12 col-sm-6">
         <h4 class="text-xl font-medium mb-0">TICKETS SOLICITADOS</h4>
       </div>
-      <div class="col-12 sm:col-3 no-print">
+      <div class="col-12 col-sm-3 no-print">
         <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
       </div>
-      <div class="col-12 sm:col-3 no-print">
+      <div class="col-12 col-sm-3 no-print">
         <custom-input-text-signal
           (input)="dt.filterGlobal($any($event.target).value, 'contains')"
           placeholder="Ingresa texto para buscar..."

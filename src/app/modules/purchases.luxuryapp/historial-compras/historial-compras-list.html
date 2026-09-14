@@ -1,6 +1,6 @@
-<section class="card mb-3 p-3 md:p-4">
-  <div class="flex flex-column gap-2">
-    <div class="flex flex-column gap-1 mb-2">
+<section class="card mb-3 p-3 p-md-4">
+  <div class="d-flex flex-column gap-2">
+    <div class="d-flex flex-column gap-1 mb-2">
       <h2 class="m-0 text-xl">Historial de Compras</h2>
       <small class="text-color-secondary">
         Consulta compras pagadas y filtra por tipo de compra, rango de fechas y
@@ -9,10 +9,10 @@
     </div>
 
     <div class="surface-50 border-1 surface-border border-round-lg p-3">
-      <div class="grid formgrid">
-        <div class="col-12 lg:col-3">
-          <div class="flex flex-column gap-2 h-full">
-            <div class="flex align-items-center justify-content-between gap-2">
+      <div class="row formgrid">
+        <div class="col-12 col-lg-3">
+          <div class="d-flex flex-column gap-2 h-full">
+            <div class="d-flex align-items-center justify-content-between gap-2">
               <label class="text-sm font-semibold">Rango de fechas</label>
               <button
                 type="button"
@@ -23,8 +23,8 @@
               </button>
             </div>
 
-            <div class="grid">
-              <div class="col-12 md:col-6">
+            <div class="row">
+              <div class="col-12 col-md-6">
                 <custom-input-date-signal
                   [control]="filterForm.controls.fechaInicio"
                   label="DESDE"
@@ -33,7 +33,7 @@
                   [noMargin]="true"
                 />
               </div>
-              <div class="col-12 md:col-6">
+              <div class="col-12 col-md-6">
                 <custom-input-date-signal
                   [control]="filterForm.controls.fechaFin"
                   label="HASTA"
@@ -44,7 +44,7 @@
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               @for (preset of dateRangePresets; track preset.label) {
               <button
                 type="button"
@@ -58,9 +58,9 @@
           </div>
         </div>
 
-        <div class="col-12 lg:col-5">
-          <div class="flex flex-column gap-3 h-full">
-            <div class="flex flex-column gap-2">
+        <div class="col-12 col-lg-5">
+          <div class="d-flex flex-column gap-3 h-full">
+            <div class="d-flex flex-column gap-2">
               <label class="text-sm font-semibold">Estado de pago</label>
               <app-segmented-control
                 ariaLabel="Filtro por estado de pago"
@@ -70,7 +70,7 @@
               />
             </div>
 
-            <div class="flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
               <label class="text-sm font-semibold">Tipo de compra</label>
               <app-segmented-control
                 ariaLabel="Filtro por tipo de compra"
@@ -82,9 +82,9 @@
           </div>
         </div>
 
-        <div class="col-12 lg:col-4">
-          <div class="flex flex-column gap-3 h-full">
-            <div class="flex flex-column gap-2">
+        <div class="col-12 col-lg-4">
+          <div class="d-flex flex-column gap-3 h-full">
+            <div class="d-flex flex-column gap-2">
               <label class="text-sm font-semibold"
                 >Estado de autorizacion</label
               >
@@ -96,7 +96,7 @@
               />
             </div>
 
-            <div class="flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
               <label class="text-sm font-semibold">Tipo de orden</label>
               <app-segmented-control
                 ariaLabel="Filtro por tipo de orden"
@@ -112,7 +112,7 @@
   </div>
 </section>
 
-<section class="card p-3 md:p-4 hidden md:block">
+<section class="card p-3 p-md-4 d-none d-md-block">
   <p-table
     #dt
     [globalFilterFields]="globalFilterFields()"

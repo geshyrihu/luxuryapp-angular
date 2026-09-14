@@ -1,6 +1,6 @@
 <div class="rf-shell">
   <!-- Filtros -->
-  <div class="flex mb-4 align-items-center">
+  <div class="d-flex mb-4 align-items-center">
     <div class="mb-0">
       <custom-input-text-signal
         [ngModel]="year()"
@@ -33,7 +33,7 @@
   <!-- Loading -->
   @if (loading()) {
   <div
-    class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2"
+    class="rf-card p-4 d-flex align-items-center text-color-secondary mb-4 gap-2"
   >
     <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando datos en Aspel...</span>

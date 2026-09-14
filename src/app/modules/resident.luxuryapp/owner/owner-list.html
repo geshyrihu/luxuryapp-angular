@@ -3,10 +3,10 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between w-full">
+    <div class="d-flex align-items-center justify-content-between w-full">
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -18,7 +18,7 @@
           ])
         "
       />
-      <div class="flex">
+      <div class="d-flex">
         <il-button
           severity="success"
           iconClass="material-symbols-light:table-view"
@@ -27,8 +27,8 @@
         />
       </div>
     </div>
-    <div class="grid">
-      <div class="col-12 sm:col-4"></div>
+    <div class="row">
+      <div class="col-12 col-sm-4"></div>
     </div>
   </ng-template>
   <ng-template #header>

@@ -10,7 +10,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       En total hay
       {{ data()?.length ?? 0 }} registros.
     </div>

@@ -161,11 +161,12 @@ export class WorkPositionScheduleList implements OnInit {
   hasOvernightShift(item: WorkPositionScheduleDto): boolean {
     return (
       item.diasDeTrabajo?.some((d) => {
+        if (d.esDescanso) return false;
         const entry = d.horaEntrada;
         const exit = d.horaSalida;
-        return (
-          !!entry && !!exit && this.formatTime(exit) <= this.formatTime(entry)
-        );
+        if (entry && exit) return this.formatTime(exit) < this.formatTime(entry);
+        if (entry && !exit) return true;
+        return false;
       }) ?? false
     );
   }

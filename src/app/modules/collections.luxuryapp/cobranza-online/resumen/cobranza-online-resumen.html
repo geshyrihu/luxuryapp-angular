@@ -1,6 +1,6 @@
 <section>
   @if (!hasCustomer()) {
-  <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4">
+  <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
       Selecciona un cliente para consultar el estado actual de Cobranza
@@ -9,9 +9,9 @@
   </div>
   } @else {
   @if (dashboard()?.currentCharges; as currentCharges) {
-  <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 mb-3">
+  <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4 mb-3">
     <div
-      class="flex flex-column md:flex-row md:align-items-start md:justify-content-between gap-3 mb-3"
+      class="d-flex flex-column flex-md-row align-items-md-start justify-content-md-between gap-3 mb-3"
     >
       <div>
         <div class="text-lg font-semibold">Cuotas vigentes visibles</div>
@@ -22,34 +22,34 @@
       </div>
     </div>
 
-    <div class="grid mb-3">
+    <div class="row mb-3">
       <!-- Mantenimiento -->
       <div
         class="col-12"
         [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-8'"
       >
         <div
-          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-3 p-md-4 shadow-1 border-round-xl border-1 surface-border h-full d-flex flex-column flex-md-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
               Mantenimiento Neto del Mes
             </h3>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">A recaudar:</span>
               <span class="font-bold"
                 >{{ currentCharges.maintenance.total | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Abonado:</span>
               <span class="font-bold text-success"
                 >{{ currentCharges.maintenance.collected | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Faltante por cobrar:</span>
               <span class="font-bold text-warning"
                 >{{ currentCharges.maintenance.pending | currency:
@@ -68,29 +68,29 @@
 
       <!-- Extraordinaria -->
       @if (extraordinaryChartData()) {
-      <div class="col-12 xl:col-6">
+      <div class="col-12 col-xl-6">
         <div
-          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-3 p-md-4 shadow-1 border-round-xl border-1 surface-border h-full d-flex flex-column flex-md-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
               Cuotas Extraordinarias del Mes
             </h3>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">A recaudar:</span>
               <span class="font-bold"
                 >{{ currentCharges.extraordinary.total | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Abonado:</span>
               <span class="font-bold text-success"
                 >{{ currentCharges.extraordinary.collected | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Faltante por cobrar:</span>
               <span class="font-bold text-warning"
                 >{{ currentCharges.extraordinary.pending | currency:
@@ -110,29 +110,29 @@
 
       <!-- Restaurante -->
       @if (restaurantChartData()) {
-      <div class="col-12 xl:col-6">
+      <div class="col-12 col-xl-6">
         <div
-          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-3 p-md-4 shadow-1 border-round-xl border-1 surface-border h-full d-flex flex-column flex-md-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
               Cuotas de Restaurante del Mes
             </h3>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">A recaudar:</span>
               <span class="font-bold"
                 >{{ currentCharges.restaurant.total | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Abonado:</span>
               <span class="font-bold text-success"
                 >{{ currentCharges.restaurant.collected | currency:
                 "MXN":"symbol":"1.0-0" }}</span
               >
             </div>
-            <div class="flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-2">
               <span class="text-color-secondary">Faltante por cobrar:</span>
               <span class="font-bold text-warning"
                 >{{ currentCharges.restaurant.pending | currency:
@@ -155,9 +155,9 @@
         class="col-12"
         [ngClass]="extraordinaryChartData() ? 'xl:col-12' : 'xl:col-4'"
       >
-        <div class="grid">
+        <div class="row">
           <div
-            class="col-12 sm:col-6"
+            class="col-12 col-sm-6"
             [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-12'"
           >
             <div
@@ -179,10 +179,10 @@
     </div>
 
     @if (currentCharges.activeTemplates.length) {
-    <div class="grid">
+    <div class="row">
       @for (template of currentCharges.activeTemplates; track template.id) {
-      <div class="col-12 sm:col-6 md:col-4 surface-card border-1 surface-border rounded-xl shadow-1 p-2">
-        <div class="flex justify-content-between align-items-start gap-2 mb-2">
+      <div class="col-12 col-sm-6 col-md-4 surface-card border-1 surface-border rounded-xl shadow-1 p-2">
+        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
           <div>
             <div class="font-semibold">{{ template.name }}</div>
             <div class="text-color-secondary text-sm mt-1">
@@ -198,7 +198,7 @@
           />
         </div>
 
-        <div class="flex align-items-end justify-content-between gap-3">
+        <div class="d-flex align-items-end justify-content-between gap-3">
           <div class="text-xl font-semibold">
             {{ template.amount | currency: "MXN":"symbol":"1.0-0" }}
           </div>

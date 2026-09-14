@@ -1,13 +1,13 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <div
-    class="surface-card p-3 rounded border-1 surface-border flex align-items-center gap-3"
+    class="surface-card p-3 rounded border-1 surface-border d-flex align-items-center gap-3"
   >
     <div
-      class="w-3rem h-3rem rounded bg-primary-50 flex align-items-center justify-content-center text-primary"
+      class="w-3rem h-3rem rounded bg-primary-50 d-flex align-items-center justify-content-center text-primary"
     >
       <app-icon [icon]="'material-symbols-light:shield'" class="text-xl" />
     </div>
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       <span class="text-900 font-bold uppercase tracking-wider text-sm"
         >Gestion de Permisos</span
       >
@@ -19,7 +19,7 @@
 
   @if (isSelfProfile()) {
   <div class="p-3 rounded border-1 bg-yellow-50 border-yellow-200">
-    <div class="flex align-items-start gap-3">
+    <div class="d-flex align-items-start gap-3">
       <app-icon [icon]="'material-symbols-light:error-outline'" class="text-yellow-600 text-xl mt-0.5" />
       <div class="flex-1">
         <span class="text-yellow-800 font-semibold text-sm">Acceso restringido</span>
@@ -33,10 +33,10 @@
   </div>
   }
 
-  <div class="flex flex-column gap-4">
+  <div class="d-flex flex-column gap-4">
     @for (group of groupedRolesSignal(); track group.groupName) {
-    <div class="flex flex-column gap-2">
-      <div class="flex align-items-center justify-content-between px-1">
+    <div class="d-flex flex-column gap-2">
+      <div class="d-flex align-items-center justify-content-between px-1">
         <h5
           class="m-0 font-bold text-primary uppercase text-xs tracking-widest"
         >
@@ -47,11 +47,11 @@
         </span>
       </div>
 
-      <div class="grid p-1">
+      <div class="row p-1">
         @for (item of group.roles; track item.roleId) {
-        <div class="col-12 sm:col-6 lg:col-4">
+        <div class="col-12 col-sm-6 col-lg-4">
           <div
-            class="flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+            class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
             [class.cursor-pointer]="!isSelfProfile()"
             [class.hover:surface-100]="!isSelfProfile()"
             [class.opacity-60]="isSelfProfile()"
@@ -60,9 +60,9 @@
             [class.shadow-sm]="item.isSelected"
             (click)="!isSelfProfile() && selectRole(item)"
           >
-            <div class="flex align-items-center min-w-0 gap-3 w-full">
+            <div class="d-flex align-items-center min-w-0 gap-3 w-full">
               <span
-                class="flex-shrink-0 inline-flex align-items-center justify-content-center w-2rem h-2rem rounded-circle border-1"
+                class="flex-shrink-0 d-inline-flex align-items-center justify-content-center w-2rem h-2rem rounded-circle border-1"
                 [class.bg-green-100]="item.isSelected"
                 [class.text-green-700]="item.isSelected"
                 [class.border-green-200]="item.isSelected"
@@ -75,14 +75,14 @@
                   class="text-xs"
                 />
               </span>
-              <div class="flex flex-column min-w-0 flex-1">
+              <div class="d-flex flex-column min-w-0 flex-1">
                 <span
                   class="font-bold text-sm text-900 truncate"
                   [title]="item.displayName"
                 >
                   {{ item.displayName | uppercase }}
                 </span>
-                <div class="flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center justify-content-between">
                   <span class="text-xs text-500"
                     >Orden: {{ item.sortOrder }}</span
                   >

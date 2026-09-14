@@ -23,7 +23,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="grid">
+    <div class="row">
       <div class="col text-center">
         <img
           [src]="logoUrl()"

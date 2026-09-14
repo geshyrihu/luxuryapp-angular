@@ -25,7 +25,7 @@ import { TrackingEvent } from "../shared/tracking";
       <span>{{ label() || "Seguimiento" }}</span>
       @if (badgeCount() && badgeCount()! > 0) {
         <span
-          class="absolute top-0 right-0 inline-flex align-items-center justify-content-center text-xs border-circle bg-red-500 text-white"
+          class="absolute top-0 right-0 d-inline-flex align-items-center justify-content-center text-xs border-circle bg-red-500 text-white"
           style="min-width:1.1rem;height:1.1rem;transform:translate(30%,-30%);"
         >
           {{ badgeCount()! > 99 ? "99+" : badgeCount() }}

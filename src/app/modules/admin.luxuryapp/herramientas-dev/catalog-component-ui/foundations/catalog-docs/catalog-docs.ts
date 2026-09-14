@@ -20,19 +20,19 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
         </p>
       </div>
 
-      <div class="grid">
+      <div class="row">
         <div class="col-12">
           <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
             Clasificación de Documentos
           </h3>
-          <div class="grid">
+          <div class="row">
             @for (doc of tiposDocumento; track doc.codigo) {
-              <div class="col-12 md:col-6 xl:col-4">
+              <div class="col-12 col-md-6 col-xl-4">
                 <div
                   class="card h-full overflow-hidden shadow-1 transition-all hover:shadow-3"
                 >
                   <div
-                    class="flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3"
+                    class="d-flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3"
                     [style.background]="doc.colorToken"
                   >
                     <strong>{{ doc.codigo }}</strong>
@@ -41,13 +41,13 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                       [severity]="doc.severity"
                     ></p-tag>
                   </div>
-                  <div class="flex flex-column gap-2">
+                  <div class="d-flex flex-column gap-2">
                     <strong class="text-lg">{{ doc.tipo }}</strong>
                     <span class="text-xs text-secondary"
                       >Audiencia: {{ doc.destinatario }}</span
                     >
                     <code
-                      class="block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2"
+                      class="d-block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2"
                     >
                       {{ getNomenclaturaEjemplo(doc) }}
                     </code>
@@ -58,14 +58,14 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
           </div>
         </div>
 
-        <div class="col-12 lg:col-6 mt-4">
+        <div class="col-12 col-lg-6 mt-4">
           <div class="card">
             <div class="card-header">
               <span class="card-title">Nomenclatura Inteligente</span>
             </div>
             <div class="card-body">
               <div class="bg-primary text-white border-round-lg p-3 mb-3">
-                <small class="text-yellow-500 font-bold block mb-1"
+                <small class="text-yellow-500 font-bold d-block mb-1"
                   >FORMATO OBLIGATORIO</small
                 >
                 <code class="text-sm md:text-base"
@@ -92,7 +92,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
           </div>
         </div>
 
-        <div class="col-12 lg:col-6 mt-4">
+        <div class="col-12 col-lg-6 mt-4">
           <div class="card">
             <div class="card-header">
               <span class="card-title">Matriz de Acceso por Rol</span>

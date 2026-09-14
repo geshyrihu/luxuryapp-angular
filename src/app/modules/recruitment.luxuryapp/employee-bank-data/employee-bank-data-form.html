@@ -1,12 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <div class="grid">
+  <div class="row">
     <div class="col-12">
       <p class="m-0 text-sm text-600">
         Registra la cuenta bancaria del empleado.
       </p>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-select-signal
         [control]="f.bankId"
         label="Banco"
@@ -16,7 +16,7 @@
       />
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-text-signal
         [control]="f.bankAccount"
         label="Numero de Cuenta"
@@ -24,7 +24,7 @@
       />
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-mask-signal
         [control]="f.bankKey"
         label="CLABE Interbancaria"
@@ -33,7 +33,7 @@
       />
     </div>
 
-    <div class="col-12 flex justify-content-end mt-4">
+    <div class="col-12 d-flex justify-content-end mt-4">
       <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     </div>
   </div>

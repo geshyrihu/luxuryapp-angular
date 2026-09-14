@@ -2,7 +2,7 @@
 <div
   class="card mb-4 p-4 rounded-xl shadow-sm border-top-3 border-primary overflow-hidden"
 >
-  <div class="flex flex-column sm:flex-row align-items-center gap-4">
+  <div class="d-flex flex-column flex-sm-row align-items-center gap-4">
     <div class="flex-shrink-0">
       @if (header()!.photoUrl) {
       <img
@@ -12,7 +12,7 @@
       />
       } @else {
       <div
-        class="w-8rem h-8rem rounded-circle bg-primary-100 flex align-items-center justify-content-center text-primary text-4xl font-black border-3 border-primary-200 shadow-sm"
+        class="w-8rem h-8rem rounded-circle bg-primary-100 d-flex align-items-center justify-content-center text-primary text-4xl font-black border-3 border-primary-200 shadow-sm"
       >
         {{ header()!.fullName.charAt(0) }}
       </div>
@@ -21,7 +21,7 @@
 
     <div class="flex-grow-1 text-center sm:text-left">
       <div
-        class="flex flex-wrap align-items-center justify-content-center sm:justify-content-start gap-2 mb-1"
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start gap-2 mb-1"
       >
         <h2 class="text-3xl font-black m-0 text-900">
           {{ header()!.fullName }}
@@ -38,10 +38,10 @@
         <span class="text-600 font-semibold">{{ header()!.departamento }}</span>
       </p>
       <div
-        class="flex flex-wrap justify-content-center sm:justify-content-start gap-2"
+        class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2"
       >
         <div
-          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
+          class="d-flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon
             [icon]="'material-symbols-light:badge'"
@@ -53,7 +53,7 @@
           >
         </div>
         <div
-          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
+          class="d-flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon
             [icon]="'material-symbols-light:mail-outline'"
@@ -62,7 +62,7 @@
           <strong class="text-800">{{ header()!.email }}</strong>
         </div>
         <div
-          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
+          class="d-flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon
             [icon]="'material-symbols-light:call'"
@@ -72,7 +72,7 @@
         </div>
         @if (header()!.dateAdmission) {
         <div
-          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
+          class="d-flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon
             [icon]="'material-symbols-light:calendar-today'"
@@ -99,13 +99,13 @@
   <!-- Tab 1: Datos personales -->
   <div tab="0">
     @if (personalData(); as pd) {
-    <div class="flex flex-column gap-4 py-3">
+    <div class="d-flex flex-column gap-4 py-3">
       <!-- Identificación -->
       <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+          <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:badge'"
@@ -115,53 +115,53 @@
             <h4 class="m-0 font-bold text-900">Identificación</h4>
           </div>
         </ng-template>
-        <div class="grid row-gap-3">
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="row row-gap-3">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Nombre Completo</label
             >
             <p class="font-semibold text-900 m-0">
               {{ pd.firstName }} {{ pd.lastName }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >CURP</label
             >
             <p class="font-semibold text-900 m-0 font-mono text-sm">
               {{ pd.curp || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >RFC</label
             >
             <p class="font-semibold text-900 m-0 font-mono text-sm">
               {{ pd.rfc || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >NSS</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.nss || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Fecha de Nacimiento</label
             >
             <p class="font-semibold text-900 m-0">
               {{ (pd.birth | apiDate:'dd/MM/yyyy') || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Gónero</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.sex || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Tipo de Sangre</label
             >
             @if (pd.bloodType) {
@@ -174,32 +174,32 @@
             <p class="m-0 text-500">é</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Nacionalidad</label
             >
             <p class="font-semibold text-900 m-0">
               {{ pd.nationality || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Estado Civil</label
             >
             <p class="font-semibold text-900 m-0">
               {{ pd.maritalStatus || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Nivel Educativo</label
             >
             <p class="font-semibold text-900 m-0">
               {{ pd.educationLevel || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Crédito FONACOT</label
             >
             <lx-tag
@@ -209,16 +209,16 @@
             ></lx-tag>
           </div>
           @if (pd.hasFonacotCredit) {
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >No. crédito FONACOT</label
             >
             <p class="font-semibold text-900 m-0 font-mono text-sm">
               {{ pd.fonacotCreditNumber || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >FD o % descuento FONACOT</label
             >
             <p class="font-semibold text-900 m-0">
@@ -230,13 +230,13 @@
       </lx-card>
 
       <!-- Contacto + Salario -->
-      <div class="grid row-gap-4">
-        <div class="col-12 lg:col-8">
+      <div class="row row-gap-4">
+        <div class="col-12 col-lg-8">
           <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
             <ng-template #header>
-              <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+              <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
                 <div
-                  class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
+                  class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:call'"
@@ -246,29 +246,29 @@
                 <h4 class="m-0 font-bold text-900">Contacto</h4>
               </div>
             </ng-template>
-            <div class="grid row-gap-3">
-              <div class="col-12 sm:col-6">
-                <label class="text-xs font-bold text-500 uppercase block mb-1"
+            <div class="row row-gap-3">
+              <div class="col-12 col-sm-6">
+                <label class="text-xs font-bold text-500 uppercase d-block mb-1"
                   >Correo Institucional</label
                 >
                 <p class="font-semibold text-900 m-0">{{ pd.email }}</p>
               </div>
-              <div class="col-12 sm:col-6">
-                <label class="text-xs font-bold text-500 uppercase block mb-1"
+              <div class="col-12 col-sm-6">
+                <label class="text-xs font-bold text-500 uppercase d-block mb-1"
                   >Telófono Mívil</label
                 >
                 <p class="font-semibold text-900 m-0">{{ pd.phoneNumber }}</p>
               </div>
-              <div class="col-12 sm:col-6">
-                <label class="text-xs font-bold text-500 uppercase block mb-1"
+              <div class="col-12 col-sm-6">
+                <label class="text-xs font-bold text-500 uppercase d-block mb-1"
                   >Telófono Local</label
                 >
                 <p class="font-semibold text-900 m-0">
                   {{ pd.localPhone || 'é' }}
                 </p>
               </div>
-              <div class="col-12 sm:col-6">
-                <label class="text-xs font-bold text-500 uppercase block mb-1"
+              <div class="col-12 col-sm-6">
+                <label class="text-xs font-bold text-500 uppercase d-block mb-1"
                   >Fecha de Ingreso</label
                 >
                 <p class="font-semibold text-900 m-0">
@@ -278,11 +278,11 @@
             </div>
           </lx-card>
         </div>
-        <div class="col-12 lg:col-4">
+        <div class="col-12 col-lg-4">
           <div
-            class="rounded-xl bg-primary shadow-sm p-4 h-full flex flex-column justify-content-center gap-2"
+            class="rounded-xl bg-primary shadow-sm p-4 h-full d-flex flex-column justify-content-center gap-2"
           >
-            <div class="flex align-items-center gap-2 text-white opacity-80">
+            <div class="d-flex align-items-center gap-2 text-white opacity-80">
               <app-icon
                 [icon]="'material-symbols-light:payments'"
                 class="text-lg"
@@ -302,9 +302,9 @@
       <!-- Dirección -->
       <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+          <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:location-on'"
@@ -314,51 +314,51 @@
             <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
           </div>
         </ng-template>
-        <div class="grid row-gap-3">
-          <div class="col-12 sm:col-8 lg:col-6">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="row row-gap-3">
+          <div class="col-12 col-sm-8 col-lg-6">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Calle</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.street || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-2 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-2 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Né Ext</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.number || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-2 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-2 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Né Int</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.unitNumber || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Colonia</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.district || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Alcaldía / Municipio</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.townHall || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Ciudad / Estado</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.city || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Paós</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.country || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-3">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Código Postal</label
             >
             <p class="font-semibold text-900 m-0">{{ pd.zipCode || 'é' }}</p>
@@ -367,9 +367,9 @@
       </lx-card>
     </div>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:person-remove'"
@@ -400,7 +400,7 @@
         <tr>
           <td class="font-medium">{{ item.nameContact }}</td>
           <td>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <app-icon
                 [icon]="'material-symbols-light:call'"
                 class="text-primary"
@@ -420,9 +420,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:call'"
@@ -450,7 +450,7 @@
       <ng-template #body let-item>
         <tr>
           <td>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <app-icon
                 [icon]="'material-symbols-light:favorite'"
                 class="text-red-500"
@@ -463,9 +463,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle bg-green-50 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:favorite'"
@@ -500,9 +500,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:credit-card'"
@@ -537,9 +537,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:person-add'"
@@ -560,11 +560,11 @@
     >
       <ng-template #header>
         <div
-          class="flex align-items-center justify-content-between px-4 pt-4 pb-2"
+          class="d-flex align-items-center justify-content-between px-4 pt-4 pb-2"
         >
-          <div class="flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-3">
             <div
-              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:description'"
@@ -585,25 +585,25 @@
           ></lx-tag>
         </div>
       </ng-template>
-      <div class="grid row-gap-3 px-4 pb-4">
-        <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase block mb-1"
+      <div class="row row-gap-3 px-4 pb-4">
+        <div class="col-12 col-sm-6 col-lg-4">
+          <label class="text-xs font-bold text-500 uppercase d-block mb-1"
             >Fecha Inicio</label
           >
           <span class="text-sm font-semibold"
             >{{ c.startDate | apiDate: 'dd/MM/yyyy' }}</span
           >
         </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="col-12 col-sm-6 col-lg-4">
+          <label class="text-xs font-bold text-500 uppercase d-block mb-1"
             >Fecha Fin</label
           >
           <span class="text-sm font-semibold"
             >{{ (c.endDate | apiDate: 'dd/MM/yyyy') || 'Indeterminado' }}</span
           >
         </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="col-12 col-sm-6 col-lg-4">
+          <label class="text-xs font-bold text-500 uppercase d-block mb-1"
             >Salario Pactado</label
           >
           <span class="text-sm font-semibold text-primary"
@@ -611,19 +611,19 @@
           >
         </div>
         @if (c.signedAt) {
-        <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="col-12 col-sm-6 col-lg-4">
+          <label class="text-xs font-bold text-500 uppercase d-block mb-1"
             >Firmado por</label
           >
           <span class="text-sm font-semibold"
             >{{ c.signedByUserName || 'Usuario del sistema' }}</span
           >
-          <small class="block text-500"
+          <small class="d-block text-500"
             >{{ c.signedAt | apiDate: 'dd/MM/yyyy HH:mm' }}</small
           >
         </div>
         }
-        <div class="col-12 flex align-items-center justify-content-end gap-2">
+        <div class="col-12 d-flex align-items-center justify-content-end gap-2">
           @if (c.pdfUrl) {
           <iw-button-item
             iconClass="material-symbols-light:download"
@@ -637,7 +637,7 @@
             <input
               type="file"
               accept="application/pdf,.pdf"
-              class="hidden"
+              class="d-none"
               (change)="onUploadSigned($event, c)"
             />
             <iw-button-item
@@ -680,7 +680,7 @@
             >
           </td>
           <td>
-            <div class="flex align-items-center gap-2 text-sm">
+            <div class="d-flex align-items-center gap-2 text-sm">
               <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
               <app-icon
                 [icon]="'material-symbols-light:arrow-forward'"
@@ -697,7 +697,7 @@
           </td>
           <td><small class="text-500">{{ item.notes || 'é' }}</small></td>
           <td class="text-center">
-            <div class="flex justify-content-center">
+            <div class="d-flex justify-content-center">
               @if (item.pdfUrl) {
               <iw-button-item
                 iconClass="material-symbols-light:picture-as-pdf"
@@ -714,9 +714,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:description'"
@@ -731,12 +731,12 @@
   <!-- Tab 6: Puesto y salario -->
   <div tab="6">
     @if (workPosition(); as wp) {
-    <div class="flex flex-column gap-4 py-3">
+    <div class="d-flex flex-column gap-4 py-3">
       <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+          <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:work'"
@@ -746,55 +746,55 @@
             <h4 class="m-0 font-bold text-900">Posición Actual</h4>
           </div>
         </ng-template>
-        <div class="grid row-gap-3">
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="row row-gap-3">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Puesto Actual</label
             >
             <p class="font-black text-900 m-0 text-xl">
               {{ wp.puesto || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Departamento</label
             >
             <p class="font-semibold text-900 m-0">
               {{ wp.departamento || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Jefe Directo</label
             >
             <p class="font-semibold text-900 m-0">
               {{ wp.managerName || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Folio Posición</label
             >
             <p class="font-semibold text-900 m-0">#{{ wp.folio || 'é' }}</p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Sueldo de Contratación</label
             >
             <p class="font-black text-primary m-0 text-2xl">
               {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Turno Asignado</label
             >
             <p class="font-semibold text-900 m-0">
               {{ wp.tipoJornadaName || 'é' }}
             </p>
           </div>
-          <div class="col-12 sm:col-6 lg:col-4">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Estado de Ocupación</label
             >
             <lx-tag
@@ -809,9 +809,9 @@
       <!-- Horarios -->
       <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+          <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-teal-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:calendar-clock'"
@@ -821,9 +821,9 @@
             <h4 class="m-0 font-bold text-900">Horario Semanal</h4>
           </div>
         </ng-template>
-        <div class="grid row-gap-3 text-center">
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="row row-gap-3 text-center">
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Lunes</label
             >
             @if (wp.lunesEntrada && wp.lunesSalida) {
@@ -834,8 +834,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Martes</label
             >
             @if (wp.martesEntrada && wp.martesSalida) {
@@ -846,8 +846,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Miórcoles</label
             >
             @if (wp.miercolesEntrada && wp.miercolesSalida) {
@@ -858,8 +858,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Jueves</label
             >
             @if (wp.juevesEntrada && wp.juevesSalida) {
@@ -870,8 +870,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Viernes</label
             >
             @if (wp.viernesEntrada && wp.viernesSalida) {
@@ -882,8 +882,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Síbado</label
             >
             @if (wp.sabadoEntrada && wp.sabadoSalida) {
@@ -894,8 +894,8 @@
             <p class="m-0 text-500">Descanso</p>
             }
           </div>
-          <div class="col-12 sm:col-6 lg:col">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-12 col-sm-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Domingo</label
             >
             @if (wp.domingoEntrada && wp.domingoSalida) {
@@ -911,9 +911,9 @@
 
       @if (wp.salaryModifications.length > 0) {
       <div>
-        <div class="flex align-items-center gap-3 mb-3">
+        <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
           >
             <app-icon
               [icon]="'material-symbols-light:history'"
@@ -941,7 +941,7 @@
             <tr>
               <td><span class="font-bold">#{{ item.folio }}</span></td>
               <td>
-                <div class="flex align-items-center gap-2 text-sm">
+                <div class="d-flex align-items-center gap-2 text-sm">
                   <span class="text-500">{{ item.puestoAnterior }}</span>
                   <app-icon
                     [icon]="'material-symbols-light:chevron-right'"
@@ -953,7 +953,7 @@
                 </div>
               </td>
               <td>
-                <div class="flex flex-column text-sm">
+                <div class="d-flex flex-column text-sm">
                   <span class="text-500 line-through"
                     >{{ item.salarioAnterior | currency:'MXN' }}</span
                   >
@@ -975,9 +975,9 @@
       }
     </div>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:work'"
@@ -992,7 +992,7 @@
   <!-- Tab 7: Vacaciones y permisos -->
   <div tab="7">
     @if (vacationsLeaves(); as vl) {
-    <div class="flex flex-column gap-5 py-3">
+    <div class="d-flex flex-column gap-5 py-3">
       <!-- Balance -->
       @if (vl.balance) {
       <lx-card
@@ -1000,9 +1000,9 @@
         [elevated]="true"
       >
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+          <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-yellow-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:calculate'"
@@ -1014,41 +1014,41 @@
             </h4>
           </div>
         </ng-template>
-        <div class="grid row-gap-3">
-          <div class="col-6 sm:col-4 lg:col-2 text-center">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+        <div class="row row-gap-3">
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Antigóedad</label
             >
             <p class="font-black text-900 m-0 text-xl">
               {{ vl.balance.seniorityYears }} años
             </p>
           </div>
-          <div class="col-6 sm:col-4 lg:col-2 text-center">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Total</label
             >
             <p class="font-black text-900 m-0 text-xl">
               {{ vl.balance.totalDays }}
             </p>
           </div>
-          <div class="col-6 sm:col-4 lg:col-2 text-center">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Usados</label
             >
             <p class="font-black text-orange-500 m-0 text-xl">
               {{ vl.balance.usedDays }}
             </p>
           </div>
-          <div class="col-6 sm:col-4 lg:col-2 text-center">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Pendientes</label
             >
             <p class="font-black text-blue-500 m-0 text-xl">
               {{ vl.balance.pendingDays }}
             </p>
           </div>
-          <div class="col-6 sm:col-4 lg:col-2 text-center">
-            <label class="text-xs font-bold text-500 uppercase block mb-1"
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Disponibles</label
             >
             <p class="font-black text-green-500 m-0 text-2xl">
@@ -1061,9 +1061,9 @@
 
       <!-- Vacaciones -->
       <div>
-        <div class="flex align-items-center gap-3 mb-3">
+        <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
           >
             <app-icon
               [icon]="'material-symbols-light:sunny'"
@@ -1124,9 +1124,9 @@
 
       <!-- Permisos -->
       <div>
-        <div class="flex align-items-center gap-3 mb-3">
+        <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0"
           >
             <app-icon
               [icon]="'material-symbols-light:schedule'"
@@ -1201,7 +1201,7 @@
       <ng-template #body let-item>
         <tr>
           <td>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="font-bold text-900"
                 >{{ item.incidentTypeName }}</span
               >
@@ -1224,7 +1224,7 @@
           </td>
           <td>
             @if (item.sanction) {
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="font-semibold text-red-600 text-sm"
                 >{{ item.sanction.sanctionTypeName }}</span
               >
@@ -1238,7 +1238,7 @@
             }
           </td>
           <td class="text-center">
-            <div class="flex justify-content-center">
+            <div class="d-flex justify-content-center">
               @if (item.isActGenerated) {
               <iw-button-item
                 iconClass="material-symbols-light:picture-as-pdf"
@@ -1258,9 +1258,9 @@
       </ng-template>
     </p-table>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle bg-green-50 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:verified'"
@@ -1277,24 +1277,24 @@
   <!-- Tab 9: Evaluaciones -->
   <div tab="9">
     @if (evaluations().length > 0) {
-    <div class="flex flex-column gap-3 mt-3">
+    <div class="d-flex flex-column gap-3 mt-3">
       @for (eval of evaluations(); track eval.id) {
       <div
         class="surface-card shadow-sm rounded-xl overflow-hidden border-1 border-200"
       >
         <div
-          class="flex flex-wrap align-items-center justify-content-between p-4 border-bottom-1 border-100"
+          class="d-flex flex-wrap align-items-center justify-content-between p-4 border-bottom-1 border-100"
         >
-          <div class="flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-3">
             <div
-              class="w-3rem h-3rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-3rem h-3rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:bar-chart'"
                 class="text-primary text-xl"
               />
             </div>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-lg font-bold text-900"
                 >{{ eval.templateName }}</span
               >
@@ -1304,9 +1304,9 @@
               >
             </div>
           </div>
-          <div class="flex align-items-center gap-4 mt-2 sm:mt-0">
+          <div class="d-flex align-items-center gap-4 mt-2 mt-sm-0">
             <div class="text-center">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Calificación</span
               >
               <span class="text-3xl font-black text-primary">
@@ -1314,7 +1314,7 @@
                 : 'é' }}
               </span>
             </div>
-            <div class="flex flex-column align-items-end gap-1">
+            <div class="d-flex flex-column align-items-end gap-1">
               <span [class]="'badge ' + getStatusBadge(eval.status)"
                 >{{ eval.status }}</span
               >
@@ -1326,11 +1326,11 @@
         </div>
         @if (eval.finalComments) {
         <div class="p-4 surface-50">
-          <label class="text-xs font-bold text-500 uppercase block mb-2"
+          <label class="text-xs font-bold text-500 uppercase d-block mb-2"
             >Comentarios del Evaluador</label
           >
           <p
-            class="m-0 text-700 italic border-left-3 border-primary-200 pl-3 line-height-3"
+            class="m-0 text-700 italic border-left-3 border-primary-200 ps-3 line-height-3"
           >
             "{{ eval.finalComments }}"
           </p>
@@ -1340,9 +1340,9 @@
       }
     </div>
     } @else {
-    <div class="flex flex-column align-items-center py-8 gap-3">
+    <div class="d-flex flex-column align-items-center py-8 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle surface-100 d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:monitoring'"
@@ -1359,12 +1359,12 @@
   <!-- Tab 10: Solicitudes -->
   <div tab="10">
     @if (requests(); as req) {
-    <div class="grid py-3">
+    <div class="row py-3">
       <!-- Alta -->
-      <div class="col-12 lg:col-6">
-        <div class="flex align-items-center gap-3 mb-3">
+      <div class="col-12 col-lg-6">
+        <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg bg-green-100 d-flex align-items-center justify-content-center flex-shrink-0"
           >
             <app-icon
               [icon]="'material-symbols-light:person-add'"
@@ -1375,13 +1375,13 @@
         </div>
         @if (req.registerRequest; as r) {
         <div class="surface-card shadow-sm rounded-xl p-4">
-          <div class="grid row-gap-3">
+          <div class="row row-gap-3">
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1">Folio</span>
+              <span class="text-xs text-500 uppercase d-block mb-1">Folio</span>
               <span class="font-bold text-primary text-lg">#{{ r.folio }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1">Estatus</span>
+              <span class="text-xs text-500 uppercase d-block mb-1">Estatus</span>
               <lx-tag
                 [value]="r.status"
                 severity="success"
@@ -1389,7 +1389,7 @@
               ></lx-tag>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Tipo Contrato</span
               >
               <span class="font-medium text-900"
@@ -1397,11 +1397,11 @@
               >
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1">Fuente</span>
+              <span class="text-xs text-500 uppercase d-block mb-1">Fuente</span>
               <span class="font-medium text-900">{{ r.fuente }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Solicitado el</span
               >
               <span class="font-medium"
@@ -1409,7 +1409,7 @@
               >
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Ejecutado el</span
               >
               <span class="font-medium"
@@ -1429,10 +1429,10 @@
       </div>
 
       <!-- Baja -->
-      <div class="col-12 lg:col-6">
-        <div class="flex align-items-center gap-3 mb-3">
+      <div class="col-12 col-lg-6">
+        <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0"
           >
             <app-icon
               [icon]="'material-symbols-light:person-remove'"
@@ -1445,13 +1445,13 @@
         <div
           class="surface-card shadow-sm rounded-xl border-left-3 border-red-500 p-4"
         >
-          <div class="grid row-gap-3">
+          <div class="row row-gap-3">
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1">Folio</span>
+              <span class="text-xs text-500 uppercase d-block mb-1">Folio</span>
               <span class="font-bold text-red-600 text-lg">#{{ d.folio }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1">Estatus</span>
+              <span class="text-xs text-500 uppercase d-block mb-1">Estatus</span>
               <lx-tag
                 [value]="d.status"
                 severity="danger"
@@ -1461,11 +1461,11 @@
 
             <!-- Firmas -->
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Firma Legal</span
               >
               @if (d.isAuthorizedByLegal) {
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
                   class="text-green-500"
@@ -1475,7 +1475,7 @@
                 >
               </div>
               } @else {
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-500"
@@ -1485,11 +1485,11 @@
               }
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Firma Nóminas</span
               >
               @if (d.isAuthorizedByPayroll) {
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
                   class="text-green-500"
@@ -1499,7 +1499,7 @@
                 >
               </div>
               } @else {
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-500"
@@ -1510,13 +1510,13 @@
             </div>
 
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Motivo de Baja</span
               >
               <span class="font-medium text-900">{{ d.tipoBaja }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Asistencia Legal</span
               >
               <lx-tag
@@ -1526,17 +1526,17 @@
               ></lx-tag>
             </div>
             <div class="col-12">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >Justificación</span
               >
               <p
-                class="m-0 text-700 italic border-left-3 border-red-200 pl-3 line-height-3"
+                class="m-0 text-700 italic border-left-3 border-red-200 ps-3 line-height-3"
               >
                 "{{ d.reasonForLeaving }}"
               </p>
             </div>
             <div class="col-6">
-              <span class="text-xs text-500 uppercase block mb-1"
+              <span class="text-xs text-500 uppercase d-block mb-1"
                 >óltimo día</span
               >
               <span class="font-bold text-900"
@@ -1549,7 +1549,7 @@
           @if (d.supportFiles.length > 0 || d.incidents.length > 0 ||
           d.evaluations.length > 0) {
           <div class="mt-4 pt-3 border-top-1 border-200">
-            <div class="flex align-items-center gap-2 mb-3">
+            <div class="d-flex align-items-center gap-2 mb-3">
               <app-icon
                 [icon]="'material-symbols-light:folder-open'"
                 class="text-primary"
@@ -1559,10 +1559,10 @@
 
             @if (d.supportFiles.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-500 uppercase block mb-2"
+              <span class="text-xs text-500 uppercase d-block mb-2"
                 >Archivos subidos</span
               >
-              <div class="flex flex-wrap gap-2">
+              <div class="d-flex flex-wrap gap-2">
                 @for (file of d.supportFiles; track file.id) {
                 <a
                   [href]="file.fileUrl"
@@ -1571,7 +1571,7 @@
                 >
                   <app-icon
                     [icon]="'material-symbols-light:picture-as-pdf'"
-                    class="mr-2"
+                    class="me-2"
                   />
                   {{ file.fileName }}
                 </a>
@@ -1580,10 +1580,10 @@
             </div>
             } @if (d.incidents.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-500 uppercase block mb-2"
+              <span class="text-xs text-500 uppercase d-block mb-2"
                 >Actas vinculadas</span
               >
-              <div class="flex flex-wrap gap-2">
+              <div class="d-flex flex-wrap gap-2">
                 @for (acta of d.incidents; track acta.id) {
                 <div
                   class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
@@ -1594,7 +1594,7 @@
                   <a
                     [href]="acta.administrativeActPdfUrl"
                     target="_blank"
-                    class="ml-2 text-primary font-bold"
+                    class="ms-2 text-primary font-bold"
                     ><app-icon [icon]="'material-symbols-light:download'" />
                     PDF</a
                   >
@@ -1605,17 +1605,17 @@
             </div>
             } @if (d.evaluations.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-500 uppercase block mb-2"
+              <span class="text-xs text-500 uppercase d-block mb-2"
                 >Evaluaciones vinculadas</span
               >
-              <div class="flex flex-wrap gap-2">
+              <div class="d-flex flex-wrap gap-2">
                 @for (eval of d.evaluations; track eval.id) {
                 <div
                   class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
                 >
                   <strong>{{ eval.templateName }}</strong> - {{
                   eval.evaluationDate | apiDate:'dd/MM/yyyy' }}
-                  <span class="ml-2 text-500"
+                  <span class="ms-2 text-500"
                     >Calificación: {{ eval.finalScore | number:'1.0-2' }}</span
                   >
                 </div>

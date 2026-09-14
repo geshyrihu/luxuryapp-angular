@@ -1,4 +1,4 @@
-<section class="flex flex-column gap-3">
+<section class="d-flex flex-column gap-3">
   @if (!hasCustomer()) {
   <div class="surface-card border-1 surface-border rounded p-3">
     <div class="font-medium mb-2">Sin cliente activo</div>
@@ -11,8 +11,8 @@
     <div class="text-lg font-semibold text-color">Reporte de Anticipos</div>
     <div class="text-sm text-color-secondary">Condminos con saldo a favor al corte del periodo.</div>
   </div>
-  <div class="grid">
-    <div class="col-12 md:col-4">
+  <div class="row">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="Total a favor"
@@ -24,7 +24,7 @@
         [subtitle]="condominosConSaldo() + ' condóminos con saldo a favor'"
       />
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="Anticipo promedio"
@@ -36,7 +36,7 @@
         subtitle="Por condómino con saldo a favor"
       />
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="A favor en mantenimiento"

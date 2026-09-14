@@ -1,13 +1,13 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-4">
     <div class="p-3 surface-50 rounded border-1 surface-border">
-      <div class="font-semibold mb-3 flex align-items-center gap-2">
+      <div class="font-semibold mb-3 d-flex align-items-center gap-2">
         <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
         <span>Cerrar Período Contable</span>
       </div>
 
-      <div class="grid formgrid align-items-end">
-        <div class="field col-6 md:col-2">
+      <div class="row formgrid align-items-end">
+        <div class="field col-6 col-md-2">
           <custom-input-number-signal
             label="Año"
             [control]="yearCtrl"
@@ -17,7 +17,7 @@
           />
         </div>
 
-        <div class="field col-6 md:col-2">
+        <div class="field col-6 col-md-2">
           <custom-input-select-signal
             label="Mes"
             [control]="monthCtrl"
@@ -28,7 +28,7 @@
           />
         </div>
 
-        <div class="field col-12 md:col-5">
+        <div class="field col-12 col-md-5">
           <custom-input-text-signal
             label="Notas de cierre (opcional)"
             [control]="notesCtrl"
@@ -37,7 +37,7 @@
           />
         </div>
 
-        <div class="field col-12 md:col-3 flex gap-2">
+        <div class="field col-12 col-md-3 d-flex gap-2">
           @if (!currentPeriodClosed()) {
           <il-button
             label="Cerrar Período"
@@ -47,7 +47,7 @@
             (clicked)="onClosePeriod()"
           />
           } @else {
-          <div class="flex align-items-center h-3rem gap-2">
+          <div class="d-flex align-items-center h-3rem gap-2">
             <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-600" />
             <lx-tag value="Período ya cerrado" severity="success" />
           </div>
@@ -64,7 +64,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -133,7 +133,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
           [class]="item.isClosed ? 'bg-red-100' : 'bg-green-100'"
         >
           <app-icon

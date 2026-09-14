@@ -3,15 +3,15 @@
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
 >
   <ng-template #caption>
-    <div class="flex">
+    <div class="d-flex">
       <!-- Sección de controles principales -->
-      <div class="flex align-items-start flex-grow-1">
+      <div class="d-flex align-items-start flex-grow-1">
         <custom-input-select-signal
           [data]="cb_fundingYear"
           [ngModel]="fundingYear()"
@@ -76,8 +76,8 @@
     </div>
 
     <!-- Meses y quincenas -->
-    <div class="flex flex-column w-full">
-      <div class="grid sm:grid md:grid lg:grid gap-1 w-full">
+    <div class="d-flex flex-column w-full">
+      <div class="row sm:grid md:grid lg:grid gap-1 w-full">
         @for (month of fundingPeriodsByMonth(); track month.monthName) {
         <div class="p-1">
           <il-button
@@ -127,9 +127,9 @@
 
     <!-- Guía de generación -->
     <div
-      class="flex align-items-center flex-wrap px-3 py-2 mt-1 rounded surface-100 border-left-3 border-orange-500 mb-2 shadow-sm"
+      class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded surface-100 border-left-3 border-orange-500 mb-2 shadow-sm"
     >
-      <div class="flex align-items-center text-700">
+      <div class="d-flex align-items-center text-700">
         <app-icon
           [icon]="'material-symbols-light:info'"
           class="text-orange-500 font-bold"
@@ -137,9 +137,9 @@
         <span class="font-bold text-sm uppercase">Guía de Generación:</span>
       </div>
 
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
           >1</span
         >
         <span class="text-sm font-medium">Marcar registros en la tabla</span>
@@ -147,12 +147,12 @@
 
       <app-icon
         [icon]="'material-symbols-light:chevron-right'"
-        class="text-400 text-xs hidden md:block"
+        class="text-400 text-xs d-none d-md-block"
       />
 
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
           >2</span
         >
         <span class="text-sm font-medium">Seleccionar Año y Mes de Fondeo</span>
@@ -160,12 +160,12 @@
 
       <app-icon
         [icon]="'material-symbols-light:chevron-right'"
-        class="text-400 text-xs hidden md:block"
+        class="text-400 text-xs d-none d-md-block"
       />
 
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
           >3</span
         >
         <span class="text-sm font-medium font-bold"
@@ -177,7 +177,7 @@
   <ng-template #header>
     <tr>
       <th class="table-col-10">
-        <div class="flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center">
           <lx-checkbox
             [checked]="isAllSelected()"
             (checkedChange)="toggleSelectAll($event)"
@@ -249,7 +249,7 @@
       </td>
 
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             [routerLink]="['/purchases/catalogo-gastos-fijos-form', item.id]"
           />
@@ -267,12 +267,12 @@
 </p-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
-<div class="flex md:hidden flex-column h-screen overflow-hidden">
+<div class="d-flex d-md-none flex-column h-screen overflow-hidden">
   <div class="px-2 pt-2 flex-none">
     <lx-accordion
       [items]="genAccordionItems"
       [(expandedIds)]="genExpanded"
-      class="mb-2 block"
+      class="mb-2 d-block"
     >
       <div class="ion-padding" accordion="generation">
         <!-- Year and Month -->
@@ -287,16 +287,16 @@
           class="mb-2"
         ></ion-input-select>
 
-        <p class="mb-1 text-sm font-bold ml-1">Mes de Fondeo</p>
+        <p class="mb-1 text-sm font-bold ms-1">Mes de Fondeo</p>
         <lx-tabs
           [tabs]="monthTabs()"
           [activeId]="selectedMonthName() ?? ''"
           (tabChange)="selectMonth($event.id)"
-          class="mb-3 block"
+          class="mb-3 d-block"
         />
 
         <!-- Generate Buttons -->
-        <div class="flex flex-column">
+        <div class="d-flex flex-column">
           <div>
             <ili-button
               expand="block"
@@ -322,7 +322,7 @@
     </lx-accordion>
 
     <!-- Quick Selection Actions -->
-    <div class="flex justify-content-between mb-2">
+    <div class="d-flex justify-content-between mb-2">
       <ili-button
         size="small"
         fill="outline"
@@ -356,7 +356,7 @@
             (checkChange)="crearOrder(item.id, $event)"
           ></ion-input-checkbox>
 
-          <div class="flex justify-content-between align-items-center mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
             <ili-badge
               [color]="item.quincena === 0 ? 'success' : 'info'"
               [value]="item.quincena === 0 ? '1ra Q' : '2da Q'"
@@ -368,7 +368,7 @@
           <h2 class="text-base font-bold">{{ item.equipoOInstalacion }}</h2>
           <p class="text-sm text-700">{{ item.justificacionGasto }}</p>
           <p class="text-xs text-color-secondary mt-1 uppercase">
-            <app-icon icon="material-symbols-light:work-outline" class="mr-1" />
+            <app-icon icon="material-symbols-light:work-outline" class="me-1" />
             {{ item.provider }}
           </p>
 

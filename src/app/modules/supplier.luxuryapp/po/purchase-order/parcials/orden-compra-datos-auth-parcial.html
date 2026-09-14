@@ -1,7 +1,7 @@
 @if(!bloqueada()) { @if (ordenCompra().ordenCompraAuth.statusOrdenCompra ===
 'Pendiente') {
-<lx-message severity="warn" class="w-full mt-1"><div class="flex align-items-center justify-content-between w-full gap-3">
-    <div class="flex align-items-center gap-2">
+<lx-message severity="warn" class="w-full mt-1"><div class="d-flex align-items-center justify-content-between w-full gap-3">
+    <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:schedule'" />
       <span class="text-sm font-semibold">Pendiente de autorización</span>
     </div>
@@ -14,7 +14,7 @@
       iconClass="material-symbols-light:check-circle"
     />
     } @else {
-    <div class="flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:warning'" class="text-red-500" />
       <span class="text-sm font-semibold text-red-600"
         >No se puede autorizar | {{ authorizationStatus().message }}</span
@@ -23,10 +23,10 @@
     }
   </div></lx-message>
 } @if (ordenCompra().ordenCompraAuth.statusOrdenCompra === 'Autorizado') {
-<lx-message severity="success" class="w-full mt-1"><div class="flex align-items-center justify-content-between w-full gap-3">
-    <div class="flex align-items-center gap-2">
+<lx-message severity="success" class="w-full mt-1"><div class="d-flex align-items-center justify-content-between w-full gap-3">
+    <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:check-circle'" />
-      <div class="flex flex-column">
+      <div class="d-flex flex-column">
         <span class="font-semibold">Autorizado</span>
         <span class="text-sm"
           >{{ ordenCompra().ordenCompraAuth.revisadoPorResidente }}</span
@@ -46,9 +46,9 @@
   </div></lx-message>
 } @if ( ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente' &&
 ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
-<lx-message severity="info" class="w-full mt-1"><div class="flex align-items-center gap-2">
+<lx-message severity="info" class="w-full mt-1"><div class="d-flex align-items-center gap-2">
     <app-icon [icon]="'material-symbols-light:info'" />
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       <span class="font-semibold"
         >{{ ordenCompra().ordenCompraAuth.statusOrdenCompra }}</span
       >
@@ -58,9 +58,9 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
     </div>
   </div></lx-message>
 } } @if(bloqueada()) {
-<lx-message severity="secondary" class="w-full mt-1"><div class="flex align-items-center gap-2">
+<lx-message severity="secondary" class="w-full mt-1"><div class="d-flex align-items-center gap-2">
     <app-icon [icon]="'material-symbols-light:lock'" />
-    <div class="flex flex-column gap-1">
+    <div class="d-flex flex-column gap-1">
       <span class="font-semibold"
         >{{ ordenCompra().ordenCompraAuth.statusOrdenCompra }}</span
       >

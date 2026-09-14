@@ -32,7 +32,7 @@
   <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="6">
-        <span class="font-bold ml-2"
+        <span class="font-bold ms-2"
           >{{ customer.area | eAreaMinutasDetalles | uppercase }}</span
         >
       </td>
@@ -51,7 +51,7 @@
       <td class="text-sm">{{ detalle.title }}</td>
       <td class="text-sm">
         <p
-          class="mr-2 text-justify"
+          class="me-2 text-justify"
           [innerHTML]="detalle.requestService | sanitizeHtml"
         ></p>
       </td>

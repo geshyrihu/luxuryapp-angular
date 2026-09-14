@@ -84,18 +84,18 @@ import {
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Data Display (Ionic)</div>
-      <div class="mobile-card-body flex flex-column gap-4">
+      <div class="mobile-card-body d-flex flex-column gap-4">
         <!-- --- CARDS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Cards (DS patterns)</div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             <!-- Profile Card with Status -->
             <div class="ds-card ds-card--profile">
               <ion-avatar slot="start" class="ds-avatar-lg">
                 <img src="assets/images/default-avatar.png" alt="avatar" />
               </ion-avatar>
               <div class="ds-card__profile-info">
-                <span class="font-bold text-sm block">John Doe</span>
+                <span class="font-bold text-sm d-block">John Doe</span>
                 <span class="text-xs text-secondary">Administrador</span>
               </div>
               <ion-badge color="success">Activo</ion-badge>
@@ -168,7 +168,7 @@ import {
         <!-- --- CHIPS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Chips (ion-chip)</div>
-          <div class="flex align-items-center gap-2 flex-wrap">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
             <ion-chip color="primary">
               <ion-icon name="mail-outline"></ion-icon>
               <ion-label>Correo</ion-label>
@@ -318,7 +318,7 @@ import {
               <ion-item detail="false" class="ion-no-padding">
                 <div
                   slot="start"
-                  class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+                  class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 border-round-lg"
                   [style.background]="
                     ev.own
                       ? 'var(--primary-50,#edf1ff)'
@@ -343,7 +343,7 @@ import {
                     {{ ev.date }} é {{ ev.guests }} invitados
                   </p>
                 </ion-label>
-                <div slot="end" class="mr-3">
+                <div slot="end" class="me-3">
                   <span
                     class="status-chip"
                     [style.background]="ev.statusBg"
@@ -456,7 +456,7 @@ import {
 
     <div class="mobile-card mt-4">
       <div class="mobile-card-header">Data Wrappers (ili-*)</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-accordion</div>
           <ili-accordion

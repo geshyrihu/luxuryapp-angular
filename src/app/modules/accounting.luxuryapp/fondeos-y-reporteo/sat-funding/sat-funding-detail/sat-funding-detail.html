@@ -1,10 +1,10 @@
-<div class="grid">
+<div class="row">
   <!-- Download Form Card -->
   <div class="col-12">
     <lx-card>
       <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
-        <div class="grid">
-          <div class="col-12 md:col-4">
+        <div class="row">
+          <div class="col-12 col-md-4">
             <custom-input-date-signal
               [control]="form.controls.startDate"
               label="Fecha Inicial"
@@ -12,7 +12,7 @@
               [required]="true"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-date-signal
               [control]="form.controls.endDate"
               label="Fecha Final"
@@ -21,7 +21,7 @@
             />
           </div>
         </div>
-        <div class="flex justify-content-end mt-4">
+        <div class="d-flex justify-content-end mt-4">
           <il-button-save
             [submitting]="submitting()"
             label="Iniciar Descarga y Procesamiento"
@@ -53,9 +53,9 @@
         [scrollHeight]="scrollHeight"
       >
         <ng-template #caption>
-          <div class="flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
             <h5 class="m-0">Facturas del Perñodo</h5>
-            <div class="flex">
+            <div class="d-flex">
               <custom-input-select-signal
                 [data]="tiposGasto"
                 [ngModel]="bulkTipoGasto()"
@@ -74,7 +74,7 @@
                 (clicked)="onBulkUpdate(bulkTipoGasto())"
                 [disabled]="!selection || selection.length === 0"
               ></iw-button-confirm>
-              <span class="p-input-icon-left ml-auto">
+              <span class="p-input-icon-left ms-auto">
                 <app-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
@@ -127,7 +127,7 @@
           >
             <td>
               <div
-                class="flex align-items-center justify-content-center"
+                class="d-flex align-items-center justify-content-center"
                 [pReorderableRowHandle]="i"
               >
                 <app-icon [icon]="'material-symbols-light:menu'" />

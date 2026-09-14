@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <div class="card">
     <p-table
       (onSort)="onSort()"
@@ -68,7 +68,7 @@
         @if (rowGroupMetadata[item.category].index === rowIndex) {
         <tr>
           <td colspan="7">
-            <span class="font-bold ml-2">{{ item.category }}</span>
+            <span class="font-bold ms-2">{{ item.category }}</span>
           </td>
         </tr>
         }
@@ -84,7 +84,7 @@
           </td>
           <td class="text-center">
             <span
-              class="p-2 badge ml-1"
+              class="p-2 badge ms-1"
               [class.bg-success]="item.existencia > item.stockMin"
               [class.bg-danger]="item.stockMin >= item.existencia"
             >
@@ -96,7 +96,7 @@
           <td class="text-center">{{ item.stockMax }}</td>
           <td class="text-center">{{ item.compraRequerida }}</td>
           <td class="no-print">
-            <div class="flex">
+            <div class="d-flex">
               <iw-button-item
                 [iconClass]="'material-symbols-light:add'"
                 lxTooltip="Entrada"
@@ -145,11 +145,11 @@
         />
       </div>
 
-      <div class="flex flex-column gap-1">
+      <div class="d-flex flex-column gap-1">
         <p class="font-semibold m-0 text-color line-height-2">
           {{ item.producto }}
         </p>
-        <div class="flex align-items-center gap-2 mt-1">
+        <div class="d-flex align-items-center gap-2 mt-1">
           <span class="text-xs text-color-secondary font-medium"
             >{{ item.unidadDeMedida }}</span
           >

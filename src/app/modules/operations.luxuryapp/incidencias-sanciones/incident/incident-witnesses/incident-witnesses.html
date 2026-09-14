@@ -1,10 +1,10 @@
 <div>
   <!-- Header -->
-  <div class="flex align-items-center justify-content-between mb-3">
-    <div class="flex align-items-center">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-center">
       <app-icon
         [icon]="'material-symbols-light:group'"
-        class="text-xl text-primary mr-2"
+        class="text-xl text-primary me-2"
       />
       <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
       <span class="text-sm text-color-secondary"
@@ -21,7 +21,7 @@
   </div>
 
   @if (loading()) {
-  <div class="flex justify-content-center p-4 text-color-secondary">
+  <div class="d-flex justify-content-center p-4 text-color-secondary">
     Cargando...
   </div>
   } @else if (witnesses().length === 0) {
@@ -53,7 +53,7 @@
         <td class="text-center">
           @if (witness.hasSignature) {
           <span
-            class="text-green-600 flex align-items-center justify-content-center gap-1"
+            class="text-green-600 d-flex align-items-center justify-content-center gap-1"
           >
             <app-icon [icon]="'material-symbols-light:check-circle'" />
             <span>Firmado</span>
@@ -63,7 +63,7 @@
           }
         </td>
         <td>
-          <div class="flex gap-1">
+          <div class="d-flex gap-1">
             <iw-button-edit (clicked)="openEditDialog(witness)" />
             <iw-button-delete (confirmed)="deleteWitness(witness)" />
           </div>

@@ -9,42 +9,42 @@
   </div>
   } @else if (inspection(); as data) {
   <div class="mb-4 border-1 surface-border rounded p-4">
-    <div class="grid">
-      <div class="col-12 md:col-4">
+    <div class="row">
+      <div class="col-12 col-md-4">
         <div class="text-color-secondary text-sm">Cliente</div>
         <div class="font-medium">{{ customerName() || data.customerId }}</div>
       </div>
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <div class="text-color-secondary text-sm">Corte consultado</div>
         <div class="font-medium">
           {{ currentCutLabel() }} · {{ currentMonthName() }} validado
         </div>
       </div>
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <div class="text-color-secondary text-sm">Origen</div>
         <div class="font-medium">{{ data.dataSource }}</div>
       </div>
-      <div class="col-6 md:col-3">
+      <div class="col-6 col-md-3">
         <div class="text-color-secondary text-sm">Departamentos</div>
         <div class="text-xl font-semibold">{{ data.totalRows }}</div>
       </div>
-      <div class="col-6 md:col-3">
+      <div class="col-6 col-md-3">
         <div class="text-color-secondary text-sm">Movimientos del mes</div>
         <div class="text-xl font-semibold">{{ data.totalMovements }}</div>
       </div>
-      <div class="col-6 md:col-2">
+      <div class="col-6 col-md-2">
         <div class="text-color-secondary text-sm">Cargos</div>
         <div class="text-xl font-semibold">
           {{ formatCurrency(data.totalCharges) }}
         </div>
       </div>
-      <div class="col-6 md:col-2">
+      <div class="col-6 col-md-2">
         <div class="text-color-secondary text-sm">Pagos</div>
         <div class="text-xl font-semibold">
           {{ formatCurrency(data.totalPayments) }}
         </div>
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <div class="text-color-secondary text-sm">Neto</div>
         <div class="text-xl font-semibold">
           {{ formatCurrency(data.netTotal) }}
@@ -64,7 +64,7 @@
     [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '72rem' }"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table card hidden md:block mb-4"
+    class="custom-table card d-none d-md-block mb-4"
     #dt
   >
     <ng-template #caption>
@@ -132,7 +132,7 @@
       <ili-list-item class="ion-no-padding" (click)="onSelectRow(item)">
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
           <app-icon icon="material-symbols-light:account-balance" />
         </div>

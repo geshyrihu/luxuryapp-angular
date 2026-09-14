@@ -4,7 +4,7 @@
 unassignedData().length > 0) {
 
 <!-- DESKTOP VIEW -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   @if (dataExternal().length > 0) {
   <div class="card mb-4">
     <p-table
@@ -49,7 +49,7 @@ unassignedData().length > 0) {
         </tr>
       </ng-template>
       <ng-template #summary>
-        <div class="flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
           En total hay {{ dataExternal().length }} pendientes externos.
         </div>
       </ng-template>
@@ -99,7 +99,7 @@ unassignedData().length > 0) {
         </tr>
       </ng-template>
       <ng-template #summary>
-        <div class="flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
           En total hay {{ dataInternal().length }} pendientes internos.
         </div>
       </ng-template>
@@ -149,7 +149,7 @@ unassignedData().length > 0) {
         </tr>
       </ng-template>
       <ng-template #summary>
-        <div class="flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
           En total hay {{ unassignedData().length }} pendientes sin asignar.
         </div>
       </ng-template>
@@ -159,7 +159,7 @@ unassignedData().length > 0) {
 </div>
 
 <!-- MOBILE VIEW -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   @if (dataExternal().length > 0) {
   <div class="card mb-4">
     <h5
@@ -173,7 +173,7 @@ unassignedData().length > 0) {
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
@@ -235,7 +235,7 @@ unassignedData().length > 0) {
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
@@ -297,7 +297,7 @@ unassignedData().length > 0) {
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-yellow-100"
           >
             <app-icon

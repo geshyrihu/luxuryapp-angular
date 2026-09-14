@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <form
     autocomplete="off"
     (ngSubmit)="onSubmit()"
@@ -21,16 +21,16 @@
     } @if (vacancyContext(); as vacancy) {
     <div class="surface-100 border-round p-3 mb-3">
       <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
-      <div class="grid text-sm">
-        <div class="col-12 md:col-4">
+      <div class="row text-sm">
+        <div class="col-12 col-md-4">
           <span class="text-color-secondary">Empresa: </span>{{
           vacancy.customerName }}
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <span class="text-color-secondary">Puesto: </span>{{
           vacancy.positionName }}
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <span class="text-color-secondary">Sueldo: </span>{{
           vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
         </div>
@@ -38,7 +38,7 @@
     </div>
     } @if (approvedCandidate(); as candidate) {
     <div
-      class="surface-100 border-round p-3 mb-3 flex align-items-center justify-content-between gap-3 flex-wrap"
+      class="surface-100 border-round p-3 mb-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
     >
       <div>
         <p class="m-0 font-semibold">Candidato aprobado detectado</p>
@@ -60,7 +60,7 @@
       <p class="m-0 font-semibold text-red-700">
         Revisa estos datos antes de guardar
       </p>
-      <ul class="m-0 mt-2 pl-3 text-red-700 line-height-3">
+      <ul class="m-0 mt-2 ps-3 text-red-700 line-height-3">
         @for (error of validationErrors(); track error) {
         <li>{{ error }}</li>
         }
@@ -68,28 +68,28 @@
     </div>
     }
 
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.firstName"
           label="Nombre(s)"
           placeholder="Nombre(s)"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.lastName"
           label="Apellidos"
           placeholder="Apellidos"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-date-signal
           [control]="form.controls.birthDate"
           label="Fecha de nacimiento"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.phoneNumber"
           label="Telefono celular"
@@ -103,35 +103,35 @@
           placeholder="correo@ejemplo.com"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.street"
           label="Calle"
           placeholder="Av. Principal 123"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.neighborhood"
           label="Colonia"
           placeholder="Centro"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.municipality"
           label="Municipio/Alcaldía"
           placeholder="Cuauhtémoc"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.postalCode"
           label="Código Postal"
           placeholder="01000"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.state"
           label="Estado"
@@ -157,22 +157,22 @@
         <table class="w-full border-collapse">
           <thead>
             <tr class="text-left">
-              <th class="pb-2 pr-3">Empleado</th>
-              <th class="pb-2 pr-3">Correo</th>
-              <th class="pb-2 pr-3">Telefono</th>
-              <th class="pb-2 pr-3">Estatus</th>
-              <th class="pb-2 pr-3">Cliente actual</th>
+              <th class="pb-2 pe-3">Empleado</th>
+              <th class="pb-2 pe-3">Correo</th>
+              <th class="pb-2 pe-3">Telefono</th>
+              <th class="pb-2 pe-3">Estatus</th>
+              <th class="pb-2 pe-3">Cliente actual</th>
               <th class="pb-2">Accion</th>
             </tr>
           </thead>
           <tbody>
             @for (match of duplicateMatches(); track match.userId) {
             <tr class="border-top-1 surface-border">
-              <td class="py-2 pr-3">{{ match.nombreCompleto }}</td>
-              <td class="py-2 pr-3">{{ match.email || "Sin correo" }}</td>
-              <td class="py-2 pr-3">{{ match.telefono || "Sin telefono" }}</td>
-              <td class="py-2 pr-3">{{ match.estatus }}</td>
-              <td class="py-2 pr-3">{{ match.nombreEdificio }}</td>
+              <td class="py-2 pe-3">{{ match.nombreCompleto }}</td>
+              <td class="py-2 pe-3">{{ match.email || "Sin correo" }}</td>
+              <td class="py-2 pe-3">{{ match.telefono || "Sin telefono" }}</td>
+              <td class="py-2 pe-3">{{ match.estatus }}</td>
+              <td class="py-2 pe-3">{{ match.nombreEdificio }}</td>
               <td class="py-2">
                 <button
                   type="button"
@@ -219,7 +219,7 @@
     </div>
     }
 
-    <div class="flex justify-content-end gap-2 mt-4">
+    <div class="d-flex justify-content-end gap-2 mt-4">
       <il-button
         label="Cancelar"
         severity="secondary"

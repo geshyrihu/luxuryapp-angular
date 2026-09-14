@@ -1,6 +1,6 @@
 <div class="p-4 md:p-6">
   <!-- Botones para cargar imágenes -->
-  <div class="flex gap-3 mb-6 flex-wrap">
+  <div class="d-flex gap-3 mb-6 flex-wrap">
     <!-- Botón cámara -->
     <iw-button
       iconClass="material-symbols-light:photo-camera"
@@ -11,7 +11,7 @@
     <input
       #cameraInput
       type="file"
-      class="hidden"
+      class="d-none"
       (change)="onFileSelected($event)"
           accept="image/*,.heic,.heif"
       capture="environment"
@@ -27,7 +27,7 @@
     <input
       #galleryInput
       type="file"
-      class="hidden"
+      class="d-none"
       (change)="onFileSelected($event)"
           accept="image/*,.heic,.heif"
       multiple
@@ -37,11 +37,11 @@
   <!-- Nuevas imágenes -->
   @if (newImages.length > 0) {
   <div class="mb-6">
-    <div class="flex align-items-center gap-2 mb-4">
+    <div class="d-flex align-items-center gap-2 mb-4">
       <app-icon icon="material-symbols-light:add-circle" class="text-success-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Nuevas imágenes ({{ newImages.length }})</h6>
     </div>
-    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+    <div class="row grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       @for (image of newImages; track image; let i = $index) {
       <div class="relative group">
         <img
@@ -68,11 +68,11 @@
   <!-- Imágenes almacenadas -->
   @if (existingImages.length > 0) {
   <div class="mb-6">
-    <div class="flex align-items-center gap-2 mb-4">
+    <div class="d-flex align-items-center gap-2 mb-4">
       <app-icon icon="material-symbols-light:cloud-done" class="text-info-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Imágenes almacenadas ({{ existingImages.length }})</h6>
     </div>
-    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+    <div class="row grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       @for (image of existingImages; track image) {
       <div class="relative group">
         <img
@@ -97,7 +97,7 @@
   }
 
   <!-- Botón guardar -->
-  <div class="flex justify-content-center pt-4 border-top-1 border-outline">
+  <div class="d-flex justify-content-center pt-4 border-top-1 border-outline">
     <il-button
       label="Guardar imágenes"
       iconClass="material-symbols-light:save"

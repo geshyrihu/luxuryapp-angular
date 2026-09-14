@@ -20,7 +20,7 @@
       <h6 class="mt-4">Items de Tareas</h6>
       @for (template of templates(); track template.id) {
       <lx-fieldset [legend]="template.name" [toggleable]="true" class="mb-3">
-        <small class="text-color-secondary block mb-2"
+        <small class="text-color-secondary d-block mb-2"
           >Rol: {{ template.roleName }}</small
         >
         @for (item of template.items; track item.id) {
@@ -36,7 +36,7 @@
         }
       </lx-fieldset>
       }
-      <div class="flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end mt-4">
         <il-button-save
           (clicked)="onSave()"
           [submitting]="submitting()"

@@ -1,8 +1,8 @@
 <page-title-report title="Reporte Legal Interno — Cierre de Periodo" />
 
 <!-- Selector de rango de fechas -->
-<div class="grid mb-3">
-  <div class="col-12 md:col-6">
+<div class="row mb-3">
+  <div class="col-12 col-md-6">
     <app-task-date-range-selector
       (selectedDates)="onDateRangeSelected($event)"
     />
@@ -18,7 +18,7 @@
 </div>
 
 <!-- DESKTOP VIEW -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   @if (reportData()) {
   <div class="card mb-4">
     <p-table [value]="kpiRows()" class="custom-table custom-table-fixed">
@@ -76,7 +76,7 @@
             <app-icon
               icon="material-symbols-light:check-circle"
               
-              class="mr-2"
+              class="me-2"
             />
             SOLICITUDES ATENDIDAS
           </th>
@@ -121,7 +121,7 @@
             <app-icon
               icon="material-symbols-light:error"
               
-              class="mr-2"
+              class="me-2"
             />
             SOLICITUDES PENDIENTES
           </th>
@@ -165,7 +165,7 @@
 </div>
 
 <!-- MOBILE VIEW -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   @if (reportData()) {
   <div class="card mb-4">
     <h5
@@ -179,7 +179,7 @@
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
@@ -188,33 +188,33 @@
             />
           </div>
           
-            <div class="flex justify-content-between align-items-center mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
               <span>TICKET INICIAL</span>
               <lx-tag [value]="d.ticketsAlInicio" severity="info"></lx-tag>
             </div>
-            <div class="flex justify-content-between align-items-center mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
               <span>TICKET FINAL</span>
               <lx-tag [value]="d.ticketsAlFinal" severity="info"></lx-tag>
             </div>
-            <div class="flex justify-content-between align-items-center mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
               <span>SOLICITUDES NUEVAS</span>
               <lx-tag [value]="d.ticketsEnRango" severity="secondary"></lx-tag>
             </div>
-            <div class="flex justify-content-between align-items-center mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
               <span>SOLICITUDES ATENDIDAS</span>
               <lx-tag
                 [value]="d.solicitudesAtendidas"
                 severity="success"
               ></lx-tag>
             </div>
-            <div class="flex justify-content-between align-items-center mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
               <span>PENDIENTES DEL PERIODO</span>
               <lx-tag
                 [value]="d.pendientesSoloDelPeriodo"
                 severity="warn"
               ></lx-tag>
             </div>
-            <div class="flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <span>PENDIENTES ACUMULADAS</span>
               <lx-tag [value]="d.pendientesAlFinal" severity="danger"></lx-tag>
             </div>
@@ -232,7 +232,7 @@
       <app-icon
         icon="material-symbols-light:check-circle"
         
-        class="mr-2"
+        class="me-2"
       />
       SOLICITUDES ATENDIDAS
     </h5>
@@ -241,7 +241,7 @@
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             
           >
             <app-icon
@@ -250,7 +250,7 @@
             />
           </div>
           
-            <div class="flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <h6 class="mb-1">#{{ rowIndex + 1 }} — {{ ticket.concepto }}</h6>
               <lx-tag [value]="ticket.solicitudes" severity="success"></lx-tag>
             </div>
@@ -268,7 +268,7 @@
       <app-icon
         icon="material-symbols-light:warning"
         
-        class="mr-2"
+        class="me-2"
       />
       SOLICITUDES PENDIENTES
     </h5>
@@ -277,7 +277,7 @@
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             
           >
             <app-icon
@@ -286,7 +286,7 @@
             />
           </div>
           
-            <div class="flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
               <lx-tag [value]="ticket.dias + ' días'" severity="danger"></lx-tag>
             </div>

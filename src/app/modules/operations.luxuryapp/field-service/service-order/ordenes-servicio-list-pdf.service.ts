@@ -217,7 +217,7 @@ ${this.htmlPrintS.getStandardCss()}
         imagesHtml = `
           <div class="mb-4 break-inside-avoid">
             <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-3">Evidencia Fotogrófica</h4>
-            <div class="grid">
+            <div class="row">
               ${item.serviceOrderImg
                 .slice(0, 4)
                 .map(
@@ -237,15 +237,15 @@ ${this.htmlPrintS.getStandardCss()}
 
       html += `
         <div class="report-container page-break">
-          <div class="grid align-items-center mb-4 pb-3 border-bottom-1">
+          <div class="row align-items-center mb-4 pb-3 border-bottom-1">
             <div class="col-3 text-center">
               ${logoCustomer ? `<img src="${this.htmlPrintS.esc(logoCustomer)}" alt="Logo" class="report-logo" />` : ""}
             </div>
             <div class="col-5">
               <h2 class="text-lg font-bold text-900 mb-1">${this.htmlPrintS.esc(nameCustomer)}</h2>
               <p class="text-xs text-600 mb-1">${this.htmlPrintS.esc(address)}</p>
-              <div class="flex text-xs text-700">
-                ${phoneOne ? `<span class="mr-2">?? ${this.htmlPrintS.esc(phoneOne)}</span>` : ""}
+              <div class="d-flex text-xs text-700">
+                ${phoneOne ? `<span class="me-2">?? ${this.htmlPrintS.esc(phoneOne)}</span>` : ""}
                 ${phoneTwo ? `<span>?? ${this.htmlPrintS.esc(phoneTwo)}</span>` : ""}
               </div>
             </div>
@@ -262,25 +262,25 @@ ${this.htmlPrintS.getStandardCss()}
             </div>
           </div>
 
-          <div class="grid mb-4">
+          <div class="row mb-4">
             <div class="col-6">
               <div class="p-3 surface-50 rounded border-1 h-full">
-                <span class="block text-xs font-bold text-500 uppercase mb-1">Equipo / Maquinaria</span>
+                <span class="d-block text-xs font-bold text-500 uppercase mb-1">Equipo / Maquinaria</span>
                 <div class="text-base font-medium text-900">
-                  <span class="text-primary font-bold mr-2">${this.htmlPrintS.esc(item.machineryId)}</span>
+                  <span class="text-primary font-bold me-2">${this.htmlPrintS.esc(item.machineryId)}</span>
                   ${this.htmlPrintS.esc(item.nameMachinery)}
                 </div>
               </div>
             </div>
             <div class="col-6">
               <div class="p-3 surface-50 rounded border-1 h-full">
-                <span class="block text-xs font-bold text-500 uppercase mb-1">Proveedor de Servicio</span>
+                <span class="d-block text-xs font-bold text-500 uppercase mb-1">Proveedor de Servicio</span>
                 <div class="text-base font-medium text-900">${this.htmlPrintS.esc(item.nameComercial)}</div>
               </div>
             </div>
           </div>
 
-          <div class="grid mb-4">
+          <div class="row mb-4">
             <div class="col-6">
               <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Actividad Realizada</h4>
               <div class="text-xs line-height-3 text-700">${item.activity || ""}</div>
@@ -295,24 +295,24 @@ ${this.htmlPrintS.getStandardCss()}
 
           <div class="mb-4 break-inside-avoid">
             <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-3">Verificación de Calidad y Entrega</h4>
-            <div class="grid text-xs">
+            <div class="row text-xs">
               <div class="col-6">
-                <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.cumplimientoActividades ? "text-green-600" : "text-red-600"}">${item.cumplimientoActividades ? "?" : "?"}</span>
+                <div class="d-flex align-items-center mb-2">
+                  <span class="me-2 ${item.cumplimientoActividades ? "text-green-600" : "text-red-600"}">${item.cumplimientoActividades ? "?" : "?"}</span>
                   <span>Cumplimiento de actividades programadas</span>
                 </div>
-                <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.equiposOperando ? "text-green-600" : "text-red-600"}">${item.equiposOperando ? "?" : "?"}</span>
+                <div class="d-flex align-items-center mb-2">
+                  <span class="me-2 ${item.equiposOperando ? "text-green-600" : "text-red-600"}">${item.equiposOperando ? "?" : "?"}</span>
                   <span>Equipos/áreas operando correctamente</span>
                 </div>
               </div>
               <div class="col-6">
-                <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${!item.ocacionoDanos ? "text-green-600" : "text-orange-600"}">${!item.ocacionoDanos ? "?" : "??"}</span>
+                <div class="d-flex align-items-center mb-2">
+                  <span class="me-2 ${!item.ocacionoDanos ? "text-green-600" : "text-orange-600"}">${!item.ocacionoDanos ? "?" : "??"}</span>
                   <span>Sin daños al área de trabajo</span>
                 </div>
-                <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.calidadTrabajos ? "text-green-600" : "text-red-600"}">${item.calidadTrabajos ? "?" : "?"}</span>
+                <div class="d-flex align-items-center mb-2">
+                  <span class="me-2 ${item.calidadTrabajos ? "text-green-600" : "text-red-600"}">${item.calidadTrabajos ? "?" : "?"}</span>
                   <span>Calidad de trabajos satisfactoria</span>
                 </div>
               </div>
@@ -320,7 +320,7 @@ ${this.htmlPrintS.getStandardCss()}
           </div>
 
           <div class="signature-section mt-6 break-inside-avoid">
-            <div class="grid">
+            <div class="row">
               <div class="col-6 text-center">
                 <div class="signature-line mb-2"></div>
                 <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.fullName || "Pendiente de Firma")}</div>

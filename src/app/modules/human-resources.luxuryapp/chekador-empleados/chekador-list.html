@@ -8,7 +8,7 @@
   [loading]="loading()"
   [rows]="rows"
   [rowsPerPageOptions]="rowsPerPage"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   [paginator]="true"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="{first} - {last} de {totalRecords}"
@@ -16,7 +16,7 @@
   <!-- ── Caption con filtros alineados (Patrón Compacto Flex) ─────────── -->
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
@@ -30,9 +30,9 @@
 
       <!-- Derecha: filtros de fecha, anomalía y acciones -->
       <div
-        class="flex flex-column sm:flex-row align-items-center gap-2 flex-wrap"
+        class="d-flex flex-column flex-sm-row align-items-center gap-2 flex-wrap"
       >
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <label
             class="text-xs font-semibold text-color-secondary white-space-nowrap"
             >DESDE</label
@@ -45,7 +45,7 @@
           />
         </div>
 
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <label
             class="text-xs font-semibold text-color-secondary white-space-nowrap"
             >HASTA</label
@@ -66,7 +66,7 @@
           noMargin
         />
 
-        <div class="flex gap-2 flex-shrink-0">
+        <div class="d-flex gap-2 flex-shrink-0">
           <il-button
             label="Filtrar"
             iconClass="material-symbols-light:filter"
@@ -182,7 +182,7 @@
       <td class="text-center">
         @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión')
         {
-        <div class="flex gap-1 justify-content-center">
+        <div class="d-flex gap-1 justify-content-center">
           <iw-button
             iconClass="material-symbols-light:check"
             severity="success"
@@ -218,12 +218,12 @@
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
-  class="block md:hidden"
+  class="d-block d-md-none"
 >
   <!-- Slot de filtros móviles (patrón de la guía) -->
   <div customFilters>
-    <div class="px-4 py-2 flex flex-column gap-3">
-      <div class="flex align-items-center gap-2">
+    <div class="px-4 py-2 d-flex flex-column gap-3">
+      <div class="d-flex align-items-center gap-2">
         <label class="text-xs font-semibold text-color-secondary">DESDE</label>
         <input
           type="date"
@@ -232,7 +232,7 @@
           class="p-inputtext-sm flex-1"
         />
       </div>
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         <label class="text-xs font-semibold text-color-secondary">HASTA</label>
         <input
           type="date"
@@ -248,7 +248,7 @@
         [horizontal]="false"
         noMargin
       />
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button
           label="Filtrar"
           iconClass="material-symbols-light:filter"
@@ -275,7 +275,7 @@
       class="p-3 border-bottom-1 border-200"
       [class.bg-red-50]="item.esAnomalia"
     >
-      <div class="flex justify-content-between align-items-start mb-2">
+      <div class="d-flex justify-content-between align-items-start mb-2">
         <div>
           <div class="font-bold text-sm">{{ item.nombreEmpleado }}</div>
           <div class="text-xs text-color-secondary">{{ item.tipo }}</div>
@@ -302,10 +302,10 @@
         number: "1.0-0" }} m
       </div>
       } @if (item.esAnomalia) {
-      <div class="flex justify-content-between align-items-center mt-2">
+      <div class="d-flex justify-content-between align-items-center mt-2">
         <lx-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
         @if (item.estadoAnomalia === 'Pendiente de revisión') {
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <iw-button
             iconClass="material-symbols-light:check"
             severity="success"

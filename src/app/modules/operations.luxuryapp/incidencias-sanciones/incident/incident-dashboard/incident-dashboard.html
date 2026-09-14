@@ -1,7 +1,7 @@
-<div class="flex flex-column">
+<div class="d-flex flex-column">
   <!-- Filtros -->
   <div class="card p-4">
-    <div class="flex flex-wrap align-items-end gap-3">
+    <div class="d-flex flex-wrap align-items-end gap-3">
       <custom-input-date-signal
         [control]="startDateCtrl"
         label="Fecha Inicio"
@@ -14,7 +14,7 @@
         id="end-date"
         [noMargin]="true"
       />
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button
           label="Filtrar"
           iconClass="material-symbols-light:search"
@@ -32,7 +32,7 @@
   </div>
 
   @if (loading()) {
-  <div class="flex justify-content-center py-8">
+  <div class="d-flex justify-content-center py-8">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-4xl text-primary"
@@ -40,41 +40,41 @@
   </div>
   } @else if (dashboard()) {
   <!-- KPIs -->
-  <div class="grid mt-2">
-    <div class="col-12 md:col-6 lg:col">
-      <div class="card p-4 flex flex-column">
+  <div class="row mt-2">
+    <div class="col-12 col-md-6 lg:col">
+      <div class="card p-4 d-flex flex-column">
         <span class="text-500 text-sm">Total Incidencias</span>
         <span class="text-3xl font-bold text-primary">
           {{ dashboard()!.totalIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col">
-      <div class="card p-4 flex flex-column">
+    <div class="col-12 col-md-6 lg:col">
+      <div class="card p-4 d-flex flex-column">
         <span class="text-500 text-sm">Resueltas</span>
         <span class="text-3xl font-bold text-green-600">
           {{ dashboard()!.resolvedIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col">
-      <div class="card p-4 flex flex-column">
+    <div class="col-12 col-md-6 lg:col">
+      <div class="card p-4 d-flex flex-column">
         <span class="text-500 text-sm">Pendientes</span>
         <span class="text-3xl font-bold text-orange-500">
           {{ dashboard()!.pendingIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col">
-      <div class="card p-4 flex flex-column">
+    <div class="col-12 col-md-6 lg:col">
+      <div class="card p-4 d-flex flex-column">
         <span class="text-500 text-sm">Con Sanción</span>
         <span class="text-3xl font-bold text-red-600">
           {{ dashboard()!.sanctionedIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col">
-      <div class="card p-4 flex flex-column">
+    <div class="col-12 col-md-6 lg:col">
+      <div class="card p-4 d-flex flex-column">
         <span class="text-500 text-sm">Días Prom. Resolución</span>
         <span class="text-3xl font-bold text-blue-600">
           {{ dashboard()!.averageResolutionDays }}
@@ -84,9 +84,9 @@
   </div>
 
   <!-- Gróficos -->
-  <div class="grid">
+  <div class="row">
     <!-- Incidencias por Mes -->
-    <div class="col-12 lg:col-6">
+    <div class="col-12 col-lg-6">
       <div class="card p-4">
         <h3 class="text-lg font-semibold mb-4">Incidencias por Mes</h3>
         @if (barChartData()) {
@@ -103,7 +103,7 @@
     </div>
 
     <!-- Distribución por Tipo -->
-    <div class="col-12 lg:col-6">
+    <div class="col-12 col-lg-6">
       <div class="card p-4">
         <h3 class="text-lg font-semibold mb-4">Distribución por Tipo</h3>
         @if (pieChartData()) {
@@ -159,11 +159,11 @@
   @if (dashboard()!.bySeverity.length > 0) {
   <div class="card p-4">
     <h3 class="text-lg font-semibold mb-4">Distribución por Severidad</h3>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
-      <div class="flex align-items-center px-3 py-2 surface-100 rounded-lg">
+      <div class="d-flex align-items-center px-3 py-2 surface-100 rounded-lg">
         <span class="font-medium">{{ item.name }}</span>
-        <span class="badge badge-info ml-2">{{ item.count }}</span>
+        <span class="badge badge-info ms-2">{{ item.count }}</span>
       </div>
       }
     </div>

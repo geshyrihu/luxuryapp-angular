@@ -10,33 +10,33 @@
 @for (group of getVisibleGroups(); track group.label) {
 
 <!-- Título del grupo -->
-<div class="flex align-items-center mb-3 mt-5">
+<div class="d-flex align-items-center mb-3 mt-5">
   <span class="text-xl">{{ group.emoji }}</span>
   <h2
-    class="text-base font-semibold text-color m-0 uppercase tracking-wide ml-2"
+    class="text-base font-semibold text-color m-0 uppercase tracking-wide ms-2"
   >
     {{ group.label }}
   </h2>
-  <div class="flex-flex-grow-1-1 border-bottom-1 surface-border ml-2"></div>
+  <div class="flex-flex-grow-1-1 border-bottom-1 surface-border ms-2"></div>
 </div>
 
 <!-- Cards del grupo -->
-<div class="grid">
+<div class="row">
   @for (module of group.cards; track module.route) {
-  <div class="col-12 sm:col-6 md:col-3">
+  <div class="col-12 col-sm-6 col-md-3">
     <div
-      class="surface-card rounded-xl shadow-sm cursor-pointer p-4 flex flex-column border-1 surface-border transition-all hover:shadow h-full"
+      class="surface-card rounded-xl shadow-sm cursor-pointer p-4 d-flex flex-column border-1 surface-border transition-all hover:shadow h-full"
       (click)="navigateTo(module.route)"
     >
       <!-- Icono + título -->
-      <div class="flex align-items-center mb-3">
+      <div class="d-flex align-items-center mb-3">
         <div
-          class="flex align-items-center justify-content-center rounded-lg text-4xl flex-shrink-0"
+          class="d-flex align-items-center justify-content-center rounded-lg text-4xl flex-shrink-0"
           [style.backgroundColor]="module.bgColor"
         >
           {{ module.emoji }}
         </div>
-        <h3 class="m-0 font-semibold text-color ml-3">{{ module.title }}</h3>
+        <h3 class="m-0 font-semibold text-color ms-3">{{ module.title }}</h3>
       </div>
 
       <!-- DESCRIPCIÓN -->
@@ -48,10 +48,10 @@
 
       <!-- Footer: roles + flecha -->
       <div
-        class="flex justify-content-between align-items-center pt-3 border-top-1 surface-border mt-3"
+        class="d-flex justify-content-between align-items-center pt-3 border-top-1 surface-border mt-3"
       >
         <span
-          class="text-xs font-semibold truncate mr-2"
+          class="text-xs font-semibold truncate me-2"
           [style.color]="module.color"
         >
           {{ getRoleNames(module.roles) }}

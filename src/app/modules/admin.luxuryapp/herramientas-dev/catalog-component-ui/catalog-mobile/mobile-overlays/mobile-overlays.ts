@@ -64,14 +64,14 @@ import {
       <div class="mobile-card-header">
         Overlays nativos (ion-alert / action-sheet / toast / loading)
       </div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <!-- Alert -->
         <div>
           <div class="font-bold text-sm mb-2">Alert (ion-alert)</div>
           <p class="text-xs text-secondary mb-2">
             Dialogo nativo iOS/Android con botones de confirmación.
           </p>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <ion-button
               size="small"
               color="danger"
@@ -110,7 +110,7 @@ import {
           <p class="text-xs text-secondary mb-2">
             Mené de acciones emergente desde la parte inferior.
           </p>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <ion-button
               size="small"
               color="secondary"
@@ -137,7 +137,7 @@ import {
           <p class="text-xs text-secondary mb-2">
             Notificación temporal no intrusiva.
           </p>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <ion-button
               size="small"
               color="success"
@@ -178,7 +178,7 @@ import {
           <p class="text-xs text-secondary mb-2">
             Overlay de carga que bloquea la interacción.
           </p>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <ion-button
               size="small"
               color="primary"
@@ -205,7 +205,7 @@ import {
             Overlay de pantalla completa o bottom sheet con breakpoints
             arrastrables.
           </p>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <ion-button
               size="small"
               color="primary"
@@ -379,7 +379,7 @@ import {
 
     <div class="mobile-card mt-4">
       <div class="mobile-card-header">Overlay Wrappers (ili-*)</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-confirm-dialog</div>
           <ili-confirm-dialog></ili-confirm-dialog>

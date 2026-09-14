@@ -3,9 +3,9 @@
     <h3 class="h3 mb-3">Datos de Empleado</h3>
 
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="grid">
+      <div class="row">
         <!-- Sexo -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.sex"
             label="Sexo"
@@ -16,7 +16,7 @@
         </div>
 
         <!-- CURP -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.curp"
             label="CURP"
@@ -26,7 +26,7 @@
         </div>
 
         <!-- RFC -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.rfc"
             label="RFC"
@@ -36,7 +36,7 @@
         </div>
 
         <!-- NSS -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.nss"
             label="NSS"
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Tipo de Sangre -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.bloodType"
             label="Tipo de Sangre"
@@ -57,7 +57,7 @@
         </div>
 
         <!-- Teléfono local -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-mask-signal
             [control]="form.controls.localPhone"
             label="Tél. local"
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Estado civil -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.maritalStatus"
             label="Estado civil"
@@ -79,7 +79,7 @@
         </div>
 
         <!-- Fecha de nacimiento -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-date-signal
             [control]="form.controls.birth"
             label="Fecha de nacimiento"
@@ -89,7 +89,7 @@
         </div>
 
         <!-- Nacionalidad -->
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-autocomplete-signal
             [control]="form.controls.nationality"
             [data]="cb_nationality()"
@@ -101,7 +101,7 @@
       </div>
 
       @if (!isReadOnly()) {
-      <div class="flex justify-content-end mt-3">
+      <div class="d-flex justify-content-end mt-3">
         <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
       </div>
     }

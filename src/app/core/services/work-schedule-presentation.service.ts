@@ -40,11 +40,21 @@ export class WorkSchedulePresentationService {
       );
       const entry = normalizedDay?.horaEntrada ?? null;
       const exit = normalizedDay?.horaSalida ?? null;
-      const worked = !normalizedDay?.esDescanso && !!entry && !!exit;
-      const overnight = worked && this.formatTime(exit) <= this.formatTime(entry);
-      const text = worked
-        ? `${this.formatTime(entry)}-${this.formatTime(exit)}${overnight ? " +1" : ""}`
-        : "Descanso";
+      const worked = !normalizedDay?.esDescanso && (!!entry || !!exit);
+      
+      let overnight = false;
+      if (worked && entry && exit) {
+        overnight = this.toMinutes(exit) < this.toMinutes(entry);
+      } else if (worked && entry && !exit) {
+        overnight = true;
+      }
+
+      let text = "Descanso";
+      if (worked) {
+        if (entry && exit) text = `${this.formatTime(entry)}-${this.formatTime(exit)}${overnight ? " +1" : ""}`;
+        else if (entry && !exit) text = `${this.formatTime(entry)}-... +1`;
+        else if (!entry && exit) text = `...-${this.formatTime(exit)}`;
+      }
 
       return {
         label: day.label,
@@ -89,20 +99,37 @@ export class WorkSchedulePresentationService {
     exit: string | null,
     isRestDay: boolean,
   ): number {
-    if (isRestDay || !entry || !exit) return 0;
-    const entryMinutes = this.toMinutes(entry);
-    let exitMinutes = this.toMinutes(exit);
-    if (exitMinutes <= entryMinutes) exitMinutes += 24 * 60;
-    return (exitMinutes - entryMinutes) / 60;
+    if (isRestDay) return 0;
+    if (!entry && !exit) return 0;
+
+    if (entry && exit) {
+      const entryMinutes = this.toMinutes(entry);
+      const exitMinutes = this.toMinutes(exit);
+      if (exitMinutes > entryMinutes) {
+        return (exitMinutes - entryMinutes) / 60;
+      } else if (exitMinutes < entryMinutes) {
+        const minutesToMidnight = (24 * 60) - entryMinutes;
+        return (minutesToMidnight + exitMinutes) / 60;
+      }
+      return 0; // if equal
+    } else if (entry && !exit) {
+      const entryMinutes = this.toMinutes(entry);
+      return ((24 * 60) - entryMinutes) / 60;
+    } else if (!entry && exit) {
+      const exitMinutes = this.toMinutes(exit);
+      return exitMinutes / 60;
+    }
+    return 0;
   }
 
-  private toMinutes(value: string): number {
+  private toMinutes(value: string | null): number {
+    if (!value) return 0;
     const [hours, minutes] = this.formatTime(value).split(":").map(Number);
     return hours * 60 + minutes;
   }
 
-  private formatTime(value: string): string {
-    return value.slice(0, 5);
+  private formatTime(value: string | null): string {
+    return value ? value.slice(0, 5) : "";
   }
 
   private formatHours(value: number): string {

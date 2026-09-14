@@ -1,11 +1,11 @@
-<div class="rf-shell px-3 md:px-4 pb-3 md:pb-4 pt-0">
-  <div *ngIf="loading()" class="flex flex-column gap-4 p-4">
+<div class="rf-shell px-3 px-md-4 pb-3 pb-md-4 pt-0">
+  <div *ngIf="loading()" class="d-flex flex-column gap-4 p-4">
     <p-skeleton width="100%" height="300px" borderRadius="12px" />
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <p-skeleton width="100%" height="400px" borderRadius="12px" />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <p-skeleton width="100%" height="400px" borderRadius="12px" />
       </div>
     </div>
@@ -13,9 +13,9 @@
 
   <div *ngIf="!loading() && dashboardData() && analysisData()">
     <!-- Top KPIs -->
-    <div class="grid mb-4">
+    <div class="row mb-4">
       @for (kpi of kpis(); track kpi.label) {
-        <div class="col-12 md:col-4 xl:col-4">
+        <div class="col-12 col-md-4 col-xl-4">
           <app-stat-card
             orientation="horizontal"
             [label]="kpi.label"
@@ -31,9 +31,9 @@
     </div>
 
     <!-- Analysis Breakdown -->
-    <div class="grid mb-4">
-      <div class="col-12 xl:col-4">
-        <div class="rf-card p-0 h-full overflow-hidden flex flex-column">
+    <div class="row mb-4">
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
           <div class="flex-1">
             <app-breakdown-list
               heading="Análisis de Cobranza Mensual"
@@ -41,7 +41,7 @@
               [items]="filasAnalisisMensual()"
             />
           </div>
-          <div class="p-3 border-top-1 surface-border bg-gray-50 flex justify-content-end">
+          <div class="p-3 border-top-1 surface-border bg-gray-50 d-flex justify-content-end">
             <button
               pButton
               type="button"
@@ -54,15 +54,15 @@
         </div>
       </div>
 
-      <div class="col-12 xl:col-4">
-        <div class="rf-card p-0 h-full overflow-hidden flex flex-column">
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
           <app-breakdown-list
             heading="Deuda Condóminos (EF)"
             subheading="Clasificación del saldo final por cuenta al corte consultado."
             [items]="filasDeudaCondominos()"
           >
             @if (analysisData()?.saldoBalanza) {
-              <div class="border-top-1 border-primary bg-blue-50 py-2 px-4 flex justify-content-between text-blue-800">
+              <div class="border-top-1 border-primary bg-blue-50 py-2 px-4 d-flex justify-content-between text-blue-800">
                 <span>Saldo según balanza</span>
                 <span class="font-bold">{{ analysisData()?.saldoBalanza | currency: 'MXN':'symbol':'1.0-0' }}</span>
               </div>
@@ -71,8 +71,8 @@
         </div>
       </div>
 
-      <div class="col-12 xl:col-4">
-        <div class="rf-card p-4 h-full flex flex-column">
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-4 h-full d-flex flex-column">
           <div class="text-lg font-semibold mb-1">
             Composición de Cobranza
           </div>
@@ -80,10 +80,10 @@
             Distribución de la cartera
           </div>
           <div
-            class="flex-grow-1 flex align-items-center justify-content-center w-full"
+            class="flex-grow-1 d-flex align-items-center justify-content-center w-full"
           >
             <app-chart-wrapper
-              class="w-full block"
+              class="w-full d-block"
               type="pie"
               [data]="chartData()!"
             />
@@ -100,8 +100,8 @@
       </div>
       
       <!-- KPIs de cartera vencida -->
-      <div class="grid mb-4">
-        <div class="col-12 md:col-4">
+      <div class="row mb-4">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="Cartera vencida"
@@ -113,7 +113,7 @@
             [subtitle]="cuentasEnCartera() + ' cuentas en cartera'"
           />
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="Morosos"
@@ -125,7 +125,7 @@
             [subtitle]="morosos().length + ' condóminos'"
           />
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="Cobranza judicial"
@@ -139,8 +139,8 @@
         </div>
       </div>
 
-      <div class="grid">
-        <div class="col-12 lg:col-6">
+      <div class="row">
+        <div class="col-12 col-lg-6">
           <app-ranked-list
             heading="Morosos"
             [items]="morosos()"
@@ -150,7 +150,7 @@
             emptyMessage="Ningún condómino alcanza los umbrales de moroso."
           />
         </div>
-        <div class="col-12 lg:col-6">
+        <div class="col-12 col-lg-6">
           <app-ranked-list
             heading="Cobranza judicial"
             [items]="judicial()"
@@ -176,7 +176,7 @@
         <div class="text-sm text-color-secondary">Agrupación de la deuda por cada torre del condominio.</div>
       </div>
       
-      <p-table [value]="towers()" class="rf-prime-table p-datatable-sm hidden md:block">
+      <p-table [value]="towers()" class="rf-prime-table p-datatable-sm d-none d-md-block">
         <ng-template #header>
           <tr>
             <th pSortableColumn="towerName">
@@ -241,13 +241,13 @@
         </ng-template>
       </p-table>
 
-      <div class="md:hidden">
+      <div class="d-md-none">
         <app-data-view-mobile [data]="towers()" [showAdd]="false">
           <ng-template #listItemTemplate let-row>
             <ili-list-item class="ion-no-padding">
               <div
                 start
-                class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+                class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
               >
                 <app-icon icon="material-symbols-light:location-city" />
               </div>
@@ -275,8 +275,8 @@
         <div class="text-lg font-semibold text-color">Reporte de Anticipos</div>
         <div class="text-sm text-color-secondary">Condóminos con saldo a favor al corte del periodo.</div>
       </div>
-      <div class="grid">
-        <div class="col-12 md:col-4">
+      <div class="row">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="Total a favor"
@@ -288,7 +288,7 @@
             [subtitle]="condominosConSaldo() + ' condóminos con saldo a favor'"
           />
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="Anticipo promedio"
@@ -300,7 +300,7 @@
             subtitle="Por condómino con saldo a favor"
           />
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <app-stat-card
             orientation="horizontal"
             label="A favor en mantenimiento"
@@ -331,7 +331,7 @@
 
     <!-- Detalle por condómino -->
     <div class="rf-card p-4">
-      <div class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+      <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
         <div>
           <div class="text-lg font-semibold">Detalle por condómino</div>
           <div class="text-color-secondary text-sm">

@@ -1,4 +1,4 @@
-<p-table [value]="dataSignal()" class="custom-table card hidden md:block">
+<p-table [value]="dataSignal()" class="custom-table card d-none d-md-block">
   <ng-template #header>
     <tr>
       <th>Archivo</th>
@@ -18,7 +18,7 @@
       </td>
       <td>{{ item.nameDocument }}</td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-delete (confirmed)="deleteDoc(item.id)" />
         </div>
       </td>

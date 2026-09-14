@@ -1,7 +1,7 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <!-- Header con info básica -->
-  <div class="flex align-items-center mb-1 gap-3">
-    <div class="bg-primary text-white border-round w-3rem h-3rem flex align-items-center justify-content-center text-xl font-bold flex-shrink-0">
+  <div class="d-flex align-items-center mb-1 gap-3">
+    <div class="bg-primary text-white border-round w-3rem h-3rem d-flex align-items-center justify-content-center text-xl font-bold flex-shrink-0">
       <app-icon icon="material-symbols-light:apartment" />
     </div>
     <div>
@@ -12,7 +12,7 @@
 
   <!-- Título de clasificación -->
   <div class="mb-3">
-    <div class="text-sm border-round p-3 flex flex-column gap-2"
+    <div class="text-sm border-round p-3 d-flex flex-column gap-2"
          [ngClass]="{
            'bg-red-50 border-1 border-red-200': data.classification === 'COBRANZA JUDICIAL',
            'bg-orange-50 border-1 border-orange-200': data.classification === 'MOROSOS',
@@ -20,7 +20,7 @@
            'bg-green-50 border-1 border-green-200': data.classification === 'SIN ADEUDO',
            'surface-ground border-1 surface-border': data.classification === 'ANTICIPOS'
          }">
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         <app-icon icon="material-symbols-light:info" class="text-lg" [ngClass]="{
              'text-red-500': data.classification === 'COBRANZA JUDICIAL',
              'text-orange-500': data.classification === 'MOROSOS',
@@ -50,11 +50,11 @@
       <div class="mt-2 text-500">Cargando desglose...</div>
     </div>
   } @else if (detail()) {
-    <div class="block">
+    <div class="d-block">
       @for (item of detail()?.conceptos; track item.concepto) {
         <div class="border-1 surface-border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
-          <div class="p-3 surface-50 border-bottom-1 surface-border flex flex-column gap-2">
-            <div class="flex justify-content-between align-items-center">
+          <div class="p-3 surface-50 border-bottom-1 surface-border d-flex flex-column gap-2">
+            <div class="d-flex justify-content-between align-items-center">
               <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
               <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
                 {{ item.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}
@@ -63,10 +63,10 @@
           </div>
           <div class="p-3">
             @if (item.vencidos?.length) {
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
-                  <div class="flex justify-content-between align-items-center text-sm border-bottom-1 surface-border pb-2 last-none">
-                    <div class="flex flex-column">
+                  <div class="d-flex justify-content-between align-items-center text-sm border-bottom-1 surface-border pb-2 last-none">
+                    <div class="d-flex flex-column">
                       <span class="text-800">{{ v.conceptoDetalle }}</span>
                     </div>
                     <span class="font-mono font-semibold" [ngClass]="getBalanceClass(v.saldoPendiente)">
@@ -78,8 +78,8 @@
             } @else {
               <div class="text-500 text-sm italic text-center py-2">Sin desglose de periodos vencidos.</div>
             }
-            <div class="flex justify-content-end mt-3 border-top-1 surface-border pt-2">
-              <span class="font-semibold text-sm text-color-secondary mr-2">Total {{ item.concepto }}:</span>
+            <div class="d-flex justify-content-end mt-3 border-top-1 surface-border pt-2">
+              <span class="font-semibold text-sm text-color-secondary me-2">Total {{ item.concepto }}:</span>
               <span class="font-bold text-sm" [ngClass]="getBalanceClass(item.saldoFinal)">
                 {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
               </span>
@@ -92,9 +92,9 @@
     <div class="border-top-1 surface-border pt-4 mt-2">
       <div class="font-bold text-900 mb-3 text-sm uppercase">Resumen Total por Tipo</div>
       
-      <div class="flex flex-column gap-2">
+      <div class="d-flex flex-column gap-2">
         @for (item of detail()?.conceptos; track item.concepto) {
-          <div class="flex justify-content-between text-sm py-1 border-bottom-1 surface-border">
+          <div class="d-flex justify-content-between text-sm py-1 border-bottom-1 surface-border">
             <span class="text-600">{{ item.concepto }}</span>
             <span class="font-mono font-medium" [ngClass]="getBalanceClass(item.saldoFinal)">
               {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
@@ -103,7 +103,7 @@
         }
       </div>
       
-      <div class="flex justify-content-between text-lg font-bold border-top-1 surface-border pt-3 mt-2">
+      <div class="d-flex justify-content-between text-lg font-bold border-top-1 surface-border pt-3 mt-2">
         <span class="text-900">Total Adeudo</span>
         <span [ngClass]="getBalanceClass(detail()?.saldoFinalTotal)">
           {{ (detail()?.saldoFinalTotal) | currency: 'MXN':'symbol':'1.2-2' }}

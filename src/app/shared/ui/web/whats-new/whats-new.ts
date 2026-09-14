@@ -30,7 +30,7 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
           Resumen rápido de las mejoras destacadas en la experiencia:
         </p>
 
-        <ul class="pl-3 m-0 line-height-3">
+        <ul class="ps-3 m-0 line-height-3">
           <li>Auditoría asistida para procesos de compras y validación documental.</li>
           <li>Listados con accesos directos a acciones y seguimiento.</li>
           <li>Mejoras de compartición por correo y canales operativos.</li>

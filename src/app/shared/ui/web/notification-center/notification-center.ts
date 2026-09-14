@@ -25,7 +25,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
         styleClass="p-relative"
         (onClick)="op.toggle($event)"
       >
-        <div class="flex align-items-center gap-1">
+        <div class="d-flex align-items-center gap-1">
           <app-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
           @if (unreadCount() > 0) {
             <p-badge [value]="unreadCount()" severity="danger" />
@@ -40,7 +40,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
       >
         <div class="notification-panel">
           <div
-            class="notification-header flex align-items-center justify-content-between px-1 pb-2"
+            class="notification-header d-flex align-items-center justify-content-between px-1 pb-2"
           >
             <strong class="text-sm">Notificaciones</strong>
             @if (unreadCount() > 0) {
@@ -56,7 +56,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
           <div class="notification-list">
             @for (item of notifications(); track item.id) {
               <div
-                class="notification-item flex align-items-start gap-2 p-2 rounded cursor-pointer"
+                class="notification-item d-flex align-items-start gap-2 p-2 rounded cursor-pointer"
                 [class.notification-unread]="!item.read"
                 (click)="onItemClick(item)"
               >
@@ -69,7 +69,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
                       : 'var(--ds-text-muted)'
                   "
                 />
-                <div class="flex flex-column gap-1 flex-1 min-w-0">
+                <div class="d-flex flex-column gap-1 flex-1 min-w-0">
                   <strong class="text-sm">{{ item.title }}</strong>
                   <p class="m-0 text-xs text-color-secondary line-height-2">
                     {{ item.description }}
@@ -82,7 +82,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
               </div>
             } @empty {
               <div
-                class="flex flex-column align-items-center gap-2 py-4 text-color-secondary"
+                class="d-flex flex-column align-items-center gap-2 py-4 text-color-secondary"
               >
                 <app-icon icon="material-symbols-light:notifications-off-outline" class="text-3xl" />
                 <span class="text-sm">Sin notificaciones</span>

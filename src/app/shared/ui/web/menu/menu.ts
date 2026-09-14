@@ -110,6 +110,7 @@ export class AppMenu extends MenuBase {
       .position()
       .flexibleConnectedTo(this.trigger())
       .withFlexibleDimensions(false)
+      .withViewportMargin(20)
       .withPositions([
         {
           originX: "start",

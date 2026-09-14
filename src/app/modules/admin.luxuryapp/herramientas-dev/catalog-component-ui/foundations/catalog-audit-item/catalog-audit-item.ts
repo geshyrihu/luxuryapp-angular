@@ -27,11 +27,11 @@ const AUDIT_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("contentblocks") {
-          <div class="grid">
+          <div class="row">
             @for (b of bloques; track b.titulo) {
-              <div class="col-12 lg:col-4">
+              <div class="col-12 col-lg-4">
                 <div class="border-round-xl border-1 p-4 h-full">
-                  <div class="flex align-items-center gap-2 mb-3">
+                  <div class="d-flex align-items-center gap-2 mb-3">
                     <app-icon [icon]="iconifyIcon(b.icono)" class="text-xl" />
                     <strong>{{ b.titulo }}</strong>
                   </div>
@@ -44,11 +44,11 @@ const AUDIT_LABELS: Record<string, string> = {
           </div>
         }
         @case ("quickchecklist") {
-          <div class="grid">
+          <div class="row">
             @for (item of checklist(); track item.numero) {
-              <div class="col-12 md:col-6">
+              <div class="col-12 col-md-6">
                 <div
-                  class="flex align-items-start gap-3 border-round-lg border-1 p-3"
+                  class="d-flex align-items-start gap-3 border-round-lg border-1 p-3"
                   [class.bg-green-50]="item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >

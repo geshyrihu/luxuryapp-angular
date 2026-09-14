@@ -1,6 +1,6 @@
 <!-- 📺 INICIO: Contenido adaptado para versión de escritorio -->
-<div class="hidden md:block p-4">
-  <div class="flex align-items-center justify-content-between mb-4 gap-4">
+<div class="d-none d-md-block p-4">
+  <div class="d-flex align-items-center justify-content-between mb-4 gap-4">
     <div
       class="p-2 px-3 font-bold text-blue-700 bg-blue-50 rounded-md border-left-3 border-blue-500"
     >
@@ -16,7 +16,7 @@
   </div>
 
   @if (loading()) {
-  <div class="flex justify-content-center my-5">
+  <div class="d-flex justify-content-center my-5">
     <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
   </div>
   } @if (!loading() && filteredGroupedData().length === 0) {
@@ -31,22 +31,22 @@
   @for (group of filteredGroupedData(); track group.groupTitle + $index) {
   <div class="mb-4">
     <!-- Título del grupo -->
-    <div class="flex align-items-center gap-2 mb-2 px-1">
+    <div class="d-flex align-items-center gap-2 mb-2 px-1">
       <div class="w-0-5rem h-1rem rounded bg-primary"></div>
       <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-wider">
         {{ group.groupTitle }}
       </h5>
-      <span class="text-xs text-500 ml-2"
+      <span class="text-xs text-500 ms-2"
         >({{ group.items.length }} módulos)</span
       >
     </div>
 
     <!-- Grid de módulos -->
-    <div class="grid grid-nogutter gap-2">
+    <div class="row grid-nogutter gap-2">
       @for (item of group.items; track item.moduleAppId) {
-      <div class="col-6 md:col-4 lg:col-3 xl:col-2">
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div
-          class="border-1 cursor-pointer p-2 rounded-md transition-all transition-duration-200 shadow-hover flex align-items-center"
+          class="border-1 cursor-pointer p-2 rounded-md transition-all transition-duration-200 shadow-hover d-flex align-items-center"
           [class.border-green-500]="item.isAssigned"
           [class.bg-green-50]="item.isAssigned"
           [class.shadow-sm]="item.isAssigned"
@@ -54,9 +54,9 @@
           [class.surface-50]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
-          <div class="flex align-items-center gap-2 w-full">
+          <div class="d-flex align-items-center gap-2 w-full">
             <span
-              class="w-1-5rem h-1-5rem rounded-circle flex align-items-center justify-content-center border-1 flex-shrink-0"
+              class="w-1-5rem h-1-5rem rounded-circle d-flex align-items-center justify-content-center border-1 flex-shrink-0"
               [class.bg-green-100]="item.isAssigned"
               [class.text-green-700]="item.isAssigned"
               [class.border-green-200]="item.isAssigned"
@@ -87,7 +87,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="md:hidden">
+<div class="d-md-none">
   <div class="ion-padding">
     <div
       class="p-2 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center text-sm"
@@ -106,7 +106,7 @@
     </div>
 
     @if (loading()) {
-    <div class="flex justify-content-center my-5">
+    <div class="d-flex justify-content-center my-5">
       <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
     </div>
     } @if (!loading() && filteredGroupedData().length === 0) {
@@ -116,13 +116,13 @@
       <h3 class="text-xs text-500 font-bold px-3 uppercase m-0 mb-1">
         {{ group.groupTitle }}
       </h3>
-      <div class="flex flex-column" 
+      <div class="d-flex flex-column" 
         inset="true"
         class="m-0 rounded-lg overflow-hidden shadow-sm"
       >
         @for (item of group.items; track item.moduleAppId) {
         <ili-list-item class="ion-no-padding">
-          <div slot="start" class="pl-3 py-2 flex align-items-center">
+          <div slot="start" class="ps-3 py-2 d-flex align-items-center">
             <app-icon
               [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
               [class.text-green-500]="item.isAssigned"

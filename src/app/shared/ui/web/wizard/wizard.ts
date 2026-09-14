@@ -20,7 +20,7 @@ export type WizardStep = StepperStep;
       <p-step-list>
         @for (step of steps(); track step.value) {
           <p-step [value]="step.value">
-            <div class="flex align-items-center gap-1">
+            <div class="d-flex align-items-center gap-1">
               <app-icon [icon]="step.icon" class="text-sm" />
               <span>{{ step.label }}</span>
             </div>
@@ -33,7 +33,7 @@ export type WizardStep = StepperStep;
       <ng-content />
     </div>
 
-    <div class="flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
       @if (activeStep() > 1) {
         <p-button
           label="Anterior"

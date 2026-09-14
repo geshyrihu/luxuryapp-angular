@@ -3,16 +3,16 @@
   [value]="generalMinutasGrupoSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid align-items-center mb-3">
-      <div class="col-12 sm:col-7">
+    <div class="row align-items-center mb-3">
+      <div class="col-12 col-sm-7">
         <div class="h4 m-0">
           MINUTAS DE JUNTAS DE COMITÉ, PERIODO {{ periodo() | uppercase }}
         </div>
       </div>
-      <div class="col-12 sm:col-5 text-left no-print">
+      <div class="col-12 col-sm-5 text-left no-print">
         <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
       </div>
     </div>
@@ -41,7 +41,7 @@
             >
               <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
-                  <span class="ml-1">{{ option.label }}</span>
+                  <span class="ms-1">{{ option.label }}</span>
                 </div>
               </ng-template>
             </lx-multi-select>

@@ -1,14 +1,14 @@
 @if (dataSignal()) {
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
-  <div class="flex flex-column gap-3">
+<div class="d-none d-md-block">
+  <div class="d-flex flex-column gap-3">
     <!-- Header Section -->
     <div
-      class="card p-3 shadow-sm rounded-xl surface-card flex justify-content-between align-items-center border-left-3 border-cyan-500"
+      class="card p-3 shadow-sm rounded-xl surface-card d-flex justify-content-between align-items-center border-left-3 border-cyan-500"
     >
-      <div class="flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
         <div
-          class="p-3 rounded-circle bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center"
+          class="p-3 rounded-circle bg-cyan-50 text-cyan-600 d-flex align-items-center justify-content-center"
         >
           <app-icon icon="material-symbols-light:calculate" class="text-2xl" />
         </div>
@@ -25,7 +25,7 @@
 
     <!-- Info Banner for Accountant -->
     <div
-      class="p-3 rounded-lg bg-cyan-50 text-cyan-800 text-sm flex align-items-center gap-2"
+      class="p-3 rounded-lg bg-cyan-50 text-cyan-800 text-sm d-flex align-items-center gap-2"
     >
       <app-icon icon="material-symbols-light:info" class="text-xl" />
       <span
@@ -35,7 +35,7 @@
     </div>
 
     <!-- Rows Container (Full Width Row-Cards) -->
-    <div class="flex flex-column gap-3">
+    <div class="d-flex flex-column gap-3">
       @for (item of dataSignal(); track item.id) {
       <div
         class="card p-0 shadow-sm rounded-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-sm"
@@ -43,10 +43,10 @@
       >
         <!-- Row Header -->
         <div
-          class="p-3 bg-gray-50 border-bottom-1 surface-border flex justify-content-between align-items-center"
+          class="p-3 bg-gray-50 border-bottom-1 surface-border d-flex justify-content-between align-items-center"
         >
-          <div class="flex align-items-center gap-5">
-            <div class="flex flex-column">
+          <div class="d-flex align-items-center gap-5">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Periodo</span
               >
@@ -54,16 +54,16 @@
                 >{{ item.fechaCorrespondiente }}</span
               >
             </div>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Fecha de Junta</span
               >
-              <div class="flex align-items-center gap-2 text-700">
+              <div class="d-flex align-items-center gap-2 text-700">
                 <app-icon icon="material-symbols-light:calendar-today" class="text-cyan-500" />
                 <span class="font-medium">{{ item.fechaJunta }}</span>
               </div>
             </div>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Estado Archivo</span
               >
@@ -77,7 +77,7 @@
 
           @if (item.archivoFinal) {
           <div
-            class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
+            class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
           >
             <app-icon icon="material-symbols-light:lock" />
             <span>SESIóN FINALIZADA</span>
@@ -87,24 +87,24 @@
 
         <!-- Row Body -->
         <div class="p-4">
-          <div class="grid align-items-center">
+          <div class="row align-items-center">
             <!-- Main Content: Accounting Upload -->
-            <div class="col-12 md:col-7 border-right-1 surface-border pr-4">
-              <div class="flex align-items-center gap-4">
+            <div class="col-12 col-md-7 border-right-1 surface-border pe-4">
+              <div class="d-flex align-items-center gap-4">
                 <div
-                  class="p-4 rounded-xl bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center"
+                  class="p-4 rounded-xl bg-cyan-50 text-cyan-600 d-flex align-items-center justify-content-center"
                 >
                   <app-icon icon="material-symbols-light:bar-chart" class="text-4xl" />
                 </div>
 
-                <div class="flex-grow-1 flex flex-column gap-2">
+                <div class="flex-grow-1 d-flex flex-column gap-2">
                   <h6 class="m-0 font-bold text-800 uppercase tracking-tight">
                     Reporte Contable Mensual
                   </h6>
 
                   @if (item.archivoContable) {
                   <div
-                    class="flex align-items-center gap-3 bg-white p-2 rounded shadow-sm border-1 border-gray-100"
+                    class="d-flex align-items-center gap-3 bg-white p-2 rounded shadow-sm border-1 border-gray-100"
                   >
                     <il-button-view-pdf
                       [url]="item.archivoContable"
@@ -114,7 +114,7 @@
                       size="sm"
                     />
                     @if (!item.archivoFinal) {
-                    <div class="flex gap-1 ml-auto">
+                    <div class="d-flex gap-1 ms-auto">
                       <il-button-edit
                         (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                         variant="text"
@@ -128,14 +128,14 @@
                     </div>
                     }
                   </div>
-                  <div class="flex gap-4 mt-1">
-                    <div class="flex flex-column">
+                  <div class="d-flex gap-4 mt-1">
+                    <div class="d-flex flex-column">
                       <small class="text-700 font-bold">CARGADO POR:</small>
                       <small class="text-600"
                         >{{ item.applicationUserContable }}</small
                       >
                     </div>
-                    <div class="flex flex-column">
+                    <div class="d-flex flex-column">
                       <small class="text-700 font-bold">FECHA CARGA:</small>
                       <small class="text-600"
                         >{{ item.fechaCargaContable }}</small
@@ -143,7 +143,7 @@
                     </div>
                   </div>
                   } @else if (!item.archivoFinal) {
-                  <div class="flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-3">
                     <il-button
                       label="CARGAR REPORTE AHORA"
                       iconClass="material-symbols-light:upload"
@@ -168,17 +168,17 @@
             </div>
 
             <!-- Side Content: Other Areas Status -->
-            <div class="col-12 md:col-5 pl-4 flex flex-column gap-3">
+            <div class="col-12 col-md-5 ps-4 d-flex flex-column gap-3">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Disponibilidad de otras áreas</span
               >
 
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <!-- Status Row: Portada -->
                 <div
-                  class="flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
+                  class="d-flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
                 >
-                  <div class="flex align-items-center gap-2">
+                  <div class="d-flex align-items-center gap-2">
                     <app-icon
                       icon="material-symbols-light:filter-frames"
                       class="text-blue-500"
@@ -196,9 +196,9 @@
 
                 <!-- Status Row: Operaciones -->
                 <div
-                  class="flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
+                  class="d-flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
                 >
-                  <div class="flex align-items-center gap-2">
+                  <div class="d-flex align-items-center gap-2">
                     <app-icon icon="material-symbols-light:settings-overscan" class="text-orange-500" />
                     <span class="text-sm font-medium text-700"
                       >Reporte de Operaciones</span
@@ -231,7 +231,7 @@
       </div>
       } @empty {
       <div
-        class="card p-8 shadow-sm rounded-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3"
+        class="card p-8 shadow-sm rounded-xl surface-card d-flex flex-column align-items-center justify-content-center text-center gap-3"
       >
         <app-icon icon="material-symbols-light:timer" class="text-6xl text-300" />
         <div>
@@ -248,7 +248,7 @@
 </div>
 
 <!-- INICIO: Componente adaptado para version movil -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
     La presentacion ya no se crea directamente aqui. Primero registra la agenda
     de la junta para generar la sesion mensual y la presentacion relacionada.
@@ -264,19 +264,19 @@
       >
         <!-- Header -->
         <div class="border-bottom-1 surface-border pb-2 mb-2">
-          <div class="flex justify-content-between align-items-center mb-2">
+          <div class="d-flex justify-content-between align-items-center mb-2">
             <div>
               <h6 class="m-0 font-bold text-900 uppercase">
                 PERIODO: {{ item.fechaCorrespondiente | uppercase }}
               </h6>
-              <small class="text-500 block mt-1"
+              <small class="text-500 d-block mt-1"
                 >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
                 item.horaJunta ? ", HORA: " + item.horaJunta : "" }}</small
               >
             </div>
             @if ( aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])() && !item.archivoFinal ) {
-            <div class="flex gap-1">
+            <div class="d-flex gap-1">
               <il-button-edit
                 (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
               />
@@ -292,9 +292,9 @@
         </div>
 
         <!-- Body -->
-        <div class="grid">
+        <div class="row">
           <!-- Portada -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Portada"
               [toggleable]="true"
@@ -312,11 +312,11 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
               />
               } @else if (item.archivoPortada) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
@@ -336,7 +336,7 @@
           </div>
 
           <!-- Contable -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Contable"
               [toggleable]="true"
@@ -353,7 +353,7 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
               />
               } @else if (item.archivoContable) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf
                   [url]="item.archivoContable"
                   pdf="Contabilidad"
@@ -361,7 +361,7 @@
                 @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
                 && !item.archivoFinal && !item.applicationUserSupervisorContable
                 ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                   />
@@ -382,7 +382,7 @@
           </div>
 
           <!-- Operaciones -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Operaciones"
               [toggleable]="true"
@@ -399,14 +399,14 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
               />
               } @else if (item.archivoJunta) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf
                   [url]="item.archivoJunta"
                   pdf="Operaciones"
                 />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
@@ -426,13 +426,13 @@
           </div>
 
           <!-- Final -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
               @if ( !item.archivoFinal && aspRoleS.anyOf([
               AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
               item.archivoPortada && item.archivoContable && item.archivoJunta )
               {
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <il-button-confirm
                   icon="material-symbols-light:send"
                   label="Validar y enviar a comite"
@@ -455,7 +455,7 @@
                 />
               </div>
               } @else if (item.archivoFinal) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
                 @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
                 <il-button-delete

@@ -12,19 +12,19 @@
 
   <!-- Interval -->
   @if (selectedFrequency) {
-  <div class="grid mt-4 align-items-end">
-    <div class="col-12 md:col-3 flex">
+  <div class="row mt-4 align-items-end">
+    <div class="col-12 col-md-3 d-flex">
       <label class="font-medium">Repetir cada</label>
     </div>
-    <div class="col-12 md:col-9">
-      <div class="flex align-items-end">
+    <div class="col-12 col-md-9">
+      <div class="d-flex align-items-end">
         <custom-input-number-signal
           [control]="recurrenceForm.controls.interval"
           [min]="1"
           [showButtons]="true"
           mode="decimal"
         ></custom-input-number-signal>
-        <span class="p-text-secondary pb-1 ml-2"> {{ currentFrequencyLabel }} </span>
+        <span class="p-text-secondary pb-1 ms-2"> {{ currentFrequencyLabel }} </span>
       </div>
     </div>
   </div>
@@ -32,26 +32,26 @@
 
   <!-- WEEKLY: Days Selection -->
   @if (isWeekly) {
-  <div class="grid mt-4 align-items-end">
-    <div class="col-12 md:col-3 flex">
+  <div class="row mt-4 align-items-end">
+    <div class="col-12 col-md-3 d-flex">
       <label class="font-medium">Días de la semana</label>
     </div>
-    <div class="col-12 md:col-9">
-      <div class="flex flex-wrap gap-3">
+    <div class="col-12 col-md-9">
+      <div class="d-flex flex-wrap gap-3">
         @for (day of weekDays; track day.value) {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <lx-checkbox
             [checked]="isDaySelected(day.value)"
             (checkedChange)="toggleDay(day.value, $event)"
             [inputId]="day.value"
           />
-          <label [for]="day.value" class="ml-2 cursor-pointer"
+          <label [for]="day.value" class="ms-2 cursor-pointer"
             >{{ day.label }}</label
           >
         </div>
         }
       </div>
-      <small class="p-text-secondary mt-2 block">
+      <small class="p-text-secondary mt-2 d-block">
         Selecciona los días en los que se repetirá
       </small>
     </div>
@@ -61,7 +61,7 @@
   <!-- MONTHLY: Type Selection -->
   @if (isMonthly) {
   <div class="mt-4">
-    <label class="mb-3 block font-medium">Tipo de recurrencia mensual</label>
+    <label class="mb-3 d-block font-medium">Tipo de recurrencia mensual</label>
 
     <!-- Option 1: Day of Month -->
     <div
@@ -69,17 +69,17 @@
       [class.surface-50]="monthlyType === 'dayOfMonth'"
       [class.border-primary]="monthlyType === 'dayOfMonth'"
     >
-      <div class="flex align-items-center mb-2">
+      <div class="d-flex align-items-center mb-2">
         <lx-radio-button
           value="dayOfMonth"
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfMonth"
         />
-        <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ml-2">
+        <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ms-2">
           Día específico del mes
         </label>
       </div>
-      <div class="flex align-items-end ml-4 flex-wrap gap-2">
+      <div class="d-flex align-items-end ms-4 flex-wrap gap-2">
         <span class="pb-1">Los días</span>
         <custom-input-multiselect-signal
           [control]="recurrenceForm.controls.monthDays"
@@ -92,7 +92,7 @@
         ></custom-input-multiselect-signal>
         <span class="pb-1">de cada mes</span>
       </div>
-      <small class="p-text-secondary ml-4 mt-1 block">
+      <small class="p-text-secondary ms-4 mt-1 d-block">
         Ejemplo: Los días 5 y 20 de cada mes
       </small>
     </div>
@@ -103,7 +103,7 @@
       [class.surface-50]="monthlyType === 'lastDayOfMonth'"
       [class.border-primary]="monthlyType === 'lastDayOfMonth'"
     >
-      <div class="flex align-items-center mb-2">
+      <div class="d-flex align-items-center mb-2">
         <lx-radio-button
           value="lastDayOfMonth"
           [control]="recurrenceForm.controls.monthlyType"
@@ -111,12 +111,12 @@
         />
         <label
           for="lastDayOfMonth"
-          class="font-medium cursor-pointer flex-1 ml-2"
+          class="font-medium cursor-pointer flex-1 ms-2"
         >
           Último día del mes
         </label>
       </div>
-      <small class="p-text-secondary ml-4 mt-1 block">
+      <small class="p-text-secondary ms-4 mt-1 d-block">
         Ejemplo: El último día de cada mes
       </small>
     </div>
@@ -127,17 +127,17 @@
       [class.surface-50]="monthlyType === 'dayOfWeek'"
       [class.border-primary]="monthlyType === 'dayOfWeek'"
     >
-      <div class="flex align-items-center mb-2">
+      <div class="d-flex align-items-center mb-2">
         <lx-radio-button
           value="dayOfWeek"
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfWeek"
         />
-        <label for="dayOfWeek" class="font-medium cursor-pointer flex-1 ml-2">
+        <label for="dayOfWeek" class="font-medium cursor-pointer flex-1 ms-2">
           Posición en el mes
         </label>
       </div>
-      <div class="flex align-items-end flex-wrap ml-4 gap-2">
+      <div class="d-flex align-items-end flex-wrap ms-4 gap-2">
         <span class="pb-1">El</span>
         <custom-input-select-signal
           [control]="recurrenceForm.controls.monthPosition"
@@ -157,7 +157,7 @@
         ></custom-input-select-signal>
         <span class="pb-1">de cada mes</span>
       </div>
-      <small class="p-text-secondary ml-4 mt-1 block">
+      <small class="p-text-secondary ms-4 mt-1 d-block">
         Ejemplo: El tercer viernes de cada mes
       </small>
     </div>
@@ -167,9 +167,9 @@
   <!-- YEARLY: Month and Day Selection -->
   @if (isYearly) {
   <div class="mt-4">
-    <label class="mb-3 block font-medium">Fecha anual</label>
+    <label class="mb-3 d-block font-medium">Fecha anual</label>
     <div class="p-3 border-1 surface-border rounded surface-50">
-      <div class="flex align-items-end flex-wrap">
+      <div class="d-flex align-items-end flex-wrap">
         <span class="pb-1">Cada</span>
         <custom-input-select-signal
           [control]="recurrenceForm.controls.yearDay"
@@ -187,7 +187,7 @@
           placeholder="Mes"
         ></custom-input-select-signal>
       </div>
-      <small class="p-text-secondary mt-2 block">
+      <small class="p-text-secondary mt-2 d-block">
         Ejemplo: Cada 25 de Diciembre
       </small>
     </div>

@@ -20,7 +20,7 @@
   } @else {
   <p-table
     [value]="rows()"
-    class="rf-prime-table card hidden md:block p-datatable-sm"
+    class="rf-prime-table card d-none d-md-block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
     <ng-template #header>
@@ -63,7 +63,7 @@
       } @if (row.tipo === 'item') {
       <tr class="rf-row-concepto">
         <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
-        <td class="rf-td-descripcion--item pl-4">{{ row.descripcion }}</td>
+        <td class="rf-td-descripcion--item ps-4">{{ row.descripcion }}</td>
         <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">
           {{ row.mes1 === 0 ? "-" : (row.mes1 | accountingNumber : "1.0-0") }}
         </td>
@@ -116,7 +116,7 @@
   </p-table>
 
   <app-data-view-mobile
-    class="md:hidden"
+    class="d-md-none"
     [data]="rows()"
     [loading]="loading()"
     [showAdd]="false"
@@ -135,7 +135,7 @@
         [class.rf-mobile-total]="item.tipo === 'total-ingresos' || item.tipo === 'total-gastos'"
         [class.rf-mobile-result]="item.tipo === 'diferencia'"
       >
-        <div class="flex justify-content-between align-items-start mb-2 gap-2">
+        <div class="d-flex justify-content-between align-items-start mb-2 gap-2">
           <span class="w-9 font-bold">{{ item.descripcion }}</span>
           @if (item.numeroCuenta) {
           <span class="text-xs font-mono text-500 shrink-0"
@@ -143,11 +143,11 @@
           >
           }
         </div>
-        <div class="grid m-0 text-xs text-500">
+        <div class="row m-0 text-xs text-500">
           <div class="col-4 p-0">
             {{ monthHeaders()[0] }}:
             <span
-              class="text-color font-medium block"
+              class="text-color font-medium d-block"
               [class.rf-neg]="item.mes1 < 0"
               >{{ item.mes1 | accountingNumber : "1.0-0" }}</span
             >
@@ -155,7 +155,7 @@
           <div class="col-4 p-0">
             {{ monthHeaders()[1] }}:
             <span
-              class="text-color font-medium block"
+              class="text-color font-medium d-block"
               [class.rf-neg]="item.mes2 < 0"
               >{{ item.mes2 | accountingNumber : "1.0-0" }}</span
             >
@@ -163,14 +163,14 @@
           <div class="col-4 p-0">
             {{ monthHeaders()[2] }}:
             <span
-              class="text-color font-medium block"
+              class="text-color font-medium d-block"
               [class.rf-neg]="item.mes3 < 0"
               >{{ item.mes3 | accountingNumber : "1.0-0" }}</span
             >
           </div>
         </div>
         <div
-          class="mt-2 pt-2 border-top-1 border-100 flex justify-content-between align-items-center"
+          class="mt-2 pt-2 border-top-1 border-100 d-flex justify-content-between align-items-center"
         >
           <span class="text-xs font-bold uppercase text-500">Acumulado</span>
           <span

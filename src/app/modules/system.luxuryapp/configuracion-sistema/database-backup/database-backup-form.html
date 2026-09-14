@@ -28,8 +28,8 @@
       }
 
       <div class="mb-3">
-        <label class="block mb-1 text-sm font-medium">Programacion (Cron)</label>
-        <div class="grid">
+        <label class="d-block mb-1 text-sm font-medium">Programacion (Cron)</label>
+        <div class="row">
           <div class="col-8">
             <custom-input-text-signal
               [control]="form.controls.cronExpression"
@@ -95,7 +95,7 @@
           />
 
           @if (isEditMode()) {
-            <div class="flex justify-content-end mt-2">
+            <div class="d-flex justify-content-end mt-2">
               <il-button
                 label="Probar conexion"
                 iconClass="material-symbols-light:cloud-done"
@@ -126,7 +126,7 @@
         [options]="[{ label: 'Si', value: true }, { label: 'No', value: false }]"
       />
 
-      <div class="flex justify-content-end mt-3">
+      <div class="d-flex justify-content-end mt-3">
         <il-button-save
           [propertyId]="isEditMode() ? 'edit' : ''"
           [disabled]="form.invalid"

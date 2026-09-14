@@ -1,5 +1,5 @@
 <div class="legal-staff-board">
-  <div class="flex flex-column lg:flex-row align-items-center justify-content-between gap-3 mb-3">
+  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3 mb-3">
     <div>
       <h2 class="m-0 text-xl font-semibold">Empleados Activos y Contratos</h2>
       <p class="text-500 m-0 text-sm">
@@ -40,7 +40,7 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             @if (item.photoUrl) {
             <lx-avatar
               [image]="item.photoUrl"
@@ -54,7 +54,7 @@
               size="large"
             />
             }
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="font-semibold">{{ item.fullName }}</span>
               @if (item.workPositionName) {
               <small class="text-500">{{ item.workPositionName }}</small>
@@ -82,7 +82,7 @@
         </td>
 
         <td>
-          <div class="flex align-items-center justify-content-center gap-1">
+          <div class="d-flex align-items-center justify-content-center gap-1">
             <iw-button-item
               iconClass="material-symbols-light:folder-open"
               lxTooltip="Ver Expediente"

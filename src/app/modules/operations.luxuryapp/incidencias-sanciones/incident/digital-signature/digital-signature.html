@@ -1,5 +1,5 @@
 <div class="digital-signature-container">
-  <label class="block text-sm font-medium mb-2">Firma Digital</label>
+  <label class="d-block text-sm font-medium mb-2">Firma Digital</label>
 
   <div class="border-1 border-300 rounded overflow-hidden bg-white">
     <canvas
@@ -17,7 +17,7 @@
     ></canvas>
   </div>
 
-  <div class="flex mt-3 gap-2">
+  <div class="d-flex mt-3 gap-2">
     <il-button
       label="Limpiar"
       severity="secondary"
@@ -35,14 +35,14 @@
   </div>
 
   @if (hasSignature()) {
-  <small class="text-green-600 mt-2 block font-medium">
+  <small class="text-green-600 mt-2 d-block font-medium">
     <app-icon
       [icon]="'material-symbols-light:check-circle'"
-      class="mr-1"
+      class="me-1"
     />Firma capturada correctamente
   </small>
   } @else {
-  <small class="text-color-secondary mt-2 block italic">
+  <small class="text-color-secondary mt-2 d-block italic">
     Dibuje su firma en el recuadro superior
   </small>
   }

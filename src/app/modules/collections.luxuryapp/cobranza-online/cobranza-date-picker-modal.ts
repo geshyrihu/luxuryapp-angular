@@ -17,7 +17,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
           [horizontal]="false"
         />
       </div>
-      <div class="flex gap-2 justify-content-end">
+      <div class="d-flex gap-2 justify-content-end">
         <il-button
           [label]="'Cancelar'"
           (clicked)="onCancel()"

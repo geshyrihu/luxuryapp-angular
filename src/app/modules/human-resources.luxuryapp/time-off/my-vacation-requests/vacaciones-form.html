@@ -5,36 +5,36 @@
 
   <ng-template #content>
     @if (balance) {
-    <div class="grid">
+    <div class="row">
       <!-- Columna: Resumen de Días -->
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <lx-panel header="Resumen de Días">
           <ul class="list-none p-0 m-0">
-            <li class="flex justify-content-between mb-2">
+            <li class="d-flex justify-content-between mb-2">
               <span>Días Totales (Base Legal):</span>
               <strong>{{ balance.totalDays }}</strong>
             </li>
-            <li class="flex justify-content-between mb-2">
+            <li class="d-flex justify-content-between mb-2">
               <span>Días Usados (Total):</span>
               <strong class="text-red-500">{{ balance.usedDays }}</strong>
             </li>
             @if (balance.usedAdvanceDays > 0 || balance.usedNormalDays > 0) {
-            <li class="flex justify-content-between mb-2 pl-3 text-sm text-500">
+            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-500">
               <span>- Por Adelanto:</span>
               <strong>{{ balance.usedAdvanceDays }}</strong>
             </li>
-            <li class="flex justify-content-between mb-2 pl-3 text-sm text-500">
+            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-500">
               <span>- En Periodo Legal:</span>
               <strong>{{ balance.usedNormalDays }}</strong>
             </li>
             }
 
-            <li class="flex justify-content-between mb-2 mt-3">
+            <li class="d-flex justify-content-between mb-2 mt-3">
               <span>En Proceso de Aprobación:</span>
               <strong class="text-yellow-500">{{ balance.pendingDays }}</strong>
             </li>
             <li
-              class="flex justify-content-between mb-2 mt-3 p-2 bg-green-50 rounded"
+              class="d-flex justify-content-between mb-2 mt-3 p-2 bg-green-50 rounded"
             >
               <span class="font-bold text-green-700"
                 >Días Disponibles Hoy:</span
@@ -44,7 +44,7 @@
               >
             </li>
             <li
-              class="flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+              class="d-flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
             >
               <span>Días a solicitar (en este formulario):</span>
               <strong class="text-primary text-xl"
@@ -52,7 +52,7 @@
               >
             </li>
             <li
-              class="flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+              class="d-flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
             >
               <span>Días que te restarian):</span>
               <strong class="text-primary text-xl"
@@ -69,25 +69,25 @@
       </div>
 
       <!-- Columna: Información Laboral -->
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <lx-panel header="Información Laboral">
           <ul class="list-none p-0 m-0">
-            <li class="flex justify-content-between mb-2">
+            <li class="d-flex justify-content-between mb-2">
               <span>Fecha de Ingreso:</span>
               <strong
                 >{{ balance.employeeAdmissionDate | apiDate: "dd/MM/yyyy"
                 }}</strong
               >
             </li>
-            <li class="flex justify-content-between mb-2">
+            <li class="d-flex justify-content-between mb-2">
               <span>Antigóedad Calculada:</span>
               <strong>{{ balance.actualSeniorityYears }} Año(s)</strong>
             </li>
-            <li class="flex justify-content-between mb-2">
+            <li class="d-flex justify-content-between mb-2">
               <span>Periodo de Aniversario Validado:</span>
               <strong>{{ balance.year }}</strong>
             </li>
-            <li class="flex justify-content-between">
+            <li class="d-flex justify-content-between">
               <span>Porcentaje de Bono Vacacional:</span>
               <strong>{{ balance.vacationBonusPercentage }}%</strong>
             </li>

@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <custom-input-select-signal
       [control]="form.controls.addendumType"
@@ -36,7 +36,7 @@
       label="Notas Internas"
       [rows]="3"
     />
-    <div class="flex justify-content-end mt-2">
+    <div class="d-flex justify-content-end mt-2">
       <il-button-save
         [propertyId]="item()?.id"
         [disabled]="form.invalid"

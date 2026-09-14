@@ -13,11 +13,11 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   dataKey="id"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <div class="flex-grow-1">
         <primeng-custom-caption
@@ -29,7 +29,7 @@
           [noMargin]="true"
         />
       </div>
-      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
         <div>
           <app-rango-calendario-yyyymmdd />
         </div>
@@ -75,7 +75,7 @@
             >
               <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
-                  <span class="ml-1">{{ option.label }}</span>
+                  <span class="ms-1">{{ option.label }}</span>
                 </div>
               </ng-template>
             </lx-multi-select>
@@ -112,7 +112,7 @@
             >
               <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
-                  <span class="ml-1">{{ option.label }}</span>
+                  <span class="ms-1">{{ option.label }}</span>
                 </div>
               </ng-template>
             </lx-multi-select>
@@ -204,7 +204,7 @@
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
-    <div class="flex flex-column sm:flex-row align-items-center gap-2">
+    <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
       <div>
         <app-rango-calendario-yyyymmdd />
       </div>

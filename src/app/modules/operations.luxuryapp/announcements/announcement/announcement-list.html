@@ -1,5 +1,5 @@
 <!-- 1. Contenedor Principal y Estado de Carga -->
-<div class="p-4 hidden md:block">
+<div class="p-4 d-none d-md-block">
   <div class="card">
     <div class="text-xl font-bold mb-2">
       <h2 class="text-2xl font-bold">Comunicados</h2>
@@ -17,11 +17,11 @@
 
     <!-- Rejilla de Anuncios -->
     @if (!loading() && announcements().length > 0) {
-    <div class="grid">
+    <div class="row">
       @for (anuncio of announcements(); track anuncio.id) {
       <div class="col-12">
         <div
-          class="card cursor-pointer hover:shadow transition-duration-200 flex flex-column h-full"
+          class="card cursor-pointer hover:shadow transition-duration-200 d-flex flex-column h-full"
           (click)="navigateToDetail(anuncio.id)"
         >
           <div class="card-header">
@@ -48,8 +48,8 @@
               {{ stripHtml(anuncio.content) | slice:0:120 }}...
             </p>
 
-            <div class="mt-3 flex justify-content-end gap-2">
-              <div class="flex justify-content-end align-items-center">
+            <div class="mt-3 d-flex justify-content-end gap-2">
+              <div class="d-flex justify-content-end align-items-center">
                 @if (anuncio.attachmentCount > 0) {
                 <app-icon
                   [icon]="'material-symbols-light:attach-file'"
@@ -69,7 +69,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="block md:hidden pb-5">
+<div class="d-block d-md-none pb-5">
   @if (!loading() && announcements().length === 0) {
   <div class="ion-text-center ion-padding mt-5">
     <app-icon
@@ -79,9 +79,9 @@
     <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
   </div>
   } @if (!loading() && announcements().length > 0) {
-  <div class="flex flex-column p-2">
+  <div class="d-flex flex-column p-2">
     @for (anuncio of announcements(); track anuncio.id) {
-    <div class="card shadow-sm rounded-xl mb-3 overflow-hidden cursor-pointer flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
+    <div class="card shadow-sm rounded-xl mb-3 overflow-hidden cursor-pointer d-flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
       @if(anuncio.imagePath) {
         <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover hidden-on-error" />
       }
@@ -95,7 +95,7 @@
         </p>
 
         @if (anuncio.attachmentCount > 0) {
-        <div class="flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end mt-3">
           <app-icon icon="material-symbols-light:attach-file" class="text-lg text-500" />
         </div>
         }

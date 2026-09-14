@@ -19,7 +19,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
   imports: [WebButtonLabel],
   template: `
     <div class="card p-4">
-      <div class="flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="m-0">{{ diagram()?.name }}</h2>
         <il-button
           label="Volver"
@@ -41,7 +41,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
           ></div>
         } @else {
           <div
-            class="flex align-items-center justify-content-center h-full text-500"
+            class="d-flex align-items-center justify-content-center h-full text-500"
           >
             Cargando diagrama...
           </div>

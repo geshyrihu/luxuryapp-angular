@@ -1,8 +1,8 @@
 <!-- Filtro de meses -->
 <div
-  class="flex align-items-center justify-content-between gap-3 mb-4 flex-wrap"
+  class="d-flex align-items-center justify-content-between gap-3 mb-4 flex-wrap"
 >
-  <div class="flex align-items-center gap-2">
+  <div class="d-flex align-items-center gap-2">
     <span class="text-sm text-500">Mostrar:</span>
     @for (opcion of [3, 6, 9, 12]; track opcion) {
     <il-button
@@ -23,17 +23,17 @@
 
 <!-- Cargando -->
 @if (cargando()) {
-<div class="flex justify-content-center align-items-center py-6">
+<div class="d-flex justify-content-center align-items-center py-6">
   <app-icon
     icon="material-symbols-light:progress-activity"
     style="font-size: 1.5rem"
     class="ner text-primary ds-animate-spin"
   />
-  <span class="ml-2 text-500">Cargando eventos...</span>
+  <span class="ms-2 text-500">Cargando eventos...</span>
 </div>
 } @else if (eventosPorMes().length === 0) {
 <div
-  class="flex flex-column align-items-center justify-content-center py-6 gap-3"
+  class="d-flex flex-column align-items-center justify-content-center py-6 gap-3"
 >
   <app-icon
     icon="material-symbols-light:event"
@@ -45,7 +45,7 @@
   >
 </div>
 } @else {
-<div class="flex flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   @for (mes of eventosPorMes(); track mes.label) {
 
   <div
@@ -53,7 +53,7 @@
   >
     <!-- Cabecera del mes -->
     <div
-      class="bg-primary-50 border-bottom-1 surface-border px-4 py-2 flex align-items-center justify-content-between"
+      class="bg-primary-50 border-bottom-1 surface-border px-4 py-2 d-flex align-items-center justify-content-between"
     >
       <span class="font-bold text-primary capitalize">{{ mes.label }}</span>
       <span class="text-xs text-500">
@@ -62,24 +62,24 @@
     </div>
 
     <!-- Lista de eventos del mes -->
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       @for (evento of mes.eventos; track evento.id; let last = $last) {
       <div
-        class="px-4 py-3 flex align-items-start gap-3"
+        class="px-4 py-3 d-flex align-items-start gap-3"
         [class.border-bottom-1]="!last"
         [class.surface-border]="!last"
       >
         <!-- Fecha y hora -->
-        <div class="flex flex-column flex-none" style="min-width: 9rem">
+        <div class="d-flex flex-column flex-none" style="min-width: 9rem">
           <span class="text-sm font-semibold text-700 capitalize">
             {{ formatFechaHora(evento.startAt) }}
           </span>
         </div>
 
         <!-- Detalle -->
-        <div class="flex flex-column gap-1 flex-auto min-w-0">
+        <div class="d-flex flex-column gap-1 flex-auto min-w-0">
           <span class="text-sm font-semibold text-900">{{ evento.title }}</span>
-          <div class="flex align-items-center gap-2 flex-wrap">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
             <span class="text-xs surface-200 text-600 rounded px-2 py-1">
               {{ evento.customerName }}
             </span>
@@ -101,12 +101,12 @@
           <a
             [href]="evento.googleMeetUrl"
             target="_blank"
-            class="text-xs text-primary no-underline flex align-items-center gap-1"
+            class="text-xs text-primary no-underline d-flex align-items-center gap-1"
           >
             <app-icon icon="material-symbols-light:videocam" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
-          <span class="text-xs text-500 flex align-items-center gap-1">
+          <span class="text-xs text-500 d-flex align-items-center gap-1">
             <app-icon icon="material-symbols-light:location-on-outline" /> {{ evento.location }}
           </span>
           }
@@ -115,7 +115,7 @@
         <!-- Invitados -->
         @if (evento.guestCount > 0) {
         <div
-          class="flex align-items-center gap-1 flex-none text-400"
+          class="d-flex align-items-center gap-1 flex-none text-400"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
           <app-icon icon="material-symbols-light:group-outline" class="text-xs" />

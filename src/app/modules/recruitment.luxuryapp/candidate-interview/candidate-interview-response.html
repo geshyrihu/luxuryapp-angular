@@ -1,9 +1,9 @@
 @if (!loading() && interviewData()) {
 <div class="card p-3 mb-4">
   <div
-    class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3 mb-3"
+    class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-3"
   >
-    <div class="flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-3">
       <il-button
         label="Volver a entrevistas"
         iconClass="material-symbols-light:arrow-back"
@@ -21,37 +21,37 @@
         >
       </div>
     </div>
-    <div class="flex gap-2 ml-auto">
+    <div class="d-flex gap-2 ms-auto">
       <app-candidate-stage-badge [stage]="interviewData()?.currentStage" />
     </div>
   </div>
 
   <!-- Info de la entrevista -->
-  <div class="grid mb-4">
-    <div class="col-12 md:col-4">
+  <div class="row mb-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Candidato</small>
+        <small class="text-color-secondary d-block mb-1">Candidato</small>
         <div class="font-semibold">{{ interviewData()?.candidateName }}</div>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Vacante</small>
+        <small class="text-color-secondary d-block mb-1">Vacante</small>
         <div class="font-semibold">{{ interviewData()?.vacancyFolio }}</div>
         <small class="text-color-secondary"
           >{{ interviewData()?.positionName }}</small
         >
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Cliente</small>
+        <small class="text-color-secondary d-block mb-1">Cliente</small>
         <div class="font-semibold">{{ interviewData()?.customerName }}</div>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1"
+        <small class="text-color-secondary d-block mb-1"
           >Entrevista programada</small
         >
         <div class="font-semibold">
@@ -59,9 +59,9 @@
         </div>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1"
+        <small class="text-color-secondary d-block mb-1"
           >Entrevistador asignado</small
         >
         <div class="font-semibold">
@@ -69,9 +69,9 @@
         </div>
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Estatus agenda</small>
+        <small class="text-color-secondary d-block mb-1">Estatus agenda</small>
         <app-mapped-p-tag
           [value]="interviewData()?.agendaStatusCode"
           [options]="agendaStatusOptions"
@@ -98,7 +98,7 @@
   <!-- Acciones principales -->
   <div class="card p-3 mb-4">
     <div class="font-semibold mb-3">Acciones de respuesta</div>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       <il-button
         label="Registrar retroalimentación"
         iconClass="material-symbols-light:more"
@@ -165,7 +165,7 @@
 @if (showReasonModal()) {
 <div class="dialog-mask" (click)="closeReasonModal()">
   <div class="dialog-container card p-4" style="max-width: 500px; min-width: 320px;" (click)="$event.stopPropagation()">
-    <div class="flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="m-0">
         @switch (pendingAction()) {
           @case ("markNoShow") { Marcar no asistencia }
@@ -180,7 +180,7 @@
 
     @if (pendingDecision() === 1) {
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-2">Motivo *</label>
+      <label class="d-block text-sm font-medium mb-2">Motivo *</label>
       <custom-input-select-signal
         [data]="reasonOptions()"
         [ngModel]="selectedReason()"
@@ -191,7 +191,7 @@
     </div>
     }
 
-    <div class="flex justify-content-end gap-2">
+    <div class="d-flex justify-content-end gap-2">
       <il-button
         label="Cancelar"
         severity="secondary"

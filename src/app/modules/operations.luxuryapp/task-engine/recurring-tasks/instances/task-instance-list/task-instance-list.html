@@ -22,7 +22,7 @@
     [tableStyle]="{ 'min-width': '50rem' }"
     [scrollable]="true"
     [scrollHeight]="scrollHeight"
-    class="p-datatable-gridlines hidden md:block"
+    class="p-datatable-gridlines d-none d-md-block"
   >
     <ng-template #caption>
       <app-primeng-custom-caption
@@ -87,13 +87,13 @@
     [data]="data()"
     [dt]="dt"
     [showAdd]="false"
-    class="block md:hidden"
+    class="d-block d-md-none"
   >
     <ng-template #listItemTemplate let-task>
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon

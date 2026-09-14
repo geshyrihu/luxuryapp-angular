@@ -8,30 +8,30 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between gap-2 w-full">
+    <div class="d-flex align-items-center justify-content-between gap-2 w-full">
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <button
           type="button"
-          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm flex align-items-center gap-1"
+          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm d-flex align-items-center gap-1"
           (click)="onExportExcel()"
         >
           <app-icon icon="material-symbols-light:download" /> Excel
         </button>
         <button
           type="button"
-          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm flex align-items-center gap-1"
+          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm d-flex align-items-center gap-1"
           (click)="fileInput.click()"
         >
           <app-icon icon="material-symbols-light:upload" /> Importar
         </button>
-        <input #fileInput type="file" accept=".xlsx" class="hidden" (change)="onImportExcel($event)" />
+        <input #fileInput type="file" accept=".xlsx" class="d-none" (change)="onImportExcel($event)" />
       </div>
     </div>
   </ng-template>
@@ -95,7 +95,7 @@
       <!-- Opciones -->
 
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
@@ -123,20 +123,20 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
         <app-icon icon="material-symbols-light:pool" />
       </div>
 
-      <div class="flex justify-content-between align-items-center mb-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="font-bold m-0 text-base">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1 text-primary" />
+          <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-primary" />
           {{ item.dateString }}
         </h2>
       </div>
 
       <!-- Mediciones en Grid Compacto -->
-      <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
+      <div class="row m-0 p-0 text-sm opacity-80 mt-2 mb-2">
         <div class="col-4 p-0 pb-1">
           <strong class="text-primary">Cl:</strong> {{ item.cl || "0" }}
         </div>
@@ -157,9 +157,9 @@
       </div>
 
       <!-- Tareas Realizadas (Iconos) -->
-      <div class="flex align-items-center mt-1">
+      <div class="d-flex align-items-center mt-1">
         <div
-          class="flex align-items-center gap-1"
+          class="d-flex align-items-center gap-1"
           [class.opacity-50]="!item.cepillado"
         >
           <app-icon
@@ -169,7 +169,7 @@
           <small class="text-xs">Cepillado</small>
         </div>
         <div
-          class="flex align-items-center gap-1 ml-3"
+          class="d-flex align-items-center gap-1 ms-3"
           [class.opacity-50]="!item.aspirado"
         >
           <app-icon

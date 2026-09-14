@@ -19,7 +19,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
   template: `
     <div class="panic-list-page">
       <h2 class="panic-list-page__title">
-        <app-icon icon="material-symbols-light:error" class="text-red-600 mr-2" />
+        <app-icon icon="material-symbols-light:error" class="text-red-600 me-2" />
         Alertas de Pánico
       </h2>
 

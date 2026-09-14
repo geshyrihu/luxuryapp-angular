@@ -1,6 +1,6 @@
-<div class="flex flex-column">
+<div class="d-flex flex-column">
   <div class="p-2 surface-200 font-semibold">Comité</div>
-  <div class="grid col-12 align-items-center">
+  <div class="row col-12 align-items-center">
     <div class="col-10">
       <div class="mb-2">
         <custom-input-select-signal
@@ -19,7 +19,7 @@
     </div>
   </div>
   @for (item of listaParticipantesComite(); track item.id) {
-  <div class="flex align-items-center justify-content-between p-2">
+  <div class="d-flex align-items-center justify-content-between p-2">
     {{ item.cargo }}-{{ item.nombre }}
     <il-button-delete (confirmed)="onDelete(item.id)" />
   </div>

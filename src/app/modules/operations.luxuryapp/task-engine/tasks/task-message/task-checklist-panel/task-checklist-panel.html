@@ -1,6 +1,6 @@
 <section class="surface-card border-1 surface-border rounded-xl p-4 mb-5">
-  <div class="flex flex-column gap-1 mb-4">
-    <h3 class="text-xl font-bold m-0 border-left-3 border-primary pl-3">
+  <div class="d-flex flex-column gap-1 mb-4">
+    <h3 class="text-xl font-bold m-0 border-left-3 border-primary ps-3">
       Checklist y comprobante
     </h3>
     <p class="text-500 m-0">
@@ -13,10 +13,10 @@
     Cargando checklist y comprobantes...
   </div>
   } @else {
-  <div class="grid">
-    <div class="col-12 lg:col-6">
+  <div class="row">
+    <div class="col-12 col-lg-6">
       <div class="surface-ground p-3 rounded-lg h-full">
-        <div class="flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="font-bold text-900 m-0">Checklist</h4>
           <span class="text-sm text-500">
             {{ checklistItems().length }} item(s)
@@ -26,12 +26,12 @@
         @if (checklistItems().length === 0) {
         <p class="text-500 italic m-0 mb-3">Sin items de checklist.</p>
         } @else {
-        <div class="flex flex-column gap-2 mb-3">
+        <div class="d-flex flex-column gap-2 mb-3">
           @for (item of checklistItems(); track item.id) {
           <div
-            class="surface-card border-1 surface-border rounded p-3 flex justify-content-between gap-3"
+            class="surface-card border-1 surface-border rounded p-3 d-flex justify-content-between gap-3"
           >
-            <label class="flex gap-2 align-items-start flex-1 m-0">
+            <label class="d-flex gap-2 align-items-start flex-1 m-0">
               <input
                 type="checkbox"
                 [checked]="item.isDone"
@@ -39,7 +39,7 @@
                 [attr.aria-label]="'Confirmar ' + item.description"
               />
               <span>
-                <span class="block text-900" [class.line-through]="item.isDone">
+                <span class="d-block text-900" [class.line-through]="item.isDone">
                   {{ item.description }}
                 </span>
                 @if (item.isDone) {
@@ -60,7 +60,7 @@
         </div>
         }
 
-        <div class="flex flex-column sm:flex-row gap-2">
+        <div class="d-flex flex-column flex-sm-row gap-2">
           <label class="sr-only" for="task-checklist-description">
             DESCRIPCIÓN del item
           </label>
@@ -84,9 +84,9 @@
       </div>
     </div>
 
-    <div class="col-12 lg:col-6">
+    <div class="col-12 col-lg-6">
       <div class="surface-ground p-3 rounded-lg h-full">
-        <div class="flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="font-bold text-900 m-0">Comprobantes</h4>
           <input
             type="file"
@@ -107,12 +107,12 @@
         @if (attachments().length === 0) {
         <p class="text-500 italic m-0">Sin comprobantes cargados.</p>
         } @else {
-        <div class="flex flex-column gap-2">
+        <div class="d-flex flex-column gap-2">
           @for (item of attachments(); track item.id) {
           <div
-            class="surface-card border-1 surface-border rounded p-3 flex justify-content-between align-items-center gap-3"
+            class="surface-card border-1 surface-border rounded p-3 d-flex justify-content-between align-items-center gap-3"
           >
-            <div class="flex align-items-center gap-3 flex-1">
+            <div class="d-flex align-items-center gap-3 flex-1">
               @if (isPdf(item)) {
               <iw-button-view-pdf
                 [url]="item.path"

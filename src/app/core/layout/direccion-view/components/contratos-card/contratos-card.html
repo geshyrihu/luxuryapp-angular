@@ -1,13 +1,13 @@
 @if (cargando()) {
-<div class="flex align-items-center gap-2 py-3">
+<div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
   <span class="text-sm text-500">Cargando contratos...</span>
 </div>
 } @else {
 
 <!-- Encabezado con total y boton -->
-<div class="flex align-items-center justify-content-between mb-3">
-  <div class="flex align-items-center gap-2">
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="d-flex align-items-center gap-2">
     @if (resumen() && resumen()!.total > 0) {
     <span class="text-3xl font-bold text-ds-warning"
       >{{ resumen()!.total }}</span
@@ -34,10 +34,10 @@
 
 <!-- Lista por cliente -->
 @if (resumen() && resumen()!.customers.length > 0) {
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   @for (customer of resumen()!.customers; track customer.customerName) {
   <div>
-    <div class="flex align-items-center justify-content-between mb-1">
+    <div class="d-flex align-items-center justify-content-between mb-1">
       <span class="text-sm font-bold text-color"
         >{{ customer.customerName }}</span
       >
@@ -48,10 +48,10 @@
       </span>
     </div>
 
-    <div class="flex flex-column gap-1 pl-2 border-left-2 surface-border">
+    <div class="d-flex flex-column gap-1 ps-2 border-left-2 surface-border">
       @for (contrato of customer.contratos; track contrato.id) {
-      <div class="flex align-items-center justify-content-between py-1">
-        <div class="flex flex-column gap-0 min-w-0 flex-auto">
+      <div class="d-flex align-items-center justify-content-between py-1">
+        <div class="d-flex flex-column gap-0 min-w-0 flex-auto">
           <span
             class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis text-color"
           >
@@ -61,7 +61,7 @@
             >{{ contrato.provider }}</span
           >
         </div>
-        <div class="flex align-items-center gap-2 flex-none ml-2">
+        <div class="d-flex align-items-center gap-2 flex-none ms-2">
           <span
             class="text-xs font-semibold flex-none"
             [style.color]="contrato.diasRestantes <= 30 ? 'var(--ds-error)' : 'var(--ds-warning)'"

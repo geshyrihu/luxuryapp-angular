@@ -1,5 +1,5 @@
 <section
-  class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report"
+  class="surface-ground min-h-screen d-flex flex-column gap-4 print-financial-report"
 >
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
@@ -28,21 +28,21 @@
     <div class="print-portada-bar-bottom"></div>
   </div>
 
-  <div class="w-full xl:w-11 mx-auto flex flex-column gap-4">
+  <div class="w-full xl:w-11 mx-auto d-flex flex-column gap-4">
     <header
       class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden print-hide-on-print"
     >
       <div class="bg-primary"></div>
 
-      <div class="surface-100 p-2 flex gap-3">
-        <div class="flex align-items-center gap-3 flex-1 min-w-0">
+      <div class="surface-100 p-2 d-flex gap-3">
+        <div class="d-flex align-items-center gap-3 flex-1 min-w-0">
           <!-- <div
-            class="surface-card rounded-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
+            class="surface-card rounded-xl border-1 surface-border d-inline-flex align-items-center justify-content-center p-2"
           >
             <img [src]="customerLogo()" [alt]="customerName()" />
           </div> -->
 
-          <div class="flex flex-column gap-1 min-w-0">
+          <div class="d-flex flex-column gap-1 min-w-0">
             <small class="text-primary font-bold uppercase">
               LuxuryApp | Contabilidad Online
             </small>
@@ -52,8 +52,8 @@
           </div>
         </div>
 
-        <div class="flex flex-column justify-content-between gap-2">
-          <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column justify-content-between gap-2">
+          <div class="d-flex flex-column gap-1">
             <p class="text-900 font-semibold m-0 line-height-3">
               {{ activeReportTitle() }}
             </p>
@@ -61,9 +61,9 @@
               {{ activeReportDescription() }}
             </p>
           </div>
-          <div class="flex justify-content-end">
+          <div class="d-flex justify-content-end">
             <div
-              class="flex align-items-center gap-2 bg-white px-2 py-1 rounded-lg border-1 border-200 flex-wrap"
+              class="d-flex align-items-center gap-2 bg-white px-2 py-1 rounded-lg border-1 border-200 flex-wrap"
             >
               <div>
                 <custom-input-text-signal
@@ -102,7 +102,7 @@
                 />
               </div>
 
-              <div class="flex gap-2 flex-wrap align-items-center">
+              <div class="d-flex gap-2 flex-wrap align-items-center">
                 <il-button
                   iconClass="material-symbols-light:refresh"
                   label="Actualizar"

@@ -8,11 +8,11 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2"
     >
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -60,7 +60,7 @@
       </td>
 
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
@@ -103,7 +103,7 @@
   [dt]="dt"
 >
   <div customFilters>
-    <div class="mb-3 flex mt-1 mb-1">
+    <div class="mb-3 d-flex mt-1 mb-1">
       <div class="m-0">
         <iw-button-active-desactive
           fluid

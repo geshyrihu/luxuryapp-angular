@@ -56,7 +56,6 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
     LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [MessageService],
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
@@ -184,7 +183,10 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   // 5. HELPERS / UTILIDADES
   //----------------------------------------------------------------
   // Mostrar mensajito en la UI (toast bonito)
-  showMessage(message: string, severity: string) {
+  showMessage(
+    message: string,
+    severity: "success" | "info" | "warn" | "error",
+  ) {
     this.messageService.add({
       severity: severity,
       summary: severity.toUpperCase(),

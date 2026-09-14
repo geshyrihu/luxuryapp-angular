@@ -47,7 +47,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
         <div class="lm-container">
           <!-- Logo Header -->
           <div
-            class="lm-header flex-1 flex flex-column align-items-center justify-content-center fadein animation-duration-1000"
+            class="lm-header flex-1 d-flex flex-column align-items-center justify-content-center fadein animation-duration-1000"
           >
             <img
               src="assets/oficial/Logo%20Files/png/White%20logo%20-%20no%20background.png"
@@ -72,7 +72,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 
               @if (errorMessage) {
                 <div
-                  class="p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm mt-2 flex align-items-center"
+                  class="p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm mt-2 d-flex align-items-center"
                 >
                   <span class="text-sm font-medium">{{ errorMessage }}</span>
                 </div>
@@ -80,7 +80,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 
               @if (successMessage) {
                 <div
-                  class="p-3 rounded border-1 border-green-300 bg-green-50 text-green-800 shadow-sm mt-2 flex align-items-center"
+                  class="p-3 rounded border-1 border-green-300 bg-green-50 text-green-800 shadow-sm mt-2 d-flex align-items-center"
                 >
                   <span class="text-sm font-medium">{{ successMessage }}</span>
                 </div>

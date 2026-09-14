@@ -13,7 +13,7 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
           Variables base y paletas oficiales que definen la marca LuxuryApp.
         </p>
       </div>
-      <div class="grid">
+      <div class="row">
         <div class="col-12">
           <app-tokens-colors />
         </div>

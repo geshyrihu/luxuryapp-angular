@@ -32,7 +32,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
           Layouts para ver todas las variantes con ejemplos visuales.
         </p>
         <app-divider />
-        <div class="flex gap-2">
+        <div class="d-flex gap-2">
           <p-button
             label="Ver todos los Layouts"
             icon="icon.grid"

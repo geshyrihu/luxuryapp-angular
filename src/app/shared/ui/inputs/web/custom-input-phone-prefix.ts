@@ -32,7 +32,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         <!-- Valor seleccionado -->
         <ng-template #selectedItem let-item>
           @if (item) {
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <span class="text-xl leading-none">{{ item.flag }}</span>
             <span class="font-medium">{{ item.dialCode }}</span>
           </div>
@@ -41,7 +41,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 
         <!-- Opciones del dropdown -->
         <ng-template #item let-option>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <span class="text-xl leading-none">{{ option.flag }}</span>
             <span class="flex-1">{{ option.name }}</span>
             <span class="text-500 text-sm">{{ option.dialCode }}</span>

@@ -2,10 +2,10 @@
   autocomplete="off"
   (ngSubmit)="onSubmit()"
   [formGroup]="form"
-  class="flex flex-column"
+  class="d-flex flex-column"
 >
-  <div class="grid">
-    <div class="col-12 md:col-6">
+  <div class="row">
+    <div class="col-12 col-md-4">
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
       <custom-input-text-signal
         [control]="form.controls.id"
@@ -25,6 +25,7 @@
         [data]="cb_applicationRole()"
         label="Puesto"
         placeholder="Escriba para buscar puesto..."
+        [horizontal]="false"
       />
 
       <!-- Colaborador -->
@@ -34,6 +35,7 @@
         [data]="cb_employee()"
         label="Colaborador"
         placeholder="Escriba para buscar colaborador..."
+        [horizontal]="false"
       />
 
       <custom-input-number-signal
@@ -41,6 +43,7 @@
         label="Sueldo Presupuestado"
         placeholder="0.00"
         [prefix]="'$ '"
+        [horizontal]="false"
       />
       <custom-input-number-signal
         [control]="form.controls.sueldo"
@@ -48,6 +51,7 @@
         placeholder="0.00"
         [prefix]="'$ '"
         [disabled]="!canEditCurrentSalary()"
+        [horizontal]="false"
       />
 
       <custom-input-select-signal
@@ -55,60 +59,103 @@
         label="Horario de catalogo"
         [data]="cb_workPositionSchedule()"
         [filter]="true"
+        [horizontal]="false"
       />
       <custom-input-select-signal
         [control]="form.controls.state"
         label="Estado de Vacante"
         [data]="cb_state()"
         [filter]="true"
+        [horizontal]="false"
       />
       <custom-input-textarea-signal
         [control]="form.controls.benefits"
         label="Prestaciones"
         placeholder="Ej. Seguro medico, vales de despensa, fondo de ahorro..."
         [rows]="3"
+        [horizontal]="false"
       />
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-8">
       <lx-message severity="info">Horario de Trabajo</lx-message>
       @if (selectedSchedule(); as schedule) {
-        <div class="surface-50 border-1 border-200 rounded-lg p-3 mb-3">
-          <div class="font-bold text-900">{{ schedule.name }}</div>
-          <div class="text-sm text-600">
-            {{ schedule.tipoJornadaName || "Sin turno" }}
-          </div>
+      <div
+        class="surface-50 border-1 border-200 rounded-lg p-3 mb-3 d-flex flex-column gap-1"
+      >
+        <div class="font-bold text-900">{{ schedule.name }}</div>
+        <div class="text-sm text-600">
+          {{ schedule.tipoJornadaName || "Sin turno" }}
         </div>
+      </div>
 
-        <div class="flex flex-column gap-2">
-          @for (dia of scheduleDays(); track dia.day) {
-            <div class="flex justify-content-between align-items-center border-bottom-1 border-100 py-2">
-              <span class="font-medium text-700">{{ dia.day }}</span>
-              <span class="text-900">
-                @if (dia.entry && dia.exit) {
-                  {{ dia.entry }} - {{ dia.exit }}
+      <div class="overflow-x-auto surface-card border-1 border-200 rounded-lg">
+        <table
+          class="w-full text-left border-collapse"
+          style="min-width: 500px"
+        >
+          <thead>
+            <tr class="surface-50 border-bottom-1 border-200 text-600 text-sm">
+              <th
+                class="p-2 font-semibold text-center border-right-1 border-200"
+              >
+                Semana
+              </th>
+              <th class="p-2 font-semibold text-center">Lun</th>
+              <th class="p-2 font-semibold text-center">Mar</th>
+              <th class="p-2 font-semibold text-center">Mié</th>
+              <th class="p-2 font-semibold text-center">Jue</th>
+              <th class="p-2 font-semibold text-center">Vie</th>
+              <th class="p-2 font-semibold text-center">Sáb</th>
+              <th class="p-2 font-semibold text-center">Dom</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            @for (week of scheduleWeeks(); track week.weekNumber) {
+            <tr class="border-bottom-1 border-100 last:border-bottom-none">
+              <td
+                class="p-2 font-medium text-600 text-center border-right-1 border-200 bg-black-alpha-10"
+              >
+                S{{ week.weekNumber }}
+              </td>
+              @for (day of week.days; track day.name) {
+              <td class="p-2 text-center" [class.surface-50]="day.esDescanso">
+                @if (day.esDescanso) {
+                <span class="text-400 font-italic text-xs">Descanso</span>
+                } @else if (day.horaEntrada && day.horaSalida) {
+                <div class="text-800 font-medium line-height-2">
+                  {{ day.horaEntrada }}
+                </div>
+                <div class="text-500 text-xs">{{ day.horaSalida }}</div>
                 } @else {
-                  Descanso
+                <span class="text-300">-</span>
                 }
-              </span>
-            </div>
-          }
-        </div>
+              </td>
+              }
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
 
-        @if (schedule.observaciones) {
-          <div class="mt-3 text-sm text-600 white-space-pre-line">
-            <span class="font-semibold">Observaciones:</span>
-            {{ schedule.observaciones }}
-          </div>
-        }
-      } @else {
-        <div class="surface-50 border-1 border-200 rounded-lg p-4 text-center text-600">
-          Selecciona un horario de catalogo para ver aqui sus dias y horas.
-        </div>
+      @if (schedule.observaciones) {
+      <div
+        class="mt-3 text-sm text-600 white-space-pre-line p-3 surface-50 rounded-lg border-1 border-200"
+      >
+        <span class="font-semibold d-block mb-1">Observaciones:</span>
+        {{ schedule.observaciones }}
+      </div>
+      } } @else {
+      <div
+        class="surface-50 border-1 border-200 rounded-lg p-4 text-center text-600"
+      >
+        Selecciona un horario de catálogo para ver sus días y horas de las 4
+        semanas.
+      </div>
       }
     </div>
   </div>
 
-  <div class="flex justify-content-end pt-4">
+  <div class="d-flex justify-content-end pt-4">
     <il-button-save
       [propertyId]="id() || ''"
       [disabled]="form.invalid"

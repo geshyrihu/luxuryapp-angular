@@ -2,10 +2,12 @@ type Id = string | number;
 
 export const EndpointsReclutamiento = {
   WorkPositions: {
+    base: "work-positions",
     activate: (id: Id) => `work-positions/${id}/activate`,
     assignEmployee: (applicationUserId: Id, positionId: Id) =>
       `work-positions/assign-employee/${applicationUserId}/${positionId}`,
     delete: (id: Id) => `work-positions/${id}`,
+    forEdit: (id: Id) => `work-positions/for-edit/${id}`,
     getById: (workPositionId: Id) => `work-positions/${workPositionId}`,
     listByCustomer: (customerId: Id, state: string) =>
       `work-positions/list-by-customer/${customerId}/${state}`,

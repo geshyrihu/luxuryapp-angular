@@ -30,7 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           size="small"
           (click)="action.emit()"
         >
-          <app-icon [icon]="actionIcon()" class="mr-2" />
+          <app-icon [icon]="actionIcon()" class="me-2" />
           {{ actionLabel() }}
         </ion-button>
       }

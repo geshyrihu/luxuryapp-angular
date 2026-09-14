@@ -2,7 +2,7 @@
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- Campo oculto -->
-      <div class="hidden">
+      <div class="d-none">
         <custom-input-text-signal
           [hidden]="true"
           [horizontal]="false"
@@ -11,9 +11,9 @@
         />
       </div>
 
-      <div class="grid">
+      <div class="row">
         <!-- Primera fila -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveMachineryId($event)"
             [control]="form.controls.machinery"
@@ -22,7 +22,7 @@
             placeholder="Escribe para buscar equipo o instalación"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveProviderId($event)"
             [control]="form.controls.provider"
@@ -33,14 +33,14 @@
         </div>
 
         <!-- Fechas -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-date-signal
             [control]="form.controls.requestDate"
             label="Fecha de solicitud"
             placeholder="Fecha de solicitud"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-date-signal
             [control]="form.controls.executionDate"
             label="Fecha de ejecución"
@@ -49,9 +49,9 @@
         </div>
 
         <!-- Estatus / Precio -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <label class="form-btn-group-label">Estatus</label>
-          <div class="flex flex-wrap gap-2 mt-1">
+          <div class="d-flex flex-wrap gap-2 mt-1">
             @for (opt of cb_Status(); track opt.value) {
             <il-button
               [label]="opt.label"
@@ -66,7 +66,7 @@
           <small class="form-btn-group-error">Selecciona un estatus</small>
           }
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-currency-signal
             [control]="form.controls.price"
             label="Precio"
@@ -75,9 +75,9 @@
         </div>
 
         <!-- Tipo mantenimiento / Supervisor -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <label class="form-btn-group-label">Tipo de mantenimiento</label>
-          <div class="flex flex-wrap gap-2 mt-1">
+          <div class="d-flex flex-wrap gap-2 mt-1">
             @for (opt of cb_TypeMaintance(); track opt.value) {
             <il-button
               [label]="opt.label"
@@ -95,7 +95,7 @@
           >
           }
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveResponsibleUserId($event)"
             [control]="form.controls.employeeResponsable"
@@ -106,16 +106,16 @@
         </div>
 
         <!-- Checkboxes Row 1 -->
-        <div class="col-12 md:col-6">
-          <div class="grid">
-            <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <custom-input-switch-signal
                 label="Se cumplió con las actividades de la orden"
                 [horizontal]="false"
                 [control]="form.controls.cumplimientoActividades"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-switch-signal
                 label="Equipos/áreas operando sin inconvenientes"
                 [horizontal]="false"
@@ -126,16 +126,16 @@
         </div>
 
         <!-- Checkboxes Row 2 -->
-        <div class="col-12 md:col-6">
-          <div class="grid">
-            <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
               <custom-input-switch-signal
                 label="Afectación en el área donde se realizó el trabajo"
                 [horizontal]="false"
                 [control]="form.controls.ocacionoDanos"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-switch-signal
                 label="Se cumplió con la calidad de los trabajos realizados"
                 [horizontal]="false"
@@ -146,7 +146,7 @@
         </div>
 
         <!-- Text areas -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.activity"
             label="Actividad"
@@ -154,7 +154,7 @@
             [horizontal]="false"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.observations"
             label="Observaciones"
@@ -165,7 +165,7 @@
       </div>
 
       <!-- Botón guardar -->
-      <div class="flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end mt-4">
         <il-button-save
           [propertyId]="id()"
           [disabled]="form.invalid"

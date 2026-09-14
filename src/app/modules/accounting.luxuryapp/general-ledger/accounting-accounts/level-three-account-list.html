@@ -7,10 +7,10 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid">
+    <div class="row">
       <div class="col-10">
         <primeng-custom-caption
           [title]="'Catalogo de cuentas'"
@@ -50,7 +50,7 @@
       <td>{{ item.descripcion }}</td>
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
@@ -76,7 +76,7 @@
   [dt]="dt"
 >
   <ng-template #listItemTemplate let-item>
-    <div class="flex align-items-center justify-content-between w-full">
+    <div class="d-flex align-items-center justify-content-between w-full">
       <div>
         <p class="mt-0 mb-0">{{ item.numeroCuenta }}</p>
         <p class="text-color-secondary font-size-12 mt-0 mb-0">

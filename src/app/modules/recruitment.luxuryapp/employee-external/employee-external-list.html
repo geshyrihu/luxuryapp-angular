@@ -4,11 +4,11 @@
   #dt
   rowGroupMode="subheader"
   sortMode="single"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid">
-      <div class="col-12 sm:col-10">
+    <div class="row">
+      <div class="col-12 col-sm-10">
         <primeng-custom-caption
           [title]="'DIRECTORIO DE PERSONAL EXTERNO'"
           (add)="
@@ -20,7 +20,7 @@
           [dt]="dt"
         />
       </div>
-      <div class="col-12 sm:col-2">
+      <div class="col-12 col-sm-2">
         <iw-button-active-desactive
           [state]="activo"
           (stateChange)="onSelectActive($event)"
@@ -75,7 +75,7 @@
       <td>{{ item.personalCellPhone }}</td>
       <td>{{ item.personalEmail }}</td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ userId: item.applicationUserId, title: 'Editar' })"
           />
@@ -109,7 +109,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon

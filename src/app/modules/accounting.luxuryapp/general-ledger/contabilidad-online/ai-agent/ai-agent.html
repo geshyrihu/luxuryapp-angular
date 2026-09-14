@@ -4,12 +4,12 @@
   position="right"
   styleClass="w-full lg:w-8 xl:w-7 p-0"
 >
-  <div class="flex align-items-center gap-2 mb-3">
+  <div class="d-flex align-items-center gap-2 mb-3">
     <app-icon
       [icon]="'material-symbols-light:auto-awesome-motion'"
       class="text-primary text-2xl font-bold"
     />
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       <span class="font-bold text-xl">Auditor Inteligente</span>
       <span class="text-xs text-500"
         >Analizando: {{ filterS.currentReportName() || 'Ningún reporte'
@@ -17,13 +17,13 @@
       >
     </div>
   </div>
-    <div class="flex flex-column h-full">
-      <div class="flex-1 min-h-0 flex flex-column xl:flex-row gap-3 p-3">
-        <div class="flex-1 min-h-0 flex flex-column">
-          <div class="flex-1 overflow-y-auto flex flex-column gap-3 pr-1">
+    <div class="d-flex flex-column h-full">
+      <div class="flex-1 min-h-0 d-flex flex-column flex-xl-row gap-3 p-3">
+        <div class="flex-1 min-h-0 d-flex flex-column">
+          <div class="flex-1 overflow-y-auto d-flex flex-column gap-3 pe-1">
             @for (msg of messages(); track msg) {
             <div
-              class="flex w-full"
+              class="d-flex w-full"
               [ngClass]="{'justify-content-end': msg.role === 'user', 'justify-content-start': msg.role === 'assistant'}"
             >
               <div
@@ -31,7 +31,7 @@
                 [ngClass]="msg.role === 'user' ? 'bg-primary text-white border-noround-right' : 'surface-200 text-800 border-noround-left'"
               >
                 <div
-                  class="flex align-items-center justify-content-between gap-2 mb-2"
+                  class="d-flex align-items-center justify-content-between gap-2 mb-2"
                 >
                   <app-icon
                     [icon]="msg.role === 'user' ? 'material-symbols-light:auto-awesome-motion' : 'material-symbols-light:auto-awesome-motion'"
@@ -58,18 +58,18 @@
               </div>
             </div>
             } @if (loading()) {
-            <div class="flex justify-content-start">
+            <div class="d-flex justify-content-start">
               <div
-                class="p-3 surface-200 rounded-xl border-noround-left flex align-items-center gap-2"
+                class="p-3 surface-200 rounded-xl border-noround-left d-flex align-items-center gap-2"
               >
                 <lx-spinner [size]="16" [strokeWidth]="6" />
                 <span class="text-sm">Analizando datos...</span>
               </div>
             </div>
             } @if (speaking()) {
-            <div class="flex justify-content-start">
+            <div class="d-flex justify-content-start">
               <div
-                class="p-3 surface-100 rounded-xl border-1 border-primary flex align-items-center gap-2"
+                class="p-3 surface-100 rounded-xl border-1 border-primary d-flex align-items-center gap-2"
               >
                 <app-icon [icon]="'material-symbols-light:volume-up'" class="text-primary" />
                 <span class="text-sm"
@@ -82,13 +82,13 @@
         </div>
 
         <aside
-          class="xl:w-18rem surface-50 border-1 surface-border rounded-xl p-3 flex flex-column gap-3 overflow-y-auto"
+          class="xl:w-18rem surface-50 border-1 surface-border rounded-xl p-3 d-flex flex-column gap-3 overflow-y-auto"
         >
           <div>
             <div class="text-xs text-500 font-bold uppercase mb-2">
               Preguntas Sugeridas
             </div>
-            <div class="flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
               @for (q of suggestedQuestions; track q) {
               <il-button
                 (clicked)="setQuery(q)"
@@ -107,7 +107,7 @@
             <div class="text-xs text-500 font-bold uppercase mb-2">
               Controles
             </div>
-            <div class="flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
               <il-button
                 iconClass="material-symbols-light:volume-up"
                 label="Releer última respuesta"

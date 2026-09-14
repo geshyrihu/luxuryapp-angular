@@ -1,9 +1,9 @@
-<div class="grid">
+<div class="row">
   <!-- Header -->
-  <div class="col-12 flex align-items-center mb-2">
-    <app-icon [icon]="'material-symbols-light:attach-file'" class="text-xl text-primary mr-2" />
+  <div class="col-12 d-flex align-items-center mb-2">
+    <app-icon [icon]="'material-symbols-light:attach-file'" class="text-xl text-primary me-2" />
     <h3 class="text-base font-semibold text-color m-0">Evidencias Adjuntas</h3>
-    <span class="text-sm text-color-secondary ml-2">
+    <span class="text-sm text-color-secondary ms-2">
       ({{ attachments().length }}/{{ MAX_FILES_PER_INCIDENT }})
     </span>
   </div>
@@ -34,14 +34,14 @@
         </file-upload-list-item>
       </ng-template>
     </file-upload>
-    <small class="text-color-secondary mt-1 block">
+    <small class="text-color-secondary mt-1 d-block">
       JPG, PNG, PDF é Míx. 2 MB por archivo é Míx. {{ MAX_FILES_PER_INCIDENT }}
       archivos
     </small>
   </div>
 
   @if (selectedFiles.length > 0) {
-  <div class="col-12 flex justify-content-end">
+  <div class="col-12 d-flex justify-content-end">
     <il-button
       iconClass="material-symbols-light:upload"
       label="Subir archivos"
@@ -53,8 +53,8 @@
 
   <!-- Lista de adjuntos -->
   @if (loading()) {
-  <div class="col-12 flex justify-content-center p-4 text-color-secondary">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="mr-2" />Cargando...
+  <div class="col-12 d-flex justify-content-center p-4 text-color-secondary">
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="me-2" />Cargando...
   </div>
   } @else if (attachments().length === 0) {
   <div
@@ -83,7 +83,7 @@
       <ng-template #body let-attachment>
         <tr>
           <td>
-            <span class="flex align-items-center gap-2">
+            <span class="d-flex align-items-center gap-2">
               <app-icon
                 [icon]="getFileIcon(attachment.mimeType)"
                 [ngClass]="getFileIconClass(attachment.mimeType)"

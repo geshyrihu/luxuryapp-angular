@@ -4,12 +4,12 @@
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   rowGroupMode="subheader"
   groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
-    <div class="flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
+    <div class="d-flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
       <custom-input-text-signal
         [control]="fechaControl"
         type="month"
@@ -20,7 +20,7 @@
         [horizontal]="false"
         [noMargin]="true"
       />
-      <div class="flex flex-wrap gap-1">
+      <div class="d-flex flex-wrap gap-1">
         @for (item of filtroEquipos; track item) {
         <iw-button
           [lxTooltip]="'Ver ' + item.nombre"
@@ -44,7 +44,7 @@
         (click)="onNavigateToReportTabla()"
         variant="outline"
       />
-      <div class="ml-auto">
+      <div class="ms-auto">
         <primeng-custom-caption
           [title]="filtroEquiposValue | titlecase"
           (add)="
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div
-      class="flex align-items-center justify-content-between text-sm text-color-secondary pt-2 border-top-1 border-200"
+      class="d-flex align-items-center justify-content-between text-sm text-color-secondary pt-2 border-top-1 border-200"
     >
       Servicios Totales: {{ dataSignal() ? dataSignal().length : 0 }} .
     </div>
@@ -119,7 +119,7 @@
         <div class="cursor-pointer font-center">
           <lx-tag
             [value]="item.typeMaintanceFilter"
-            class="ml-auto"
+            class="ms-auto"
             (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
             [severity]="
               item.typeMaintanceFilter == 'Preventivo' ? 'success' :
@@ -151,7 +151,7 @@
         />
       </td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-item
             iconClass="material-symbols-light:print"
             lxTooltip="Imprimir soporte"
@@ -211,9 +211,9 @@
     <!-- tu bloque aqué -->
     <div class="card-body p-0">
       <!-- Sección Tútulo y Fecha -->
-      <div class="flex flex-column mb-3">
+      <div class="d-flex flex-column mb-3">
         <div
-          class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+          class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
         >
           <span class="font-bold text-lg mb-1">
             {{ filtroEquiposValue | titlecase }}
@@ -232,7 +232,7 @@
       </div>
 
       <!-- Segmento de Filtros (Scrollable) -->
-      <div class="flex gap-2 mb-3 bg-surface-100 p-1 rounded">
+      <div class="d-flex gap-2 mb-3 bg-surface-100 p-1 rounded">
         @for (item of filtroEquipos; track item) {
         <button class="p-button p-button-text p-button-sm flex-1">
           <app-icon [icon]="item.icon" class="text-xl mb-1" />
@@ -262,7 +262,7 @@
       </div>
 
       <!-- Contador Totales -->
-      <div class="flex align-items-center justify-content-end px-2 pb-2">
+      <div class="d-flex align-items-center justify-content-end px-2 pb-2">
         <small class="text-color-secondary"
           >Servicios Totales:
           <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></small
@@ -274,11 +274,11 @@
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div
         slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
         <app-icon
           icon="material-symbols-light:build"
@@ -286,7 +286,7 @@
         />
       </div>
       <span class="">
-        <div class="flex justify-content-between align-items-center mb-1">
+        <div class="d-flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">
             {{ item.machineryId }}- {{ item.machinery }}
           </h2>
@@ -303,10 +303,10 @@
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
           />
-          <span class="ml-2 text-500">({{ item.provider }})</span>
+          <span class="ms-2 text-500">({{ item.provider }})</span>
         </p>
 
-        <div class="flex flex-wrap mt-2">
+        <div class="d-flex flex-wrap mt-2">
           <lx-tag
             [value]="getStatusLabel(item.status)"
             [severity]="getBadgeSeverity(item.status)"

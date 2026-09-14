@@ -5,7 +5,7 @@
     para agregarla al presupuesto.
   </p></lx-message>
 } @if (presupuestoAgregados().length > 0) {
-<p-table #dtt class="card hidden md:block" [value]="presupuestoAgregados()">
+<p-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
   <ng-template #caption>
     <primeng-custom-caption
       [title]="'Partidas agregadas'"
@@ -28,7 +28,7 @@
       <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
       <td>{{ item.amount | number: "1.0-0" }}</td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-delete (confirmed)="deletePresupuestoAgregado(item.id)" />
         </div>
       </td>
@@ -38,7 +38,7 @@
 } @if (dataSignal()) {
 <p-table
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   [value]="dataSignal()"
   [rows]="tablePrimeNgRows"
   [paginator]="true"
@@ -48,15 +48,15 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #caption>
-    <div class="grid col-12">
-      <div class="col-12 md:col-10">
+    <div class="row col-12">
+      <div class="col-12 col-md-10">
         <primeng-custom-caption
           [title]="'Cedula Presupuestal'"
           [showAdd]="false"
           [dt]="dt"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           id="yearSelector"
           [(ngModel)]="intYear"
@@ -95,7 +95,7 @@
       </td>
       <!-- Opciones -->
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (submitting()) {
           <lx-spinner [size]="32" [strokeWidth]="8" />
           } @else {

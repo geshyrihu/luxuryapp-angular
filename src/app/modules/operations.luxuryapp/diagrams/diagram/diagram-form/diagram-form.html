@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form" class="flex flex-column gap-3">
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="d-flex flex-column gap-3">
   <div class="field">
     <custom-input-text-signal
       [control]="form.controls.name"
@@ -7,9 +7,9 @@
     />
   </div>
 
-  <div class="grid">
-    <div class="col-12 md:col-6">
-      <label class="font-bold mb-2 block text-sm">Customers Objetivo</label>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <label class="font-bold mb-2 d-block text-sm">Customers Objetivo</label>
       <lx-listbox
         [options]="allCustomers()"
         formControlName="targetCustomerIds"
@@ -24,8 +24,8 @@
       ></lx-listbox>
     </div>
 
-    <div class="col-12 md:col-6">
-      <label class="font-bold mb-2 block text-sm">Roles Objetivo</label>
+    <div class="col-12 col-md-6">
+      <label class="font-bold mb-2 d-block text-sm">Roles Objetivo</label>
       <lx-listbox
         [options]="allRoles()"
         formControlName="targetRoleIds"
@@ -34,14 +34,14 @@
         [filter]="true"
         optionLabel="label"
         optionValue="value"
-        class="w-full block"
+        class="w-full d-block"
         [listStyle]="{ 'max-height': '200px' }"
         emptyFilterMessage="No se encontraron roles"
       ></lx-listbox>
     </div>
   </div>
 
-  <div class="flex justify-content-end mt-4">
+  <div class="d-flex justify-content-end mt-4">
     <il-button-save [loading]="submitting()" />
   </div>
 </form>

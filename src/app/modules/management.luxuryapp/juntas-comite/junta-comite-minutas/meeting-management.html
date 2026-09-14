@@ -1,7 +1,7 @@
 @if (meetingData()) {
 <div class="p-4">
   <div class="card" [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
-    <div class="mb-3 flex align-items-center justify-content-between">
+    <div class="mb-3 d-flex align-items-center justify-content-between">
       <a routerLink="/junta-comite/list-minutas" class="no-underline">
         <il-button
           label="VOLVER AL LISTADO"
@@ -10,7 +10,7 @@
           size="small"
         />
       </a>
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <lx-tag
           severity="info"
           [value]="'Total: ' + meetingData()?.issues"
@@ -47,7 +47,7 @@
     <!-- Tabla para Operaciones -->
     <app-area-details-table
       title="Operaciones"
-      class="mt-4 block"
+      class="mt-4 d-block"
       [meetingId]="meetingData()!.id"
       [details]="meetingData()!.operaciones"
       [areaResponsable]="1"
@@ -63,7 +63,7 @@
     <!-- Tabla para Legal -->
     <app-area-details-table
       title="Legal"
-      class="mt-4 block"
+      class="mt-4 d-block"
       [meetingId]="meetingData()!.id"
       [details]="meetingData()!.legal"
       [areaResponsable]="2"
@@ -78,9 +78,9 @@
   </div>
 </div>
 } @else {
-<div class="flex align-items-center justify-content-center h-screen">
+<div class="d-flex align-items-center justify-content-center h-screen">
   <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
-  <span class="ml-3 text-lg font-medium text-700"
+  <span class="ms-3 text-lg font-medium text-700"
     >Cargando detalles de la minuta...</span
   >
 </div>

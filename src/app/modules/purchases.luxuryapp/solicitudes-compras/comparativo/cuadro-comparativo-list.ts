@@ -391,9 +391,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     const result = await this.swalService.fire({
       title: "No se autoriza",
       html: `
-        <div class="flex flex-column gap-2 text-left">
+        <div class="d-flex flex-column gap-2 text-left">
           <label for="swal-authorizer" class="font-semibold">Quien decide</label>
-          <select id="swal-authorizer" class="swal2-select" class="flex w-full">
+          <select id="swal-authorizer" class="swal2-select" class="d-flex w-full">
             <option value="">Selecciona quien decide</option>
             ${Object.entries(inputOptions)
               .map(
@@ -403,7 +403,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
               .join("")}
           </select>
           <label for="swal-reason" class="font-semibold mt-2">Motivo</label>
-          <textarea id="swal-reason" class="swal2-textarea" class="flex w-full m-0" placeholder="Explica por que no se autoriza"></textarea>
+          <textarea id="swal-reason" class="swal2-textarea" class="d-flex w-full m-0" placeholder="Explica por que no se autoriza"></textarea>
         </div>
       `,
       showCancelButton: true,

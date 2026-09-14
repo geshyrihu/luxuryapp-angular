@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -11,7 +11,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -125,7 +125,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 surface-100"
       >
         <app-icon
           icon="material-symbols-light:group-outline"

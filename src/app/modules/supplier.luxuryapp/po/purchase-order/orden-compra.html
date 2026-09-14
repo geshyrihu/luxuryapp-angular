@@ -2,7 +2,7 @@
 
 @if (loading()) {
 <div
-  class="fixed top-0 left-0 w-full h-full flex flex-column align-items-center justify-content-center surface-card opacity-80 z-50"
+  class="fixed top-0 left-0 w-full h-full d-flex flex-column align-items-center justify-content-center surface-card opacity-80 z-50"
 >
   <app-spinner [size]="64" [strokeWidth]="4" />
   <span class="mt-2 text-primary font-bold">Cargando Orden de Compra...</span>
@@ -12,13 +12,13 @@
 <!-- ================================================================== -->
 <!-- SECCIóN DE ALERTA DE ESTADO DE LA ORDEN DE COMPRA                  -->
 <!-- ================================================================== -->
-<div class="grid">
-  <div class="col-12 md:col-6">
+<div class="row">
+  <div class="col-12 col-md-6">
     @if (ordenCompra(); as oc) {
     <lx-message [severity]="isLocked() ? 'warn' : 'info'" class="mt-1 p-0 w-full">{{ oc.lockReason }}</lx-message>
 
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
-    <lx-message severity="warn" icon="material-symbols-light:warning" class="mt-2 p-0 w-full"><div class="flex align-items-center">
+    <lx-message severity="warn" icon="material-symbols-light:warning" class="mt-2 p-0 w-full"><div class="d-flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
           ({{oc.folioSolicitudCompra}}) pero no estó vinculada
@@ -33,7 +33,7 @@
       </div></lx-message>
     } }
   </div>
-  <div class="col-12 md:col-6">
+  <div class="col-12 col-md-6">
     @if (ordenCompra(); as oc) {
     <app-orden-compra-datos-auth-parcial
       [ordenCompra]="oc"
@@ -49,9 +49,9 @@
 <!-- SECCIóN DE PANELES DE DATOS PRINCIPALES                            -->
 <!-- ================================================================== -->
 @if (ordenCompra(); as oc) {
-<div class="grid mt-0">
+<div class="row mt-0">
   <!-- 1. Panel: Datos de la Cotización -->
-  <div class="col-12 md:col-4">
+  <div class="col-12 col-md-4">
     <app-orden-compra-datos-cotizacion
       [ordenCompra]="oc"
       [solicitudCompraId]="solicitudCompraId()"
@@ -60,7 +60,7 @@
     />
   </div>
   <!-- 2. Panel: Datos de Pago -->
-  <div class="col-12 md:col-4">
+  <div class="col-12 col-md-4">
     <app-orden-compra-datos-pago-parcial
       [ordenCompra]="oc.ordenCompraDatosPago"
       [bloqueada]="isPanelEditingDisabled()"
@@ -69,7 +69,7 @@
   </div>
 
   <!-- 3. Panel: Status de la Compra -->
-  <div class="col-12 md:col-4">
+  <div class="col-12 col-md-4">
     <app-orden-compra-status-parcial
       (modalOrdenCompra)="onModalOrdenCompraStatus()"
       [ordenCompra]="oc"
@@ -87,7 +87,7 @@
 
 <!-- Colocar en esta zoan el boton para agregar facturas -->
 @if (ordenCompra(); as oc) {
-<div class="flex justify-content-end mb-2">
+<div class="d-flex justify-content-end mb-2">
   <il-button
     label="Administrar Facturas"
     iconClass="material-symbols-light:settings"
@@ -110,13 +110,13 @@
 <!-- SECCIóN DE PRESUPUESTO Y GASTOS RELACIONADOS                       -->
 <!-- ================================================================== -->
 @if(ordenCompra(); as oc) { @if (!oc.isDevolucion) {
-<div class="grid mb-2">
+<div class="row mb-2">
   <!-- 5. Tabla: Presupuesto Utilizado -->
   @if (purchaseOrderBudget()) {
-  <div class="col-12 sm:col-7">
+  <div class="col-12 col-sm-7">
     <p-table
       [value]="purchaseOrderBudget()"
-      class="custom-table card hidden md:block"
+      class="custom-table card d-none d-md-block"
     >
       <ng-template #caption>
         <div
@@ -156,7 +156,7 @@
           </td>
           <td>{{ item.amount | number: '1.2-2' }}</td>
           <td>
-            <div class="flex">
+            <div class="d-flex">
               <iw-button-edit
                 (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
               />
@@ -175,10 +175,10 @@
   }
 
   <!-- 6. Panel: Enlaces a Documentos -->
-  <div class="hidden sm:block sm:col-3"></div>
-  <div class="col-12 sm:col-2 text-right">
+  <div class="d-none d-sm-block col-sm-3"></div>
+  <div class="col-12 col-sm-2 text-right">
     <lx-card [padded]="false">
-<div class="flex flex-column">
+<div class="d-flex flex-column">
         @if (solicitudCompraId() > 0) {
         <il-button-item
           iconClass="material-symbols-light:attach-money"
@@ -224,7 +224,7 @@
 <!-- ================================================================== -->
 <p-table
   [value]="ordenCompraDetalle()"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   dataKey="id"
 >
   <ng-template #header>
@@ -237,10 +237,10 @@
           @if (canAddProducts()) {
           <span
             (click)="onModalAgregarproducto()"
-            class="pointer ml-1 text-primary font-bold"
+            class="pointer ms-1 text-primary font-bold"
           >
             AGREGAR
-            <app-icon [icon]="'material-symbols-light:add'" class="icon ml-1" />
+            <app-icon [icon]="'material-symbols-light:add'" class="icon ms-1" />
           </span>
           }
         </div>
@@ -285,7 +285,7 @@
       <td class="text-right">{{ item.total | number: '1.2-2' }}</td>
       <td>
         @if (canEditBudget()) {
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit (clicked)="onModalEditarDetalle(item)" />
           <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
         </div>

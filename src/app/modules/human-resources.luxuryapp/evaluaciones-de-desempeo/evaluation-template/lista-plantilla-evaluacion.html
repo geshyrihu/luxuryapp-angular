@@ -7,7 +7,7 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption (add)="onCreate()" [dt]="dt" />
@@ -42,7 +42,7 @@
       <td class="text-center">{{ item.questionCount }}</td>
       <!-- Opciones -->
       <td class="no-print text-center">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-edit (clicked)="onEdit(item.id)" />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -67,7 +67,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 surface-100"
       >
         <app-icon
           icon="material-symbols-light:article-outline"

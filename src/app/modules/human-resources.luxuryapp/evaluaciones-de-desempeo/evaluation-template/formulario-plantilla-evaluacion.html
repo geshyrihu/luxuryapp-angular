@@ -1,8 +1,8 @@
 <div class="card p-4 shadow-sm">
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
     <!-- Cabecera de la Plantilla -->
-    <div class="grid mb-4">
-      <div class="col-12 md:col-6 lg:col-4">
+    <div class="row mb-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <custom-input-text-signal
           [control]="form.controls.name"
           label="Nombre de la Plantilla"
@@ -10,8 +10,8 @@
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-6 lg:col-2">
-        <div class="flex flex-column gap-2 h-full justify-content-center">
+      <div class="col-12 col-md-6 col-lg-2">
+        <div class="d-flex flex-column gap-2 h-full justify-content-center">
           <custom-input-check-signal
             [control]="form.controls.isActive"
             label="Plantilla Activa"
@@ -19,7 +19,7 @@
           />
         </div>
       </div>
-      <div class="col-12 lg:col-6">
+      <div class="col-12 col-lg-6">
         <custom-input-textarea-signal
           [control]="form.controls.description"
           label="DESCRIPCIÓN (Opcional)"
@@ -31,16 +31,16 @@
     </div>
 
     <div
-      class="flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border"
+      class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border"
     >
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-primary text-xl"
         />
         <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
       </div>
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button
           iconClass="material-symbols-light:add"
           size="small"
@@ -61,13 +61,13 @@
       cdkDropList
       [cdkDropListData]="categories.controls"
       (cdkDropListDropped)="onDropCategory($event)"
-      class="flex flex-column gap-4"
+      class="d-flex flex-column gap-4"
     >
       @for (categoryGroup of categories.controls; track categoryGroup; let i =
       $index) {
       <lx-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
         <ng-template #header>
-          <div class="flex align-items-center gap-3 px-2 w-full">
+          <div class="d-flex align-items-center gap-3 px-2 w-full">
             <!-- Drag Handle Categoría -->
             <div
               cdkDragHandle
@@ -87,7 +87,7 @@
               />
             </div>
 
-            <div class="flex gap-2">
+            <div class="d-flex gap-2">
               <il-button
                 iconClass="material-symbols-light:add-circle"
                 [size]="'small'"
@@ -105,13 +105,13 @@
           cdkDropList
           [cdkDropListData]="questions(i).controls"
           (cdkDropListDropped)="onDropQuestion($event, i)"
-          class="flex flex-column gap-2 mt-2"
+          class="d-flex flex-column gap-2 mt-2"
         >
           @for (questionGroup of questions(i).controls; track questionGroup; let
           j = $index) {
           <div
             [formGroup]="questionGroup"
-            class="flex align-items-center gap-3 p-2 surface-100 rounded hover:surface-200 transition-colors"
+            class="d-flex align-items-center gap-3 p-2 surface-100 rounded hover:surface-200 transition-colors"
             cdkDrag
           >
             <!-- Drag Handle Pregunta -->
@@ -139,7 +139,7 @@
           <div
             class="text-center p-4 border-2 border-dashed surface-border rounded text-500"
           >
-            <app-icon [icon]="'material-symbols-light:info'" class="mr-2" />
+            <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
             No hay preguntas en esta categoría. Haga clic en "Pregunta" para
             agregar una.
           </div>
@@ -152,7 +152,7 @@
       >
         <app-icon
           [icon]="'material-symbols-light:folder-open'"
-          class="text-6xl text-200 mb-3 block"
+          class="text-6xl text-200 mb-3 d-block"
         />
         <span class="text-xl text-500 font-medium"
           >No se han definido categorías</span
@@ -172,7 +172,7 @@
     </div>
 
     <!-- Footer con Acciones -->
-    <div class="flex justify-content-end mt-5 pt-4 border-top-1 surface-border">
+    <div class="d-flex justify-content-end mt-5 pt-4 border-top-1 surface-border">
       <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"

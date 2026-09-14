@@ -1,10 +1,10 @@
 <div class="px-3 pt-3">
   @if (isLoading) {
-  <div class="flex justify-content-center my-4">
+  <div class="d-flex justify-content-center my-4">
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
   </div>
   } @else {
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
     <div class="p-3 rounded surface-100 mb-2">
       <custom-input-select-signal
         [control]="form.controls['billingMode']"
@@ -15,15 +15,15 @@
       />
     </div>
 
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <custom-input-number-signal
           [control]="form.controls['defaultDueDays']"
           label="Dias para vencer (Predeterminado)"
           hint="Dias tras la creacion del cargo para fijar la fecha limite."
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-number-signal
           [control]="form.controls['graceDays']"
           label="Dias de Gracia"
@@ -51,15 +51,15 @@
         </p>
       </div>
 
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-switch-signal
             [control]="form.controls['isEmailEnabled']"
             label="Emails"
             placeholder="Permitir envio de estados de cuenta, recordatorios y recibos"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-switch-signal
             [control]="form.controls['isPushNotificationEnabled']"
             label="Notificaciones"
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="flex justify-content-end mt-4">
+    <div class="d-flex justify-content-end mt-4">
       <il-button
         label="Cancelar"
         iconClass="material-symbols-light:close"

@@ -1,6 +1,6 @@
 @if (filteredDataSignal()) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <div class="card">
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -13,11 +13,11 @@
       [value]="filteredDataSignal()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table hidden md:block"
+      class="custom-table d-none d-md-block"
     >
       <ng-template #caption>
         <div
-          class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3"
+          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3"
         >
           <!-- Parte Izquierda: Tútulo y bósqueda -->
           <div class="flex-grow-1">
@@ -30,7 +30,7 @@
           </div>
 
           <!-- Parte Derecha: Filtros adicionales -->
-          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+          <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
             <div>
               <custom-input-select-signal
                 [data]="selectCustomerSignal()"
@@ -94,7 +94,7 @@
               [image]="item.photoPath
                     ? item.photoPath
                     : 'assets/images/default-avatar.png'"
-              class="mr-2"
+              class="me-2"
               size="large"
               (click)="onCardEmployee(item.id)"
             />
@@ -103,16 +103,16 @@
           </td>
           <td>{{ item.customer }}</td>
           <td>
-            <div class="flex flex-column">
-              <span class="font-bold text-sm"> {{ item.userName }} </span>
-              <span class="text-xs text-500 uppercase"> {{ item.role }} </span>
+            <div class="d-flex flex-column">
+              <span class="fw-bold text-sm"> {{ item.userName }} </span>
+              <span class="text-xs text-500 text-uppercase"> {{ item.role }} </span>
             </div>
           </td>
           <td>{{ item.email }}</td>
           <td>{{ item.phoneNumber }}</td>
 
           <td class="no-print">
-            <div class="flex">
+            <div class="d-flex">
               @if (item.active) {
               <iw-button-item
                 (clicked)="onToBlockAccount(item.id)"
@@ -160,7 +160,7 @@
   <!-- Start Este bloque necesito agregarlo a data-view -->
   <!-- Filtros personalizados usando el nuevo slot -->
   <div customFilters>
-    <div class="grid mb-1 align-items-end">
+    <div class="row mb-1 align-items-end">
       <div class="col-5 m-0">
         <custom-input-select-signal
           [data]="selectCustomerSignal()"
@@ -209,22 +209,22 @@
         <app-icon icon="material-symbols-light:account-circle-outline" />
         }
       </div>
-      <p class="font-semibold m-0 text-color">{{ item.fullName }}</p>
+      <p class="fw-semibold m-0 text-color">{{ item.fullName }}</p>
       <p class="text-xs m-0 mt-1">
-        <span class="font-medium">{{ item.userName }}</span>
+        <span class="fw-medium">{{ item.userName }}</span>
         <span class="mx-1 text-color-secondary">é</span>
-        <span class="text-color-secondary uppercase">{{ item.role }}</span>
+        <span class="text-color-secondary text-uppercase">{{ item.role }}</span>
       </p>
       <p class="text-xs m-0 text-color-secondary">
         {{ item.customer || 'Sin Cliente' }}
       </p>
       <p class="text-xs m-0 text-500">
-        <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs mr-1" />{{
+        <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs me-1" />{{
         item.email }}
       </p>
       @if (item.phoneNumber) {
       <p class="text-xs m-0 text-500">
-        <app-icon [icon]="'material-symbols-light:call'" class="text-xs mr-1" />{{
+        <app-icon [icon]="'material-symbols-light:call'" class="text-xs me-1" />{{
         item.phoneNumber }}
       </p>
       }

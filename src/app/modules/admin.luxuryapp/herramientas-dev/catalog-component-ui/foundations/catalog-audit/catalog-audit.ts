@@ -34,14 +34,14 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
         </p>
       </div>
 
-      <div class="grid">
+      <div class="row">
         <div class="col-12">
           <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
             Bloques de Contenido
           </h3>
-          <div class="grid">
+          <div class="row">
             @for (bloque of bloquesVisuales; track bloque.titulo) {
-              <div class="col-12 lg:col-4">
+              <div class="col-12 col-lg-4">
                 <article
                   class="border-round-xl border-1 p-4 h-full"
                   [class.bg-yellow-50]="bloque.titulo === 'Advertencia'"
@@ -51,7 +51,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.bg-green-50]="bloque.titulo === 'Buena practica'"
                   [class.border-green-200]="bloque.titulo === 'Buena practica'"
                 >
-                  <div class="flex align-items-center gap-2 mb-3">
+                  <div class="d-flex align-items-center gap-2 mb-3">
                     <app-icon
                       [icon]="iconifyIcon(bloque.icono)"
                       class="text-xl"
@@ -79,9 +79,9 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                 : 'border-left-3 border-red-500 mb-4')
             "
           >
-            <div class="flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3">
               <div
-                class="w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold"
+                class="w-4rem h-4rem border-round-lg bg-primary text-white d-flex align-items-center justify-content-center text-2xl font-bold"
               >
                 {{ puntajeChecklist() }}
               </div>
@@ -100,11 +100,11 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
             </div>
           </div>
 
-          <div class="grid">
+          <div class="row">
             @for (item of checklist(); track item.numero) {
-              <div class="col-12 md:col-6">
+              <div class="col-12 col-md-6">
                 <div
-                  class="flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer"
+                  class="d-flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer"
                   [class.bg-green-50]="item.aprobado"
                   [class.border-green-200]="item.aprobado"
                   [class.bg-red-50]="!item.aprobado"

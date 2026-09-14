@@ -1,6 +1,6 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <p-table
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
     [value]="data()"
     [rows]="10"
@@ -38,7 +38,7 @@
         <td>{{ item.invoiceCount }}</td>
         <td>{{ item.totalAmount | number:'1.2-2' }}</td>
         <td>
-          <div class="flex justify-content-end">
+          <div class="d-flex justify-content-end">
             <iw-button
               (click)="goToDetail(item.id)"
               lxTooltip="Ver Detalle"

@@ -1,9 +1,9 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <lx-tabs
     [tabs]="tabs"
     [(activeId)]="activeTabValue"
-    class="nav-tabs justify-content-center sm:justify-content-start"
+    class="nav-tabs justify-content-center justify-content-sm-start"
   >
     <div tab="tab1">
       <app-cronograma-anual-mantenimiento (messageEvent)="message($event)" />
@@ -18,7 +18,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   <!-- lx-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
   <lx-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
 

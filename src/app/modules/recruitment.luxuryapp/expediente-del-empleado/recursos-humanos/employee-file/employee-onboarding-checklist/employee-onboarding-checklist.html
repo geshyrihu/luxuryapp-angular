@@ -1,9 +1,9 @@
-<div class="flex flex-column gap-3 py-3">
+<div class="d-flex flex-column gap-3 py-3">
   <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
     <ng-template #header>
-      <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+      <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
         <div
-          class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+          class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
         >
           <app-icon
             [icon]="'material-symbols-light:fact-check'"
@@ -22,10 +22,10 @@
         No hay tareas de onboarding configuradas para este empleado.
       </p>
       } @else {
-      <div class="flex flex-column gap-2">
+      <div class="d-flex flex-column gap-2">
         @for (task of checklist(); track task.id) {
         <div
-          class="flex align-items-center gap-3 surface-50 rounded-lg border-1 border-100 p-3"
+          class="d-flex align-items-center gap-3 surface-50 rounded-lg border-1 border-100 p-3"
         >
           <p-checkbox
             [binary]="true"
@@ -34,7 +34,7 @@
             [disabled]="busyTaskId() === task.id"
           />
           <div class="flex-1 min-w-0">
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <strong class="text-900">{{ task.optionName }}</strong>
               @if (task.isCompleted) {
               <lx-tag value="Completado" severity="success" class="text-xs" />

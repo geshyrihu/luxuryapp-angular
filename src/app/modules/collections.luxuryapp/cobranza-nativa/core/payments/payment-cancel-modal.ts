@@ -20,9 +20,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="flex flex-column gap-4">
+    <div class="d-flex flex-column gap-4">
       <div class="surface-50 rounded-lg p-3 border-1 border-200">
-        <div class="flex align-items-start gap-3">
+        <div class="d-flex align-items-start gap-3">
           <app-icon
             icon="material-symbols-light:error-outline"
             class="text-2xl text-orange-500 mt-1"
@@ -46,7 +46,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         required
       />
 
-      <div class="flex justify-content-end gap-2">
+      <div class="d-flex justify-content-end gap-2">
         <il-button
           label="Cerrar"
           iconClass="material-symbols-light:close"

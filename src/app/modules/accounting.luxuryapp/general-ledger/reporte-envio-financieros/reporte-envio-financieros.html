@@ -8,8 +8,8 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #caption>
-    <div class="grid align-items-center">
-      <div class="col-12 sm:col-9">
+    <div class="row align-items-center">
+      <div class="col-12 col-sm-9">
         <h3 class="m-0 text-uppercase font-bold text-primary">
           REPORTE DE ENVÍO DE ESTADOS FINANCIEROS A CONDÓMINOS AÑO {{
           selectedYear }}
@@ -19,8 +19,8 @@
           día 10 de cada mes.
         </p>
       </div>
-      <div class="col-12 sm:col-3">
-        <div class="flex justify-content-end align-items-center gap-2">
+      <div class="col-12 col-sm-3">
+        <div class="d-flex justify-content-end align-items-center gap-2">
           <label class="font-bold">Año:</label>
           <custom-input-select-signal
             [data]="years"
@@ -48,7 +48,7 @@
       <td class="text-center">
         @if (selectedYear < currentYear || (selectedYear === currentYear &&
         mes.mes <= currentMonth)) { @if (mes.estatus == 'Enviado') {
-        <div class="flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center">
           <app-icon
             icon="material-symbols-light:check-circle"
             [lxTooltip]="mes.fecha"

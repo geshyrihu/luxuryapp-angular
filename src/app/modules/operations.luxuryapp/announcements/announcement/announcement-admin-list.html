@@ -9,11 +9,11 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <div class="flex-grow-1">
         <primeng-custom-caption
@@ -24,7 +24,7 @@
         />
       </div>
 
-      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
         <div class="w-15rem">
           <custom-input-select-signal
             [control]="statusControl"
@@ -124,7 +124,7 @@
       <td>{{ item.publishedAt | apiDate: "dd/MM/yyyy" }}</td>
       <td>{{ item.expirationDate | apiDate: "dd/MM/yyyy" }}</td>
       <td>
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit (clicked)="onModalForm(item)" />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
           <iw-button-download
@@ -165,7 +165,7 @@
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
 >
-  <div customFilters class="px-4 py-2 flex flex-column gap-3">
+  <div customFilters class="px-4 py-2 d-flex flex-column gap-3">
     <div>
       <h5 class="m-0 mb-2 text-secondary text-xs uppercase tracking-wider">
         Filtrar por Estado
@@ -196,7 +196,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg bg-primary-50 w-3rem h-3rem"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg bg-primary-50 w-3rem h-3rem"
       >
         <app-icon
           icon="material-symbols-light:campaign"
@@ -204,7 +204,7 @@
         />
       </div>
 
-      <div class="flex justify-content-between align-items-center mb-2">
+      <div class="d-flex justify-content-between align-items-center mb-2">
         <h2 class="font-bold m-0 text-base">{{ item.title }}</h2>
         <lx-tag
           [value]="item.status"
@@ -222,17 +222,17 @@
       <p class="text-medium text-500 m-0 text-sm mb-1">
         <app-icon
           [icon]="'material-symbols-light:calendar-today'"
-          class="mr-1"
+          class="me-1"
         />
         Publicado: {{ item.publishedAt | apiDate: "dd/MM/yyyy" }}
       </p>
       <p class="text-medium text-500 m-0 text-sm">
-        <app-icon [icon]="'material-symbols-light:apartment'" class="mr-1" />
+        <app-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
         Cliente: {{ item.customerName }}
       </p>
       <lx-tag
         [value]="item.announcementType"
-        class="mt-2 block"
+        class="mt-2 d-block"
         [severity]="
             item.announcementType === 'Urgente'
               ? 'danger'

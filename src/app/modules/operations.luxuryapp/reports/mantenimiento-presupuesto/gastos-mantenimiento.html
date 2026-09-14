@@ -1,12 +1,12 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   #dt
   [value]="resumenGastos()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
   [loading]="loading()"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #header>
     <tr>
@@ -75,7 +75,7 @@
             <tr>
               <td colspan="3"></td>
               <td>Total por Cuenta:</td>
-              <td class="mr-auto">{{ subCuenta.costoTotal }}</td>
+              <td class="me-auto">{{ subCuenta.costoTotal }}</td>
             </tr>
           </tbody>
           }

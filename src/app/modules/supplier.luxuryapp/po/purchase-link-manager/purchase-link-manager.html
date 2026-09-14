@@ -1,12 +1,12 @@
 <div
-  class="purchase-link-manager p-3 flex flex-column h-full overflow-hidden surface-ground"
+  class="purchase-link-manager p-3 d-flex flex-column h-full overflow-hidden surface-ground"
   
 >
   <!-- HEADER MAESTRO -->
   <div
-    class="flex align-items-center justify-content-between mb-3 p-3 surface-card rounded shadow-sm flex-shrink-0"
+    class="d-flex align-items-center justify-content-between mb-3 p-3 surface-card rounded shadow-sm flex-shrink-0"
   >
-    <div class="flex align-items-center">
+    <div class="d-flex align-items-center">
       <div class="bg-primary-100 p-2 rounded">
         <app-icon [icon]="'material-symbols-light:link'" class="text-primary text-2xl" />
       </div>
@@ -19,7 +19,7 @@
         </p>
       </div>
     </div>
-    <div class="flex">
+    <div class="d-flex">
       <il-button
         iconClass="material-symbols-light:refresh"
         label="Refrescar"
@@ -36,24 +36,24 @@
   </div>
 
   <div
-    class="grid flex-grow-1 overflow-hidden px-2"
+    class="row flex-grow-1 overflow-hidden px-2"
     cdkDropListGroup
     [class.is-dragging]="isDragging()"
   >
     <!-- 🟢 COLUMNA: SOLICITUDES DE COMPRA -->
-    <div class="flex flex-column h-full pr-2">
+    <div class="d-flex flex-column h-full pe-2">
       <div
-        class="surface-card h-full flex flex-column rounded-xl shadow border-top-3 border-green-500 overflow-hidden"
+        class="surface-card h-full d-flex flex-column rounded-xl shadow border-top-3 border-green-500 overflow-hidden"
       >
         <!-- Filtros SC -->
         <div
           class="p-3 bg-green-50 border-bottom-1 surface-border flex-shrink-0"
         >
-          <div class="flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-green-700 font-bold">
               <app-icon
                 [icon]="'material-symbols-light:description'"
-                class="mr-2"
+                class="me-2"
               />SOLICITUDES
             </h3>
             <custom-input-select-button-signal
@@ -82,7 +82,7 @@
               [cdkDragData]="sc"
               (cdkDragStarted)="dragStarted()"
               (cdkDragEnded)="dragEnded()"
-              class="flex flex-column"
+              class="d-flex flex-column"
             >
               <!-- Drag Preview -->
               <div
@@ -95,17 +95,17 @@
                 </div>
               </div>
 
-              <div class="flex justify-content-between align-items-start mb-2">
-                <div class="flex flex-column">
-                  <div class="flex align-items-center mb-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-1">
                     <span
                       class="text-xs font-bold text-green-600 uppercase tracking-tighter"
                       >{{ sc.folio }}</span
                     >
                     <span
-                      class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
+                      class="text-xs text-500 font-bold border-left-1 ps-2 border-300"
                     >
-                      <app-icon [icon]="'material-symbols-light:event-busy'" class="mr-1" />{{
+                      <app-icon [icon]="'material-symbols-light:event-busy'" class="me-1" />{{
                       sc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
                     </span>
                   </div>
@@ -128,12 +128,12 @@
               </div>
 
               <!-- Chips: Órdenes Vinculadas -->
-              <div class="flex flex-wrap pt-2 border-top-1 border-50">
+              <div class="d-flex flex-wrap pt-2 border-top-1 border-50">
                 <span class="text-xs font-bold text-400 w-full mb-1"
                   >ÓRDENES VINCULADAS:</span
                 >
                 @for (orden of sc.ordenesRelacionadas; track orden.id) {
-                <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-orange-200"><div class="flex align-items-center">
+                <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-orange-200"><div class="d-flex align-items-center">
                     <app-icon [icon]="'material-symbols-light:shopping-cart'" class="text-xs" />
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
                     <app-icon
@@ -155,7 +155,7 @@
           <div
             class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'material-symbols-light:search'" class="text-4xl mb-3 block" />
+            <app-icon [icon]="'material-symbols-light:search'" class="text-4xl mb-3 d-block" />
             No se encontraron solicitudes con estos criterios.
           </div>
           }
@@ -164,17 +164,17 @@
     </div>
 
     <!-- 🔵 COLUMNA: ÓRDENES DE COMPRA -->
-    <div class="flex flex-column h-full pl-2">
+    <div class="d-flex flex-column h-full ps-2">
       <div
-        class="surface-card h-full flex flex-column rounded-xl shadow border-top-3 border-orange-500 overflow-hidden"
+        class="surface-card h-full d-flex flex-column rounded-xl shadow border-top-3 border-orange-500 overflow-hidden"
       >
         <!-- Filtros OC -->
         <div
           class="p-3 bg-orange-50 border-bottom-1 surface-border flex-shrink-0"
         >
-          <div class="flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-orange-700 font-bold">
-              <app-icon [icon]="'material-symbols-light:shopping-bag'" class="mr-2" />ÓRDENES
+              <app-icon [icon]="'material-symbols-light:shopping-bag'" class="me-2" />ÓRDENES
             </h3>
             <custom-input-select-button-signal
               [options]="statusOptions"
@@ -206,7 +206,7 @@
               [cdkDragData]="oc"
               (cdkDragStarted)="dragStarted()"
               (cdkDragEnded)="dragEnded()"
-              class="flex flex-column"
+              class="d-flex flex-column"
             >
               <!-- Drag Preview -->
               <div
@@ -219,17 +219,17 @@
                 </div>
               </div>
 
-              <div class="flex justify-content-between align-items-start mb-2">
-                <div class="flex flex-column">
-                  <div class="flex align-items-center mb-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-1">
                     <span
                       class="text-xs font-bold text-orange-600 uppercase tracking-tighter"
                       >{{ oc.folio }}</span
                     >
                     <span
-                      class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
+                      class="text-xs text-500 font-bold border-left-1 ps-2 border-300"
                     >
-                      <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />{{
+                      <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1" />{{
                       oc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
                     </span>
                   </div>
@@ -250,12 +250,12 @@
               </div>
 
               <!-- Chip de Vínculo: Solicitud -->
-              <div class="flex flex-wrap pt-2 border-top-1 border-50">
+              <div class="d-flex flex-wrap pt-2 border-top-1 border-50">
                 <span class="text-xs font-bold text-400 w-full mb-1"
                   >VINCULADA A:</span
                 >
                 @if (oc.solicitudCompraId) {
-                <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-green-200"><div class="flex align-items-center">
+                <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-green-200"><div class="d-flex align-items-center">
                     <app-icon
                       [icon]="'material-symbols-light:description'"
                       class="text-xs"
@@ -282,7 +282,7 @@
           <div
             class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'material-symbols-light:shopping-bag'" class="text-4xl mb-3 block" />
+            <app-icon [icon]="'material-symbols-light:shopping-bag'" class="text-4xl mb-3 d-block" />
             No hay órdenes disponibles para este estado.
           </div>
           }

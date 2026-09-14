@@ -24,14 +24,14 @@ interface LogEntry {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
-      class="fixed bottom-4 right-4 w-96 max-w-[calc(100vw-2rem)] h-96 bg-gray-900 rounded-lg shadow-2xl z-50 flex flex-col border border-gray-700"
+      class="fixed bottom-4 right-4 w-96 max-w-[calc(100vw-2rem)] h-96 bg-gray-900 rounded-lg shadow-2xl z-50 d-flex flex-col border border-gray-700"
     >
       <!-- Header -->
       <div
-        class="flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800"
+        class="d-flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800"
       >
         <span class="text-white font-bold text-sm">🐛 Debug Console</span>
-        <div class="flex gap-2">
+        <div class="d-flex gap-2">
           <button
             (click)="debugConsole.clearLogs()"
             class="text-xs px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
@@ -62,7 +62,7 @@ interface LogEntry {
               <span class="text-gray-500">[{{ log.level.toUpperCase() }}]</span>
               <span class="text-white">{{ log.message }}</span>
               @if (log.details) {
-                <div class="text-gray-400 ml-4 mt-1">{{ log.details }}</div>
+                <div class="text-gray-400 ms-4 mt-1">{{ log.details }}</div>
               }
             </div>
           }

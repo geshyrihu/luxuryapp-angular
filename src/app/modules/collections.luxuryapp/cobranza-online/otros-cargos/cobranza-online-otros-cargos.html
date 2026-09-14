@@ -1,7 +1,7 @@
 <section>
   @if (!hasCustomer()) {
   <div
-    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4"
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4"
   >
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
@@ -11,7 +11,7 @@
   } @else {
 
   <div
-    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 mb-3"
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 p-md-4 mb-3"
   >
     @if (otrosCargos().length === 0) {
     <div class="text-center p-4 text-color-secondary">
@@ -32,12 +32,12 @@
       [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '600px' }"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table card hidden md:block"
+      class="custom-table card d-none d-md-block"
       styleClass="p-datatable-sm"
     >
       <ng-template #caption>
         <div
-          class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 w-full"
+          class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 w-full"
         >
           <primeng-custom-caption
             [dt]="dt"
@@ -46,7 +46,7 @@
             class="w-full xl:w-auto"
           />
 
-          <div class="flex gap-2 overflow-auto max-w-full pb-2 xl:pb-0">
+          <div class="d-flex gap-2 overflow-auto max-w-full pb-2 pb-xl-0">
             <div
               class="border-round p-2 text-center flex-shrink-0 surface-ground border-1 surface-border"
               style="min-width: 120px"
@@ -141,7 +141,7 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <div class="flex gap-4 text-sm font-semibold">
+        <div class="d-flex gap-4 text-sm font-semibold">
           <span
             >Cargos:
             <span class="text-color"

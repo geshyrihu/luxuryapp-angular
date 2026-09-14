@@ -1,9 +1,9 @@
-<div class="flex flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   @if (loading()) {
   <lx-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
   <div
-    class="surface-card rounded-xl border-1 surface-border shadow-sm p-0 xl:p-4 overflow-hidden"
+    class="surface-card rounded-xl border-1 surface-border shadow-sm p-0 p-xl-4 overflow-hidden"
   >
     <div class="text-center mb-4">
       <h2 class="rf-panel-title text-2xl">PROYECTOS APROBADOS</h2>
@@ -13,10 +13,10 @@
     @if (reporte.totalGeneral; as total) {
     <div class="rf-card p-4 mb-4 border-2 border-primary">
       <div
-        class="flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3"
+        class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3"
       >
         <span class="font-bold uppercase text-lg line-height-3 text-primary">
-          <app-icon [icon]="'material-symbols-light:monitoring'" class="mr-2" />{{
+          <app-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
           total.descripcion }}
         </span>
         <span
@@ -24,9 +24,9 @@
           >{{ total.numeroCuenta }}</span
         >
       </div>
-      <div class="grid">
-        <div class="col-12 md:col-4">
-          <div class="flex flex-column gap-1">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
             <span class="text-500 font-medium uppercase text-xs"
               >Total a Cobrar</span
             >
@@ -36,8 +36,8 @@
             >
           </div>
         </div>
-        <div class="col-12 md:col-4">
-          <div class="flex flex-column gap-1">
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
             <span class="text-500 font-medium uppercase text-xs"
               >Total Cobrado</span
             >
@@ -47,8 +47,8 @@
             >
           </div>
         </div>
-        <div class="col-12 md:col-4">
-          <div class="flex flex-column gap-1">
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
             <span class="text-500 font-medium uppercase text-xs"
               >Saldo Restante</span
             >
@@ -66,28 +66,28 @@
     <p class="font-bold uppercase mb-3 text-sm" >
       Detalle por Proyecto
     </p>
-    <div class="grid mb-4">
+    <div class="row mb-4">
       @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
-      <div class="col-12 md:col-6 xl:col-4">
+      <div class="col-12 col-md-6 col-xl-4">
         <div
           class="rf-card p-4 h-full"
           
         >
-          <div class="flex justify-content-between align-items-center mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-900 font-bold uppercase text-sm line-height-3"
               >{{ proyecto.descripcion }}</span
             >
             <span class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</span>
           </div>
-          <div class="flex flex-column gap-3">
-            <div class="flex justify-content-between">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex justify-content-between">
               <span class="text-500 font-medium">Total a Cobrar</span>
               <span class="text-900 font-bold"
                 >{{ proyecto.totalACobrar |
                 currency:'MXN':'symbol-narrow':'1.0-0' }}</span
               >
             </div>
-            <div class="flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <span class="text-500 font-medium">Total Cobrado</span>
               <span class="text-green-600 font-bold"
                 >{{ proyecto.totalCobrado |
@@ -95,7 +95,7 @@
               >
             </div>
             <div
-              class="flex justify-content-between border-top-1 surface-border pt-2"
+              class="d-flex justify-content-between border-top-1 surface-border pt-2"
             >
               <span class="text-500 font-medium">Saldo Restante</span>
               <span class="font-bold text-primary"
@@ -146,7 +146,7 @@
             @for (m of proyecto.meses; track m.mes) {
             <td class="p-1" >
               <div
-                class="flex flex-column align-items-center justify-content-center h-full gap-1"
+                class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
               >
                 <span class="rf-td-cuenta text-xs">
                   {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
@@ -186,7 +186,7 @@
             @for (m of total.meses; track m.mes) {
             <td class="p-1">
               <div
-                class="flex flex-column align-items-center justify-content-center h-full gap-1"
+                class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
               >
                 <span
                   class="rf-td-cuenta text-xs"
@@ -231,7 +231,7 @@
   </div>
   } @else {
   <div
-    class="rf-card flex flex-column align-items-center py-8 text-color-secondary"
+    class="rf-card d-flex flex-column align-items-center py-8 text-color-secondary"
   >
     <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
     <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>

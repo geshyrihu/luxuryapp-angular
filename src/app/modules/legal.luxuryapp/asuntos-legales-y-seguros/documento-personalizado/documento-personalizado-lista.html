@@ -1,11 +1,11 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
     [scrollHeight]="scrollHeight"
     #dt
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -37,7 +37,7 @@
           <iw-button-view-pdf [url]="item.path" fileName="Documento" />
         </td>
         <td class="text-center no-print">
-          <div class="flex">
+          <div class="d-flex">
             <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               lxTooltip="Editar"

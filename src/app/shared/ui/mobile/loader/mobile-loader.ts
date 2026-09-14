@@ -11,7 +11,7 @@ import { LoaderBase } from "../../base/loader.base";
       <div class="mobile-loader-container">
         <div class="mobile-loader-pill shadow">
           <ion-spinner name="crescent"></ion-spinner>
-          <span class="ml-2">Cargando...</span>
+          <span class="ms-2">Cargando...</span>
         </div>
       </div>
     }

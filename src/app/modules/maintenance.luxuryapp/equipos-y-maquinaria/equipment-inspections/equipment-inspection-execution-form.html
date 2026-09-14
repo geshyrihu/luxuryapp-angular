@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div formArrayName="items" class="flex flex-column gap-3 mb-4">
+  <div formArrayName="items" class="d-flex flex-column gap-3 mb-4">
     @for (item of items.controls; track $index) {
     <div [formGroupName]="$index" class="surface-ground rounded p-3">
       <div class="font-medium mb-1">{{ $index + 1 }}. {{ item.controls.criterionTitle.value }}</div>
@@ -21,14 +21,14 @@
         {{ item.controls.criterionDescription.value || "Sin descripcion adicional" }}
       </div>
 
-      <div class="grid">
-        <div class="col-12 md:col-3">
+      <div class="row">
+        <div class="col-12 col-md-3">
           <custom-input-check-signal
             [control]="item.controls.isCompliant"
             label="Cumple"
           />
         </div>
-        <div class="col-12 md:col-9">
+        <div class="col-12 col-md-9">
           <custom-input-textarea-signal
             [control]="item.controls.observation"
             label="Observacion"
@@ -40,15 +40,15 @@
     }
   </div>
 
-  <div class="grid">
-    <div class="col-12 md:col-4">
+  <div class="row">
+    <div class="col-12 col-md-4">
       <custom-input-select-signal
         [control]="form.controls.severity"
         [data]="severityOptions"
         label="Resultado general"
       />
     </div>
-    <div class="col-12 md:col-8">
+    <div class="col-12 col-md-8">
       <custom-input-textarea-signal
         [control]="form.controls.observations"
         label="Observaciones generales"

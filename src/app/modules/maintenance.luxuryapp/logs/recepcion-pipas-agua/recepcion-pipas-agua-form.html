@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="grid">
+      <div class="row">
         <!-- Columna izquierda: datos del camion y tiempos -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-text-signal
             [control]="form.controls.placasCamion"
             label="Placas del camion"
@@ -36,7 +36,7 @@
         </div>
 
         <!-- Columna derecha: lecturas y niveles -->
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-decimal-signal
             [control]="form.controls.nivelCisternaAntes"
             label="Nivel cisterna antes"
@@ -71,8 +71,8 @@
       </div>
 
       <!-- Firmas de recepcion -->
-      <div class="grid mb-2">
-        <div class="col-12 md:col-6">
+      <div class="row mb-2">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveColaboradorMtto($event)"
             [control]="form.controls.colaboradorMtto"
@@ -81,7 +81,7 @@
             placeholder="Buscar colaborador que recibe"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-text-signal
             [control]="form.controls.guardiaSeguridad"
             label="Guardia de seguridad testigo"
@@ -93,8 +93,8 @@
       <!-- Seccion de fotografias -->
       <div class="mt-3 mb-2">
         <p class="font-semibold text-sm mb-2">Fotografias de evidencia</p>
-        <div class="grid">
-          <div class="col-12 md:col-4">
+        <div class="row">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Pipa llena</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -107,7 +107,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Pipa vacia</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -120,7 +120,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">INE del chofer</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -133,7 +133,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Placas del camion</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -146,7 +146,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Medidor antes</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -159,7 +159,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Medidor despues</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -172,7 +172,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Nivel antes</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -185,7 +185,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Nivel despues</p>
             <div class="card text-center p-2">
               <custom-input-img-signal
@@ -198,7 +198,7 @@
               />
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <p class="text-xs text-500 mb-1">Nota</p>
             <div class="card text-center p-2">
               <custom-input-img-signal

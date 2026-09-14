@@ -9,7 +9,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -27,7 +27,7 @@
   <ng-template #body let-item let-i="rowIndex">
     <tr>
       <td colspan="4">
-        <div class="p-3 surface-100 rounded flex align-items-center">
+        <div class="p-3 surface-100 rounded d-flex align-items-center">
           <app-image
             [src]="urlImg + item.luminaria.img"
             alt="."
@@ -45,7 +45,7 @@
       <td>{{ itm.nameMachinery }}</td>
       <td>{{ itm.area }}</td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
           />

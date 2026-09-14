@@ -1,8 +1,8 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div>
-    <div class="grid align-items-end">
-      <div class="col-12 md:col-6">
-        <label for="example-text-input" class="block">BUSCAR </label>
+    <div class="row align-items-end">
+      <div class="col-12 col-md-6">
+        <label for="example-text-input" class="d-block">BUSCAR </label>
 
         <custom-input-autocomplete-signal
           [control]="productSearchControl"
@@ -26,7 +26,7 @@
           (cleared)="onProductCleared()"
         >
           <ng-template let-item #item>
-            <div class="product-search-option flex align-items-center gap-3">
+            <div class="product-search-option d-flex align-items-center gap-3">
               <img
                 [src]="item.urlImagen"
                 [alt]="item.producto"
@@ -48,7 +48,7 @@
         </custom-input-autocomplete-signal>
       </div>
 
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-text-signal
           [control]="form.controls.cantidad"
           label="CANTIDAD"
@@ -60,7 +60,7 @@
         />
       </div>
 
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           [control]="form.controls.unidadMedidaId"
           [data]="cb_measurement_units()"
@@ -72,7 +72,7 @@
         />
       </div>
 
-      <div class="col-12 md:col-1">
+      <div class="col-12 col-md-1">
         <il-button-save
           size="small"
           [disabled]="form.invalid"
@@ -80,7 +80,7 @@
         />
       </div>
 
-      <div class="col-12 md:col-1">
+      <div class="col-12 col-md-1">
         <il-button
           iconClass="material-symbols-light:search"
           label="Avanzada"

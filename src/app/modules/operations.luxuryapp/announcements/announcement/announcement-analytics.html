@@ -1,10 +1,10 @@
 <div class="p-4">
   <div class="card">
     <div class="text-xl font-bold mb-2">
-      <div class="flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center">
         <h2 class="text-2xl font-bold mb-0">Analóticas del Comunicado</h2>
         <a routerLink="/announcements/manage" class="btn btn-secondary btn-sm">
-          <app-icon [icon]="'material-symbols-light:arrow-back'" class="mr-1" /> Volver al listado
+          <app-icon [icon]="'material-symbols-light:arrow-back'" class="me-1" /> Volver al listado
         </a>
       </div>
     </div>
@@ -16,7 +16,7 @@
       </div>
       } @else {
       <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-      <div class="hidden md:block">
+      <div class="d-none d-md-block">
         <app-data-grid
           [data]="analytics()"
           [columns]="tableColumns"
@@ -26,7 +26,7 @@
       </div>
 
       <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-      <div class="block md:hidden">
+      <div class="d-block d-md-none">
         <app-data-view-mobile
           [data]="analytics()"
           [globalFilterFields]="globalFilterFields()"
@@ -34,21 +34,21 @@
         >
           <ng-template #listItemTemplate let-analytic>
             <ili-list-item>
-              <div start class="mobile-avatar-slot flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
+              <div start class="mobile-avatar-slot d-flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
                 <span class="text-white font-bold text-lg">{{ analytic.userName.charAt(0).toUpperCase() }}</span>
               </div>
                 <h2 class="font-bold m-0 text-base">{{ analytic.userName }}</h2>
-                <div class="flex flex-column gap-1 mt-1">
+                <div class="d-flex flex-column gap-1 mt-1">
                   <p class="text-medium text-500 m-0 text-sm">
-                    <app-icon [icon]="'material-symbols-light:mail-outline'" class="mr-1 text-xs" />
+                    <app-icon [icon]="'material-symbols-light:mail-outline'" class="me-1 text-xs" />
                     {{ analytic.userEmail }}
                   </p>
                   <p class="text-medium text-500 m-0 text-sm">
-                    <app-icon [icon]="'material-symbols-light:apartment'" class="mr-1 text-xs" />
+                    <app-icon [icon]="'material-symbols-light:apartment'" class="me-1 text-xs" />
                     {{ analytic.customerName }} ({{ analytic.role }})
                   </p>
                   <p class="text-primary font-medium m-0 text-sm">
-                    <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" />
+                    <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
                     {{ analytic.viewDate | apiDate : "dd/MM/yyyy h:mm a" }}
                   </p>
                 </div>

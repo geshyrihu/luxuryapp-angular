@@ -1,6 +1,6 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <div
-    class="flex flex-column lg:flex-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border surface-ground"
+    class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border surface-ground"
   >
     <div>
       <h1 class="m-0 mb-2 text-2xl font-bold text-900">{{ getModeTitle() }}</h1>
@@ -8,7 +8,7 @@
         {{ getModeDescription() }}
       </p>
     </div>
-    <div class="flex flex-wrap gap-2 align-items-center">
+    <div class="d-flex flex-wrap gap-2 align-items-center">
       <lx-tag
         [value]="customerId()"
         severity="secondary"
@@ -66,7 +66,7 @@
   />
 
   @if (canDownloadAccountDocuments()) {
-  <div class="flex justify-content-end flex-wrap gap-2">
+  <div class="d-flex justify-content-end flex-wrap gap-2">
     @if (mode() === 'detalle-cobranza-rango') {
     <il-button-download
       label="Aviso de cobro"
@@ -98,7 +98,7 @@
   } @if (loading()) {
   <lx-card class="shadow-none border-1 surface-border border-dashed rounded-xl">
     <div
-      class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
+      class="d-flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
       <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl" />
       <span class="text-lg">
@@ -108,35 +108,35 @@
     </div>
   </lx-card>
   } @else if (mode() === "accounts" && accountRows().length) {
-  <div class="grid">
-    <div class="col-12 md:col-4">
+  <div class="row">
+    <div class="col-12 col-md-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
-        <strong class="block text-xl">{{ customerId() }}</strong>
+        <strong class="d-block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Ejercicio</span
         >
-        <strong class="block text-xl">{{ yearLabel() }}</strong>
+        <strong class="d-block text-xl">{{ yearLabel() }}</strong>
         <small class="text-500"
           >Usado para cargar el catalogo seleccionado</small
         >
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Total cuentas</span
         >
-        <strong class="block text-xl">{{ accountRows().length }}</strong>
+        <strong class="d-block text-xl">{{ accountRows().length }}</strong>
         <small class="text-500"
           >Cuentas devueltas por la fuente seleccionada</small
         >
@@ -156,7 +156,7 @@
     [value]="accountRows()"
     #dtAccounts
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
-    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
+    class="custom-table d-none d-md-block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -201,11 +201,11 @@
   </p-table>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
   <div
-    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
     <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
-      <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
+      <strong class="d-block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
         >Los pagos y descuentos mostrados en este estado de cuenta se aplican
         siempre a la <strong>deuda más antigua</strong> pendiente, garantizando
@@ -213,23 +213,23 @@
       >
     </div>
   </div>
-  <div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta</span
         >
-        <strong class="block text-xl">{{ estadoCuenta()?.numCta }}</strong>
+        <strong class="d-block text-xl">{{ estadoCuenta()?.numCta }}</strong>
         <small class="text-500">{{ estadoCuenta()?.departamento }}</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ estadoCuenta()?.fechaInicio }} - {{ estadoCuenta()?.fechaFin
           }}</strong
         >
@@ -239,12 +239,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ estadoCuenta()?.saldoInicial | currency: "MXN" : "symbol" :
           "1.2-2" }}</strong
         >
@@ -252,12 +252,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ estadoCuenta()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2"
           }}</strong
         >
@@ -278,7 +278,7 @@
     [value]="estadoMovimientos()"
     #dtEstado
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
-    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
+    class="custom-table d-none d-md-block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -345,11 +345,11 @@
   </p-table>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
   <div
-    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
     <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
-      <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
+      <strong class="d-block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
         >Los abonos y adelantos se aplican siguiendo el estándar FIFO (Primeras
         entradas, primeras salidas). El saldo final y los vencidos son el
@@ -358,25 +358,25 @@
       >
     </div>
   </div>
-  <div class="grid">
-    <div class="col-12 md:col-6 lg:col-4">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta base</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ detalleCobranza()?.numCtaBase }}</strong
         >
         <small class="text-500">{{ detalleCobranza()?.departamento }}</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-4">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ detalleCobranza()?.fechaInicio }} - {{ detalleCobranza()?.fechaFin
           }}</strong
         >
@@ -386,12 +386,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-4">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial total</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ detalleCobranza()?.saldoInicialTotal | currency: "MXN" : "symbol"
           : "1.2-2" }}</strong
         >
@@ -399,12 +399,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-4">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Cargos / Abonos</span
         >
-        <strong class="block text-xl">
+        <strong class="d-block text-xl">
           {{ detalleCobranza()?.totalCargos | currency: "MXN" : "symbol" :
           "1.2-2" }} / {{ detalleCobranza()?.totalAbonos | currency: "MXN" :
           "symbol" : "1.2-2" }}
@@ -415,12 +415,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-4">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Adelantos</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ detalleCobranza()?.totalAdelantos | currency: "MXN" : "symbol" :
           "1.2-2" }}</strong
         >
@@ -428,12 +428,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-4">
+    <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final total</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ detalleCobranza()?.saldoFinalTotal | currency: "MXN" : "symbol" :
           "1.2-2" }}</strong
         >
@@ -443,8 +443,8 @@
   </div>
 
   <lx-card class="shadow-none border-1 surface-border border-dashed">
-    <div class="flex flex-column gap-3">
-      <div class="flex justify-content-between align-items-start gap-3">
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex justify-content-between align-items-start gap-3">
         <div>
           <h3 class="m-0 mb-1 text-lg font-bold text-900">
             Composicion de la deuda
@@ -462,7 +462,7 @@
         [rowsPerPageOptions]="rowsPerPageOptions"
         [value]="detalleConceptRows()"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-        class="custom-table hidden md:block"
+        class="custom-table d-none d-md-block"
       >
         <ng-template #header>
           <tr>
@@ -509,11 +509,11 @@
               {{ item.adelanto | currency: "MXN" : "symbol" : "1.2-2" }}
             </td>
             <td>
-              <div class="flex flex-column gap-1">
+              <div class="d-flex flex-column gap-1">
                 @if (!item.vencidos.length) {
                 <span class="text-500 text-sm">Sin vencidos abiertos</span>
                 } @for (vencido of item.vencidos; track $index) {
-                <div class="flex align-items-center flex-wrap gap-2 text-sm">
+                <div class="d-flex align-items-center flex-wrap gap-2 text-sm">
                   <strong>{{ vencido.fechaCargo }}</strong>
                   <span
                     >{{ vencido.saldoPendiente | currency: "MXN" : "symbol" :
@@ -531,35 +531,35 @@
   </lx-card>
 
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
-      <div class="grid">
-        <div class="col-12 md:col-6 lg:col-3">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
-            <strong class="block text-xl">{{ contrapartidas()?.numCtaBase }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
+            <strong class="d-block text-xl">{{ contrapartidas()?.numCtaBase }}</strong>
             <small class="text-500">{{ contrapartidas()?.departamento }}</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
-            <strong class="block text-xl">{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
+            <strong class="d-block text-xl">{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
             <small class="text-500">{{ contrapartidas()?.totalMovimientos }} movimientos</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
-            <strong class="block text-xl">{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
+            <strong class="d-block text-xl">{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo final</span>
-            <strong class="block text-xl">{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Saldo final</span>
+            <strong class="d-block text-xl">{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Cuenta base</small>
 </lx-card>
         </div>
@@ -577,7 +577,7 @@
         [value]="contrapartidaRows()"
         #dtContra
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} grupos"
-        class="custom-table  hidden md:block border-1 surface-border rounded shadow-sm bg-white"
+        class="custom-table  d-none d-md-block border-1 surface-border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption
@@ -623,11 +623,11 @@
       </p-table> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
   <div
-    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
     <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
-      <strong class="block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
+      <strong class="d-block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
       <span class="text-sm"
         >La deuda actual mostrada es neta. Todos los pagos, descuentos y
         adelantos en el historial del residente fueron aplicados a sus cargos
@@ -635,47 +635,47 @@
       >
     </div>
   </div>
-  <div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
-        <strong class="block text-xl">{{ customerId() }}</strong>
+        <strong class="d-block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Fecha corte</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ deudasActuales()?.fechaCorte }}</strong
         >
         <small class="text-500">Saldo al corte consultado</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Propiedades con deuda</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ deudasActuales()?.totalPropiedadesConDeuda }}</strong
         >
         <small class="text-500">Solo saldos positivos</small>
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
           >Deuda total</span
         >
-        <strong class="block text-xl"
+        <strong class="d-block text-xl"
           >{{ totalDeudaActual() | currency: "MXN" : "symbol" : "1.2-2"
           }}</strong
         >
@@ -696,7 +696,7 @@
     [value]="deudaActualRows()"
     #dtDeudas
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades con deuda"
-    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
+    class="custom-table d-none d-md-block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -772,43 +772,43 @@
     </ng-template>
   </p-table>
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
-      <div class="grid">
-        <div class="col-12 md:col-6 lg:col-2">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-2">
           <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
-            <strong class="block text-xl">{{ pendientes()?.numCtaBase }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
+            <strong class="d-block text-xl">{{ pendientes()?.numCtaBase }}</strong>
             <small class="text-500">{{ pendientes()?.departamento || "Sin nombre de departamento" }}</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Rango consultado</span>
-            <strong class="block text-xl">{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Rango consultado</span>
+            <strong class="d-block text-xl">{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
             <small class="text-500">Customer actual en contexto</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-2">
+        <div class="col-12 col-md-6 col-lg-2">
           <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos encontrados</span>
-            <strong class="block text-xl">{{ pendientes()?.totalConceptos }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Conceptos encontrados</span>
+            <strong class="d-block text-xl">{{ pendientes()?.totalConceptos }}</strong>
             <small class="text-500">Conceptos disponibles en la cuenta</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-2">
+        <div class="col-12 col-md-6 col-lg-2">
           <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial total</span>
-            <strong class="block text-xl">{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial total</span>
+            <strong class="d-block text-xl">{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Suma inicial del rango consultado</small>
 </lx-card>
         </div>
 
-        <div class="col-12 md:col-12 lg:col-3">
+        <div class="col-12 col-md-12 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente total</span>
-            <strong class="block text-xl">{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+<span class="d-block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente total</span>
+            <strong class="d-block text-xl">{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-500">Saldo vigente acumulado por concepto</small>
 </lx-card>
         </div>
@@ -826,7 +826,7 @@
         [value]="pendienteRows()"
         #dtPend
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-        class="custom-table  hidden md:block border-1 surface-border rounded shadow-sm bg-white"
+        class="custom-table  d-none d-md-block border-1 surface-border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption

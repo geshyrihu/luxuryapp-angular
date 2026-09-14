@@ -518,7 +518,7 @@ export class SolicitudCompraPresentacion {
     const result = await this.swalService.fire({
       title: "No se autoriza",
       html: `
-        <div class="flex flex-column gap-2 text-left">
+        <div class="d-flex flex-column gap-2 text-left">
           <label for="swal-authorizer" class="font-semibold">Quien decide</label>
           <select id="swal-authorizer" class="swal2-select" style="display:flex; width:100%;">
             <option value="">Selecciona quien decide</option>

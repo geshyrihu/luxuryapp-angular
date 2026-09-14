@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -44,7 +44,7 @@
           }
         </td>
         <td>
-          <div class="flex flex-column">
+          <div class="d-flex flex-column">
             <span class="text-xs text-500"
               >{{ item.chargeTypeName || 'Tipo sin clasificar' }}</span
             >
@@ -55,7 +55,7 @@
           </div>
         </td>
         <td class="text-center font-medium">
-          <div class="flex flex-column align-items-center gap-2">
+          <div class="d-flex flex-column align-items-center gap-2">
             <lx-tag
               [value]="calculationMethodMeta(item.calculationMethod).label"
               [severity]="calculationMethodMeta(item.calculationMethod).severity"
@@ -64,7 +64,7 @@
           </div>
         </td>
         <td class="text-center text-sm">
-          <div class="flex flex-column align-items-center gap-2">
+          <div class="d-flex flex-column align-items-center gap-2">
             <lx-tag
               [value]="recurrenceMeta(item.recurrence).label"
               [severity]="recurrenceMeta(item.recurrence).severity"
@@ -73,7 +73,7 @@
           </div>
         </td>
         <td class="text-center text-xs">
-          <div class="flex flex-column">
+          <div class="d-flex flex-column">
             <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
             <span class="text-400">a</span>
             <span
@@ -90,7 +90,7 @@
           }
         </td>
         <td class="text-center">
-          <div class="flex justify-content-center">
+          <div class="d-flex justify-content-center">
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             <iw-button-delete (customClick)="onDelete(item)" />
           </div>
@@ -113,7 +113,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem rounded-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon icon="material-symbols-light:receipt" class="text-purple-600 text-xl" />
       </div>

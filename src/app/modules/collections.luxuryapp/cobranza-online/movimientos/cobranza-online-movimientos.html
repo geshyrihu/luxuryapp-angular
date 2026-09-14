@@ -66,7 +66,7 @@
           @for (concept of activeConcepts(); track concept.id) {
           <td class="text-center align-middle">
             @if (getCell(row, concept.id); as cell) {
-            <div class="flex flex-column gap-1 align-items-center">
+            <div class="d-flex flex-column gap-1 align-items-center">
               @if (cell.cargo > 0) {
               <lx-tag
                 [value]="'+' + (cell.cargo | currency:'MXN':'symbol':'1.0-0')"
@@ -92,7 +92,7 @@
             alignFrozen="right"
             class="bg-surface-50"
           >
-            <div class="flex flex-column gap-1 align-items-end">
+            <div class="d-flex flex-column gap-1 align-items-end">
               @if (row.totalCargos > 0) {
               <div class="text-xs text-danger font-bold font-mono">
                 +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
@@ -126,7 +126,7 @@
       </ng-template>
     </p-table>
 
-    <div class="md:hidden">
+    <div class="d-md-none">
       <app-data-view-mobile
         [data]="pivotData()"
         [globalFilterFields]="['accountNumber', 'accountName']"
@@ -136,7 +136,7 @@
           <ili-list-item class="ion-no-padding">
             <div
               start
-              class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+              class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             >
               <app-icon icon="material-symbols-light:swap-horiz" />
             </div>
@@ -145,7 +145,7 @@
               <p class="text-xs m-0 mt-1 text-color-secondary">
                 {{ row.accountNumber }}
               </p>
-              <div class="flex gap-3 mt-2">
+              <div class="d-flex gap-3 mt-2">
                 @if (row.totalCargos > 0) {
                 <div>
                   <div class="text-xs text-color-secondary">Cargos</div>

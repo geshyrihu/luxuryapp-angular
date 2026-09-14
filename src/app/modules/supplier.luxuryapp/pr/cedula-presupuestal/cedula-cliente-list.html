@@ -1,23 +1,23 @@
 @if (dataSignal() !== null) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="true" (add)="onModalAdd()" [dt]="dt" />
     <br />
     <!-- Selecciona Periodo d ecedula -->
-    <div class="grid col-12 align-items-center">
-      <label class="col-12 md:col-2 flex align-items-center"
+    <div class="row col-12 align-items-center">
+      <label class="col-12 col-md-2 d-flex align-items-center"
         >Buscar presupuesto</label
       >
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <custom-input-select-signal
           [data]="cb_cedulas"
           optionLabel="label"
@@ -30,14 +30,14 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <il-button
           (clicked)="editarPeriodo()"
           class="p-button-outlined p-button-primary w-full"
           label="Editar periodo"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <il-button
           lxTooltip="Descargar excel"
           class="p-button-outlined p-button-primary w-full"
@@ -106,7 +106,7 @@
       <td>{{ item.presupuestoAnual }}</td>
       <td>{{ item.presupuestoEjercido }}</td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (item.disponible) {
           <lx-tag
             [value]="item.presupuestoDisponible"
@@ -123,7 +123,7 @@
         </div>
       </td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button
             class="p-button-outlined p-button-primary"
             lxTooltip="Gastos realizados"

@@ -10,7 +10,7 @@
   [scrollHeight]="scrollHeight()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -46,7 +46,7 @@
       </td>
 
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Fuente' })"
           />
@@ -75,7 +75,7 @@
     <ili-list-item lines="full" class="ion-no-padding" detail="false">
       <div
         slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon icon="material-symbols-light:group" class="text-xl text-primary" />

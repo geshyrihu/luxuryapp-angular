@@ -1,4 +1,4 @@
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
@@ -12,7 +12,7 @@
   (onLazyLoad)="onLazyLoad($event)"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -91,7 +91,7 @@
           />
         </td>
         <td>
-          <div class="flex">
+          <div class="d-flex">
             <iw-button-item
               iconClass="material-symbols-light:save"
               lxTooltip="Guardar"
@@ -104,7 +104,7 @@
       @if (row.value.errorMessage) {
       <tr class="row-error">
         <td [attr.colspan]="6">
-          <div class="text-red-400 text-sm pl-4">
+          <div class="text-red-400 text-sm ps-4">
             {{ row.value.errorMessage }}
           </div>
         </td>

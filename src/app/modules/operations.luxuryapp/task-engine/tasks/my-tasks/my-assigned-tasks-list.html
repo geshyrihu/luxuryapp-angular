@@ -1,5 +1,5 @@
 <div>
-  <div class="hidden md:block no-print">
+  <div class="d-none d-md-block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -12,15 +12,15 @@
       [scrollHeight]="scrollHeight()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table hidden md:block"
+      class="custom-table d-none d-md-block"
       [tableStyle]="{ 'min-width': '60rem' }"
     >
       <ng-template #caption>
         <div
-          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm"
         >
           <!-- IZQUIERDA: Tútulo y Status Filter -->
-          <div class="flex flex-column sm:flex-row align-items-center gap-3">
+          <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
             <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
               Mis tickets asignados
             </h4>
@@ -28,7 +28,7 @@
           </div>
 
           <!-- DERECHA: Buscador, Agregar e Imprimir -->
-          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+          <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
             <primeng-custom-caption
               (add)="onModalAdd({ id: '', title: 'Agregar' })"
               [dt]="dt"
@@ -49,13 +49,13 @@
       <ng-template #header>
         <tr>
           <th>FOLIO</th>
-          <th class="hidden md:table-cell">SOLICITA</th>
+          <th class="d-none md:table-cell">SOLICITA</th>
           <th>FECHA SOL.</th>
           <th>SOLICITUD</th>
-          <th class="hidden md:table-cell">EVIDENCIA</th>
+          <th class="d-none md:table-cell">EVIDENCIA</th>
           <th>RESP.</th>
           <th>PROGRAMADO</th>
-          <th class="hidden md:table-cell">CIERRE</th>
+          <th class="d-none md:table-cell">CIERRE</th>
           <th>DIAS</th>
           <th>ULTIMO SEGUIMIENTO</th>
           <th></th>
@@ -72,7 +72,7 @@
             <p class="m-0 text-xs text-400">{{ item.folio }}</p>
             <p class="m-0 text-xs text-500">{{ item.createdAtDate }}</p>
           </td>
-          <td class="text-center hidden md:table-cell">
+          <td class="text-center d-none md:table-cell">
             <app-avatar
               (click)="onCardEmployee(item.creatorId)"
               [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
@@ -89,7 +89,7 @@
             <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
             <p class="m-0 text-xs text-700">{{ item.description }}</p>
           </td>
-          <td class="text-center hidden md:table-cell">
+          <td class="text-center d-none md:table-cell">
             @if (item.beforeWork) {
             <app-image
               [src]="item.beforeWork"
@@ -103,7 +103,7 @@
             {{ item.creator | initialsAbbr }}
           </td>
           <td class="text-xs text-600">{{ item.scheduledAt || 'é' }}</td>
-          <td class="text-center text-xs text-600 hidden md:table-cell">
+          <td class="text-center text-xs text-600 d-none md:table-cell">
             {{ item.closedAtDate || 'é' }}
           </td>
           <td class="text-center">
@@ -111,17 +111,17 @@
           </td>
           <td>
             @if (item.lastFollowUp) {
-            <span class="text-xs text-400 font-medium block mb-1"
+            <span class="text-xs text-400 font-medium d-block mb-1"
               >{{ item.lastFollowUpDate }}</span
             >
             <p class="m-0 text-xs text-700">{{ item.lastFollowUp }}</p>
             }
           </td>
           <td class="text-center no-print">
-            <div class="flex align-items-center justify-content-center gap-1">
+            <div class="d-flex align-items-center justify-content-center gap-1">
               <a
                 (click)="onFollowUp(item.id)"
-                class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
+                class="cursor-pointer d-flex align-items-center gap-1 text-decoration-none"
                 lxTooltip="Seguimientos"
                 tooltipPosition="top"
               >
@@ -179,7 +179,7 @@
     }
   </div>
 
-  <div class="block md:hidden mt-3 no-print h-full min-h-0">
+  <div class="d-block d-md-none mt-3 no-print h-full min-h-0">
     <app-data-view-mobile
       [data]="dataSignal()"
       (add)="onModalAdd({ id: '', title: 'Agregar' })"
@@ -200,8 +200,8 @@
             />
           </div>
 
-          <div class="flex flex-column gap-1">
-            <div class="flex justify-content-between align-items-center mt-1">
+          <div class="d-flex flex-column gap-1">
+            <div class="d-flex justify-content-between align-items-center mt-1">
               <small class="text-color-secondary text-xs"
                 >{{ item.folio }} | {{ item.createdAtDate }}</small
               >

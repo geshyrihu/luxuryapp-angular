@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService } from 'src/app/core/services/message.service';
 @Injectable({ providedIn: 'root' })
 export class PrimeNgNotificationService {
   private readonly messageService = inject(MessageService);

@@ -1,8 +1,8 @@
 <!-- Cabecera de navegacion -->
 <div
-  class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
+  class="d-flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
 >
-  <div class="flex align-items-center gap-2">
+  <div class="d-flex align-items-center gap-2">
     <app-icon icon="material-symbols-light:calendar-today" class="text-primary text-xl" />
     <span class="font-bold text-lg text-900">Agenda</span>
     @if (totalEventos() > 0) {
@@ -12,7 +12,7 @@
     }
   </div>
 
-  <div class="flex align-items-center gap-1 flex-wrap">
+  <div class="d-flex align-items-center gap-1 flex-wrap">
     <iw-button
       icon="material-symbols-light:chevron-left"
       variant="text"
@@ -55,16 +55,16 @@
 
 <!-- Cargando -->
 @if (cargando()) {
-<div class="flex justify-content-center align-items-center py-5">
+<div class="d-flex justify-content-center align-items-center py-5">
   <app-icon
     icon="material-symbols-light:progress-activity"
     class="pi-spin text-primary"
     style="font-size: 1.5rem"
   />
-  <span class="ml-2 text-500">Cargando agenda...</span>
+  <span class="ms-2 text-500">Cargando agenda...</span>
 </div>
 } @else {
-<div class="flex flex-column gap-2">
+<div class="d-flex flex-column gap-2">
   @for (dia of diasPeriodo(); track dia.fecha) {
 
   <div
@@ -74,7 +74,7 @@
   >
     <!-- Cabecera del dia -->
     <div
-      class="flex align-items-center justify-content-between px-3 py-2"
+      class="d-flex align-items-center justify-content-between px-3 py-2"
       [class.surface-100]="!dia.esHoy"
       [class.bg-primary]="dia.esHoy"
     >
@@ -85,7 +85,7 @@
       >
         {{ dia.label }}
       </span>
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         @if (dia.esHoy) {
         <span class="text-xs text-white opacity-80">Hoy</span>
         } @if (dia.eventos.length > 0) {
@@ -106,16 +106,16 @@
       <span class="text-xs text-400 italic">Sin eventos</span>
     </div>
     } @else {
-    <div class="flex flex-column">
+    <div class="d-flex flex-column">
       @for (evento of dia.eventos; track evento.id; let last = $last) {
       <div
-        class="px-3 py-2 flex align-items-start gap-3"
+        class="px-3 py-2 d-flex align-items-start gap-3"
         [class.border-bottom-1]="!last"
         [class.surface-border]="!last"
       >
         <!-- Hora -->
         <div
-          class="flex flex-column align-items-center flex-none"
+          class="d-flex flex-column align-items-center flex-none"
           style="min-width: 3.5rem"
         >
           <span class="text-sm font-bold text-900"
@@ -125,8 +125,8 @@
         </div>
 
         <!-- Detalle -->
-        <div class="flex flex-column gap-1 flex-auto min-w-0">
-          <div class="flex align-items-center gap-2 flex-wrap">
+        <div class="d-flex flex-column gap-1 flex-auto min-w-0">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
             <span class="text-sm font-semibold text-900"
               >{{ evento.title }}</span
             >
@@ -138,7 +138,7 @@
             />
             }
           </div>
-          <div class="flex align-items-center gap-2 flex-wrap">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
             <span class="text-xs surface-200 text-600 rounded px-2 py-1">
               {{ evento.customerName }}
             </span>
@@ -153,12 +153,12 @@
           <a
             [href]="evento.googleMeetUrl"
             target="_blank"
-            class="text-xs text-primary no-underline flex align-items-center gap-1"
+            class="text-xs text-primary no-underline d-flex align-items-center gap-1"
           >
-            <app-icon icon="material-symbols-light:videocam" class="mr-1" /> Unirse a Meet
+            <app-icon icon="material-symbols-light:videocam" class="me-1" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
-          <span class="text-xs text-500 flex align-items-center gap-1">
+          <span class="text-xs text-500 d-flex align-items-center gap-1">
             <app-icon icon="material-symbols-light:location-on" /> {{ evento.location }}
           </span>
           }
@@ -167,7 +167,7 @@
         <!-- Invitados -->
         @if (evento.guestCount > 0) {
         <div
-          class="flex align-items-center gap-1 flex-none text-400"
+          class="d-flex align-items-center gap-1 flex-none text-400"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
           <app-icon icon="material-symbols-light:group" class="text-xs" />

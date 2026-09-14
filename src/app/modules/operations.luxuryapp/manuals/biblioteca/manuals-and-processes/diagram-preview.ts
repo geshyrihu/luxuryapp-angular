@@ -14,7 +14,7 @@ import {
     @if (config) {
       <div
         #container
-        class="mxgraph w-full block"
+        class="mxgraph w-full d-block"
         [attr.data-mxgraph]="config"
         style="max-width: 100%; border: 1px solid transparent"
       ></div>

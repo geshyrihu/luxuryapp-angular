@@ -1,7 +1,7 @@
 <!-- Desktop View -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <div
-    class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2"
+    class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2"
   >
     <div class="flex-grow-1">
       <primeng-custom-caption
@@ -13,7 +13,7 @@
         [showSearch]="false"
       />
     </div>
-    <div class="flex align-items-center gap-2 flex-shrink-0">
+    <div class="d-flex align-items-center gap-2 flex-shrink-0">
       <div class="flex-shrink-0" style="max-width: 260px">
         <custom-search-input-signal
           placeholder="Buscar grupo..."
@@ -34,22 +34,22 @@
     message="No hay grupos de trabajo que coincidan con la búsqueda."
   />
   } @else {
-  <div class="grid">
+  <div class="row g-4">
     @for (item of filteredData(); track item.id) {
-    <div class="col-12 md:col-6 xl:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <div
-        class="surface-card border-round-xl shadow-1 hover:shadow-3 transition-duration-150 p-3 h-full flex flex-column gap-3"
+        class="surface-card border-round-xl shadow-1 hover:shadow-3 transition-duration-150 p-3 h-full d-flex flex-column gap-3"
       >
         <!-- Encabezado: avatar + nombre + visibilidad -->
-        <div class="flex align-items-start gap-3">
+        <div class="d-flex align-items-start gap-3">
           <div
-            class="flex align-items-center justify-content-center border-round-lg flex-shrink-0 w-3rem h-3rem"
+            class="d-flex align-items-center justify-content-center border-round-lg flex-shrink-0 w-3rem h-3rem"
             [style.backgroundColor]="item.color || 'var(--ds-primary)'"
           >
             <span class="text-white text-xl">{{ item.emoji || '??' }}</span>
           </div>
           <div class="flex-1 min-w-0">
-            <div class="flex align-items-center gap-2 flex-wrap">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
               <h3 class="m-0 font-semibold text-900 text-base line-height-3">
                 {{ item.nameGroup }}
               </h3>
@@ -68,11 +68,11 @@
 
         <!-- Cuerpo: pendientes -->
         <div
-          class="flex align-items-center justify-content-between gap-2 px-3 py-2 border-round-lg surface-50 cursor-pointer hover:surface-100 transition-colors"
+          class="d-flex align-items-center justify-content-between gap-2 px-3 py-2 border-round-lg surface-50 cursor-pointer hover:surface-100 transition-colors"
           (click)="onNavigateMessage(item.id, 0)"
         >
           <span class="text-sm text-600 font-medium">Pendientes</span>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <span
               class="text-sm font-bold"
               [class.text-orange-500]="(item.open + item.inProgress + item.reopened) > 0"
@@ -89,7 +89,7 @@
 
         <!-- Pie: acciones -->
         <div
-          class="flex align-items-center justify-content-end gap-1 mt-auto pt-2 border-top-1 surface-border no-print"
+          class="d-flex align-items-center justify-content-end gap-1 mt-auto pt-2 border-top-1 surface-border no-print"
         >
           @if (item.customerId === customerIdS.customerId()) {
           <iw-button-item
@@ -148,10 +148,10 @@
   </ng-container>
   <ng-template #listItemTemplate let-item>
     <div class="surface-card border-bottom-1 surface-border px-3 py-3">
-      <div class="flex align-items-center justify-content-between gap-3">
-        <div class="flex align-items-center gap-3 flex-1 min-w-0">
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-3 flex-1 min-w-0">
           <div
-            class="w-2rem h-2rem flex align-items-center justify-content-center flex-shrink-0 text-2xl"
+            class="w-2rem h-2rem d-flex align-items-center justify-content-center flex-shrink-0 text-2xl"
             [style.color]="item.color || 'var(--ds-primary)'"
           >
             <span>{{ item.emoji || '??' }}</span>
@@ -171,9 +171,9 @@
           </div>
         </div>
 
-        <div class="flex align-items-center gap-2 flex-shrink-0">
+        <div class="d-flex align-items-center gap-2 flex-shrink-0">
           <div
-            class="flex align-items-center gap-1 text-700 cursor-pointer"
+            class="d-flex align-items-center gap-1 text-700 cursor-pointer"
             (click)="onNavigateMessage(item.id, 0)"
           >
             <span class="font-semibold text-sm">

@@ -10,8 +10,8 @@
 
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <!-- ENCABEZADO Y ACCIONES -->
-    <div class="flex flex-wrap align-items-center justify-content-between mb-4">
-      <div class="flex align-items-center">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+      <div class="d-flex align-items-center">
         @if (id && id !== "" && id !== "0") {
         <lx-tag
           [value]="form.controls.folio.value"
@@ -21,10 +21,10 @@
         } @else {
         <lx-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
         }
-        <h3 class="m-0 font-bold text-900 ml-2">Solicitud de Compra</h3>
+        <h3 class="m-0 font-bold text-900 ms-2">Solicitud de Compra</h3>
       </div>
 
-      <div class="flex flex-wrap">
+      <div class="d-flex flex-wrap">
         @if (id && id !== "" && id !== "0") {
         <il-button
           iconClass="material-symbols-light:chat"
@@ -32,7 +32,7 @@
           (clicked)="onSendWhatsApp()"
           severity="success"
           variant="outline"
-          class="mr-2"
+          class="me-2"
           size="small"
         />
         <il-button
@@ -41,12 +41,12 @@
           (clicked)="onSendEmail()"
           severity="info"
           variant="outline"
-          class="mr-2"
+          class="me-2"
           size="small"
         />
         <a
           [routerLink]="['/purchases/pdf-solicitud-compra', id]"
-          class="no-underline mr-2"
+          class="no-underline me-2"
         >
           <il-button
             iconClass="material-symbols-light:picture-as-pdf"
@@ -62,7 +62,7 @@
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
           severity="info"
           variant="outline"
-          class="mr-2"
+          class="me-2"
           size="small"
         />
         }
@@ -72,7 +72,7 @@
           [submitting]="submitting()"
           customClass="m-0"
           size="small"
-          class="mr-2"
+          class="me-2"
         />
       </div>
     </div>
@@ -80,8 +80,8 @@
     <lx-divider />
 
     <!-- CAMPOS DEL FORMULARIO -->
-    <div class="grid mt-2">
-      <div class="col-12 md:col-2">
+    <div class="row mt-2">
+      <div class="col-12 col-md-2">
         <custom-input-text-signal
           [control]="form.controls.solicita"
           label="Persona que solicita"
@@ -89,14 +89,14 @@
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-date-signal
           [control]="form.controls.fechaSolicitud"
           label="Fecha de solicitud"
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           [control]="form.controls.tipoSolicitud"
           [data]="tipoSolicitudOptions()"
@@ -104,7 +104,7 @@
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           [control]="form.controls.prioridad"
           [data]="prioridadOptions()"
@@ -112,7 +112,7 @@
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <custom-input-textarea-signal
           [control]="form.controls.equipoOInstalacion"
           label="Área / Equipo / Instalación"
@@ -121,7 +121,7 @@
           [rows]="1"
         />
       </div>
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <custom-input-textarea-signal
           [control]="form.controls.justificacionGasto"
           label="Justificación del Gasto"
@@ -135,13 +135,13 @@
 
   <!-- SECCION DE PRODUCTOS -->
   @if (id && id !== "" && id !== "0") {
-  <div class="flex align-items-center justify-content-between mb-3">
-    <div class="flex align-items-center">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-center">
       <app-icon
         [icon]="'material-symbols-light:shopping-cart'"
-        class="text-xl text-primary mr-2"
+        class="text-xl text-primary me-2"
       />
-      <h4 class="m-0 font-bold text-800 mr-2">Productos Solicitados</h4>
+      <h4 class="m-0 font-bold text-800 me-2">Productos Solicitados</h4>
       <app-badge
         [value]="SolicitudCompraDetalle.length.toString()"
         color="info"
@@ -165,7 +165,7 @@
   />
   } @else {
   <div
-    class="surface-100 border-round p-3 text-600 text-sm flex align-items-center gap-2"
+    class="surface-100 border-round p-3 text-600 text-sm d-flex align-items-center gap-2"
   >
     <app-icon
       [icon]="'material-symbols-light:info'"
@@ -177,7 +177,7 @@
 
   <!-- Órdenes Relacionadas (Solo si existen) -->
   <div class="mt-5 p-3 surface-100 rounded">
-    <div class="flex align-items-center justify-content-between mb-2">
+    <div class="d-flex align-items-center justify-content-between mb-2">
       <span class="text-sm font-bold text-600 uppercase"
         >Órdenes de Compra Relacionadas:</span
       >
@@ -190,7 +190,7 @@
         size="small"
       />
     </div>
-    <div class="flex flex-wrap">
+    <div class="d-flex flex-wrap">
       @if (cotizacionesRelacionadas.length > 0) { @for (item of
       cotizacionesRelacionadas; track item.id) {
       <lx-tag

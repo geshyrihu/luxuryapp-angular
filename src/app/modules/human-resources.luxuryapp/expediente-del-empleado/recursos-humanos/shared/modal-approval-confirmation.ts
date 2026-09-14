@@ -44,7 +44,7 @@ import { ApprovalInfoService } from "./approval-info.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {
-      <div class="flex justify-center items-center p-5">
+      <div class="d-flex justify-center items-center p-5">
         <lx-spinner [strokeWidth]="6" [ariaLabel]="'loading'"></lx-spinner>
       </div>
     } @else {
@@ -57,7 +57,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4 text-center">
             <div
-              class="flex items-center justify-center p-3 rounded"
+              class="d-flex items-center justify-center p-3 rounded"
               [class.bg-green-100]="paidStatus.value"
               [class.text-green-800]="paidStatus.value"
               [class.bg-yellow-100]="!paidStatus.value"
@@ -79,7 +79,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
-            <div class="flex items-center mb-2">
+            <div class="d-flex items-center mb-2">
               <app-icon
                 [icon]="'material-symbols-light:history'"
                 class="text-xl"
@@ -99,7 +99,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
-            <div class="flex items-center mb-2">
+            <div class="d-flex items-center mb-2">
               <app-icon
                 [icon]="'material-symbols-light:sunny'"
                 class="text-xl"
@@ -119,7 +119,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         <lx-divider />
 
         <div class="mt-4">
-          <div class="flex items-center mb-3">
+          <div class="d-flex items-center mb-3">
             <app-icon
               [icon]="'material-symbols-light:group'"
               class="text-xl text-orange-500"
@@ -134,11 +134,11 @@ import { ApprovalInfoService } from "./approval-info.service";
               <div class="surface-100 rounded p-3">
                 <ul class="m-0 p-0 list-none">
                   @for (req of overlappingLeaveRequests; track req.id) {
-                    <li class="flex items-center justify-between p-2">
+                    <li class="d-flex items-center justify-between p-2">
                       <span>
                         <app-icon
                           [icon]="'material-symbols-light:person'"
-                          class="mr-2 text-gray-600"
+                          class="me-2 text-gray-600"
                         />
                         {{ req.fullName }}
                       </span>
@@ -167,11 +167,11 @@ import { ApprovalInfoService } from "./approval-info.service";
               <div class="surface-100 rounded p-3">
                 <ul class="m-0 p-0 list-none">
                   @for (req of overlappingVacationRequests; track req.id) {
-                    <li class="flex items-center justify-between p-2">
+                    <li class="d-flex items-center justify-between p-2">
                       <span>
                         <app-icon
                           [icon]="'material-symbols-light:person'"
-                          class="mr-2 text-gray-600"
+                          class="me-2 text-gray-600"
                         />
                         {{ req.fullName }}
                       </span>
@@ -196,7 +196,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           }
         </div>
 
-        <div class="flex justify-end mt-5">
+        <div class="d-flex justify-end mt-5">
           <il-button
             (clicked)="ref.close(false)"
             label="Cancelar"

@@ -2,7 +2,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   [loading]="loading()"
 >
   <ng-template #caption>
@@ -28,7 +28,7 @@
       <td>{{ item.name }}</td>
       <td>{{ item.description }}</td>
       <td class="no-print">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (!isReadOnly()) { <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
@@ -60,7 +60,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         
       >
         <app-icon

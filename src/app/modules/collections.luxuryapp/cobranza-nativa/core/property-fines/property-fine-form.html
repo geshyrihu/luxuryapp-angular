@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
   @if (!id) {
   <custom-input-select-signal
     [control]="form.controls.propertyId"
@@ -26,15 +26,15 @@
     required
   />
 
-  <div class="grid">
-    <div class="col-12 md:col-6">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <custom-input-date-signal
         [control]="form.controls.infractionDate"
         label="Fecha de la Infracción"
         required
       />
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-decimal-signal
         [control]="form.controls.amount"
         label="Importe de la Multa (MXN)"
@@ -51,7 +51,7 @@
     [rows]="2"
   />
 
-  <div class="flex justify-content-end mt-3">
+  <div class="d-flex justify-content-end mt-3">
     <il-button-save
       [disabled]="form.invalid || submitting()"
       [submitting]="submitting()"

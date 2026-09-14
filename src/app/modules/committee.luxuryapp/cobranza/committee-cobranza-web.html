@@ -1,4 +1,4 @@
-<section class="flex flex-column gap-4 p-4">
+<section class="d-flex flex-column gap-4 p-4">
   <div>
     <h1 class="m-0 text-2xl font-bold text-900">Reporte de Morosidad</h1>
     <p class="m-0 mt-1 text-600">
@@ -7,10 +7,10 @@
     </p>
   </div>
 
-  <div class="grid">
+  <div class="row">
     <!-- 1. Avance de la cobranza del mes -->
     @if (baseService.avanceCobranza(); as avance) {
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="Cobrado del mes"
@@ -35,7 +35,7 @@
 
     <!-- 2. Cartera vencida -->
     @if (baseService.carteraVencida(); as cartera) {
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="Cartera vencida"
@@ -56,7 +56,7 @@
 
     <!-- 3. Cobranza judicial -->
     @if (baseService.cobranzaJudicial(); as judicial) {
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <app-stat-card
         orientation="horizontal"
         label="En cobranza judicial"

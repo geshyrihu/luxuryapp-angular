@@ -1,14 +1,14 @@
 <!-- Vista Monitor -->
-<div class="hidden md:block p-3">
-  <div class="flex flex-column gap-4">
+<div class="d-none d-md-block p-3">
+  <div class="d-flex flex-column gap-4">
     @for (area of areas; track area.key) {
     <div class="surface-card border-1 surface-border rounded-lg p-3">
       <!-- Encabezado del area -->
       <div
-        class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border"
+        class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border"
       >
         <span
-          class="flex align-items-center justify-content-center rounded"
+          class="d-flex align-items-center justify-content-center rounded"
           [style.width.rem]="2"
           [style.height.rem]="2"
           [style.background-color]="area.color + '22'"
@@ -26,7 +26,7 @@
       } @else if (area.key === 'recursos-humanos') {
       <app-personal-ausente-card />
       } @else if (area.key === 'legal') {
-      <div class="flex flex-column gap-4">
+      <div class="d-flex flex-column gap-4">
         <app-tareas-legal-card />
         <div class="border-top-1 surface-border pt-3">
           <app-contratos-card />
@@ -34,9 +34,9 @@
       </div>
       } @else {
       <!-- Grid de metricas placeholder -->
-      <div class="grid m-0">
+      <div class="row m-0">
         @for (metrica of area.metricas; track $index) {
-        <div class="col-12 md:col-6 lg:col-4 xl:col-3 p-2">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2">
           <div
             class="border-1 surface-border rounded p-3 h-full"
             
@@ -57,13 +57,13 @@
 </div>
 
 <!-- Vista Movil -->
-<div class="block md:hidden">
-  <div class="grid p-0">
+<div class="d-block d-md-none">
+  <div class="row p-0">
     @for (area of areas; track area.key) {
-    <div class="flex flex-wrap w-full">
+    <div class="d-flex flex-wrap w-full">
       <!-- Titulo del area -->
       <div class="col-12 pb-1 pt-3 px-3">
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <app-icon
             [icon]="area.iconPi"
             [style.color]="area.color"

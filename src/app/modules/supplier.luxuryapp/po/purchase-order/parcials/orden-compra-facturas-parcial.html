@@ -1,10 +1,10 @@
-<div class="grid mb-2">
+<div class="row mb-2">
   <div class="col-12">
     <p-table [value]="facturas()" class="custom-table">
       <ng-template #caption>
-        <div class="flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
           <span class="text-xl font-bold">FACTURAS ASOCIADAS</span>
-          <div class="flex">
+          <div class="d-flex">
             @if (facturas().length > 0) {
             <il-button
               label="Validar Todas"
@@ -61,7 +61,7 @@
           </td>
           <td>{{ factura.monto | number: '1.2-2' }}</td>
           <td>
-            <div class="flex">
+            <div class="d-flex">
               @if (factura.pdfFile) {
               <lx-tag class="cursor-pointer" severity="danger" icon="material-symbols-light:picture-as-pdf" value="PDF" (click)="viewPdf(factura.pdfFile, factura.factura || 'Factura')" />
               } @if (factura.xmlFile) {
@@ -74,7 +74,7 @@
       <ng-template #emptymessage>
         <tr>
           <td colspan="8" class="text-center p-4">
-            <div class="flex flex-column align-items-center">
+            <div class="d-flex flex-column align-items-center">
               <app-icon [icon]="'material-symbols-light:table-view'" class="text-4xl text-500" />
               <span
                 >No hay facturas asociadas. Haz clic en "Administrar" para
@@ -91,7 +91,7 @@
     <div class="mt-2 animate__animated animate__fadeIn">
       <lx-message [severity]="result.isValid ? 'success' : 'error'">{{ result.message }}</lx-message>
       @if (!result.isValid) {
-      <p class="text-sm mt-1 ml-3">
+      <p class="text-sm mt-1 ms-3">
         Total Facturas:
         <span class="font-bold"
           >{{ result.invoiceTotal | number: '1.2-2' }}</span

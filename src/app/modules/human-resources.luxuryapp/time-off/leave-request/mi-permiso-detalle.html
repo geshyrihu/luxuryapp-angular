@@ -7,17 +7,17 @@
     <p>Cargando detalle...</p>
   </div>
   } @else if (data) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Tipo de Solicitud</div>
     <div class="col-8">{{ data.requestTypeName }}</div>
   </div>
 
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Empleado</div>
     <div class="col-8">{{ data.employeeFullName }}</div>
   </div>
 
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Estado</div>
     <div class="col-8">
       <lx-tag
@@ -27,28 +27,28 @@
     </div>
   </div>
 
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Fecha de Solicitud</div>
     <div class="col-8">{{ data.requestDate }}</div>
   </div>
 
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Periodo</div>
     <div class="col-8">{{ data.period }}</div>
   </div>
 
   @if (data.timeRange) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Horario</div>
     <div class="col-8">{{ data.timeRange }}</div>
   </div>
   } @if (data.reason) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Motivo</div>
     <div class="col-8">{{ data.reason }}</div>
   </div>
   } @if (data.attachmentUrl) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Archivo Adjunto</div>
     <div class="col-8">
       <il-button
@@ -61,33 +61,33 @@
     </div>
   </div>
   } @if (data.status === 'Aprobada') { @if (data.approverName) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Aprobado por</div>
     <div class="col-8">{{ data.approverName }}</div>
   </div>
   } @if (data.approvalDate) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Fecha de Aprobación</div>
     <div class="col-8">{{ data.approvalDate }}</div>
   </div>
   } } @if (data.status === 'Rechazada') { @if (data.approverName) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Rechazado por</div>
     <div class="col-8">{{ data.approverName }}</div>
   </div>
   } @if (data.approvalDate) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Fecha de Rechazo</div>
     <div class="col-8">{{ data.approvalDate }}</div>
   </div>
   } @if (data.rejectionReason) {
-  <div class="grid mb-2">
+  <div class="row mb-2">
     <div class="col-4 font-bold">Motivo de Rechazo</div>
     <div class="col-8 text-red-600">{{ data.rejectionReason }}</div>
   </div>
   } }
 
-  <div class="mt-4 flex gap-2">
+  <div class="mt-4 d-flex gap-2">
     @if (data.canEdit) {
     <il-button
       iconClass="material-symbols-light:edit"

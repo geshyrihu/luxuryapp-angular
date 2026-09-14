@@ -1,8 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <lx-tabs [tabs]="tabs()" [(activeId)]="activeTab">
     <div tab="datos">
-      <div class="grid pt-2">
-        <div class="col-12 md:col-6">
+      <div class="row pt-2">
+        <div class="col-12 col-md-6">
           <custom-input-select-signal
             label="Tipo de Incidencia"
             [required]="true"
@@ -11,7 +11,7 @@
             [filter]="true"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-select-signal
             label="Nivel de Severidad"
             [required]="true"
@@ -20,14 +20,14 @@
             [filter]="true"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-date-time-signal
             label="Fecha y Hora del Incidente"
             [required]="true"
             [control]="form.controls.incidentDateTime"
           />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-select-signal
             label="Tipo de Sanción (opcional)"
             [control]="form.controls.sanctionTypeId"
@@ -69,7 +69,7 @@
 
   <!-- ─── FOOTER FIJO ───────────────────────────────────────── -->
   <div
-    class="flex align-items-center justify-content-between mt-4 pt-3 border-top-1 surface-border"
+    class="d-flex align-items-center justify-content-between mt-4 pt-3 border-top-1 surface-border"
   >
     <!-- Indicador de estado -->
     <div class="text-sm">
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Acciones -->
-    <div class="flex">
+    <div class="d-flex">
       @if (activeTab() === 'datos') {
       <il-button-save
         [propertyId]="id"

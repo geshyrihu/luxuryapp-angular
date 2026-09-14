@@ -1,10 +1,10 @@
-<div class="p-4 md:p-6 flex flex-column gap-6">
-  <div class="flex align-items-center justify-content-between flex-wrap gap-3">
+<div class="p-4 md:p-6 d-flex flex-column gap-6">
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
     <div>
-      <h2 class="text-xl font-bold text-800 flex align-items-center">
+      <h2 class="text-xl font-bold text-800 d-flex align-items-center">
         <app-icon
           [icon]="'material-symbols-light:bar-chart'"
-          class="text-primary mr-2"
+          class="text-primary me-2"
         />
         Dashboard de Cobranza
       </h2>
@@ -13,7 +13,7 @@
       </p>
     </div>
 
-    <div class="flex gap-1">
+    <div class="d-flex gap-1">
       @for (m of [3, 6, 12]; track m) {
       <il-button
         [label]="m + ' meses'"
@@ -27,23 +27,23 @@
   </div>
 
   @if (!metricas()) {
-  <div class="flex align-items-center justify-content-center h-12rem text-500">
+  <div class="d-flex align-items-center justify-content-center h-12rem text-500">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
-      class="text-3xl mr-3"
+      class="text-3xl me-3"
     />
     Cargando metricas...
   </div>
   } @else {
-  <div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--primary p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
             <app-icon [icon]="'material-symbols-light:percent'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             % Cobrado
           </span>
@@ -54,7 +54,7 @@
         </div>
 
         <lx-progress-bar
-          class="block mt-3"
+          class="d-block mt-3"
           [value]="metricas()!.porcentajeCobrado"
           [showValue]="false"
           [color]="metricas()!.porcentajeCobrado >= 80 ? 'success' : metricas()!.porcentajeCobrado >= 50 ? 'warning' : 'danger'"
@@ -67,14 +67,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--success p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
             <app-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Cobrado
           </span>
@@ -87,14 +87,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--warning p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
             <app-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Pendiente
           </span>
@@ -107,14 +107,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--danger p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
             <app-icon [icon]="'material-symbols-light:warning'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Vencido
           </span>
@@ -128,15 +128,15 @@
     </div>
   </div>
 
-  <div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--success p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
             <app-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Al Corriente
           </span>
@@ -146,7 +146,7 @@
           {{ metricas()!.propiedadesAlCorriente }}
         </div>
         <lx-progress-bar
-          class="block mt-3"
+          class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesAlCorriente / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="success"
@@ -155,14 +155,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--warning p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
             <app-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Con Deuda
           </span>
@@ -172,7 +172,7 @@
           {{ metricas()!.propiedadesConDeuda }}
         </div>
         <lx-progress-bar
-          class="block mt-3"
+          class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesConDeuda / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="warning"
@@ -181,14 +181,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated card--danger p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
             <app-icon [icon]="'material-symbols-light:block'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Morosas
           </span>
@@ -198,7 +198,7 @@
           {{ metricas()!.propiedadesMorosas }}
         </div>
         <lx-progress-bar
-          class="block mt-3"
+          class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesMorosas / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="danger"
@@ -207,14 +207,14 @@
       </lx-card>
     </div>
 
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="card card--elevated p-5 h-full">
-        <div class="flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
             <app-icon [icon]="'material-symbols-light:home'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ml-2"
+            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
           >
             Total Unidades
           </span>
@@ -224,7 +224,7 @@
           {{ metricas()!.totalPropiedades }}
         </div>
 
-        <div class="mt-3 h-1rem rounded-3xl overflow-hidden flex surface-100">
+        <div class="mt-3 h-1rem rounded-3xl overflow-hidden d-flex surface-100">
           @if (metricas()!.totalPropiedades > 0) {
           <div
             class="h-full bg-green-400 transition-all transition-duration-500"
@@ -245,21 +245,21 @@
     </div>
   </div>
 
-  <div class="grid">
-    <div class="col-12 lg:col-6">
+  <div class="row">
+    <div class="col-12 col-lg-6">
       <lx-card class="card card--elevated p-5 h-full">
-        <h3 class="text-sm font-bold text-700 mb-4 flex align-items-center">
+        <h3 class="text-sm font-bold text-700 mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:monitoring'"
-            class="text-primary mr-2"
+            class="text-primary me-2"
           />
           Tendencia Mensual
         </h3>
 
-        <div class="flex flex-column gap-3">
+        <div class="d-flex flex-column gap-3">
           @for (mes of metricas()!.tendenciaMensual; track mes.mesNombre) {
           <div>
-            <div class="flex justify-content-between text-xs mb-1">
+            <div class="d-flex justify-content-between text-xs mb-1">
               <span class="font-medium text-700">{{ mes.mesNombre }}</span>
               <span class="text-green-600 font-semibold">
                 ${{ mes.totalCobrado | number: '1.0-0' }} / ${{
@@ -283,12 +283,12 @@
           }
         </div>
 
-        <div class="flex mt-4 text-xs text-500 gap-4">
-          <span class="flex align-items-center gap-2">
+        <div class="d-flex mt-4 text-xs text-500 gap-4">
+          <span class="d-flex align-items-center gap-2">
             <span class="w-1rem h-1rem rounded bg-blue-200 inline-block"></span>
             Facturado
           </span>
-          <span class="flex align-items-center gap-2">
+          <span class="d-flex align-items-center gap-2">
             <span
               class="w-1rem h-1rem rounded bg-green-500 inline-block"
             ></span>
@@ -298,12 +298,12 @@
       </lx-card>
     </div>
 
-    <div class="col-12 lg:col-6">
+    <div class="col-12 col-lg-6">
       <lx-card class="card card--elevated p-5 h-full">
-        <h3 class="text-sm font-bold text-700 mb-4 flex align-items-center">
+        <h3 class="text-sm font-bold text-700 mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:arrow-downward'"
-            class="text-red-400 mr-2"
+            class="text-red-400 me-2"
           />
           Top Deudores
         </h3>
@@ -311,18 +311,18 @@
         @if (metricas()!.topDeudores.length === 0) {
         <p class="text-center text-500 text-sm py-8">Sin deudores pendientes</p>
         } @else {
-        <div class="flex flex-column gap-3">
+        <div class="d-flex flex-column gap-3">
           @for (d of metricas()!.topDeudores; track d.propertyId; let i =
           $index) {
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <span
-              class="w-2rem h-2rem rounded-circle text-xs font-bold flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-circle text-xs font-bold d-flex align-items-center justify-content-center flex-shrink-0"
               [class]="i < 3 ? 'bg-red-100 text-red-600' : 'surface-100 text-500'"
             >
               {{ i + 1 }}
             </span>
 
-            <div class="flex-grow-1 min-w-0 ml-3">
+            <div class="flex-grow-1 min-w-0 ms-3">
               <div class="text-xs font-semibold text-800 truncate">
                 {{ d.propertyName }}
               </div>
@@ -344,7 +344,7 @@
     </div>
   </div>
 
-  <div class="flex justify-content-end">
+  <div class="d-flex justify-content-end">
     <il-button
       label="Ir a registrar pagos"
       iconClass="material-symbols-light:attach-money"

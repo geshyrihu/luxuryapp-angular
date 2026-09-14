@@ -5,7 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MessageService } from "primeng/api";
+import { MessageService } from "src/app/core/services/message.service";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { FileUploadModule } from "primeng/fileupload";
@@ -105,7 +105,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             readonly
           ></textarea>
 
-          <div class="flex justify-end gap-2 mt-3">
+          <div class="d-flex justify-end gap-2 mt-3">
             <button
               pButton
               label="Cerrar"

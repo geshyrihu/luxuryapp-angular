@@ -5,7 +5,7 @@ Contenedor principal de la vista de presupuesto.
   <!-- =========================
        VISTA ESCRITORIO
        ========================= -->
-  <div class="hidden md:flex md:flex-column budget-desktop-table">
+  <div class="d-none d-md-flex flex-md-column budget-desktop-table">
     <div class="rf-card p-3 flex-1 min-h-0">
       <p-table
         [globalFilterFields]="globalFilterFields()"
@@ -67,7 +67,7 @@ Contenedor principal de la vista de presupuesto.
           >
             @if (cuenta.esFilaAgrupadora) {
             <td pFrozenColumn class="th-width-250">
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <span class="font-semibold"> {{ cuenta.codigo_Cuenta }} </span>
                 <span>|</span>
                 <span class="font-bold"> {{ cuenta.descripcion_Cuenta }} </span>
@@ -125,7 +125,7 @@ Contenedor principal de la vista de presupuesto.
             } @else {
             <!-- COLUMNAS NORMALES PARA CUENTAS HOJA -->
             <td pFrozenColumn class="th-width-250">
-              <div class="flex flex-column">
+              <div class="d-flex flex-column">
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
                   (click)="showPurchaseHistory(cuenta)"
@@ -249,7 +249,7 @@ Contenedor principal de la vista de presupuesto.
               <span
                 [class.text-red-700]="gastoExcedido(mes)"
                 [class.bg-red-50]="gastoExcedido(mes)"
-                class="px-2 py-1 rounded block"
+                class="px-2 py-1 rounded d-block"
               >
                 {{ getTotalMontoPorMes(mes) !== 0 ? (getTotalMontoPorMes(mes) |
                 number: "1.0-0") : "-" }}
@@ -315,7 +315,7 @@ Contenedor principal de la vista de presupuesto.
   <!-- =========================
        VISTA MóVIL
        ========================= -->
-  <div class="block md:hidden">
+  <div class="d-block d-md-none">
     <div class="rf-card p-3">
       <app-data-view-mobile
         [data]="cuentas()"
@@ -325,10 +325,10 @@ Contenedor principal de la vista de presupuesto.
       >
         <ng-template #listItemTemplate let-cuenta>
           <div
-            class="w-full flex flex-column"
+            class="w-full d-flex flex-column"
             (click)="showPurchaseHistory(cuenta)"
           >
-            <div class="flex justify-content-between align-items-center mb-1">
+            <div class="d-flex justify-content-between align-items-center mb-1">
               <span class="text-sm font-bold text-color"
                 >{{ cuenta.codigo_Cuenta }}</span
               >
@@ -341,15 +341,15 @@ Contenedor principal de la vista de presupuesto.
               {{ cuenta.descripcion_Cuenta }}
             </div>
 
-            <div class="grid text-xs surface-ground p-2 rounded">
-              <div class="col-6 flex flex-column mb-1">
+            <div class="row text-xs surface-ground p-2 rounded">
+              <div class="col-6 d-flex flex-column mb-1">
                 <span class="font-bold text-green-700">Presupuesto</span>
                 <span
                   >{{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) |
                   number:'1.0-0' }}</span
                 >
               </div>
-              <div class="col-6 flex flex-column mb-1">
+              <div class="col-6 d-flex flex-column mb-1">
                 <span class="font-bold text-blue-700">Gasto</span>
                 <span
                   >{{ getSumaGastoMesesVisiblesCuenta(cuenta) | number:'1.0-0'
@@ -357,7 +357,7 @@ Contenedor principal de la vista de presupuesto.
                 >
               </div>
               <div
-                class="col-12 border-top-1 surface-border pt-1 mt-1 flex justify-content-between align-items-center"
+                class="col-12 border-top-1 surface-border pt-1 mt-1 d-flex justify-content-between align-items-center"
               >
                 <span class="font-bold">Restante:</span>
                 @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -

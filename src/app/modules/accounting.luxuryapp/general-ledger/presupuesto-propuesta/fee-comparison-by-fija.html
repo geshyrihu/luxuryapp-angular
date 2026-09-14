@@ -19,7 +19,7 @@
       <strong>{{ data.propertyCount }} propiedades</strong> y 12 meses.
     </p>
 
-    <div class="flex flex-column md:flex-row mt-4">
+    <div class="d-flex flex-column flex-md-row mt-4">
       <!-- Columna Presupuesto Vigente -->
       <div class="w-full md:w-1/2 p-4 md:border-right-1 surface-border">
         <h5
@@ -29,7 +29,7 @@
         </h5>
         <div class="border-bottom-1 surface-border my-4"></div>
 
-        <div class="flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-600">Presupuesto Mensual</span>
           <span class="text-xl font-medium">
             {{ data.currentTotalBudget / 12 | currency: "MXN" : "symbol" :
@@ -37,7 +37,7 @@
           </span>
         </div>
 
-        <div class="flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <span class="text-600 font-medium">Presupuesto Anual</span>
           <span class="text-xl font-bold text-700">
             {{ data.currentTotalBudget | currency: "MXN" : "symbol" : "1.0-0" }}
@@ -45,7 +45,7 @@
         </div>
 
         <div class="p-4 rounded-md surface-50 border-1 surface-border">
-          <div class="flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
             <span class="font-bold text-700 text-lg"
               >Cuota Mensual por Propiedad</span
             >
@@ -69,7 +69,7 @@
           
         ></div>
 
-        <div class="flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-700 font-medium">Presupuesto Mensual</span>
           <span class="text-xl font-bold text-primary">
             {{ data.newTotalBudget / 12 | currency: "MXN" : "symbol" : "1.0-0"
@@ -77,7 +77,7 @@
           </span>
         </div>
 
-        <div class="flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <span class="text-700 font-medium">Presupuesto Anual</span>
           <span class="text-xl font-bold text-primary">
             {{ data.newTotalBudget | currency: "MXN" : "symbol" : "1.0-0" }}
@@ -88,7 +88,7 @@
           class="p-4 rounded-md surface-section border-1 shadow-sm"
           
         >
-          <div class="flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
             <span class="font-bold text-primary text-lg"
               >Cuota Mensual Propuesta</span
             >
@@ -104,7 +104,7 @@
     <div class="mt-5 mb-5 overflow-hidden shadow-sm border-1 surface-border">
       <!-- Card Header -->
       <div
-        class="flex align-items-center px-4 py-3 surface-50 border-bottom-1 surface-border"
+        class="d-flex align-items-center px-4 py-3 surface-50 border-bottom-1 surface-border"
       >
         <div
           class="w-1 h-2rem surface-ground rounded-xl"
@@ -117,7 +117,7 @@
         </h5>
       </div>
 
-      <div class="flex flex-column md:flex-row">
+      <div class="d-flex flex-column flex-md-row">
         <!-- Columna Vigente -->
         <div class="w-full md:w-1/2 md:border-right-1 surface-border">
           <div class="px-4 py-2 surface-100 text-center">
@@ -128,7 +128,7 @@
 
           <!-- Fila Cuota Ordinaria -->
           <div
-            class="flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
+            class="d-flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
           >
             <div class="flex-flex-grow-1-1 text-700 font-medium">
               Cuota de mantenimiento mensual
@@ -141,12 +141,12 @@
 
           <!-- Fila Pronto Pago -->
           <div
-            class="flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
+            class="d-flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
           >
-            <div class="flex-flex-grow-1-1 pl-2">
-              <div class="flex align-items-center mb-1 flex-wrap">
+            <div class="flex-flex-grow-1-1 ps-2">
+              <div class="d-flex align-items-center mb-1 flex-wrap">
                 <span
-                  class="inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
+                  class="d-inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
                 >
                   Pronto Pago
                 </span>
@@ -178,7 +178,7 @@
 
           <!-- Fila Cuota Ordinaria -->
           <div
-            class="flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
+            class="d-flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
           >
             <div class="flex-flex-grow-1-1 text-700 font-medium">
               Cuota de mantenimiento mensual
@@ -191,12 +191,12 @@
 
           <!-- Fila Pronto Pago (Featured) -->
           <div
-            class="flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
+            class="d-flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
           >
-            <div class="flex-flex-grow-1-1 pl-2">
-              <div class="flex align-items-center mb-1 flex-wrap">
+            <div class="flex-flex-grow-1-1 ps-2">
+              <div class="d-flex align-items-center mb-1 flex-wrap">
                 <span
-                  class="inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
+                  class="d-inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
                 >
                   Pronto Pago
                 </span>
@@ -220,7 +220,7 @@
     </div>
 
     <!-- Fila de Diferencia -->
-    <div class="flex align-items-center my-5">
+    <div class="d-flex align-items-center my-5">
       <div class="flex-flex-grow-1-1 border-top-1 surface-border"></div>
       <h5
         class="mx-4 text-sm uppercase font-bold text-600 tracking-widest text-center"
@@ -239,14 +239,14 @@
       >
         {{ data.newMonthlyFee - data.currentMonthlyFee | currency: "MXN" :
         "symbol" : "1.0-0" }} @if (data.currentMonthlyFee !== 0) {
-        <span class="ml-2 text-lg font-light">
+        <span class="ms-2 text-lg font-light">
           ({{ (data.newMonthlyFee - data.currentMonthlyFee) /
           data.currentMonthlyFee | percent: "1.0-0" }})
         </span>
         } @if (data.newMonthlyFee - data.currentMonthlyFee > 0) {
-        <span class="ml-2 text-red-500">(Aumento)</span>
+        <span class="ms-2 text-red-500">(Aumento)</span>
         } @else {
-        <span class="ml-2 text-blue-500">(Disminución)</span>
+        <span class="ms-2 text-blue-500">(Disminución)</span>
         }
       </h4>
       } @else {

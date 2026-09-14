@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <div class="p-3">
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -74,7 +74,7 @@
             <p class="card-text text-base">{{ item.description }}</p>
           </td>
           <td class="text-center">
-            <div class="flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
               @if (item.beforeWork) {
               <app-image
                 [src]="
@@ -108,7 +108,7 @@
           <td>{{ item.scheduledAt }}</td>
           <td>{{ item.closedAtDate }}</td>
           <td class="text-center">
-            <div class="flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
               @if (item.afterWork) {
               <app-image
                 [src]="
@@ -170,7 +170,7 @@
     <ili-list-item alignTop="true" class="w-full">
       <div
         slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
@@ -179,8 +179,8 @@
         />
       </div>
 
-      <div class="flex flex-column w-full gap-1">
-        <div class="flex justify-content-between align-items-start mt-1">
+      <div class="d-flex flex-column w-full gap-1">
+        <div class="d-flex justify-content-between align-items-start mt-1">
           <small class="text-color-secondary text-xs"
             >{{ item.folio }} | {{ item.createdAtDate }}</small
           >
@@ -201,7 +201,7 @@
         </p>
 
         @if (item.beforeWork || item.afterWork) {
-        <div class="flex align-items-center mt-1">
+        <div class="d-flex align-items-center mt-1">
           @if (item.beforeWork) {
           <app-image
             [src]="item.beforeWork"
@@ -221,7 +221,7 @@
           }
         </div>
         }
-        <div class="flex justify-content-end text-right">
+        <div class="d-flex justify-content-end text-right">
           <p class="m-0 text-xs text-color-secondary">
             Cierre: {{ item.closedAtDate ?? "Pendiente" }}
           </p>

@@ -22,10 +22,10 @@ import {
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
-      class="flex flex-column xl:flex-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border bg-white"
+      class="d-flex flex-column flex-xl-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border bg-white"
     >
-      <div class="grid w-full m-0">
-        <div class="col-12 xl:col-4">
+      <div class="row w-full m-0">
+        <div class="col-12 col-xl-4">
           <custom-input-select-signal
             label="Fuente de consulta"
             [ngModel]="dataSource"
@@ -40,9 +40,9 @@ import {
           </small>
         </div>
 
-        <div class="col-12 xl:col-8">
-          <div class="flex flex-column gap-2">
-            <div class="flex flex-wrap gap-2">
+        <div class="col-12 col-xl-8">
+          <div class="d-flex flex-column gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <il-button
                 label="Sync cobranza"
                 iconClass="material-symbols-light:database-outline"
@@ -69,7 +69,7 @@ import {
               />
             </div>
 
-            <div class="flex flex-wrap align-items-center gap-2 text-sm">
+            <div class="d-flex flex-wrap align-items-center gap-2 text-sm">
               <span class="text-600">Customer:</span>
               <lx-tag
                 [value]="customerId || 'Sin contexto'"

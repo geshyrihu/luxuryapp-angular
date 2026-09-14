@@ -7,12 +7,12 @@
 } @else if (error()) {
 <div class="card">
   <div class="text-center text-red-500 p-4">{{ error() }}</div>
-  <div class="flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <il-button label="Volver a equipos" (clicked)="onBack()" />
   </div>
 </div>
 } @else if (qr) {
-<div class="card flex flex-column gap-4">
+<div class="card d-flex flex-column gap-4">
   <div>
     <div class="font-semibold text-xl">{{ qr.machineryName }}</div>
     <div class="text-sm text-600">{{ qr.machineryLocation || "Ubicacion no registrada" }}</div>

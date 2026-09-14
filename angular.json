@@ -83,7 +83,6 @@
               "localforage"
             ],
             "styles": [
-              "node_modules/primeflex/primeflex.css",
               "flatpickr/dist/flatpickr.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/@angular/cdk/overlay-prebuilt.css",

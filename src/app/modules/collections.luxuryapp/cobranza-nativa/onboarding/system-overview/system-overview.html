@@ -1,4 +1,4 @@
-<div class="p-3 md:p-4 max-w-5xl mx-auto flex flex-column gap-6">
+<div class="p-3 p-md-4 max-w-5xl mx-auto d-flex flex-column gap-6">
   <section class="text-center">
     <div class="avatar avatar--xl avatar--square mx-auto mb-3">
       <app-icon [icon]="'material-symbols-light:account-tree'" class="text-2xl" />
@@ -17,12 +17,12 @@
       Flujo de operacion
     </div>
 
-    <div class="flex flex-column gap-4">
-      <div class="flex gap-3">
+    <div class="d-flex flex-column gap-4">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">1</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:group'" class="text-primary" />
               <span class="font-semibold text-900">
                 Configurar propiedades y responsables
@@ -35,7 +35,7 @@
               la persona a quien se emiten los cargos. Si el responsable cambia
               (ej. nuevo inquilino), el anterior se da de baja automaticamente.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Miembros de Propiedad" severity="info" />
               <lx-tag value="Rol: Administrador" severity="secondary" />
             </div>
@@ -43,11 +43,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">2</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:note-alt'" class="text-primary" />
               <span class="font-semibold text-900">Crear plantillas de cargos</span>
             </div>
@@ -56,7 +56,7 @@
               <strong>plantillas</strong>: tipo de cargo, monto fijo o calculo por
               <em>indiviso</em> y si esta activa.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Plantillas de Cargos" severity="success" />
               <lx-tag value="Rol: Administrador" severity="secondary" />
             </div>
@@ -64,11 +64,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">3</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:play-circle'" class="text-primary" />
               <span class="font-semibold text-900">
                 Generacion automatica de cargos (job mensual)
@@ -80,7 +80,7 @@
               en las plantillas. Tambien se pueden generar manualmente desde
               Servicios Automatizados seleccionando mes y año.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Cargos / Servicios Automatizados" severity="info" />
               <lx-tag value="Sistema (CRON)" severity="contrast" />
             </div>
@@ -88,11 +88,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">4</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:credit-card'" class="text-primary" />
               <span class="font-semibold text-900">
                 Registrar pagos y aplicarlos
@@ -104,7 +104,7 @@
               saldo queda en la bolsa de pagos no aplicados para conciliacion
               posterior. Los pagos generan entradas inmutables en el ledger.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Registrar Pagos" severity="info" />
               <lx-tag value="Finanzas / Administrador" severity="success" />
             </div>
@@ -112,11 +112,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">5</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:percent'" class="text-primary" />
               <span class="font-semibold text-900">
                 Calculo de recargos por mora (job diario)
@@ -127,7 +127,7 @@
               de los dias de gracia configurados en la politica de mora. Aplica el
               recargo correspondiente y genera un nuevo cargo de tipo Recargo Mora.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Politicas de Mora / Servicios Automatizados" severity="warn" />
               <lx-tag value="Sistema (CRON)" severity="contrast" />
             </div>
@@ -135,11 +135,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">6</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:work'" class="text-primary" />
               <span class="font-semibold text-900">
                 Escalada a cobranza legal (job semanal)
@@ -150,7 +150,7 @@
               Las propiedades que superan 90 dias se escalan automaticamente a un
               caso de cobranza con seguimiento operativo.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Casos de Cobranza" severity="danger" />
               <lx-tag value="Sistema (CRON)" severity="contrast" />
             </div>
@@ -158,11 +158,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">7</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
               <span class="font-semibold text-900">Cierre de periodo contable</span>
             </div>
@@ -171,7 +171,7 @@
               Esto bloquea nuevos movimientos en ese mes y, si se requiere una
               correccion, entra el patron maker-checker.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Cierres de Periodo / Aprobaciones" severity="warn" />
               <lx-tag value="Administrador / Finanzas" severity="secondary" />
             </div>
@@ -179,11 +179,11 @@
         </lx-card>
       </div>
 
-      <div class="flex gap-3">
+      <div class="d-flex gap-3">
         <div class="avatar avatar--md">8</div>
         <lx-card class="card card--elevated flex-1">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:shield'" class="text-primary" />
               <span class="font-semibold text-900">
                 Auditoria y verificacion de integridad
@@ -194,7 +194,7 @@
               auditoria y el ledger financiero para validar que los saldos
               operacionales coincidan con la suma de eventos.
             </p>
-            <div class="flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2">
               <lx-tag value="Modulo: Ledger / Auditoria Financiera" severity="contrast" />
               <lx-tag value="Superusuario / Finanzas" severity="secondary" />
             </div>
@@ -208,11 +208,11 @@
     <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">
       Arquitectura del sistema
     </div>
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <lx-card class="card card--elevated h-full">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="text-primary" />
               <span class="font-semibold text-900 text-sm">
                 Ledger financiero inmutable
@@ -226,10 +226,10 @@
           </div>
         </lx-card>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <lx-card class="card card--elevated h-full">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:check-box'" class="text-primary" />
               <span class="font-semibold text-900 text-sm">Patron Maker-Checker</span>
             </div>
@@ -240,10 +240,10 @@
           </div>
         </lx-card>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <lx-card class="card card--elevated h-full">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
               <span class="font-semibold text-900 text-sm">
                 Multi-condominio (multi-tenant)
@@ -256,10 +256,10 @@
           </div>
         </lx-card>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <lx-card class="card card--elevated h-full">
-          <div class="flex flex-column gap-3">
-            <div class="flex align-items-center gap-2">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-2">
               <app-icon [icon]="'material-symbols-light:dns'" class="text-primary" />
               <span class="font-semibold text-900 text-sm">
                 Automatizacion via jobs
@@ -280,9 +280,9 @@
       Seguridad y controles
     </div>
     <lx-card class="card card--elevated">
-      <div class="grid">
-        <div class="col-12 md:col-4">
-          <div class="flex gap-2">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <div class="d-flex gap-2">
             <app-icon [icon]="'material-symbols-light:lock'" class="text-primary mt-1 flex-shrink-0" />
             <div>
               <div class="text-sm font-semibold text-900 mb-1">
@@ -295,8 +295,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 md:col-4">
-          <div class="flex gap-2">
+        <div class="col-12 col-md-4">
+          <div class="d-flex gap-2">
             <app-icon [icon]="'material-symbols-light:visibility-outline'" class="text-primary mt-1 flex-shrink-0" />
             <div>
               <div class="text-sm font-semibold text-900 mb-1">
@@ -309,8 +309,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 md:col-4">
-          <div class="flex gap-2">
+        <div class="col-12 col-md-4">
+          <div class="d-flex gap-2">
             <app-icon [icon]="'material-symbols-light:manage-accounts'" class="text-primary mt-1 flex-shrink-0" />
             <div>
               <div class="text-sm font-semibold text-900 mb-1">
@@ -331,7 +331,7 @@
     <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">
       Proximas funcionalidades
     </div>
-    <div class="flex flex-column gap-3">
+    <div class="d-flex flex-column gap-3">
       <div class="alert-warning alert--left-bar">
         <app-icon [icon]="'material-symbols-light:bolt'" class="alert__icon" />
         <div class="alert__body">

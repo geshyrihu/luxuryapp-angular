@@ -2,8 +2,8 @@
   <h4 class="text-headline-md text-on-surface m-0 mb-6">Reporte de Inspecciones</h4>
 
   <!-- Filtros -->
-  <div class="grid gap-4 mb-6">
-    <div class="col-12 md:col-6">
+  <div class="row gap-4 mb-6">
+    <div class="col-12 col-md-6">
       <custom-input-select-signal
         id="inspection"
         label="Inspección"
@@ -17,7 +17,7 @@
         [filter]="true"
       />
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-date-signal
         [control]="dateControl"
         label="Fecha a revisar"
@@ -32,7 +32,7 @@
 
   <!-- Botón PDF -->
   @if (inspectionResultIdControl.value !== '' && dataSignal()) {
-  <div class="mb-6 flex justify-content-end">
+  <div class="mb-6 d-flex justify-content-end">
     <iw-button
       label="Descargar PDF"
       severity="danger"
@@ -44,20 +44,20 @@
   }
 
   @if (!dataSignal()) {
-  <div class="flex justify-content-center align-items-center p-6">
+  <div class="d-flex justify-content-center align-items-center p-6">
     <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
   </div>
   } @if (dataSignal()) {
-  <div class="flex flex-column gap-6">
+  <div class="d-flex flex-column gap-6">
     <!-- Información General -->
     <div class="card p-4 md:p-6">
       <h5 class="text-title-lg text-primary m-0 mb-4">{{ dataSignal().name }}</h5>
-      <div class="grid gap-3">
-        <div class="col-12 md:col-6">
+      <div class="row gap-3">
+        <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
           <p class="text-body-md text-on-surface m-0">{{ dataSignal().departament }}</p>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Frecuencia</p>
           <p class="text-body-md text-on-surface m-0">{{ dataSignal().frequency }}</p>
         </div>
@@ -71,7 +71,7 @@
     <!-- Resultados -->
     @for (item of dataSignal().results; track item) {
     <div class="card p-4 md:p-6 border-outline">
-      <div class="flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
         <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
         @if (item.state) {
         <app-icon
@@ -96,9 +96,9 @@
       @if (item.images && item.images.length > 0) {
       <div>
         <p class="text-body-sm font-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
-        <div class="grid gap-3">
+        <div class="row gap-3">
           @for (image of item.images; track image) {
-          <div class="col-6 sm:col-4 md:col-3">
+          <div class="col-6 col-sm-4 col-md-3">
             <app-image
               [src]="
                   image.photoPath

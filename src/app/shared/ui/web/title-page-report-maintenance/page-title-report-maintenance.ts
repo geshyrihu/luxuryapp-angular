@@ -11,10 +11,10 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <!-- breadcrumb item -->
-    <div class="grid">
+    <div class="row">
       <div class="col-12">
         <div
-          class="page-title-box flex align-items-center justify-content-between"
+          class="page-title-box d-flex align-items-center justify-content-between"
         >
           <h4 class="mb-0 text-lg font-semibold">{{ title() }}</h4>
           <div class="page-title-right">

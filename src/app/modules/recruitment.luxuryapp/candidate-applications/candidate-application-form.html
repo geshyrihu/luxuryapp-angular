@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   @if (initialized()) {
   <form
     autocomplete="off"
@@ -10,15 +10,15 @@
       <div class="font-medium text-color mb-1">
         Registrar candidato para vacante
       </div>
-      <small class="block text-color-secondary">
+      <small class="d-block text-color-secondary">
         Selecciona un candidato existente o captura uno nuevo aqui mismo. El CV
         pertenece a la ficha del candidato y desde aqui puedes registrarlo o
         actualizarlo mientras agendas la entrevista.
       </small>
     </div>
 
-    <div class="grid">
-      <div class="col-12 md:col-8">
+    <div class="row">
+      <div class="col-12 col-md-8">
         <custom-input-select-signal
           [control]="form.controls['candidateId']"
           label="Candidato"
@@ -27,7 +27,7 @@
           [readonly]="isCreatingCandidate()"
         >
           <ng-template #item let-item>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <span>{{ item.label }}</span>
               @if (item.isActiveEmployee) {
                 <lx-tag value="Empleado Activo" severity="info" />
@@ -35,7 +35,7 @@
             </div>
           </ng-template>
           <ng-template #selectedItem let-item>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <span>{{ item.label }}</span>
               @if (item.isActiveEmployee) {
                 <lx-tag value="Empleado Activo" severity="info" />
@@ -45,7 +45,7 @@
         </custom-input-select-signal>
       </div>
       @if (allowCreateCandidate) {
-      <div class="col-12 md:col-4 flex align-items-end">
+      <div class="col-12 col-md-4 d-flex align-items-end">
         @if (!isCreatingCandidate()) {
         <button
           type="button"
@@ -65,7 +65,7 @@
         }
       </div>
       } @if (!isCreatingCandidate() && form.controls['candidateId'].value) {
-      <div class="col-12 md:col-4 md:col-offset-8 flex align-items-start">
+      <div class="col-12 col-md-4 md:col-offset-8 d-flex align-items-start">
         <button
           type="button"
           class="btn btn-outline-primary w-full"
@@ -77,7 +77,7 @@
       } @if (isCreatingCandidate()) {
       <div class="col-12">
         <div class="border-1 surface-border border-round p-3 surface-50">
-          <div class="flex flex-column gap-1 mb-3">
+          <div class="d-flex flex-column gap-1 mb-3">
             <div class="font-semibold">Nuevo candidato</div>
             <div class="text-sm text-color-secondary">
               Esta captura pertenece al flujo de Reclutamiento para esta
@@ -85,22 +85,22 @@
             </div>
           </div>
 
-          <div class="grid" [formGroup]="candidateForm">
-            <div class="col-12 md:col-6">
+          <div class="row" [formGroup]="candidateForm">
+            <div class="col-12 col-md-6">
               <custom-input-text-signal
                 [control]="$any(candidateForm.controls['firstName'])"
                 label="Nombre(s)"
                 placeholder="Nombre(s)"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-text-signal
                 [control]="$any(candidateForm.controls['lastName'])"
                 label="Apellidos"
                 placeholder="Apellidos"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-mask-signal
                 [control]="$any(candidateForm.controls['phoneNumber'])"
                 label="Tel. Celular"
@@ -108,14 +108,14 @@
                 customMask="(00) 0000-0000"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-email
                 [control]="$any(candidateForm.controls['email'])"
                 label="Correo electronico"
                 placeholder="correo@ejemplo.com"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-number-signal
                 [control]="$any(candidateForm.controls['age'])"
                 label="Edad"
@@ -123,7 +123,7 @@
                 [min]="16"
               />
             </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <custom-input-number-signal
                 [control]="$any(candidateForm.controls['salaryExpectation'])"
                 label="Expectativa salarial"
@@ -167,7 +167,7 @@
                 class="border-1 surface-border border-round p-3 surface-card"
               >
                 <div
-                  class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2 mb-3"
+                  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3"
                 >
                   <div>
                     <div class="font-semibold">Experiencia laboral</div>
@@ -191,12 +191,12 @@
                   Sin experiencias registradas.
                 </div>
                 } @else {
-                <div class="flex flex-column gap-3">
+                <div class="d-flex flex-column gap-3">
                   @for (experience of candidateWorkExperienceControls; track
                   $index) {
                   <div class="border-1 surface-border border-round p-3">
                     <div
-                      class="flex justify-content-between align-items-center mb-3"
+                      class="d-flex justify-content-between align-items-center mb-3"
                     >
                       <div class="font-medium">
                         Experiencia {{ $index + 1 }}
@@ -211,34 +211,34 @@
                       />
                     </div>
 
-                    <div class="grid" [formGroup]="experience">
-                      <div class="col-12 md:col-6">
+                    <div class="row" [formGroup]="experience">
+                      <div class="col-12 col-md-6">
                         <custom-input-text-signal
                           [control]="$any(experience.controls['companyName'])"
                           label="Empresa"
                           placeholder="Nombre de la empresa"
                         />
                       </div>
-                      <div class="col-12 md:col-6">
+                      <div class="col-12 col-md-6">
                         <custom-input-text-signal
                           [control]="$any(experience.controls['jobPosition'])"
                           label="Puesto"
                           placeholder="Puesto desempenado"
                         />
                       </div>
-                      <div class="col-12 md:col-6">
+                      <div class="col-12 col-md-6">
                         <custom-input-date-signal
                           [control]="$any(experience.controls['startDate'])"
                           label="Fecha de inicio"
                         />
                       </div>
-                      <div class="col-12 md:col-6">
+                      <div class="col-12 col-md-6">
                         <custom-input-date-signal
                           [control]="$any(experience.controls['endDate'])"
                           label="Fecha de termino"
                         />
                       </div>
-                      <div class="col-12 md:col-6">
+                      <div class="col-12 col-md-6">
                         <custom-input-number-signal
                           [control]="$any(experience.controls['monthlyNetSalary'])"
                           label="Salario neto mensual"
@@ -274,14 +274,14 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-date-signal
           [control]="form.controls['applicationDate']"
           label="Fecha de registro"
           [readonly]="true"
         />
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <custom-input-date-signal
           [control]="form.controls['scheduledDate']"
           [minDate]="minDate"
@@ -289,25 +289,25 @@
           placeholder="Selecciona fecha"
         />
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <custom-input-time-signal
           [control]="form.controls['scheduledTime']"
           label="Hora de entrevista"
           placeholder="Selecciona hora"
         />
         @if (form.controls['scheduledTime'].hasError('invalidTime')) {
-        <small class="block mt-2 text-red-500">
+        <small class="d-block mt-2 text-red-500">
           La hora debe ser al menos 1 hora mayor a la actual.
         </small>
         }
       </div>
       <div class="col-12">
-        <small class="block text-color-secondary mt-2">
+        <small class="d-block text-color-secondary mt-2">
           ℹ️ La entrevista no puede ser en fecha pasada. Para hoy, debe haber un
           margen minimo de 1 hora.
         </small>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-select-signal
           [control]="form.controls['operationsInterviewAssignedToUserId']"
           label="Entrevistador asignado"
@@ -317,7 +317,7 @@
           [filter]="true"
         />
         @if (interviewersUnavailable()) {
-        <small class="block mt-2 text-red-500">
+        <small class="d-block mt-2 text-red-500">
           No hay entrevistadores elegibles en la matrix para esta vacante. No se
           puede agendar la entrevista hasta configurar una coincidencia valida.
         </small>
@@ -334,8 +334,8 @@
     </div>
 
     @if (form.controls['candidateId'].value || isCreatingCandidate()) {
-    <div class="grid align-items-start mt-3">
-      <div class="col-12 md:col-8">
+    <div class="row align-items-start mt-3">
+      <div class="col-12 col-md-8">
         <app-candidate-cv-upload
           [fileName]="form.controls['cvFileName'].value"
           [fileUrl]="currentCvUrl()"

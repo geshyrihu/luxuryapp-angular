@@ -18,7 +18,7 @@ export interface ButtonGroupOption<T = string> {
   imports: [WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="flex flex-wrap gap-2" role="group">
+    <div class="d-flex flex-wrap gap-2" role="group">
       @for (opt of options(); track opt.value) {
         <il-button
           [label]="opt.label"

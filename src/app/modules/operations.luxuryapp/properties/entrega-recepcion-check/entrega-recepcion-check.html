@@ -11,8 +11,8 @@
       </p>
 
       <!-- Placeholder para el Semáforo General -->
-      <div class="flex align-items-center">
-        <h5 class="mr-3 text-lg font-semibold">
+      <div class="d-flex align-items-center">
+        <h5 class="me-3 text-lg font-semibold">
           Riesgo General del Condominio:
         </h5>
         <lx-tag
@@ -28,7 +28,7 @@
   <div class="card">
     @for (module of auditModules; track module.name) {
     <lx-accordion
-      class="block mb-2"
+      class="d-block mb-2"
       [items]="[{ id: module.name, title: module.name, icon: module.icon }]"
     >
         <div [attr.accordion]="module.name">
@@ -96,7 +96,7 @@
   </div>
 
   <!-- Botones de Acción -->
-  <div class="flex justify-content-end mt-4">
+  <div class="d-flex justify-content-end mt-4">
     <il-button
       label="Guardar Borrador"
       iconClass="material-symbols-light:save"

@@ -1,8 +1,8 @@
-<div class="flex flex-column gap-3">
+<div class="d-flex flex-column gap-3">
   <!-- Identificación del condómino -->
-  <div class="flex align-items-center mb-1 gap-3">
+  <div class="d-flex align-items-center mb-1 gap-3">
     <div
-      class="bg-primary text-white border-round w-3rem h-3rem flex align-items-center justify-content-center text-xl font-bold flex-shrink-0"
+      class="bg-primary text-white border-round w-3rem h-3rem d-flex align-items-center justify-content-center text-xl font-bold flex-shrink-0"
     >
       <app-icon icon="material-symbols-light:apartment" />
     </div>
@@ -17,7 +17,7 @@
   <!-- Criterio por el que quedó en esta situación -->
   <div class="mb-3">
     <div
-      class="text-sm border-round p-3 flex flex-column gap-2"
+      class="text-sm border-round p-3 d-flex flex-column gap-2"
       [ngClass]="{
         'bg-red-50 border-1 border-red-200':
           row?.clasificacion === 'COBRANZA JUDICIAL',
@@ -31,7 +31,7 @@
           row?.clasificacion !== 'DEUDA CORRIENTE'
       }"
     >
-      <div class="flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2">
         <app-icon
           icon="material-symbols-light:info"
           class="text-lg"
@@ -61,13 +61,13 @@
     <div class="mt-2 text-500">Cargando desglose...</div>
   </div>
   } @else if (detail(); as data) {
-  <div class="block">
+  <div class="d-block">
     @for (item of data.conceptos; track item.concepto) {
     <div
       class="border-1 surface-border rounded-xl surface-card mb-3 overflow-hidden shadow-sm"
     >
       <div
-        class="p-3 surface-50 border-bottom-1 surface-border flex justify-content-between align-items-center gap-2"
+        class="p-3 surface-50 border-bottom-1 surface-border d-flex justify-content-between align-items-center gap-2"
       >
         <lx-tag
           [value]="item.concepto"
@@ -79,10 +79,10 @@
       </div>
       <div class="p-3">
         @if (item.vencidos?.length) {
-        <div class="flex flex-column gap-2">
+        <div class="d-flex flex-column gap-2">
           @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
           <div
-            class="flex justify-content-between align-items-center gap-3 text-sm border-bottom-1 surface-border pb-2"
+            class="d-flex justify-content-between align-items-center gap-3 text-sm border-bottom-1 surface-border pb-2"
           >
             <span class="text-800">{{ v.conceptoDetalle }}</span>
             <span
@@ -100,7 +100,7 @@
         </div>
         }
         <div
-          class="flex justify-content-end gap-2 mt-3 border-top-1 surface-border pt-2"
+          class="d-flex justify-content-end gap-2 mt-3 border-top-1 surface-border pt-2"
         >
           <span class="font-semibold text-sm text-color-secondary"
             >Total {{ item.concepto }}:</span
@@ -122,10 +122,10 @@
       Resumen total por tipo
     </div>
 
-    <div class="flex flex-column gap-2">
+    <div class="d-flex flex-column gap-2">
       @for (item of data.conceptos; track item.concepto) {
       <div
-        class="flex justify-content-between gap-3 text-sm py-1 border-bottom-1 surface-border"
+        class="d-flex justify-content-between gap-3 text-sm py-1 border-bottom-1 surface-border"
       >
         <span class="text-600">{{ item.concepto }}</span>
         <span
@@ -139,7 +139,7 @@
     </div>
 
     <div
-      class="flex justify-content-between gap-3 text-lg font-bold border-top-1 surface-border pt-3 mt-2"
+      class="d-flex justify-content-between gap-3 text-lg font-bold border-top-1 surface-border pt-3 mt-2"
     >
       <span class="text-900">Total adeudo</span>
       <span [ngClass]="getBalanceClass(data.saldoFinalTotal)">

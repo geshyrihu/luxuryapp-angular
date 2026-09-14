@@ -4,9 +4,9 @@
       autocomplete="off"
       (ngSubmit)="onSubmit()"
       [formGroup]="form"
-      class="flex flex-column gap-3"
+      class="d-flex flex-column gap-3"
     >
-      <div class="hidden">
+      <div class="d-none">
         <custom-input-text-signal
           [control]="form.controls.id"
           hidden
@@ -17,7 +17,7 @@
       </div>
 
       @if (!readOnly()) {
-      <div class="flex justify-content-end gap-2 mb-2">
+      <div class="d-flex justify-content-end gap-2 mb-2">
         <il-button
           label="Criticar con IA"
           iconClass="material-symbols-light:psychology"
@@ -39,7 +39,7 @@
       </div>
       }
 
-      <div class="grid">
+      <div class="row">
         <div class="col-12">
           <custom-input-textarea-signal
             [control]="form.controls.summary"
@@ -50,7 +50,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.responsibilities"
             label="Responsabilidades"
@@ -60,7 +60,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.skills"
             label="Habilidades Requeridas"
@@ -70,7 +70,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.additionalRequirements"
             label="Requisitos Adicionales"
@@ -80,7 +80,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.workEnvironment"
             label="Entorno de Trabajo"
@@ -100,7 +100,7 @@
       </div>
 
       @if (!readOnly()) {
-      <div class="flex justify-content-end pt-3">
+      <div class="d-flex justify-content-end pt-3">
         <il-button-save
           [propertyId]="id() || ''"
           [disabled]="form.invalid"
@@ -128,7 +128,7 @@
           [horizontal]="false"
         />
 
-        <div class="flex justify-content-end gap-2 mt-3">
+        <div class="d-flex justify-content-end gap-2 mt-3">
           <il-button
             label="Cancelar"
             iconClass="material-symbols-light:close"

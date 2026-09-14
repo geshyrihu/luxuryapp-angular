@@ -1,7 +1,7 @@
-<div class="flex flex-column p-3 gap-3">
+<div class="d-flex flex-column p-3 gap-3">
   <!-- Loading Spinner -->
   @if (loading()) {
-  <div class="flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <app-spinner [size]="48" [strokeWidth]="4" />
   </div>
   }
@@ -11,7 +11,7 @@
     autocomplete="off"
     (ngSubmit)="onSubmit()"
     [formGroup]="form"
-    class="flex flex-column"
+    class="d-flex flex-column"
   >
     <div class="mb-4">
       <custom-input-textarea-signal
@@ -23,7 +23,7 @@
         [horizontal]="false"
       />
 
-      <div class="flex justify-content-between mt-1">
+      <div class="d-flex justify-content-between mt-1">
         <small class="text-500">Mínimo 10 caracteres.</small>
         <small
           [class.text-red-500]="remainingChars() < 10"
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="flex justify-content-end">
+    <div class="d-flex justify-content-end">
       <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     </div>
   </form>
@@ -46,17 +46,17 @@
     </h3>
 
     @if (description() && description().length > 0) {
-    <div class="flex flex-column gap-3">
+    <div class="d-flex flex-column gap-3">
       @for(follow of description(); track $index) {
       <div
         class="surface-card p-3 rounded shadow-sm border-left-3 border-primary"
       >
-        <div class="flex align-items-center justify-content-between mb-2">
+        <div class="d-flex align-items-center justify-content-between mb-2">
           <span class="font-bold text-900 text-sm">
-            <app-icon [icon]="'material-symbols-light:person'" class="mr-2 text-primary" />
+            <app-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
             {{ follow.applicationUser }}
           </span>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <span class="text-xs text-500 surface-100 px-2 py-1 rounded">
               {{ follow.createdAt }}
             </span>
@@ -73,7 +73,7 @@
     </div>
     } @else {
     <div
-      class="flex flex-column align-items-center justify-content-center p-5 surface-50 rounded"
+      class="d-flex flex-column align-items-center justify-content-center p-5 surface-50 rounded"
     >
       <div class="border-circle surface-200 p-3 mb-3">
         <app-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-500" />

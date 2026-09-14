@@ -1,7 +1,7 @@
 <div class="px-2 py-4 md:px-6 md:py-8 min-h-screen surface-ground">
-  <div class="mx-auto flex flex-column gap-6">
+  <div class="mx-auto d-flex flex-column gap-6">
     <div
-      class="flex flex-column md:flex-row justify-content-between align-items-start md:align-items-end"
+      class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end"
     >
       <div>
         <h1 class="text-2xl font-bold text-900 tracking-tight">
@@ -12,7 +12,7 @@
         </p>
       </div>
       <div
-        class="flex flex-column md:flex-row align-items-end w-full md:w-auto mb-2 gap-2"
+        class="d-flex flex-column flex-md-row align-items-end w-full md:w-auto mb-2 gap-2"
       >
         <custom-input-date-signal
           [control]="asOfCtrl"
@@ -68,8 +68,8 @@
 
     @if (statement()) {
     <div class="fadein">
-      <div class="grid mb-6">
-        <div class="col-12 md:col-4">
+      <div class="row mb-6">
+        <div class="col-12 col-md-4">
           <lx-card class="card card--elevated card--primary h-full">
             <p class="text-xs mb-1 uppercase tracking-wider font-semibold">
               Total A Pagar
@@ -80,7 +80,7 @@
             </p>
           </lx-card>
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <lx-card class="card card--elevated h-full">
             <p
               class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
@@ -93,7 +93,7 @@
             </p>
           </lx-card>
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <lx-card class="card card--elevated h-full">
             <p
               class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
@@ -108,10 +108,10 @@
         </div>
       </div>
 
-      <lx-card class="card hidden md:block">
-        <div class="flex justify-content-between align-items-center mb-4">
+      <lx-card class="card d-none d-md-block">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="text-lg font-bold text-800">Movimientos (Kardex)</h3>
-          <div class="flex gap-2">
+          <div class="d-flex gap-2">
             <il-button
               label="Ver PDF"
               iconClass="material-symbols-light:visibility"
@@ -184,18 +184,18 @@
         </p-table>
       </lx-card>
 
-      <div class="block md:hidden flex flex-column gap-1">
+      <div class="d-block d-md-none d-flex flex-column gap-1">
         <lx-card class="card">
-          <div class="flex align-items-center py-2">
+          <div class="d-flex align-items-center py-2">
             <div
-              class="w-2rem h-2rem rounded-circle surface-900 text-white flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-circle surface-900 text-white d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:home'"
                 class="text-sm"
               />
             </div>
-            <div class="flex-grow-1 min-w-0 ml-3">
+            <div class="flex-grow-1 min-w-0 ms-3">
               <p class="font-bold text-900 text-sm truncate m-0">
                 {{ statement()!.propertyInfo.propertyName }}
               </p>
@@ -205,7 +205,7 @@
               </p>
             </div>
           </div>
-          <div class="flex gap-2 flex-wrap">
+          <div class="d-flex gap-2 flex-wrap">
             <il-button
               iconClass="material-symbols-light:visibility"
               label="Ver PDF"
@@ -234,7 +234,7 @@
 
         @for (entry of statement()!.ledger; track entry.id) {
         <lx-card class="card mb-2">
-          <div class="flex align-items-start justify-content-between gap-3">
+          <div class="d-flex align-items-start justify-content-between gap-3">
             <div class="flex-grow-1 min-w-0">
               <div class="mb-2">
                 <lx-tag
@@ -272,7 +272,7 @@
         <lx-card class="card text-center text-400">
           <app-icon
             [icon]="'material-symbols-light:move-to-inbox'"
-            class="text-4xl mb-2 block"
+            class="text-4xl mb-2 d-block"
           />
           <p class="text-sm">Sin movimientos registrados</p>
         </lx-card>

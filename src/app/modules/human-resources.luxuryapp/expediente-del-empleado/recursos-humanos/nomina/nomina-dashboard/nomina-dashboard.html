@@ -9,7 +9,7 @@
         nominas, controla incidencias, tiempo extra, prestamos y evidencias
         desde un solo lugar.
       </p>
-      <div class="flex flex-wrap gap-2">
+      <div class="d-flex flex-wrap gap-2">
         <il-button
           label="Periodos de nomina"
           iconClass="material-symbols-light:calendar-today"
@@ -54,15 +54,15 @@
       </div>
     </div>
 
-    <div class="grid">
+    <div class="row">
       @for (card of group.cards; track card.title) {
-      <div class="col-12 sm:col-6 lg:col-4">
-        <div class="nom-card surface-card h-full flex flex-column">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="nom-card surface-card h-full d-flex flex-column">
           <div class="nom-card__accent" [style.background]="card.bgColor"></div>
 
-          <div class="p-3 flex-1 flex flex-column">
+          <div class="p-3 flex-1 d-flex flex-column">
             <!-- Icon + title + roles -->
-            <div class="flex align-items-start gap-2 mb-2">
+            <div class="d-flex align-items-start gap-2 mb-2">
               <div class="nom-card__icon" [style.background]="card.bgColor">
                 <app-icon [icon]="card.icon" class="text-sm text-800" />
               </div>
@@ -70,7 +70,7 @@
                 <div class="font-semibold text-900 text-sm">
                   {{ card.title }}
                 </div>
-                <div class="flex flex-wrap gap-1 mt-1">
+                <div class="d-flex flex-wrap gap-1 mt-1">
                   @for (role of card.roles; track role) {
                   <lx-tag
                     [value]="role"
@@ -88,7 +88,7 @@
             </p>
 
             <!-- Action buttons -->
-            <div class="flex gap-2 mt-auto">
+            <div class="d-flex gap-2 mt-auto">
               @if (card.route) {
               <div class="flex-1">
                 <il-button
@@ -101,7 +101,7 @@
               </div>
               } @else {
               <span
-                class="flex-1 flex align-items-center justify-content-center gap-1 px-3 py-2 rounded-lg text-xs text-500 surface-100 border-1 surface-border"
+                class="flex-1 d-flex align-items-center justify-content-center gap-1 px-3 py-2 rounded-lg text-xs text-500 surface-100 border-1 surface-border"
               >
                 <app-icon
                   [icon]="'material-symbols-light:fullscreen'"
@@ -128,10 +128,10 @@
               <div class="text-xs font-semibold text-600 uppercase mb-2">
                 <app-icon
                   [icon]="'material-symbols-light:format-list-bulleted'"
-                  class="text-xs mr-1"
+                  class="text-xs me-1"
                 />Que puedes hacer
               </div>
-              <ul class="m-0 pl-3">
+              <ul class="m-0 ps-3">
                 @for (action of card.actions; track action.label) {
                 <li class="text-xs text-700 line-height-3 mb-1">
                   {{ action.label }}
@@ -144,7 +144,7 @@
               <div class="text-xs font-semibold text-600 uppercase mb-2">
                 <app-icon
                   [icon]="'material-symbols-light:dns'"
-                  class="text-xs mr-1"
+                  class="text-xs me-1"
                 />Endpoints del API
               </div>
               @for (ep of card.endpoints; track ep.path) {
@@ -154,7 +154,7 @@
                   [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"
                   >{{ ep.method }}</span
                 >
-                <div class="flex flex-column gap-1">
+                <div class="d-flex flex-column gap-1">
                   <span class="font-mono text-500 break-all"
                     >{{ ep.path }}</span
                   >
@@ -169,10 +169,10 @@
               <div class="text-xs font-semibold text-600 uppercase mb-2">
                 <app-icon
                   [icon]="'material-symbols-light:label'"
-                  class="text-xs mr-1"
+                  class="text-xs me-1"
                 />Estados posibles
               </div>
-              <div class="flex flex-wrap gap-1">
+              <div class="d-flex flex-wrap gap-1">
                 @for (s of card.states; track s) {
                 <lx-tag
                   [value]="s"
@@ -187,7 +187,7 @@
               <div class="text-xs text-yellow-800 line-height-3">
                 <app-icon
                   [icon]="'material-symbols-light:info'"
-                  class="mr-1"
+                  class="me-1"
                 />{{ card.notes }}
               </div>
             </div>
@@ -202,7 +202,7 @@
   }
 
   <!-- ── Footer CTA ─────────────────────────────────────────── -->
-  <div class="nom-footer-cta mt-4 flex align-items-center gap-3">
+  <div class="nom-footer-cta mt-4 d-flex align-items-center gap-3">
     <app-icon
       [icon]="'material-symbols-light:attach-money'"
       class="text-primary text-2xl flex-shrink-0"

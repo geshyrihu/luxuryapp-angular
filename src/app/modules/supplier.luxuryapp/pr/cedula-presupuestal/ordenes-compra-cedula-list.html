@@ -1,4 +1,4 @@
-<div class="hidden md:block card">
+<div class="d-none d-md-block card">
   <p-table
     [globalFilterFields]="globalFilterFieldsOption()"
     [showCurrentPageReport]="true"
@@ -60,7 +60,7 @@
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<div class="flex md:hidden flex-column h-screen">
+<div class="d-flex d-md-none flex-column h-screen">
   <app-data-view-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFieldsOption()"
@@ -70,7 +70,7 @@
       <ili-list-item (click)="onOrdenCompraModal(item.ordenCompraId)" button>
 <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           
         >
           <app-icon
@@ -79,7 +79,7 @@
           />
         </div>
         
-          <div class="flex justify-content-between align-items-center mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
             <span class="text-xs font-bold text-500"
               >Folio: {{item.folio}}</span
             >
@@ -102,7 +102,7 @@
   </app-data-view-mobile>
 
   <div class="flex-none p-3 surface-100 border-top-1 border-200">
-    <div class="grid m-0">
+    <div class="row m-0">
       <div class="col-6 p-1">
         <div class="text-xs text-uppercase text-500 mb-1">Pagadas</div>
         <div class="text-lg font-bold text-success">
@@ -118,7 +118,7 @@
     </div>
   </div>
 </div>
-<div class="hidden md:block p-3">
+<div class="d-none d-md-block p-3">
   <h2>Pagos registrados: {{ pagadas() | currency }}</h2>
   <h2>Pagos no registrados: {{ noPagadas() | currency }}</h2>
 </div>

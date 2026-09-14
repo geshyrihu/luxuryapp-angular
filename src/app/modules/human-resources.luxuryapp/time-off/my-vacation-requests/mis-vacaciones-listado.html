@@ -10,10 +10,10 @@
     [scrollHeight]="scrollHeight"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
   >
     <ng-template #caption>
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <div class="flex-flex-grow-1-1">
           <primeng-custom-caption
             (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -90,7 +90,7 @@
         </td>
 
         <td class="no-print">
-          <div class="flex justify-content-end">
+          <div class="d-flex justify-content-end">
             <!-- botón Ver Detalle -->
             <iw-button-item
               icon="material-symbols-light:visibility-outline"
@@ -126,7 +126,7 @@
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
           <app-icon icon="material-symbols-light:beach-access" />
         </div>

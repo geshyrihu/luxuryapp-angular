@@ -1,14 +1,14 @@
 @if (dataSignal()) {
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
-  <div class="flex flex-column gap-3">
+<div class="d-none d-md-block">
+  <div class="d-flex flex-column gap-3">
     <!-- Header Section -->
     <div
-      class="card p-3 shadow-sm rounded-xl surface-card flex justify-content-between align-items-center border-left-3 border-blue-500"
+      class="card p-3 shadow-sm rounded-xl surface-card d-flex justify-content-between align-items-center border-left-3 border-blue-500"
     >
-      <div class="flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
         <div
-          class="p-3 rounded-circle bg-blue-50 text-blue-600 flex align-items-center justify-content-center"
+          class="p-3 rounded-circle bg-blue-50 text-blue-600 d-flex align-items-center justify-content-center"
         >
           <app-icon icon="material-symbols-light:co-present" class="text-2xl" />
         </div>
@@ -19,7 +19,7 @@
           >
         </div>
       </div>
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button
           variant="outline"
           iconClass="material-symbols-light:add"
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Rows Container (Full Width Row-Cards) -->
-    <div class="flex flex-column gap-3">
+    <div class="d-flex flex-column gap-3">
       @for (item of dataSignal(); track item.id) {
       <div
         class="card p-0 shadow-sm rounded-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-sm"
@@ -39,10 +39,10 @@
       >
         <!-- Row Header (Status & Periods) -->
         <div
-          class="p-3 bg-gray-50 border-bottom-1 surface-border flex justify-content-between align-items-center"
+          class="p-3 bg-gray-50 border-bottom-1 surface-border d-flex justify-content-between align-items-center"
         >
-          <div class="flex align-items-center gap-5">
-            <div class="flex flex-column">
+          <div class="d-flex align-items-center gap-5">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Periodo</span
               >
@@ -50,11 +50,11 @@
                 >{{ item.fechaCorrespondiente }}</span
               >
             </div>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Fecha de Junta</span
               >
-              <div class="flex align-items-center gap-2 text-700">
+              <div class="d-flex align-items-center gap-2 text-700">
                 <app-icon
                   icon="material-symbols-light:calendar-clock"
                   class="text-blue-500"
@@ -64,11 +64,11 @@
                 >
               </div>
             </div>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-xs font-bold text-500 uppercase tracking-wider"
                 >Enviado Comité</span
               >
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 <lx-tag
                   [value]="item.enviadoComite ? 'Sí' : 'NO'"
                   [severity]="item.enviadoComite ? 'success' : 'warning'"
@@ -84,17 +84,17 @@
             </div>
           </div>
 
-          <div class="flex gap-2 align-items-center">
+          <div class="d-flex gap-2 align-items-center">
             @if (item.archivoFinal) {
             <div
-              class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
+              class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
             >
               <app-icon icon="material-symbols-light:lock" />
               <span>VERSIóN FINAL</span>
             </div>
             } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])()) {
-            <div class="flex gap-1 bg-white p-1 rounded-lg shadow-sm">
+            <div class="d-flex gap-1 bg-white p-1 rounded-lg shadow-sm">
               <il-button-edit
                 (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
                 variant="text"
@@ -112,20 +112,20 @@
 
         <!-- Row Body (Sections as Columns) -->
         <div class="p-3">
-          <div class="grid align-items-center">
+          <div class="row align-items-center">
             <!-- Portada Section -->
-            <div class="col-12 md:col-3 border-right-1 surface-border">
-              <div class="flex align-items-center gap-3">
+            <div class="col-12 col-md-3 border-right-1 surface-border">
+              <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-blue-50 text-blue-500">
                   <app-icon
                     icon="material-symbols-light:filter-frames"
                     class="text-2xl"
                   />
                 </div>
-                <div class="flex flex-column flex-grow-1">
+                <div class="d-flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">PORTADA</span>
                   @if (item.archivoPortada) {
-                  <div class="flex flex-column gap-1">
+                  <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
                       [url]="item.archivoPortada"
                       fileName="Portada"
@@ -133,7 +133,7 @@
                       variant="text"
                       label="Ver archivo"
                     />
-                    <div class="flex flex-column">
+                    <div class="d-flex flex-column">
                       <small class="text-600 font-medium"
                         >Por: {{ item.applicationUserPortada }}</small
                       >
@@ -169,18 +169,18 @@
             </div>
 
             <!-- Contabilidad Section -->
-            <div class="col-12 md:col-3 border-right-1 surface-border px-4">
-              <div class="flex align-items-center gap-3">
+            <div class="col-12 col-md-3 border-right-1 surface-border px-4">
+              <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-cyan-50 text-cyan-500">
                   <app-icon
                     icon="material-symbols-light:area-chart"
                     class="text-2xl"
                   />
                 </div>
-                <div class="flex flex-column flex-grow-1">
+                <div class="d-flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">CONTABILIDAD</span>
                   @if (item.archivoContable) {
-                  <div class="flex flex-column gap-1">
+                  <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
                       [url]="item.archivoContable"
                       fileName="Contabilidad"
@@ -189,7 +189,7 @@
                       label="Ver archivo"
                       severity="info"
                     />
-                    <div class="flex flex-column">
+                    <div class="d-flex flex-column">
                       <small class="text-600 font-medium"
                         >Por: {{ item.applicationUserContable }}</small
                       >
@@ -224,18 +224,18 @@
             </div>
 
             <!-- Operaciones Section -->
-            <div class="col-12 md:col-3 border-right-1 surface-border px-4">
-              <div class="flex align-items-center gap-3">
+            <div class="col-12 col-md-3 border-right-1 surface-border px-4">
+              <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-orange-50 text-orange-500">
                   <app-icon
                     icon="material-symbols-light:settings-overscan"
                     class="text-2xl"
                   />
                 </div>
-                <div class="flex flex-column flex-grow-1">
+                <div class="d-flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">OPERACIONES</span>
                   @if (item.archivoJunta) {
-                  <div class="flex flex-column gap-1">
+                  <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
                       [url]="item.archivoJunta"
                       fileName="Operaciones"
@@ -244,7 +244,7 @@
                       label="Ver archivo"
                       severity="warning"
                     />
-                    <div class="flex flex-column">
+                    <div class="d-flex flex-column">
                       <small class="text-600 font-medium"
                         >Por: {{ item.applicationUser }}</small
                       >
@@ -279,9 +279,9 @@
             </div>
 
             <!-- Validation/Final Section -->
-            <div class="col-12 md:col-3 pl-4">
+            <div class="col-12 col-md-3 ps-4">
               @if (item.archivoFinal) {
-              <div class="flex flex-column gap-1">
+              <div class="d-flex flex-column gap-1">
                 <il-button-view-pdf
                   [url]="item.archivoFinal"
                   fileName="Presentacion_Final"
@@ -292,9 +292,9 @@
                   customClass="justify-content-start px-3"
                 />
                 <div
-                  class="flex align-items-center justify-content-between mt-1"
+                  class="d-flex align-items-center justify-content-between mt-1"
                 >
-                  <div class="flex flex-column">
+                  <div class="d-flex flex-column">
                     <small class="text-600 font-medium"
                       >Validé: {{ item.applicationUserSupervisor }}</small
                     >
@@ -314,7 +314,7 @@
               } @else if (aspRoleS.anyOf([AspRole.SupervisionOperativa,
               AspRole.SuperUsuario])() && item.archivoPortada &&
               item.archivoContable && item.archivoJunta) {
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <il-button-confirm
                   iconClass="material-symbols-light:send"
                   label="ENVIAR COMITé"
@@ -351,7 +351,7 @@
       </div>
       } @empty {
       <div
-        class="card p-8 shadow-sm rounded-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3"
+        class="card p-8 shadow-sm rounded-xl surface-card d-flex flex-column align-items-center justify-content-center text-center gap-3"
       >
         <app-icon
           icon="material-symbols-light:manage-search"
@@ -372,7 +372,7 @@
 </div>
 
 <!-- INICIO: Componente adaptado para version movil -->
-<div class="block md:hidden">
+<div class="d-block d-md-none">
   <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
     La presentacion ya no se crea directamente aqui. Primero registra la agenda
     de la junta para generar la sesion mensual y la presentacion relacionada.
@@ -386,19 +386,19 @@
       <div class="card p-3 mb-2 border-1 surface-border shadow-sm rounded-xl">
         <!-- Header -->
         <div class="border-bottom-1 surface-border pb-2 mb-2">
-          <div class="flex justify-content-between align-items-center mb-2">
+          <div class="d-flex justify-content-between align-items-center mb-2">
             <div>
               <h6 class="m-0 font-bold text-900 uppercase">
                 PERIODO: {{ item.fechaCorrespondiente | uppercase }}
               </h6>
-              <small class="text-500 block mt-1"
+              <small class="text-500 d-block mt-1"
                 >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
                 item.horaJunta ? ", HORA: " + item.horaJunta : "" }}</small
               >
             </div>
             @if ( aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])() && !item.archivoFinal ) {
-            <div class="flex gap-1">
+            <div class="d-flex gap-1">
               <il-button-edit
                 (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
               />
@@ -414,9 +414,9 @@
         </div>
 
         <!-- Body -->
-        <div class="grid">
+        <div class="row">
           <!-- Portada -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Portada"
               [toggleable]="true"
@@ -434,11 +434,11 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
               />
               } @else if (item.archivoPortada) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
@@ -458,7 +458,7 @@
           </div>
 
           <!-- Contable -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Contable"
               [toggleable]="true"
@@ -475,7 +475,7 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
               />
               } @else if (item.archivoContable) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf
                   [url]="item.archivoContable"
                   pdf="Contabilidad"
@@ -483,7 +483,7 @@
                 @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
                 && !item.archivoFinal && !item.applicationUserSupervisorContable
                 ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                   />
@@ -504,7 +504,7 @@
           </div>
 
           <!-- Operaciones -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset
               legend="Operaciones"
               [toggleable]="true"
@@ -521,14 +521,14 @@
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
               />
               } @else if (item.archivoJunta) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf
                   [url]="item.archivoJunta"
                   pdf="Operaciones"
                 />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <il-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
@@ -548,13 +548,13 @@
           </div>
 
           <!-- Final -->
-          <div class="col-12 sm:col-6">
+          <div class="col-12 col-sm-6">
             <lx-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
               @if ( !item.archivoFinal && aspRoleS.anyOf([
               AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
               item.archivoPortada && item.archivoContable && item.archivoJunta )
               {
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <il-button-confirm
                   icon="material-symbols-light:send"
                   label="Validar y enviar a comite"
@@ -577,7 +577,7 @@
                 />
               </div>
               } @else if (item.archivoFinal) {
-              <div class="flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <il-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
                 @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
                 <il-button-delete

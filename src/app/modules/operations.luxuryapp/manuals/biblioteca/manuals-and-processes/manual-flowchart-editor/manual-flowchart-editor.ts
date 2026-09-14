@@ -63,7 +63,6 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
 @Component({
   selector: "app-manual-flowchart-editor",
   imports: [ToastModule, AppIcon],
-  providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./manual-flowchart-editor.html",
 })

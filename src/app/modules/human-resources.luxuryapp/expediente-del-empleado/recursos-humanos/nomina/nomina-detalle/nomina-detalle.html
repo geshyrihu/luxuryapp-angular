@@ -1,19 +1,19 @@
 @if (loading()) {
-<div class="flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center">
   <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
 </div>
 } @else {
 
 <!-- KPIs -->
 @if (resumen(); as r) {
-<div class="grid mb-3">
-  <div class="col-6 md:col-3">
+<div class="row mb-3">
+  <div class="col-6 col-md-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Empleados</p>
       <p class="text-2xl font-bold m-0">{{ r.totalEmpleados }}</p>
     </div>
   </div>
-  <div class="col-6 md:col-3">
+  <div class="col-6 col-md-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Percepciones</p>
       <p class="text-xl font-bold text-green-600 m-0">
@@ -21,7 +21,7 @@
       </p>
     </div>
   </div>
-  <div class="col-6 md:col-3">
+  <div class="col-6 col-md-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Deducciones</p>
       <p class="text-xl font-bold text-red-500 m-0">
@@ -29,7 +29,7 @@
       </p>
     </div>
   </div>
-  <div class="col-6 md:col-3">
+  <div class="col-6 col-md-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Neto</p>
       <p class="text-xl font-bold text-primary m-0">
@@ -52,10 +52,10 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="card hidden md:block custom-table"
+  class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
-    <div class="flex justify-content-between">
+    <div class="d-flex justify-content-between">
       <primeng-custom-caption [dt]="dt" [showAdd]="false" />
       <il-button
         label="Exportar Excel"
@@ -96,7 +96,7 @@
         {{ item.netoApagar | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
-        <div class="flex gap-1">
+        <div class="d-flex gap-1">
           <iw-button-edit (clicked)="openEditar(item)" />
           <iw-button
             iconClass="material-symbols-light:picture-as-pdf"
@@ -125,14 +125,14 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
         <app-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
       <p class="text-xs m-0">{{ item.puesto }}</p>
-      <div class="flex gap-3 mt-1">
+      <div class="d-flex gap-3 mt-1">
         <span class="text-green-600 text-sm"
           >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
           }}</span
@@ -146,7 +146,7 @@
         >
       </div>
 
-      <div end class="flex gap-1">
+      <div end class="d-flex gap-1">
         <il-button-edit (clicked)="openEditar(item)" />
       </div>
     </ili-list-item>

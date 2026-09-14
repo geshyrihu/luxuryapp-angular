@@ -1,11 +1,11 @@
 @if (loading()) {
-  <div class="flex justify-center items-center p-5">
+  <div class="d-flex justify-center items-center p-5">
     <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle'" />
   </div>
 } @else if (request.requestType === "Permiso" && leaveDetail()) {
   <div class="p-3">
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <p>
           <strong>Empleado:</strong>
           {{ leaveDetail().employeeFullName }}
@@ -32,7 +32,7 @@
           </p>
         }
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <p>
           <strong>Estado:</strong>
           <lx-tag
@@ -74,7 +74,7 @@
         }
       </div>
     </div>
-    <div class="flex justify-content-end mt-3">
+    <div class="d-flex justify-content-end mt-3">
       <il-button
         label="Cerrar"
         variant="text"
@@ -85,8 +85,8 @@
   </div>
 } @else if (request.requestType === "Vacaciones" && vacationDetail()) {
   <div class="p-3">
-    <div class="grid">
-      <div class="col-12 md:col-6">
+    <div class="row">
+      <div class="col-12 col-md-6">
         <p>
           <strong>Empleado:</strong>
           {{ vacationDetail().employeeFullName }}
@@ -104,7 +104,7 @@
           {{ vacationDetail().requestedDays }}
         </p>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <p>
           <strong>Estado:</strong>
           <lx-tag
@@ -146,7 +146,7 @@
         }
       </div>
     </div>
-    <div class="flex justify-content-end mt-3">
+    <div class="d-flex justify-content-end mt-3">
       <il-button
         label="Cerrar"
         variant="text"

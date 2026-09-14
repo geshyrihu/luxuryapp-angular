@@ -1,6 +1,6 @@
 <lx-card class="card">
   <div class="p-3 mb-4 surface-50 rounded border-1 surface-border">
-    <div class="flex align-items-start justify-content-between flex-wrap gap-3">
+    <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
       <div>
         <div class="font-semibold mb-1">Bolsa de Pagos No Identificados</div>
         <div class="text-sm text-500 line-height-3 max-w-30rem">
@@ -35,7 +35,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -90,7 +90,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
           <app-icon icon="material-symbols-light:call-merge" class="text-orange-600 text-xl" />
         </div>

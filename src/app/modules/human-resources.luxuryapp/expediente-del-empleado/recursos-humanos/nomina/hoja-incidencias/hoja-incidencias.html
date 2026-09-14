@@ -1,11 +1,11 @@
 <!-- Header toolbar -->
 <div
-  class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3"
+  class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3"
 >
   <!-- Selector de año + periodo -->
-  <div class="flex flex-wrap align-items-center gap-2">
+  <div class="d-flex flex-wrap align-items-center gap-2">
     <!-- Años -->
-    <div class="flex gap-1">
+    <div class="d-flex gap-1">
       @for (anio of aniosDisponibles; track anio) {
       <il-button
         [label]="String(anio)"
@@ -30,8 +30,8 @@
   </div>
 
   <!-- Leyenda + botón guardar -->
-  <div class="flex align-items-center gap-3 flex-wrap">
-    <div class="flex gap-2 flex-wrap">
+  <div class="d-flex align-items-center gap-3 flex-wrap">
+    <div class="d-flex gap-2 flex-wrap">
       @for (entry of statusOrden; track entry) {
       <span
         class="px-2 py-1 rounded text-xs font-medium"
@@ -57,7 +57,7 @@
 <!-- Loading -->
 @if (loading()) {
 <div
-  class="flex justify-content-center align-items-center"
+  class="d-flex justify-content-center align-items-center"
   
 >
   <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
@@ -67,7 +67,7 @@
 <!-- Sin periodos -->
 @if (!loading() && !periodos().length) {
 <div
-  class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary"
+  class="d-flex flex-column align-items-center justify-content-center gap-2 text-color-secondary"
   
 >
   <app-icon [icon]="'material-symbols-light:event-busy'" class="text-5xl" />
@@ -192,7 +192,7 @@
         </td>
         <!-- Context menu overlay para selección directa -->
         <lx-popover #op styleClass="p-0">
-          <div class="flex flex-wrap gap-1 p-2" >
+          <div class="d-flex flex-wrap gap-1 p-2" >
             @for (s of statusOrden; track s) {
             <il-button
               [label]="s"

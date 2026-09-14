@@ -2,8 +2,8 @@
   <div class="">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- PRIMERA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-4">
+      <div class="row">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.nameTool"
             label="Nombre del Equipo"
@@ -11,7 +11,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.categoryId"
             label="Categoría"
@@ -20,7 +20,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.brand"
             label="Marca"
@@ -30,8 +30,8 @@
       </div>
 
       <!-- SEGUNDA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-4">
+      <div class="row">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.model"
             label="Modelo"
@@ -39,7 +39,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.serie"
             label="Serie"
@@ -47,7 +47,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <custom-input-date-signal
             [control]="form.controls.dateOfPurchase"
             label="Compra/Instalación"
@@ -57,8 +57,8 @@
       </div>
 
       <!-- TERCERA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-4">
+      <div class="row">
+        <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.state"
             label="Estado"
@@ -68,7 +68,7 @@
         </div>
 
         <div
-          class="col-12 md:col-4 flex align-items-center justify-content-center"
+          class="col-12 col-md-4 d-flex align-items-center justify-content-center"
         >
           <!-- Imagen centrada -->
           <custom-input-img-signal
@@ -79,12 +79,12 @@
           />
         </div>
 
-        <div class="col-12 md:col-4"></div>
+        <div class="col-12 col-md-4"></div>
       </div>
 
       <!-- CUARTA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.technicalSpecifications"
             label="Especificaciones Técnicas"
@@ -93,7 +93,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.observations"
             label="Observaciones"
@@ -104,7 +104,7 @@
       </div>
 
       <!-- BOTóN GUARDAR -->
-      <div class="flex justify-content-end mt-3">
+      <div class="d-flex justify-content-end mt-3">
         <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"

@@ -1,10 +1,10 @@
 @if (data) {
 <div class="invoice-title">
   <div
-    class="flex align-items-center justify-content-between w-full flex-wrap gap-3 py-2"
+    class="d-flex align-items-center justify-content-between w-full flex-wrap gap-3 py-2"
   >
     <!-- Columna 1: Logo y nombre -->
-    <div class="flex align-items-center flex-shrink-0 logo-container">
+    <div class="d-flex align-items-center flex-shrink-0 logo-container">
       <img
         [src]="
           data.photoPath
@@ -13,9 +13,9 @@
         "
         alt=""
         height="36"
-        class="border mr-2 logo-img"
+        class="border me-2 logo-img"
       />
-      <span class="text-xl font-semibold ml-2">{{ data.customer }}</span>
+      <span class="text-xl font-semibold ms-2">{{ data.customer }}</span>
     </div>
     <!-- Columna 2: Título -->
     <div class="flex-flex-grow-1-1 text-center">

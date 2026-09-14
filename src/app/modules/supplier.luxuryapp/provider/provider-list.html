@@ -12,13 +12,13 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table p-1 hidden md:block"
+  class="custom-table p-1 d-none d-md-block"
 >
   <!-- CAPTION: Filtros y botón de agregar -->
   <ng-template #caption>
-    <div class="grid align-items-center">
-      <div class="col-12 md:col-3">
-        <label class="block mb-2 font-medium">Tipo de Servicio</label>
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3">
+        <label class="d-block mb-2 font-medium">Tipo de Servicio</label>
         <custom-input-select-signal
           [data]="serviceTypes"
           optionLabel="label"
@@ -32,14 +32,14 @@
         />
       </div>
 
-      <div class="col-12 md:col-3 mt-4">
+      <div class="col-12 col-md-3 mt-4">
         <custom-search-input-signal
           (searchChange)="applyGlobalFilter($event)"
           placeholder="Buscar aqué..."
         />
       </div>
-      <div class="hidden md:block md:col-4"></div>
-      <div class="col-12 md:col-2 mt-4">
+      <div class="d-none d-md-block col-md-4"></div>
+      <div class="col-12 col-md-2 mt-4">
         @if (rolAuth) {
         <il-button
           variant="outline"
@@ -62,10 +62,10 @@
         class="p-3 border-left-4 h-full"
         [class]="item.autorizado ? 'border-green-500' : 'border-red-500'"
       >
-        <div class="grid">
+        <div class="row">
           <!-- Categoróa y tipo -->
           <div
-            class="col-12 flex justify-content-between align-items-center mb-2"
+            class="col-12 d-flex justify-content-between align-items-center mb-2"
           >
             <div class="text-xs font-bold text-500 uppercase tracking-wider">
               {{ item.nivelAcceso }} | {{ item.tipoServicio }}
@@ -79,50 +79,50 @@
           </div>
 
           <!-- Calificaciones -->
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             @if (item.calificacionProveedor.length > 0) {
-            <div class="flex flex-column gap-2 surface-50 p-2 rounded">
-              <div class="flex align-items-center justify-content-between">
+            <div class="d-flex flex-column gap-2 surface-50 p-2 rounded">
+              <div class="d-flex align-items-center justify-content-between">
                 <span class="text-xs text-600">Servicio</span>
                 <lx-rating
                   [value]="calificacionPromedio(item.calificacionProveedor, 'servicio')"
                   [readonly]="true"
                   [stars]="5"
                   [allowCancel]="false"
-                  class="ml-2"
+                  class="ms-2"
                 ></lx-rating>
               </div>
-              <div class="flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center justify-content-between">
                 <span class="text-xs text-600">Precio</span>
                 <lx-rating
                   [value]="calificacionPromedio(item.calificacionProveedor, 'precio')"
                   [readonly]="true"
                   [stars]="5"
                   [allowCancel]="false"
-                  class="ml-2"
+                  class="ms-2"
                 ></lx-rating>
               </div>
-              <div class="flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center justify-content-between">
                 <span class="text-xs text-600">Entrega</span>
                 <lx-rating
                   [value]="calificacionPromedio(item.calificacionProveedor, 'entrega')"
                   [readonly]="true"
                   [stars]="5"
                   [allowCancel]="false"
-                  class="ml-2"
+                  class="ms-2"
                 ></lx-rating>
               </div>
             </div>
             }
           </div>
 
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <!-- Logo y nombres -->
-            <div class="flex align-items-center">
+            <div class="d-flex align-items-center">
               <img
                 [src]="item.pathPhoto"
                 alt="Logo"
-                class="rounded mr-3 shadow-sm"
+                class="rounded me-3 shadow-sm"
               />
               <div class="min-w-0">
                 <div class="font-bold text-lg text-900 truncate">
@@ -136,20 +136,20 @@
             </div>
           </div>
 
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <!-- Contacto -->
-            <div class="flex flex-column gap-1 text-sm">
-              <div class="flex align-items-center text-600">
-                <app-icon [icon]="'material-symbols-light:call'" class="mr-2" />
+            <div class="d-flex flex-column gap-1 text-sm">
+              <div class="d-flex align-items-center text-600">
+                <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
                 <span>{{ item.phoneOne }}</span>
               </div>
               @if (item.phoneTwo) {
-              <div class="flex align-items-center text-600">
-                <app-icon [icon]="'material-symbols-light:call'" class="mr-2" />
+              <div class="d-flex align-items-center text-600">
+                <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
                 <span>{{ item.phoneTwo }}</span>
               </div>
               }
-              <div class="flex flex-wrap gap-1 mt-1">
+              <div class="d-flex flex-wrap gap-1 mt-1">
                 @if (item.sales) {
                 <lx-tag value="Ventas" severity="secondary" class="text-xs" />}
                 @if (item.repair) {
@@ -166,9 +166,9 @@
           <!-- Acciones y Categoróas -->
           <div class="col-12 mt-3 pt-3 border-top-1 surface-border">
             <div
-              class="flex flex-wrap align-items-center justify-content-between gap-3"
+              class="d-flex flex-wrap align-items-center justify-content-between gap-3"
             >
-              <div class="flex flex-wrap gap-1">
+              <div class="d-flex flex-wrap gap-1">
                 @for (categoria of item.categorias; track $index) {
                 <lx-tag
                   value="{{ categoria.nombreCategoria | uppercase }}"
@@ -177,7 +177,7 @@
                 ></lx-tag>
                 }
               </div>
-              <div class="flex align-items-center gap-1">
+              <div class="d-flex align-items-center gap-1">
                 @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
                 roles.Administrador, roles.SuperUsuario,
                 roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 )
@@ -242,7 +242,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-3rem h-3rem rounded-lg bg-green-50 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon
           icon="material-symbols-light:store-outline"

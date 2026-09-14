@@ -1,6 +1,6 @@
 <!-- Vista de escritorio -->
-<div class="hidden md:block">
-  <div class="grid">
+<div class="d-none d-md-block">
+  <div class="row">
     <div class="col-9"></div>
     <div class="col-3">
       <il-button-add
@@ -10,14 +10,14 @@
     </div>
     <div class="col-12 text-right mb-2"></div>
     @for (item of dataSignal(); track item) {
-    <div class="p-2 col-12 md:col-6 lg:col-4 xl:col-3">
+    <div class="p-2 col-12 col-md-6 col-lg-4 col-xl-3">
       <div
         class="h-full rounded-lg border-left-3"
         [class.border-yellow-500]="item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55'"
         [class.border-green-500]="item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
         [class.border-blue-500]="item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
       >
-        <div class="card h-full surface-100 flex flex-column">
+        <div class="card h-full surface-100 d-flex flex-column">
           <div
             class="text-center pointer flex-1"
             (click)="modalMedidorLecturaAddEdit(item)"
@@ -51,7 +51,7 @@
           </div>
 
           <div
-            class="mt-3 pt-3 border-top-1 surface-border flex justify-content-end"
+            class="mt-3 pt-3 border-top-1 surface-border d-flex justify-content-end"
           >
             <app-action-menu>
               <il-button-edit
@@ -102,7 +102,7 @@
     >
       <div class="p-3">
         <!-- Header: categoría y menú de acciones -->
-        <div class="flex justify-content-between align-items-start mb-1">
+        <div class="d-flex justify-content-between align-items-start mb-1">
           <div>
             <h2 class="font-bold m-0 text-lg text-900">
               {{ item.medidorCategoria.nombreMedidorCategoria }}
@@ -147,32 +147,32 @@
 
         <!-- Footer: icono, consumo y botón registrar -->
         <div
-          class="flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
+          class="d-flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
         >
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             @if (item.medidorCategoriaId ===
             '019c6c01-bbcf-76a2-a863-43569af55a55') {
             <app-icon
               icon="material-symbols-light:sunny"
               color="warning"
-              class="text-2xl mr-2"
+              class="text-2xl me-2"
             />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
             <app-icon
               icon="material-symbols-light:filter-alt"
               color="primary"
-              class="text-2xl mr-2"
+              class="text-2xl me-2"
             />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
             <app-icon
               icon="material-symbols-light:flash-on"
               color="success"
-              class="text-2xl mr-2"
+              class="text-2xl me-2"
             />
             }
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-xs text-500 uppercase font-bold">Máximo</span>
               <span class="text-sm font-bold text-700"
                 >{{ item.consumoDiarioMaximo }}</span

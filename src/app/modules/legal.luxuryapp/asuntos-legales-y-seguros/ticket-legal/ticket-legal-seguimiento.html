@@ -1,7 +1,7 @@
 <div class="card" class="w-full shadow-none border-none">
   
-    <div class="grid">
-      <div class="col-12 md:col-12 p-4 surface-card rounded-lg">
+    <div class="row">
+      <div class="col-12 col-md-12 p-4 surface-card rounded-lg">
         <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
           <div class="mb-4">
             <div class="relative">
@@ -15,7 +15,7 @@
               />
             </div>
             <div
-              class="flex justify-content-between align-items-center mt-2 px-1"
+              class="d-flex justify-content-between align-items-center mt-2 px-1"
             >
               <small class="text-500 text-xs">Mínimo 10 caracteres.</small>
               <small
@@ -29,7 +29,7 @@
               </small>
             </div>
           </div>
-          <div class="flex justify-content-end mt-4">
+          <div class="d-flex justify-content-end mt-4">
             <il-button-save
               [propertyId]="id"
               [submitting]="submitting()"
@@ -39,7 +39,7 @@
         </form>
       </div>
 
-      <div class="col-12 md:col-12 mt-6">
+      <div class="col-12 col-md-12 mt-6">
         <div class="border-top-1 border-200 pt-6">
           <h3 class="text-2xl font-bold text-900 mb-6">
             Historial de Seguimientos
@@ -47,7 +47,7 @@
 
           @if (seguimientos() && seguimientos().length > 0) {
           <div
-            class="relative flex flex-column gap-6 border-left-2 border-200 ml-3"
+            class="relative d-flex flex-column gap-6 border-left-2 border-200 ms-3"
           >
             @for (data of seguimientos(); track $index) {
             <div class="relative pl-8">
@@ -58,16 +58,16 @@
                 class="surface-card p-4 rounded-lg border border-200 shadow-sm"
               >
                 <div
-                  class="flex align-items-center justify-content-between mb-3"
+                  class="d-flex align-items-center justify-content-between mb-3"
                 >
-                  <div class="flex align-items-center">
+                  <div class="d-flex align-items-center">
                     <app-icon [icon]="'material-symbols-light:person'" class="text-primary-500" />
                     <span class="font-semibold text-900 text-md"
                       >{{ data.applicationUser }}</span
                     >
                   </div>
                   <span class="text-xs text-500 bg-100 px-2 py-1 rounded">
-                    <app-icon [icon]="'material-symbols-light:event-busy'" class="mr-1" />
+                    <app-icon [icon]="'material-symbols-light:event-busy'" class="me-1" />
                     {{ data.createdAt }}
                   </span>
                 </div>
@@ -81,7 +81,7 @@
             class="text-center p-8 surface-ground rounded-lg border-2 border-dashed border-300"
           >
             <div
-              class="inline-flex align-items-center justify-content-center w-4rem h-4rem rounded bg-primary-50 mb-4"
+              class="d-inline-flex align-items-center justify-content-center w-4rem h-4rem rounded bg-primary-50 mb-4"
             >
               <app-icon
                 [icon]="'material-symbols-light:forum'"

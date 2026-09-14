@@ -17,8 +17,8 @@
       <lx-divider />
     </ng-template>
     <ng-template #content>
-      <div class="grid text-center md:text-left">
-        <div class="col-12 md:col-4 mb-3 md:mb-0">
+      <div class="row text-center md:text-left">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
           <div class="text-s font-bold text-color-secondary mb-1">
             Fecha de Evaluación:
           </div>
@@ -27,7 +27,7 @@
             }}
           </p>
         </div>
-        <div class="col-12 md:col-4 mb-3 md:mb-0">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
           <div class="text-s font-bold text-color-secondary mb-1">
             Empleado Evaluado:
           </div>
@@ -36,7 +36,7 @@
             {{ evaluationResult()!.employeePosition }}
           </p>
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 col-md-4">
           <div class="text-s font-bold text-color-secondary mb-1">
             Evaluador:
           </div>
@@ -50,8 +50,8 @@
   </lx-card>
 
   <!-- SECCIÓN DE GRÁFICO Y RESUMEN -->
-  <div class="grid">
-    <div class="col-12 lg:col-6">
+  <div class="row">
+    <div class="col-12 col-lg-6">
       <lx-card class="h-full">
         <ng-template #content>
           <div class="chart-container">
@@ -77,11 +77,11 @@
     </div>
 
     <!-- Puntuación Final -->
-    <div class="col-12 lg:col-6">
+    <div class="col-12 col-lg-6">
       <lx-card class="h-full">
         <ng-template #content>
           <div class="text-center">
-            <div class="flex flex-column align-items-center">
+            <div class="d-flex flex-column align-items-center">
               <lx-tag
                 [value]="evaluationResult()!.finalScoreFormatted"
                 [severity]="finalScoreSeverity()"
@@ -127,10 +127,10 @@
       $index) {
       <div class="mb-4">
         <div
-          class="flex justify-content-between align-items-center surface-100 p-3 mb-3 rounded"
+          class="d-flex justify-content-between align-items-center surface-100 p-3 mb-3 rounded"
         >
-          <h6 class="m-0 flex align-items-center">
-            <app-icon [icon]="'material-symbols-light:folder'" class="mr-2" />{{ category.name }}
+          <h6 class="m-0 d-flex align-items-center">
+            <app-icon [icon]="'material-symbols-light:folder'" class="me-2" />{{ category.name }}
           </h6>
           <lx-tag
             value="Puntaje: {{ category.categoryScore | number:'1.1-1' }}"
@@ -146,14 +146,14 @@
               {{ j + 1 }}. {{ answer.questionText }}
             </div>
             <div
-              class="flex justify-content-between align-items-center flex-wrap"
+              class="d-flex justify-content-between align-items-center flex-wrap"
             >
               <lx-tag
                 value="Puntaje: {{ answer.score }} / 5"
                 severity="success"
               ></lx-tag>
-              <div class="mt-2 sm:mt-0">
-                <span class="font-bold mr-2">Comentarios:</span>
+              <div class="mt-2 mt-sm-0">
+                <span class="font-bold me-2">Comentarios:</span>
                 <span class="text-color-secondary"
                   >{{ answer.comments || "Sin comentarios." }}</span
                 >

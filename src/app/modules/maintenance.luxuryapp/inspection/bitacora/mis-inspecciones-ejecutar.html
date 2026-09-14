@@ -12,7 +12,7 @@
     [value]="flattenedData()"
     groupRowsBy="condominiumAssetName"
     rowGroupMode="subheader"
-    class="custom-table card hidden md:block"
+    class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
       <primeng-custom-caption [dt]="dt" [showAdd]="false" />
@@ -31,7 +31,7 @@
     <ng-template #groupheader let-item>
       <tr pRowGroupHeader>
         <td colspan="5" class="surface-100 p-2">
-          <span class="font-bold ml-2 text-primary">
+          <span class="font-bold ms-2 text-primary">
             {{ item.condominiumAssetName }}
           </span>
         </td>
@@ -42,12 +42,12 @@
       <tr>
         <td>{{ revision.inspectionDescription }}</td>
         <td>
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <custom-input-toggle-switch-signal
               [control]="revision.stateControl"
               (toggleChange)="saveRevision(revision)"
             />
-            <span class="text-sm ml-2">
+            <span class="text-sm ms-2">
               {{ revision.stateControl.value ? "Bien" : "Mal" }}
             </span>
           </div>
@@ -61,7 +61,7 @@
           />
         </td>
         <td>
-          <div class="flex flex-wrap gap-1">
+          <div class="d-flex flex-wrap gap-1">
             @for (image of revision.images; track image) {
             <app-image
               [preview]="true"
@@ -93,12 +93,12 @@
     <ng-template #listItemTemplate let-item>
       <div class="card p-4 mb-4 border-outline">
         <div
-          class="flex justify-content-between align-items-center mb-4 pb-3 border-bottom-1 border-outline"
+          class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom-1 border-outline"
         >
           <span class="text-title-md text-on-surface font-medium m-0">
             {{ item.inspectionDescription }}
           </span>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <custom-input-toggle-switch-signal
               [control]="item.stateControl"
               (toggleChange)="saveRevision(item)"
@@ -111,7 +111,7 @@
 
         <div class="mb-4">
           <label
-            class="text-body-sm font-medium text-on-surface-secondary mb-2 block"
+            class="text-body-sm font-medium text-on-surface-secondary mb-2 d-block"
             >Observaciones</label
           >
           <custom-input-textarea-signal
@@ -122,9 +122,9 @@
           />
         </div>
 
-        <div class="flex justify-content-between align-items-center gap-3">
+        <div class="d-flex justify-content-between align-items-center gap-3">
           @if (item.images && item.images.length > 0) {
-          <div class="flex flex-wrap gap-2">
+          <div class="d-flex flex-wrap gap-2">
             @for (image of item.images; track image) {
             <app-image
               [preview]="true"

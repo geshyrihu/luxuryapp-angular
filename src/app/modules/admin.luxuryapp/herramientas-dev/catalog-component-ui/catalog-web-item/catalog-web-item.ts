@@ -242,7 +242,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     <section class="fadein">
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <p class="text-secondary m-0">
             Componente PrimeNG: <strong>{{ item() }}</strong>
           </p>
@@ -294,7 +294,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Badge - p-badge</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-wrap gap-3 align-items-center">
+                  <div class="d-flex flex-wrap gap-3 align-items-center">
                     <app-badge value="3" color="danger" />
                     <app-badge value="12" color="warning" />
                     <app-badge value="5" color="info" />
@@ -329,7 +329,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Button - p-button</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-wrap gap-2">
+                  <div class="d-flex flex-wrap gap-2">
                     <p-button label="Primary" />
                     <p-button label="Secondary" severity="secondary" />
                     <p-button label="Success" severity="success" />
@@ -340,7 +340,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <p-button label="Contrast" severity="contrast" />
                   </div>
                   <app-divider />
-                  <div class="flex flex-wrap gap-2">
+                  <div class="d-flex flex-wrap gap-2">
                     <p-button label="Small" size="small" />
                     <p-button label="Normal" />
                     <p-button label="Large" size="large" />
@@ -361,7 +361,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       Botones ERP: <code>il-*</code> con label,
                       <code>iw-*</code> solo icono.
                     </p>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="d-flex flex-wrap gap-2">
                       <il-button label="Genórico" />
                       <il-button-add label="Crear" />
                       <il-button-edit label="Editar" />
@@ -414,7 +414,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     </p>
 
                     <!-- Ejemplo visual -->
-                    <div class="flex align-items-center gap-3 mb-4">
+                    <div class="d-flex align-items-center gap-3 mb-4">
                       <button type="button" class="ds-icon-btn">
                         <app-icon icon="material-symbols-light:menu" class="text-xl" />
                       </button>
@@ -446,13 +446,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
                     <app-divider />
                     <p class="text-sm font-bold mb-2">Regla de uso</p>
-                    <div class="grid">
-                      <div class="col-12 md:col-4">
+                    <div class="row">
+                      <div class="col-12 col-md-4">
                         <div class="p-3 border-round surface-ground">
                           <p class="text-xs font-bold text-green-600 m-0 mb-1">
                             OK USA &lt;button class="..."&gt; cuando:
                           </p>
-                          <ul class="text-xs m-0 pl-3">
+                          <ul class="text-xs m-0 ps-3">
                             <li>
                               El boton tiene borde, tamano y color propio
                               (layout shell)
@@ -465,12 +465,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           </ul>
                         </div>
                       </div>
-                      <div class="col-12 md:col-4">
+                      <div class="col-12 col-md-4">
                         <div class="p-3 border-round surface-ground">
                           <p class="text-xs font-bold text-blue-600 m-0 mb-1">
                             OK USA &lt;p-button&gt; cuando:
                           </p>
-                          <ul class="text-xs m-0 pl-3">
+                          <ul class="text-xs m-0 ps-3">
                             <li>Boton de accion generica en cualquier vista</li>
                             <li>
                               Necesitas severity (primary, danger, warn...)
@@ -481,13 +481,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           </ul>
                         </div>
                       </div>
-                      <div class="col-12 md:col-4">
+                      <div class="col-12 col-md-4">
                         <div class="p-3 border-round surface-ground">
                           <p class="text-xs font-bold text-purple-600 m-0 mb-1">
                             OK USA &lt;il-button-*&gt; / &lt;iw-button-*&gt;
                             cuando:
                           </p>
-                          <ul class="text-xs m-0 pl-3">
+                          <ul class="text-xs m-0 ps-3">
                             <li>
                               Accion ERP (guardar, editar, eliminar,
                               descargar...)
@@ -506,8 +506,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               </div>
             }
             @case ("card") {
-              <div class="grid">
-                <div class="col-12 md:col-6">
+              <div class="row">
+                <div class="col-12 col-md-6">
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Card Simple</h3>
@@ -520,7 +520,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </div>
-                <div class="col-12 md:col-6">
+                <div class="col-12 col-md-6">
                   <div class="card">
                     <div class="card-body">
                       header="Con Subheader" subheader="Subtitulo">
@@ -539,14 +539,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Checkbox - p-checkbox</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-column gap-3">
-                    <div class="flex align-items-center gap-2">
+                  <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center gap-2">
                       <app-checkbox inputId="chk1" label="Opcion 1" />
                     </div>
-                    <div class="flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <app-checkbox inputId="chk2" label="Opcion 2" />
                     </div>
-                    <div class="flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <app-checkbox inputId="chk3" label="Opcion 3" />
                     </div>
                   </div>
@@ -615,7 +615,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">InputNumber - p-inputnumber</h3>
                 </div>
                 <div class="card-body">
-                  <div class="grid">
+                  <div class="row">
                     <div class="col-6">
                       <p-inputnumber
                         [(ngModel)]="numVal"
@@ -644,7 +644,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">InputText - p-inputtext</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-column gap-3">
+                  <div class="d-flex flex-column gap-3">
                     <input
                       pInputText
                       [(ngModel)]="textVal"
@@ -664,7 +664,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Message - p-message</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-column gap-2">
+                  <div class="d-flex flex-column gap-2">
                     <app-message severity="info" text="Mensaje informativo" />
                     <app-message severity="success" text="Operacion exitosa" />
                     <app-message severity="warn" text="Advertencia" />
@@ -733,7 +733,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   </h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex gap-3">
+                  <div class="d-flex gap-3">
                     <app-spinner [strokeWidth]="4" />
                     <app-spinner [strokeWidth]="8" />
                   </div>
@@ -746,22 +746,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">RadioButton - p-radiobutton</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-column gap-2">
-                    <div class="flex align-items-center gap-2">
+                  <div class="d-flex flex-column gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <app-radio-button
                         value="1"
                         [control]="radioControl"
                         inputId="radio1"
                       /><label for="radio1">Opcion 1</label>
                     </div>
-                    <div class="flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <app-radio-button
                         value="2"
                         [control]="radioControl"
                         inputId="radio2"
                       /><label for="radio2">Opcion 2</label>
                     </div>
-                    <div class="flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <app-radio-button
                         value="3"
                         [control]="radioControl"
@@ -809,17 +809,17 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Skeleton - p-skeleton</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-column gap-2">
+                  <div class="d-flex flex-column gap-2">
                     <app-skeleton width="100%" height="1rem" />
                     <app-skeleton width="75%" height="1rem" />
                     <app-skeleton width="50%" height="1rem" />
-                    <div class="flex gap-2 mt-2">
+                    <div class="d-flex gap-2 mt-2">
                       <app-skeleton
                         width="3rem"
                         height="3rem"
                         borderRadius="50%"
                       />
-                      <div class="flex flex-column gap-2 flex-grow-1">
+                      <div class="d-flex flex-column gap-2 flex-grow-1">
                         <app-skeleton width="100%" height="0.75rem" />
                         <app-skeleton width="60%" height="0.75rem" />
                       </div>
@@ -895,7 +895,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Tag - p-tag</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex flex-wrap gap-2">
+                  <div class="d-flex flex-wrap gap-2">
                     <app-tag value="Success" severity="success" />
                     <app-tag value="Info" severity="info" />
                     <app-tag value="Warning" severity="warn" />
@@ -948,7 +948,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">ToggleSwitch - p-toggleswitch</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-3">
                     <p-toggleswitch [(ngModel)]="toggleVal" />
                     <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
                   </div>
@@ -965,7 +965,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       ><strong>Toolbar Title</strong></ng-template
                     >
                   <ng-template #toolbarRight>
-                      <div class="flex gap-2">
+                      <div class="d-flex gap-2">
                         <p-button label="Nuevo" size="small"
                         >
                           <ng-template #icon>
@@ -992,7 +992,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Tooltip - p-tooltip</h3>
                 </div>
                 <div class="card-body">
-                  <div class="flex gap-3">
+                  <div class="d-flex gap-3">
                     <p-button
                       label="Hover me"
                       lxTooltip="Tooltip arriba"
@@ -1029,7 +1029,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   </p>
                   <form
                     [formGroup]="customInputsForm"
-                    class="flex flex-column gap-1"
+                    class="d-flex flex-column gap-1"
                   >
                     <custom-input-text-signal
                       [control]="customInputsForm.controls['nombre']"
@@ -1096,22 +1096,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   header="Custom Inputs - Vertical layout (onlyInput)"
                   class="mt-3" >
-                  <div class="grid">
-                    <div class="col-12 md:col-4">
+                  <div class="row">
+                    <div class="col-12 col-md-4">
                       <custom-input-text-signal
                         [control]="customInputsForm.controls['nombre']"
                         label="Nombre"
                         [horizontal]="false"
                       />
                     </div>
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 col-md-4">
                       <custom-input-currency-signal
                         [control]="customInputsForm.controls['monto']"
                         label="Monto"
                         [horizontal]="false"
                       />
                     </div>
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 col-md-4">
                       <custom-input-select-signal
                         [control]="customInputsForm.controls['area']"
                         [data]="inputSelectOptions"
@@ -1125,7 +1125,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             }
 
             @case ("calendar") {
-              <div class="flex flex-column gap-4">
+              <div class="d-flex flex-column gap-4">
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">
@@ -1164,23 +1164,23 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       <code>getStatusSeverity()</code>
                       en lugar de clases de color hardcodeadas.
                     </p>
-                    <div class="flex flex-wrap gap-3">
-                      <div class="flex align-items-center gap-2">
+                    <div class="d-flex flex-wrap gap-3">
+                      <div class="d-flex align-items-center gap-2">
                         <app-tag
                           value="Sincronizado con Google"
                           severity="success"
                         />
                         <span class="catalog-helper-text text-sm">success</span>
                       </div>
-                      <div class="flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2">
                         <app-tag value="Solo local (historico)" severity="info" />
                         <span class="catalog-helper-text text-sm">info</span>
                       </div>
-                      <div class="flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2">
                         <app-tag value="Solo local" severity="warn" />
                         <span class="catalog-helper-text text-sm">warn</span>
                       </div>
-                      <div class="flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2">
                         <app-tag
                           value="Pendiente de sincronizar"
                           severity="secondary"
@@ -1270,7 +1270,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 }
                 @default {
                   <div
-                    class="flex align-items-center justify-content-center h-full text-secondary text-sm p-3"
+                    class="d-flex align-items-center justify-content-center h-full text-secondary text-sm p-3"
                   >
                     Sin equivalente mobile para este componente
                   </div>

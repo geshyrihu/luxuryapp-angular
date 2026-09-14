@@ -9,7 +9,7 @@
     <p class="text-700 mb-2">
       Hay campos obligatorios faltantes o con formato incorrecto:
     </p>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       @for (field of invalidFields(); track field) {
       <span class="px-2 py-1 border-round bg-red-50 text-red-700 text-sm">
         {{ field }}
@@ -22,7 +22,7 @@
   <div class="employee-identity-grid mb-3">
     <div class="card employee-photo-card">
       <div
-        class="card-body text-center flex flex-column justify-content-center"
+        class="card-body text-center d-flex flex-column justify-content-center"
       >
         <custom-input-img-signal
           (fileSelected)="changeImg($event)"
@@ -40,8 +40,8 @@
     <div class="card employee-identity-card">
       <div class="card-body">
         <h3 class="h3 mb-3">Identidad y contacto</h3>
-        <div class="grid">
-          <div class="col-12 md:col-6 lg:col-6">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6">
             <custom-input-text-signal
               [control]="form.controls.firstName"
               label="Nombre"
@@ -49,7 +49,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6 lg:col-6">
+          <div class="col-12 col-md-6 col-lg-6">
             <custom-input-text-signal
               [control]="form.controls.lastName"
               label="Apellidos"
@@ -57,14 +57,14 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-3 lg:col-2">
+          <div class="col-12 col-md-3 col-lg-2">
             <web-custom-input-phone-prefix
               [control]="form.controls.phoneNumberPrefix"
               label="Prefijo"
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-9 lg:col-3">
+          <div class="col-12 col-md-9 col-lg-3">
             <custom-input-mask-signal
               [control]="form.controls.phoneNumber"
               label="Tél. celular"
@@ -73,7 +73,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6 lg:col-3">
+          <div class="col-12 col-md-6 col-lg-3">
             <custom-input-mask-signal
               [control]="form.controls.localPhone"
               label="Tél. local"
@@ -82,7 +82,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6 lg:col-4">
+          <div class="col-12 col-md-6 col-lg-4">
             <custom-input-text-signal
               [control]="form.controls.email"
               label="Email personal"
@@ -95,13 +95,13 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="row">
     <div class="col-12">
       <div class="card mb-3">
         <div class="card-body">
           <h3 class="h3 mb-3">Datos personales</h3>
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.sex"
                 label="Sexo"
@@ -110,7 +110,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-date-signal
                 [control]="form.controls.birth"
                 label="Fecha de nacimiento"
@@ -118,7 +118,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-autocomplete-signal
                 [control]="form.controls.nationality"
                 [data]="cb_nationality()"
@@ -127,7 +127,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.curp"
                 label="CURP"
@@ -135,7 +135,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.rfc"
                 label="RFC"
@@ -143,7 +143,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-mask-signal
                 [control]="form.controls.rfcPostalCode"
                 label="Código postal RFC"
@@ -152,7 +152,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.nss"
                 label="NSS"
@@ -160,7 +160,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.maritalStatus"
                 label="Estado civil"
@@ -169,7 +169,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.bloodType"
                 label="Tipo de sangre"
@@ -178,7 +178,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-toggle-switch-signal
                 [control]="form.controls.hasInfonavitCredit"
                 label="Crédito INFONAVIT"
@@ -187,7 +187,7 @@
               />
             </div>
             @if (form.controls.hasInfonavitCredit.value) {
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-mask-signal
                 [control]="form.controls.infonavitCreditNumber"
                 label="No. crédito INFONAVIT"
@@ -196,7 +196,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.infonavitDiscountFactor"
                 label="FD o % descuento"
@@ -205,7 +205,7 @@
               />
             </div>
             }
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-toggle-switch-signal
                 [control]="form.controls.hasFonacotCredit"
                 label="Crédito FONACOT"
@@ -214,7 +214,7 @@
               />
             </div>
             @if (form.controls.hasFonacotCredit.value) {
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.fonacotCreditNumber"
                 label="No. crédito FONACOT"
@@ -222,7 +222,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.fonacotDiscountFactor"
                 label="FD o % descuento FONACOT"
@@ -238,8 +238,8 @@
       <div class="card mb-3">
         <div class="card-body">
           <h3 class="h3 mb-3">Dirección</h3>
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.city"
                 label="Ciudad"
@@ -247,7 +247,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.townHall"
                 label="Municipio / Alcaldía"
@@ -255,7 +255,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.district"
                 label="Colonia"
@@ -263,7 +263,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.zipCode"
                 label="Código postal"
@@ -271,7 +271,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.street"
                 label="Calle"
@@ -279,7 +279,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.number"
                 label="Número"
@@ -287,7 +287,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 col-md-6 col-lg-3">
               <custom-input-text-signal
                 [control]="form.controls.unitNumber"
                 label="Número interior"
@@ -302,8 +302,8 @@
       <div class="card">
         <div class="card-body">
           <h3 class="h3 mb-3">Datos laborales</h3>
-          <div class="grid">
-            <div class="col-12 md:col-4 lg:col-3">
+          <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.typePerson"
                 label="Contrato"
@@ -312,7 +312,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.active"
                 label="Estatus"
@@ -321,7 +321,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.educationLevel"
                 label="Nivel educativo"
@@ -330,7 +330,7 @@
                 [filter]="true"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-date-signal
                 [control]="form.controls.dateAdmission"
                 label="Fecha de ingreso"
@@ -338,7 +338,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-currency-signal
                 [control]="form.controls.salary"
                 label="Sueldo mensual neto"
@@ -346,7 +346,7 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-currency-signal
                 [control]="form.controls.dailySalary"
                 label="Sueldo diario"
@@ -355,7 +355,7 @@
                 [readonly]="true"
               />
             </div>
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-number-signal
                 [control]="form.controls.numberEmployee"
                 label="Número de empleado"
@@ -368,7 +368,7 @@
               />
             </div>
             @if(canChangeCustomer()){
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 col-md-4 col-lg-3">
               <custom-input-select-signal
                 [control]="form.controls.customerId"
                 label="Cliente"
@@ -382,7 +382,7 @@
         </div>
       </div>
 
-      <div class="flex justify-content-end mt-3">
+      <div class="d-flex justify-content-end mt-3">
         <il-button-save [disabled]="submitting()" [submitting]="submitting()" />
       </div>
     </div>

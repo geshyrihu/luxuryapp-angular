@@ -9,13 +9,13 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 @Component({
   selector: "app-cobranza-online-composicion-reportes-modal",
   template: `
-    <div class="flex flex-column gap-4">
+    <div class="d-flex flex-column gap-4">
       <section>
         <div class="font-semibold mb-1">Análisis de Cobranza Mensual (Excel)</div>
         <div class="text-color-secondary text-sm mb-2">
           Réplica del reporte histórico. Mide el mes, pero resta saldos acumulados.
         </div>
-        <ul class="m-0 pl-4 text-sm line-height-3">
+        <ul class="m-0 ps-4 text-sm line-height-3">
           <li>
             <b>Cobranza perfecta</b> = cargos de mantenimiento del mes + cargos de
             cuota extraordinaria del mes. Es el 100%.
@@ -42,7 +42,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         <div class="text-color-secondary text-sm mb-2">
           Solo movimientos del periodo consultado. Cuadra contra banco.
         </div>
-        <ul class="m-0 pl-4 text-sm line-height-3">
+        <ul class="m-0 ps-4 text-sm line-height-3">
           <li><b>Cobranza perfecta</b> = misma base del bloque anterior. Es el 100%.</li>
           <li><b>Cobrado</b> = abonos aplicados en el mes a las subcuentas de cuota.</li>
           <li><b>Faltante por cobrar</b> = Cobranza perfecta − Cobrado.</li>
@@ -57,7 +57,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         <div class="text-color-secondary text-sm mb-2">
           Mide la cartera acumulada, no el mes. Aquí sí entra la judicial.
         </div>
-        <ul class="m-0 pl-4 text-sm line-height-3">
+        <ul class="m-0 ps-4 text-sm line-height-3">
           <li><b>Total deuda</b> = Judicial + Morosos + Deuda corriente. Es el 100%.</li>
           <li><b>Cuotas anticipadas</b> = saldo de quienes pagaron de más (negativo).</li>
           <li><b>Saldo según balanza</b> = Total deuda + Cuotas anticipadas.</li>
@@ -66,7 +66,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 
       <section>
         <div class="font-semibold mb-1">Clasificación de un condómino</div>
-        <ul class="m-0 pl-4 text-sm line-height-3">
+        <ul class="m-0 ps-4 text-sm line-height-3">
           <li><b>Anticipos</b>: saldo al corte menor a cero.</li>
           <li><b>Sin adeudo</b>: saldo al corte en cero.</li>
           <li><b>Cobranza judicial</b>: más de 5 cuotas vencidas de mantenimiento, o 5 o más de extraordinaria.</li>

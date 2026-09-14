@@ -41,22 +41,22 @@ import { TokenGroup } from "./interfaces/token-group.interface";
         Tokens de arquitectura de color. Definen superficies, texto y contornos
         del sistema. Haz clic en cualquier swatch para copiar el token.
       </p>
-      <div class="grid">
+      <div class="row">
         @for (color of paleta; track color.token) {
-          <div class="col-12 md:col-6 xl:col-4">
+          <div class="col-12 col-md-6 col-xl-4">
             <div
-              class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
+              class="token-swatch d-flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
               (click)="copy(color.token)"
               [lxTooltip]="'Copiar ' + color.token"
               tooltipPosition="top"
             >
               <div
-                class="swatch-color border-round-sm mr-3 flex-shrink-0"
+                class="swatch-color border-round-sm me-3 flex-shrink-0"
                 [style.background]="'var(' + color.token + ')'"
                 style="width:48px;height:48px;border:1px solid var(--ds-border)"
               ></div>
               <div class="flex-grow-1 min-w-0">
-                <span class="block font-bold text-sm">{{ color.nombre }}</span>
+                <span class="d-block font-bold text-sm">{{ color.nombre }}</span>
                 <code class="text-xs">{{ color.token }}</code>
                 <div class="text-xs text-color-secondary mt-1 line-height-2">
                   {{ color.uso }}
@@ -64,7 +64,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
               </div>
               <app-icon
                 [icon]="'material-symbols-light:content-copy'"
-                class="text-color-secondary text-sm ml-2 flex-shrink-0"
+                class="text-color-secondary text-sm ms-2 flex-shrink-0"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
 
       @for (group of semanticGroups; track group.titulo) {
         <div class="mb-4">
-          <div class="flex align-items-center gap-2 mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2">
             <span
               class="font-semibold text-sm uppercase text-color-secondary"
               style="letter-spacing:.06em"
@@ -95,22 +95,22 @@ import { TokenGroup } from "./interfaces/token-group.interface";
               >é {{ group.descripcion }}</span
             >
           </div>
-          <div class="grid">
+          <div class="row">
             @for (color of group.tokens; track color.token) {
-              <div class="col-12 md:col-6 xl:col-3">
+              <div class="col-12 col-md-6 col-xl-3">
                 <div
-                  class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
+                  class="token-swatch d-flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
                   (click)="copy(color.token)"
                   [lxTooltip]="'Copiar ' + color.token"
                   tooltipPosition="top"
                 >
                   <div
-                    class="swatch-color border-round-sm mr-3 flex-shrink-0"
+                    class="swatch-color border-round-sm me-3 flex-shrink-0"
                     [style.background]="'var(' + color.token + ')'"
                     style="width:40px;height:40px;border:1px solid var(--ds-border)"
                   ></div>
                   <div class="flex-grow-1 min-w-0">
-                    <span class="block font-semibold text-sm">{{
+                    <span class="d-block font-semibold text-sm">{{
                       color.nombre
                     }}</span>
                     <code class="text-xs">{{ color.token }}</code>
@@ -122,7 +122,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                   </div>
                   <app-icon
                     [icon]="'material-symbols-light:content-copy'"
-                    class="text-color-secondary text-sm ml-2 flex-shrink-0"
+                    class="text-color-secondary text-sm ms-2 flex-shrink-0"
                   />
                 </div>
               </div>
@@ -137,11 +137,11 @@ import { TokenGroup } from "./interfaces/token-group.interface";
       <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
         Reglas de Elevación (Sombras)
       </h3>
-      <div class="grid">
+      <div class="row">
         @for (s of shadowLevels; track s.label) {
-          <div class="col-12 md:col-6 xl:col-3">
+          <div class="col-12 col-md-6 col-xl-3">
             <div
-              class="surface-card border-round p-4 flex flex-column gap-2"
+              class="surface-card border-round p-4 d-flex flex-column gap-2"
               [ngStyle]="{ 'box-shadow': s.value }"
             >
               <span class="font-bold text-sm">{{ s.label }}</span>

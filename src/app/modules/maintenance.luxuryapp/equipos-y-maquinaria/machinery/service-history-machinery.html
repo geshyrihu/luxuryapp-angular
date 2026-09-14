@@ -2,7 +2,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -46,7 +46,7 @@
       <td>{{ item.price }}</td>
       <td>{{ item.employeeResponsable }}</td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button
             iconClass="edit"
             ngbTooltip="Editar"

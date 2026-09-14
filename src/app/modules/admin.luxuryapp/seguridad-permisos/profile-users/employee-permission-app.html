@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="row">
   @for (permission of data; track permission) {
-  <div class="col-12 lg:col-3">
+  <div class="col-12 col-lg-3">
     <div class="card mb-3">
       <div class="card-body">
         <ul class="list-group">
@@ -13,7 +13,7 @@
               onCheckboxChange(permission, 'canRead', !permission.canRead)
             "
           >
-            <div class="flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
               <lx-checkbox
                 [(checked)]="permission.canRead"
                 (checkedChange)="onCheckboxChange(permission, 'canRead', $event)"
@@ -27,7 +27,7 @@
               onCheckboxChange(permission, 'canCreate', !permission.canCreate)
             "
           >
-            <div class="flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
               <lx-checkbox
                 [(checked)]="permission.canCreate"
                 (checkedChange)="onCheckboxChange(permission, 'canCreate', $event)"
@@ -41,7 +41,7 @@
               onCheckboxChange(permission, 'canUpdate', !permission.canUpdate)
             "
           >
-            <div class="flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
               <lx-checkbox
                 [(checked)]="permission.canUpdate"
                 (checkedChange)="onCheckboxChange(permission, 'canUpdate', $event)"
@@ -55,7 +55,7 @@
               onCheckboxChange(permission, 'canDelete', !permission.canDelete)
             "
           >
-            <div class="flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
               <lx-checkbox
                 [(checked)]="permission.canDelete"
                 (checkedChange)="onCheckboxChange(permission, 'canDelete', $event)"

@@ -1,17 +1,17 @@
 @if (cargando()) {
-<div class="flex align-items-center gap-2 py-3">
+<div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
   <span class="text-sm text-500">Cargando tareas...</span>
 </div>
 } @else if (!resumen() || resumen()!.total === 0) {
-<div class="flex align-items-center gap-2 py-2 text-400">
+<div class="d-flex align-items-center gap-2 py-2 text-400">
   <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin tareas activas en Legal</span>
 </div>
 } @else {
 
 <!-- Total -->
-<div class="flex align-items-center gap-2 mb-3">
+<div class="d-flex align-items-center gap-2 mb-3">
   <span class="text-3xl font-bold text-color">{{ resumen()!.total }}</span>
   <span class="text-sm text-color-secondary">
     tarea{{ resumen()!.total === 1 ? '' : 's' }} activa{{ resumen()!.total === 1
@@ -20,12 +20,12 @@
 </div>
 
 <!-- Por cliente -->
-<div class="flex flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   @for (customer of resumen()!.customers; track customer.customerName) {
 
   <div>
     <!-- Cabecera cliente -->
-    <div class="flex align-items-center justify-content-between mb-2">
+    <div class="d-flex align-items-center justify-content-between mb-2">
       <span class="text-xs font-bold uppercase text-color-secondary"
         >{{ customer.customerName }}</span
       >
@@ -33,16 +33,16 @@
     </div>
 
     <!-- Lista de tareas -->
-    <div class="flex flex-column gap-2 pl-2 border-left-2 surface-border">
+    <div class="d-flex flex-column gap-2 ps-2 border-left-2 surface-border">
       @for (tarea of customer.tareas; track tarea.id; let last = $last) {
       <div
-        class="flex flex-column gap-1 py-2"
+        class="d-flex flex-column gap-1 py-2"
         [class.border-bottom-1]="!last"
         [class.surface-border]="!last"
       >
         <!-- Fila principal: folio + titulo + dias -->
-        <div class="flex align-items-start justify-content-between gap-2">
-          <div class="flex align-items-center gap-2 min-w-0 flex-auto">
+        <div class="d-flex align-items-start justify-content-between gap-2">
+          <div class="d-flex align-items-center gap-2 min-w-0 flex-auto">
             @if (tarea.esAltaPrioridad) {
             <app-icon
               icon="material-symbols-light:flag"
@@ -61,7 +61,7 @@
               {{ tarea.title }}
             </span>
           </div>
-          <div class="flex align-items-center gap-2 flex-none">
+          <div class="d-flex align-items-center gap-2 flex-none">
             <span
               class="text-xs rounded px-1"
               [style.color]="tarea.diasPendiente > 30 ? 'var(--ds-error)' : (tarea.diasPendiente > 14 ? 'var(--ds-warning)' : 'var(--ds-text-secondary)')"
@@ -78,15 +78,15 @@
 
         <!-- Asignado a -->
         @if (tarea.assigneeName) {
-        <span class="text-xs pl-4 text-color-secondary">
-          <app-icon icon="material-symbols-light:person-outline" class="mr-1" />{{
+        <span class="text-xs ps-4 text-color-secondary">
+          <app-icon icon="material-symbols-light:person-outline" class="me-1" />{{
           tarea.assigneeName }}
         </span>
         }
 
         <!-- Ultimo seguimiento -->
         @if (tarea.ultimoSeguimiento) {
-        <div class="flex align-items-start gap-1 pl-4">
+        <div class="d-flex align-items-start gap-1 ps-4">
           <app-icon
             icon="material-symbols-light:comment-outline"
             class="text-xs mt-1 text-color-secondary flex-none"
@@ -99,13 +99,13 @@
             {{ tarea.ultimoSeguimiento }}
           </span>
           @if (tarea.ultimoSeguimientoFecha) {
-          <span class="text-xs flex-none ml-1 text-color-secondary">
+          <span class="text-xs flex-none ms-1 text-color-secondary">
             &middot; {{ formatFechaRelativa(tarea.ultimoSeguimientoFecha) }}
           </span>
           }
         </div>
         } @else {
-        <span class="text-xs pl-4 text-color-secondary">Sin seguimiento</span>
+        <span class="text-xs ps-4 text-color-secondary">Sin seguimiento</span>
         }
       </div>
       }

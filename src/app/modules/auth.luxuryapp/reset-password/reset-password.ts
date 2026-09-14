@@ -56,7 +56,7 @@ interface IResetPasswordForm {
           />
         </header>
 
-        <main class="flex-1 flex align-items-center px-4 md:px-6 py-6">
+        <main class="flex-1 d-flex align-items-center px-4 md:px-6 py-6">
           <div class="w-full mx-auto" style="max-width: 400px;">
             <div class="auth-gold-tick mb-4"></div>
             <h2
@@ -70,7 +70,7 @@ interface IResetPasswordForm {
             }
 
             <form
-              class="flex flex-column gap-4"
+              class="d-flex flex-column gap-4"
               [formGroup]="form"
               (ngSubmit)="onSubmit()"
             >
@@ -117,11 +117,11 @@ interface IResetPasswordForm {
               @if (errorMessage()) {
                 <div class="mt-3 fadein animation-duration-300">
                   <div
-                    class="flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
+                    class="d-flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
                   >
                     <app-icon
                       icon="material-symbols-light:error-outline"
-                      class="text-xl mr-3"
+                      class="text-xl me-3"
                     />
                     <span class="text-sm font-medium">{{
                       errorMessage()
@@ -130,7 +130,7 @@ interface IResetPasswordForm {
                 </div>
               }
 
-              <div class="flex align-items-center justify-content-center mt-2">
+              <div class="d-flex align-items-center justify-content-center mt-2">
                 <a
                   [routerLink]="['/auth/login']"
                   class="font-semibold text-sm transition-colors"

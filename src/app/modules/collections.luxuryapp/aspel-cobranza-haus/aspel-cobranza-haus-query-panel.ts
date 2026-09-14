@@ -27,8 +27,8 @@ import {
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card shadow-none border-1 surface-border">
-      <div class="grid formgrid align-items-start">
-        <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
+      <div class="row formgrid align-items-start">
+        <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
           <custom-input-select-signal
             label="Endpoint"
             [ngModel]="mode"
@@ -43,7 +43,7 @@ import {
         </div>
 
         @if (mode !== "accounts" && mode !== "deudas-actuales") {
-          <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
+          <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
             <custom-input-select-signal
               label="Numero de cuenta"
               [(ngModel)]="request.numCta"
@@ -62,7 +62,7 @@ import {
         }
 
         @if (mode !== "deudas-actuales" && mode !== "detalle-cobranza-rango") {
-          <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
+          <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
             <custom-input-date-signal
               [label]="
                 mode === 'accounts' ? 'Fecha para ejercicio' : 'Fecha inicio'
@@ -74,10 +74,10 @@ import {
             />
           </div>
         } @else {
-          <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
+          <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
             <label class="text-sm font-semibold text-900">Fecha corte</label>
             <div
-              class="flex align-items-center h-3rem px-3 border-1 surface-border rounded surface-50 text-900 font-medium"
+              class="d-flex align-items-center h-3rem px-3 border-1 surface-border rounded surface-50 text-900 font-medium"
             >
               Hoy
             </div>
@@ -92,7 +92,7 @@ import {
           mode !== "deudas-actuales" &&
           mode !== "detalle-cobranza-rango"
         ) {
-          <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
+          <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
             <custom-input-date-signal
               label="Fecha fin"
               [(ngModel)]="request.fechaFin"
@@ -103,11 +103,11 @@ import {
           </div>
         }
 
-        <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
-          <label class="hidden lg:block text-sm font-semibold opacity-0"
+        <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
+          <label class="d-none d-lg-block text-sm font-semibold opacity-0"
             >&nbsp;</label
           >
-          <div class="flex gap-2 w-full mt-1 lg:mt-0">
+          <div class="d-flex gap-2 w-full mt-1 mt-lg-0">
             <il-button
               label="Consultar"
               iconClass="material-symbols-light:search"

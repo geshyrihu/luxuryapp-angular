@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <form
     autocomplete="off"
     (ngSubmit)="onSubmit()"
@@ -11,10 +11,10 @@
       label="Id"
       [readonly]="true"
     />
-    <div class="grid">
-      <div class="col-12 md:col-8">
-        <div class="grid">
-          <div class="col-12 md:col-4">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <div class="row">
+          <div class="col-12 col-md-4">
             <custom-input-text-signal
               [control]="form.controls.firstName"
               label="Nombre(s)"
@@ -22,7 +22,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-text-signal
               [control]="form.controls.lastName"
               label="Apellidos"
@@ -30,7 +30,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-mask-signal
               [control]="form.controls.phoneNumber"
               label="Tel. Celular"
@@ -39,7 +39,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4" (focusout)="onEmailFocusOut()">
+          <div class="col-12 col-md-4" (focusout)="onEmailFocusOut()">
             <custom-input-email
               [control]="form.controls.email"
               label="Correo electronico"
@@ -47,7 +47,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4" (focusout)="onCurpFocusOut()">
+          <div class="col-12 col-md-4" (focusout)="onCurpFocusOut()">
             <custom-input-text-signal
               [control]="form.controls.curp"
               label="CURP (opcional)"
@@ -55,18 +55,18 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-date-signal
               [control]="form.controls.birthDate"
               label="Fecha de nacimiento"
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4">
-            <div class="flex flex-column gap-2">
+          <div class="col-12 col-md-4">
+            <div class="d-flex flex-column gap-2">
               <label class="font-semibold text-sm">Origen del candidato</label>
-              <div class="flex align-items-center gap-4">
-                <div class="flex align-items-center">
+              <div class="d-flex align-items-center gap-4">
+                <div class="d-flex align-items-center">
                   <lx-radio-button
                     [control]="form.controls.recruitmentSource"
                     value="0"
@@ -75,11 +75,11 @@
                   />
                   <label
                     for="recruitmentSourceInternal"
-                    class="font-medium cursor-pointer ml-2"
+                    class="font-medium cursor-pointer ms-2"
                     >Interno</label
                   >
                 </div>
-                <div class="flex align-items-center">
+                <div class="d-flex align-items-center">
                   <lx-radio-button
                     [control]="form.controls.recruitmentSource"
                     value="1"
@@ -88,14 +88,14 @@
                   />
                   <label
                     for="recruitmentSourceExternal"
-                    class="font-medium cursor-pointer ml-2"
+                    class="font-medium cursor-pointer ms-2"
                     >Externo</label
                   >
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-select-signal
               [control]="form.controls.recruitmentSourceId"
               label="Canal/Medio de reclutamiento"
@@ -105,7 +105,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-4">
+          <div class="col-12 col-md-4">
             <custom-input-number-signal
               [control]="form.controls.salaryExpectation"
               label="Expectativa salarial"
@@ -114,7 +114,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <app-candidate-cv-upload
               label="CV maestro del candidato (PDF)"
               [fileName]="selectedFile?.name ?? null"
@@ -123,7 +123,7 @@
               (fileEmitted)="onCvFile($event)"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <app-candidate-photo-upload
               label="Foto del candidato"
               [fileName]="selectedPhotoFile?.name ?? null"
@@ -132,7 +132,7 @@
               (fileEmitted)="onPhotoFile($event)"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-text-signal
               [control]="form.controls.currentAddress"
               label="Direccion actual"
@@ -140,7 +140,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-text-signal
               [control]="form.controls.availability"
               label="Disponibilidad"
@@ -148,7 +148,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-textarea-signal
               [control]="form.controls.experienceSummary"
               label="Resumen de experiencia"
@@ -157,7 +157,7 @@
               [horizontal]="false"
             />
           </div>
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-textarea-signal
               [control]="form.controls.generalComments"
               label="Comentarios generales"
@@ -170,7 +170,7 @@
         @if (duplicateCandidate(); as found) {
         <div class="col-12">
           <div class="border-1 border-orange-300 surface-100 border-round p-3">
-            <div class="flex justify-content-between align-items-start gap-2">
+            <div class="d-flex justify-content-between align-items-start gap-2">
               <div>
                 <div class="font-semibold">
                   Ya existe un candidato registrado con este telefono
@@ -188,7 +188,7 @@
                 (clicked)="dismissDuplicateCandidate()"
               />
             </div>
-            <div class="flex flex-wrap gap-2 mt-3">
+            <div class="d-flex flex-wrap gap-2 mt-3">
               <il-button
                 label="Ver / actualizar datos"
                 iconClass="material-symbols-light:edit-outline"
@@ -222,11 +222,11 @@
       </div>
 
       <!-- Start Aqui colocar lo referente a la Experiencia Laboral -->
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <div class="col-12">
           <div class="border-1 surface-border border-round p-3">
             <div
-              class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2 mb-3"
+              class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3"
             >
               <div>
                 <div class="font-semibold">Experiencia laboral</div>
@@ -249,11 +249,11 @@
               Sin experiencias registradas.
             </div>
             } @else {
-            <div class="flex flex-column gap-3">
+            <div class="d-flex flex-column gap-3">
               @for (experience of workExperienceControls; track $index) {
               <div class="border-1 surface-border border-round p-3">
                 <div
-                  class="flex justify-content-between align-items-center mb-3"
+                  class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <div class="font-medium">Experiencia {{ $index + 1 }}</div>
                   <il-button
@@ -266,8 +266,8 @@
                   />
                 </div>
 
-                <div class="grid" [formGroup]="experience">
-                  <div class="col-12 md:col-6">
+                <div class="row" [formGroup]="experience">
+                  <div class="col-12 col-md-6">
                     <custom-input-text-signal
                       [control]="$any(experience.controls['companyName'])"
                       label="Empresa"
@@ -275,7 +275,7 @@
                       [horizontal]="false"
                     />
                   </div>
-                  <div class="col-12 md:col-6">
+                  <div class="col-12 col-md-6">
                     <custom-input-text-signal
                       [control]="$any(experience.controls['jobPosition'])"
                       label="Puesto"
@@ -283,21 +283,21 @@
                       [horizontal]="false"
                     />
                   </div>
-                  <div class="col-12 md:col-4">
+                  <div class="col-12 col-md-4">
                     <custom-input-date-signal
                       [control]="$any(experience.controls['startDate'])"
                       label="Fecha de inicio"
                       [horizontal]="false"
                     />
                   </div>
-                  <div class="col-12 md:col-4">
+                  <div class="col-12 col-md-4">
                     <custom-input-date-signal
                       [control]="$any(experience.controls['endDate'])"
                       label="Fecha de termino"
                       [horizontal]="false"
                     />
                   </div>
-                  <div class="col-12 md:col-4">
+                  <div class="col-12 col-md-4">
                     <custom-input-number-signal
                       [control]="$any(experience.controls['monthlyNetSalary'])"
                       label="Salario neto mensual"

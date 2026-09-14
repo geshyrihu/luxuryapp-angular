@@ -71,12 +71,9 @@ const dayTimeValidator: ValidatorFn = (
   if (!entry && !exit) return { missingBothHours: true };
 
   if (entry && exit) {
-    const [entryH, entryM] = entry.split(":").map(Number);
-    const [exitH, exitM] = exit.split(":").map(Number);
-    const entryMinutes = entryH * 60 + entryM;
-    const exitMinutes = exitH * 60 + exitM;
-
-    if (entryMinutes >= exitMinutes) return { invalidTimeOrder: true };
+    if (entry === exit) {
+      return { invalidTimeOrder: true };
+    }
   }
 
   return null;
@@ -221,8 +218,11 @@ export class WorkPositionScheduleForm implements OnInit {
         }
 
         if (entryStr && exitStr) {
-          if (exitMinutes >= entryMinutes) {
+          if (exitMinutes > entryMinutes) {
             totalMinutes += (exitMinutes - entryMinutes);
+          } else if (exitMinutes < entryMinutes) {
+            const minutosHastaMedianoche = (24 * 60) - entryMinutes;
+            totalMinutes += minutosHastaMedianoche + exitMinutes;
           }
         } else if (entryStr && !exitStr) {
           totalMinutes += ((24 * 60) - entryMinutes);

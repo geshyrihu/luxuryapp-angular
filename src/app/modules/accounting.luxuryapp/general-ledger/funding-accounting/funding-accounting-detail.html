@@ -22,7 +22,7 @@
   {{ isAuthorized() ? '✅' : '⏳' }} Fondeo autorizado {{ authorizedBy() }}.
 </p>
 @if (isAuthorized()) {
-<div class="mb-1 flex">
+<div class="mb-1 d-flex">
   @if (!isConfirmed() && inProgress()) {
 
   <il-button
@@ -37,7 +37,7 @@
   <il-button-item
     label="REABRIR FONDEO"
     iconClass="material-symbols-light:arrow-back"
-    class="mr-1"
+    class="me-1"
     (clicked)="onRevokeConfirmation()"
   />
   } @if (isConfirmed() && inProgress()) {
@@ -85,7 +85,7 @@
 </div>
 } @for (grupo of dataSignal(); track grupo) {
 <div>
-  <p-table [value]="grupo.ordenes" class="custom-table card hidden md:block">
+  <p-table [value]="grupo.ordenes" class="custom-table card d-none d-md-block">
     <ng-template #caption>
       <lx-message severity="secondary">{{grupo.tipoGasto | uppercase}}</lx-message>
     </ng-template>

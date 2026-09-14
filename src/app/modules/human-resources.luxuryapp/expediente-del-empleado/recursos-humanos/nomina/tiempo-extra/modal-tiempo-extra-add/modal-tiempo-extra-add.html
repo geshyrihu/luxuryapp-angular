@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
-  <div class="grid">
+  <div class="row">
     <div class="col-12">
       <custom-input-autocomplete-signal
         (propagar)="saveEmployee($event)"
@@ -16,7 +16,7 @@
         label="Fecha del Tiempo Extra"
       />
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-decimal-signal
         [control]="form.controls['horasSimples']"
         label="Horas Simples (doble pago)"
@@ -25,7 +25,7 @@
         [maxFractionDigits]="2"
       />
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <custom-input-decimal-signal
         [control]="form.controls['horasDobles']"
         label="Horas Excedentes (triple pago)"
@@ -40,7 +40,7 @@
     <div class="col-12">
       <div class="p-3 rounded surface-100">
         <p class="text-sm font-semibold m-0 mb-1">Resumen de horas registradas</p>
-        <div class="flex gap-4">
+        <div class="d-flex gap-4">
           <span class="text-sm">Simples: <strong>{{ horasSimples() }}h</strong></span>
           <span class="text-sm">Excedentes: <strong>{{ horasDobles() }}h</strong></span>
           <span class="text-sm">Total: <strong>{{ horasSimples() + horasDobles() }}h</strong></span>
@@ -59,7 +59,7 @@
       />
     </div>
 
-    <div class="col-12 flex justify-content-end">
+    <div class="col-12 d-flex justify-content-end">
       <il-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
     </div>
   </div>

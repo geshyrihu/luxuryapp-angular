@@ -11,7 +11,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
 
   imports: [CommonModule, ButtonModule, DividerModule, AppTag, AppIcon],
   template: `
-    <div class="grid">
+    <div class="row">
       <!-- -- Layouts de Página --------------------------------------- -->
       <div class="col-12">
         <p-card header="Layouts de Página é Patrones ERP">
@@ -22,11 +22,11 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
             <strong>flujo de trabajo</strong> del módulo.
           </p>
 
-          <div class="grid">
+          <div class="row">
             @for (layout of pageLayouts; track layout.id) {
-              <div class="col-12 md:col-6 xl:col-4">
+              <div class="col-12 col-md-6 col-xl-4">
                 <div
-                  class="border-1 border-round overflow-hidden h-full flex flex-column"
+                  class="border-1 border-round overflow-hidden h-full d-flex flex-column"
                   [class.border-primary]="activeLayout() === layout.id"
                   (click)="activeLayout.set(layout.id)"
                   style="cursor:pointer; transition: border-color .15s"
@@ -40,14 +40,14 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   </div>
 
                   <!-- Info -->
-                  <div class="p-3 flex flex-column gap-2 flex-grow-1">
-                    <div class="flex align-items-center gap-2">
+                  <div class="p-3 d-flex flex-column gap-2 flex-grow-1">
+                    <div class="d-flex align-items-center gap-2">
                       <strong class="text-sm">{{ layout.titulo }}</strong>
                       <app-tag
                         [value]="layout.tag"
                         [severity]="layout.tagSeverity"
                         [rounded]="true"
-                        class="ml-auto"
+                        class="ms-auto"
                       />
                     </div>
                     <p class="m-0 text-xs text-color-secondary line-height-3">
@@ -71,7 +71,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
 
       <!-- -- Templates de mockup -------------------------------------- -->
       <ng-template #fullWidthMockup>
-        <div class="h-full flex flex-column" style="padding:8px;gap:6px">
+        <div class="h-full d-flex flex-column" style="padding:8px;gap:6px">
           <div
             class="border-round"
             style="height:18px;background:var(--ds-primary);opacity:.9"
@@ -96,13 +96,13 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
             siempre usa una columna.
           </p>
 
-          <div class="grid">
+          <div class="row">
             <!-- 1 columna -->
-            <div class="col-12 md:col-6 xl:col-3">
+            <div class="col-12 col-md-6 col-xl-3">
               <div
-                class="border-1 border-round p-3 h-full flex flex-column gap-2"
+                class="border-1 border-round p-3 h-full d-flex flex-column gap-2"
               >
-                <strong class="text-sm flex align-items-center gap-2">
+                <strong class="text-sm d-flex align-items-center gap-2">
                   <span
                     class="border-round px-2 py-1 text-xs text-white font-bold"
                     style="background:var(--ds-primary)"
@@ -110,7 +110,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   >
                   Una columna
                 </strong>
-                <div class="flex flex-column gap-2 flex-grow-1">
+                <div class="d-flex flex-column gap-2 flex-grow-1">
                   @for (i of [1, 2, 3, 4]; track i) {
                     <div
                       class="border-round"
@@ -125,11 +125,11 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
             </div>
 
             <!-- 2 columnas -->
-            <div class="col-12 md:col-6 xl:col-3">
+            <div class="col-12 col-md-6 col-xl-3">
               <div
-                class="border-1 border-round p-3 h-full flex flex-column gap-2"
+                class="border-1 border-round p-3 h-full d-flex flex-column gap-2"
               >
-                <strong class="text-sm flex align-items-center gap-2">
+                <strong class="text-sm d-flex align-items-center gap-2">
                   <span
                     class="border-round px-2 py-1 text-xs text-white font-bold"
                     style="background:var(--ds-info)"
@@ -137,9 +137,9 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   >
                   Dos columnas
                 </strong>
-                <div class="flex flex-column gap-2 flex-grow-1">
+                <div class="d-flex flex-column gap-2 flex-grow-1">
                   @for (i of [1, 2, 3]; track i) {
-                    <div class="flex gap-2">
+                    <div class="d-flex gap-2">
                       <div
                         class="flex-grow-1 border-round"
                         style="height:32px;background:#e2e8f0;border:1px solid #cbd5e1"
@@ -158,11 +158,11 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
             </div>
 
             <!-- 3 columnas -->
-            <div class="col-12 md:col-6 xl:col-3">
+            <div class="col-12 col-md-6 col-xl-3">
               <div
-                class="border-1 border-round p-3 h-full flex flex-column gap-2"
+                class="border-1 border-round p-3 h-full d-flex flex-column gap-2"
               >
-                <strong class="text-sm flex align-items-center gap-2">
+                <strong class="text-sm d-flex align-items-center gap-2">
                   <span
                     class="border-round px-2 py-1 text-xs text-white font-bold"
                     style="background:var(--ds-success)"
@@ -170,9 +170,9 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   >
                   Tres columnas
                 </strong>
-                <div class="flex flex-column gap-2 flex-grow-1">
+                <div class="d-flex flex-column gap-2 flex-grow-1">
                   @for (i of [1, 2]; track i) {
-                    <div class="flex gap-2">
+                    <div class="d-flex gap-2">
                       @for (j of [1, 2, 3]; track j) {
                         <div
                           class="flex-grow-1 border-round"
@@ -193,11 +193,11 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
             </div>
 
             <!-- Horizontal -->
-            <div class="col-12 md:col-6 xl:col-3">
+            <div class="col-12 col-md-6 col-xl-3">
               <div
-                class="border-1 border-round p-3 h-full flex flex-column gap-2"
+                class="border-1 border-round p-3 h-full d-flex flex-column gap-2"
               >
-                <strong class="text-sm flex align-items-center gap-2">
+                <strong class="text-sm d-flex align-items-center gap-2">
                   <span
                     class="border-round px-2 py-1 text-xs text-white font-bold"
                     style="background:var(--ds-warning)"
@@ -205,9 +205,9 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   >
                   Horizontal
                 </strong>
-                <div class="flex flex-column gap-2 flex-grow-1">
+                <div class="d-flex flex-column gap-2 flex-grow-1">
                   @for (i of [1, 2, 3, 4]; track i) {
-                    <div class="flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
                       <div
                         class="border-round flex-shrink-0"
                         style="width:80px;height:24px;background:#cbd5e1"
@@ -243,15 +243,15 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
           >
             <!-- Header del dashboard -->
             <div
-              class="flex align-items-center justify-content-between px-4 py-3 border-bottom-1 surface-border"
+              class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom-1 surface-border"
             >
               <div>
-                <strong class="text-sm block">Dashboard Operativo</strong>
+                <strong class="text-sm d-block">Dashboard Operativo</strong>
                 <span class="text-xs text-color-secondary"
                   >Junio 2026 é Actualizado hace 5 min</span
                 >
               </div>
-              <div class="flex gap-2">
+              <div class="d-flex gap-2">
                 <div
                   class="border-round px-3 py-1 text-xs surface-card border-1 border-round"
                 >
@@ -268,18 +268,18 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
 
             <div class="p-3">
               <!-- KPI row -->
-              <div class="grid mb-3">
+              <div class="row mb-3">
                 @for (kpi of dashboardKpis; track kpi.label) {
-                  <div class="col-6 md:col-3">
+                  <div class="col-6 col-md-3">
                     <div
                       class="surface-card border-1 border-round p-3"
                       [style.border-left]="'3px solid ' + kpi.color"
                     >
-                      <span class="text-xs text-color-secondary block">{{
+                      <span class="text-xs text-color-secondary d-block">{{
                         kpi.label
                       }}</span>
                       <strong
-                        class="text-xl block mt-1"
+                        class="text-xl d-block mt-1"
                         [style.color]="kpi.color"
                         >{{ kpi.value }}</strong
                       >
@@ -292,14 +292,14 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
               </div>
 
               <!-- Charts + Table row -->
-              <div class="grid">
-                <div class="col-12 md:col-8">
+              <div class="row">
+                <div class="col-12 col-md-8">
                   <div class="surface-card border-1 border-round p-3">
-                    <strong class="text-xs text-color-secondary block mb-2"
+                    <strong class="text-xs text-color-secondary d-block mb-2"
                       >SOLICITUDES POR MES</strong
                     >
                     <!-- Fake bar chart -->
-                    <div class="flex align-items-end gap-1" style="height:80px">
+                    <div class="d-flex align-items-end gap-1" style="height:80px">
                       @for (b of chartBars; track b) {
                         <div
                           class="border-round-top flex-grow-1 transition-all"
@@ -309,7 +309,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                         ></div>
                       }
                     </div>
-                    <div class="flex justify-content-between mt-1">
+                    <div class="d-flex justify-content-between mt-1">
                       @for (m of chartMonths; track m) {
                         <span class="text-xs text-color-secondary">{{
                           m
@@ -318,17 +318,17 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                     </div>
                   </div>
                 </div>
-                <div class="col-12 md:col-4">
+                <div class="col-12 col-md-4">
                   <div class="surface-card border-1 border-round p-3 h-full">
-                    <strong class="text-xs text-color-secondary block mb-2"
+                    <strong class="text-xs text-color-secondary d-block mb-2"
                       >DISTRIBUCIóN</strong
                     >
                     <!-- Fake pie -->
-                    <div class="flex flex-column gap-2 mt-2">
+                    <div class="d-flex flex-column gap-2 mt-2">
                       @for (s of pieSlices; track s.label) {
                         <div>
                           <div
-                            class="flex justify-content-between text-xs mb-1"
+                            class="d-flex justify-content-between text-xs mb-1"
                           >
                             <span>{{ s.label }}</span
                             ><span class="font-bold">{{ s.pct }}%</span>
@@ -355,7 +355,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                 class="surface-card border-1 border-round mt-3 overflow-hidden"
               >
                 <div
-                  class="flex align-items-center justify-content-between px-3 py-2 surface-section border-bottom-1 surface-border"
+                  class="d-flex align-items-center justify-content-between px-3 py-2 surface-section border-bottom-1 surface-border"
                 >
                   <strong class="text-xs">óLTIMAS SOLICITUDES</strong>
                   <span class="text-xs text-primary cursor-pointer"
@@ -364,7 +364,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                 </div>
                 @for (row of miniTableRows; track row.folio) {
                   <div
-                    class="flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border text-xs"
+                    class="d-flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border text-xs"
                   >
                     <strong class="w-6rem flex-shrink-0">{{
                       row.folio
@@ -389,11 +389,11 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
       <!-- -- Reglas de Layout ---------------------------------------- -->
       <div class="col-12">
         <p-card header="Reglas Generales de Layout ERP">
-          <div class="grid">
+          <div class="row">
             @for (r of layoutRules; track r.titulo) {
-              <div class="col-12 md:col-6 xl:col-4">
+              <div class="col-12 col-md-6 col-xl-4">
                 <div
-                  class="flex align-items-start gap-3 p-3 surface-ground border-round h-full"
+                  class="d-flex align-items-start gap-3 p-3 surface-ground border-round h-full"
                 >
                   <app-icon
                     [icon]="r.icon"
@@ -401,7 +401,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                     class="text-2xl flex-shrink-0 mt-1"
                   />
                   <div>
-                    <strong class="block text-sm">{{ r.titulo }}</strong>
+                    <strong class="d-block text-sm">{{ r.titulo }}</strong>
                     <p
                       class="m-0 text-xs text-color-secondary mt-1 line-height-3"
                     >

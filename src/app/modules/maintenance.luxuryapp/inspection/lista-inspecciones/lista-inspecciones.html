@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block p-4">
-  <div class="flex justify-content-between align-items-center mb-6">
+<div class="d-none d-md-block p-4">
+  <div class="d-flex justify-content-between align-items-center mb-6">
     <h4 class="text-headline-md m-0">Listado de Inspecciones</h4>
     <iw-button
       iconClass="material-symbols-light:add-circle"
@@ -12,7 +12,7 @@
   </div>
 
   <!-- Filtros en una línea compacta -->
-  <div class="flex gap-3 mb-4 align-items-end">
+  <div class="d-flex gap-3 mb-4 align-items-end">
     <div class="flex-grow-1">
       <custom-input-select-signal
         [ngModel]="selectedAreaSignal()"
@@ -62,7 +62,7 @@
       <div
         class="list-item"
       >
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <div>
             <div class="text-body-md font-medium text-on-surface">{{ item.name }}</div>
             <small class="text-body-sm text-on-surface-secondary"
@@ -70,7 +70,7 @@
             >
           </div>
         </div>
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <app-action-menu>
             <ng-container actions>
               <il-button-edit
@@ -101,12 +101,12 @@
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
-  class="md:hidden"
+  class="d-md-none"
   [isGrouped]="true"
   [groupedData]="groupedData()"
   (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
 >
-  <div customFilters class="flex flex-column gap-3 p-4">
+  <div customFilters class="d-flex flex-column gap-3 p-4">
     <custom-input-select-signal
       [ngModel]="selectedAreaSignal()"
       (ngModelChange)="selectedAreaSignal.set($event)"

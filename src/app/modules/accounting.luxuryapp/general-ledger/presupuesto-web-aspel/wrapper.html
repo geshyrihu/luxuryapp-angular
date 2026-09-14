@@ -79,15 +79,15 @@
   <!-- =========================
        VISTA ESCRITORIO
        ========================= -->
-  <div class="hidden md:flex flex-column flex-1 min-h-0">
+  <div class="d-none d-md-flex flex-column flex-1 min-h-0">
     <!-- Fila única: [Año Fiscal] | [Presupuesto] [Extraordinarios] | spacer | [Buscar] [Botones] -->
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded mb-2"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded mb-2"
     >
       <!-- Lado Izquierdo: Año Fiscal y Tabs de navegación -->
-      <div class="flex flex-wrap align-items-center gap-3">
+      <div class="d-flex flex-wrap align-items-center gap-3">
         <!-- Año Fiscal -->
-        <div class="flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
           <custom-input-select-signal
             id="yearSelector"
             label="Año Fiscal"
@@ -106,7 +106,7 @@
         <div class="budget-nav-divider"></div>
 
         <!-- Tabs de navegación usando p-selectButton -->
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <custom-input-select-button-signal
             [options]="[
               { label: 'Presupuesto', value: 'presupuesto' },
@@ -124,9 +124,9 @@
 
       <!-- Lado Derecho: Búsqueda y botones -->
       @if (!sharedS.errorMensaje()) {
-      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2">
         @if (activeTabValue() === 'presupuesto') {
-        <div class="flex align-items-center gap-1" role="group" aria-label="Vista del presupuesto">
+        <div class="d-flex align-items-center gap-1" role="group" aria-label="Vista del presupuesto">
           <span class="text-xs font-semibold text-700 white-space-nowrap">Vista:</span>
           <button
             type="button"
@@ -179,7 +179,7 @@
            (clicked)="this.openModuleGuide()"
          />
 
-        <div class="flex align-items-center gap-1" role="toolbar">
+        <div class="d-flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
           <iw-button
             iconClass="material-symbols-light:settings"
@@ -261,8 +261,8 @@
   <!-- =========================
        VISTA MÓVIL
        ========================= -->
-  <div class="block md:hidden">
-    <div class="flex align-items-center gap-2 p-2 surface-card rounded mb-2">
+  <div class="d-block d-md-none">
+    <div class="d-flex align-items-center gap-2 p-2 surface-card rounded mb-2">
       <custom-input-select-signal
         id="yearSelectorMobile"
         label="Año Fiscal"
@@ -286,7 +286,7 @@
       [tabs]="budgetTabs"
       [activeId]="activeTabValue()"
       (tabChange)="activeTabValue.set($event.id)"
-      class="mb-3 block"
+      class="mb-3 d-block"
     />
 
     <div class="mt-2">

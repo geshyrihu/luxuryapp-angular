@@ -1,11 +1,11 @@
 <div class="w-full md:w-8 p-1">
   <lx-message severity="info">Calcular IVA a precio</lx-message>
 
-  <div class="grid mt-2">
+  <div class="row mt-2">
     <div class="col-12">
       <div class="card">
         <div class="mb-4">
-          <label class="block mb-2" for="precio">Ingresa el precio</label>
+          <label class="d-block mb-2" for="precio">Ingresa el precio</label>
           <custom-input-number-signal
             inputId="precio"
             [(ngModel)]="precio"
@@ -20,7 +20,7 @@
     <div class="col-12">
       <div class="card">
         <div class="mb-4">
-          <label class="block mb-2" for="precioSinIva">Precio sin iva</label>
+          <label class="d-block mb-2" for="precioSinIva">Precio sin iva</label>
           <custom-input-number-signal
             inputId="precioSinIva"
             [(ngModel)]="precioSinIva"
@@ -35,7 +35,7 @@
     <div class="col-12">
       <div class="card">
         <div class="mb-4">
-          <label class="block mb-2" for="iva">I.V.A.</label>
+          <label class="d-block mb-2" for="iva">I.V.A.</label>
           <custom-input-number-signal
             inputId="iva"
             [(ngModel)]="iva"

@@ -3,9 +3,9 @@
     <h3 class="h3 mb-3">Datos Laborales</h3>
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
       <!-- grid: 6 columnas en desktop, 3 en md, 1 en móvil -->
-      <div class="grid">
+      <div class="row">
         <!-- CONTRATO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-select-signal
             [control]="form.controls.typePerson"
             label="Contrato"
@@ -16,7 +16,7 @@
         </div>
 
         <!-- ESTATUS -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-select-signal
             [control]="form.controls.active"
             label="Estatus"
@@ -27,7 +27,7 @@
         </div>
 
         <!-- NIVEL EDUCATIVO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-select-signal
             [control]="form.controls.educationLevel"
             label="Nivel Educativo"
@@ -38,7 +38,7 @@
         </div>
 
         <!-- FECHA INGRESO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-date-signal
             [control]="form.controls.dateAdmission"
             label="Fecha de ingreso"
@@ -48,7 +48,7 @@
         </div>
 
         <!-- SUELDO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-currency-signal
             [control]="form.controls.salary"
             label="Sueldo mensual neto"
@@ -58,7 +58,7 @@
         </div>
 
         <!-- SUELDO DIARIO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-currency-signal
             [control]="form.controls.dailySalary"
             label="Sueldo diario"
@@ -69,7 +69,7 @@
         </div>
 
         <!-- NÚMERO DE EMPLEADO -->
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-number-signal
             [control]="form.controls.numberEmployee"
             label="Número de Empleado"
@@ -84,7 +84,7 @@
 
         <!-- CLIENTE (si aplica) -->
         @if(aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])){
-        <div class="col-12 md:col-4 lg:col-3">
+        <div class="col-12 col-md-4 col-lg-3">
           <custom-input-select-signal
             [control]="form.controls.customerId"
             label="Cliente"
@@ -96,7 +96,7 @@
         }
       </div>
       @if (!isReadOnly()) {
-        <div class="flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end mt-3">
           <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
         </div>
       }

@@ -1,6 +1,6 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-3">
-    <div class="flex align-items-center justify-content-between flex-wrap gap-2">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
       <div>
         <div class="font-semibold text-sm">Evaluación Automática de Morosidad</div>
         <div class="text-xs text-500 mt-1">
@@ -25,7 +25,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -94,7 +94,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
           <app-icon
             icon="material-symbols-light:error-outline"

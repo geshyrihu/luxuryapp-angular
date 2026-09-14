@@ -174,13 +174,13 @@ const EXTRAS_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("forms") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-checkbox</h3>
                 </div>
-                <div class="card-body flex flex-column gap-3">
+                <div class="card-body d-flex flex-column gap-3">
                   <app-checkbox
                     label="Option A"
                     [checked]="true"
@@ -193,12 +193,12 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-radio-button</h3>
                 </div>
-                <div class="card-body flex flex-column gap-3">
+                <div class="card-body d-flex flex-column gap-3">
                   <app-radio-button
                     value="1"
                     label="Option 1"
@@ -214,12 +214,12 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-chip</h3>
                 </div>
-                <div class="card-body flex gap-2 flex-wrap">
+                <div class="card-body d-flex gap-2 flex-wrap">
                   <app-chip label="React" [removable]="true"></app-chip>
                   <app-chip label="Angular" color="primary"></app-chip>
                   <app-chip label="Vue" icon="material-symbols-light:code"></app-chip>
@@ -231,7 +231,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-cascade-select</h3>
@@ -245,7 +245,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-multi-select</h3>
@@ -259,7 +259,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-listbox</h3>
@@ -273,7 +273,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-knob</h3>
@@ -289,7 +289,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-input-group</h3>
@@ -306,7 +306,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-iconfield / app-inputicon</h3>
@@ -326,7 +326,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-editor</h3>
@@ -339,7 +339,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-file-upload</h3>
@@ -354,7 +354,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-fluid</h3>
@@ -368,7 +368,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-inplace</h3>
@@ -387,7 +387,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-touchspin</h3>
@@ -402,7 +402,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-table-checkbox</h3>
@@ -419,8 +419,8 @@ const EXTRAS_LABELS: Record<string, string> = {
         }
 
         @case ("data") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-carousel</h3>
@@ -439,7 +439,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-gallery</h3>
@@ -452,7 +452,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-tree</h3>
@@ -465,7 +465,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-tree-select</h3>
@@ -478,7 +478,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-order-list</h3>
@@ -490,7 +490,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-pick-list</h3>
@@ -503,7 +503,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-org-chart</h3>
@@ -513,7 +513,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-virtual-scroller</h3>
@@ -527,7 +527,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-data-view</h3>
@@ -542,7 +542,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-paginator</h3>
@@ -556,7 +556,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-terminal</h3>
@@ -569,7 +569,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-segmented-control</h3>
@@ -586,8 +586,8 @@ const EXTRAS_LABELS: Record<string, string> = {
         }
 
         @case ("feedback") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-block-ui</h3>
@@ -599,7 +599,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-spinner</h3>
@@ -613,7 +613,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-meter-group</h3>
@@ -627,7 +627,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-infinite-scroll</h3>
@@ -640,7 +640,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-pull-to-refresh</h3>
@@ -652,7 +652,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-scroll-top</h3>
@@ -665,7 +665,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-offline-indicator</h3>
@@ -675,7 +675,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-global-error-alert</h3>
@@ -685,7 +685,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-error-boundary</h3>
@@ -703,8 +703,8 @@ const EXTRAS_LABELS: Record<string, string> = {
         }
 
         @case ("navigation") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-bottom-nav</h3>
@@ -717,7 +717,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-menu</h3>
@@ -727,7 +727,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-menubar</h3>
@@ -737,7 +737,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-mega-menu</h3>
@@ -750,7 +750,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-steps</h3>
@@ -760,7 +760,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-panel-menu</h3>
@@ -770,7 +770,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-lang-selector</h3>
@@ -780,7 +780,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-theme-switcher</h3>
@@ -790,7 +790,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-tab-bar</h3>
@@ -803,7 +803,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-image</h3>
@@ -818,7 +818,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-image-fallback</h3>
@@ -837,8 +837,8 @@ const EXTRAS_LABELS: Record<string, string> = {
         }
 
         @case ("overlays") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-panel</h3>
@@ -850,7 +850,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-popover</h3>
@@ -862,7 +862,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-confirm-popup</h3>
@@ -877,7 +877,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-contact-card</h3>
@@ -893,7 +893,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-carousel</h3>
@@ -911,8 +911,8 @@ const EXTRAS_LABELS: Record<string, string> = {
         }
 
         @case ("business") {
-          <div class="grid">
-            <div class="col-12 md:col-6 lg:col-4">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-header-customer</h3>
@@ -925,7 +925,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-cabecera-solicitud-pago-pdf</h3>
@@ -939,7 +939,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-report-header</h3>
@@ -952,7 +952,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-barcode-scanner</h3>
@@ -965,7 +965,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-receipt-scanner</h3>
@@ -979,7 +979,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-rich-text-editor</h3>
@@ -992,7 +992,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-territory-map</h3>
@@ -1005,7 +1005,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-calendar-range</h3>
@@ -1015,7 +1015,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-advanced-pie-chart</h3>
@@ -1027,7 +1027,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-multi-axis-chart</h3>
@@ -1039,7 +1039,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-primeng-radar-chart</h3>
@@ -1051,7 +1051,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-whats-new</h3>
@@ -1061,7 +1061,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-6 lg:col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">app-session-timeout</h3>

@@ -18,10 +18,10 @@
         [data]="cb_almacenes()"
         [filter]="true"
       />
-      <div class="grid mb-4 align-items-center">
-        <label class="form-label col-12 md:col-3">Producto</label>
+      <div class="row mb-4 align-items-center">
+        <label class="form-label col-12 col-md-3">Producto</label>
         @if (mostrarProductos() == false) {
-        <div class="col-12 md:col-9">
+        <div class="col-12 col-md-9">
           <custom-input-text-signal
             [control]="form.controls.productoId"
             [hidden]="true"
@@ -33,7 +33,7 @@
           />
         </div>
         } @if (mostrarProductos() == true) {
-        <div class="col-12 md:col-9">
+        <div class="col-12 col-md-9">
           <custom-input-select-signal
             [control]="form.controls.productoId"
             [data]="cb_productos()"

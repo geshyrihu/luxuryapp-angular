@@ -18,7 +18,7 @@ cb_departamento; track item) {
   #dt
   groupRowsBy="grupo"
   rowGroupMode="subheader"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -42,7 +42,7 @@ cb_departamento; track item) {
   <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="5">
-        <span class="font-bold ml-2">{{ customer.grupo }}</span>
+        <span class="font-bold ms-2">{{ customer.grupo }}</span>
       </td>
     </tr>
   </ng-template>
@@ -77,7 +77,7 @@ cb_departamento; track item) {
         <small> {{ item.observaciones }} </small>
       </td>
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           @if (item.archivo) {
           <iw-button-view-pdf
             [url]="item.archivo"
@@ -140,7 +140,7 @@ cb_departamento; track item) {
 >
   <div customFilters>
     @if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) {
-    <div class="flex flex-wrap gap-1 p-2">
+    <div class="d-flex flex-wrap gap-1 p-2">
       @for (item of cb_departamento; track item) {
       <ili-button-item
         [iconClass]="item.value == departamento() ? 'material-symbols-light:check' : ''"

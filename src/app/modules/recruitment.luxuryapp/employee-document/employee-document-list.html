@@ -1,5 +1,5 @@
 <div class="documents-shell">
-  <div class="flex flex-column gap-2 mb-4">
+  <div class="d-flex flex-column gap-2 mb-4">
     <p class="m-0 font-semibold">Documentacin de Empleado</p>
     <p class="m-0 text-color-secondary">
       Los documentos se cargan en el expediente del empleado. Arrastra las filas para reordenar el orden en el PDF.
@@ -13,9 +13,9 @@
   } @else {
   
   @if (!isReadOnly()) {
-  <lx-fieldset legend="Agregar Nuevo Documento" [toggleable]="true" [collapsed]="false" class="mb-4 block">
-    <div class="flex gap-3 align-items-end flex-wrap">
-      <div class="flex flex-column gap-1 flex-1 min-w-min">
+  <lx-fieldset legend="Agregar Nuevo Documento" [toggleable]="true" [collapsed]="false" class="mb-4 d-block">
+    <div class="d-flex gap-3 align-items-end flex-wrap">
+      <div class="d-flex flex-column gap-1 flex-1 min-w-min">
         <label class="text-sm font-semibold text-color-secondary">Tipo de documento del catlogo</label>
         <select 
           class="p-inputtext p-component w-full" 
@@ -28,7 +28,7 @@
           }
         </select>
       </div>
-      <div class="flex flex-column gap-1 flex-1 min-w-min">
+      <div class="d-flex flex-column gap-1 flex-1 min-w-min">
         <label class="text-sm font-semibold text-color-secondary">Archivo (PDF)</label>
         <input 
           type="file" 
@@ -38,7 +38,7 @@
           (change)="onNewFileSelected($event)" 
         />
       </div>
-      <div class="mt-2 md:mt-0">
+      <div class="mt-2 mt-md-0">
         <il-button 
           label="Cargar" 
           iconClass="material-symbols-light:upload" 
@@ -81,7 +81,7 @@
           }
         </td>
         <td>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <span class="font-semibold">{{ doc.documentTypeName }}</span>
             @if (doc.isMandatory) {
               <lx-tag value="Obligatorio" severity="danger" class="text-xs" />
@@ -120,7 +120,7 @@
         </td>
         <td>
           @if (!isReadOnly()) {
-          <div class="flex gap-2 align-items-center flex-wrap">
+          <div class="d-flex gap-2 align-items-center flex-wrap">
             @if (!doc.isValidated) {
               <input
                 type="file"

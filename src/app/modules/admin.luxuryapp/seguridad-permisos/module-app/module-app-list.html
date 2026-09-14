@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block">
+<div class="d-none d-md-block">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -12,7 +12,7 @@
     [value]="dataSignal()"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table card hidden md:block"
+    class="custom-table card d-none d-md-block"
     rowGroupMode="subheader"
     groupRowsBy="pathParent"
   >
@@ -83,7 +83,7 @@
         </td>
 
         <td class="no-print">
-          <div class="flex">
+          <div class="d-flex">
             <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />

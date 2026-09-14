@@ -14,12 +14,12 @@ import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobil
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <!-- Desktop View -->
-    <div class="hidden md:block">
+    <div class="d-none d-md-block">
       <app-unified-pending-dashboard [visibleModules]="visibleModules()" />
     </div>
 
     <!-- Mobile View -->
-    <div class="block md:hidden">
+    <div class="d-block d-md-none">
       <app-unified-pending-dashboard-mobile
         [visibleModules]="visibleModules()"
       />

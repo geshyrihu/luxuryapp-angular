@@ -8,8 +8,8 @@
         [readonly]="true"
       />
 
-      <div class="mb-4 flex flex-wrap">
-        <label class="w-full sm:w-3 flex align-items-center">Imagen</label>
+      <div class="mb-4 d-flex flex-wrap">
+        <label class="w-full sm:w-3 d-flex align-items-center">Imagen</label>
         <div class="w-full sm:w-9">
           <custom-input-img-signal
             (fileSelected)="uploadFile($event)"
@@ -42,7 +42,7 @@
         label="Folio Prefijo"
         placeholder="folio prefijo"
       />
-      <div class="mb-4 flex flex-wrap">
+      <div class="mb-4 d-flex flex-wrap">
         <div class="w-full">
           <custom-input-mask-signal
             [control]="form.controls.phoneOne"

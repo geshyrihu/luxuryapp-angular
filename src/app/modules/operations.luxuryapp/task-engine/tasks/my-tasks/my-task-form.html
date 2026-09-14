@@ -1,4 +1,4 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     @if (id) {
     <custom-input-text-signal
@@ -20,7 +20,7 @@
       placeholder="area"
     />
 
-    <div class="flex justify-content-between align-items-center mb-2">
+    <div class="d-flex justify-content-between align-items-center mb-2">
       <il-button
         label="Analizar Imagen (IA)"
         iconClass="material-symbols-light:photo-camera"
@@ -51,19 +51,19 @@
       [filter]="true"
     />
 
-    <div class="grid mt-2">
+    <div class="row mt-2">
       <div class="col-12 mb-2">
         <small class="text-500 italic">
           <app-icon
             [icon]="'material-symbols-light:photo-camera'"
-            class="mr-1"
+            class="me-1"
           />
           Recuerda: Fotos horizontales, centradas en el detalle.
         </small>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 block mb-2"
+          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
             >Foto del antes</label
           >
           @if (form.controls.beforeWorkPreview.value) {
@@ -85,9 +85,9 @@
           />
         </div>
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 block mb-2"
+          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
             >Foto del después</label
           >
           @if (form.controls.afterWorkPreview.value) {

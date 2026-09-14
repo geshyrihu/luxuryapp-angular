@@ -9,7 +9,7 @@ import {
   informationCircle,
   warning,
 } from "ionicons/icons";
-import { MessageService } from "primeng/api";
+import { MessageService } from "src/app/core/services/message.service";
 import { ToastMessage } from "src/app/core/interfaces/toast.interface";
 @Injectable({
   providedIn: "root",

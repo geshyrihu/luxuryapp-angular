@@ -2,7 +2,7 @@
 del signal en `ordenCompraService.totalPorCubrir()`. -->
 <primeng-custom-toast />
 
-<div class="hidden md:block"></div>
+<div class="d-none d-md-block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -12,27 +12,27 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
   [loading]="loading()"
   [scrollable]="true"
   scrollHeight="50vh"
 >
   <ng-template #caption>
-    <div class="grid align-items-center">
-      <div class="col-12 md:col-3">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3">
         <lx-tag
           severity="danger"
           [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')"
         />
       </div>
-      <div class="col-12 md:col-7">
+      <div class="col-12 col-md-7">
         <primeng-custom-caption
           [title]="'Presupuesto para Orden de Compra'"
           [showAdd]="false"
           [dt]="dt"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           id="yearSelector"
           [data]="availableYears"
@@ -83,7 +83,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
       <td>{{ item.budgetSpent | number: '1.2-2' }}</td>
       <td>{{ item.pendingPayments | number: '1.2-2' }}</td>
       <td>
-        <div class="flex flex-column">
+        <div class="d-flex flex-column">
           @if (item.pendingPayments > 0) {
           <span
             class="text-xs"

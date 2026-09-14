@@ -1,27 +1,27 @@
 <div class="p-3">
   <!-- Formulario agregar dia -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
-    <div class="grid align-items-end">
-      <div class="col-12 md:col-3">
+    <div class="row align-items-end">
+      <div class="col-12 col-md-3">
         <custom-input-date-signal
           [control]="form.controls['fecha']"
           label="Fecha"
         />
       </div>
-      <div class="col-12 md:col-5">
+      <div class="col-12 col-md-5">
         <custom-input-text-signal
           [control]="form.controls['descripcion']"
           label="Descripcion"
           placeholder="Ej. Dia de la Independencia"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-switch-signal
           [control]="form.controls['esFestivoOficial']"
           label="Festivo Oficial"
         />
       </div>
-      <div class="col-12 md:col-2 flex align-items-end">
+      <div class="col-12 col-md-2 d-flex align-items-end">
         <il-button-save
           (clicked)="onSubmit()"
           [submitting]="submitting()"

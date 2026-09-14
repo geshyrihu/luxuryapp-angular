@@ -122,7 +122,7 @@ import {
 
     <div id="cat-nav-content" class="mobile-card">
       <div class="mobile-card-header">Navigation Patterns</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <!-- --- HEADER VARIANTS (DS) --- -->
         <div>
           <div class="section-label">Header Variants (DS)</div>
@@ -130,7 +130,7 @@ import {
             Header small (close + title + more) y header medium (search +
             title).
           </p>
-          <div class="flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2">
             <div class="ds-header ds-header--small">
               <span class="material-symbols-outlined ds-header__icon"
                 >arrow_back</span
@@ -347,7 +347,7 @@ import {
 
     <div class="mobile-card mt-4">
       <div class="mobile-card-header">Navigation Wrappers (ili-*)</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-tabs</div>
           <ili-tabs [tabs]="[{id:'1', label:'General'}, {id:'2', label:'Advanced'}]" [activeId]="'1'">

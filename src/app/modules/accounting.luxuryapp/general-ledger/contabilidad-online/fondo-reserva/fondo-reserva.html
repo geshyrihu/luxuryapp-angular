@@ -1,20 +1,20 @@
-<div class="flex flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   @if (loading()) {
   <lx-skeleton width="100%" height="20rem" />
   } @else if (data(); as reserva) {
   <div
-    class="surface-card rounded-xl border-1 surface-border shadow-sm p-0 xl:p-4"
+    class="surface-card rounded-xl border-1 surface-border shadow-sm p-0 p-xl-4"
   >
     <div class="text-center mb-4">
       <h2 class="rf-panel-title text-2xl mb-3">FONDO DE RESERVA</h2>
       <p class="font-bold text-900 m-0">{{ reserva.fechaReporte }}</p>
     </div>
 
-    <div class="grid grid-nogutter justify-content-center">
-      <div class="col-12 xl:col-8">
+    <div class="row grid-nogutter justify-content-center">
+      <div class="col-12 col-xl-8">
         <!-- Encabezado de la tabla -->
         <div
-          class="grid grid-nogutter text-white font-bold p-3 rounded-top"
+          class="row grid-nogutter text-white font-bold p-3 rounded-top"
           
         >
           <div class="col-8 text-center text-lg uppercase letter-spacing-1">
@@ -30,7 +30,7 @@
 
         <!-- Fila 1: Disponible al 1 de Enero -->
         <div
-          class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
+          class="row grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
         >
           <div class="col-8 font-bold" >
             DISPONIBLE AL 01 DE ENERO {{ filters.year() }}
@@ -42,7 +42,7 @@
 
         <!-- Fila 2: Intereses -->
         <div
-          class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
+          class="row grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
         >
           <div class="col-8" >
             +) INTERESES {{ filters.year() }}
@@ -54,7 +54,7 @@
 
         <!-- Fila 3: Disponible Teórico (subtotal) -->
         <div
-          class="grid grid-nogutter p-3 align-items-center border-bottom-1 surface-border"
+          class="row grid-nogutter p-3 align-items-center border-bottom-1 surface-border"
           
         >
           <div class="col-8 font-bold text-lg" >
@@ -71,7 +71,7 @@
 
         <!-- Fila 4: Cuenta Bancaria Real (resultado positivo) -->
         <div
-          class="grid grid-nogutter p-3 align-items-center rounded-bottom"
+          class="row grid-nogutter p-3 align-items-center rounded-bottom"
           
         >
           <div class="col-8 font-bold text-green-800">
@@ -86,7 +86,7 @@
   </div>
   } @else {
   <div
-    class="rf-card flex flex-column align-items-center py-8 text-color-secondary"
+    class="rf-card d-flex flex-column align-items-center py-8 text-color-secondary"
   >
     <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
     <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>

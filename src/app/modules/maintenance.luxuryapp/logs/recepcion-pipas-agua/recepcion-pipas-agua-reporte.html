@@ -3,10 +3,10 @@
   class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden mb-3"
 >
   <div class="bg-primary" style="height: 0.45rem"></div>
-  <div class="surface-100 p-3 flex flex-column gap-3">
-    <div class="flex align-items-center gap-3">
+  <div class="surface-100 p-3 d-flex flex-column gap-3">
+    <div class="d-flex align-items-center gap-3">
       <div
-        class="surface-card rounded-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
+        class="surface-card rounded-xl border-1 surface-border d-inline-flex align-items-center justify-content-center p-2"
         style="flex-shrink: 0"
       >
         <img
@@ -22,7 +22,7 @@
           "
         />
       </div>
-      <div class="flex flex-column gap-1">
+      <div class="d-flex flex-column gap-1">
         <small
           class="text-primary font-bold uppercase"
           style="letter-spacing: 0.14em"
@@ -38,9 +38,9 @@
     </div>
 
     <div
-      class="flex align-items-center gap-3 flex-wrap border-top-1 surface-border pt-3"
+      class="d-flex align-items-center gap-3 flex-wrap border-top-1 surface-border pt-3"
     >
-      <div class="flex align-items-center gap-1">
+      <div class="d-flex align-items-center gap-1">
         <span class="text-500 text-xs">Desde</span>
         <custom-input-datepicker-signal
           [(ngModel)]="startDate"
@@ -55,7 +55,7 @@
           [dateStyle]="{ minWidth: '195px' }"
         />
       </div>
-      <div class="flex align-items-center gap-1">
+      <div class="d-flex align-items-center gap-1">
         <span class="text-500 text-xs">Hasta</span>
         <custom-input-datepicker-signal
           [(ngModel)]="endDate"
@@ -70,16 +70,16 @@
           [dateStyle]="{ minWidth: '195px' }"
         />
       </div>
-      <il-button-download class="ml-auto" (clicked)="onDownloadPdf()" />
+      <il-button-download class="ms-auto" (clicked)="onDownloadPdf()" />
     </div>
   </div>
   <div class="bg-yellow-500" style="height: 0.2rem"></div>
 </div>
 
 <!-- KPIs + Resumen de costos -->
-<div class="grid mb-3">
+<div class="row mb-3">
   <!-- KPI cards -->
-  <div class="col-12 md:col-4 flex flex-column gap-3">
+  <div class="col-12 col-md-4 d-flex flex-column gap-3">
     <div
       class="surface-card rounded-xl border-1 surface-border shadow-sm p-3 text-center flex-1"
     >
@@ -99,12 +99,12 @@
   </div>
 
   <!-- Resumen de costos -->
-  <div class="col-12 md:col-8">
+  <div class="col-12 col-md-8">
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden h-full flex flex-column"
+      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden h-full d-flex flex-column"
     >
       <div class="bg-primary" style="height: 0.35rem"></div>
-      <div class="p-3 flex flex-column flex-1">
+      <div class="p-3 d-flex flex-column flex-1">
         <div class="mb-3">
           <p class="text-primary font-bold text-base m-0 mb-1">
             Resumen de costos del periodo
@@ -115,10 +115,10 @@
           </p>
         </div>
 
-        <div class="flex flex-column flex-1 justify-content-between">
+        <div class="d-flex flex-column flex-1 justify-content-between">
           <div>
             <div
-              class="flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
             >
               <span class="text-sm font-semibold"
                 >Importe total (precio con IVA × m³)</span
@@ -128,7 +128,7 @@
               >
             </div>
             <div
-              class="flex justify-content-between align-items-center py-2 pl-3 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 surface-border"
             >
               <span class="text-xs text-500">Subtotal base (sin IVA)</span>
               <span class="text-xs text-500"
@@ -136,7 +136,7 @@
               >
             </div>
             <div
-              class="flex justify-content-between align-items-center py-2 pl-3 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 surface-border"
             >
               <span class="text-xs text-500">IVA 16%</span>
               <span class="text-xs text-500"
@@ -144,7 +144,7 @@
               >
             </div>
             <div
-              class="flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
             >
               <span class="text-sm font-semibold text-red-500"
                 >Retención 4%</span
@@ -156,7 +156,7 @@
           </div>
 
           <div
-            class="bg-primary rounded flex justify-content-between align-items-center px-3 py-2 mt-2"
+            class="bg-primary rounded d-flex justify-content-between align-items-center px-3 py-2 mt-2"
           >
             <span class="text-white font-bold">TOTAL A PAGAR</span>
             <span class="text-white font-bold text-xl"
@@ -220,13 +220,13 @@
         <small>{{ item.empresa }}</small>
       </td>
       <td>
-        <strong class="block">{{ item.placasCamion }}</strong>
+        <strong class="d-block">{{ item.placasCamion }}</strong>
         <small class="text-500"
           >{{ item.capacidadPipa | number: '1.0-0' }} L</small
         >
       </td>
       <td>
-        <small class="block"
+        <small class="d-block"
           >{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</small
         >
         @if (item.horaTermino) {
@@ -238,7 +238,7 @@
         }
       </td>
       <td class="text-center">
-        <small class="block">
+        <small class="d-block">
           {{ item.nivelCisternaAntes | number: '1.0-0' }}%
           <span class="text-400"> → </span>
           {{ item.nivelCisternaDespues | number: '1.0-0' }}%
@@ -264,7 +264,7 @@
         '1.0-0' }}
       </td>
       <td class="text-right">
-        <small class="block text-500"
+        <small class="d-block text-500"
           >{{ item.costoMetroCubico | number: '1.2-2' }}</small
         >
         <small class="font-semibold">
@@ -274,13 +274,13 @@
       </td>
       <td>
         @if (item.colaboradorMtto) {
-        <small class="block"
-          ><app-icon [icon]="'material-symbols-light:build'" class="mr-1 text-400" />{{
+        <small class="d-block"
+          ><app-icon [icon]="'material-symbols-light:build'" class="me-1 text-400" />{{
           item.colaboradorMtto }}</small
         >
         } @if (item.guardiaSeguridad) {
         <small class="text-500"
-          ><app-icon [icon]="'material-symbols-light:shield'" class="mr-1" />{{
+          ><app-icon [icon]="'material-symbols-light:shield'" class="me-1" />{{
           item.guardiaSeguridad }}</small
         >
         }

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="hidden">
+      <div class="d-none">
         <custom-input-text-signal
           [control]="form.controls.id"
           hidden

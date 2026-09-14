@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   template: `
     @if (isProcessing()) {
       <div
-        class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center"
+        class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 d-flex items-center justify-center"
       >
         <div
           class="bg-white rounded-lg shadow-2xl p-8 text-center max-w-sm w-11/12"

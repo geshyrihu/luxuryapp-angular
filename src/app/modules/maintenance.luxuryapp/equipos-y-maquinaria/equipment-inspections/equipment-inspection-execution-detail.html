@@ -1,16 +1,16 @@
 @let execution = detail(); @if (execution) {
-<div class="flex flex-column gap-4">
-  <div class="grid">
-    <div class="col-12 md:col-6">
+<div class="d-flex flex-column gap-4">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <div class="font-semibold text-lg">{{ execution.definitionName }}</div>
       <div class="text-sm text-600">{{ execution.machineryName }}</div>
     </div>
-    <div class="col-12 md:col-6 text-left md:text-right">
+    <div class="col-12 col-md-6 text-left md:text-right">
       <lx-tag
         [value]="statusLabel(execution.status)"
         [severity]="statusTag(execution.status)"
        />
-      <span class="inline-block ml-2"></span>
+      <span class="inline-block ms-2"></span>
       <lx-tag
         [value]="severityLabel(execution.severity)"
         [severity]="severityTag(execution.severity)"
@@ -18,28 +18,28 @@
     </div>
   </div>
 
-  <div class="grid text-sm">
-    <div class="col-12 md:col-4">
+  <div class="row text-sm">
+    <div class="col-12 col-md-4">
       <div class="text-500">Fecha programada</div>
       <div>{{ execution.executionDate }}</div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="text-500">Asignado a</div>
       <div>{{ execution.assignedToUserName || "Sin asignar" }}</div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="text-500">Ejecutado por</div>
       <div>{{ execution.executedByUserName || "Sin cierre" }}</div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="text-500">Iniciada</div>
       <div>{{ execution.startedAt || "Sin iniciar" }}</div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="text-500">Completada</div>
       <div>{{ execution.completedAt || "Pendiente" }}</div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 col-md-4">
       <div class="text-500">QR</div>
       <div>{{ execution.qrLabelCode || "No aplica" }}</div>
     </div>
@@ -88,9 +88,9 @@
   @if (execution.images.length > 0) {
   <div>
     <div class="font-semibold mb-2">Evidencias</div>
-    <div class="grid">
+    <div class="row">
       @for (image of execution.images; track image.id) {
-      <div class="col-12 md:col-4">
+      <div class="col-12 col-md-4">
         <div class="border-1 surface-border rounded p-2 h-full">
           <app-image
             [src]="image.imagePath"
@@ -109,14 +109,14 @@
   } @if (execution.serviceOrderIds.length > 0) {
   <div>
     <div class="font-semibold mb-2">Ordenes de servicio relacionadas</div>
-    <div class="flex flex-wrap gap-2">
+    <div class="d-flex flex-wrap gap-2">
       @for (serviceOrderId of execution.serviceOrderIds; track serviceOrderId) {
       <lx-tag [value]="serviceOrderId" severity="info"  />
       }
     </div>
   </div>
   } @if (!execution.isClosed) {
-  <div class="flex justify-content-end">
+  <div class="d-flex justify-content-end">
     <il-button
       label="Completar inspeccion"
       iconClass="material-symbols-light:check-circle-outline"

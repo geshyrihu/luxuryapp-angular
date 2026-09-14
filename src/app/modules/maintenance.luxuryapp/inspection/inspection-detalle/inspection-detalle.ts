@@ -33,10 +33,10 @@ import { InspectionEdit } from "../models/inspection.model";
         </div>
       } @else if (inspection()) {
         <app-card>
-          <div class="flex justify-between items-start mb-6">
+          <div class="d-flex justify-between items-start mb-6">
             <div>
               <h1 class="text-3xl font-bold mb-2">{{ inspection().name }}</h1>
-              <div class="flex gap-4 text-sm text-gray-600">
+              <div class="d-flex gap-4 text-sm text-gray-600">
                 <span>
                   <strong>Departamento:</strong> {{ inspection().departament }}
                 </span>
@@ -50,7 +50,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 </span>
               </div>
             </div>
-            <div class="flex gap-2">
+            <div class="d-flex gap-2">
               <button
                 (click)="onEdit()"
                 class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -66,23 +66,23 @@ import { InspectionEdit } from "../models/inspection.model";
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-6 mt-6">
+          <div class="row grid-cols-2 gap-6 mt-6">
             <div>
               <h3 class="font-semibold text-gray-700 mb-2">Detalles</h3>
               <div class="space-y-2 text-sm">
                 <div>
                   <span class="text-gray-600">ID:</span>
-                  <span class="ml-2 font-mono">{{ inspection().id }}</span>
+                  <span class="ms-2 font-mono">{{ inspection().id }}</span>
                 </div>
                 <div>
                   <span class="text-gray-600">Cliente ID:</span>
-                  <span class="ml-2 font-mono">{{
+                  <span class="ms-2 font-mono">{{
                     inspection().customerId
                   }}</span>
                 </div>
                 <div>
                   <span class="text-gray-600">Fecha de Creación:</span>
-                  <span class="ml-2">{{
+                  <span class="ms-2">{{
                     formatDate(inspection().createdAt)
                   }}</span>
                 </div>
@@ -94,7 +94,7 @@ import { InspectionEdit } from "../models/inspection.model";
             ) {
               <div>
                 <h3 class="font-semibold text-gray-700 mb-2">Días Semanales</h3>
-                <div class="flex flex-wrap gap-2">
+                <div class="d-flex flex-wrap gap-2">
                   @for (
                     day of getWeekdayLabels(inspection().weeklyDays);
                     track day

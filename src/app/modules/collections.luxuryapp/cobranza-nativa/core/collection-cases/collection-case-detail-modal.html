@@ -1,7 +1,7 @@
 @if (item(); as c) {
 <div class="p-3">
   <!-- Cabecera -->
-  <div class="flex align-items-center gap-3 mb-4 p-3 rounded surface-100">
+  <div class="d-flex align-items-center gap-3 mb-4 p-3 rounded surface-100">
     <app-icon [icon]="'material-symbols-light:warning'" class="text-3xl text-red-600" />
     <div>
       <div class="font-bold text-lg">{{ c.propertyName }}</div>
@@ -23,10 +23,10 @@
     @if (c.activities.length === 0) {
     <p class="text-500 text-sm mt-2">Sin actividades registradas aun.</p>
     } @else {
-    <div class="mt-2 flex flex-column gap-2">
+    <div class="mt-2 d-flex flex-column gap-2">
       @for (act of c.activities; track act.id) {
       <div class="p-2 surface-50 rounded border-1 surface-border text-sm">
-        <div class="flex justify-content-between mb-1">
+        <div class="d-flex justify-content-between mb-1">
           <span class="font-medium"
             >{{ act.activityDate | apiDate:'dd/MM/yyyy HH:mm' }}</span
           >
@@ -49,7 +49,7 @@
       [control]="notesCtrl"
     />
   </div>
-  <div class="flex justify-content-end gap-2">
+  <div class="d-flex justify-content-end gap-2">
     <il-button label="Cerrar" severity="secondary" (clicked)="onClose()" />
     <il-button
       label="Guardar Actividad"

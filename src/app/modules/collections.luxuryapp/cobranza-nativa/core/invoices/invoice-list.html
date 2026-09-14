@@ -1,6 +1,6 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-3">
-    <div class="flex gap-2 align-items-start">
+    <div class="d-flex gap-2 align-items-start">
       <app-icon [icon]="'material-symbols-light:info'" class="text-primary mt-1" />
       <div class="text-sm text-700">
         <strong>Facturación CFDI 4.0.</strong> Este módulo gestiona la emisión y
@@ -17,12 +17,12 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
-      <div class="p-1 grid formgrid align-items-end">
-        <div class="field col-12 md:col-6">
+      <div class="p-1 row formgrid align-items-end">
+        <div class="field col-12 col-md-6">
           <custom-input-select-signal
             label="Selecciona un cargo para ver sus facturas"
             [data]="charges()"
@@ -32,7 +32,7 @@
             [horizontal]="false"
           />
         </div>
-        <div class="field col-12 md:col-3">
+        <div class="field col-12 col-md-3">
           <il-button
             label="Buscar Facturas"
             iconClass="material-symbols-light:search"
@@ -41,7 +41,7 @@
             (clicked)="onSearch()"
           />
         </div>
-        <div class="field col-12 md:col-3">
+        <div class="field col-12 col-md-3">
           <primeng-custom-caption
             title="Facturas CFDI"
             [showAddButton]="false"
@@ -79,7 +79,7 @@
           {{ inv.timbreAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">
-          <div class="flex gap-1 justify-content-center">
+          <div class="d-flex gap-1 justify-content-center">
             @if (inv.xmlFilePath) {
             <iw-button
               lxTooltip="XML"
@@ -121,7 +121,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
           <app-icon icon="material-symbols-light:receipt" class="text-blue-600 text-xl" />
         </div>

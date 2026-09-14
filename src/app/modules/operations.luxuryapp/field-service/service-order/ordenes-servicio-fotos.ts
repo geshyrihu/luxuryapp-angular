@@ -23,7 +23,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
   imports: [AppIcon, WebButtonLabelDelete, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService],
 })
 export class OrdenesServicioFotos implements OnInit {
   private readonly config = inject(DynamicDialogConfig);

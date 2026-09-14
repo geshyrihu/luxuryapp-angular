@@ -1,11 +1,11 @@
 <div class="fadein">
   <!-- 🏛️ CABECERA EJECUTIVA -->
   <div
-    class="flex flex-column lg:flex-row justify-content-between align-items-start lg:align-items-center gap-4 mb-5"
+    class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-4 mb-5"
   >
-    <div class="flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-3">
       <div
-        class="rounded-xl bg-primary shadow flex align-items-center justify-content-center"
+        class="rounded-xl bg-primary shadow d-flex align-items-center justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:schedule'"
@@ -27,7 +27,7 @@
   @if (dataSignal()) {
   <div
     class="card"
-    class="shadow-sm rounded-xl overflow-hidden p-0 border-none hidden md:block"
+    class="shadow-sm rounded-xl overflow-hidden p-0 border-none d-none d-md-block"
   >
     <p-table
       #dt
@@ -48,9 +48,9 @@
       <!-- CAPTION PERSONALIZADO -->
       <ng-template #caption>
         <div
-          class="flex flex-column lg:flex-row justify-content-between align-items-center gap-3 py-3 px-2 bg-surface-50 border-bottom-1 surface-border"
+          class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-surface-50 border-bottom-1 surface-border"
         >
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <app-icon [icon]="'material-symbols-light:fact-check'" class="text-primary text-xl" />
             <span class="text-xl font-bold text-800">Acuerdos del Comité</span>
           </div>
@@ -61,19 +61,19 @@
       <!-- CABECERA DE TABLA -->
       <ng-template pTemplate="header">
         <tr class="text-sm uppercase text-700 bg-surface-100">
-          <th pSortableColumn="title" class="pl-4 py-3">
-            <div class="flex align-items-center">
+          <th pSortableColumn="title" class="ps-4 py-3">
+            <div class="d-flex align-items-center">
               Requerimiento <p-sorticon field="title"></p-sorticon>
             </div>
           </th>
           <th class="py-3">
-            <div class="flex align-items-center">
-              <app-icon [icon]="'material-symbols-light:history'" class="mr-2" />
+            <div class="d-flex align-items-center">
+              <app-icon [icon]="'material-symbols-light:history'" class="me-2" />
               Último Seguimiento
             </div>
           </th>
-          <th pSortableColumn="status" class="text-center pr-4 py-3">
-            <div class="flex align-items-center justify-content-center">
+          <th pSortableColumn="status" class="text-center pe-4 py-3">
+            <div class="d-flex align-items-center justify-content-center">
               Estatus <p-sorticon field="status"></p-sorticon>
             </div>
           </th>
@@ -86,8 +86,8 @@
           class="transition-all hover:bg-surface-50 border-bottom-1 surface-border"
         >
           <!-- Columna: Requerimiento -->
-          <td class="vertical-align-top py-4 pl-4">
-            <div class="flex flex-column gap-2">
+          <td class="vertical-align-top py-4 ps-4">
+            <div class="d-flex flex-column gap-2">
               <span
                 class="font-bold text-900 text-lg line-height-2 tracking-tight"
               >
@@ -105,10 +105,10 @@
             @if (item.meetingDertailsSeguimientos &&
             item.meetingDertailsSeguimientos.length > 0) {
             <div
-              class="flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
+              class="d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
             >
-              <div class="flex align-items-center justify-content-between">
-                <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-2">
                   <app-icon
                     [icon]="'material-symbols-light:event-available'"
                     class="text-primary text-xs"
@@ -120,7 +120,7 @@
                 </div>
               </div>
               <div
-                class="text-700 text-sm line-height-2 italic relative pl-3 border-left-2 border-primary-200"
+                class="text-700 text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
                 [lxTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
                 tooltipPosition="top"
               >
@@ -129,7 +129,7 @@
             </div>
             } @else {
             <div
-              class="flex align-items-center justify-content-center gap-2 text-400 italic py-3 opacity-60"
+              class="d-flex align-items-center justify-content-center gap-2 text-400 italic py-3 opacity-60"
             >
               <app-icon [icon]="'material-symbols-light:forum-outline'" class="text-xl" />
               <span class="text-sm">Sin seguimiento registrado</span>
@@ -138,8 +138,8 @@
           </td>
 
           <!-- Columna: Estatus -->
-          <td class="text-center vertical-align-top py-4 pr-4">
-            <div class="flex flex-column align-items-center gap-3">
+          <td class="text-center vertical-align-top py-4 pe-4">
+            <div class="d-flex flex-column align-items-center gap-3">
               <lx-tag
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
@@ -149,14 +149,14 @@
 
               @if (item.status === 0) {
               <div
-                class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-red-100"
+                class="d-flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-red-100"
               >
                 <app-icon [icon]="'material-symbols-light:event-busy'" />
                 <span>Vence: {{ item.deliveryDate | apiDate: 'shortDate' }}</span>
               </div>
               } @if (item.status === 1) {
               <div
-                class="flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-green-100"
+                class="d-flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-green-100"
               >
                 <app-icon [icon]="'material-symbols-light:check-circle'" />
                 <span>Completado</span>
@@ -171,16 +171,16 @@
       <ng-template #emptymessage>
         <tr>
           <td colspan="3" class="text-center p-8 bg-surface-50">
-            <div class="flex flex-column align-items-center gap-4 py-4">
+            <div class="d-flex flex-column align-items-center gap-4 py-4">
               <div
-                class="border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-sm"
+                class="border-circle bg-surface-200 p-5 d-flex align-items-center justify-content-center shadow-sm"
               >
                 <app-icon
                   [icon]="'material-symbols-light:task-alt'"
                   class="text-7xl text-primary opacity-50"
                 />
               </div>
-              <div class="flex flex-column gap-2">
+              <div class="d-flex flex-column gap-2">
                 <span class="font-bold text-2xl text-900"
                   >¡Agenda Despejada!</span
                 >
@@ -195,7 +195,7 @@
 
       <!-- FOOTER / PAGINADOR -->
       <ng-template #paginatorleft>
-        <div class="flex align-items-center gap-3 py-2">
+        <div class="d-flex align-items-center gap-3 py-2">
           <primeng-custom-table-footer [data]="dataSignal()" />
         </div>
       </ng-template>

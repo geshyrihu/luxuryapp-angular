@@ -1,6 +1,6 @@
 <section>
   <div class="mb-4">
-    <div class="mt-3 flex align-items-center gap-2">
+    <div class="mt-3 d-flex align-items-center gap-2">
       <custom-input-check-signal
         id="onlyWithoutPropertyMatch"
         [ngModel]="onlyWithoutPropertyMatch()"
@@ -12,20 +12,20 @@
 
   @if (hasCustomer()) {
   <div class="mb-4 border-1 surface-border rounded p-4">
-    <div class="grid">
-      <div class="col-12 md:col-3">
+    <div class="row">
+      <div class="col-12 col-md-3">
         <div class="font-medium">Customer</div>
         <div>{{ customerName() || "Cliente activo" }}</div>
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <div class="font-medium">Origen</div>
         <div>{{ data()?.dataSource || "Sin datos" }}</div>
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <div class="font-medium">Cuentas omitidas</div>
         <div>{{ excludedCount() }}</div>
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <div class="font-medium">Candidatas a revisar</div>
         <div>{{ rowsWithoutPropertyMatch() }}</div>
       </div>
@@ -50,7 +50,7 @@
     [value]="visibleRows()"
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table card hidden md:block"
+    class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
       <primeng-custom-caption [dt]="dt" />
@@ -87,7 +87,7 @@
           <span>
             {{ item.propertyTower }} / {{ item.propertyDepartment }} @if
             (item.propertyFullName) {
-            <span class="block text-xs text-color-secondary mt-1">
+            <span class="d-block text-xs text-color-secondary mt-1">
               {{ item.propertyFullName }}
             </span>
             }
@@ -116,7 +116,7 @@
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
           <app-icon icon="material-symbols-light:account-balance" />
         </div>
@@ -142,7 +142,7 @@
           </p>
         </div>
 
-        <div end class="pr-3 text-danger font-medium text-sm">
+        <div end class="pe-3 text-danger font-medium text-sm">
           @if (item.isExcluded) { Omitida }
         </div>
       </ili-list-item>

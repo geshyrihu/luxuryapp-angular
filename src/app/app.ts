@@ -29,10 +29,10 @@
  */
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { MessageService } from "primeng/api";
+import { MessageService } from "src/app/core/services/message.service";
 import { filter } from "rxjs/operators";
 // 🧩 Componentes globales que acompañan siempre a la app
-import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
+import { AppToast } from "@ui/web/toast/toast";
 import { LxScrollTop } from "@ui/adaptive/tap-to-top/tap-to-top";
 // 🛠️ Servicios esenciales (nivel App, no de sesión)
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -46,7 +46,7 @@ import { TitleService } from "./core/services/title.service";
   imports: [
     RouterOutlet,
     LxScrollTop,
-    PrimeNgCustomToast,
+    AppToast,
     ConfirmDialogModule,
     // WhatsNew,
     // AiChatWidget,

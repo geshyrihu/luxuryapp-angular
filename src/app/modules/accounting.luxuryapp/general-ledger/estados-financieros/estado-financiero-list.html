@@ -8,7 +8,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="card custom-table hidden md:block"
+  class="card custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -17,26 +17,26 @@
   <ng-template #header>
     <tr>
       <th>
-        <div class="flex align-items-center">
-          <lx-tag value="1" severity="info" class="mr-2"></lx-tag>
+        <div class="d-flex align-items-center">
+          <lx-tag value="1" severity="info" class="me-2"></lx-tag>
           <span class="font-semibold">PERIODO</span>
         </div>
       </th>
       <th>
-        <div class="flex align-items-center">
-          <lx-tag value="2" severity="info" class="mr-2"></lx-tag>
+        <div class="d-flex align-items-center">
+          <lx-tag value="2" severity="info" class="me-2"></lx-tag>
           <span class="font-semibold">ARCHIVO</span>
         </div>
       </th>
       <th>
-        <div class="flex align-items-center">
-          <lx-tag value="3" severity="info" class="mr-2"></lx-tag>
+        <div class="d-flex align-items-center">
+          <lx-tag value="3" severity="info" class="me-2"></lx-tag>
           <span class="font-semibold">AUTORIZACIóN</span>
         </div>
       </th>
       <th>
-        <div class="flex align-items-center">
-          <lx-tag value="4" severity="info" class="mr-2"></lx-tag>
+        <div class="d-flex align-items-center">
+          <lx-tag value="4" severity="info" class="me-2"></lx-tag>
           <span class="font-semibold">ENVíO</span>
         </div>
       </th>
@@ -58,7 +58,7 @@
           [fluid]="true"
         />
         } @else {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
             <div class="font-bold text-sm">{{ item.personWhoCharge }}</div>
             <div class="text-xs text-color-secondary">
@@ -98,7 +98,7 @@
           [fluid]="true"
         />
         } @else {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
             <div class="font-bold text-sm">{{ item.personWhoAuthorized }}</div>
             <div class="text-xs text-color-secondary">
@@ -138,7 +138,7 @@
         />
 
         } @else {
-        <div class="flex align-items-center">
+        <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
             <div class="font-bold text-sm">{{ item.personWhoSend }}</div>
             <div class="text-xs text-color-secondary">{{ item.sendDate }}</div>
@@ -157,7 +157,7 @@
 </p-table>
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
-  class="block md:hidden"
+  class="d-block d-md-none"
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
@@ -168,7 +168,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
@@ -177,17 +177,17 @@
         />
       </div>
       <div class="flex-1 min-w-0">
-        <div class="flex justify-content-between mb-1">
+        <div class="d-flex justify-content-between mb-1">
           <h2 class="font-bold m-0">{{ item.periodoExistente }}</h2>
           <lx-tag value="1" severity="info" class="text-xs"></lx-tag>
         </div>
 
         <!-- Status Indicators Stack -->
-        <div class="flex flex-column mt-2">
+        <div class="d-flex flex-column mt-2">
           <!-- Archivo -->
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <lx-tag value="2" severity="info" class="text-xs"></lx-tag>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
                 : "Pendiente" }}
@@ -200,9 +200,9 @@
             </div>
           </div>
           <!-- Autorización -->
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <lx-tag value="3" severity="info" class="text-xs"></lx-tag>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.personWhoAuthorized ? "Autorizado: " +
                 item.authorizationDate : "Pendiente" }}
@@ -215,9 +215,9 @@
             </div>
           </div>
           <!-- ENVíO -->
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             <lx-tag value="4" severity="info" class="text-xs"></lx-tag>
-            <div class="flex flex-column">
+            <div class="d-flex flex-column">
               <span class="text-sm font-semibold">
                 {{ item.personWhoSend ? "Enviado: " + item.sendDate :
                 "Pendiente" }}

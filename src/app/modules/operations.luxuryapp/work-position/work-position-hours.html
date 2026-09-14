@@ -1,7 +1,7 @@
 <lx-card [padded]="false">
 @if (data()) {
-    <div class="flex flex-column">
-      <div class="flex align-items-center p-3 surface-100 rounded-lg">
+    <div class="d-flex flex-column">
+      <div class="d-flex align-items-center p-3 surface-100 rounded-lg">
         <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
         <div>
           <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
@@ -9,11 +9,11 @@
         </div>
       </div>
 
-      <div class="flex flex-column gap-1">
+      <div class="d-flex flex-column gap-1">
         @for (dia of dias; track dia.n) {
-        <div class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded">
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded">
           <span class="font-semibold text-700 w-6rem">{{ dia.n }}</span>
-          <div class="flex align-items-center">
+          <div class="d-flex align-items-center">
             @let entry = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null;
             @let exit = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
             @if (entry && exit) {
@@ -30,7 +30,7 @@
     </div>
     } @else {
     <div
-      class="flex flex-column align-items-center justify-content-center p-8 text-400"
+      class="d-flex flex-column align-items-center justify-content-center p-8 text-400"
     >
       <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl mb-2" />
       <span>Cargando horarios...</span>

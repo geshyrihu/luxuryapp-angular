@@ -19,7 +19,7 @@ import { CheckboxModule } from "primeng/checkbox";
       [(ngModel)]="checked"
     />
     @if (label()) {
-      <label [for]="inputId()" class="ml-2">{{ label() }}</label>
+      <label [for]="inputId()" class="ms-2">{{ label() }}</label>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

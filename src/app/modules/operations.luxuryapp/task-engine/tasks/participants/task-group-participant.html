@@ -1,5 +1,5 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <div class="flex flex-column">
+  <div class="d-flex flex-column">
     <div class="w-full">
       <custom-input-autocomplete-signal
         (propagar)="onSelectUser($event)"
@@ -19,7 +19,7 @@
         [filter]="true"
       />
     </div>
-    <div class="w-full flex justify-content-end">
+    <div class="w-full d-flex justify-content-end">
       <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"
@@ -30,13 +30,13 @@
 </form>
 
 @if (loading_existing_participant()) {
-<div class="flex justify-content-center mt-3">
+<div class="d-flex justify-content-center mt-3">
   <app-spinner />
 </div>
 } @else if (cb_existing_Participant().length === 0) {
 <lx-message severity="info" text="No hay integrantes."></lx-message>
 } @else {
-<div class="flex flex-column mt-3 gap-2">
+<div class="d-flex flex-column mt-3 gap-2">
   @for (item of cb_existing_Participant(); track item.id) {
   <ili-list-item
     class="w-full border-1 rounded-md"
@@ -44,7 +44,7 @@
     [class.border-red-500]="item.isAdmin !== 'Administrador'"
   >
     <!-- Lado izquierdo: icono + texto -->
-    <div slot="start" class="mr-2 flex align-items-center">
+    <div slot="start" class="me-2 d-flex align-items-center">
       <app-icon
         [icon]="
               item.isAdmin === 'Administrador'
@@ -60,7 +60,7 @@
       />
     </div>
 
-    <div class="flex flex-column gap-1">
+    <div class="d-flex flex-column gap-1">
       <p class="font-semibold m-0 text-color line-height-2 text-sm">
         {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante'
         }}

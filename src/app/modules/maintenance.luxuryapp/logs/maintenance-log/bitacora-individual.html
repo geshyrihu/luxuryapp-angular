@@ -8,14 +8,14 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid align-items-center">
-      <div class="col-12 sm:col-5">
+    <div class="row align-items-center">
+      <div class="col-12 col-sm-5">
         <app-rango-calendario-yyyymmdd />
       </div>
-      <div class="col-12 sm:col-7">
+      <div class="col-12 col-sm-7">
         <primeng-custom-caption
           [title]="nameMachinery"
           [showAdd]="false"

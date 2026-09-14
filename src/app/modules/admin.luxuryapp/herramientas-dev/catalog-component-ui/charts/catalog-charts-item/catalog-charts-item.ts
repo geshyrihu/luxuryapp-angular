@@ -73,7 +73,7 @@ const CHARTS_LABELS: Record<string, string> = {
             <div class="phone-dynamic-island"></div>
             <div class="phone-screen">
               <div
-                class="flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
+                class="d-flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
               >
                 <app-icon
                   icon="material-symbols-light:timeline"

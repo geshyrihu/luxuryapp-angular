@@ -13,7 +13,7 @@ import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
   template: `
     @if (isProcessing()) {
       <div
-        class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
+        class="fixed inset-0 bg-black/50 z-50 d-flex items-center justify-center"
       >
         <div class="bg-white rounded-xl shadow-xl p-6 mx-3 w-full max-w-xs">
           <!-- Spinner -->

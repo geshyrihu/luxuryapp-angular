@@ -16,8 +16,8 @@ export {
 
   imports: [ButtonModule],
   template: `
-    <div class="date-range-root flex flex-column gap-2">
-      <div class="flex gap-2 flex-wrap">
+    <div class="date-range-root d-flex flex-column gap-2">
+      <div class="d-flex gap-2 flex-wrap">
         @for (preset of presets; track preset.label) {
           <p-button
             [label]="preset.label"
@@ -28,8 +28,8 @@ export {
           />
         }
       </div>
-      <div class="flex gap-2 align-items-center">
-        <div class="flex flex-column flex-1">
+      <div class="d-flex gap-2 align-items-center">
+        <div class="d-flex flex-column flex-1">
           <label class="text-xs text-color-secondary mb-1">Desde</label>
           <input
             type="date"
@@ -39,7 +39,7 @@ export {
           />
         </div>
         <span class="text-color-muted mt-4">—</span>
-        <div class="flex flex-column flex-1">
+        <div class="d-flex flex-column flex-1">
           <label class="text-xs text-color-secondary mb-1">Hasta</label>
           <input
             type="date"

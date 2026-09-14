@@ -9,7 +9,7 @@
   [scrollHeight]="scrollHeight()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -48,7 +48,7 @@
       <td>{{ item.tipoJornadaName }}</td>
       <td>
         <!-- {{ formatSchedule(item) }} -->
-        <div class="flex flex-wrap gap-1 mt-2">
+        <div class="d-flex flex-wrap gap-1 mt-2">
           @for (day of schedulePresentationS.indicators(item); track day.label)
           {
           <span
@@ -82,7 +82,7 @@
         </span>
       </td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Horario de Puesto' })"
           />
@@ -115,7 +115,7 @@
     <ili-list-item lines="full" class="ion-no-padding" detail="false">
       <div
         slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
         <app-icon icon="Clock" class="text-xl text-primary" />
       </div>
@@ -123,7 +123,7 @@
         <p class="mt-0 mb-0">{{ item.name }}</p>
         <small>{{ item.tipoJornadaName }}</small>
         <small class="text-500"> · {{ formatSchedule(item) }}</small>
-        <div class="flex flex-wrap gap-1 mt-1">
+        <div class="d-flex flex-wrap gap-1 mt-1">
           @for (day of schedulePresentationS.indicators(item); track day.label)
           {
           <span
@@ -140,11 +140,11 @@
           </span>
           }
         </div>
-        <small class="block text-primary font-semibold text-xs mt-1">
+        <small class="d-block text-primary font-semibold text-xs mt-1">
           {{ formatHoursSummary(item) }}
         </small>
         @if (hasOvernightShift(item)) {
-        <small class="block text-500">+1 día: salida al día siguiente</small>
+        <small class="d-block text-500">+1 día: salida al día siguiente</small>
         }
       </div>
 

@@ -45,7 +45,7 @@ export interface DataGridColumn {
     <div class="data-grid-root">
       @if (title() || globalFilter()) {
         <div
-          class="data-grid-toolbar flex align-items-center gap-2 flex-wrap mb-2"
+          class="data-grid-toolbar d-flex align-items-center gap-2 flex-wrap mb-2"
         >
           @if (title()) {
             <strong class="data-grid-title">{{ title() }}</strong>
@@ -122,7 +122,7 @@ export interface DataGridColumn {
                 [style]="{ width: col.width, 'min-width': col.minWidth }"
                 [class]="col.styleClass"
               >
-                <div class="flex align-items-center gap-1">
+                <div class="d-flex align-items-center gap-1">
                   @if (col.icon) {
                     <app-icon [icon]="col.icon" class="text-sm" />
                   }
@@ -203,7 +203,7 @@ export interface DataGridColumn {
             }
             @if (showActions()) {
               <td>
-                <div class="flex gap-1">
+                <div class="d-flex gap-1">
                   <p-button
                     [rounded]="true"
                     [text]="true"

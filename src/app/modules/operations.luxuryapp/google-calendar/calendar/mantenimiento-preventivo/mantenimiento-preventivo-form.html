@@ -2,7 +2,7 @@
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- ID oculto -->
-      <div class="hidden">
+      <div class="d-none">
         <custom-input-text-signal
           [hidden]="true"
           [control]="form.controls.id"
@@ -12,8 +12,8 @@
       </div>
 
       <!-- PRIMERA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveMachineryId($event)"
             [control]="form.controls.machineryName"
@@ -23,7 +23,7 @@
           />
         </div>
 
-        <div class="col-6 md:col-3">
+        <div class="col-6 col-md-3">
           <custom-input-select-signal
             [control]="form.controls.recurrence"
             label="Recurrencia"
@@ -32,7 +32,7 @@
           />
         </div>
 
-        <div class="col-6 md:col-3">
+        <div class="col-6 col-md-3">
           <custom-input-select-signal
             [control]="form.controls.month"
             label="Mes"
@@ -43,8 +43,8 @@
       </div>
 
       <!-- SEGUNDA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-select-signal
             [control]="form.controls.typeMaintance"
             label="Tipo de Mantenimiento"
@@ -53,7 +53,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-number-signal
             [control]="form.controls.price"
             label="Precio"
@@ -62,8 +62,8 @@
       </div>
 
       <!-- TERCERA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveProviderId($event)"
             [control]="form.controls.providerName"
@@ -73,7 +73,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveAccountingCatalog($event)"
             [control]="form.controls.accountingCatalogName"
@@ -85,8 +85,8 @@
       </div>
 
       <!-- CUARTA FILA -->
-      <div class="grid">
-        <div class="col-12 md:col-6">
+      <div class="row">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.activity"
             label="Actividad"
@@ -95,7 +95,7 @@
           />
         </div>
 
-        <div class="col-12 md:col-6">
+        <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.observation"
             label="Observaciones"
@@ -106,7 +106,7 @@
       </div>
 
       <!-- BOTÓN -->
-      <div class="flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end mt-4">
         <il-button-save
           [propertyId]="id"
           [disabled]="form.invalid"

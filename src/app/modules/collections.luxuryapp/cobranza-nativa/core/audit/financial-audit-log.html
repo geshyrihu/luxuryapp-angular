@@ -1,6 +1,6 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-3">
-    <div class="flex gap-2 align-items-start">
+    <div class="d-flex gap-2 align-items-start">
       <app-icon
         [icon]="'material-symbols-light:shield'"
         class="text-primary mt-1"
@@ -15,8 +15,8 @@
   </lx-card>
 
   <lx-card class="card card--elevated mb-3">
-    <div class="grid formgrid align-items-end">
-      <div class="field col-12 md:col-4">
+    <div class="row formgrid align-items-end">
+      <div class="field col-12 col-md-4">
         <custom-input-select-signal
           label="Propiedad (opcional)"
           [data]="properties()"
@@ -24,13 +24,13 @@
           [filter]="true"
         />
       </div>
-      <div class="field col-6 md:col-2">
+      <div class="field col-6 col-md-2">
         <custom-input-date-signal label="Desde" [control]="fromCtrl" />
       </div>
-      <div class="field col-6 md:col-2">
+      <div class="field col-6 col-md-2">
         <custom-input-date-signal label="Hasta" [control]="toCtrl" />
       </div>
-      <div class="field col-12 md:col-2 flex align-items-end">
+      <div class="field col-12 col-md-2 d-flex align-items-end">
         <il-button
           label="Consultar"
           iconClass="material-symbols-light:search"
@@ -49,7 +49,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -105,7 +105,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem rounded-lg flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
           [class]="log.isSuccess ? 'bg-green-100' : 'bg-red-100'"
         >
           <app-icon

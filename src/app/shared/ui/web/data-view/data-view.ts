@@ -31,7 +31,7 @@ export type DataViewLayout = "list" | "grid";
     LxSpinner,
   ],
   template: `
-    <div class="flex align-items-center gap-2 mb-3 flex-wrap">
+    <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
       @if (globalFilterFields().length) {
         <span class="p-input-icon-left flex-grow-1">
           <app-icon icon="material-symbols-light:search" />
@@ -64,7 +64,7 @@ export type DataViewLayout = "list" | "grid";
     </div>
 
     @if (loading()) {
-      <div class="flex justify-content-center py-5">
+      <div class="d-flex justify-content-center py-5">
         <lx-spinner [size]="48" />
       </div>
     } @else if ($filteredData().length > 0) {
@@ -81,7 +81,7 @@ export type DataViewLayout = "list" | "grid";
         [sortOrder]="sortOrder()"
       >
         <ng-template let-items pTemplate="list">
-          <div class="grid grid-nogutter">
+          <div class="row grid-nogutter">
             @for (item of items; track trackByFn($index, item)) {
               <ng-container
                 *ngTemplateOutlet="
@@ -93,7 +93,7 @@ export type DataViewLayout = "list" | "grid";
           </div>
         </ng-template>
         <ng-template let-items pTemplate="grid">
-          <div class="grid">
+          <div class="row">
             @for (item of items; track trackByFn($index, item)) {
               <ng-container
                 *ngTemplateOutlet="

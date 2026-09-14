@@ -12,14 +12,14 @@
   <div class="candidate-timeline-grid">
     @for (candidate of candidateTimelines(); track candidate.candidateProcessId) {
     <section class="candidate-timeline-column card shadow-1 border-round">
-      <header class="candidate-timeline-header flex align-items-start gap-3">
+      <header class="candidate-timeline-header d-flex align-items-start gap-3">
         <lx-avatar
           [image]="candidate.photoUrl"
           shape="circle"
           size="xlarge"
           icon="material-symbols-light:person"
         />
-        <div class="flex flex-column flex-grow-1">
+        <div class="d-flex flex-column flex-grow-1">
           <span class="font-bold text-lg text-primary">{{ candidate.candidateName }}</span>
           <small class="text-500 mt-1">
             Registro creado:
@@ -49,7 +49,7 @@
 
         <ng-template #content let-event>
           <div class="timeline-event-card p-3 mb-3 border-round">
-            <div class="flex align-items-center flex-wrap gap-2">
+            <div class="d-flex align-items-center flex-wrap gap-2">
               <span class="text-sm text-500">{{ event.fromStageName }}</span>
               <app-icon icon="material-symbols-light:arrow-right-alt" class="text-500" />
               <lx-tag [value]="event.stageName" />
@@ -57,13 +57,13 @@
 
             @if (event.comment) {
             <div class="mt-2 p-2 surface-100 border-round text-sm text-700 font-italic">
-              <app-icon icon="material-symbols-light:chat" class="mr-1 align-middle" />
+              <app-icon icon="material-symbols-light:chat" class="me-1 align-middle" />
               {{ event.comment }}
             </div>
             }
 
             @if (event.changedBy) {
-            <small class="text-500 mt-2 block">Registrado por {{ event.changedBy }}</small>
+            <small class="text-500 mt-2 d-block">Registrado por {{ event.changedBy }}</small>
             }
           </div>
         </ng-template>

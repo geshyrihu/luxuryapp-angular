@@ -43,7 +43,6 @@ import {
   templateUrl: "./org-chart.html",
   styleUrl: "./org-chart.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MessageService],
   imports: [
     AppIcon,
     CommonModule,

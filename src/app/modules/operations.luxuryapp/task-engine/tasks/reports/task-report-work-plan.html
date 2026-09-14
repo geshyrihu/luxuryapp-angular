@@ -9,15 +9,15 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #caption>
-    <div class="grid">
-      <div class="col-12 lg:col-7">
+    <div class="row">
+      <div class="col-12 col-lg-7">
         <primeng-custom-caption title="Plan de Trabajo" [dt]="dt" />
       </div>
-      <div class="col-12 lg:col-2">
+      <div class="col-12 col-lg-2">
         <il-button
           iconClass="material-symbols-light:visibility-outline"
           label="Vista Previa"
@@ -26,7 +26,7 @@
           (clicked)="onPreviewClicked()"
         />
       </div>
-      <div class="col-12 lg:col-3">
+      <div class="col-12 col-lg-3">
         <custom-input-select-signal
           [data]="cb_assignee"
           optionLabel="label"
@@ -81,7 +81,7 @@
         <p class="text-sm">{{ item.description }}</p>
       </td>
       <td class="text-center">
-        <div class="flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           @if (item.beforeWork) {
           <app-image
             [src]="
@@ -135,7 +135,7 @@
       </td>
       <!-- Opciones -->
       <td class="text-center">
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <!-- <custom-btn-follow-up
             [id]="item.id"
             [count]="item.ticketMessageFollowUp"

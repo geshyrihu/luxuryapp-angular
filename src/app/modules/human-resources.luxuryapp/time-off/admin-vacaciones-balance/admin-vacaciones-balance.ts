@@ -54,7 +54,7 @@ import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-a
   ],
   templateUrl: "./admin-vacaciones-balance.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService],
 })
 export class AdminVacacionesBalance {
   apiResponseS = inject(ApiResponseService);

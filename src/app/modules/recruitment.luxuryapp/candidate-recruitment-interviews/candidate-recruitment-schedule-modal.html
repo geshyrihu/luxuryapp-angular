@@ -1,8 +1,8 @@
-<div class="md:p-3">
+<div class="p-md-3">
   <div class="font-semibold mb-3">{{ title() }}</div>
   @if (hasExistingInterview) {
   <div class="mb-3 p-3 border-1 blue-500 border-round surface-50">
-    <small class="block text-color-secondary">
+    <small class="d-block text-color-secondary">
       Este candidato ya tiene una entrevista agendada. Al guardar, se cancelara
       la cita actual y se creara una nueva con la fecha y hora indicadas.
     </small>
@@ -14,17 +14,17 @@
     [formGroup]="form"
     [attr.aria-label]="title()"
   >
-    <div class="grid">
+    <div class="row">
       @if (action === 'send' || action === 'schedule' || action ===
       'reschedule') {
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-date-signal
           [control]="form.controls['scheduledDate']"
           label="Fecha de entrevista"
           placeholder="Selecciona fecha"
         />
       </div>
-      <div class="col-12 md:col-6">
+      <div class="col-12 col-md-6">
         <custom-input-time-signal
           [control]="form.controls['scheduledTime']"
           label="Hora de entrevista"
@@ -42,7 +42,7 @@
           [filter]="true"
         />
         @if (!loadingInterviewers() && cb_interviewers().length === 0) {
-        <small class="block mt-2 text-red-500">
+        <small class="d-block mt-2 text-red-500">
           No hay entrevistadores elegibles en la matrix para esta vacante. No
           se puede asignar ni agendar hasta configurar una coincidencia valida.
         </small>
@@ -58,7 +58,7 @@
         />
       </div>
     </div>
-    <div class="flex justify-content-between align-items-center gap-2 pb-2">
+    <div class="d-flex justify-content-between align-items-center gap-2 pb-2">
       <div>
         @if (canCancelInterview()) {
         <il-button

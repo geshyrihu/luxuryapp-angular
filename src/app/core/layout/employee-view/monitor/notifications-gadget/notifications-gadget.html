@@ -33,7 +33,7 @@
       @for (notification of notifications(); track notification.id) {
       <!-- Item de notificación -->
       <div
-        class="flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border"
+        class="d-flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border"
         (click)="markAsRead(notification.id, notification.url)"
         [class.surface-100]="!notification.isRead"
         [class.font-semibold]="!notification.isRead"
@@ -55,7 +55,7 @@
       } @empty {
       <!-- Estado vacño -->
       <div
-        class="flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
+        class="d-flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
         style="height: 300px"
       >
         <app-icon icon="material-symbols-light:move-to-inbox" class="text-4xl text-color-secondary" />

@@ -13,14 +13,14 @@
 -->
 <div class="p-4">
   @if (loading()) {
-  <div class="flex flex-column align-items-center justify-content-center p-8">
+  <div class="d-flex flex-column align-items-center justify-content-center p-8">
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-6xl text-primary mb-4" />
     <div class="text-xl font-medium text-700">Analizando con IA...</div>
     <div class="text-500 mt-2 text-center">Esto puede tomar unos segundos.</div>
   </div>
   } @else {
   <div
-    class="line-height-3 text-lg overflow-y-auto pr-3 surface-ground rounded p-3"
+    class="line-height-3 text-lg overflow-y-auto pe-3 surface-ground rounded p-3"
   >
     @if (auditReportHtml()) {
     <div [innerHTML]="auditReportHtml()"></div>
@@ -31,7 +31,7 @@
     }
   </div>
 
-  <div class="flex justify-content-end mt-4 pt-3 border-top-1 border-100">
+  <div class="d-flex justify-content-end mt-4 pt-3 border-top-1 border-100">
     <il-button
       iconClass="material-symbols-light:check"
       (clicked)="close()"

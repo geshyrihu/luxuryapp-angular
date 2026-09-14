@@ -1,13 +1,13 @@
-<div class="hidden md:block">
+<div class="d-none d-md-block">
 <p-table [value]="data()" [loading]="loading()" class="custom-table" #dt>
   <ng-template #caption>
-    <div class="flex flex-column gap-2 mb-2">
+    <div class="d-flex flex-column gap-2 mb-2">
       <div>
         <div class="font-semibold text-lg">Etiquetas QR</div>
         <div class="text-sm text-600">{{ machineryName }}</div>
       </div>
       <div
-        class="flex justify-content-between align-items-center gap-2 flex-wrap"
+        class="d-flex justify-content-between align-items-center gap-2 flex-wrap"
       >
         <primeng-custom-caption [dt]="dt" (add)="onCreate()" />
         <iw-button-item
@@ -46,7 +46,7 @@
       </td>
       <td>{{ item.printedAt || "Sin impresion" }}</td>
       <td>
-        <div class="flex justify-content-end gap-1">
+        <div class="d-flex justify-content-end gap-1">
           <iw-button-item
             iconClass="material-symbols-light:print-outline"
             lxTooltip="Imprimir"

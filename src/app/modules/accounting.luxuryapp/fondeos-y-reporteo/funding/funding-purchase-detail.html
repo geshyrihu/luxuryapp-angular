@@ -14,7 +14,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
 <div class="animate__fadeIn">
   <!-- Encabezado de la Tarjeta -->
   <div
-    class="flex justify-content-between align-items-center border-bottom-1 surface-border p-3 surface-100"
+    class="d-flex justify-content-between align-items-center border-bottom-1 surface-border p-3 surface-100"
   >
     <h4 class="mb-0">
       Detalle de Orden de Compra:
@@ -35,33 +35,33 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 1: INFORMACIóN GENERAL -->
     <h5 class="text-xl font-medium m-0">Información General</h5>
     <hr class="my-3 surface-border" />
-    <div class="grid mb-4">
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+    <div class="row mb-4">
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Fecha de Solicitud</label
         >
         <p class="font-bold">{{ data().fechaSolicitud }}</p>
       </div>
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Solicitado Por</label
         >
         <p>{{ data().solicitadoPor }}</p>
       </div>
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Folio Solicitud de Compra</label
         >
         <p>{{ data().folioSolicitudCompra }}</p>
       </div>
       <div class="col-12">
-        <label class="block text-color-secondary font-medium"
+        <label class="d-block text-color-secondary font-medium"
           >Justificación del Gasto</label
         >
         <p class="text-break">{{ data().justificacionGasto }}</p>
       </div>
       <div class="col-12">
-        <label class="block text-color-secondary font-medium"
+        <label class="d-block text-color-secondary font-medium"
           >Área, Equipo o Instalación</label
         >
         <p>{{ data().equipoOInstalacion }}</p>
@@ -70,31 +70,31 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 2: DATOS DEL PROVEEDOR Y PAGO -->
     <h5 class="text-xl font-medium m-0 mt-4">Datos del Proveedor y Pago</h5>
     <hr class="my-3 surface-border" />
-    <div class="grid mb-4">
-      <div class="col-12 md:col-6">
-        <label class="block text-color-secondary font-medium">Proveedor</label>
+    <div class="row mb-4">
+      <div class="col-12 col-md-6">
+        <label class="d-block text-color-secondary font-medium">Proveedor</label>
         <p class="font-bold">{{ data().providerName }}</p>
       </div>
-      <div class="col-12 md:col-6">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-6">
+        <label class="d-block text-color-secondary font-medium"
           >Tipo de Gasto</label
         >
         <p>{{ data().tipoGasto }}</p>
       </div>
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Uso de CFDI</label
         >
         <p>{{ data().usoCFDI }}</p>
       </div>
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Mótodo de Pago</label
         >
         <p>{{ data().metodoDePago }}</p>
       </div>
-      <div class="col-12 md:col-4">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-4">
+        <label class="d-block text-color-secondary font-medium"
           >Forma de Pago</label
         >
         <p>{{ data().formaDePago }}</p>
@@ -103,9 +103,9 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 3: ESTADO DE LA ORDEN -->
     <h5 class="text-xl font-medium m-0 mt-4">Estado de la Orden</h5>
     <hr class="my-3 surface-border" />
-    <div class="grid mb-4">
-      <div class="col-12 md:col-3">
-        <label class="block text-color-secondary font-medium"
+    <div class="row mb-4">
+      <div class="col-12 col-md-3">
+        <label class="d-block text-color-secondary font-medium"
           >Estado General</label
         >
         <p>
@@ -116,8 +116,8 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           />
         </p>
       </div>
-      <div class="col-12 md:col-3">
-        <label class="block text-color-secondary font-medium">Recibido</label>
+      <div class="col-12 col-md-3">
+        <label class="d-block text-color-secondary font-medium">Recibido</label>
         <p>
           <lx-tag
             class="text-base"
@@ -126,8 +126,8 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           />
         </p>
       </div>
-      <div class="col-12 md:col-3">
-        <label class="block text-color-secondary font-medium">Pagado</label>
+      <div class="col-12 col-md-3">
+        <label class="d-block text-color-secondary font-medium">Pagado</label>
         <p>
           <lx-tag
             class="text-base"
@@ -136,8 +136,8 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           />
         </p>
       </div>
-      <div class="col-12 md:col-3">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-3">
+        <label class="d-block text-color-secondary font-medium"
           >Trómite de Pago</label
         >
         <p>
@@ -148,14 +148,14 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           />
         </p>
       </div>
-      <div class="col-12 md:col-6">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-6">
+        <label class="d-block text-color-secondary font-medium"
           >Autorizado Por</label
         >
         <p>{{ data().autorizadoPor || "N/A" }}</p>
       </div>
-      <div class="col-12 md:col-6">
-        <label class="block text-color-secondary font-medium"
+      <div class="col-12 col-md-6">
+        <label class="d-block text-color-secondary font-medium"
           >Fecha de Autorización</label
         >
         <p>{{ data().fechaAutorizacion || "N/A" }}</p>
@@ -198,9 +198,9 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       </p-table>
     </div>
     <!-- SECCIóN 5: TOTALES -->
-    <div class="flex justify-content-end mt-3">
+    <div class="d-flex justify-content-end mt-3">
       <div class="w-full md:w-6">
-        <div class="grid">
+        <div class="row">
           <div class="col-6 text-right font-bold">Subtotal General:</div>
           <div class="col-6 text-right">
             {{ data().subTotalGeneral | currency: "MXN" }}

@@ -8,8 +8,8 @@
 
     <div class="card-body">
       <form [formGroup]="occupantForm" (ngSubmit)="onAddOrUpdateOccupant()">
-        <div class="grid">
-          <div class="col-12 md:col-6">
+        <div class="row">
+          <div class="col-12 col-md-6">
             <custom-input-text-signal
               [control]="occupantForm.controls.fullName"
               label="Nombre completo"
@@ -17,7 +17,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-text-signal
               [control]="occupantForm.controls.email"
               label="Email"
@@ -25,7 +25,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-6">
+          <div class="col-12 col-md-6">
             <custom-input-text-signal
               [control]="occupantForm.controls.phoneNumber"
               label="Teléfono"
@@ -33,7 +33,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-3 flex align-items-center pl-5">
+          <div class="col-12 col-md-3 d-flex align-items-center ps-5">
             <custom-input-check-signal
               [control]="occupantForm.controls.isOwner"
               placeholder="Es propietario"
@@ -42,7 +42,7 @@
             />
           </div>
 
-          <div class="col-12 md:col-3 flex align-items-center pl-5">
+          <div class="col-12 col-md-3 d-flex align-items-center ps-5">
             <custom-input-check-signal
               [control]="occupantForm.controls.isResident"
               placeholder="Es residente"
@@ -73,7 +73,7 @@
   @if (occupants().length > 0) {
     <h5 class="mb-2">Ocupantes registrados</h5>
 
-    <p-table [value]="occupants()" class="custom-table card hidden md:block">
+    <p-table [value]="occupants()" class="custom-table card d-none d-md-block">
       <ng-template #header>
         <tr>
           <th>Nombre</th>
@@ -92,7 +92,7 @@
           <td>{{ occupant.phoneNumber }}</td>
           <td>
             @if (occupant.isOwner) {
-              <lx-tag value="Propietario" severity="success" class="mr-1" />
+              <lx-tag value="Propietario" severity="success" class="me-1" />
             }
             @if (occupant.isResident) {
               <lx-tag value="Residente" severity="info" />
@@ -109,7 +109,7 @@
             }
           </td>
           <td>
-            <div class="flex gap-1">
+            <div class="d-flex gap-1">
               <iw-button-edit (clicked)="onEditOccupant(occupant)" />
               <iw-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
             </div>

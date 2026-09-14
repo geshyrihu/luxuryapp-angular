@@ -1,7 +1,7 @@
 <lx-card>
   <ng-template #header>
     <div
-      class="p-4 flex justify-content-between align-items-center border-bottom-1 surface-border"
+      class="p-4 d-flex justify-content-between align-items-center border-bottom-1 surface-border"
     >
       <div>
         <h5 class="m-0">Matriz de Jerarquóa de Aprobación</h5>
@@ -26,7 +26,7 @@
   <div class="table-container">
     <p-table
       [value]="targetRoles()"
-      class="custom-table hidden md:block"
+      class="custom-table d-none d-md-block"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
       [rowHover]="true"
@@ -67,7 +67,7 @@
               optionValue="value"
             >
               <ng-template #item let-item>
-                <app-icon [icon]="item.icon" class="mr-2" />
+                <app-icon [icon]="item.icon" class="me-2" />
                 <span>{{ item.label }}</span>
               </ng-template>
             </custom-input-select-button-signal>
@@ -77,7 +77,7 @@
       </ng-template>
     </p-table>
   </div>
-  <div class="block md:hidden p-4 text-center text-500">
+  <div class="d-block d-md-none p-4 text-center text-500">
     <p>La matriz de aprobación estó optimizada para pantallas de escritorio.</p>
   </div>
   }

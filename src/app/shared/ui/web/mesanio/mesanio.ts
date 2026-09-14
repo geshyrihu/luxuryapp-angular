@@ -15,14 +15,14 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   imports: [FormsModule, NgbTooltip, InputTextModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="grid gap-4 mb-4">
+    <div class="row gap-4 mb-4">
       <label
         for="horizontal-firstname-input"
-        class="col-12 md:col-3 form-label"
+        class="col-12 col-md-3 form-label"
       >
         Periodo
       </label>
-      <div class="col-12 md:col-9">
+      <div class="col-12 col-md-9">
         <input
           type="month"
           ngbTooltip="SELECCIONA PERIODO"

@@ -1,6 +1,6 @@
 <div class="card mb-2 p-2">
-  <div class="grid">
-    <div class="col-12 md:col-4">
+  <div class="row">
+    <div class="col-12 col-md-4">
       <custom-input-select-signal
         [control]="stageControl"
         [data]="stages()"
@@ -10,7 +10,7 @@
       />
     </div>
     @if (activeStage() !== null) {
-    <div class="col-12 md:col-8 flex align-items-end pb-1">
+    <div class="col-12 col-md-8 d-flex align-items-end pb-1">
       <app-candidate-stage-badge [stage]="activeStage()" />
     </div>
     }
@@ -82,7 +82,7 @@
         }
       </td>
       <td class="no-print">
-        <div class="flex align-items-center gap-2 justify-content-end">
+        <div class="d-flex align-items-center gap-2 justify-content-end">
         @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
         <il-button-item
           label="Marcar contratado"

@@ -1,5 +1,5 @@
-<div class="flex flex-column gap-3 p-3">
-  <header class="flex align-items-center justify-content-between gap-2">
+<div class="d-flex flex-column gap-3 p-3">
+  <header class="d-flex align-items-center justify-content-between gap-2">
     <div>
       <small class="text-500">{{ folio() }}</small>
       <h2 class="m-0">{{ applicationRoleName() }}</h2>
@@ -13,7 +13,7 @@
     />
   </header>
 
-  <div class="flex gap-3 border-bottom-1 surface-border">
+  <div class="d-flex gap-3 border-bottom-1 surface-border">
     <button
       type="button"
       class="bg-transparent border-none cursor-pointer pb-2 border-bottom-2 transition-colors"
@@ -39,7 +39,7 @@
   @if (activeTab() === 'description') {
   <lx-card [padded]="false">
     @if (description(); as d) {
-    <div class="flex flex-column gap-3 p-3">
+    <div class="d-flex flex-column gap-3 p-3">
       <div>
         <span class="text-500 font-bold">Resumen</span>
         <p class="mt-1 white-space-pre-line">{{ d.summary }}</p>
@@ -70,31 +70,31 @@
     }
   </lx-card>
   } @else {
-  <div class="flex flex-column gap-3">
+  <div class="d-flex flex-column gap-3">
     <lx-card [padded]="false">
-      <div class="flex flex-column gap-2 p-3">
+      <div class="d-flex flex-column gap-2 p-3">
         <h3 class="m-0">Datos generales</h3>
         @if (general(); as g) {
-        <div class="flex flex-column gap-1">
-          <div class="flex justify-content-between">
+        <div class="d-flex flex-column gap-1">
+          <div class="d-flex justify-content-between">
             <span class="text-500">Turno</span>
             <span> {{ g.turno }}</span>
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <span class="text-500">Sueldo base</span>
             <span>{{ g.sueldoBase }}</span>
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <span class="text-500">Sueldo</span>
             <span>{{ g.sueldo }}</span>
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <span class="text-500">Prestaciones</span>
             <span class="white-space-pre-line text-right"
               >{{ g.benefits }}</span
             >
           </div>
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <span class="text-500">Estado</span>
             <span>{{ g.state ? 'Activo' : 'Inactivo' }}</span>
           </div>
@@ -115,9 +115,9 @@
           <strong>Observaciones:</strong> {{ h.observaciones }}
         </p>
         }
-        <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column gap-1">
           @for (dia of dias; track dia.n) {
-          <div class="flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <span class="font-semibold">{{ dia.n }}</span>
             @let entry = h.diasDeTrabajo?.find(d => d.diaSemana ===
             dia.dw)?.horaEntrada ?? null; @let exit = h.diasDeTrabajo?.find(d =>

@@ -5,19 +5,19 @@
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="grid mb-3">
-      <div class="col-12 sm:col-6">
+    <div class="row mb-3">
+      <div class="col-12 col-sm-6">
         <h4 class="mb-0 font-size-18">
           {{ (reporteFiltro | uppercase) + ", PERIODO " + periodo | uppercase }}
         </h4>
       </div>
-      <div class="col-12 sm:col-3 no-print">
+      <div class="col-12 col-sm-3 no-print">
         <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
       </div>
-      <div class="col-12 sm:col-3 no-print">
+      <div class="col-12 col-sm-3 no-print">
         <custom-input-text-signal
           (input)="dt.filterGlobal($any($event.target).value, 'contains')"
           placeholder="Ingresa texto para buscar..."
@@ -26,7 +26,7 @@
         />
       </div>
     </div>
-    <div class="flex flex-wrap gap-2 no-print mb-3">
+    <div class="d-flex flex-wrap gap-2 no-print mb-3">
       <il-button
         (clicked)="nivelReporte = 0"
         label="GENERAL"
@@ -48,7 +48,7 @@
         [variant]="mostrar ? 'outlined' : null"
       />
     </div>
-    <div class="flex flex-wrap gap-2 no-print mb-3">
+    <div class="d-flex flex-wrap gap-2 no-print mb-3">
       <il-button
         variant="outline"
         label="MINUTAS GENERAL"
@@ -105,7 +105,7 @@
             >
               <ng-template let-option #item>
                 <div class="p-multiselect-representative-option">
-                  <span class="ml-1">{{ option.label }}</span>
+                  <span class="ms-1">{{ option.label }}</span>
                 </div>
               </ng-template>
             </lx-multi-select>

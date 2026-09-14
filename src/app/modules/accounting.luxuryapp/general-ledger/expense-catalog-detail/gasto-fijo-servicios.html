@@ -4,7 +4,7 @@
 </p>
 }
 
-<p-table [value]="productosAgregados()" #dc class="card hidden md:block">
+<p-table [value]="productosAgregados()" #dc class="card d-none d-md-block">
   <ng-template #caption>
     <primeng-custom-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
   </ng-template>
@@ -27,7 +27,7 @@
           [image]="item.productoImg
                     ? item.productoImg
                     : 'assets/images/default-avatar.png'"
-          class="mr-2"
+          class="me-2"
           size="large"
           (click)="onCardEmployee(item.id)"
         />
@@ -60,7 +60,7 @@
       </td>
       <!-- Opciones -->
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-item
             iconClass="material-symbols-light:save"
             (clicked)="onUpdateProductoAgregado(item)"
@@ -81,7 +81,7 @@
 <p-table
   [(selection)]="selectedProducts"
   #dt
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
   [value]="productos()"
   [rows]="tablePrimeNgRows"
   [paginator]="true"
@@ -112,7 +112,7 @@
           [image]="item.urlImagen
                     ? item.urlImagen
                     : 'assets/images/default-avatar.png'"
-          class="mr-2"
+          class="me-2"
           size="large"
           (click)="onCardEmployee(item.id)"
         />
@@ -149,7 +149,7 @@
       </td>
 
       <td>
-        <div class="flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <iw-button-item
             iconClass="material-symbols-light:save"
             (clicked)="onSubmit(item)"

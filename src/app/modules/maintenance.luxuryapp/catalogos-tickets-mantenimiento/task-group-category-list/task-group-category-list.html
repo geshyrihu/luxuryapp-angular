@@ -2,7 +2,7 @@
 <p-table
   [value]="dataSignal()"
   #dt
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -47,8 +47,8 @@
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="6" class="bg-blue-50">
-        <div class="flex align-items-center py-2 px-3">
-          <app-icon [icon]="'material-symbols-light:label'" class="mr-2 text-blue-500" />
+        <div class="d-flex align-items-center py-2 px-3">
+          <app-icon [icon]="'material-symbols-light:label'" class="me-2 text-blue-500" />
           <span class="font-bold text-blue-900">{{ item.departament }}</span>
         </div>
       </td>
@@ -68,7 +68,7 @@
       <td>{{ item.name }}</td>
       <td>{{ item.description }}</td>
       <td class="no-print">
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
@@ -96,7 +96,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
@@ -105,16 +105,16 @@
         />
       </div>
 
-      <div class="flex align-items-center">
+      <div class="d-flex align-items-center">
         <span class="text-xl">{{ item.emoji }}</span>
-        <div class="ml-2">
+        <div class="ms-2">
           <p class="font-semibold m-0 text-color">{{ item.name }}</p>
           <p class="text-xs m-0 text-color-secondary">
             {{ item.code }} | {{ item.departament | uppercase }}
           </p>
         </div>
         <div
-          class="w-6 h-6 rounded-md flex-shrink-0 ml-auto"
+          class="w-6 h-6 rounded-md flex-shrink-0 ms-auto"
           [style.backgroundColor]="item.color"
         ></div>
       </div>

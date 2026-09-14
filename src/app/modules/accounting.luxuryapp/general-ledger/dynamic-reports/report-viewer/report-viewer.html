@@ -1,7 +1,7 @@
 <div class="card">
   <!-- Barra de filtros -->
-  <div class="flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
-    <div class="flex align-items-end gap-2">
+  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+    <div class="d-flex align-items-end gap-2">
       <custom-input-number-signal
         [control]="filtroForm.controls.anio"
         label="Ano"
@@ -28,7 +28,7 @@
       />
     </div>
     @if (resultado()) {
-      <div class="flex gap-2">
+      <div class="d-flex gap-2">
         <il-button
           label="Excel"
           iconClass="material-symbols-light:table-view"
@@ -70,7 +70,7 @@
 
   <!-- Cargando -->
   @if (loading()) {
-    <div class="flex justify-content-center py-6">
+    <div class="d-flex justify-content-center py-6">
       <lx-spinner />
     </div>
   }
@@ -145,9 +145,9 @@
 
       <!-- ── Tarjetas KPI ───────────────────────────────────────────── -->
       @if (esSummaryCards()) {
-        <div class="grid">
+        <div class="row">
           @for (kpi of kpiCards(); track kpi.id) {
-            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
               <div class="surface-card rounded shadow-sm p-4 text-center">
                 <p class="text-500 text-sm m-0 mb-2 white-space-nowrap overflow-hidden text-overflow-ellipsis">
                   {{ kpi.label }}
@@ -168,9 +168,9 @@
 
       <!-- ── Dos columnas (EPF) ─────────────────────────────────────── -->
       @if (esTipoDobleColumna()) {
-        <div class="grid">
+        <div class="row">
           @for (mitad of [mitadSecciones()[0], mitadSecciones()[1]]; track $index) {
-            <div class="col-12 md:col-6">
+            <div class="col-12 col-md-6">
               <table class="w-full border-collapse">
                 <thead>
                   <tr class="surface-ground">

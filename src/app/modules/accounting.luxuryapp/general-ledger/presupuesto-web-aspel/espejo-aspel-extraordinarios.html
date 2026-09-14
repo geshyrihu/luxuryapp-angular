@@ -1,7 +1,7 @@
 <div class="rf-shell budget-view-port-container">
   <!-- El encabezado ahora está centralizado en el wrapper -->
 
-  <div class="hidden md:flex md:flex-column flex-1 min-h-0 overflow-auto gap-3">
+  <div class="d-none d-md-flex flex-md-column flex-1 min-h-0 overflow-auto gap-3">
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Extraordinarios (605)</h5>
       <p-table
@@ -34,7 +34,7 @@
           <tr>
             @if (isParentAccount(cuenta)) {
             <td pFrozenColumn>
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
                 <span class="font-semibold text-color">
                   {{ cuenta.codigo_Cuenta }}
@@ -52,7 +52,7 @@
             <td class="surface-ground"></td>
             } @else {
             <td pFrozenColumn>
-              <div class="flex flex-column">
+              <div class="d-flex flex-column">
                 @if (!isClientView()) {
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -108,7 +108,7 @@
               <span
                 [class.text-red-700]="gastoExcedido(extraordinarias(), mes)"
                 [class.bg-red-50]="gastoExcedido(extraordinarias(), mes)"
-                class="px-2 py-1 rounded block"
+                class="px-2 py-1 rounded d-block"
               >
                 {{ getTotalMontoPorMes(extraordinarias(), mes) | number: "1.0-0"
                 }}
@@ -160,7 +160,7 @@
           <tr>
             @if (isParentAccount(cuenta)) {
             <td pFrozenColumn [attr.colspan]="2">
-              <div class="flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
                 <span class="font-semibold text-color">
                   {{ cuenta.codigo_Cuenta }}
@@ -181,7 +181,7 @@
             <td class="surface-ground"></td>
             } @else {
             <td pFrozenColumn>
-              <div class="flex flex-column">
+              <div class="d-flex flex-column">
                 @if (!isClientView()) {
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -262,7 +262,7 @@
               <span
                 [class.text-red-700]="gastoExcedido(proyectos(), mes)"
                 [class.bg-red-50]="gastoExcedido(proyectos(), mes)"
-                class="px-2 py-1 rounded block"
+                class="px-2 py-1 rounded d-block"
               >
                 {{ getTotalMontoPorMes(proyectos(), mes) | number: "1.0-0" }}
               </span>
@@ -290,7 +290,7 @@
     </div>
   </div>
 
-  <div class="block md:hidden">
+  <div class="d-block d-md-none">
     <div class="rf-card p-3 mb-3">
       <h5 class="text-lg mb-2">Extraordinarios (605)</h5>
       <app-data-view-mobile
@@ -301,7 +301,7 @@
       >
         <ng-template #listItemTemplate let-cuenta>
           <div
-            class="w-full flex flex-column"
+            class="w-full d-flex flex-column"
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {
@@ -339,7 +339,7 @@
       >
         <ng-template #listItemTemplate let-cuenta>
           <div
-            class="w-full flex flex-column"
+            class="w-full d-flex flex-column"
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {

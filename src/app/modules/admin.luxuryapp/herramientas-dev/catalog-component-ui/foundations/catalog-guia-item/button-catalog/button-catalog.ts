@@ -411,9 +411,9 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     <section class="fadein">
       <!-- -- Controls ----------------------------------------------- -->
       <div class="card mb-5">
-        <div class="flex gap-5 flex-wrap align-items-center">
+        <div class="d-flex gap-5 flex-wrap align-items-center">
           <div>
-            <label class="text-xs font-semibold text-color-secondary block mb-2"
+            <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Web)</label
             >
             <p-selectbutton
@@ -425,7 +425,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             />
           </div>
           <div>
-            <label class="text-xs font-semibold text-color-secondary block mb-2"
+            <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Ionic)</label
             >
             <p-selectbutton
@@ -436,7 +436,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               optionValue="value"
             />
           </div>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <p-toggleswitch
               [ngModel]="isDisabled()"
               (ngModelChange)="isDisabled.set($event)"
@@ -444,7 +444,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             />
             <label for="btn-dis" class="font-semibold text-sm">Disabled</label>
           </div>
-          <div class="flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2">
             <p-toggleswitch
               [ngModel]="isLoading()"
               (ngModelChange)="isLoading.set($event)"
@@ -461,7 +461,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
-            buttons-icon-label <code class="ml-2 text-base">il-button-*</code>
+            buttons-icon-label <code class="ms-2 text-base">il-button-*</code>
           </h3>
           <small class="text-color-secondary"
             >Icon + Label é Web (PrimeNG)</small
@@ -469,11 +469,11 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (variant of webVariants; track variant; let first = $first) {
-              <div class="flex align-items-start gap-3">
+              <div class="d-flex align-items-start gap-3">
                 <code class="catalog-variant-tag mt-1">{{ variant }}</code>
-                <div class="flex gap-2 flex-wrap">
+                <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
                       <il-button-add
@@ -499,7 +499,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         <p-table [value]="ilSemantic" dataKey="id">
           <ng-template #caption>
             Semóntica por defecto
-            <small class="text-color-secondary ml-2"
+            <small class="text-color-secondary ms-2"
               >(sin overrides de color/variante)</small
             >
           </ng-template>
@@ -607,7 +607,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <span class="catalog-badge catalog-badge--severity">{{
                   r.defaultSeverity
                 }}</span>
-                <span class="catalog-badge catalog-badge--variant ml-1">{{
+                <span class="catalog-badge catalog-badge--variant ms-1">{{
                   r.defaultVariant
                 }}</span>
               </td>
@@ -628,17 +628,17 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
-            buttons-icon-web <code class="ml-2 text-base">iw-button-*</code>
+            buttons-icon-web <code class="ms-2 text-base">iw-button-*</code>
           </h3>
           <small class="text-color-secondary">Solo icono é Web (PrimeNG)</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (variant of webVariants; track variant; let first = $first) {
-              <div class="flex align-items-start gap-3">
+              <div class="d-flex align-items-start gap-3">
                 <code class="catalog-variant-tag mt-1">{{ variant }}</code>
-                <div class="flex gap-2 flex-wrap">
+                <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
                       <iw-button-add
@@ -762,7 +762,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <span class="catalog-badge catalog-badge--severity">{{
                   r.defaultSeverity
                 }}</span>
-                <span class="catalog-badge catalog-badge--variant ml-1">{{
+                <span class="catalog-badge catalog-badge--variant ms-1">{{
                   r.defaultVariant
                 }}</span>
               </td>
@@ -783,17 +783,17 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
-            buttons-icon-ionic <code class="ml-2 text-base">ii-button-*</code>
+            buttons-icon-ionic <code class="ms-2 text-base">ii-button-*</code>
           </h3>
           <small class="text-color-secondary">Solo icono é Ionic</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (fill of ionicFills; track fill; let first = $first) {
-              <div class="flex align-items-start gap-3">
+              <div class="d-flex align-items-start gap-3">
                 <code class="catalog-variant-tag mt-1">{{ fill }}</code>
-                <div class="flex gap-2 flex-wrap">
+                <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
                       <ii-button-add
@@ -928,17 +928,17 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         <div class="catalog-section-header">
           <h3 class="m-0">
             buttons-icon-label-ionic
-            <code class="ml-2 text-base">ili-button-*</code>
+            <code class="ms-2 text-base">ili-button-*</code>
           </h3>
           <small class="text-color-secondary">Icon + Label é Ionic</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             @for (fill of ionicFills; track fill; let first = $first) {
-              <div class="flex align-items-start gap-3">
+              <div class="d-flex align-items-start gap-3">
                 <code class="catalog-variant-tag mt-1">{{ fill }}</code>
-                <div class="flex gap-2 flex-wrap">
+                <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
                       <ili-button-add

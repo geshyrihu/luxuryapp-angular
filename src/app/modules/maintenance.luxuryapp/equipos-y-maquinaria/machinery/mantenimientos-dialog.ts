@@ -46,7 +46,7 @@ interface Equipo {
   ],
   template: `
     @if (equipo) {
-      <div class="flex justify-content-end mb-3">
+      <div class="d-flex justify-content-end mb-3">
         @if (
           aspRoleS.hasAny([
             AspRole.JefeMantenimiento,
@@ -90,7 +90,7 @@ interface Equipo {
               </td>
               <td>
                 <p
-                  class="mr-2 text-justify"
+                  class="me-2 text-justify"
                   [innerHTML]="order.activity | sanitizeHtml"
                 ></p>
               </td>
@@ -106,7 +106,7 @@ interface Equipo {
                 ])
               ) {
                 <td>
-                  <div class="flex">
+                  <div class="d-flex">
                     <iw-button-item
                       iconClass="material-symbols-light:content-copy"
                       lxTooltip="Duplicar"

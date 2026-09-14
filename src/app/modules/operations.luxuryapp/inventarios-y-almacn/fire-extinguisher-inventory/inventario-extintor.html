@@ -9,11 +9,11 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="flex justify-content-between align-items-center w-full">
-      <div class="flex align-items-center gap-2">
+    <div class="d-flex justify-content-between align-items-center w-full">
+      <div class="d-flex align-items-center gap-2">
         <iw-button-download
           (clicked)="onDownloadPdf()"
           lxTooltip="PDF"
@@ -78,7 +78,7 @@
       <td><small>{{ item.location }}</small></td>
       <td><small>{{ item.expirationDate }}</small></td>
       <td>
-        <div class="flex">
+        <div class="d-flex">
           <iw-button-item
             (clicked)="onViewHistory(item)"
             tooltip="Ver historial de inspecciones"
@@ -109,7 +109,7 @@
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
-  <div customFilters class="px-3 pb-2 flex flex-column gap-2">
+  <div customFilters class="px-3 pb-2 d-flex flex-column gap-2">
     <button
       class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
       (click)="onOpenScanner()"
@@ -135,7 +135,7 @@
 
   <ng-template #listItemTemplate let-item>
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div slot="start">
         <app-icon icon="material-symbols-light:local-fire-department" class="text-xl text-red-500" />

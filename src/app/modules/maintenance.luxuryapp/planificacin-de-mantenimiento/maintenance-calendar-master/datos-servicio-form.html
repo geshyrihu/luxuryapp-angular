@@ -1,7 +1,7 @@
-<div class="flex flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   @if (data?.nombreEquipo) {
   <div
-    class="flex align-items-center gap-2 pb-2 border-bottom-1 surface-border"
+    class="d-flex align-items-center gap-2 pb-2 border-bottom-1 surface-border"
   >
     <app-icon [icon]="'material-symbols-light:settings'" class="text-primary text-xl" />
     <span class="text-xl font-bold text-900">{{ data.nombreEquipo }}</span>
@@ -10,7 +10,7 @@
 
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
       >Actividad</label
     >
     <div class="surface-100 rounded p-3 text-900 line-height-3">
@@ -21,7 +21,7 @@
   @if (data?.observaciones) {
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
       >Observaciones</label
     >
     <div class="surface-100 rounded p-3 text-700 line-height-3">
@@ -32,13 +32,13 @@
 
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
+      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
     >
       Proveedores @if (proveedores?.length > 0) {
       <lx-tag
         [value]="proveedores.length"
         severity="secondary"
-        class="ml-2 text-xs"
+        class="ms-2 text-xs"
        />
       }
     </label>
@@ -49,12 +49,12 @@
       @for (proveedor of proveedores; track proveedor; let last = $last) {
       <div
         (click)="onDataProveedor(proveedor.id)"
-        class="flex align-items-center gap-3 cursor-pointer p-3 hover:surface-100 transition-colors transition-duration-150"
+        class="d-flex align-items-center gap-3 cursor-pointer p-3 hover:surface-100 transition-colors transition-duration-150"
         [class.border-bottom-1]="!last"
         [class.surface-border]="!last"
       >
         <div
-          class="flex align-items-center justify-content-center w-2rem h-2rem rounded-lg bg-primary-100"
+          class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-lg bg-primary-100"
         >
           <app-icon
             [icon]="'material-symbols-light:apartment'"
@@ -70,7 +70,7 @@
     </div>
     } @else {
     <div class="surface-100 rounded p-3 text-400 text-sm text-center">
-      <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="mr-2" />Sin proveedores asignados
+      <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="me-2" />Sin proveedores asignados
     </div>
     }
   </div>

@@ -1,14 +1,14 @@
 @if (loading()) {
-<div class="flex justify-content-center p-5">
+<div class="d-flex justify-content-center p-5">
   <span class="text-color-secondary">Cargando...</span>
 </div>
 } @else if (!interviewData()) {
-<div class="flex flex-column align-items-center p-5 gap-2">
+<div class="d-flex flex-column align-items-center p-5 gap-2">
   <span class="text-color-secondary">Este candidato no tiene un proceso activo.</span>
 </div>
 } @else {
 <div class="p-1">
-  <div class="flex align-items-center justify-content-between gap-3 mb-3">
+  <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
     <div>
       <h2 class="font-semibold text-xl m-0">{{ interviewData()?.candidateName }}</h2>
       <span class="text-sm text-color-secondary"
@@ -18,33 +18,33 @@
     <app-candidate-stage-badge [stage]="interviewData()?.currentStage" />
   </div>
 
-  <div class="grid mb-3">
-    <div class="col-12 md:col-6">
+  <div class="row mb-3">
+    <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Cliente</small>
+        <small class="text-color-secondary d-block mb-1">Cliente</small>
         <div class="font-semibold">{{ interviewData()?.customerName }}</div>
       </div>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Estatus agenda</small>
+        <small class="text-color-secondary d-block mb-1">Estatus agenda</small>
         <app-mapped-p-tag
           [value]="interviewData()?.agendaStatusCode"
           [options]="agendaStatusOptions"
         />
       </div>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Entrevista programada</small>
+        <small class="text-color-secondary d-block mb-1">Entrevista programada</small>
         <div class="font-semibold">
           {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </div>
       </div>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary block mb-1">Entrevistador asignado</small>
+        <small class="text-color-secondary d-block mb-1">Entrevistador asignado</small>
         <div class="font-semibold">
           {{ interviewData()?.assignedInterviewerName || "Sin asignar" }}
         </div>

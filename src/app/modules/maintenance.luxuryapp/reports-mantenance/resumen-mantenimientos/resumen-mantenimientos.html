@@ -4,7 +4,7 @@
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #header>
     <tr>
@@ -18,7 +18,7 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <h5 class="flex align-items-center justify-content-between">
+    <h5 class="d-flex align-items-center justify-content-between">
       MANTENIMIENTOS
     </h5>
   </ng-template>
@@ -41,7 +41,7 @@
   [value]="dataProviderSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
-  class="custom-table card hidden md:block"
+  class="custom-table card d-none d-md-block"
 >
   <ng-template #header>
     <tr>
@@ -53,7 +53,7 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <h5 class="flex align-items-center justify-content-between">
+    <h5 class="d-flex align-items-center justify-content-between">
       REPORTES POR PROVEEDOR
     </h5>
   </ng-template>
@@ -78,7 +78,7 @@
 } @if (dataSignal() === null) {
 <p-table>
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       NO SE TIENEN REGISTROS
     </div>
   </ng-template>

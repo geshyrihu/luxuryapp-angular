@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+<div class="card p-0 p-md-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -6,7 +6,7 @@
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
-    class="custom-table hidden md:block"
+    class="custom-table d-none d-md-block"
     #dt
   >
     <ng-template #caption>
@@ -52,7 +52,7 @@
           {{ item.maxRate | number: "1.2-2" }}
         </td>
         <td class="text-center">
-          <div class="flex justify-content-center">
+          <div class="d-flex justify-content-center">
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             <iw-button-delete (customClick)="onDelete(item)" />
           </div>
@@ -79,7 +79,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
         <app-icon icon="material-symbols-light:warning-outline" class="text-red-600 text-xl" />
       </div>

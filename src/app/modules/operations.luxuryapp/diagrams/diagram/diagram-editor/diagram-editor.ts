@@ -19,7 +19,6 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 @Component({
   selector: "app-diagram-editor",
   imports: [AppIcon, ToastModule],
-  providers: [MessageService],
   templateUrl: "./diagram-editor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

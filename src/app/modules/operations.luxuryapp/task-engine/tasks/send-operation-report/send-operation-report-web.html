@@ -1,4 +1,4 @@
-<div class="flex flex-wrap align-items-center">
+<div class="d-flex flex-wrap align-items-center">
   <il-button
     iconClass="material-symbols-light:check-box"
     label="Seleccionar Todos"
@@ -49,10 +49,10 @@
 <form
   [formGroup]="service.form"
   (ngSubmit)="service.onAddCorreo()"
-  class="ml-0 mt-1"
+  class="ms-0 mt-1"
 >
-  <div class="grid align-items-center">
-    <div class="col-10 md:col-3">
+  <div class="row align-items-center">
+    <div class="col-10 col-md-3">
       <custom-input-text-signal
         [control]="service.form.controls.email"
         [size]="'small'"
@@ -61,7 +61,7 @@
         [horizontal]="false"
       />
     </div>
-    <div class="col-2 md:col-2">
+    <div class="col-2 col-md-2">
       <il-button-add
         [type]="service.ButtonTypeSubmit"
         label="Agregar Correo"
@@ -80,7 +80,7 @@
       @if (service.form.controls.email.errors &&
       (service.form.controls.email.dirty ||
       service.form.controls.email.touched)) {
-      <small class="p-error block">
+      <small class="p-error d-block">
         @if (service.form.controls.email.errors['required'] &&
         (service.form.controls.email.dirty ||
         service.form.controls.email.touched)) {
@@ -104,7 +104,7 @@
   <div>
     @for (item of service.destinatariosAdicionales; track item; let i = $index)
     {
-    <span class="ml-1 relative inline-block">
+    <span class="ms-1 relative inline-block">
       <lx-tag
         value="{{ item.nivelPrivacidad }}/{{ item.email }}"
         severity="info"
@@ -137,7 +137,7 @@
   [loading]="service.loading()"
   #dt
   scrollHeight="800px"
-  class="custom-table hidden md:block"
+  class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />

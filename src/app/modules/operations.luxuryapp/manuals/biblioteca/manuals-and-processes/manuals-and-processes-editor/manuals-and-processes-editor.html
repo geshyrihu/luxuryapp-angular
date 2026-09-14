@@ -1,9 +1,9 @@
-<div class="flex flex-column h-full">
+<div class="d-flex flex-column h-full">
   <!-- Top Bar -->
   <div
-    class="surface-card p-3 shadow-sm flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
+    class="surface-card p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
-    <div class="flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-3">
       <iw-button
         iconClass="material-symbols-light:arrow-back"
         [variant]="'text'"
@@ -19,7 +19,7 @@
         </p>
       </div>
     </div>
-    <div class="flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
       <il-button
         iconClass="material-symbols-light:add"
@@ -60,7 +60,7 @@
   <!-- TAB: PASOS -->
   <!-- ============================================================ -->
   @if (activeTab() === 'pasos') {
-  <div class="flex flex-grow-1 overflow-hidden">
+  <div class="d-flex flex-grow-1 overflow-hidden">
     <!-- Panel izquierdo: lista de pasos -->
     <div
       class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem"
@@ -69,7 +69,7 @@
       <div class="p-4 text-center text-500">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
-          class="text-3xl mb-2 block"
+          class="text-3xl mb-2 d-block"
         />
         <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
       </div>
@@ -77,12 +77,12 @@
       <div
         cdkDropList
         (cdkDropListDropped)="onDropPaso($event)"
-        class="flex flex-column"
+        class="d-flex flex-column"
       >
         @for (paso of pasos(); track paso.id; let i = $index) {
         <div
           cdkDrag
-          class="flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors transition-duration-150"
+          class="d-flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors transition-duration-150"
           [class.surface-100]="selectedPaso()?.id === paso.id"
           (click)="onSelectPaso(paso)"
         >
@@ -93,7 +93,7 @@
           />
 
           <div
-            class="flex-shrink-0 w-2rem h-2rem border-circle flex align-items-center justify-content-center text-white font-bold text-xs"
+            class="flex-shrink-0 w-2rem h-2rem border-circle d-flex align-items-center justify-content-center text-white font-bold text-xs"
             [class.bg-primary]="paso.tipoNota === 0"
             [class.bg-blue-400]="paso.tipoNota === 1"
             [class.bg-yellow-500]="paso.tipoNota === 2"
@@ -122,7 +122,7 @@
           </div>
 
           <div
-            class="flex-shrink-0 flex gap-1"
+            class="flex-shrink-0 d-flex gap-1"
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
@@ -146,7 +146,7 @@
     <div class="flex-grow-1 overflow-y-auto p-4">
       @if (!selectedPaso() && !isNewPaso()) {
       <div
-        class="flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
+        class="d-flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
         <app-icon [icon]="'material-symbols-light:book'" class="text-6xl text-primary mb-4" />
         <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
@@ -166,9 +166,9 @@
       </div>
       } @else {
 
-      <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+      <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
         <div class="surface-ground rounded-xl p-4 border-1 surface-border">
-          <div class="flex align-items-center gap-3 mb-2">
+          <div class="d-flex align-items-center gap-3 mb-2">
             <app-icon [icon]="'material-symbols-light:edit'" class="text-2xl text-primary" />
             <h3 class="m-0 text-900 font-semibold">
               {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
@@ -186,7 +186,7 @@
         <form
           [formGroup]="pasoForm"
           (ngSubmit)="onSavePaso()"
-          class="flex flex-column gap-3"
+          class="d-flex flex-column gap-3"
         >
           <custom-input-text-signal
             [control]="pasoForm.controls.titulo"
@@ -214,7 +214,7 @@
             [horizontal]="false"
           />
 
-          <div class="flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2">
             <label class="font-bold text-sm text-700">Tipo de Nota</label>
             <custom-input-select-button-signal
               [options]="tipoNotaOpciones"
@@ -224,15 +224,15 @@
             />
           </div>
 
-          <div class="flex justify-content-end">
+          <div class="d-flex justify-content-end">
             <il-button-save [loading]="savingPaso()" />
           </div>
         </form>
 
         <!-- Diagrama de flujo (solo en edicion) -->
         @if (!isNewPaso() && selectedPaso()) {
-        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
-          <div class="flex align-items-center justify-content-between">
+        <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="d-flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
             <il-button
               [iconClass]="selectedPaso()!.diagramaId ? 'material-symbols-light:account-tree' : 'material-symbols-light:add'"
@@ -245,7 +245,7 @@
           </div>
           @if (!selectedPaso()!.diagramaId) {
           <div class="surface-ground rounded p-3 border-1 surface-border">
-            <div class="flex align-items-center gap-2 mb-2">
+            <div class="d-flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'material-symbols-light:lightbulb-outline'"
                 class="text-yellow-500"
@@ -263,7 +263,7 @@
           <div
             class="surface-ground rounded p-3 border-1 surface-border mb-2"
           >
-            <div class="flex align-items-center gap-2 mb-2">
+            <div class="d-flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'material-symbols-light:check-circle-outline'"
                 class="text-green-500"
@@ -285,10 +285,10 @@
 
         <!-- Imagenes del paso (solo en edicion) -->
         @if (!isNewPaso() && selectedPaso()) {
-        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
-          <div class="flex align-items-center justify-content-between">
+        <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="d-flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
-            <div class="flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
               <span class="text-xs text-400">o Ctrl+V para pegar</span>
               <lx-file-upload
                 accept="image/*"
@@ -303,19 +303,19 @@
           </div>
 
           @if (uploadingImagen()) {
-          <div class="flex align-items-center gap-2 text-500 text-sm">
+          <div class="d-flex align-items-center gap-2 text-500 text-sm">
             <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
             Subiendo...
           </div>
           } @if (selectedPaso()!.imagenes?.length) {
-          <div class="flex flex-wrap gap-3">
+          <div class="d-flex flex-wrap gap-3">
             @for (img of selectedPaso()!.imagenes; track img.id) {
             <div
               class="relative surface-card border-1 surface-border rounded-xl overflow-hidden p-2"
             >
               <img
                 [src]="img.url"
-                class="block max-w-full h-auto rounded-lg"
+                class="d-block max-w-full h-auto rounded-lg"
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
@@ -338,16 +338,16 @@
 
         <!-- Enlaces / Videos del paso (solo en edicion) -->
         @if (!isNewPaso() && selectedPaso()) {
-        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+        <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
           <h4 class="text-base font-bold text-700 m-0">Enlaces y Videos</h4>
 
           <form
             [formGroup]="enlaceForm"
             (ngSubmit)="onAddEnlace()"
-            class="flex flex-column gap-2 border-1 rounded p-3 surface-50 border-200"
+            class="d-flex flex-column gap-2 border-1 rounded p-3 surface-50 border-200"
           >
-            <div class="grid align-items-end">
-              <div class="col-12 md:col-7">
+            <div class="row align-items-end">
+              <div class="col-12 col-md-7">
                 <custom-input-text-signal
                   [control]="enlaceForm.controls.urlEnlace"
                   label="URL del Enlace o Video"
@@ -355,14 +355,14 @@
                   [horizontal]="false"
                 />
               </div>
-              <div class="col-12 md:col-3 pb-3">
+              <div class="col-12 col-md-3 pb-3">
                 <custom-input-switch-signal
                   [control]="enlaceForm.controls.esVideo"
                   label="¿Es un Video?"
                   [horizontal]="false"
                 />
               </div>
-              <div class="col-12 md:col-2 pb-3 flex justify-content-end">
+              <div class="col-12 col-md-2 pb-3 d-flex justify-content-end">
                 <il-button
                   type="submit"
                   label="Agregar"
@@ -376,7 +376,7 @@
           </form>
 
           @if (selectedPaso()!.enlaces?.length) {
-          <div class="flex flex-column gap-3 mt-2">
+          <div class="d-flex flex-column gap-3 mt-2">
             @for (enlace of selectedPaso()!.enlaces; track enlace.id) {
             <div
               class="relative rounded overflow-hidden border-1 border-200 p-3 bg-white"
@@ -414,7 +414,7 @@
               } @else {
               <p class="text-sm text-500 m-0">URL de video no válida.</p>
               } } @else {
-              <div class="flex align-items-center gap-2 mt-2">
+              <div class="d-flex align-items-center gap-2 mt-2">
                 <a
                   [href]="enlace.urlEnlace"
                   target="_blank"
@@ -454,8 +454,8 @@
   <!-- ============================================================ -->
   @if (activeTab() === 'versiones') {
   <div class="flex-grow-1 overflow-y-auto p-4">
-    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
-      <div class="flex align-items-center justify-content-between">
+    <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
+      <div class="d-flex align-items-center justify-content-between">
         <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
         <il-button
           iconClass="material-symbols-light:add"
@@ -474,10 +474,10 @@
         <form
           [formGroup]="versionForm"
           (ngSubmit)="onAgregarVersion()"
-          class="flex flex-column gap-3"
+          class="d-flex flex-column gap-3"
         >
-          <div class="grid">
-            <div class="col-12 md:col-4">
+          <div class="row">
+            <div class="col-12 col-md-4">
               <custom-input-text-signal
                 [control]="versionForm.controls.version"
                 label="Version"
@@ -485,15 +485,15 @@
                 [horizontal]="false"
               />
             </div>
-            <div class="col-12 md:col-4">
-              <label class="font-bold text-sm text-700 block mb-2">Fecha</label>
+            <div class="col-12 col-md-4">
+              <label class="font-bold text-sm text-700 d-block mb-2">Fecha</label>
               <input
                 type="date"
                 formControlName="fechaCambio"
                 class="p-inputtext w-full"
               />
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 col-md-4">
               <custom-input-text-signal
                 [control]="versionForm.controls.autor"
                 label="Autor"
@@ -509,7 +509,7 @@
             [rows]="3"
             [horizontal]="false"
           />
-          <div class="flex justify-content-end gap-2">
+          <div class="d-flex justify-content-end gap-2">
             <il-button
               label="Cancelar"
               severity="secondary"
@@ -523,17 +523,17 @@
       </div>
       } @if (!versiones().length) {
       <div class="text-center text-500 py-5">
-        <app-icon [icon]="'material-symbols-light:history'" class="text-4xl mb-3 block" />
+        <app-icon [icon]="'material-symbols-light:history'" class="text-4xl mb-3 d-block" />
         <p class="text-sm m-0">Sin versiones registradas.</p>
       </div>
       } @else {
-      <div class="flex flex-column gap-2">
+      <div class="d-flex flex-column gap-2">
         @for (v of versiones(); track v.id) {
         <div
-          class="surface-card p-3 rounded-xl border-1 border-200 flex align-items-start justify-content-between gap-3"
+          class="surface-card p-3 rounded-xl border-1 border-200 d-flex align-items-start justify-content-between gap-3"
         >
           <div class="flex-1">
-            <div class="flex align-items-center gap-2 mb-1">
+            <div class="d-flex align-items-center gap-2 mb-1">
               <span class="font-bold text-primary">v{{ v.version }}</span>
               <span class="text-500 text-xs"
                 >{{ v.fechaCambio | apiDate: 'dd/MM/yyyy' }}</span
@@ -566,7 +566,7 @@
   <!-- ============================================================ -->
   @if (activeTab() === 'adjuntos') {
   <div class="flex-grow-1 overflow-y-auto p-4">
-    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+    <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
       <h3 class="text-lg font-bold text-900 m-0">
         Archivos Adjuntos (Anexos y Referencias)
       </h3>
@@ -575,8 +575,8 @@
         class="surface-card p-4 rounded-xl border-1 border-200 shadow-sm"
       >
         <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
-        <div class="flex flex-column gap-3">
-          <div class="flex flex-column gap-1">
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex flex-column gap-1">
             <label class="font-bold text-sm text-700"
               >Nombre del Documento</label
             >
@@ -587,7 +587,7 @@
               placeholder="Ej: Reglamento Interno v3"
             />
           </div>
-          <div class="flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-3">
             <lx-file-upload
               accept=".pdf,.doc,.docx,.xls,.xlsx"
               [maxFileSize]="10000000"
@@ -598,7 +598,7 @@
               [styleClass]="'p-button-sm p-button-outlined'"
             />
             @if (uploadingAdjunto()) {
-            <span class="text-500 text-sm flex align-items-center gap-1">
+            <span class="text-500 text-sm d-flex align-items-center gap-1">
               <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
               Subiendo...
             </span>
@@ -612,14 +612,14 @@
 
       @if (!adjuntos().length) {
       <div class="text-center text-500 py-5">
-        <app-icon [icon]="'material-symbols-light:attach-file'" class="text-4xl mb-3 block" />
+        <app-icon [icon]="'material-symbols-light:attach-file'" class="text-4xl mb-3 d-block" />
         <p class="text-sm m-0">Sin archivos adjuntos.</p>
       </div>
       } @else {
-      <div class="flex flex-column gap-2">
+      <div class="d-flex flex-column gap-2">
         @for (adj of adjuntos(); track adj.id) {
         <div
-          class="surface-card p-3 rounded-xl border-1 border-200 flex align-items-center gap-3"
+          class="surface-card p-3 rounded-xl border-1 border-200 d-flex align-items-center gap-3"
         >
           <app-icon
             [icon]="'material-symbols-light:description'"
@@ -635,7 +635,7 @@
               {{ adj.fileExtension }}
             </div>
           </div>
-          <div class="flex gap-1 flex-shrink-0">
+          <div class="d-flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
               <iw-button
                 iconClass="material-symbols-light:download"

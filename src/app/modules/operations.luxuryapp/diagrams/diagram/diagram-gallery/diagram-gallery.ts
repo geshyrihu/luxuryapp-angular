@@ -23,8 +23,8 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
-      <div class="flex justify-content-between align-items-center mb-4">
-        <div class="flex align-items-center ">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center ">
           <h2 class="m-0">Galeróa de Diagramas</h2>
           <il-button
             label="Gestión"
@@ -43,9 +43,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         />
       </div>
 
-      <div class="grid grid-nogutter">
+      <div class="row grid-nogutter">
         @for (diagram of paginatedDiagrams(); track diagram) {
-          <div class="col-12 md:col-4 p-2">
+          <div class="col-12 col-md-4 p-2">
             <div
               class="card h-full shadow-sm hover:shadow transition-duration-150"
             >
@@ -57,7 +57,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 >
               </div>
               <div
-                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
+                class="card-body d-flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
                 <app-icon
                   [icon]="'material-symbols-light:photo'"
@@ -65,7 +65,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 />
               </div>
               <div class="card-footer">
-                <div class="flex ">
+                <div class="d-flex ">
                   <il-button
                     label="Visualizar"
                     iconClass="material-symbols-light:visibility-outline"
@@ -81,7 +81,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       </div>
 
       @if (diagrams().length > pageSize()) {
-        <div class="flex justify-content-center align-items-center mt-3 gap-2">
+        <div class="d-flex justify-content-center align-items-center mt-3 gap-2">
           <il-button
             iconClass="material-symbols-light:chevron-left"
             variant="text"

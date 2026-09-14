@@ -63,11 +63,11 @@ import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Feedback & Estado de carga</div>
-      <div class="mobile-card-body flex flex-column gap-5">
+      <div class="mobile-card-body d-flex flex-column gap-5">
         <!-- --- ALERT BANNERS --- -->
         <div>
           <div class="font-bold text-sm mb-3">Alert Banners (DS patterns)</div>
-          <div class="flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2">
             <div class="ds-alert ds-alert--success">
               <span class="material-symbols-outlined ds-alert__icon"
                 >check_circle</span
@@ -98,13 +98,13 @@ import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
         <!-- --- PROGRESS INDICATORS --- -->
         <div>
           <div class="font-bold text-sm mb-3">Progress Indicators (DS)</div>
-          <div class="flex gap-4 align-items-start flex-wrap">
+          <div class="d-flex gap-4 align-items-start flex-wrap">
             <div>
               <span class="ds-progress-label">Linear</span>
               <div class="ds-progress-track">
                 <div class="ds-progress-fill" style="width:65%;"></div>
               </div>
-              <span class="text-xs text-secondary mt-1 block">65%</span>
+              <span class="text-xs text-secondary mt-1 d-block">65%</span>
             </div>
             <div>
               <span class="ds-progress-label">Circular</span>
@@ -136,28 +136,28 @@ import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
         <!-- Spinners -->
         <div>
           <div class="font-bold text-sm mb-3">Spinners (ion-spinner)</div>
-          <div class="flex gap-4 align-items-center flex-wrap">
-            <div class="flex flex-column align-items-center gap-1">
+          <div class="d-flex gap-4 align-items-center flex-wrap">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="crescent" color="primary"></ion-spinner>
               <span class="text-xs text-secondary">crescent</span>
             </div>
-            <div class="flex flex-column align-items-center gap-1">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="dots" color="secondary"></ion-spinner>
               <span class="text-xs text-secondary">dots</span>
             </div>
-            <div class="flex flex-column align-items-center gap-1">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="lines" color="success"></ion-spinner>
               <span class="text-xs text-secondary">lines</span>
             </div>
-            <div class="flex flex-column align-items-center gap-1">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="bubbles" color="warning"></ion-spinner>
               <span class="text-xs text-secondary">bubbles</span>
             </div>
-            <div class="flex flex-column align-items-center gap-1">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="circles" color="danger"></ion-spinner>
               <span class="text-xs text-secondary">circles</span>
             </div>
-            <div class="flex flex-column align-items-center gap-1">
+            <div class="d-flex flex-column align-items-center gap-1">
               <ion-spinner name="circular" color="tertiary"></ion-spinner>
               <span class="text-xs text-secondary">circular</span>
             </div>
@@ -169,7 +169,7 @@ import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
           <div class="font-bold text-sm mb-3">
             Progress Bar (ion-progress-bar)
           </div>
-          <div class="flex flex-column gap-3">
+          <div class="d-flex flex-column gap-3">
             <div>
               <p class="text-xs text-secondary mb-1">Indeterminate</p>
               <ion-progress-bar type="indeterminate"></ion-progress-bar>

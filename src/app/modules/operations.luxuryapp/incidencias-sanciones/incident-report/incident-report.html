@@ -8,22 +8,22 @@
 
   <!-- Filtros -->
   <div class="card mb-4">
-    <div class="grid align-items-end">
-      <div class="col-12 md:col-3">
+    <div class="row align-items-end">
+      <div class="col-12 col-md-3">
         <custom-input-date-signal
           label="Desde"
           [control]="form.controls.from"
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-3">
+      <div class="col-12 col-md-3">
         <custom-input-date-signal
           label="Hasta"
           [control]="form.controls.to"
           [horizontal]="false"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           label="Categoría"
           [control]="form.controls.category"
@@ -32,7 +32,7 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 md:col-2">
+      <div class="col-12 col-md-2">
         <custom-input-select-signal
           label="Severidad"
           [control]="form.controls.severity"
@@ -41,7 +41,7 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 flex gap-2">
+      <div class="col-12 d-flex gap-2">
         <il-button
           label="Consultar"
           iconClass="material-symbols-light:search"
@@ -62,38 +62,38 @@
 
   <!-- Tarjetas de resumen -->
   @if (stats()) {
-  <div class="grid mb-4">
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+  <div class="row mb-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">Total</p>
         <h2 class="page-title">{{ stats()!.total }}</h2>
       </div>
     </div>
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">Pendientes</p>
         <h2 class="page-title text-warning">{{ stats()!.pending }}</h2>
       </div>
     </div>
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">En Investigación</p>
         <h2 class="page-title text-info">{{ stats()!.inInvestigation }}</h2>
       </div>
     </div>
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">Con Sanción</p>
         <h2 class="page-title text-danger">{{ stats()!.withSanction }}</h2>
       </div>
     </div>
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">Sin Sanción</p>
         <h2 class="page-title text-success">{{ stats()!.withoutSanction }}</h2>
       </div>
     </div>
-    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
         <p class="text-color-secondary text-sm">Archivados</p>
         <h2 class="page-title">{{ stats()!.archived }}</h2>
@@ -102,13 +102,13 @@
   </div>
 
   <!-- Por Categoría y Severidad -->
-  <div class="grid mb-4">
-    <div class="col-12 md:col-6">
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
       <div class="card">
         <h3 class="font-bold mb-3">Por Categoría</h3>
         @for (g of stats()!.byCategory; track g.key) {
         <div
-          class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
         >
           <span>{{ g.key }}</span>
           <span class="badge badge-primary">{{ g.count }}</span>
@@ -116,12 +116,12 @@
         }
       </div>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 col-md-6">
       <div class="card">
         <h3 class="font-bold mb-3">Por Severidad</h3>
         @for (g of stats()!.bySeverity; track g.key) {
         <div
-          class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
         >
           <span>{{ g.key }}</span>
           <span [class]="'badge ' + getSeverityBadge(g.key)"

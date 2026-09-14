@@ -30,7 +30,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <div class="w-full flex flex-column gap-2 align-items-center">
+      <div class="w-full d-flex flex-column gap-2 align-items-center">
         @if (!displayUrl()) {
           <ion-button
             expand="block"
@@ -44,7 +44,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
             {{ chooseLabel() }}
           </ion-button>
         } @else {
-          <div class="flex flex-column gap-1 w-15rem align-items-center">
+          <div class="d-flex flex-column gap-1 w-15rem align-items-center">
             <ion-img
               [src]="displayUrl()"
               class="w-full h-10rem rounded shadow-sm object-cover"
