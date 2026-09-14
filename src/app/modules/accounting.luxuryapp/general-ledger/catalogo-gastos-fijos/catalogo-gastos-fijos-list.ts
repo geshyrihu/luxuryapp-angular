@@ -180,22 +180,25 @@ export class CatalogoGastosFijosList {
 
   // Computed signal to determine if all items are selected
   isAllSelected = computed(() => {
+    const data = this.dataSignal() || [];
     return (
-      this.dataSignal().length > 0 &&
-      this.dataSignal().every((item) => item.crearOrdenCompra)
+      data.length > 0 &&
+      data.every((item) => item.crearOrdenCompra)
     );
   });
 
-  isFirstQuincenaSelected = computed(() =>
-    this.dataSignal().some(
+  isFirstQuincenaSelected = computed(() => {
+    const data = this.dataSignal() || [];
+    return data.some(
       (item) => item.quincena === 0 && item.crearOrdenCompra,
-    ),
-  );
-  isSecondQuincenaSelected = computed(() =>
-    this.dataSignal().some(
+    );
+  });
+  isSecondQuincenaSelected = computed(() => {
+    const data = this.dataSignal() || [];
+    return data.some(
       (item) => item.quincena === 1 && item.crearOrdenCompra,
-    ),
-  );
+    );
+  });
 
   constructor() {
     effect(() => {
@@ -266,14 +269,15 @@ export class CatalogoGastosFijosList {
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.dataSignal.set(result);
+      this.dataSignal.set(result || []);
       this.updateSelectedItems();
     });
   }
 
   updateSelectedItems(): void {
+    const data = this.dataSignal() || [];
     this.selectedItems.set(
-      this.dataSignal().filter((item) => item.crearOrdenCompra),
+      data.filter((item) => item.crearOrdenCompra),
     );
   }
 
