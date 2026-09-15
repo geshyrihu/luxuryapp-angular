@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { Router, RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -37,6 +36,7 @@ import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import Swal from "sweetalert2";
 import { VacanteDetailModal } from "./vacante-detail-modal";
 import { VacanteForm } from "./vacante-form";
+import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -101,7 +101,6 @@ interface RequestPositionDeleteImpact {
     LxTag,
     MobileListItem,
     AppIcon,
-    RouterModule,
   ],
 })
 export class VacantesList implements OnInit {
@@ -110,13 +109,17 @@ export class VacantesList implements OnInit {
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
-  router = inject(Router);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   readonly requestStatusBorderColor = requestStatusBorderColor;
   readonly requestStatusTagSeverity = requestStatusTagSeverity;
+
+  canManageVacancyCandidates(): boolean {
+    return this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) ||
+      this.aspRoleS.hasRole(ApplicationRole.Reclutamiento);
+  }
 
   dataSignal = signal<VacanteListItem[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -225,15 +228,25 @@ onDelete(id: string) {
     );
   }
 
-  goToVacancyCandidates(workPositionId: string, requestPositionId: string) {
-    this.router.navigate([
-      "/recruitment/candidates/work-position",
-      workPositionId,
-      "candidates",
-    ], {
-      queryParams: { requestPositionId },
-    });
+  async goToVacancyCandidates(workPositionId: string, requestPositionId: string) {
+    if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) &&
+        !this.aspRoleS.hasRole(ApplicationRole.Reclutamiento)) {
+      return;
+    }
+
+    const item = this.dataSignal().find((vacancy) => vacancy.id === requestPositionId);
+    const result = await this.dialogHandlerS.openDialog<boolean>(
+      VacanteCandidatesModal,
+      {
+        workPositionId,
+        requestPositionId,
+        vacancyStatus: item?.status,
+      },
+      "Candidatos de la vacante",
+      this.dialogHandlerS.sizeLg,
+    );
+
+    if (result) this.onLoadData();
   }
 
 }
-

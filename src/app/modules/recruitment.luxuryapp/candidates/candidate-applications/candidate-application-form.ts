@@ -74,6 +74,9 @@ export class CandidateApplicationForm implements OnInit {
   readonly lockRequestPosition = Boolean(this.config.data?.lockRequestPosition);
   readonly allowCreateCandidate =
     this.config.data?.allowCreateCandidate !== false;
+  readonly excludeCandidateIds = new Set<string>(
+    (this.config.data?.excludeCandidateIds as string[] | undefined) ?? [],
+  );
   submitting = signal(false);
   isCreatingCandidate = signal(false);
   selectedFile: File | null = null;
@@ -176,7 +179,9 @@ export class CandidateApplicationForm implements OnInit {
       Endpoints.SelectItems.candidates,
     );
     if (candidates) {
-      this.cb_candidates.set(candidates);
+      this.cb_candidates.set(
+        candidates.filter((candidate) => !this.excludeCandidateIds.has(String(candidate.value))),
+      );
     }
 
     const vacancies = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
@@ -210,6 +215,9 @@ export class CandidateApplicationForm implements OnInit {
               result.operationsInterviewAssignedToUserId || null,
             initialComment: null,
           });
+          if (this.lockRequestPosition) {
+            this.form.controls["requestPositionId"].disable({ emitEvent: false });
+          }
           this.currentCvUrl.set(result.cvFileUrl ?? "");
           this.applyInterviewerValidators();
           this.applyInterviewTimeValidation();

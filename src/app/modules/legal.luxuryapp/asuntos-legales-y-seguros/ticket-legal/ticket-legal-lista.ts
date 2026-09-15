@@ -287,7 +287,7 @@ export class TicketLegalLista implements OnInit {
         cell.font = { size: 10 };
       });
 
-      // Celda ESTATUS con color s  lido + texto blanco
+      // Celda ESTATUS con ólido + texto blanco
       const statusCell = row.getCell("status");
       statusCell.fill = {
         type: "pattern",

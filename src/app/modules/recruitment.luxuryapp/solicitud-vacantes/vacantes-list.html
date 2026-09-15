@@ -60,12 +60,14 @@
         />
       </td>
       <td class="text-center">
+        @if (canManageVacancyCandidates()) {
         <iw-button-item
           iconClass="material-symbols-light:group-outline"
           lxTooltip="Ver candidatos de la vacante"
           tooltipPosition="top"
           (clicked)="goToVacancyCandidates(item.workPositionId, item.id)"
         />
+        }
       </td>
       <td class="no-print">
         <div class="d-flex gap-1">

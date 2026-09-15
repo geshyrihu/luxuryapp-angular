@@ -1,7 +1,7 @@
 <lx-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="d-none d-md-block mt-3">
-    <p-table
+    <app-table
       #dt
       [value]="groupedData()"
       [loading]="loading()"
@@ -86,17 +86,17 @@
       <ng-template #header>
         <tr>
           <th></th>
-          <th pSortableColumn="changedAt">
-            Fecha <p-sorticon field="changedAt" />
+          <th appSortableColumn="changedAt">
+            Fecha <app-sorticon field="changedAt" />
           </th>
-          <th pSortableColumn="entityName">
-            Entidad <p-sorticon field="entityName" />
+          <th appSortableColumn="entityName">
+            Entidad <app-sorticon field="entityName" />
           </th>
-          <th pSortableColumn="operationType">
-            Operación <p-sorticon field="operationType" />
+          <th appSortableColumn="operationType">
+            Operación <app-sorticon field="operationType" />
           </th>
-          <th pSortableColumn="userName">
-            Usuario <p-sorticon field="userName" />
+          <th appSortableColumn="userName">
+            Usuario <app-sorticon field="userName" />
           </th>
           <th>Detalle</th>
         </tr>
@@ -135,7 +135,7 @@
         <tr>
           <td></td>
           <td colspan="5" class="bg-body-tertiary p-3">
-            <p-table
+            <app-table
               [value]="getGroupItems(item.groupKey!)"
               class="custom-table nested-table"
             >
@@ -155,7 +155,7 @@
                   <td class="text-primary">{{ prop.newValue || '(vacío)' }}</td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </td>
         </tr>
         }
@@ -163,7 +163,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="6" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!-- VISTA MÓVIL -->

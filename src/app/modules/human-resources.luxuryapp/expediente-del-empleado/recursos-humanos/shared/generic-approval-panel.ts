@@ -10,7 +10,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -30,7 +30,9 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
   selector: "app-generic-approval-panel",
   imports: [
     ApiDatePipe,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonLabel,
     WebButtonLabelViewPdf,
     PrimeNgCustomCaption,
@@ -38,7 +40,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [value]="requests()"
       [paginator]="true"
@@ -59,9 +61,9 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
       <ng-template #header>
         <tr>
           @for (col of columns(); track col.field) {
-            <th [pSortableColumn]="col.field">
+            <th [appSortableColumn]="col.field">
               {{ col.header }}
-              <p-sorticon [field]="col.field" />
+              <app-sorticon [field]="col.field" />
             </th>
           }
           <th class="text-center">Acciones</th>
@@ -112,7 +114,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
         </tr>
       </ng-template>
 
-      <ng-template emptymessage>
+      <ng-template #emptymessage>
         <tr>
           <td [attr.colspan]="columns().length + 1" class="text-center">
             No hay solicitudes pendientes
@@ -123,7 +125,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="requests()" />
       </ng-template>
-    </p-table>
+    </app-table>
   `,
 })
 export class GenericApprovalPanel {
@@ -164,4 +166,3 @@ export class GenericApprovalPanel {
     this.viewDetail.emit(request);
   }
 }
-

@@ -42,6 +42,42 @@ export interface CandidateRecruitmentInterviewBoardItem {
   canReconfirmPresentation: boolean;
 }
 
+export interface CandidateProcessVacancyDetail {
+  requestPositionId: string;
+  workPositionId: string;
+  customerId: string;
+  vacancyFolio: string;
+  positionName: string;
+  customerName: string;
+  vacancyStatus: number | string;
+  requestDate: string;
+  dateFinish?: string | null;
+  activeProcessesCount: number;
+  historicalProcessesCount: number;
+  activeProcesses: CandidateProcessVacancyItem[];
+  historicalProcesses: CandidateProcessVacancyItem[];
+}
+
+export interface CandidateProcessVacancyItem {
+  id: string;
+  candidateId: string;
+  candidateName: string;
+  currentStage: number;
+  registerDate: string;
+  processStatus: number;
+  closureReason?: number | null;
+  decisionReason?: number | null;
+  decisionComment?: string;
+  closureComment?: string;
+  closedAt?: string | null;
+  scheduledAt?: string | null;
+  scheduledDate?: string | null;
+  scheduledTime?: string | null;
+  assignedInterviewerName?: string;
+  cvFileName?: string;
+  cvFileUrl?: string;
+}
+
 export interface ScheduleRecruitmentInterviewRequest {
   scheduledDate?: string | null;
   scheduledTime?: string | null;
@@ -49,4 +85,3 @@ export interface ScheduleRecruitmentInterviewRequest {
   comment?: string | null;
   cancelInterview?: boolean;
 }
-

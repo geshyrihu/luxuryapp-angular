@@ -1,0 +1,120 @@
+<div class="p-3">
+  @if (detail(); as vacancy) {
+  <div
+    class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-4"
+  >
+    <div>
+      <div class="text-xl fw-semibold">
+        {{ vacancy.vacancyFolio }} · {{ vacancy.positionName }}
+      </div>
+      <div class="text-body-secondary">{{ vacancy.customerName }}</div>
+    </div>
+    <div class="d-flex gap-2">
+      @if (canManage()) {
+      <il-button
+        label="Agregar candidato"
+        iconClass="material-symbols-light:person-add"
+        (clicked)="addCandidate()"
+      />
+      }
+      <il-button
+        label="Cerrar"
+        iconClass="material-symbols-light:close"
+        severity="secondary"
+        variant="outline"
+        (clicked)="close()"
+      />
+    </div>
+  </div>
+
+  @if (loading()) {
+  <div class="text-center text-body-secondary p-4">Cargando candidatos...</div>
+  } @else {
+  <section class="mb-4">
+    <div class="fw-semibold mb-2">Candidatos en seguimiento</div>
+    @if (vacancy.activeProcesses.length === 0) {
+    <div class="border rounded p-3 text-body-secondary">
+      No hay candidatos activos.
+    </div>
+    } @else {
+    <div class="d-flex flex-column gap-2">
+      @for (item of vacancy.activeProcesses; track item.id) {
+      <article class="border rounded p-3">
+        <div
+          class="d-flex flex-column flex-lg-row justify-content-between gap-3"
+        >
+          <div>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+              <span class="fw-semibold">{{ item.candidateName }}</span>
+              <app-candidate-stage-badge [stage]="item.currentStage" />
+            </div>
+            <div class="text-sm text-body-secondary">
+              Entrevista: {{ item.scheduledAt ? (item.scheduledAt | apiDate:
+              "dd/MM/yyyy HH:mm") : "Sin agendar" }} · Entrevistador: {{
+              item.assignedInterviewerName || "Sin entrevistador" }}
+            </div>
+          </div>
+          @if (canManage()) {
+          <div class="d-flex gap-2 align-items-start">
+            <il-button
+              label="Editar"
+              iconClass="material-symbols-light:edit"
+              severity="secondary"
+              variant="outline"
+              size="small"
+              (clicked)="editCandidate(item)"
+            />
+            <il-button
+              label="Cancelar"
+              iconClass="material-symbols-light:cancel"
+              severity="danger"
+              variant="outline"
+              size="small"
+              (clicked)="cancelCandidate(item)"
+            />
+          </div>
+          }
+        </div>
+      </article>
+      }
+    </div>
+    }
+  </section>
+
+  <section>
+    <div class="fw-semibold mb-2">Historial</div>
+    @if (vacancy.historicalProcesses.length === 0) {
+    <div class="border rounded p-3 text-body-secondary">
+      Sin procesos históricos.
+    </div>
+    } @else {
+    <div class="d-flex flex-column gap-2">
+      @for (item of vacancy.historicalProcesses; track item.id) {
+      <article class="border rounded p-3 bg-body-tertiary">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+          <span class="fw-semibold">{{ item.candidateName }}</span>
+          <app-candidate-stage-badge [stage]="item.currentStage" />
+          <span class="text-sm text-body-secondary"
+            >{{ closureReasonLabel(item.closureReason) }}</span
+          >
+        </div>
+        @if (item.decisionComment || item.closureComment) {
+        <div class="text-sm text-body-secondary">
+          {{ item.decisionComment || item.closureComment }}
+        </div>
+        }
+        <div class="text-sm text-body-secondary mt-1">
+          Cerrado: {{ item.closedAt ? (item.closedAt | apiDate: "dd/MM/yyyy
+          HH:mm") : "Sin fecha registrada" }}
+        </div>
+      </article>
+      }
+    </div>
+    }
+  </section>
+  } } @else if (!loading()) {
+  <div class="text-center text-body-secondary p-4">
+    No se encontró información de la vacante.
+  </div>
+  }
+</div>

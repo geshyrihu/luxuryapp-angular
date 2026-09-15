@@ -126,6 +126,7 @@ export const EndpointsReclutamiento = {
     createMultipart: "recruitment-candidate-processes/multipart",
     updateMultipart: (id: Id) =>
       `recruitment-candidate-processes/${id}/multipart`,
+    cancel: (id: Id) => `recruitment-candidate-processes/${id}/cancel`,
     kpis: "recruitment-candidate-processes/kpis",
     runAutomation: "recruitment-candidate-processes/run-automation",
     recruitmentAgenda: "recruitment-candidate-processes/recruitment-agenda",
