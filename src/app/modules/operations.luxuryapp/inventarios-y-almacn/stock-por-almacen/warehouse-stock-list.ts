@@ -15,23 +15,23 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { ProductOutputForm } from "src/app/modules/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
-import { TarjetaProducto } from "src/app/modules/supplier.luxuryapp/product/tarjeta-producto";
+} from "@core/services/dialog-handler.service";
+import { ProductOutputForm } from "@operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
+import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
@@ -40,7 +40,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppAvatar } from "src/app/shared/ui/web/avatar/avatar";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
@@ -228,3 +228,5 @@ export class WarehouseStockList {
     );
   }
 }
+
+

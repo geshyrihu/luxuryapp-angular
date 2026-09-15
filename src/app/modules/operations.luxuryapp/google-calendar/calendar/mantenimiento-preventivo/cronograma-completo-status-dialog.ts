@@ -6,13 +6,13 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CronogramaAnualPdfStatusService } from "src/app/core/services/cronograma-anual-pdf-status.service";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { WebButtonLabel } from "src/app/shared/ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "src/app/shared/ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "src/app/shared/ui/web/primeng-table/primeng-table";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { CronogramaAnualPdfStatusService } from "@core/services/cronograma-anual-pdf-status.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { HtmlPrintService } from "@core/services/html-print.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus";
 
 @Component({
@@ -236,3 +236,4 @@ ${this.htmlPrintS.getStandardCss()}
     );
   }
 }
+

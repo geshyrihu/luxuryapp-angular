@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import PeriodClosureDashboard from "./period-closure-dashboard";
 
 describe("PeriodClosureDashboard", () => {
@@ -150,3 +150,4 @@ describe("PeriodClosureDashboard", () => {
     expect(component.currentPeriodClosed()).toBe(true);
   });
 });
+

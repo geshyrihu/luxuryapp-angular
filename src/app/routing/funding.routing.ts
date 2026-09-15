@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const fundingRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list").then(
+      import("@accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list").then(
         (m) => m.FundingList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const fundingRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-detail").then(
+      import("@accounting.luxuryapp/fondeos-y-reporteo/funding/funding-detail").then(
         (m) => m.FundingDetail,
       ),
     canActivate: [authGuard],
@@ -26,3 +26,5 @@ export const fundingRoutes: Routes = [
     },
   },
 ];
+
+

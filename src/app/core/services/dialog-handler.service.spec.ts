@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DialogHandlerService } from './dialog-handler.service';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService } from '@core/services/dialog-handler.service';
 
 describe('DialogHandlerService', () => {
   let service: DialogHandlerService;
@@ -19,3 +19,4 @@ describe('DialogHandlerService', () => {
     expect(service).toBeTruthy();
   });
 });
+

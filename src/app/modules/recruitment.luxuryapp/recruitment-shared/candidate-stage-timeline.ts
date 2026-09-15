@@ -5,8 +5,8 @@ import {
   input,
 } from "@angular/core";
 import { LxTimeline } from "@ui/adaptive/timeline/timeline";
-import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
-import { CandidateStageHistoryItem } from "../candidate-applications/interfaces/candidate-application";
+import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
+import { CandidateStageHistoryItem } from "../candidates/candidate-applications/interfaces/candidate-application";
 import { CANDIDATE_PROCESS_STAGE_LABELS } from "./candidate-stage-labels";
 
 @Component({
@@ -46,3 +46,5 @@ export class CandidateStageTimeline {
     return new Date(iso).toLocaleString();
   }
 }
+
+

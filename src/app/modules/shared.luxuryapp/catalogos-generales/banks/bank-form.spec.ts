@@ -5,11 +5,11 @@ import {
   DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "primeng/dynamicdialog";
+} from "@core/services/dialog-handler.service";
 import { ActivatedRoute } from "@angular/router";
 import { of } from "rxjs";
 import { BankForm } from "./bank-form";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import { FormHelper } from "@core/helpers/form-helper";
 
 describe("BankForm", () => {
   let component: BankForm;
@@ -106,3 +106,4 @@ describe("BankForm", () => {
     );
   });
 }
+

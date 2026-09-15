@@ -9,11 +9,11 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import type { TagSeverity } from "@ui/base/tag.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { AspelCobranzaDetalleResponse } from "src/app/modules/collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
-import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { AspelCobranzaDetalleResponse } from "@collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 
 /**
@@ -113,3 +113,5 @@ export class CommitteeCobranzaDetailModal implements OnInit {
     }
   }
 }
+
+

@@ -24,20 +24,20 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { MeetingSeguimientoEdit } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { HtmlPrintService } from "@core/services/html-print.service";
+import { MeetingSeguimientoEdit } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
 @Component({
   selector: "app-cont-list-minuta-pendientes",
@@ -239,3 +239,5 @@ ${this.htmlPrintS.getStandardCss()}
     return tmp.textContent || tmp.innerText || "";
   }
 }
+
+

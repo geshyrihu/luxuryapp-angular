@@ -21,21 +21,21 @@ import {
   mailOutline,
   peopleOutline,
 } from "ionicons/icons";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TaskGroupParticipant } from "src/app/modules/operations.luxuryapp/task-engine/tasks/participants/task-group-participant";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TaskGroupParticipant } from "@operations.luxuryapp/task-engine/tasks/participants/task-group-participant";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EITaskMessageDTOStatus } from "../task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
@@ -56,7 +56,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-task-group-list",
@@ -250,3 +250,5 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
+
+

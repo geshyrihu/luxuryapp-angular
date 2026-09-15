@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 
 export const initialImplementationRoutes: Routes = [
   {
     path: "machinery-survey",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/initial-implementation/machinery-survey/machinery-survey").then(
+      import("@operations.luxuryapp/initial-implementation/machinery-survey/machinery-survey").then(
         (m) => m.MachinerySurvey,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const initialImplementationRoutes: Routes = [
   {
     path: "staff-evaluation",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/initial-implementation/staff-evaluation/staff-evaluation").then(
+      import("@operations.luxuryapp/initial-implementation/staff-evaluation/staff-evaluation").then(
         (m) => m.StaffEvaluation,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const initialImplementationRoutes: Routes = [
   {
     path: "pending-vendor-projects",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/initial-implementation/pending-vendor-projects/pending-vendor-projects").then(
+      import("@operations.luxuryapp/initial-implementation/pending-vendor-projects/pending-vendor-projects").then(
         (m) => m.PendingVendorProjects,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const initialImplementationRoutes: Routes = [
   {
     path: "active-policies",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/initial-implementation/active-policies/active-policies").then(
+      import("@operations.luxuryapp/initial-implementation/active-policies/active-policies").then(
         (m) => m.ActivePolicies,
       ),
     canActivate: [authGuard],
@@ -51,3 +51,5 @@ export const initialImplementationRoutes: Routes = [
     },
   },
 ];
+
+

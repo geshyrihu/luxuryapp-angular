@@ -16,28 +16,28 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SolicitudBajaForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudAltaForm } from "src/app/modules/recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
-import { VacanteForm } from "src/app/modules/recruitment.luxuryapp/solicitud-vacantes/vacante-form";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
+import { SolicitudAltaForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
+import { VacanteForm } from "@recruitment.luxuryapp/solicitud-vacantes/vacante-form";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
@@ -180,3 +180,5 @@ export class SolicitudesClienteList {
     }
   }
 }
+
+

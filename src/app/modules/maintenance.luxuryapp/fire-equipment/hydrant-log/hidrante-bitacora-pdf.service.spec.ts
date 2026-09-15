@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { HidranteBitacoraPdfService } from './hidrante-bitacora-pdf.service';
 
 describe('HidranteBitacoraPdfService', () => {
@@ -43,3 +43,4 @@ describe('HidranteBitacoraPdfService', () => {
     expect(mockHtmlPrintService.printHtml).toHaveBeenCalled();
   });
 });
+

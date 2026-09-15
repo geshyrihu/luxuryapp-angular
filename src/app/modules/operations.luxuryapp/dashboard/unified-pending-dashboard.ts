@@ -17,35 +17,35 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { IconFieldModule } from "@ui/web/primeng-iconfield/primeng-iconfield";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AiService } from "src/app/core/services/ai.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SwalService } from "src/app/core/services/swal.service";
-import { TaskForm } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-form";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
-import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AiService } from "@core/services/ai.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { TaskForm } from "@operations.luxuryapp/task-engine/tasks/task-message/task-form";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { ImageAnalysisDialogComponent } from "@ui/image-analysis-dialog/image-analysis-dialog.component";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TicketLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { MinutaDetalleForm } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { ServiceOrderForm } from "src/app/modules/operations.luxuryapp/field-service/service-order/service-order-form";
-import { SolicitudAltaStatusForm } from "src/app/modules/recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";
-import { VacanteForm } from "src/app/modules/recruitment.luxuryapp/solicitud-vacantes/vacante-form";
-import { SolicitudBajaUpdateStatus } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
-import { ModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
+import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";
+import { VacanteForm } from "@recruitment.luxuryapp/solicitud-vacantes/vacante-form";
+import { SolicitudBajaUpdateStatus } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -549,3 +549,5 @@ export class UnifiedPendingDashboard {
     });
   }
 }
+
+

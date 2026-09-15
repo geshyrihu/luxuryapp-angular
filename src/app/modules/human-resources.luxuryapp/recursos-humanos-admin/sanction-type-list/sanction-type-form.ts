@@ -14,16 +14,16 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { SanctionTypeDetailDTO } from "src/app/modules/human-resources.luxuryapp/evaluaciones-de-desempeo/hr-catalog/interfaces/hr-catalog.interfaces";
+} from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { SanctionTypeDetailDTO } from "@human-resources.luxuryapp/evaluaciones-de-desempeo/hr-catalog/interfaces/hr-catalog.interfaces";
 import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface";
 
 @Component({
@@ -104,3 +104,5 @@ export class SanctionTypeForm implements OnInit {
     this.ref.close();
   }
 }
+
+

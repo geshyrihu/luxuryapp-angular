@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const reportsRoutes: Routes = [
   {
     path: "supervision-report", // Ruta anterior: 'report-supervision'
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/supervision/supervision-report/report-supervision").then(
+      import("@operations.luxuryapp/supervision/supervision-report/report-supervision").then(
         (m) => m.ReportSupervision,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const reportsRoutes: Routes = [
   {
     path: "access-history",
     loadComponent: () =>
-      import("src/app/modules/admin.luxuryapp/reportes/access-history/bitacora-acceso-list").then(
+      import("@admin.luxuryapp/reportes/access-history/bitacora-acceso-list").then(
         (m) => m.BitacoraAcceso,
       ),
     canActivate: [authGuard],
@@ -43,7 +43,7 @@ export const reportsRoutes: Routes = [
     // Suggested path: 'service-orders-summary'
     path: "resumen-ordenes-servicio",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/field-service/service-order/resumen-ordenes-servicio").then(
+      import("@operations.luxuryapp/field-service/service-order/resumen-ordenes-servicio").then(
         (m) => m.ResumenOrdenesServicio,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const reportsRoutes: Routes = [
   {
     path: "pending-minutes",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/reports/pending-minutes/pending-minutes").then(
+      import("@operations.luxuryapp/reports/pending-minutes/pending-minutes").then(
         (m) => m.PendingMinutes,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const reportsRoutes: Routes = [
   {
     path: "financial-statements", // Ruta anterior: 'estados-financieros'
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/reports/estados-financieros/estados-financieros").then(
+      import("@operations.luxuryapp/reports/estados-financieros/estados-financieros").then(
         (m) => m.EstadosFinancieros,
       ),
     canActivate: [authGuard],
@@ -78,3 +78,5 @@ export const reportsRoutes: Routes = [
     },
   },
 ];
+
+

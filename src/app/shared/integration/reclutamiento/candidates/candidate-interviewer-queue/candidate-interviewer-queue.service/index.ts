@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidate-interviewer-queue/candidate-interviewer-queue.service";
+export * from "@recruitment.luxuryapp/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
+
+

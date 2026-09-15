@@ -10,20 +10,20 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
-import { SolicitudBajaForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+} from "@core/services/dialog-handler.service";
+import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { ROUTES } from "src/app/routing/route-paths";
-import { CardEmployee } from "src/app/shared/integration/recursos-humanos";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { StatusRequestDismissalDiscountForm } from "../reclutamiento-y-altas-bajas/request-dismissal-discount/status-request-dismissal-discount-form";
 
 interface RequestDismissalStatusDetail {
@@ -153,3 +153,5 @@ export class StatusRequestDismissal implements OnInit {
     });
   }
 }
+
+

@@ -1,5 +1,5 @@
 import { Directive, input, output } from "@angular/core";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 /**
  * Base compartida de Chip (API + lógica de remoción/click).
@@ -39,3 +39,4 @@ export abstract class ChipBase {
     this.chipClick.emit();
   }
 }
+

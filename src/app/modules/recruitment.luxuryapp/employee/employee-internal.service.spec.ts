@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { EmployeeInternalService } from './employee-internal.service';
 
 describe('EmployeeInternalService', () => {
@@ -25,3 +25,4 @@ describe('EmployeeInternalService', () => {
     expect(api.onGetList).toHaveBeenCalled();
   });
 });
+

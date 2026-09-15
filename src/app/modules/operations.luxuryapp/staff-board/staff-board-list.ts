@@ -12,33 +12,33 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { OperationRecruitmentEndpoints } from "src/app/core/constants/endpoints/operation-recruitment.endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { Department } from "src/app/core/enums/department.enum";
-import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import { PositionRequestStatus } from "src/app/core/enums/position-request-status.enum";
-import { globalFilterFields as getGlobalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { IncidentFormComponent } from "src/app/modules/operations.luxuryapp/incidencias-sanciones/incident/incident-form";
-import { SolicitudBajaForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudVacanteForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
-import { IWorkPosition } from "src/app/modules/operations.luxuryapp/work-position/interfaces/work-position.model";
-import { JobDescriptionForm } from "src/app/modules/operations.luxuryapp/work-position/job-description-form";
-import { WorkPositionForm } from "src/app/modules/operations.luxuryapp/work-position/work-position-form";
-import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { Department } from "@core/enums/department.enum";
+import { DialogSize } from "@core/enums/dialog-size.enum";
+import { PositionRequestStatus } from "@core/enums/position-request-status.enum";
+import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { IncidentFormComponent } from "@operations.luxuryapp/incidencias-sanciones/incident/incident-form";
+import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
+import { SolicitudVacanteForm } from "@operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
+import { IWorkPosition } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
+import { JobDescriptionForm } from "@operations.luxuryapp/work-position/job-description-form";
+import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   AppIcon,
   type AppIconName,
-} from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@ui/shared/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
-} from "src/app/shared/ui/shared/segmented-control/segmented-control";
+} from "@ui/shared/segmented-control/segmented-control";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
 import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
 
@@ -49,11 +49,11 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import {
   ExcelColumn,
   ExcelExportService,
-} from "src/app/core/services/excel-export.service";
-import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
-import { CardEmployee } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
-import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
-import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+} from "@core/services/excel-export.service";
+import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
+import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { CandidateInterviewerQueueService } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
+import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";
 
 @Component({
@@ -532,3 +532,5 @@ export class StaffBoardList {
     this.router.navigate(["/directory/employee-interviewer-queue"]);
   }
 }
+
+

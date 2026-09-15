@@ -9,8 +9,8 @@ import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { Menubar } from "@ui/web/menubar/menubar";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
 import { filter, map, startWith } from "rxjs/operators";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { FilterRequests } from "src/app/modules/recruitment.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { FilterRequests } from "@recruitment.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests";
 
 type ShellFilterConfig = {
   apiUrl?: string;
@@ -147,3 +147,5 @@ export class RecruitmentShellComponent {
     void this.router.navigateByUrl(url);
   }
 }
+
+

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { InterviewerMatrixService } from './interviewer-matrix.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 
 describe('InterviewerMatrixService', () => {
   let service: InterviewerMatrixService;
@@ -31,3 +31,4 @@ describe('InterviewerMatrixService', () => {
     expect(mockApiResponseService.onGetItem).toHaveBeenCalled();
   });
 });
+

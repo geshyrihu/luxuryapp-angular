@@ -2,13 +2,13 @@ import { CommonModule, formatCurrency } from "@angular/common";
 import { Component, computed, effect, inject } from "@angular/core";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CobranzaOnlineAdvances } from "src/app/modules/collections.luxuryapp/cobranza-online/advances/cobranza-online-advances";
-import { CobranzaOnlineAnalysis } from "src/app/modules/collections.luxuryapp/cobranza-online/analysis/cobranza-online-analysis";
-import { CobranzaOnlineMorosidad } from "src/app/modules/collections.luxuryapp/cobranza-online/morosidad/cobranza-online-morosidad";
-import { cobranzaOnlineFilterState } from "src/app/modules/collections.luxuryapp/cobranza-online/state/cobranza-online-filter.state";
-import { CobranzaOnlineStoreService } from "src/app/modules/collections.luxuryapp/cobranza-online/state/cobranza-online-store.service";
-import { CobranzaOnlineTowers } from "src/app/modules/collections.luxuryapp/cobranza-online/towers/cobranza-online-towers";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { CobranzaOnlineAdvances } from "@collections.luxuryapp/cobranza-online/advances/cobranza-online-advances";
+import { CobranzaOnlineAnalysis } from "@collections.luxuryapp/cobranza-online/analysis/cobranza-online-analysis";
+import { CobranzaOnlineMorosidad } from "@collections.luxuryapp/cobranza-online/morosidad/cobranza-online-morosidad";
+import { cobranzaOnlineFilterState } from "@collections.luxuryapp/cobranza-online/state/cobranza-online-filter.state";
+import { CobranzaOnlineStoreService } from "@collections.luxuryapp/cobranza-online/state/cobranza-online-store.service";
+import { CobranzaOnlineTowers } from "@collections.luxuryapp/cobranza-online/towers/cobranza-online-towers";
 import { reportFilterState } from "../state/financial-report-filter.state";
 
 @Component({
@@ -122,3 +122,5 @@ export class AnalisisCobranza {
     return cards;
   });
 }
+
+

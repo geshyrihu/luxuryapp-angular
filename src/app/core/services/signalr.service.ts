@@ -1,9 +1,9 @@
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
-import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { BudgetProposalItemDTO } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
-import { PanicAlertRealTimeDto } from "src/app/modules/operations.luxuryapp/panic-alert/interfaces/panic-alert-real-time.dto";
+import { ConsoleLoggerService } from "@core/services/console-logger.service";
+import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { PanicAlertRealTimeDto } from "@operations.luxuryapp/panic-alert/interfaces/panic-alert-real-time.dto";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../auth/services/auth.service";
 export interface GoogleCalendarEventRealTimeUpdateDto {
@@ -405,3 +405,5 @@ export class SignalRService {
     }
   }
 }
+
+

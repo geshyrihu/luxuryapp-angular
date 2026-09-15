@@ -1,8 +1,8 @@
 import { Injectable, inject } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { IEmployee } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/employee.interface";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { IEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/employee.interface";
 @Injectable({
   providedIn: "root",
 })
@@ -239,3 +239,5 @@ export class EmployeeInternalService {
     );
   }
 }
+
+

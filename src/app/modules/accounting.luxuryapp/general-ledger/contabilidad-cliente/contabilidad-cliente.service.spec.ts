@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ContabilidadClienteService } from './contabilidad-cliente.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 
 describe('ContabilidadClienteService', () => {
   let service: ContabilidadClienteService;
@@ -28,3 +28,4 @@ describe('ContabilidadClienteService', () => {
     expect(mockApiResponseService.onGetItem).toHaveBeenCalled();
   });
 });
+

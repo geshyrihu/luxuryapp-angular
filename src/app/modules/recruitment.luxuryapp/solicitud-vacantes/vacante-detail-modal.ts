@@ -8,14 +8,14 @@ import {
 } from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
-import { IWorkPositionForm } from "src/app/modules/operations.luxuryapp/work-position/interfaces/work-position.model";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
+import { IWorkPositionForm } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 interface IJobDescription {
   summary: string;
@@ -79,3 +79,5 @@ export class VacanteDetailModal implements OnInit {
     this.jobDescription.set(result);
   }
 }
+
+

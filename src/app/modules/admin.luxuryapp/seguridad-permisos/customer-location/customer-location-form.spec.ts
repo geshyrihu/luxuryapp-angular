@@ -3,12 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from '@core/services/dialog-handler.service';
 
 import { CustomerLocationForm } from './customer-location-form';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { FormHelper } from 'src/app/core/helpers/form-helper';
-import { EndpointsAdmin } from 'src/app/core/constants/endpoints/admin.endpoints';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { FormHelper } from '@core/helpers/form-helper';
+import { EndpointsAdmin } from '@core/constants/endpoints/admin.endpoints';
 import { CustomerLocationType, CustomerLocationTypeOptions } from './interfaces/customer-location-type.enum';
 import { CustomerLocationAddOrEditDto } from './interfaces/customer-location-add-or-edit.dto';
 
@@ -247,3 +247,4 @@ describe('CustomerLocationForm', () => {
     });
   });
 });
+

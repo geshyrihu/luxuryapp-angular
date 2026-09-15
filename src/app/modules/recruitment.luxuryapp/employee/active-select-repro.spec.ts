@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 @Component({
   selector: "repro-host",
@@ -66,3 +66,4 @@ describe("active boolean select repro", () => {
     expect(host.control.value).toBe(false);
   });
 });
+

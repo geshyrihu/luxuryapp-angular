@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CommitteeCobranzaBaseService } from './committee-cobranza-base.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
 
 describe('CommitteeCobranzaBaseService', () => {
   let service: CommitteeCobranzaBaseService;
@@ -33,3 +33,4 @@ describe('CommitteeCobranzaBaseService', () => {
     expect(service.avanceCobranza()).toBeNull();
   });
 });
+

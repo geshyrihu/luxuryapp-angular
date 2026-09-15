@@ -8,9 +8,9 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { getStatusSeverity } from "src/app/modules/human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { getStatusSeverity } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { ROUTES } from "src/app/routing/route-paths";
 interface LeaveApprovalDetailDTO {
   id: string;
@@ -108,3 +108,5 @@ export class PermisoDetalleAprobar implements OnInit {
       });
   }
 }
+
+

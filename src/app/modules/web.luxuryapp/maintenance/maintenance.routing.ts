@@ -4,7 +4,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/maintenance-page").then(
+      import("@web.luxuryapp/maintenance/maintenance-page").then(
         (m) => m.MaintenancePage,
       ),
     data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
@@ -12,7 +12,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "common-areas-inventory",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/common-areas-inventory/common-areas-inventory").then(
+      import("@web.luxuryapp/maintenance/procedures/common-areas-inventory/common-areas-inventory").then(
         (m) => m.CommonAreasInventory,
       ),
     data: {
@@ -23,7 +23,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "machinery-survey",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/machinery-survey/machinery-survey").then(
+      import("@web.luxuryapp/maintenance/procedures/machinery-survey/machinery-survey").then(
         (m) => m.MachinerySurvey,
       ),
     data: {
@@ -34,7 +34,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "inspection-rounds",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/inspection-rounds/inspection-rounds").then(
+      import("@web.luxuryapp/maintenance/procedures/inspection-rounds/inspection-rounds").then(
         (m) => m.InspectionRounds,
       ),
     data: {
@@ -45,7 +45,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "tools-inventory",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/tools-inventory/tools-inventory").then(
+      import("@web.luxuryapp/maintenance/procedures/tools-inventory/tools-inventory").then(
         (m) => m.ToolsInventory,
       ),
     data: {
@@ -56,7 +56,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "supplies-inventory",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/supplies-inventory/supplies-inventory").then(
+      import("@web.luxuryapp/maintenance/procedures/supplies-inventory/supplies-inventory").then(
         (m) => m.SuppliesInventory,
       ),
     data: {
@@ -67,7 +67,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "supplier-review",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/supplier-review/supplier-review").then(
+      import("@web.luxuryapp/maintenance/procedures/supplier-review/supplier-review").then(
         (m) => m.SupplierReview,
       ),
     data: {
@@ -78,7 +78,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "budget-preparation",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/budget-preparation/budget-preparation").then(
+      import("@web.luxuryapp/maintenance/procedures/budget-preparation/budget-preparation").then(
         (m) => m.BudgetPreparation,
       ),
     data: {
@@ -89,7 +89,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "cleaning-classification",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/cleaning/cleaning-procedure").then(
+      import("@web.luxuryapp/maintenance/procedures/cleaning/cleaning-procedure").then(
         (m) => m.CleaningProcedure,
       ),
     data: {
@@ -100,7 +100,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "green-areas",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/green-areas/green-areas").then(
+      import("@web.luxuryapp/maintenance/procedures/green-areas/green-areas").then(
         (m) => m.GreenAreas,
       ),
     data: {
@@ -111,7 +111,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "preventive-maintenance",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/preventive-maintenance/preventive-maintenance").then(
+      import("@web.luxuryapp/maintenance/procedures/preventive-maintenance/preventive-maintenance").then(
         (m) => m.PreventiveMaintenance,
       ),
     data: {
@@ -122,7 +122,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "emergency-response",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/emergency-response/emergency-response").then(
+      import("@web.luxuryapp/maintenance/procedures/emergency-response/emergency-response").then(
         (m) => m.EmergencyResponse,
       ),
     data: {
@@ -133,7 +133,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "staff-evaluation",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation").then(
+      import("@web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation").then(
         (m) => m.StaffEvaluation,
       ),
     data: {
@@ -144,7 +144,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "supplier-site-control",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/supplier-site-control/supplier-site-control").then(
+      import("@web.luxuryapp/maintenance/procedures/supplier-site-control/supplier-site-control").then(
         (m) => m.SupplierSiteControl,
       ),
     data: {
@@ -155,7 +155,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "asset-disposal",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/asset-disposal/asset-disposal").then(
+      import("@web.luxuryapp/maintenance/procedures/asset-disposal/asset-disposal").then(
         (m) => m.AssetDisposal,
       ),
     data: {
@@ -166,7 +166,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "purchase-request",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/purchase-request/purchase-request").then(
+      import("@web.luxuryapp/maintenance/procedures/purchase-request/purchase-request").then(
         (m) => m.PurchaseRequest,
       ),
     data: {
@@ -177,7 +177,7 @@ export const maintenanceRoutes: Routes = [
   {
     path: "installation-inspection",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/procedures/installation-inspection/installation-inspection").then(
+      import("@web.luxuryapp/maintenance/procedures/installation-inspection/installation-inspection").then(
         (m) => m.InstallationInspection,
       ),
     data: {
@@ -186,3 +186,4 @@ export const maintenanceRoutes: Routes = [
     },
   },
 ];
+

@@ -25,11 +25,11 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   DialogHandlerService,
   DialogSize,
-} from "src/app/core/services/dialog-handler.service";
-import { CobranzaOnlineComposicionReportesModal } from "src/app/modules/collections.luxuryapp/cobranza-online/analysis/cobranza-online-composicion-reportes-modal";
-import type { CobranzaOnlineAnalysisResponse } from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
-import type { CobranzaOnlineDashboardResponse } from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { CobranzaOnlineComposicionReportesModal } from "@collections.luxuryapp/cobranza-online/analysis/cobranza-online-composicion-reportes-modal";
+import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
+import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
@@ -552,3 +552,5 @@ export class AnalisisCobranzaClienteComponent {
     return name.replace(/^\d+-\d+-\d+(-\d+)?\s*-?\s*/, "");
   }
 }
+
+

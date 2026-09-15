@@ -1,9 +1,9 @@
 import { Injectable, inject } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { CobranzaOnlineAnalysisResponse } from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
-import type { CobranzaOnlineDashboardResponse } from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
-import type { PresupuestoContabilidadResponse } from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
+import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
+import type { PresupuestoContabilidadResponse } from "@collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
 import type {
   IAnalisisCobranzaOnlineDto,
   IBancosInversionesDto,
@@ -169,3 +169,5 @@ export class ContabilidadClienteService {
     );
   }
 }
+
+

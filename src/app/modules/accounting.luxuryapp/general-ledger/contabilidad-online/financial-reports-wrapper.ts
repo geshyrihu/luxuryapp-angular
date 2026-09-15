@@ -11,9 +11,9 @@ import type { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CobranzaOnlineStoreService } from "src/app/modules/collections.luxuryapp/cobranza-online/state/cobranza-online-store.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { CobranzaOnlineStoreService } from "@collections.luxuryapp/cobranza-online/state/cobranza-online-store.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AiAgentContabilidadOnlineComponent } from "./ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "./ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";
 import { AiAgentComponent } from "./ai-agent/ai-agent";
@@ -247,3 +247,5 @@ export default class FinancialReportsWrapper {
     this.reportIndex.set(Number(tab.id));
   }
 }
+
+

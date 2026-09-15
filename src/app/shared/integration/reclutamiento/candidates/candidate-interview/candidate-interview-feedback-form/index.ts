@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidate-interview/candidate-interview-feedback-form";
+export * from "@recruitment.luxuryapp/candidates/candidate-interview/candidate-interview-feedback-form";
+
+

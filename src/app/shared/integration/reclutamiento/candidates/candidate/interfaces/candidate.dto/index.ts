@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidates/interfaces/candidate.dto";
+export * from "@recruitment.luxuryapp/candidates/candidate-core/interfaces/candidate.dto";
+
+

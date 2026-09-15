@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DialogHandlerService, DynamicDialogConfig, DynamicDialogRef } from 'src/app/core/services/dialog-handler.service';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { DialogHandlerService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { InspeccionesForm } from './inspecciones-form';
 import { InspectionEdit } from '../models/inspection.model';
 import { signal } from '@angular/core';
@@ -287,3 +287,4 @@ describe('InspeccionesForm', () => {
     });
   });
 });
+

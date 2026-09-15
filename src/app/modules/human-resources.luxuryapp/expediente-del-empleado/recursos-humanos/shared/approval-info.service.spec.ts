@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { ApprovalInfoService } from './approval-info.service';
 
 describe('ApprovalInfoService', () => {
@@ -44,3 +44,4 @@ describe('ApprovalInfoService', () => {
     expect(result).toEqual(mockResult);
   });
 });
+

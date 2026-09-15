@@ -11,10 +11,10 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { InspeccionAgregarRevision } from "src/app/modules/maintenance.luxuryapp/inspection/inspeccion-agregar-revision/inspeccion-agregar-revision";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { InspeccionAgregarRevision } from "@maintenance.luxuryapp/inspection/inspeccion-agregar-revision/inspeccion-agregar-revision";
 import { InspeccionActivoCondominio } from "../inspeccion-activo-condominio-agregar/inspeccion-activo-condominio";
 import { InspeccionActivoCondominioEditar } from "../inspeccion-activo-condominio-editar/inspeccion-activo-condominio-editar";
 
@@ -126,3 +126,5 @@ export class DetallesInspeccion implements OnInit {
     );
   }
 }
+
+

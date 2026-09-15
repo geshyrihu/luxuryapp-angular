@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { StorageService } from 'src/app/core/services/storage.service';
+import { StorageService } from '@core/services/storage.service';
 import { DateRangeStorageService } from './date-range-storage.service';
 
 describe('DateRangeStorageService', () => {
@@ -32,3 +32,4 @@ describe('DateRangeStorageService', () => {
     expect(storage.remove).toHaveBeenCalledWith('ticketDateRange');
   });
 });
+

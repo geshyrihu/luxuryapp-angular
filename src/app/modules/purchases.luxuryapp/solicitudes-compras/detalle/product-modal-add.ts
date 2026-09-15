@@ -21,21 +21,21 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { PaginationStore } from "src/app/core/services/pagination-store";
-import { TarjetaProducto } from "src/app/modules/supplier.luxuryapp/product/tarjeta-producto";
+} from "@core/services/dialog-handler.service";
+import { PaginationStore } from "@core/services/pagination-store";
+import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
@@ -252,3 +252,5 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.ref.close(true); // Cerrar con 'true' si quieres emitir un resultado.
   }
 }
+
+

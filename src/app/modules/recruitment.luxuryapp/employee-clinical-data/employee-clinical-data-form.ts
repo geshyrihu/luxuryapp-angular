@@ -14,14 +14,14 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EmployeeInternalService } from "src/app/modules/recruitment.luxuryapp/employee/employee-internal.service";
+} from "@core/services/dialog-handler.service";
+import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
 import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.interface";
 
 @Component({
@@ -94,3 +94,5 @@ export class EmployeeClinicalDataForm implements OnInit {
     });
   }
 }
+
+

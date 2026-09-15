@@ -23,24 +23,24 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { SignalRService } from "src/app/core/services/signalr.service";
-import { PdfGenerationService } from "src/app/modules/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { CreateOrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/create-orden-compra";
-import { CreateOrdenCompraWizard } from "src/app/modules/supplier.luxuryapp/po/purchase-order/create-orden-compra-wizard/create-orden-compra-wizard";
-import { OrdenCompraDatosPago } from "src/app/modules/supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
-import { OrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra";
-import { PaymentVoucherModal } from "src/app/modules/supplier.luxuryapp/po/purchase-order/payment-voucher-modal/payment-voucher-modal";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { TipoGasto } from "@core/enums/tipo-gasto.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { SignalRService } from "@core/services/signalr.service";
+import { PdfGenerationService } from "@supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
+import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra";
+import { CreateOrdenCompraWizard } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra-wizard/create-orden-compra-wizard";
+import { OrdenCompraDatosPago } from "@supplier.luxuryapp/po/purchase-order/forms/orden-compra-datos-pago";
+import { OrdenCompra } from "@supplier.luxuryapp/po/purchase-order/orden-compra";
+import { PaymentVoucherModal } from "@supplier.luxuryapp/po/purchase-order/payment-voucher-modal/payment-voucher-modal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";
@@ -698,3 +698,5 @@ export class FundingDetail {
       });
   }
 }
+
+

@@ -14,17 +14,17 @@ import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { SelectedFile } from "src/app/core/interfaces/selected-file.interface";
-import { DateService } from "src/app/core/services/date.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { SelectedFile } from "@core/interfaces/selected-file.interface";
+import { DateService } from "@core/services/date.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { LeaveRequestMyDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/leave-request.interface";
+} from "@core/services/dialog-handler.service";
+import { LeaveRequestMyDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
 interface LeaveRequestEditDTO {
   leaveType: number;
   startDate: string;
@@ -231,3 +231,5 @@ export class PermisoForm implements OnInit {
     });
   }
 }
+
+

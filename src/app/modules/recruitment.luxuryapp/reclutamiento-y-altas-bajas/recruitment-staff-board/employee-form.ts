@@ -15,13 +15,13 @@ import {
   LxSectionNav,
   type LxSectionNavItem,
 } from "@ui/web/section-nav/section-nav";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EmployeeBankDataList } from "src/app/modules/recruitment.luxuryapp/employee-bank-data/employee-bank-data-list";
-import { EmployeeBeneficiaryList } from "src/app/modules/recruitment.luxuryapp/employee-beneficiary/employee-beneficiary-list";
-import { EmployeeClinicalDataList } from "src/app/modules/recruitment.luxuryapp/employee-clinical-data/employee-clinical-data-list";
-import { EmployeeDocumentList } from "src/app/modules/recruitment.luxuryapp/employee-document/employee-document-list";
-import { EmployeeEmergencyContactList } from "src/app/modules/recruitment.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { EmployeeBankDataList } from "@recruitment.luxuryapp/employee-bank-data/employee-bank-data-list";
+import { EmployeeBeneficiaryList } from "@recruitment.luxuryapp/employee-beneficiary/employee-beneficiary-list";
+import { EmployeeClinicalDataList } from "@recruitment.luxuryapp/employee-clinical-data/employee-clinical-data-list";
+import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-document/employee-document-list";
+import { EmployeeEmergencyContactList } from "@recruitment.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
 
@@ -150,3 +150,5 @@ export class EmployeeForm implements OnInit {
     this.activeSection = section;
   }
 }
+
+

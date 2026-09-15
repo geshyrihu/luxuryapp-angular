@@ -6,16 +6,16 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { LxCard } from "@ui/adaptive/card/card";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SolicitudBajaForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudAltaForm } from "src/app/modules/recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
+import { SolicitudAltaForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",
@@ -104,3 +104,5 @@ export class EmployeeReclutamiento implements OnInit {
       });
   }
 }
+
+

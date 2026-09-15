@@ -24,21 +24,21 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 
 interface ITaskMessageForm {
@@ -64,9 +64,9 @@ interface ITaskMessageForm {
 
 type ImageFieldName = "beforeWork" | "afterWork";
 
-import { ClientErrorLoggerService } from "src/app/core/services/client-error-logger.service";
-import { DateService } from "src/app/core/services/date.service";
-import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { ClientErrorLoggerService } from "@core/services/client-error-logger.service";
+import { DateService } from "@core/services/date.service";
+import { ImageProcessingService } from "@core/services/image-processing.service";
 
 @Component({
   selector: "app-task-form",
@@ -589,3 +589,5 @@ export class TaskForm implements OnInit, OnDestroy {
     }
   }
 }
+
+

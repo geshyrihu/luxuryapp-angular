@@ -18,27 +18,27 @@ import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
-import { PurchaseLinkManager } from "src/app/modules/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
-import { OrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra";
+} from "@core/services/dialog-handler.service";
+import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { SolicitudCompraService } from "@core/services/solicitud-compra.service";
+import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
+import { OrdenCompra } from "@supplier.luxuryapp/po/purchase-order/orden-compra";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -351,3 +351,5 @@ export class SolicitudCompraList {
     });
   }
 }
+
+

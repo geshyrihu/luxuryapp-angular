@@ -4,7 +4,7 @@ export const webRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/landing/landing-page").then(
+      import("@web.luxuryapp/landing/landing-page").then(
         (m) => m.LandingPage,
       ),
     data: { title: "Inicio", breadcrumb: "Inicio" },
@@ -12,7 +12,7 @@ export const webRoutes: Routes = [
   {
     path: "legal",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/legal/legal-page").then(
+      import("@web.luxuryapp/legal/legal-page").then(
         (m) => m.LegalPage,
       ),
     data: { title: "Legal", breadcrumb: "Legal" },
@@ -20,7 +20,7 @@ export const webRoutes: Routes = [
   {
     path: "operations",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/operations/operations-page").then(
+      import("@web.luxuryapp/operations/operations-page").then(
         (m) => m.OperationsPage,
       ),
     data: { title: "Operaciones", breadcrumb: "Operaciones" },
@@ -28,7 +28,7 @@ export const webRoutes: Routes = [
   {
     path: "maintenance",
     loadChildren: () =>
-      import("src/app/modules/web.luxuryapp/maintenance/maintenance.routing").then(
+      import("@web.luxuryapp/maintenance/maintenance.routing").then(
         (m) => m.maintenanceRoutes,
       ),
     data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
@@ -36,7 +36,7 @@ export const webRoutes: Routes = [
   {
     path: "accounting",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/accounting/accounting-page").then(
+      import("@web.luxuryapp/accounting/accounting-page").then(
         (m) => m.AccountingPage,
       ),
     data: { title: "Contabilidad", breadcrumb: "Contabilidad" },
@@ -44,7 +44,8 @@ export const webRoutes: Routes = [
   {
     path: "hr",
     loadComponent: () =>
-      import("src/app/modules/web.luxuryapp/hr/hr-page").then((m) => m.HrPage),
+      import("@web.luxuryapp/hr/hr-page").then((m) => m.HrPage),
     data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
   },
 ];
+

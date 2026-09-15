@@ -22,17 +22,17 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { map } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { MisInspeccionesAgregarImagenes } from "src/app/modules/maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { MisInspeccionesAgregarImagenes } from "@maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -206,3 +206,5 @@ export class MisInspeccionesEjecutar implements OnInit {
       });
   }
 }
+
+

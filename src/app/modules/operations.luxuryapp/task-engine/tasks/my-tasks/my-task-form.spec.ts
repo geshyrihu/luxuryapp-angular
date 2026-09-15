@@ -1,13 +1,13 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { of } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { vi } from "vitest";
 import { MyTaskForm } from "./my-task-form";
 
@@ -99,3 +99,4 @@ describe("MyTaskForm", () => {
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
   });
 });
+

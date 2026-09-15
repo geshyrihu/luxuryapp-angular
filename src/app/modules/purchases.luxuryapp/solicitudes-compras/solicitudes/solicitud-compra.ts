@@ -19,7 +19,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { AppBadge } from "@ui/web/badge/badge";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -30,22 +30,22 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DateService } from "src/app/core/services/date.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { ProductAdd } from "src/app/modules/purchases.luxuryapp/solicitudes-compras/detalle/product-add";
-import { ProductModalAdd } from "src/app/modules/purchases.luxuryapp/solicitudes-compras/detalle/product-modal-add";
-import { SolicitudCompraDetalle } from "src/app/modules/purchases.luxuryapp/solicitudes-compras/detalle/solicitud-compra-detalle";
-import { PurchaseLinkManager } from "src/app/modules/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
-import { CreateOrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/create-orden-compra";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DateService } from "@core/services/date.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { ProductAdd } from "@purchases.luxuryapp/solicitudes-compras/detalle/product-add";
+import { ProductModalAdd } from "@purchases.luxuryapp/solicitudes-compras/detalle/product-modal-add";
+import { SolicitudCompraDetalle } from "@purchases.luxuryapp/solicitudes-compras/detalle/solicitud-compra-detalle";
+import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
+import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -358,3 +358,5 @@ export class SolicitudCompra implements OnInit {
       });
   }
 }
+
+

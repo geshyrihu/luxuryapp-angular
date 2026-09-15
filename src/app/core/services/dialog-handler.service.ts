@@ -1,21 +1,71 @@
 import { Injectable, inject } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import {
-  DialogService,
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "primeng/dynamicdialog";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Observable, Subject } from "rxjs";
 import { DialogSize } from "../enums/dialog-size.enum";
+import { DesktopDialogShell } from "./desktop-dialog-shell";
 import { IonicDialogModal } from "./ionic-dialog-modal";
 import { PlatformService } from "./platform.service";
-export { DialogService, DynamicDialogConfig, DynamicDialogRef, DialogSize };
+export class DynamicDialogConfig<T = any> {
+  data: T;
+  header?: string;
+}
+
+export class DynamicDialogRef {
+  private readonly closeSubject = new Subject<unknown>();
+  private readonly destroySubject = new Subject<void>();
+  private readonly loadedSubject = new Subject<void>();
+
+  readonly onClose: Observable<unknown> = this.closeSubject.asObservable();
+  readonly onDestroy: Observable<void> = this.destroySubject.asObservable();
+  readonly onChildComponentLoaded: Observable<void> =
+    this.loadedSubject.asObservable();
+  maximized = false;
+
+  constructor(
+    private readonly closeHandler?: (result?: unknown) => void,
+    private readonly maximizeHandler?: () => void,
+  ) {}
+
+  close(result?: unknown): void {
+    this.closeHandler?.(result);
+  }
+
+  destroy(): void {
+    this.closeHandler?.(undefined);
+  }
+
+  maximize(): void {
+    this.maximizeHandler?.();
+    this.maximized = true;
+  }
+
+  emitClose(result: unknown): void {
+    this.closeSubject.next(result);
+  }
+
+  emitDestroy(): void {
+    this.destroySubject.next();
+  }
+
+  emitLoaded(): void {
+    this.loadedSubject.next();
+  }
+}
+
+export class DialogService {
+  getInstance(ref: DynamicDialogRef): DynamicDialogRef {
+    return ref;
+  }
+}
+export { DialogSize };
 @Injectable({
   providedIn: "root",
 })
 export class DialogHandlerService {
-  dialogS = inject(DialogService);
   private readonly platform = inject(PlatformService);
   private readonly modalCtrl = inject(ModalController);
+  private readonly ngbModal = inject(NgbModal);
 
   openDialog<T = boolean>(
     component: any,
@@ -27,64 +77,37 @@ export class DialogHandlerService {
     if (this.platform.isMobile()) {
       return this.openMobileModal<T>(component, data, title);
     }
-    const dialogConfig = this.getDialogConfig(size);
-
-    const ref: DynamicDialogRef = this.dialogS.open(component, {
-      data,
-      header: title,
-      width: dialogConfig.width,
-      height: dialogConfig.height,
-      breakpoints: dialogConfig.breakpoints,
-      contentStyle: { overflow: "auto" },
-      closeOnEscape: true,
-      maximizable: true,
-      closable: true,
-      draggable: true,
-      resizable: true,
-      baseZIndex: 1100,
-      modal: true,
+    const modalRef = this.ngbModal.open(DesktopDialogShell, {
+      centered: true,
+      scrollable: true,
+      backdrop: true,
+      keyboard: true,
+      modalDialogClass: size,
     });
+    modalRef.componentInstance.initialize(component, data, title);
 
-    if (autoMaximize && ref) {
-      ref.onChildComponentLoaded.subscribe(() => {
-        const dialogInstance = this.dialogS.getInstance(ref);
-        if (dialogInstance && !dialogInstance.maximized) {
-          dialogInstance.maximize();
-        }
-      });
+    if (autoMaximize) {
+      modalRef.componentInstance.onLoaded$.subscribe(() =>
+        modalRef.update({ fullscreen: true }),
+      );
     }
 
-    return this.subscribeToDialogClose<T>(ref);
+    return modalRef.result.catch(() => undefined as T);
   }
 
   openDialogCustom<T = any>(component: any, config: DialogConfig): Promise<T> {
     if (this.platform.isMobile()) {
       return this.openMobileModal<T>(component, config.data, config.title);
     }
-    const dialogConfig = config.width
-      ? { width: config.width, breakpoints: config.breakpoints }
-      : this.getDialogConfig(config.size);
-
-    const ref: DynamicDialogRef = this.dialogS.open(component, {
-      data: config.data,
-      header: config.title,
-      width: dialogConfig.width,
-      height: config.height || dialogConfig.height,
-      breakpoints: dialogConfig.breakpoints,
-      contentStyle: config.contentStyle || { overflow: "auto" },
-      closeOnEscape: config.closeOnEscape ?? true,
-      maximizable: config.maximizable ?? true,
-      closable: config.closable ?? true,
-      draggable: config.draggable ?? true,
-      resizable: config.resizable ?? true,
-      baseZIndex: config.baseZIndex || 1100,
-      modal: config.modal ?? true,
-      dismissableMask: config.dismissableMask,
-      position: config.position,
-      ...config.extraOptions,
+    const modalRef = this.ngbModal.open(DesktopDialogShell, {
+      centered: true,
+      scrollable: true,
+      backdrop: true,
+      keyboard: true,
+      modalDialogClass: config.size,
     });
-
-    return this.subscribeToDialogClose<T>(ref);
+    modalRef.componentInstance.initialize(component, config.data, config.title);
+    return modalRef.result.catch(() => undefined as T);
   }
 
   /**
@@ -108,64 +131,10 @@ export class DialogHandlerService {
     return result as T;
   }
 
-  private subscribeToDialogClose<T>(ref: DynamicDialogRef): Promise<T> {
-    if (!ref) {
-      return Promise.resolve(null);
-    }
-    return new Promise<T>((resolve) => {
-      let lastValue: T;
-      const closeSub = ref.onClose.subscribe((resp: T) => {
-        lastValue = resp;
-      });
-      ref.onDestroy.subscribe(() => {
-        closeSub.unsubscribe();
-        resolve(lastValue);
-      });
-    });
-  }
-
-  // NUEVO: Método para obtener configuración según el tamaño
-  private getDialogConfig(size: DialogSize): DialogConfigSize {
-    switch (size) {
-      case DialogSize.sm:
-        return {
-          width: "700px", // Era 400px
-          breakpoints: { "992px": "95vw" },
-        };
-      case DialogSize.md:
-        return {
-          width: "1000px", // Era 600px
-          breakpoints: { "992px": "95vw" },
-        };
-      case DialogSize.lg:
-        return {
-          width: "1200px", // Era 800px
-          breakpoints: { "992px": "95vw" },
-        };
-      case DialogSize.full:
-        return {
-          width: "100vw",
-          height: "100vh",
-        };
-      default:
-        return {
-          width: "800px", // Era 600px (default a md)
-          breakpoints: { "992px": "95vw" },
-        };
-    }
-  }
-
   readonly sizeSm: DialogSize = DialogSize.sm;
   readonly sizeMd: DialogSize = DialogSize.md;
   readonly sizeLg: DialogSize = DialogSize.lg;
   readonly sizeFull: DialogSize = DialogSize.full;
-}
-
-// Interface para la configuración de tamaño del diálogo
-interface DialogConfigSize {
-  width: string;
-  height?: string;
-  breakpoints?: { [key: string]: string };
 }
 
 export interface DialogConfig {

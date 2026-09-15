@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { ContractRenewalService } from './contract-renewal.service';
 
 describe('ContractRenewalService', () => {
@@ -35,3 +35,4 @@ describe('ContractRenewalService', () => {
     expect(service.decidedRenewals().length).toBe(1);
   });
 });
+

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AutitoriaCuentasAspelExportService } from './autitoria-cuentas-aspel-export.service';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 
 describe('AutitoriaCuentasAspelExportService', () => {
   let service: AutitoriaCuentasAspelExportService;
@@ -37,3 +37,4 @@ describe('AutitoriaCuentasAspelExportService', () => {
     expect(mockHtmlPrintService.printHtml).toHaveBeenCalled();
   });
 });
+

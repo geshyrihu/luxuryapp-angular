@@ -1,125 +1,126 @@
-import { Injectable, inject, signal } from "@angular/core";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomerIdService } from "../auth/services/customer-id.service";
-import { Endpoints } from "../constants/endpoints/endpoints";
+import { Injectable, inject, signal } from "@angular/core";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomerIdService } from "../auth/services/customer-id.service";
+import { Endpoints } from "../constants/endpoints/endpoints";
+
+export interface ChatSessionDto {
+  id: string;
+  userId: string;
+  title: string;
+  createdAt: string;
+}
+
+export interface ChatMessageDto {
+  id: string;
+  sessionId: string;
+  role: string; // 'User' | 'Assistant'
+  content: string;
+  timestamp: string;
+}
+
+export interface SendMessageDto {
+  sessionId?: string;
+  message: string;
+}
+
+@Injectable({
+  providedIn: "root",
+})
+export class AiChatService {
+  private api = inject(ApiResponseService);
+  private customerIdS = inject(CustomerIdService);
+
+  // State
+  currentSessionId = signal<string | null>(null);
+  sessions = signal<ChatSessionDto[]>([]);
+  messages = signal<ChatMessageDto[]>([]);
+  isLoading = signal<boolean>(false);
+
+  constructor() {
+    this.loadSessions();
+  }
+
+  async loadSessions() {
+    const res = await this.api.onGetList<ChatSessionDto[]>(
+      Endpoints.AiChat.sessions,
+    );
+    this.sessions.set(res || []);
+  }
+
+  async startNewSession() {
+    this.isLoading.set(true);
+    const res = await this.api.onPost<ChatSessionDto>(
+      Endpoints.AiChat.startSession,
+      {},
+    );
+    if (res) {
+      this.sessions.update((s) => [res, ...s]);
+      this.currentSessionId.set(res.id);
+      this.messages.set([]); // New session empty
+    }
+    this.isLoading.set(false);
+  }
+
+  async selectSession(sessionId: string) {
+    this.currentSessionId.set(sessionId);
+    this.isLoading.set(true);
+    const res = await this.api.onGetList<ChatMessageDto[]>(
+      Endpoints.AiChat.history(sessionId),
+    );
+    this.messages.set(res || []);
+    this.isLoading.set(false);
+  }
+
+  async sendMessage(message: string) {
+    if (!message.trim()) return;
+
+    // Optimistic UI update
+    const tempMsg: ChatMessageDto = {
+      id: crypto.randomUUID(),
+      sessionId: this.currentSessionId() || "",
+      role: "User",
+      content: message,
+      timestamp: new Date().toISOString(),
+    };
+
+    this.messages.update((msgs) => [...msgs, tempMsg]);
+    this.isLoading.set(true);
+
+    const payload: SendMessageDto = {
+      sessionId: this.currentSessionId() || undefined,
+      message: message,
+    };
+
+    // Call API
+    // Note: onPost normally returns the T response. My backend returns generic ApiResponseDto<string>.
+    // The ApiResponseService unwraps it.
+    const responseText = await this.api.onPost<string>(
+      Endpoints.AiChat.sendMessage,
+      payload,
+    );
+
+    // Add AI response
+    if (responseText) {
+      const aiMsg: ChatMessageDto = {
+        id: crypto.randomUUID(),
+        sessionId: this.currentSessionId() || "",
+        role: "Assistant",
+        content: responseText,
+        timestamp: new Date().toISOString(),
+      };
+      this.messages.update((msgs) => [...msgs, aiMsg]);
+
+      // If it was a new session created implicitly, reload sessions to get the ID and Title
+      if (!this.currentSessionId()) {
+        await this.loadSessions();
+        // Try to guess which one is active (most recent)
+        if (this.sessions().length > 0) {
+          this.currentSessionId.set(this.sessions()[0].id);
+        }
+      }
+    }
+
+    this.isLoading.set(false);
+  }
+}
 
-export interface ChatSessionDto {
-  id: string;
-  userId: string;
-  title: string;
-  createdAt: string;
-}
-
-export interface ChatMessageDto {
-  id: string;
-  sessionId: string;
-  role: string; // 'User' | 'Assistant'
-  content: string;
-  timestamp: string;
-}
-
-export interface SendMessageDto {
-  sessionId?: string;
-  message: string;
-}
-
-@Injectable({
-  providedIn: "root",
-})
-export class AiChatService {
-  private api = inject(ApiResponseService);
-  private customerIdS = inject(CustomerIdService);
-
-  // State
-  currentSessionId = signal<string | null>(null);
-  sessions = signal<ChatSessionDto[]>([]);
-  messages = signal<ChatMessageDto[]>([]);
-  isLoading = signal<boolean>(false);
-
-  constructor() {
-    this.loadSessions();
-  }
-
-  async loadSessions() {
-    const res = await this.api.onGetList<ChatSessionDto[]>(
-      Endpoints.AiChat.sessions,
-    );
-    this.sessions.set(res || []);
-  }
-
-  async startNewSession() {
-    this.isLoading.set(true);
-    const res = await this.api.onPost<ChatSessionDto>(
-      Endpoints.AiChat.startSession,
-      {},
-    );
-    if (res) {
-      this.sessions.update((s) => [res, ...s]);
-      this.currentSessionId.set(res.id);
-      this.messages.set([]); // New session empty
-    }
-    this.isLoading.set(false);
-  }
-
-  async selectSession(sessionId: string) {
-    this.currentSessionId.set(sessionId);
-    this.isLoading.set(true);
-    const res = await this.api.onGetList<ChatMessageDto[]>(
-      Endpoints.AiChat.history(sessionId),
-    );
-    this.messages.set(res || []);
-    this.isLoading.set(false);
-  }
-
-  async sendMessage(message: string) {
-    if (!message.trim()) return;
-
-    // Optimistic UI update
-    const tempMsg: ChatMessageDto = {
-      id: crypto.randomUUID(),
-      sessionId: this.currentSessionId() || "",
-      role: "User",
-      content: message,
-      timestamp: new Date().toISOString(),
-    };
-
-    this.messages.update((msgs) => [...msgs, tempMsg]);
-    this.isLoading.set(true);
-
-    const payload: SendMessageDto = {
-      sessionId: this.currentSessionId() || undefined,
-      message: message,
-    };
-
-    // Call API
-    // Note: onPost normally returns the T response. My backend returns generic ApiResponseDto<string>.
-    // The ApiResponseService unwraps it.
-    const responseText = await this.api.onPost<string>(
-      Endpoints.AiChat.sendMessage,
-      payload,
-    );
-
-    // Add AI response
-    if (responseText) {
-      const aiMsg: ChatMessageDto = {
-        id: crypto.randomUUID(),
-        sessionId: this.currentSessionId() || "",
-        role: "Assistant",
-        content: responseText,
-        timestamp: new Date().toISOString(),
-      };
-      this.messages.update((msgs) => [...msgs, aiMsg]);
-
-      // If it was a new session created implicitly, reload sessions to get the ID and Title
-      if (!this.currentSessionId()) {
-        await this.loadSessions();
-        // Try to guess which one is active (most recent)
-        if (this.sessions().length > 0) {
-          this.currentSessionId.set(this.sessions()[0].id);
-        }
-      }
-    }
-
-    this.isLoading.set(false);
-  }
-}

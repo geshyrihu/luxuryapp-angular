@@ -20,30 +20,30 @@ import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
 import Swal from "sweetalert2";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
-import { DateService } from "src/app/core/services/date.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { FilterRequestsService } from "@core/http/services/filter-requests.service";
+import { DateService } from "@core/services/date.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { EStatus } from "src/app/shared/ui/base/status-badge.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
-import { CandidateDetail } from "../candidates/candidate-detail";
+import { EStatus } from "@ui/base/status-badge.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";
+import { CandidateDetail } from "../candidates/candidate-core/candidate-detail";
 import {
   requestStatusBorderColor,
   requestStatusTagSeverity,
@@ -301,5 +301,8 @@ export class SolicitudAltaList implements OnInit {
     return item.status === "Cancelado";
   }
 }
+
+
+
 
 

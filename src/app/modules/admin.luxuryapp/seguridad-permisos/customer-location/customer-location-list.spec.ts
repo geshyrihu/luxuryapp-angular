@@ -2,13 +2,13 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from '@core/services/dialog-handler.service';
 
 import { CustomerLocationList } from './customer-location-list';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { EndpointsAdmin } from 'src/app/core/constants/endpoints/admin.endpoints';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { DialogHandlerService } from '@core/services/dialog-handler.service';
+import { TableScrollHeightService } from '@core/services/table-scroll-height.service';
+import { EndpointsAdmin } from '@core/constants/endpoints/admin.endpoints';
 import { CustomerLocationDto } from './interfaces/customer-location.dto';
 import { CustomerLocationType, CustomerLocationTypeLabels } from './interfaces/customer-location-type.enum';
 
@@ -314,3 +314,4 @@ describe('CustomerLocationList', () => {
     });
   });
 });
+

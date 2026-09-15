@@ -1,5 +1,5 @@
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -38,24 +38,24 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Subscription } from "rxjs";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SignalRService } from "src/app/core/services/signalr.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SignalRService } from "@core/services/signalr.service";
 import {
   BudgetProposalDTO,
   BudgetProposalItemDTO,
-} from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
-import { EquiposList } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+} from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { EquiposList } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
 import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";
@@ -1717,3 +1717,5 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
 }
+
+

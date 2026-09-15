@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidate-interview/interfaces/interviewer-action-request.dto";
+export * from "@recruitment.luxuryapp/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
+
+

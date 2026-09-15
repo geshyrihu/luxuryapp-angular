@@ -1,137 +1,138 @@
-import { HttpErrorResponse } from "@angular/common/http";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnDestroy,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { catchError, finalize, Subject, throwError } from "rxjs";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DataConnectorService } from "src/app/core/services/data-connector.service";
-import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
-import Swal from "sweetalert2";
+import { HttpErrorResponse } from "@angular/common/http";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { catchError, finalize, Subject, throwError } from "rxjs";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DataConnectorService } from "@core/services/data-connector.service";
+import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
+import Swal from "sweetalert2";
+
+interface IRecoverPasswordForm {
+  email: FormControl<string>;
+}
+
+@Component({
+  selector: "app-recover-password",
+  templateUrl: "./recover-password.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ReactiveFormsModule,
+    MessageModule,
+    CustomInputTextSignal,
+    WebButtonLabel,
+    RouterModule,
+    AppIcon,
+  ],
+})
+export class RecoverPassword implements OnInit, OnDestroy {
+  readonly ROUTES = ROUTES;
+  /** Feature flag del flujo por código (rollback: plan §10 Fase 4). */
+  readonly recoveryByCodeEnabled = RECOVERY_BY_CODE_ENABLED;
+  apiResponseS = inject(ApiResponseService);
+  dataConnectorS = inject(DataConnectorService);
+  formB = inject(FormBuilder);
+
+  form: FormGroup<IRecoverPasswordForm> = this.formB.group({
+    email: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+  });
+
+  errorMessage = signal<string>("");
+  successMessage = signal<string>("");
+  submitting = signal(false);
+  countdown = signal<number>(0);
+  private destroy$ = new Subject<void>();
+
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.apiResponseS.validateForm(this.form);
+      return;
+    }
+
+    this.submitting.set(true);
+    this.errorMessage.set("");
+    this.successMessage.set("");
+
+    Swal.fire({
+      title: "Procesando...",
+      text: "Por favor, espera.",
+      icon: "info",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    const urlApi = Endpoints.Auth.recoverPassword;
+    const body = this.form.value;
+
+    this.dataConnectorS
+      .post(urlApi, body)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          const msg =
+            error.error?.error?.message ||
+            error.error?.message ||
+            "Ocurrió un error inesperado";
+          this.errorMessage.set(msg);
+          return throwError(() => new Error(msg));
+        }),
+        finalize(() => {
+          Swal.close();
+          this.submitting.set(false);
+        }),
+      )
+      .subscribe({
+        next: (response: any) => {
+          const msg =
+            response.body?.data?.message ||
+            response.body?.message ||
+            "Si el correo existe, recibirás instrucciones.";
+          this.successMessage.set(msg);
+          this.startCountdown();
+        },
+      });
+  }
+
+  startCountdown() {
+    this.countdown.set(30);
+    const interval = setInterval(() => {
+      const current = this.countdown();
+      if (current > 0) {
+        this.countdown.set(current - 1);
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+}
 
-interface IRecoverPasswordForm {
-  email: FormControl<string>;
-}
-
-@Component({
-  selector: "app-recover-password",
-  templateUrl: "./recover-password.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    MessageModule,
-    CustomInputTextSignal,
-    WebButtonLabel,
-    RouterModule,
-    AppIcon,
-  ],
-})
-export class RecoverPassword implements OnInit, OnDestroy {
-  readonly ROUTES = ROUTES;
-  /** Feature flag del flujo por código (rollback: plan §10 Fase 4). */
-  readonly recoveryByCodeEnabled = RECOVERY_BY_CODE_ENABLED;
-  apiResponseS = inject(ApiResponseService);
-  dataConnectorS = inject(DataConnectorService);
-  formB = inject(FormBuilder);
-
-  form: FormGroup<IRecoverPasswordForm> = this.formB.group({
-    email: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
-  });
-
-  errorMessage = signal<string>("");
-  successMessage = signal<string>("");
-  submitting = signal(false);
-  countdown = signal<number>(0);
-  private destroy$ = new Subject<void>();
-
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  onSubmit() {
-    if (this.form.invalid) {
-      this.apiResponseS.validateForm(this.form);
-      return;
-    }
-
-    this.submitting.set(true);
-    this.errorMessage.set("");
-    this.successMessage.set("");
-
-    Swal.fire({
-      title: "Procesando...",
-      text: "Por favor, espera.",
-      icon: "info",
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    });
-
-    const urlApi = Endpoints.Auth.recoverPassword;
-    const body = this.form.value;
-
-    this.dataConnectorS
-      .post(urlApi, body)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          const msg =
-            error.error?.error?.message ||
-            error.error?.message ||
-            "Ocurrió un error inesperado";
-          this.errorMessage.set(msg);
-          return throwError(() => new Error(msg));
-        }),
-        finalize(() => {
-          Swal.close();
-          this.submitting.set(false);
-        }),
-      )
-      .subscribe({
-        next: (response: any) => {
-          const msg =
-            response.body?.data?.message ||
-            response.body?.message ||
-            "Si el correo existe, recibirás instrucciones.";
-          this.successMessage.set(msg);
-          this.startCountdown();
-        },
-      });
-  }
-
-  startCountdown() {
-    this.countdown.set(30);
-    const interval = setInterval(() => {
-      const current = this.countdown();
-      if (current > 0) {
-        this.countdown.set(current - 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-  }
-}

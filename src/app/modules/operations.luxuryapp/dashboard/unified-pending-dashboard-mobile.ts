@@ -21,19 +21,19 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AiService } from "src/app/core/services/ai.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SwalService } from "src/app/core/services/swal.service";
-import { TicketLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { MinutaDetalleForm } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { PolicyContractForm } from "src/app/modules/operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
-import { ServiceOrderForm } from "src/app/modules/operations.luxuryapp/field-service/service-order/service-order-form";
-import { TaskForm } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-form";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AiService } from "@core/services/ai.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { PolicyContractForm } from "@operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
+import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
+import { TaskForm } from "@operations.luxuryapp/task-engine/tasks/task-message/task-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
@@ -373,3 +373,5 @@ export class UnifiedPendingDashboardMobile {
     return "medium";
   }
 }
+
+

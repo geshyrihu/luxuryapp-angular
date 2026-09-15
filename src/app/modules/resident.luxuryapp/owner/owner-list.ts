@@ -15,30 +15,30 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { Owner } from "src/app/core/interfaces/list-condomino.interface";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { Owner } from "@core/interfaces/list-condomino.interface";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { ExcelExportService } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
+} from "@core/services/dialog-handler.service";
+import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
 import { OwnerForm } from "./owner-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-owner-list",
@@ -157,3 +157,5 @@ export class OwnerList {
     return xMatches.length - yMatches.length;
   }
 }
+
+

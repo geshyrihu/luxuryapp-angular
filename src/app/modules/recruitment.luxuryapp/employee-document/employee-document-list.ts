@@ -17,12 +17,12 @@ import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 
 export interface CandidateHiringDocumentListItemDto {
@@ -340,3 +340,4 @@ export class EmployeeDocumentList implements OnInit {
     }
   }
 }
+

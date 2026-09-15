@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { ExtintorBitacoraPdfService } from './extintor-bitacora-pdf.service';
 
 describe('ExtintorBitacoraPdfService', () => {
@@ -43,3 +43,4 @@ describe('ExtintorBitacoraPdfService', () => {
     expect(mockHtmlPrintService.printHtml).toHaveBeenCalled();
   });
 });
+

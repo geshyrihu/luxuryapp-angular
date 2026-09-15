@@ -1,32 +1,32 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  input,
-} from "@angular/core";
-import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
+import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { BaseInputSignal } from "../../base/base-input-signal";
-
-@Component({
-  selector: "web-input-multiselect",
-
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { BaseInputSignal } from "../../base/base-input-signal";
+
+@Component({
+  selector: "web-input-multiselect",
+
   imports: [BaseInputSignal, ReactiveFormsModule, NgSelectModule],
-  template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [readonly]="readonly()"
-      [disabled]="disabled()"
-    >
+  template: `
+    <base-input-signal
+      [control]="control()"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+    >
       <ng-select
         [items]="options()"
-        [formControl]="control() || internalControl"
-        [placeholder]="placeholder()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
         [searchable]="filter()"
         [clearable]="showClear()"
         [bindLabel]="optionLabel()"
@@ -53,7 +53,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
           }
         </ng-template>
       </ng-select>
-    </base-input-signal>
+    </base-input-signal>
   `,
   styles: [`
       :host ::ng-deep .ng-select-sm .ng-select-container { min-height: 2rem; font-size: .875rem; }
@@ -64,37 +64,38 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       :host ::ng-deep .ng-dropdown-panel .scroll-host { max-height: var(--ng-select-panel-max-height, 350px); }
     `
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => WebInputMultiselect),
-      multi: true,
-    },
-  ],
-})
-export class WebInputMultiselect extends BaseInputSignal {
-  options = input<SelectItemDto[]>([]);
-  optionLabel = input<string>("label");
-  optionValue = input<string | undefined>("value");
-  group = input<boolean>(false);
-  optionGroupLabel = input<string>("label");
-  optionGroupChildren = input<string>("items");
-  filter = input<boolean>(true);
-  showClear = input<boolean>(true);
-  selectionDisplay = input<"comma" | "chip" | undefined>("chip");
-  maxSelectedLabels = input<number | undefined>(undefined);
-  selectedItemsLabel = input<string | undefined>(undefined);
-  customClass = input<string>("");
-  size = input<"small" | "large" | undefined>(undefined);
-  scrollHeight = input<string>("350px");
-  panelStyle = input<Record<string, string>>({ "min-width": "20rem" });
-
-  getComponentClass(): string {
-    const classes: string[] = [];
+  changeDetection: ChangeDetectionStrategy.Eager,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => WebInputMultiselect),
+      multi: true,
+    },
+  ],
+})
+export class WebInputMultiselect extends BaseInputSignal {
+  options = input<SelectItemDto[]>([]);
+  optionLabel = input<string>("label");
+  optionValue = input<string | undefined>("value");
+  group = input<boolean>(false);
+  optionGroupLabel = input<string>("label");
+  optionGroupChildren = input<string>("items");
+  filter = input<boolean>(true);
+  showClear = input<boolean>(true);
+  selectionDisplay = input<"comma" | "chip" | undefined>("chip");
+  maxSelectedLabels = input<number | undefined>(undefined);
+  selectedItemsLabel = input<string | undefined>(undefined);
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+  scrollHeight = input<string>("350px");
+  panelStyle = input<Record<string, string>>({ "min-width": "20rem" });
+
+  getComponentClass(): string {
+    const classes: string[] = [];
     if (this.size() === "small") classes.push("ng-select-sm");
     if (this.size() === "large") classes.push("ng-select-lg");
-    if (this.customClass()) classes.push(this.customClass());
-    return classes.join(" ");
-  }
-}
+    if (this.customClass()) classes.push(this.customClass());
+    return classes.join(" ");
+  }
+}
+

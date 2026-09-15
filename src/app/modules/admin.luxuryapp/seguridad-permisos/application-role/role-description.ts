@@ -1,35 +1,36 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from "@angular/core";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+
+@Component({
+  selector: "app-role-description",
+  templateUrl: "./role-description.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [],
+})
+export class RoleDescription implements OnInit {
+  private config = inject(DynamicDialogConfig);
+  private apiResponseS = inject(ApiResponseService);
+  data: any;
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(
+        Endpoints.JobDescriptions.getByWorkPosition(this.config.data.id),
+      )
+      .then((result: any) => {
+        this.data = result;
+      });
+  }
+}
 
-@Component({
-  selector: "app-role-description",
-  templateUrl: "./role-description.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
-})
-export class RoleDescription implements OnInit {
-  private config = inject(DynamicDialogConfig);
-  private apiResponseS = inject(ApiResponseService);
-  data: any;
-
-  ngOnInit(): void {
-    this.onLoadData();
-  }
-
-  onLoadData() {
-    this.apiResponseS
-      .onGetItem(
-        Endpoints.JobDescriptions.getByWorkPosition(this.config.data.id),
-      )
-      .then((result: any) => {
-        this.data = result;
-      });
-  }
-}

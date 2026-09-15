@@ -22,23 +22,23 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EntregaRecepcionClienteForm } from "src/app/modules/operations.luxuryapp/properties/entrega-recepcion/entrega-recepcion-cliente-form";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { EntregaRecepcionClienteForm } from "@operations.luxuryapp/properties/entrega-recepcion/entrega-recepcion-cliente-form";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
@@ -189,3 +189,5 @@ export class EntregaRecepcionClienteLista {
     window.open(url, "_blank");
   }
 }
+
+

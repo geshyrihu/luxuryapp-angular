@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { MessageService } from "src/app/core/services/message.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { MessageService } from "@core/services/message.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-toast",
@@ -69,3 +69,4 @@ export class AppToast {
     return map[severity ?? "info"] ?? map["info"];
   }
 }
+

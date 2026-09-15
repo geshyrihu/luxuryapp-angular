@@ -1,131 +1,132 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DateService } from "src/app/core/services/date.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+import { ROUTES } from "src/app/routing/route-paths";
+
+interface IDetectorHumoChecklistForm {
+  id: FormControl<string | null>;
+  detectorId: FormControl<string | null>;
+  date: FormControl<any>;
+  hour: FormControl<string>;
+  noObstructions: FormControl<boolean>;
+  noContamination: FormControl<boolean>;
+  noPhysicalDamage: FormControl<boolean>;
+  ledStatusOk: FormControl<boolean>;
+  mountingSecure: FormControl<boolean>;
+  observations: FormControl<string | null>;
+  applicationUserId: FormControl<string>;
+}
+
+@Component({
+  selector: "app-detector-humo-checklist",
+  templateUrl: "./detector-humo-checklist.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    ReactiveFormsModule,
+    WebButtonLabelSave,
+    CustomInputCheckSignal,
+    CustomInputDateSignal,
+    CustomInputTextAreaSignal,
+    CustomInputTime,
+  ],
+})
+export class DetectorHumoChecklist implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  authS = inject(AuthService);
+  dateS = inject(DateService);
+  router = inject(Router);
+  rutaActiva = inject(ActivatedRoute);
+  dialogConfig = inject(DynamicDialogConfig, { optional: true });
+  ref = inject(DynamicDialogRef, { optional: true });
+
+  submitting = signal(false);
+  id = "";
+  detectorId = "";
+
+  form: FormGroup<IDetectorHumoChecklistForm> =
+    new FormGroup<IDetectorHumoChecklistForm>({
+      id: new FormControl({ value: null, disabled: true }),
+      detectorId: new FormControl(null),
+      date: new FormControl<any>(this.dateS.getDateNow(), {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      hour: new FormControl(this.dateS.getHoraNow(new Date()), {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      noObstructions: new FormControl(false, { nonNullable: true }),
+      noContamination: new FormControl(false, { nonNullable: true }),
+      noPhysicalDamage: new FormControl(false, { nonNullable: true }),
+      ledStatusOk: new FormControl(false, { nonNullable: true }),
+      mountingSecure: new FormControl(false, { nonNullable: true }),
+      observations: new FormControl(null),
+      applicationUserId: new FormControl(this.authS.applicationUserId, {
+        nonNullable: true,
+      }),
+    });
+
+  ngOnInit(): void {
+    this.id = this.dialogConfig?.data?.id ?? "";
+    this.detectorId =
+      this.dialogConfig?.data?.detectorId ??
+      this.rutaActiva.snapshot.params["id"] ??
+      "";
+    this.form.patchValue({ detectorId: this.detectorId });
+    if (this.id) this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(Endpoints.FireEquipmentLogs.detectorHumo.getById(this.id))
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
+  }
+
+  async onSubmit() {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.FireEquipmentLogs.detectorHumo.base,
+      id: this.id,
+      ref: this.ref ?? undefined,
+      submitting: this.submitting,
+      closeOnSuccess: !!this.ref,
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        detectorId: this.detectorId,
+        date: this.dateS.getDateFormat(this.form.getRawValue().date),
+      }),
+    });
+
+    if (result !== false && !this.ref) {
+      this.router.navigate(
+        ROUTES.BITACORAS.DETECTOR_HUMO_BITACORA(this.detectorId),
+      );
+    }
+  }
+}
 
-interface IDetectorHumoChecklistForm {
-  id: FormControl<string | null>;
-  detectorId: FormControl<string | null>;
-  date: FormControl<any>;
-  hour: FormControl<string>;
-  noObstructions: FormControl<boolean>;
-  noContamination: FormControl<boolean>;
-  noPhysicalDamage: FormControl<boolean>;
-  ledStatusOk: FormControl<boolean>;
-  mountingSecure: FormControl<boolean>;
-  observations: FormControl<string | null>;
-  applicationUserId: FormControl<string>;
-}
-
-@Component({
-  selector: "app-detector-humo-checklist",
-  templateUrl: "./detector-humo-checklist.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    WebButtonLabelSave,
-    CustomInputCheckSignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputTime,
-  ],
-})
-export class DetectorHumoChecklist implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  authS = inject(AuthService);
-  dateS = inject(DateService);
-  router = inject(Router);
-  rutaActiva = inject(ActivatedRoute);
-  dialogConfig = inject(DynamicDialogConfig, { optional: true });
-  ref = inject(DynamicDialogRef, { optional: true });
-
-  submitting = signal(false);
-  id = "";
-  detectorId = "";
-
-  form: FormGroup<IDetectorHumoChecklistForm> =
-    new FormGroup<IDetectorHumoChecklistForm>({
-      id: new FormControl({ value: null, disabled: true }),
-      detectorId: new FormControl(null),
-      date: new FormControl<any>(this.dateS.getDateNow(), {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      hour: new FormControl(this.dateS.getHoraNow(new Date()), {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      noObstructions: new FormControl(false, { nonNullable: true }),
-      noContamination: new FormControl(false, { nonNullable: true }),
-      noPhysicalDamage: new FormControl(false, { nonNullable: true }),
-      ledStatusOk: new FormControl(false, { nonNullable: true }),
-      mountingSecure: new FormControl(false, { nonNullable: true }),
-      observations: new FormControl(null),
-      applicationUserId: new FormControl(this.authS.applicationUserId, {
-        nonNullable: true,
-      }),
-    });
-
-  ngOnInit(): void {
-    this.id = this.dialogConfig?.data?.id ?? "";
-    this.detectorId =
-      this.dialogConfig?.data?.detectorId ??
-      this.rutaActiva.snapshot.params["id"] ??
-      "";
-    this.form.patchValue({ detectorId: this.detectorId });
-    if (this.id) this.onLoadData();
-  }
-
-  onLoadData() {
-    this.apiResponseS
-      .onGetItem(Endpoints.FireEquipmentLogs.detectorHumo.getById(this.id))
-      .then((result: any) => {
-        this.form.patchValue(result);
-      });
-  }
-
-  async onSubmit() {
-    const result = await FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: Endpoints.FireEquipmentLogs.detectorHumo.base,
-      id: this.id,
-      ref: this.ref ?? undefined,
-      submitting: this.submitting,
-      closeOnSuccess: !!this.ref,
-      transformPayload: () => ({
-        ...this.form.getRawValue(),
-        detectorId: this.detectorId,
-        date: this.dateS.getDateFormat(this.form.getRawValue().date),
-      }),
-    });
-
-    if (result !== false && !this.ref) {
-      this.router.navigate(
-        ROUTES.BITACORAS.DETECTOR_HUMO_BITACORA(this.detectorId),
-      );
-    }
-  }
-}

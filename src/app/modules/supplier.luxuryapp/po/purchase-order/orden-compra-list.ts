@@ -9,9 +9,9 @@ import {
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -22,20 +22,20 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { PdfGenerationService } from "src/app/modules/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { PurchaseLinkManager } from "src/app/modules/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { PdfGenerationService } from "@supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
+import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
 
@@ -68,7 +68,7 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-orden-compra-list",
@@ -317,3 +317,5 @@ export class OrdenCompraList {
     this.pdfGenerationService.generateSolicitudPagoPdf(ordenCompraId);
   }
 }
+
+

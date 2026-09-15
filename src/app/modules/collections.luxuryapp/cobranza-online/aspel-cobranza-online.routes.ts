@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
 
 export const COBRANZA_ONLINE_ROUTES: Routes = [
@@ -167,3 +167,4 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
     ],
   },
 ];
+

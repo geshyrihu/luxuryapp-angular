@@ -19,23 +19,23 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ContMinutaSeguimientos } from "src/app/modules/accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
-import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
 
@@ -157,3 +157,5 @@ export class SeguimientoMinuta {
     this.onLoadData(filtro);
   }
 }
+
+

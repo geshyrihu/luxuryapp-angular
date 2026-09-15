@@ -10,9 +10,9 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { AppCard } from "@ui/web/card/card";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
 import { InspectionEdit } from "../models/inspection.model";
 
@@ -221,3 +221,4 @@ export class InspectionDetailComponent implements OnInit {
     return days.map((day) => this.weekdayNames[day % 7]);
   }
 }
+

@@ -17,7 +17,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -28,15 +28,15 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { GastoFijoPresupuesto } from "src/app/modules/accounting.luxuryapp/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
-import { GastoFijoDetalleEdit } from "src/app/modules/accounting.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-detalle-edit";
-import { GastoFijoServicios } from "src/app/modules/accounting.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-servicios";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { GastoFijoPresupuesto } from "@accounting.luxuryapp/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
+import { GastoFijoDetalleEdit } from "@accounting.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-detalle-edit";
+import { GastoFijoServicios } from "@accounting.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-servicios";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;
@@ -357,3 +357,5 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   productName?: string;
   productoDescription?: string;
 }
+
+

@@ -20,16 +20,16 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanel } from "@ui/adaptive/panel/panel";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { GlobalErrorService } from "src/app/core/http/services/global-error.service";
-import { DateService } from "src/app/core/services/date.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { GlobalErrorService } from "@core/http/services/global-error.service";
+import { DateService } from "@core/services/date.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { VacationBalanceDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/vacation-balance.interface";
+} from "@core/services/dialog-handler.service";
+import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { VacationRequestMyDTO } from "../../interfaces/vacation-request.interface";
 
@@ -428,3 +428,5 @@ export class VacacionesForm implements OnInit {
     }
   }
 }
+
+

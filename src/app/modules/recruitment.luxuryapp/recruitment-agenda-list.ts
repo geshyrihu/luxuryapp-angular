@@ -15,19 +15,19 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import Swal from "sweetalert2";
-import { CandidateRecruitmentAgendaItem } from "./candidate-applications/interfaces/candidate-application";
+import { CandidateRecruitmentAgendaItem } from "./candidates/candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
 
@@ -189,3 +189,5 @@ export class RecruitmentAgendaList implements OnInit {
     return "";
   }
 }
+
+

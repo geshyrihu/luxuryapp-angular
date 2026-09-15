@@ -1,5 +1,5 @@
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { AdminModuleCard } from "./admin-module-card.interface";
 
 export interface AdminModuleGroup {
@@ -8,3 +8,4 @@ export interface AdminModuleGroup {
   cards: AdminModuleCard[];
   roles?: ApplicationRole[];
 }
+

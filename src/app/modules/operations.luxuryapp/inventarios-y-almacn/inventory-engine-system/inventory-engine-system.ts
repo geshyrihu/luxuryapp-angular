@@ -9,22 +9,22 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { ActivosForm } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { FichaTecnicaActivo } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { ServiceHistoryMachinery } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
-import { BitacoraIndividual } from "src/app/modules/maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
+} from "@core/services/dialog-handler.service";
+import { ActivosForm } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
+import { FichaTecnicaActivo } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 
 @Component({
   selector: "app-inventory-engine-system",
@@ -134,3 +134,5 @@ export class InventoryEngineSystem {
     this.filteredDataSignal.set([...this.dataSignal()]);
   }
 }
+
+

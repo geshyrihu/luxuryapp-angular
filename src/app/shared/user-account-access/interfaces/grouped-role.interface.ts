@@ -1,6 +1,7 @@
-import { Roles } from "src/app/core/interfaces/roles.interface";
+import { Roles } from "@core/interfaces/roles.interface";
+
+export interface GroupedRole {
+  groupName: string;
+  roles: Roles[];
+}
 
-export interface GroupedRole {
-  groupName: string;
-  roles: Roles[];
-}

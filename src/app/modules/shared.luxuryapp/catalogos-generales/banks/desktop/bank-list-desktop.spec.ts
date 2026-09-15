@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
+import { TableScrollHeightService } from '@core/services/table-scroll-height.service';
 import { BankListDesktop } from './bank-list-desktop';
 import { BankDto } from '../interfaces/banks.dto';
 
@@ -84,3 +84,4 @@ describe('BankListDesktop', () => {
     expect(component.globalFilterFields().length).toBe(2);
   });
 });
+

@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const pagesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/dashboard/container-dashboard").then(
+      import("@operations.luxuryapp/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const pagesRoutes: Routes = [
   {
     path: "admin",
     loadChildren: () =>
-      import("src/app/modules/admin.luxuryapp/admin.routes").then(
+      import("@admin.luxuryapp/admin.routes").then(
         (m) => m.adminRoutes,
       ),
     data: { title: "LuxuryApp-Sistema", breadcrumb: "Sistema" },
@@ -24,7 +24,7 @@ export const pagesRoutes: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/dashboard/container-dashboard").then(
+      import("@operations.luxuryapp/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -37,7 +37,7 @@ export const pagesRoutes: Routes = [
   {
     path: "notifications",
     loadComponent: () =>
-      import("src/app/core/layout/employee-view/notifications-wrapper/notifications-wrapper").then(
+      import("@core/layout/employee-view/notifications-wrapper/notifications-wrapper").then(
         (m) => m.NotificationsWrapper,
       ),
     data: {
@@ -48,7 +48,7 @@ export const pagesRoutes: Routes = [
   {
     path: "home",
     loadComponent: () =>
-      import("src/app/core/layout/employee-view/movil/home-menu-mobile/home-menu-mobile").then(
+      import("@core/layout/employee-view/movil/home-menu-mobile/home-menu-mobile").then(
         (m) => m.HomeMenu,
       ),
     canActivate: [authGuard],
@@ -124,7 +124,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad",
     loadChildren: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/contabilidad.routing").then(
+      import("@accounting.luxuryapp/general-ledger/contabilidad.routing").then(
         (m) => m.CONTABILIDAD_ROUTES,
       ),
     data: {
@@ -135,7 +135,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("src/app/modules/collections.luxuryapp/cobranza-nativa/cobranza-nativa.routing").then(
+      import("@collections.luxuryapp/cobranza-nativa/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {
@@ -146,7 +146,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza",
     loadChildren: () =>
-      import("src/app/modules/collections.luxuryapp/cobranza.routes").then(
+      import("@collections.luxuryapp/cobranza.routes").then(
         (m) => m.COBRANZA_ROUTES,
       ),
     data: {
@@ -320,7 +320,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/dynamic-reports/report-catalog/report-catalog").then(
+      import("@accounting.luxuryapp/general-ledger/dynamic-reports/report-catalog/report-catalog").then(
         (m) => m.ReportCatalog,
       ),
     data: { title: "Reportes Financieros", breadcrumb: "Reportes" },
@@ -328,7 +328,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/nuevo",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/dynamic-reports/report-builder/report-builder").then(
+      import("@accounting.luxuryapp/general-ledger/dynamic-reports/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Nuevo Reporte", breadcrumb: "Nuevo Reporte" },
@@ -336,7 +336,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/editar/:id",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/dynamic-reports/report-builder/report-builder").then(
+      import("@accounting.luxuryapp/general-ledger/dynamic-reports/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Editar Reporte", breadcrumb: "Editar Reporte" },
@@ -344,7 +344,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/ver/:id",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/dynamic-reports/report-viewer/report-viewer").then(
+      import("@accounting.luxuryapp/general-ledger/dynamic-reports/report-viewer/report-viewer").then(
         (m) => m.ReportViewer,
       ),
     data: { title: "Ver Reporte", breadcrumb: "Ver Reporte" },
@@ -352,7 +352,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/guia",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/dynamic-reports/report-guide/report-guide").then(
+      import("@accounting.luxuryapp/general-ledger/dynamic-reports/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
     data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
@@ -360,7 +360,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/financial-reports-wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/contabilidad-online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -371,7 +371,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/validacion-catalogo/catalog-replica").then(
+      import("@accounting.luxuryapp/general-ledger/contabilidad-online/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -382,7 +382,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/monthly-balance/balance-mensual").then(
+      import("@accounting.luxuryapp/general-ledger/contabilidad-online/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {
@@ -501,7 +501,7 @@ export const pagesRoutes: Routes = [
   {
     path: "sat-funding",
     loadChildren: () =>
-      import("src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
+      import("@accounting.luxuryapp/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
         (m) => m.SAT_FUNDING_ROUTES,
       ),
     data: {
@@ -525,7 +525,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/properties/entrega-recepcion-check/entrega-recepcion-check").then(
+      import("@operations.luxuryapp/properties/entrega-recepcion-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {
@@ -536,7 +536,7 @@ export const pagesRoutes: Routes = [
   {
     path: "password-manager",
     loadChildren: () =>
-      import("src/app/modules/auth.luxuryapp/password-manager/password-manager.routes").then(
+      import("@auth.luxuryapp/password-manager/password-manager.routes").then(
         (m) => m.PASSWORD_MANAGER_ROUTES,
       ),
     data: {
@@ -550,7 +550,7 @@ export const pagesRoutes: Routes = [
   {
     path: "accounting",
     loadChildren: () =>
-      import("src/app/modules/accounting.luxuryapp/accounting.routing").then(
+      import("@accounting.luxuryapp/accounting.routing").then(
         (m) => m.accountingRoutes,
       ),
     data: { title: "Contabilidad", breadcrumb: "Contabilidad" },
@@ -558,7 +558,7 @@ export const pagesRoutes: Routes = [
   {
     path: "hr",
     loadChildren: () =>
-      import("src/app/modules/human-resources.luxuryapp/hr.routing").then(
+      import("@human-resources.luxuryapp/hr.routing").then(
         (m) => m.hrRoutes,
       ),
     data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
@@ -566,7 +566,7 @@ export const pagesRoutes: Routes = [
   {
     path: "legal",
     loadChildren: () =>
-      import("src/app/modules/legal.luxuryapp/legal.routing").then(
+      import("@legal.luxuryapp/legal.routing").then(
         (m) => m.legalRoutes,
       ),
     data: { title: "Legal", breadcrumb: "Legal" },
@@ -574,7 +574,7 @@ export const pagesRoutes: Routes = [
   {
     path: "maintenance",
     loadChildren: () =>
-      import("src/app/modules/maintenance.luxuryapp/maintenance.routing").then(
+      import("@maintenance.luxuryapp/maintenance.routing").then(
         (m) => m.maintenanceRoutes,
       ),
     data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
@@ -582,7 +582,7 @@ export const pagesRoutes: Routes = [
   {
     path: "operations",
     loadChildren: () =>
-      import("src/app/modules/operations.luxuryapp/operations.routing").then(
+      import("@operations.luxuryapp/operations.routing").then(
         (m) => m.operationsRoutes,
       ),
     data: { title: "Operaciones", breadcrumb: "Operaciones" },
@@ -590,7 +590,7 @@ export const pagesRoutes: Routes = [
   {
     path: "initial-implementation",
     loadChildren: () =>
-      import("src/app/modules/operations.luxuryapp/initial-implementation/initial-implementation.routing").then(
+      import("@operations.luxuryapp/initial-implementation/initial-implementation.routing").then(
         (m) => m.initialImplementationRoutes,
       ),
     data: {
@@ -601,7 +601,7 @@ export const pagesRoutes: Routes = [
   {
     path: "purchasing",
     loadChildren: () =>
-      import("src/app/modules/supplier.luxuryapp/purchasing.routing").then(
+      import("@supplier.luxuryapp/purchasing.routing").then(
         (m) => m.purchasingRoutes,
       ),
     data: { title: "Compras", breadcrumb: "Compras" },
@@ -609,7 +609,7 @@ export const pagesRoutes: Routes = [
   {
     path: "recruitment",
     loadChildren: () =>
-      import("src/app/modules/recruitment.luxuryapp/recruitment.routing").then(
+      import("@recruitment.luxuryapp/recruitment.routing").then(
         (m) => m.recruitmentRoutes,
       ),
     data: { title: "Reclutamiento", breadcrumb: "Reclutamiento" },
@@ -619,7 +619,7 @@ export const pagesRoutes: Routes = [
   {
     path: "**",
     loadComponent: () =>
-      import("src/app/core/pages-extras/page404/page404").then(
+      import("@core/pages-extras/page404/page404").then(
         (m) => m.Page404,
       ),
     data: {
@@ -628,3 +628,5 @@ export const pagesRoutes: Routes = [
     },
   },
 ];
+
+

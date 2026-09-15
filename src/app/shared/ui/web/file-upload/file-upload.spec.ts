@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { FileUpload } from "./file-upload";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { PlatformService } from "@core/services/platform.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { ImageProcessingService } from "@core/services/image-processing.service";
 import { vi } from "vitest";
 
 describe("FileUpload", () => {
@@ -56,3 +56,4 @@ describe("FileUpload", () => {
     );
   });
 });
+

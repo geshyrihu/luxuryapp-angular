@@ -7,11 +7,11 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { map } from "rxjs/operators";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { OneSignalService } from "src/app/core/services/one-signal.service";
-import { SignalRService } from "src/app/core/services/signalr.service";
-import { PanicAlertIncomingDialog } from "src/app/modules/operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
+import { AuthService } from "@core/auth/services/auth.service";
+import { ConsoleLoggerService } from "@core/services/console-logger.service";
+import { OneSignalService } from "@core/services/one-signal.service";
+import { SignalRService } from "@core/services/signalr.service";
+import { PanicAlertIncomingDialog } from "@operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
 import { ViewEmployeedesktop } from "./desktop/view-employee-desktop/view-employee-desktop";
 import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-mobile";
 /**
@@ -92,3 +92,5 @@ export class LayoutEmployee implements OnInit {
     }
   }
 }
+
+

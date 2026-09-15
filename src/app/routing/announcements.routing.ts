@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const announcementsRoutes: Routes = [
   {
     // Suggested path: 'manage'
     path: "manage",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/announcements/announcement/announcement-admin-list").then(
+      import("@operations.luxuryapp/announcements/announcement/announcement-admin-list").then(
         (m) => m.AnnouncementAdminList,
       ),
     canActivate: [authGuard],
@@ -19,7 +19,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'list'
     path: "list",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/announcements/announcement/announcement-list").then(
+      import("@operations.luxuryapp/announcements/announcement/announcement-list").then(
         (m) => m.AnnouncementList,
       ),
     canActivate: [authGuard],
@@ -32,7 +32,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "detail/:id",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/announcements/announcement/announcement-detail").then(
+      import("@operations.luxuryapp/announcements/announcement/announcement-detail").then(
         (m) => m.announcementDetail,
       ),
     canActivate: [authGuard],
@@ -45,7 +45,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "analytics/:id",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/announcements/announcement/announcement-analytics").then(
+      import("@operations.luxuryapp/announcements/announcement/announcement-analytics").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -55,3 +55,5 @@ export const announcementsRoutes: Routes = [
     },
   },
 ];
+
+

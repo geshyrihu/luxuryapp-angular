@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const maintenanceRoutes: Routes = [
   // Ruta anterior: 'calendario-anual'
   {
     path: "annual-calendar",
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/calendario-mtto-list").then(
+      import("@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/calendario-mtto-list").then(
         (m) => m.CalendarioMttoList,
       ),
     canActivate: [authGuard],
@@ -15,3 +15,5 @@ export const maintenanceRoutes: Routes = [
     },
   },
 ];
+
+

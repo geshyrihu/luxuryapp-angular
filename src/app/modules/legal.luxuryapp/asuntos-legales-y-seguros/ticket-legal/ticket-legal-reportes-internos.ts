@@ -14,12 +14,12 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { TaskDateRangeSelector } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-ticket-legal-reportes-internos",
   templateUrl: "./ticket-legal-reportes-internos.html",
@@ -264,3 +264,5 @@ export class TicketLegalReportesInternos implements OnInit {
     );
   }
 }
+
+

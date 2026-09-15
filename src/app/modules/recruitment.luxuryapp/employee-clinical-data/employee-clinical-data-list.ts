@@ -12,9 +12,9 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeInternalService } from "src/app/modules/recruitment.luxuryapp/employee/employee-internal.service";
+import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
 import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
 import { IEmployeeClinicalData } from "./interfaces/employee-clinical-data.interface";
 
@@ -25,7 +25,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "employee-clinical-data-list",
@@ -104,3 +104,5 @@ export class EmployeeClinicalDataList {
     });
   }
 }
+
+

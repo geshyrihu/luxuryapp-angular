@@ -25,14 +25,14 @@ export const appRoutes: Routes = [
   {
     path: "auth",
     loadChildren: () =>
-      import("src/app/modules/auth.luxuryapp/auth.routes").then(
+      import("@auth.luxuryapp/auth.routes").then(
         (m) => m.authRoutes,
       ),
   },
   {
     path: "web",
     loadChildren: () =>
-      import("src/app/modules/web.luxuryapp/web.routing").then(
+      import("@web.luxuryapp/web.routing").then(
         (m) => m.webRoutes,
       ),
     data: { title: "Inicio", breadcrumb: "Inicio" },
@@ -45,7 +45,7 @@ export const appRoutes: Routes = [
   {
     path: "offline",
     loadComponent: () =>
-      import("src/app/core/pages-extras/offline/offline").then(
+      import("@core/pages-extras/offline/offline").then(
         (m) => m.Offline,
       ),
     data: {
@@ -55,7 +55,7 @@ export const appRoutes: Routes = [
   {
     path: "unauthorized",
     loadComponent: () =>
-      import("src/app/core/pages-extras/unauthorized/unauthorized").then(
+      import("@core/pages-extras/unauthorized/unauthorized").then(
         (m) => m.Unauthorized,
       ),
     data: {
@@ -67,7 +67,7 @@ export const appRoutes: Routes = [
   {
     path: "page404",
     loadComponent: () =>
-      import("src/app/core/pages-extras/page404/page404").then(
+      import("@core/pages-extras/page404/page404").then(
         (m) => m.Page404,
       ),
     data: {
@@ -94,7 +94,7 @@ export const appRoutes: Routes = [
       ),
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
-      import("src/app/modules/committee.luxuryapp/committee.routing").then(
+      import("@committee.luxuryapp/committee.routing").then(
         (m) => m.committeeRoutes,
       ),
   },
@@ -108,7 +108,7 @@ export const appRoutes: Routes = [
       ),
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
-      import("src/app/modules/management.luxuryapp/direccion.routing").then(
+      import("@management.luxuryapp/direccion.routing").then(
         (m) => m.direccionRoutes,
       ),
   },
@@ -117,7 +117,7 @@ export const appRoutes: Routes = [
   {
     path: "guide/:module",
     loadComponent: () =>
-      import("src/app/shared/ui/web/module-guide/module-guide").then(
+      import("@ui/web/module-guide/module-guide").then(
         (m) => m.ModuleGuide,
       ),
     data: {
@@ -147,3 +147,5 @@ export const appRoutes: Routes = [
     redirectTo: "page404",
   },
 ];
+
+

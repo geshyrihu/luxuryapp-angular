@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { CustomToastService } from 'src/app/core/services/custom-toast.service';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { CustomToastService } from '@core/services/custom-toast.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { PdfGenerationService } from './pdf-generation.service';
 
 describe('PdfGenerationService', () => {
@@ -33,3 +33,4 @@ describe('PdfGenerationService', () => {
     expect(toast.showInfo).toHaveBeenCalled();
   });
 });
+

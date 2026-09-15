@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AlertController } from '@ionic/angular';
-import { PlatformService } from 'src/app/core/services/platform.service';
+import { PlatformService } from '@core/services/platform.service';
 import { ConfirmService } from './confirm.service';
 
 describe('ConfirmService', () => {
@@ -29,3 +29,4 @@ describe('ConfirmService', () => {
     expect(alertCtrl.create).toHaveBeenCalled();
   });
 });
+

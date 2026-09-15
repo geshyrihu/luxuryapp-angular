@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DateService } from "src/app/core/services/date.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import FinancialAuditLog from "./financial-audit-log";
 
 describe("FinancialAuditLog", () => {
@@ -115,3 +115,4 @@ describe("FinancialAuditLog", () => {
     });
   });
 });
+

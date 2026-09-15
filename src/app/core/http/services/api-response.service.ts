@@ -2,8 +2,8 @@ import { Injectable, inject } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { saveAs } from "file-saver";
 import { lastValueFrom } from "rxjs";
-import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { ConsoleLoggerService } from "@core/services/console-logger.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "../../services/data-connector.service";
 import { LoaderService } from "../../services/loader.service";
 import { GlobalErrorService } from "./global-error.service";
@@ -632,3 +632,4 @@ export class ApiResponseService {
     }
   }
 }
+

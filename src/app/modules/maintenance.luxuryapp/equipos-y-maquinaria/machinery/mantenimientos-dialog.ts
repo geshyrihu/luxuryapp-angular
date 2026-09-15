@@ -5,15 +5,15 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
-import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 
 interface Equipo {
   id: any;
@@ -203,3 +203,5 @@ export class MantenimientosDialog {
       });
   }
 }
+
+

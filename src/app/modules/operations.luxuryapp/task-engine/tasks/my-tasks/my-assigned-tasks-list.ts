@@ -17,22 +17,22 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
-import { CardEmployee } from "src/app/shared/integration/recursos-humanos";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PrintService } from "src/app/core/services/print.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PrintService } from "@core/services/print.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -296,3 +296,5 @@ export class MyAssignedTasksList {
     });
   }
 }
+
+

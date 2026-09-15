@@ -12,14 +12,14 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
-import { getStatusSeverity as statusSeverityFn } from "src/app/modules/human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { VacationBalanceDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/vacation-balance.interface";
-import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/vacation-request.interface";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
+import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 /**
  * DTO local para representar una solicitud de vacaciones del empleado.
@@ -313,3 +313,5 @@ export class VacacionesSaldo implements OnInit {
     }
   }
 }
+
+

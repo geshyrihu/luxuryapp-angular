@@ -8,16 +8,16 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
-} from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
-import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
-import { AppAvatar } from "src/app/shared/ui/web/avatar/avatar";
-import { ConfirmPresentationModal } from "src/app/modules/operations.luxuryapp/staff-board/confirm-presentation-modal/confirm-presentation-modal";
+} from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { ConfirmPresentationModal } from "@operations.luxuryapp/staff-board/confirm-presentation-modal/confirm-presentation-modal";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
 import { VacancyCandidatesTimelineModal } from "./vacancy-candidates-timeline-modal";
@@ -265,3 +265,5 @@ export class EmployeeInterviewerQueue {
     }
   }
 }
+
+

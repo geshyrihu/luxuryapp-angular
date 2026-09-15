@@ -19,22 +19,22 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DateService } from "src/app/core/services/date.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SignalRService } from "src/app/core/services/signalr.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { JuntaMensualSessionChecklistDialog } from "src/app/modules/management.luxuryapp/juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SignalRService } from "@core/services/signalr.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { JuntaMensualSessionChecklistDialog } from "@management.luxuryapp/juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -519,3 +519,5 @@ export class GoogleCalendar {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
+
+

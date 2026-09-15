@@ -10,7 +10,7 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -25,20 +25,20 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { BusquedaProveedor } from "src/app/core/interfaces/busqueda-proveedor.interface";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CalificacionProveedor } from "src/app/modules/supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { CalificacionProveedor } from "@supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
@@ -48,7 +48,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-provider-list",
@@ -369,3 +369,5 @@ export class ListProvider implements OnInit {
     return Array.from(tokens).join(" ");
   }
 }
+
+

@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const utilitiesRoutes: Routes = [
   {
     path: "calculate-vat", // Ruta anterior: 'calcular-iva'
     loadComponent: () =>
-      import("src/app/modules/operations.luxuryapp/inventarios-y-almacn/tools/calculator-list").then(
+      import("@operations.luxuryapp/inventarios-y-almacn/tools/calculator-list").then(
         (m) => m.CalculatorList,
       ),
     canActivate: [authGuard],
@@ -14,3 +14,5 @@ export const utilitiesRoutes: Routes = [
     },
   },
 ];
+
+

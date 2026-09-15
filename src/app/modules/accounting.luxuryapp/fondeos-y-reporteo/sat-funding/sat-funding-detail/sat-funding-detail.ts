@@ -13,9 +13,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 // PrimeNG Modules
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
@@ -29,15 +29,15 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   BulkUpdateTipoGastoDto,
   SatCfdiDto,
   SatDownloadRequestDto,
   SatFundingDetailDto,
-} from "src/app/modules/accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 
 @Component({
@@ -181,3 +181,5 @@ export class SatFundingDetailComponent implements OnInit {
       });
   }
 }
+
+

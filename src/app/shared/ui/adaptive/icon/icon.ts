@@ -2,8 +2,8 @@ import { Component, inject } from "@angular/core";
 import { input } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
-import { PlatformService } from "src/app/core/services/platform.service";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { PlatformService } from "@core/services/platform.service";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 /**
  * Wrapper multiplataforma de Icon. Renderiza `app-icon` (iconify) o
@@ -26,3 +26,4 @@ export class LxIcon {
   styleClass = input<string>();
   protected platform = inject(PlatformService);
 }
+

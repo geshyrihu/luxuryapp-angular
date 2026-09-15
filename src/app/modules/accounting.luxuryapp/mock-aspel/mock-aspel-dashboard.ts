@@ -4,8 +4,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { InputSelect } from "src/app/shared/ui/inputs/adaptive/input-select/input-select";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { EstadoDeCuentaResponse, MockAspelService, MockAspelSyncCustomer, MovimientoFilterOption, MovimientoResponse, PagedResponse, SaldoResponse } from "./services/mock-aspel.service";
 
 @Component({
@@ -256,3 +256,4 @@ export class MockAspelDashboardComponent implements OnInit {
     return "No se pudieron consultar los datos del simulador.";
   }
 }
+

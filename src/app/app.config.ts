@@ -31,7 +31,7 @@ import {
 } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
 import { provideIonicAngular } from "@ionic/angular";
-import { GlobalErrorHandler } from "src/app/core/http/services/global-error-handler.service";
+import { GlobalErrorHandler } from "@core/http/services/global-error-handler.service";
 // Importaciones de Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
@@ -51,15 +51,14 @@ import {
   ConfirmationService,
   MessageService as PrimeMessageService,
 } from "primeng/api";
-import { MessageService } from "src/app/core/services/message.service";
+import { MessageService } from "@core/services/message.service";
 import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
-import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
-import { imageFormDataInterceptor } from "src/app/core/http/interceptors/image-form-data.interceptor.fn";
-import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.fn";
-import { offlineInterceptorFn } from "src/app/core/http/interceptors/offline.interceptor.fn";
-import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
-import { MessagingService } from "src/app/core/services/notification-messaging.service";
+import { imageFormDataInterceptor } from "@core/http/interceptors/image-form-data.interceptor.fn";
+import { jwtInterceptor } from "@core/http/interceptors/jwt.interceptor.fn";
+import { offlineInterceptorFn } from "@core/http/interceptors/offline.interceptor.fn";
+import { preloadIconifyIcons } from "@core/services/icon-preload.service";
+import { MessagingService } from "@core/services/notification-messaging.service";
 import { PrimeNgSpanishLocale } from "src/app/mypreset";
 import { LuxuryPreset } from "src/styles/theme/mypreset";
 import { initializeAppState } from "./app-initializer";
@@ -150,7 +149,6 @@ export const appConfig: ApplicationConfig = {
     // --- Servicios Singleton Globales ---
     MessageService,
     { provide: PrimeMessageService, useExisting: MessageService },
-    DialogService,
     ConfirmationService,
     DatePipe,
     MessagingService,
@@ -173,3 +171,4 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular({ mode: "ios" }),
   ],
 };
+

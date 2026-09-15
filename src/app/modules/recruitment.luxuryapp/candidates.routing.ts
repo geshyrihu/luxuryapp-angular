@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { hasRolesGuard } from "src/app/core/auth/guards/has-roles.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
+import { hasRolesGuard } from "@core/auth/guards/has-roles.guard";
 
 export const candidatesRoutes: Routes = [
   {
@@ -11,7 +11,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "candidates",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidates/candidate-list").then(
+      import("@recruitment.luxuryapp/candidates/candidate-core/candidate-list").then(
         (m) => m.CandidateList,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -35,7 +35,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "applications",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-list").then(
+      import("@recruitment.luxuryapp/candidates/candidate-applications/candidate-application-list").then(
         (m) => m.CandidateApplicationList,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -59,7 +59,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "former-employees",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidates/former-employee-talent-pool/former-employee-talent-pool").then(
+      import("@recruitment.luxuryapp/candidates/former-employee-talent-pool/former-employee-talent-pool").then(
         (m) => m.FormerEmployeeTalentPool,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -83,7 +83,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "interviews",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-interview/candidate-interview-pending-list").then(
+      import("@recruitment.luxuryapp/candidates/candidate-interview/candidate-interview-pending-list").then(
         (m) => m.CandidateInterviewPendingList,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -107,7 +107,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "interviews/respond",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-interview/candidate-interview-response").then(
+      import("@recruitment.luxuryapp/candidates/candidate-interview/candidate-interview-response").then(
         (m) => m.CandidateInterviewResponse,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -131,7 +131,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "interviewer-queue",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-interviewer-queue/candidate-interviewer-queue").then(
+      import("@recruitment.luxuryapp/candidates/candidate-interviewer-queue/candidate-interviewer-queue").then(
         (m) => m.CandidateInterviewerQueue,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -155,7 +155,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "work-position/:workPositionId/candidates",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-work-position-candidates/candidate-work-position-candidates").then(
+      import("@recruitment.luxuryapp/candidates/candidate-work-position-candidates/candidate-work-position-candidates").then(
         (m) => m.CandidateWorkPositionCandidates,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -179,7 +179,7 @@ export const candidatesRoutes: Routes = [
   {
     path: "kpis",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-kpis").then(
+      import("@recruitment.luxuryapp/candidates/candidate-applications/candidate-application-kpis").then(
         (m) => m.CandidateApplicationKpis,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -204,7 +204,7 @@ export const candidatesRoutes: Routes = [
     // Entrada operativa principal de Reclutamiento para gestionar entrevistas.
     path: "recruitment-interviews",
     loadComponent: () =>
-      import("src/app/modules/recruitment.luxuryapp/candidate-recruitment-interviews/candidate-recruitment-interviews").then(
+      import("@recruitment.luxuryapp/candidates/candidate-recruitment-interviews/candidate-recruitment-interviews").then(
         (m) => m.CandidateRecruitmentInterviews,
       ),
     canActivate: [authGuard, hasRolesGuard],
@@ -226,3 +226,11 @@ export const candidatesRoutes: Routes = [
     },
   },
 ];
+
+
+
+
+
+
+
+

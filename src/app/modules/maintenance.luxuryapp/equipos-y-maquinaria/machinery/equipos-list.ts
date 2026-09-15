@@ -28,35 +28,35 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { EquipmentInspectionQrPrintService } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
-import { EquipmentInspectionService } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
-import { EquipmentInspectionsShell } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
-import { ActivosForm } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { ActivosDocumentos } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery-document/activos-documentos";
-import { FichaTecnicaActivo } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { MantenimientosDialog } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/mantenimientos-dialog";
-import { ServiceHistoryMachinery } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
-import { BitacoraIndividual } from "src/app/modules/maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
-import { CalendarioMaestroReadonly } from "src/app/modules/maintenance.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
-import { MantenimientoPreventivoForm } from "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
-import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+} from "@core/services/dialog-handler.service";
+import { HtmlPrintService } from "@core/services/html-print.service";
+import { EquipmentInspectionQrPrintService } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
+import { EquipmentInspectionService } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
+import { EquipmentInspectionsShell } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
+import { ActivosForm } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
+import { ActivosDocumentos } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-document/activos-documentos";
+import { FichaTecnicaActivo } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { MantenimientosDialog } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/mantenimientos-dialog";
+import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
+import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 // ... el resto de las importaciones de componentes y mdulos ...
 // ...
 
@@ -93,8 +93,8 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-equipos-list",
@@ -697,3 +697,5 @@ ${this.htmlPrintS.getStandardCss()}
     await this.refreshData();
   }
 }
+
+

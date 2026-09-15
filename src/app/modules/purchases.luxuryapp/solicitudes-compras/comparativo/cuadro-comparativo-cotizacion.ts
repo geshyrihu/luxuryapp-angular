@@ -19,16 +19,16 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { debounceTime } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { CreateOrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/create-orden-compra";
+} from "@core/services/dialog-handler.service";
+import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra";
 
 @Component({
   selector: "app-cuadro-comparativo-cotizacion",
@@ -455,3 +455,5 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
   }
 }
+
+

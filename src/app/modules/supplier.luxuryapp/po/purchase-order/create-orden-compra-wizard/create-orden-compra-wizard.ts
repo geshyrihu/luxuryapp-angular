@@ -15,14 +15,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 // PrimeNG Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service"; // Added DynamicDialogConfig
+} from "@core/services/dialog-handler.service"; // Added DynamicDialogConfig
 // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
@@ -36,15 +36,15 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service"; // Added
-import { ProductosForm } from "src/app/modules/supplier.luxuryapp/product/productos-form";
-import { TarjetaProducto } from "src/app/modules/supplier.luxuryapp/product/tarjeta-producto";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { TipoGasto } from "@core/enums/tipo-gasto.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service"; // Added
+import { ProductosForm } from "@supplier.luxuryapp/product/productos-form";
+import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
 import { OrdenCompraDetalleForm } from "../orden-compra-detalle-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
@@ -101,8 +101,8 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-create-orden-compra-wizard",
@@ -763,3 +763,5 @@ export class CreateOrdenCompraWizard implements OnInit {
       });
   }
 }
+
+

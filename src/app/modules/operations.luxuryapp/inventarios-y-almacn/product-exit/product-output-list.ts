@@ -11,9 +11,9 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 // import { Subscription } from "rxjs"; // Removed
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -21,17 +21,17 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PaginationStore } from "src/app/core/services/pagination-store";
-import { ExcelExportService } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PaginationStore } from "@core/services/pagination-store";
+import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
 
@@ -43,7 +43,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-product-output-list",
@@ -240,3 +240,5 @@ export class ProductOutputList implements OnInit, OnDestroy {
     // this.subscriptions.unsubscribe(); // Removed
   }
 }
+
+

@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 
 export const CONTABILIDAD_ROUTES: Routes = [
   // Ruta: /contabilidad
@@ -89,7 +89,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "legal-minutes-pendings",
     loadComponent: () =>
-      import("src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta").then(
+      import("@legal.luxuryapp/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],
@@ -170,7 +170,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/presupuesto-contabilidad",
     loadComponent: () =>
-      import("src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
+      import("@accounting.luxuryapp/general-ledger/contabilidad-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
     canActivate: [authGuard],
@@ -222,7 +222,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "aspel-cobranza",
     loadComponent: () =>
-      import("src/app/modules/collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus").then(
+      import("@collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus").then(
         (m) => m.AspelCobranzaHaus,
       ),
     data: {
@@ -269,3 +269,5 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 ];
+
+

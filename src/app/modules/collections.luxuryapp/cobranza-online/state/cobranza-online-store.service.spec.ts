@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CobranzaOnlineStoreService } from './cobranza-online-store.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
 
 describe('CobranzaOnlineStoreService', () => {
   let service: CobranzaOnlineStoreService;
@@ -35,3 +35,4 @@ describe('CobranzaOnlineStoreService', () => {
     expect(service.dashboardData()).toBeNull();
   });
 });
+

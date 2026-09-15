@@ -1,6 +1,6 @@
 import { Directive, input, model } from "@angular/core";
 
-import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
+import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import type { MenuItem } from "primeng/api";
 
@@ -20,3 +20,4 @@ export abstract class ContextMenuBase {
     item.command?.({ originalEvent: event, item });
   }
 }
+

@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-process-hiring-modal";
+export * from "@recruitment.luxuryapp/candidates/candidate-applications/candidate-process-hiring-modal";
+
+

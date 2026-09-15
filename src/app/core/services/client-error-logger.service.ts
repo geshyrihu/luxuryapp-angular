@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 interface ClientErrorLog {
   level: "error" | "warn" | "info" | "debug";
@@ -117,3 +117,4 @@ export class ClientErrorLoggerService {
     this.logError(message, details, "info");
   }
 }
+

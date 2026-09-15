@@ -1,0 +1,19 @@
+# Normalize line endings: store and checkout as LF.
+# Prevents CRLF double-conversion bugs (CR CR LF) from editors/agents on Windows.
+* text=auto eol=lf
+
+# Windows scripts must keep CRLF.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Common binaries (explicit, in case detection fails).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.pdf binary

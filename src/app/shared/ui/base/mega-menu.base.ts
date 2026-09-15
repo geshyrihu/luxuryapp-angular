@@ -1,6 +1,6 @@
 import { Directive, input } from "@angular/core";
 
-import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
+import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import type { MegaMenuItem } from "primeng/api";
 
@@ -18,3 +18,4 @@ export abstract class MegaMenuBase {
     item.command?.({ originalEvent: event, item });
   }
 }
+

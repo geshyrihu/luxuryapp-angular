@@ -1,1 +1,3 @@
-export * from "src/app/modules/recruitment.luxuryapp/candidates/candidate-status-tag-options";
+export * from "@recruitment.luxuryapp/candidates/candidate-core/candidate-status-tag-options";
+
+

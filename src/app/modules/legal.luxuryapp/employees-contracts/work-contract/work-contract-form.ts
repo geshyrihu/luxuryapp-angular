@@ -16,14 +16,14 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DateService } from "src/app/core/services/date.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EmployeeFileWorkPositionDTO } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
+} from "@core/services/dialog-handler.service";
+import { EmployeeFileWorkPositionDTO } from "@recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
 import {
   EContractType,
   EmployeeWorkContractDetailDTO,
@@ -188,3 +188,5 @@ export class WorkContractFormComponent implements OnInit {
     this.ref.close();
   }
 }
+
+

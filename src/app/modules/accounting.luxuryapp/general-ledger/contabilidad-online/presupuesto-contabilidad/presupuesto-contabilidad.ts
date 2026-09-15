@@ -7,16 +7,16 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PurchaseHistory } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PurchaseHistory } from "@accounting.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
-} from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { reportFilterState } from "../state/financial-report-filter.state";
 
 @Component({
@@ -148,3 +148,5 @@ export class PresupuestoContabilidad {
     );
   }
 }
+
+

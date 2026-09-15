@@ -14,7 +14,7 @@ import {
 import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
 import { MenuBase } from "@ui/base/menu.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 /**
  * AppMenu — panel flotante sobre CDK Overlay. [Fase 3 migración
@@ -151,3 +151,4 @@ export class AppMenu extends MenuBase {
     this.close();
   }
 }
+

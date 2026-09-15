@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SubirPdf } from './custom-input-upload-pdf-signal';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from 'src/app/core/services/dialog-handler.service';
 import { HttpClient } from '@angular/common/http';
 import { vi } from 'vitest';
 

@@ -15,17 +15,17 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { CandidateApplicationForm } from "src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-form";
+} from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { CandidateApplicationForm } from "@recruitment.luxuryapp/candidates/candidate-applications/candidate-application-form";
 
 interface RequestPositionDetailDTO {
   id?: string;
@@ -220,3 +220,6 @@ export class VacanteForm implements OnInit {
     }
   }
 }
+
+
+

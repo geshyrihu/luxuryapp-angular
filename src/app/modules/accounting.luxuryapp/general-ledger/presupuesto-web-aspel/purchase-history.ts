@@ -13,21 +13,21 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
-} from "src/app/core/services/dialog-handler.service";
-import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { OrdenCompra } from "src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { OrdenCompra } from "@supplier.luxuryapp/po/purchase-order/orden-compra";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -122,3 +122,5 @@ export class PurchaseHistory implements OnInit {
     );
   }
 }
+
+

@@ -20,14 +20,14 @@ import {
   signal,
 } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { BudgetProposalItemHistoryDTO } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
-import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
+} from "@core/services/dialog-handler.service";
+import { BudgetProposalItemHistoryDTO } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 @Component({
   selector: "app-budget-history-dialog",
   imports: [CommonModule, TableModule, ApiDatePipe],
@@ -74,3 +74,5 @@ export class BudgetHistoryDialog implements OnInit {
     this.ref.close();
   }
 }
+
+

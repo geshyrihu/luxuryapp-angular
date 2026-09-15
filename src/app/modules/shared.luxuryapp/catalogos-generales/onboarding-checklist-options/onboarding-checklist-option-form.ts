@@ -16,15 +16,15 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { RoleType } from "src/app/core/enums/role-type.enum";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { RoleType } from "@core/enums/role-type.enum";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
+} from "@core/services/dialog-handler.service";
 import { ApplicationRoleDto } from "../../../admin.luxuryapp/seguridad-permisos/application-role/interfaces/application-role.dto";
 import { OnboardingChecklistOptionFormGroup } from "./interfaces/onboarding-checklist-option-form.interface";
 import {
@@ -149,3 +149,4 @@ export class OnboardingChecklistOptionForm implements OnInit {
     return Number.isNaN(parsed) ? -1 : parsed;
   }
 }
+

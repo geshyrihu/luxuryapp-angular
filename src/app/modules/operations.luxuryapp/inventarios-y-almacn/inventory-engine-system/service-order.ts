@@ -6,13 +6,13 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 
 @Component({
   selector: "app-service-order",
@@ -97,3 +97,5 @@ export class ServiceOrder implements OnInit {
       });
   }
 }
+
+

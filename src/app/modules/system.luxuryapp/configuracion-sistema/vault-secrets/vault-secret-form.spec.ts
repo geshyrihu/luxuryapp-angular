@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'src/app/core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { VaultSecretForm } from './vault-secret-form';

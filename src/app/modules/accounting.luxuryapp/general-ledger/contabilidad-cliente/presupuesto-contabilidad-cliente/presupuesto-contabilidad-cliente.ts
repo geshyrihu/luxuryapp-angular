@@ -8,13 +8,13 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PurchaseHistory } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PurchaseHistory } from "@accounting.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
-} from "src/app/modules/collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({
@@ -136,3 +136,5 @@ export class PresupuestoContabilidadClienteComponent {
     );
   }
 }
+
+

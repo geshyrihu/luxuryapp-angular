@@ -1,1 +1,2 @@
-export * from "src/app/modules/recruitment.luxuryapp/recruitment-shared/candidate-stage-badge";
+export * from "@recruitment.luxuryapp/recruitment-shared/candidate-stage-badge";
+

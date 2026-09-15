@@ -8,9 +8,9 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
-} from "src/app/core/services/dialog-handler.service";
-import { TarjetaProveedor } from "src/app/modules/supplier.luxuryapp/providers/provider/provider-card";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { TarjetaProveedor } from "@supplier.luxuryapp/providers/provider/provider-card";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-datos-servicio-addoredit",
@@ -38,3 +38,5 @@ export class DatosServicioAddOrEdit implements OnInit {
     );
   }
 }
+
+

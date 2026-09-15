@@ -16,7 +16,10 @@ import {
   IonToolbar,
   ModalController,
 } from "@ionic/angular";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "./dialog-handler.service";
 import { Subject } from "rxjs";
 
 /**

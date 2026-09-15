@@ -42,25 +42,25 @@ import {
   settingsOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
-import { CardEmployee } from "src/app/shared/integration/recursos-humanos";
-import { PrintService } from "src/app/core/services/print.service";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { PrintService } from "@core/services/print.service";
 
 import Swal from "sweetalert2";
 
@@ -70,8 +70,8 @@ import {
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
-import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -849,3 +849,5 @@ export class TaskList implements OnInit {
     });
   }
 }
+
+

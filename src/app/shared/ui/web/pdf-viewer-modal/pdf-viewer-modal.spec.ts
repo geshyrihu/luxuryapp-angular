@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PdfViewerModal } from './pdf-viewer-modal';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig } from 'src/app/core/services/dialog-handler.service';
 import { ApiResponseService } from '../../services/api-response.service';
 import { vi } from 'vitest';
 

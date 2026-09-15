@@ -1,53 +1,53 @@
-import { HttpClient } from "@angular/common/http";
-import { computed, inject, Injectable, NgZone, signal } from "@angular/core";
-import { catchError, map, Observable, of, tap } from "rxjs";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import type { ApiResponseDto } from "src/app/core/http/services/api-response.service";
-import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
-import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
-import { StorageService } from "src/app/core/services/storage.service";
-import { environment } from "src/environments/environment";
-
-// D:\repos\luxuryapp-api\client\angular\src\app\core\interfaces\auth-user-token.dto.ts
-interface CustomerDetailDTO {
-  id: string;
-  nombreCorto: string;
-  photoPath: string;
-  nameCustomer: string;
-}
-@Injectable({
-  providedIn: "root",
-})
+import { HttpClient } from "@angular/common/http";
+import { computed, inject, Injectable, NgZone, signal } from "@angular/core";
+import { catchError, map, Observable, of, tap } from "rxjs";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import type { ApiResponseDto } from "@core/http/services/api-response.service";
+import { UserTokenDto } from "@core/interfaces/auth-user-token.dto";
+import { ConsoleLoggerService } from "@core/services/console-logger.service";
+import { StorageService } from "@core/services/storage.service";
+import { environment } from "src/environments/environment";
+
+// D:\repos\luxuryapp-api\client\angular\src\app\core\interfaces\auth-user-token.dto.ts
+interface CustomerDetailDTO {
+  id: string;
+  nombreCorto: string;
+  photoPath: string;
+  nameCustomer: string;
+}
+@Injectable({
+  providedIn: "root",
+})
 export class CustomerIdService {
-  private storageS = inject(StorageService);
-  private zone = inject(NgZone);
-  private http = inject(HttpClient);
-  private consoleLogger = inject(ConsoleLoggerService);
-
-  private customerState = signal<{
-    id: string; // Guid del customer activo
-    nombreCorto: string;
-    photoCustomer: string;
-    customerName: string;
-    isLoaded: boolean;
-  }>({
-    id: "",
-    nombreCorto: "",
-    photoCustomer: "",
-    customerName: "",
-    isLoaded: false,
-  });
-
-  public readonly customerId = computed(() => this.customerState().id);
-  public readonly nombreCorto = computed(
-    () => this.customerState().nombreCorto,
-  );
-  public readonly customerName = computed(
-    () => this.customerState().customerName,
-  );
-  public readonly customerPhotoPath = computed(
-    () => this.customerState().photoCustomer,
-  );
+  private storageS = inject(StorageService);
+  private zone = inject(NgZone);
+  private http = inject(HttpClient);
+  private consoleLogger = inject(ConsoleLoggerService);
+
+  private customerState = signal<{
+    id: string; // Guid del customer activo
+    nombreCorto: string;
+    photoCustomer: string;
+    customerName: string;
+    isLoaded: boolean;
+  }>({
+    id: "",
+    nombreCorto: "",
+    photoCustomer: "",
+    customerName: "",
+    isLoaded: false,
+  });
+
+  public readonly customerId = computed(() => this.customerState().id);
+  public readonly nombreCorto = computed(
+    () => this.customerState().nombreCorto,
+  );
+  public readonly customerName = computed(
+    () => this.customerState().customerName,
+  );
+  public readonly customerPhotoPath = computed(
+    () => this.customerState().photoCustomer,
+  );
   public readonly customerDataReady = computed(
     () => this.customerState().isLoaded,
   );
@@ -78,27 +78,27 @@ export class CustomerIdService {
         "[CustomerIdService] Se intentó inicializar sin datos de token.",
       );
       return of(false);
-    }
-
-    const customerIdFromStorage = this.storageS.retrieve("customerId");
-    const customerAccessList = userTokenData.customerAccess || [];
-    const defaultCustomerIdFromToken =
-      userTokenData.infoUserAuthDTO?.customerId;
-    let customerIDTOSet: string | null = null;
-
-    if (customerIdFromStorage) {
-      const storedId = customerIdFromStorage;
-      const hasAccess = customerAccessList.some(
-        (customer) => customer.value === storedId,
-      );
-      if (hasAccess) {
-        customerIDTOSet = storedId;
-      }
-    }
-
-    if (!customerIDTOSet) {
-      customerIDTOSet = defaultCustomerIdFromToken;
-    }
+    }
+
+    const customerIdFromStorage = this.storageS.retrieve("customerId");
+    const customerAccessList = userTokenData.customerAccess || [];
+    const defaultCustomerIdFromToken =
+      userTokenData.infoUserAuthDTO?.customerId;
+    let customerIDTOSet: string | null = null;
+
+    if (customerIdFromStorage) {
+      const storedId = customerIdFromStorage;
+      const hasAccess = customerAccessList.some(
+        (customer) => customer.value === storedId,
+      );
+      if (hasAccess) {
+        customerIDTOSet = storedId;
+      }
+    }
+
+    if (!customerIDTOSet) {
+      customerIDTOSet = defaultCustomerIdFromToken;
+    }
 
     if (customerIDTOSet) {
       this.logCustomerTrace("initialize.selected-customer", {
@@ -109,10 +109,10 @@ export class CustomerIdService {
     } else {
       this.consoleLogger.error(
         "[CustomerIdService] Critical error: No valid customerId found.",
-      );
-      return of(false);
-    }
-  }
+      );
+      return of(false);
+    }
+  }
 
   public setCustomerId(customerId: string): Observable<boolean> {
     this.logCustomerTrace("setCustomerId.start", {
@@ -155,8 +155,8 @@ export class CustomerIdService {
       this.clearCustomerData();
       return of(false);
     }
-
-    return this.http
+
+    return this.http
       .get<ApiResponseDto<CustomerDetailDTO>>(
         `${environment.API_BASE_URL}${Endpoints.Customers.getById(customerId)}`,
       )
@@ -173,11 +173,11 @@ export class CustomerIdService {
               "[CustomerIdService] API retorno error o datos nulos.",
               response.message,
             );
-            this.zone.run(() => {
-              this.customerState.update((s) => ({ ...s, isLoaded: false }));
-            });
-            return;
-          }
+            this.zone.run(() => {
+              this.customerState.update((s) => ({ ...s, isLoaded: false }));
+            });
+            return;
+          }
           this.zone.run(() => {
             this.customerState.set({
               id: response.data.id,
@@ -206,6 +206,7 @@ export class CustomerIdService {
           });
           return of(false);
         }),
-      );
-  }
-}
+      );
+  }
+}
+

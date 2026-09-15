@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MockAspelService, MockCuentaResponse, PolizaCreateRequest } from "./services/mock-aspel.service";
 
@@ -102,3 +102,4 @@ export class MockAspelPolizaFormComponent implements OnInit {
     return ({ 400: "Revisa las cuentas de detalle y los datos de la póliza.", 403: "El periodo contable ya está cerrado.", 409: "Ya existe una póliza con esos datos.", 422: "La póliza no cuadra." } as Record<number, string>)[error.status] || "No se pudo guardar la póliza.";
   }
 }
+

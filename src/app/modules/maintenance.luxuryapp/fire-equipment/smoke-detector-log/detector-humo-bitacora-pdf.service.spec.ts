@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { DetectorHumoBitacoraPdfService } from './detector-humo-bitacora-pdf.service';
 
 describe('DetectorHumoBitacoraPdfService', () => {
@@ -43,3 +43,4 @@ describe('DetectorHumoBitacoraPdfService', () => {
     expect(mockHtmlPrintService.printHtml).toHaveBeenCalled();
   });
 });
+

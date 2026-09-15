@@ -12,12 +12,12 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { AiAgentComponent } from "src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/ai-agent/ai-agent";
-import { reportFilterState } from "src/app/modules/accounting.luxuryapp/general-ledger/contabilidad-online/state/financial-report-filter.state";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/contabilidad-online/ai-agent/ai-agent";
+import { reportFilterState } from "@accounting.luxuryapp/general-ledger/contabilidad-online/state/financial-report-filter.state";
 import {
   IReportColumn,
   IReportResult,
@@ -238,3 +238,5 @@ export class ReportViewer implements OnInit {
     return this.esDobleColumna();
   }
 }
+
+

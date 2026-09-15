@@ -26,19 +26,19 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { GlobalErrorService } from "src/app/core/http/services/global-error.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { GlobalErrorService } from "@core/http/services/global-error.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   PastVacationHistoryItemDTO,
   RegisterPastVacationDTO,
-} from "src/app/modules/human-resources.luxuryapp/interfaces/register-past-vacation.interface";
-import { VacationBalanceDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/vacation-balance.interface";
+} from "@human-resources.luxuryapp/interfaces/register-past-vacation.interface";
+import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 @Component({
@@ -419,3 +419,5 @@ export class VacacionesPasadasRegistro implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
+
+

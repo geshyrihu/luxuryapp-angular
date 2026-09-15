@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { CustomToastService } from 'src/app/core/services/custom-toast.service';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { CustomToastService } from '@core/services/custom-toast.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { InventarioExtintorPdfService } from './inventario-extintor-pdf.service';
 
 describe('InventarioExtintorPdfService', () => {
@@ -27,3 +27,4 @@ describe('InventarioExtintorPdfService', () => {
     expect(htmlPrintS.printHtml).toHaveBeenCalled();
   });
 });
+

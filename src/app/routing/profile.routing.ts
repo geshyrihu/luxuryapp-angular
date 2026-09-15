@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { authGuard } from "@core/auth/guards/auth.guard";
 export const profileRoutes: Routes = [
   {
     path: "update-user-profile",
     loadComponent: () =>
-      import("src/app/modules/auth.luxuryapp/user-profile/update-profile-wrapper").then(
+      import("@auth.luxuryapp/user-profile/update-profile-wrapper").then(
         (m) => m.UpdateProfileWrapper,
       ),
     canActivate: [authGuard],
@@ -14,3 +14,5 @@ export const profileRoutes: Routes = [
     },
   },
 ];
+
+

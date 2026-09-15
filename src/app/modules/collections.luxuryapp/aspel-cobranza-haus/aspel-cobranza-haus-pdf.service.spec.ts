@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AspelCobranzaHausPdfService } from './aspel-cobranza-haus-pdf.service';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 
 describe('AspelCobranzaHausPdfService', () => {
   let service: AspelCobranzaHausPdfService;
@@ -36,3 +36,4 @@ describe('AspelCobranzaHausPdfService', () => {
     expect(mockHtmlPrintService.printHtml).toHaveBeenCalled();
   });
 });
+

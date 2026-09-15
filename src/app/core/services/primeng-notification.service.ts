@@ -1,31 +1,32 @@
-import { Injectable, inject } from '@angular/core';
-import { MessageService } from 'src/app/core/services/message.service';
-@Injectable({ providedIn: 'root' })
-export class PrimeNgNotificationService {
-  private readonly messageService = inject(MessageService);
-
-  showSuccess(title: string, message: string): void {
-    this.messageService.add({ severity: 'success', summary: title, detail: message, life: 3000 });
-  }
-
-  showError(title: string, message: string): void {
-    this.messageService.add({ severity: 'error', summary: title, detail: message, life: 5000 });
-  }
-
-  showInfo(title: string, message: string): void {
-    this.messageService.add({ severity: 'info', summary: title, detail: message, life: 3000 });
-  }
-
-  showWarn(title: string, message: string): void {
-    this.messageService.add({ severity: 'warn', summary: title, detail: message, life: 4000 });
-  }
-}
-
-
-
-
-
-
-
-
+import { Injectable, inject } from '@angular/core';
+import { MessageService } from '@core/services/message.service';
+@Injectable({ providedIn: 'root' })
+export class PrimeNgNotificationService {
+  private readonly messageService = inject(MessageService);
+
+  showSuccess(title: string, message: string): void {
+    this.messageService.add({ severity: 'success', summary: title, detail: message, life: 3000 });
+  }
+
+  showError(title: string, message: string): void {
+    this.messageService.add({ severity: 'error', summary: title, detail: message, life: 5000 });
+  }
+
+  showInfo(title: string, message: string): void {
+    this.messageService.add({ severity: 'info', summary: title, detail: message, life: 3000 });
+  }
+
+  showWarn(title: string, message: string): void {
+    this.messageService.add({ severity: 'warn', summary: title, detail: message, life: 4000 });
+  }
+}
+
+
+
+
+
+
+
+
+
 

@@ -21,14 +21,14 @@ import { AppTag } from "@ui/web/tag/tag";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
+} from "@core/services/dialog-handler.service";
 import {
   ContractRenewalDecision,
   ContractRenewalDecisionDTO,
   ContractRenewalEvaluationDTO,
   ContractRenewalStatus,
-} from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
-import { ContractRenewalService } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/services/contract-renewal.service";
+} from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
+import { ContractRenewalService } from "@recruitment.luxuryapp/expediente-del-empleado/employees/services/contract-renewal.service";
 
 type StatusSeverity =
   "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -473,3 +473,5 @@ export class ContractRenewalFormComponent implements OnInit {
     }
   }
 }
+
+

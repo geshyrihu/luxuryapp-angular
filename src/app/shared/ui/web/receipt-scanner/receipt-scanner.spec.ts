@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { AppReceiptScanner } from "./receipt-scanner";
-import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { ImageProcessingService } from "@core/services/image-processing.service";
 import { vi } from "vitest";
 
 describe("AppReceiptScanner", () => {
@@ -44,3 +44,4 @@ describe("AppReceiptScanner", () => {
     );
   });
 });
+

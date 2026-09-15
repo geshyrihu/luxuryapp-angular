@@ -11,19 +11,19 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { ServiceOrderForm } from "src/app/modules/operations.luxuryapp/field-service/service-order/service-order-form";
+} from "@core/services/dialog-handler.service";
+import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
 
 @Component({
   selector: "app-service-history-machinery",
@@ -79,3 +79,5 @@ export class ServiceHistoryMachinery implements OnInit {
       });
   }
 }
+
+

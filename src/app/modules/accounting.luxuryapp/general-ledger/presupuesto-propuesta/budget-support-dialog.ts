@@ -1,4 +1,4 @@
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -25,7 +25,7 @@ import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
+} from "@core/services/dialog-handler.service";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
@@ -35,9 +35,9 @@ import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { BudgetProposalItemDTO } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-budget-support-dialog",
   imports: [
@@ -271,3 +271,5 @@ export class BudgetSupportDialog implements OnInit {
     this.ref.close();
   }
 }
+
+

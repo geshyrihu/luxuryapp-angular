@@ -15,10 +15,10 @@ import {
   MenuController,
 } from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
-import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
-import { LayoutService } from "src/app/core/services/layout.service";
-import { MenuService } from "src/app/core/services/menu.service";
-import { PanicButton } from "src/app/modules/operations.luxuryapp/panic-alert/panic-button/panic-button";
+import { HidescrollnavService } from "@core/services/hidescrollnav.service";
+import { LayoutService } from "@core/services/layout.service";
+import { MenuService } from "@core/services/menu.service";
+import { PanicButton } from "@operations.luxuryapp/panic-alert/panic-button/panic-button";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 import { FooterEmployeeMobile } from "../footer-employee-mobile/footer-employee-mobile";
 import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
@@ -78,3 +78,5 @@ export class ViewEmployeeMobile implements OnInit {
     return this.layout.config.settings.sidebar_type + "";
   }
 }
+
+

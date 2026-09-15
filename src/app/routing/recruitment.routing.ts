@@ -1,1 +1,2 @@
-export { recruitmentRoutes } from "src/app/modules/recruitment.luxuryapp/recruitment.routing";
+export { recruitmentRoutes } from "@recruitment.luxuryapp/recruitment.routing";
+

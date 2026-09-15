@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { InventarioDetectorHumoQrService } from './inventario-detector-humo-qr.service';
 
 describe('InventarioDetectorHumoQrService', () => {
@@ -25,3 +25,4 @@ describe('InventarioDetectorHumoQrService', () => {
     expect(htmlPrintS.printHtml).toHaveBeenCalled();
   });
 });
+

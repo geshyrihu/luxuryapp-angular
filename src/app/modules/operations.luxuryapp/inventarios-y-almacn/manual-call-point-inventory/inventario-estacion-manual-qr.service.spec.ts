@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { InventarioEstacionManualQrService } from './inventario-estacion-manual-qr.service';
 
 describe('InventarioEstacionManualQrService', () => {
@@ -25,3 +25,4 @@ describe('InventarioEstacionManualQrService', () => {
     expect(htmlPrintS.printHtml).toHaveBeenCalled();
   });
 });
+

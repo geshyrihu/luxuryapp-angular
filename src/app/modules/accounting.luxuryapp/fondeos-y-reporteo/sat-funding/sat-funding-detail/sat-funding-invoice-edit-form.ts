@@ -17,14 +17,14 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { UpdateSatFundingDetailDto } from "src/app/modules/accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
+} from "@core/services/dialog-handler.service";
+import { UpdateSatFundingDetailDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
 interface ISatFundingInvoiceEditForm {
   id: FormControl<string>;
   bankId: FormControl<number | null>;
@@ -111,3 +111,5 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
       });
   }
 }
+
+

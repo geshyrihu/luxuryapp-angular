@@ -1,73 +1,74 @@
-import { Component, ViewEncapsulation } from "@angular/core";
-import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
-import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
+import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
+
+@Component({
+  selector: "ili-pull-to-refresh",
+
+  imports: [AppIconMobile],
+  template: `
+    <div
+      class="ptr-root"
+      (touchstart)="onTouchStart($event)"
+      (touchmove)="onTouchMove($event)"
+      (touchend)="onTouchEnd()"
+    >
+      @if (pulling()) {
+        <div class="ptr-indicator" [style.height.px]="pullDistance()">
+          <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
+            <ili-icon
+              [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
+            />
+          </div>
+          <span class="ptr-text">
+            {{ refreshing() ? "Actualizando..." : "Suelta para actualizar" }}
+          </span>
+        </div>
+      }
+      <div
+        class="ptr-content"
+        [style.transform]="'translateY(' + pullDistance() + 'px)'"
+      >
+        <ng-content />
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      .ptr-root {
+        overflow: hidden;
+        position: relative;
+      }
+      .ptr-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        width: 100%;
+        background: var(--ds-bg-elevated);
+        color: var(--ds-text-muted);
+        font-size: var(--ds-font-size-table);
+        transition: height 0.2s;
+        overflow: hidden;
+      }
+      .ptr-spinner {
+        font-size: 1.25rem;
+      }
+      .ptr-spinning {
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .ptr-content {
+        transition: transform 0.2s;
+      }
+    `,
+  ],
+  encapsulation: ViewEncapsulation.None,
+})
+export class MobilePullToRefresh extends PullToRefreshBase {}
 
-@Component({
-  selector: "ili-pull-to-refresh",
-
-  imports: [AppIconMobile],
-  template: `
-    <div
-      class="ptr-root"
-      (touchstart)="onTouchStart($event)"
-      (touchmove)="onTouchMove($event)"
-      (touchend)="onTouchEnd()"
-    >
-      @if (pulling()) {
-        <div class="ptr-indicator" [style.height.px]="pullDistance()">
-          <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
-            <ili-icon
-              [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
-            />
-          </div>
-          <span class="ptr-text">
-            {{ refreshing() ? "Actualizando..." : "Suelta para actualizar" }}
-          </span>
-        </div>
-      }
-      <div
-        class="ptr-content"
-        [style.transform]="'translateY(' + pullDistance() + 'px)'"
-      >
-        <ng-content />
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .ptr-root {
-        overflow: hidden;
-        position: relative;
-      }
-      .ptr-indicator {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.25rem;
-        width: 100%;
-        background: var(--ds-bg-elevated);
-        color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-table);
-        transition: height 0.2s;
-        overflow: hidden;
-      }
-      .ptr-spinner {
-        font-size: 1.25rem;
-      }
-      .ptr-spinning {
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .ptr-content {
-        transition: transform 0.2s;
-      }
-    `,
-  ],
-  encapsulation: ViewEncapsulation.None,
-})
-export class MobilePullToRefresh extends PullToRefreshBase {}

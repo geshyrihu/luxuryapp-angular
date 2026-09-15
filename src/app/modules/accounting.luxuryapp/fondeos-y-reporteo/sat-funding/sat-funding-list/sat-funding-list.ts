@@ -17,13 +17,13 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SatFundingDto } from "src/app/modules/accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SatFundingDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-sat-funding-list",
@@ -82,3 +82,5 @@ export class SatFundingListComponent implements OnInit {
     this.router.navigate(ROUTES.SAT_FONDEOS.DETALLE(id));
   }
 }
+
+

@@ -1,116 +1,117 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+
+interface IPresentacionJuntaComiteForm {
+  id: FormControl<string | null>;
+  archivo: FormControl<File | null>;
+  area: FormControl<string | null>;
+}
+
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+
+@Component({
+  selector: "app-presentacion-junta-comite-form",
+  templateUrl: "./presentacion-junta-comite-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    AppIcon,
+    WebButtonIcon,
+    ReactiveFormsModule,
+    InputFile,
+    ButtonModule,
+    WebButtonLabelSave,
+  ],
+})
+export class PresentacionJuntaComiteForm implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  private formB = inject(FormBuilder);
+  private config = inject(DynamicDialogConfig);
+  private authS = inject(AuthService);
+  private ref = inject(DynamicDialogRef);
+  submitting = signal(false);
+  id: string = "";
+  filePath: string = "";
+  errorMessage: string = "";
+
+  // Agregar signal para el nombre del archivo
+  selectedFileName = signal<string>("");
+  selectedFile: File | null = null;
+
+  form: FormGroup<IPresentacionJuntaComiteForm> = this.formB.group({
+    id: [""],
+    archivo: [null as File | null],
+    area: [""],
+  });
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    this.form.patchValue({ area: this.config.data.titulo });
+    this.form.controls.id.setValue(this.id);
+  }
+
+  onFileSelect(file: File | null) {
+    if (!file) return;
+    this.selectedFile = file;
+    this.selectedFileName.set(file.name);
+    this.form.patchValue({ archivo: file });
+  }
+
+  onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    // Validación extra si archivo es requerido y no esté en form validators
+    // El HTML usa !selectedFileName() para deshabilitar botón.
+
+    this.id = this.config.data.id;
+    const formValue = this.form.getRawValue();
+    const model = this.onCreateFormData(formValue);
+
+    this.submitting.set(true);
+
+    this.apiResponseS
+      .onPost(Endpoints.PresentacionJuntaComite.addFile, model)
+      .then((result: boolean) => {
+        result ? this.ref.close(true) : this.submitting.set(false);
+      });
+  }
+
+  onCreateFormData(DTO: { area: string; archivo: File | null }) {
+    let formData = new FormData();
+    formData.append("id", String(this.id));
+    formData.append("applicationUserId", this.authS.applicationUserId);
+    formData.append("area", DTO.area);
+    if (this.selectedFile) {
+      formData.append("archivo", this.selectedFile);
+    }
+    return formData;
+  }
+
+  clearFile() {
+    this.selectedFile = null;
+    this.selectedFileName.set("");
+    this.form.patchValue({ archivo: null });
+  }
+}
 
-interface IPresentacionJuntaComiteForm {
-  id: FormControl<string | null>;
-  archivo: FormControl<File | null>;
-  area: FormControl<string | null>;
-}
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-
-@Component({
-  selector: "app-presentacion-junta-comite-form",
-  templateUrl: "./presentacion-junta-comite-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    WebButtonIcon,
-    ReactiveFormsModule,
-    InputFile,
-    ButtonModule,
-    WebButtonLabelSave,
-  ],
-})
-export class PresentacionJuntaComiteForm implements OnInit {
-  private apiResponseS = inject(ApiResponseService);
-  private formB = inject(FormBuilder);
-  private config = inject(DynamicDialogConfig);
-  private authS = inject(AuthService);
-  private ref = inject(DynamicDialogRef);
-  submitting = signal(false);
-  id: string = "";
-  filePath: string = "";
-  errorMessage: string = "";
-
-  // Agregar signal para el nombre del archivo
-  selectedFileName = signal<string>("");
-  selectedFile: File | null = null;
-
-  form: FormGroup<IPresentacionJuntaComiteForm> = this.formB.group({
-    id: [""],
-    archivo: [null as File | null],
-    area: [""],
-  });
-
-  ngOnInit(): void {
-    this.id = this.config.data.id;
-    this.form.patchValue({ area: this.config.data.titulo });
-    this.form.controls.id.setValue(this.id);
-  }
-
-  onFileSelect(file: File | null) {
-    if (!file) return;
-    this.selectedFile = file;
-    this.selectedFileName.set(file.name);
-    this.form.patchValue({ archivo: file });
-  }
-
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    // Validación extra si archivo es requerido y no esté en form validators
-    // El HTML usa !selectedFileName() para deshabilitar botón.
-
-    this.id = this.config.data.id;
-    const formValue = this.form.getRawValue();
-    const model = this.onCreateFormData(formValue);
-
-    this.submitting.set(true);
-
-    this.apiResponseS
-      .onPost(Endpoints.PresentacionJuntaComite.addFile, model)
-      .then((result: boolean) => {
-        result ? this.ref.close(true) : this.submitting.set(false);
-      });
-  }
-
-  onCreateFormData(DTO: { area: string; archivo: File | null }) {
-    let formData = new FormData();
-    formData.append("id", String(this.id));
-    formData.append("applicationUserId", this.authS.applicationUserId);
-    formData.append("area", DTO.area);
-    if (this.selectedFile) {
-      formData.append("archivo", this.selectedFile);
-    }
-    return formData;
-  }
-
-  clearFile() {
-    this.selectedFile = null;
-    this.selectedFileName.set("");
-    this.form.patchValue({ archivo: null });
-  }
-}

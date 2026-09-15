@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { AuthService } from 'src/app/core/auth/services/auth.service';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
+import { AuthService } from '@core/auth/services/auth.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { ApprovalStateService } from './approval-state.service';
 import { of } from 'rxjs';
 
@@ -55,3 +55,4 @@ describe('ApprovalStateService', () => {
     expect(service.requests().length).toBeGreaterThanOrEqual(0);
   });
 });
+

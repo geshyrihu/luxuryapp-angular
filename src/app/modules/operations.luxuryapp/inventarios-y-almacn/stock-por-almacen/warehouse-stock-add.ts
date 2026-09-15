@@ -18,19 +18,19 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { rowsPerPageOptions } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { rowsPerPageOptions } from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { TarjetaProducto } from "src/app/modules/supplier.luxuryapp/product/tarjeta-producto";
+} from "@core/services/dialog-handler.service";
+import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;
@@ -45,7 +45,7 @@ interface IWarehouseStockRowForm {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
-import { PrimeNgCustomCaption } from "src/app/shared/ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -228,3 +228,5 @@ export class WarehouseStockAdd implements OnInit {
     }
   }
 }
+
+

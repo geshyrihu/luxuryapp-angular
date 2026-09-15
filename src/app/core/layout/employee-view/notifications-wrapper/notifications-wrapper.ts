@@ -1,35 +1,36 @@
-import { isPlatformBrowser } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  PLATFORM_ID,
-  signal,
-} from "@angular/core";
-import { NotificationsListWeb } from "src/app/core/layout/employee-view/desktop/notifications-list-web/notifications-list-web";
-import { NotificationsListMobile } from "src/app/core/layout/employee-view/movil/notifications-list-mobile/notifications-list-mobile";
+import { isPlatformBrowser } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from "@angular/core";
+import { NotificationsListWeb } from "@core/layout/employee-view/desktop/notifications-list-web/notifications-list-web";
+import { NotificationsListMobile } from "@core/layout/employee-view/movil/notifications-list-mobile/notifications-list-mobile";
+
+@Component({
+  selector: "app-notifications-wrapper",
+  template: `
+    @if (isMobile()) {
+      <app-notifications-list-mobile />
+    } @else {
+      <app-notifications-list-web />
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NotificationsListMobile, NotificationsListWeb],
+})
+export class NotificationsWrapper implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+
+  isMobile = signal(false);
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile.set(window.innerWidth < 768);
+    }
+  }
+}
 
-@Component({
-  selector: "app-notifications-wrapper",
-  template: `
-    @if (isMobile()) {
-      <app-notifications-list-mobile />
-    } @else {
-      <app-notifications-list-web />
-    }
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NotificationsListMobile, NotificationsListWeb],
-})
-export class NotificationsWrapper implements OnInit {
-  private platformId = inject(PLATFORM_ID);
-
-  isMobile = signal(false);
-
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile.set(window.innerWidth < 768);
-    }
-  }
-}

@@ -19,16 +19,16 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { CardEmployee } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/services/dialog-handler.service";
+import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { EmployeeExternalAppUser } from "./employee-external-app-user";
 import { EmployeeExternalForm } from "./employee-external-form";
 
@@ -162,3 +162,5 @@ export class EmployeeExternalList {
     );
   }
 }
+
+

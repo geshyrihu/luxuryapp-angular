@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HtmlPrintService } from 'src/app/core/services/html-print.service';
+import { HtmlPrintService } from '@core/services/html-print.service';
 import { InventarioExtintorQrService } from './inventario-extintor-qr.service';
 
 describe('InventarioExtintorQrService', () => {
@@ -25,3 +25,4 @@ describe('InventarioExtintorQrService', () => {
     expect(htmlPrintS.printHtml).toHaveBeenCalled();
   });
 });
+

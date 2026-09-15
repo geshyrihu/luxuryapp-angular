@@ -21,19 +21,19 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { EDocumentType } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EDocumentType } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AiService } from "src/app/core/services/ai.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AiService } from "@core/services/ai.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-reglamentos",
@@ -138,3 +138,5 @@ export class Reglamentos {
       .catch((error) => {});
   }
 }
+
+

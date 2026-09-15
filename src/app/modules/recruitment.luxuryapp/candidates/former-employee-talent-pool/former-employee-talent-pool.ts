@@ -15,22 +15,22 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { WebButtonLabelActiveDesactive } from "src/app/shared/ui/buttons";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { WebButtonLabelActiveDesactive } from "@ui/buttons";
 import Swal from "sweetalert2";
-import { CandidateApplicationForm } from "../../candidate-applications/candidate-application-form";
-import { CandidateDetail } from "../candidate-detail";
+import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
+import { CandidateDetail } from "../candidate-core/candidate-detail";
 
 interface FormerEmployeeTalentPoolItem {
   employeeId: string;
@@ -213,3 +213,6 @@ export class FormerEmployeeTalentPool implements OnInit {
     return result.candidateId;
   }
 }
+
+
+

@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { documentTypeRoutesConfig } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/documentTypeRoutesConfig";
+import { authGuard } from "@core/auth/guards/auth.guard";
+import { documentTypeRoutesConfig } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/documentTypeRoutesConfig";
 // Definición del componente de detalle para reutilizar
 const CustomDocumentList = () =>
-  import("src/app/modules/committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo-detalle").then(
+  import("@committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo-detalle").then(
     (m) => m.BibliotecaConsejoDirectivoDetalle,
   );
 // Generación de rutas de documentos
@@ -68,7 +68,7 @@ export const committeeRoutes: Routes = [
       {
         path: "monthly-meetings",
         loadComponent: () =>
-          import("src/app/modules/committee.luxuryapp/board-directors-monthly-meetings/reuniones-mensuales-consejo-directivo").then(
+          import("@committee.luxuryapp/board-directors-monthly-meetings/reuniones-mensuales-consejo-directivo").then(
             (m) => m.ReunionesMensualesConsejoDirectivo,
           ),
         canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const committeeRoutes: Routes = [
       {
         path: "meeting-minutes",
         loadComponent: () =>
-          import("src/app/modules/committee.luxuryapp/board-directors-meeting-minutes/minutas-reuniones-consejo-directivo").then(
+          import("@committee.luxuryapp/board-directors-meeting-minutes/minutas-reuniones-consejo-directivo").then(
             (m) => m.MinutasReunionesConsejoDirectivo,
           ),
         canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const committeeRoutes: Routes = [
       {
         path: "meeting-minutes-detail/:id",
         loadComponent: () =>
-          import("src/app/modules/committee.luxuryapp/board-directors-meeting-minutes/minutas-reuniones-consejo-directivo-detalle").then(
+          import("@committee.luxuryapp/board-directors-meeting-minutes/minutas-reuniones-consejo-directivo-detalle").then(
             (m) => m.MinutasReunionesConsejoDirectivoDetalle,
           ),
         canActivate: [authGuard],
@@ -105,7 +105,7 @@ export const committeeRoutes: Routes = [
         path: "building-insurance-policy", // Ruta anterior: 'poliza-seguro-edificio'
 
         loadComponent: () =>
-          import("src/app/modules/committee.luxuryapp/poliza-seguro-edificio/poliza-seguro-edificio").then(
+          import("@committee.luxuryapp/poliza-seguro-edificio/poliza-seguro-edificio").then(
             (m) => m.PolizaSeguroEdificio,
           ),
         canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const committeeRoutes: Routes = [
       {
         path: "financial-reports",
         loadComponent: () =>
-          import("src/app/modules/committee.luxuryapp/board-directors-financial-reports/informes-financieros-consejo-directivo").then(
+          import("@committee.luxuryapp/board-directors-financial-reports/informes-financieros-consejo-directivo").then(
             (m) => m.InformesFinancierosConsejoDirectivo,
           ),
         canActivate: [authGuard],
@@ -133,7 +133,7 @@ export const committeeRoutes: Routes = [
           {
             path: "",
             loadComponent: () =>
-              import("src/app/modules/committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo").then(
+              import("@committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo").then(
                 (m) => m.BibliotecaConsejoDirectivo,
               ),
             canActivate: [authGuard],
@@ -148,3 +148,5 @@ export const committeeRoutes: Routes = [
     ],
   },
 ];
+
+

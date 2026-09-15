@@ -9,15 +9,15 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { EDocumentType } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
+} from "@core/services/dialog-handler.service";
+import { EDocumentType } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 
 @Component({
   selector: "app-templates-form",
@@ -110,3 +110,5 @@ export class TemplatesForm implements OnInit {
     return formData;
   }
 }
+
+

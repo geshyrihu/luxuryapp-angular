@@ -10,13 +10,13 @@ import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
-} from "src/app/core/services/dialog-handler.service";
-import { MeetingSeguimientoEdit } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+} from "@core/services/dialog-handler.service";
+import { MeetingSeguimientoEdit } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -79,3 +79,5 @@ export class ContMinutaSeguimientos implements OnInit {
       });
   }
 }
+
+

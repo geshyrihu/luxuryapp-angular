@@ -1,78 +1,79 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  inject,
-  output,
-} from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { PlatformService } from "src/app/core/services/platform.service";
-import { IonInputImg } from "../../mobile/ion-input-img";
-import { WebInputImg } from "../../web/input-img/input-img";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  output,
+} from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { PlatformService } from "@core/services/platform.service";
+import { IonInputImg } from "../../mobile/ion-input-img";
+import { WebInputImg } from "../../web/input-img/input-img";
+
+@Component({
+  selector: "custom-input-img-signal",
+
+  imports: [WebInputImg, IonInputImg],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputImg),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  template: `
+    @if (platform.isMobile()) {
+      <ion-input-img
+        [control]="control() || internalControl"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [readonly]="readonly()"
+        [disabled]="disabled()"
+        [required]="requiredInput()"
+        [hidden]="hidden()"
+        [urlImgCurrent]="urlImgCurrent()"
+        [chooseLabel]="chooseLabel()"
+        [allowRemove]="allowRemove()"
+        [maxFileSize]="maxFileSize()"
+        [compressThreshold]="compressThreshold()"
+        [compressionQuality]="compressionQuality()"
+        (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
+        (uploadError)="uploadError.emit($event)"
+      />
+    } @else {
+      <web-input-img
+        [control]="control() || internalControl"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [disabled]="disabled()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [urlImgCurrent]="urlImgCurrent()"
+        [title]="title()"
+        [chooseLabel]="chooseLabel()"
+        [allowRemove]="allowRemove()"
+        [maxFileSize]="maxFileSize()"
+        [compressThreshold]="compressThreshold()"
+        [compressionQuality]="compressionQuality()"
+        [contentHeight]="contentHeight()"
+        [contentWidth]="contentWidth()"
+        (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
+        (imageLoaded)="imageLoaded.emit($event)"
+        (uploadError)="uploadError.emit($event)"
+      />
+    }
+  `,
+})
+export class InputImg extends WebInputImg {
+  protected platform = inject(PlatformService);
+  /** Alias histórico de fileSelected (legacy CustomInputImg). */
+  propagar = output<File>();
+}
 
-@Component({
-  selector: "custom-input-img-signal",
-
-  imports: [WebInputImg, IonInputImg],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputImg),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.Eager,
-  template: `
-    @if (platform.isMobile()) {
-      <ion-input-img
-        [control]="control() || internalControl"
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [hidden]="hidden()"
-        [urlImgCurrent]="urlImgCurrent()"
-        [chooseLabel]="chooseLabel()"
-        [allowRemove]="allowRemove()"
-        [maxFileSize]="maxFileSize()"
-        [compressThreshold]="compressThreshold()"
-        [compressionQuality]="compressionQuality()"
-        (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
-        (uploadError)="uploadError.emit($event)"
-      />
-    } @else {
-      <web-input-img
-        [control]="control() || internalControl"
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [urlImgCurrent]="urlImgCurrent()"
-        [title]="title()"
-        [chooseLabel]="chooseLabel()"
-        [allowRemove]="allowRemove()"
-        [maxFileSize]="maxFileSize()"
-        [compressThreshold]="compressThreshold()"
-        [compressionQuality]="compressionQuality()"
-        [contentHeight]="contentHeight()"
-        [contentWidth]="contentWidth()"
-        (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
-        (imageLoaded)="imageLoaded.emit($event)"
-        (uploadError)="uploadError.emit($event)"
-      />
-    }
-  `,
-})
-export class InputImg extends WebInputImg {
-  protected platform = inject(PlatformService);
-  /** Alias histórico de fileSelected (legacy CustomInputImg). */
-  propagar = output<File>();
-}

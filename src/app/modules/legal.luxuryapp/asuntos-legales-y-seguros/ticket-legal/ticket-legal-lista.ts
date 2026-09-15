@@ -18,17 +18,17 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import Swal from "sweetalert2";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
@@ -41,7 +41,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AspRoleService } from "../../../../core/auth/services/asp-role.service";
 
 @Component({
@@ -314,3 +314,4 @@ export class TicketLegalLista implements OnInit {
     );
   }
 }
+

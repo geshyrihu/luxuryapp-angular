@@ -1,1 +1,2 @@
-export * from "primeng/dynamicdialog";
+export * from "@core/services/dialog-handler.service";
+

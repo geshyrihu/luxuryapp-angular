@@ -19,20 +19,20 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
-import { AsuntoLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
-import { CategoriaAsuntoLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
+} from "@core/services/dialog-handler.service";
+import { AsuntoLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
+import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-asunto-legal-lista",
@@ -127,3 +127,5 @@ export class AsuntoLegalLista {
       });
   }
 }
+
+

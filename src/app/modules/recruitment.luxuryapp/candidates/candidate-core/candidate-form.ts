@@ -1,0 +1,591 @@
+import { HttpErrorResponse } from "@angular/common/http";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from "rxjs/operators";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateStatus } from "@core/enums/candidate-status";
+import {
+  ApiResponseDto,
+  ApiResponseService,
+} from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DataConnectorService } from "@core/services/data-connector.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import Swal from "sweetalert2";
+import { CandidateCvUpload } from "../../recruitment-shared/candidate-cv-upload";
+import { CandidatePhotoUpload } from "../../recruitment-shared/candidate-photo-upload";
+import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
+import {
+  CandidateDetail,
+  CandidateDuplicateCheckResult,
+  CandidatePhoneLookup,
+  CandidateWorkExperienceAddOrEdit,
+  CandidateWorkExperienceItem,
+} from "./interfaces/candidate.dto";
+
+function minimumAdultAgeValidator(control: AbstractControl) {
+  const rawValue = control.value;
+  if (!rawValue) return null;
+
+  const birthDate = new Date(`${rawValue}T00:00:00`);
+  if (Number.isNaN(birthDate.getTime())) return { invalidDate: true };
+
+  const today = new Date();
+  const adultThreshold = new Date(
+    today.getFullYear() - 18,
+    today.getMonth(),
+    today.getDate(),
+  );
+
+  return birthDate <= adultThreshold ? null : { minimumAdultAge: true };
+}
+
+enum DuplicateMatchType {
+  None = 0,
+  Employee = 1,
+  Candidate = 2,
+  User = 3,
+}
+
+@Component({
+  selector: "app-candidate-form",
+  templateUrl: "./candidate-form.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
+  imports: [
+    ReactiveFormsModule,
+    CustomInputDateSignal,
+    CustomInputTextSignal,
+    CustomInputNumberSignal,
+    CustomInputTextAreaSignal,
+    CustomInputSelectSignal,
+    LxRadioButton,
+    InputMask,
+    InputEmail,
+    CandidateCvUpload,
+    CandidatePhotoUpload,
+    WebButtonLabel,
+    WebButtonLabelSave,
+  ],
+})
+export class CandidateForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  dialogHandlerS = inject(DialogHandlerService);
+  private dataConnectorS = inject(DataConnectorService);
+  private destroyRef = inject(DestroyRef);
+
+  id: string = "";
+  submitting = signal(false);
+  currentCvUrl = signal("");
+  currentPhotoUrl = signal("");
+  recruitmentSourceOptions = signal<SelectItemDto[]>([]);
+  selectedFile: File | null = null;
+  selectedPhotoFile: File | null = null;
+  duplicateBlockSave = signal(false);
+  private lastCheckedEmail: string | null = null;
+  readonly originalWorkExperienceIds = signal<string[]>([]);
+
+  /** Candidato existente encontrado al capturar un telefono ya registrado (busqueda silenciosa). */
+  duplicateCandidate = signal<CandidatePhoneLookup | null>(null);
+  readonly CandidateStatus = CandidateStatus;
+
+  candidateStatusLabel(status: CandidateStatus): string {
+    switch (status) {
+      case CandidateStatus.Archived:
+        return "Archivado";
+      case CandidateStatus.Contratado:
+        return "Contratado";
+      case CandidateStatus.EmpleadoVinculado:
+        return "Empleado vinculado";
+      default:
+        return "Activo";
+    }
+  }
+
+  form: FormGroup<CandidateFormGroup> = new FormGroup({
+    id: new FormControl({ value: "", disabled: true }),
+    firstName: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(80)],
+    }),
+    lastName: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(80)],
+    }),
+    phoneNumber: new FormControl<string | null>(null),
+    email: new FormControl<string | null>(null),
+    birthDate: new FormControl<string | null>(null, {
+      validators: [Validators.required, minimumAdultAgeValidator],
+    }),
+    recruitmentSource: new FormControl<number>(0, {
+      nonNullable: true,
+    }),
+    recruitmentSourceId: new FormControl<string | null>(null, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    curp: new FormControl<string | null>(null),
+    currentAddress: new FormControl<string | null>(null),
+    availability: new FormControl<string | null>(null),
+    salaryExpectation: new FormControl<number | null>(null),
+    experienceSummary: new FormControl<string | null>(null),
+    generalComments: new FormControl<string | null>(null),
+  });
+
+  workExperiences = new FormArray<FormGroup>([]);
+
+  async ngOnInit(): Promise<void> {
+    this.id = this.config.data?.id ?? "";
+    await this.loadSelectItems();
+    if (this.id) this.onLoadData();
+    else this.addWorkExperience();
+
+    this.form.controls.phoneNumber.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        filter(
+          (value): value is string =>
+            !!value && value.replace(/\D/g, "").length >= 10,
+        ),
+        switchMap((phone) =>
+          this.apiResponseS.onGetItem<CandidatePhoneLookup | null>(
+            EndpointsReclutamiento.Candidates.searchByPhone(phone),
+            false,
+          ),
+        ),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((found) => {
+        this.duplicateCandidate.set(
+          found && found.id !== this.id ? found : null,
+        );
+      });
+
+    this.form.controls.email.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.duplicateBlockSave.set(false);
+        this.lastCheckedEmail = null;
+      });
+  }
+
+  private async loadSelectItems(): Promise<void> {
+    const options = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+      EndpointsReclutamiento.Candidates.recruitmentSources,
+    );
+    this.recruitmentSourceOptions.set(options ?? []);
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem<CandidateDetail>(
+        EndpointsReclutamiento.Candidates.getById(this.id),
+      )
+      .then((result) => {
+        if (!result) return;
+
+        this.form.patchValue({
+          ...result,
+          recruitmentSource: result.recruitmentSource ?? 0,
+          recruitmentSourceId: result.recruitmentSourceId ?? null,
+        });
+        this.currentCvUrl.set(result.cvFileUrl ?? "");
+        this.currentPhotoUrl.set(result.photoUrl ?? "");
+        this.setWorkExperiences(result.workExperiences ?? []);
+      });
+  }
+
+  dismissDuplicateCandidate() {
+    this.duplicateCandidate.set(null);
+  }
+
+  /** Carga al candidato ya registrado dentro de este mismo formulario para revisar/actualizar sus datos. */
+  onLoadDuplicateCandidate() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    this.id = found.id;
+    this.duplicateCandidate.set(null);
+    this.onLoadData();
+  }
+
+  async onUnarchiveDuplicateCandidate() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    const result = await this.apiResponseS.onPatch<boolean>(
+      EndpointsReclutamiento.Candidates.unarchive(found.id),
+      {},
+    );
+    if (result) {
+      this.duplicateCandidate.set({ ...found, status: CandidateStatus.Active });
+    }
+  }
+
+  /** Cierra este formulario y abre el de asignacion a entrevista con el candidato preseleccionado. */
+  async onAssignDuplicateCandidateToInterview() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    const { CandidateApplicationForm } =
+      await import("../candidate-applications/candidate-application-form");
+
+    this.ref.close();
+    await this.dialogHandlerS.openDialog(
+      CandidateApplicationForm,
+      { candidateId: found.id },
+      "Asignar candidato a entrevista",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
+  onEmailFocusOut(): void {
+    const email = this.form.controls.email.value?.trim() ?? "";
+    if (!email) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+    if (email === this.lastCheckedEmail) return;
+    void this.checkDuplicate();
+  }
+
+  onCurpFocusOut(): void {
+    const email = this.form.controls.email.value?.trim() ?? "";
+    if (!email) return;
+    void this.checkDuplicate();
+  }
+
+  /** Verifica duplicados (empleado/candidato/usuario) contra el backend en POST /api/recruitment-candidates/check-duplicate. */
+  async checkDuplicate(): Promise<void> {
+    const email = this.form.controls.email.value?.trim();
+    if (!email) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    const body = {
+      email,
+      curp: this.form.controls.curp.value?.trim() || undefined,
+    };
+
+    try {
+      const responseData = await firstValueFrom(
+        this.dataConnectorS.post<ApiResponseDto<CandidateDuplicateCheckResult>>(
+          EndpointsReclutamiento.Candidates.checkDuplicate,
+          body,
+        ),
+      );
+      this.handleDuplicateResult(responseData.body?.data ?? null);
+    } catch (error: unknown) {
+      const httpError = error as HttpErrorResponse;
+      const body = httpError?.error as
+        ApiResponseDto<CandidateDuplicateCheckResult> | undefined;
+      if (body?.data) {
+        this.handleDuplicateResult(body.data);
+      } else {
+        this.duplicateBlockSave.set(false);
+      }
+    } finally {
+      this.lastCheckedEmail = email;
+    }
+  }
+
+  private handleDuplicateResult(
+    data: CandidateDuplicateCheckResult | null,
+  ): void {
+    if (!data) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    switch (data.matchType) {
+      case DuplicateMatchType.User:
+        void this.offerUserImport(data);
+        break;
+      case DuplicateMatchType.Employee:
+      case DuplicateMatchType.Candidate:
+        this.duplicateBlockSave.set(true);
+        Swal.fire({
+          icon: "warning",
+          title: "Registro duplicado",
+          text: data.message,
+          confirmButtonText: "Entendido",
+        });
+        break;
+      default:
+        this.duplicateBlockSave.set(false);
+        break;
+    }
+  }
+
+  /** matchType 3 (User): ofrece autocompletar el formulario con los datos del usuario. */
+  private async offerUserImport(
+    data: CandidateDuplicateCheckResult,
+  ): Promise<void> {
+    const user = data.userData;
+    if (!user) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    const result = await Swal.fire({
+      icon: "question",
+      title: "Usuario encontrado",
+      text: "Hemos encontrado un usuario registrado con este correo. ¿Deseas autocompletar el formulario con sus datos?",
+      showCancelButton: true,
+      confirmButtonText: "Autocompletar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
+      this.form.patchValue({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      });
+      this.duplicateBlockSave.set(false);
+    }
+  }
+
+  async onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    const formData = new FormData();
+    formData.append("FirstName", this.form.controls.firstName.value.trim());
+    formData.append("LastName", this.form.controls.lastName.value.trim());
+    formData.append("PhoneNumber", this.form.controls.phoneNumber.value ?? "");
+    formData.append("Email", this.form.controls.email.value ?? "");
+    formData.append("BirthDate", this.form.controls.birthDate.value ?? "");
+
+    formData.append(
+      "RecruitmentSource",
+      String(this.form.controls.recruitmentSource.value ?? 0),
+    );
+
+    const recruitmentSourceId = this.form.controls.recruitmentSourceId.value;
+    if (recruitmentSourceId) {
+      formData.append("RecruitmentSourceId", recruitmentSourceId);
+    }
+
+    const curp = this.form.controls.curp.value?.trim();
+    if (curp) {
+      formData.append("Curp", curp);
+    }
+
+    formData.append(
+      "CurrentAddress",
+      this.form.controls.currentAddress.value ?? "",
+    );
+    formData.append(
+      "Availability",
+      this.form.controls.availability.value ?? "",
+    );
+
+    const salaryExpectation = this.form.controls.salaryExpectation.value;
+    if (salaryExpectation != null) {
+      formData.append("SalaryExpectation", String(salaryExpectation));
+    }
+
+    formData.append(
+      "ExperienceSummary",
+      this.form.controls.experienceSummary.value ?? "",
+    );
+
+    formData.append(
+      "GeneralComments",
+      this.form.controls.generalComments.value ?? "",
+    );
+
+    if (this.selectedFile) {
+      formData.append("CvFile", this.selectedFile, this.selectedFile.name);
+    }
+
+    if (this.selectedPhotoFile) {
+      formData.append(
+        "PhotoFile",
+        this.selectedPhotoFile,
+        this.selectedPhotoFile.name,
+      );
+    }
+
+    this.submitting.set(true);
+
+    const result = this.id
+      ? await this.apiResponseS.onPut<CandidateDetail>(
+          EndpointsReclutamiento.Candidates.update(this.id),
+          formData,
+        )
+      : await this.apiResponseS.onPostFile<CandidateDetail>(
+          EndpointsReclutamiento.Candidates.base,
+          formData,
+        );
+
+    if (result && typeof result !== "boolean" && result.id) {
+      await this.syncWorkExperiences(result.id);
+      this.ref.close(result);
+    }
+
+    this.submitting.set(false);
+  }
+
+  onCvSelected(_fileName: string | null) {}
+
+  onCvFile(file: File | null) {
+    this.selectedFile = file;
+  }
+
+  onPhotoSelected(_fileName: string | null) {}
+
+  onPhotoFile(file: File | null) {
+    this.selectedPhotoFile = file;
+  }
+
+  addWorkExperience(value?: Partial<CandidateWorkExperienceAddOrEdit>) {
+    this.workExperiences.push(
+      new FormGroup({
+        id: new FormControl<string | null>(value?.id ?? null),
+        companyName: new FormControl(value?.companyName ?? "", {
+          nonNullable: true,
+          validators: [Validators.required, Validators.maxLength(150)],
+        }),
+        jobPosition: new FormControl(value?.jobPosition ?? "", {
+          nonNullable: true,
+          validators: [Validators.required, Validators.maxLength(150)],
+        }),
+        startDate: new FormControl<string | null>(value?.startDate ?? null, {
+          validators: [Validators.required],
+        }),
+        endDate: new FormControl<string | null>(value?.endDate ?? null),
+        monthlyNetSalary: new FormControl<number | null>(
+          value?.monthlyNetSalary ?? null,
+        ),
+        departureReason: new FormControl<string | null>(
+          value?.departureReason ?? null,
+          [Validators.maxLength(500)],
+        ),
+      }),
+    );
+  }
+
+  removeWorkExperience(index: number) {
+    this.workExperiences.removeAt(index);
+  }
+
+  get workExperienceControls() {
+    return this.workExperiences.controls;
+  }
+
+  private setWorkExperiences(items: CandidateWorkExperienceItem[]) {
+    this.workExperiences.clear();
+    this.originalWorkExperienceIds.set(items.map((x) => x.id));
+
+    if (items.length === 0) {
+      this.addWorkExperience();
+      return;
+    }
+
+    for (const item of items) {
+      this.addWorkExperience({
+        id: item.id,
+        companyName: item.companyName,
+        jobPosition: item.jobPosition,
+        startDate: item.startDate,
+        endDate: item.endDate ?? null,
+        monthlyNetSalary: item.monthlyNetSalary ?? null,
+        departureReason: item.departureReason ?? null,
+      });
+    }
+  }
+
+  private async syncWorkExperiences(candidateId: string) {
+    const validRows = this.workExperienceControls
+      .map((group) => group.getRawValue())
+      .filter(
+        (row) =>
+          row.companyName?.trim() && row.jobPosition?.trim() && row.startDate,
+      );
+
+    const keptIds = new Set<string>();
+
+    for (const row of validRows) {
+      const payload = {
+        candidateId,
+        companyName: row.companyName?.trim() ?? "",
+        jobPosition: row.jobPosition?.trim() ?? "",
+        startDate: row.startDate,
+        endDate: row.endDate || null,
+        monthlyNetSalary: row.monthlyNetSalary ?? null,
+        departureReason: row.departureReason?.trim() ?? "",
+      };
+
+      if (row.id) {
+        keptIds.add(row.id);
+        await this.apiResponseS.onPut(
+          EndpointsReclutamiento.CandidateWorkExperiences.update(row.id),
+          payload,
+        );
+      } else {
+        const created =
+          await this.apiResponseS.onPost<CandidateWorkExperienceItem>(
+            EndpointsReclutamiento.CandidateWorkExperiences.base,
+            payload,
+          );
+        if (created && typeof created !== "boolean" && created.id) {
+          keptIds.add(created.id);
+        }
+      }
+    }
+
+    const idsToDelete = this.originalWorkExperienceIds().filter(
+      (id) => !keptIds.has(id),
+    );
+
+    for (const id of idsToDelete) {
+      await this.apiResponseS.onDelete(
+        EndpointsReclutamiento.CandidateWorkExperiences.delete(id),
+      );
+    }
+  }
+}
+
+
+

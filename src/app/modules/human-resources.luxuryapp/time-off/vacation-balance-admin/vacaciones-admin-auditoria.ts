@@ -13,13 +13,13 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { getStatusSeverity as statusSeverityFn } from "src/app/modules/human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { VacationBalanceDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/vacation-balance.interface";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
+import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 export interface VacationHistoryItemDTO {
@@ -238,3 +238,5 @@ export class VacacionesAdminAuditoria implements OnInit {
     return statusSeverityFn(status);
   }
 }
+
+

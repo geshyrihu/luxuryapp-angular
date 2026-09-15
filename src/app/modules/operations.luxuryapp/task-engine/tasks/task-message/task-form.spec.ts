@@ -1,17 +1,17 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { of } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { ClientErrorLoggerService } from "src/app/core/services/client-error-logger.service";
-import { DateService } from "src/app/core/services/date.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { ImageProcessingService } from "src/app/core/services/image-processing.service";
-import { TaskGroupService } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { ClientErrorLoggerService } from "@core/services/client-error-logger.service";
+import { DateService } from "@core/services/date.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { ImageProcessingService } from "@core/services/image-processing.service";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { vi } from "vitest";
 import { TaskForm } from "./task-form";
 
@@ -228,3 +228,4 @@ describe("TaskForm", () => {
     expect(mockClientErrorLogger.logError).toHaveBeenCalled();
   });
 });
+

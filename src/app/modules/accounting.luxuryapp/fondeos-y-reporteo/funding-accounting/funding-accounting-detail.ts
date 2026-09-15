@@ -10,7 +10,7 @@ import {
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -20,13 +20,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { SignalRService } from "src/app/core/services/signalr.service";
-import { FundingPurchaseDetail } from "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-purchase-detail";
-import { FundingDetailDTO } from "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/model/funding-detail-dto";
-import { FundingExcelExportService } from "src/app/modules/accounting.luxuryapp/general-ledger/funding-excel-export.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SignalRService } from "@core/services/signalr.service";
+import { FundingPurchaseDetail } from "@accounting.luxuryapp/fondeos-y-reporteo/funding/funding-purchase-detail";
+import { FundingDetailDTO } from "@accounting.luxuryapp/fondeos-y-reporteo/funding/model/funding-detail-dto";
+import { FundingExcelExportService } from "@accounting.luxuryapp/general-ledger/funding-excel-export.service";
 @Component({
   selector: "app-funding-accounting-detail",
   imports: [
@@ -239,3 +239,5 @@ export class FundingAccountingDetail {
     });
   }
 }
+
+

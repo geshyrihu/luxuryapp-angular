@@ -25,20 +25,20 @@ import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import type { MenuItem } from "primeng/api";
 import { filter, map, startWith } from "rxjs";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
-import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
-import { MenuService } from "src/app/core/services/menu.service";
-import { RefreshService } from "src/app/core/services/refresh.service";
-import { SearchService } from "src/app/core/services/search.service";
-import { ThemeService } from "src/app/core/services/theme.service";
-import { UpdateService } from "src/app/core/services/update-pwa.service";
-import { PanicButton } from "src/app/modules/operations.luxuryapp/panic-alert/panic-button/panic-button";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
+import { HidescrollnavService } from "@core/services/hidescrollnav.service";
+import { MenuService } from "@core/services/menu.service";
+import { RefreshService } from "@core/services/refresh.service";
+import { SearchService } from "@core/services/search.service";
+import { ThemeService } from "@core/services/theme.service";
+import { UpdateService } from "@core/services/update-pwa.service";
+import { PanicButton } from "@operations.luxuryapp/panic-alert/panic-button/panic-button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { Profiledesktop } from "../profile-desktop/profile-desktop";
 
@@ -48,7 +48,7 @@ import { DialogModule } from "primeng/dialog";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppMenu } from "@ui/web/menu/menu";
-import { AiService } from "src/app/core/services/ai.service";
+import { AiService } from "@core/services/ai.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
@@ -475,3 +475,5 @@ CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS I
     window.print();
   }
 }
+
+

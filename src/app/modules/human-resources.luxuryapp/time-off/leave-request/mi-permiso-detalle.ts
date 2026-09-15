@@ -6,12 +6,12 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { getStatusSeverity } from "src/app/modules/human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { LeaveRequestDetailDTO } from "src/app/modules/human-resources.luxuryapp/interfaces/leave-request.interface";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { getStatusSeverity } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
+import { LeaveRequestDetailDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-leave-request-detail-my",
@@ -54,3 +54,5 @@ export class MiPermisoDetalle implements OnInit {
     }
   }
 }
+
+
