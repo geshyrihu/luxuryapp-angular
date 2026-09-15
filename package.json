@@ -35,7 +35,10 @@
     "build-storybook": "ng run luxury-app:build-storybook",
     "audit:scss-build": "node scripts/audit-scss-build.mjs",
     "audit:icon-names": "node scripts/audit-icon-names.mjs",
-    "audit:ds": "npm run audit:scss-build && npm run audit:tokens && npm run audit:contrast && npm run audit:token-refs && npm run audit:icon-names"
+    "audit:ds": "npm run audit:scss-build && npm run audit:tokens && npm run audit:contrast && npm run audit:token-refs && npm run audit:icon-names",
+    "fix:eol": "node scripts/fix-eol.mjs",
+    "check:eol": "node scripts/fix-eol.mjs --check",
+    "hooks:install": "git config core.hooksPath .githooks"
   },
   "private": true,
   "dependencies": {

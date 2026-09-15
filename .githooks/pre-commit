@@ -1,0 +1,4 @@
+#!/bin/sh
+# Bloquea commits con finales de linea corruptos (CR CR LF) en lo staged.
+# Instalar: npm run hooks:install
+node scripts/fix-eol.mjs --check --staged || exit 1
