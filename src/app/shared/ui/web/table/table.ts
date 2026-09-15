@@ -48,6 +48,11 @@ export class AppSortableColumn {
         } @else {
           <app-icon icon="material-symbols-light:arrow-downward" />
         }
+      } @else {
+        <app-icon
+          icon="material-symbols-light:swap-vert"
+          class="app-table-sorticon-neutral"
+        />
       }
     </span>
   `,
@@ -173,6 +178,10 @@ export class AppSorticon {
       .app-table-sorticon {
         display: inline-block;
         min-width: 1em;
+      }
+
+      .app-table-sorticon-neutral {
+        opacity: 0.4;
       }
 
       .app-table-scroll {

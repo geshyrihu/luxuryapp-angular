@@ -47,4 +47,3 @@ export class BankListDesktop {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 }
-

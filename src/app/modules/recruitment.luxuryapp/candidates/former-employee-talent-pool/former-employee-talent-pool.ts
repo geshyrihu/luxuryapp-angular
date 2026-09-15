@@ -27,6 +27,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons";
 import Swal from "sweetalert2";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
@@ -63,6 +64,7 @@ interface FormerEmployeeCandidateResult {
   styleUrl: "./former-employee-talent-pool.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ApiDatePipe,
     CommonModule,
     CustomInputSelectSignal,
     InputTextModule,

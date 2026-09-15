@@ -468,6 +468,7 @@ export const AppIcon = {
   Sitemap: "material-symbols-light:account-tree",
   SmokeDetectorOutline: "material-symbols-light:detector-alarm",
   SortDescending: "material-symbols-light:arrow-downward",
+  SortNeutral: "material-symbols-light:swap-vert",
   SourceBranch: "material-symbols-light:call-split",
   SourceBranchCheck: "material-symbols-light:call-split",
   SourceMerge: "material-symbols-light:call-merge",

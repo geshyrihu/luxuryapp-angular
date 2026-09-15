@@ -90,7 +90,7 @@
           <div>{{ item.email }}</div>
           <small class="text-body-secondary">{{ item.phoneNumber }}</small>
         </td>
-        <td>{{ item.dateAdmission | date: "dd/MM/yyyy" }}</td>
+        <td>{{ item.dateAdmission | apiDate }}</td>
         <td class="text-center">
           @if (item.hasCandidate) {
           <span class="status-pill ready">Ya existe</span>

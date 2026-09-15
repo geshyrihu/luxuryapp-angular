@@ -116,7 +116,7 @@
      .app-table-thead > tr > th {
        // background-color: var(--ds-primary);
        // color: var(--ds-primary-text);
-      border-color: var(--ds-border-on-dark, var(--ds-border));
+      border-color: var(--ds-border);
 
       /* Los iconos de orden heredan el color del encabezado */
       app-sorticon,
