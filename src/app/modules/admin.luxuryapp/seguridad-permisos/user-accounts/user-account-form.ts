@@ -1,110 +1,110 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { EnumSelectService } from "@core/services/enum-select.service";
-
-@Component({
-  selector: "app-user-account-form",
-  templateUrl: "./user-account-form.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    InputMask,
-    CustomInputSelectSignal,
-    WebButtonLabelSave,
-  ],
-})
-export class UserAccountForm implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  config = inject(DynamicDialogConfig);
-  ref = inject(DynamicDialogRef);
-  enumSelectS = inject(EnumSelectService);
-
-  submitting = signal(false);
-  applicationUserId: string = "";
-  cb_customer = signal<SelectItemDto[]>([]);
-  cb_typePerson = toSignal(this.enumSelectS.typePerson(), { initialValue: [] });
-
-  // Definición estricta del formulario
-  form = new FormGroup({
-    email: new FormControl<string>(""),
-    phoneNumber: new FormControl<string>(""),
-    customerId: new FormControl<string>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    typePerson: new FormControl<number | null>(null, {
-      validators: [Validators.required],
-    }),
-    firstName: new FormControl<string>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    lastName: new FormControl<string>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  });
-
-  ngOnInit() {
-    // this.enumSelectS.typePerson().subscribe((items) => {
-    //   this.cb_typePerson.set(items);
-    // });
-    this.onLoadSelectItem();
-    this.applicationUserId = this.config.data.applicationUserId || "";
-    if (this.applicationUserId !== "") this.onLoadData();
-  }
-
-  onLoadSelectItem() {
-    this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
-      .then((items: SelectItemDto[]) => {
-        this.cb_customer.set(items);
-      });
-  }
-
-  onLoadData() {
-    const urlApi = Endpoints.UserAccounts.getById(this.applicationUserId);
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      if (result) {
-        this.form.patchValue(result);
-      }
-    });
-  }
-
-  async onSubmit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint:
-        this.applicationUserId === ""
-          ? Endpoints.UserAccounts.createAccount
-          : Endpoints.UserAccounts.updateAccount(this.applicationUserId),
-      method: this.applicationUserId === "" ? "POST" : "PUT",
-      ref: this.ref,
-      submitting: this.submitting,
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { EnumSelectService } from "@core/services/enum-select.service";
+
+@Component({
+  selector: "app-user-account-form",
+  templateUrl: "./user-account-form.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    InputMask,
+    CustomInputSelectSignal,
+    WebButtonLabelSave,
+  ],
+})
+export class UserAccountForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  enumSelectS = inject(EnumSelectService);
+
+  submitting = signal(false);
+  applicationUserId: string = "";
+  cb_customer = signal<SelectItemDto[]>([]);
+  cb_typePerson = toSignal(this.enumSelectS.typePerson(), { initialValue: [] });
+
+  // Definición estricta del formulario
+  form = new FormGroup({
+    email: new FormControl<string>(""),
+    phoneNumber: new FormControl<string>(""),
+    customerId: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    typePerson: new FormControl<number | null>(null, {
+      validators: [Validators.required],
+    }),
+    firstName: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    lastName: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+  });
+
+  ngOnInit() {
+    // this.enumSelectS.typePerson().subscribe((items) => {
+    //   this.cb_typePerson.set(items);
+    // });
+    this.onLoadSelectItem();
+    this.applicationUserId = this.config.data.applicationUserId || "";
+    if (this.applicationUserId !== "") this.onLoadData();
+  }
+
+  onLoadSelectItem() {
+    this.apiResponseS
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
+      .then((items: SelectItemDto[]) => {
+        this.cb_customer.set(items);
+      });
+  }
+
+  onLoadData() {
+    const urlApi = Endpoints.UserAccounts.getById(this.applicationUserId);
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      if (result) {
+        this.form.patchValue(result);
+      }
+    });
+  }
+
+  async onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint:
+        this.applicationUserId === ""
+          ? Endpoints.UserAccounts.createAccount
+          : Endpoints.UserAccounts.updateAccount(this.applicationUserId),
+      method: this.applicationUserId === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+    });
+  }
+}
 

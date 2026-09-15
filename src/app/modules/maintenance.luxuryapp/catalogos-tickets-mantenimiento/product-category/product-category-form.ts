@@ -1,77 +1,77 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ProductCategoryFormGroup } from "./interfaces/product-category-form.interface";
-
-@Component({
-  selector: "app-product-category-form",
-  templateUrl: "./product-category-form.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
-})
-export class ProductCategoryForm implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  config = inject(DynamicDialogConfig);
-  formB = inject(FormBuilder);
-  ref = inject(DynamicDialogRef);
-  submitting = signal(false);
-
-  id: string = "";
-  form: FormGroup<ProductCategoryFormGroup> = this.formB.group({
-    id: new FormControl({ value: this.id, disabled: true }),
-    nameCotegory: new FormControl("", {
-      validators: [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
-      ],
-      nonNullable: true,
-    }),
-    user: new FormControl<string | null>(""),
-  });
-
-  ngOnInit(): void {
-    this.id = this.config.data.id;
-    if (this.id) {
-      this.onLoadData();
-    }
-  }
-  onLoadData() {
-    this.apiResponseS
-      .onGetItem(Endpoints.ProductCategories.getById(this.id))
-      .then((result: any) => {
-        if (result) {
-          this.form.patchValue(result);
-        }
-      });
-  }
-
-  onSubmit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: Endpoints.ProductCategories.base,
-      id: this.id,
-      ref: this.ref,
-      submitting: this.submitting,
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ProductCategoryFormGroup } from "./interfaces/product-category-form.interface";
+
+@Component({
+  selector: "app-product-category-form",
+  templateUrl: "./product-category-form.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
+})
+export class ProductCategoryForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  formB = inject(FormBuilder);
+  ref = inject(DynamicDialogRef);
+  submitting = signal(false);
+
+  id: string = "";
+  form: FormGroup<ProductCategoryFormGroup> = this.formB.group({
+    id: new FormControl({ value: this.id, disabled: true }),
+    nameCotegory: new FormControl("", {
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30),
+      ],
+      nonNullable: true,
+    }),
+    user: new FormControl<string | null>(""),
+  });
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    if (this.id) {
+      this.onLoadData();
+    }
+  }
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(Endpoints.ProductCategories.getById(this.id))
+      .then((result: any) => {
+        if (result) {
+          this.form.patchValue(result);
+        }
+      });
+  }
+
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.ProductCategories.base,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
+  }
+}
 

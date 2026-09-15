@@ -1,164 +1,164 @@
-import { Location } from "@angular/common";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ActivatedRoute, Router } from "@angular/router";
-import { MessageService } from "primeng/api";
-import { Subject, of } from "rxjs";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
-import { HidescrollnavService } from "@core/services/hidescrollnav.service";
-import { MenuService } from "@core/services/menu.service";
-import { SearchService } from "@core/services/search.service";
-import { ThemeService } from "@core/services/theme.service";
-import { UpdateService } from "@core/services/update-pwa.service";
-import { vi } from "vitest";
-import { HeaderEmployeedesktop } from "./header-employee-desktop";
-
-const aspRoleServiceMock = {
-  roleSignal: vi.fn(() => vi.fn(() => false)),
-};
-
-const authServiceMock = {
-  applicationUserId: "test-user-id",
-  infoUserAuth: { photoPath: "profile.jpg" },
-  customerAccess: [],
-  customerAccess$: of([]),
-};
-
-const customerIdServiceMock = {
-  customerId: vi.fn(() => "test-customer-id"),
-  nombreCorto: vi.fn(() => "Test Customer"),
-  customerPhotoPath: vi.fn(() => "photo.jpg"),
-  setCustomerId: vi.fn(() => of(null)),
-};
-
-const hideScroolNavServiceMock = {
-  headerFixed: false,
-};
-
-const locationMock = {
-  back: vi.fn(),
-  forward: vi.fn(),
-};
-
-const menuServiceMock = {
-  collapseSidebar: false,
-  toggleSidebar: vi.fn(),
-};
-
-const routerMock = {
-  events: new Subject(),
-  url: "",
-  navigateByUrl: vi.fn(() => Promise.resolve(true)) as any,
-  routeReuseStrategy: { shouldReuseRoute: vi.fn(() => true) },
-  routerState: { snapshot: {} },
-};
-
-const searchServiceMock = {
-  text: "",
-  itemsData: vi.fn(() => []),
-  menuItems: [],
-  searchResult: false,
-  searchResultEmpty: false,
-};
-
-const themeServiceMock = {
-  toggleTheme: vi.fn(),
-  getCurrentTheme: vi.fn(() => "light"),
-};
-
-const updateServiceMock = {
-  forceCheckUpdate: undefined,
-  updateAvailable$: of(false),
-  activateUpdate: vi.fn(),
-};
-
-const featureAnnouncementServiceMock = {
-  showDialog: { set: vi.fn(), update: vi.fn() },
-};
-
-const activatedRouteMock = {
-  root: {
-    firstChild: {
-      snapshot: { url: [], data: { breadcrumb: "Test" } },
-      firstChild: null,
-    },
-  },
-  data: of({}),
-  snapshot: { data: {} },
-  firstChild: null,
-  outlet: "primary",
-  parent: { snapshot: { data: {} } },
-};
-
-describe("HeaderEmployeedesktop", () => {
-  let component: HeaderEmployeedesktop;
-  let fixture: ComponentFixture<HeaderEmployeedesktop>;
-
-  beforeEach(() => {
-    TestBed.overrideComponent(HeaderEmployeedesktop, {
-      set: {
-        template: "<div>Mock</div>",
-        imports: [],
-      },
-    });
-
-    TestBed.configureTestingModule({
-      imports: [HeaderEmployeedesktop],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-        { provide: AspRoleService, useValue: aspRoleServiceMock },
-        { provide: AuthService, useValue: authServiceMock },
-        { provide: CustomerIdService, useValue: customerIdServiceMock },
-        { provide: HidescrollnavService, useValue: hideScroolNavServiceMock },
-        { provide: Location, useValue: locationMock },
-        { provide: MenuService, useValue: menuServiceMock },
-        { provide: Router, useValue: routerMock },
-        { provide: SearchService, useValue: searchServiceMock },
-        { provide: ThemeService, useValue: themeServiceMock },
-        { provide: UpdateService, useValue: updateServiceMock },
-        {
-          provide: FeatureAnnouncementService,
-          useValue: featureAnnouncementServiceMock,
-        },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
-      ],
-    });
-
-    fixture = TestBed.createComponent(HeaderEmployeedesktop);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-
-  it("should initialize display nav icons on init", () => {
-    expect(component.displayNavIcons.length).toBeGreaterThan(0);
-  });
-
-  it("should navigate to home", () => {
-    component.onHome();
-    expect(routerMock.navigateByUrl).toHaveBeenCalledWith("/dashboard");
-  });
-
-  it("should navigate back", () => {
-    component.onBack();
-    expect(locationMock.back).toHaveBeenCalled();
-  });
-
-  it("should navigate forward", () => {
-    component.onNext();
-    expect(locationMock.forward).toHaveBeenCalled();
-  });
-
-  it("should refresh current route", () => {
-    component.onRefresh();
-    expect(routerMock.navigateByUrl).toHaveBeenCalled();
-  });
-});
+import { Location } from "@angular/common";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MessageService } from "primeng/api";
+import { Subject, of } from "rxjs";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
+import { HidescrollnavService } from "@core/services/hidescrollnav.service";
+import { MenuService } from "@core/services/menu.service";
+import { SearchService } from "@core/services/search.service";
+import { ThemeService } from "@core/services/theme.service";
+import { UpdateService } from "@core/services/update-pwa.service";
+import { vi } from "vitest";
+import { HeaderEmployeedesktop } from "./header-employee-desktop";
+
+const aspRoleServiceMock = {
+  roleSignal: vi.fn(() => vi.fn(() => false)),
+};
+
+const authServiceMock = {
+  applicationUserId: "test-user-id",
+  infoUserAuth: { photoPath: "profile.jpg" },
+  customerAccess: [],
+  customerAccess$: of([]),
+};
+
+const customerIdServiceMock = {
+  customerId: vi.fn(() => "test-customer-id"),
+  nombreCorto: vi.fn(() => "Test Customer"),
+  customerPhotoPath: vi.fn(() => "photo.jpg"),
+  setCustomerId: vi.fn(() => of(null)),
+};
+
+const hideScroolNavServiceMock = {
+  headerFixed: false,
+};
+
+const locationMock = {
+  back: vi.fn(),
+  forward: vi.fn(),
+};
+
+const menuServiceMock = {
+  collapseSidebar: false,
+  toggleSidebar: vi.fn(),
+};
+
+const routerMock = {
+  events: new Subject(),
+  url: "",
+  navigateByUrl: vi.fn(() => Promise.resolve(true)) as any,
+  routeReuseStrategy: { shouldReuseRoute: vi.fn(() => true) },
+  routerState: { snapshot: {} },
+};
+
+const searchServiceMock = {
+  text: "",
+  itemsData: vi.fn(() => []),
+  menuItems: [],
+  searchResult: false,
+  searchResultEmpty: false,
+};
+
+const themeServiceMock = {
+  toggleTheme: vi.fn(),
+  getCurrentTheme: vi.fn(() => "light"),
+};
+
+const updateServiceMock = {
+  forceCheckUpdate: undefined,
+  updateAvailable$: of(false),
+  activateUpdate: vi.fn(),
+};
+
+const featureAnnouncementServiceMock = {
+  showDialog: { set: vi.fn(), update: vi.fn() },
+};
+
+const activatedRouteMock = {
+  root: {
+    firstChild: {
+      snapshot: { url: [], data: { breadcrumb: "Test" } },
+      firstChild: null,
+    },
+  },
+  data: of({}),
+  snapshot: { data: {} },
+  firstChild: null,
+  outlet: "primary",
+  parent: { snapshot: { data: {} } },
+};
+
+describe("HeaderEmployeedesktop", () => {
+  let component: HeaderEmployeedesktop;
+  let fixture: ComponentFixture<HeaderEmployeedesktop>;
+
+  beforeEach(() => {
+    TestBed.overrideComponent(HeaderEmployeedesktop, {
+      set: {
+        template: "<div>Mock</div>",
+        imports: [],
+      },
+    });
+
+    TestBed.configureTestingModule({
+      imports: [HeaderEmployeedesktop],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: AspRoleService, useValue: aspRoleServiceMock },
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: CustomerIdService, useValue: customerIdServiceMock },
+        { provide: HidescrollnavService, useValue: hideScroolNavServiceMock },
+        { provide: Location, useValue: locationMock },
+        { provide: MenuService, useValue: menuServiceMock },
+        { provide: Router, useValue: routerMock },
+        { provide: SearchService, useValue: searchServiceMock },
+        { provide: ThemeService, useValue: themeServiceMock },
+        { provide: UpdateService, useValue: updateServiceMock },
+        {
+          provide: FeatureAnnouncementService,
+          useValue: featureAnnouncementServiceMock,
+        },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+        { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
+      ],
+    });
+
+    fixture = TestBed.createComponent(HeaderEmployeedesktop);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
+
+  it("should initialize display nav icons on init", () => {
+    expect(component.displayNavIcons.length).toBeGreaterThan(0);
+  });
+
+  it("should navigate to home", () => {
+    component.onHome();
+    expect(routerMock.navigateByUrl).toHaveBeenCalledWith("/dashboard");
+  });
+
+  it("should navigate back", () => {
+    component.onBack();
+    expect(locationMock.back).toHaveBeenCalled();
+  });
+
+  it("should navigate forward", () => {
+    component.onNext();
+    expect(locationMock.forward).toHaveBeenCalled();
+  });
+
+  it("should refresh current route", () => {
+    component.onRefresh();
+    expect(routerMock.navigateByUrl).toHaveBeenCalled();
+  });
+});
 

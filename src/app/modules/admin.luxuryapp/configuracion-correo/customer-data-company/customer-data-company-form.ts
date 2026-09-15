@@ -1,192 +1,192 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { InputPhonePrefix } from "@ui/inputs/adaptive/input-phone-prefix/input-phone-prefix";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-
-@Component({
-  selector: "app-customer-data-company-form",
-  templateUrl: "./customer-data-company-form.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    LxCard,
-    CustomInputTextSignal,
-    InputMask,
-    InputPhonePrefix,
-    InputAutocomplete,
-    WebButtonLabelSave,
-  ],
-})
-export class CustomerDataCompanyForm implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  config = inject(DynamicDialogConfig);
-  ref = inject(DynamicDialogRef);
-
-  id: string = "";
-  submitting = signal(false);
-
-  // Signals para ComboBoxes
-  cb_applicationUser = signal<SelectItemDto[]>([]);
-  cb_customer = signal<SelectItemDto[]>([]);
-  cb_applicationRole = signal<SelectItemDto[]>([]);
-
-  // Definición estricta del formulario
-  form = new FormGroup({
-    id: new FormControl<string>({ value: "", disabled: true }),
-    customerId: new FormControl<string | null>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    customer: new FormControl<any>(null),
-    applicationRoleId: new FormControl<string | null>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    applicationRole: new FormControl<any>(null),
-    phoneNumberPrefix: new FormControl<string>("+52"),
-    applicationUserId: new FormControl<string | null>("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    applicationUser: new FormControl<any>(null),
-    email: new FormControl<string>("", {
-      validators: [Validators.email],
-    }),
-    phoneNumber: new FormControl<string>(""),
-  });
-
-  async ngOnInit(): Promise<void> {
-    this.id = this.config.data.id || "";
-
-    await this.onLoadSelectItem();
-
-    if (this.id !== "") {
-      await this.onLoadData();
-    }
-  }
-
-  async onLoadData(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(
-      Endpoints.CustomerDataCompany.getById(this.id),
-    );
-
-    if (result) {
-      // Extraer IDs de forma segura
-      const customerId =
-        result.customerId && typeof result.customerId === "object"
-          ? result.customerId.value
-          : result.customerId;
-      const applicationUserId =
-        result.applicationUserId && typeof result.applicationUserId === "object"
-          ? result.applicationUserId.value
-          : result.applicationUserId;
-      const applicationRoleId =
-        result.applicationRoleId && typeof result.applicationRoleId === "object"
-          ? result.applicationRoleId.value
-          : result.applicationRoleId;
-
-      // Buscar objetos completos para la UI de autocomplete
-      const selectedCustomer = this.cb_customer().find(
-        (item) => item.value === customerId,
-      );
-      const selectedUser = this.cb_applicationUser().find(
-        (item) => item.value === applicationUserId,
-      );
-      const selectedRole = this.cb_applicationRole().find(
-        (item) => item.value === applicationRoleId,
-      );
-
-      this.form.patchValue({
-        ...result,
-        customerId,
-        customer: selectedCustomer || null,
-        applicationUserId,
-        applicationUser: selectedUser || null,
-        applicationRoleId,
-        applicationRole: selectedRole || null,
-      });
-    }
-  }
-
-  async onLoadSelectItem(): Promise<void> {
-    const [customers, users, applicationRoles] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.customersActive,
-      ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.applicationUser,
-      ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.applicationRolesToAdministrator,
-      ),
-    ]);
-
-    this.cb_customer.set((customers as SelectItemDto[]) ?? []);
-    this.cb_applicationUser.set((users as SelectItemDto[]) ?? []);
-    this.cb_applicationRole.set((applicationRoles as SelectItemDto[]) ?? []);
-  }
-
-  saveCustomer = (item: SelectItemDto) => {
-    this.form.patchValue({
-      customerId: item?.value,
-      customer: item?.label,
-    });
-  };
-
-  saveApplicationUser = (item: SelectItemDto) => {
-    this.form.patchValue({
-      applicationUserId: item?.value,
-      applicationUser: item?.label,
-    });
-  };
-
-  savAppRoles = (item: SelectItemDto) => {
-    this.form.patchValue({
-      applicationRoleId: item?.value,
-      applicationRole: item?.label,
-    });
-  };
-
-  onSubmit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: Endpoints.CustomerDataCompany.base,
-      id: this.id,
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: () => {
-        const v = this.form.getRawValue();
-        return {
-          customerId: v.customerId,
-          applicationRoleId: v.applicationRoleId,
-          phoneNumberPrefix: v.phoneNumberPrefix,
-          applicationUserId: v.applicationUserId,
-          email: v.email,
-          phoneNumber: v.phoneNumber,
-        };
-      },
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { InputPhonePrefix } from "@ui/inputs/adaptive/input-phone-prefix/input-phone-prefix";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+
+@Component({
+  selector: "app-customer-data-company-form",
+  templateUrl: "./customer-data-company-form.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ReactiveFormsModule,
+    LxCard,
+    CustomInputTextSignal,
+    InputMask,
+    InputPhonePrefix,
+    InputAutocomplete,
+    WebButtonLabelSave,
+  ],
+})
+export class CustomerDataCompanyForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+
+  id: string = "";
+  submitting = signal(false);
+
+  // Signals para ComboBoxes
+  cb_applicationUser = signal<SelectItemDto[]>([]);
+  cb_customer = signal<SelectItemDto[]>([]);
+  cb_applicationRole = signal<SelectItemDto[]>([]);
+
+  // Definición estricta del formulario
+  form = new FormGroup({
+    id: new FormControl<string>({ value: "", disabled: true }),
+    customerId: new FormControl<string | null>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    customer: new FormControl<any>(null),
+    applicationRoleId: new FormControl<string | null>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    applicationRole: new FormControl<any>(null),
+    phoneNumberPrefix: new FormControl<string>("+52"),
+    applicationUserId: new FormControl<string | null>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    applicationUser: new FormControl<any>(null),
+    email: new FormControl<string>("", {
+      validators: [Validators.email],
+    }),
+    phoneNumber: new FormControl<string>(""),
+  });
+
+  async ngOnInit(): Promise<void> {
+    this.id = this.config.data.id || "";
+
+    await this.onLoadSelectItem();
+
+    if (this.id !== "") {
+      await this.onLoadData();
+    }
+  }
+
+  async onLoadData(): Promise<void> {
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.CustomerDataCompany.getById(this.id),
+    );
+
+    if (result) {
+      // Extraer IDs de forma segura
+      const customerId =
+        result.customerId && typeof result.customerId === "object"
+          ? result.customerId.value
+          : result.customerId;
+      const applicationUserId =
+        result.applicationUserId && typeof result.applicationUserId === "object"
+          ? result.applicationUserId.value
+          : result.applicationUserId;
+      const applicationRoleId =
+        result.applicationRoleId && typeof result.applicationRoleId === "object"
+          ? result.applicationRoleId.value
+          : result.applicationRoleId;
+
+      // Buscar objetos completos para la UI de autocomplete
+      const selectedCustomer = this.cb_customer().find(
+        (item) => item.value === customerId,
+      );
+      const selectedUser = this.cb_applicationUser().find(
+        (item) => item.value === applicationUserId,
+      );
+      const selectedRole = this.cb_applicationRole().find(
+        (item) => item.value === applicationRoleId,
+      );
+
+      this.form.patchValue({
+        ...result,
+        customerId,
+        customer: selectedCustomer || null,
+        applicationUserId,
+        applicationUser: selectedUser || null,
+        applicationRoleId,
+        applicationRole: selectedRole || null,
+      });
+    }
+  }
+
+  async onLoadSelectItem(): Promise<void> {
+    const [customers, users, applicationRoles] = await Promise.all([
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActive,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationUser,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationRolesToAdministrator,
+      ),
+    ]);
+
+    this.cb_customer.set((customers as SelectItemDto[]) ?? []);
+    this.cb_applicationUser.set((users as SelectItemDto[]) ?? []);
+    this.cb_applicationRole.set((applicationRoles as SelectItemDto[]) ?? []);
+  }
+
+  saveCustomer = (item: SelectItemDto) => {
+    this.form.patchValue({
+      customerId: item?.value,
+      customer: item?.label,
+    });
+  };
+
+  saveApplicationUser = (item: SelectItemDto) => {
+    this.form.patchValue({
+      applicationUserId: item?.value,
+      applicationUser: item?.label,
+    });
+  };
+
+  savAppRoles = (item: SelectItemDto) => {
+    this.form.patchValue({
+      applicationRoleId: item?.value,
+      applicationRole: item?.label,
+    });
+  };
+
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.CustomerDataCompany.base,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const v = this.form.getRawValue();
+        return {
+          customerId: v.customerId,
+          applicationRoleId: v.applicationRoleId,
+          phoneNumberPrefix: v.phoneNumberPrefix,
+          applicationUserId: v.applicationUserId,
+          email: v.email,
+          phoneNumber: v.phoneNumber,
+        };
+      },
+    });
+  }
+}
 

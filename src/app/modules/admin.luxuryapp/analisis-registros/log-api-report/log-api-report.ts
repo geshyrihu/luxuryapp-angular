@@ -1,213 +1,213 @@
-import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DateService } from "@core/services/date.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { LogEntry } from "./interfaces/log-entry.interface";
-
-@Component({
-  selector: "app-log-api-report",
-  imports: [
-    PrimeNgCustomTableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    ReactiveFormsModule,
-    TableModule,
-    LxCard,
-    LxTag,
-    WebButtonLabel,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    WebButtonIcon,
-    DataViewMobile,
-    MobileListItem,
-    PrimeNgCustomCaption,
-    AppIcon,
-  ],
-  templateUrl: "./log-api-report.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ["./log-api-report.scss"],
-})
-export class LogApiReport implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  dateS = inject(DateService);
-
-  data = signal<LogEntry[]>([]);
-  loading = signal(true);
-
-  totalRecords = signal(0);
-  rows = signal(tablePrimeNgRows());
-  searchTerm = signal<string>("");
-  currentPage = signal(1);
-
-  filterLevelControl = new FormControl<string | null>(null);
-  filterDateRangeControl = new FormControl<Date[] | null>(null);
-
-  levelOptions: SelectItemDto[] = [
-    { label: "Information", value: "Information" },
-    { label: "Warning", value: "Warning" },
-    { label: "Error", value: "Error" },
-    { label: "Critical", value: "Critical" },
-    { label: "debug", value: "debug" },
-    { label: "Trace", value: "Trace" },
-  ];
-
-  readonly globalFilterFields = computed(() => {
-    const data = this.data();
-    if (!data || data.length === 0) return [];
-    return globalFilterFields(data);
-  });
-
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  /**
-   * Valida si el botón de búsqueda debe estar deshabilitado
-   */
-  get isSearchDisabled(): boolean {
-    const dates = this.filterDateRangeControl.value;
-    const isDateRangeMissing = !dates || dates.length < 2;
-    return isDateRangeMissing;
-  }
-
-  ngOnInit(): void {
-    this.onLoadData(true);
-  }
-
-  /**
-   * Carga el listado de logs con filtros y paginación
-   * @param isNewSearch - Si es una nueva búsqueda, reinicia a la página 1
-   */
-  onLoadData(isNewSearch: boolean = false): void {
-    if (isNewSearch) {
-      this.currentPage.set(1);
-    }
-
-    this.loading.set(true);
-    const urlApi = Endpoints.Logs.getAll;
-
-    const params: any = {
-      Page: this.currentPage(),
-      RecordsNumber: this.rows(),
-      Filter: this.searchTerm(),
-    };
-
-    if (this.filterLevelControl.value) {
-      params.level = this.filterLevelControl.value;
-    }
-
-    const dates = this.filterDateRangeControl.value;
-    if (dates && dates.length === 2) {
-      if (dates[0]) {
-        params.startDate = this.dateS.getDateFormat(dates[0]);
-      }
-      if (dates[1]) {
-        params.endDate = this.dateS.getDateFormat(dates[1]);
-      }
-    }
-
-    this.apiResponseS.onGetList(urlApi, params).then((result: any) => {
-      if (result) {
-        if (isNewSearch) {
-          this.data.set(result.items || []);
-          this.totalRecords.set(result.totalRecords ?? 0);
-        } else {
-          const newItems = result.items || [];
-          this.data.update((current) => [...current, ...newItems]);
-          this.totalRecords.set(result.totalRecords ?? this.data().length);
-        }
-      } else {
-        this.data.set([]);
-        this.totalRecords.set(0);
-      }
-      this.loading.set(false);
-    });
-  }
-
-  /**
-   * Maneja el cambio de página en la tabla de escritorio
-   */
-  onPageChange(event: any): void {
-    this.rows.set(event.rows);
-    this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true);
-  }
-
-  /**
-   * Alterna el estado de expansión de un registro
-   */
-  toggleExpand(item: LogEntry): void {
-    item.expanded = !item.expanded;
-  }
-
-  /**
-   * Búsqueda por término libre en el mensaje
-   */
-  onSearch(term: string): void {
-    this.searchTerm.set(term);
-    this.onLoadData(true);
-  }
-
-  /**
-   * Carga más registros en la vista móvil
-   */
-  loadMore(): void {
-    this.currentPage.update((p) => p + 1);
-    this.onLoadData();
-  }
-
-  /**
-   * Elimina todos los registros de logs de la base de datos
-   */
-  async onDeleteAll(): Promise<void> {
-    const result = await this.apiResponseS.onDelete(Endpoints.Logs.deleteAll);
-    if (result) {
-      this.data.set([]);
-      this.totalRecords.set(0);
-    }
-  }
-
-  /**
-   * Obtiene la severidad del tag según el nivel del log
-   */
-  getLevelSeverity(level: string): "success" | "info" | "warn" | "danger" {
-    switch (level?.toLowerCase()) {
-      case "information":
-        return "info";
-      case "warning":
-        return "warn";
-      case "error":
-      case "critical":
-        return "danger";
-      default:
-        return "info";
-    }
-  }
-}
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DateService } from "@core/services/date.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { LogEntry } from "./interfaces/log-entry.interface";
+
+@Component({
+  selector: "app-log-api-report",
+  imports: [
+    PrimeNgCustomTableEmptyMessage,
+    CommonModule,
+    ApiDatePipe,
+    ReactiveFormsModule,
+    TableModule,
+    LxCard,
+    LxTag,
+    WebButtonLabel,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    WebButtonIcon,
+    DataViewMobile,
+    MobileListItem,
+    PrimeNgCustomCaption,
+    AppIcon,
+  ],
+  templateUrl: "./log-api-report.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ["./log-api-report.scss"],
+})
+export class LogApiReport implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
+
+  data = signal<LogEntry[]>([]);
+  loading = signal(true);
+
+  totalRecords = signal(0);
+  rows = signal(tablePrimeNgRows());
+  searchTerm = signal<string>("");
+  currentPage = signal(1);
+
+  filterLevelControl = new FormControl<string | null>(null);
+  filterDateRangeControl = new FormControl<Date[] | null>(null);
+
+  levelOptions: SelectItemDto[] = [
+    { label: "Information", value: "Information" },
+    { label: "Warning", value: "Warning" },
+    { label: "Error", value: "Error" },
+    { label: "Critical", value: "Critical" },
+    { label: "debug", value: "debug" },
+    { label: "Trace", value: "Trace" },
+  ];
+
+  readonly globalFilterFields = computed(() => {
+    const data = this.data();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  /**
+   * Valida si el botón de búsqueda debe estar deshabilitado
+   */
+  get isSearchDisabled(): boolean {
+    const dates = this.filterDateRangeControl.value;
+    const isDateRangeMissing = !dates || dates.length < 2;
+    return isDateRangeMissing;
+  }
+
+  ngOnInit(): void {
+    this.onLoadData(true);
+  }
+
+  /**
+   * Carga el listado de logs con filtros y paginación
+   * @param isNewSearch - Si es una nueva búsqueda, reinicia a la página 1
+   */
+  onLoadData(isNewSearch: boolean = false): void {
+    if (isNewSearch) {
+      this.currentPage.set(1);
+    }
+
+    this.loading.set(true);
+    const urlApi = Endpoints.Logs.getAll;
+
+    const params: any = {
+      Page: this.currentPage(),
+      RecordsNumber: this.rows(),
+      Filter: this.searchTerm(),
+    };
+
+    if (this.filterLevelControl.value) {
+      params.level = this.filterLevelControl.value;
+    }
+
+    const dates = this.filterDateRangeControl.value;
+    if (dates && dates.length === 2) {
+      if (dates[0]) {
+        params.startDate = this.dateS.getDateFormat(dates[0]);
+      }
+      if (dates[1]) {
+        params.endDate = this.dateS.getDateFormat(dates[1]);
+      }
+    }
+
+    this.apiResponseS.onGetList(urlApi, params).then((result: any) => {
+      if (result) {
+        if (isNewSearch) {
+          this.data.set(result.items || []);
+          this.totalRecords.set(result.totalRecords ?? 0);
+        } else {
+          const newItems = result.items || [];
+          this.data.update((current) => [...current, ...newItems]);
+          this.totalRecords.set(result.totalRecords ?? this.data().length);
+        }
+      } else {
+        this.data.set([]);
+        this.totalRecords.set(0);
+      }
+      this.loading.set(false);
+    });
+  }
+
+  /**
+   * Maneja el cambio de página en la tabla de escritorio
+   */
+  onPageChange(event: any): void {
+    this.rows.set(event.rows);
+    this.currentPage.set(event.first / event.rows + 1);
+    this.onLoadData(true);
+  }
+
+  /**
+   * Alterna el estado de expansión de un registro
+   */
+  toggleExpand(item: LogEntry): void {
+    item.expanded = !item.expanded;
+  }
+
+  /**
+   * Búsqueda por término libre en el mensaje
+   */
+  onSearch(term: string): void {
+    this.searchTerm.set(term);
+    this.onLoadData(true);
+  }
+
+  /**
+   * Carga más registros en la vista móvil
+   */
+  loadMore(): void {
+    this.currentPage.update((p) => p + 1);
+    this.onLoadData();
+  }
+
+  /**
+   * Elimina todos los registros de logs de la base de datos
+   */
+  async onDeleteAll(): Promise<void> {
+    const result = await this.apiResponseS.onDelete(Endpoints.Logs.deleteAll);
+    if (result) {
+      this.data.set([]);
+      this.totalRecords.set(0);
+    }
+  }
+
+  /**
+   * Obtiene la severidad del tag según el nivel del log
+   */
+  getLevelSeverity(level: string): "success" | "info" | "warn" | "danger" {
+    switch (level?.toLowerCase()) {
+      case "information":
+        return "info";
+      case "warning":
+        return "warn";
+      case "error":
+      case "critical":
+        return "danger";
+      default:
+        return "info";
+    }
+  }
+}
 

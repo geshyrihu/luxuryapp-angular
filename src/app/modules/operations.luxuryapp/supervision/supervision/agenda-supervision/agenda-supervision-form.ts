@@ -1,135 +1,135 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DateService } from "@core/services/date.service";
-
-interface IAgendaSupervisionForm {
-  id: FormControl<string | null>;
-  fechaSolicitud: FormControl<Date | string | null>;
-  customerId: FormControl<string | null>;
-  problema: FormControl<string>;
-  solucion: FormControl<string>;
-  fechaConclusion: FormControl<Date | string | null>;
-  applicationUserId: FormControl<string | null>;
-}
-
-@Component({
-  selector: "app-agenda-supervision-form",
-  templateUrl: "./agenda-supervision-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    WebButtonLabelSave,
-  ],
-})
-export class AgendaSupervisionForm implements OnInit {
-  private authS = inject(AuthService);
-  private apiResponseS = inject(ApiResponseService);
-  private formB = inject(FormBuilder);
-  private config = inject(DynamicDialogConfig);
-  private ref = inject(DynamicDialogRef);
-  private dateS = inject(DateService);
-  submitting = signal(false);
-
-  id: string = "";
-
-  cb_customer = signal<SelectItemDto[]>([]);
-  rangeDates: Date[];
-
-  form: FormGroup<IAgendaSupervisionForm> = this.formB.group({
-    id: [""],
-    fechaSolicitud: [
-      this.dateS.getDateNow() as Date | string | null,
-      Validators.required,
-    ],
-    customerId: [
-      this.authS.userToken.infoUserAuthDTO.customerId,
-      Validators.required,
-    ],
-    problema: ["", Validators.required],
-    solucion: [""],
-    fechaConclusion: [null],
-    applicationUserId: [this.authS.applicationUserId],
-  });
-
-  onLoadSelectItem() {
-    this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
-      .then((response: any) => {
-        this.cb_customer.set(response);
-      });
-  }
-
-  ngOnInit(): void {
-    this.id = this.config.data.id;
-    this.onLoadSelectItem();
-    if (this.id) this.onLoadData();
-
-    this.form.controls.id.setValue(this.id);
-  }
-
-  onLoadData() {
-    const urlApi = Endpoints.AgendaSupervision.getById(this.id);
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      // Date handling might need adjustment if getDateFormat returns string
-      // But CustomInputDateSignal expects Date object or compatible string.
-      // DateService.getDateFormat likely returns string "yyyy-MM-dd".
-      // Typed form expects Date|null if defined as such, or string if defined as string.
-      // Initial value for fechaSolicitud is Date.
-
-      const data = {
-        ...result,
-        fechaConclusion: this.dateS.getDateFormat(result.fechaConclusion),
-        fechaSolicitud: this.dateS.getDateFormat(result.fechaSolicitud),
-      };
-      this.form.patchValue(data);
-    });
-  }
-
-  submit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: Endpoints.AgendaSupervision.create,
-      id: this.id,
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: () => ({
-        ...this.form.getRawValue(),
-        fechaSolicitud: this.dateS.getDateFormat(
-          this.form.controls.fechaSolicitud.value,
-        ),
-        fechaConclusion: this.dateS.getDateFormat(
-          this.form.controls.fechaConclusion.value,
-        ),
-      }),
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DateService } from "@core/services/date.service";
+
+interface IAgendaSupervisionForm {
+  id: FormControl<string | null>;
+  fechaSolicitud: FormControl<Date | string | null>;
+  customerId: FormControl<string | null>;
+  problema: FormControl<string>;
+  solucion: FormControl<string>;
+  fechaConclusion: FormControl<Date | string | null>;
+  applicationUserId: FormControl<string | null>;
+}
+
+@Component({
+  selector: "app-agenda-supervision-form",
+  templateUrl: "./agenda-supervision-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomInputTextAreaSignal,
+    WebButtonLabelSave,
+  ],
+})
+export class AgendaSupervisionForm implements OnInit {
+  private authS = inject(AuthService);
+  private apiResponseS = inject(ApiResponseService);
+  private formB = inject(FormBuilder);
+  private config = inject(DynamicDialogConfig);
+  private ref = inject(DynamicDialogRef);
+  private dateS = inject(DateService);
+  submitting = signal(false);
+
+  id: string = "";
+
+  cb_customer = signal<SelectItemDto[]>([]);
+  rangeDates: Date[];
+
+  form: FormGroup<IAgendaSupervisionForm> = this.formB.group({
+    id: [""],
+    fechaSolicitud: [
+      this.dateS.getDateNow() as Date | string | null,
+      Validators.required,
+    ],
+    customerId: [
+      this.authS.userToken.infoUserAuthDTO.customerId,
+      Validators.required,
+    ],
+    problema: ["", Validators.required],
+    solucion: [""],
+    fechaConclusion: [null],
+    applicationUserId: [this.authS.applicationUserId],
+  });
+
+  onLoadSelectItem() {
+    this.apiResponseS
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
+      .then((response: any) => {
+        this.cb_customer.set(response);
+      });
+  }
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    this.onLoadSelectItem();
+    if (this.id) this.onLoadData();
+
+    this.form.controls.id.setValue(this.id);
+  }
+
+  onLoadData() {
+    const urlApi = Endpoints.AgendaSupervision.getById(this.id);
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      // Date handling might need adjustment if getDateFormat returns string
+      // But CustomInputDateSignal expects Date object or compatible string.
+      // DateService.getDateFormat likely returns string "yyyy-MM-dd".
+      // Typed form expects Date|null if defined as such, or string if defined as string.
+      // Initial value for fechaSolicitud is Date.
+
+      const data = {
+        ...result,
+        fechaConclusion: this.dateS.getDateFormat(result.fechaConclusion),
+        fechaSolicitud: this.dateS.getDateFormat(result.fechaSolicitud),
+      };
+      this.form.patchValue(data);
+    });
+  }
+
+  submit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AgendaSupervision.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        fechaSolicitud: this.dateS.getDateFormat(
+          this.form.controls.fechaSolicitud.value,
+        ),
+        fechaConclusion: this.dateS.getDateFormat(
+          this.form.controls.fechaConclusion.value,
+        ),
+      }),
+    });
+  }
+}
 

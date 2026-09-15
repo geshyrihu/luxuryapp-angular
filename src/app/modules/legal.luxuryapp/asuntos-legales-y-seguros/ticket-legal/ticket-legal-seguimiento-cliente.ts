@@ -1,41 +1,41 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-
-@Component({
-  selector: "app-ticket-legal-seguimiento-cliente",
-  templateUrl: "./ticket-legal-seguimiento-cliente.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon],
-})
-export class TicketLegalSeguimientoCliente implements OnInit {
-  config = inject(DynamicDialogConfig);
-  apiResponseS = inject(ApiResponseService);
-  seguimientos = signal<any[]>([]);
-  loading = signal(true);
-
-  private taskId: string = this.config.data.ticketId ?? this.config.data.id;
-
-  ngOnInit() {
-    this.onCargaListaseguimientos();
-  }
-
-  onCargaListaseguimientos() {
-    this.loading.set(true);
-    this.apiResponseS
-      .onGetList(Endpoints.TaskFollowUps.listByTicketMessage(this.taskId))
-      .then((result: any) => {
-        this.seguimientos.set(result || []);
-        this.loading.set(false);
-      });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+
+@Component({
+  selector: "app-ticket-legal-seguimiento-cliente",
+  templateUrl: "./ticket-legal-seguimiento-cliente.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [AppIcon],
+})
+export class TicketLegalSeguimientoCliente implements OnInit {
+  config = inject(DynamicDialogConfig);
+  apiResponseS = inject(ApiResponseService);
+  seguimientos = signal<any[]>([]);
+  loading = signal(true);
+
+  private taskId: string = this.config.data.ticketId ?? this.config.data.id;
+
+  ngOnInit() {
+    this.onCargaListaseguimientos();
+  }
+
+  onCargaListaseguimientos() {
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList(Endpoints.TaskFollowUps.listByTicketMessage(this.taskId))
+      .then((result: any) => {
+        this.seguimientos.set(result || []);
+        this.loading.set(false);
+      });
+  }
+}
 

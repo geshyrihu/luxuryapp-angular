@@ -1,82 +1,82 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  signal,
-} from "@angular/core";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-// DETALLE IMPORTANTE: Una interfaz para la estructura de los datos.
-// Esto es opcional pero hace el código mucho mós robusto y fócil de leer.
-interface ActivoItem {
-  photoPath: string;
-  ubication: string;
-  nameMachinery: string;
-  brand: string;
-  model: string;
-  technicalSpecifications: string;
-  Observaciones: string;
-}
-
-interface ActivoGroup {
-  ubication: string;
-  items: ActivoItem[];
-}
-
-@Component({
-  selector: "app-reporte-completo-activos",
-  templateUrl: "./reporte-completo-activos.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [SanitizeHtmlPipe, AppSpinner],
-})
-// óCAMBIO! Ya no implementamos OnInit.
-export class ReporteCompletoActivos {
-  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
-  private customerIdS = inject(CustomerIdService);
-  apiResponseS = inject(ApiResponseService);
-  // --- ESTADO DEL COMPONENTE CON SIGNALS ---
-
-  // óCAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
-  data = signal<ActivoGroup[]>([]);
-  loading = signal(true);
-
-  // --- PROPIEDADES DE CONFIGURACIóN (sin cambios) ---
-  globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  titulo: string = ""; // Esta propiedad no se usa en el template, pero la mantenemos.
-
-  constructor() {
-    effect(() => {
-      const customerId: string = this.customerIdS.customerId();
-      if (customerId) {
-        this.onLoadData(customerId);
-      }
-    });
-  }
-
-  // --- CARGA DE DATOS (Refactorizado) ---
-  async onLoadData(customerId: string) {
-    const urlApi = `machineries/InventarioCompleto/${customerId}`;
-
-    try {
-      const result = await this.apiResponseS.onGetList<ActivoGroup[]>(urlApi);
-      // Actualizamos el signal `data` con los datos recibidos.
-      this.data.set(result);
-    } catch (error) {
-      console.error("Error al cargar el inventario completo:", error);
-      this.data.set([]); // En caso de error, aseguramos que `data` sea un array vacío.
-    } finally {
-    }
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+// DETALLE IMPORTANTE: Una interfaz para la estructura de los datos.
+// Esto es opcional pero hace el código mucho mós robusto y fócil de leer.
+interface ActivoItem {
+  photoPath: string;
+  ubication: string;
+  nameMachinery: string;
+  brand: string;
+  model: string;
+  technicalSpecifications: string;
+  Observaciones: string;
+}
+
+interface ActivoGroup {
+  ubication: string;
+  items: ActivoItem[];
+}
+
+@Component({
+  selector: "app-reporte-completo-activos",
+  templateUrl: "./reporte-completo-activos.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [SanitizeHtmlPipe, AppSpinner],
+})
+// óCAMBIO! Ya no implementamos OnInit.
+export class ReporteCompletoActivos {
+  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
+  private customerIdS = inject(CustomerIdService);
+  apiResponseS = inject(ApiResponseService);
+  // --- ESTADO DEL COMPONENTE CON SIGNALS ---
+
+  // óCAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
+  data = signal<ActivoGroup[]>([]);
+  loading = signal(true);
+
+  // --- PROPIEDADES DE CONFIGURACIóN (sin cambios) ---
+  globalFilterFields = computed(() => globalFilterFields(this.data()));
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  titulo: string = ""; // Esta propiedad no se usa en el template, pero la mantenemos.
+
+  constructor() {
+    effect(() => {
+      const customerId: string = this.customerIdS.customerId();
+      if (customerId) {
+        this.onLoadData(customerId);
+      }
+    });
+  }
+
+  // --- CARGA DE DATOS (Refactorizado) ---
+  async onLoadData(customerId: string) {
+    const urlApi = `machineries/InventarioCompleto/${customerId}`;
+
+    try {
+      const result = await this.apiResponseS.onGetList<ActivoGroup[]>(urlApi);
+      // Actualizamos el signal `data` con los datos recibidos.
+      this.data.set(result);
+    } catch (error) {
+      console.error("Error al cargar el inventario completo:", error);
+      this.data.set([]); // En caso de error, aseguramos que `data` sea un array vacío.
+    } finally {
+    }
+  }
+}
 

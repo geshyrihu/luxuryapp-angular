@@ -1,75 +1,75 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  signal,
-} from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-@Component({
-  selector: "app-general-anual-mantenimiento",
-  templateUrl: "./general-anual-mantenimiento.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputSelectSignal,
-    LxTooltipDirective,
-    AppIcon,
-    SanitizeHtmlPipe,
-  ],
-})
-export class GeneralAnualMantenimiento {
-  apiResponseS = inject(ApiResponseService);
-  customerIdS = inject(CustomerIdService);
-  dataSignal = signal<any[]>([]);
-  cb_providers = signal<SelectItemDto[]>([]);
-  providerIdControl = new FormControl<string>("");
-
-  constructor() {
-    effect(() => {
-      const customerId: string = this.customerIdS.customerId();
-      if (customerId) {
-        this.onLoadProveedores();
-        this.onLoadData();
-      }
-    });
-  }
-
-  onLoadProveedores() {
-    const url = Endpoints.MaintenanceCalendars.listProvidersCalendarByCustomer(
-      this.customerIdS.customerId(),
-    );
-    this.apiResponseS.onGetList(url).then((result: any) => {
-      this.cb_providers.set([
-        { label: "Todos", value: "" } as any,
-        ...(result || []),
-      ]);
-    });
-  }
-
-  onLoadData() {
-    this.dataSignal.set([]);
-    const providerId = this.providerIdControl.value || "";
-    if (!providerId) {
-      this.dataSignal.set([]);
-      return;
-    }
-    const url =
-      Endpoints.MaintenanceCalendars.generalMaintenanceByCustomerAndProvider(
-        this.customerIdS.customerId(),
-        providerId,
-      );
-    this.apiResponseS.onGetList(url).then((result: any) => {
-      this.dataSignal.set(result || []);
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+@Component({
+  selector: "app-general-anual-mantenimiento",
+  templateUrl: "./general-anual-mantenimiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    ReactiveFormsModule,
+    CustomInputSelectSignal,
+    LxTooltipDirective,
+    AppIcon,
+    SanitizeHtmlPipe,
+  ],
+})
+export class GeneralAnualMantenimiento {
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService);
+  dataSignal = signal<any[]>([]);
+  cb_providers = signal<SelectItemDto[]>([]);
+  providerIdControl = new FormControl<string>("");
+
+  constructor() {
+    effect(() => {
+      const customerId: string = this.customerIdS.customerId();
+      if (customerId) {
+        this.onLoadProveedores();
+        this.onLoadData();
+      }
+    });
+  }
+
+  onLoadProveedores() {
+    const url = Endpoints.MaintenanceCalendars.listProvidersCalendarByCustomer(
+      this.customerIdS.customerId(),
+    );
+    this.apiResponseS.onGetList(url).then((result: any) => {
+      this.cb_providers.set([
+        { label: "Todos", value: "" } as any,
+        ...(result || []),
+      ]);
+    });
+  }
+
+  onLoadData() {
+    this.dataSignal.set([]);
+    const providerId = this.providerIdControl.value || "";
+    if (!providerId) {
+      this.dataSignal.set([]);
+      return;
+    }
+    const url =
+      Endpoints.MaintenanceCalendars.generalMaintenanceByCustomerAndProvider(
+        this.customerIdS.customerId(),
+        providerId,
+      );
+    this.apiResponseS.onGetList(url).then((result: any) => {
+      this.dataSignal.set(result || []);
+    });
+  }
+}
 

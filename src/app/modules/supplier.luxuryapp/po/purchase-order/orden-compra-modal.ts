@@ -1,128 +1,128 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DateService } from "@core/services/date.service";
-
-interface IModalOrdenCompra {
-  id: FormControl<string | null>;
-  fechaSolicitud: FormControl<Date | null>;
-  equipoOInstalacion: FormControl<string>;
-  justificacionGasto: FormControl<string>;
-  notasEspeciales: FormControl<string>;
-  urlFile: FormControl<string | null>;
-  folio: FormControl<string | null>;
-  indice: FormControl<string | null>;
-  folioSolicitudCompra: FormControl<string | null>;
-  isDevolucion: FormControl<boolean>;
-  customerId: FormControl<string>;
-  applicationUserId: FormControl<string>;
-}
-
-@Component({
-  selector: "app-orden-compra-modal",
-  templateUrl: "./orden-compra-modal.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    WebButtonLabelSave,
-    CustomInputToggleSwitch,
-  ],
-})
-export class ModalOrdenCompra implements OnInit {
-  private apiResponseS = inject(ApiResponseService);
-  private formB = inject(FormBuilder);
-  private authS = inject(AuthService);
-  private config = inject(DynamicDialogConfig);
-  private dateS = inject(DateService);
-  private ref = inject(DynamicDialogRef);
-  submitting = signal(false);
-
-  ordenCompraId: string = "";
-
-  form: FormGroup<IModalOrdenCompra> = this.formB.group({
-    id: new FormControl({ value: null, disabled: true }),
-    fechaSolicitud: new FormControl<Date | null>(null, {
-      validators: [Validators.required],
-    }),
-    equipoOInstalacion: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    justificacionGasto: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    notasEspeciales: new FormControl("", {
-      nonNullable: true,
-    }),
-    urlFile: new FormControl(""),
-    folio: new FormControl(""),
-    indice: new FormControl("0"),
-    folioSolicitudCompra: new FormControl(""),
-    isDevolucion: new FormControl(false, { nonNullable: true }),
-    customerId: new FormControl("", { nonNullable: true }),
-    applicationUserId: new FormControl(this.authS.applicationUserId, {
-      nonNullable: true,
-    }),
-  });
-
-  ngOnInit(): void {
-    this.ordenCompraId = this.config.data.ordenCompra?.id || "";
-    if (this.ordenCompraId) {
-      this.onLoadData();
-    }
-  }
-
-  onLoadData() {
-    this.apiResponseS
-      .onGetItem(Endpoints.PurchaseOrders.getForEdit(this.ordenCompraId))
-      .then((result: any) => {
-        this.form.patchValue(result);
-        if (result.fechaSolicitud) {
-          this.form.controls.fechaSolicitud.setValue(
-            this.dateS.parseDate(result.fechaSolicitud),
-          );
-        }
-      });
-  }
-
-  onSubmit() {
-    if (this.form.invalid) return;
-    this.submitting.set(true);
-
-    this.apiResponseS
-      .onPut(Endpoints.PurchaseOrders.update(this.ordenCompraId), {
-        ...this.form.getRawValue(),
-        fechaSolicitud: this.dateS.getDateFormat(
-          this.form.controls.fechaSolicitud.value,
-        ),
-      })
-      .then((result: boolean) => {
-        result ? this.ref.close(true) : this.submitting.set(false);
-      });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+
+interface IModalOrdenCompra {
+  id: FormControl<string | null>;
+  fechaSolicitud: FormControl<Date | null>;
+  equipoOInstalacion: FormControl<string>;
+  justificacionGasto: FormControl<string>;
+  notasEspeciales: FormControl<string>;
+  urlFile: FormControl<string | null>;
+  folio: FormControl<string | null>;
+  indice: FormControl<string | null>;
+  folioSolicitudCompra: FormControl<string | null>;
+  isDevolucion: FormControl<boolean>;
+  customerId: FormControl<string>;
+  applicationUserId: FormControl<string>;
+}
+
+@Component({
+  selector: "app-orden-compra-modal",
+  templateUrl: "./orden-compra-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    ReactiveFormsModule,
+    CustomInputDateSignal,
+    CustomInputTextSignal,
+    CustomInputTextAreaSignal,
+    WebButtonLabelSave,
+    CustomInputToggleSwitch,
+  ],
+})
+export class ModalOrdenCompra implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  private formB = inject(FormBuilder);
+  private authS = inject(AuthService);
+  private config = inject(DynamicDialogConfig);
+  private dateS = inject(DateService);
+  private ref = inject(DynamicDialogRef);
+  submitting = signal(false);
+
+  ordenCompraId: string = "";
+
+  form: FormGroup<IModalOrdenCompra> = this.formB.group({
+    id: new FormControl({ value: null, disabled: true }),
+    fechaSolicitud: new FormControl<Date | null>(null, {
+      validators: [Validators.required],
+    }),
+    equipoOInstalacion: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    justificacionGasto: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    notasEspeciales: new FormControl("", {
+      nonNullable: true,
+    }),
+    urlFile: new FormControl(""),
+    folio: new FormControl(""),
+    indice: new FormControl("0"),
+    folioSolicitudCompra: new FormControl(""),
+    isDevolucion: new FormControl(false, { nonNullable: true }),
+    customerId: new FormControl("", { nonNullable: true }),
+    applicationUserId: new FormControl(this.authS.applicationUserId, {
+      nonNullable: true,
+    }),
+  });
+
+  ngOnInit(): void {
+    this.ordenCompraId = this.config.data.ordenCompra?.id || "";
+    if (this.ordenCompraId) {
+      this.onLoadData();
+    }
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(Endpoints.PurchaseOrders.getForEdit(this.ordenCompraId))
+      .then((result: any) => {
+        this.form.patchValue(result);
+        if (result.fechaSolicitud) {
+          this.form.controls.fechaSolicitud.setValue(
+            this.dateS.parseDate(result.fechaSolicitud),
+          );
+        }
+      });
+  }
+
+  onSubmit() {
+    if (this.form.invalid) return;
+    this.submitting.set(true);
+
+    this.apiResponseS
+      .onPut(Endpoints.PurchaseOrders.update(this.ordenCompraId), {
+        ...this.form.getRawValue(),
+        fechaSolicitud: this.dateS.getDateFormat(
+          this.form.controls.fechaSolicitud.value,
+        ),
+      })
+      .then((result: boolean) => {
+        result ? this.ref.close(true) : this.submitting.set(false);
+      });
+  }
+}
 

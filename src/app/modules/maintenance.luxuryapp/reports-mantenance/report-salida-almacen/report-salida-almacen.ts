@@ -1,71 +1,71 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  signal,
-} from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DateService } from "@core/services/date.service";
-import { PeriodMonthService } from "@core/services/periodo-month.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-@Component({
-  selector: "app-report-salida-almacen",
-  templateUrl: "./report-salida-almacen.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, PageTitleReportMaintenance, PrimeNgCustomCaption],
-})
-export class ReportSalidaAlmacen {
-  apiResponseS = inject(ApiResponseService);
-  customerIdS = inject(CustomerIdService);
-  dateS = inject(DateService);
-  PeriodMonthService = inject(PeriodMonthService);
-  tableScrollHeightS = inject(TableScrollHeightService);
-  dataSignal = signal<any[]>([]);
-
-  globalFilterFields = computed(() => {
-    const data = this.dataSignal();
-    if (!data || data.length === 0) return [];
-    return globalFilterFields(data);
-  });
-  loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
-
-  periodoInicial = toSignal(this.PeriodMonthService.getPeriodoInicial$());
-
-  constructor() {
-    effect(() => {
-      const customerId: string = this.customerIdS.customerId();
-      const pInicial = this.periodoInicial();
-
-      if (customerId) this.onLoadData();
-    });
-  }
-  onLoadData() {
-    const urlApi =
-      Endpoints.RefactorMantenimiento.maintenanceReportSalidaproductoByIdById(
-        this.customerIdS.customerId(),
-        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
-      );
-    this.apiResponseS
-      .onGetList(urlApi)
-      .then((result: any) => this.dataSignal.set(result));
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+import { PeriodMonthService } from "@core/services/periodo-month.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+@Component({
+  selector: "app-report-salida-almacen",
+  templateUrl: "./report-salida-almacen.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [TableModule, PageTitleReportMaintenance, PrimeNgCustomCaption],
+})
+export class ReportSalidaAlmacen {
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService);
+  dateS = inject(DateService);
+  PeriodMonthService = inject(PeriodMonthService);
+  tableScrollHeightS = inject(TableScrollHeightService);
+  dataSignal = signal<any[]>([]);
+
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+  loading = signal(true);
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  ref: DynamicDialogRef;
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  periodoInicial = toSignal(this.PeriodMonthService.getPeriodoInicial$());
+
+  constructor() {
+    effect(() => {
+      const customerId: string = this.customerIdS.customerId();
+      const pInicial = this.periodoInicial();
+
+      if (customerId) this.onLoadData();
+    });
+  }
+  onLoadData() {
+    const urlApi =
+      Endpoints.RefactorMantenimiento.maintenanceReportSalidaproductoByIdById(
+        this.customerIdS.customerId(),
+        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+      );
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => this.dataSignal.set(result));
+  }
+}
 

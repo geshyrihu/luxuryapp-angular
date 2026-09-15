@@ -1,34 +1,34 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
-import { PlatformService } from "@core/services/platform.service";
-import { LoginComponent } from "./login";
-import { LoginMobile } from "./login-mobile";
-
-@Component({
-  selector: "app-login-wrapper",
-  imports: [LoginComponent, LoginMobile],
-  template: `
-    <!-- Vista Web Premium -->
-    <div class="d-none d-md-block h-full w-full">
-      <app-login />
-    </div>
-
-    <!-- Vista Móvil Premium (Ionic) -->
-    <div class="d-flex d-md-none h-full w-full">
-      <app-login-mobile />
-    </div>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-      :host {
-        display: block;
-        height: 100vh;
-        width: 100vw;
-      }
-    `,
-  ],
-})
-export class LoginWrapper {
-  protected readonly platform = inject(PlatformService);
-}
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
+import { LoginComponent } from "./login";
+import { LoginMobile } from "./login-mobile";
+
+@Component({
+  selector: "app-login-wrapper",
+  imports: [LoginComponent, LoginMobile],
+  template: `
+    <!-- Vista Web Premium -->
+    <div class="d-none d-md-block h-full w-full">
+      <app-login />
+    </div>
+
+    <!-- Vista Móvil Premium (Ionic) -->
+    <div class="d-flex d-md-none h-full w-full">
+      <app-login-mobile />
+    </div>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    `
+      :host {
+        display: block;
+        height: 100vh;
+        width: 100vw;
+      }
+    `,
+  ],
+})
+export class LoginWrapper {
+  protected readonly platform = inject(PlatformService);
+}
 

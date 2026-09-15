@@ -1,39 +1,39 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-@Component({
-  selector: "app-ticket-legal-seguimiento-solicitud-detalle",
-  templateUrl: "./ticket-legal-seguimiento-solicitud-detalle.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon],
-})
-export class TicketLegalSeguimientoSolicitudDetalle implements OnInit {
-  apiResponseS = inject(ApiResponseService);
-  config = inject(DynamicDialogConfig);
-  data: string = "";
-  id = this.config.data.id;
-
-  loading = signal(true);
-
-  ngOnInit() {
-    this.onLoadData();
-  }
-
-  onLoadData() {
-    this.apiResponseS
-      .onGetItem(Endpoints.Tasks.getById(this.id))
-      .then((result: any) => {
-        this.data = result.description ?? "";
-        this.loading.set(false);
-      });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+@Component({
+  selector: "app-ticket-legal-seguimiento-solicitud-detalle",
+  templateUrl: "./ticket-legal-seguimiento-solicitud-detalle.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [AppIcon],
+})
+export class TicketLegalSeguimientoSolicitudDetalle implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  data: string = "";
+  id = this.config.data.id;
+
+  loading = signal(true);
+
+  ngOnInit() {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(Endpoints.Tasks.getById(this.id))
+      .then((result: any) => {
+        this.data = result.description ?? "";
+        this.loading.set(false);
+      });
+  }
+}
 

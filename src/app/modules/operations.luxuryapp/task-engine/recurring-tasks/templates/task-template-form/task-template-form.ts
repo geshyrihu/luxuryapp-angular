@@ -1,122 +1,122 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-
-interface ITaskTemplateForm {
-  name: FormControl<string>;
-  description: FormControl<string>;
-  roleId: FormControl<string>;
-  isActive: FormControl<boolean>;
-  customerIds: FormControl<string[]>;
-}
-
-@Component({
-  selector: "app-task-template-form",
-  templateUrl: "./task-template-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    WebButtonLabelSave,
-    CustomInputCheckSignal,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputMultiselectSignal,
-  ],
-})
-export class TaskTemplateForm implements OnInit {
-  private formBuilder = inject(FormBuilder);
-  public ref = inject(DynamicDialogRef);
-  public config = inject(DynamicDialogConfig);
-  private apiResponseS = inject(ApiResponseService);
-
-  submitting = signal(false);
-  roles = signal<SelectItemDto[]>([]);
-  availableCustomers = signal<SelectItemDto[]>([]);
-  templateId = signal<string | null>(null);
-
-  form: FormGroup<ITaskTemplateForm> = this.formBuilder.group({
-    name: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    description: new FormControl("", { nonNullable: true }),
-    roleId: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    isActive: new FormControl(true, { nonNullable: true }),
-    customerIds: new FormControl<string[]>([], { nonNullable: true }),
-  });
-
-  ngOnInit(): void {
-    const id = this.config.data?.template?.id;
-    this.templateId.set(id);
-
-    this.loadRoles();
-    this.loadAvailableCustomers();
-
-    if (this.templateId()) {
-      const template = this.config.data.template;
-      this.form.patchValue(template);
-      if (template.customerIds) {
-        this.form.controls.customerIds.setValue(template.customerIds);
-      }
-    }
-  }
-
-  loadRoles() {
-    this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.applicationRoles,
-      )
-      .then((response) => {
-        this.roles.set(response || []);
-      });
-  }
-
-  loadAvailableCustomers() {
-    this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.customersActive,
-      )
-      .then((response) => {
-        this.availableCustomers.set(response || []);
-      });
-  }
-
-  onSubmit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: "recurring-tasks/templates",
-      id: this.templateId(),
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: () => this.form.getRawValue(),
-    });
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+
+interface ITaskTemplateForm {
+  name: FormControl<string>;
+  description: FormControl<string>;
+  roleId: FormControl<string>;
+  isActive: FormControl<boolean>;
+  customerIds: FormControl<string[]>;
+}
+
+@Component({
+  selector: "app-task-template-form",
+  templateUrl: "./task-template-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    ReactiveFormsModule,
+    WebButtonLabelSave,
+    CustomInputCheckSignal,
+    CustomInputSelectSignal,
+    CustomInputTextSignal,
+    CustomInputTextAreaSignal,
+    CustomInputMultiselectSignal,
+  ],
+})
+export class TaskTemplateForm implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  public ref = inject(DynamicDialogRef);
+  public config = inject(DynamicDialogConfig);
+  private apiResponseS = inject(ApiResponseService);
+
+  submitting = signal(false);
+  roles = signal<SelectItemDto[]>([]);
+  availableCustomers = signal<SelectItemDto[]>([]);
+  templateId = signal<string | null>(null);
+
+  form: FormGroup<ITaskTemplateForm> = this.formBuilder.group({
+    name: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl("", { nonNullable: true }),
+    roleId: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    isActive: new FormControl(true, { nonNullable: true }),
+    customerIds: new FormControl<string[]>([], { nonNullable: true }),
+  });
+
+  ngOnInit(): void {
+    const id = this.config.data?.template?.id;
+    this.templateId.set(id);
+
+    this.loadRoles();
+    this.loadAvailableCustomers();
+
+    if (this.templateId()) {
+      const template = this.config.data.template;
+      this.form.patchValue(template);
+      if (template.customerIds) {
+        this.form.controls.customerIds.setValue(template.customerIds);
+      }
+    }
+  }
+
+  loadRoles() {
+    this.apiResponseS
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationRoles,
+      )
+      .then((response) => {
+        this.roles.set(response || []);
+      });
+  }
+
+  loadAvailableCustomers() {
+    this.apiResponseS
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActive,
+      )
+      .then((response) => {
+        this.availableCustomers.set(response || []);
+      });
+  }
+
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "recurring-tasks/templates",
+      id: this.templateId(),
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
+  }
+}
 

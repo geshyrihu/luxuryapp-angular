@@ -19,33 +19,44 @@
   --p-datatable-header-cell-padding:       0.75rem 1rem;
 }
 
-body .p-datatable {
+body .app-table {
   font-size: 0.875rem;
   border-radius: var(--ds-radius-xl);
   overflow: hidden;
   border: 1px solid var(--ds-border);
   box-shadow: var(--ds-shadow-sm);
 
-  .p-datatable-thead > tr > th {
-    background-color: var(--ds-bg-sunken);
-    color: var(--ds-text-secondary);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    border-color: var(--ds-border);
-    padding: 0.75rem 1rem;
-    white-space: nowrap;
-  }
+   // Neutralizado 2026-09-15: paridad visual con el encabezado blanco actual
+   // de producción; la intención de diseño original queda documentada.
+   .app-table-thead > tr > th {
+     // background-color: var(--ds-bg-sunken);
+     // color: var(--ds-text-secondary);
+     font-size: 0.8125rem;
+     // font-weight: 600;
+     // text-transform: uppercase;
+     // letter-spacing: 0.04em;
+     // Neutralización explícita: Bootstrap aplica una regla de encabezado
+     // propia; estos valores preservan la paridad blanca de producción.
+     // El fondo heredado de Bootstrap resuelve a azul muy pálido en esta
+     // tabla; el token de superficie conserva el blanco de producción.
+     background-color: var(--ds-bg-surface);
+     color: inherit;
+     font-weight: inherit;
+     text-transform: none;
+     letter-spacing: normal;
+     border-color: var(--ds-border);
+     padding: 0.25rem 0.5rem;
+     white-space: nowrap;
+   }
 
-  .p-datatable-tbody > tr > td {
+  .app-table-tbody > tr > td {
     border-color: var(--ds-border);
     color: var(--ds-text-primary);
-    padding: 0.875rem 1rem;
+     padding: 0.25rem 0.5rem;
     vertical-align: middle;
   }
 
-  .p-datatable-tbody > tr {
+  .app-table-tbody > tr {
     transition: background-color 100ms ease;
 
     &:hover {
@@ -58,7 +69,7 @@ body .p-datatable {
     }
   }
 
-  .p-datatable-tfoot > tr > td {
+  .app-table-tfoot > tr > td {
     background-color: var(--ds-bg-sunken);
     font-weight: 600;
     border-top: 2px solid var(--ds-border);
@@ -66,7 +77,7 @@ body .p-datatable {
   }
 
   // Paginador
-  .p-paginator {
+  .app-table-paginator {
     background-color: var(--ds-bg-surface);
     border-top: 1px solid var(--ds-border);
     border-radius: 0 0 var(--ds-radius-xl) var(--ds-radius-xl);
@@ -74,7 +85,7 @@ body .p-datatable {
     font-size: 0.875rem;
     color: var(--ds-text-secondary);
 
-    .p-paginator-element {
+    .app-table-paginator-element {
       border-radius: var(--ds-radius-md);
       min-width: 2rem;
       height: 2rem;
@@ -87,7 +98,7 @@ body .p-datatable {
         color: var(--ds-text-primary);
       }
 
-      &.p-highlight {
+      &.is-active {
         background-color: var(--ds-primary);
         border-color: var(--ds-primary);
         color: var(--ds-primary-text);

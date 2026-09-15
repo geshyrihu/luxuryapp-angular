@@ -65,23 +65,23 @@
 
   /* Case 2: Used in styleClass <p-table class="custom-table ">
      This places the class ON the p-datatable-component or the div.p-datatable */
-  &.p-datatable,
-  .p-datatable {
+  &.app-table,
+  .app-table {
     display: flex;
     flex-direction: column;
     flex: 1;
     height: 100%;
     min-height: 0;
 
-    .p-datatable-header,
-    .p-datatable-thead,
-    .p-datatable-tfoot,
+    .app-table-caption,
+    .app-table-thead,
+    .app-table-tfoot,
     .p-datatable-footer,
-    .p-paginator {
+    .app-table-paginator {
       flex-shrink: 0;
     }
 
-    .p-datatable-wrapper {
+    .app-table-scroll {
       flex-grow: 1;
       /* height: auto !important; <-- REMOVED: Breaks [scrollHeight] */
       display: flex;
@@ -90,7 +90,7 @@
       min-height: 0;
     }
 
-    .p-datatable-table,
+    .app-table-table,
     table {
       width: 100%;
       min-width: 760px;
@@ -111,23 +111,26 @@
        Los tokens giran solos con el tema: en oscuro `--ds-primary` pasa a
        $primary-200 y `--ds-primary-text` a $primary-900, así que el encabezado
        se invierte a azul claro con texto oscuro sin regla aparte. */
-    .p-datatable-thead > tr > th {
-      background-color: var(--ds-primary);
-      color: var(--ds-primary-text);
+     // Neutralizado 2026-09-15: paridad visual con el encabezado blanco actual
+     // de producción; se conserva la intención azul documentada arriba.
+     .app-table-thead > tr > th {
+       // background-color: var(--ds-primary);
+       // color: var(--ds-primary-text);
       border-color: var(--ds-border-on-dark, var(--ds-border));
 
       /* Los iconos de orden heredan el color del encabezado */
-      p-sorticon,
-      .p-sortable-column-icon,
+      app-sorticon,
+      .app-table-sorticon,
       svg {
         color: currentColor;
         fill: currentColor;
       }
     }
 
-    .p-datatable-thead > tr > th.p-sortable-column:hover {
-      background-color: var(--ds-primary-hover);
-      color: var(--ds-primary-text);
+     .app-table-thead > tr > th.app-table-sortable-column:hover {
+       // Neutralizado 2026-09-15: el encabezado permanece blanco también al hover.
+       // background-color: var(--ds-primary-hover);
+       // color: var(--ds-primary-text);
     }
 
     /* Encabezado centrado (2026-08-12).
@@ -142,74 +145,74 @@
        Las utilidades de PrimeFlex (`.text-left`, `.text-center`,
        `.text-right`) se declaran con `!important`, así que cualquier <th> que
        ya traiga alineación escrita a mano sigue mandando sobre esta regla. */
-    .p-datatable-thead > tr > th {
+    .app-table-thead > tr > th {
       text-align: center;
     }
 
-    .p-datatable-tbody > tr > td {
+    .app-table-tbody > tr > td {
     }
 
-    .p-datatable-tbody > tr.row-status-completed > td:first-child {
+    .app-table-tbody > tr.row-status-completed > td:first-child {
       border-left: 5px solid var(--task-completed) !important;
     }
-    .p-datatable-tbody > tr.row-status-in-progress > td:first-child {
+    .app-table-tbody > tr.row-status-in-progress > td:first-child {
       border-left: 5px solid var(--task-in-progress) !important;
     }
-    .p-datatable-tbody > tr.row-status-reopened > td:first-child {
+    .app-table-tbody > tr.row-status-reopened > td:first-child {
       border-left: 5px solid var(--task-reopened) !important;
     }
-    .p-datatable-tbody > tr.row-status-not-started > td:first-child {
+    .app-table-tbody > tr.row-status-not-started > td:first-child {
       border-left: 5px solid var(--task-not-started) !important;
     }
 
-    .p-datatable-thead > tr > th.th-selected {
+    .app-table-thead > tr > th.th-selected {
       background-color: var(--ds-success) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-deselected {
+    .app-table-thead > tr > th.th-deselected {
       background-color: var(--ds-on-surface-variant) !important;
       color: var(--ds-text-secondary) !important;
       opacity: 0.7;
     }
 
-    .p-datatable-thead > tr > th.th-col-dark {
+    .app-table-thead > tr > th.th-col-dark {
       background-color: var(--ds-on-surface) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-green {
+    .app-table-thead > tr > th.th-col-green {
       background-color: var(--ds-success) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-orange {
+    .app-table-thead > tr > th.th-col-orange {
       background-color: var(--ds-warning) !important;
       color: var(--ds-accent-text-warning) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-red {
+    .app-table-thead > tr > th.th-col-red {
       background-color: var(--ds-danger) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-blue-medium {
+    .app-table-thead > tr > th.th-col-blue-medium {
       background-color: var(--ds-primary-hover) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-blue-dark {
+    .app-table-thead > tr > th.th-col-blue-dark {
       background-color: var(--ds-primary) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-navy {
+    .app-table-thead > tr > th.th-col-navy {
       background-color: var(--ds-primary-active) !important;
       color: var(--ds-primary-text) !important;
     }
 
     /* Fix: Remove default PrimeNG caption borders/background LOCALLY for custom-table */
-    .p-datatable-header {
+    .app-table-caption {
       border: none !important;
       background: transparent !important;
       padding-bottom: 0 !important;
@@ -223,23 +226,23 @@
    que las celdas envuelvan texto en vez de desbordar.
    ─────────────────────────────────────────────────────────────── */
 .custom-table-fixed {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-table,
+  &.app-table,
+  .app-table {
+    .app-table-table,
     table {
       min-width: auto;
       table-layout: fixed;
     }
 
-    .p-datatable-tbody > tr > td,
-    .p-datatable-thead > tr > th {
+    .app-table-tbody > tr > td,
+    .app-table-thead > tr > th {
       white-space: normal !important;
       word-break: break-word;
     }
 
     // Columnas con ancho fijo porcentual
-    .p-datatable-thead > tr > th,
-    .p-datatable-tbody > tr > td {
+    .app-table-thead > tr > th,
+    .app-table-tbody > tr > td {
       &.table-col-7 {
         width: 7%;
       }

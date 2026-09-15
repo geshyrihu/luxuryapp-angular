@@ -1,189 +1,189 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  Signal,
-} from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { FormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
-import {
-  IonAvatar,
-  IonContent,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonPopover,
-  IonSelect,
-  IonSelectOption,
-} from "@ionic/angular";
-import { addIcons } from "ionicons";
-import {
-  keyOutline,
-  logOutOutline,
-  personOutline,
-  refreshOutline,
-  syncOutline,
-} from "ionicons/icons";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { ProfielService } from "@core/auth/services/profiel-service";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { InfoAccountAuthDto } from "@core/interfaces/auth-user-token.dto";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { ConsoleLoggerService } from "@core/services/console-logger.service";
-import { MenuService } from "@core/services/menu.service";
-import { UpdateService } from "@core/services/update-pwa.service";
-@Component({
-  selector: "app-profile-user-mobile",
-  imports: [
-    RouterModule,
-    FormsModule,
-    FormsModule,
-    IonAvatar,
-    IonPopover,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonSelect,
-    IonSelectOption,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./profile-user.html",
-})
-export class ProfileUserMobile {
-  updateService = inject(UpdateService);
-  apiResponseS = inject(ApiResponseService);
-  authS = inject(AuthService);
-  aspRoleS = inject(AspRoleService);
-  customerIdS = inject(CustomerIdService);
-
-  profileRoute = computed(() =>
-    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
-      ? "/direccion/profile/update-user-profile"
-      : "/profile/update-user-profile",
-  );
-  menuService = inject(MenuService);
-  profielServiceService = inject(ProfielService);
-  router = inject(Router);
-  private consoleLogger = inject(ConsoleLoggerService);
-  public isShow: boolean = false;
-  infoAccountAuthDTO: InfoAccountAuthDto;
-  profileImageUrl: string = "";
-
-  // Signal para imagen actualizada
-  private updatedImageSignal = toSignal(
-    this.profielServiceService.imagenPerfilActualizada$,
-    { initialValue: null },
-  );
-  cb_customer: SelectItemDto[] = [];
-  customerId: Signal<string>; // Changed from number to string (Guid)
-  customerPhotoPath = this.customerIdS.customerPhotoPath();
-
-  public isChangingCustomer = false; // Para feedback visual
-  customerName = this.customerIdS.nombreCorto;
-
-  constructor() {
-    addIcons({
-      personOutline,
-      syncOutline,
-      refreshOutline,
-      logOutOutline,
-      keyOutline,
-    });
-
-    effect(() => {
-      const currentCustomerId = this.customerIdS.customerId();
-      if (currentCustomerId) {
-        // Changed from > 0 to truthy check (non-empty string)
-        this.customerPhotoPath = this.customerIdS.customerPhotoPath();
-      }
-    });
-    this.infoAccountAuthDTO = this.authS.infoUserAuth;
-    this.profileImageUrl = this.infoAccountAuthDTO.photoPath;
-    this.cb_customer = this.authS.customerAccess;
-
-    this.customerId = this.customerIdS.customerId;
-
-    // Effect para actualizar imagen de perfil
-    effect(() => {
-      const newImg: any = this.updatedImageSignal();
-      if (newImg) {
-        this.profileImageUrl = newImg.imagenUrl;
-      }
-    });
-  }
-
-  selectCustomer(newCustomerId: string) {
-    // Changed from any to string (Guid)
-    // 1. Muestra un indicador de carga
-    this.isChangingCustomer = true;
-    this.consoleLogger.info(
-      `[Profile ] Iniciando cambio a customerId: ${newCustomerId}`,
-    );
-    // 2. Llama al mótodo Y SE SUSCRIBE para saber cuóndo termina.
-    this.customerIdS.setCustomerId(newCustomerId).subscribe({
-      next: (success) => {
-        if (success) {
-          this.consoleLogger.info(
-            `[Profile ] Cambio a customerId: ${newCustomerId} completado con óxito.`,
-          );
-          // El 'effect' en Sidebar deberóa haberse disparado.
-        } else {
-          this.consoleLogger.error("[Profile ] El cambio de cliente fallé.");
-        }
-      },
-      // 3. Oculta el indicador de carga, tanto si tuvo óxito como si fallé.
-      complete: () => {
-        this.isChangingCustomer = false;
-      },
-    });
-  }
-
-  logOut() {
-    this.authS.logout().subscribe();
-  }
-
-  async onForceReload(): Promise<void> {
-    try {
-      this.consoleLogger.custom(
-        "??",
-        "color: #E91E63; font-weight: bold;",
-        "[Profile] Limpiando caché y recargando...",
-      );
-
-      // 1. Eliminar todos los cachós del Service Worker
-      if ("caches" in window) {
-        const cacheNames = await caches.keys();
-        await Promise.all(
-          cacheNames.map((cacheName) => caches.delete(cacheName)),
-        );
-        this.consoleLogger.info(
-          `[Profile] ${cacheNames.length} cachós eliminados`,
-        );
-      }
-
-      // 2. Desregistrar el Service Worker (opcional, mós agresivo)
-      if ("serviceWorker" in navigator) {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        await Promise.all(
-          registrations.map((registration) => registration.unregister()),
-        );
-        this.consoleLogger.info(`[Profile] Service Workers desregistrados`);
-      }
-
-      // 3. Recargar la pógina
-      window.location.reload();
-    } catch (error) {
-      this.consoleLogger.error("[Profile] Error al limpiar caché:", error);
-      // Intenta recargar de todos modos
-      window.location.reload();
-    }
-  }
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  Signal,
+} from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { FormsModule } from "@angular/forms";
+import { Router, RouterModule } from "@angular/router";
+import {
+  IonAvatar,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonPopover,
+  IonSelect,
+  IonSelectOption,
+} from "@ionic/angular";
+import { addIcons } from "ionicons";
+import {
+  keyOutline,
+  logOutOutline,
+  personOutline,
+  refreshOutline,
+  syncOutline,
+} from "ionicons/icons";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ProfielService } from "@core/auth/services/profiel-service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { InfoAccountAuthDto } from "@core/interfaces/auth-user-token.dto";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { ConsoleLoggerService } from "@core/services/console-logger.service";
+import { MenuService } from "@core/services/menu.service";
+import { UpdateService } from "@core/services/update-pwa.service";
+@Component({
+  selector: "app-profile-user-mobile",
+  imports: [
+    RouterModule,
+    FormsModule,
+    FormsModule,
+    IonAvatar,
+    IonPopover,
+    IonContent,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonSelect,
+    IonSelectOption,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: "./profile-user.html",
+})
+export class ProfileUserMobile {
+  updateService = inject(UpdateService);
+  apiResponseS = inject(ApiResponseService);
+  authS = inject(AuthService);
+  aspRoleS = inject(AspRoleService);
+  customerIdS = inject(CustomerIdService);
+
+  profileRoute = computed(() =>
+    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
+      ? "/direccion/profile/update-user-profile"
+      : "/profile/update-user-profile",
+  );
+  menuService = inject(MenuService);
+  profielServiceService = inject(ProfielService);
+  router = inject(Router);
+  private consoleLogger = inject(ConsoleLoggerService);
+  public isShow: boolean = false;
+  infoAccountAuthDTO: InfoAccountAuthDto;
+  profileImageUrl: string = "";
+
+  // Signal para imagen actualizada
+  private updatedImageSignal = toSignal(
+    this.profielServiceService.imagenPerfilActualizada$,
+    { initialValue: null },
+  );
+  cb_customer: SelectItemDto[] = [];
+  customerId: Signal<string>; // Changed from number to string (Guid)
+  customerPhotoPath = this.customerIdS.customerPhotoPath();
+
+  public isChangingCustomer = false; // Para feedback visual
+  customerName = this.customerIdS.nombreCorto;
+
+  constructor() {
+    addIcons({
+      personOutline,
+      syncOutline,
+      refreshOutline,
+      logOutOutline,
+      keyOutline,
+    });
+
+    effect(() => {
+      const currentCustomerId = this.customerIdS.customerId();
+      if (currentCustomerId) {
+        // Changed from > 0 to truthy check (non-empty string)
+        this.customerPhotoPath = this.customerIdS.customerPhotoPath();
+      }
+    });
+    this.infoAccountAuthDTO = this.authS.infoUserAuth;
+    this.profileImageUrl = this.infoAccountAuthDTO.photoPath;
+    this.cb_customer = this.authS.customerAccess;
+
+    this.customerId = this.customerIdS.customerId;
+
+    // Effect para actualizar imagen de perfil
+    effect(() => {
+      const newImg: any = this.updatedImageSignal();
+      if (newImg) {
+        this.profileImageUrl = newImg.imagenUrl;
+      }
+    });
+  }
+
+  selectCustomer(newCustomerId: string) {
+    // Changed from any to string (Guid)
+    // 1. Muestra un indicador de carga
+    this.isChangingCustomer = true;
+    this.consoleLogger.info(
+      `[Profile ] Iniciando cambio a customerId: ${newCustomerId}`,
+    );
+    // 2. Llama al mótodo Y SE SUSCRIBE para saber cuóndo termina.
+    this.customerIdS.setCustomerId(newCustomerId).subscribe({
+      next: (success) => {
+        if (success) {
+          this.consoleLogger.info(
+            `[Profile ] Cambio a customerId: ${newCustomerId} completado con óxito.`,
+          );
+          // El 'effect' en Sidebar deberóa haberse disparado.
+        } else {
+          this.consoleLogger.error("[Profile ] El cambio de cliente fallé.");
+        }
+      },
+      // 3. Oculta el indicador de carga, tanto si tuvo óxito como si fallé.
+      complete: () => {
+        this.isChangingCustomer = false;
+      },
+    });
+  }
+
+  logOut() {
+    this.authS.logout().subscribe();
+  }
+
+  async onForceReload(): Promise<void> {
+    try {
+      this.consoleLogger.custom(
+        "??",
+        "color: #E91E63; font-weight: bold;",
+        "[Profile] Limpiando caché y recargando...",
+      );
+
+      // 1. Eliminar todos los cachós del Service Worker
+      if ("caches" in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames.map((cacheName) => caches.delete(cacheName)),
+        );
+        this.consoleLogger.info(
+          `[Profile] ${cacheNames.length} cachós eliminados`,
+        );
+      }
+
+      // 2. Desregistrar el Service Worker (opcional, mós agresivo)
+      if ("serviceWorker" in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(
+          registrations.map((registration) => registration.unregister()),
+        );
+        this.consoleLogger.info(`[Profile] Service Workers desregistrados`);
+      }
+
+      // 3. Recargar la pógina
+      window.location.reload();
+    } catch (error) {
+      this.consoleLogger.error("[Profile] Error al limpiar caché:", error);
+      // Intenta recargar de todos modos
+      window.location.reload();
+    }
+  }
+}
 

@@ -1,295 +1,295 @@
-import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation } from "@angular/core";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AccesoRol } from "./interfaces/acceso-rol.interface";
-import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
-import { TipoDocumento } from "./interfaces/tipo-documento.interface";
-
-@Component({
-  selector: "app-catalog-docs",
-  imports: [CommonModule, TableModule, AppTag, AppIcon],
-  template: `
-    <section class="fadein">
-      <div class="section-header mb-4">
-        <h2 class="text-3xl font-bold m-0">Esténdar Documental LuxuryApp</h2>
-        <p class="text-secondary">
-          Guía de gobierno para procedimientos, manuales e instructivos
-          corporativos.
-        </p>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-            Clasificación de Documentos
-          </h3>
-          <div class="row">
-            @for (doc of tiposDocumento; track doc.codigo) {
-              <div class="col-12 col-md-6 col-xl-4">
-                <div
-                  class="card h-full overflow-hidden shadow-1 transition-all hover:shadow-3"
-                >
-                  <div
-                    class="d-flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3"
-                    [style.background]="doc.colorToken"
-                  >
-                    <strong>{{ doc.codigo }}</strong>
-                    <app-tag
-                      [value]="doc.confidencialidad"
-                      [severity]="doc.severity"
-                    ></p-tag>
-                  </div>
-                  <div class="d-flex flex-column gap-2">
-                    <strong class="text-lg">{{ doc.tipo }}</strong>
-                    <span class="text-xs text-secondary"
-                      >Audiencia: {{ doc.destinatario }}</span
-                    >
-                    <code
-                      class="d-block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2"
-                    >
-                      {{ getNomenclaturaEjemplo(doc) }}
-                    </code>
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-
-        <div class="col-12 col-lg-6 mt-4">
-          <div class="card">
-            <div class="card-header">
-              <span class="card-title">Nomenclatura Inteligente</span>
-            </div>
-            <div class="card-body">
-              <div class="bg-primary text-white border-round-lg p-3 mb-3">
-                <small class="text-yellow-500 font-bold d-block mb-1"
-                  >FORMATO OBLIGATORIO</small
-                >
-                <code class="text-sm md:text-base"
-                  >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
-                >
-              </div>
-              <p-table [value]="camposNomenclatura" class="p-datatable-sm">
-                <ng-template #header
-                  ><tr>
-                    <th>Campo</th>
-                    <th>Valores</th>
-                  </tr></ng-template
-                >
-                <ng-template #body let-row
-                  ><tr>
-                    <td>
-                      <code>{{ row.campo }}</code>
-                    </td>
-                    <td class="text-xs">{{ row.valores }}</td>
-                  </tr></ng-template
-                >
-              </p-table>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-lg-6 mt-4">
-          <div class="card">
-            <div class="card-header">
-              <span class="card-title">Matriz de Acceso por Rol</span>
-            </div>
-            <div class="card-body">
-              <p-table
-                [value]="matrizAcceso"
-                [scrollable]="true"
-                scrollHeight="300px"
-                class="p-datatable-sm"
-              >
-                <ng-template #header>
-                  <tr>
-                    <th>Documento</th>
-                    <th>Super Usuario</th>
-                    <th>Dirección</th>
-                    <th>Staff</th>
-                    <th>Condomino</th>
-                    <th>Proveedor</th>
-                  </tr>
-                </ng-template>
-                <ng-template #body let-row>
-                  <tr>
-                    <td class="text-xs font-bold">{{ row.documento }}</td>
-                    <td>
-                      <app-tag
-                        [value]="row.superUsuario"
-                        [severity]="getColorAcceso(row.superUsuario)"
-                      />
-                    </td>
-                    <td>
-                      <app-tag
-                        [value]="row.direccion"
-                        [severity]="getColorAcceso(row.direccion)"
-                      />
-                    </td>
-                    <td>
-                      <app-tag
-                        [value]="row.staff"
-                        [severity]="getColorAcceso(row.staff)"
-                      />
-                    </td>
-                    <td>
-                      <app-tag
-                        [value]="row.condomino"
-                        [severity]="getColorAcceso(row.condomino)"
-                      />
-                    </td>
-                    <td>
-                      <app-tag
-                        [value]="row.proveedor"
-                        [severity]="getColorAcceso(row.proveedor)"
-                      />
-                    </td>
-                  </tr>
-                </ng-template>
-              </p-table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `,
-  encapsulation: ViewEncapsulation.None,
-})
-export class CatalogDocs {
-  readonly tiposDocumento: TipoDocumento[] = [
-    {
-      tipo: "Procedimiento Operativo",
-      codigo: "PROC",
-      destinatario: "Staff / Contractor",
-      confidencialidad: "Interno",
-      colorToken: "var(--ds-primary)",
-      severity: "info",
-    },
-    {
-      tipo: "Manual Tecnico",
-      codigo: "MANT",
-      destinatario: "Staff especializado",
-      confidencialidad: "Restringido",
-      colorToken: "var(--ds-help, #7c3aed)",
-      severity: "danger",
-    },
-    {
-      tipo: "Instructivo Residentes",
-      codigo: "INST",
-      destinatario: "Condomino",
-      confidencialidad: "Publico",
-      colorToken: "var(--ds-document-neutral)",
-      severity: "success",
-    },
-    {
-      tipo: "Protocolo de Emergencia",
-      codigo: "PROT",
-      destinatario: "Todos",
-      confidencialidad: "Critico",
-      colorToken: "var(--ds-warning)",
-      severity: "warn",
-    },
-    {
-      tipo: "Politica Corporativa",
-      codigo: "POLI",
-      destinatario: "Executive / Corporate",
-      confidencialidad: "Confidencial",
-      colorToken: "var(--ds-success)",
-      severity: "danger",
-    },
-    {
-      tipo: "Comunicado a Residentes",
-      codigo: "COMU",
-      destinatario: "Condomino",
-      confidencialidad: "Publico",
-      colorToken: "var(--ds-luxury-gold)",
-      severity: "success",
-    },
-  ];
-
-  readonly matrizAcceso: AccesoRol[] = [
-    {
-      documento: "Procedimiento Operativo",
-      superUsuario: "Editar",
-      direccion: "Aprobar",
-      staff: "Leer",
-      condomino: "Sin acceso",
-      proveedor: "Leer parcial",
-    },
-    {
-      documento: "Manual Tecnico",
-      superUsuario: "Editar",
-      direccion: "Consultar",
-      staff: "Leer",
-      condomino: "Sin acceso",
-      proveedor: "Si aplica",
-    },
-    {
-      documento: "Instructivo Residentes",
-      superUsuario: "Publicar",
-      direccion: "Aprobar",
-      staff: "Consultar",
-      condomino: "Leer",
-      proveedor: "Sin acceso",
-    },
-    {
-      documento: "Protocolo Emergencia",
-      superUsuario: "Editar",
-      direccion: "Aprobar",
-      staff: "Leer",
-      condomino: "Version simplificada",
-      proveedor: "Leer",
-    },
-    {
-      documento: "Politica Corporativa",
-      superUsuario: "Editar",
-      direccion: "Aprobar",
-      staff: "Sin acceso",
-      condomino: "Sin acceso",
-      proveedor: "Sin acceso",
-    },
-  ];
-
-  readonly camposNomenclatura: NomenclaturaCampo[] = [
-    { campo: "TIPO", valores: "PROC, MANT, INST, PROT, POLI, COMU" },
-    {
-      campo: "DEPTO",
-      valores: "ADMI, LEGA, MANT, SIST, RRHH, CONT, OPER, SECU, LIMP, JARD",
-    },
-    {
-      campo: "CODIGO",
-      valores: "Numero secuencial de 3 digitos: 001, 002, 003",
-    },
-    {
-      campo: "Version",
-      valores: "v1.0 para publicacion inicial; v1.1 para ajuste menor",
-    },
-    { campo: "Fecha", valores: "AAAA-MM de publicacion o vigencia" },
-    {
-      campo: "ESTADO",
-      valores: "BORRADOR, REVISION, APROBADO, VIGENTE, OBSOLETO",
-    },
-  ];
-
-  getNomenclaturaEjemplo(doc: TipoDocumento): string {
-    return `${doc.codigo}-DEPTO-001_v1.0_2026-04_VIGENTE.pdf`;
-  }
-
-  getColorAcceso(valor: string): any {
-    if (valor === "Sin acceso") return "danger";
-    if (valor === "Editar" || valor === "Publicar") return "success";
-    if (valor === "Aprobar") return "info";
-    if (
-      ["Leer", "Consultar", "Leer parcial", "Version simplificada"].includes(
-        valor,
-      )
-    )
-      return "secondary";
-    if (valor === "Si aplica") return "warn";
-    return "warn";
-  }
-}
+import { CommonModule } from "@angular/common";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTag } from "@ui/web/tag/tag";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AccesoRol } from "./interfaces/acceso-rol.interface";
+import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
+import { TipoDocumento } from "./interfaces/tipo-documento.interface";
+
+@Component({
+  selector: "app-catalog-docs",
+  imports: [CommonModule, TableModule, AppTag, AppIcon],
+  template: `
+    <section class="fadein">
+      <div class="section-header mb-4">
+        <h2 class="text-3xl font-bold m-0">Esténdar Documental LuxuryApp</h2>
+        <p class="text-secondary">
+          Guía de gobierno para procedimientos, manuales e instructivos
+          corporativos.
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
+            Clasificación de Documentos
+          </h3>
+          <div class="row">
+            @for (doc of tiposDocumento; track doc.codigo) {
+              <div class="col-12 col-md-6 col-xl-4">
+                <div
+                  class="card h-full overflow-hidden shadow-1 transition-all hover:shadow-3"
+                >
+                  <div
+                    class="d-flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3"
+                    [style.background]="doc.colorToken"
+                  >
+                    <strong>{{ doc.codigo }}</strong>
+                    <app-tag
+                      [value]="doc.confidencialidad"
+                      [severity]="doc.severity"
+                    ></p-tag>
+                  </div>
+                  <div class="d-flex flex-column gap-2">
+                    <strong class="text-lg">{{ doc.tipo }}</strong>
+                    <span class="text-xs text-secondary"
+                      >Audiencia: {{ doc.destinatario }}</span
+                    >
+                    <code
+                      class="d-block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2"
+                    >
+                      {{ getNomenclaturaEjemplo(doc) }}
+                    </code>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mt-4">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Nomenclatura Inteligente</span>
+            </div>
+            <div class="card-body">
+              <div class="bg-primary text-white border-round-lg p-3 mb-3">
+                <small class="text-yellow-500 font-bold d-block mb-1"
+                  >FORMATO OBLIGATORIO</small
+                >
+                <code class="text-sm md:text-base"
+                  >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
+                >
+              </div>
+              <p-table [value]="camposNomenclatura" class="p-datatable-sm">
+                <ng-template #header
+                  ><tr>
+                    <th>Campo</th>
+                    <th>Valores</th>
+                  </tr></ng-template
+                >
+                <ng-template #body let-row
+                  ><tr>
+                    <td>
+                      <code>{{ row.campo }}</code>
+                    </td>
+                    <td class="text-xs">{{ row.valores }}</td>
+                  </tr></ng-template
+                >
+              </p-table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mt-4">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Matriz de Acceso por Rol</span>
+            </div>
+            <div class="card-body">
+              <p-table
+                [value]="matrizAcceso"
+                [scrollable]="true"
+                scrollHeight="300px"
+                class="p-datatable-sm"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th>Documento</th>
+                    <th>Super Usuario</th>
+                    <th>Dirección</th>
+                    <th>Staff</th>
+                    <th>Condomino</th>
+                    <th>Proveedor</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-row>
+                  <tr>
+                    <td class="text-xs font-bold">{{ row.documento }}</td>
+                    <td>
+                      <app-tag
+                        [value]="row.superUsuario"
+                        [severity]="getColorAcceso(row.superUsuario)"
+                      />
+                    </td>
+                    <td>
+                      <app-tag
+                        [value]="row.direccion"
+                        [severity]="getColorAcceso(row.direccion)"
+                      />
+                    </td>
+                    <td>
+                      <app-tag
+                        [value]="row.staff"
+                        [severity]="getColorAcceso(row.staff)"
+                      />
+                    </td>
+                    <td>
+                      <app-tag
+                        [value]="row.condomino"
+                        [severity]="getColorAcceso(row.condomino)"
+                      />
+                    </td>
+                    <td>
+                      <app-tag
+                        [value]="row.proveedor"
+                        [severity]="getColorAcceso(row.proveedor)"
+                      />
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+  encapsulation: ViewEncapsulation.None,
+})
+export class CatalogDocs {
+  readonly tiposDocumento: TipoDocumento[] = [
+    {
+      tipo: "Procedimiento Operativo",
+      codigo: "PROC",
+      destinatario: "Staff / Contractor",
+      confidencialidad: "Interno",
+      colorToken: "var(--ds-primary)",
+      severity: "info",
+    },
+    {
+      tipo: "Manual Tecnico",
+      codigo: "MANT",
+      destinatario: "Staff especializado",
+      confidencialidad: "Restringido",
+      colorToken: "var(--ds-help, #7c3aed)",
+      severity: "danger",
+    },
+    {
+      tipo: "Instructivo Residentes",
+      codigo: "INST",
+      destinatario: "Condomino",
+      confidencialidad: "Publico",
+      colorToken: "var(--ds-document-neutral)",
+      severity: "success",
+    },
+    {
+      tipo: "Protocolo de Emergencia",
+      codigo: "PROT",
+      destinatario: "Todos",
+      confidencialidad: "Critico",
+      colorToken: "var(--ds-warning)",
+      severity: "warn",
+    },
+    {
+      tipo: "Politica Corporativa",
+      codigo: "POLI",
+      destinatario: "Executive / Corporate",
+      confidencialidad: "Confidencial",
+      colorToken: "var(--ds-success)",
+      severity: "danger",
+    },
+    {
+      tipo: "Comunicado a Residentes",
+      codigo: "COMU",
+      destinatario: "Condomino",
+      confidencialidad: "Publico",
+      colorToken: "var(--ds-luxury-gold)",
+      severity: "success",
+    },
+  ];
+
+  readonly matrizAcceso: AccesoRol[] = [
+    {
+      documento: "Procedimiento Operativo",
+      superUsuario: "Editar",
+      direccion: "Aprobar",
+      staff: "Leer",
+      condomino: "Sin acceso",
+      proveedor: "Leer parcial",
+    },
+    {
+      documento: "Manual Tecnico",
+      superUsuario: "Editar",
+      direccion: "Consultar",
+      staff: "Leer",
+      condomino: "Sin acceso",
+      proveedor: "Si aplica",
+    },
+    {
+      documento: "Instructivo Residentes",
+      superUsuario: "Publicar",
+      direccion: "Aprobar",
+      staff: "Consultar",
+      condomino: "Leer",
+      proveedor: "Sin acceso",
+    },
+    {
+      documento: "Protocolo Emergencia",
+      superUsuario: "Editar",
+      direccion: "Aprobar",
+      staff: "Leer",
+      condomino: "Version simplificada",
+      proveedor: "Leer",
+    },
+    {
+      documento: "Politica Corporativa",
+      superUsuario: "Editar",
+      direccion: "Aprobar",
+      staff: "Sin acceso",
+      condomino: "Sin acceso",
+      proveedor: "Sin acceso",
+    },
+  ];
+
+  readonly camposNomenclatura: NomenclaturaCampo[] = [
+    { campo: "TIPO", valores: "PROC, MANT, INST, PROT, POLI, COMU" },
+    {
+      campo: "DEPTO",
+      valores: "ADMI, LEGA, MANT, SIST, RRHH, CONT, OPER, SECU, LIMP, JARD",
+    },
+    {
+      campo: "CODIGO",
+      valores: "Numero secuencial de 3 digitos: 001, 002, 003",
+    },
+    {
+      campo: "Version",
+      valores: "v1.0 para publicacion inicial; v1.1 para ajuste menor",
+    },
+    { campo: "Fecha", valores: "AAAA-MM de publicacion o vigencia" },
+    {
+      campo: "ESTADO",
+      valores: "BORRADOR, REVISION, APROBADO, VIGENTE, OBSOLETO",
+    },
+  ];
+
+  getNomenclaturaEjemplo(doc: TipoDocumento): string {
+    return `${doc.codigo}-DEPTO-001_v1.0_2026-04_VIGENTE.pdf`;
+  }
+
+  getColorAcceso(valor: string): any {
+    if (valor === "Sin acceso") return "danger";
+    if (valor === "Editar" || valor === "Publicar") return "success";
+    if (valor === "Aprobar") return "info";
+    if (
+      ["Leer", "Consultar", "Leer parcial", "Version simplificada"].includes(
+        valor,
+      )
+    )
+      return "secondary";
+    if (valor === "Si aplica") return "warn";
+    return "warn";
+  }
+}
 
