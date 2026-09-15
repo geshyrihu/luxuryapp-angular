@@ -4,19 +4,19 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { SkeletonBase } from "@ui/base/skeleton.base";
-import { SkeletonModule } from "primeng/skeleton";
 
 @Component({
   selector: "app-skeleton",
 
-  imports: [SkeletonModule],
+  imports: [],
   template: `
-    <p-skeleton
-      [width]="width()"
-      [height]="height()"
-      [borderRadius]="borderRadius()"
+    <div
+      class="ds-skeleton"
       [class]="styleClass()"
-    />
+      [style.width]="width()"
+      [style.height]="height()"
+      [style.border-radius]="borderRadius()"
+    ></div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,

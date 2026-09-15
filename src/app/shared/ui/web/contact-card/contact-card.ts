@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ContactCardBase } from "@ui/base/contact-card.base";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export { type ContactStatus } from "@ui/base/contact-card.base";
@@ -14,7 +14,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
 @Component({
   selector: "app-contact-card",
 
-  imports: [ButtonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, AppTag, LxTooltipDirective, AppIcon],
   template: `
     <div
       class="contact-card"
@@ -35,10 +35,10 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         <div class="contact-name-row">
           <span class="contact-name">{{ name() }}</span>
           @if (status()) {
-            <p-tag
+            <app-tag
               [value]="statusLabel()"
               [severity]="statusSeverity()"
-              styleClass="text-xs"
+              class="text-xs"
             />
           }
         </div>

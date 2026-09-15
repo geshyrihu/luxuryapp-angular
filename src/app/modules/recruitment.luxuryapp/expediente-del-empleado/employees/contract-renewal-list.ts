@@ -10,8 +10,8 @@ import {
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { AppTag } from "@ui/web/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ContractRenewalService } from "./services/contract-renewal.service";
 import { ContractRenewalEvaluationDTO, ContractRenewalStatus } from "./employees/interfaces/contract-renewal.dto";
@@ -29,8 +29,8 @@ import { DialogSize } from "src/app/core/services/dialog-handler.service";
     CommonModule,
     TableModule,
     ButtonModule,
-    TagModule,
-    TooltipModule,
+    AppTag,
+    LxTooltipDirective,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -141,7 +141,7 @@ import { DialogSize } from "src/app/core/services/dialog-handler.service";
               </span>
             </td>
             <td>
-              <p-tag
+              <app-tag
                 [value]="getStatusLabel(renewal.status)"
                 [severity]="getStatusSeverity(renewal.status)"
               />
@@ -157,7 +157,7 @@ import { DialogSize } from "src/app/core/services/dialog-handler.service";
                   pButton
                   type="button"
                   class="p-button-text p-button-sm"
-                  pTooltip="Ver detalles"
+                  lxTooltip="Ver detalles"
                   (click)="openDecisionModal(renewal)"
                   [disabled]="renewal.status === 'Decidido'"
                 >

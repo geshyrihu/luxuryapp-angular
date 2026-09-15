@@ -5,17 +5,17 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxBase } from "@ui/base/checkbox.base";
-import { CheckboxModule } from "primeng/checkbox";
 
 @Component({
   selector: "app-checkbox",
 
-  imports: [FormsModule, CheckboxModule],
+  imports: [FormsModule],
   template: `
-    <p-checkbox
-      [binary]="binary()"
+    <input
+      type="checkbox"
+      class="form-check-input"
       [disabled]="disabled()"
-      [inputId]="inputId()"
+      [id]="inputId()"
       [(ngModel)]="checked"
     />
     @if (label()) {

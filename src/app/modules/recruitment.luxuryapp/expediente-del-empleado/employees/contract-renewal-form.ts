@@ -17,7 +17,7 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -45,7 +45,7 @@ interface DecisionOption {
     CommonModule,
     ReactiveFormsModule,
     ButtonModule,
-    TagModule,
+    AppTag,
     AppIcon,
     LxSpinner,
     CustomInputSelectSignal,
@@ -75,7 +75,7 @@ interface DecisionOption {
         </div>
         <div class="info-row">
           <span class="label">Estatus Actual:</span>
-          <p-tag
+          <app-tag
             [value]="getStatusLabel(data.renewal.status)"
             [severity]="getStatusSeverity(data.renewal.status)"
           />

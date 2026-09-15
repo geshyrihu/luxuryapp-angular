@@ -6,7 +6,7 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ProfileCardBase } from "@ui/base/profile-card.base";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export { type ProfileAction } from "@ui/base/profile-card.base";
@@ -18,7 +18,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
 @Component({
   selector: "app-profile-card",
 
-  imports: [ButtonModule, TagModule, LxTooltipDirective, AppIcon],
+  imports: [ButtonModule, AppTag, LxTooltipDirective, AppIcon],
   template: `
     <div class="profile-card" [class.profile-card-compact]="compact()">
       <!-- Avatar -->
@@ -42,7 +42,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         <div class="profile-name-row">
           <strong class="profile-name">{{ name() }}</strong>
           @if (badge()) {
-            <p-tag [value]="badge()" severity="info" styleClass="text-xs" />
+            <app-tag [value]="badge()" severity="info" class="text-xs" />
           }
         </div>
         @if (role()) {

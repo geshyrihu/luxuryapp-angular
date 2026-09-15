@@ -1,27 +1,36 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
 } from "@angular/core";
 import { SidebarBase } from "@ui/base/sidebar.base";
-import { DrawerModule } from "primeng/drawer";
 
 @Component({
   selector: "app-sidebar",
 
-  imports: [DrawerModule],
+  imports: [],
   template: `
-    <p-drawer
-      [visible]="visible()"
-      (visibleChange)="visible.set($event)"
-      [position]="position()"
-      [closable]="closable()"
-      [header]="header()"
-      [styleClass]="styleClass()"
-      (onHide)="onHide()"
+    @if (visible()) {
+      <div class="offcanvas-backdrop fade show" (click)="onHide()"></div>
+    }
+    <aside
+      class="offcanvas"
+      [class.offcanvas-start]="position() === 'left'"
+      [class.offcanvas-end]="position() === 'right'"
+      [class.offcanvas-top]="position() === 'top'"
+      [class.offcanvas-bottom]="position() === 'bottom'"
+      [class.show]="visible()"
+      [class]="styleClass()"
+      tabindex="-1"
+      [attr.aria-hidden]="!visible()"
     >
-      <ng-content />
-    </p-drawer>
+      <div class="offcanvas-header">
+        @if (header()) { <h5 class="offcanvas-title">{{ header() }}</h5> }
+        @if (closable()) {
+          <button type="button" class="btn-close" aria-label="Cerrar" (click)="onHide()"></button>
+        }
+      </div>
+      <div class="offcanvas-body"><ng-content /></div>
+    </aside>
   `,
   styles: [
     `
@@ -31,6 +40,5 @@ import { DrawerModule } from "primeng/drawer";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
 export class Sidebar extends SidebarBase {}

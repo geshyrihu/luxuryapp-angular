@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { TagSeverity } from "@ui/base/tag.base";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 
 export interface MappedTagOption {
   value: string | number | boolean;
@@ -16,9 +16,9 @@ export interface MappedTagOption {
 @Component({
   selector: "app-mapped-p-tag",
 
-  imports: [TagModule],
+  imports: [AppTag],
   template: `
-    <p-tag
+    <app-tag
       [value]="resolvedLabel()"
       [severity]="resolvedSeverity()"
       [rounded]="rounded()"

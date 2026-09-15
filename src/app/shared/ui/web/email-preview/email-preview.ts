@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type PreviewMode = "desktop" | "mobile";
@@ -19,7 +19,7 @@ export type PreviewMode = "desktop" | "mobile";
 @Component({
   selector: "app-email-preview",
 
-  imports: [ButtonModule, TagModule, AppIcon],
+  imports: [ButtonModule, AppTag, AppIcon],
   template: `
     <div class="ep-root">
       <!-- Toolbar -->
@@ -70,10 +70,10 @@ export type PreviewMode = "desktop" | "mobile";
           @if (tags().length > 0) {
             <div class="ep-tags">
               @for (tag of tags(); track tag) {
-                <p-tag
+                <app-tag
                   [value]="tag"
                   severity="secondary"
-                  styleClass="text-xs"
+                  class="text-xs"
                 />
               }
             </div>

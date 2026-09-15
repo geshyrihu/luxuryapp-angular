@@ -6,19 +6,20 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RadioButtonBase } from "@ui/base/radio-button.base";
-import { RadioButtonModule } from "primeng/radiobutton";
 
 @Component({
   selector: "app-radio-button",
 
-  imports: [ReactiveFormsModule, RadioButtonModule],
-  template: `<p-radiobutton
+  imports: [ReactiveFormsModule],
+  template: `<input
+    type="radio"
+    class="form-check-input"
+    [class]="customClass()"
     [value]="value()"
     [formControl]="control()"
-    [inputId]="inputId()"
-    [class]="customClass()"
+    [id]="inputId()"
     [disabled]="disabled()"
-  ></p-radiobutton>`,
+  />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
-import { CheckboxModule } from "primeng/checkbox";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
 import { AppDivider } from "@ui/web/divider/divider";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -61,7 +61,7 @@ export type FormValues = Record<string, unknown>;
     InputNumberModule,
     TextareaModule,
     SelectModule,
-    CheckboxModule,
+    LxCheckbox,
     ToggleSwitchModule,
     DatePickerModule,
     AppDivider,
@@ -187,13 +187,12 @@ export type FormValues = Record<string, unknown>;
               }
               @case ("checkbox") {
                 <div class="fb-checkbox-row">
-                  <p-checkbox
+                  <lx-checkbox
                     [inputId]="field.key"
-                    [(ngModel)]="values()[field.key]"
-                    [name]="field.key"
+                    [checked]="values()[field.key] === true"
                     [binary]="true"
                     [disabled]="field.disabled ?? false"
-                    (ngModelChange)="onchange()"
+                    (checkedChange)="values()[field.key] = $event; onchange()"
                   />
                   <label [for]="field.key" class="fb-checkbox-label">
                     {{ field.placeholder ?? field.label }}

@@ -1,6 +1,6 @@
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface Territory {
@@ -24,7 +24,7 @@ export interface Territory {
 @Component({
   selector: "app-territory-map",
 
-  imports: [TagModule, LxTooltipDirective, AppIcon],
+  imports: [AppTag, LxTooltipDirective, AppIcon],
   template: `
     <div class="tm-root">
       <!-- Header -->
@@ -71,10 +71,10 @@ export interface Territory {
                   <div class="tm-territory-info">
                     <span class="tm-territory-name">{{ t.name }}</span>
                     @if (t.active === false) {
-                      <p-tag
+                      <app-tag
                         value="Inactivo"
                         severity="secondary"
-                        styleClass="text-xs"
+                        class="text-xs"
                       />
                     }
                   </div>

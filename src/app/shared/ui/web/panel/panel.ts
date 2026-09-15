@@ -1,21 +1,35 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
+  effect,
+  signal,
 } from "@angular/core";
 import { PanelBase } from "@ui/base/panel.base";
-import { PanelModule } from "primeng/panel";
 
 @Component({
   selector: "app-panel",
 
-  imports: [PanelModule],
+  imports: [],
   template: `
-    <p-panel [header]="header()">
-      <ng-content />
-    </p-panel>
+    <section class="card app-panel" [class.app-panel-collapsed]="isCollapsed()">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <span>{{ header() }}</span>
+        @if (toggleable()) {
+          <button type="button" class="btn btn-link p-0" (click)="isCollapsed.update(value => !value)" [attr.aria-expanded]="!isCollapsed()">
+            {{ isCollapsed() ? 'Mostrar' : 'Ocultar' }}
+          </button>
+        }
+      </div>
+      @if (!isCollapsed()) { <div class="card-body"><ng-content /></div> }
+    </section>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
-export class AppPanel extends PanelBase {}
+export class AppPanel extends PanelBase {
+  protected readonly isCollapsed = signal(false);
+
+  constructor() {
+    super();
+    effect(() => this.isCollapsed.set(this.collapsed()));
+  }
+}

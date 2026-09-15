@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
-import { BadgeModule } from "primeng/badge";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -14,7 +14,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
 @Component({
   selector: "app-notification-center",
 
-  imports: [ButtonModule, PopoverModule, BadgeModule, AppIcon],
+  imports: [ButtonModule, PopoverModule, LxBadge, AppIcon],
   template: `
     <div class="notification-center-root">
       <p-button
@@ -28,7 +28,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
         <div class="d-flex align-items-center gap-1">
           <app-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
           @if (unreadCount() > 0) {
-            <p-badge [value]="unreadCount()" severity="danger" />
+            <lx-badge [value]="unreadCount()" color="danger" />
           }
         </div>
       </p-button>

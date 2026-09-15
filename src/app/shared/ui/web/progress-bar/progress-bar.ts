@@ -5,23 +5,28 @@ import {
   computed
 } from "@angular/core";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
-import { ProgressBarModule } from "primeng/progressbar";
 
 /**
- * AppProgressBar — Wrapper sobre p-progressbar. `value` en 0..100.
+ * AppProgressBar — `.progress`/`.progress-bar` de Bootstrap. `value` en 0..100.
  */
 @Component({
   selector: "app-progress-bar",
 
-  imports: [ProgressBarModule],
+  imports: [],
   template: `
-    <p-progressbar
-      [value]="clampedValue()"
-      [mode]="mode()"
-      [showValue]="showValue() && mode() === 'determinate'"
-      [unit]="unit()"
-      [color]="barColor()"
-    />
+    <div class="progress" role="progressbar" [attr.aria-valuenow]="clampedValue()" aria-valuemin="0" aria-valuemax="100">
+      <div
+        class="progress-bar"
+        [class.progress-bar-striped]="mode() === 'indeterminate'"
+        [class.progress-bar-animated]="mode() === 'indeterminate'"
+        [style.width.%]="mode() === 'determinate' ? clampedValue() : 100"
+        [style.background-color]="barColor()"
+      >
+        @if (showValue() && mode() === 'determinate') {
+          {{ clampedValue() }}{{ unit() }}
+        }
+      </div>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

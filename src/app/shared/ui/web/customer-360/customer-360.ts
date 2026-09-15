@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppDivider } from "@ui/web/divider/divider";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
@@ -37,7 +37,7 @@ export interface Customer360Data {
 @Component({
   selector: "app-customer-360",
 
-  imports: [AppDivider, TagModule, AppIcon],
+  imports: [AppDivider, AppTag, AppIcon],
   template: `
     <div class="c360-root">
       <!-- Header / Identity -->
@@ -79,10 +79,10 @@ export interface Customer360Data {
           @if (data().tags?.length) {
             <div class="c360-tags">
               @for (tag of data().tags!; track tag) {
-                <p-tag
+                <app-tag
                   [value]="tag"
                   severity="secondary"
-                  styleClass="text-xs"
+                  class="text-xs"
                 />
               }
             </div>

@@ -4,30 +4,26 @@ import {
   input,
   output,
 } from "@angular/core";
-import {
-  AbstractControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-table-checkbox",
 
-  imports: [FormsModule, ReactiveFormsModule, CheckboxModule],
+  imports: [FormsModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (control()) {
-      <p-checkbox
-        [binary]="binary()"
+      <input
+        type="checkbox"
+        class="form-check-input"
         [disabled]="disabled()"
-        [value]="value()"
         [formControl]="control()"
-        (onChange)="checkedChange.emit($event.checked)"
+        (change)="checkedChange.emit($any($event.target).checked)"
       />
     } @else {
-      <p-checkbox
-        [binary]="binary()"
+      <input
+        type="checkbox"
+        class="form-check-input"
         [disabled]="disabled()"
         [ngModel]="checked()"
         (ngModelChange)="checkedChange.emit($event)"

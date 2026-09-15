@@ -6,7 +6,7 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AvatarModule } from "primeng/avatar";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -20,19 +20,19 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
  */
 @Component({
   selector: "app-header-customer",
-  imports: [AvatarModule],
+  imports: [LxAvatar],
   template: `
     <div
       class="header-customer d-flex align-items-center justify-content-between"
     >
-      <p-avatar
+      <lx-avatar
         [image]="
           logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
         "
         shape="circle"
         size="xlarge"
-        class="header-avatar"
-      ></p-avatar>
+        styleClass="header-avatar"
+      />
       <div class="header-details text-center">
         <!-- Mostramos el nombre recuperado de la API -->
         <h4 class="mb-1">{{ nameCustomer() }}</h4>
