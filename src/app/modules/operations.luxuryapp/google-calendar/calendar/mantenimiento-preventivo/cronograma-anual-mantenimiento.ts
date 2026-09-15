@@ -13,6 +13,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
@@ -264,86 +265,85 @@ export class CronogramaAnualMantenimiento {
     const data = this.dataSignal();
     if (!data || data.length === 0) return;
 
-    import("exceljs").then(async (ExcelJS) => {
-      const workbook = new ExcelJS.Workbook();
-      workbook.creator = "LuxuryApp";
-      workbook.created = new Date();
+    const workbook = new Workbook();
+    workbook.creator = "LuxuryApp";
+    workbook.created = new Date();
 
-      const worksheet = workbook.addWorksheet("Cronograma", {
-        views: [{ state: "frozen", ySplit: 2 }],
-      });
+    const worksheet = workbook.addWorksheet("Cronograma", {
+      views: [{ state: "frozen", ySplit: 2 }],
+    });
 
-      const mesHeaders = ["DESCRIPCIÓN", ...this.meses];
+    const mesHeaders = ["DESCRIPCIÓN", ...this.meses];
 
-      worksheet.columns = mesHeaders.map((h) => ({
-        header: h,
-        key: h,
-        width: h === "DESCRIPCIÓN" ? 40 : 8,
-      }));
+    worksheet.columns = mesHeaders.map((h) => ({
+      header: h,
+      key: h,
+      width: h === "DESCRIPCIÓN" ? 40 : 8,
+    }));
 
-      const headerRow = worksheet.getRow(1);
-      headerRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
-      headerRow.fill = {
-        type: "pattern",
-        pattern: "solid",
-        fgColor: { argb: "FF1E3A8A" },
-      };
-      headerRow.alignment = { horizontal: "center", vertical: "middle" };
-      headerRow.height = 22;
+    const headerRow = worksheet.getRow(1);
+    headerRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
+    headerRow.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FF1E3A8A" },
+    };
+    headerRow.alignment = { horizontal: "center", vertical: "middle" };
+    headerRow.height = 22;
 
-      const groups: { [sistema: string]: CronogramaItem[] } = {};
-      data.forEach((item) => {
-        if (!groups[item.sistema]) groups[item.sistema] = [];
-        groups[item.sistema].push(item);
-      });
+    const groups: { [sistema: string]: CronogramaItem[] } = {};
+    data.forEach((item) => {
+      if (!groups[item.sistema]) groups[item.sistema] = [];
+      groups[item.sistema].push(item);
+    });
 
-      let rowIndex = 2;
+    let rowIndex = 2;
 
-      Object.keys(groups)
-        .sort()
-        .forEach((sistema) => {
-          const groupRow = worksheet.getRow(rowIndex);
-          groupRow.getCell(1).value = sistema.toUpperCase();
-          groupRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
-          groupRow.fill = {
-            type: "pattern",
-            pattern: "solid",
-            fgColor: { argb: "FFC9A84C" },
-          };
-          groupRow.alignment = { horizontal: "left", vertical: "middle" };
-          groupRow.height = 20;
-          worksheet.mergeCells(rowIndex, 1, rowIndex, 13);
-          rowIndex++;
+    Object.keys(groups)
+      .sort()
+      .forEach((sistema) => {
+        const groupRow = worksheet.getRow(rowIndex);
+        groupRow.getCell(1).value = sistema.toUpperCase();
+        groupRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
+        groupRow.fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFC9A84C" },
+        };
+        groupRow.alignment = { horizontal: "left", vertical: "middle" };
+        groupRow.height = 20;
+        worksheet.mergeCells(rowIndex, 1, rowIndex, 13);
+        rowIndex++;
 
-          groups[sistema].forEach((item, idx) => {
-            const row = worksheet.getRow(rowIndex);
-            row.getCell(1).value = item.nameMachinery;
+        groups[sistema].forEach((item, idx) => {
+          const row = worksheet.getRow(rowIndex);
+          row.getCell(1).value = item.nameMachinery;
 
-            if (idx % 2 === 1) {
-              row.fill = {
-                type: "pattern",
-                pattern: "solid",
-                fgColor: { argb: "FFF9FAFB" },
-              };
+          if (idx % 2 === 1) {
+            row.fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "FFF9FAFB" },
+            };
+          }
+
+          this.meses.forEach((mes, colIdx) => {
+            const has = this.hasService(item, mes);
+            const cell = row.getCell(colIdx + 2);
+            cell.value = has ? "■" : "";
+            cell.alignment = { horizontal: "center" };
+            if (has) {
+              cell.font = { color: { argb: "FF0B3164" }, bold: true };
             }
-
-            this.meses.forEach((mes, colIdx) => {
-              const has = this.hasService(item, mes);
-              const cell = row.getCell(colIdx + 2);
-              cell.value = has ? "■" : "";
-              cell.alignment = { horizontal: "center" };
-              if (has) {
-                cell.font = { color: { argb: "FF0B3164" }, bold: true };
-              }
-            });
-
-            row.height = 18;
-            rowIndex++;
           });
-        });
 
-      const fileName = `Cronograma_Anual_Mantenimiento_${this.filtroEquiposValue}`;
-      const excelBuffer = await workbook.xlsx.writeBuffer();
+          row.height = 18;
+          rowIndex++;
+        });
+      });
+
+    const fileName = `Cronograma_Anual_Mantenimiento_${this.filtroEquiposValue}`;
+    workbook.xlsx.writeBuffer().then((excelBuffer) => {
       this.saveAsExcelFile(excelBuffer, fileName);
     });
   }

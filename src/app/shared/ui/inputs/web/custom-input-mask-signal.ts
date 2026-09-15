@@ -1,7 +1,6 @@
 import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 // 🎭 COMPONENTE DE INPUT CON MÁSCARA
@@ -12,7 +11,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
     BaseInputSignal,
     ReactiveFormsModule,
     NgxMaskDirective,
-    InputTextModule,
   ],
   template: `
     <!-- 🏗️ ESTRUCTURA BASE -->
@@ -31,7 +29,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       <!-- Este es el input con máscara real que se inyectará en BaseInput. -->
       <input
         type="text"
-        pInputText
+        class="form-control"
         [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
@@ -40,7 +38,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [mask]="customMask()"
         [validation]="validation()"
         [dropSpecialCharacters]="dropSpecialCharacters()"
-        [pSize]="size()"
+        [class.form-control-sm]="size() === 'small'"
+        [class.form-control-lg]="size() === 'large'"
         fluid
       />
     </base-input-signal>

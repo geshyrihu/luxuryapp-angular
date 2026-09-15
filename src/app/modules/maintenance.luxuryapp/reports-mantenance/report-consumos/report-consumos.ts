@@ -16,6 +16,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -229,30 +230,29 @@ export class ReportConsumos {
     const report = this.report();
     if (!report) return;
 
-    import("exceljs").then(async (ExcelJS) => {
-      const dataToExport = report.medidores.map((item) => ({
-        Categoria: item.categoria,
-        "Numero de medidor": item.numeroMedidor,
-        "Area o ubicacion": item.area,
-        Descripcion: item.descripcion,
-        "Consumo total": item.consumoTotal,
-        "Promedio semanal": item.promedioSemanal,
-        "Maximo diario configurado": item.consumoDiarioMaximoConfigurado,
-        "Maximo detectado": item.consumoMaximoDetectado,
+    const dataToExport = report.medidores.map((item) => ({
+      Categoria: item.categoria,
+      "Numero de medidor": item.numeroMedidor,
+      "Area o ubicacion": item.area,
+      Descripcion: item.descripcion,
+      "Consumo total": item.consumoTotal,
+      "Promedio semanal": item.promedioSemanal,
+      "Maximo diario configurado": item.consumoDiarioMaximoConfigurado,
+      "Maximo detectado": item.consumoMaximoDetectado,
+    }));
+
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet("data");
+
+    if (dataToExport.length > 0) {
+      worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
+        header: key,
+        key,
       }));
+      dataToExport.forEach((item) => worksheet.addRow(item));
+    }
 
-      const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet("data");
-
-      if (dataToExport.length > 0) {
-        worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
-          header: key,
-          key,
-        }));
-        dataToExport.forEach((item) => worksheet.addRow(item));
-      }
-
-      const excelBuffer = await workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer().then((excelBuffer) => {
       const data = new Blob([excelBuffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
       });

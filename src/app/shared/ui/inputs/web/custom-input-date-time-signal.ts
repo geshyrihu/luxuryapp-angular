@@ -9,7 +9,6 @@ import {
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 /**
@@ -24,7 +23,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
     BaseInputSignal,
     ReactiveFormsModule,
     FlatpickrDirective,
-    InputTextModule,
   ],
   template: `
     <base-input-signal
@@ -38,7 +36,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [required]="requiredInput()"
     >
       <input
-        pInputText
+        class="form-control"
         mwlFlatpickr
         ngDefaultControl
         type="text"

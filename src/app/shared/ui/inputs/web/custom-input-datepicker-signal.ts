@@ -1,11 +1,10 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { DatePickerModule } from "primeng/datepicker";
-import { InputTextModule } from "primeng/inputtext";
+import { FlatpickrDirective } from "angularx-flatpickr";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
@@ -13,8 +12,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    DatePickerModule,
-    InputTextModule,
+    FlatpickrDirective,
   ],
   template: `
     <base-input-signal
@@ -30,24 +28,22 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      <p-datepicker
+      <input
+        class="form-control"
+        mwlFlatpickr
+        type="text"
+        [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [dateFormat]="dateFormat()"
-        [showTime]="showTime()"
-        [showClear]="showClear()"
-        [showIcon]="showIcon()"
-        [hourFormat]="hourFormat()"
-        [readonlyInput]="readonlyInput()"
-        [showButtonBar]="showButtonBar()"
-        [selectionMode]="selectionMode()"
+        [dateFormat]="flatpickrDateFormat()"
+        [enableTime]="showTime()"
+        [time24hr]="hourFormat() === '24'"
+        [mode]="flatpickrMode()"
+        [readonly]="readonlyInput()"
         [disabled]="disabled()"
-        [invalid]="isInvalid()"
         [style]="dateStyle()"
         appendTo="body"
-        (onClear)="dateClear.emit()"
-        (onSelect)="dateSelect.emit($event)"
-        fluid
+        (flatpickrChange)="dateSelect.emit($event)"
       />
     </base-input-signal>
   `,
@@ -75,6 +71,9 @@ export class CustomInputDatepicker
   showButtonBar = input<boolean>(true);
   selectionMode = input<"single" | "multiple" | "range" | undefined>(undefined);
   dateStyle = input<Record<string, string>>({ minWidth: "195px" });
+
+  flatpickrMode = computed(() => this.selectionMode() === "range" ? "range" : this.selectionMode() === "multiple" ? "multiple" : "single");
+  flatpickrDateFormat = computed(() => this.dateFormat() === "dd/mm/yy" ? "d/m/Y" : this.dateFormat());
 
   constructor() {
     super();

@@ -1,16 +1,16 @@
-import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-select-button-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectButtonModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, AppSelectButton],
   template: `
     <base-input-signal
       [control]="control()"
@@ -26,20 +26,17 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [hidden]="hidden()"
       [onlyInput]="onlyInput()"
     >
-      <p-selectbutton
-        [options]="options()"
-        [formControl]="control() || internalControl"
-        [optionLabel]="optionLabel()"
-        [optionValue]="optionValue()"
-        [multiple]="multiple()"
+      <app-select-button
+        [options]="mappedOptions()"
+        [value]="(control() || internalControl).value"
+        (valueChange)="onValueChange($event)"
         [class]="customClass()"
         [size]="size()"
         [disabled]="disabled()"
-        [invalid]="isInvalid()"
-        (onChange)="selectionChange.emit($event)"
+        
       >
         <ng-content></ng-content>
-      </p-selectbutton>
+      </app-select-button>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -62,6 +59,18 @@ export class CustomInputSelectButton
   multiple = input<boolean>(false);
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
+
+  mappedOptions = computed(() => this.options().map((option: any) => ({
+    label: option?.[this.optionLabel()] ?? "",
+    value: option?.[this.optionValue()],
+    disabled: option?.disabled,
+  })));
+
+  onValueChange(value: any): void {
+    const ctrl = this.control() || this.internalControl;
+    ctrl.setValue(value);
+    this.selectionChange.emit({ value });
+  }
 
   constructor() {
     super();

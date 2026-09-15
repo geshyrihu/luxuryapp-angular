@@ -19,6 +19,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import {
@@ -158,19 +159,18 @@ export class MedidoresList {
   }
 
   generate() {
-    import("exceljs").then(async (ExcelJS) => {
-      const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet("data");
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet("data");
 
-      if (this.datosExcel && this.datosExcel.length > 0) {
-        worksheet.columns = Object.keys(this.datosExcel[0]).map((key) => ({
-          header: key,
-          key,
-        }));
-        this.datosExcel.forEach((item) => worksheet.addRow(item));
-      }
+    if (this.datosExcel && this.datosExcel.length > 0) {
+      worksheet.columns = Object.keys(this.datosExcel[0]).map((key) => ({
+        header: key,
+        key,
+      }));
+      this.datosExcel.forEach((item) => worksheet.addRow(item));
+    }
 
-      const excelBuffer = await workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer().then((excelBuffer) => {
       this.saveAsExcelFile(excelBuffer, "lecturas");
     });
   }

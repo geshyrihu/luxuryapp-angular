@@ -10,12 +10,11 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-date-time-native",
-  imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective, InputTextModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <base-input-signal
@@ -27,7 +26,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
     >
       <div class="d-flex gap-2 w-full">
         <input
-          pInputText
+          class="form-control"
           mwlFlatpickr
           type="text"
           [id]="id()"
@@ -41,7 +40,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
           fluid
         />
         <input
-          pInputText
+          class="form-control"
           type="time"
           style="width: 10rem; flex-shrink: 0;"
           [value]="timePart()"

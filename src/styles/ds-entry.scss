@@ -39,6 +39,7 @@
 @use "web/tables";
 @use "web/alerts";
 @use "web/dropdowns";
+@use "web/ng-select-overrides";
 
 // 4. Bootstrap (migración progresiva PrimeNG -> Bootstrap).
 @use "web/bootstrap-entry";

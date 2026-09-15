@@ -10,7 +10,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { AutoCompleteModule } from "primeng/autocomplete";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../base/base-input-signal";
 
@@ -26,8 +26,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    AutoCompleteModule,
-    FormsModule,
+    NgSelectModule,
   ],
   template: `
     <base-input-signal
@@ -39,34 +38,29 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [readonly]="readonly()"
     >
-      <p-autocomplete
-        [suggestions]="filteredData"
-        (completeMethod)="search($event)"
-        (onSelect)="onSelectItem($event)"
-        (onUnselect)="onUnselectItem($event)"
-        (onClear)="onClear()"
-        [ngModel]="(control() || internalControl).value"
-        (ngModelChange)="onModelChange($event)"
-        [optionLabel]="'label'"
-        [dataKey]="'value'"
+      <ng-select
+        [items]="filteredData"
+        (search)="search($event)"
+        (clear)="onClear()"
+        [formControl]="control() || internalControl"
+        bindLabel="label"
         [placeholder]="placeholder()"
-        [showClear]="true"
+        [clearable]="true"
         [disabled]="disabled()"
         [readonly]="readonly()"
-        [emptyMessage]="'No se encontraron resultados'"
         [multiple]="true"
-        fluid
-        [inputId]="id()"
+        [labelForId]="id()"
+        [searchable]="true"
         [class]="getSizeClass()"
         appendTo="body"
       >
-        <ng-template let-item #item>
+        <ng-template ng-option-tmp let-item="item">
           {{ item.label }}
         </ng-template>
-        <ng-template let-item #selectedItem>
+        <ng-template ng-label-tmp let-item="item">
           {{ item?.label || "" }}
         </ng-template>
-      </p-autocomplete>
+      </ng-select>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -89,14 +83,14 @@ export class CustomInputAutoMultiple extends BaseInputSignal {
   filteredData: SelectItemDto[] = [];
 
   getSizeClass(): string {
-    if (this.size() === "small") return "p-inputtext-sm";
-    if (this.size() === "large") return "p-inputtext-lg";
+    if (this.size() === "small") return "ng-select-sm";
+    if (this.size() === "large") return "ng-select-lg";
     return "";
   }
 
   // 🔍 Lógica de búsqueda
   search(event: any): void {
-    const query = event.query.toLowerCase();
+    const query = (event.term ?? "").toLowerCase();
     this.filteredData = this.data().filter((item) =>
       item.label.toLowerCase().includes(query),
     );

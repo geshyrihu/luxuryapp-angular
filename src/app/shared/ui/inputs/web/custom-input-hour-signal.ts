@@ -2,7 +2,6 @@ import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 /**
@@ -17,7 +16,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
     BaseInputSignal,
     ReactiveFormsModule,
     FlatpickrDirective,
-    InputTextModule,
   ],
   template: `
     <base-input-signal
@@ -32,7 +30,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
     >
       <input
         type="text"
-        pInputText
+        class="form-control"
         [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
@@ -43,7 +41,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [enableTime]="true"
         [noCalendar]="true"
         dateFormat="H:i"
-        [pSize]="size()"
+        [class.form-control-sm]="size() === 'small'"
+        [class.form-control-lg]="size() === 'large'"
         (change)="handleFlatpickrChange($event.target.value)"
         fluid
       />

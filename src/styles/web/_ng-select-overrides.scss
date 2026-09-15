@@ -1,0 +1,19 @@
+// ============================================================
+// _ng-select-overrides.scss
+// Ajustes globales para @ng-select/ng-select (tema base cargado via
+// angular.json: @ng-select/ng-select/themes/default.theme.css).
+// ============================================================
+//
+// El panel desplegable (.ng-dropdown-panel) se usa con [appendTo]="body"
+// en varios componentes (select, multiselect, autocomplete, phone-prefix
+// — Fase 5 de la migración PrimeNG->Bootstrap, 2026-09-14), quedando
+// como último hijo de <body>. El tema por defecto de ng-select NO
+// declara z-index para .ng-dropdown-panel — sin esta regla, el panel
+// queda detrás de cualquier diálogo de PrimeNG (siguen activos hasta
+// que Fase 4 los migre; usan z-index 10000+, ver comentario en
+// styles/mobile/_ionic-rn-theme.scss:303). Valor elegido para superar
+// con margen ese rango sin chocar con el 110000 que usan los overlays
+// de Ionic (mobile, capa aparte).
+.ng-dropdown-panel {
+  z-index: 100000 !important;
+}

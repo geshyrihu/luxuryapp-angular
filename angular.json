@@ -86,6 +86,7 @@
               "flatpickr/dist/flatpickr.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/@angular/cdk/overlay-prebuilt.css",
+              "@ng-select/ng-select/themes/default.theme.css",
               "src/styles/ds-entry.scss",
               "src/styles/styles.scss",
               "node_modules/animate.css/animate.min.css"

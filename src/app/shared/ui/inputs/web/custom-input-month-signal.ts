@@ -1,6 +1,5 @@
 import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 /**
@@ -11,7 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  */
 @Component({
   selector: "web-custom-input-month",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -25,14 +24,15 @@ import { BaseInputSignal } from "../base/base-input-signal";
     >
       <input
         type="month"
-        pInputText
+        class="form-control"
         [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readOnly]="readonly()"
         [disabled]="disabled()"
         label
-        [pSize]="size()"
+        [class.form-control-sm]="size() === 'small'"
+        [class.form-control-lg]="size() === 'large'"
         fluid
       />
     </base-input-signal>

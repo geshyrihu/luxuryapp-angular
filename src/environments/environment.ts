@@ -17,7 +17,8 @@ export const environment = {
   // OneSignal — Desarrollo
   // App ID separado para dev (no contamina producción)
   ONESIGNAL_APPID: "3d1f1ce3-638f-4a30-b093-ab617baf91a8",
-  ONESIGNAL_SAFARI_WEB_ID: "web.onesignal.auto.0b3c1e09-f01e-4f75-a6ff-3f857f927766",
+  ONESIGNAL_SAFARI_WEB_ID:
+    "web.onesignal.auto.0b3c1e09-f01e-4f75-a6ff-3f857f927766",
   ONESIGNAL_ALLOWED_ORIGINS: ["http://localhost:4200"],
 
   // Firebase

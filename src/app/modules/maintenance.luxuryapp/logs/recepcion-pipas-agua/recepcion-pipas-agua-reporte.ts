@@ -13,6 +13,7 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Workbook } from "exceljs";
 import FileSaver from "file-saver";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -289,46 +290,45 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   exportExcel(): void {
-    import("exceljs").then(async (ExcelJS) => {
-      const rows = this.dataSignal().map((item) => {
-        const m3 =
-          (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
-        return {
-          Empresa: item.empresa ?? "",
-          Placas: item.placasCamion,
-          "Cap. (L)": item.capacidadPipa,
-          Llegada: item.horaLlegada
-            ? this.apiDatePipe.transform(item.horaLlegada, "dd/MM/yyyy HH:mm")
-            : "",
-          Termino: item.horaTermino
-            ? this.apiDatePipe.transform(item.horaTermino, "dd/MM/yyyy HH:mm")
-            : "En curso",
-          "Cisterna antes (%)": item.nivelCisternaAntes,
-          "Cisterna despues (%)": item.nivelCisternaDespues,
-          "Dif. cisterna (%)":
-            (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
-          "Medidor inicial": item.lecturaMedidorInicial,
-          "Medidor final": item.lecturaMedidorFinal,
-          "m3 ingresados": m3,
-          "Costo m3": item.costoMetroCubico,
-          "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
-          "Colaborador mtto": item.colaboradorMtto ?? "",
-          "Guardia testigo": item.guardiaSeguridad ?? "",
-        };
-      });
+    const rows = this.dataSignal().map((item) => {
+      const m3 =
+        (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
+      return {
+        Empresa: item.empresa ?? "",
+        Placas: item.placasCamion,
+        "Cap. (L)": item.capacidadPipa,
+        Llegada: item.horaLlegada
+          ? this.apiDatePipe.transform(item.horaLlegada, "dd/MM/yyyy HH:mm")
+          : "",
+        Termino: item.horaTermino
+          ? this.apiDatePipe.transform(item.horaTermino, "dd/MM/yyyy HH:mm")
+          : "En curso",
+        "Cisterna antes (%)": item.nivelCisternaAntes,
+        "Cisterna despues (%)": item.nivelCisternaDespues,
+        "Dif. cisterna (%)":
+          (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
+        "Medidor inicial": item.lecturaMedidorInicial,
+        "Medidor final": item.lecturaMedidorFinal,
+        "m3 ingresados": m3,
+        "Costo m3": item.costoMetroCubico,
+        "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
+        "Colaborador mtto": item.colaboradorMtto ?? "",
+        "Guardia testigo": item.guardiaSeguridad ?? "",
+      };
+    });
 
-      const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet("Reporte");
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet("Reporte");
 
-      if (rows.length > 0) {
-        worksheet.columns = Object.keys(rows[0]).map((key) => ({
-          header: key,
-          key,
-        }));
-        rows.forEach((item) => worksheet.addRow(item));
-      }
+    if (rows.length > 0) {
+      worksheet.columns = Object.keys(rows[0]).map((key) => ({
+        header: key,
+        key,
+      }));
+      rows.forEach((item) => worksheet.addRow(item));
+    }
 
-      const buffer = await workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer().then((buffer) => {
       FileSaver.saveAs(
         new Blob([buffer], {
           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",

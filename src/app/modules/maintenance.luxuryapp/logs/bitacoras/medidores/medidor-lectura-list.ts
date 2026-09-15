@@ -18,6 +18,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -98,28 +99,27 @@ export class MedidorLecturaList implements OnInit {
   }
 
   exportExcel() {
-    import("exceljs").then(async (ExcelJS) => {
-      const dataToExport = this.dataSignal().map((item) => ({
-        Medidor: item.medidor || "",
-        "Número de Medidor": item.numeroMedidor || "",
-        Fecha: item.fechaRegistro
-          ? this.apiDatePipe.transform(item.fechaRegistro, "dd-MMM-yyyy")
-          : "",
-        Lectura: item.lectura || 0,
+    const dataToExport = this.dataSignal().map((item) => ({
+      Medidor: item.medidor || "",
+      "Número de Medidor": item.numeroMedidor || "",
+      Fecha: item.fechaRegistro
+        ? this.apiDatePipe.transform(item.fechaRegistro, "dd-MMM-yyyy")
+        : "",
+      Lectura: item.lectura || 0,
+    }));
+
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet("data");
+
+    if (dataToExport.length > 0) {
+      worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
+        header: key,
+        key,
       }));
+      dataToExport.forEach((item) => worksheet.addRow(item));
+    }
 
-      const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet("data");
-
-      if (dataToExport.length > 0) {
-        worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
-          header: key,
-          key,
-        }));
-        dataToExport.forEach((item) => worksheet.addRow(item));
-      }
-
-      const buffer = await workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer().then((buffer) => {
       this.saveAsExcelFile(buffer, "lecturas");
     });
   }

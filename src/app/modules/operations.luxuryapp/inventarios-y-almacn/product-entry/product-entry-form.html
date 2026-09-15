@@ -1,76 +1,72 @@
-<div class="card">
-  
-    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <custom-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <custom-input-date-signal
+    [control]="form.controls.fechaEntrada"
+    label="Fecha de entrada"
+    placeholder="fecha de entrada"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.almacenId"
+    label="Almacen"
+    [data]="cb_almacenes()"
+    [filter]="true"
+  />
+  <div class="row mb-4 align-items-center g-4">
+    <label class="form-label col-12 col-md-3">Producto</label>
+    @if (mostrarProductos() == false) {
+    <div class="col-12 col-md-9">
       <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-      <custom-input-date-signal
-        [control]="form.controls.fechaEntrada"
-        label="Fecha de entrada"
-        placeholder="fecha de entrada"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.almacenId"
-        label="Almacen"
-        [data]="cb_almacenes()"
-        [filter]="true"
-      />
-      <div class="row mb-4 align-items-center g-4">
-        <label class="form-label col-12 col-md-3">Producto</label>
-        @if (mostrarProductos() == false) {
-        <div class="col-12 col-md-9">
-          <custom-input-text-signal
-            [control]="form.controls.productoId"
-            [hidden]="true"
-            [horizontal]="false"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.nombreProducto"
-            [horizontal]="false"
-          />
-        </div>
-        } @if (mostrarProductos() == true) {
-        <div class="col-12 col-md-9">
-          <custom-input-select-signal
-            [control]="form.controls.productoId"
-            [data]="cb_productos()"
-            placeholder="--Selecciona un producto--"
-            [filter]="true"
-          />
-        </div>
-        }
-      </div>
-      <custom-input-number-signal
-        [control]="form.controls.cantidad"
-        label="Cantidad"
-        placeholder="cantidad"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.unidadMedidaId"
-        label="Unidad"
-        [data]="cb_measurement_unit()"
-        [filter]="true"
-      />
-      <custom-input-autocomplete-signal
-        (propagar)="saveProviderId($event)"
-        [control]="form.controls.providerName"
-        [data]="cb_providers()"
-        label="Proveedor"
-        placeholder="Escribe para buscar proveedor"
+        [control]="form.controls.productoId"
+        [hidden]="true"
+        [horizontal]="false"
       />
       <custom-input-text-signal
-        [control]="form.controls.numeroFactura"
-        label="Factura"
-        placeholder="factura"
+        [control]="form.controls.nombreProducto"
+        [horizontal]="false"
       />
-      <il-button-save
-        [propertyId]="id()"
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
+    </div>
+    } @if (mostrarProductos() == true) {
+    <div class="col-12 col-md-9">
+      <custom-input-select-signal
+        [control]="form.controls.productoId"
+        [data]="cb_productos()"
+        placeholder="--Selecciona un producto--"
+        [filter]="true"
       />
-    </form>
-  
-</div>
+    </div>
+    }
+  </div>
+  <custom-input-number-signal
+    [control]="form.controls.cantidad"
+    label="Cantidad"
+    placeholder="cantidad"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.unidadMedidaId"
+    label="Unidad"
+    [data]="cb_measurement_unit()"
+    [filter]="true"
+  />
+  <custom-input-autocomplete-signal
+    (propagar)="saveProviderId($event)"
+    [control]="form.controls.providerName"
+    [data]="cb_providers()"
+    label="Proveedor"
+    placeholder="Escribe para buscar proveedor"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.numeroFactura"
+    label="Factura"
+    placeholder="factura"
+  />
+  <il-button-save
+    [propertyId]="id()"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

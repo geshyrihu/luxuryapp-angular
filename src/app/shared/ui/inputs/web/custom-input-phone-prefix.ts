@@ -1,6 +1,6 @@
 import { Component, forwardRef, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { SelectModule } from "primeng/select";
+import { NgSelectModule } from "@ng-select/ng-select";
 import {
   PHONE_PREFIXES,
   PhonePrefix,
@@ -9,7 +9,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "web-custom-input-phone-prefix",
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgSelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -18,19 +18,19 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [horizontal]="horizontal()"
       [required]="requiredInput()"
     >
-      <p-select
-        [options]="prefixes"
+      <ng-select
+        [items]="prefixes"
         [formControl]="control() || internalControl"
-        optionValue="dialCode"
-        [filter]="true"
-        filterBy="name,dialCode"
-        [showClear]="false"
+        bindLabel="name"
+        bindValue="dialCode"
+        [searchable]="true"
+        [clearable]="false"
+        [labelForId]="id()"
         appendTo="body"
-        fluid
         placeholder="Prefijo"
       >
         <!-- Valor seleccionado -->
-        <ng-template #selectedItem let-item>
+        <ng-template ng-label-tmp let-item="item">
           @if (item) {
           <div class="d-flex align-items-center gap-2">
             <span class="text-xl leading-none">{{ item.flag }}</span>
@@ -40,14 +40,14 @@ import { BaseInputSignal } from "../base/base-input-signal";
         </ng-template>
 
         <!-- Opciones del dropdown -->
-        <ng-template #item let-option>
+        <ng-template ng-option-tmp let-option="item">
           <div class="d-flex align-items-center gap-2">
             <span class="text-xl leading-none">{{ option.flag }}</span>
             <span class="flex-1">{{ option.name }}</span>
             <span class="text-500 text-sm">{{ option.dialCode }}</span>
           </div>
         </ng-template>
-      </p-select>
+      </ng-select>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

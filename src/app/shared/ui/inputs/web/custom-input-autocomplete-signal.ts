@@ -13,7 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { AutoCompleteModule } from "primeng/autocomplete";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
@@ -23,8 +23,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
     NgTemplateOutlet,
     BaseInputSignal,
     ReactiveFormsModule,
-    AutoCompleteModule,
-    FormsModule,
+    NgSelectModule,
   ],
   template: `
     <base-input-signal
@@ -41,57 +40,58 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [noMargin]="noMargin()"
       [onlyInput]="onlyInput()"
     >
-      <p-autocomplete
-        [suggestions]="resolvedSuggestions()"
-        (completeMethod)="onComplete($event)"
-        (onSelect)="onSelectItem($event)"
-        (onClear)="onClear()"
+      <ng-select
+        [items]="resolvedSuggestions()"
+        (search)="onComplete($event)"
+        (change)="onSelectItem($event)"
+        (clear)="onClear()"
         [formControl]="control() || internalControl"
-        [optionLabel]="optionLabel()"
-        [dataKey]="dataKey()"
+        [bindLabel]="optionLabel()"
         [placeholder]="placeholder()"
-        [forceSelection]="forceSelection()"
-        [showClear]="showClear()"
-        [dropdown]="dropdown()"
+        [clearable]="showClear()"
         [disabled]="disabled()"
         [readonly]="readonly()"
-        [emptyMessage]="emptyMessage()"
-        [scrollHeight]="scrollHeight()"
-        [panelStyleClass]="panelStyleClass()"
-        [panelStyle]="panelStyle()"
-        [inputStyleClass]="inputStyleClass()"
-        fluid
-        [inputId]="id()"
+        [labelForId]="id()"
+        [searchable]="true"
+        [addTag]="!forceSelection()"
+        [ngClass]="getComponentClass()"
         appendTo="body"
       >
         @if (itemTemplate() || itemTemplateIn(); as tpl) {
-          <ng-template let-item #item>
+          <ng-template ng-option-tmp let-item="item">
             <ng-container
               [ngTemplateOutlet]="tpl"
               [ngTemplateOutletContext]="{ $implicit: item }"
             />
           </ng-template>
         } @else {
-          <ng-template let-item #item>
+          <ng-template ng-option-tmp let-item="item">
             {{ resolveItemLabel(item) }}
           </ng-template>
         }
 
         @if (selectedItemTemplate() || selectedItemTemplateIn(); as tpl) {
-          <ng-template let-item #selectedItem>
+          <ng-template ng-label-tmp let-item="item">
             <ng-container
               [ngTemplateOutlet]="tpl"
               [ngTemplateOutletContext]="{ $implicit: item }"
             />
           </ng-template>
         } @else {
-          <ng-template let-item #selectedItem>
+          <ng-template ng-label-tmp let-item="item">
             {{ resolveItemLabel(item) }}
           </ng-template>
         }
-      </p-autocomplete>
+      </ng-select>
     </base-input-signal>
   `,
+  styles: [`
+      :host ::ng-deep .ng-select-sm .ng-select-container { min-height: 2rem; font-size: .875rem; }
+      :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container { padding: .25rem .5rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
+    `
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -129,7 +129,7 @@ export class CustomInputAutoComplete extends BaseInputSignal {
   onComplete(event: any): void {
     this.completeMethod.emit(event);
 
-    const query = (event?.query ?? "").toLowerCase();
+    const query = (event?.term ?? event?.query ?? "").toLowerCase();
     const suggestions = this.data();
     const optionLabel = this.optionLabel();
     const filtered = !query
@@ -151,7 +151,7 @@ export class CustomInputAutoComplete extends BaseInputSignal {
   }
 
   public onSelectItem(event: any): void {
-    const selectedItem = event.value;
+    const selectedItem = event;
     (this.control() || this.internalControl).setValue(selectedItem);
     this.propagar.emit(selectedItem);
   }
@@ -166,5 +166,13 @@ export class CustomInputAutoComplete extends BaseInputSignal {
     return this.suggestionsInput().length
       ? this.suggestionsInput()
       : this._suggestionsCache;
+  }
+
+  getComponentClass(): string {
+    const classes: string[] = [];
+    if (this.size() === "small") classes.push("ng-select-sm");
+    if (this.size() === "large") classes.push("ng-select-lg");
+    if (this.inputStyleClass()) classes.push(this.inputStyleClass());
+    return classes.join(" ");
   }
 }

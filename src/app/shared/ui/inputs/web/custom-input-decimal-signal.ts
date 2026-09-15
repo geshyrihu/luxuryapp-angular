@@ -1,6 +1,5 @@
 import { Component, computed, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 /**
@@ -11,7 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  */
 @Component({
   selector: "custom-input-decimal-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -23,23 +22,16 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <p-inputnumber
-        [inputId]="id()"
+      <input
+        type="number"
+        class="form-control"
+        [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
         [disabled]="disabled()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        mode="decimal"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
-        [showClear]="showClear()"
-        [inputStyleClass]="inputStyleClass()"
-        fluid
-        locale="es-MX"
+        [step]="decimalStep()"
+        [class]="inputStyleClass()"
       />
     </base-input-signal>
   `,
@@ -71,4 +63,6 @@ export class CustomInputDecimal extends BaseInputSignal {
     if (this.size() === "large") classes += " p-inputtext-lg";
     return classes.trim();
   });
+
+  decimalStep = computed(() => 10 ** -this.maxFractionDigits());
 }
