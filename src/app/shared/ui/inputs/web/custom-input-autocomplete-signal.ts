@@ -3,8 +3,10 @@ import {
   Component,
   contentChild,
   forwardRef,
+  inject,
   input,
   output,
+  Renderer2,
   TemplateRef,
   ChangeDetectionStrategy,
 } from "@angular/core";
@@ -45,6 +47,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
         (search)="onComplete($event)"
         (change)="onSelectItem($event)"
         (clear)="onClear()"
+        (open)="onPanelOpen()"
+        (close)="onPanelClose()"
         [formControl]="control() || internalControl"
         [bindLabel]="optionLabel()"
         [placeholder]="placeholder()"
@@ -102,6 +106,9 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputAutoComplete extends BaseInputSignal {
+  private readonly renderer = inject(Renderer2);
+  private openPanelEl: HTMLElement | null = null;
+
   itemTemplate = contentChild<TemplateRef<any>>("item");
   selectedItemTemplate = contentChild<TemplateRef<any>>("selectedItem");
   /** Passthrough para capas superiores (shell/adaptive) que re-proyectan templates. */
@@ -174,5 +181,45 @@ export class CustomInputAutoComplete extends BaseInputSignal {
     if (this.size() === "large") classes.push("ng-select-lg");
     if (this.inputStyleClass()) classes.push(this.inputStyleClass());
     return classes.join(" ");
+  }
+
+  /**
+   * `@ng-select` con `appendTo="body"` reubica el mismo nodo del panel
+   * (`.ng-dropdown-panel`) dentro de <body> vía `appendChild` — no clona
+   * ni ofrece un input para pasarle una clase/estilo propio al panel
+   * portado. Se aplica a mano en cada apertura y se limpia al cerrar,
+   * ya que como mucho hay un panel de este componente abierto a la vez.
+   */
+  protected onPanelOpen(): void {
+    // El evento (open) puede dispararse antes de que ng-select termine de
+    // mover el panel a <body> (appendChild sucede aparte) — se difiere al
+    // siguiente tick para no leer el DOM a medio actualizar.
+    setTimeout(() => {
+      // Con appendTo="body" solo hay un panel de ng-select abierto a la
+      // vez en todo el documento (verificado en vivo, ver 04-bitacora-cambios.md).
+      const panel = document.querySelector<HTMLElement>(".ng-dropdown-panel");
+      if (!panel) return;
+      this.openPanelEl = panel;
+
+      if (this.panelStyleClass()) {
+        this.renderer.addClass(panel, this.panelStyleClass());
+      }
+      const style = this.panelStyle();
+      if (style) {
+        for (const [prop, value] of Object.entries(style)) {
+          this.renderer.setStyle(panel, prop, value);
+        }
+      }
+      if (this.scrollHeight()) {
+        const scrollHost = panel.querySelector<HTMLElement>(".scroll-host");
+        if (scrollHost) {
+          this.renderer.setStyle(scrollHost, "max-height", this.scrollHeight());
+        }
+      }
+    });
+  }
+
+  protected onPanelClose(): void {
+    this.openPanelEl = null;
   }
 }
