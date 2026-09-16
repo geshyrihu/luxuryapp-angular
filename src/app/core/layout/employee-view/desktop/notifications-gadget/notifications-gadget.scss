@@ -16,3 +16,6 @@
   font-size: 0.6rem;
   line-height: 1rem;
 }
+
+::ng-deep .hide-caret::after { display: none !important; }
+

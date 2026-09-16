@@ -13,7 +13,6 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EDocumentType } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -40,7 +39,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppSortableColumn,
 
     AppSorticon,
-    DataViewModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

@@ -26,6 +26,7 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    AppFrozenColumn,
     PrimeNgCustomCaption,
     CurrencyPipe,
   ],

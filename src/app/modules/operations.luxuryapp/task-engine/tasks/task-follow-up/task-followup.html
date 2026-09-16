@@ -39,6 +39,22 @@
     </div>
   </form>
 
+  <div class="border rounded p-3 bg-body-tertiary">
+    <div class="fw-semibold text-sm mb-2">Evidencia del nuevo seguimiento</div>
+    <lx-file-upload
+      accept="image/*,.heic,.heif"
+      [maxFileSize]="10000000"
+      [multiple]="true"
+      [chooseLabel]="'Agregar evidencia'"
+      (onSelect)="onPendingEvidenceSelect($event)"
+    />
+    @if (pendingEvidence().length > 0) {
+    <small class="text-body-secondary d-block mt-2">
+      {{ pendingEvidence().length }} imagen(es) seleccionada(s). Se subirán al guardar.
+    </small>
+    }
+  </div>
+
   <!-- Timeline Section -->
   <div class="border border-top-1 pt-4">
     <h3 class="text-xl fw-semibold text-body mb-3">
@@ -68,6 +84,45 @@
         <p class="m-0 text-body line-height-3 text-sm">
           {{ follow.description }}
         </p>
+        <div class="mt-3 pt-3 border-top">
+          <span class="text-xs fw-semibold text-uppercase">Evidencia</span>
+          <lx-file-upload
+            accept="image/*,.heic,.heif"
+            [maxFileSize]="10000000"
+             [multiple]="true"
+            [chooseLabel]="'Agregar imagen'"
+            (onSelect)="onEvidenceSelect($event, follow.id)"
+          />
+          @if (evidenceFor(follow.id).length > 0) {
+          <div class="d-flex flex-wrap gap-2 mt-2">
+            @for (image of evidenceFor(follow.id); track image.id; let imageIndex = $index) {
+            <div class="border rounded p-1">
+                <img [src]="image.path" [alt]="image.fileName" class="evidence-preview rounded" />
+              <div class="d-flex gap-1 mt-1">
+                <iw-button
+                  icon="material-symbols-light:arrow-upward"
+                  ariaLabel="Mover evidencia arriba"
+                  [disabled]="imageIndex === 0"
+                  (clicked)="moveEvidence(follow.id, imageIndex, -1)"
+                />
+                <iw-button
+                  icon="material-symbols-light:arrow-downward"
+                  ariaLabel="Mover evidencia abajo"
+                  [disabled]="imageIndex === evidenceFor(follow.id).length - 1"
+                  (clicked)="moveEvidence(follow.id, imageIndex, 1)"
+                />
+                <iw-button
+                  icon="material-symbols-light:delete-outline"
+                  severity="danger"
+                  ariaLabel="Eliminar evidencia"
+                  (clicked)="deleteEvidence(follow.id, image.id)"
+                />
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
       </div>
       }
     </div>
@@ -84,3 +139,14 @@
     }
   </div>
 </div>
+
+<style>
+  .evidence-preview {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 14rem;
+    object-fit: contain;
+  }
+</style>

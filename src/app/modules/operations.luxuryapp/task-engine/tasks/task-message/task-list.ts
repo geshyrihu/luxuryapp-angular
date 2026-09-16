@@ -10,6 +10,20 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -17,11 +31,12 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -42,36 +57,21 @@ import {
   settingsOutline,
   trashOutline,
 } from "ionicons/icons";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { CustomToastService } from "@core/services/custom-toast.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
-import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { PrintService } from "@core/services/print.service";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
 
 import Swal from "sweetalert2";
 
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
-import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -136,9 +136,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
-
     AppSortableColumn,
-
     AppSorticon,
     ActionMenu,
     CustomInputTextSignal,
@@ -855,5 +853,3 @@ export class TaskList implements OnInit {
     });
   }
 }
-
-

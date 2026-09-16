@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-13T19:49:08.353Z",
-  "totalMatches": 1955,
+  "generatedAt": "2026-09-16T19:28:28.945Z",
+  "totalMatches": 1952,
   "userFacingMatches": 419,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/modules",
-      "count": 1246
+      "count": 1244
     },
     {
       "key": "app/shared",
@@ -14,7 +14,7 @@
     },
     {
       "key": "src/styles",
-      "count": 154
+      "count": 153
     },
     {
       "key": "app/routing",
@@ -78,7 +78,7 @@
     },
     {
       "key": "template_comment",
-      "count": 180
+      "count": 178
     },
     {
       "key": "style_comment",
@@ -90,7 +90,7 @@
     },
     {
       "key": "style_text",
-      "count": 10
+      "count": 9
     },
     {
       "key": "style_content",
@@ -975,7 +975,7 @@
       "preview": "this.consoleLogger.custom(\"🎉\", \"#32CD32\", \"[SyncQueue] Cola vacía!\");"
     },
     {
-      "file": "src/app/core/layout/committee-layout/monitor/footer.html",
+      "file": "src/app/core/layout/committee-layout/desktop/footer.html",
       "line": 3,
       "category": "template_text",
       "module": "app/core",
@@ -986,7 +986,7 @@
       "preview": "<p class=\"committee-footer__text\">© {{ year }} Luxury Building Group</p>"
     },
     {
-      "file": "src/app/core/layout/committee-layout/monitor/profile.ts",
+      "file": "src/app/core/layout/committee-layout/desktop/profile.ts",
       "line": 77,
       "category": "code_string",
       "module": "app/core",
@@ -995,6 +995,17 @@
         "🔄"
       ],
       "preview": "\"🔄\","
+    },
+    {
+      "file": "src/app/core/layout/employee-view/desktop/footer-desktop/footer-desktop.ts",
+      "line": 10,
+      "category": "code_misc",
+      "module": "app/core",
+      "severity": "low",
+      "symbols": [
+        "©"
+      ],
+      "preview": "<p class=\"mb-0\">Copyright {{ currentYear }} © LuxuryApp</p>"
     },
     {
       "file": "src/app/core/layout/employee-view/layout-employee.ts",
@@ -1129,17 +1140,6 @@
       "preview": "* pero un poco de paranoia en la programación nunca viene mal. 😉"
     },
     {
-      "file": "src/app/core/layout/employee-view/monitor/footer-monitor/footer-monitor.ts",
-      "line": 10,
-      "category": "code_misc",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "©"
-      ],
-      "preview": "<p class=\"mb-0\">Copyright {{ currentYear }} © LuxuryApp</p>"
-    },
-    {
       "file": "src/app/core/services/back-blocker.service.ts",
       "line": 8,
       "category": "code_comment",
@@ -1251,7 +1251,7 @@
     },
     {
       "file": "src/app/core/services/ionic-dialog-modal.ts",
-      "line": 23,
+      "line": 26,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1855,7 +1855,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/ar/aspel-customer-empresa/aspel-customer-empresa-list.html",
-      "line": 64,
+      "line": 63,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -1952,7 +1952,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "<span class=\"text-xl mr-2\">✅</span>"
+      "preview": "<span class=\"text-xl me-2\">✅</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list.html",
@@ -1963,7 +1963,7 @@
       "symbols": [
         "⏳"
       ],
-      "preview": "<span class=\"text-xl mr-2\">⏳</span>"
+      "preview": "<span class=\"text-xl me-2\">⏳</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list.html",
@@ -1974,7 +1974,7 @@
       "symbols": [
         "🛡"
       ],
-      "preview": "<span class=\"text-xl mr-2\">🛡️</span>"
+      "preview": "<span class=\"text-xl me-2\">🛡️</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list.html",
@@ -1985,7 +1985,7 @@
       "symbols": [
         "⏳"
       ],
-      "preview": "<span class=\"text-xl mr-2\">⏳</span>"
+      "preview": "<span class=\"text-xl me-2\">⏳</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list.html",
@@ -1996,7 +1996,7 @@
       "symbols": [
         "💰"
       ],
-      "preview": "<span class=\"text-xl mr-2\">💰</span>"
+      "preview": "<span class=\"text-xl me-2\">💰</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list.html",
@@ -2007,7 +2007,7 @@
       "symbols": [
         "⏳"
       ],
-      "preview": "<span class=\"text-xl mr-2\">⏳</span>"
+      "preview": "<span class=\"text-xl me-2\">⏳</span>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-accounts/level-three-account-list.html",
@@ -2088,7 +2088,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-customer-empresa/aspel-customer-empresa-list.html",
-      "line": 64,
+      "line": 63,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -2565,7 +2565,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/espejo-aspel-full/espejo-aspel-full.ts",
-      "line": 229,
+      "line": 231,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -6025,7 +6025,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 607,
+      "line": 626,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6036,7 +6036,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 614,
+      "line": 633,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6047,7 +6047,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 659,
+      "line": 678,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6069,7 +6069,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.ts",
-      "line": 203,
+      "line": 208,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -7793,7 +7793,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin.routes.ts",
-      "line": 359,
+      "line": 348,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -7837,7 +7837,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/configuracion-correo/customer-data-company/customer-data-company-list.html",
-      "line": 112,
+      "line": 111,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -7958,7 +7958,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/seguridad-permisos/application-role/roles-list.html",
-      "line": 88,
+      "line": 87,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -8079,7 +8079,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/seguridad-permisos/module-app-rol/module-app-rol-list.html",
-      "line": 65,
+      "line": 64,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -8123,7 +8123,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/seguridad-permisos/module-app/module-app-list.html",
-      "line": 104,
+      "line": 103,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -8156,7 +8156,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/seguridad-permisos/user-accounts/user-account-list.ts",
-      "line": 213,
+      "line": 215,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -10652,7 +10652,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/cobranza-online/detalle-condominos/cobranza-online-detalle-condominos.ts",
-      "line": 90,
+      "line": 92,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11022,7 +11022,7 @@
       "symbols": [
         "🏢"
       ],
-      "preview": "<h1 class=\"text-2xl font-bold text-color mb-1\">🏢 Recursos Humanos</h1>"
+      "preview": "<h1 class=\"text-2xl fw-bold text-body mb-1\">🏢 Recursos Humanos</h1>"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/shared/generic-approval-panel.ts",
@@ -11169,7 +11169,7 @@
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/past-vacations/vacaciones-pasadas-registro.ts",
-      "line": 264,
+      "line": 268,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11180,7 +11180,7 @@
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/past-vacations/vacaciones-pasadas-registro.ts",
-      "line": 278,
+      "line": 282,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11209,7 +11209,7 @@
       "symbols": [
         "→"
       ],
-      "preview": "<span class=\"text-500\"> → {{ req.endDate }}</span>"
+      "preview": "<span class=\"text-body-secondary\"> → {{ req.endDate }}</span>"
     },
     {
       "file": "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-lista.html",
@@ -11716,7 +11716,7 @@
       "symbols": [
         "→"
       ],
-      "preview": "<span class=\"text-400\"> → </span>"
+      "preview": "<span class=\"text-body-secondary\"> → </span>"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
@@ -11727,7 +11727,7 @@
       "symbols": [
         "→"
       ],
-      "preview": "<span class=\"text-400\"> → </span>"
+      "preview": "<span class=\"text-body-secondary\"> → </span>"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/tool-loan/tool-list.html",
@@ -11819,7 +11819,7 @@
     },
     {
       "file": "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/resumen-minuta.html",
-      "line": 205,
+      "line": 204,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11940,7 +11940,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.html",
-      "line": 289,
+      "line": 288,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11951,7 +11951,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 284,
+      "line": 288,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11962,7 +11962,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 286,
+      "line": 290,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11973,7 +11973,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 288,
+      "line": 292,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11984,7 +11984,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 290,
+      "line": 294,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11995,7 +11995,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 292,
+      "line": 296,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12006,7 +12006,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 295,
+      "line": 299,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12017,7 +12017,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 297,
+      "line": 301,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12028,7 +12028,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 299,
+      "line": 303,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12039,7 +12039,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 301,
+      "line": 305,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12050,7 +12050,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 303,
+      "line": 307,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12061,7 +12061,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 496,
+      "line": 500,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12072,7 +12072,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 545,
+      "line": 549,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12094,7 +12094,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/field-service/service-order/ordenes-servicio-list.html",
-      "line": 196,
+      "line": 197,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -12215,7 +12215,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.html",
-      "line": 221,
+      "line": 220,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -12292,7 +12292,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 125,
+      "line": 129,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12303,7 +12303,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 127,
+      "line": 131,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12314,7 +12314,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 128,
+      "line": 132,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12325,7 +12325,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 129,
+      "line": 133,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12336,7 +12336,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 130,
+      "line": 134,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12347,7 +12347,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 131,
+      "line": 135,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12358,7 +12358,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 132,
+      "line": 136,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12369,7 +12369,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 207,
+      "line": 211,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12380,7 +12380,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 208,
+      "line": 212,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12391,7 +12391,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 209,
+      "line": 213,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12402,7 +12402,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 210,
+      "line": 214,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12413,7 +12413,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 211,
+      "line": 215,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12424,7 +12424,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-completo-status-dialog.ts",
-      "line": 212,
+      "line": 216,
       "category": "code_misc",
       "module": "app/modules",
       "severity": "low",
@@ -12964,7 +12964,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/properties/entrega-recepcion-cliente/entrega-recepcion-cliente.html",
-      "line": 132,
+      "line": 131,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -13227,17 +13227,6 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
     },
     {
-      "file": "src/app/modules/operations.luxuryapp/task-engine/tasks/my-tasks/my-tasks-list.html",
-      "line": 2,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
       "file": "src/app/modules/operations.luxuryapp/task-engine/tasks/reports/task-operation-report.html",
       "line": 154,
       "category": "template_comment",
@@ -13282,7 +13271,7 @@
       "preview": "<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-form.html",
+      "file": "src/app/modules/recruitment.luxuryapp/candidates/candidate-applications/candidate-application-form.html",
       "line": 306,
       "category": "template_text",
       "module": "app/modules",
@@ -13293,7 +13282,7 @@
       "preview": "ℹ️ La entrevista no puede ser en fecha pasada. Para hoy, debe haber un"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-kpis.html",
+      "file": "src/app/modules/recruitment.luxuryapp/candidates/candidate-applications/candidate-application-kpis.html",
       "line": 209,
       "category": "template_text",
       "module": "app/modules",
@@ -13301,11 +13290,11 @@
       "symbols": [
         "→"
       ],
-      "preview": "<div class=\"font-semibold mb-3\">Tiempo Vacante → 1ª Postulación (Días)</div>"
+      "preview": "<div class=\"fw-semibold mb-3\">Tiempo Vacante → 1ª Postulación (Días)</div>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidate-applications/candidate-application-kpis.ts",
-      "line": 128,
+      "file": "src/app/modules/recruitment.luxuryapp/candidates/candidate-applications/candidate-application-kpis.ts",
+      "line": 130,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -13315,7 +13304,7 @@
       "preview": "title: \"Tiempo Vacante → 1ª Postulación (Prom.)\","
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidate-recruitment-interviews/candidate-recruitment-schedule-modal.ts",
+      "file": "src/app/modules/recruitment.luxuryapp/candidates/candidate-recruitment-interviews/candidate-recruitment-schedule-modal.ts",
       "line": 147,
       "category": "code_comment",
       "module": "app/modules",
@@ -13326,7 +13315,7 @@
       "preview": "// viene de un auto-switch (send→reschedule) también cargamos la lista"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 326,
       "category": "template_text",
       "module": "app/modules",
@@ -13337,7 +13326,7 @@
       "preview": "📁 Módulo: Candidates"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 348,
       "category": "template_text",
       "module": "app/modules",
@@ -13348,7 +13337,7 @@
       "preview": "<span class=\"badge\">📅 Versión: 2.1.0</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 349,
       "category": "template_text",
       "module": "app/modules",
@@ -13359,7 +13348,7 @@
       "preview": "<span class=\"badge success\">🟢 Última actualización: 15/08/2026</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 350,
       "category": "template_text",
       "module": "app/modules",
@@ -13370,7 +13359,7 @@
       "preview": "<span class=\"badge\">🔐 Roles: 5</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 351,
       "category": "template_text",
       "module": "app/modules",
@@ -13381,7 +13370,7 @@
       "preview": "<span class=\"badge\">📦 Submódulos: 2</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 357,
       "category": "template_text",
       "module": "app/modules",
@@ -13392,7 +13381,7 @@
       "preview": "<h2>🗂️ 1. Estructura del Módulo y Submódulos</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 360,
       "category": "template_text",
       "module": "app/modules",
@@ -13403,7 +13392,7 @@
       "preview": "<div class=\"folder\">📁 candidates/</div>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 363,
       "category": "template_text",
       "module": "app/modules",
@@ -13414,7 +13403,7 @@
       "preview": "📁 candidate/ <span class=\"tag\">submódulo</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 367,
       "category": "template_text",
       "module": "app/modules",
@@ -13425,7 +13414,7 @@
       "preview": "📄 candidate-list.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 371,
       "category": "template_text",
       "module": "app/modules",
@@ -13436,7 +13425,7 @@
       "preview": "📄 candidate-form.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 377,
       "category": "template_text",
       "module": "app/modules",
@@ -13447,7 +13436,7 @@
       "preview": "📄 candidate-detail.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 383,
       "category": "template_text",
       "module": "app/modules",
@@ -13458,7 +13447,7 @@
       "preview": "📄 candidate.service.ts"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 391,
       "category": "template_text",
       "module": "app/modules",
@@ -13469,7 +13458,7 @@
       "preview": "📁 candidate-application/ <span class=\"tag\">submódulo</span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 395,
       "category": "template_text",
       "module": "app/modules",
@@ -13480,7 +13469,7 @@
       "preview": "📄 application-list.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 399,
       "category": "template_text",
       "module": "app/modules",
@@ -13491,7 +13480,7 @@
       "preview": "📄 application-form.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 403,
       "category": "template_text",
       "module": "app/modules",
@@ -13502,7 +13491,7 @@
       "preview": "📄 application-detail.html"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 413,
       "category": "template_text",
       "module": "app/modules",
@@ -13513,7 +13502,7 @@
       "preview": "<h2>🧩 2. Componentes y Acciones</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 431,
       "category": "template_text",
       "module": "app/modules",
@@ -13524,7 +13513,7 @@
       "preview": "🔍 Buscar por nombre/email<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 432,
       "category": "template_text",
       "module": "app/modules",
@@ -13535,7 +13524,7 @@
       "preview": "🗂️ Filtrar por estado<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 433,
       "category": "template_text",
       "module": "app/modules",
@@ -13546,7 +13535,7 @@
       "preview": "📄 Exportar a CSV/PDF<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 434,
       "category": "template_text",
       "module": "app/modules",
@@ -13557,7 +13546,7 @@
       "preview": "➕ Navegar a creación<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 435,
       "category": "template_text",
       "module": "app/modules",
@@ -13568,7 +13557,7 @@
       "preview": "📋 Seleccionar candidato"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 443,
       "category": "template_text",
       "module": "app/modules",
@@ -13579,7 +13568,7 @@
       "preview": "✏️ Crear nuevo candidato<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 444,
       "category": "template_text",
       "module": "app/modules",
@@ -13590,7 +13579,7 @@
       "preview": "📝 Editar campos (nombre, email, teléfono, etc.)<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 445,
       "category": "template_text",
       "module": "app/modules",
@@ -13601,7 +13590,7 @@
       "preview": "✅ Validar formulario<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 446,
       "category": "template_text",
       "module": "app/modules",
@@ -13612,7 +13601,7 @@
       "preview": "💾 Guardar cambios<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 447,
       "category": "template_text",
       "module": "app/modules",
@@ -13623,7 +13612,7 @@
       "preview": "🔄 Cargar datos existentes (modo edición)"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 455,
       "category": "template_text",
       "module": "app/modules",
@@ -13634,7 +13623,7 @@
       "preview": "👁️ Ver información personal<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 456,
       "category": "template_text",
       "module": "app/modules",
@@ -13645,7 +13634,7 @@
       "preview": "📜 Historial de aplicaciones<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 457,
       "category": "template_text",
       "module": "app/modules",
@@ -13656,7 +13645,7 @@
       "preview": "📎 Adjuntar documentos<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 458,
       "category": "template_text",
       "module": "app/modules",
@@ -13667,7 +13656,7 @@
       "preview": "✏️ Navegar a edición<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 459,
       "category": "template_text",
       "module": "app/modules",
@@ -13678,7 +13667,7 @@
       "preview": "🗑️ Eliminar candidato (solo SuperUsuario)"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 467,
       "category": "template_text",
       "module": "app/modules",
@@ -13689,7 +13678,7 @@
       "preview": "📋 Ver aplicaciones por candidato<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 468,
       "category": "template_text",
       "module": "app/modules",
@@ -13700,7 +13689,7 @@
       "preview": "🔍 Filtrar por puesto o fecha<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 469,
       "category": "template_text",
       "module": "app/modules",
@@ -13711,7 +13700,7 @@
       "preview": "➕ Registrar nueva aplicación"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 477,
       "category": "template_text",
       "module": "app/modules",
@@ -13722,7 +13711,7 @@
       "preview": "📝 Asignar candidato<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 478,
       "category": "template_text",
       "module": "app/modules",
@@ -13733,7 +13722,7 @@
       "preview": "🏢 Seleccionar puesto<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 479,
       "category": "template_text",
       "module": "app/modules",
@@ -13744,7 +13733,7 @@
       "preview": "📅 Fecha de aplicación<br />"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 480,
       "category": "template_text",
       "module": "app/modules",
@@ -13755,7 +13744,7 @@
       "preview": "💾 Guardar aplicación"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 490,
       "category": "template_text",
       "module": "app/modules",
@@ -13766,7 +13755,7 @@
       "preview": "<h2>🌐 3. Mapeo de Acciones a Endpoints HTTP</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 575,
       "category": "template_text",
       "module": "app/modules",
@@ -13777,7 +13766,7 @@
       "preview": "<h2>🔐 4. Matriz de Roles y Autorizaciones</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 578,
       "category": "template_text",
       "module": "app/modules",
@@ -13789,7 +13778,7 @@
       "preview": "Basado en la política de roles del sistema. ✅ = Permitido, ❌ ="
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 598,
       "category": "template_text",
       "module": "app/modules",
@@ -13800,7 +13789,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 599,
       "category": "template_text",
       "module": "app/modules",
@@ -13811,7 +13800,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 600,
       "category": "template_text",
       "module": "app/modules",
@@ -13822,7 +13811,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 601,
       "category": "template_text",
       "module": "app/modules",
@@ -13833,7 +13822,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 602,
       "category": "template_text",
       "module": "app/modules",
@@ -13844,7 +13833,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 603,
       "category": "template_text",
       "module": "app/modules",
@@ -13855,7 +13844,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 604,
       "category": "template_text",
       "module": "app/modules",
@@ -13866,7 +13855,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 608,
       "category": "template_text",
       "module": "app/modules",
@@ -13877,7 +13866,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 609,
       "category": "template_text",
       "module": "app/modules",
@@ -13888,7 +13877,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 610,
       "category": "template_text",
       "module": "app/modules",
@@ -13899,7 +13888,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 611,
       "category": "template_text",
       "module": "app/modules",
@@ -13910,7 +13899,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 612,
       "category": "template_text",
       "module": "app/modules",
@@ -13921,7 +13910,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 613,
       "category": "template_text",
       "module": "app/modules",
@@ -13932,7 +13921,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 614,
       "category": "template_text",
       "module": "app/modules",
@@ -13943,7 +13932,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 618,
       "category": "template_text",
       "module": "app/modules",
@@ -13954,7 +13943,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 619,
       "category": "template_text",
       "module": "app/modules",
@@ -13965,7 +13954,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 620,
       "category": "template_text",
       "module": "app/modules",
@@ -13976,7 +13965,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 621,
       "category": "template_text",
       "module": "app/modules",
@@ -13987,7 +13976,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 622,
       "category": "template_text",
       "module": "app/modules",
@@ -13998,7 +13987,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 623,
       "category": "template_text",
       "module": "app/modules",
@@ -14009,7 +13998,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 624,
       "category": "template_text",
       "module": "app/modules",
@@ -14020,7 +14009,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 628,
       "category": "template_text",
       "module": "app/modules",
@@ -14031,7 +14020,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 629,
       "category": "template_text",
       "module": "app/modules",
@@ -14042,7 +14031,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 630,
       "category": "template_text",
       "module": "app/modules",
@@ -14053,7 +14042,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 631,
       "category": "template_text",
       "module": "app/modules",
@@ -14064,7 +14053,7 @@
       "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 632,
       "category": "template_text",
       "module": "app/modules",
@@ -14075,7 +14064,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 633,
       "category": "template_text",
       "module": "app/modules",
@@ -14086,7 +14075,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 634,
       "category": "template_text",
       "module": "app/modules",
@@ -14097,7 +14086,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 638,
       "category": "template_text",
       "module": "app/modules",
@@ -14108,7 +14097,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 639,
       "category": "template_text",
       "module": "app/modules",
@@ -14119,7 +14108,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 640,
       "category": "template_text",
       "module": "app/modules",
@@ -14130,7 +14119,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 641,
       "category": "template_text",
       "module": "app/modules",
@@ -14141,7 +14130,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 642,
       "category": "template_text",
       "module": "app/modules",
@@ -14152,7 +14141,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 643,
       "category": "template_text",
       "module": "app/modules",
@@ -14163,7 +14152,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 644,
       "category": "template_text",
       "module": "app/modules",
@@ -14174,7 +14163,7 @@
       "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 652,
       "category": "template_text",
       "module": "app/modules",
@@ -14185,7 +14174,7 @@
       "preview": "<h2>🛡️ 5. Análisis de Auditoría</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 656,
       "category": "template_text",
       "module": "app/modules",
@@ -14196,7 +14185,7 @@
       "preview": "<h4>✅ Qué funciona correctamente</h4>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 669,
       "category": "template_text",
       "module": "app/modules",
@@ -14207,7 +14196,7 @@
       "preview": "<h4>⚠️ Qué falta o está incompleto</h4>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 685,
       "category": "template_text",
       "module": "app/modules",
@@ -14218,7 +14207,7 @@
       "preview": "<h4>❌ Qué no funciona / Riesgos</h4>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 707,
       "category": "template_text",
       "module": "app/modules",
@@ -14229,7 +14218,7 @@
       "preview": "<h4>💡 Recomendaciones de mejora</h4>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 732,
       "category": "template_text",
       "module": "app/modules",
@@ -14240,7 +14229,7 @@
       "preview": "<h2>🔄 6. Flujo de Trabajo del Módulo</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 752,
       "category": "template_text",
       "module": "app/modules",
@@ -14251,7 +14240,7 @@
       "preview": "3. Selecciona un candidato → navega a <strong>candidate-detail</strong>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 754,
       "category": "template_text",
       "module": "app/modules",
@@ -14262,7 +14251,7 @@
       "preview": "- Editar → <strong>candidate-form</strong>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 755,
       "category": "template_text",
       "module": "app/modules",
@@ -14273,7 +14262,7 @@
       "preview": "- Ver aplicaciones → <strong>application-list</strong>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 756,
       "category": "template_text",
       "module": "app/modules",
@@ -14284,7 +14273,7 @@
       "preview": "- Crear aplicación → <strong>application-form</strong>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 764,
       "category": "template_text",
       "module": "app/modules",
@@ -14295,7 +14284,7 @@
       "preview": "<h2>📊 7. Métricas del Módulo</h2>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 831,
       "category": "template_text",
       "module": "app/modules",
@@ -14306,7 +14295,7 @@
       "preview": "📌 Documentación generada automáticamente con"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 834,
       "category": "template_text",
       "module": "app/modules",
@@ -14317,7 +14306,7 @@
       "preview": "<span> 🕒 Última revisión: 15 de agosto de 2026 </span>"
     },
     {
-      "file": "src/app/modules/recruitment.luxuryapp/candidates/modulo-candidates-doc.html",
+      "file": "src/app/modules/recruitment.luxuryapp/docs/modulo-candidates-doc.html",
       "line": 835,
       "category": "template_text",
       "module": "app/modules",
@@ -14329,7 +14318,7 @@
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/employee-external/employee-external-list.html",
-      "line": 101,
+      "line": 100,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -14352,7 +14341,7 @@
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/employee-list.html",
-      "line": 134,
+      "line": 133,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -14374,7 +14363,7 @@
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/recruitment-staff-board.html",
-      "line": 70,
+      "line": 69,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -14385,7 +14374,7 @@
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/recruitment-staff-board.html",
-      "line": 90,
+      "line": 89,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -14396,7 +14385,7 @@
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/recruitment-staff-board.html",
-      "line": 336,
+      "line": 335,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -14407,7 +14396,7 @@
     },
     {
       "file": "src/app/modules/resident.luxuryapp/property/propiedades-list.ts",
-      "line": 57,
+      "line": 59,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -14568,7 +14557,7 @@
       "symbols": [
         "📦"
       ],
-      "preview": "<div class=\"font-bold text-green-800\">📦 {{ sc.folio }}</div>"
+      "preview": "<div class=\"fw-bold text-green-800\">📦 {{ sc.folio }}</div>"
     },
     {
       "file": "src/app/modules/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager.html",
@@ -14590,18 +14579,7 @@
       "symbols": [
         "🛒"
       ],
-      "preview": "<div class=\"font-bold text-orange-800\">🛒 {{ oc.folio }}</div>"
-    },
-    {
-      "file": "src/app/modules/supplier.luxuryapp/pr/cedula-presupuestal/cedula-cliente-list.html",
-      "line": 2,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "💻"
-      ],
-      "preview": "<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
+      "preview": "<div class=\"fw-bold text-orange-800\">🛒 {{ oc.folio }}</div>"
     },
     {
       "file": "src/app/modules/supplier.luxuryapp/pr/cedula-presupuestal/ordenes-compra-cedula-list.html",
@@ -14671,7 +14649,7 @@
     },
     {
       "file": "src/app/modules/system.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list.html",
-      "line": 79,
+      "line": 78,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -18572,7 +18550,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-autocomplete-multiple-signal.ts",
-      "line": 97,
+      "line": 91,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18583,7 +18561,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-autocomplete-multiple-signal.ts",
-      "line": 111,
+      "line": 105,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18594,7 +18572,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-autocomplete-multiple-signal.ts",
-      "line": 129,
+      "line": 123,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18628,7 +18606,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-date-time-signal.ts",
-      "line": 16,
+      "line": 15,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18640,7 +18618,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-decimal-signal.ts",
-      "line": 7,
+      "line": 6,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18651,7 +18629,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-email-signal.ts",
-      "line": 7,
+      "line": 6,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18662,7 +18640,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-hour-signal.ts",
-      "line": 9,
+      "line": 8,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18673,7 +18651,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-hour-signal.ts",
-      "line": 66,
+      "line": 65,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18728,7 +18706,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-mask-signal.ts",
-      "line": 7,
+      "line": 6,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18739,7 +18717,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-mask-signal.ts",
-      "line": 18,
+      "line": 16,
       "category": "code_misc",
       "module": "app/shared",
       "severity": "low",
@@ -18750,7 +18728,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-mask-signal.ts",
-      "line": 30,
+      "line": 28,
       "category": "code_misc",
       "module": "app/shared",
       "severity": "low",
@@ -18761,7 +18739,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-mask-signal.ts",
-      "line": 59,
+      "line": 58,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18772,7 +18750,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-month-signal.ts",
-      "line": 7,
+      "line": 6,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18906,7 +18884,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-switch-signal.ts",
-      "line": 46,
+      "line": 47,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18917,7 +18895,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-switch-signal.ts",
-      "line": 50,
+      "line": 51,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18973,7 +18951,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-url-signal.ts",
-      "line": 7,
+      "line": 6,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -18995,7 +18973,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-check/input-check.ts",
-      "line": 16,
+      "line": 15,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19006,7 +18984,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-number/input-number.ts",
-      "line": 14,
+      "line": 13,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19017,7 +18995,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-select/input-select.ts",
-      "line": 20,
+      "line": 21,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19028,7 +19006,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-text/input-text.ts",
-      "line": 17,
+      "line": 16,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19039,7 +19017,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-textarea/input-textarea.ts",
-      "line": 13,
+      "line": 12,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19636,7 +19614,7 @@
     },
     {
       "file": "src/app/shared/ui/web/primeng-custom-global-filter/primeng-custom-global-filter.ts",
-      "line": 10,
+      "line": 7,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -20087,7 +20065,7 @@
     },
     {
       "file": "src/styles/base/_global.scss",
-      "line": 239,
+      "line": 224,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -20459,7 +20437,7 @@
     },
     {
       "file": "src/styles/custom/_custom-table.scss",
-      "line": 134,
+      "line": 137,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -20470,7 +20448,7 @@
     },
     {
       "file": "src/styles/custom/_custom-table.scss",
-      "line": 135,
+      "line": 138,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -21546,17 +21524,6 @@
       "preview": "// `<ion-app>` tiene `contain: layout size style` → crea un contexto de apilamiento"
     },
     {
-      "file": "src/styles/primeng-overrides.css",
-      "line": 10,
-      "category": "style_text",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "* Orden definido: PrimeNG base → PrimeNG overrides → utilidades de PrimeFlex"
-    },
-    {
       "file": "src/styles/shared/_auth.scss",
       "line": 2,
       "category": "style_text",
@@ -21648,7 +21615,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 560,
+      "line": 559,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21659,7 +21626,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 848,
+      "line": 847,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21670,7 +21637,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 811,
+      "line": 695,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21681,7 +21648,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 812,
+      "line": 696,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",

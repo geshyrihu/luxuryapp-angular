@@ -4,7 +4,6 @@ import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
@@ -20,7 +19,6 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
     AppCheckbox,
     DividerModule,
     MessageModule,
-    TableModule,
     TagModule,
     AppIcon,
   ],
@@ -254,4 +252,3 @@ export class CatalogAudit {
     return resolveIconifyIcon(primeClass, "material-symbols-light:settings") as AppIconName;
   }
 }
-

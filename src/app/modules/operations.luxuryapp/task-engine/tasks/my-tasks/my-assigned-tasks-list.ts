@@ -39,7 +39,6 @@ import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReopen } from "../task-reopen";
 import { TaskStatus } from "../task-status/task-status";
-import { MyTaskForm } from "./my-task-form";
 import { MyTaskProgram } from "./my-task-program";
 
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -247,8 +246,8 @@ export class MyAssignedTasksList {
   onModalAdd(data: any) {
     this.dialogHandlerS
       .openDialog(
-        MyTaskForm,
-        { id: data.id },
+        TaskForm,
+        { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
         this.dialogHandlerS.sizeLg,
       )

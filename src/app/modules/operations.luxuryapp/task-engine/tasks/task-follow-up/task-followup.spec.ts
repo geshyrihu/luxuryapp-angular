@@ -6,6 +6,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { vi } from "vitest";
 import { TaskFollowup } from "./task-followup";
+import { TaskFollowUpEvidenceImage } from "../task-shared/interfaces/task-refactor.interface";
 
 describe("TaskFollowup", () => {
   let component: TaskFollowup;
@@ -20,6 +21,8 @@ describe("TaskFollowup", () => {
     mockApiResponseS = {
       onGetList: vi.fn().mockResolvedValue([]),
       onPost: vi.fn().mockResolvedValue(true),
+      onPostFile: vi.fn().mockResolvedValue(true),
+      onPatch: vi.fn().mockResolvedValue(true),
       onDelete: vi.fn().mockResolvedValue(true),
       validateForm: vi.fn().mockReturnValue(true),
     };
@@ -93,6 +96,53 @@ describe("TaskFollowup", () => {
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();
   });
 
+  it("uploads evidence against follow-up id using File form field", async () => {
+    const file = new File(["image"], "evidence.jpg", { type: "image/jpeg" });
+
+    await component.onEvidenceSelect({ files: [file] }, "followup-1");
+
+    const payload = mockApiResponseS.onPostFile.mock.calls[0][1] as FormData;
+    expect((payload.get("File") as File).name).toBe(file.name);
+    expect((payload.get("File") as File).type).toBe(file.type);
+    expect(mockApiResponseS.onPostFile.mock.calls[0][0]).toContain(
+      "task-follow-up/followup-1/evidence-images",
+    );
+  });
+
+  it("reorders evidence with image ids", async () => {
+    component.evidenceImages.set({
+      "followup-1": [
+        {
+          id: "image-1",
+          taskFollowUpId: "followup-1",
+          fileName: "one.jpg",
+          path: "/one.jpg",
+          mimeType: "image/jpeg",
+          sortOrder: 1,
+          createdAt: "2026-01-01",
+          createdByName: "User",
+        } satisfies TaskFollowUpEvidenceImage,
+        {
+          id: "image-2",
+          taskFollowUpId: "followup-1",
+          fileName: "two.jpg",
+          path: "/two.jpg",
+          mimeType: "image/jpeg",
+          sortOrder: 2,
+          createdAt: "2026-01-01",
+          createdByName: "User",
+        } satisfies TaskFollowUpEvidenceImage,
+      ],
+    });
+
+    await component.moveEvidence("followup-1", 1, -1);
+
+    expect(mockApiResponseS.onPatch).toHaveBeenCalledWith(
+      "task-follow-up/followup-1/evidence-images/reorder",
+      { imageIds: ["image-2", "image-1"] },
+    );
+  });
+
   it("ngOnDestroy should close ref with data", () => {
     component.description.set([
       { id: "1", description: "Last", createdAt: "2024-01-15 10:00" },
@@ -105,4 +155,3 @@ describe("TaskFollowup", () => {
     });
   });
 });
-

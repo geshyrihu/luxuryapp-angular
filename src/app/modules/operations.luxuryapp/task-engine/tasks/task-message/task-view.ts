@@ -41,6 +41,12 @@ import { TaskReopen } from "../task-reopen";
 import { TaskChecklistPanel } from "./task-checklist-panel/task-checklist-panel";
 import { TaskForm } from "./task-form";
 import { TaskJustificationPanel } from "./task-justification-panel/task-justification-panel";
+import {
+  TaskAdditionalImage,
+  TaskFollowUpEvidenceImage,
+  TaskFollowUpItem,
+  TaskResponsible,
+} from "../task-shared/interfaces/task-refactor.interface";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",
@@ -68,6 +74,10 @@ export class TaskView implements OnInit {
   notTicket = signal(false);
 
   ticket = signal<any>(null);
+  responsibles = signal<TaskResponsible[]>([]);
+  additionalImages = signal<TaskAdditionalImage[]>([]);
+  followUps = signal<TaskFollowUpItem[]>([]);
+  evidenceImages = signal<Record<string, TaskFollowUpEvidenceImage[]>>({});
 
   applicationUserId: string = this.authS.applicationUserId;
   NotificationsId: string = "";
@@ -112,12 +122,48 @@ export class TaskView implements OnInit {
           this.ticket.set(response);
           if (response === null) {
             this.notTicket.set(true);
+            return;
           }
+          this.loadCollections();
         }, 0);
       })
       .catch((error: any) => {
         console.error("Error loading ticket data:", error);
       });
+  }
+
+  private async loadCollections(): Promise<void> {
+    const [responsibles, additionalImages, followUps] = await Promise.all([
+      this.apiResponseS.onGetList<TaskResponsible[]>(
+        Endpoints.TaskResponsibles.list(this.id),
+      ),
+      this.apiResponseS.onGetList<TaskAdditionalImage[]>(
+        Endpoints.TaskAdditionalImages.list(this.id),
+      ),
+      this.apiResponseS.onGetList<TaskFollowUpItem[]>(
+        Endpoints.TaskFollowUps.listByTicketMessage(this.id),
+      ),
+    ]);
+
+    this.responsibles.set(responsibles ?? []);
+    this.additionalImages.set(additionalImages ?? []);
+    this.followUps.set(followUps ?? []);
+
+    await Promise.all(
+      (followUps ?? []).map(async (followUp) => {
+        const evidence = await this.apiResponseS.onGetList<
+          TaskFollowUpEvidenceImage[]
+        >(Endpoints.TaskFollowUpEvidenceImages.list(followUp.id));
+        this.evidenceImages.update((current) => ({
+          ...current,
+          [followUp.id]: evidence ?? [],
+        }));
+      }),
+    );
+  }
+
+  hasEvidence(): boolean {
+    return Object.values(this.evidenceImages()).some((images) => images.length > 0);
   }
   onModalForm(data: any) {
     this.dialogHandlerS
@@ -211,4 +257,3 @@ export class TaskView implements OnInit {
     this.router.navigate(ROUTES.TICKETS.MENSAJES(this.ticketGroupId));
   }
 }
-

@@ -30,6 +30,7 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    AppFrozenColumn,
     CustomInputSelectButton,
     LxSkeleton,
     AppIcon,

@@ -8,10 +8,11 @@ import {
   signal,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TableModule } from "primeng/table";
-import { ButtonModule } from "primeng/button";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ContractRenewalService } from "./services/contract-renewal.service";
 import { ContractRenewalEvaluationDTO, ContractRenewalStatus } from "./employees/interfaces/contract-renewal.dto";
@@ -27,11 +28,14 @@ import { DialogSize } from "@core/services/dialog-handler.service";
   standalone: true,
   imports: [
     CommonModule,
-    TableModule,
-    ButtonModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     AppTag,
     LxTooltipDirective,
     AppIcon,
+    WebButtonLabel,
+    WebButtonIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -42,16 +46,13 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           Bandeja de Renovaciones
         </h2>
         <div class="header-actions">
-          <p-button
+          <il-button
             label="Actualizar"
-            (onClick)="loadRenewals(true)"
+            iconClass="material-symbols-light:refresh"
             [loading]="renewalService.isLoading()"
-            styleClass="p-button-outlined"
-          >
-            <ng-template #icon>
-              <app-icon icon="material-symbols-light:refresh" />
-            </ng-template>
-          </p-button>
+            variant="outline"
+            (clicked)="loadRenewals(true)"
+          />
         </div>
       </div>
 
@@ -65,8 +66,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
         </div>
       }
 
-      <!-- p-table - única excepción PrimeNG permitida -->
-      <p-table
+      <app-table
         [value]="renewalService.renewals()"
         [loading]="renewalService.isLoading()"
         [paginator]="true"
@@ -74,54 +74,51 @@ import { DialogSize } from "@core/services/dialog-handler.service";
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} renovaciones"
         [rowsPerPageOptions]="[10, 25, 50]"
-        responsiveLayout="scroll"
-        sortMode="multiple"
         [globalFilterFields]="['employeeName', 'positionName', 'contractNumber']"
         [tableStyle]="{ 'min-width': '50rem' }"
         dataKey="id"
       >
-        <ng-template pTemplate="caption">
+        <ng-template #caption>
           <div class="table-caption">
             <span class="caption-title">Listado de Renovaciones de Contratos</span>
             <div class="caption-filters">
               <input
                 type="text"
-                pInputText
                 placeholder="Buscar por empleado, puesto o contrato..."
                 (input)="onGlobalFilter($event)"
-                class="filter-input"
+                class="filter-input form-control"
               />
             </div>
           </div>
         </ng-template>
 
-        <ng-template pTemplate="header">
+        <ng-template #header>
           <tr>
-            <th pSortableColumn="employeeName">
+            <th appSortableColumn="employeeName">
               Empleado
-              <p-sortIcon field="employeeName" />
+              <app-sorticon field="employeeName" />
             </th>
-            <th pSortableColumn="positionName">
+            <th appSortableColumn="positionName">
               Puesto
-              <p-sortIcon field="positionName" />
+              <app-sorticon field="positionName" />
             </th>
-            <th pSortableColumn="contractEndDate">
+            <th appSortableColumn="contractEndDate">
               Fecha Vencimiento
-              <p-sortIcon field="contractEndDate" />
+              <app-sorticon field="contractEndDate" />
             </th>
-            <th pSortableColumn="status">
+            <th appSortableColumn="status">
               Estatus Evaluación
-              <p-sortIcon field="status" />
+              <app-sorticon field="status" />
             </th>
-            <th pSortableColumn="decisionDate">
+            <th appSortableColumn="decisionDate">
               Fecha Decisión
-              <p-sortIcon field="decisionDate" />
+              <app-sorticon field="decisionDate" />
             </th>
             <th style="width: 8rem">Acciones</th>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-renewal>
+        <ng-template #body let-renewal>
           <tr>
             <td>
               <div class="employee-cell">
@@ -153,22 +150,20 @@ import { DialogSize } from "@core/services/dialog-handler.service";
             </td>
             <td>
               <div class="actions-cell">
-                <button
-                  pButton
-                  type="button"
-                  class="p-button-text p-button-sm"
+                <iw-button
+                  iconClass="material-symbols-light:visibility"
+                  [text]="true"
+                  size="sm"
                   lxTooltip="Ver detalles"
-                  (click)="openDecisionModal(renewal)"
+                  (clicked)="openDecisionModal(renewal)"
                   [disabled]="renewal.status === 'Decidido'"
-                >
-                  <app-icon icon="material-symbols-light:visibility" />
-                </button>
+                />
               </div>
             </td>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="emptymessage">
+        <ng-template #emptymessage>
           <tr>
             <td colspan="6" class="text-center py-4">
               <div class="empty-state">
@@ -179,7 +174,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="footer">
+        <ng-template #footer>
           <tr>
             <td colspan="6">
               <div class="footer-summary">
@@ -196,7 +191,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   `,
   styles: `

@@ -11,7 +11,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "../task.service";
 import { vi } from "vitest";
 import { TaskForm } from "./task-form";
 
@@ -39,6 +39,8 @@ describe("TaskForm", () => {
         .fn()
         .mockResolvedValue({ title: "Test", description: "Desc" }),
       onPost: vi.fn().mockResolvedValue(true),
+      onPostFile: vi.fn().mockResolvedValue(true),
+      onPatch: vi.fn().mockResolvedValue(true),
       onPut: vi.fn().mockResolvedValue(true),
       validateForm: vi.fn().mockReturnValue(true),
     };
@@ -134,6 +136,32 @@ describe("TaskForm", () => {
     component.onAssigneeChange("u1");
     expect(component.form.value.assigneeId).toBe("u1");
     expect(component.form.value.assignee).toBe("User 1");
+  });
+
+  it("loads task responsibles and additional images for an existing task", async () => {
+    component.id = "task-123";
+    const responsible = { id: "r1", applicationUser: "User 1" };
+    const image = { id: "i1", fileName: "photo.jpg" };
+    mockApiResponseS.onGetList
+      .mockResolvedValueOnce([responsible])
+      .mockResolvedValueOnce([image]);
+
+    await component.loadResponsibles();
+    await component.loadAdditionalImages();
+
+    expect(component.responsibles()).toEqual([responsible]);
+    expect(component.additionalImages()).toEqual([image]);
+  });
+
+  it("uploads additional image using File form field", async () => {
+    component.id = "task-123";
+    const file = new File(["image"], "photo.jpg", { type: "image/jpeg" });
+
+    await component.onAdditionalImageSelect({ files: [file] });
+
+    const payload = mockApiResponseS.onPostFile.mock.calls[0][1] as FormData;
+    expect((payload.get("File") as File).name).toBe(file.name);
+    expect((payload.get("File") as File).type).toBe(file.type);
   });
 
   it("converts a HEIC image before storing it in the form", async () => {

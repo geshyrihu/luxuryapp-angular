@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
@@ -28,7 +27,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [
     ApiDatePipe,
     ReactiveFormsModule,
-    TableModule,
     WebButtonLabel,
     CustomInputTextSignal,
     LxTooltipDirective,
@@ -197,4 +195,3 @@ export class PurchaseLinkManager implements OnInit {
     this.ref.close(true);
   }
 }
-

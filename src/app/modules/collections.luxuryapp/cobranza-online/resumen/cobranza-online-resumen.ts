@@ -6,7 +6,6 @@ import {
   inject,
 } from "@angular/core";
 import { PieChart } from "@ui/web/charts/pie-chart";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
@@ -26,7 +25,7 @@ import {
 
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [CommonModule, TableModule, SharedModule, PieChart],
+  imports: [CommonModule, SharedModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -370,4 +369,3 @@ export class CobranzaOnlineResumen {
     return `${day}-${month}-${year}`;
   }
 }
-

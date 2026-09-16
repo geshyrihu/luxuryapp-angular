@@ -43,13 +43,18 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         (change)="onChange($event)"
         (blur)="onTouch()"
       >
-        <ng-template ng-multi-label-tmp let-items="items">
+        <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
           @if (items.length <= (maxSelectedLabels() ?? items.length)) {
             @for (item of items; track item) {
-              <span class="ng-value-label">{{ item[optionLabel()] }}</span>
+              <span class="badge bg-soft-primary text-primary me-1 mb-1 d-inline-flex align-items-center" style="font-size: 0.85rem; font-weight: 500; padding: 0.35em 0.65em;">
+                {{ item[optionLabel()] }}
+                <span class="ms-1 cursor-pointer fw-bold hover:text-red-500" (click)="clear(item)" aria-hidden="true" style="font-size: 1.1em;">&times;</span>
+              </span>
             }
           } @else {
-            <span class="ng-value-label">{{ selectedItemsLabel() || (items.length + " seleccionados") }}</span>
+            <span class="badge bg-soft-secondary text-secondary me-1 mb-1 d-inline-flex align-items-center" style="font-size: 0.85rem; font-weight: 500; padding: 0.35em 0.65em;">
+              {{ selectedItemsLabel() || (items.length + " seleccionados") }}
+            </span>
           }
         </ng-template>
       </ng-select>
@@ -60,8 +65,17 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container { padding: .25rem .5rem; }
       :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
       :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
-      :host ::ng-deep .ng-dropdown-panel { min-width: var(--ng-select-panel-min-width, 20rem); max-height: var(--ng-select-panel-max-height, 350px); }
+      :host ::ng-deep .ng-dropdown-panel { 
+        min-width: var(--ng-select-panel-min-width, 20rem); 
+        max-height: var(--ng-select-panel-max-height, 350px);
+        border-radius: 0.375rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.175);
+      }
       :host ::ng-deep .ng-dropdown-panel .scroll-host { max-height: var(--ng-select-panel-max-height, 350px); }
+      :host ::ng-deep .ng-select-container { border-radius: 0.375rem; }
+      :host ::ng-deep .ng-value-container { gap: 0.25rem; }
+      :host ::ng-deep .ng-value-container .ng-input { padding-bottom: 0.25rem; }
     `
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

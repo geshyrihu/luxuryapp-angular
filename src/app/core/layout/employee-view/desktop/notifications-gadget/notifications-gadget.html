@@ -1,93 +1,74 @@
-<!-- Botón con el mismo aspecto que el sidebar-toggle — clase DS con tokens -->
-<button
-  (click)="drawerVisible.set(true)"
-  class="toolbar-icon-btn"
-  lxTooltip="Notificaciones"
-  tooltipPosition="bottom"
-  type="button"
-  aria-label="Notificaciones"
->
-  <span class="notifications-badge-anchor">
-    <app-icon icon="material-symbols-light:notifications-outline" class="notifications-bell-icon" />
-    @if (messageInNotRead() > 0) {
+<div class="dropdown d-inline-block" ngbDropdown container="body">
+  <button
+    type="button"
+    class="btn-sm btn-soft-secondary hide-caret"
+    lxTooltip="Notificaciones"
+    tooltipPosition="bottom"
+    aria-label="Notificaciones"
+    id="page-header-notifications-dropdown"
+    ngbDropdownToggle
+  >
+    <span class="notifications-badge-anchor">
+      <app-icon
+        icon="material-symbols-light:notifications-outline"
+        class="notifications-bell-icon"
+      />
+      @if (messageInNotRead() > 0) {
       <app-badge [value]="messageInNotRead()" color="danger" size="small" />
-    }
-  </span>
-</button>
-
-<!-- Panel lateral Bootstrap para notificaciones -->
-<div
-  class="offcanvas offcanvas-end"
-  [class.show]="drawerVisible()"
-  [style.visibility]="drawerVisible() ? 'visible' : 'hidden'"
-  style="width: 450px"
-  tabindex="-1"
-  aria-labelledby="notifications-gadget-title"
->
-  <div class="offcanvas-header">
-    <h5 id="notifications-gadget-title" class="offcanvas-title">Notificaciones</h5>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Cerrar"
-      (click)="drawerVisible.set(false)"
-    ></button>
-  </div>
-
-  <div class="offcanvas-body p-0">
-  <!-- Contenedor con scroll para la lista -->
-  <div class="overflow-y-auto" style="height: calc(100vh - 120px)">
-    <!-- Lista de notificaciones -->
-    <div class="list-none p-0 m-0">
-      @for (notification of notifications(); track notification.id) {
-      <!-- Item de notificación -->
-      <div
-        class="d-flex align-items-start p-3 gap-3 cursor-pointer hover:bg-body-tertiary border-bottom-1 border"
-        (click)="markAsRead(notification.id, notification.url)"
-        [class.bg-body-tertiary]="!notification.isRead"
-        [class.font-semibold]="!notification.isRead"
-      >
-        <app-icon icon="material-symbols-light:notifications-outline" class="text-xl text-primary mt-1" />
-        <div class="flex-flex-grow-1-1">
-          <p class="m-0 fw-bold">{{ notification.title }}</p>
-          <p class="m-0 text-body-secondary text-sm">
-            {{ notification.message }}
-          </p>
+      }
+    </span>
+  </button>
+  
+  <div
+    class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 shadow-lg border-0"
+    aria-labelledby="page-header-notifications-dropdown"
+    ngbDropdownMenu
+  >
+    <div class="p-3">
+      <div class="row align-items-center">
+        <div class="col">
+          <h6 class="m-0 fw-semibold text-sm">Notificaciones</h6>
         </div>
-        <iw-button-delete
-          class="flex-shrink-0"
-          lxTooltip="Eliminar notificacion"
-          (click)="$event.stopPropagation()"
-          (confirmed)="deleteNotification(notification.id)"
-        />
       </div>
-      } @empty {
-      <!-- Estado vacño -->
-      <div
-        class="d-flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
-        style="height: 300px"
-      >
-        <app-icon icon="material-symbols-light:move-to-inbox" class="text-4xl text-body-secondary" />
-        <span class="text-body-secondary"
-          >No tienes notificaciones nuevas.</span
+    </div>
+    
+    <div class="overflow-y-auto" style="max-height: 350px;">
+      @for (notification of notifications(); track notification.id) {
+        <a 
+          href="javascript:void(0);" 
+          class="dropdown-item notification-item text-wrap border-bottom p-3"
+          (click)="markAsRead(notification.id, notification.url)"
+          [class.bg-body-tertiary]="!notification.isRead"
         >
-      </div>
+          <div class="d-flex align-items-start gap-2">
+            <app-icon
+              icon="material-symbols-light:notifications-outline"
+              class="text-lg text-primary mt-1"
+            />
+            <div class="flex-grow-1">
+              <p class="mb-1 text-sm" [class.fw-bold]="!notification.isRead" [class.fw-medium]="notification.isRead">{{ notification.title }}</p>
+              <p class="mb-0 text-xs text-muted">{{ notification.message }}</p>
+            </div>
+            <div class="flex-shrink-0" (click)="$event.stopPropagation(); deleteNotification(notification.id)">
+              <iw-button-delete lxTooltip="Eliminar notificación" />
+            </div>
+          </div>
+        </a>
+      } @empty {
+        <div class="text-center p-4">
+          <app-icon
+            icon="material-symbols-light:move-to-inbox"
+            class="text-4xl text-body-secondary mb-2"
+          />
+          <p class="text-body-secondary mb-0">No tienes notificaciones nuevas.</p>
+        </div>
       }
     </div>
-  </div>
-
-  </div>
-
-  <!-- Pie del panel -->
-  <div class="text-center w-full p-3 border-top">
-    <il-button
-      label="Ver todas las notificaciones"
-      variant="link"
-      (clicked)="irATodasLasNotificaciones()"
-    />
+    
+    <div class="p-2 border-top d-grid">
+      <a class="btn btn-sm btn-link font-size-14 text-center text-decoration-none" href="javascript:void(0)" (click)="irATodasLasNotificaciones()">
+        <span>Ver todas las notificaciones</span>
+      </a>
+    </div>
   </div>
 </div>
-
-@if (drawerVisible()) {
-  <div class="offcanvas-backdrop fade show" (click)="drawerVisible.set(false)"></div>
-}

@@ -12,29 +12,29 @@
   ============================================================================
 -->
 <!--
-  óHola, futuro yo o valiente colega que se atreve a explorar este código!
+   óHola, futuro yo o valiente colega que se atreve a explorar este código!
 
-  Este componente es el corazón de la propuesta de presupuesto. Es una tabla compleja
-  que presenta datos financieros de una manera densa pero (esperemos) comprensible.
-  Aquó te dejo una Guía para que no te pierdas en el laberinto de divs y ng-templates.
+   Este componente es el corazón de la propuesta de presupuesto. Es una tabla compleja
+   que presenta datos financieros de una manera densa pero (esperemos) comprensible.
+   Aquó te dejo una Guía para que no te pierdas en el laberinto de divs y ng-templates.
 -->
 
 <!--
   Contenedor principal.
   Solo se muestra si hay una propuesta de presupuesto (`currentProposal`) cargada.
-  Tambión tenemos un `errorMensaje` por si las cosas salen mal. óSiempre hay que estar preparados!
+  También tenemos un `errorMensaje` por si las cosas salen mal. óSiempre hay que estar preparados!
 -->
 <!-- Added w-8rem for better sizing -->
 <!-- <div class="field w-8rem">
   <custom-input-select-signal size="small" [(ngModel)]="selectedFiscalYear" [data]="availableYears" (ngModelChange)="onFiscalYearChange()" placeholder="Año Fiscal" />
 </div> -->
 @if (errorMensaje) {
-<!-- Bloque para mostrar un mensaje de error si algo falla. La clósica alerta de peligro. -->
+<!-- Bloque para mostrar un mensaje de error si algo falla. La clásica alerta de peligro. -->
 <div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">
   {{ errorMensaje }}
 </div>
 } @if (currentProposal()) {
-<!-- Contenedor de la vista del presupuesto. óAquó empieza la magia! -->
+<!-- Contenedor de la vista del presupuesto. óAquí empieza la magia! -->
 <div class="budget-view-port-container">
   <!--
     La estrella del show: la tabla de PrimeNG.
@@ -65,195 +65,223 @@
         class="d-flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full g-4"
       >
         <!-- Cuotas (Fija) -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="showFeeComparisonModal()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:label-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span class="text-xs text-center line-height-2 text-body"
-              >Cuotas (Fija)</span
+            <span class="text-xs text-truncate w-100 text-center"
+              >Cuota Fija</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Cuotas (Indiviso) -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="showFeeComparisonByIndivisoModal()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon icon="material-symbols-light:bar-chart" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-body"
-              >Cuotas (Indiviso)</span
+            <app-icon
+              icon="material-symbols-light:bar-chart"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
+              >Indiviso</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Añadir Cuenta -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
-            (click)="currentProposal()?.status === 'Borrador' && showAddAccountModal()"
-            [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
-            class="bg-blue-50 hover:bg-blue-100 shadow-sm hover:shadow border-2 border-blue-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
+            (click)="showAddAccountModal()"
+            [disabled]="currentProposal()?.status !== 'Borrador'"
+            class="btn btn-soft-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:add-circle-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span class="text-xs text-center line-height-2 text-blue-700"
+            <span class="text-xs text-truncate w-100 text-center"
               >Añadir Cuenta</span
             >
-          </div>
+          </button>
         </div>
 
         @if(aspRoleS.hasAny([aspRole.SuperUsuario])) {
         <!-- Auditoría IA -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="auditProposal()"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:smart-toy-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span
-              class="text-xs text-center line-height-2 text-indigo-700 fw-medium"
+            <span class="text-xs text-truncate w-100 text-center"
               >Auditoría IA</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Proyección {{ fiscalYear }} -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
-            (click)="!(auditLoading || forecastLoading) && forecastProposal()"
-            [class.opacity-50]="auditLoading || forecastLoading"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
+            (click)="forecastProposal()"
+            [disabled]="auditLoading || forecastLoading"
+            class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon icon="material-symbols-light:monitoring" class="mb-1" />
-            <span
-              class="text-xs text-center line-height-2 text-indigo-700 fw-medium"
-              >Proyección {{ fiscalYear }}</span
+            <app-icon
+              icon="material-symbols-light:monitoring"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
+              >Proyección</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Alertas > 5% -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="openHighIncreaseModal()"
-            class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:warning-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span
-              class="text-xs text-center line-height-2 text-orange-700 fw-medium"
+            <span class="text-xs text-truncate w-100 text-center"
               >Alertas > 5%</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Excel -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="exportarResumenExcel()"
-            class="bg-green-50 hover:bg-green-100 shadow-sm hover:shadow border-2 border-green-300 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon icon="material-symbols-light:table-view" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-green-700"
-              >Excel</span
-            >
-          </div>
+            <app-icon
+              icon="material-symbols-light:table-view"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center">Excel</span>
+          </button>
         </div>
         }
 
         <!-- Botones Dinámicos -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="toggleBaseBudgetMonthlyColumn()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon [icon]="baseBudgetMonthlyButtonIcon" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-body"
+            <app-icon
+              [icon]="baseBudgetMonthlyButtonIcon"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
               >{{ baseBudgetMonthlyButtonLabel }}</span
             >
-          </div>
+          </button>
         </div>
 
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="toggleBaseBudgetAnnualColumn()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon [icon]="baseBudgetAnnualButtonIcon" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-body"
+            <app-icon
+              [icon]="baseBudgetAnnualButtonIcon"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
               >{{ baseBudgetAnnualButtonLabel }}</span
             >
-          </div>
+          </button>
         </div>
 
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="toggleFiscalYearAnnualColumn()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon [icon]="fiscalYearAnnualButtonIcon" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-body"
+            <app-icon
+              [icon]="fiscalYearAnnualButtonIcon"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
               >{{ fiscalYearAnnualButtonLabel }}</span
             >
-          </div>
+          </button>
         </div>
 
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="toggleshowProjectedExpenses()"
-            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon [icon]="projectedExpensesButtonIcon" class="mb-1" />
-            <span class="text-xs text-center line-height-2 text-body"
+            <app-icon
+              [icon]="projectedExpensesButtonIcon"
+              class="text-2xl mb-1"
+            />
+            <span class="text-xs text-truncate w-100 text-center"
               >{{ projectedExpensesButtonLabel }}</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Admin Proyección -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="showProjectedExpensesModal()"
-            class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-300 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:settings-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span class="text-xs text-center line-height-2 text-orange-700"
-              >Admin Proyección</span
+            <span class="text-xs text-truncate w-100 text-center"
+              >Admin Proy.</span
             >
-          </div>
+          </button>
         </div>
 
         <!-- Calendario Mtto -->
-        <div class="flex-shrink-0 w-8rem d-flex">
-          <div
+        <div class="flex-shrink-0 d-flex" style="width: 110px">
+          <button
+            type="button"
             (click)="showMaintenanceCalendarModal()"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
             <app-icon
               icon="material-symbols-light:event-outline"
-              class="mb-1"
+              class="text-2xl mb-1"
             />
-            <span
-              class="text-xs text-center line-height-2 text-indigo-700 fw-medium"
-              >Calendario Mtto</span
+            <span class="text-xs text-truncate w-100 text-center"
+              >Cal. Mtto</span
             >
-          </div>
+          </button>
         </div>
       </div>
 
@@ -271,30 +299,12 @@
               placeholder="Año"
             />
           </div>
-          <div class="flex-grow-1">
-            <custom-input-multiselect-signal
-              [ngModel]="selectedMonthsForAvg()"
-              (ngModelChange)="selectedMonthsForAvg.set($event)"
-              [options]="monthOptions"
-              placeholder="Meses Promedio"
-              [selectionDisplay]="'chip'"
-              size="small"
-              selectedItemsLabel="{0} meses"
-              customClass="w-100"
-              [scrollHeight]="'20rem'"
-              [panelStyle]="{ 'min-width': '35rem' }"
-              [showClear]="true"
-              [onlyInput]="true"
-              [noMargin]="true"
-            />
-          </div>
+
         </div>
 
         <!-- Las vistas pertenecen a Propuesta y permanecen visibles antes del buscador. -->
         <div class="d-flex flex-nowrap gap-2 align-items-center flex-shrink-0">
-          <span class="text-xs fw-semibold text-body text-nowrap"
-            >Vista:</span
-          >
+          <span class="text-xs fw-semibold text-body text-nowrap">Vista:</span>
           <button
             type="button"
             (click)="setViewMode('normal')"
@@ -339,7 +349,9 @@
 
       <!-- Leyenda y Acotaciones -->
       <div class="mt-3 bg-body-tertiary rounded-md p-3 border-1 border">
-        <div class="d-flex flex-wrap gap-4 align-items-center text-sm text-body">
+        <div
+          class="d-flex flex-wrap gap-4 align-items-center text-sm text-body"
+        >
           <div class="fw-semibold text-body d-flex align-items-center gap-1">
             <app-icon icon="material-symbols-light:info" />
             Guía Rápida:
@@ -357,12 +369,12 @@
 
           <div
             class="d-flex align-items-center gap-2"
-            lxTooltip="La propuesta supera en más de 10% al presupuesto actual"
+            lxTooltip="La propuesta supera en más de 5% al presupuesto actual"
           >
             <span
               class="w-1rem h-1rem rounded bg-yellow-100 border-2 border-yellow-300"
             ></span>
-            <span>Incremento > 10%</span>
+            <span>Incremento > 5%</span>
           </div>
 
           <div
@@ -773,9 +785,7 @@
     <ng-template #footer>
       <!-- Fila para los totales de PRESUPUESTO por mes -->
       <tr>
-        <td pFrozenColumn class="text-end amount-total">
-          TOTAL PRESUP. MES:
-        </td>
+        <td pFrozenColumn class="text-end amount-total">TOTAL PRESUP. MES:</td>
         @for (mes of months; track mes) {
         <td class="text-end numeric-column amount-total text-body-secondary">
           {{ getTotalPresupuestoPorMes(mes) > 0 ?

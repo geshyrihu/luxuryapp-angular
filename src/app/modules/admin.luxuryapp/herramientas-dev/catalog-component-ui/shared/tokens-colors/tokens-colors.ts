@@ -9,7 +9,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -21,7 +20,6 @@ import { TokenGroup } from "./interfaces/token-group.interface";
 
   imports: [
     CommonModule,
-    TableModule,
     TagModule,
     DividerModule,
     LxTooltipDirective,
@@ -503,4 +501,3 @@ export class TokensColors {
     }
   }
 }
-

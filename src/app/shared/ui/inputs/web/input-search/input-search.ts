@@ -12,13 +12,13 @@ import { AppIcon } from "../../../shared/app-icon/app-icon";
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="input-group">
-      <span class="input-group-text">
+    <div class="input-group input-group--prefix">
+      <span class="input-prefix">
         <app-icon icon="material-symbols-light:search" />
       </span>
 
       <input
-        class="form-control text-xs"
+        class="input text-xs"
         type="text"
         (input)="onInput($event)"
         [placeholder]="placeholder()"

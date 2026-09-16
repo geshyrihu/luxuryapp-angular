@@ -9,17 +9,14 @@
 
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <!-- Guía de usuario para mejorar la consistencia de datos -->
-    <div
-      class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 d-flex align-items-start gap-3 shadow-sm"
-    >
+    <details class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 shadow-sm">
+      <summary class="text-blue-900 fw-bold text-uppercase text-xs cursor-pointer">Guía de registro</summary>
+      <div class="d-flex align-items-start gap-3 mt-2">
       <app-icon
         [icon]="'material-symbols-light:info'"
         class="text-blue-600 text-xl mt-1"
       />
       <div class="flex-fill">
-        <div class="text-blue-900 fw-bold mb-1 text-uppercase text-xs">
-          Guía de registro
-        </div>
         <p class="m-0 text-blue-800 text-sm line-height-3">
           Para facilitar el seguimiento y generar reportes precisos, por favor:
         </p>
@@ -49,7 +46,8 @@
           </li>
         </ul>
       </div>
-    </div>
+      </div>
+    </details>
 
     <custom-input-text-signal
       [control]="form.controls.id"
@@ -92,7 +90,7 @@
       [maxLength]="250"
     />
 
-    <div class="row g-4">
+    <div class="row g-3">
       <div class="col-12 col-md-6">
         <custom-input-select-signal
           [control]="form.controls.priority"
@@ -110,7 +108,7 @@
       </div>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-3">
       <div class="col-12 col-md-6">
         <!-- Responsable -->
         <custom-input-select-signal
@@ -168,6 +166,103 @@
     </div>
     }
 
+    @if (id !== "") {
+    <details class="border rounded p-3 mb-3">
+      <summary id="task-responsibles-title" class="text-sm fw-bold text-uppercase cursor-pointer">Responsables</summary>
+      <div class="pt-3">
+      <div class="d-flex align-items-end gap-2 mb-3">
+        <div class="flex-fill">
+           <custom-input-autocomplete-multiple-signal
+             [control]="form.controls.responsiblesToAdd"
+             [data]="cb_application_user()"
+             label="Agregar responsables"
+             placeholder="Selecciona uno o varios colaboradores"
+           />
+        </div>
+        <il-button
+          label="Agregar"
+          iconClass="material-symbols-light:add"
+          variant="outlined"
+          (clicked)="addResponsible()"
+        />
+      </div>
+      @if (responsibles().length > 0) {
+      <div class="d-flex flex-column gap-2">
+        @for (responsible of responsibles(); track responsible.id) {
+        <div class="d-flex align-items-center justify-content-between gap-2">
+          <span class="text-sm">{{ responsible.applicationUser }}</span>
+          <div class="d-flex align-items-center gap-1">
+            @if (responsible.isPrimary) {
+            <span class="text-xs text-primary fw-semibold">Principal</span>
+            } @else {
+            <iw-button
+              icon="material-symbols-light:star-outline"
+              ariaLabel="Establecer como responsable principal"
+              (clicked)="setPrimaryResponsible(responsible.id)"
+            />
+            }
+            <iw-button
+              icon="material-symbols-light:delete-outline"
+              severity="danger"
+              ariaLabel="Eliminar responsable"
+              (clicked)="deleteResponsible(responsible.id)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+      } @else {
+      <small class="text-body-secondary">No hay responsables adicionales.</small>
+      }
+      </div>
+    </details>
+
+    <details class="border rounded p-3 mb-3">
+      <summary id="task-additional-images-title" class="text-sm fw-bold text-uppercase cursor-pointer">Imágenes adicionales</summary>
+      <div class="pt-3">
+       <lx-file-upload
+         accept="image/*,.heic,.heif"
+         [maxFileSize]="10000000"
+         [multiple]="true"
+         [chooseLabel]="'Seleccionar imagen'"
+         (onSelect)="onAdditionalImageSelect($event)"
+       />
+      @if (additionalImages().length > 0) {
+      <div class="d-flex flex-wrap gap-3 mt-3">
+        @for (image of additionalImages(); track image.id; let imageIndex = $index) {
+        <div class="border rounded p-2" [attr.data-image-id]="image.id">
+           <img [src]="image.path" [alt]="image.fileName" class="gallery-preview rounded" />
+          <div class="d-flex align-items-center justify-content-between gap-1 mt-2">
+            <span class="text-xs text-truncate" [title]="image.fileName">{{ image.fileName }}</span>
+            <div class="d-flex gap-1">
+              <iw-button
+                icon="material-symbols-light:arrow-upward"
+                ariaLabel="Mover imagen arriba"
+                [disabled]="imageIndex === 0"
+                (clicked)="moveAdditionalImage(imageIndex, -1)"
+              />
+              <iw-button
+                icon="material-symbols-light:arrow-downward"
+                ariaLabel="Mover imagen abajo"
+                [disabled]="imageIndex === additionalImages().length - 1"
+                (clicked)="moveAdditionalImage(imageIndex, 1)"
+              />
+              <iw-button
+                icon="material-symbols-light:delete-outline"
+                severity="danger"
+                ariaLabel="Eliminar imagen adicional"
+                (clicked)="deleteAdditionalImage(image.id)"
+              />
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      }
+      </div>
+    </details>
+    }
+
     <div class="row g-4">
       <div class="col-12 mb-2">
         <small class="text-body-secondary italic">
@@ -201,7 +296,7 @@
           <div class="mb-2 d-flex justify-content-center">
             <img
               [src]="beforeWorkPreview()"
-              class="w-15rem h-10rem object-cover rounded shadow-sm"
+              class="image-preview rounded shadow-sm"
               alt="Evidencia Antes"
             />
           </div>
@@ -226,7 +321,7 @@
           <div class="mb-2 d-flex justify-content-center">
             <img
               [src]="afterWorkPreview()"
-              class="w-15rem h-10rem object-cover rounded shadow-sm"
+              class="image-preview rounded shadow-sm"
               alt="Evidencia Después"
             />
           </div>
@@ -257,3 +352,23 @@
     </div>
   </form>
 </div>
+
+<style>
+  .gallery-preview {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 14rem;
+    object-fit: contain;
+  }
+
+  .image-preview {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 18rem;
+    object-fit: contain;
+  }
+</style>

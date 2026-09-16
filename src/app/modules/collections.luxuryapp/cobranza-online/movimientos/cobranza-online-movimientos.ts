@@ -49,6 +49,7 @@ export interface PivotRowMovimientos {
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    AppFrozenColumn,
     SharedModule,
     PrimeNgCustomCaption,
     DataViewMobile,

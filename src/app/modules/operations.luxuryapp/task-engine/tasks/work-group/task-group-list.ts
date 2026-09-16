@@ -12,7 +12,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -80,7 +79,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     EmptyState,
     CustomSearchInput,
     NgbDropdownModule,
-    DataViewModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
 

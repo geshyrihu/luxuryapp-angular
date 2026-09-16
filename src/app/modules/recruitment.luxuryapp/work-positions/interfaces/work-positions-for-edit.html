@@ -1,0 +1,96 @@
+<div class="work-positions-edit-container">
+  <div class="work-positions-edit-header">
+    <h1>Editar Puesto de Trabajo</h1>
+    <div class="work-positions-edit-id">ID: {{ workPositionId }}</div>
+  </div>
+
+  <div class="work-positions-edit-tabs" role="tablist">
+    @for (tab of tabOptions; track tab.id) {
+      <button type="button" role="tab" class="work-positions-edit-tab-button"
+        [class.active]="selectedTab() === tab.id"
+        [attr.aria-selected]="selectedTab() === tab.id"
+        (click)="setTab(tab.id)">
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  <div class="work-positions-edit-content">
+    @switch (selectedTab()) {
+      @case ('workPosition') {
+        <section class="work-positions-details-form">
+          <h2>Detalles del Puesto</h2>
+          <div class="work-positions-form-section">
+            <label>Nombre del Puesto</label>
+            <input type="text" [value]="workPosition()?.data?.name ?? ''" readonly />
+          </div>
+          <div class="work-positions-form-section">
+            <label>Departamento</label>
+            <input type="text" [value]="workPosition()?.data?.departament ?? ''" readonly />
+          </div>
+        </section>
+      }
+
+      @case ('schedule') {
+        <section class="work-positions-schedule-form">
+          <h2>Horario de Trabajo</h2>
+          @if (errorMessage()) {
+            <div class="error-message" role="alert">{{ errorMessage() }}</div>
+          }
+          @if (!scheduleLoaded()) {
+            <div class="loading-message">Cargando horario...</div>
+          } @else {
+            <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="scheduleName">Nombre del Horario</label>
+                <input id="scheduleName" formControlName="name" type="text" class="form-control" />
+                @if (scheduleForm.controls.name.touched && scheduleForm.controls.name.invalid) {
+                  <div class="error-message">El nombre es requerido.</div>
+                }
+              </div>
+              <div class="form-group">
+                <label for="scheduleActive">Activo</label>
+                <input id="scheduleActive" formControlName="isActive" type="checkbox" class="form-check-input" />
+              </div>
+              <div class="form-group">
+                <label for="scheduleTipoJornada">Tipo de Jornada</label>
+                <select id="scheduleTipoJornada" formControlName="tipoJornada" class="form-control">
+                  <option [ngValue]="1">Personalizado</option>
+                  <option [ngValue]="2">Completo</option>
+                  <option [ngValue]="3">Medio Tiempo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="scheduleObservaciones">Observaciones</label>
+                <textarea id="scheduleObservaciones" formControlName="observaciones" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group" formArrayName="diasDeTrabajo">
+                <h3>Días de Trabajo</h3>
+                @for (day of workDays.controls; track $index) {
+                  <div class="schedule-day-item" [formGroupName]="$index">
+                    <strong>Día {{ day.controls.diaSemana.value }} - Semana {{ day.controls.numeroSemanaCiclo.value }}</strong>
+                    <label>Descanso <input type="checkbox" formControlName="esDescanso" /></label>
+                    @if (!day.controls.esDescanso.value) {
+                      <div class="schedule-day-hours">
+                        <label>Hora de Entrada <input type="time" formControlName="horaEntrada" /></label>
+                        <label>Hora de Salida <input type="time" formControlName="horaSalida" /></label>
+                      </div>
+                    }
+                  </div>
+                } @empty {
+                  <div class="loading-message">El horario aún no tiene días configurados.</div>
+                }
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" [disabled]="saving()">
+                  {{ saving() ? 'Guardando...' : 'Guardar Horario' }}
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="setTab('workPosition')">Volver</button>
+              </div>
+            </form>
+          }
+        </section>
+      }
+    }
+  </div>
+</div>

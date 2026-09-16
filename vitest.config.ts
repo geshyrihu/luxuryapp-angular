@@ -15,7 +15,9 @@ export default defineConfig({
     alias: {
       'src/': resolve(__dirname, 'src') + '/',
       '@core/': resolve(__dirname, 'src/app/core') + '/',
-      '@ui/': resolve(__dirname, 'src/app/shared/ui') + '/'
+      '@ui/': resolve(__dirname, 'src/app/shared/ui') + '/',
+      '@shared/': resolve(__dirname, 'src/app/shared') + '/',
+      '@operations.luxuryapp/': resolve(__dirname, 'src/app/modules/operations.luxuryapp') + '/'
     }
   },
   optimizeDeps: {

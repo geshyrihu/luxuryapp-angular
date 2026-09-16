@@ -30,7 +30,7 @@ import {
   selector: "app-financial-summary",
   templateUrl: "./financial-summary.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, AppTable, AppSortableColumn, AppSorticon],
+  imports: [CommonModule, FormsModule, AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn],
 })
 export class FinancialSummary {
   apiResponseS = inject(ApiResponseService);

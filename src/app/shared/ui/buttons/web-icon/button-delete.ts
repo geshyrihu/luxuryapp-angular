@@ -22,7 +22,7 @@ import { ConfirmService } from "../shared/confirm.service";
       [disabled]="disabled() || loading()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Cancel" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.Delete" />
     </button>
   `,
 })

@@ -98,6 +98,21 @@ export const EndpointsOperations = {
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
     clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
   },
+  TaskResponsibles: {
+    list: (taskId: string) => `tasks/${taskId}/responsibles`,
+    add: (taskId: string) => `tasks/${taskId}/responsibles`,
+    setPrimary: (taskId: string, responsibleId: string) =>
+      `tasks/${taskId}/responsibles/primary/${responsibleId}`,
+    delete: (taskId: string, responsibleId: string) =>
+      `tasks/${taskId}/responsibles/${responsibleId}`,
+  },
+  TaskAdditionalImages: {
+    list: (taskId: string) => `tasks/${taskId}/additional-images`,
+    upload: (taskId: string) => `tasks/${taskId}/additional-images`,
+    reorder: (taskId: string) => `tasks/${taskId}/additional-images/reorder`,
+    delete: (taskId: string, imageId: string) =>
+      `tasks/${taskId}/additional-images/${imageId}`,
+  },
   TaskChecklistItems: {
     byTask: (tasksId: string) => `task-checklist-items/by-task/${tasksId}`,
     base: "task-checklist-items",
@@ -121,6 +136,14 @@ export const EndpointsOperations = {
     delete: (id: string) => `task-follow-up/${id}`,
     listByTicketMessage: (ticketMessageId: string) =>
       `task-follow-up/list/${ticketMessageId}`,
+  },
+  TaskFollowUpEvidenceImages: {
+    list: (followUpId: string) => `task-follow-up/${followUpId}/evidence-images`,
+    upload: (followUpId: string) => `task-follow-up/${followUpId}/evidence-images`,
+    reorder: (followUpId: string) =>
+      `task-follow-up/${followUpId}/evidence-images/reorder`,
+    delete: (followUpId: string, imageId: string) =>
+      `task-follow-up/${followUpId}/evidence-images/${imageId}`,
   },
   TaskGroupCategories: {
     base: "task-group-categories",

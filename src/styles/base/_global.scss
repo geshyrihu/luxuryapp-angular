@@ -211,22 +211,7 @@ i,
 /* =======================================
    7. VALIDACIÓN DE FORMULARIOS
    ======================================= */
-/*
-   Forzamos el borde rojo para inputs inválidos que han sido modificados (dirty) o tocados (touched).
-   Usamos !important para sobrescribir la regla genérica de "border: 2px solid" definida arriba.
-*/
-.p-inputtext.ng-invalid.ng-dirty,
-.p-inputtext.ng-invalid.ng-touched,
-.p-inputtext.p-invalid,
-.p-inputtextarea.ng-invalid.ng-dirty,
-.p-inputtextarea.ng-invalid.ng-touched,
-.p-select.ng-invalid.ng-dirty,
-.p-select.ng-invalid.ng-touched,
-.p-select.p-invalid,
-.p-dropdown.p-invalid,
-.p-dropdown.ng-invalid.ng-dirty {
-  border-color: var(--danger-color, #991b1b) !important;
-}
+/* Los estilos de validación (bordes rojos, íconos) ahora viven en web/_inputs.scss */
 
 /* Feedback visual adicional para el placeholder (opcional) */
 .p-inputtext.ng-invalid.ng-dirty::placeholder {

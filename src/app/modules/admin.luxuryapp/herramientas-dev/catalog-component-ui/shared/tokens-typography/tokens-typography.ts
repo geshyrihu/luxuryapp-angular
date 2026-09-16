@@ -4,13 +4,13 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [TableModule, AppTag, MessageModule],
+  imports: [AppTable, AppSortableColumn, AppSorticon, AppTag, MessageModule],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">
@@ -56,7 +56,7 @@ import { AppTag } from "@ui/web/tag/tag";
         Tokens de tamaño de texto para cada contexto operativo. Un solo uso por
         nivel evita jerarquías rotas.
       </p>
-      <p-table [value]="erpScale" class="p-datatable-sm">
+      <app-table [value]="erpScale" class="p-datatable-sm">
         <ng-template #header>
           <tr>
             <th>Uso</th>
@@ -86,7 +86,7 @@ import { AppTag } from "@ui/web/tag/tag";
             <td class="text-sm text-color-secondary">{{ item.usage }}</td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
 
     <!-- -- Familias Tipogróficas ------------------------------------ -->

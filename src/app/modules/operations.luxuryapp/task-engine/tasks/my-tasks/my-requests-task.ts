@@ -36,7 +36,6 @@ import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
 import { TaskStatus } from "../task-status/task-status";
 import { TaskGroupService } from "../task.service";
-import { MyTaskForm } from "./my-task-form";
 
 @Component({
   selector: "app-my-requests-task",
@@ -132,7 +131,7 @@ export class MyRequestsTask implements OnInit {
   onModalAdd(data: any) {
     this.dialogHandlerS
       .openDialog(
-        MyTaskForm,
+        TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
         this.dialogHandlerS.sizeLg,

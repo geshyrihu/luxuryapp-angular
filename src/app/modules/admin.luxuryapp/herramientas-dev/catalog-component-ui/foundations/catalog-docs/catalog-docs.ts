@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";
@@ -9,7 +9,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
 
 @Component({
   selector: "app-catalog-docs",
-  imports: [CommonModule, TableModule, AppTag, AppIcon],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppTag, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -72,7 +72,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
                 >
               </div>
-              <p-table [value]="camposNomenclatura" class="p-datatable-sm">
+              <app-table [value]="camposNomenclatura" class="p-datatable-sm">
                 <ng-template #header
                   ><tr>
                     <th>Campo</th>
@@ -87,7 +87,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     <td class="text-xs">{{ row.valores }}</td>
                   </tr></ng-template
                 >
-              </p-table>
+              </app-table>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
               <span class="card-title">Matriz de Acceso por Rol</span>
             </div>
             <div class="card-body">
-              <p-table
+              <app-table
                 [value]="matrizAcceso"
                 [scrollable]="true"
                 scrollHeight="300px"
@@ -149,7 +149,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     </td>
                   </tr>
                 </ng-template>
-              </p-table>
+              </app-table>
             </div>
           </div>
         </div>
@@ -292,4 +292,3 @@ export class CatalogDocs {
     return "warn";
   }
 }
-

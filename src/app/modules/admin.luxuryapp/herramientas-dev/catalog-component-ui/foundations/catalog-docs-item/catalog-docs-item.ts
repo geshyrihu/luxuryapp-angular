@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 
 type TagSeverity =
@@ -21,7 +21,7 @@ const DOCS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-docs-item",
-  imports: [CommonModule, TableModule, AppTag],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppTag],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -29,7 +29,7 @@ const DOCS_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("documenttypes") {
-          <p-table [value]="tiposDocumento" class="p-datatable-sm">
+          <app-table [value]="tiposDocumento" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Tipo</th>
@@ -49,10 +49,10 @@ const DOCS_LABELS: Record<string, string> = {
                 </td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         }
         @case ("nomenclature") {
-          <p-table [value]="camposNomenclatura" class="p-datatable-sm">
+          <app-table [value]="camposNomenclatura" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Campo</th>
@@ -67,10 +67,10 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.valores }}</td>
               </tr></ng-template
             >
-          </p-table>
+          </app-table>
         }
         @case ("accessmatrix") {
-          <p-table [value]="matrizAcceso" class="p-datatable-sm">
+          <app-table [value]="matrizAcceso" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Documento</th>
@@ -83,7 +83,7 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.superUsuario }}</td>
               </tr></ng-template
             >
-          </p-table>
+          </app-table>
         }
       }
     </section>

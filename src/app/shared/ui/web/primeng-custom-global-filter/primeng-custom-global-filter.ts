@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IconFieldModule } from "primeng/iconfield";
-import { InputIconModule } from "primeng/inputicon";
-import { InputTextModule } from "primeng/inputtext";
-import { Table } from "primeng/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 
 /**
@@ -14,32 +11,24 @@ import { AppIcon } from "../../shared/app-icon/app-icon";
  */
 @Component({
   selector: "primeng-custom-global-filter",
-  imports: [
-    FormsModule,
-    InputTextModule,
-    IconFieldModule,
-    InputIconModule,
-    AppIcon,
-  ],
+  imports: [FormsModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-iconfield iconPosition="left" fluid>
-      <p-inputicon>
+    <div class="input-group input-group-sm">
+      <span class="input-group-text">
         <app-icon icon="material-symbols-light:search" />
-      </p-inputicon>
+      </span>
       <input
-        pInputText
         type="text"
         (input)="onFilter($event)"
         placeholder="Buscar..."
-        fluid
-        pSize="small"
+        class="form-control"
       />
-    </p-iconfield>
+    </div>
   `,
 })
 export class PrimeNgCustomGlobalFilter {
-  dt = input<Table | undefined>(undefined);
+  dt = input<AppTable | undefined>(undefined);
 
   onFilter(event: Event) {
     const value = (event.target as HTMLInputElement).value;

@@ -21,6 +21,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
@@ -40,6 +41,13 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TaskFollowup } from "../task-follow-up/task-followup";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import {
+  TaskAdditionalImage,
+  TaskImageReorderPayload,
+  TaskResponsible,
+  TaskResponsibleAddPayload,
+} from "../task-shared/interfaces/task-refactor.interface";
 
 interface ITaskMessageForm {
   id: FormControl<string>;
@@ -60,6 +68,8 @@ interface ITaskMessageForm {
   documentCloud: FormControl<boolean>;
   documentEmail: FormControl<boolean>;
   dependsOnTaskId: FormControl<string | null>;
+  responsibleToAdd: FormControl<string>;
+  responsiblesToAdd: FormControl<any[]>;
 }
 
 type ImageFieldName = "beforeWork" | "afterWork";
@@ -79,12 +89,14 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
     LxProcessingOverlay,
     CustomInputTextSignal,
     CustomInputSelectSignal,
+    CustomInputAutoMultiple,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
     WebButtonLabel,
     CustomInputCheckSignal,
     AppIcon,
+    WebButtonIcon,
   ],
 })
 export class TaskForm implements OnInit, OnDestroy {
@@ -164,7 +176,13 @@ export class TaskForm implements OnInit, OnDestroy {
     documentCloud: new FormControl<boolean>(false, { nonNullable: true }),
     documentEmail: new FormControl<boolean>(false, { nonNullable: true }),
     dependsOnTaskId: new FormControl<string | null>(null),
+    responsibleToAdd: new FormControl<string>("", { nonNullable: true }),
+    responsiblesToAdd: new FormControl<any[]>([], { nonNullable: true }),
   });
+
+  responsibles = signal<TaskResponsible[]>([]);
+  additionalImages = signal<TaskAdditionalImage[]>([]);
+  additionalImageUploading = signal(false);
 
   async ngOnInit(): Promise<void> {
     this.id = this.config.data.id || "";
@@ -195,7 +213,100 @@ export class TaskForm implements OnInit, OnDestroy {
 
     if (this.id !== "") {
       await this.onLoadData();
+      await Promise.all([this.loadResponsibles(), this.loadAdditionalImages()]);
     }
+  }
+
+  async loadResponsibles(): Promise<void> {
+    const result = await this.apiResponseS.onGetList<TaskResponsible[]>(
+      Endpoints.TaskResponsibles.list(this.id),
+    );
+    this.responsibles.set(result ?? []);
+  }
+
+  async addResponsible(): Promise<void> {
+    const selected = this.form.controls.responsiblesToAdd.value;
+    const legacySelection = this.form.controls.responsibleToAdd.value;
+    const ids = selected.length
+      ? selected.map((item) => typeof item === "string" ? item : item.value)
+      : legacySelection ? [legacySelection] : [];
+    for (const applicationUserId of [...new Set(ids.filter(Boolean))]) {
+      const payload: TaskResponsibleAddPayload = { applicationUserId };
+      const result = await this.apiResponseS.onPost<TaskResponsible>(
+        Endpoints.TaskResponsibles.add(this.id),
+        payload,
+      );
+      if (result === false) break;
+    }
+    this.form.controls.responsiblesToAdd.setValue([]);
+    this.form.controls.responsibleToAdd.setValue("");
+    await this.loadResponsibles();
+  }
+
+  async setPrimaryResponsible(responsibleId: string): Promise<void> {
+    const result = await this.apiResponseS.onPatch<boolean>(
+      Endpoints.TaskResponsibles.setPrimary(this.id, responsibleId),
+      null,
+    );
+    if (result !== false) await this.loadResponsibles();
+  }
+
+  async deleteResponsible(responsibleId: string): Promise<void> {
+    const deleted = await this.apiResponseS.onDelete(
+      Endpoints.TaskResponsibles.delete(this.id, responsibleId),
+    );
+    if (deleted) await this.loadResponsibles();
+  }
+
+  async loadAdditionalImages(): Promise<void> {
+    const result = await this.apiResponseS.onGetList<TaskAdditionalImage[]>(
+      Endpoints.TaskAdditionalImages.list(this.id),
+    );
+    this.additionalImages.set(result ?? []);
+  }
+
+  async onAdditionalImageSelect(event: { files?: File[] }): Promise<void> {
+    const files = event.files ?? [];
+    if (!files.length || this.additionalImageUploading()) return;
+
+    this.additionalImageUploading.set(true);
+    try {
+      for (const file of files) {
+        const formData = new FormData();
+        formData.append("File", file, file.name);
+        const result = await this.apiResponseS.onPostFile<TaskAdditionalImage>(
+          Endpoints.TaskAdditionalImages.upload(this.id),
+          formData,
+        );
+        if (result === false) break;
+      }
+      await this.loadAdditionalImages();
+    } finally {
+      this.additionalImageUploading.set(false);
+    }
+  }
+
+  async deleteAdditionalImage(imageId: string): Promise<void> {
+    const deleted = await this.apiResponseS.onDelete(
+      Endpoints.TaskAdditionalImages.delete(this.id, imageId),
+    );
+    if (deleted) await this.loadAdditionalImages();
+  }
+
+  async moveAdditionalImage(index: number, direction: -1 | 1): Promise<void> {
+    const images = [...this.additionalImages()];
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= images.length) return;
+
+    [images[index], images[targetIndex]] = [images[targetIndex], images[index]];
+    const payload: TaskImageReorderPayload = {
+      imageIds: images.map((image) => image.id),
+    };
+    const result = await this.apiResponseS.onPatch<boolean>(
+      Endpoints.TaskAdditionalImages.reorder(this.id),
+      payload,
+    );
+    if (result !== false) this.additionalImages.set(images);
   }
 
   async onLoadSelectItems(): Promise<void> {
@@ -574,7 +685,7 @@ export class TaskForm implements OnInit, OnDestroy {
             }
           } else if (key === "dependsOnTaskId") {
             if (value) formData.append(key, value);
-          } else if (key !== "assignee") {
+           } else if (key !== "assignee" && key !== "responsibleToAdd") {
             formData.append(key, value != null ? value : "");
           }
         });

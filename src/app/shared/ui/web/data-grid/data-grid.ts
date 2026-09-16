@@ -7,12 +7,15 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
-import { DatePickerModule } from "primeng/datepicker";
-import { InputTextModule } from "primeng/inputtext";
-import { SelectModule } from "primeng/select";
-import { TableModule } from "primeng/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import {
+  AppTable,
+  AppSorticon,
+  AppTableCheckbox,
+  AppTableHeaderCheckbox,
+} from "@ui/web/table/table";
 
 export interface DataGridColumn {
   field: string;
@@ -31,15 +34,15 @@ export interface DataGridColumn {
 
 @Component({
   selector: "app-data-grid",
-
   imports: [
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    SelectModule,
-    DatePickerModule,
+    AppTable,
+    AppSorticon,
+    AppTableCheckbox,
+    AppTableHeaderCheckbox,
     FormsModule,
     AppIcon,
+    WebButtonLabel,
+    WebButtonIcon,
   ],
   template: `
     <div class="data-grid-root">
@@ -53,31 +56,28 @@ export interface DataGridColumn {
           <div class="flex-1"></div>
           @if (globalFilter()) {
             <input
-              pInputText
               [(ngModel)]="globalFilterValue"
               (input)="onGlobalFilter($event)"
-              [placeholder]="'Buscar...'"
-              class="p-inputtext-sm"
+              placeholder="Buscar..."
+              class="form-control form-control-sm"
+              style="width: auto"
             />
           }
           @if (showActions()) {
-            <p-button
-              [label]="'Agregar'"
+            <il-button
+              label="Agregar"
+              iconClass="material-symbols-light:add"
               severity="primary"
-              size="small"
-              (onClick)="addRow.emit()"
-            >
-              <ng-template #icon>
-                <app-icon icon="material-symbols-light:add" />
-              </ng-template>
-            </p-button>
+              size="sm"
+              (clicked)="addRow.emit()"
+            />
           }
         </div>
       }
 
-      <p-table
+      <app-table
+        #dt
         [value]="data()"
-        [columns]="cols()"
         [dataKey]="dataKey()"
         [loading]="loading()"
         [paginator]="paginator()"
@@ -85,42 +85,26 @@ export interface DataGridColumn {
         [rowsPerPageOptions]="rowsPerPageOptions()"
         [totalRecords]="totalRecords()"
         [globalFilterFields]="globalFilterFields()"
-        [sortField]="sortField()"
-        [sortOrder]="sortOrder()"
-        [selectionMode]="selectionMode()"
-        [selection]="selection()"
-        (selectionChange)="selection.set($event)"
+        [(selection)]="selection"
+        [reorderableColumns]="reorderableColumns()"
         [scrollable]="scrollable()"
         [scrollHeight]="scrollHeight()"
-        [virtualScroll]="virtualScroll()"
-        [virtualScrollItemSize]="virtualScrollItemSize()"
-        [editMode]="editMode()"
-        [resizableColumns]="resizableColumns()"
-        [reorderableColumns]="reorderableColumns()"
-        [showGridlines]="showGridlines()"
-        [rowHover]="true"
         [lazy]="lazy()"
-        (onLazyLoad)="onLazyLoad.emit($event)"
         (onPage)="onPage.emit($event)"
-        (onSort)="onSort.emit($event)"
-        (onFilter)="onFilter.emit($event)"
-        (onRowSelect)="onRowSelect.emit($event)"
-        (onRowUnselect)="onRowUnselect.emit($event)"
-        styleClass="w-full"
-        tableStyleClass="w-full"
       >
-        <ng-template #header let-columns>
+        <ng-template #header>
           <tr>
             @if (selectionMode() === "multiple") {
               <th style="width: 3rem">
                 <p-tableheadercheckbox />
               </th>
             }
-            @for (col of columns; track col.field) {
+            @for (col of columns(); track col.field) {
               <th
-                [pSortableColumn]="col.sortable ? col.field : null"
                 [style]="{ width: col.width, 'min-width': col.minWidth }"
                 [class]="col.styleClass"
+                [class.cursor-pointer]="col.sortable"
+                (click)="col.sortable && dt.sort(col.field)"
               >
                 <div class="d-flex align-items-center gap-1">
                   @if (col.icon) {
@@ -128,16 +112,15 @@ export interface DataGridColumn {
                   }
                   {{ col.header }}
                   @if (col.sortable) {
-                    <p-sorticon [field]="col.field" />
+                    <app-sorticon [field]="col.field" />
                   }
                 </div>
                 @if (col.filterable) {
                   <div class="mt-1">
                     <input
-                      pInputText
                       (input)="onColumnFilter($event, col.field)"
-                      class="p-inputtext-sm w-full"
-                      [placeholder]="'Filtrar...'"
+                      class="form-control form-control-sm w-100"
+                      placeholder="Filtrar..."
                     />
                   </div>
                 }
@@ -149,34 +132,35 @@ export interface DataGridColumn {
           </tr>
         </ng-template>
 
-        <ng-template #body let-row let-columns="columns" let-index="rowIndex">
+        <ng-template #body let-row>
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
                 <p-tablecheckbox [value]="row" />
               </td>
             }
-            @for (col of columns; track col.field) {
+            @for (col of columns(); track col.field) {
               <td [style]="{ width: col.width, 'min-width': col.minWidth }">
                 @if (editMode() && col.editable) {
                   @if (col.type === "select") {
-                    <p-select
+                    <select
                       [(ngModel)]="row[col.field]"
-                      [options]="col.options || []"
-                      optionLabel="label"
-                      optionValue="value"
-                      styleClass="w-full"
-                    />
+                      class="form-select form-select-sm"
+                    >
+                      @for (opt of col.options || []; track opt.value) {
+                        <option [value]="opt.value">{{ opt.label }}</option>
+                      }
+                    </select>
                   } @else if (col.type === "date") {
-                    <p-datepicker
+                    <input
+                      type="date"
                       [(ngModel)]="row[col.field]"
-                      styleClass="w-full"
+                      class="form-control form-control-sm"
                     />
                   } @else {
                     <input
-                      pInputText
                       [(ngModel)]="row[col.field]"
-                      class="w-full"
+                      class="form-control form-control-sm"
                     />
                   }
                 } @else {
@@ -204,24 +188,22 @@ export interface DataGridColumn {
             @if (showActions()) {
               <td>
                 <div class="d-flex gap-1">
-                  <p-button
-                    [rounded]="true"
-                    [text]="true"
-                    size="small"
+                  <iw-button
+                    iconClass="material-symbols-light:edit"
                     severity="info"
-                    (onClick)="editRow.emit(row)"
-                  >
-                    <app-icon icon="material-symbols-light:edit" />
-                  </p-button>
-                  <p-button
+                    size="sm"
                     [rounded]="true"
                     [text]="true"
-                    size="small"
+                    (clicked)="editRow.emit(row)"
+                  />
+                  <iw-button
+                    iconClass="material-symbols-light:delete"
                     severity="danger"
-                    (onClick)="deleteRow.emit(row)"
-                  >
-                    <app-icon icon="material-symbols-light:delete" />
-                  </p-button>
+                    size="sm"
+                    [rounded]="true"
+                    [text]="true"
+                    (clicked)="deleteRow.emit(row)"
+                  />
                 </div>
               </td>
             }
@@ -229,12 +211,16 @@ export interface DataGridColumn {
         </ng-template>
 
         <ng-template #emptymessage>
-          <div class="p-4 text-center text-color-secondary">
-            <app-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
-            <p class="text-sm m-0">{{ emptyMessage() }}</p>
-          </div>
+          <tr>
+            <td [attr.colspan]="columns().length + (showActions() ? 1 : 0) + (selectionMode() === 'multiple' ? 1 : 0)">
+              <div class="p-4 text-center text-color-secondary">
+                <app-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
+                <p class="text-sm m-0">{{ emptyMessage() }}</p>
+              </div>
+            </td>
+          </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   `,
   styles: [
@@ -260,23 +246,17 @@ export class DataGrid {
   dataKey = input<string>("id");
   loading = input<boolean>(false);
   selectionMode = input<"single" | "multiple" | undefined>(undefined);
-  selection = model<any>(undefined);
+  selection = model<any[]>([]);
   paginator = input<boolean>(true);
   rows = input<number>(20);
   rowsPerPageOptions = input<number[]>([10, 20, 50, 100]);
   totalRecords = input<number>(0);
   globalFilter = input<boolean>(false);
   globalFilterFields = input<string[]>([]);
-  sortField = input<string>("");
-  sortOrder = input<number>(1);
   scrollable = input<boolean>(false);
   scrollHeight = input<string>("400px");
-  virtualScroll = input<boolean>(false);
-  virtualScrollItemSize = input<number>(40);
   editMode = input<"cell" | "row" | undefined>(undefined);
-  resizableColumns = input<boolean>(false);
   reorderableColumns = input<boolean>(false);
-  showGridlines = input<boolean>(true);
   lazy = input<boolean>(false);
   title = input<string>("");
   showActions = input<boolean>(true);
@@ -284,17 +264,11 @@ export class DataGrid {
 
   globalFilterValue: string = "";
 
-  onLazyLoad = output<any>();
   onPage = output<any>();
-  onSort = output<any>();
   onFilter = output<any>();
-  onRowSelect = output<any>();
-  onRowUnselect = output<any>();
   addRow = output<void>();
   editRow = output<any>();
   deleteRow = output<any>();
-
-  cols = this.columns;
 
   onGlobalFilter(event: Event): void {
     this.globalFilterValue = (event.target as HTMLInputElement).value;
@@ -313,4 +287,3 @@ export class DataGrid {
     }).format(value);
   }
 }
-

@@ -15,7 +15,6 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -34,7 +33,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    TableModule,
     AppSpinner,
     LxMessage,
     CustomInputSelectSignal,

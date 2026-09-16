@@ -71,7 +71,7 @@
       </div>
 
       <!-- Images -->
-      <div class="row mb-5 g-4">
+       <div class="row mb-5 g-4">
         <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
@@ -86,8 +86,35 @@
               class="w-full h-15rem object-cover d-block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
               alt="Antes"
             />
-          </div>
-        </div>
+         </div>
+       </div>
+
+       @if (responsibles().length > 0) {
+       <section class="mb-4" aria-labelledby="task-view-responsibles-title">
+         <h3 id="task-view-responsibles-title" class="text-sm fw-bold text-uppercase mb-2">Responsables</h3>
+         <div class="d-flex flex-wrap gap-2">
+           @for (responsible of responsibles(); track responsible.id) {
+           <span class="bg-body-tertiary border rounded px-2 py-1 text-sm">
+             {{ responsible.applicationUser }}{{ responsible.isPrimary ? " (Principal)" : "" }}
+           </span>
+           }
+         </div>
+       </section>
+       }
+
+       @if (additionalImages().length > 0) {
+       <section class="mb-4" aria-labelledby="task-view-additional-images-title">
+         <h3 id="task-view-additional-images-title" class="text-sm fw-bold text-uppercase mb-2">Imágenes adicionales</h3>
+         <div class="d-flex flex-wrap gap-3">
+           @for (image of additionalImages(); track image.id) {
+           <figure class="m-0 border rounded p-2">
+              <img [src]="image.path" [alt]="image.fileName" class="collection-preview rounded" />
+             <figcaption class="text-xs text-body-secondary mt-1 text-truncate" [title]="image.fileName">{{ image.fileName }}</figcaption>
+           </figure>
+           }
+         </div>
+       </section>
+       }
         <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
@@ -220,12 +247,30 @@
         </li>
         }
       </ul>
-      } @else {
+       } @else {
       <div class="p-4 bg-body-tertiary rounded text-center text-body-secondary italic">
         No hay registros de seguimiento.
-      </div>
-      }
-    </div>
+       </div>
+       }
+
+       @if (hasEvidence()) {
+       <section class="mt-4" aria-labelledby="task-view-evidence-title">
+         <h3 id="task-view-evidence-title" class="text-xl fw-bold mb-3 border-left-3 border-primary ps-3">Evidencia visual de seguimientos</h3>
+         @for (followUp of followUps(); track followUp.id) {
+         @if ((evidenceImages()[followUp.id] ?? []).length > 0) {
+         <div class="mb-3">
+           <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
+           <div class="d-flex flex-wrap gap-3">
+             @for (image of evidenceImages()[followUp.id]; track image.id) {
+             <img [src]="image.path" [alt]="image.fileName" class="collection-preview rounded border" />
+             }
+           </div>
+         </div>
+         }
+         }
+       </section>
+       }
+     </div>
   </div>
 </div>
 
@@ -271,7 +316,7 @@
     </div>
   </div>
 
-  <div class="px-2 mb-3">
+   <div class="px-2 mb-3">
     <div class="row ion-no-padding g-4">
       <div class="d-flex flex-wrap w-full">
         <div class="col-6 pe-1">
@@ -280,7 +325,29 @@
               class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs fw-bold z-10 op-8"
             >
               Antes
-            </div>
+   </div>
+
+   @if (responsibles().length > 0) {
+   <section class="bg-body mb-3 rounded p-3" aria-labelledby="task-view-mobile-responsibles-title">
+     <h3 id="task-view-mobile-responsibles-title" class="text-xs text-uppercase text-medium">Responsables</h3>
+     <div class="d-flex flex-wrap gap-2 mt-2">
+       @for (responsible of responsibles(); track responsible.id) {
+       <span class="border rounded px-2 py-1 text-sm">{{ responsible.applicationUser }}{{ responsible.isPrimary ? " (Principal)" : "" }}</span>
+       }
+     </div>
+   </section>
+   }
+
+   @if (additionalImages().length > 0) {
+   <section class="bg-body mb-3 rounded p-3" aria-labelledby="task-view-mobile-images-title">
+     <h3 id="task-view-mobile-images-title" class="text-xs text-uppercase text-medium">Imágenes adicionales</h3>
+     <div class="d-flex flex-wrap gap-2 mt-2">
+       @for (image of additionalImages(); track image.id) {
+         <img [src]="image.path" [alt]="image.fileName" class="collection-preview-mobile rounded border" />
+       }
+     </div>
+   </section>
+   }
             <img
               [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
               class="w-full h-full object-cover"
@@ -381,12 +448,30 @@
       </div>
       }
     </div>
-    } @else {
+     } @else {
     <div class="text-center p-4 text-medium bg-light rounded">
       No hay mensajes de seguimiento.
-    </div>
-    }
-  </div>
+     </div>
+     }
+
+     @if (hasEvidence()) {
+     <section class="mt-4" aria-labelledby="task-view-mobile-evidence-title">
+       <h3 id="task-view-mobile-evidence-title" class="text-lg fw-bold mb-3">Evidencia visual</h3>
+       @for (followUp of followUps(); track followUp.id) {
+       @if ((evidenceImages()[followUp.id] ?? []).length > 0) {
+       <div class="mb-3">
+         <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
+         <div class="d-flex flex-wrap gap-2">
+           @for (image of evidenceImages()[followUp.id]; track image.id) {
+            <img [src]="image.path" [alt]="image.fileName" class="collection-preview-mobile rounded border" />
+           }
+         </div>
+       </div>
+       }
+       }
+     </section>
+     }
+   </div>
 
   @if (t.seeEditingOptions) {
   <div
@@ -455,6 +540,20 @@
 }
 
 <style>
+  .collection-preview,
+  .collection-preview-mobile {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 16rem;
+    object-fit: contain;
+  }
+
+  .collection-preview-mobile {
+    max-height: 12rem;
+  }
+
   .arrow-left::before {
     content: "";
     position: absolute;

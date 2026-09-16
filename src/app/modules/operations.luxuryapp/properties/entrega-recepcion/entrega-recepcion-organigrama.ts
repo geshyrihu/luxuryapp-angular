@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { TreeNode } from "@ui/web/primeng-api/primeng-api";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -14,7 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-entrega-recepcion-organigrama",
   templateUrl: "./entrega-recepcion-organigrama.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule],
+  imports: [],
 })
 export class EntregaRecepcionOrganigrama {
   apiResponseS = inject(ApiResponseService);
@@ -36,4 +35,3 @@ export class EntregaRecepcionOrganigrama {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-

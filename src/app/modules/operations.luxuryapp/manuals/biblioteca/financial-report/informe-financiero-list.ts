@@ -8,7 +8,6 @@ import {
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -16,7 +15,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-informe-financiero",
   imports: [
-    TableModule,
     WebButtonLabelViewPdf,
     DataViewMobile,
     WebButtonLabelViewPdf,
@@ -49,4 +47,3 @@ export class InformeFinanciero {
     });
   }
 }
-

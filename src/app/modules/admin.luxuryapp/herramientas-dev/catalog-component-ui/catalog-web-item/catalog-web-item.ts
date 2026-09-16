@@ -71,7 +71,7 @@ import { MultiSelectModule } from "@ui/web/primeng-multiselect/primeng-multisele
 import { PopoverModule } from "@ui/web/primeng-popover/primeng-popover";
 import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
 import { AppBadge } from "@ui/web/badge/badge";
@@ -189,7 +189,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     PopoverModule,
     SelectModule,
     SelectButtonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     TabsModule,
     ToggleSwitchModule,
     AppBadge,
@@ -834,7 +836,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Table - p-table</h3>
                 </div>
                 <div class="card-body">
-                  <p-table [value]="tableData" class="p-datatable-sm">
+                  <app-table [value]="tableData" class="p-datatable-sm">
                     <ng-template #header
                       ><tr>
                         <th>Nombre</th>
@@ -858,7 +860,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         </td>
                       </tr>
                     </ng-template>
-                  </p-table>
+                  </app-table>
                 </div>
               </div>
             }
@@ -1203,7 +1205,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       <code>p-table class="custom-table "</code>
                       con paginacion, busqueda y botones de accion DS.
                     </p>
-                    <p-table
+                    <app-table
                       [value]="calendarTableDemo"
                       class="custom-table "
                       [rows]="4"
@@ -1231,7 +1233,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           </td>
                         </tr>
                       </ng-template>
-                    </p-table>
+                    </app-table>
                   </div>
                 </div>
               </div>
@@ -1514,4 +1516,3 @@ export class CatalogWebItem {
     },
   ];
 }
-

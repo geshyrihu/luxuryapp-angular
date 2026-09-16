@@ -53,6 +53,7 @@ import { PurchaseHistory } from "./purchase-history";
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    AppFrozenColumn,
     MessageModule,
     TagModule,
     DataViewMobile,

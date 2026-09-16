@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
 
 import {
@@ -361,7 +361,9 @@ const ILI_SEMANTIC: SemanticEntry[] = [
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     SelectButtonModule,
     ToggleSwitchModule,
     MobileButtonIconAdd,
@@ -496,14 +498,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <p-table [value]="ilSemantic" dataKey="id">
+        <app-table [value]="ilSemantic" dataKey="id">
           <ng-template #caption>
             Semóntica por defecto
             <small class="text-color-secondary ms-2"
               >(sin overrides de color/variante)</small
             >
           </ng-template>
-          <ng-template pTemplate="header"><tr>
+          <ng-template #header><tr>
               <th style="width:160px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th style="width:200px">severity / variant</th>
@@ -619,7 +621,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></p-table>
+            </tr></ng-template></app-table>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -661,9 +663,9 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <p-table [value]="iwSemantic" dataKey="id">
+        <app-table [value]="iwSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
-          <ng-template pTemplate="header"><tr>
+          <ng-template #header><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th style="width:200px">severity / variant</th>
@@ -774,7 +776,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></p-table>
+            </tr></ng-template></app-table>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -816,9 +818,9 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <p-table [value]="iiSemantic" dataKey="id">
+        <app-table [value]="iiSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
-          <ng-template pTemplate="header"><tr>
+          <ng-template #header><tr>
               <th style="width:100px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th>Ejemplo de uso</th>
@@ -918,7 +920,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></p-table>
+            </tr></ng-template></app-table>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -961,9 +963,9 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <p-table [value]="iliSemantic" dataKey="id">
+        <app-table [value]="iliSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
-          <ng-template pTemplate="header"><tr>
+          <ng-template #header><tr>
               <th style="width:160px">Vista previa</th>
               <th style="width:280px">Selector</th>
               <th>Ejemplo de uso</th>
@@ -1070,7 +1072,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></p-table>
+            </tr></ng-template></app-table>
       </div>
     </section>
   `,

@@ -5,7 +5,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -19,7 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   selector: "app-task-read-list",
   templateUrl: "./task-read-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, TableModule],
+  imports: [AppIcon],
 })
 export class TaskReadList implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -44,4 +43,3 @@ export class TaskReadList implements OnInit {
       });
   }
 }
-

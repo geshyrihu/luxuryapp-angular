@@ -12,9 +12,9 @@ import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (shouldShowErrors()) {
-      <div class="text-red-500 mt-1">
+      <div class="invalid-tooltip d-block">
         @for (error of getErrors(); track error) {
-          <small>{{ error }}</small>
+          <div class="d-block">{{ error }}</div>
         }
       </div>
     }

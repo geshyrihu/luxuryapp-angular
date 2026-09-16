@@ -56,6 +56,7 @@ import { PurchaseHistory } from "./purchase-history";
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    AppFrozenColumn,
     MessageModule,
     DataViewMobile,
     LxTooltipDirective,

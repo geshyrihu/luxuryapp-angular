@@ -18,6 +18,7 @@ import { SignalRService } from "@core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppBadge } from "@ui/web/badge/badge";
+import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: "app-notifications-gadget",
   imports: [
@@ -27,6 +28,7 @@ import { AppBadge } from "@ui/web/badge/badge";
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIconDelete,
+    NgbDropdownModule,
   ],
   templateUrl: "./notifications-gadget.html",
   changeDetection: ChangeDetectionStrategy.OnPush,

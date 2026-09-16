@@ -60,7 +60,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
               }
             </label>
           }
-          <div class="field-content">
+          <div class="field-content position-relative">
             <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
               <small class="d-block mt-1 text-500 line-height-2 italic px-1">

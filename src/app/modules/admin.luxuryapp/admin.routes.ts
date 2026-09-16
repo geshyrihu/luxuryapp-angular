@@ -247,18 +247,7 @@ export const adminRoutes: Routes = [
       breadcrumb: "Checklist de Onboarding",
     },
   },
-  {
-    path: "work-position-schedules",
-    loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/work-position-schedule/work-position-schedule-list").then(
-        (m) => m.WorkPositionScheduleList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Horarios de Puesto",
-      breadcrumb: "Horarios de Puesto",
-    },
-  },
+  
 
   // Catálogos de Tickets y Mantenimiento
   {
@@ -798,5 +787,3 @@ export const adminRoutes: Routes = [
     },
   },
 ];
-
-

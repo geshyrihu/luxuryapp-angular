@@ -21,7 +21,7 @@ import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
 import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -61,7 +61,9 @@ const GUIA_LABELS: Record<string, string> = {
     DividerModule,
     ProgressSpinnerModule,
     SkeletonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ToolbarModule,
     AppCheckbox,
     AppMessage,
@@ -160,7 +162,7 @@ const GUIA_LABELS: Record<string, string> = {
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
           />
           <div class="card">
-            <p-table [value]="colorAssessment" class="p-datatable-sm">
+            <app-table [value]="colorAssessment" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
                   <th>Rol</th>
@@ -183,7 +185,7 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.recommendation }}</td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </div>
         }
 
@@ -194,7 +196,7 @@ const GUIA_LABELS: Record<string, string> = {
             class="mb-3 d-block"
           />
           <div class="card">
-            <p-table
+            <app-table
               [value]="componentCatalog"
               [paginator]="true"
               [rows]="8"
@@ -235,7 +237,7 @@ const GUIA_LABELS: Record<string, string> = {
                   </td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </div>
         }
 
@@ -712,4 +714,3 @@ export class CatalogGuiaItem {
     return map[status];
   }
 }
-

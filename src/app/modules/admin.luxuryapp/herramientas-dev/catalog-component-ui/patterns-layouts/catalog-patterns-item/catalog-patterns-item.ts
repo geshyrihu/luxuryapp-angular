@@ -11,7 +11,7 @@ import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppDivider } from "@ui/web/divider/divider";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -33,7 +33,9 @@ const PATTERNS_LABELS: Record<string, string> = {
     AppDivider,
     InputTextModule,
     MessageModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     TabsModule,
     AppIcon,
     StatusBadge,
@@ -72,7 +74,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="card-title">Data Table Hybrid</h3>
             </div>
             <div class="card-body">
-              <p-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
+              <app-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
                 <ng-template #header
                   ><tr>
                     <th>Elemento</th>
@@ -84,7 +86,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     <td>{{ item.name }}</td>
                     <td><app-status-badge [status]="EStatus.Proceso" /></td></tr
                 ></ng-template>
-              </p-table>
+              </app-table>
             </div>
           </div>
         }
@@ -414,4 +416,3 @@ interface DashboardGroup {
     { label: "Cobranza Nativa", icon: "material-symbols-light:paid", route: "/cobranza-nativa" },
   ];
 }
-

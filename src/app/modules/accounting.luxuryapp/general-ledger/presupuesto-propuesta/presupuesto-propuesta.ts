@@ -30,14 +30,10 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
-import { Subscription } from "rxjs";
+import {
+  BudgetProposalDTO,
+  BudgetProposalItemDTO,
+} from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -49,13 +45,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
-import {
-  BudgetProposalDTO,
-  BudgetProposalItemDTO,
-} from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { EquiposList } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { Subscription } from "rxjs";
 import Swal from "sweetalert2";
 import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
 import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";
@@ -68,6 +65,32 @@ import { ExcelExportService } from "./excel-export.service";
 import { FeeComparisonByFija } from "./fee-comparison-by-fija";
 import { BudgetExecutionDetailsModal } from "./modal-budget-execution-details";
 import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso";
+/**
+ * Componente principal para la gestión de la propuesta de presupuesto.
+ * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.
+ * Utiliza Angular Signals para una gestión de estado reactiva y eficiente.
+ */
+
+/**
+ * ============================================================================
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ============================================================================
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ *
+ * Por favor, NO rompan el código.
+ * ============================================================================
+ */
+
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { AppIcon, AppIconName } from "@ui/shared/app-icon/app-icon";
+import {
+  MultipleSegmentedControl,
+  SegmentItem,
+} from "@ui/shared/multiple-segmented-control/multiple-segmented-control";
 /**
  * Componente principal para la gestión de la propuesta de presupuesto.
  * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.
@@ -90,6 +113,7 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
     AppTable,
     AppSortableColumn,
     AppSorticon,
+    MultipleSegmentedControl,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
@@ -317,9 +341,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : "material-symbols-light:visibility-off";
   }
   get baseBudgetMonthlyButtonLabel(): string {
-    return this.showBaseBudgetMonthlyColumn()
-      ? `Ocultar Mensual ${this.baseBudgetYear}`
-      : `Mostrar Mensual ${this.baseBudgetYear}`;
+    return `Mensual '${String(this.baseBudgetYear).slice(-2)}`;
   }
 
   get baseBudgetAnnualButtonIcon(): AppIconName {
@@ -328,9 +350,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : "material-symbols-light:visibility-off";
   }
   get baseBudgetAnnualButtonLabel(): string {
-    return this.showBaseBudgetAnnualColumn()
-      ? `Ocultar Anual ${this.baseBudgetYear}`
-      : `Mostrar Anual ${this.baseBudgetYear}`;
+    return `Anual '${String(this.baseBudgetYear).slice(-2)}`;
   }
 
   get fiscalYearAnnualButtonIcon(): AppIconName {
@@ -339,9 +359,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : "material-symbols-light:visibility-off";
   }
   get fiscalYearAnnualButtonLabel(): string {
-    return this.showFiscalYearAnnualColumn()
-      ? `Ocultar Anual ${this.fiscalYear}`
-      : `Mostrar Anual ${this.fiscalYear}`;
+    return `Anual '${String(this.fiscalYear).slice(-2)}`;
   }
 
   get projectedExpensesButtonIcon(): AppIconName {
@@ -350,9 +368,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : "material-symbols-light:visibility-off";
   }
   get projectedExpensesButtonLabel(): string {
-    return this.showProjectedExpenses()
-      ? "Ocultar Proyección Gastos"
-      : "Mostrar Proyección Gastos";
+    return `Gasto Proy.`;
   }
 
   constructor() {
@@ -1274,11 +1290,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Lista de meses para iterar en la plantilla (mantenido para reportes y utilidades) */
   readonly months: string[] = this.monthColumns.map((m) => m.name);
 
-  /** Opciones para el selector de meses para el cólculo de promedios. */
-  monthOptions = this.months.map((m) => ({
-    label: m.charAt(0).toUpperCase() + m.slice(1),
-    value: m,
-  }));
+  /** Opciones para el selector segmentado de los 3 primeros meses (para activar/desactivar). */
+  readonly firstThreeMonthsOptions: SegmentItem[] = [
+    { value: "enero", label: "ENE" },
+    { value: "febrero", label: "FEB" },
+    { value: "marzo", label: "MAR" },
+  ];
 
   /** Signal que almacena los meses seleccionados para calcular el promedio. */
   selectedMonthsForAvg = signal<string[]>([...this.months]);
@@ -1719,5 +1736,3 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
 }
-
-

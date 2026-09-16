@@ -18,6 +18,8 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -31,6 +33,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import {
+  TaskFollowUpEvidenceImage,
+  TaskFollowUpItem,
+  TaskImageReorderPayload,
+} from "../task-shared/interfaces/task-refactor.interface";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -50,6 +57,8 @@ interface ITicketMessageFollowupForm {
     WebButtonLabelDelete,
     AppSpinner,
     CustomInputTextAreaSignal,
+    LxFileUpload,
+    WebButtonIcon,
   ],
 })
 export class TaskFollowup implements OnInit, OnDestroy {
@@ -61,10 +70,12 @@ export class TaskFollowup implements OnInit, OnDestroy {
   private ref = inject(DynamicDialogRef);
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
-  description = signal<any[]>([]);
+  description = signal<TaskFollowUpItem[]>([]);
+  evidenceImages = signal<Record<string, TaskFollowUpEvidenceImage[]>>({});
+  pendingEvidence = signal<File[]>([]);
   submitting = signal(false);
 
-  ticketMessageId: any = this.config.data.id;
+  ticketMessageId: string = this.config.data.id;
   id: string = "";
   loading = signal(false);
 
@@ -103,14 +114,75 @@ export class TaskFollowup implements OnInit, OnDestroy {
     this.onCargaListaseguimientos();
   }
 
-  onCargaListaseguimientos() {
-    this.apiResponseS
-      .onGetList(
-        Endpoints.TaskFollowUps.listByTicketMessage(this.ticketMessageId),
-      )
-      .then((result: any) => {
-        this.description.set(result || []);
-      });
+  async onCargaListaseguimientos(): Promise<void> {
+    const result = await this.apiResponseS.onGetList<TaskFollowUpItem[]>(
+      Endpoints.TaskFollowUps.listByTicketMessage(this.ticketMessageId),
+    );
+    const followUps = result ?? [];
+    this.description.set(followUps);
+    await Promise.all(followUps.map((followUp) => this.loadEvidence(followUp.id)));
+  }
+
+  evidenceFor(followUpId: string): TaskFollowUpEvidenceImage[] {
+    return this.evidenceImages()[followUpId] ?? [];
+  }
+
+  async loadEvidence(followUpId: string): Promise<void> {
+    const result = await this.apiResponseS.onGetList<TaskFollowUpEvidenceImage[]>(
+      Endpoints.TaskFollowUpEvidenceImages.list(followUpId),
+    );
+    this.evidenceImages.update((current) => ({
+      ...current,
+      [followUpId]: result ?? [],
+    }));
+  }
+
+  async onEvidenceSelect(event: { files?: File[] }, followUpId: string): Promise<void> {
+    const files = event.files ?? [];
+    if (!files.length) return;
+
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append("File", file, file.name);
+      const result = await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
+        Endpoints.TaskFollowUpEvidenceImages.upload(followUpId),
+        formData,
+      );
+      if (result === false) break;
+    }
+    await this.loadEvidence(followUpId);
+  }
+
+  onPendingEvidenceSelect(event: { files?: File[] }): void {
+    this.pendingEvidence.set(event.files ?? []);
+  }
+
+  async deleteEvidence(followUpId: string, imageId: string): Promise<void> {
+    const deleted = await this.apiResponseS.onDelete(
+      Endpoints.TaskFollowUpEvidenceImages.delete(followUpId, imageId),
+    );
+    if (deleted) await this.loadEvidence(followUpId);
+  }
+
+  async moveEvidence(followUpId: string, index: number, direction: -1 | 1): Promise<void> {
+    const images = [...this.evidenceFor(followUpId)];
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= images.length) return;
+
+    [images[index], images[targetIndex]] = [images[targetIndex], images[index]];
+    const payload: TaskImageReorderPayload = {
+      imageIds: images.map((image) => image.id),
+    };
+    const result = await this.apiResponseS.onPatch<boolean>(
+      Endpoints.TaskFollowUpEvidenceImages.reorder(followUpId),
+      payload,
+    );
+    if (result !== false) {
+      this.evidenceImages.update((current) => ({
+        ...current,
+        [followUpId]: images,
+      }));
+    }
   }
 
   async onSubmit() {
@@ -124,7 +196,22 @@ export class TaskFollowup implements OnInit, OnDestroy {
     });
 
     if (result) {
-      this.onCargaListaseguimientos();
+      await this.onCargaListaseguimientos();
+      const createdFollowUp = this.description()[0];
+      const files = this.pendingEvidence();
+      if (createdFollowUp && files.length > 0) {
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("File", file, file.name);
+          const uploadResult = await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
+            Endpoints.TaskFollowUpEvidenceImages.upload(createdFollowUp.id),
+            formData,
+          );
+          if (uploadResult === false) break;
+        }
+        await this.loadEvidence(createdFollowUp.id);
+      }
+      this.pendingEvidence.set([]);
       this.form.patchValue({ description: "" });
     }
   }
@@ -148,4 +235,3 @@ export class TaskFollowup implements OnInit, OnDestroy {
     });
   }
 }
-
