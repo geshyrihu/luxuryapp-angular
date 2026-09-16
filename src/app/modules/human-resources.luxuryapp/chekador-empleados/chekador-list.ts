@@ -15,7 +15,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -34,7 +34,9 @@ import { ChekadorEmpleadosService } from './chekador-empleados.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTag,
     WebButtonLabel,
     WebButtonIcon,

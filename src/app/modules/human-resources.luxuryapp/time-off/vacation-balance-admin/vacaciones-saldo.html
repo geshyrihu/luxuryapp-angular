@@ -251,7 +251,7 @@
               No hay solicitudes de vacaciones en este periodo.
             </div>
             } @else {
-            <p-table
+            <app-table
               [value]="requests()"
               [paginator]="true"
               [rows]="5"
@@ -294,7 +294,7 @@
                   <td>{{ req.approvalDate || '—' }}</td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
             }
           </div>
         </div>

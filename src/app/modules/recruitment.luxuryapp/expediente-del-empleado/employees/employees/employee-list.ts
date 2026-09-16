@@ -14,7 +14,7 @@ import { AvatarModule } from "@ui/web/primeng-avatar/primeng-avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EmployeeProviderForm } from "@shared/integration/supplier";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -53,7 +53,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileActionMenu,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
 
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -74,22 +76,22 @@ export class EmployeeList {
   activo = signal<boolean>(true);
 
   readonly departamentLabels: Record<number, string> = {
-    [Department.Administracion]:ón",
+    [Department.Administracion]: "Administración",
     [Department.Legal]: "Legal",
     [Department.Contabilidad]: "Contabilidad",
     [Department.Mantenimiento]: "Mantenimiento",
     [Department.Limpieza]: "Limpieza",
     [Department.Operaciones]: "Operaciones",
-    [Department.Jardinería",
+    [Department.Jardineria]: "Jardinería",
     [Department.Sistemas]: "Sistemas",
     [Department.Seguridad]: "Seguridad",
     [Department.Constructora]: "Constructora",
-    [Department.Supervisioón",
-    [Department.Direccioón",
+    [Department.Supervision]: "Supervisión",
+    [Department.Direcciones]: "Dirección",
     [Department.RecursosHumanos]: "Recursos Humanos",
     [Department.Reclutamiento]: "Reclutamiento",
-    [Department.Recepcón",
-    [Department.Mensajería",
+    [Department.Recepcion]: "Recepción",
+    [Department.Mensajeria]: "Mensajería",
     [Department.Ludoteca]: "Ludoteca",
     [Department.NA]: "Sin Departamento",
   };
@@ -175,7 +177,6 @@ export class EmployeeList {
     this.router.navigateByUrl(urlApi);
   }
 }
-
 
 
 

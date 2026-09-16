@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -83,17 +83,17 @@
         />
       </th>
       }
-      <th class="table-col-10" pSortableColumn="folio">
+      <th class="table-col-10" appSortableColumn="folio">
         FOLIO
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
-      <th class="table-col-7" pSortableColumn="fechaSolicitud">
+      <th class="table-col-7" appSortableColumn="fechaSolicitud">
         FECHA
-        <p-sorticon field="fechaSolicitud" />
+        <app-sorticon field="fechaSolicitud" />
       </th>
-      <th class="table-col-12" pSortableColumn="solicita">
+      <th class="table-col-12" appSortableColumn="solicita">
         SOLICITA
-        <p-sorticon field="solicita" />
+        <app-sorticon field="solicita" />
       </th>
       <th class="table-col-44">DESCRIPCIÓN</th>
       <th class="table-col-10">TIPO</th>
@@ -202,7 +202,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="data()"

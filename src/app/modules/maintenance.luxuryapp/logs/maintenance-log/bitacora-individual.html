@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -46,7 +46,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

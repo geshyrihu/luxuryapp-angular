@@ -7,7 +7,7 @@ Contenedor principal de la vista de presupuesto.
        ========================= -->
   <div class="d-none d-md-flex flex-md-column budget-desktop-table">
     <div class="rf-card p-3 flex-fill min-h-0">
-      <p-table
+      <app-table
         [globalFilterFields]="globalFilterFields()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -299,7 +299,7 @@ Contenedor principal de la vista de presupuesto.
             EMPTY MESSAGE: Sin datos
             ========================= -->
         @if (!sharedS.errorMensaje()) {
-        <ng-template emptymessage>
+        <ng-template #emptymessage>
           <tr>
             <td [attr.colspan]="8 + months.length">
               No se encontraron cuentas para mostrar para el periodo
@@ -308,7 +308,7 @@ Contenedor principal de la vista de presupuesto.
           </tr>
         </ng-template>
         }
-      </p-table>
+      </app-table>
     </div>
   </div>
 

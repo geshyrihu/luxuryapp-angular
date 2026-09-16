@@ -12,7 +12,7 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -50,7 +50,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonLabel,
     NgbTooltipModule,
 

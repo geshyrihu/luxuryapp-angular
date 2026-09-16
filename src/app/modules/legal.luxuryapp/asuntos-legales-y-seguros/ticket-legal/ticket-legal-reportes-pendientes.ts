@@ -9,7 +9,7 @@ import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -22,7 +22,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ApiDatePipe,
-    TableModule,
+    AppTable,
     AppIcon,
     DataViewMobile,
     LxEmptyState,
@@ -68,4 +68,3 @@ export class TicketLegalReportesPendientes implements OnInit {
       });
   }
 }
-

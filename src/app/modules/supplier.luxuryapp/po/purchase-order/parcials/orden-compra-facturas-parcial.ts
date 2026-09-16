@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -26,7 +26,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    TableModule,
+    AppTable,
     WebButtonLabel,
     LxMessage,
     AppIcon,
@@ -98,4 +98,3 @@ export class OrdenCompraFacturasParcial {
       });
   }
 }
-

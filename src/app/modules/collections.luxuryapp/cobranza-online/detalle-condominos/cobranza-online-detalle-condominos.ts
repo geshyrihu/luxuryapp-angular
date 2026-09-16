@@ -14,7 +14,7 @@ import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
@@ -38,7 +38,9 @@ type ClasificacionOption =
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     SharedModule,
     LxTag,
     AppIcon,

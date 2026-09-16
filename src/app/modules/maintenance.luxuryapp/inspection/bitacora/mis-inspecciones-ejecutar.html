@@ -4,7 +4,7 @@
   </h4>
 
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <p-table
+  <app-table
     #dt
     [globalFilterFields]="globalFilterFields()"
     [scrollHeight]="scrollHeight()"
@@ -82,7 +82,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="flattenedData()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <!-- 📱 INICIO: Componente adaptado para versión móvil -->
   <app-data-view-mobile

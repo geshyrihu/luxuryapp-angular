@@ -32,7 +32,7 @@
       [items]="[{ id: module.name, title: module.name, icon: module.icon }]"
     >
         <div [attr.accordion]="module.name">
-          <p-table [value]="module.items" class="p-datatable-sm">
+          <app-table [value]="module.items" class="p-datatable-sm">
             <ng-template #header>
               <tr>
                 <th class="table-col-40">Documento / Control Requerido</th>
@@ -89,7 +89,7 @@
                 </td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         </div>
     </lx-accordion>
     }

@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -33,7 +33,9 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   PrimeNgCustomCaption,
   PrimeNgCustomTableFooter,
   RouterModule,
-  TableModule,
+  AppTable,
+  AppSortableColumn,
+  AppSorticon,
   TagModule,
   LxTooltipDirective,
   UpperCasePipe,

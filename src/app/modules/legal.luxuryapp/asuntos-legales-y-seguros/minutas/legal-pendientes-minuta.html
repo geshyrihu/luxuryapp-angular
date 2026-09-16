@@ -29,7 +29,7 @@
   />
 </div>
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -57,25 +57,25 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="code">
+      <th appSortableColumn="code">
         FOLIO
-        <p-sorticon field="code" />
+        <app-sorticon field="code" />
       </th>
-      <th pSortableColumn="cliente">
+      <th appSortableColumn="cliente">
         CLIENTE
-        <p-sorticon field="cliente" />
+        <app-sorticon field="cliente" />
       </th>
-      <th pSortableColumn="fechaSolicitudFiltro">
+      <th appSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <p-sorticon field="fechaSolicitudFiltro" />
+        <app-sorticon field="fechaSolicitudFiltro" />
       </th>
-      <th pSortableColumn="pendiente">
+      <th appSortableColumn="pendiente">
         SEGUIMIENTO
-        <p-sorticon field="pendiente" />
+        <app-sorticon field="pendiente" />
       </th>
-      <th pSortableColumn="status">
+      <th appSortableColumn="status">
         ESTATUS
-        <p-sorticon field="status" />
+        <app-sorticon field="status" />
       </th>
       <th>OP</th>
     </tr>
@@ -158,7 +158,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

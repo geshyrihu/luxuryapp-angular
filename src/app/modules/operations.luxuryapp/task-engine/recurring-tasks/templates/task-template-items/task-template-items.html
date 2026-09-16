@@ -1,12 +1,11 @@
 @if (templateInfo(); as template) {
 
 <!-- Desktop View -->
-<p-table
+<app-table
   #dt
   [value]="items()"
   [rows]="10"
   [paginator]="true"
-  [responsive]="true"
   [reorderableColumns]="true"
   (onRowReorder)="onRowReorder($event)"
   [scrollable]="true"
@@ -65,7 +64,7 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template emptymessage>
+  <ng-template #emptymessage>
     <tr>
       <td colspan="4">No se encontraron items para esta plantilla.</td>
     </tr>
@@ -76,7 +75,7 @@
       [emptyMessage]="'No se encontraron items para esta plantilla.'"
     />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Mobile View -->
 @if (items().length === 0 && !items()) {

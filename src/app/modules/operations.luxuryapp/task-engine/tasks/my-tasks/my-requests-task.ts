@@ -14,7 +14,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppImage } from "@ui/web/image/image";
 import { ChipModule } from "@ui/web/primeng-chip/primeng-chip";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -46,7 +46,9 @@ import { MyTaskForm } from "./my-task-form";
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelItem,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
@@ -82,6 +84,7 @@ export class MyRequestsTask implements OnInit {
   }
 
   onLoadData(status: any) {
+    this.loading.set(true);
     this.apiResponseS
       .onGetList(
         Endpoints.Tasks.myRequests(
@@ -93,7 +96,9 @@ export class MyRequestsTask implements OnInit {
       .then((result: any) => {
         this.dataSignal.set(result);
         this.status = status;
-      });
+      })
+      .catch(() => undefined)
+      .finally(() => this.loading.set(false));
   }
 
   onFollowUp(id: string) {
@@ -160,4 +165,3 @@ export class MyRequestsTask implements OnInit {
       });
   }
 }
-

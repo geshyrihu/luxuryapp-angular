@@ -17,7 +17,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { debounceTime } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -36,7 +36,11 @@ import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     CustomInputTextSignal,
     CustomInputNumberSignal,
     WebButtonLabel,

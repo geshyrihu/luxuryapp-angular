@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
@@ -65,7 +65,7 @@
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   }
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataEmergencyContact()"
@@ -99,7 +99,7 @@
 
 <hr />
 
-<p-table
+<app-table
   #dt
   [value]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
@@ -162,13 +162,13 @@
   </ng-template>
 
   @if (dataBeneficiary().length === 0) {
-  <ng-template emptymessage>
+  <ng-template #emptymessage>
     <tr>
       <td colspan="4">No hay beneficiarios</td>
     </tr>
   </ng-template>
   }
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataBeneficiary()"

@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -51,45 +51,45 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="w-5rem" pSortableColumn="accountNumber">
+      <th class="w-5rem" appSortableColumn="accountNumber">
         Cta.
-        <p-sorticon field="accountNumber" />
+        <app-sorticon field="accountNumber" />
       </th>
-      <th class="w-6rem" pSortableColumn="tower">
+      <th class="w-6rem" appSortableColumn="tower">
         Torre
-        <p-sorticon field="tower" />
+        <app-sorticon field="tower" />
       </th>
-      <th class="w-9rem" pSortableColumn="department">
+      <th class="w-9rem" appSortableColumn="department">
         Departamento
-        <p-sorticon field="department" />
+        <app-sorticon field="department" />
       </th>
-      <th class="w-6rem" pSortableColumn="floor">
+      <th class="w-6rem" appSortableColumn="floor">
         Piso
-        <p-sorticon field="floor" />
+        <app-sorticon field="floor" />
       </th>
-      <th class="w-7rem" pSortableColumn="unitNumber">
+      <th class="w-7rem" appSortableColumn="unitNumber">
         No. Int.
-        <p-sorticon field="unitNumber" />
+        <app-sorticon field="unitNumber" />
       </th>
-      <th class="w-7rem" pSortableColumn="areaM2">
+      <th class="w-7rem" appSortableColumn="areaM2">
         área m2
-        <p-sorticon field="areaM2" />
+        <app-sorticon field="areaM2" />
       </th>
-      <th class="w-8rem" pSortableColumn="indivisoPercentage">
+      <th class="w-8rem" appSortableColumn="indivisoPercentage">
         Indiviso
-        <p-sorticon field="indivisoPercentage" />
+        <app-sorticon field="indivisoPercentage" />
       </th>
-      <th class="w-7rem" pSortableColumn="parkingSlots">
+      <th class="w-7rem" appSortableColumn="parkingSlots">
         Cajones
-        <p-sorticon field="parkingSlots" />
+        <app-sorticon field="parkingSlots" />
       </th>
-      <th class="w-7rem" pSortableColumn="storageUnit">
+      <th class="w-7rem" appSortableColumn="storageUnit">
         Bodega
-        <p-sorticon field="storageUnit" />
+        <app-sorticon field="storageUnit" />
       </th>
-      <th class="w-6rem text-center" pSortableColumn="isDelinquent">
+      <th class="w-6rem text-center" appSortableColumn="isDelinquent">
         Moroso
-        <p-sorticon field="isDelinquent" />
+        <app-sorticon field="isDelinquent" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario])) {
@@ -140,7 +140,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

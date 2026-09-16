@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,21 +21,21 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folioId">
+      <th appSortableColumn="folioId">
         Folio
-        <p-sorticon field="folioId" />
+        <app-sorticon field="folioId" />
       </th>
-      <th pSortableColumn="responsibleArea">
+      <th appSortableColumn="responsibleArea">
         Departamento
-        <p-sorticon field="responsibleArea" />
+        <app-sorticon field="responsibleArea" />
       </th>
-      <th pSortableColumn="grupo">
+      <th appSortableColumn="grupo">
         Grupo
-        <p-sorticon field="grupo" />
+        <app-sorticon field="grupo" />
       </th>
-      <th pSortableColumn="descripcion">
+      <th appSortableColumn="descripcion">
         DESCRIPCIÓN
-        <p-sorticon field="descripcion" />
+        <app-sorticon field="descripcion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -72,7 +72,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

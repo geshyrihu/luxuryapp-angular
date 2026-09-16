@@ -1,5 +1,5 @@
 @if (dataSignal().length > 0) {
-<p-table
+<app-table
   [paginator]="true"
   [rows]="tablePrimeNgRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
@@ -45,30 +45,30 @@
   <ng-template #header>
     <tr>
       <th class="table-col-6 text-sm">FOLIO</th>
-      <th class="table-col-30 text-sm" pSortableColumn="responsibleArea">
+      <th class="table-col-30 text-sm" appSortableColumn="responsibleArea">
         SOLICITUD
-        <p-sorticon field="responsibleArea" />
+        <app-sorticon field="responsibleArea" />
       </th>
       <th class="text-sm">EVIDENCIA</th>
-      <th class="table-col-8 text-sm" pSortableColumn="priority">
+      <th class="table-col-8 text-sm" appSortableColumn="priority">
         PRIORIDAD
-        <p-sorticon field="priority" />
+        <app-sorticon field="priority" />
       </th>
-      <th class="table-col-8 text-sm" pSortableColumn="responsableNombre">
+      <th class="table-col-8 text-sm" appSortableColumn="responsableNombre">
         ASIGNADO A
-        <p-sorticon field="responsableNombre" />
+        <app-sorticon field="responsableNombre" />
       </th>
       <th
         class="table-col-10"
         class="text-sm"
-        pSortableColumn="scheduledAtFilter"
+        appSortableColumn="scheduledAtFilter"
       >
         PROGRAMADO
-        <p-sorticon field="scheduledAtFilter" />
+        <app-sorticon field="scheduledAtFilter" />
       </th>
-      <th class="table-col-10 text-sm" pSortableColumn="daysDifference">
+      <th class="table-col-10 text-sm" appSortableColumn="daysDifference">
         DIAS
-        <p-sorticon field="daysDifference" />
+        <app-sorticon field="daysDifference" />
       </th>
       <th></th>
     </tr>
@@ -150,7 +150,7 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">

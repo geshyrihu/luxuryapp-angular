@@ -113,7 +113,7 @@
 </section>
 
 <section class="card p-3 p-md-4 d-none d-md-block">
-  <p-table
+  <app-table
     #dt
     [globalFilterFields]="globalFilterFields()"
     [loading]="loading()"
@@ -136,33 +136,33 @@
     <ng-template #header>
       <tr>
         <th class="table-col-3">No</th>
-        <th class="table-col-6" pSortableColumn="fechaSolicitud">
+        <th class="table-col-6" appSortableColumn="fechaSolicitud">
           Fecha
-          <p-sorticon field="fechaSolicitud" />
+          <app-sorticon field="fechaSolicitud" />
         </th>
-        <th class="table-col-6" pSortableColumn="folio">
+        <th class="table-col-6" appSortableColumn="folio">
           Folio
-          <p-sorticon field="folio" />
+          <app-sorticon field="folio" />
         </th>
-        <th class="table-col-8" pSortableColumn="tipoOrdenLabel">
+        <th class="table-col-8" appSortableColumn="tipoOrdenLabel">
           Tipo de orden
-          <p-sorticon field="tipoOrdenLabel" />
+          <app-sorticon field="tipoOrdenLabel" />
         </th>
-        <th class="table-col-6" pSortableColumn="factura">
+        <th class="table-col-6" appSortableColumn="factura">
           Factura
-          <p-sorticon field="factura" />
+          <app-sorticon field="factura" />
         </th>
-        <th class="table-col-20" pSortableColumn="proveedor">
+        <th class="table-col-20" appSortableColumn="proveedor">
           Proveedor
-          <p-sorticon field="proveedor" />
+          <app-sorticon field="proveedor" />
         </th>
-        <th class="table-col-25" pSortableColumn="justificacionGasto">
+        <th class="table-col-25" appSortableColumn="justificacionGasto">
           Justificacion
-          <p-sorticon field="justificacionGasto" />
+          <app-sorticon field="justificacionGasto" />
         </th>
-        <th class="table-col-10" pSortableColumn="total">
+        <th class="table-col-10" appSortableColumn="total">
           Total
-          <p-sorticon field="total" />
+          <app-sorticon field="total" />
         </th>
         <th class="table-col-5">Ver</th>
       </tr>
@@ -193,7 +193,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </section>
 
 <app-data-view-mobile

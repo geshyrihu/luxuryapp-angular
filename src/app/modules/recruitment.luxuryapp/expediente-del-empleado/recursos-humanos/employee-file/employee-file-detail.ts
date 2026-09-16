@@ -13,7 +13,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -54,7 +54,11 @@ import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/emp
     LxTooltipDirective,
     ApiDatePipe,
     CurrencyPipe,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     AppIcon,
     EmployeeOnboardingChecklist,
     EmployeeDocumentList,

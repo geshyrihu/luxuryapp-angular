@@ -160,7 +160,7 @@
       @if(loadingHistory()){
       <lx-skeleton height="10rem" />
       } @else {
-      <p-table
+      <app-table
         [value]="history()"
         [tableStyle]="{ 'min-width': '50rem' }"
         [scrollable]="true"
@@ -201,7 +201,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
       }
     </div>
     }

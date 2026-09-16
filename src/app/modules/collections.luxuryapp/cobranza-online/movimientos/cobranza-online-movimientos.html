@@ -10,7 +10,7 @@
   </div>
   } @else {
   <div class="mt-4">
-    <p-table
+    <app-table
       #dt
       [value]="pivotData()"
       dataKey="accountNumber"
@@ -33,9 +33,9 @@
             style="min-width: 250px"
             pFrozenColumn
             class="bg-bg-body-tertiary border-bottom-1 border"
-            pSortableColumn="accountName"
+            appSortableColumn="accountName"
           >
-            Cuenta / Depto <p-sorticon field="accountName" />
+            Cuenta / Depto <app-sorticon field="accountName" />
           </th>
           @for (concept of activeConcepts(); track concept.id) {
           <th
@@ -124,7 +124,7 @@
           en <span class="text-success fw-bold">verde</span> (-)
         </div>
       </ng-template>
-    </p-table>
+    </app-table>
 
     <div class="d-md-none">
       <app-data-view-mobile

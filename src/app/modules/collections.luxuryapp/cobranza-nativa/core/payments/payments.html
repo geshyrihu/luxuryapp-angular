@@ -126,7 +126,7 @@
               <p class="text-sm">No tiene cargos pendientes de pago o vencidos.</p>
             </div>
             } @else {
-            <p-table [value]="pendingCharges()" [scrollable]="true" scrollHeight="flex" class="p-datatable-sm custom-table">
+            <app-table [value]="pendingCharges()" [scrollable]="true" scrollHeight="flex" class="p-datatable-sm custom-table">
               <ng-template #header>
                 <tr>
                   <th class="w-12 text-center cb-payments__cell-divider">Sel.</th>
@@ -185,7 +185,7 @@
                   </td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
             }
           </div>
         </lx-card>

@@ -10,7 +10,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -30,7 +30,9 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     AppAvatar,
     LxTag,
     CustomInputTextSignal,

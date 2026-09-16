@@ -128,7 +128,7 @@
 
 <hr />
 
-<p-table
+<app-table
   [globalFilterFields]="service.globalFilterFields()"
   [scrollable]="true"
   [showCurrentPageReport]="true"
@@ -144,34 +144,34 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-15" pSortableColumn="select">
+      <th class="table-col-15" appSortableColumn="select">
         <p class="text-base">
           Seleccionar
-          <p-sorticon field="select" />
+          <app-sorticon field="select" />
         </p>
       </th>
-      <th class="table-col-15" pSortableColumn="departamento">
+      <th class="table-col-15" appSortableColumn="departamento">
         <p class="text-base">
           Departamento
-          <p-sorticon field="departamento" />
+          <app-sorticon field="departamento" />
         </p>
       </th>
-      <th class="table-col-30" pSortableColumn="label">
+      <th class="table-col-30" appSortableColumn="label">
         <p class="text-base">
           Nombre
-          <p-sorticon field="label" />
+          <app-sorticon field="label" />
         </p>
       </th>
-      <th class="table-col-30" pSortableColumn="email">
+      <th class="table-col-30" appSortableColumn="email">
         <p class="text-base">
           Correo
-          <p-sorticon field="email" />
+          <app-sorticon field="email" />
         </p>
       </th>
-      <th class="table-col-10" pSortableColumn="figuraLegal">
+      <th class="table-col-10" appSortableColumn="figuraLegal">
         <p class="text-base">
           Nombre
-          <p-sorticon field="figuraLegal" />
+          <app-sorticon field="figuraLegal" />
         </p>
       </th>
     </tr>
@@ -194,4 +194,4 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
-</p-table>
+</app-table>

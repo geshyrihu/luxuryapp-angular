@@ -16,7 +16,7 @@ import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -56,7 +56,13 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonIconEdit,
     WebButtonIcon,
     LxTag,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
+    AppReorderableRow,
+    AppReorderableRowHandle,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

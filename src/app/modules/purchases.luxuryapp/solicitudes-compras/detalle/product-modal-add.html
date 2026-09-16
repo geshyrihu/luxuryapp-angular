@@ -1,7 +1,7 @@
 @if (mensajeError) {
 <p class="p-error text-start italic text-sm">Seleccione producto y unidad</p>
 } @if (dataSignal()) {
-<p-table
+  <app-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
   [globalFilterFields]="globalFilterFields()"
@@ -39,13 +39,12 @@
   <ng-template #header>
     <tr>
       <th>Imagen</th>
-      <th pSortableColumn="producto">
+      <th appSortableColumn="producto">
         DESCRIPCIÓN
-        <p-sorticon field="producto" />
+        <app-sorticon field="producto" />
       </th>
       <th>
         Cantidad
-        <p-sorticon />
       </th>
       <th>Unidad</th>
       <th class="table-col-5">Agregar</th>
@@ -108,5 +107,5 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+  </app-table>
 }

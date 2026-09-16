@@ -20,7 +20,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
@@ -43,7 +43,9 @@ import { CustomerDataCompanyDto } from "./customer-data-company.dto";
     PrimeNgCustomTableEmptyMessage,
     FormsModule,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     SelectButtonModule,
     WebButtonIconEdit,
     WebButtonIconDelete,

@@ -125,7 +125,7 @@
     <h3 class="text-lg fw-semibold mb-4">
       Top Empleados con Mís Incidencias
     </h3>
-    <p-table
+    <app-table
       [value]="dashboard()!.topEmployees"
       [paginator]="true"
       [rows]="10"
@@ -152,7 +152,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!-- Distribución por Severidad -->

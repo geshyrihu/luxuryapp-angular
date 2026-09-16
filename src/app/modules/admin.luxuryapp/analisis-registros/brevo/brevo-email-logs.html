@@ -62,7 +62,7 @@
 </div>
 
 <!-- Tabla de logs -->
-<p-table
+<app-table
   [value]="registros()"
   [lazy]="true"
   [paginator]="true"
@@ -70,17 +70,16 @@
   [totalRecords]="totalRecords()"
   [loading]="cargando()"
   (onLazyLoad)="alCambiarPagina($any($event))"
-  [rowHover]="true"
   class="p-datatable-sm p-datatable-striped"
   [scrollable]="true"
   scrollHeight="calc(100vh - 320px)"
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="email">Destinatario <p-sorticon field="email" /></th>
+      <th appSortableColumn="email">Destinatario <app-sorticon field="email" /></th>
       <th>Asunto</th>
       <th>Estado</th>
-      <th pSortableColumn="date">Fecha <p-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
       <th>Remitente</th>
       <th>Plantilla</th>
     </tr>
@@ -160,4 +159,4 @@
     </tr>
     }
   </ng-template>
-</p-table>
+</app-table>

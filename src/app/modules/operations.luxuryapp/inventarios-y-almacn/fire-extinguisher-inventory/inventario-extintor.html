@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -47,17 +47,17 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Foto</th>
-      <th class="table-col-15" pSortableColumn="localCode">
-        Código <p-sorticon field="localCode" />
+      <th class="table-col-15" appSortableColumn="localCode">
+        Código <app-sorticon field="localCode" />
       </th>
-      <th class="table-col-25" pSortableColumn="extinguisherType">
-        Extintor <p-sorticon field="extinguisherType" />
+      <th class="table-col-25" appSortableColumn="extinguisherType">
+        Extintor <app-sorticon field="extinguisherType" />
       </th>
-      <th class="table-col-25" pSortableColumn="location">
-        Ubicación <p-sorticon field="location" />
+      <th class="table-col-25" appSortableColumn="location">
+        Ubicación <app-sorticon field="location" />
       </th>
-      <th class="table-col-15" pSortableColumn="expirationDate">
-        Vencimiento <p-sorticon field="expirationDate" />
+      <th class="table-col-15" appSortableColumn="expirationDate">
+        Vencimiento <app-sorticon field="expirationDate" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -102,7 +102,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

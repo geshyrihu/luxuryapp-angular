@@ -73,7 +73,7 @@
   @if (occupants().length > 0) {
     <h5 class="mb-2">Ocupantes registrados</h5>
 
-    <p-table [value]="occupants()" class="custom-table card d-none d-md-block">
+    <app-table [value]="occupants()" class="custom-table card d-none d-md-block">
       <ng-template #header>
         <tr>
           <th>Nombre</th>
@@ -116,7 +116,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   } @else {
     <lx-message
       severity="info"

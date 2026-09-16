@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "@core/services/date.service";
@@ -26,7 +26,9 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     ReactiveFormsModule,
     CustomInputDateSignal,
     WebButtonLabel,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     StatusBadge,
   ],
 })
@@ -66,4 +68,3 @@ export class DailyTaskList implements OnInit {
       });
   }
 }
-

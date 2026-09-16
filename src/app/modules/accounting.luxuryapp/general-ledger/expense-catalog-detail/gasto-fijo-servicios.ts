@@ -21,7 +21,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -41,7 +41,9 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxAvatar,
     CustomInputNumberSignal,
     CustomInputDecimal,

@@ -16,7 +16,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -58,7 +58,11 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     WebButtonLabelEdit,
     WebButtonLabelItem,
     TaskStatus,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     DataViewMobile,
     MobileListItem,
     MobileActionMenu,
@@ -153,6 +157,7 @@ export class MyAssignedTasksList {
   });
 
   onLoadData(status: any) {
+    this.loading.set(true);
     this.apiResponseS
       .onGetList(
         Endpoints.Tasks.myAssignedTickets(
@@ -164,7 +169,9 @@ export class MyAssignedTasksList {
       .then((result: any) => {
         this.dataSignal.set(result);
         this.status = status;
-      });
+      })
+      .catch(() => undefined)
+      .finally(() => this.loading.set(false));
   }
 
   getTruncatedDescription(description: string): string {

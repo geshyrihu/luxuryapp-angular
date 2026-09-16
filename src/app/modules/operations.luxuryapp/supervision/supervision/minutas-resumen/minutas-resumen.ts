@@ -10,7 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -23,7 +23,7 @@ import { FiltroMinutasArea } from "../filtro-minutas-area/filtro-minutas-area";
   selector: "app-minutas-resumen",
   templateUrl: "./minutas-resumen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, TableModule, LxMultiSelect, MesAnio],
+  imports: [CommonModule, FormsModule, AppTable, AppSortableColumn, AppSorticon, LxMultiSelect, MesAnio],
 })
 export class MinutasResumen implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -117,4 +117,3 @@ export class MinutasResumen implements OnInit {
     );
   }
 }
-

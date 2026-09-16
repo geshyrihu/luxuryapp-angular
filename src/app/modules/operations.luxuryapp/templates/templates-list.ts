@@ -22,7 +22,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -61,7 +61,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     InputTextModule,
     NgbDropdownModule,
     NgbTooltipModule,

@@ -1,7 +1,7 @@
 <lx-confirm-dialog />
 
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   #dt
   [value]="dataSignal()"
   [loading]="loading()"
@@ -28,22 +28,22 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="fullName">
-        Empleado <p-sorticon field="fullName" />
+      <th appSortableColumn="fullName">
+        Empleado <app-sorticon field="fullName" />
       </th>
-      <th pSortableColumn="hireDate">
-        Contratación <p-sorticon field="hireDate" />
+      <th appSortableColumn="hireDate">
+        Contratación <app-sorticon field="hireDate" />
       </th>
-      <th pSortableColumn="seniorityYears">
-        Antigóedad <p-sorticon field="seniorityYears" />
+      <th appSortableColumn="seniorityYears">
+        Antigóedad <app-sorticon field="seniorityYears" />
       </th>
       <th>Días por Antigóedad</th>
       <th>Días Tomados</th>
       <th>Días Pendientes</th>
       <th>Adelanto Permitido</th>
       <th>Adelanto Disponible</th>
-      <th pSortableColumn="currentSystemBalance">
-        Balance Sistema <p-sorticon field="currentSystemBalance" />
+      <th appSortableColumn="currentSystemBalance">
+        Balance Sistema <app-sorticon field="currentSystemBalance" />
       </th>
       <th>Discrepancia</th>
       <th>Acciones</th>
@@ -78,7 +78,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="11" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

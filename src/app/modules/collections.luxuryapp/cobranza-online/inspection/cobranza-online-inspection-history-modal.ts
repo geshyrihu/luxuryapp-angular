@@ -9,7 +9,7 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import type {
@@ -21,7 +21,13 @@ import type {
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableModule, WebButtonLabel, PrimeNgCustomCaption],
+  imports: [
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    WebButtonLabel,
+    PrimeNgCustomCaption,
+  ],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -142,4 +148,3 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
     this.loading.set(false);
   }
 }
-

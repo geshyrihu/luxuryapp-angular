@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -32,7 +32,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [
     AppIcon,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     TagModule,
     LxTooltipDirective,
     CustomInputSelectSignal,

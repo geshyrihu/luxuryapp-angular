@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-primeng-option";
@@ -30,7 +30,7 @@ import {
   selector: "app-financial-summary",
   templateUrl: "./financial-summary.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, TableModule],
+  imports: [CommonModule, FormsModule, AppTable, AppSortableColumn, AppSorticon],
 })
 export class FinancialSummary {
   apiResponseS = inject(ApiResponseService);

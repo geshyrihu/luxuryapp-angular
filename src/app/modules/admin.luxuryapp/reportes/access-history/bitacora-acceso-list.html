@@ -5,7 +5,7 @@
 </div>
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="d-none d-md-block">
-  <p-table
+  <app-table
     [value]="data()"
     dataKey="employeeId"
     class="p-datatable-striped p-datatable-sm"
@@ -20,9 +20,9 @@
     <ng-template #header>
       <tr>
         <th class="table-col-5rem"></th>
-        <th colspan="2" pSortableColumn="fullName">
+        <th colspan="2" appSortableColumn="fullName">
           COLABORADOR
-          <p-sorticon field="fullName" />
+          <app-sorticon field="fullName" />
         </th>
       </tr>
     </ng-template>
@@ -55,7 +55,7 @@
       <tr>
         <td colspan="3">
           <div class="p-3">
-            <p-table [value]="item.historial">
+            <app-table [value]="item.historial">
               <ng-template #header>
                 <tr>
                   <th>EVENTO</th>
@@ -76,25 +76,25 @@
                   <td>{{ registro.fechaRegistro }}</td>
                 </tr>
               </ng-template>
-              <ng-template emptymessage>
+              <ng-template #emptymessage>
                 <tr>
                   <td colspan="2">Sin ingresos al sistema.</td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </div>
         </td>
       </tr>
     </ng-template>
     <!-- MEJORA 2: Aóadimos el mensaje para cuando la tabla principal estó vacóa -->
-    <ng-template emptymessage>
+    <ng-template #emptymessage>
       <tr>
         <td colspan="3">
           No se encontraron registros en el rango de fechas seleccionado.
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->

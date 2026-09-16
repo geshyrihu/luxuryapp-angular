@@ -12,12 +12,11 @@ cb_departamento; track item) {
 }
 <hr />
 }
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="data()"
   #dt
   groupRowsBy="grupo"
-  rowGroupMode="subheader"
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
@@ -40,7 +39,7 @@ cb_departamento; track item) {
     </tr>
   </ng-template>
   <ng-template #groupheader let-customer>
-    <tr pRowGroupHeader>
+    <tr>
       <td colspan="5">
         <span class="fw-bold ms-2">{{ customer.grupo }}</span>
       </td>
@@ -127,7 +126,7 @@ cb_departamento; track item) {
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

@@ -12,7 +12,7 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus";
 
 @Component({
@@ -22,7 +22,11 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     PrimeNgCustomCaption,
     WebButtonLabel,
   ],

@@ -2,7 +2,7 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -24,23 +24,23 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th pSortableColumn="executionMonth">
-            Mes <p-sorticon field="executionMonth" />
+          <th appSortableColumn="executionMonth">
+            Mes <app-sorticon field="executionMonth" />
           </th>
-          <th pSortableColumn="accountingCatalog">
-            Cuenta <p-sorticon field="accountingCatalog" />
+          <th appSortableColumn="accountingCatalog">
+            Cuenta <app-sorticon field="accountingCatalog" />
           </th>
-          <th pSortableColumn="concept">
-            Concepto <p-sorticon field="concept" />
+          <th appSortableColumn="concept">
+            Concepto <app-sorticon field="concept" />
           </th>
-          <th pSortableColumn="description">
-            DESCRIPCIÓN <p-sorticon field="description" />
+          <th appSortableColumn="description">
+            DESCRIPCIÓN <app-sorticon field="description" />
           </th>
-          <th pSortableColumn="budgetedAmount">
-            Monto Presupuestado <p-sorticon field="budgetedAmount" />
+          <th appSortableColumn="budgetedAmount">
+            Monto Presupuestado <app-sorticon field="budgetedAmount" />
           </th>
-          <th pSortableColumn="expenseTypeName">
-            Tipo de Gasto <p-sorticon field="expenseTypeName" />
+          <th appSortableColumn="expenseTypeName">
+            Tipo de Gasto <app-sorticon field="expenseTypeName" />
           </th>
           <th class="table-col-10"></th>
         </tr>
@@ -71,7 +71,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="7" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 }

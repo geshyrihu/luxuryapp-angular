@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -22,9 +22,9 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-7 text-small" pSortableColumn="nameCotegory">
+      <th class="table-col-7 text-small" appSortableColumn="nameCotegory">
         NOMBRE DE CATEGORIA
-        <p-sorticon field="nameCotegory" />
+        <app-sorticon field="nameCotegory" />
       </th>
 
       <th class="table-col-5 text-small">.</th>
@@ -51,7 +51,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

@@ -4,7 +4,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -36,7 +36,11 @@ interface Equipo {
 
   imports: [
     CommonModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     WebButtonLabel,
@@ -63,7 +67,7 @@ interface Equipo {
       </div>
 
       @if (equipo.maintenanceCalendar?.length > 0) {
-        <p-table [value]="equipo.maintenanceCalendar" class="custom-table">
+        <app-table [value]="equipo.maintenanceCalendar" class="custom-table">
           <ng-template #header>
             <tr>
               <th class="table-col-5"></th>
@@ -127,7 +131,7 @@ interface Equipo {
           <ng-template #emptymessage>
             <primeng-custom-table-emptymessage [colspan]="13" />
           </ng-template>
-        </p-table>
+        </app-table>
       } @else {
         <div class="text-center text-500 p-4 surface-100 rounded italic">
           Sin servicios de Mantenimiento registrados.

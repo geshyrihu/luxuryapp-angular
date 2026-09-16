@@ -14,7 +14,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
@@ -72,7 +72,11 @@ interface FormerEmployeeCandidateResult {
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     WebButtonLabel,
     WebButtonLabelActiveDesactive,
   ],

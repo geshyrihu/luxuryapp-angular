@@ -15,7 +15,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { warningOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -43,7 +43,9 @@ import { LateFeePolicyForm } from "./late-fee-policy-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     LxTag,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
     DecimalPipe,
     DataViewMobile,

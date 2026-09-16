@@ -1,5 +1,5 @@
 <div class="card">
-  <p-table
+  <app-table
     #dt
     [value]="items()"
     class="custom-table d-none d-md-block"
@@ -67,7 +67,7 @@
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage [colspan]="7" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>

@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,7 +20,15 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
 
 @Component({
   selector: "app-charge-template-coverage",
-  imports: [AppIcon, LxTag, TableModule, PrimeNgCustomCaption, CurrencyPipe],
+  imports: [
+    AppIcon,
+    LxTag,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    PrimeNgCustomCaption,
+    CurrencyPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })
@@ -87,4 +95,3 @@ export default class ChargeTemplateCoverage {
     return method === ECalculationMethod.Indiviso ? "secondary" : "info";
   }
 }
-

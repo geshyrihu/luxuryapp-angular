@@ -36,7 +36,7 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { Subscription } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -87,7 +87,9 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
     FormsModule,
     LxModal,
     LxTooltipDirective,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
@@ -112,7 +114,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   public aspRoleS = inject(AspRoleService);
   /** Servicio especializado en la exportación de datos a formato Excel. */
   private excelExportService = inject(ExcelExportService);
-  dt = viewChild<Table>("dt");
+  dt = viewChild<AppTable>("dt");
 
   // --------------------------------------------------------------------------------
   // Propiedades de Estado y Seóales (Signals)

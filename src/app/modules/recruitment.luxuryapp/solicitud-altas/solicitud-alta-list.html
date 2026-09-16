@@ -17,7 +17,7 @@
 </div>
 
 @if (dataSignal()) {
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -32,17 +32,17 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">FOLIO <p-sorticon field="folio" /></th>
-      <th pSortableColumn="folioVacante">
-        VAC <p-sorticon field="folioVacante" />
+      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="folioVacante">
+        VAC <app-sorticon field="folioVacante" />
       </th>
-      <th pSortableColumn="requestDateFilter">
-        SOLICITUD <p-sorticon field="requestDateFilter" />
+      <th appSortableColumn="requestDateFilter">
+        SOLICITUD <app-sorticon field="requestDateFilter" />
       </th>
       <th>CLIENTE</th>
       <th>NOMBRE</th>
       <th>PUESTO</th>
-      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
       <th class="text-center">ENVÍO</th>
       <th class="text-center">DOC.</th>
       <th></th>
@@ -166,7 +166,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 }
 
 <app-data-view-mobile
@@ -243,4 +243,3 @@
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
-

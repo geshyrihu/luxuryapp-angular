@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -12,7 +12,6 @@
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
-  [virtualScrollItemSize]="tablePrimeNgRows"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -22,14 +21,14 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="customerName">
-        Cliente <p-sorticon field="customerName"></p-sorticon>
+      <th appSortableColumn="customerName">
+        Cliente <app-sorticon field="customerName" />
       </th>
-      <th pSortableColumn="empresa">
-        Empresa <p-sorticon field="empresa"></p-sorticon>
+      <th appSortableColumn="empresa">
+        Empresa <app-sorticon field="empresa" />
       </th>
-      <th pSortableColumn="customerIdAspelId">
-        ID Aspel <p-sorticon field="customerIdAspelId"></p-sorticon>
+      <th appSortableColumn="customerIdAspelId">
+        ID Aspel <app-sorticon field="customerIdAspelId" />
       </th>
       <th class="table-col-10">Opciones</th>
     </tr>
@@ -59,7 +58,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

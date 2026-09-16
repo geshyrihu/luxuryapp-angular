@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -30,13 +30,13 @@
   <ng-template #header let-columns>
     <tr>
       <th>Id</th>
-      <th class="table-col-30" pSortableColumn="numeroCuenta">
+      <th class="table-col-30" appSortableColumn="numeroCuenta">
         CUENTA
-        <p-sorticon field="numeroCuenta" />
+        <app-sorticon field="numeroCuenta" />
       </th>
-      <th pSortableColumn="descripcion">
+      <th appSortableColumn="descripcion">
         DESCRIPCIÓN DE LA CUENTA
-        <p-sorticon field="descripcion" />
+        <app-sorticon field="descripcion" />
       </th>
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
       <th class="table-col-5"></th>
@@ -66,7 +66,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

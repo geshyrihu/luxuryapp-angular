@@ -12,7 +12,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -32,7 +32,9 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     DataViewMobile,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     EAreaMinutasDetallesPipe,

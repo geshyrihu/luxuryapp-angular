@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -24,29 +24,29 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="employeeName">
+      <th appSortableColumn="employeeName">
         Empleado
-        <p-sorticon field="employeeName" />
+        <app-sorticon field="employeeName" />
       </th>
-      <th pSortableColumn="departament">
+      <th appSortableColumn="departament">
         Departamento
-        <p-sorticon field="departament" />
+        <app-sorticon field="departament" />
       </th>
-      <th pSortableColumn="evaluationDate">
+      <th appSortableColumn="evaluationDate">
         Fecha
-        <p-sorticon field="evaluationDate" />
+        <app-sorticon field="evaluationDate" />
       </th>
-      <th pSortableColumn="evaluationTemplate">
+      <th appSortableColumn="evaluationTemplate">
         Evaluación
-        <p-sorticon field="evaluationTemplate" />
+        <app-sorticon field="evaluationTemplate" />
       </th>
-      <th pSortableColumn="evaluatorName">
+      <th appSortableColumn="evaluatorName">
         Evaluador
-        <p-sorticon field="evaluatorName" />
+        <app-sorticon field="evaluatorName" />
       </th>
-      <th pSortableColumn="finalScore">
+      <th appSortableColumn="finalScore">
         Resultado
-        <p-sorticon field="finalScore" />
+        <app-sorticon field="finalScore" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -87,7 +87,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

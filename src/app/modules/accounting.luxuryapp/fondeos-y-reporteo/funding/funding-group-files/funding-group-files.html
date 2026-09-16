@@ -85,7 +85,7 @@
       }
     </div>
     } @else {
-    <p-table
+    <app-table
       [value]="selectedGroupFiles()"
       [selection]="selectedFilesControl.value || []"
       (selectionChange)="selectedFilesControl.setValue($event)"
@@ -137,7 +137,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-5">
       <app-icon [icon]="'material-symbols-light:folder-open'" class="text-6xl text-body-secondary mb-3" />

@@ -17,7 +17,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DialogService,
   DynamicDialogConfig,
   DynamicDialogRef, } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -61,7 +61,9 @@ type ModalStatus =
     FormsModule,
     ReactiveFormsModule,
     LxFileUpload,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     TagModule,
     CustomInputCheckSignal,
     CustomInputSelectSignal,
@@ -251,4 +253,3 @@ export class FundingUploadInvoicesModal {
     this.allSelected.set(selectedCount === selectableItems.length);
   }
 }
-

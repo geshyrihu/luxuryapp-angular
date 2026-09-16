@@ -13,7 +13,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -47,7 +47,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIconEdit,
     WebButtonIconItem,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

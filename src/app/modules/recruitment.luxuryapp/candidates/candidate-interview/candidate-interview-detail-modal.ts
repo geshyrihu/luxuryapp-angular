@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
@@ -28,7 +28,11 @@ import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
   imports: [
     ApiDatePipe,
     WebButtonIconViewPdf,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     CandidateStageBadge,
     MappedPTag,
   ],

@@ -3,7 +3,7 @@
   <!--
   Tabla de resumen. La estructura es la misma, pero el contenido de las celdas es más simple.
   -->
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [scrollable]="true"
     [showCurrentPageReport]="true"
@@ -116,8 +116,8 @@
     <!-- =========================
       EMPTY MESSAGE: Sin datos (Idéntico al anterior)
       ========================= -->
-    <ng-template emptymessage>
-      <!-- ... (Copia y pega aquí toda la sección <ng-template emptymessage> de tu componente anterior. No necesita cambios.) ... -->
+    <ng-template #emptymessage>
+      <!-- ... (Copia y pega aquí toda la sección <ng-template #emptymessage> de tu componente anterior. No necesita cambios.) ... -->
     </ng-template>
-  </p-table>
+  </app-table>
 </div>

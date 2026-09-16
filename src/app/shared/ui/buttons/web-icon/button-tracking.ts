@@ -55,8 +55,8 @@ export class WebButtonIconTracking extends BaseButton {
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("secondary");
 

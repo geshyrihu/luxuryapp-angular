@@ -1,11 +1,10 @@
 <div class="card p-0 p-md-4 border-0 shadow-none">
-  <p-table
+  <app-table
     #dt
     [value]="diagrams()"
     [rows]="10"
     [paginator]="true"
     [globalFilterFields]="['name']"
-    [rowHover]="true"
     dataKey="id"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} diagramas"
     [showCurrentPageReport]="true"
@@ -30,11 +29,11 @@
 
     <ng-template #header>
       <tr>
-        <th pSortableColumn="name">
-          Nombre <p-sorticon field="name"></p-sorticon>
+        <th appSortableColumn="name">
+          Nombre <app-sorticon field="name" />
         </th>
-        <th pSortableColumn="updateAt" class="table-col-15rem">
-          óltima Actualización <p-sorticon field="updateAt"></p-sorticon>
+        <th appSortableColumn="updateAt" class="table-col-15rem">
+          óltima Actualización <app-sorticon field="updateAt" />
         </th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -91,7 +90,7 @@
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage [colspan]="3" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <app-data-view-mobile

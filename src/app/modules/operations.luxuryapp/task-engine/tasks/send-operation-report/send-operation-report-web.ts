@@ -9,7 +9,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
@@ -19,7 +19,9 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     AppIcon,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     CustomInputTextSignal,
     LxTag,
     CustomInputCheckSignal,

@@ -18,7 +18,7 @@
     class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2 mt-3"
   ></div>
 
-  <p-table
+  <app-table
     #dt
     [value]="filteredRows()"
     [globalFilterFields]="globalFilterFields"
@@ -142,20 +142,20 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th class="table-col-160px" pSortableColumn="accountNumber">
-          Cuenta <p-sorticon field="accountNumber" />
+        <th class="table-col-160px" appSortableColumn="accountNumber">
+          Cuenta <app-sorticon field="accountNumber" />
         </th>
-        <th pSortableColumn="propertyFullName">
-          Condómino <p-sorticon field="propertyFullName" />
+        <th appSortableColumn="propertyFullName">
+          Condómino <app-sorticon field="propertyFullName" />
         </th>
         <th
           class="table-col-180px text-center"
-          pSortableColumn="classification"
+          appSortableColumn="classification"
         >
-          Clasificación <p-sorticon field="classification" />
+          Clasificación <app-sorticon field="classification" />
         </th>
-        <th class="text-end table-col-150px" pSortableColumn="balance">
-          Saldo Total <p-sorticon field="balance" />
+        <th class="text-end table-col-150px" appSortableColumn="balance">
+          Saldo Total <app-sorticon field="balance" />
         </th>
       </tr>
     </ng-template>
@@ -198,7 +198,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="filteredRows()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile
     [data]="filteredRows()"

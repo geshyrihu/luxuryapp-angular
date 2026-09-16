@@ -11,7 +11,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
@@ -56,7 +56,7 @@ import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -186,4 +186,3 @@ export class WorkContractList implements OnInit {
     return map[status] ?? "badge-neutral";
   }
 }
-

@@ -14,7 +14,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -35,7 +35,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     LxTooltipDirective,
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
 
     DataViewMobile,

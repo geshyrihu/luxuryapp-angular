@@ -18,7 +18,7 @@
     </div>
   </lx-card>
 
-  <p-table
+  <app-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -83,7 +83,7 @@
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage [colspan]="8" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile
     [data]="dataSignal()"

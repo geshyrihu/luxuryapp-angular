@@ -13,7 +13,7 @@ import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -31,7 +31,9 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ApiDatePipe,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,

@@ -21,8 +21,8 @@ import { BaseButton } from "../base/base-button";
 })
 export class WebButtonIconDownload extends BaseButton {
   protected readonly IconCatalog = AppIconCatalog;
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("secondary");
 }

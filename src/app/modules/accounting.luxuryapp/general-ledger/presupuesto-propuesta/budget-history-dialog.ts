@@ -19,7 +19,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -30,7 +30,7 @@ import { BudgetProposalItemHistoryDTO } from "@accounting.luxuryapp/general-ledg
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 @Component({
   selector: "app-budget-history-dialog",
-  imports: [CommonModule, TableModule, ApiDatePipe],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, ApiDatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-history-dialog.html",
 })

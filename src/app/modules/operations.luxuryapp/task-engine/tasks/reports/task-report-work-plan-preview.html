@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -7,8 +7,7 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   groupRowsBy="date"
-  rowGroupMode="subheader"
-  sortField="date"
+  initialSortField="date"
   sortMode="single"
   class="custom-table"
 >
@@ -45,35 +44,35 @@
       <th
         class="table-col-30"
         class="font-size-12"
-        pSortableColumn="responsibleArea"
+        appSortableColumn="responsibleArea"
       >
         SOLICITUD
-        <p-sorticon field="responsibleArea" />
+        <app-sorticon field="responsibleArea" />
       </th>
       <th class="font-size-12">EVIDENCIA</th>
       <th
         class="table-col-8"
         class="font-size-12"
-        pSortableColumn="responsableNombre"
+        appSortableColumn="responsableNombre"
       >
         ASIGNADO A
-        <p-sorticon field="responsableNombre" />
+        <app-sorticon field="responsableNombre" />
       </th>
       <th
         class="table-col-10"
         class="font-size-12"
-        pSortableColumn="scheduledAtFilter"
+        appSortableColumn="scheduledAtFilter"
       >
         PROGRAMADO
-        <p-sorticon field="scheduledAtFilter" />
+        <app-sorticon field="scheduledAtFilter" />
       </th>
       <th
         class="table-col-10"
         class="font-size-12"
-        pSortableColumn="daysDifference"
+        appSortableColumn="daysDifference"
       >
         DIAS
-        <p-sorticon field="daysDifference" />
+        <app-sorticon field="daysDifference" />
       </th>
     </tr>
   </ng-template>
@@ -125,5 +124,5 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }

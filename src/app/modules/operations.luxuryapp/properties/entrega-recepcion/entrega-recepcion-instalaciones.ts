@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -24,7 +24,9 @@ import { StripTagsPipe } from "@shared/pipes/StripTags.pipe";
   templateUrl: "./entrega-recepcion-instalaciones.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ReportHeader,
     StripTagsPipe,
     FormsModule,

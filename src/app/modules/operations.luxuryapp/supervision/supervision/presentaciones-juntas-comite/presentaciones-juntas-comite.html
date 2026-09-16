@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -23,17 +23,17 @@
   <ng-template #header>
     <tr>
       <th class="table-col-2">#</th>
-      <th class="table-col-10" pSortableColumn="numeroCliente">
+      <th class="table-col-10" appSortableColumn="numeroCliente">
         Cliente
-        <p-sorticon field="numeroCliente" />
+        <app-sorticon field="numeroCliente" />
       </th>
-      <th class="table-col-8" pSortableColumn="fechaCorrespondienteFiltro">
+      <th class="table-col-8" appSortableColumn="fechaCorrespondienteFiltro">
         Periodo
-        <p-sorticon field="fechaCorrespondienteFiltro" />
+        <app-sorticon field="fechaCorrespondienteFiltro" />
       </th>
-      <th class="table-col-12" pSortableColumn="fechaCorrespondienteFiltro">
+      <th class="table-col-12" appSortableColumn="fechaCorrespondienteFiltro">
         Fecha Junta
-        <p-sorticon field="fechaCorrespondienteFiltro" />
+        <app-sorticon field="fechaCorrespondienteFiltro" />
       </th>
       <th class="table-col-19">Portada</th>
       <th class="table-col-19">Contable</th>
@@ -120,7 +120,7 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

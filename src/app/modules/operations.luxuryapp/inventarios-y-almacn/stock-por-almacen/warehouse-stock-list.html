@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       (onSort)="onSort()"
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
@@ -34,29 +34,29 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th pSortableColumn="producto.nombreProducto">
+          <th appSortableColumn="producto.nombreProducto">
             Producto
-            <p-sorticon field="producto.nombreProducto" />
+            <app-sorticon field="producto.nombreProducto" />
           </th>
-          <th pSortableColumn="existencia">
+          <th appSortableColumn="existencia">
             Existencia
-            <p-sorticon field="existencia" />
+            <app-sorticon field="existencia" />
           </th>
-          <th pSortableColumn="unidadDeMedida.descripcion">
+          <th appSortableColumn="unidadDeMedida.descripcion">
             Unidad
-            <p-sorticon field="unidadDeMedida.descripcion" />
+            <app-sorticon field="unidadDeMedida.descripcion" />
           </th>
-          <th pSortableColumn="stockMin">
+          <th appSortableColumn="stockMin">
             Stock Min
-            <p-sorticon field="stockMin" />
+            <app-sorticon field="stockMin" />
           </th>
-          <th pSortableColumn="stockMax">
+          <th appSortableColumn="stockMax">
             Stock Max
-            <p-sorticon field="stockMax" />
+            <app-sorticon field="stockMax" />
           </th>
-          <th pSortableColumn="compraRequerida">
+          <th appSortableColumn="compraRequerida">
             Compra Sugerida
-            <p-sorticon field="compraRequerida" />
+            <app-sorticon field="compraRequerida" />
           </th>
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario ])() ) {
@@ -124,7 +124,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="7" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

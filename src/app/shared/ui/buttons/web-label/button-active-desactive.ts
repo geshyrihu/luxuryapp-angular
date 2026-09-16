@@ -35,7 +35,7 @@ export class WebButtonLabelActiveDesactive extends BaseButton {
 
   stateChange = output<boolean>();
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
     "outline",
   );
   override severity = input<any>("secondary");

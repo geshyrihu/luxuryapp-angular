@@ -1,5 +1,5 @@
 <!-- Contenido visible solo en pantallas medianas y grandes -->
-<p-table
+<app-table
   [value]="dataSignal()"
   #dt
   class="custom-table d-none d-md-block"
@@ -11,10 +11,10 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
-  sortField="departament"
+  [initialSortField]="'departament'"
   rowGroupMode="subheader"
   groupRowsBy="departament"
-  [sortOrder]="1"
+  [initialSortOrder]="1"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -26,19 +26,19 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="code">
+      <th appSortableColumn="code">
         Codigo
-        <p-sorticon field="code" />
+        <app-sorticon field="code" />
       </th>
       <th>Icono</th>
       <th>Color</th>
-      <th pSortableColumn="name">
+      <th appSortableColumn="name">
         Nombre
-        <p-sorticon field="name" />
+        <app-sorticon field="name" />
       </th>
-      <th pSortableColumn="description">
+      <th appSortableColumn="description">
         Descripcion
-        <p-sorticon field="description" />
+        <app-sorticon field="description" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -83,7 +83,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Componente adaptado para version movil -->
 <app-data-view-mobile

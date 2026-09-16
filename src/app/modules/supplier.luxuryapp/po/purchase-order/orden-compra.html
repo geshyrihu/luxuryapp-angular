@@ -114,7 +114,7 @@
   <!-- 5. Tabla: Presupuesto Utilizado -->
   @if (purchaseOrderBudget()) {
   <div class="col-12 col-sm-7">
-    <p-table
+    <app-table
       [value]="purchaseOrderBudget()"
       class="custom-table card d-none d-md-block"
     >
@@ -170,7 +170,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="16" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   }
 
@@ -222,7 +222,7 @@
 <!-- ================================================================== -->
 <!-- SECCIóN DE DETALLE DE PRODUCTOS                                    -->
 <!-- ================================================================== -->
-<p-table
+<app-table
   [value]="ordenCompraDetalle()"
   class="custom-table card d-none d-md-block"
   dataKey="id"
@@ -333,4 +333,4 @@
       <td class="no-border"></td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>

@@ -1,5 +1,5 @@
 @if (dataSignal().items) {
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -259,21 +259,21 @@
   <ng-template #header>
     <tr>
       <th></th>
-      <th pSortableColumn="createdAtFilter">
-        SOLICITUD <p-sorticon field="createdAtFilter" />
+      <th appSortableColumn="createdAtFilter">
+        SOLICITUD <app-sorticon field="createdAtFilter" />
       </th>
-      <th pSortableColumn="responsableNombre">
-        RESP. <p-sorticon field="responsableNombre" />
+      <th appSortableColumn="responsableNombre">
+        RESP. <app-sorticon field="responsableNombre" />
       </th>
-      <th pSortableColumn="scheduledAtFilter">
-        FECHAS <p-sorticon field="scheduledAtFilter" />
+      <th appSortableColumn="scheduledAtFilter">
+        FECHAS <app-sorticon field="scheduledAtFilter" />
       </th>
       <th>EVIDENCIAS</th>
-      <th pSortableColumn="daysDifference">
-        DIAS <p-sorticon field="daysDifference" />
+      <th appSortableColumn="daysDifference">
+        DIAS <app-sorticon field="daysDifference" />
       </th>
-      <th pSortableColumn="isRelevant">
-        REPORTE <p-sorticon field="isRelevant" />
+      <th appSortableColumn="isRelevant">
+        REPORTE <app-sorticon field="isRelevant" />
       </th>
       <th>ULTIMO SEGUIMIENTO</th>
       <th class="no-print"></th>
@@ -542,7 +542,7 @@
       En total hay {{ dataSignal().items?.length || 0 }} registros.
     </div>
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   class="d-block d-md-none"

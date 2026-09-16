@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,25 +21,25 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreProducto">
+      <th appSortableColumn="nombreProducto">
         Imagen
-        <p-sorticon field="nombreProducto" />
+        <app-sorticon field="nombreProducto" />
       </th>
-      <th pSortableColumn="nombreProducto">
+      <th appSortableColumn="nombreProducto">
         Nombre
-        <p-sorticon field="nombreProducto" />
+        <app-sorticon field="nombreProducto" />
       </th>
-      <th pSortableColumn="category">
+      <th appSortableColumn="category">
         Categoria
-        <p-sorticon field="category" />
+        <app-sorticon field="category" />
       </th>
-      <th pSortableColumn="marca">
+      <th appSortableColumn="marca">
         Marca
-        <p-sorticon field="marca" />
+        <app-sorticon field="marca" />
       </th>
-      <th pSortableColumn="modelo">
+      <th appSortableColumn="modelo">
         Modelo
-        <p-sorticon field="modelo" />
+        <app-sorticon field="modelo" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.JefeMantenimiento,
       AspRole.SuperUsuario, AspRole.Administrador, ]) ) {
@@ -90,7 +90,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="filteredDataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

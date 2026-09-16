@@ -21,7 +21,7 @@ import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -50,7 +50,9 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
     MobileListItem,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTooltipDirective,
     CustomInputSelectSignal,
 

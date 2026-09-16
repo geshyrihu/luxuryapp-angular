@@ -5,7 +5,7 @@
     para agregarla al presupuesto.
   </p></lx-message>
 } @if (presupuestoAgregados().length > 0) {
-<p-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
+<app-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
   <ng-template #caption>
     <primeng-custom-caption
       [title]="'Partidas agregadas'"
@@ -34,9 +34,9 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 } @if (dataSignal()) {
-<p-table
+<app-table
   #dt
   class="custom-table card d-none d-md-block"
   [value]="dataSignal()"
@@ -109,5 +109,5 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 }

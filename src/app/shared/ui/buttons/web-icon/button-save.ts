@@ -32,8 +32,8 @@ export class WebButtonIconSave extends BaseButton {
   submitting = input<boolean>(false);
 
   override severity = input<any>("success");
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override type = input<"button" | "submit" | "reset">("submit");
 

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -43,7 +43,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     LxTooltipDirective,
     RouterModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ButtonModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

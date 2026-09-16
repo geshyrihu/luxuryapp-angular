@@ -11,7 +11,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
@@ -40,7 +40,9 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     WebButtonLabelEdit,
     WebButtonLabelDelete,
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
 
     LxTag,
     LxTooltipDirective,

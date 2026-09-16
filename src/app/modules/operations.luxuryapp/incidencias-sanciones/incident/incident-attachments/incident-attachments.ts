@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
@@ -31,7 +31,9 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     FileUploadModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ApiDatePipe,
     WebButtonLabel,
     AppIcon,

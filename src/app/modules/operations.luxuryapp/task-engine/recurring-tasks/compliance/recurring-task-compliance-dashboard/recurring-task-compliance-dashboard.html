@@ -14,7 +14,7 @@
       />
     }
 
-    <p-table
+    <app-table
       #dt
       [value]="groups()"
       [rows]="10"
@@ -68,7 +68,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="7" />
       </ng-template>
-    </p-table>
+    </app-table>
 
     <app-data-view-mobile
       [data]="groups()"

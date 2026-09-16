@@ -1,4 +1,4 @@
-<p-table
+<app-table
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -15,9 +15,9 @@
       <th rowspan="2">
         <p class="fw-light">#</p>
       </th>
-      <th rowspan="2" pSortableColumn="fechaFiltro">
+      <th rowspan="2" appSortableColumn="fechaFiltro">
         <p class="fw-light">Fecha</p>
-        <p-sorticon field="fechaFiltro" />
+        <app-sorticon field="fechaFiltro" />
       </th>
       <th colspan="3">
         <div
@@ -152,4 +152,4 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>

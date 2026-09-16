@@ -15,7 +15,7 @@
   <div class="card-body">
     <!-- Desktop View -->
     <div class="d-none d-md-block">
-      <p-table
+      <app-table
         [value]="tasks()"
         [loading]="loading()"
         [scrollable]="true"
@@ -54,7 +54,7 @@
             </td>
           </tr>
         </ng-template>
-        <ng-template emptymessage>
+        <ng-template #emptymessage>
           <tr>
             <td colspan="6" class="text-center">
               No tienes tareas para la fecha seleccionada.
@@ -102,7 +102,7 @@
               </div>
             </div>
           </div>
-        </ng-template></p-table
+        </ng-template></app-table
       >
     </div>
   </div>

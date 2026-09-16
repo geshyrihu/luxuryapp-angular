@@ -1,15 +1,14 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
   #dt
   class="card d-none d-md-block custom-table"
-  [rowGroupMode]="'subheader'"
   groupRowsBy="roleTypeOrder"
-  sortField="roleTypeOrder"
+  initialSortField="roleTypeOrder"
   sortMode="single"
 >
   <ng-template #caption>
@@ -21,18 +20,18 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="sortOrder">
-        Orden <p-sorticon field="sortOrder" />
+      <th appSortableColumn="sortOrder">
+        Orden <app-sorticon field="sortOrder" />
       </th>
-      <th pSortableColumn="name">Nombre Interno <p-sorticon field="name" /></th>
-      <th pSortableColumn="displayName">
-        Nombre para Mostrar <p-sorticon field="displayName" />
+      <th appSortableColumn="name">Nombre Interno <app-sorticon field="name" /></th>
+      <th appSortableColumn="displayName">
+        Nombre para Mostrar <app-sorticon field="displayName" />
       </th>
-      <th pSortableColumn="code">Código <p-sorticon field="code" /></th>
-      <th pSortableColumn="departament">
-        Departamento <p-sorticon field="departament" />
+      <th appSortableColumn="code">Código <app-sorticon field="code" /></th>
+      <th appSortableColumn="departament">
+        Departamento <app-sorticon field="departament" />
       </th>
-      <th pSortableColumn="isActive">Activo <p-sorticon field="isActive" /></th>
+      <th appSortableColumn="isActive">Activo <app-sorticon field="isActive" /></th>
       <th>Acciones</th>
     </tr>
   </ng-template>
@@ -83,7 +82,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

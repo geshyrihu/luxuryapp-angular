@@ -17,7 +17,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -52,7 +52,11 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     MobileButtonLabelItem,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

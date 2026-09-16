@@ -1,7 +1,7 @@
 <div class="d-flex flex-column h-full">
   <h3 class="mt-0">Comprobantes de Pago</h3>
 
-  <p-table [value]="comprobantes()" class="p-datatable-sm mb-3">
+  <app-table [value]="comprobantes()" class="p-datatable-sm mb-3">
     <ng-template #header>
       <tr>
         <th>Archivo</th>
@@ -31,7 +31,7 @@
     <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
-  </p-table>
+  </app-table>
 
   <div class="mb-4">
     <label class="d-block mb-2 fw-bold">Subir Nuevo Comprobante</label>

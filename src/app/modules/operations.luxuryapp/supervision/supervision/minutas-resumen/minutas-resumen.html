@@ -1,5 +1,5 @@
 @if (generalMinutasGrupoView()) {
-<p-table
+<app-table
   [value]="generalMinutasGrupoSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -20,9 +20,9 @@
   <ng-template #header>
     <tr>
       <th rowspan="2" class="table-col-5">#</th>
-      <th rowspan="2" class="table-col-16" pSortableColumn="numeroCliente">
+      <th rowspan="2" class="table-col-16" appSortableColumn="numeroCliente">
         CLIENTE
-        <p-sorticon field="numeroCliente" />
+        <app-sorticon field="numeroCliente" />
         <p-columnfilter
           field="customer"
           matchMode="in"
@@ -219,5 +219,5 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }

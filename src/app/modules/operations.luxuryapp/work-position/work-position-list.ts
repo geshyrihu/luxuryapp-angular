@@ -12,7 +12,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -67,7 +67,9 @@ import {
     WebButtonLabel,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     AppAvatar,
     PrimeNgCustomCaption,
     DataViewMobile,
@@ -95,7 +97,7 @@ export class WorkPositionList {
   scrollHeight = signal<string>("0px");
   statusFilter = signal<"Activo" | "Inactivo">("Activo");
   selectedDepartment = signal<number | null>(null);
-  @ViewChild("dt") dt?: Table;
+  @ViewChild("dt") dt?: AppTable;
 
   readonly uniqueDepartments = computed<number[]>(() => {
     const depts = new Set<number>();
@@ -284,4 +286,3 @@ export class WorkPositionList {
     return true;
   }
 }
-

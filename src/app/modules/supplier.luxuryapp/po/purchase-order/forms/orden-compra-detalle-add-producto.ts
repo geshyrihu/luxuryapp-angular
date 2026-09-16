@@ -22,7 +22,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -64,7 +64,11 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
   imports: [
     WebButtonIconItem,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     AppAvatar,
     InputNumberModule,
     CustomInputSelectSignal,

@@ -79,7 +79,6 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     applicationUser: this.formB.control("", { nonNullable: true }),
     isAdmin: this.formB.control(false, {
       nonNullable: true,
-      validators: Validators.required,
     }),
   });
 
@@ -203,4 +202,3 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     this.ref.close(true);
   }
 }
-

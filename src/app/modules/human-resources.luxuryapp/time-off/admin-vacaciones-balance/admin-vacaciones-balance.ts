@@ -15,7 +15,7 @@ import {
   MessageService,
 } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -42,7 +42,9 @@ import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-a
     WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonLabel,
     LxTag,
     PrimeNgCustomCaption,

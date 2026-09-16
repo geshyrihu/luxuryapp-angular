@@ -8,7 +8,7 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
@@ -19,7 +19,9 @@ import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.servi
   imports: [
     CommonModule,
     RouterModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     DataViewMobile,
     MobileListItem,
     AppIcon,

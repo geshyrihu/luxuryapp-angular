@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LxRating } from "@ui/adaptive/rating/rating";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -65,7 +65,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     CustomInputSelectSignal,
     CustomSearchInput,
     LxTooltipDirective,

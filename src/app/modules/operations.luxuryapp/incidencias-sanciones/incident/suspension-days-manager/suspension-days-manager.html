@@ -50,7 +50,7 @@
     <span class="fw-medium">Días de suspensión: </span>{{ daysFormatted() }}
   </div>
 
-  <p-table [value]="days()" class="p-datatable-sm">
+  <app-table [value]="days()" class="p-datatable-sm">
     <ng-template #header>
       <tr>
         <th>Fecha</th>
@@ -70,6 +70,6 @@
     <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
-  </p-table>
+  </app-table>
   }
 </div>

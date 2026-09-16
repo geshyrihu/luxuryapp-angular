@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,17 +21,17 @@
   <ng-template #header>
     <tr>
       <!-- CAMBIO: Columnas y campos de ordenamiento para Almacón -->
-      <th pSortableColumn="nombre">
+      <th appSortableColumn="nombre">
         Nombre
-        <p-sorticon field="nombre" />
+        <app-sorticon field="nombre" />
       </th>
-      <th pSortableColumn="ubicacion">
+      <th appSortableColumn="ubicacion">
         Ubicación
-        <p-sorticon field="ubicacion" />
+        <app-sorticon field="ubicacion" />
       </th>
-      <th pSortableColumn="activo">
+      <th appSortableColumn="activo">
         Estado
-        <p-sorticon field="activo" />
+        <app-sorticon field="activo" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -70,7 +70,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

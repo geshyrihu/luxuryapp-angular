@@ -1,4 +1,4 @@
-<p-table
+<app-table
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -17,8 +17,8 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="periodoDescripcion">
-        Periodo <p-sorticon field="periodoDescripcion" />
+      <th appSortableColumn="periodoDescripcion">
+        Periodo <app-sorticon field="periodoDescripcion" />
       </th>
       <th>Estado</th>
       <th class="text-end">Empleados</th>
@@ -102,7 +102,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

@@ -3,7 +3,7 @@
     <h3 class="card-title">Catálogo de Tareas Recurrentes</h3>
   </div>
   <div class="card-body">
-    <p-table
+    <app-table
       #dt
       [value]="data()"
       [rows]="10"
@@ -63,7 +63,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="5" />
       </ng-template>
-    </p-table>
+    </app-table>
 
     <app-data-view-mobile
       [data]="data()"

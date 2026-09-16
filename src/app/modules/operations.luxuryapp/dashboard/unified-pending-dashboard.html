@@ -1,6 +1,6 @@
 <div class="d-flex flex-column mb-4">
   <div class="d-none d-md-block">
-    <p-table
+    <app-table
       #dt
       [value]="data()"
       [rows]="tablePrimeNgRows"
@@ -16,7 +16,6 @@
       'formattedDate',
     ]"
       class="p-datatable-sm p-datatable-gridlines font-sm"
-      [rowHover]="true"
       size="small"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="{first}-{last} de {totalRecords}"
@@ -124,29 +123,29 @@
       <ng-template #header>
         <tr class="text-sm text-uppercase text-body-secondary bg-bg-body-tertiary">
           <th
-            pSortableColumn="module"
+            appSortableColumn="module"
             class="text-nowrap ps-3 table-col-8"
           >
-            Módulo <p-sorticon field="module"></p-sorticon>
+            Módulo <app-sorticon field="module" />
           </th>
           <th
-            pSortableColumn="date"
+            appSortableColumn="date"
             class="text-nowrap text-center table-col-10"
           >
-            Fecha <p-sorticon field="date"></p-sorticon>
+            Fecha <app-sorticon field="date" />
           </th>
-          <th pSortableColumn="title" class="table-col-32">
-            Actividad / Asunto <p-sorticon field="title"></p-sorticon>
+          <th appSortableColumn="title" class="table-col-32">
+            Actividad / Asunto <app-sorticon field="title" />
           </th>
-          <th pSortableColumn="responsible" class="table-col-15">
-            Responsable <p-sorticon field="responsible"></p-sorticon>
+          <th appSortableColumn="responsible" class="table-col-15">
+            Responsable <app-sorticon field="responsible" />
           </th>
           <th class="table-col-20">último Seguimiento</th>
-          <th pSortableColumn="status" class="text-center table-col-10">
-            Estatus <p-sorticon field="status"></p-sorticon>
+          <th appSortableColumn="status" class="text-center table-col-10">
+            Estatus <app-sorticon field="status" />
           </th>
-          <th pSortableColumn="daysOpen" class="text-center pe-3 table-col-5">
-            Días <p-sorticon field="daysOpen"></p-sorticon>
+          <th appSortableColumn="daysOpen" class="text-center pe-3 table-col-5">
+            Días <app-sorticon field="daysOpen" />
           </th>
         </tr>
       </ng-template>
@@ -283,7 +282,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="data()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!-- 📱 MOBILE -->

@@ -12,7 +12,7 @@ import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/butto
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
@@ -59,7 +59,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxAvatar,
     WebButtonIconEdit,
     WebButtonIconDelete,

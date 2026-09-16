@@ -87,7 +87,7 @@
   </div>
   }
 
-  <p-table
+  <app-table
     [value]="detail.movements"
     [globalFilterFields]="movementFilterFields()"
     [paginator]="true"
@@ -132,6 +132,6 @@
         <td>{{ formatCurrency(movement.signedAmount) }}</td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
   }
 </section>

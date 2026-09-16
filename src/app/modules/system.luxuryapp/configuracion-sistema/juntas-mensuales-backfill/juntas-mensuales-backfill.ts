@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -27,7 +27,9 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     WebButtonIconConfirm,
     LxTooltipDirective,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTag,
     WebButtonLabel,
   ],

@@ -15,7 +15,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -45,7 +45,9 @@ import { PaymentForm } from "./payment-form";
     LxTag,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,
     WebButtonLabel,

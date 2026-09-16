@@ -31,8 +31,8 @@ export class WebButtonLabelSendEmail extends BaseButton {
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("info");
 

@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       #dt
       [value]="dataSignal()"
       [globalFilterFields]="globalFilterFields()"
@@ -100,7 +100,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="4" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

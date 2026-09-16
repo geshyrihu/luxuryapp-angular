@@ -12,22 +12,22 @@
   ============================================================================
 -->
 @if (budgetExecutions() && budgetExecutions()!.length > 0) {
-<p-table
+<app-table
   [value]="budgetExecutions()!"
   class="card custom-table"
   [tableStyle]="{ 'min-width': '50rem' }"
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="executionMonthName">
-        Mes <p-sorticon field="executionMonthName" />
+      <th appSortableColumn="executionMonthName">
+        Mes <app-sorticon field="executionMonthName" />
       </th>
-      <th pSortableColumn="concept">Concepto <p-sorticon field="concept" /></th>
-      <th pSortableColumn="budgetedAmount">
-        Monto <p-sorticon field="budgetedAmount" />
+      <th appSortableColumn="concept">Concepto <app-sorticon field="concept" /></th>
+      <th appSortableColumn="budgetedAmount">
+        Monto <app-sorticon field="budgetedAmount" />
       </th>
-      <th pSortableColumn="providerName">
-        Proveedor <p-sorticon field="providerName" />
+      <th appSortableColumn="providerName">
+        Proveedor <app-sorticon field="providerName" />
       </th>
     </tr>
   </ng-template>
@@ -47,7 +47,7 @@
       }}
     </div>
   </ng-template>
-</p-table>
+</app-table>
 } @else {
 <div class="d-flex flex-column align-items-center justify-content-center py-5">
   <app-icon [icon]="'material-symbols-light:info'" class="text-4xl text-body-secondary mb-2" />

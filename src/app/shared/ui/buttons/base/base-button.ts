@@ -12,7 +12,7 @@ type ButtonSeverity =
   | "help"
   | "contrast"
   | "ai";
-type ButtonVariant = "solid" | "outline" | "ghost" | "text" | "link";
+type ButtonVariant = "solid" | "outline" | "soft" | "text" | "link";
 type ButtonSize = "small" | "large" | "sm" | "md" | "lg";
 
 @Directive()
@@ -68,8 +68,8 @@ export abstract class BaseButton {
     const severity = this.normalizedSeverity();
     if (variant === "outline") {
       classes.push(`btn-outline-${severity}`);
-    } else if (variant === "ghost") {
-      classes.push(`btn-ghost-${severity}`);
+    } else if (variant === "soft") {
+      classes.push(`btn-soft-${severity}`);
     } else if (variant === "text") {
       classes.push(`btn-text-${severity}`);
     } else if (variant === "link") {
@@ -80,7 +80,7 @@ export abstract class BaseButton {
     const size = this.size();
     if (size === "small" || size === "sm") classes.push("btn-sm");
     if (size === "large" || size === "lg") classes.push("btn-lg");
-    if (this.rounded()) classes.push("btn--pill");
+    if (this.rounded()) classes.push("btn-rounded");
     if (this.block()) classes.push("btn-block");
     if (this.fluid()) classes.push("btn-fluid");
     if (this.customClass()) classes.push(this.customClass());

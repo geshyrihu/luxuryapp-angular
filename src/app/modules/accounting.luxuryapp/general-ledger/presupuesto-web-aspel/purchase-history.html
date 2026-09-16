@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -17,29 +17,29 @@
   <ng-template #header>
     <tr>
       <th></th>
-      <th pSortableColumn="creationAt">
+      <th appSortableColumn="creationAt">
         Fecha
-        <p-sorticon field="creationAt" />
+        <app-sorticon field="creationAt" />
       </th>
-      <th pSortableColumn="description">
+      <th appSortableColumn="description">
         DESCRIPCIÓN
-        <p-sorticon field="description" />
+        <app-sorticon field="description" />
       </th>
-      <th pSortableColumn="provider">
+      <th appSortableColumn="provider">
         Proveedor
-        <p-sorticon field="provider" />
+        <app-sorticon field="provider" />
       </th>
-      <th pSortableColumn="accountNumber">
+      <th appSortableColumn="accountNumber">
         Cuenta
-        <p-sorticon field="accountNumber" />
+        <app-sorticon field="accountNumber" />
       </th>
-      <th pSortableColumn="tipoGasto">
+      <th appSortableColumn="tipoGasto">
         Tipo Gasto
-        <p-sorticon field="tipoGasto" />
+        <app-sorticon field="tipoGasto" />
       </th>
-      <th pSortableColumn="amount" class="text-end">
+      <th appSortableColumn="amount" class="text-end">
         Monto
-        <p-sorticon field="amount" />
+        <app-sorticon field="amount" />
       </th>
       <th>Factura</th>
     </tr>
@@ -95,7 +95,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-  <ng-template emptymessage>
+  <ng-template #emptymessage>
     <tr>
       <td colspan="7" class="text-center p-4">No se encontraron registros.</td>
     </tr>
@@ -108,7 +108,7 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- NOTA: Se ha eliminado el (add) para que sea una vista de solo lectura. -->
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->

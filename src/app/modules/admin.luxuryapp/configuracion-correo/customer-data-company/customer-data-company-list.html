@@ -1,15 +1,14 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [groupRowsBy]="groupingOption()"
   [paginator]="true"
-  [rowGroupMode]="'subheader'"
   [rows]="tablePrimeNgRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [showCurrentPageReport]="true"
-  [sortField]="groupingOption()"
+  [initialSortField]="groupingOption()"
   [value]="sortedData()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -44,7 +43,7 @@
   </ng-template>
 
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader class="bg-body-tertiary">
+    <tr class="bg-body-tertiary">
       <td colspan="6" class="py-2">
         <div class="d-flex align-items-center">
           <app-icon
@@ -66,18 +65,18 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="customer">
-        CLIENTE <p-sorticon field="customer" />
+      <th appSortableColumn="customer">
+        CLIENTE <app-sorticon field="customer" />
       </th>
-      <th pSortableColumn="applicationRoleName">
-        ROL <p-sorticon field="applicationRoleName" />
+      <th appSortableColumn="applicationRoleName">
+        ROL <app-sorticon field="applicationRoleName" />
       </th>
-      <th pSortableColumn="applicationUser">
-        USUARIO <p-sorticon field="applicationUser" />
+      <th appSortableColumn="applicationUser">
+        USUARIO <app-sorticon field="applicationUser" />
       </th>
-      <th pSortableColumn="email">EMAIL <p-sorticon field="email" /></th>
-      <th pSortableColumn="phoneNumber">
-        TELóFONO <p-sorticon field="phoneNumber" />
+      <th appSortableColumn="email">EMAIL <app-sorticon field="email" /></th>
+      <th appSortableColumn="phoneNumber">
+        TELóFONO <app-sorticon field="phoneNumber" />
       </th>
       <th></th>
     </tr>
@@ -107,7 +106,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

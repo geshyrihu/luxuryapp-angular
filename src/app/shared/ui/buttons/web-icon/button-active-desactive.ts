@@ -30,8 +30,8 @@ export class WebButtonIconActiveDesactive extends BaseButton {
 
   stateChange = output<boolean>();
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("secondary");
 

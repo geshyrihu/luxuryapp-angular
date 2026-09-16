@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -53,7 +53,9 @@ import { PurchaseHistory } from "./purchase-history";
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     MessageModule,
     DataViewMobile,
     LxTooltipDirective,
@@ -154,7 +156,7 @@ export class PresupuestoAspelEjercicioFiscal {
   globalFilterFields = signal<string[]>([]);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  dt = viewChild<Table>("dt");
+  dt = viewChild<AppTable>("dt");
 
   constructor() {
     effect(() => {
@@ -571,4 +573,3 @@ export class PresupuestoAspelEjercicioFiscal {
     return isParentAccount(cuenta);
   }
 }
-

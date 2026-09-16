@@ -10,7 +10,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
@@ -44,7 +44,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -82,7 +84,7 @@ export class SanctionList {
       .openDialog(
         SanctionFormComponent,
         { data: { incidentId } },
-        ón",
+        "Nueva Sanción",
         DialogSize.lg,
       )
       .then(() => this.onLoadData());
@@ -93,7 +95,7 @@ export class SanctionList {
       .openDialog(
         SanctionFormComponent,
         { data: { id: item.id, changeStatus: true } },
-        "Cambiar Esón",
+        "Cambiar Estado de Sanción",
         DialogSize.sm,
       )
       .then(() => this.onLoadData());
@@ -110,4 +112,3 @@ export class SanctionList {
     return map[status] ?? "bg-slate-100 text-slate-700 border-slate-200";
   }
 }
-

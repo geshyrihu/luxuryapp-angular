@@ -36,8 +36,8 @@
     <div class="card">
       <h3 class="mt-0">Listado de sesiones</h3>
 
-      <p-table [value]="items()" [loading]="loading()" selectionMode="single">
-        <ng-template pTemplate="header">
+      <app-table [value]="items()" [loading]="loading()">
+        <ng-template #header>
           <tr>
             <th>Sesion</th>
             <th>Fecha</th>
@@ -66,7 +66,7 @@
         <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
-      </p-table>
+      </app-table>
 
       @if (!items().length && !loading()) {
       <p class="text-body-secondary m-0">

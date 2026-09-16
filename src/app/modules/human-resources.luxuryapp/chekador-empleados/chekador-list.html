@@ -1,7 +1,7 @@
 <!-- ──────────────────────────────────────────────────────────────
      TABLA DESKTOP (oculta en móvil)
 ────────────────────────────────────────────────────────────── -->
-<p-table
+<app-table
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -90,21 +90,21 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Nº</th>
-      <th class="table-col-20" pSortableColumn="nombreEmpleado">
-        EMPLEADO <p-sorticon field="nombreEmpleado" />
+      <th class="table-col-20" appSortableColumn="nombreEmpleado">
+        EMPLEADO <app-sorticon field="nombreEmpleado" />
       </th>
-      <th class="table-col-10" pSortableColumn="tipo">
-        TIPO <p-sorticon field="tipo" />
+      <th class="table-col-10" appSortableColumn="tipo">
+        TIPO <app-sorticon field="tipo" />
       </th>
-      <th class="table-col-15" pSortableColumn="fechaHora">
-        FECHA / HORA <p-sorticon field="fechaHora" />
+      <th class="table-col-15" appSortableColumn="fechaHora">
+        FECHA / HORA <app-sorticon field="fechaHora" />
       </th>
       <th class="table-col-10">FOTO</th>
-      <th class="table-col-10" pSortableColumn="distanciaMetros">
-        DISTANCIA (m) <p-sorticon field="distanciaMetros" />
+      <th class="table-col-10" appSortableColumn="distanciaMetros">
+        DISTANCIA (m) <app-sorticon field="distanciaMetros" />
       </th>
-      <th class="table-col-15" pSortableColumn="ipAddress">
-        IP <p-sorticon field="ipAddress" />
+      <th class="table-col-15" appSortableColumn="ipAddress">
+        IP <app-sorticon field="ipAddress" />
       </th>
       <th class="table-col-10">ANOMALÍA</th>
       <th class="table-col-10">ESTADO</th>
@@ -209,7 +209,7 @@
   <ng-template #footer>
     <primeng-custom-table-footer [dt]="dt" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- ──────────────────────────────────────────────────────────────
      VISTA MÓVIL

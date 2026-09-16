@@ -3,7 +3,7 @@
  TABLA DE PUESTOS DE TRABAJO
  ═══════════════════════════════════════════════════════════════════
  -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
   [paginator]="true"
@@ -12,7 +12,6 @@
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table card d-none d-md-block"
-  rowGroupMode="subheader"
   groupRowsBy="departament"
   #dt
 >
@@ -89,11 +88,11 @@
 
     <!-- ⚪ Fila de Títulos de Columna -->
     <tr>
-      <th pSortableColumn="applicationRoleName">
-        PUESTO <p-sorticon field="applicationRoleName" />
+      <th appSortableColumn="applicationRoleName">
+        PUESTO <app-sorticon field="applicationRoleName" />
       </th>
-      <th class="w-32" pSortableColumn="turno">
-        TURNO <p-sorticon field="turno" />
+      <th class="w-32" appSortableColumn="turno">
+        TURNO <app-sorticon field="turno" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
@@ -105,7 +104,7 @@
   </ng-template>
 
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 5 : 4"
       >
@@ -370,7 +369,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="positions()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      POOL DE COLABORADORES SIN PUESTO ASIGNADO

@@ -1,7 +1,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       #dt
       [value]="flattenedDataSignal()"
       [globalFilterFields]="globalFilterFields()"
@@ -30,13 +30,13 @@
 
       <ng-template #header>
         <tr>
-          <th pSortableColumn="codigoCuenta" class="table-col-150px">
+          <th appSortableColumn="codigoCuenta" class="table-col-150px">
             Código
-            <p-sorticon field="codigoCuenta" />
+            <app-sorticon field="codigoCuenta" />
           </th>
-          <th pSortableColumn="descripcionCuenta">
+          <th appSortableColumn="descripcionCuenta">
             DESCRIPCIÓN
-            <p-sorticon field="descripcionCuenta" />
+            <app-sorticon field="descripcionCuenta" />
           </th>
         </tr>
       </ng-template>
@@ -60,7 +60,7 @@
         </tr>
       </ng-template>
 
-      <ng-template emptymessage>
+      <ng-template #emptymessage>
         <tr>
           <td colspan="2" class="text-center py-4">
             <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
@@ -72,7 +72,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="flattenedDataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

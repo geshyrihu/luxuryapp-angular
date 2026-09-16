@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -69,14 +69,14 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Foto</th>
-      <th class="table-col-15" pSortableColumn="localCode">
-        Código <p-sorticon field="localCode" />
+      <th class="table-col-15" appSortableColumn="localCode">
+        Código <app-sorticon field="localCode" />
       </th>
-      <th class="table-col-30" pSortableColumn="detectorType">
-        Tipo <p-sorticon field="detectorType" />
+      <th class="table-col-30" appSortableColumn="detectorType">
+        Tipo <app-sorticon field="detectorType" />
       </th>
-      <th class="table-col-35" pSortableColumn="location">
-        Ubicación <p-sorticon field="location" />
+      <th class="table-col-35" appSortableColumn="location">
+        Ubicación <app-sorticon field="location" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -120,7 +120,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

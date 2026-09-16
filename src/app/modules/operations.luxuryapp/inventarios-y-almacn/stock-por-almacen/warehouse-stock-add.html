@@ -1,5 +1,5 @@
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
   [paginator]="true"
@@ -19,25 +19,25 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="value.nombreProducto" class="table-col-35">
+      <th appSortableColumn="value.nombreProducto" class="table-col-35">
         Producto
-        <p-sorticon field="value.nombreProducto" />
+        <app-sorticon field="value.nombreProducto" />
       </th>
-      <th pSortableColumn="value.existencia">
+      <th appSortableColumn="value.existencia">
         Existencia
-        <p-sorticon field="value.existencia" />
+        <app-sorticon field="value.existencia" />
       </th>
-      <th pSortableColumn="value.unidadDeMedidaId">
+      <th appSortableColumn="value.unidadDeMedidaId">
         Unidad
-        <p-sorticon field="value.unidadDeMedidaId" />
+        <app-sorticon field="value.unidadDeMedidaId" />
       </th>
-      <th pSortableColumn="value.stockMax">
+      <th appSortableColumn="value.stockMax">
         Stok Max
-        <p-sorticon field="value.stockMax" />
+        <app-sorticon field="value.stockMax" />
       </th>
-      <th pSortableColumn="value.stockMin">
+      <th appSortableColumn="value.stockMin">
         Stok Min
-        <p-sorticon field="value.stockMin" />
+        <app-sorticon field="value.stockMin" />
       </th>
       <th class="table-col-5">Agregar</th>
     </tr>
@@ -115,4 +115,4 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="formArray.getRawValue()" />
   </ng-template>
-</p-table>
+</app-table>

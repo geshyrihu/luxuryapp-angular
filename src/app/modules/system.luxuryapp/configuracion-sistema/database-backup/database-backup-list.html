@@ -1,6 +1,6 @@
 @if (isSuperUsuario()) {
 
-<p-table
+<app-table
   #dt
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
@@ -24,33 +24,33 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="name">
+      <th appSortableColumn="name">
         Nombre
-        <p-sorticon field="name" />
+        <app-sorticon field="name" />
       </th>
-      <th pSortableColumn="destinationType">
+      <th appSortableColumn="destinationType">
         Destino
-        <p-sorticon field="destinationType" />
+        <app-sorticon field="destinationType" />
       </th>
-      <th pSortableColumn="cronExpression">
+      <th appSortableColumn="cronExpression">
         Programacion
-        <p-sorticon field="cronExpression" />
+        <app-sorticon field="cronExpression" />
       </th>
-      <th pSortableColumn="retentionDays">
+      <th appSortableColumn="retentionDays">
         Retencion
-        <p-sorticon field="retentionDays" />
+        <app-sorticon field="retentionDays" />
       </th>
-      <th pSortableColumn="lastRunAt">
+      <th appSortableColumn="lastRunAt">
         Ultimo respaldo
-        <p-sorticon field="lastRunAt" />
+        <app-sorticon field="lastRunAt" />
       </th>
-      <th pSortableColumn="lastRunStatus">
+      <th appSortableColumn="lastRunStatus">
         Estado
-        <p-sorticon field="lastRunStatus" />
+        <app-sorticon field="lastRunStatus" />
       </th>
-      <th pSortableColumn="isActive">
+      <th appSortableColumn="isActive">
         Activo
-        <p-sorticon field="isActive" />
+        <app-sorticon field="isActive" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -113,7 +113,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

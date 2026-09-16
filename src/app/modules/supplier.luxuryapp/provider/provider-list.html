@@ -1,5 +1,5 @@
 <!-- Tabla principal de proveedores con paginación, filtros y acciones -->
-<p-table
+<app-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
   [globalFilterFields]="globalFilterFields()"
@@ -231,7 +231,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="mobileData()"

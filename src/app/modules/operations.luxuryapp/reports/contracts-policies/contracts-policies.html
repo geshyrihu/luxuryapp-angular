@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -15,21 +15,21 @@
   <ng-template #header>
     <tr>
       <th>#</th>
-      <th pSortableColumn="provider">
+      <th appSortableColumn="provider">
         Proveedor
-        <p-sorticon field="provider" />
+        <app-sorticon field="provider" />
       </th>
-      <th pSortableColumn="description">
+      <th appSortableColumn="description">
         DESCRIPCIÓN
-        <p-sorticon field="description" />
+        <app-sorticon field="description" />
       </th>
-      <th pSortableColumn="startDateFilter">
+      <th appSortableColumn="startDateFilter">
         Fecha Contratación
-        <p-sorticon field="startDateFilter" />
+        <app-sorticon field="startDateFilter" />
       </th>
-      <th pSortableColumn="endDateFilter">
+      <th appSortableColumn="endDateFilter">
         Fecha de Término
-        <p-sorticon field="endDateFilter" />
+        <app-sorticon field="endDateFilter" />
       </th>
       <th>Documento</th>
     </tr>
@@ -59,7 +59,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

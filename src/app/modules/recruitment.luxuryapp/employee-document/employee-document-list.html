@@ -51,13 +51,11 @@
   </lx-fieldset>
   }
 
-  <p-table
+  <app-table
     [value]="documents()"
     [reorderableColumns]="true"
     (onRowReorder)="onRowReorder($event)"
     [tableStyle]="{ 'min-width': '60rem' }"
-    [rowHover]="true"
-    [responsive]="true"
     styleClass="p-datatable-striped"
   >
     <ng-template #header>
@@ -171,7 +169,7 @@
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 
   }
 </div>

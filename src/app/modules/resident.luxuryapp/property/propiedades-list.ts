@@ -20,7 +20,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -48,7 +48,9 @@ import { PropiedadesForm } from "./propiedades-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTooltipDirective,
     DataViewMobile,
     PrimeNgCustomCaption,

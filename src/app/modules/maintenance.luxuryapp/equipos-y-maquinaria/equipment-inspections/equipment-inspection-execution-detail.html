@@ -56,7 +56,7 @@
 
   <div>
     <div class="fw-semibold mb-2">Criterios</div>
-    <p-table [value]="execution.items" class="custom-table">
+    <app-table [value]="execution.items" class="custom-table">
       <ng-template #header>
         <tr>
           <th>#</th>
@@ -82,7 +82,7 @@
           <td>{{ item.observation || "-" }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   @if (execution.images.length > 0) {

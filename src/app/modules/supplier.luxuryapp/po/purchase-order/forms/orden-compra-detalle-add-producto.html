@@ -1,7 +1,7 @@
 @if (mensajeError) {
 <lx-message severity="error">Seleccione producto y unidad</lx-message>
 } @if (dataSignal()) {
-<p-table
+<app-table
   (onLazyLoad)="loadDataLazy($event)"
   [globalFilterFields]="globalFilterFields()"
   [lazy]="true"
@@ -26,19 +26,19 @@
   <ng-template #header>
     <tr>
       <th>Imagen</th>
-      <th pSortableColumn="producto">
+      <th appSortableColumn="producto">
         DESCRIPCIÓN
-        <p-sorticon field="producto" />
+        <app-sorticon field="producto" />
       </th>
-      <th pSortableColumn="category">
+      <th appSortableColumn="category">
         Categoría
-        <p-sorticon field="category" />
+        <app-sorticon field="category" />
       </th>
       <th>Cantidad</th>
       <th>Unidad</th>
-      <th pSortableColumn="precio">
+      <th appSortableColumn="precio">
         Precio
-        <p-sorticon field="precio" />
+        <app-sorticon field="precio" />
       </th>
       <th>Descuento</th>
       <th>IVA (%)</th>
@@ -151,5 +151,5 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="formArray.getRawValue()" />
   </ng-template>
-</p-table>
+</app-table>
 }

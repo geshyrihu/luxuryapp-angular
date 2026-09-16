@@ -29,7 +29,7 @@
     Revisa la información y selecciona las órdenes de compra que deseas crear.
   </p>
 
-  <p-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
+  <app-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
     <ng-template #header>
       <tr>
         <th class="table-col-3rem">
@@ -92,14 +92,14 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template #empty>
+    <ng-template #emptymessage>
       <tr>
         <td colspan="6" class="text-center">
           No se encontraron facturas para procesar.
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 
   <div class="d-flex justify-content-end mt-4">
     <il-button

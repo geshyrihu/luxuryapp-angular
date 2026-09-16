@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -14,14 +14,14 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">FOLIO <p-sorticon field="folio" /></th>
+      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
       <th>SOLICITUD</th>
       <th>CLIENTE</th>
       <th>EXCOLABORADOR</th>
       <th>PUESTO</th>
       <th>FECHA BAJA</th>
       <th>TIPO BAJA</th>
-      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
       <th></th>
     </tr>
   </ng-template>
@@ -74,7 +74,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 }
 
 <app-data-view-mobile

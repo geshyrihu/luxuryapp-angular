@@ -1,5 +1,5 @@
 <lx-card>
-<p-table
+<app-table
     [value]="facturas()"
     [tableStyle]="{'min-width': '50rem'}"
     class="p-datatable-sm"
@@ -54,7 +54,7 @@
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage [colspan]="7" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <div class="row mt-4 bg-body-tertiary p-3 rounded g-4">
     <div class="col-12 fw-bold mb-2">

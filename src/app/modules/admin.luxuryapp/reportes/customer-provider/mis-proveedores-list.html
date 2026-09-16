@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -14,13 +14,13 @@
 
   <ng-template #header>
     <tr>
-      <th colspan="2" pSortableColumn="nameComercial">
+      <th colspan="2" appSortableColumn="nameComercial">
         Proveedor
-        <p-sorticon field="nameComercial" />
+        <app-sorticon field="nameComercial" />
       </th>
-      <th pSortableColumn="service">
+      <th appSortableColumn="service">
         Servicio
-        <p-sorticon field="service" />
+        <app-sorticon field="service" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -62,7 +62,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="3" />
   </ng-template>
-</p-table>
+</app-table>
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

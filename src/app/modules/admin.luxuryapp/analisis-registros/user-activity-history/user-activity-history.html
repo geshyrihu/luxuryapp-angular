@@ -2,7 +2,7 @@
 <lx-card>
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="d-none d-md-block mt-3">
-    <p-table
+    <app-table
       #dt
       [value]="data()"
       [loading]="loading()"
@@ -85,30 +85,30 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th pSortableColumn="timestamp">
+          <th appSortableColumn="timestamp">
             Fecha y Hora
-            <p-sorticon field="timestamp" />
+            <app-sorticon field="timestamp" />
           </th>
-          <th pSortableColumn="userName">
+          <th appSortableColumn="userName">
             Usuario
-            <p-sorticon field="userName" />
+            <app-sorticon field="userName" />
           </th>
-          <th pSortableColumn="userType">
+          <th appSortableColumn="userType">
             Tipo
-            <p-sorticon field="userType" />
+            <app-sorticon field="userType" />
           </th>
-          <th pSortableColumn="activityType">
+          <th appSortableColumn="activityType">
             Actividad
-            <p-sorticon field="activityType" />
+            <app-sorticon field="activityType" />
           </th>
-          <th pSortableColumn="module">
+          <th appSortableColumn="module">
             Módulo
-            <p-sorticon field="module" />
+            <app-sorticon field="module" />
           </th>
           <th>Detalles</th>
-          <th pSortableColumn="ipAddress">
+          <th appSortableColumn="ipAddress">
             IP / Ubicación
-            <p-sorticon field="ipAddress" />
+            <app-sorticon field="ipAddress" />
           </th>
         </tr>
       </ng-template>
@@ -139,7 +139,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!-- 📱 INICIO: Componente adaptado para versión móvil -->

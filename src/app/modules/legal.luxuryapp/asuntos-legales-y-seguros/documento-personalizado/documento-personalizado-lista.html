@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -15,14 +15,14 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th class="bg-gradient text-white text-center" pSortableColumn="folio">
+        <th class="bg-gradient text-white text-center" appSortableColumn="folio">
           Folio
-          <p-sorticon field="folio" />
+          <app-sorticon field="folio" />
         </th>
         <th class="bg-gradient text-white text-center">Fecha</th>
-        <th class="text-center" pSortableColumn="name">
+        <th class="text-center" appSortableColumn="name">
           Nombre
-          <p-sorticon field="name" />
+          <app-sorticon field="name" />
         </th>
         <th class="text-center">Descargar</th>
         <th class="text-center no-print table-col-5"></th>
@@ -59,7 +59,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <app-data-view-mobile

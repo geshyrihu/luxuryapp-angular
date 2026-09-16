@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -33,35 +33,35 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-10" pSortableColumn="property">
+      <th class="table-col-10" appSortableColumn="property">
         Propiedad
-        <p-sorticon field="property" />
+        <app-sorticon field="property" />
       </th>
-      <th class="table-col-10" pSortableColumn="habitant">
+      <th class="table-col-10" appSortableColumn="habitant">
         Habitante
-        <p-sorticon field="habitant" />
+        <app-sorticon field="habitant" />
       </th>
-      <th class="table-col-10" pSortableColumn="fullName">
+      <th class="table-col-10" appSortableColumn="fullName">
         Nombre
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
 
-      <th class="table-col-10" pSortableColumn="fixedPhone">
+      <th class="table-col-10" appSortableColumn="fixedPhone">
         Télefono fijo
-        <p-sorticon field="fixedPhone" />
+        <app-sorticon field="fixedPhone" />
       </th>
-      <th class="table-col-10" pSortableColumn="extencion">
+      <th class="table-col-10" appSortableColumn="extencion">
         Extensión
-        <p-sorticon field="extencion" />
+        <app-sorticon field="extencion" />
       </th>
       <th class="table-col-10">Télefono</th>
-      <th class="table-col-10" pSortableColumn="email">
+      <th class="table-col-10" appSortableColumn="email">
         Email
-        <p-sorticon field="email" />
+        <app-sorticon field="email" />
       </th>
-      <th class="table-col-10" pSortableColumn="enviarMails" class="no-print">
+      <th class="table-col-10" appSortableColumn="enviarMails" class="no-print">
         Enviar Info
-        <p-sorticon field="enviarMails" />
+        <app-sorticon field="enviarMails" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {
@@ -110,7 +110,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

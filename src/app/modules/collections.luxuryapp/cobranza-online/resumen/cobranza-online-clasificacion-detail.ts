@@ -6,7 +6,7 @@ import {
   inject,
 } from "@angular/core";
 import { DynamicDialogConfig } from "@ui/web/primeng-dynamicdialog/primeng-dynamicdialog";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import type { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
 export interface ClasificacionDetailData {
@@ -20,7 +20,7 @@ export interface ClasificacionDetailData {
 
 @Component({
   selector: "app-cobranza-online-clasificacion-detail",
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-2">
@@ -35,60 +35,60 @@ export interface ClasificacionDetailData {
           No hay departamentos en esta clasificación.
         </div>
       } @else {
-        <p-table
+        <app-table
           [value]="rows()"
           [paginator]="rows().length > 15"
           [rows]="15"
           [rowsPerPageOptions]="[15, 25, 50]"
           [showCurrentPageReport]="true"
           currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-          styleClass="p-datatable-sm"
-          [sortField]="'balance'"
-          [sortOrder]="-1"
+          class="p-datatable-sm"
+          [initialSortField]="'balance'"
+          [initialSortOrder]="-1"
         >
           <ng-template #header>
             <tr>
               <th
-                pSortableColumn="accountNumber"
+                appSortableColumn="accountNumber"
                 class="bg-surface-50 border-bottom-1 surface-border"
               >
-                Cuenta <p-sorticon field="accountNumber" />
+                Cuenta <app-sorticon field="accountNumber" />
               </th>
               <th
-                pSortableColumn="propertyFullName"
+                appSortableColumn="propertyFullName"
                 class="bg-surface-50 border-bottom-1 surface-border"
               >
-                Condómino <p-sorticon field="propertyFullName" />
+                Condómino <app-sorticon field="propertyFullName" />
               </th>
               <th
-                pSortableColumn="maintenanceBalance"
+                appSortableColumn="maintenanceBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Adeudo Mtto. <p-sorticon field="maintenanceBalance" />
+                Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
               </th>
               <th
-                pSortableColumn="extraordinaryBalance"
+                appSortableColumn="extraordinaryBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Adeudo Ext. <p-sorticon field="extraordinaryBalance" />
+                Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
               </th>
               <th
-                pSortableColumn="finesBalance"
+                appSortableColumn="finesBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Multas <p-sorticon field="finesBalance" />
+                Multas <app-sorticon field="finesBalance" />
               </th>
               <th
-                pSortableColumn="currentMonthCharge"
+                appSortableColumn="currentMonthCharge"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Cargo Mes <p-sorticon field="currentMonthCharge" />
+                Cargo Mes <app-sorticon field="currentMonthCharge" />
               </th>
               <th
-                pSortableColumn="balance"
+                appSortableColumn="balance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Saldo Total <p-sorticon field="balance" />
+                Saldo Total <app-sorticon field="balance" />
               </th>
             </tr>
           </ng-template>
@@ -154,7 +154,7 @@ export interface ClasificacionDetailData {
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
       }
     </div>
   `,

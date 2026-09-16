@@ -12,7 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
@@ -46,7 +46,9 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconItem,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     FormsModule,
     WebButtonLabel,
     CommonModule,

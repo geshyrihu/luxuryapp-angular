@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -19,25 +19,25 @@
     <ng-template #header>
       <tr>
         <th class="table-col-2 text-sm">#</th>
-        <th class="table-col-7 text-sm" pSortableColumn="areaEmpresa">
+        <th class="table-col-7 text-sm" appSortableColumn="areaEmpresa">
           Area
-          <p-sorticon field="areaEmpresa" />
+          <app-sorticon field="areaEmpresa" />
         </th>
-        <th class="table-col-13 text-sm" pSortableColumn="title">
+        <th class="table-col-13 text-sm" appSortableColumn="title">
           Titulo
-          <p-sorticon field="title" />
+          <app-sorticon field="title" />
         </th>
-        <th class="table-col-20 text-sm" pSortableColumn="requestService">
+        <th class="table-col-20 text-sm" appSortableColumn="requestService">
           Asunto
-          <p-sorticon field="requestService" />
+          <app-sorticon field="requestService" />
         </th>
-        <th class="table-col-7 text-sm" pSortableColumn="status">
+        <th class="table-col-7 text-sm" appSortableColumn="status">
           Estatus
-          <p-sorticon field="status" />
+          <app-sorticon field="status" />
         </th>
-        <th class="table-col-7 text-sm" pSortableColumn="deliveryDate">
+        <th class="table-col-7 text-sm" appSortableColumn="deliveryDate">
           Entrega
-          <p-sorticon field="deliveryDate" />
+          <app-sorticon field="deliveryDate" />
         </th>
         <th class="table-col-30 text-sm">Seguimiento</th>
       </tr>
@@ -81,7 +81,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <!-- 📱 MOBILE -->

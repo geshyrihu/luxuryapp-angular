@@ -290,12 +290,11 @@
       </div>
     </div>
 
-    <p-table
+    <app-table
       [value]="grupo.ordenes"
       class="p-datatable-sm p-datatable-gridlines font-sm border-0"
-      [rowHover]="true"
-      (onRowReorder)="onRowReorder($event)"
       [reorderableColumns]="true"
+      (onRowReorder)="onRowReorder($event)"
     >
       <ng-template #header>
         <tr>
@@ -501,7 +500,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   }
 
@@ -544,7 +543,7 @@
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
-    <p-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
+    <app-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
       <ng-template #header>
         <tr>
           <th>Proveedor</th>
@@ -590,7 +589,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
     }
   </div>
 

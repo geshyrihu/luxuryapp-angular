@@ -88,12 +88,11 @@
   <ng-container>
     <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
     <div class="d-none d-md-block">
-      <p-table
+      <app-table
         [value]="dataSignal()"
         [globalFilterFields]="globalFilterFields()"
         #dt
         groupRowsBy="sistema"
-        rowGroupMode="subheader"
         sortMode="single"
         class="custom-table -report"
         [loading]="loading()"
@@ -173,9 +172,9 @@
 
         <ng-template #header>
           <tr>
-            <th class="table-col-40" pSortableColumn="nameMachinery">
+            <th class="table-col-40" appSortableColumn="nameMachinery">
               DESCRIPCIóN
-              <p-sorticon field="nameMachinery" />
+              <app-sorticon field="nameMachinery" />
             </th>
             @for (mes of meses; track mes) {
             <th class="table-col-5">{{ mes }}</th>
@@ -184,7 +183,7 @@
         </ng-template>
 
         <ng-template #groupheader let-customer>
-          <tr pRowGroupHeader>
+          <tr>
             <td [attr.colspan]="meses.length + 1">
               <span class="font-size-16">
                 <strong>{{ customer.sistema }}</strong>
@@ -215,7 +214,7 @@
             }
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
 
     <!-- 📱 INICIO: Componente adaptado para versión móvil -->

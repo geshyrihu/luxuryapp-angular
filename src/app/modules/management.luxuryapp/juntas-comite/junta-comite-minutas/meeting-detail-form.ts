@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -26,7 +26,9 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     EAreaMinutasDetallesPipe,
     SanitizeHtmlPipe,
   ],

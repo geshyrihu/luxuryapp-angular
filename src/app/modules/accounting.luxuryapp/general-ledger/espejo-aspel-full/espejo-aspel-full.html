@@ -148,12 +148,11 @@
 
   <div class="rf-card overflow-hidden">
     <div>
-      <p-table
+      <app-table
         [value]="filasDe(grupo.codigo)"
         class="rf-prime-table p-datatable-sm"
         [scrollable]="true"
         scrollHeight="65vh"
-        [rowHover]="true"
       >
         <ng-template #header>
           <tr>
@@ -256,7 +255,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   </div>
   } } @if (!loading() && !rawData()) {

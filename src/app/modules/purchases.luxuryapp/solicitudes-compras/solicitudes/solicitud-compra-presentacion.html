@@ -93,13 +93,12 @@
             </div>
           </div>
 
-          <p-table
+          <app-table
             [value]="slide.rows"
             class="custom-table text-sm"
             [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '66rem' }"
-            rowGroupMode="subheader"
             groupRowsBy="prioridad"
-            sortField="prioridad"
+            initialSortField="prioridad"
             sortMode="single"
             [sortOrder]="-1"
           >
@@ -118,7 +117,7 @@
               </tr>
             </ng-template>
             <ng-template #groupheader let-row>
-              <tr pRowGroupHeader>
+              <tr>
                 <td
                   [attr.colspan]="6"
                   [class]="'priority-group-header priority-group-' + row.prioridadSeverity"
@@ -147,7 +146,7 @@
                 </td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         </div>
       </section>
       } @else { @let solicitud = slide;
@@ -293,7 +292,7 @@
             >
               Comparativo de productos
             </div>
-            <p-table
+            <app-table
               [value]="getDisplayedSolicitudDetalle(solicitud)"
               class="custom-table text-sm"
               [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '78rem' }"
@@ -459,7 +458,7 @@
                   }
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </div>
 
           <div>
@@ -468,7 +467,7 @@
             >
               Presupuesto seleccionado
             </div>
-            <p-table
+            <app-table
               [value]="solicitud.budgets"
               class="custom-table text-sm"
               [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '72rem' }"
@@ -517,7 +516,7 @@
                   </td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
           </div>
         </div>
       </section>

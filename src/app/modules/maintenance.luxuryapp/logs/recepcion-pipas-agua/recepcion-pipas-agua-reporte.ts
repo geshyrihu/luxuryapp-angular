@@ -12,7 +12,7 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import FileSaver from "file-saver";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -43,7 +43,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     ApiDatePipe,
     FormsModule,
     InputDatepicker,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -23,33 +23,33 @@
 
       <ng-template #header>
         <tr>
-          <th pSortableColumn="requestDateFilter">
+          <th appSortableColumn="requestDateFilter">
             FECHA
-            <p-sorticon field="requestDateFilter" />
+            <app-sorticon field="requestDateFilter" />
           </th>
-          <th pSortableColumn="machinery">
+          <th appSortableColumn="machinery">
             EQUIPO
-            <p-sorticon field="machinery" />
+            <app-sorticon field="machinery" />
           </th>
-          <th pSortableColumn="folio">
+          <th appSortableColumn="folio">
             FOLIO
-            <p-sorticon field="folio" />
+            <app-sorticon field="folio" />
           </th>
-          <th pSortableColumn="report">
+          <th appSortableColumn="report">
             REPORTE
-            <p-sorticon field="report" />
+            <app-sorticon field="report" />
           </th>
-          <th pSortableColumn="request">
+          <th appSortableColumn="request">
             RESPUESTA
-            <p-sorticon field="request" />
+            <app-sorticon field="request" />
           </th>
-          <th pSortableColumn="personWhoReports">
+          <th appSortableColumn="personWhoReports">
             REPORTO
-            <p-sorticon field="personWhoReports" />
+            <app-sorticon field="personWhoReports" />
           </th>
-          <th pSortableColumn="technicianWhoAttended">
+          <th appSortableColumn="technicianWhoAttended">
             ATENDIO
-            <p-sorticon field="technicianWhoAttended" />
+            <app-sorticon field="technicianWhoAttended" />
           </th>
 
           <th class="table-col-5 no-print"></th>
@@ -83,7 +83,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

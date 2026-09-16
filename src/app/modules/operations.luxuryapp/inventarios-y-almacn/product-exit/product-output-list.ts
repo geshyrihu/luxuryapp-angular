@@ -10,7 +10,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
@@ -60,7 +60,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     PrimeNgCustomTableFooter,
     CustomInputTextSignal,
     DataViewMobile,

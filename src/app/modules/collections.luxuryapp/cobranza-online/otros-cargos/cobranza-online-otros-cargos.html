@@ -20,7 +20,7 @@
     } @else {
 
     <!-- Tabla desktop -->
-    <p-table
+    <app-table
       #dt
       [value]="otrosCargos()"
       [globalFilterFields]="['conceptName']"
@@ -98,21 +98,21 @@
 
       <ng-template #header>
         <tr>
-          <th pSortableColumn="conceptName">
+          <th appSortableColumn="conceptName">
             CONCEPTO
-            <p-sorticon field="conceptName" />
+            <app-sorticon field="conceptName" />
           </th>
-          <th pSortableColumn="total" class="text-end">
+          <th appSortableColumn="total" class="text-end">
             CARGOS DEL MES
-            <p-sorticon field="total" />
+            <app-sorticon field="total" />
           </th>
-          <th pSortableColumn="collected" class="text-end">
+          <th appSortableColumn="collected" class="text-end">
             ABONADO
-            <p-sorticon field="collected" />
+            <app-sorticon field="collected" />
           </th>
-          <th pSortableColumn="pending" class="text-end">
+          <th appSortableColumn="pending" class="text-end">
             POR COBRAR
-            <p-sorticon field="pending" />
+            <app-sorticon field="pending" />
           </th>
         </tr>
       </ng-template>
@@ -165,7 +165,7 @@
           >
         </div>
       </ng-template>
-    </p-table>
+    </app-table>
 
     <!-- Mobile -->
     <app-data-view-mobile

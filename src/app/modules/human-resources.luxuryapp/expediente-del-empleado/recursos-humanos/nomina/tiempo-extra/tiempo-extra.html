@@ -10,7 +10,7 @@
   }
 </div>
 
-<p-table
+<app-table
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -29,10 +29,10 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreEmpleado">
-        Empleado <p-sorticon field="nombreEmpleado" />
+      <th appSortableColumn="nombreEmpleado">
+        Empleado <app-sorticon field="nombreEmpleado" />
       </th>
-      <th pSortableColumn="fecha">Fecha <p-sorticon field="fecha" /></th>
+      <th appSortableColumn="fecha">Fecha <app-sorticon field="fecha" /></th>
       <th class="text-end">Hrs Simples</th>
       <th class="text-end">Hrs Dobles</th>
       <th class="text-end">Importe Simples</th>
@@ -83,7 +83,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

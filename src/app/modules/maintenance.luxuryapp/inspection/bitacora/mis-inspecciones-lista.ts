@@ -13,7 +13,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -35,7 +35,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelItem,
     ReactiveFormsModule,
     RouterModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

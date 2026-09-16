@@ -10,7 +10,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -27,7 +27,9 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
   imports: [
     FormsModule,
     LxCard,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     CustomInputSelectButton,
     LxSkeleton,
     AppIcon,

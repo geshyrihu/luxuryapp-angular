@@ -13,7 +13,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
@@ -67,7 +67,11 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     TagModule,
     LxTooltipDirective,
     WebButtonLabel,

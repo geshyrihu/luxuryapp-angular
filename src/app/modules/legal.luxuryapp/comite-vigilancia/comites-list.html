@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -11,32 +11,31 @@
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
-  [virtualScrollItemSize]="tablePrimeNgRows"
 >
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt" [showAdd]="false" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="customerName">
+      <th appSortableColumn="customerName">
         Condominio
-        <p-sorticon field="customerName" />
+        <app-sorticon field="customerName" />
       </th>
-      <th pSortableColumn="posicionComite">
+      <th appSortableColumn="posicionComite">
         Cargo
-        <p-sorticon field="posicionComite" />
+        <app-sorticon field="posicionComite" />
       </th>
-      <th pSortableColumn="fullName">
+      <th appSortableColumn="fullName">
         Nombre
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
-      <th pSortableColumn="email">
+      <th appSortableColumn="email">
         Email
-        <p-sorticon field="email" />
+        <app-sorticon field="email" />
       </th>
-      <th pSortableColumn="phoneNumber">
+      <th appSortableColumn="phoneNumber">
         Telefono
-        <p-sorticon field="phoneNumber" />
+        <app-sorticon field="phoneNumber" />
       </th>
     </tr>
   </ng-template>
@@ -55,7 +54,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="flatData()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="flatData()"

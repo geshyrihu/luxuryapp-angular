@@ -11,7 +11,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -29,7 +29,9 @@ import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interv
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonIconEdit,
     WebButtonIconViewPdf,
     CandidateStageBadge,

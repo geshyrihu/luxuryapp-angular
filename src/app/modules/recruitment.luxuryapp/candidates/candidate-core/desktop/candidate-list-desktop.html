@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -50,31 +50,31 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="fullName">
+      <th appSortableColumn="fullName">
         Foto
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
-      <th pSortableColumn="fullName">
+      <th appSortableColumn="fullName">
         Nombre
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
-      <th pSortableColumn="phoneNumber">
+      <th appSortableColumn="phoneNumber">
         Telefono
-        <p-sorticon field="phoneNumber" />
+        <app-sorticon field="phoneNumber" />
       </th>
-      <th pSortableColumn="email">
+      <th appSortableColumn="email">
         Correo
-        <p-sorticon field="email" />
+        <app-sorticon field="email" />
       </th>
       <th class="text-center">CV</th>
       <th class="text-center">Procesos activos</th>
-      <th pSortableColumn="interviewProgress">
+      <th appSortableColumn="interviewProgress">
         Entrevista
-        <p-sorticon field="interviewProgress" />
+        <app-sorticon field="interviewProgress" />
       </th>
-      <th pSortableColumn="status">
+      <th appSortableColumn="status">
         Estado
-        <p-sorticon field="status" />
+        <app-sorticon field="status" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -169,4 +169,4 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
-</p-table>
+</app-table>

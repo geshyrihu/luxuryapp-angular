@@ -22,7 +22,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -68,7 +68,11 @@ import { CardEmployee, IEmployee } from "@shared/integration/recursos-humanos";
     WebButtonIconItem,
     LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     LxAvatar,
     LxTag,
     LxSidebar,
@@ -109,22 +113,22 @@ export class RecruitmentStaffBoard {
   );
 
   readonly departamentLabels: Record<number, string> = {
-    [Department.Administracion]:ón",
+    [Department.Administracion]: "Administración",
     [Department.Legal]: "Legal",
     [Department.Contabilidad]: "Contabilidad",
     [Department.Mantenimiento]: "Mantenimiento",
     [Department.Limpieza]: "Limpieza",
     [Department.Operaciones]: "Operaciones",
-    [Department.Jardinería",
+    [Department.Jardineria]: "Jardinería",
     [Department.Sistemas]: "Sistemas",
     [Department.Seguridad]: "Seguridad",
     [Department.Constructora]: "Constructora",
-    [Department.Supervisioón",
-    [Department.Direccioón",
+    [Department.Supervision]: "Supervisión",
+    [Department.Direcciones]: "Dirección",
     [Department.RecursosHumanos]: "Recursos Humanos",
     [Department.Reclutamiento]: "Reclutamiento",
-    [Department.Recepcón",
-    [Department.Mensajería",
+    [Department.Recepcion]: "Recepción",
+    [Department.Mensajeria]: "Mensajería",
     [Department.Ludoteca]: "Ludoteca",
     [Department.NA]: "Sin Departamento",
   };

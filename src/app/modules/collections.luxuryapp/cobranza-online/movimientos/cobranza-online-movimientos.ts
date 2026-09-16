@@ -13,7 +13,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
@@ -46,7 +46,9 @@ export interface PivotRowMovimientos {
     RouterModule,
     AppIcon,
     ButtonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     SharedModule,
     PrimeNgCustomCaption,
     DataViewMobile,

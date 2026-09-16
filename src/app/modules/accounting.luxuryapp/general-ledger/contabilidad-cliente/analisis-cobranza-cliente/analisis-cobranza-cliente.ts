@@ -21,7 +21,7 @@ import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   DialogHandlerService,
   DialogSize,
@@ -40,7 +40,11 @@ import { ContabilidadClienteService } from "../contabilidad-cliente.service";
     FormsModule,
     ChartWrapper,
     CustomInputSelectSignal,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     AccountingNumberPipe,
     AppStatCard,
     AppSkeleton,

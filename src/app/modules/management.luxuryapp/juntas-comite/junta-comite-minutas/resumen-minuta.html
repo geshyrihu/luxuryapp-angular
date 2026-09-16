@@ -29,7 +29,7 @@
     class="card"
     class="shadow-sm rounded-xl overflow-hidden p-0 border-0 d-none d-md-block"
   >
-    <p-table
+    <app-table
       #dt
       [value]="dataSignal()"
       [rows]="tablePrimeNgRows"
@@ -38,7 +38,6 @@
       [loading]="loading()"
       [globalFilterFields]="['title', 'requestService']"
       class="p-datatable-sm p-datatable-gridlines font-sm border-0"
-      [rowHover]="true"
       size="small"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -59,11 +58,11 @@
       </ng-template>
 
       <!-- CABECERA DE TABLA -->
-      <ng-template pTemplate="header">
+      <ng-template #header>
         <tr class="text-sm text-uppercase text-body bg-bg-body-tertiary">
-          <th pSortableColumn="title" class="ps-4 py-3">
+          <th appSortableColumn="title" class="ps-4 py-3">
             <div class="d-flex align-items-center">
-              Requerimiento <p-sorticon field="title"></p-sorticon>
+              Requerimiento <app-sorticon field="title" />
             </div>
           </th>
           <th class="py-3">
@@ -72,9 +71,9 @@
               Último Seguimiento
             </div>
           </th>
-          <th pSortableColumn="status" class="text-center pe-4 py-3">
+          <th appSortableColumn="status" class="text-center pe-4 py-3">
             <div class="d-flex align-items-center justify-content-center">
-              Estatus <p-sorticon field="status"></p-sorticon>
+              Estatus <app-sorticon field="status" />
             </div>
           </th>
         </tr>
@@ -199,7 +198,7 @@
           <primeng-custom-table-footer [data]="dataSignal()" />
         </div>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!-- 📱 MOBILE -->

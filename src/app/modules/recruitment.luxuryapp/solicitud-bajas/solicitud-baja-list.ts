@@ -15,7 +15,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personRemoveOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -67,7 +67,9 @@ interface SolicitudBajaListItem {
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     LxTag,
@@ -94,7 +96,7 @@ export class SolicitudBajaList implements OnInit {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild("dt") dt?: Table;
+  @ViewChild("dt") dt?: AppTable;
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -153,4 +155,3 @@ export class SolicitudBajaList implements OnInit {
       });
   }
 }
-

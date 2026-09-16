@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -28,13 +28,13 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="fechaRegistro">
+      <th appSortableColumn="fechaRegistro">
         Fecha de Registro
-        <p-sorticon field="fechaRegistro" />
+        <app-sorticon field="fechaRegistro" />
       </th>
-      <th pSortableColumn="lectura">
+      <th appSortableColumn="lectura">
         Lectura
-        <p-sorticon field="lectura" />
+        <app-sorticon field="lectura" />
       </th>
 
       <th class="table-col-5"></th>
@@ -74,7 +74,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 <!-- 📱 INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"

@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -23,7 +23,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-entrega-recepcion-insumos",
   templateUrl: "./entrega-recepcion-insumos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, ReportHeader, FormsModule, CustomInputCheckSignal],
+  imports: [AppTable, AppSortableColumn, AppSorticon, ReportHeader, FormsModule, CustomInputCheckSignal],
 })
 export class EntregaRecepcionInsumos {
   apiResponseS = inject(ApiResponseService);
@@ -68,4 +68,3 @@ export class EntregaRecepcionInsumos {
     return total;
   }
 }
-

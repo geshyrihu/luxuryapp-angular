@@ -2,7 +2,7 @@
   <!-- Vista de escritorio -->
 
   <div class="d-none d-md-block">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields"
       [value]="dataSignal()"
       #dt
@@ -19,15 +19,15 @@
         <tr>
           <th
             class="bg-gradient text-white text-center"
-            pSortableColumn="folio"
+            appSortableColumn="folio"
           >
             Folio
-            <p-sorticon field="folio" />
+            <app-sorticon field="folio" />
           </th>
           <th class="bg-gradient text-white text-center">Fecha</th>
-          <th class="text-center" pSortableColumn="name">
+          <th class="text-center" appSortableColumn="name">
             Nombre
-            <p-sorticon field="name" />
+            <app-sorticon field="name" />
           </th>
           <th class="text-center">Descargar</th>
         </tr>
@@ -48,7 +48,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

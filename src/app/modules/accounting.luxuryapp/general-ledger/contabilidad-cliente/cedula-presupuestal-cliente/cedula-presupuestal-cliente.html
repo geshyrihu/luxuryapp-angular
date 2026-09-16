@@ -10,7 +10,7 @@
   </p>
   } @if (!loading() && rows().length) {
   <div class="rf-card rf-wrap">
-    <p-table
+    <app-table
       [value]="rows()"
       class="rf-prime-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1000px' }"
@@ -127,7 +127,7 @@
         </tr>
         }
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   }
 </div>

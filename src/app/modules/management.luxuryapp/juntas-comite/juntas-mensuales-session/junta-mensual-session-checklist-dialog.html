@@ -54,7 +54,7 @@
       Responsable: {{ group.responsibleRole }}
     </div>
 
-    <p-table [value]="group.items" [loading]="loading()">
+    <app-table [value]="group.items" [loading]="loading()">
       <ng-template #header>
         <tr>
           <th>Item</th>
@@ -114,7 +114,7 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   }
 

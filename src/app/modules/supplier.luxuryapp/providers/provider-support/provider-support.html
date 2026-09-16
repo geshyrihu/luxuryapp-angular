@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -17,23 +17,23 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-15" pSortableColumn="nameCustomer">
+      <th class="table-col-15" appSortableColumn="nameCustomer">
         Cliente
-        <p-sorticon field="nameCustomer" />
+        <app-sorticon field="nameCustomer" />
       </th>
-      <th colspan="2" class="table-col-30" pSortableColumn="nameComercial">
+      <th colspan="2" class="table-col-30" appSortableColumn="nameComercial">
         Proveedor
-        <p-sorticon field="nameComercial" />
+        <app-sorticon field="nameComercial" />
       </th>
 
-      <th class="table-col-20" pSortableColumn="fullName">
+      <th class="table-col-20" appSortableColumn="fullName">
         Nombre
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
 
-      <th pSortableColumn="applicationRoleName">
+      <th appSortableColumn="applicationRoleName">
         Puesto
-        <p-sorticon field="applicationRoleName" />
+        <app-sorticon field="applicationRoleName" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -82,7 +82,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

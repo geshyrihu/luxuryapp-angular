@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -8,8 +8,7 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   groupRowsBy="inventoryCategory"
-  rowGroupMode="subheader"
-  sortField="inventoryCategory"
+  initialSortField="inventoryCategory"
   sortMode="single"
   class="custom-table d-none d-md-block"
 >
@@ -51,7 +50,7 @@
     </div>
   </ng-template>
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td colspan="5">
         <span class="fw-bold ms-2">{{ item.inventoryCategory }}</span>
       </td>
@@ -69,32 +68,32 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="id">
+      <th appSortableColumn="id">
         Id
-        <p-sorticon field="id" />
+        <app-sorticon field="id" />
       </th>
-      <th pSortableColumn="nombre">
-        <p-sorticon field="nombre" />
+      <th appSortableColumn="nombre">
+        <app-sorticon field="nombre" />
       </th>
-      <th pSortableColumn="actividad">
+      <th appSortableColumn="actividad">
         Actividad
-        <p-sorticon field="actividad" />
+        <app-sorticon field="actividad" />
       </th>
-      <th pSortableColumn="provider">
+      <th appSortableColumn="provider">
         Proveedor
-        <p-sorticon field="provider" />
+        <app-sorticon field="provider" />
       </th>
-      <th pSortableColumn="recurrence">
+      <th appSortableColumn="recurrence">
         Recurrencia
-        <p-sorticon field="recurrence" />
+        <app-sorticon field="recurrence" />
       </th>
-      <th pSortableColumn="fechaServicioFiltro">
+      <th appSortableColumn="fechaServicioFiltro">
         Fecha
-        <p-sorticon field="fechaServicioFiltro" />
+        <app-sorticon field="fechaServicioFiltro" />
       </th>
-      <th pSortableColumn="precio">
+      <th appSortableColumn="precio">
         Costo
-        <p-sorticon field="precio" />
+        <app-sorticon field="precio" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {
@@ -171,7 +170,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

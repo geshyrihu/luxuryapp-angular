@@ -12,7 +12,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { MultiSelectModule } from "@ui/web/primeng-multiselect/primeng-multiselect";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-primeng-option";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -24,7 +24,9 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DataViewMobile,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTag,
     MultiSelectModule,
     PrimeNgCustomCaption,

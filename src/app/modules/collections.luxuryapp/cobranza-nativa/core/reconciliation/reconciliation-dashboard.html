@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <p-table
+  <app-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -79,7 +79,7 @@
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile
     [data]="dataSignal()"

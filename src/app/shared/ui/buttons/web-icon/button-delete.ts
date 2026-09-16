@@ -32,8 +32,8 @@ export class WebButtonIconDelete extends BaseButton {
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");
   confirmed = output<void>();
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("danger");
 

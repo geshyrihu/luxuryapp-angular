@@ -1,5 +1,5 @@
 <div class="card">
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -32,21 +32,21 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="requestDate">
+        <th appSortableColumn="requestDate">
           Fecha Solicitud
-          <p-sorticon field="requestDate" />
+          <app-sorticon field="requestDate" />
         </th>
-        <th pSortableColumn="startDate">
+        <th appSortableColumn="startDate">
           Periodo
-          <p-sorticon field="startDate" />
+          <app-sorticon field="startDate" />
         </th>
-        <th pSortableColumn="requestedDays">
+        <th appSortableColumn="requestedDays">
           Días Solicitados
-          <p-sorticon field="requestedDays" />
+          <app-sorticon field="requestedDays" />
         </th>
-        <th pSortableColumn="status">
+        <th appSortableColumn="status">
           Estado
-          <p-sorticon field="status" />
+          <app-sorticon field="status" />
         </th>
         <th>Aprobación</th>
         <th class="no-print"></th>
@@ -115,7 +115,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile
     [dt]="dt"

@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   #dt1
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -13,8 +13,7 @@
   [scrollHeight]="scrollHeight()"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  sortField="roleType"
-  rowGroupMode="subheader"
+  initialSortField="roleType"
   groupRowsBy="roleType"
   [sortOrder]="1"
 >
@@ -24,15 +23,15 @@
   <ng-template #header>
     <tr>
       <th class="table-col-70">Rol</th>
-      <th class="table-col-20 text-center" pSortableColumn="modules">
+      <th class="table-col-20 text-center" appSortableColumn="modules">
         Módulos Asignados
-        <p-sorticon field="modules" />
+        <app-sorticon field="modules" />
       </th>
       <th class="table-col-10"></th>
     </tr>
   </ng-template>
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td colspan="3" class="bg-blue-50">
         <div class="d-flex align-items-center py-2 px-3">
           <app-icon [icon]="'material-symbols-light:bookmark'" class="me-2 text-blue-500" />
@@ -60,7 +59,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 INICIO: Vista para móviles -->
 <app-data-view-mobile

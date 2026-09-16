@@ -27,7 +27,7 @@ import {
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 // Added
 import { firstValueFrom } from "rxjs";
 
@@ -118,7 +118,8 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     CustomInputCurrencySignal, // Added
     ReactiveFormsModule,
     LxSteps,
-    TableModule,
+    AppTable,
+
     LxMessage,
     FileUpload,
     AppIcon,

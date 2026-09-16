@@ -20,7 +20,7 @@ import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -46,7 +46,9 @@ import { OrdenCompraService } from "@core/services/orden-compra.service";
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     AppSpinner,

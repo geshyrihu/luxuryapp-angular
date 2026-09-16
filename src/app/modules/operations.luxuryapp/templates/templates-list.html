@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -17,17 +17,17 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-30" pSortableColumn="folio">
+      <th class="table-col-30" appSortableColumn="folio">
         Folio
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
-      <th class="table-col-30" pSortableColumn="descripcion">
+      <th class="table-col-30" appSortableColumn="descripcion">
         DESCRIPCIÓN
-        <p-sorticon field="descripcion" />
+        <app-sorticon field="descripcion" />
       </th>
-      <th class="table-col-30" pSortableColumn="pathFormato">
+      <th class="table-col-30" appSortableColumn="pathFormato">
         Archivo
-        <p-sorticon field="pathFormato" />
+        <app-sorticon field="pathFormato" />
       </th>
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
       <th class="table-col-10"></th>
@@ -67,7 +67,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

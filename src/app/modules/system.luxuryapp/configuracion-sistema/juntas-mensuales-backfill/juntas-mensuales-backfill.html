@@ -74,13 +74,13 @@
 
   <div class="col-12">
     <div class="card">
-      <p-table
+      <app-table
         [value]="items()"
         [loading]="loading()"
         [scrollable]="true"
         scrollHeight="620px"
       >
-        <ng-template pTemplate="header">
+        <ng-template #header>
           <tr>
             <th>Sesion</th>
             <th>Presentacion sugerida</th>
@@ -195,7 +195,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
 
       @if (!items().length && !loading()) {
       <p class="m-0 text-body-secondary">

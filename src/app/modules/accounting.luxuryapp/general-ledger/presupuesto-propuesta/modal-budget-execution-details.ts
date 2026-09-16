@@ -20,7 +20,7 @@ import {
   signal,
 } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -29,7 +29,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TableModule, TagModule, AppIcon],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, TagModule, AppIcon],
 })
 export class BudgetExecutionDetailsModal implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -69,4 +69,3 @@ export class BudgetExecutionDetailsModal implements OnInit {
     this.ref.close();
   }
 }
-

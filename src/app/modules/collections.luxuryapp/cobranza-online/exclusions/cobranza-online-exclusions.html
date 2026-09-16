@@ -38,7 +38,7 @@
   </div>
   }
 
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -57,17 +57,17 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="accountNumber">
+        <th appSortableColumn="accountNumber">
           Cuenta
-          <p-sorticon field="accountNumber" />
+          <app-sorticon field="accountNumber" />
         </th>
-        <th pSortableColumn="accountName">
+        <th appSortableColumn="accountName">
           Nombre
-          <p-sorticon field="accountName" />
+          <app-sorticon field="accountName" />
         </th>
-        <th pSortableColumn="accountLevel">
+        <th appSortableColumn="accountLevel">
           Nivel
-          <p-sorticon field="accountLevel" />
+          <app-sorticon field="accountLevel" />
         </th>
         <th>Match Property</th>
         <th>Razón visible</th>
@@ -105,7 +105,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="visibleRows()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <app-data-view-mobile
     [data]="visibleRows()"

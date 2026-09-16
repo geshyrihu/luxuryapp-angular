@@ -1,11 +1,11 @@
 <!-- Vista de escritorio -->
-<p-table
+<app-table
+  [reorderableColumns]="true"
   (onRowReorder)="onRowReorder($event)"
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
-  [reorderableColumns]="true"
 >
   <ng-template #caption>
     <primeng-custom-caption [showAdd]="false" [dt]="dt" />
@@ -13,14 +13,14 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5rem"></th>
-      <th class="bg-gradient text-white text-center" pSortableColumn="folio">
+      <th class="bg-gradient text-white text-center" appSortableColumn="folio">
         Folio
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
       <th class="bg-gradient text-white text-center">Fecha</th>
-      <th class="text-center" pSortableColumn="name">
+      <th class="text-center" appSortableColumn="name">
         Nombre
-        <p-sorticon field="name" />
+        <app-sorticon field="name" />
       </th>
       <th class="text-center">Descargar</th>
     </tr>
@@ -60,7 +60,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <div class="d-block d-md-none">
   <app-data-view-mobile

@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -25,7 +25,9 @@ import { StripTagsPipe } from "@shared/pipes/StripTags.pipe";
   templateUrl: "./entrega-recepcion-equipos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     ReportHeader,
     FormsModule,
     CustomInputCheckSignal,

@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ChartJsData } from "@ui/web/charts/echarts-adapters";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
@@ -29,7 +29,9 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
   imports: [
     CommonModule,
     WebButtonLabel,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     MappedPTag,
     ChartWrapper,
     AppIcon,

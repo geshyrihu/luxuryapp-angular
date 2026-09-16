@@ -19,7 +19,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 
 import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 
 import { LxCard } from "@ui/adaptive/card/card";
@@ -69,7 +69,8 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
     OrdenCompraFacturasParcial,
     PrimeNgCustomToast,
     RouterModule,
-    TableModule,
+    AppTable,
+
     SkeletonModule,
     AppSpinner,
     LxCard,

@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <p-table
+  <app-table
     [value]="rows()"
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -115,7 +115,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="rows()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <div class="mb-4 text-sm text-body-secondary">
     Selecciona una fila o usa

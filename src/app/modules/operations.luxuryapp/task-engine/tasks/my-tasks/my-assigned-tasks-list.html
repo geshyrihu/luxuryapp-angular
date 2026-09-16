@@ -1,7 +1,7 @@
 <div>
   <div class="d-none d-md-block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -175,7 +175,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="19" />
       </ng-template>
-    </p-table>
+    </app-table>
     }
   </div>
 

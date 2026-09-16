@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -57,33 +57,33 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">
+      <th appSortableColumn="folio">
         Folio
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
-      <th pSortableColumn="title">
+      <th appSortableColumn="title">
         Titulo
-        <p-sorticon field="title" />
+        <app-sorticon field="title" />
       </th>
-      <th pSortableColumn="announcementType">
+      <th appSortableColumn="announcementType">
         Tipo
-        <p-sorticon field="announcementType" />
+        <app-sorticon field="announcementType" />
       </th>
-      <th pSortableColumn="status">
+      <th appSortableColumn="status">
         Estado
-        <p-sorticon field="status" />
+        <app-sorticon field="status" />
       </th>
-      <th pSortableColumn="customerName">
+      <th appSortableColumn="customerName">
         Cliente
-        <p-sorticon field="customerName" />
+        <app-sorticon field="customerName" />
       </th>
-      <th pSortableColumn="publishedAt">
+      <th appSortableColumn="publishedAt">
         Publicación
-        <p-sorticon field="publishedAt" />
+        <app-sorticon field="publishedAt" />
       </th>
-      <th pSortableColumn="expirationDate">
+      <th appSortableColumn="expirationDate">
         Expiración
-        <p-sorticon field="expirationDate" />
+        <app-sorticon field="expirationDate" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -156,7 +156,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

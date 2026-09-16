@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -23,38 +23,38 @@
 
       <ng-template #header>
         <tr>
-          <th pSortableColumn="folio">
+          <th appSortableColumn="folio">
             FOLIO
-            <p-sorticon field="folio" />
+            <app-sorticon field="folio" />
           </th>
-          <th pSortableColumn="changeDate">
+          <th appSortableColumn="changeDate">
             FECHA
-            <p-sorticon field="changeDate" />
+            <app-sorticon field="changeDate" />
           </th>
-          <th pSortableColumn="machinery">
+          <th appSortableColumn="machinery">
             EQUIPO
-            <p-sorticon field="machinery" />
+            <app-sorticon field="machinery" />
           </th>
-          <th pSortableColumn="failure">
+          <th appSortableColumn="failure">
             FALLA
-            <p-sorticon field="failure" />
+            <app-sorticon field="failure" />
           </th>
 
-          <th pSortableColumn="partName">
+          <th appSortableColumn="partName">
             NOMBRE DE PIEZA
-            <p-sorticon field="partName" />
+            <app-sorticon field="partName" />
           </th>
-          <th pSortableColumn="partKey">
+          <th appSortableColumn="partKey">
             CLAVE DE PIEZA
-            <p-sorticon field="partKey" />
+            <app-sorticon field="partKey" />
           </th>
-          <th pSortableColumn="price">
+          <th appSortableColumn="price">
             COSTO
-            <p-sorticon field="price" />
+            <app-sorticon field="price" />
           </th>
-          <th pSortableColumn="supervised">
+          <th appSortableColumn="supervised">
             SUPERVISO
-            <p-sorticon field="supervised" />
+            <app-sorticon field="supervised" />
           </th>
           <th class="table-col-5 no-print"></th>
         </tr>
@@ -88,7 +88,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

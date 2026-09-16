@@ -1,7 +1,7 @@
 <div class="h6">DEPTO : {{ depto }}</div>
 <div class="h6">NOMBRE : {{ nombre }}</div>
 <div class="h6">SEMANA : {{ semana }}</div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="30"
@@ -49,9 +49,9 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th [width]="'15%'" class="ocultar center" pSortableColumn="name.label">
+      <th [width]="'15%'" class="ocultar center" appSortableColumn="name.label">
         SUPERVISOR
-        <p-sorticon field="name.label" />
+        <app-sorticon field="name.label" />
         <p-columnfilter
           field="name"
           matchMode="in"
@@ -82,13 +82,13 @@
           </ng-template>
         </p-columnfilter>
       </th>
-      <th [width]="'7%'" pSortableColumn="fechaSolicitud">
+      <th [width]="'7%'" appSortableColumn="fechaSolicitud">
         SOLICITUD
-        <p-sorticon field="fechaSolicitud" />
+        <app-sorticon field="fechaSolicitud" />
       </th>
-      <th [width]="'9%'" pSortableColumn="numeroCliente">
+      <th [width]="'9%'" appSortableColumn="numeroCliente">
         CLIENTE
-        <p-sorticon field="numeroCliente" />
+        <app-sorticon field="numeroCliente" />
         <p-columnfilter
           field="customer"
           matchMode="in"
@@ -119,25 +119,25 @@
           </ng-template>
         </p-columnfilter>
       </th>
-      <th [width]="'20%'" pSortableColumn="problema">
+      <th [width]="'20%'" appSortableColumn="problema">
         PROBLEMA/TEMA
-        <p-sorticon field="problema" />
+        <app-sorticon field="problema" />
       </th>
-      <th [width]="'20%'" pSortableColumn="solucion">
+      <th [width]="'20%'" appSortableColumn="solucion">
         SOLUCION/SEGUIMIENTO
-        <p-sorticon field="solucion" />
+        <app-sorticon field="solucion" />
       </th>
-      <th [width]="'9%'" pSortableColumn="fechaConclusion">
+      <th [width]="'9%'" appSortableColumn="fechaConclusion">
         CONCLUSION
-        <p-sorticon field="fechaConclusion" />
+        <app-sorticon field="fechaConclusion" />
       </th>
-      <th pSortableColumn="duracion">
+      <th appSortableColumn="duracion">
         DIAS
-        <p-sorticon field="duracion" />
+        <app-sorticon field="duracion" />
       </th>
-      <th pSortableColumn="estatus">
+      <th appSortableColumn="estatus">
         ESTATUS
-        <p-sorticon field="estatus" />
+        <app-sorticon field="estatus" />
         <p-columnfilter
           type="boolean"
           field="estatus"
@@ -199,7 +199,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">

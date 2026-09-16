@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -7,7 +7,6 @@
   scrollHeight="calc(100vh - 230px)"
   #dt
   class="custom-table card d-none d-md-block"
-  rowGroupMode="subheader"
   groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
@@ -71,33 +70,33 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-10" pSortableColumn="maintenanceCalendarId">
+      <th class="table-col-10" appSortableColumn="maintenanceCalendarId">
         CL-ID
-        <p-sorticon field="maintenanceCalendarId" class="no-print" />
+        <app-sorticon field="maintenanceCalendarId" class="no-print" />
       </th>
-      <th class="table-col-20" pSortableColumn="machinery">
+      <th class="table-col-20" appSortableColumn="machinery">
         Equipo
-        <p-sorticon field="machinery" class="no-print" />
+        <app-sorticon field="machinery" class="no-print" />
       </th>
-      <th class="table-col-10" pSortableColumn="typeMaintance">
+      <th class="table-col-10" appSortableColumn="typeMaintance">
         Servicio
-        <p-sorticon field="typeMaintance" class="no-print" />
+        <app-sorticon field="typeMaintance" class="no-print" />
       </th>
-      <th class="table-col-15" pSortableColumn="provider">
+      <th class="table-col-15" appSortableColumn="provider">
         Proveedor
-        <p-sorticon field="provider" class="no-print" />
+        <app-sorticon field="provider" class="no-print" />
       </th>
-      <th class="table-col-10" pSortableColumn="status">
+      <th class="table-col-10" appSortableColumn="status">
         Estatus
-        <p-sorticon field="status" class="no-print" />
+        <app-sorticon field="status" class="no-print" />
       </th>
-      <th class="table-col-10" pSortableColumn="serviceOrderImg.length">
+      <th class="table-col-10" appSortableColumn="serviceOrderImg.length">
         Fotos
-        <p-sorticon field="serviceOrderImg.length" class="no-print" />
+        <app-sorticon field="serviceOrderImg.length" class="no-print" />
       </th>
-      <th class="table-col-10" pSortableColumn="serviceOrderDocument.length">
+      <th class="table-col-10" appSortableColumn="serviceOrderDocument.length">
         Reporte
-        <p-sorticon field="serviceOrderDocument.length" class="no-print" />
+        <app-sorticon field="serviceOrderDocument.length" class="no-print" />
       </th>
       <th class="table-col-15 no-print"></th>
     </tr>
@@ -193,7 +192,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile

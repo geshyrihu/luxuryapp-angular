@@ -34,8 +34,8 @@ export class WebButtonIconConfirm extends BaseButton {
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
   override severity = input<any>("success");
 

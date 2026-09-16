@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -32,9 +32,9 @@
     <tr>
       <th>ID</th>
       <th>NO CLIENTE</th>
-      <th colspan="2" pSortableColumn="nameCustomer">
+      <th colspan="2" appSortableColumn="nameCustomer">
         NOMBRE
-        <p-sorticon field="nameCustomer" />
+        <app-sorticon field="nameCustomer" />
       </th>
       <th>TélefonoS</th>
       <th class="table-col-10"></th>
@@ -93,7 +93,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

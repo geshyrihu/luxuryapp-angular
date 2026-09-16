@@ -1,9 +1,8 @@
 <app-report-header></app-report-header>
 
-<p-table
+<app-table
   [value]="dataSignal()"
-  sortField="clasificacion"
-  rowGroupMode="subheader"
+  initialSortField="clasificacion"
   groupRowsBy="clasificacion"
   class="custom-table card d-none d-md-block"
 >
@@ -16,13 +15,13 @@
     <tr>
       <th class="table-col-12 text-sm">Nó</th>
       <th class="table-col-14 text-sm">Foto</th>
-      <th class="table-col-15 text-sm" pSortableColumn="nombre">
+      <th class="table-col-15 text-sm" appSortableColumn="nombre">
         Nombre
-        <p-sorticon field="nombre" />
+        <app-sorticon field="nombre" />
       </th>
-      <th class="table-col-15 text-sm" pSortableColumn="sistema">
+      <th class="table-col-15 text-sm" appSortableColumn="sistema">
         Sistema
-        <p-sorticon field="sistema" />
+        <app-sorticon field="sistema" />
       </th>
       <th class="table-col-15 text-sm">Ubicación</th>
       <th class="table-col-10 text-sm">Check</th>
@@ -30,7 +29,7 @@
     </tr>
   </ng-template>
   <ng-template #groupheader let-customer>
-    <tr pRowGroupHeader>
+    <tr>
       <td colspan="7">
         <span class="fw-bold ms-2">{{ customer.clasificacion }}</span>
       </td>
@@ -63,4 +62,4 @@
       <td class="text-sm">{{ item.observations | striptags }}</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>

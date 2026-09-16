@@ -1,8 +1,7 @@
-<p-table
+<app-table
   [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
   [value]="dataSignal()"
   #dt
-  rowGroupMode="subheader"
   sortMode="single"
   class="custom-table card d-none d-md-block"
 >
@@ -32,26 +31,26 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Né</th>
-      <th colspan="2" class="table-col-30" pSortableColumn="fullName">
+      <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
-      <th class="table-col-20" pSortableColumn="workPositionFolio">
+      <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <p-sorticon field="workPositionFolio" />
+        <app-sorticon field="workPositionFolio" />
       </th>
-      <th class="table-col-10" pSortableColumn="userName" class="no-print">
+      <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <p-sorticon field="userName" />
+        <app-sorticon field="userName" />
       </th>
 
       <th class="table-col-30 no-print">
         Télefono
-        <p-sorticon field="personalCellPhone" />
+        <app-sorticon field="personalCellPhone" />
       </th>
-      <th class="table-col-30" pSortableColumn="personalEmail">
+      <th class="table-col-30" appSortableColumn="personalEmail">
         Email
-        <p-sorticon field="personalEmail" />
+        <app-sorticon field="personalEmail" />
       </th>
 
       <th class="table-col-5"></th>
@@ -96,7 +95,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

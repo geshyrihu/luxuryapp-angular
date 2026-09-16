@@ -4,7 +4,7 @@
   <div class="d-none d-md-flex flex-md-column flex-fill min-h-0 overflow-auto gap-3">
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Extraordinarios (605)</h5>
-      <p-table
+      <app-table
         [value]="extraordinarias()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -121,12 +121,12 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
 
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Proyectos (606)</h5>
-      <p-table
+      <app-table
         [value]="proyectos()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -286,7 +286,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   </div>
 

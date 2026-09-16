@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<p-table
+<app-table
   (onLazyLoad)="loadDataLazy($event)"
   [globalFilterFields]="globalFilterFields"
   [lazy]="true"
@@ -23,25 +23,25 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="fechaSalida">
+      <th appSortableColumn="fechaSalida">
         Fecha de Salida
-        <p-sorticon field="fechaSalida" />
+        <app-sorticon field="fechaSalida" />
       </th>
-      <th pSortableColumn="tool">
+      <th appSortableColumn="tool">
         Herramienta
-        <p-sorticon field="tool" />
+        <app-sorticon field="tool" />
       </th>
-      <th pSortableColumn="applicationUser">
+      <th appSortableColumn="applicationUser">
         Colaborador
-        <p-sorticon field="applicationUser" />
+        <app-sorticon field="applicationUser" />
       </th>
-      <th pSortableColumn="fechaRegreso">
+      <th appSortableColumn="fechaRegreso">
         Fecha de Entrega
-        <p-sorticon field="fechaRegreso" />
+        <app-sorticon field="fechaRegreso" />
       </th>
-      <th pSortableColumn="observaciones">
+      <th appSortableColumn="observaciones">
         Observaciones
-        <p-sorticon field="observaciones" />
+        <app-sorticon field="observaciones" />
       </th>
       @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento,
       AspRole.Almacenista]) ) {
@@ -87,7 +87,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal().items" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

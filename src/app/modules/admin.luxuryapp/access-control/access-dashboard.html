@@ -41,7 +41,7 @@
 <h3 class="text-lg fw-semibold mb-2">
   Dentro actualmente: {{ occupancy()?.currentInside ?? 0 }}
 </h3>
-<p-table [value]="occupancy()?.visits ?? []" [paginator]="true" [rows]="10" class="custom-table card">
+<app-table [value]="occupancy()?.visits ?? []" [paginator]="true" [rows]="10" class="custom-table card">
   <ng-template #header>
     <tr>
       <th>Visitante</th>
@@ -61,4 +61,4 @@
       <td colspan="3" class="text-center text-body-secondary py-4">Nadie dentro.</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>

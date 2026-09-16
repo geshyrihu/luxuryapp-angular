@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -13,7 +13,6 @@
   size="small"
   [scrollable]="true"
   scrollHeight="750px"
-  [virtualScrollItemSize]="tablePrimeNgRows"
   [loading]="loading()"
 >
   <ng-template #caption>
@@ -24,15 +23,15 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="topic">Tema <p-sorticon field="topic" /></th>
-      <th pSortableColumn="moduleAppName">
-        Acceso <p-sorticon field="moduleAppName" />
+      <th appSortableColumn="topic">Tema <app-sorticon field="topic" /></th>
+      <th appSortableColumn="moduleAppName">
+        Acceso <app-sorticon field="moduleAppName" />
       </th>
-      <th pSortableColumn="keywords">
-        Palabras Clave <p-sorticon field="keywords" />
+      <th appSortableColumn="keywords">
+        Palabras Clave <app-sorticon field="keywords" />
       </th>
-      <th pSortableColumn="route">Ruta <p-sorticon field="route" /></th>
-      <th pSortableColumn="isActive">Activo <p-sorticon field="isActive" /></th>
+      <th appSortableColumn="route">Ruta <app-sorticon field="route" /></th>
+      <th appSortableColumn="isActive">Activo <app-sorticon field="isActive" /></th>
       <th class="no-print"></th>
     </tr>
   </ng-template>
@@ -74,7 +73,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

@@ -15,7 +15,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -108,7 +108,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     WebButtonIconEdit,
     WebButtonIconDelete,
     CommonModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     AppImage,
     LxTooltipDirective,
     NgbTooltipModule,

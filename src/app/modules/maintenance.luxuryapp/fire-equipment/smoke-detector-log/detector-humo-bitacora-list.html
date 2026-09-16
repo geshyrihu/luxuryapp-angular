@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -27,7 +27,7 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="date">Fecha <p-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Sin Obstr.</th>
       <th class="table-col-10">Sin Contam.</th>
@@ -99,7 +99,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

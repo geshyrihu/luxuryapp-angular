@@ -9,7 +9,7 @@ import {
   untracked,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 
 import { Router } from "@angular/router";
@@ -64,7 +64,9 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-neg
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     AppIcon,
     WebButtonLabelDownload,
     PrimeNgCustomCaption,

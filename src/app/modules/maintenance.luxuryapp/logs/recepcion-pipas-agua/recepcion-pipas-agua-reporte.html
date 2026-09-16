@@ -170,7 +170,7 @@
 </div>
 
 <!-- Tabla del periodo -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -195,14 +195,14 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="empresa" style="min-width: 120px">
-        Empresa <p-sorticon field="empresa" />
+      <th appSortableColumn="empresa" style="min-width: 120px">
+        Empresa <app-sorticon field="empresa" />
       </th>
-      <th pSortableColumn="placasCamion" style="min-width: 110px">
-        Placas / Cap. <p-sorticon field="placasCamion" />
+      <th appSortableColumn="placasCamion" style="min-width: 110px">
+        Placas / Cap. <app-sorticon field="placasCamion" />
       </th>
-      <th pSortableColumn="horaLlegada" style="min-width: 140px">
-        Llegada / Termino <p-sorticon field="horaLlegada" />
+      <th appSortableColumn="horaLlegada" style="min-width: 140px">
+        Llegada / Termino <app-sorticon field="horaLlegada" />
       </th>
       <th class="text-center" style="min-width: 140px">
         Cisterna (ant → des / dif)
@@ -294,4 +294,4 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>

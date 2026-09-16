@@ -73,7 +73,7 @@
     }
   </div>
 
-  <p-table
+  <app-table
     [value]="baseService.morososData()?.propiedades ?? []"
     [loading]="baseService.loading()"
     dataKey="numCtaBase"
@@ -94,23 +94,23 @@
 
     <ng-template #header>
       <tr>
-        <th pSortableColumn="departamento">
-          Propiedad <p-sorticon field="departamento"></p-sorticon>
+        <th appSortableColumn="departamento">
+          Propiedad <app-sorticon field="departamento" />
         </th>
-        <th pSortableColumn="clasificacion">
-          Situación <p-sorticon field="clasificacion"></p-sorticon>
+        <th appSortableColumn="clasificacion">
+          Situación <app-sorticon field="clasificacion" />
         </th>
-        <th pSortableColumn="saldoMantenimiento" class="text-end">
-          Mtto. <p-sorticon field="saldoMantenimiento"></p-sorticon>
+        <th appSortableColumn="saldoMantenimiento" class="text-end">
+          Mtto. <app-sorticon field="saldoMantenimiento" />
         </th>
-        <th pSortableColumn="saldoExtraordinario" class="text-end">
-          Extra. <p-sorticon field="saldoExtraordinario"></p-sorticon>
+        <th appSortableColumn="saldoExtraordinario" class="text-end">
+          Extra. <app-sorticon field="saldoExtraordinario" />
         </th>
-        <th pSortableColumn="saldoMultas" class="text-end">
-          Multas <p-sorticon field="saldoMultas"></p-sorticon>
+        <th appSortableColumn="saldoMultas" class="text-end">
+          Multas <app-sorticon field="saldoMultas" />
         </th>
-        <th pSortableColumn="saldoPendiente" class="text-end">
-          Deuda Total <p-sorticon field="saldoPendiente"></p-sorticon>
+        <th appSortableColumn="saldoPendiente" class="text-end">
+          Deuda Total <app-sorticon field="saldoPendiente" />
         </th>
         <th style="width: 3rem"></th>
       </tr>
@@ -151,11 +151,11 @@
       </tr>
     </ng-template>
 
-    <ng-template #empty>
+    <ng-template #emptymessage>
       <primeng-custom-table-emptymessage
         title="Sin morosos"
         message="No se encontraron propiedades con deuda."
       />
     </ng-template>
-  </p-table>
+  </app-table>
 </section>

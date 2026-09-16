@@ -1,5 +1,5 @@
 <div class="card">
-  <p-table
+  <app-table
     #dt
     [value]="items()"
     [globalFilterFields]="globalFilterFields"
@@ -21,15 +21,15 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="name">Nombre <p-sorticon field="name" /></th>
-        <th pSortableColumn="category">
-          Categoróa <p-sorticon field="category" />
+        <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
+        <th appSortableColumn="category">
+          Categoróa <app-sorticon field="category" />
         </th>
-        <th pSortableColumn="defaultSeverity">
-          Severidad por Defecto <p-sorticon field="defaultSeverity" />
+        <th appSortableColumn="defaultSeverity">
+          Severidad por Defecto <app-sorticon field="defaultSeverity" />
         </th>
-        <th pSortableColumn="isActive" class="text-center">
-          Activo <p-sorticon field="isActive" />
+        <th appSortableColumn="isActive" class="text-center">
+          Activo <app-sorticon field="isActive" />
         </th>
         <th class="no-print">Acciones</th>
       </tr>
@@ -62,7 +62,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <!--📲INICIO: Componente adaptado para versión mívil -->
   <app-data-view-mobile

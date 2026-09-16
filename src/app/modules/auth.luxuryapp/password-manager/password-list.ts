@@ -17,10 +17,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import {
-  TableLazyLoadEvent,
-  TableModule,
-} from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
@@ -35,13 +32,21 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { PasswordForm } from "./password-form";
 
+interface PasswordTablePageEvent {
+  first: number;
+  rows: number;
+  globalFilter?: string;
+}
+
 @Component({
   selector: "app-password-list",
   templateUrl: "./password-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -70,13 +75,13 @@ export class PasswordList implements OnInit {
   rowsPerPage = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  lastLoadEvent: TableLazyLoadEvent | null = null;
+  lastLoadEvent: PasswordTablePageEvent | null = null;
 
   private visiblePasswords = new Set<string>();
 
   ngOnInit(): void {}
 
-  async loadData(event: TableLazyLoadEvent) {
+  async loadData(event: PasswordTablePageEvent) {
     this.lastLoadEvent = event;
     this.loading.set(true);
 
@@ -153,4 +158,3 @@ export class PasswordList implements OnInit {
     }
   }
 }
-

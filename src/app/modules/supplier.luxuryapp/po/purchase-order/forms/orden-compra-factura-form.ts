@@ -18,7 +18,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip"; // Added
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -45,7 +45,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
     CustomInputFile,
     WebButtonLabel,
     CustomInputSelectSignal,
@@ -211,4 +211,3 @@ export class OrdenCompraFacturaForm implements OnInit {
       });
   }
 }
-

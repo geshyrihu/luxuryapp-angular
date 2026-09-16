@@ -24,7 +24,7 @@
   </div>
 
   <div class="col-12">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -47,19 +47,19 @@
 
       <ng-template #header>
         <tr>
-          <th pSortableColumn="title">Titulo <p-sorticon field="title" /></th>
-          <th pSortableColumn="subjectTypeName">
+          <th appSortableColumn="title">Titulo <app-sorticon field="title" /></th>
+          <th appSortableColumn="subjectTypeName">
             Asunto
-            <p-sorticon field="subjectTypeName" />
+            <app-sorticon field="subjectTypeName" />
           </th>
-          <th pSortableColumn="modalityName">
+          <th appSortableColumn="modalityName">
             Modalidad
-            <p-sorticon field="modalityName" />
+            <app-sorticon field="modalityName" />
           </th>
           <th>Repeticion</th>
-          <th pSortableColumn="startAt">
+          <th appSortableColumn="startAt">
             Inicio
-            <p-sorticon field="startAt" />
+            <app-sorticon field="startAt" />
           </th>
           <th>Invitados</th>
           <th>Estado</th>
@@ -137,7 +137,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="11" />
       </ng-template>
-    </p-table>
+    </app-table>
 
     <app-data-view-mobile
       [data]="listData()"

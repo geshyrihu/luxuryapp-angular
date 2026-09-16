@@ -169,7 +169,7 @@
   </div>
 
   @if (!isCommitteeMode) {
-  <p-table
+  <app-table
     [value]="detail()?.conceptos ?? []"
     dataKey="concepto"
     [paginator]="true"
@@ -258,7 +258,7 @@
         <td [attr.colspan]="isCommitteeMode ? 2 : 7">
           <div class="p-3 bg-body-tertiary rounded">
             @if (item.vencidos?.length) {
-            <p-table
+            <app-table
               [value]="item.vencidos"
               [tableStyle]="{ 'min-width': isCommitteeMode ? '100%' : '40rem' }"
             >
@@ -286,7 +286,7 @@
                   </td>
                 </tr>
               </ng-template>
-            </p-table>
+            </app-table>
             } @else {
             <div class="text-body-secondary text-sm text-center p-3">
               Sin desglose de periodos vencidos.
@@ -296,7 +296,7 @@
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
   } } @else {
   <lx-message
     severity="info"

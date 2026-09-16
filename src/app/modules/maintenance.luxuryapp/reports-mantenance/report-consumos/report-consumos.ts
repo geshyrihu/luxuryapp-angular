@@ -13,7 +13,7 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { Workbook } from "exceljs";
@@ -88,7 +88,9 @@ interface IWeeklyExecutiveReport {
     CommonModule,
     ApiDatePipe,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     PageTitleReportMaintenance,
     MultiAxisChart,
     RangoCalendarioyyyymmdd,

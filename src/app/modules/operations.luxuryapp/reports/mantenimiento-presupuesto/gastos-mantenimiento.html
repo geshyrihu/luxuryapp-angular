@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   #dt
   [value]="resumenGastos()"
   [scrollable]="true"
@@ -24,7 +24,7 @@
       <td>{{ item.total }}</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 
 <table class="table custom-table table-striped">
   <thead>

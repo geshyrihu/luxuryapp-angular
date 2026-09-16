@@ -15,7 +15,7 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { VisitorDto } from "@core/interfaces/visitor.dto";
@@ -27,7 +27,9 @@ import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     CustomInputTextSignal,
     CustomInputSwitch,
     WebButtonLabel,

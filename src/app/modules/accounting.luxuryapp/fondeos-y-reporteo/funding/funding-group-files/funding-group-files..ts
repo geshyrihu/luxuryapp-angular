@@ -13,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -24,7 +24,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     ReactiveFormsModule,
     CustomInputSelectButton,
     LxCheckbox,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIconItem,
@@ -187,4 +189,3 @@ export class FundingGroupFiles implements OnInit {
     this.ref.close();
   }
 }
-

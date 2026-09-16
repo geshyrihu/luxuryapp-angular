@@ -1,9 +1,8 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
-  rowGroupMode="subheader"
   groupRowsBy="departament"
 >
   <ng-template #caption>
@@ -30,30 +29,30 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Né</th>
-      <th colspan="2" class="table-col-30" pSortableColumn="fullName">
+      <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
-      <th class="table-col-20" pSortableColumn="workPositionFolio">
+      <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <p-sorticon field="workPositionFolio" />
+        <app-sorticon field="workPositionFolio" />
       </th>
-      <th class="table-col-10" pSortableColumn="userName" class="no-print">
+      <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <p-sorticon field="userName" />
+        <app-sorticon field="userName" />
       </th>
 
       <th
         class="table-col-30"
-        pSortableColumn="celularPersonal"
+        appSortableColumn="celularPersonal"
         class="no-print"
       >
         Télefono
-        <p-sorticon field="celularPersonal" />
+        <app-sorticon field="celularPersonal" />
       </th>
-      <th class="table-col-30" pSortableColumn="email">
+      <th class="table-col-30" appSortableColumn="email">
         EMAIL
-        <p-sorticon field="email" />
+        <app-sorticon field="email" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, AspRole.Reclutamiento ]) ) {
@@ -62,7 +61,7 @@
     </tr>
   </ng-template>
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td colspan="8">
         <span class="fw-semibold"
           >{{ getDepartamentLabel(item.departament) }}</span
@@ -129,7 +128,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

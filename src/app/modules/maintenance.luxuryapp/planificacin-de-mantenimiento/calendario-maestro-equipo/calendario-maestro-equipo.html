@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -23,13 +23,13 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreEquipo">
+      <th appSortableColumn="nombreEquipo">
         Nombre Equipo
-        <p-sorticon field="nombreEquipo" />
+        <app-sorticon field="nombreEquipo" />
       </th>
-      <th pSortableColumn="equipoClasificacion">
+      <th appSortableColumn="equipoClasificacion">
         Clasificación
-        <p-sorticon field="equipoClasificacion" />
+        <app-sorticon field="equipoClasificacion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -57,7 +57,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

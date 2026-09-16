@@ -120,7 +120,7 @@
   @if (interviewData()?.timeline?.length) {
   <div class="card p-3 mb-4">
     <div class="fw-semibold mb-3">Seguimiento</div>
-    <p-table
+    <app-table
       [value]="interviewData()?.timeline"
       [paginator]="false"
       [scrollable]="true"
@@ -145,7 +145,7 @@
           <td>{{ item.comment }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   }
 </div>

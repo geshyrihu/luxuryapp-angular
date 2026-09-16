@@ -11,7 +11,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
@@ -66,7 +66,11 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     WebButtonIconItem,
     LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     LxAvatar,
     LxTag,
     PrimeNgCustomCaption,

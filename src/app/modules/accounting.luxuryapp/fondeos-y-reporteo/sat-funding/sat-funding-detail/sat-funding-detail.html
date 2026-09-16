@@ -35,14 +35,13 @@
   <!-- Invoices Table -->
   <div class="col-12">
     <lx-card>
-      <p-table
+      <app-table
         #dtInvoices
         [value]="invoices()"
         [rows]="10"
         [paginator]="true"
         [globalFilterFields]="['emisorNombre', 'folio', 'total']"
         [(selection)]="selection"
-        [rowHover]="true"
         dataKey="satCfdiId"
         sortField="tipoGasto"
         sortMode="multiple"
@@ -101,17 +100,17 @@
             <th class="table-col-3rem"></th>
             <!-- Reorder Handle -->
             <th class="table-col-4rem">Sel.</th>
-            <th pSortableColumn="fechaEmision">
-              Fecha <p-sorticon field="fechaEmision"></p-sorticon>
+            <th appSortableColumn="fechaEmision">
+              Fecha <app-sorticon field="fechaEmision" />
             </th>
-            <th pSortableColumn="emisorNombre">
-              Emisor <p-sorticon field="emisorNombre"></p-sorticon>
+            <th appSortableColumn="emisorNombre">
+              Emisor <app-sorticon field="emisorNombre" />
             </th>
-            <th pSortableColumn="total">
-              Total <p-sorticon field="total"></p-sorticon>
+            <th appSortableColumn="total">
+              Total <app-sorticon field="total" />
             </th>
-            <th pSortableColumn="bankShortName">
-              Banco <p-sorticon field="bankShortName"></p-sorticon>
+            <th appSortableColumn="bankShortName">
+              Banco <app-sorticon field="bankShortName" />
             </th>
             <th>Acciones</th>
           </tr>
@@ -153,7 +152,7 @@
             <td colspan="7">No hay facturas para mostrar.</td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </lx-card>
   </div>
 </div>

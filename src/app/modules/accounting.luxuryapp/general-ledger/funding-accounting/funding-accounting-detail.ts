@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -32,7 +32,11 @@ import { FundingExcelExportService } from "@accounting.luxuryapp/general-ledger/
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     CustomInputCheckSignal,
     UpperCasePipe,
     DecimalPipe,

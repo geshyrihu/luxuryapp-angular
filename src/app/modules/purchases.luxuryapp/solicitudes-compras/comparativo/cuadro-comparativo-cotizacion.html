@@ -100,7 +100,7 @@
   </div>
 
   <div class="cotizacion-table-container mt-4">
-    <p-table
+    <app-table
       [value]="solicitudCompraDetalle"
       [showCurrentPageReport]="true"
       class="custom-table"
@@ -185,6 +185,6 @@
           <td>{{ getTotalGeneral() | number: "1.2-2" }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </lx-card>

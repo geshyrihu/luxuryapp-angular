@@ -1,10 +1,9 @@
-<p-table
+<app-table
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
-  rowGroupMode="subheader"
   groupRowsBy="typeOfContract"
-  sortField="typeOfContract"
+  initialSortField="typeOfContract"
   sortMode="single"
   [globalFilterFields]="globalFilterFields()"
   [tableStyle]="{ 'min-width': '60rem' }"
@@ -31,33 +30,33 @@
     <tr>
       <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
       <th>ID</th>
-      <th class="table-col-20" pSortableColumn="description">
+      <th class="table-col-20" appSortableColumn="description">
         <!-- Cambiado a Description -->
         Servicio
-        <p-sorticon field="description" />
+        <app-sorticon field="description" />
       </th>
-      <th class="table-col-20" pSortableColumn="provider">
+      <th class="table-col-20" appSortableColumn="provider">
         <!-- Cambiado a Provider -->
         Proveedor
-        <p-sorticon field="Provider" />
+        <app-sorticon field="Provider" />
       </th>
-      <th pSortableColumn="startDateFilter">
+      <th appSortableColumn="startDateFilter">
         Inicio
-        <p-sorticon field="startDateFilter" />
+        <app-sorticon field="startDateFilter" />
       </th>
-      <th pSortableColumn="endDateFilter">
+      <th appSortableColumn="endDateFilter">
         término
-        <p-sorticon field="endDateFilter" />
+        <app-sorticon field="endDateFilter" />
       </th>
-      <th pSortableColumn="tagLabel">
+      <th appSortableColumn="tagLabel">
         <!-- Cambiado a tagLabel -->
         Estado
-        <p-sorticon field="tagLabel" />
+        <app-sorticon field="tagLabel" />
       </th>
-      <th pSortableColumn="validity">
+      <th appSortableColumn="validity">
         <!-- Cambiado a validity -->
         Vigencia
-        <p-sorticon field="validity" />
+        <app-sorticon field="validity" />
       </th>
       <th>Documento</th>
       <th></th>
@@ -67,7 +66,7 @@
 
   <!-- Plantilla para el encabezado de CADA GRUPO -->
   <ng-template #groupheader let-group>
-    <tr pRowGroupHeader>
+    <tr>
       <!-- La celda abarca todas las columnas definidas en el header -->
       <td [attr.colspan]="9">
         <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
@@ -140,7 +139,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [groupedData]="groupedData"

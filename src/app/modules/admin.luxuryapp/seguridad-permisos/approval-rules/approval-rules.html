@@ -24,12 +24,11 @@
   </div>
   } @else {
   <div class="table-container">
-    <p-table
+    <app-table
       [value]="targetRoles()"
       class="custom-table d-none d-md-block"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
-      [rowHover]="true"
       [stripedRows]="true"
     >
       <ng-template #header>
@@ -75,7 +74,7 @@
           }
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   <div class="d-block d-md-none p-4 text-center text-body-secondary">
     <p>La matriz de aprobación estó optimizada para pantallas de escritorio.</p>

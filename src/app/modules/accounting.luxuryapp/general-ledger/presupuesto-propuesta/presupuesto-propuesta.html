@@ -46,7 +46,7 @@
     - `[style]`: Estilos en lónea, como el ancho mónimo para el scroll horizontal.
     - `#dt`: Una referencia a la tabla para poder interactuar con ella desde el código (ej. para el caption).
   -->
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields"
     [value]="proposalItems()"
     [scrollable]="true"
@@ -922,7 +922,7 @@
         <!-- Aligns with % -->
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 }
 <!--
@@ -937,7 +937,7 @@
   (visibleChange)="showHighIncreaseModal.set($event)"
 >
   <div class="p-3">
-    <p-table
+    <app-table
       [value]="highIncreaseItems()"
       [scrollable]="true"
       scrollHeight="60vh"
@@ -976,6 +976,6 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </lx-modal>

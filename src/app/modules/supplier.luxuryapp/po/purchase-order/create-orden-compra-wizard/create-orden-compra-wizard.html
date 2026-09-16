@@ -170,7 +170,7 @@
 
       @if (itemsSignal().length > 0) {
       <div class="mt-4">
-        <p-table [value]="itemsSignal()" class="p-datatable-sm">
+        <app-table [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -235,7 +235,7 @@
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
       </div>
       }
     </div>
@@ -277,7 +277,7 @@
 
       <div class="mt-4" formArrayName="budgets">
         @if (budgetsFormArray.length > 0) {
-        <p-table [value]="budgetsFormArray.controls" class="p-datatable-sm">
+        <app-table [value]="budgetsFormArray.controls" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th class="table-col-35">Nómero de Cuenta</th>
@@ -312,7 +312,7 @@
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
         } @else {
         <div class="text-center p-4 border-1 border rounded bg-body-tertiary">
           <p class="m-0 text-bg-dark text-white">
@@ -407,7 +407,7 @@
         <hr />
 
         <h5>Artóculos</h5>
-        <p-table [value]="itemsSignal()" class="p-datatable-sm">
+        <app-table [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -450,12 +450,12 @@
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
 
         <hr />
 
         <h5>Cuentas de Presupuesto</h5>
-        <p-table
+        <app-table
           [value]="step3Form.getRawValue().budgets"
           class="p-datatable-sm"
         >
@@ -473,7 +473,7 @@
               <td class="text-end">{{ item.amount | number: "1.2-2" }}</td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
 
         @if (uploadedFiles().length > 0) {
         <hr />

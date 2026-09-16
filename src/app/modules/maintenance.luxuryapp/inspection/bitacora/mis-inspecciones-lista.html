@@ -26,7 +26,7 @@
 
   <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="d-none d-md-block">
-    <p-table [value]="dataSignal()" class="custom-table">
+    <app-table [value]="dataSignal()" class="custom-table">
       <ng-template #header>
         <tr>
           <th>Estado</th>
@@ -71,7 +71,7 @@
       <ng-template #emptymessage>
         <primeng-custom-table-emptymessage [colspan]="5" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 
   <!--📲INICIO: Componente adaptado para versión mívil -->

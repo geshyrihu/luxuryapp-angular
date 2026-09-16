@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -13,7 +13,6 @@
     #dt
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     class="custom-table card d-none d-md-block"
-    rowGroupMode="subheader"
     groupRowsBy="pathParent"
   >
     <ng-template #caption>
@@ -24,7 +23,7 @@
     </ng-template>
 
     <ng-template #groupheader let-item>
-      <tr pRowGroupHeader>
+      <tr>
         <td colspan="7" class="p-3">
           <span class="fw-bold"
             >{{ item.pathParent ? item.pathParent : "Módulos Principales"
@@ -37,29 +36,29 @@
     <ng-template #header>
       <tr>
         <!-- <th >Index</th> -->
-        <th pSortableColumn="nameModule">
+        <th appSortableColumn="nameModule">
           Nombre
-          <p-sorticon field="nameModule" />
+          <app-sorticon field="nameModule" />
         </th>
-        <th pSortableColumn="label">
+        <th appSortableColumn="label">
           Label
-          <p-sorticon field="label" />
+          <app-sorticon field="label" />
         </th>
-        <th pSortableColumn="icon">
+        <th appSortableColumn="icon">
           Icon
-          <p-sorticon field="icon" />
+          <app-sorticon field="icon" />
         </th>
-        <th pSortableColumn="routerLink">
+        <th appSortableColumn="routerLink">
           RouterLink
-          <p-sorticon field="routerLink" />
+          <app-sorticon field="routerLink" />
         </th>
-        <th pSortableColumn="viewMobil">
+        <th appSortableColumn="viewMobil">
           Modulo celular
-          <p-sorticon field="viewMobil" />
+          <app-sorticon field="viewMobil" />
         </th>
-        <th pSortableColumn="rolLevel">
+        <th appSortableColumn="rolLevel">
           Nivel
-          <p-sorticon field="rolLevel" />
+          <app-sorticon field="rolLevel" />
         </th>
 
         <th class="no-print"></th>
@@ -98,7 +97,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->

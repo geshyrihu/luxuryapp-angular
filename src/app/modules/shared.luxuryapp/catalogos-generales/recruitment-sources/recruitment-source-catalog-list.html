@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,14 +21,14 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-7 text-small" pSortableColumn="name">
+      <th class="table-col-7 text-small" appSortableColumn="name">
         NOMBRE
-        <p-sorticon field="name" />
+        <app-sorticon field="name" />
       </th>
 
-      <th class="table-col-3 text-small" pSortableColumn="isActive">
+      <th class="table-col-3 text-small" appSortableColumn="isActive">
         ESTATUS
-        <p-sorticon field="isActive" />
+        <app-sorticon field="isActive" />
       </th>
 
       <th class="table-col-2 text-small">ACCIONES</th>
@@ -62,7 +62,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile

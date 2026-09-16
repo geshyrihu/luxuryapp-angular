@@ -12,7 +12,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -34,7 +34,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   imports: [
     WebButtonIconItem,
     LxTooltipDirective,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTag,
     DataViewMobile,
     PrimeNgCustomCaption,

@@ -41,7 +41,7 @@
 }
 
 <!-- Tabla de empleados -->
-<p-table
+<app-table
   #dt
   [value]="data()"
   [globalFilterFields]="globalFilterFields()"
@@ -69,8 +69,8 @@
   <ng-template #header>
     <tr>
       <th>#</th>
-      <th pSortableColumn="nombreCompleto">
-        Empleado <p-sorticon field="nombreCompleto" />
+      <th appSortableColumn="nombreCompleto">
+        Empleado <app-sorticon field="nombreCompleto" />
       </th>
       <th>Puesto</th>
       <th class="text-end">Dias Trab.</th>
@@ -112,7 +112,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

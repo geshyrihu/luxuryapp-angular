@@ -2,7 +2,7 @@
   <div class="card-body">
     <!-- Desktop View -->
     <div class="d-none d-md-block">
-      <p-table
+      <app-table
         #dt
         [value]="data()"
         [loading]="loading()"
@@ -93,49 +93,49 @@
         </ng-template>
         <ng-template #header>
           <tr>
-            <th pSortableColumn="customerName">
+            <th appSortableColumn="customerName">
               Cliente
-              <p-sorticon field="customerName"></p-sorticon>
+              <app-sorticon field="customerName" />
             </th>
-            <th pSortableColumn="solicitud">
+            <th appSortableColumn="solicitud">
               Solicitud
-              <p-sorticon field="solicitud"></p-sorticon>
+              <app-sorticon field="solicitud" />
             </th>
-            <th pSortableColumn="employeeFullName">
+            <th appSortableColumn="employeeFullName">
               Empleado
-              <p-sorticon field="employeeFullName"></p-sorticon>
+              <app-sorticon field="employeeFullName" />
             </th>
-            <th pSortableColumn="roleName">
+            <th appSortableColumn="roleName">
               Puesto
-              <p-sorticon field="roleName"></p-sorticon>
+              <app-sorticon field="roleName" />
             </th>
-            <th pSortableColumn="daysRequested">
+            <th appSortableColumn="daysRequested">
               Días
-              <p-sorticon field="daysRequested"></p-sorticon>
+              <app-sorticon field="daysRequested" />
             </th>
-            <th pSortableColumn="startDate">
+            <th appSortableColumn="startDate">
               Inicio
-              <p-sorticon field="startDate"></p-sorticon>
+              <app-sorticon field="startDate" />
             </th>
-            <th pSortableColumn="endDate">
+            <th appSortableColumn="endDate">
               Fin
-              <p-sorticon field="endDate"></p-sorticon>
+              <app-sorticon field="endDate" />
             </th>
-            <th pSortableColumn="status">
+            <th appSortableColumn="status">
               Estatus
-              <p-sorticon field="status"></p-sorticon>
+              <app-sorticon field="status" />
             </th>
-            <th pSortableColumn="requestDate">
+            <th appSortableColumn="requestDate">
               Fecha Sol.
-              <p-sorticon field="requestDate"></p-sorticon>
+              <app-sorticon field="requestDate" />
             </th>
-            <th pSortableColumn="approverName">
+            <th appSortableColumn="approverName">
               Aprobado por
-              <p-sorticon field="approverName"></p-sorticon>
+              <app-sorticon field="approverName" />
             </th>
-            <th pSortableColumn="approvalDate">
+            <th appSortableColumn="approvalDate">
               Fecha Aprobación
-              <p-sorticon field="approvalDate"></p-sorticon>
+              <app-sorticon field="approvalDate" />
             </th>
             <th></th>
           </tr>
@@ -191,7 +191,7 @@
         <ng-template #emptymessage>
           <primeng-custom-table-emptymessage [colspan]="8" />
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
 
     <!-- Mobile View -->

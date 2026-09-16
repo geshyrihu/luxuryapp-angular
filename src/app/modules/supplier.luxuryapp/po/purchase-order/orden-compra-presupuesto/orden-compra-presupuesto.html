@@ -3,7 +3,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
 <primeng-custom-toast />
 
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -51,16 +51,16 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
 
   <ng-template #header>
     <tr>
-      <th class="table-col-20" pSortableColumn="accountNumber">
+      <th class="table-col-20" appSortableColumn="accountNumber">
         Cuenta
-        <p-sorticon field="accountNumber" />
+        <app-sorticon field="accountNumber" />
       </th>
       <th class="table-col-13">Pres. Mensual</th>
       <th class="table-col-13">Gastado</th>
       <th class="table-col-13">Provisionado</th>
-      <th class="table-col-13" pSortableColumn="availableBudget">
+      <th class="table-col-13" appSortableColumn="availableBudget">
         Disponible
-        <p-sorticon field="availableBudget" />
+        <app-sorticon field="availableBudget" />
       </th>
       <th class="table-col-13">Gasto</th>
       <th class="table-col-15"></th>
@@ -139,4 +139,4 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>

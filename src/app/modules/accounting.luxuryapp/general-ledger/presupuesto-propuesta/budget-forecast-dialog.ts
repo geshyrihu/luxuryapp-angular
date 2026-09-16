@@ -21,7 +21,13 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import {
+  AppTable,
+  AppSortableColumn,
+  AppSorticon,
+  AppTableCheckbox,
+  AppTableHeaderCheckbox,
+} from "@ui/web/table/table";
 import { AiService } from "@core/services/ai.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import {
@@ -35,7 +41,17 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, CommonModule, WebButtonLabel, TableModule, FormsModule],
+  imports: [
+    AppIcon,
+    CommonModule,
+    WebButtonLabel,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    AppTableCheckbox,
+    AppTableHeaderCheckbox,
+    FormsModule,
+  ],
 })
 export class BudgetForecastDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

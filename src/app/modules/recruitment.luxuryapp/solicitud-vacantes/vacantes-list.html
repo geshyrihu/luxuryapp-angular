@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -13,17 +13,17 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">FOLIO <p-sorticon field="folio" /></th>
-      <th pSortableColumn="requestDateFilter">
-        SOLICITUD <p-sorticon field="requestDateFilter" />
+      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="requestDateFilter">
+        SOLICITUD <app-sorticon field="requestDateFilter" />
       </th>
       <th>CLIENTE</th>
-      <th pSortableColumn="applicationRoleName">
-        PUESTO <p-sorticon field="applicationRoleName" />
+      <th appSortableColumn="applicationRoleName">
+        PUESTO <app-sorticon field="applicationRoleName" />
       </th>
       <th>SUELDO</th>
       <th>DIAS</th>
-      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
       <th>CANDIDATO</th>
       <th></th>
     </tr>
@@ -99,7 +99,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

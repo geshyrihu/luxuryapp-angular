@@ -18,7 +18,7 @@
   No hay historial de cambios para esta partida.
 </div>
 } @else {
-<p-table [value]="history()" class="p-datatable-sm">
+<app-table [value]="history()" class="p-datatable-sm">
   <ng-template #header>
     <tr>
       <th>Fecha</th>
@@ -37,7 +37,7 @@
       <td>{{ record.justification }}</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }
 
 

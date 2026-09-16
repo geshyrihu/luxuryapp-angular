@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -15,17 +15,17 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">
+      <th appSortableColumn="folio">
         Folio
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
-      <th pSortableColumn="name">
+      <th appSortableColumn="name">
         Nombre
-        <p-sorticon field="name" />
+        <app-sorticon field="name" />
       </th>
-      <th pSortableColumn="assetCategory">
+      <th appSortableColumn="assetCategory">
         CATEGORIA
-        <p-sorticon field="assetCategory" />
+        <app-sorticon field="assetCategory" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -53,7 +53,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

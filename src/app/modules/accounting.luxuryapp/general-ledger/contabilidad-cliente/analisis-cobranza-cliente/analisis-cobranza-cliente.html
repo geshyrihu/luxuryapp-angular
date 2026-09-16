@@ -176,26 +176,26 @@
         <div class="text-sm text-body-secondary">Agrupación de la deuda por cada torre del condominio.</div>
       </div>
       
-      <p-table [value]="towers()" class="rf-prime-table p-datatable-sm d-none d-md-block">
+      <app-table [value]="towers()" class="rf-prime-table p-datatable-sm d-none d-md-block">
         <ng-template #header>
           <tr>
-            <th pSortableColumn="towerName">
-              Torre <p-sorticon field="towerName" />
+            <th appSortableColumn="towerName">
+              Torre <app-sorticon field="towerName" />
             </th>
-            <th class="text-end" pSortableColumn="departmentCount">
-              Deptos. <p-sorticon field="departmentCount" />
+            <th class="text-end" appSortableColumn="departmentCount">
+              Deptos. <app-sorticon field="departmentCount" />
             </th>
-            <th class="text-end" pSortableColumn="maintenanceBalance">
-              Adeudo Mtto. <p-sorticon field="maintenanceBalance" />
+            <th class="text-end" appSortableColumn="maintenanceBalance">
+              Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
             </th>
-            <th class="text-end" pSortableColumn="extraordinaryBalance">
-              Adeudo Ext. <p-sorticon field="extraordinaryBalance" />
+            <th class="text-end" appSortableColumn="extraordinaryBalance">
+              Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
             </th>
-            <th class="text-end" pSortableColumn="finesBalance">
-              Multas <p-sorticon field="finesBalance" />
+            <th class="text-end" appSortableColumn="finesBalance">
+              Multas <app-sorticon field="finesBalance" />
             </th>
-            <th class="text-end" pSortableColumn="totalBalance">
-              Total Adeudo <p-sorticon field="totalBalance" />
+            <th class="text-end" appSortableColumn="totalBalance">
+              Total Adeudo <app-sorticon field="totalBalance" />
             </th>
           </tr>
         </ng-template>
@@ -239,7 +239,7 @@
             </tr>
           }
         </ng-template>
-      </p-table>
+      </app-table>
 
       <div class="d-md-none">
         <app-data-view-mobile [data]="towers()" [showAdd]="false">
@@ -349,7 +349,7 @@
         />
       </div>
 
-      <p-table
+      <app-table
         [value]="filteredRows()"
         class="rf-prime-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'min-width': '1000px' }"
@@ -418,7 +418,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   </div>
 </div>

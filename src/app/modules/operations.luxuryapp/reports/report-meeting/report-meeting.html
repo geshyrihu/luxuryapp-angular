@@ -43,12 +43,12 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Comité de Vigilancia</span>
           </div>
-          <p-table
+          <app-table
             [value]="data.comite"
             [scrollable]="false"
             class="p-datatable-sm"
           >
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <tr>
                 <th>Cargo</th>
                 <th>Nombre</th>
@@ -60,7 +60,7 @@
                 <td class="text-sm">{{ item.nombre }}</td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         </div>
         }
 
@@ -70,12 +70,12 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Administración</span>
           </div>
-          <p-table
+          <app-table
             [value]="data.administracion"
             [scrollable]="false"
             class="p-datatable-sm"
           >
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <tr>
                 <th>Cargo</th>
                 <th>Nombre</th>
@@ -87,7 +87,7 @@
                 <td class="text-sm">{{ item.nombre }}</td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         </div>
         }
 
@@ -97,12 +97,12 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Invitados</span>
           </div>
-          <p-table
+          <app-table
             [value]="data.externos"
             [scrollable]="false"
             class="p-datatable-sm"
           >
-            <ng-template pTemplate="header">
+            <ng-template #header>
               <tr>
                 <th>Nombre</th>
               </tr>
@@ -112,7 +112,7 @@
                 <td class="text-sm">{{ item.invitado }}</td>
               </tr>
             </ng-template>
-          </p-table>
+          </app-table>
         </div>
         }
       </div>

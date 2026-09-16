@@ -14,7 +14,7 @@ import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppImage } from "@ui/web/image/image";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { AutorizacionCuadroComparativo } from "@core/enums/autorizacion-cuadro-comparativo.enum";
@@ -50,7 +50,9 @@ import { DialogSize } from "@core/enums/dialog-size.enum";
     CommonModule,
     ApiDatePipe,
     ReactiveFormsModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     DividerModule,
     AppImage,
     WebButtonLabel,
@@ -895,4 +897,3 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       });
   }
 }
-

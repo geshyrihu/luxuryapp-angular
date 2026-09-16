@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -18,29 +18,29 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th pSortableColumn="fechaEntrada">
+          <th appSortableColumn="fechaEntrada">
             Fecha Entrada
-            <p-sorticon field="fechaEntrada" />
+            <app-sorticon field="fechaEntrada" />
           </th>
-          <th pSortableColumn="nombreProducto">
+          <th appSortableColumn="nombreProducto">
             Producto
-            <p-sorticon field="nombreProducto" />
+            <app-sorticon field="nombreProducto" />
           </th>
-          <th pSortableColumn="cantidad">
+          <th appSortableColumn="cantidad">
             cantidad
-            <p-sorticon field="cantidad" />
+            <app-sorticon field="cantidad" />
           </th>
-          <th pSortableColumn="unidadMedida">
+          <th appSortableColumn="unidadMedida">
             Unidad
-            <p-sorticon field="unidadMedida" />
+            <app-sorticon field="unidadMedida" />
           </th>
-          <th pSortableColumn="provider">
+          <th appSortableColumn="provider">
             Proveedor
-            <p-sorticon field="provider" />
+            <app-sorticon field="provider" />
           </th>
-          <th pSortableColumn="numeroFactura">
+          <th appSortableColumn="numeroFactura">
             Factura
-            <p-sorticon field="numeroFactura" />
+            <app-sorticon field="numeroFactura" />
           </th>
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <th class="table-col-5"></th>
@@ -79,7 +79,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

@@ -4,15 +4,14 @@
   Vista responsive: tabla PrimeNG en escritorio, data-view-mobile en móvil.
   ═══════════════════════════════════════════════════════════════════
 -->
-<p-table
+<app-table
   #dt
   [value]="filteredData()"
   [globalFilterFields]="globalFilterFields()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
-  rowGroupMode="subheader"
   groupRowsBy="departament"
-  sortField="departament"
+  initialSortField="departament"
   sortMode="single"
   class="custom-table card d-none d-md-block"
 >
@@ -64,11 +63,11 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="applicationRoleName">
-        PUESTO <p-sorticon field="applicationRoleName" />
+      <th appSortableColumn="applicationRoleName">
+        PUESTO <app-sorticon field="applicationRoleName" />
       </th>
-      <th class="w-32" pSortableColumn="turno">
-        TURNO <p-sorticon field="turno" />
+      <th class="w-32" appSortableColumn="turno">
+        TURNO <app-sorticon field="turno" />
       </th>
       @if (showSalaryColumn()) {
       <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
@@ -79,7 +78,7 @@
   </ng-template>
 
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td [attr.colspan]="showSalaryColumn() ? 5 : 4" class="staff-group-header-cell">
         <span class="group-header-label">
           <app-icon [icon]="'material-symbols-light:work'" />
@@ -191,7 +190,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="showSalaryColumn() ? 5 : 4" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      VISTA MÓVIL

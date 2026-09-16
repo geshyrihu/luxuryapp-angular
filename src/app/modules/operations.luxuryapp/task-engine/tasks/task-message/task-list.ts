@@ -21,7 +21,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -135,7 +135,11 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     ActionMenu,
     CustomInputTextSignal,
     TaskStatus,
@@ -359,7 +363,9 @@ export class TaskList implements OnInit {
           this.cb_assignee = responseData.assignee;
         }
         this.loading.set(false);
-      });
+      })
+      .catch(() => undefined)
+      .finally(() => this.loading.set(false));
   }
 
   onLoadDataOffLoading() {

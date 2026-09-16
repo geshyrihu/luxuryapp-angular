@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <p-table
+  <app-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -107,7 +107,7 @@
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage [colspan]="9" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <app-data-view-mobile

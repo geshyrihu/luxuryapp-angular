@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
-  <p-table
+  <app-table
     [value]="dataSignal()"
     [lazy]="true"
     (onLazyLoad)="loadDataLazy($event)"
@@ -70,29 +70,29 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="fechaSalida">
+        <th appSortableColumn="fechaSalida">
           Fecha Salida
-          <p-sorticon field="fechaSalida" />
+          <app-sorticon field="fechaSalida" />
         </th>
-        <th pSortableColumn="producto">
+        <th appSortableColumn="producto">
           Producto
-          <p-sorticon field="producto" />
+          <app-sorticon field="producto" />
         </th>
-        <th pSortableColumn="cantidad">
+        <th appSortableColumn="cantidad">
           Cantidad
-          <p-sorticon field="cantidad" />
+          <app-sorticon field="cantidad" />
         </th>
-        <th pSortableColumn="unidadMedida">
+        <th appSortableColumn="unidadMedida">
           Unidad
-          <p-sorticon field="unidadMedida" />
+          <app-sorticon field="unidadMedida" />
         </th>
-        <th pSortableColumn="quienUso">
+        <th appSortableColumn="quienUso">
           Recibio
-          <p-sorticon field="quienUso" />
+          <app-sorticon field="quienUso" />
         </th>
-        <th pSortableColumn="usoPrducto">
+        <th appSortableColumn="usoPrducto">
           Uso
-          <p-sorticon field="usoPrducto" />
+          <app-sorticon field="usoPrducto" />
         </th>
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
         <th class="table-col-5"></th>
@@ -142,7 +142,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->

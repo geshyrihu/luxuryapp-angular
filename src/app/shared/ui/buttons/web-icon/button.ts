@@ -26,7 +26,7 @@ import { BaseButton } from "../base/base-button";
   `,
 })
 export class WebButtonIcon extends BaseButton {
-  override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
-    "ghost",
+  override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
+    "soft",
   );
 }

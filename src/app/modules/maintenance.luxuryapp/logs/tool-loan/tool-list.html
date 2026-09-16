@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -30,13 +30,13 @@
   <ng-template #header>
     <tr>
       <th>Img</th>
-      <th pSortableColumn="nameTool">
+      <th appSortableColumn="nameTool">
         Nombre
-        <p-sorticon field="nameTool" />
+        <app-sorticon field="nameTool" />
       </th>
-      <th pSortableColumn="category">
+      <th appSortableColumn="category">
         Categoria
-        <p-sorticon field="category" />
+        <app-sorticon field="category" />
       </th>
       @if ( aspRoleS.anyOf([AspRole.JefeMantenimiento, AspRole.SuperUsuario])()
       ) {
@@ -83,7 +83,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

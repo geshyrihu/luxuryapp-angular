@@ -5,7 +5,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LegalEmployeeService, type LegalEmployeeDTO } from "./legal-employee.service";
 
@@ -14,7 +14,7 @@ import { LegalEmployeeService, type LegalEmployeeDTO } from "./legal-employee.se
   templateUrl: "./legal-staff-board.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    TableModule,
+    AppTable,
     LxAvatar,
     LxTag,
     AppIcon,
@@ -52,4 +52,3 @@ export class LegalStaffBoard {
     );
   }
 }
-

@@ -2,14 +2,22 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import type { AccordionItem } from "@ui/base/accordion.base";
-import { TableModule } from "primeng/table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-aspel-cobranza-reglas-negocio",
   templateUrl: "./aspel-cobranza-reglas-negocio.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, Accordion, AccordionPanel, TableModule, AppIcon],
+  imports: [
+    CommonModule,
+    Accordion,
+    AccordionPanel,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    AppIcon,
+  ],
 })
 export class AspelCobranzaReglasNegocioComponent {
   readonly items: AccordionItem[] = [
@@ -20,4 +28,3 @@ export class AspelCobranzaReglasNegocioComponent {
     { id: "4", title: "5. Cuotas Extraordinarias, Recargos y Penalizaciones" },
   ];
 }
-

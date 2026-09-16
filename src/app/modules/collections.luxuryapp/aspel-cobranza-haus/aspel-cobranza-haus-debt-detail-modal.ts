@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -25,7 +25,9 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     WebButtonLabel,
     PrimeNgCustomCaption,
     CurrencyPipe,

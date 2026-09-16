@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,9 +21,9 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="description">
+      <th appSortableColumn="description">
         DESCRIPCIÓN
-        <p-sorticon field="description" />
+        <app-sorticon field="description" />
       </th>
 
       <th class="no-print"></th>
@@ -51,7 +51,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

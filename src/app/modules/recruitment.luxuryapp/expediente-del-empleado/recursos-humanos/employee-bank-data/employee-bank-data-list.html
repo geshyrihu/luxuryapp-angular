@@ -1,5 +1,5 @@
 <div class="card">
-  <p-table
+  <app-table
     #dt
     [value]="dataSignal()"
     [rows]="tablePrimeNgRows"
@@ -10,7 +10,6 @@
     [scrollable]="true"
     [scrollHeight]="scrollHeight"
     [loading]="loading()"
-    rowGroupMode="subheader"
     groupRowsBy="employeeName"
   >
     <ng-template #caption>
@@ -30,7 +29,7 @@
     </ng-template>
 
     <ng-template #groupheader let-item>
-      <tr pRowGroupHeader>
+      <tr>
         <td colspan="4">
           <span class="fw-bold ms-2">
             ?? {{ item.employeeName }} ({{ item.numberEmployee }})
@@ -61,7 +60,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 
   <!-- Mobile View -->
   <app-data-view-mobile

@@ -44,7 +44,7 @@
   </form>
 </div>
 
-<p-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+<app-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -75,4 +75,4 @@
       <td colspan="5" class="text-center text-body-secondary py-4">Sin puntos de acceso.</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>

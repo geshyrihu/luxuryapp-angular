@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -20,22 +20,22 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="requestDate">
+      <th appSortableColumn="requestDate">
         Fecha Solicitud
-        <p-sorticon field="requestDate" />
+        <app-sorticon field="requestDate" />
       </th>
-      <th pSortableColumn="requestTypeName">
+      <th appSortableColumn="requestTypeName">
         Solicitud
-        <p-sorticon field="requestTypeName" />
+        <app-sorticon field="requestTypeName" />
       </th>
 
-      <th pSortableColumn="startDate">
+      <th appSortableColumn="startDate">
         Fechas y Horas
-        <p-sorticon field="startDate" />
+        <app-sorticon field="startDate" />
       </th>
-      <th pSortableColumn="status">
+      <th appSortableColumn="status">
         Estado
-        <p-sorticon field="status" />
+        <app-sorticon field="status" />
       </th>
 
       <th>Aprobación</th>
@@ -106,7 +106,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile

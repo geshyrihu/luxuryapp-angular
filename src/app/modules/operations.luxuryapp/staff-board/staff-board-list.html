@@ -1,10 +1,9 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="filteredPositions()"
   class="custom-table card d-none d-md-block"
-  rowGroupMode="subheader"
   groupRowsBy="departament"
-  sortField="departament"
+  initialSortField="departament"
   sortMode="single"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -213,11 +212,11 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="applicationRoleName">
-        PUESTO <p-sorticon field="applicationRoleName" />
+      <th appSortableColumn="applicationRoleName">
+        PUESTO <app-sorticon field="applicationRoleName" />
       </th>
-      <th class="w-32" pSortableColumn="turno">
-        TURNO <p-sorticon field="turno" />
+      <th class="w-32" appSortableColumn="turno">
+        TURNO <app-sorticon field="turno" />
       </th>
       @if (showSalaryColumn()) {
       <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
@@ -228,7 +227,7 @@
   </ng-template>
 
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
+    <tr>
       <td
         [attr.colspan]="showSalaryColumn() ? 6 : 5"
         class="staff-group-header-cell"
@@ -512,4 +511,4 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="showSalaryColumn() ? 6 : 5" />
   </ng-template>
-</p-table>
+</app-table>

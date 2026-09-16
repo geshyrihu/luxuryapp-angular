@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="TICKETS" />
 @if (dataSignal()) {
-<p-table
+<app-table
   #dt
   [value]="dataSignal()"
   [scrollable]="true"
@@ -52,10 +52,10 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }
 <br />
-<p-table
+<app-table
   #dt
   [value]="dataResponsable()"
   [scrollable]="true"
@@ -94,9 +94,9 @@
     </tr>
     }
   </ng-template>
-</p-table>
+</app-table>
 @if (dataCargaTicket()) {
-<p-table
+<app-table
   [value]="dataCargaTicket()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -112,21 +112,21 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="empleado" class="table-col-20">
+      <th appSortableColumn="empleado" class="table-col-20">
         COLABORADOR
-        <p-sorticon field="empleado" />
+        <app-sorticon field="empleado" />
       </th>
-      <th pSortableColumn="solicitudes" class="table-col-20">
+      <th appSortableColumn="solicitudes" class="table-col-20">
         SOLICITUDES
-        <p-sorticon field="solicitudes" />
+        <app-sorticon field="solicitudes" />
       </th>
-      <th pSortableColumn="atendidas" class="table-col-20">
+      <th appSortableColumn="atendidas" class="table-col-20">
         ATENDIDAS
-        <p-sorticon field="atendidas" />
+        <app-sorticon field="atendidas" />
       </th>
-      <th pSortableColumn="pendientes" class="table-col-20">
+      <th appSortableColumn="pendientes" class="table-col-20">
         PENDIENTES
-        <p-sorticon field="pendientes" />
+        <app-sorticon field="pendientes" />
       </th>
     </tr>
   </ng-template>
@@ -175,5 +175,5 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }

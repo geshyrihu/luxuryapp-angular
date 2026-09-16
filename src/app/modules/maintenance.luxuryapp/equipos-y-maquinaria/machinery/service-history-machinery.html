@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -10,29 +10,29 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="executionDate">
+      <th appSortableColumn="executionDate">
         Fecha
-        <p-sorticon field="executionDate" />
+        <app-sorticon field="executionDate" />
       </th>
-      <th pSortableColumn="typeMaintance">
+      <th appSortableColumn="typeMaintance">
         Tipo de mantenimiento
-        <p-sorticon field="typeMaintance" />
+        <app-sorticon field="typeMaintance" />
       </th>
-      <th pSortableColumn="recurrence">
+      <th appSortableColumn="recurrence">
         Frecuencia
-        <p-sorticon field="recurrence" />
+        <app-sorticon field="recurrence" />
       </th>
-      <th pSortableColumn="provider">
+      <th appSortableColumn="provider">
         Proveedor
-        <p-sorticon field="provider" />
+        <app-sorticon field="provider" />
       </th>
-      <th pSortableColumn="price">
+      <th appSortableColumn="price">
         Costo
-        <p-sorticon field="price" />
+        <app-sorticon field="price" />
       </th>
-      <th pSortableColumn="employeeResponsable">
+      <th appSortableColumn="employeeResponsable">
         Superviso
-        <p-sorticon field="employeeResponsable" />
+        <app-sorticon field="employeeResponsable" />
       </th>
       <th></th>
     </tr>
@@ -66,4 +66,4 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
-</p-table>
+</app-table>

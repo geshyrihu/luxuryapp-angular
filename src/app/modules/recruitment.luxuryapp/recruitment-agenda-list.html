@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -65,7 +65,6 @@
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table card"
-  [rowTrackBy]="trackById"
 >
   <ng-template #caption>
     <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
@@ -82,24 +81,24 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="candidateName">
-        Candidato <p-sorticon field="candidateName" />
+      <th appSortableColumn="candidateName">
+        Candidato <app-sorticon field="candidateName" />
       </th>
-      <th pSortableColumn="vacancyFolio">
-        Vacante <p-sorticon field="vacancyFolio" />
+      <th appSortableColumn="vacancyFolio">
+        Vacante <app-sorticon field="vacancyFolio" />
       </th>
-      <th pSortableColumn="customerName">
-        Cliente <p-sorticon field="customerName" />
+      <th appSortableColumn="customerName">
+        Cliente <app-sorticon field="customerName" />
       </th>
       <th>Estatus agenda</th>
-      <th pSortableColumn="scheduledInterviewAt">
-        Fecha entrevista <p-sorticon field="scheduledInterviewAt" />
+      <th appSortableColumn="scheduledInterviewAt">
+        Fecha entrevista <app-sorticon field="scheduledInterviewAt" />
       </th>
-      <th pSortableColumn="assignedInterviewerName">
-        Entrevistador <p-sorticon field="assignedInterviewerName" />
+      <th appSortableColumn="assignedInterviewerName">
+        Entrevistador <app-sorticon field="assignedInterviewerName" />
       </th>
-      <th pSortableColumn="daysInStage">
-        Dias en etapa <p-sorticon field="daysInStage" />
+      <th appSortableColumn="daysInStage">
+        Dias en etapa <app-sorticon field="daysInStage" />
       </th>
       <th>Proxima accion</th>
       <th>CV</th>
@@ -182,7 +181,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="filteredData()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <style>
   .row-overdue {

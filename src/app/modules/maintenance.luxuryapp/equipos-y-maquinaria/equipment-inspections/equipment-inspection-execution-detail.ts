@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -19,7 +19,14 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
   selector: "app-equipment-inspection-execution-detail",
   templateUrl: "./equipment-inspection-execution-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, LxTag, AppImage, WebButtonLabel],
+  imports: [
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    LxTag,
+    AppImage,
+    WebButtonLabel,
+  ],
 })
 export class EquipmentInspectionExecutionDetail implements OnInit {
   private config = inject(DynamicDialogConfig);
@@ -80,4 +87,3 @@ export class EquipmentInspectionExecutionDetail implements OnInit {
     return this.equipmentInspectionS.getSeverityTag(severity);
   }
 }
-

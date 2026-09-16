@@ -72,7 +72,7 @@
       <div class="text-sm text-body-secondary">Detalle de cómo se distribuyó el pago.</div>
     </div>
 
-    <p-table [value]="payment()!.allocations || []" class="custom-table">
+    <app-table [value]="payment()!.allocations || []" class="custom-table">
       <ng-template #header>
         <tr>
           <th>Tipo de cargo</th>
@@ -125,7 +125,7 @@
           message="Este pago no ha sido aplicado a cargos todavía."
         />
       </ng-template>
-    </p-table>
+    </app-table>
   </lx-card>
 
   <div class="d-block d-md-none">

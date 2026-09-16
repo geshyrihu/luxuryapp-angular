@@ -13,7 +13,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
@@ -48,7 +48,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
     DataViewMobile,
     PrimeNgCustomCaption,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     MobileListItem,
     AppIcon,
   ],

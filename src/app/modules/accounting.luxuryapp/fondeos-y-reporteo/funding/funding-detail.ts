@@ -18,7 +18,13 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import {
+  AppTable,
+  AppSortableColumn,
+  AppSorticon,
+  AppReorderableRow,
+  AppReorderableRowHandle,
+} from "@ui/web/table/table";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -93,7 +99,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxProgressBar,
     RouterModule,
     LxSplitButton,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
+    AppReorderableRow,
+    AppReorderableRowHandle,
     LxTooltipDirective,
     UpperCasePipe,
     CustomInputCheckSignal,

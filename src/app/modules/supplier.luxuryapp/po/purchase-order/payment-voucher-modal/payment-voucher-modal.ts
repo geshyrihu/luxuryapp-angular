@@ -12,7 +12,7 @@ import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -26,7 +26,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
-    TableModule,
+    AppTable,
     WebButtonLabel,
     CustomInputFile,
   ],
@@ -100,4 +100,3 @@ export class PaymentVoucherModal implements OnInit {
     this.ref.close(this.comprobantes());
   }
 }
-

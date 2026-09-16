@@ -8,14 +8,14 @@ import {
   signal,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { IProyectosAprobadosDTO } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({
   selector: "app-proyectos-aprobados-cliente",
-  imports: [CommonModule, LxSkeleton, TableModule, AppIcon],
+  imports: [CommonModule, LxSkeleton, AppTable, AppSortableColumn, AppSorticon, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados-cliente.html",
 })

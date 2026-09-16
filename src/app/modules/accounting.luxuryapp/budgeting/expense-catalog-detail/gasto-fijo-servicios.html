@@ -4,7 +4,7 @@
 </p>
 }
 
-<p-table [value]="productosAgregados()" #dc class="card d-none d-md-block">
+<app-table [value]="productosAgregados()" #dc class="card d-none d-md-block">
   <ng-template #caption>
     <primeng-custom-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
   </ng-template>
@@ -106,9 +106,9 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 
-<p-table
+<app-table
   [(selection)]="selectedProducts"
   #dt
   class="custom-table card d-none d-md-block"
@@ -219,4 +219,4 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="productos()" />
   </ng-template>
-</p-table>
+</app-table>

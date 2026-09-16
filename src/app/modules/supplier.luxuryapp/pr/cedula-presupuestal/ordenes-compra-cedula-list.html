@@ -1,5 +1,5 @@
 <div class="d-none d-md-block card">
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFieldsOption()"
     [showCurrentPageReport]="true"
     [value]="dataSignal()"
@@ -56,7 +56,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->

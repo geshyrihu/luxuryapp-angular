@@ -9,7 +9,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,7 +20,13 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   selector: "app-report-solicitud-compra",
   templateUrl: "./report-solicitud-compra.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableModule, PageTitleReportMaintenance, PrimeNgCustomCaption],
+  imports: [
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    PageTitleReportMaintenance,
+    PrimeNgCustomCaption,
+  ],
 })
 export class ReportSolicitudCompra {
   apiResponseS = inject(ApiResponseService);
@@ -57,4 +63,3 @@ export class ReportSolicitudCompra {
     });
   }
 }
-

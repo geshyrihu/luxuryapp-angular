@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
@@ -184,30 +184,30 @@
           />
         </div>
       </th>
-      <th class="table-col-7" pSortableColumn="idFondeo">
+      <th class="table-col-7" appSortableColumn="idFondeo">
         Id Fondeo
-        <p-sorticon field="idFondeo" />
+        <app-sorticon field="idFondeo" />
       </th>
-      <th class="table-col-10" pSortableColumn="quincenaText">
+      <th class="table-col-10" appSortableColumn="quincenaText">
         Quincena
-        <p-sorticon field="quincenaText" />
+        <app-sorticon field="quincenaText" />
       </th>
-      <th pSortableColumn="equipoOInstalacion" class="table-col-20">
+      <th appSortableColumn="equipoOInstalacion" class="table-col-20">
         DESCRIPCIÓN
-        <p-sorticon field="equipoOInstalacion" />
+        <app-sorticon field="equipoOInstalacion" />
       </th>
-      <th pSortableColumn="provider" class="table-col-20">
+      <th appSortableColumn="provider" class="table-col-20">
         PROVEEDOR
-        <p-sorticon field="provider" />
+        <app-sorticon field="provider" />
       </th>
 
-      <th pSortableColumn="largeName" class="table-col-20">
+      <th appSortableColumn="largeName" class="table-col-20">
         Producto o Servicio
-        <p-sorticon field="largeName" />
+        <app-sorticon field="largeName" />
       </th>
-      <th pSortableColumn="largeName" class="table-col-20">
+      <th appSortableColumn="largeName" class="table-col-20">
         Partida Presupuestal
-        <p-sorticon field="largeName" />
+        <app-sorticon field="largeName" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -264,7 +264,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
 <div class="d-flex d-md-none flex-column h-screen overflow-hidden">

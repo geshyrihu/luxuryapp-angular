@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -33,9 +33,9 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-17" pSortableColumn="period">
+      <th class="table-col-17" appSortableColumn="period">
         Periodo
-        <p-sorticon field="period" />
+        <app-sorticon field="period" />
       </th>
       <!-- <th class="table-col-20">Genero</th> -->
       <th class="table-col-20">Realizo</th>
@@ -99,7 +99,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

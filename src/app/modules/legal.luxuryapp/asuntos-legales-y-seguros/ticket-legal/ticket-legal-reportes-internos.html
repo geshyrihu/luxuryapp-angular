@@ -21,7 +21,7 @@
 <div class="d-none d-md-block">
   @if (reportData()) {
   <div class="card mb-4">
-    <p-table [value]="kpiRows()" class="custom-table custom-table-fixed">
+    <app-table [value]="kpiRows()" class="custom-table custom-table-fixed">
       <ng-template #caption>
         <primeng-custom-caption
           title="Resultado del Periodo"
@@ -53,11 +53,11 @@
           <td>{{ row.label }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   } @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <p-table
+    <app-table
       [value]="requestsAttended()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
@@ -94,11 +94,11 @@
           <td>{{ ticket.concepto }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   } @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <p-table
+    <app-table
       [value]="requestsPending()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
@@ -152,7 +152,7 @@
           <td>{{ ticket.ultimoSeguimiento }}</td>
         </tr>
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {

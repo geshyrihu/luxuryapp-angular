@@ -12,7 +12,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -33,7 +33,9 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
   imports: [
     AppIcon,
     RouterModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTag,
     ProgressSpinnerModule,
     PrimeNgCustomCaption,

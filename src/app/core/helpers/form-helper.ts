@@ -66,6 +66,9 @@ export class FormHelper {
     // Validar formulario
     if (!api.validateForm(form)) return false;
 
+    // Evita doble submit mientras la solicitud anterior sigue activa.
+    if (submitting()) return false;
+
     submitting.set(true);
 
     const payload = transformPayload
@@ -107,4 +110,3 @@ export class FormHelper {
     }
   }
 }
-

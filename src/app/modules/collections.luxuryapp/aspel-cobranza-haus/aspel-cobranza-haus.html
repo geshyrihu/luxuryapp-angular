@@ -143,7 +143,7 @@
     </div>
   </div>
 
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -167,17 +167,17 @@
 
     <ng-template #header>
       <tr>
-        <th pSortableColumn="numCta">
+        <th appSortableColumn="numCta">
           Cuenta
-          <p-sorticon field="numCta" />
+          <app-sorticon field="numCta" />
         </th>
-        <th pSortableColumn="nombre">
+        <th appSortableColumn="nombre">
           Nombre
-          <p-sorticon field="nombre" />
+          <app-sorticon field="nombre" />
         </th>
-        <th pSortableColumn="estatus">
+        <th appSortableColumn="estatus">
           Estatus
-          <p-sorticon field="estatus" />
+          <app-sorticon field="estatus" />
         </th>
       </tr>
     </ng-template>
@@ -197,7 +197,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="accountRows()" />
     </ng-template>
-  </p-table>
+  </app-table>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
@@ -265,7 +265,7 @@
     </div>
   </div>
 
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -289,29 +289,29 @@
 
     <ng-template #header>
       <tr>
-        <th pSortableColumn="fecha">
+        <th appSortableColumn="fecha">
           Fecha
-          <p-sorticon field="fecha" />
+          <app-sorticon field="fecha" />
         </th>
-        <th pSortableColumn="tipo">
+        <th appSortableColumn="tipo">
           Tipo
-          <p-sorticon field="tipo" />
+          <app-sorticon field="tipo" />
         </th>
-        <th pSortableColumn="concepto">
+        <th appSortableColumn="concepto">
           Concepto
-          <p-sorticon field="concepto" />
+          <app-sorticon field="concepto" />
         </th>
-        <th pSortableColumn="monto" class="text-end">
+        <th appSortableColumn="monto" class="text-end">
           Monto
-          <p-sorticon field="monto" />
+          <app-sorticon field="monto" />
         </th>
-        <th pSortableColumn="saldoAnterior" class="text-end">
+        <th appSortableColumn="saldoAnterior" class="text-end">
           Saldo anterior
-          <p-sorticon field="saldoAnterior" />
+          <app-sorticon field="saldoAnterior" />
         </th>
-        <th pSortableColumn="saldoPosterior" class="text-end">
+        <th appSortableColumn="saldoPosterior" class="text-end">
           Saldo posterior
-          <p-sorticon field="saldoPosterior" />
+          <app-sorticon field="saldoPosterior" />
         </th>
       </tr>
     </ng-template>
@@ -341,7 +341,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="estadoMovimientos()" />
     </ng-template>
-  </p-table>
+  </app-table>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
@@ -455,7 +455,7 @@
         </div>
       </div>
 
-      <p-table
+      <app-table
         [paginator]="true"
         [rows]="tablePrimeNgRows"
         [rowsPerPageOptions]="rowsPerPageOptions"
@@ -525,7 +525,7 @@
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   </lx-card>
 
@@ -564,7 +564,7 @@
         </div>
       </div>
 
-      <p-table
+      <app-table
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
         [rows]="tablePrimeNgRows"
@@ -588,21 +588,21 @@
 
         <ng-template #header>
           <tr>
-            <th pSortableColumn="numCtaContra">
+            <th appSortableColumn="numCtaContra">
               Cuenta contra
-              <p-sorticon field="numCtaContra" />
+              <app-sorticon field="numCtaContra" />
             </th>
-            <th pSortableColumn="nombreCuenta">
+            <th appSortableColumn="nombreCuenta">
               Nombre
-              <p-sorticon field="nombreCuenta" />
+              <app-sorticon field="nombreCuenta" />
             </th>
-            <th pSortableColumn="totalMonto" class="text-end">
+            <th appSortableColumn="totalMonto" class="text-end">
               Monto total
-              <p-sorticon field="totalMonto" />
+              <app-sorticon field="totalMonto" />
             </th>
-            <th pSortableColumn="totalMovimientos" class="text-end">
+            <th appSortableColumn="totalMovimientos" class="text-end">
               Movimientos
-              <p-sorticon field="totalMovimientos" />
+              <app-sorticon field="totalMovimientos" />
             </th>
           </tr>
         </ng-template>
@@ -619,7 +619,7 @@
         <ng-template #paginatorleft>
           <primeng-custom-table-footer [data]="contrapartidaRows()" />
         </ng-template>
-      </p-table> -->
+      </app-table> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
@@ -683,7 +683,7 @@
     </div>
   </div>
 
-  <p-table
+  <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -707,25 +707,25 @@
 
     <ng-template #header>
       <tr>
-        <th pSortableColumn="numCtaBase">
+        <th appSortableColumn="numCtaBase">
           Cuenta base
-          <p-sorticon field="numCtaBase" />
+          <app-sorticon field="numCtaBase" />
         </th>
-        <th pSortableColumn="departamento">
+        <th appSortableColumn="departamento">
           Departamento
-          <p-sorticon field="departamento" />
+          <app-sorticon field="departamento" />
         </th>
-        <th pSortableColumn="tieneDesgloseConceptos">
+        <th appSortableColumn="tieneDesgloseConceptos">
           Modalidad
-          <p-sorticon field="tieneDesgloseConceptos" />
+          <app-sorticon field="tieneDesgloseConceptos" />
         </th>
-        <th pSortableColumn="totalConceptos" class="text-end">
+        <th appSortableColumn="totalConceptos" class="text-end">
           Conceptos
-          <p-sorticon field="totalConceptos" />
+          <app-sorticon field="totalConceptos" />
         </th>
-        <th pSortableColumn="saldoActual" class="text-end">
+        <th appSortableColumn="saldoActual" class="text-end">
           Deuda actual
-          <p-sorticon field="saldoActual" />
+          <app-sorticon field="saldoActual" />
         </th>
         <th class="text-center">Detalle</th>
       </tr>
@@ -769,7 +769,7 @@
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="deudaActualRows()" />
     </ng-template>
-  </p-table>
+  </app-table>
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-2">
@@ -813,7 +813,7 @@
         </div>
       </div>
 
-      <p-table
+      <app-table
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
         [rows]="tablePrimeNgRows"
@@ -837,33 +837,33 @@
 
         <ng-template #header>
           <tr>
-            <th pSortableColumn="concepto">
+            <th appSortableColumn="concepto">
               Concepto
-              <p-sorticon field="concepto" />
+              <app-sorticon field="concepto" />
             </th>
-            <th pSortableColumn="numCta">
+            <th appSortableColumn="numCta">
               Cuenta
-              <p-sorticon field="numCta" />
+              <app-sorticon field="numCta" />
             </th>
-            <th pSortableColumn="nombreCuenta">
+            <th appSortableColumn="nombreCuenta">
               Nombre cuenta
-              <p-sorticon field="nombreCuenta" />
+              <app-sorticon field="nombreCuenta" />
             </th>
-            <th pSortableColumn="saldoInicial" class="text-end">
+            <th appSortableColumn="saldoInicial" class="text-end">
               Saldo inicial
-              <p-sorticon field="saldoInicial" />
+              <app-sorticon field="saldoInicial" />
             </th>
-            <th pSortableColumn="cargos" class="text-end">
+            <th appSortableColumn="cargos" class="text-end">
               Cargos
-              <p-sorticon field="cargos" />
+              <app-sorticon field="cargos" />
             </th>
-            <th pSortableColumn="abonos" class="text-end">
+            <th appSortableColumn="abonos" class="text-end">
               Abonos
-              <p-sorticon field="abonos" />
+              <app-sorticon field="abonos" />
             </th>
-            <th pSortableColumn="saldoPendiente" class="text-end">
+            <th appSortableColumn="saldoPendiente" class="text-end">
               Saldo pendiente
-              <p-sorticon field="saldoPendiente" />
+              <app-sorticon field="saldoPendiente" />
             </th>
           </tr>
         </ng-template>
@@ -911,7 +911,7 @@
         <ng-template #paginatorleft>
           <primeng-custom-table-footer [data]="pendienteRows()" />
         </ng-template>
-      </p-table> -->
+      </app-table> -->
   } @else if (searched()) {
   <lx-message
     severity="info"

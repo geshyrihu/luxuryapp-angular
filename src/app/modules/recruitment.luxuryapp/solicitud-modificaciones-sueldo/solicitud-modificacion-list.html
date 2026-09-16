@@ -1,4 +1,4 @@
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -21,7 +21,7 @@
       <th>SUELDO ACTUAL</th>
       <th>PUESTO NUEVO</th>
       <th>SUELDO NUEVO</th>
-      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
       <th></th>
     </tr>
   </ng-template>
@@ -82,7 +82,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

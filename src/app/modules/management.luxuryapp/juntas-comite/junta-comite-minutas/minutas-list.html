@@ -7,7 +7,7 @@
       modulo. Primero debe registrarse la agenda de la junta para generar la
       sesion mensual y, desde ella, la minuta vinculada.
     </div>
-    <p-table
+    <app-table
       [value]="dataSignal()"
       dataKey="id"
       class="custom-table"
@@ -81,25 +81,25 @@
       <!-- Columnas de la tabla principal -->
       <ng-template #header>
         <tr>
-          <th class="table-col-17" pSortableColumn="date">
+          <th class="table-col-17" appSortableColumn="date">
             Fecha
-            <p-sorticon field="date" />
+            <app-sorticon field="date" />
           </th>
-          <th class="table-col-15" pSortableColumn="issues">
+          <th class="table-col-15" appSortableColumn="issues">
             Total
-            <p-sorticon field="issues" />
+            <app-sorticon field="issues" />
           </th>
-          <th class="table-col-15" pSortableColumn="concluidos">
+          <th class="table-col-15" appSortableColumn="concluidos">
             Concluido
-            <p-sorticon field="concluidos" />
+            <app-sorticon field="concluidos" />
           </th>
-          <th class="table-col-15" pSortableColumn="pending">
+          <th class="table-col-15" appSortableColumn="pending">
             Pendiente
-            <p-sorticon field="pending" />
+            <app-sorticon field="pending" />
           </th>
-          <th class="table-col-15" pSortableColumn="noAutorizado">
+          <th class="table-col-15" appSortableColumn="noAutorizado">
             No Autorizado
-            <p-sorticon field="noAutorizado" />
+            <app-sorticon field="noAutorizado" />
           </th>
           <th>Acciones</th>
           <th class="table-col-5"></th>
@@ -255,7 +255,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
-    </p-table>
+    </app-table>
   </div>
 </div>
 

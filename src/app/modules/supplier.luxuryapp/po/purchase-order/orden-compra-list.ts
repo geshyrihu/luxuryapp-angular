@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
@@ -164,7 +164,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     CommonModule,
     ApiDatePipe,
     RouterModule,
-    TableModule,
+    AppTable,
+
+    AppSortableColumn,
+
+    AppSorticon,
     WebButtonLabel,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

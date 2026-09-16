@@ -16,7 +16,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
 import {
   rowsPerPageOptions,
@@ -49,7 +49,9 @@ import { CustomerLocationDto } from "./interfaces/customer-location.dto";
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     NgbTooltipModule,
     WebButtonIconEdit,
     WebButtonIconDelete,

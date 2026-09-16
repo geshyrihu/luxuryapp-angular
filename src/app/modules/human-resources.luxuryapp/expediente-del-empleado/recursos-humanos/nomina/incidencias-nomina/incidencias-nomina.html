@@ -11,7 +11,7 @@
 </div>
 
 <!-- Tabla escritorio -->
-<p-table
+<app-table
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -50,13 +50,13 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreEmpleado">
-        Empleado <p-sorticon field="nombreEmpleado" />
+      <th appSortableColumn="nombreEmpleado">
+        Empleado <app-sorticon field="nombreEmpleado" />
       </th>
-      <th pSortableColumn="tipoIncidenciaDisplay">
-        Tipo <p-sorticon field="tipoIncidenciaDisplay" />
+      <th appSortableColumn="tipoIncidenciaDisplay">
+        Tipo <app-sorticon field="tipoIncidenciaDisplay" />
       </th>
-      <th pSortableColumn="fecha">Fecha <p-sorticon field="fecha" /></th>
+      <th appSortableColumn="fecha">Fecha <app-sorticon field="fecha" /></th>
       <th class="text-end">Dias</th>
       <th class="text-end">Minutos</th>
       <th class="text-end">Descuento ($)</th>
@@ -93,7 +93,7 @@
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
-</p-table>
+</app-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

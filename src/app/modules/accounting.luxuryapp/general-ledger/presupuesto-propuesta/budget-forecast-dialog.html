@@ -26,7 +26,7 @@
     que desea aplicar.
   </p>
 
-  <p-table
+  <app-table
     [value]="forecastData()"
     [(selection)]="selectedForecastItems"
     dataKey="accountNumber"
@@ -39,18 +39,18 @@
         <th class="table-col-4rem">
           <p-tableheadercheckbox></p-tableheadercheckbox>
         </th>
-        <th pSortableColumn="accountNumber">
-          Cuenta <p-sorticon field="accountNumber"></p-sorticon>
+        <th appSortableColumn="accountNumber">
+          Cuenta <app-sorticon field="accountNumber" />
         </th>
-        <th pSortableColumn="currentAmount" class="text-end">
-          Psto Mensual Actual <p-sorticon field="currentAmount"></p-sorticon>
+        <th appSortableColumn="currentAmount" class="text-end">
+          Psto Mensual Actual <app-sorticon field="currentAmount" />
         </th>
-        <th pSortableColumn="averageExpense" class="text-end">
+        <th appSortableColumn="averageExpense" class="text-end">
           Gasto Promedio ({{selectedMonthsForAvg().length}}m)
-          <p-sorticon field="averageExpense"></p-sorticon>
+          <app-sorticon field="averageExpense" />
         </th>
-        <th pSortableColumn="suggestedAmount" class="text-end">
-          Sugerido Mensual <p-sorticon field="suggestedAmount"></p-sorticon>
+        <th appSortableColumn="suggestedAmount" class="text-end">
+          Sugerido Mensual <app-sorticon field="suggestedAmount" />
         </th>
         <th>Razonamiento IA</th>
       </tr>
@@ -74,7 +74,7 @@
         <td class="text-sm fst-italic text-body-secondary">{{ item.reasoning }}</td>
       </tr>
     </ng-template>
-  </p-table>
+  </app-table>
 </div>
 
 <div class="d-flex justify-content-between align-items-center w-full mt-4">

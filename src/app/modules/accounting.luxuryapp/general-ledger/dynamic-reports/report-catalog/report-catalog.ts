@@ -17,7 +17,7 @@ import {
   WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -44,7 +44,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     WebButtonIconDelete,
     ApiDatePipe,
     RouterModule,
-    TableModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
     LxTabs,
     WebButtonLabelAdd,
     WebButtonLabelEdit,
@@ -60,7 +62,7 @@ export class ReportCatalog implements OnInit {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
 
-  dt = viewChild<Table>("table");
+  dt = viewChild<AppTable>("table");
 
   propios = signal<IReportDefinitionList[]>([]);
   plantillas = signal<IReportDefinitionList[]>([]);
@@ -122,4 +124,3 @@ export class ReportCatalog implements OnInit {
     this.cargar();
   }
 }
-

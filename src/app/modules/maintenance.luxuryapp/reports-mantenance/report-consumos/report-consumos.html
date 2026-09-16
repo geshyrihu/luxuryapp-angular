@@ -194,7 +194,7 @@
         </div>
       </div>
 
-        <p-table
+        <app-table
           [value]="data.medidores"
           [paginator]="true"
           [rows]="10"
@@ -208,7 +208,7 @@
               [showSearch]="false"
             />
           </ng-template>
-          <ng-template pTemplate="header">
+          <ng-template #header>
             <tr>
               <th>Categoria</th>
               <th>Numero</th>
@@ -240,7 +240,7 @@
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
       </div>
   </div>
 } @else {
@@ -253,7 +253,6 @@
   </div>
   }
 </div>
-
 
 
 

@@ -1,6 +1,6 @@
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<p-table
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -23,7 +23,6 @@
           [class.text-white]="tipo.id === tipoGasto()"
           [class.bg-body]="tipo.id !== tipoGasto()"
           [class.border]="tipo.id !== tipoGasto()"
-          [class.]="tipo.id !== tipoGasto()"
           class="border-1 rounded-md p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
         >
           <i
@@ -123,39 +122,39 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio">
+      <th appSortableColumn="folio">
         IDENTIFICADORES
-        <p-sorticon field="folio" />
+        <app-sorticon field="folio" />
       </th>
-      <th pSortableColumn="fechaSolicitud">
+      <th appSortableColumn="fechaSolicitud">
         SEGUIMIENTO
-        <p-sorticon field="fechaSolicitud" />
+        <app-sorticon field="fechaSolicitud" />
       </th>
-      <th pSortableColumn="equipoOInstalacion">
+      <th appSortableColumn="equipoOInstalacion">
         DESCRIPCIÓN
-        <p-sorticon field="equipoOInstalacion" />
+        <app-sorticon field="equipoOInstalacion" />
       </th>
-      <th pSortableColumn="justificacionGasto">
+      <th appSortableColumn="justificacionGasto">
         PARTIDA PRESUPUESTAL
-        <p-sorticon field="justificacionGasto" />
+        <app-sorticon field="justificacionGasto" />
       </th>
-      <th pSortableColumn="proveedor">
+      <th appSortableColumn="proveedor">
         Proveedor
-        <p-sorticon field="proveedor" />
+        <app-sorticon field="proveedor" />
       </th>
-      <th pSortableColumn="total">
+      <th appSortableColumn="total">
         Total
-        <p-sorticon field="total" />
+        <app-sorticon field="total" />
       </th>
       @if (statusCompra() === 1) {
-      <th pSortableColumn="observaciones">
+      <th appSortableColumn="observaciones">
         Observaciones
-        <p-sorticon field="observaciones" />
+        <app-sorticon field="observaciones" />
       </th>
       } @if (this.statusCompra() === 0) {
-      <th pSortableColumn="fullName">
+      <th appSortableColumn="fullName">
         Autoriza
-        <p-sorticon field="fullName" />
+        <app-sorticon field="fullName" />
       </th>
       }
       <th class="text-center">ACCIONES</th>
@@ -261,7 +260,7 @@
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
-</p-table>
+</app-table>
 
 <app-data-view-mobile
   [data]="data()"
@@ -283,7 +282,6 @@
               [class.text-white]="tipo.id === tipoGasto()"
               [class.bg-body]="tipo.id !== tipoGasto()"
               [class.border]="tipo.id !== tipoGasto()"
-              [class.]="tipo.id !== tipoGasto()"
               class="border-1 rounded-md p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
             >
               <i

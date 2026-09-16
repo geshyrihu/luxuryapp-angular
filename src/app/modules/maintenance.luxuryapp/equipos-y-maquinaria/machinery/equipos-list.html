@@ -4,7 +4,7 @@
   <!-- ================================================================== -->
   <div class="d-none d-md-block">
     @if (data()) {
-    <p-table
+    <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tablePrimeNgRows"
@@ -106,22 +106,22 @@
       <ng-template #header>
         <tr class="animate__fadeIn">
           <th class="table-col-5">IMG</th>
-          <th class="table-col-20" pSortableColumn="nameMachinery">
+          <th class="table-col-20" appSortableColumn="nameMachinery">
             NOMBRE
-            <p-sorticon field="nameMachinery" />
+            <app-sorticon field="nameMachinery" />
           </th>
-          <th class="table-col-20" pSortableColumn="equipoClasificacion">
+          <th class="table-col-20" appSortableColumn="equipoClasificacion">
             SISTEMA
-            <p-sorticon field="equipoClasificacion" />
+            <app-sorticon field="equipoClasificacion" />
           </th>
-          <th class="table-col-20" pSortableColumn="ubication">
+          <th class="table-col-20" appSortableColumn="ubication">
             UBICACIÓN
-            <p-sorticon field="ubication" />
+            <app-sorticon field="ubication" />
           </th>
           @if (mostrarPreventivos()) {
-          <th class="table-col-10" pSortableColumn="maintenanceCalendars">
+          <th class="table-col-10" appSortableColumn="maintenanceCalendars">
             SERVICIOS
-            <p-sorticon field="maintenanceCalendars" />
+            <app-sorticon field="maintenanceCalendars" />
           </th>
           }
           <th class="table-col-10 no-print"></th>
@@ -214,7 +214,7 @@
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="data()" />
       </ng-template>
-    </p-table>
+    </app-table>
     }
   </div>
 

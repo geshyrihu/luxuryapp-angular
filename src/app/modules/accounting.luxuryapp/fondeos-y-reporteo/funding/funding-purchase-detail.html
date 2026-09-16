@@ -164,7 +164,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 4: DETALLE DE PRODUCTOS -->
     <h5 class="text-xl fw-medium m-0 mt-4">Detalle de Productos</h5>
     <div class="py-3">
-      <p-table
+      <app-table
         [value]="data().detalleItems"
         showGridlines="true"
         stripedRows="true"
@@ -195,7 +195,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
     <!-- SECCIóN 5: TOTALES -->
     <div class="d-flex justify-content-end mt-3">
@@ -221,7 +221,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 6: AFECTACIóN PRESUPUESTAL -->
     <h5 class="text-xl fw-medium m-0 mt-4">Afectación Presupuestal</h5>
     <div class="py-3">
-      <p-table [value]="data().detallePresupuesto" showGridlines="true">
+      <app-table [value]="data().detallePresupuesto" showGridlines="true">
         <ng-template #header>
           <tr>
             <th>Año Fiscal</th>
@@ -245,7 +245,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
             </td>
           </tr>
         </ng-template>
-      </p-table>
+      </app-table>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -19,7 +19,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 @Component({
   selector: "app-proyectos-aprobados",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule, TableModule],
+  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule, AppTable, AppSortableColumn, AppSorticon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })

@@ -134,10 +134,9 @@
           </div>
         </div>
 
-        <p-table
+        <app-table
           [value]="statement()!.ledger"
           class="p-datatable-sm p-datatable-striped"
-          [rowHover]="true"
         >
           <ng-template #header>
             <tr>
@@ -181,7 +180,7 @@
               </td>
             </tr>
           </ng-template>
-        </p-table>
+        </app-table>
       </lx-card>
 
       <div class="d-block d-md-none d-flex flex-column gap-1">

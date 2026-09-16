@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="SOLICITUDES DE COMPRA" />
 @if (solicitudes()) {
-<p-table
+<app-table
   #dt
   [value]="solicitudes()"
   [scrollable]="true"
@@ -34,11 +34,11 @@
       <td>{{ item.estatus }}</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }
 <page-title-report-maintenance title="ÓRDENES DE COMPRA" />
 @if (ordenesCompra()) {
-<p-table
+<app-table
   #dt
   [value]="ordenesCompra()"
   [scrollable]="true"
@@ -74,5 +74,5 @@
       <td>{{ item.entregado }}</td>
     </tr>
   </ng-template>
-</p-table>
+</app-table>
 }
