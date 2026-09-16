@@ -352,66 +352,7 @@
   }
 }
 
-// ── VARIANTE GHOST ────────────────────────────────────────────
-// Tinte muy sutil del color semántico en reposo (≈8% opacidad).
-// Diferencia visual vs "text" que siempre es transparente.
-// En hover muestra el tinte completo (ds-*-light).
 
-.btn-ghost {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-text-secondary), transparent 92%);
-  color: var(--ds-text-secondary);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-bg-sunken);
-    color: var(--ds-text-primary);
-  }
-}
-
-.btn-ghost-primary {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-primary), transparent 92%);
-  color: var(--ds-primary);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-primary-light);
-  }
-}
-
-.btn-ghost-help {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-help), transparent 92%);
-  color: var(--ds-help);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-help-light);
-  }
-}
-
-.btn-ghost-ai {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-ai), transparent 92%);
-  color: var(--ds-ai);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-ai-light);
-  }
-}
-
-.btn-ghost-contrast {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-contrast), transparent 92%);
-  color: var(--ds-contrast);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-contrast-light);
-  }
-}
 
 // ── VARIANTE LINK ─────────────────────────────────────────────
 .btn-link {
@@ -502,64 +443,7 @@
   }
 }
 
-// ── GHOST VARIANTS ADICIONALES ────────────────────────────────
-// (Los templates usan ghost-secondary, ghost-info, ghost-danger, etc.)
 
-.btn-ghost-secondary {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-text-secondary), transparent 92%);
-  color: var(--ds-text-secondary);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-bg-sunken);
-    color: var(--ds-text-primary);
-  }
-}
-
-.btn-ghost-info {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-info), transparent 92%);
-  color: var(--ds-info);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-info-light);
-  }
-}
-
-.btn-ghost-danger {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-danger), transparent 92%);
-  color: var(--ds-danger);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-danger-light);
-  }
-}
-
-.btn-ghost-success {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-success), transparent 92%);
-  color: var(--ds-success);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-success-light);
-  }
-}
-
-.btn-ghost-warning {
-  @extend .btn;
-  background-color: color-mix(in srgb, var(--ds-warning), transparent 92%);
-  color: var(--ds-warning);
-  border-color: transparent;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-warning-light);
-  }
-}
 
 // ── OUTLINE VARIANTS ADICIONALES ──────────────────────────────
 
@@ -891,3 +775,125 @@
     background-color: var(--ds-bg-sunken);
   }
 }
+
+
+// ============================================================
+// _minia-buttons-compat.scss
+// Compatibilidad de clases y estilos de botones de Minia
+// ============================================================
+
+// 1. Sombras estilo Minia para botones s�lidos
+.btn-primary { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-primary) 50%, transparent); }
+.btn-secondary { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-border-strong) 50%, transparent); }
+.btn-success { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-success) 50%, transparent); }
+.btn-info { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-info) 50%, transparent); }
+.btn-warning { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-warning) 50%, transparent); }
+.btn-danger { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-danger) 50%, transparent); }
+.btn-dark { box-shadow: 0 2px 6px 0 color-mix(in srgb, var(--ds-contrast) 50%, transparent); }
+
+
+// -- VARIANTE SOFT (Estilo Minia) --------------------------------------------
+
+.btn-soft-primary {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-primary), transparent 92%);
+  color: var(--ds-primary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-primary-light);
+  }
+}
+
+.btn-soft-secondary {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-text-secondary), transparent 92%);
+  color: var(--ds-text-secondary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+}
+
+.btn-soft-info {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-info), transparent 92%);
+  color: var(--ds-info);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-info-light);
+  }
+}
+
+.btn-soft-success {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-success), transparent 92%);
+  color: var(--ds-success);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-success-light);
+  }
+}
+
+.btn-soft-warning {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-warning), transparent 92%);
+  color: var(--ds-warning);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-warning-light);
+  }
+}
+
+.btn-soft-danger {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-danger), transparent 92%);
+  color: var(--ds-danger);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-danger-light);
+  }
+}
+
+.btn-soft-dark {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-contrast), transparent 92%);
+  color: var(--ds-contrast);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-contrast-light);
+  }
+}
+
+// 2. Clases Rounded
+.btn-rounded {
+  border-radius: 30px !important; // Override fuerte al estilo Minia
+}
+
+// 4. Botones con etiqueta (btn-label)
+.btn-label {
+  position: relative;
+  padding-left: 44px;
+  border: none;
+
+  .label-icon {
+    position: absolute;
+    width: 32px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: color-mix(in srgb, var(--ds-text-primary) 15%, transparent);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

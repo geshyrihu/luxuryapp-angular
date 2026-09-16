@@ -2,28 +2,28 @@
   <il-button
     label="Pendientes"
     [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
-    [variant]="statusFiltro == 0 ? null : 'ghost-text'"
+    [variant]="statusFiltro == 0 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(0)"
   />
   <il-button
     label="Concluidos"
     [severity]="statusFiltro == 1 ? 'primary' : 'secondary'"
-    [variant]="statusFiltro == 1 ? null : 'ghost-text'"
+    [variant]="statusFiltro == 1 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(1)"
   />
   <il-button
     label="No Autorizados"
     [severity]="statusFiltro == 2 ? 'primary' : 'secondary'"
-    [variant]="statusFiltro == 2 ? null : 'ghost-text'"
+    [variant]="statusFiltro == 2 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(2)"
   />
   <il-button
     label="Todos"
     [severity]="statusFiltro == 4 ? 'primary' : 'secondary'"
-    [variant]="statusFiltro == 4 ? null : 'ghost-text'"
+    [variant]="statusFiltro == 4 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(4)"
   />

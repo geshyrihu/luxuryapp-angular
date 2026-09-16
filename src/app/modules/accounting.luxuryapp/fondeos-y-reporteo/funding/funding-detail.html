@@ -50,7 +50,7 @@
           iconClass="material-symbols-light:undo"
           severity="secondary"
           size="sm"
-          variant="ghost-text"
+          variant="text"
           (clicked)="onUnvalidate()"
         />
         } @if (isVerified() && !isAuthorized() && (isRolAdministrador() ||
@@ -108,7 +108,7 @@
               tooltipPosition="bottom"
               severity="success"
               size="sm"
-              variant="ghost-text"
+              variant="text"
               (clicked)="onDownloadFileExcel()"
             />
             @if (canEdit()) {
@@ -126,7 +126,7 @@
               tooltipPosition="bottom"
               severity="warn"
               size="sm"
-              variant="ghost-text"
+              variant="text"
               (clicked)="onDownloadAllSolicitudesPago()"
             />
             }
@@ -136,7 +136,7 @@
               tooltipPosition="bottom"
               severity="danger"
               size="sm"
-              variant="ghost-text"
+              variant="text"
               (clicked)="onOpenUploadModal()"
               [disabled]="!canEdit()"
             />
@@ -280,7 +280,7 @@
         >
         <iw-button
           iconClass="material-symbols-light:folder"
-          variant="ghost-text"
+          variant="text"
           severity="secondary"
           size="sm"
           lxTooltip="Archivos del Grupo"
@@ -474,7 +474,7 @@
               <!-- Start Solo lo ve el contador -->
               <iw-button
                 iconClass="material-symbols-light:wallet"
-                variant="ghost-text"
+                variant="text"
                 severity="success"
                 size="sm"
                 ngbTooltip="Gestionar Pagos"
@@ -483,7 +483,7 @@
               <!-- Start Solo lo ve el contador -->
               <iw-button
                 iconClass="material-symbols-light:edit"
-                variant="ghost-text"
+                variant="text"
                 severity="info"
                 size="sm"
                 ngbTooltip="Editar Orden"

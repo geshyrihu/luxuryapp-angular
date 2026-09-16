@@ -107,7 +107,7 @@
             @if (item.operationType === 'Update') {
             <iw-button
               iconClass="material-symbols-light:chevron-right"
-              variant="ghost-text"
+              variant="text"
               size="sm"
               (clicked)="toggleExpand(item)"
               [customClass]="item.expanded ? 'rotate-90' : ''"
@@ -221,7 +221,7 @@
           } @if (item.operationType === 'Update') {
           <il-button
             label="Ver cambios"
-            variant="ghost-text"
+            variant="text"
             size="sm"
             (clicked)="toggleExpand(item)"
             [customClass]="'mt-1'"

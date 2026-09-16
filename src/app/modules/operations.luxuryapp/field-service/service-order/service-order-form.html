@@ -56,7 +56,7 @@
             <il-button
               [label]="opt.label"
               [severity]="form.controls.status.value === opt.value ? 'primary' : 'secondary'"
-              [variant]="form.controls.status.value === opt.value ? 'solid' : 'ghost'"
+              [variant]="form.controls.status.value === opt.value ? 'solid' : 'soft'"
               size="small"
               (clicked)="form.controls.status.setValue(opt.value)"
             />
@@ -82,7 +82,7 @@
             <il-button
               [label]="opt.label"
               [severity]="form.controls.typeMaintance.value === opt.value ? 'primary' : 'secondary'"
-              [variant]="form.controls.typeMaintance.value === opt.value ? 'solid' : 'ghost'"
+              [variant]="form.controls.typeMaintance.value === opt.value ? 'solid' : 'soft'"
               size="small"
               (clicked)="form.controls.typeMaintance.setValue(opt.value)"
             />

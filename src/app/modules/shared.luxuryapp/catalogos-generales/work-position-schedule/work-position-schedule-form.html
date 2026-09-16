@@ -90,7 +90,7 @@
             <iw-button
               icon="material-symbols-light:content-copy"
               size="sm"
-              variant="ghost"
+              variant="soft"
               severity="secondary"
               (clicked)="copiarDeSemanaAnterior(semana)"
               title="Copiar de Semana {{ semana - 1 }}"
@@ -121,7 +121,7 @@
                 <iw-button
                   icon="material-symbols-light:content-copy"
                   size="sm"
-                  variant="ghost"
+                  variant="soft"
                   severity="secondary"
                   (clicked)="copiarDelDiaAnterior(semana, day.dw)"
                   title="Copiar de {{ days.find(d => d.dw === (day.dw === 0 ? 6 : day.dw - 1))?.label }}"

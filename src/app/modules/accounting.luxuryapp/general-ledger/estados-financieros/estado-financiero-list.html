@@ -67,7 +67,7 @@
           </div>
           <iw-button
             iconClass="material-symbols-light:download"
-            variant="ghost-text"
+            variant="text"
             severity="secondary"
             ngbTooltip="Descargar"
             (clicked)="viewPdf(item.nameFileEstadoFinanciero,'Informe Financiero')"
@@ -75,7 +75,7 @@
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
           <iw-button
             iconClass="material-symbols-light:replay"
-            variant="ghost-text"
+            variant="text"
             severity="warn"
             ngbTooltip="Actualizar Informe"
             [loading]="isProcessingUpload(item.id)"
@@ -108,7 +108,7 @@
           @if (item.personWhoSend === "") {
           <iw-button
             iconClass="material-symbols-light:replay"
-            variant="ghost-text"
+            variant="text"
             severity="warn"
             ngbTooltip="Deshacer autorización"
             [loading]="isProcessingDesauthorize(item.id)"

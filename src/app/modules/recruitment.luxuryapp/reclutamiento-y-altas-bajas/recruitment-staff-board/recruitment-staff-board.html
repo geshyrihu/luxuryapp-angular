@@ -514,7 +514,7 @@
       iconClass="material-symbols-light:apartment"
       [label]="'Puestos (' + inactivePositions().length + ')'"
       [severity]="inactivosTab() === 'positions' ? 'primary' : 'secondary'"
-      [variant]="inactivosTab() === 'positions' ? 'solid' : 'ghost'"
+      [variant]="inactivosTab() === 'positions' ? 'solid' : 'soft'"
       size="small"
       (clicked)="inactivosTab.set('positions')"
     />
@@ -522,7 +522,7 @@
       iconClass="material-symbols-light:person"
       [label]="'Colaboradores (' + inactiveEmployees().length + ')'"
       [severity]="inactivosTab() === 'employees' ? 'primary' : 'secondary'"
-      [variant]="inactivosTab() === 'employees' ? 'solid' : 'ghost'"
+      [variant]="inactivosTab() === 'employees' ? 'solid' : 'soft'"
       size="small"
       (clicked)="inactivosTab.set('employees')"
     />

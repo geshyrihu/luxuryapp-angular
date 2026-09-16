@@ -87,7 +87,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 <ili-button variant="outline" label="Outline" expand="block" />
                 <ili-button variant="text" label="Text" expand="block" />
                 <ili-button variant="danger" label="Danger" expand="block" />
-                <ili-button variant="ghost" label="Ghost" expand="block" />
+                <ili-button variant="soft" label="Ghost" expand="block" />
               </div>
             </div>
 

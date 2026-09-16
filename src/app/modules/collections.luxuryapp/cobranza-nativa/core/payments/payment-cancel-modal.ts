@@ -50,7 +50,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         <il-button
           label="Cerrar"
           iconClass="material-symbols-light:close"
-          variant="ghost-text"
+          variant="text"
           severity="secondary"
           (clicked)="onClose()"
         />

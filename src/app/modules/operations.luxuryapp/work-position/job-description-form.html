@@ -21,7 +21,7 @@
         <il-button
           label="Criticar con IA"
           iconClass="material-symbols-light:psychology"
-          variant="ghost"
+          variant="soft"
           severity="ai"
           (clicked)="analyzeDescription()"
           [loading]="analyzingDescription()"
@@ -30,7 +30,7 @@
         <il-button
           label="Generar con IA"
           iconClass="material-symbols-light:auto-awesome-motion"
-          variant="ghost"
+          variant="soft"
           severity="ai"
           (clicked)="openInstructionsDialog()"
           [loading]="generatingProposal()"
@@ -132,7 +132,7 @@
           <il-button
             label="Cancelar"
             iconClass="material-symbols-light:close"
-            variant="ghost"
+            variant="soft"
             severity="secondary"
             (clicked)="showInstructionsDialog.set(false)"
           />

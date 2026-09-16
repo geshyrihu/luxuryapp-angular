@@ -80,7 +80,7 @@
           @for (inv of item.invoices; track inv.pdfFile) {
           <iw-button
             iconClass="material-symbols-light:picture-as-pdf"
-            variant="ghost-text"
+            variant="text"
             size="sm"
             (clicked)="viewPdf(inv.pdfFile, inv.factura || item.provider)"
             [lxTooltip]="inv.factura || 'Ver factura'"
@@ -149,7 +149,7 @@
           @for (inv of item.invoices; track inv.pdfFile) {
           <iw-button
             iconClass="material-symbols-light:picture-as-pdf"
-            variant="ghost-text"
+            variant="text"
             size="sm"
             (clicked)="viewPdf(inv.pdfFile, inv.factura || item.provider)"
             [lxTooltip]="inv.factura || 'Ver factura'"
