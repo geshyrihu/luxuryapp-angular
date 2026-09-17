@@ -16,7 +16,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxToast } from "@ui/adaptive/toast/toast";
 import { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { MessageService } from "@core/services/message.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -680,4 +680,3 @@ export class OrgChart {
     });
   }
 }
-

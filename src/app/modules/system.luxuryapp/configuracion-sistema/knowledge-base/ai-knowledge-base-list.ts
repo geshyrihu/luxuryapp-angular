@@ -8,13 +8,13 @@ import {
   signal,
 } from "@angular/core";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -55,12 +55,12 @@ import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ConfirmationService, DialogService],
+  providers: [DialogService],
 })
 export class AiKnowledgeBaseList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  confirmationService = inject(ConfirmationService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<AiKnowledgeBaseDto[]>([]);
 
@@ -90,21 +90,19 @@ export class AiKnowledgeBaseList implements OnInit {
   }
 
   async onDelete(id: string) {
-    this.confirmationService.confirm({
-      message: "¿Estás seguro de que quieres eliminar este registro?",
-      header: "Confirmar",
-      icon: "material-symbols-light:warning",
-      accept: async () => {
-        const success = await this.apiResponseS.onDelete(
-          Endpoints.AiKnowledgeBase.delete(id),
-        );
-        if (success) {
-          this.dataSignal.update((currentData) =>
-            currentData.filter((item) => item.id !== id),
-          );
-        }
-      },
-    });
+    const ok = await this.confirmS.confirm(
+      "¿Estás seguro de que quieres eliminar este registro?",
+      "Confirmar",
+    );
+    if (!ok) return;
+    const success = await this.apiResponseS.onDelete(
+      Endpoints.AiKnowledgeBase.delete(id),
+    );
+    if (success) {
+      this.dataSignal.update((currentData) =>
+        currentData.filter((item) => item.id !== id),
+      );
+    }
   }
 
   onModalForm(data: any) {
@@ -122,4 +120,3 @@ export class AiKnowledgeBaseList implements OnInit {
       });
   }
 }
-

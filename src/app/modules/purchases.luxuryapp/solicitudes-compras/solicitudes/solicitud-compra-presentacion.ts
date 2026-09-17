@@ -5,7 +5,6 @@ import {
   effect,
   inject,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { LxCarousel } from "@ui/adaptive/carousel/carousel";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -24,7 +23,6 @@ import { SwalService } from "@core/services/swal.service";
 import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
@@ -172,7 +170,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
   ],
 })
 export class SolicitudCompraPresentacion {
-  @ViewChild("presentationCarousel") presentationCarousel?: Carousel;
 
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
@@ -635,4 +632,3 @@ export class SolicitudCompraPresentacion {
     this.currentPage.set(nextPage);
   }
 }
-

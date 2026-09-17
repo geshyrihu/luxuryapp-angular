@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { MessageService } from "@core/services/message.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

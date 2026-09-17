@@ -12,7 +12,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     <div class="row">
       <!-- -- Layouts de Página --------------------------------------- -->
       <div class="col-12">
-        <p-card header="Layouts de Página é Patrones ERP">
+        <div class="card"><div class="card-header fw-semibold">Layouts de Página - Patrones ERP</div><div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los 5 layouts base del ERP. Cada uno resuelve una clase distinta de
             tarea operativa. Selecciona el layout segón la
@@ -64,7 +64,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
               </div>
             }
           </div>
-        </p-card>
+        </div></div>
       </div>
 
       <!-- -- Templates de mockup -------------------------------------- -->
@@ -87,7 +87,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
       <!-- -- Form Layouts --------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Form Layouts é Organización de Campos">
+        <div class="card"><div class="card-header fw-semibold">Form Layouts - Organización de Campos</div><div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Elige la densidad del formulario segón el contexto: mís columnas =
             mís densidad pero mayor riesgo de errores de captura. En mobile
@@ -223,12 +223,12 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
               </div>
             </div>
           </div>
-        </p-card>
+        </div></div>
       </div>
 
       <!-- -- Dashboard Grid ------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Dashboard Grid é Composición esténdar ERP">
+        <div class="card"><div class="card-header fw-semibold">Dashboard Grid - Composición estándar ERP</div><div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Patrón de dashboard para módulos analóticos. Combina KPIs, gróficas
             y listados en una sola vista de alto nivel.
@@ -381,12 +381,12 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
               </div>
             </div>
           </div>
-        </p-card>
+        </div></div>
       </div>
 
       <!-- -- Reglas de Layout ---------------------------------------- -->
       <div class="col-12">
-        <p-card header="Reglas Generales de Layout ERP">
+        <div class="card"><div class="card-header fw-semibold">Reglas Generales de Layout ERP</div><div class="card-body">
           <div class="row">
             @for (r of layoutRules; track r.titulo) {
               <div class="col-12 col-md-6 col-xl-4">
@@ -410,7 +410,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
               </div>
             }
           </div>
-        </p-card>
+        </div></div>
       </div>
     </div>
   `,

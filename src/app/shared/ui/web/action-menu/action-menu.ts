@@ -1,47 +1,44 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { addIcons } from "ionicons";
-import { ellipsisVertical } from "ionicons/icons";
-import { ButtonModule } from "primeng/button";
-import { Popover, PopoverModule } from "primeng/popover";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  TemplateRef,
+  ViewContainerRef,
+  ViewEncapsulation,
+  inject,
+  viewChild,
+} from "@angular/core";
+import { Overlay, OverlayRef } from "@angular/cdk/overlay";
+import { TemplatePortal } from "@angular/cdk/portal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
-/**
- * 🍔 ACTION MENU
- * -------------------------------------------------------------------------
- * Menú contextual — usa p-popover (PrimeNG) para web Y mobile.
- *
- * Razón: ng-content dentro del ng-template de ion-popover no funciona con
- * Angular content projection (lazy rendering vs. proyección en creación).
- * p-popover con appendTo="body" resuelve correctamente en ambas plataformas.
- *
- * El popover se cierra automáticamente 60ms después de cualquier clic interno,
- * dejando tiempo para que SweetAlert / AlertController abra encima.
- */
+/** Web action menu rendered in a CDK overlay. */
 @Component({
   selector: "app-action-menu",
-  imports: [PopoverModule, ButtonModule, AppIcon],
+  imports: [AppIcon],
   template: `
-    <!-- ✅ p-popover para web Y mobile — ng-content funciona correctamente -->
     <div class="action-menu">
       <button
-        pButton
+        #actionMenuButton
         type="button"
-        class="rounded-lg p-button-text p-button-icon-only action-menu-button"
-        (click)="popover.toggle($event)"
+        class="rounded-lg action-menu-button"
+        (click)="toggle()"
+        [attr.aria-expanded]="isOpen"
         aria-label="Opciones"
       >
         <app-icon icon="material-symbols-light:more-vert" class="text-xl" />
       </button>
 
-      <p-popover #popover appendTo="body" styleClass="action-menu-popover">
-        <!-- 60ms: handler del botón hijo se ejecuta antes del hide -->
-        <div class="menu-container" (click)="closeMenu(popover)">
+      <ng-template #panelTpl>
+        <div class="menu-container" (click)="closeMenu()">
           <ng-content></ng-content>
         </div>
-      </p-popover>
+      </ng-template>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   styles: [
     `
       .menu-container {
@@ -51,11 +48,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         padding: 0.375rem;
         min-width: 180px;
       }
-      .menu-container ::ng-deep button {
+      .menu-container button {
         width: 100%;
         justify-content: flex-start;
       }
-      /* Mobile: items más grandes para touch */
       @media (max-width: 767px) {
         .menu-container {
           min-width: 200px;
@@ -67,12 +63,77 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   ],
 })
 export class ActionMenu {
-  constructor() {
-    addIcons({ ellipsisVertical });
+  private overlay = inject(Overlay);
+  private vcr = inject(ViewContainerRef);
+  private trigger = viewChild.required<ElementRef<HTMLElement>>("actionMenuButton");
+  private panelTpl = viewChild.required<TemplateRef<unknown>>("panelTpl");
+  private overlayRef?: OverlayRef;
+
+  get isOpen(): boolean {
+    return !!this.overlayRef;
   }
 
-  closeMenu(popover: Popover): void {
-    setTimeout(() => popover?.hide(), 60);
+  constructor() {
+    inject(DestroyRef).onDestroy(() => this.dispose());
+  }
+
+  toggle(): void {
+    if (this.overlayRef) {
+      this.close();
+    } else {
+      this.openPanel();
+    }
+  }
+
+  closeMenu(): void {
+    setTimeout(() => this.close(), 60);
+  }
+
+  close(): void {
+    this.dispose();
+  }
+
+  private openPanel(): void {
+    const positionStrategy = this.overlay
+      .position()
+      .flexibleConnectedTo(this.trigger())
+      .withFlexibleDimensions(false)
+      .withPush(true)
+      .withViewportMargin(8)
+      .withPositions([
+        {
+          originX: "end",
+          originY: "bottom",
+          overlayX: "end",
+          overlayY: "top",
+          offsetY: 4,
+        },
+        {
+          originX: "start",
+          originY: "bottom",
+          overlayX: "start",
+          overlayY: "top",
+          offsetY: 4,
+        },
+      ]);
+
+    this.overlayRef = this.overlay.create({
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.close(),
+      hasBackdrop: true,
+      backdropClass: "cdk-overlay-transparent-backdrop",
+    });
+    this.overlayRef.backdropClick().subscribe(() => this.close());
+    this.overlayRef.keydownEvents().subscribe((event) => {
+      if (event.key === "Escape") {
+        this.close();
+      }
+    });
+    this.overlayRef.attach(new TemplatePortal(this.panelTpl(), this.vcr));
+  }
+
+  private dispose(): void {
+    this.overlayRef?.dispose();
+    this.overlayRef = undefined;
   }
 }
-

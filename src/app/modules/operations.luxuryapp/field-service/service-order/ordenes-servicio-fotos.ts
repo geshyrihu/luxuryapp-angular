@@ -7,10 +7,6 @@ import {
 } from "@angular/core";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { AppImage } from "@ui/web/image/image";
-import {
-  ConfirmationService,
-  MessageService,
-} from "@ui/web/primeng-api/primeng-api";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -23,7 +19,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
   imports: [AppIcon, WebButtonLabelDelete, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService],
 })
 export class OrdenesServicioFotos implements OnInit {
   private readonly config = inject(DynamicDialogConfig);
@@ -66,4 +61,3 @@ export class OrdenesServicioFotos implements OnInit {
     await this.onLoadData();
   }
 }
-

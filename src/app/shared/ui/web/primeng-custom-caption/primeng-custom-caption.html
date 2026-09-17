@@ -6,9 +6,7 @@
   >
     @if (showSearch() || isDataView()) {
     <div class="flex-shrink-0" style="max-width: 260px">
-      <custom-search-input-signal
-        (searchChange)="dt().filterGlobal($event, 'contains')"
-      />
+      <custom-search-input-signal (searchChange)="onSearch($event)" />
     </div>
     } @if (showAdd() && rolAuth()) {
     <div class="flex-shrink-0">
@@ -23,9 +21,7 @@
     <!-- Campo de búsqueda -->
     @if (showSearch() || isDataView()) {
     <div class="flex-flex-grow-1-1">
-      <custom-search-input-signal
-        (searchChange)="dt().filterGlobal($event, 'contains')"
-      />
+      <custom-search-input-signal (searchChange)="onSearch($event)" />
     </div>
     }
 

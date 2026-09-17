@@ -47,7 +47,7 @@ import {
   TaskImageReorderPayload,
   TaskResponsible,
   TaskResponsibleAddPayload,
-} from "../task-shared/interfaces/task-refactor.interface";
+} from "../shared/interfaces/task-refactor.interface";
 
 interface ITaskMessageForm {
   id: FormControl<string>;

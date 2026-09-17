@@ -10,7 +10,6 @@ import { Router, RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -48,7 +47,6 @@ export interface PivotRowMovimientos {
     AppSortableColumn,
     AppSorticon,
     AppFrozenColumn,
-    SharedModule,
     PrimeNgCustomCaption,
     DataViewMobile,
     MobileListItem,

@@ -35,7 +35,6 @@ import { filter } from "rxjs/operators";
 import { AppToast } from "@ui/web/toast/toast";
 import { LxScrollTop } from "@ui/adaptive/tap-to-top/tap-to-top";
 // 🛠️ Servicios esenciales (nivel App, no de sesión)
-import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
 import { MessagingService } from "@core/services/notification-messaging.service";
 import { UpdateService } from "@core/services/update-pwa.service";
@@ -47,7 +46,6 @@ import { TitleService } from "./core/services/title.service";
     RouterOutlet,
     LxScrollTop,
     AppToast,
-    ConfirmDialogModule,
     // WhatsNew,
     // AiChatWidget,
   ],
@@ -188,4 +186,3 @@ export class App implements OnInit {
     });
   }
 }
-

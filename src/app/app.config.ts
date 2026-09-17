@@ -47,10 +47,7 @@ import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
-import {
-  ConfirmationService,
-  MessageService as PrimeMessageService,
-} from "primeng/api";
+import { MessageService as PrimeMessageService } from "primeng/api";
 import { MessageService } from "@core/services/message.service";
 import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 // Importaciones de Archivos del Proyecto
@@ -149,7 +146,6 @@ export const appConfig: ApplicationConfig = {
     // --- Servicios Singleton Globales ---
     MessageService,
     { provide: PrimeMessageService, useExisting: MessageService },
-    ConfirmationService,
     DatePipe,
     MessagingService,
 

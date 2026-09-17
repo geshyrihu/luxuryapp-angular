@@ -7,7 +7,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { Menubar } from "@ui/web/menubar/menubar";
-import { MenuItem } from "@ui/web/primeng-api/primeng-api";
+import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { filter, map, startWith } from "rxjs/operators";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { FilterRequests } from "@recruitment.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests";

@@ -24,7 +24,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       </button>
       <div ngbDropdownMenu>
         @for (item of model() ?? []; track $index) {
-          <button ngbDropdownItem type="button" [disabled]="item.disabled" (click)="item.command && item.command({ originalEvent: $event, item })">
+          <button ngbDropdownItem type="button" [class]="item.class" [disabled]="item.disabled" (click)="item.command && item.command({ originalEvent: $event, item })">
             @if (item.icon) {
               <app-icon [icon]="item.icon" class="me-2" />
             }
@@ -38,4 +38,3 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSplitButton extends SplitButtonBase {}
-

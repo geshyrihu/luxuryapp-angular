@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, viewChild } from "@angular/core";
 import { MenuBase } from "@ui/base/menu.base";
 import { MobileMenu } from "@ui/mobile/menu/menu";
 import { AppMenu } from "@ui/web/menu/menu";
@@ -14,7 +14,7 @@ import { PlatformService } from "@core/services/platform.service";
         ><ng-content
       /></ili-menu>
     } @else {
-      <app-menu [model]="model()" [popup]="popup()" [styleClass]="styleClass()"
+      <app-menu #webMenu [model]="model()" [popup]="popup()" [styleClass]="styleClass()"
         ><ng-content
       /></app-menu>
     }
@@ -22,5 +22,9 @@ import { PlatformService } from "@core/services/platform.service";
 })
 export class LxMenu extends MenuBase {
   protected platform = inject(PlatformService);
-}
+  private webMenuRef = viewChild<AppMenu>("webMenu");
 
+  toggle(): void {
+    this.webMenuRef()?.toggle();
+  }
+}

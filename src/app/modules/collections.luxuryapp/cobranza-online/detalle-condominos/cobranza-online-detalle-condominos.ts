@@ -10,12 +10,10 @@ import { FormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { SelectButtonModule } from "primeng/selectbutton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
@@ -41,10 +39,8 @@ type ClasificacionOption =
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    SharedModule,
     LxTag,
     AppIcon,
-    SelectButtonModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
@@ -179,4 +175,3 @@ export class CobranzaOnlineDetalleCondominos {
     return `${((value / total) * 100).toFixed(1)}%`;
   }
 }
-

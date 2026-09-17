@@ -9,7 +9,6 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
@@ -41,14 +40,12 @@ import { GroupedAccountingCatalogDTO } from "./interfaces/grouped-accounting-cat
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService],
 })
 export class AccountingCatalog {
   // Servicios
   customerIdService = inject(CustomerIdService);
   dialogHandlerService = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
-  confirmationService = inject(ConfirmationService);
   // excelService = inject(AccountingCatalogExcelService); // Inject the service
 
   // Seóales
@@ -147,4 +144,3 @@ export class AccountingCatalog {
     */
   }
 }
-

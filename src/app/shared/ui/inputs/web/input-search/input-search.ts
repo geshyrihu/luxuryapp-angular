@@ -18,7 +18,7 @@ import { AppIcon } from "../../../shared/app-icon/app-icon";
       </span>
 
       <input
-        class="input text-xs"
+        class="input input-sm"
         type="text"
         (input)="onInput($event)"
         [placeholder]="placeholder()"

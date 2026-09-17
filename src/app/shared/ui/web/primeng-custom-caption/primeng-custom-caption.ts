@@ -57,8 +57,17 @@ export class PrimeNgCustomCaption {
     this.add.emit(data);
   }
 
-  onSearch(event: any) {
-    const value = event.target.value;
+  /**
+   * Recibe el término ya resuelto por `custom-search-input-signal`
+   * (`string`), lo publica por `(search)` y además lo aplica al filtro
+   * global de la tabla para los consumidores client-side.
+   *
+   * Antes este método esperaba un `Event` nativo, pero el input se
+   * reemplazó por `custom-search-input-signal`: el output `search` quedó
+   * sin emitir y las tablas server-side (`[lazy]="true"`) nunca se
+   * enteraban del término.
+   */
+  onSearch(value: string) {
     this.search.emit(value);
     const table = this.dt();
     if (table) {

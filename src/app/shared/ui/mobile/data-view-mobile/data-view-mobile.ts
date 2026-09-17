@@ -87,6 +87,12 @@ export class DataViewMobile implements OnInit {
   isGrouped = input<boolean>(false);
   groupedData = input<any>(undefined);
   enablePagination = input<boolean>(false);
+  /**
+   * Cuando es `true`, el filtrado lo resuelve el servidor: se emite
+   * `(search)` y `filteredData` deja de filtrar en cliente.
+   * Se usa en tablas `app-table` con `[lazy]="true"`.
+   */
+  serverSideFilter = input<boolean>(false);
 
   // <--- Children --->
   listItemTemplate = contentChild<TemplateRef<any>>("listItemTemplate");
@@ -97,6 +103,8 @@ export class DataViewMobile implements OnInit {
   // <--- Outputs --->
   add = output<any>();
   nextPage = output<any>();
+  /** Término de búsqueda. El consumidor decide si filtra en servidor. */
+  search = output<string>();
 
   // <--- State --->
   filterValue = signal<string>("");
@@ -176,6 +184,7 @@ export class DataViewMobile implements OnInit {
 
   applyFilter(val: string) {
     this.filterValue.set(val);
+    this.search.emit(val);
     const table = this.dt();
     if (table) {
       try {
@@ -188,6 +197,8 @@ export class DataViewMobile implements OnInit {
 
   filteredData = computed(() => {
     const data = this.data() || [];
+    if (this.serverSideFilter()) return data;
+
     const filterFields = this.globalFilterFields();
     const filterVal = this.filterValue();
 

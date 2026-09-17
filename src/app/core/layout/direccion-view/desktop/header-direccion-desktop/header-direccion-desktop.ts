@@ -6,8 +6,8 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
+import { toSignal } from "@angular/core/rxjs-interop";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -16,10 +16,10 @@ import {
   RouterModule,
 } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
-import type { MenuItem } from "primeng/api";
-import { SelectModule } from "primeng/select";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import { filter, map, startWith } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -32,10 +32,10 @@ import { Profiledesktop } from "../../../employee-view/desktop/profile-desktop/p
   selector: "app-header-direccion-desktop",
   imports: [
     Breadcrumbs,
+    CustomInputSelectSignal,
     FormsModule,
     Profiledesktop,
     RouterModule,
-    SelectModule,
     AppToolbar,
     LxTooltipDirective,
     WebButtonIcon,
@@ -99,4 +99,3 @@ export class HeaderDirecciondesktop implements OnInit {
   selectCustomer = (newId: string) =>
     this.customerIdS.setCustomerId(newId).subscribe();
 }
-

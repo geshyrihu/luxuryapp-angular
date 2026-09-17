@@ -7,11 +7,11 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppDivider } from "@ui/web/divider/divider";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
+import { Tabs } from "@ui/web/tabs/tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
@@ -28,13 +28,13 @@ const PATTERNS_LABELS: Record<string, string> = {
   selector: "app-catalog-patterns-item",
   imports: [
     FormsModule,
-    ButtonModule,
+    WebButtonLabel,
     AppDivider,
-    InputTextModule,
+    CustomInputTextSignal,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TabsModule,
+    Tabs,
     AppIcon,
     StatusBadge,
   ],
@@ -101,24 +101,20 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <div class="text-center mb-3">
                   <h3 class="m-0">LuxuryApp</h3>
                 </div>
-                <input
-                  pInputText
+                <custom-input-text-signal
                   [(ngModel)]="email"
                   placeholder="admin@luxuryapp.com"
+                  [onlyInput]="true"
                   class="w-full mb-2"
                 />
-                <input
-                  pInputText
+                <custom-input-text-signal
                   type="password"
                   [(ngModel)]="password"
-                  placeholder="Contraseóa"
+                  placeholder="Contraseña"
+                  [onlyInput]="true"
                   class="w-full mb-2"
                 />
-                <p-button
-                  label="Iniciar Sesión"
-                  class="w-full"
-                  class="w-full"
-                />
+                <il-button label="Iniciar Sesión" class="w-full" />
               </div>
             </div>
           </div>
@@ -129,16 +125,16 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="card-title">Navegación de Referencia</h3>
             </div>
             <div class="card-body">
-              <p-tabs value="0">
-                <p-tablist>
-                  <p-tab value="0">Dashboard</p-tab>
-                  <p-tab value="1">Reportes</p-tab>
-                </p-tablist>
-                <p-tabpanels>
-                  <p-tabpanel value="0"><p>Contenido Dashboard.</p></p-tabpanel>
-                  <p-tabpanel value="1"><p>Reportes.</p></p-tabpanel>
-                </p-tabpanels>
-              </p-tabs>
+              <app-tabs
+                [tabs]="[
+                  { id: '0', label: 'Dashboard' },
+                  { id: '1', label: 'Reportes' }
+                ]"
+                [(activeId)]="patternsTabActiveId"
+              >
+                <div tab="0"><p>Contenido Dashboard.</p></div>
+                <div tab="1"><p>Reportes.</p></div>
+              </app-tabs>
             </div>
           </div>
         }
@@ -318,6 +314,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 export class CatalogPatternsItem {
   private route = inject(ActivatedRoute);
   item = signal("");
+  patternsTabActiveId = signal("0");
   get label(): string {
     return PATTERNS_LABELS[this.item()] ?? this.item();
   }

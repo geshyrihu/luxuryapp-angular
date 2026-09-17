@@ -18,7 +18,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -59,7 +58,6 @@ export class PresentacionJuntaComiteContador {
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
-  confirmationService = inject(ConfirmationService);
   customerIdS = inject(CustomerIdService);
   customToastS = inject(CustomToastService);
   dateS = inject(DateService);
@@ -219,4 +217,3 @@ export interface PresentacionJuntaComiteDTO {
   enviadoComite: boolean;
   idAnterior: number;
 }
-

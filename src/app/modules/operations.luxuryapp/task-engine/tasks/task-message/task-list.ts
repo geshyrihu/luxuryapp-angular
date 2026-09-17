@@ -27,6 +27,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -34,7 +35,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
@@ -79,10 +79,12 @@ import { TaskProgram } from "../task-program";
 import { TaskReadList } from "../task-read-list";
 import { TaskReopen } from "../task-reopen";
 import { TaskStatus } from "../task-status/task-status";
-import { ITaskResultDTO } from "./interfaces/task-message.dto";
+import { ITaskMessageDTO, ITaskResultDTO } from "./interfaces/task-message.dto";
 import { TaskForm } from "./task-form";
+import { TaskPhotosViewer } from "./task-photos-viewer/task-photos-viewer";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonIcon } from "@ui/buttons/mobile-icon/button";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -134,6 +136,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
+    MobileButtonIcon,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
     AppSortableColumn,
@@ -143,8 +146,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     TaskStatus,
     CustomInputSelectSignal,
     WebButtonLabel,
+    WebButtonIcon,
     AppAvatar,
-    AppImage,
     CustomInputToggleSwitch,
     FormsModule,
     ReactiveFormsModule,
@@ -400,22 +403,65 @@ export class TaskList implements OnInit {
     this.onLoadData(true);
   }
 
-  loadDataLazy(event: any) {
-    const rows = event.rows || this.pageSize() || 30;
-    const first = event.first || 0;
+  onLazyLoad(event: {
+    first: number;
+    rows: number;
+    sortField: string | null;
+    sortOrder: 1 | -1;
+  }) {
+    const rows = event?.rows || this.pageSize() || 30;
+    const first = event?.first ?? 0;
 
     this.page.set(Math.floor(first / rows) + 1);
     this.pageSize.set(rows);
-    this.sortField.set(event.sortField || "");
-    this.sortOrder.set(event.sortOrder || 1);
-    this.searchTerm.set(event.globalFilter || this.searchTerm());
+
+    // El filtro de texto se maneja con (search): no se sobreescribe aquí
+    // para no borrar el filtro por responsable al cambiar de página.
+    if (event?.sortField) {
+      this.sortField.set(event.sortField);
+      this.sortOrder.set(event.sortOrder ?? 1);
+    }
+
     this.onLoadData();
   }
 
-  onResponsibleChange(item: any) {
-    this.assigneeControl.setValue(item, { emitEvent: false });
-    this.searchTerm.set(item);
+  onSearch(term: string) {
+    this.searchTerm.set(term ?? "");
+    this.onLoadData(true);
+  }
+
+  onResponsibleChange(event: any) {
+    const value = event && typeof event === "object" ? event.value : event;
+    const selected = (this.cb_assignee ?? []).find(
+      (option) => String(option.value) === String(value ?? ""),
+    );
+
+    this.assigneeControl.setValue(value ?? null, { emitEvent: false });
+    this.searchTerm.set(value ? (selected?.label ?? "") : "");
     this.onLoadDataOffLoading();
+  }
+
+  onViewPhotos(item: ITaskMessageDTO) {
+    this.dialogHandlerS.openDialog(
+      TaskPhotosViewer,
+      {
+        taskId: item.id,
+        beforeWork: item.beforeWork,
+        afterWork: item.afterWork,
+        mode: "before-after",
+      },
+      "Fotos Antes / Después",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
+  onViewAdditionalImages(item: ITaskMessageDTO) {
+    this.dialogHandlerS.openDialog(
+      TaskPhotosViewer,
+      { taskId: item.id, mode: "additional" },
+      "Imágenes adicionales",
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   onModalForm(data: any) {

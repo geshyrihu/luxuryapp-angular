@@ -37,7 +37,7 @@ import {
   TaskFollowUpEvidenceImage,
   TaskFollowUpItem,
   TaskImageReorderPayload,
-} from "../task-shared/interfaces/task-refactor.interface";
+} from "../shared/interfaces/task-refactor.interface";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;

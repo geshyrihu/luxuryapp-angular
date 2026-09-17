@@ -8,18 +8,6 @@ export interface UIDictionaryItem {
 
 export const UI_DICTIONARY: UIDictionaryItem[] = [
   {
-    "selector": "[lxAnimateOnScroll]",
-    "className": "LxAnimateOnScroll",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/animate-on-scroll/animate-on-scroll.ts"
-  },
-  {
-    "selector": "[lxStyleClass]",
-    "className": "LxStyleClass",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/style-class/style-class.ts"
-  },
-  {
     "selector": "[lxTooltip]",
     "className": "LxTooltipDirective",
     "category": "adaptive",
@@ -56,18 +44,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/badge/badge.ts"
   },
   {
-    "selector": "lx-block-ui",
-    "className": "LxBlockUI",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/block-ui/block-ui.ts"
-  },
-  {
-    "selector": "lx-bottom-nav",
-    "className": "LxBottomNav",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/bottom-nav/bottom-nav.ts"
-  },
-  {
     "selector": "lx-breadcrumbs",
     "className": "LxBreadcrumbs",
     "category": "adaptive",
@@ -86,12 +62,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/carousel/carousel.ts"
   },
   {
-    "selector": "lx-cascade-select",
-    "className": "LxCascadeSelect",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/cascade-select/cascade-select.ts"
-  },
-  {
     "selector": "lx-checkbox",
     "className": "LxCheckbox",
     "category": "adaptive",
@@ -104,64 +74,22 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/chip/chip.ts"
   },
   {
-    "selector": "lx-color-picker",
-    "className": "LxColorPicker",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/color-picker/color-picker.ts"
-  },
-  {
-    "selector": "lx-comment-thread",
-    "className": "LxCommentThread",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/comment-thread/comment-thread.ts"
-  },
-  {
     "selector": "lx-confirm-dialog",
     "className": "LxConfirmDialog",
     "category": "adaptive",
     "path": "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts"
   },
   {
-    "selector": "lx-confirm-popup",
-    "className": "LxConfirmPopup",
+    "selector": "lx-debug-console",
+    "className": "LxDebugConsole",
     "category": "adaptive",
-    "path": "shared/ui/adaptive/confirm-popup/confirm-popup.ts"
-  },
-  {
-    "selector": "lx-contact-card",
-    "className": "LxContactCard",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/contact-card/contact-card.ts"
-  },
-  {
-    "selector": "lx-context-menu",
-    "className": "LxContextMenu",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/context-menu/context-menu.ts"
-  },
-  {
-    "selector": "lx-data-view",
-    "className": "LxDataView",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/data-view/data-view.ts"
-  },
-  {
-    "selector": "lx-date-range",
-    "className": "LxDateRange",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/date-range/date-range.ts"
+    "path": "shared/ui/adaptive/debug-console/debug-console.ts"
   },
   {
     "selector": "lx-divider",
     "className": "LxDivider",
     "category": "adaptive",
     "path": "shared/ui/adaptive/divider/divider.ts"
-  },
-  {
-    "selector": "lx-dock",
-    "className": "LxDock",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/dock/dock.ts"
   },
   {
     "selector": "lx-editor",
@@ -188,28 +116,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/file-upload/file-upload.ts"
   },
   {
-    "selector": "lx-fluid",
-    "className": "LxFluid",
+    "selector": "lx-icon",
+    "className": "LxIcon",
     "category": "adaptive",
-    "path": "shared/ui/adaptive/fluid/fluid.ts"
-  },
-  {
-    "selector": "lx-gallery",
-    "className": "LxGallery",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/gallery/gallery.ts"
-  },
-  {
-    "selector": "lx-global-error-alert",
-    "className": "LxGlobalErrorAlert",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/global-error-alert/global-error-alert.ts"
-  },
-  {
-    "selector": "lx-iconfield",
-    "className": "LxIconField",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/iconfield/iconfield.ts"
+    "path": "shared/ui/adaptive/icon/icon.ts"
   },
   {
     "selector": "lx-image",
@@ -224,36 +134,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts"
   },
   {
-    "selector": "lx-inplace",
-    "className": "LxInplace",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/inplace/inplace.ts"
-  },
-  {
-    "selector": "lx-input-group",
-    "className": "LxInputGroup",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/input-group/input-group.ts"
-  },
-  {
-    "selector": "lx-inputicon",
-    "className": "LxInputIcon",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/inputicon/inputicon.ts"
-  },
-  {
-    "selector": "lx-knob",
-    "className": "LxKnob",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/knob/knob.ts"
-  },
-  {
-    "selector": "lx-lang-selector",
-    "className": "LxLangSelector",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/lang-selector/lang-selector.ts"
-  },
-  {
     "selector": "lx-listbox",
     "className": "LxListbox",
     "category": "adaptive",
@@ -264,12 +144,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "LxLoader",
     "category": "adaptive",
     "path": "shared/ui/adaptive/loader/loader.ts"
-  },
-  {
-    "selector": "lx-mega-menu",
-    "className": "LxMegaMenu",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/mega-menu/mega-menu.ts"
   },
   {
     "selector": "lx-menu",
@@ -290,12 +164,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/message/message.ts"
   },
   {
-    "selector": "lx-meter-group",
-    "className": "LxMeterGroup",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/meter-group/meter-group.ts"
-  },
-  {
     "selector": "lx-modal",
     "className": "LxModal",
     "category": "adaptive",
@@ -308,34 +176,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/multi-select/multi-select.ts"
   },
   {
-    "selector": "lx-notification-center",
-    "className": "LxNotificationCenter",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/notification-center/notification-center.ts"
-  },
-  {
     "selector": "lx-offline-indicator",
     "className": "LxOfflineIndicator",
     "category": "adaptive",
     "path": "shared/ui/adaptive/offline-indicator/offline-indicator.ts"
-  },
-  {
-    "selector": "lx-order-list",
-    "className": "LxOrderList",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/order-list/order-list.ts"
-  },
-  {
-    "selector": "lx-org-chart",
-    "className": "LxOrgChart",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/org-chart/org-chart.ts"
-  },
-  {
-    "selector": "lx-otp-input",
-    "className": "LxOtpInput",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/otp-input/otp-input.ts"
   },
   {
     "selector": "lx-paginator",
@@ -350,28 +194,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/panel/panel.ts"
   },
   {
-    "selector": "lx-panel-menu",
-    "className": "LxPanelMenu",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/panel-menu/panel-menu.ts"
-  },
-  {
-    "selector": "lx-pick-list",
-    "className": "LxPickList",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/pick-list/pick-list.ts"
-  },
-  {
     "selector": "lx-popover",
     "className": "LxPopover",
     "category": "adaptive",
     "path": "shared/ui/adaptive/popover/popover.ts"
   },
   {
-    "selector": "lx-profile-card",
-    "className": "LxProfileCard",
+    "selector": "lx-processing-overlay",
+    "className": "LxProcessingOverlay",
     "category": "adaptive",
-    "path": "shared/ui/adaptive/profile-card/profile-card.ts"
+    "path": "shared/ui/adaptive/processing-overlay/processing-overlay.ts"
   },
   {
     "selector": "lx-progress-bar",
@@ -414,12 +246,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "LxSkeleton",
     "category": "adaptive",
     "path": "shared/ui/adaptive/skeleton/skeleton.ts"
-  },
-  {
-    "selector": "lx-slider",
-    "className": "LxSlider",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/slider/slider.ts"
   },
   {
     "selector": "lx-spinner",
@@ -476,24 +302,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/tag/tag.ts"
   },
   {
-    "selector": "lx-tag-input",
-    "className": "LxTagInput",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tag-input/tag-input.ts"
-  },
-  {
-    "selector": "lx-terminal",
-    "className": "LxTerminal",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/terminal/terminal.ts"
-  },
-  {
-    "selector": "lx-theme-switcher",
-    "className": "LxThemeSwitcher",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/theme-switcher/theme-switcher.ts"
-  },
-  {
     "selector": "lx-timeline",
     "className": "LxTimeline",
     "category": "adaptive",
@@ -518,28 +326,22 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/tree/tree.ts"
   },
   {
-    "selector": "lx-tree-select",
-    "className": "LxTreeSelect",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tree-select/tree-select.ts"
-  },
-  {
-    "selector": "lx-tree-table",
-    "className": "LxTreeTable",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tree-table/tree-table.ts"
-  },
-  {
-    "selector": "lx-virtual-scroller",
-    "className": "LxVirtualScroller",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/virtual-scroller/virtual-scroller.ts"
-  },
-  {
     "selector": "app-ai-chat-widget",
     "className": "AiChatWidget",
     "category": "ai-chat-widget",
     "path": "shared/ui/ai-chat-widget/ai-chat-widget.ts"
+  },
+  {
+    "selector": "[step]",
+    "className": "StepperStepSection",
+    "category": "base",
+    "path": "shared/ui/base/stepper-step-section.directive.ts"
+  },
+  {
+    "selector": "base-processing-overlay",
+    "className": "ProcessingOverlayBase",
+    "category": "base",
+    "path": "shared/ui/base/processing-overlay.base.ts"
   },
   {
     "selector": "ii-button",
@@ -648,6 +450,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "WebButtonLabelEdit",
     "category": "buttons",
     "path": "shared/ui/buttons/web-label/button-edit.ts"
+  },
+  {
+    "selector": "il-button-group",
+    "className": "IlButtonGroup",
+    "category": "buttons",
+    "path": "shared/ui/buttons/button-group/button-group.ts"
   },
   {
     "selector": "il-button-item",
@@ -914,6 +722,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/web/custom-input-decimal-signal.ts"
   },
   {
+    "selector": "custom-input-email",
+    "className": "InputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-email/input-email.ts"
+  },
+  {
     "selector": "custom-input-file-signal",
     "className": "InputFile",
     "category": "inputs",
@@ -950,12 +764,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/adaptive/input-multiselect/input-multiselect.ts"
   },
   {
-    "selector": "custom-input-ng-select",
-    "className": "InputNgSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-ng-select/input-ng-select.ts"
-  },
-  {
     "selector": "custom-input-number-signal",
     "className": "InputNumber",
     "category": "inputs",
@@ -990,12 +798,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "InputSelectBool",
     "category": "inputs",
     "path": "shared/ui/inputs/adaptive/input-select-bool/input-select-bool.ts"
-  },
-  {
-    "selector": "custom-input-select-signal-prefix",
-    "className": "InputSelectPrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-select-prefix/input-select-prefix.ts"
   },
   {
     "selector": "custom-input-switch-signal",
@@ -1074,6 +876,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "IonInputDatepicker",
     "category": "inputs",
     "path": "shared/ui/inputs/mobile/ion-input-datepicker.ts"
+  },
+  {
+    "selector": "ion-input-email",
+    "className": "IonInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-email.ts"
   },
   {
     "selector": "ion-input-file",
@@ -1208,6 +1016,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/web/custom-input-datepicker-signal.ts"
   },
   {
+    "selector": "web-custom-input-email",
+    "className": "CustomInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/custom-input-email-signal.ts"
+  },
+  {
     "selector": "web-custom-input-img-signal",
     "className": "CustomInputImg",
     "category": "inputs",
@@ -1226,22 +1040,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/web/custom-input-month-signal.ts"
   },
   {
-    "selector": "web-custom-input-ng-select",
-    "className": "CustomInputNgSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-ng-select-signal.ts"
-  },
-  {
     "selector": "web-custom-input-phone-prefix",
     "className": "CustomInputPhonePrefix",
     "category": "inputs",
     "path": "shared/ui/inputs/web/custom-input-phone-prefix.ts"
-  },
-  {
-    "selector": "web-custom-input-select-signal-prefix",
-    "className": "CustomInputSelectPrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-select-prefix-signal.ts"
   },
   {
     "selector": "web-custom-input-url",
@@ -1286,6 +1088,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/web/input-datepicker/input-datepicker.ts"
   },
   {
+    "selector": "web-input-email",
+    "className": "WebInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-email/input-email.ts"
+  },
+  {
     "selector": "web-input-file",
     "className": "WebInputFile",
     "category": "inputs",
@@ -1314,12 +1122,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "WebInputMultiselect",
     "category": "inputs",
     "path": "shared/ui/inputs/web/input-multiselect/input-multiselect.ts"
-  },
-  {
-    "selector": "web-input-ng-select",
-    "className": "WebInputNgSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-ng-select/input-ng-select.ts"
   },
   {
     "selector": "web-input-number",
@@ -1358,12 +1160,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/inputs/web/input-select-bool/input-select-bool.ts"
   },
   {
-    "selector": "web-input-select-prefix",
-    "className": "WebInputSelectPrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-select-prefix/input-select-prefix.ts"
-  },
-  {
     "selector": "web-input-text",
     "className": "WebInputText",
     "category": "inputs",
@@ -1398,18 +1194,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "WebInputUrl",
     "category": "inputs",
     "path": "shared/ui/inputs/web/input-url/input-url.ts"
-  },
-  {
-    "selector": "[iliAnimateOnScroll]",
-    "className": "MobileAnimateOnScroll",
-    "category": "mobile",
-    "path": "shared/ui/mobile/animate-on-scroll/animate-on-scroll.ts"
-  },
-  {
-    "selector": "[iliStyleClass]",
-    "className": "MobileStyleClass",
-    "category": "mobile",
-    "path": "shared/ui/mobile/style-class/style-class.ts"
   },
   {
     "selector": "app-data-view-mobile",
@@ -1448,12 +1232,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/badge/badge.ts"
   },
   {
-    "selector": "ili-block-ui",
-    "className": "MobileBlockUI",
-    "category": "mobile",
-    "path": "shared/ui/mobile/block-ui/block-ui.ts"
-  },
-  {
     "selector": "ili-bottom-nav",
     "className": "MobileBottomNav",
     "category": "mobile",
@@ -1478,12 +1256,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/carousel/carousel.ts"
   },
   {
-    "selector": "ili-cascade-select",
-    "className": "MobileCascadeSelect",
-    "category": "mobile",
-    "path": "shared/ui/mobile/cascade-select/cascade-select.ts"
-  },
-  {
     "selector": "ili-checkbox",
     "className": "IliCheckbox",
     "category": "mobile",
@@ -1496,58 +1268,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/chip/chip.ts"
   },
   {
-    "selector": "ili-color-picker",
-    "className": "MobileColorPicker",
-    "category": "mobile",
-    "path": "shared/ui/mobile/color-picker/color-picker.ts"
-  },
-  {
-    "selector": "ili-comment-thread",
-    "className": "MobileCommentThread",
-    "category": "mobile",
-    "path": "shared/ui/mobile/comment-thread/comment-thread.ts"
-  },
-  {
     "selector": "ili-confirm-dialog",
     "className": "MobileConfirmDialog",
     "category": "mobile",
     "path": "shared/ui/mobile/confirm-dialog/confirm-dialog.ts"
   },
   {
-    "selector": "ili-confirm-popup",
-    "className": "MobileConfirmPopup",
-    "category": "mobile",
-    "path": "shared/ui/mobile/confirm-popup/confirm-popup.ts"
-  },
-  {
-    "selector": "ili-contact-card",
-    "className": "MobileContactCard",
-    "category": "mobile",
-    "path": "shared/ui/mobile/contact-card/contact-card.ts"
-  },
-  {
-    "selector": "ili-context-menu",
-    "className": "MobileContextMenu",
-    "category": "mobile",
-    "path": "shared/ui/mobile/context-menu/context-menu.ts"
-  },
-  {
-    "selector": "ili-date-range",
-    "className": "MobileDateRange",
-    "category": "mobile",
-    "path": "shared/ui/mobile/date-range/date-range.ts"
-  },
-  {
     "selector": "ili-divider",
     "className": "IliDivider",
     "category": "mobile",
     "path": "shared/ui/mobile/divider/divider.ts"
-  },
-  {
-    "selector": "ili-dock",
-    "className": "MobileDock",
-    "category": "mobile",
-    "path": "shared/ui/mobile/dock/dock.ts"
   },
   {
     "selector": "ili-editor",
@@ -1574,28 +1304,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/file-upload/file-upload.ts"
   },
   {
-    "selector": "ili-fluid",
-    "className": "MobileFluid",
+    "selector": "ili-icon",
+    "className": "AppIconMobile",
     "category": "mobile",
-    "path": "shared/ui/mobile/fluid/fluid.ts"
-  },
-  {
-    "selector": "ili-gallery",
-    "className": "MobileGallery",
-    "category": "mobile",
-    "path": "shared/ui/mobile/gallery/gallery.ts"
-  },
-  {
-    "selector": "ili-global-error-alert",
-    "className": "MobileGlobalErrorAlert",
-    "category": "mobile",
-    "path": "shared/ui/mobile/global-error-alert/global-error-alert.ts"
-  },
-  {
-    "selector": "ili-iconfield",
-    "className": "MobileIconField",
-    "category": "mobile",
-    "path": "shared/ui/mobile/iconfield/iconfield.ts"
+    "path": "shared/ui/mobile/app-icon/app-icon.ts"
   },
   {
     "selector": "ili-image",
@@ -1608,36 +1320,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "MobileInfiniteScroll",
     "category": "mobile",
     "path": "shared/ui/mobile/infinite-scroll/infinite-scroll.ts"
-  },
-  {
-    "selector": "ili-inplace",
-    "className": "MobileInplace",
-    "category": "mobile",
-    "path": "shared/ui/mobile/inplace/inplace.ts"
-  },
-  {
-    "selector": "ili-input-group",
-    "className": "MobileInputGroup",
-    "category": "mobile",
-    "path": "shared/ui/mobile/input-group/input-group.ts"
-  },
-  {
-    "selector": "ili-inputicon",
-    "className": "MobileInputIcon",
-    "category": "mobile",
-    "path": "shared/ui/mobile/inputicon/inputicon.ts"
-  },
-  {
-    "selector": "ili-knob",
-    "className": "MobileKnob",
-    "category": "mobile",
-    "path": "shared/ui/mobile/knob/knob.ts"
-  },
-  {
-    "selector": "ili-lang-selector",
-    "className": "MobileLangSelector",
-    "category": "mobile",
-    "path": "shared/ui/mobile/lang-selector/lang-selector.ts"
   },
   {
     "selector": "ili-list-item",
@@ -1658,12 +1340,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/loader/mobile-loader.ts"
   },
   {
-    "selector": "ili-mega-menu",
-    "className": "MobileMegaMenu",
-    "category": "mobile",
-    "path": "shared/ui/mobile/mega-menu/mega-menu.ts"
-  },
-  {
     "selector": "ili-menu",
     "className": "MobileMenu",
     "category": "mobile",
@@ -1682,12 +1358,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/message/message.ts"
   },
   {
-    "selector": "ili-meter-group",
-    "className": "MobileMeterGroup",
-    "category": "mobile",
-    "path": "shared/ui/mobile/meter-group/meter-group.ts"
-  },
-  {
     "selector": "ili-modal",
     "className": "MobileModal",
     "category": "mobile",
@@ -1700,34 +1370,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/multi-select/multi-select.ts"
   },
   {
-    "selector": "ili-notification-center",
-    "className": "MobileNotificationCenter",
-    "category": "mobile",
-    "path": "shared/ui/mobile/notification-center/notification-center.ts"
-  },
-  {
     "selector": "ili-offline-indicator",
     "className": "MobileOfflineIndicator",
     "category": "mobile",
     "path": "shared/ui/mobile/offline-indicator/offline-indicator.ts"
-  },
-  {
-    "selector": "ili-order-list",
-    "className": "MobileOrderList",
-    "category": "mobile",
-    "path": "shared/ui/mobile/order-list/order-list.ts"
-  },
-  {
-    "selector": "ili-org-chart",
-    "className": "MobileOrgChart",
-    "category": "mobile",
-    "path": "shared/ui/mobile/org-chart/org-chart.ts"
-  },
-  {
-    "selector": "ili-otp-input",
-    "className": "MobileOtpInput",
-    "category": "mobile",
-    "path": "shared/ui/mobile/otp-input/otp-input.ts"
   },
   {
     "selector": "ili-page",
@@ -1748,28 +1394,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/panel/panel.ts"
   },
   {
-    "selector": "ili-panel-menu",
-    "className": "MobilePanelMenu",
-    "category": "mobile",
-    "path": "shared/ui/mobile/panel-menu/panel-menu.ts"
-  },
-  {
-    "selector": "ili-pick-list",
-    "className": "MobilePickList",
-    "category": "mobile",
-    "path": "shared/ui/mobile/pick-list/pick-list.ts"
-  },
-  {
     "selector": "ili-popover",
     "className": "MobilePopover",
     "category": "mobile",
     "path": "shared/ui/mobile/popover/popover.ts"
   },
   {
-    "selector": "ili-profile-card",
-    "className": "MobileProfileCard",
+    "selector": "ili-processing-overlay",
+    "className": "MobileProcessingOverlay",
     "category": "mobile",
-    "path": "shared/ui/mobile/profile-card/profile-card.ts"
+    "path": "shared/ui/mobile/processing-overlay/processing-overlay.ts"
   },
   {
     "selector": "ili-progress-bar",
@@ -1806,18 +1440,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "MobileSkeleton",
     "category": "mobile",
     "path": "shared/ui/mobile/skeleton/skeleton.ts"
-  },
-  {
-    "selector": "ili-skeleton-presets",
-    "className": "MobileSkeletonPresets",
-    "category": "mobile",
-    "path": "shared/ui/mobile/skeleton-presets/skeleton-presets.ts"
-  },
-  {
-    "selector": "ili-slider",
-    "className": "MobileSlider",
-    "category": "mobile",
-    "path": "shared/ui/mobile/slider/slider.ts"
   },
   {
     "selector": "ili-spinner",
@@ -1874,28 +1496,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/tag/tag.ts"
   },
   {
-    "selector": "ili-tag-input",
-    "className": "MobileTagInput",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tag-input/tag-input.ts"
-  },
-  {
     "selector": "ili-tap-to-top",
     "className": "MobileTapToTop",
     "category": "mobile",
     "path": "shared/ui/mobile/tap-to-top/tap-to-top.ts"
-  },
-  {
-    "selector": "ili-terminal",
-    "className": "MobileTerminal",
-    "category": "mobile",
-    "path": "shared/ui/mobile/terminal/terminal.ts"
-  },
-  {
-    "selector": "ili-theme-switcher",
-    "className": "MobileThemeSwitcher",
-    "category": "mobile",
-    "path": "shared/ui/mobile/theme-switcher/theme-switcher.ts"
   },
   {
     "selector": "ili-timeline",
@@ -1928,24 +1532,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/mobile/tree/tree.ts"
   },
   {
-    "selector": "ili-tree-select",
-    "className": "MobileTreeSelect",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tree-select/tree-select.ts"
-  },
-  {
-    "selector": "ili-tree-table",
-    "className": "MobileTreeTable",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tree-table/tree-table.ts"
-  },
-  {
-    "selector": "ili-virtual-scroller",
-    "className": "MobileVirtualScroller",
-    "category": "mobile",
-    "path": "shared/ui/mobile/virtual-scroller/virtual-scroller.ts"
-  },
-  {
     "selector": "[appFocusTrap]",
     "className": "FocusTrap",
     "category": "shared",
@@ -1976,6 +1562,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/shared/avatar-group/avatar-group.ts"
   },
   {
+    "selector": "app-breakdown-list",
+    "className": "AppBreakdownList",
+    "category": "shared",
+    "path": "shared/ui/shared/breakdown-list/breakdown-list.ts"
+  },
+  {
     "selector": "app-gauge",
     "className": "Gauge",
     "category": "shared",
@@ -1985,7 +1577,7 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "selector": "app-icon",
     "className": "AppIcon",
     "category": "shared",
-    "path": "shared/ui/shared/app-icon/app-icon.component.ts"
+    "path": "shared/ui/shared/app-icon/app-icon.ts"
   },
   {
     "selector": "app-inventory-level",
@@ -2006,10 +1598,22 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/shared/lead-scoring/lead-scoring.ts"
   },
   {
+    "selector": "app-multiple-segmented-control",
+    "className": "MultipleSegmentedControl",
+    "category": "shared",
+    "path": "shared/ui/shared/multiple-segmented-control/multiple-segmented-control.ts"
+  },
+  {
     "selector": "app-order-status",
     "className": "OrderStatus",
     "category": "shared",
     "path": "shared/ui/shared/order-status/order-status.ts"
+  },
+  {
+    "selector": "app-ranked-list",
+    "className": "AppRankedList",
+    "category": "shared",
+    "path": "shared/ui/shared/ranked-list/ranked-list.ts"
   },
   {
     "selector": "app-realtime-indicator",
@@ -2042,22 +1646,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/shared/tristate-switch/tristate-switch.ts"
   },
   {
-    "selector": "[appAnimateOnScroll]",
-    "className": "AppAnimateOnScroll",
+    "selector": "[appSortableColumn]",
+    "className": "AppSortableColumn",
     "category": "web",
-    "path": "shared/ui/web/animate-on-scroll/animate-on-scroll.ts"
-  },
-  {
-    "selector": "[appStyleClass]",
-    "className": "AppStyleClass",
-    "category": "web",
-    "path": "shared/ui/web/style-class/style-class.ts"
-  },
-  {
-    "selector": "app-accordion",
-    "className": "Accordion",
-    "category": "web",
-    "path": "shared/ui/web/accordion/accordion.ts"
+    "path": "shared/ui/web/table/table.ts"
   },
   {
     "selector": "app-action-menu",
@@ -2084,34 +1676,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/badge/badge.ts"
   },
   {
-    "selector": "app-barcode-input",
-    "className": "AppBarcodeInput",
-    "category": "web",
-    "path": "shared/ui/web/barcode-input/barcode-input.ts"
-  },
-  {
-    "selector": "app-barcode-scanner",
-    "className": "AppBarcodeScanner",
-    "category": "web",
-    "path": "shared/ui/web/barcode-scanner/barcode-scanner.ts"
-  },
-  {
     "selector": "app-bitacora-filtro-fecha-form",
     "className": "BitacoraFiltroFechaForm",
     "category": "web",
     "path": "shared/ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form.ts"
-  },
-  {
-    "selector": "app-block-ui",
-    "className": "AppBlockUI",
-    "category": "web",
-    "path": "shared/ui/web/block-ui/block-ui.ts"
-  },
-  {
-    "selector": "app-bottom-nav",
-    "className": "BottomNav",
-    "category": "web",
-    "path": "shared/ui/web/bottom-nav/bottom-nav.ts"
   },
   {
     "selector": "app-breadcrumbs",
@@ -2144,12 +1712,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/carousel/carousel.ts"
   },
   {
-    "selector": "app-cascade-select",
-    "className": "AppCascadeSelect",
-    "category": "web",
-    "path": "shared/ui/web/cascade-select/cascade-select.ts"
-  },
-  {
     "selector": "app-chart-wrapper",
     "className": "ChartWrapper",
     "category": "web",
@@ -2168,24 +1730,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/chip/chip.ts"
   },
   {
-    "selector": "app-color-picker",
-    "className": "AppColorPicker",
-    "category": "web",
-    "path": "shared/ui/web/color-picker/color-picker.ts"
-  },
-  {
-    "selector": "app-command-palette",
-    "className": "CommandPalette",
-    "category": "web",
-    "path": "shared/ui/web/command-palette/command-palette.ts"
-  },
-  {
-    "selector": "app-comment-thread",
-    "className": "AppCommentThread",
-    "category": "web",
-    "path": "shared/ui/web/comment-thread/comment-thread.ts"
-  },
-  {
     "selector": "app-comparison-table",
     "className": "ComparisonTable",
     "category": "web",
@@ -2196,24 +1740,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "ConfirmDialog",
     "category": "web",
     "path": "shared/ui/web/confirm-dialog/confirm-dialog.ts"
-  },
-  {
-    "selector": "app-confirm-popup",
-    "className": "ConfirmPopup",
-    "category": "web",
-    "path": "shared/ui/web/confirm-popup/confirm-popup.ts"
-  },
-  {
-    "selector": "app-contact-card",
-    "className": "AppContactCard",
-    "category": "web",
-    "path": "shared/ui/web/contact-card/contact-card.ts"
-  },
-  {
-    "selector": "app-context-menu",
-    "className": "ContextMenu",
-    "category": "web",
-    "path": "shared/ui/web/context-menu/context-menu.ts"
   },
   {
     "selector": "app-custom-bar-chart",
@@ -2240,18 +1766,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/data-grid/data-grid.ts"
   },
   {
-    "selector": "app-data-view",
-    "className": "DataView",
-    "category": "web",
-    "path": "shared/ui/web/data-view/data-view.ts"
-  },
-  {
-    "selector": "app-date-range",
-    "className": "DateRange",
-    "category": "web",
-    "path": "shared/ui/web/date-range/date-range.ts"
-  },
-  {
     "selector": "app-dialog",
     "className": "Dialog",
     "category": "web",
@@ -2262,12 +1776,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "AppDivider",
     "category": "web",
     "path": "shared/ui/web/divider/divider.ts"
-  },
-  {
-    "selector": "app-dock",
-    "className": "AppDock",
-    "category": "web",
-    "path": "shared/ui/web/dock/dock.ts"
   },
   {
     "selector": "app-document-previewer",
@@ -2282,22 +1790,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/editor/editor.ts"
   },
   {
-    "selector": "app-email-preview",
-    "className": "AppEmailPreview",
-    "category": "web",
-    "path": "shared/ui/web/email-preview/email-preview.ts"
-  },
-  {
     "selector": "app-empty-state",
     "className": "EmptyState",
     "category": "web",
     "path": "shared/ui/web/empty-state/empty-state.ts"
-  },
-  {
-    "selector": "app-error-boundary",
-    "className": "ErrorBoundary",
-    "category": "web",
-    "path": "shared/ui/web/error-boundary/error-boundary.ts"
   },
   {
     "selector": "app-fieldset",
@@ -2312,40 +1808,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/file-upload/file-upload.ts"
   },
   {
-    "selector": "app-fluid",
-    "className": "AppFluid",
-    "category": "web",
-    "path": "shared/ui/web/fluid/fluid.ts"
-  },
-  {
-    "selector": "app-form-builder",
-    "className": "AppFormBuilder",
-    "category": "web",
-    "path": "shared/ui/web/form-builder/form-builder.ts"
-  },
-  {
     "selector": "app-funnel-chart",
     "className": "FunnelChart",
     "category": "web",
     "path": "shared/ui/web/funnel-chart/funnel-chart.ts"
   },
   {
-    "selector": "app-gallery",
-    "className": "Gallery",
-    "category": "web",
-    "path": "shared/ui/web/gallery/gallery.ts"
-  },
-  {
     "selector": "app-gantt",
     "className": "AppGantt",
     "category": "web",
     "path": "shared/ui/web/gantt/gantt.ts"
-  },
-  {
-    "selector": "app-global-error-alert",
-    "className": "GlobalErrorAlert",
-    "category": "web",
-    "path": "shared/ui/web/global-error-alert/global-error-alert.ts"
   },
   {
     "selector": "app-header-customer",
@@ -2358,12 +1830,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "AppHeatmap",
     "category": "web",
     "path": "shared/ui/web/heatmap/heatmap.ts"
-  },
-  {
-    "selector": "app-iconfield",
-    "className": "AppIconField",
-    "category": "web",
-    "path": "shared/ui/web/iconfield/iconfield.ts"
   },
   {
     "selector": "app-image",
@@ -2384,42 +1850,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/infinite-scroll/infinite-scroll.ts"
   },
   {
-    "selector": "app-inplace",
-    "className": "AppInplace",
-    "category": "web",
-    "path": "shared/ui/web/inplace/inplace.ts"
-  },
-  {
-    "selector": "app-input-group",
-    "className": "AppInputGroup",
-    "category": "web",
-    "path": "shared/ui/web/input-group/input-group.ts"
-  },
-  {
-    "selector": "app-inputicon",
-    "className": "AppInputIcon",
-    "category": "web",
-    "path": "shared/ui/web/inputicon/inputicon.ts"
-  },
-  {
-    "selector": "app-kanban-board",
-    "className": "KanbanBoard",
-    "category": "web",
-    "path": "shared/ui/web/kanban-board/kanban-board.ts"
-  },
-  {
-    "selector": "app-knob",
-    "className": "AppKnob",
-    "category": "web",
-    "path": "shared/ui/web/knob/knob.ts"
-  },
-  {
-    "selector": "app-lang-selector",
-    "className": "AppLangSelector",
-    "category": "web",
-    "path": "shared/ui/web/lang-selector/lang-selector.ts"
-  },
-  {
     "selector": "app-listbox",
     "className": "AppListbox",
     "category": "web",
@@ -2430,12 +1860,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "AppLoader",
     "category": "web",
     "path": "shared/ui/web/loader/loader.ts"
-  },
-  {
-    "selector": "app-mega-menu",
-    "className": "MegaMenu",
-    "category": "web",
-    "path": "shared/ui/web/mega-menu/mega-menu.ts"
   },
   {
     "selector": "app-menu",
@@ -2462,10 +1886,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/message/message.ts"
   },
   {
-    "selector": "app-meter-group",
-    "className": "AppMeterGroup",
+    "selector": "app-module-guide",
+    "className": "ModuleGuide",
     "category": "web",
-    "path": "shared/ui/web/meter-group/meter-group.ts"
+    "path": "shared/ui/web/module-guide/module-guide.ts"
   },
   {
     "selector": "app-multi-axis-chart",
@@ -2480,34 +1904,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/multi-select/multi-select.ts"
   },
   {
-    "selector": "app-notification-center",
-    "className": "NotificationCenter",
-    "category": "web",
-    "path": "shared/ui/web/notification-center/notification-center.ts"
-  },
-  {
     "selector": "app-offline-indicator",
     "className": "OfflineIndicator",
     "category": "web",
     "path": "shared/ui/web/offline-indicator/offline-indicator.ts"
-  },
-  {
-    "selector": "app-order-list",
-    "className": "OrderList",
-    "category": "web",
-    "path": "shared/ui/web/order-list/order-list.ts"
-  },
-  {
-    "selector": "app-org-chart",
-    "className": "OrgChart",
-    "category": "web",
-    "path": "shared/ui/web/org-chart/org-chart.ts"
-  },
-  {
-    "selector": "app-otp-input",
-    "className": "AppOtpInput",
-    "category": "web",
-    "path": "shared/ui/web/otp-input/otp-input.ts"
   },
   {
     "selector": "app-paginator",
@@ -2522,34 +1922,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/panel/panel.ts"
   },
   {
-    "selector": "app-panel-menu",
-    "className": "AppPanelMenu",
-    "category": "web",
-    "path": "shared/ui/web/panel-menu/panel-menu.ts"
-  },
-  {
     "selector": "app-pdf-viewer-modal",
     "className": "PdfViewerModal",
     "category": "web",
     "path": "shared/ui/web/pdf-viewer-modal/pdf-viewer-modal.ts"
   },
   {
-    "selector": "app-pick-list",
-    "className": "PickList",
-    "category": "web",
-    "path": "shared/ui/web/pick-list/pick-list.ts"
-  },
-  {
     "selector": "app-pie-chart",
     "className": "PieChart",
     "category": "web",
     "path": "shared/ui/web/charts/pie-chart.ts"
-  },
-  {
-    "selector": "app-pipeline-crm",
-    "className": "AppPipelineCrm",
-    "category": "web",
-    "path": "shared/ui/web/pipeline-crm/pipeline-crm.ts"
   },
   {
     "selector": "app-pivot-table",
@@ -2570,16 +1952,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/charts/primeng-radar-chart.ts"
   },
   {
-    "selector": "app-print-view",
-    "className": "AppPrintView",
+    "selector": "app-processing-overlay",
+    "className": "AppProcessingOverlay",
     "category": "web",
-    "path": "shared/ui/web/print-view/print-view.ts"
-  },
-  {
-    "selector": "app-profile-card",
-    "className": "AppProfileCard",
-    "category": "web",
-    "path": "shared/ui/web/profile-card/profile-card.ts"
+    "path": "shared/ui/web/processing-overlay/processing-overlay.ts"
   },
   {
     "selector": "app-progress-bar",
@@ -2592,12 +1968,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "PullToRefresh",
     "category": "web",
     "path": "shared/ui/web/pull-to-refresh/pull-to-refresh.ts"
-  },
-  {
-    "selector": "app-qr-code",
-    "className": "AppQrCode",
-    "category": "web",
-    "path": "shared/ui/web/qr-code/qr-code.ts"
   },
   {
     "selector": "app-radio-button",
@@ -2618,22 +1988,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/rating/rating.ts"
   },
   {
-    "selector": "app-receipt-scanner",
-    "className": "AppReceiptScanner",
-    "category": "web",
-    "path": "shared/ui/web/receipt-scanner/receipt-scanner.ts"
-  },
-  {
     "selector": "app-report-header",
     "className": "ReportHeader",
     "category": "web",
     "path": "shared/ui/web/report-header/report-header.ts"
-  },
-  {
-    "selector": "app-rich-text-editor",
-    "className": "RichTextEditor",
-    "category": "web",
-    "path": "shared/ui/web/rich-text-editor/rich-text-editor.ts"
   },
   {
     "selector": "app-scroll-top",
@@ -2642,10 +2000,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/tap-to-top/tap-to-top.ts"
   },
   {
-    "selector": "app-session-timeout",
-    "className": "SessionTimeout",
+    "selector": "app-select-button",
+    "className": "AppSelectButton",
     "category": "web",
-    "path": "shared/ui/web/session-timeout/session-timeout.ts"
+    "path": "shared/ui/web/select-button/select-button.ts"
   },
   {
     "selector": "app-sidebar",
@@ -2654,22 +2012,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/sidebar/sidebar.ts"
   },
   {
-    "selector": "app-signature-pad",
-    "className": "AppSignaturePad",
-    "category": "web",
-    "path": "shared/ui/web/signature-pad/signature-pad.ts"
-  },
-  {
     "selector": "app-skeleton",
     "className": "AppSkeleton",
     "category": "web",
     "path": "shared/ui/web/skeleton/skeleton.ts"
-  },
-  {
-    "selector": "app-slider",
-    "className": "AppSlider",
-    "category": "web",
-    "path": "shared/ui/web/slider/slider.ts"
   },
   {
     "selector": "app-spinner",
@@ -2682,12 +2028,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "AppSplitButton",
     "category": "web",
     "path": "shared/ui/web/split-button/split-button.ts"
-  },
-  {
-    "selector": "app-split-pane",
-    "className": "SplitPane",
-    "category": "web",
-    "path": "shared/ui/web/split-pane/split-pane.ts"
   },
   {
     "selector": "app-status-badge",
@@ -2726,34 +2066,28 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/tag/tag.ts"
   },
   {
-    "selector": "app-tag-input",
-    "className": "AppTagInput",
-    "category": "web",
-    "path": "shared/ui/web/tag-input/tag-input.ts"
-  },
-  {
-    "selector": "app-terminal",
-    "className": "AppTerminal",
-    "category": "web",
-    "path": "shared/ui/web/terminal/terminal.ts"
-  },
-  {
     "selector": "app-territory-map",
     "className": "AppTerritoryMap",
     "category": "web",
     "path": "shared/ui/web/territory-map/territory-map.ts"
   },
   {
-    "selector": "app-theme-switcher",
-    "className": "AppThemeSwitcher",
-    "category": "web",
-    "path": "shared/ui/web/theme-switcher/theme-switcher.ts"
-  },
-  {
     "selector": "app-timeline",
     "className": "Timeline",
     "category": "web",
     "path": "shared/ui/web/timeline/timeline.ts"
+  },
+  {
+    "selector": "app-toast",
+    "className": "AppToast",
+    "category": "web",
+    "path": "shared/ui/web/toast/toast.ts"
+  },
+  {
+    "selector": "app-toggle-switch",
+    "className": "AppToggleSwitch",
+    "category": "web",
+    "path": "shared/ui/web/toggle-switch/toggle-switch.ts"
   },
   {
     "selector": "app-toolbar",
@@ -2774,34 +2108,16 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/tree/tree.ts"
   },
   {
-    "selector": "app-tree-select",
-    "className": "AppTreeSelect",
+    "selector": "lx-section-nav",
+    "className": "LxSectionNav",
     "category": "web",
-    "path": "shared/ui/web/tree-select/tree-select.ts"
+    "path": "shared/ui/web/section-nav/section-nav.ts"
   },
   {
-    "selector": "app-tree-table",
-    "className": "TreeTable",
+    "selector": "ng-template[accordionPanel]",
+    "className": "AccordionPanel",
     "category": "web",
-    "path": "shared/ui/web/tree-table/tree-table.ts"
-  },
-  {
-    "selector": "app-virtual-scroller",
-    "className": "AppVirtualScroller",
-    "category": "web",
-    "path": "shared/ui/web/virtual-scroller/virtual-scroller.ts"
-  },
-  {
-    "selector": "app-whats-new",
-    "className": "WhatsNew",
-    "category": "web",
-    "path": "shared/ui/web/whats-new/whats-new.component.ts"
-  },
-  {
-    "selector": "app-wizard",
-    "className": "Wizard",
-    "category": "web",
-    "path": "shared/ui/web/wizard/wizard.ts"
+    "path": "shared/ui/web/accordion/accordion.ts"
   },
   {
     "selector": "page-title-report",
@@ -2846,9 +2162,9 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/primeng-custom-toast/primeng-custom-toast.ts"
   },
   {
-    "selector": "web-skeleton-presets",
-    "className": "WebSkeletonPresets",
+    "selector": "sb-chart-host",
+    "className": "ChartHost",
     "category": "web",
-    "path": "shared/ui/web/skeleton-presets/skeleton-presets.ts"
+    "path": "shared/ui/web/charts/chart-wrapper.stories.ts"
   }
 ];

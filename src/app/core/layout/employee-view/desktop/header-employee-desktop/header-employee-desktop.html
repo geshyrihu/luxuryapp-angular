@@ -121,19 +121,9 @@
   </ng-template>
 </div>
 
-<!-- Modal para Comunicados de IA -->
-<p-dialog
-  header="Generador de Comunicados IA"
-  [visible]="displayAiModal()"
-  (visibleChange)="displayAiModal.set($event)"
-  [modal]="true"
-  [style]="{ width: '800px', 'max-width': '95vw' }"
-  [contentStyle]="{ 'max-height': '80vh', 'overflow-y': 'auto' }"
-  [draggable]="false"
-  [resizable]="false"
-  styleClass="elegant-modal"
->
-  <ng-template #header>
+<!-- Contenido del modal para Comunicados de IA. DialogHandlerService lo proyecta en NgbModal. -->
+<ng-template #aiModalContent let-close="close">
+  <div class="modal-header border-0">
     <div class="d-flex align-items-center gap-3">
       <img
         [src]="customerPhotoPath()"
@@ -157,7 +147,7 @@
         <span class="text-sm text-gray-500">{{ customerName() }}</span>
       </div>
     </div>
-  </ng-template>
+  </div>
 
   <div class="d-flex flex-column gap-4 py-3">
     @if (!aiAnnouncementResult() && !isGeneratingAnnouncement()) {
@@ -423,7 +413,7 @@
     }
   </div>
 
-  <ng-template #footer>
+  <div class="modal-footer">
     <div
       class="d-flex justify-content-end gap-2 w-full border-top-1 border pt-3 mt-2"
     >
@@ -438,7 +428,7 @@
       <il-button
         label="Cerrar"
         icon="material-symbols-light:close"
-        (clicked)="displayAiModal.set(false)"
+        (clicked)="close()"
       />
       } @else {
       <il-button
@@ -446,7 +436,7 @@
         icon="material-symbols-light:close"
         severity="contrast"
         variant="text"
-        (clicked)="displayAiModal.set(false)"
+        (clicked)="close()"
       />
       <il-button
         label="Comunicado (Texto + Emojis)"
@@ -464,5 +454,5 @@
       </p-button> -->
       }
     </div>
-  </ng-template>
-</p-dialog>
+  </div>
+</ng-template>

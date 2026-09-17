@@ -40,47 +40,81 @@
           @if (!scheduleLoaded()) {
             <div class="loading-message">Cargando horario...</div>
           } @else {
-            <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <label for="scheduleName">Nombre del Horario</label>
-                <input id="scheduleName" formControlName="name" type="text" class="form-control" />
-                @if (scheduleForm.controls.name.touched && scheduleForm.controls.name.invalid) {
-                  <div class="error-message">El nombre es requerido.</div>
+            <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" autocomplete="off">
+              <div class="schedule-summary-grid">
+                <label>
+                  Nombre
+                  <input formControlName="name" type="text" class="form-control" />
+                  @if (scheduleForm.controls.name.touched && scheduleForm.controls.name.invalid) {
+                    <span class="error-message">El nombre es requerido.</span>
+                  }
+                </label>
+                <label>
+                  Tipo de Jornada
+                  <select formControlName="tipoJornada" class="form-control">
+                    <option [ngValue]="1">Personalizado</option>
+                    <option [ngValue]="2">Completo</option>
+                    <option [ngValue]="3">Medio Tiempo</option>
+                  </select>
+                </label>
+                <label>
+                  Observaciones
+                  <textarea formControlName="observaciones" rows="2" class="form-control"></textarea>
+                </label>
+                <label class="schedule-active-control">
+                  <input formControlName="isActive" type="checkbox" /> Activo
+                </label>
+              </div>
+
+              @if (scheduleForm.hasError('incompleteWorkDay')) {
+                <div class="error-message" role="alert">
+                  Cada día laborable debe tener entrada y salida, o marcarse como descanso.
+                </div>
+              }
+
+              <div formArrayName="diasDeTrabajo" class="schedule-weeks">
+                @for (week of [1, 2, 3, 4]; track week) {
+                  <section class="schedule-week">
+                    <header class="schedule-week-header">
+                      <strong>Semana {{ week }}</strong>
+                      <span>{{ weeklyHours()[week] || 0 }} Hrs laboradas</span>
+                      @if (week > 1) {
+                        <button type="button" class="btn btn-light btn-sm" (click)="copyPreviousWeek(week)">
+                          Copiar semana anterior
+                        </button>
+                      }
+                    </header>
+
+                    <div class="schedule-days-grid">
+                      @for (day of days; track day.dw) {
+                        @if (findDay(week, day.dw); as dayControl) {
+                          <div class="schedule-day" [formGroupName]="workDays.controls.indexOf(dayControl)">
+                            <div class="schedule-day-header">
+                              @if (day.dw !== 1) {
+                                <button type="button" class="btn btn-link btn-sm" (click)="copyPreviousDay(week, day.dw)" title="Copiar día anterior">⧉</button>
+                              }
+                              <strong>{{ day.label }}</strong>
+                              <label>
+                                <input type="checkbox" formControlName="esDescanso"
+                                  (change)="onRestChange(dayControl, $any($event.target).checked)" />
+                                Descanso
+                              </label>
+                            </div>
+                            <div class="schedule-day-hours">
+                              <label>Entrada <input type="time" formControlName="horaEntrada" /></label>
+                              <label>Salida <input type="time" formControlName="horaSalida" /></label>
+                            </div>
+                            @if (dayHasError(dayControl)) {
+                              <small class="error-message">Captura ambas horas o marca descanso.</small>
+                            }
+                          </div>
+                        }
+                      }
+                    </div>
+                  </section>
                 }
               </div>
-              <div class="form-group">
-                <label for="scheduleActive">Activo</label>
-                <input id="scheduleActive" formControlName="isActive" type="checkbox" class="form-check-input" />
-              </div>
-              <div class="form-group">
-                <label for="scheduleTipoJornada">Tipo de Jornada</label>
-                <select id="scheduleTipoJornada" formControlName="tipoJornada" class="form-control">
-                  <option [ngValue]="1">Personalizado</option>
-                  <option [ngValue]="2">Completo</option>
-                  <option [ngValue]="3">Medio Tiempo</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="scheduleObservaciones">Observaciones</label>
-                <textarea id="scheduleObservaciones" formControlName="observaciones" class="form-control" rows="3"></textarea>
-              </div>
-              <div class="form-group" formArrayName="diasDeTrabajo">
-                <h3>Días de Trabajo</h3>
-                @for (day of workDays.controls; track $index) {
-                  <div class="schedule-day-item" [formGroupName]="$index">
-                    <strong>Día {{ day.controls.diaSemana.value }} - Semana {{ day.controls.numeroSemanaCiclo.value }}</strong>
-                    <label>Descanso <input type="checkbox" formControlName="esDescanso" /></label>
-                    @if (!day.controls.esDescanso.value) {
-                      <div class="schedule-day-hours">
-                        <label>Hora de Entrada <input type="time" formControlName="horaEntrada" /></label>
-                        <label>Hora de Salida <input type="time" formControlName="horaSalida" /></label>
-                      </div>
-                    }
-                  </div>
-                } @empty {
-                  <div class="loading-message">El horario aún no tiene días configurados.</div>
-                }
-              </div>
+
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary" [disabled]="saving()">
                   {{ saving() ? 'Guardando...' : 'Guardar Horario' }}

@@ -17,8 +17,7 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { MenuItem } from "@ui/web/primeng-api/primeng-api";
-import { Menu } from "@ui/web/primeng-menu/primeng-menu";
+import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -95,7 +94,7 @@ export class CalendarioMaestroLista implements OnInit {
     return flat;
   }
 
-  onSelectItem(item: any, menu: Menu, event: any) {
+  onSelectItem(item: any, menu: LxMenu) {
     this.selectedItem.set(item);
     this.menuItems.set([
       {
@@ -116,7 +115,7 @@ export class CalendarioMaestroLista implements OnInit {
         ],
       },
     ]);
-    menu.toggle(event);
+    menu.toggle();
   }
 
   onDatosServicio(data: any) {
@@ -151,4 +150,3 @@ export class CalendarioMaestroLista implements OnInit {
       });
   }
 }
-

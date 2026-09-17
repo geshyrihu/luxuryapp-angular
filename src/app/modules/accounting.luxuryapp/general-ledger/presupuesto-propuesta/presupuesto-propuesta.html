@@ -300,6 +300,14 @@
             />
           </div>
 
+          <div class="flex-grow-1">
+            <app-multiple-segmented-control
+              [items]="firstTwelveMonthsOptions"
+              [value]="selectedMonthsForAvg()"
+              (changed)="selectedMonthsForAvg.set($event)"
+              ariaLabel="Seleccionar meses para promedio"
+            />
+          </div>
         </div>
 
         <!-- Las vistas pertenecen a Propuesta y permanecen visibles antes del buscador. -->
@@ -626,6 +634,27 @@
                 >🗑️</span
               >}
 
+              @if (currentProposal()?.status === 'Borrador' || item.isFinalized) {
+              <span
+                class="pointer me-1 text-sm"
+                (click)="toggleItemFinalized(item)"
+                [lxTooltip]="
+                  item.isFinalized
+                    ? 'Revertir finalización'
+                    : 'Marcar partida como finalizada (lista)'
+                "
+                ><app-icon
+                  [icon]="
+                    item.isFinalized
+                      ? 'material-symbols-light:check-circle'
+                      : 'material-symbols-light:check-circle-outline'
+                  "
+                  [class.text-green-600]="item.isFinalized"
+                />
+                |</span
+              >
+              }
+
               <small class="font-small-gray text-xs numeric-column"
                 >{{ item.accountNumber }}
               </small>
@@ -652,6 +681,21 @@
                 severity="warn"
                 class="text-xs ms-1"
                 lxTooltip="Incremento > 5%"
+              />
+              } @if (item.isFinalized) {
+              <lx-tag
+                [value]="
+                  item.finalizedByUserName
+                    ? 'Listo · ' + item.finalizedByUserName
+                    : 'Listo'
+                "
+                severity="success"
+                class="text-xs ms-1"
+                [lxTooltip]="
+                  item.finalizedAt
+                    ? 'Finalizado el ' + (item.finalizedAt | date: 'short')
+                    : 'Partida finalizada'
+                "
               />
               }
             </div>

@@ -7,7 +7,6 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -28,7 +27,6 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     CurrencyPipe,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
-    TagModule,
     WebButtonIcon,
     LxTooltipDirective,
     AppStatCard,
@@ -86,4 +84,3 @@ export class CommitteeCobranzaWeb {
     return "secondary";
   }
 }
-

@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppDivider } from "@ui/web/divider/divider";
 
 const LAYOUTS_LABELS: Record<string, string> = {
@@ -19,7 +19,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [ButtonModule, AppDivider],
+  imports: [WebButtonLabel, AppDivider],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -32,10 +32,10 @@ const LAYOUTS_LABELS: Record<string, string> = {
         </p>
         <app-divider />
         <div class="d-flex gap-2">
-          <p-button
+          <il-button
             label="Ver todos los Layouts"
-            icon="icon.grid"
-            (click)="
+            iconClass="icon.grid"
+            (clicked)="
               router.navigate(['/', 'settings', 'ui-catalog', 'layouts'])
             "
           />

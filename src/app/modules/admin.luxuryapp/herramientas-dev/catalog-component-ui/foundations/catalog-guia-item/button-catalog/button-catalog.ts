@@ -6,9 +6,9 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
+import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 
 import {
   MobileButtonIconActiveDesactive,
@@ -364,8 +364,8 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    SelectButtonModule,
-    ToggleSwitchModule,
+    AppSelectButton,
+    AppToggleSwitch,
     MobileButtonIconAdd,
     MobileButtonIconEdit,
     MobileButtonIconDelete,
@@ -418,38 +418,34 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Web)</label
             >
-            <p-selectbutton
+            <app-select-button
               [options]="webSizeCtrl"
-              [ngModel]="webSize()"
-              (ngModelChange)="webSize.set($event)"
-              optionLabel="label"
-              optionValue="value"
+              [value]="webSize()"
+              (valueChange)="webSize.set($event)"
             />
           </div>
           <div>
             <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Ionic)</label
             >
-            <p-selectbutton
+            <app-select-button
               [options]="ionicSizeCtrl"
-              [ngModel]="ionicSize()"
-              (ngModelChange)="ionicSize.set($event)"
-              optionLabel="label"
-              optionValue="value"
+              [value]="ionicSize()"
+              (valueChange)="ionicSize.set($event)"
             />
           </div>
           <div class="d-flex align-items-center gap-2">
-            <p-toggleswitch
-              [ngModel]="isDisabled()"
-              (ngModelChange)="isDisabled.set($event)"
+            <app-toggle-switch
+              [checked]="isDisabled()"
+              (checkedChange)="isDisabled.set($event)"
               inputId="btn-dis"
             />
             <label for="btn-dis" class="font-semibold text-sm">Disabled</label>
           </div>
           <div class="d-flex align-items-center gap-2">
-            <p-toggleswitch
-              [ngModel]="isLoading()"
-              (ngModelChange)="isLoading.set($event)"
+            <app-toggle-switch
+              [checked]="isLoading()"
+              (checkedChange)="isLoading.set($event)"
               inputId="btn-load"
             />
             <label for="btn-load" class="font-semibold text-sm">Loading</label>

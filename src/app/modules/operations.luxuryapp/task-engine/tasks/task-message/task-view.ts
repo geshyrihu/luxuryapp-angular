@@ -46,7 +46,7 @@ import {
   TaskFollowUpEvidenceImage,
   TaskFollowUpItem,
   TaskResponsible,
-} from "../task-shared/interfaces/task-refactor.interface";
+} from "../shared/interfaces/task-refactor.interface";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",

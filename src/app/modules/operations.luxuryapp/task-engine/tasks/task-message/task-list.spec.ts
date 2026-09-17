@@ -174,6 +174,74 @@ describe("TaskList", () => {
       "/tickets/weekly-report-preview",
     ]);
   });
+
+  it("onResponsibleChange should keep the assignee id and filter by label", () => {
+    component.cb_assignee = [
+      { value: "", label: "--Mostrar Todos--" },
+      { value: "u1", label: "Juan Perez" },
+    ];
+    vi.spyOn(component, "onLoadDataOffLoading").mockImplementation(() => {});
+
+    component.onResponsibleChange("u1");
+
+    expect(component.assigneeControl.value).toBe("u1");
+    expect(component.searchTerm()).toBe("Juan Perez");
+
+    component.onResponsibleChange("");
+
+    expect(component.searchTerm()).toBe("");
+  });
+
+  it("onLazyLoad should set page and size then reload", () => {
+    const spy = vi.spyOn(component, "onLoadData").mockImplementation(() => {});
+
+    component.onLazyLoad({
+      first: 30,
+      rows: 30,
+      sortField: null,
+      sortOrder: 1,
+    });
+
+    expect(component.page()).toBe(2);
+    expect(component.pageSize()).toBe(30);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("onLazyLoad should apply the sort without touching searchTerm", () => {
+    const spy = vi.spyOn(component, "onLoadData").mockImplementation(() => {});
+    component.searchTerm.set("1202");
+
+    component.onLazyLoad({
+      first: 0,
+      rows: 30,
+      sortField: "daysDifference",
+      sortOrder: -1,
+    });
+
+    expect(component.sortField()).toBe("daysDifference");
+    expect(component.sortOrder()).toBe(-1);
+    expect(component.searchTerm()).toBe("1202");
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("onSearch should set the term and reload from page 1", () => {
+    const spy = vi.spyOn(component, "onLoadData").mockImplementation(() => {});
+
+    component.onSearch("1202");
+
+    expect(component.searchTerm()).toBe("1202");
+    expect(spy).toHaveBeenCalledWith(true);
+  });
+
+  it("onResponsibleChange should accept the mobile payload shape", () => {
+    component.cb_assignee = [{ value: "u2", label: "Ana Lopez" }];
+    vi.spyOn(component, "onLoadDataOffLoading").mockImplementation(() => {});
+
+    component.onResponsibleChange({ value: "u2" });
+
+    expect(component.assigneeControl.value).toBe("u2");
+    expect(component.searchTerm()).toBe("Ana Lopez");
+  });
 });
 
 

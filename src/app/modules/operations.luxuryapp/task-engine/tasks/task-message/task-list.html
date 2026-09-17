@@ -4,7 +4,7 @@
   [paginator]="true"
   [rows]="tablePrimeNgRows"
   [showCurrentPageReport]="true"
-  (onLazyLoad)="loadDataLazy($event)"
+  (onLazyLoad)="onLazyLoad($event)"
   [lazy]="true"
   [loading]="loading()"
   [reorderableRows]="true"
@@ -29,6 +29,7 @@
       <div class="d-flex align-items-center gap-2">
         <primeng-custom-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          (search)="onSearch($event)"
           [dt]="dt"
         />
         <app-task-status (statusChange)="onStatusChange($event)" />
@@ -42,7 +43,7 @@
         <custom-input-select-signal
           [data]="cb_assignee"
           optionLabel="label"
-          optionValue="label"
+          optionValue="value"
           placeholder="Todos"
           label="Responsable"
           [control]="assigneeControl"
@@ -435,24 +436,22 @@
       </td>
 
       <td>
-        <div class="d-flex align-items-center justify-content-center">
-          @if (item.beforeWork) {
-          <app-image
-            [src]="item.beforeWork"
-            alt="Antes"
-            width="40"
-            styleClass="rounded"
-            [preview]="true"
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          <iw-button
+            icon="material-symbols-light:photo-camera"
+            variant="soft"
+            size="small"
+            ariaLabel="Ver fotos antes y después"
+            [disabled]="!item.beforeWork && !item.afterWork"
+            (clicked)="onViewPhotos(item)"
           />
-          } @if (item.afterWork) {
-          <app-image
-            [src]="item.afterWork"
-            alt="Despues"
-            width="40"
-            styleClass="rounded"
-            [preview]="true"
+          <iw-button
+            icon="material-symbols-light:photo-library"
+            variant="soft"
+            size="small"
+            ariaLabel="Ver imágenes adicionales"
+            (clicked)="onViewAdditionalImages(item)"
           />
-          }
         </div>
       </td>
 
@@ -539,7 +538,7 @@
 
   <ng-template #paginatorleft>
     <div class="d-flex align-items-center no-print">
-      En total hay {{ dataSignal().items?.length || 0 }} registros.
+      En total hay {{ totalRecords() }} registros.
     </div>
   </ng-template>
 </app-table>
@@ -550,8 +549,10 @@
   [loading]="loading()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="['title', 'description', 'folio']"
+  [serverSideFilter]="true"
   [dt]="dt"
   [enablePagination]="true"
+  (search)="onSearch($event)"
   (nextPage)="loadNextPage($event)"
 >
   <ng-container customFilters>
@@ -568,7 +569,7 @@
           <ion-input-select
             [data]="cb_assignee"
             optionLabel="label"
-            optionValue="label"
+            optionValue="value"
             placeholder="Todos"
             label="Responsable"
             [control]="assigneeControl"
@@ -751,27 +752,23 @@
           />
         </div>
 
-        <!-- Evidencias (Antes y Después) -->
-        <div class="d-flex gap-2 mt-2">
-          @if (item.beforeWork) {
-          <app-image
-            [src]="item.beforeWork"
-            alt="Antes"
-            width="45"
-            [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
-            [preview]="true"
-            appendTo="body"
+        <!-- Evidencias (Antes y Después + imágenes adicionales) -->
+        <div class="d-flex gap-1 mt-2">
+          <ii-button
+            iconClass="material-symbols-light:photo-camera"
+            variant="ghost"
+            size="small"
+            ariaLabel="Ver fotos antes y después"
+            [disabled]="!item.beforeWork && !item.afterWork"
+            (clicked)="onViewPhotos(item)"
           />
-          } @if (item.afterWork) {
-          <app-image
-            [src]="item.afterWork"
-            alt="Después"
-            width="45"
-            [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
-            [preview]="true"
-            appendTo="body"
+          <ii-button
+            iconClass="material-symbols-light:photo-library"
+            variant="ghost"
+            size="small"
+            ariaLabel="Ver imágenes adicionales"
+            (clicked)="onViewAdditionalImages(item)"
           />
-          }
         </div>
       </div>
     </ili-list-item>

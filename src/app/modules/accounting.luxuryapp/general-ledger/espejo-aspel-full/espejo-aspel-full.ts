@@ -11,7 +11,6 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -37,7 +36,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxSpinner,
     WebButtonLabel,
     CustomSearchInput,
-    SharedModule,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -387,4 +385,3 @@ export class EspejoAspelFull {
     }).format(val);
   }
 }
-

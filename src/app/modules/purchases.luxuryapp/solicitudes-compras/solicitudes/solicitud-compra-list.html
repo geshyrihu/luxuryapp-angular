@@ -106,7 +106,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       @if (isPendingView()) {
-      <td class="text-center">
+      <td class="text-center pointer">
         <app-icon
           [icon]="'material-symbols-light:menu'"
           class="cursor-move text-body-secondary"

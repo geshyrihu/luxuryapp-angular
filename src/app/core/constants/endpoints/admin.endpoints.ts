@@ -103,6 +103,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/seed-recruitment-sources",
     seedDocuments:
       "admin/system-maintenance/seed-documents",
+    seedLegacyWorkPositionSchedules:
+      "admin/system-maintenance/seed-legacy-work-position-schedules",
     migrateUserActivities:
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
     recalculateWorkPositionFolios:

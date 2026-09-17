@@ -15,7 +15,7 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/angular";
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { SubMenuItem } from "@core/interfaces/menu.interface";
@@ -96,4 +96,3 @@ export class HomeMenu {
     this.authS.logout().subscribe();
   }
 }
-

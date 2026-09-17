@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { EndpointsCobranza } from "@core/constants/endpoints/cobranza.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -19,7 +18,7 @@ import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online
 @Component({
   selector: "app-cobranza-online-morosidad-detail-modal",
 
-  imports: [CommonModule, SharedModule, LxTag, NgClass, LxSpinner, AppIcon],
+  imports: [CommonModule, LxTag, NgClass, LxSpinner, AppIcon],
   templateUrl: "./cobranza-online-morosidad-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -111,4 +110,3 @@ export class CobranzaOnlineMorosidadDetailModalComponent implements OnInit {
     }
   }
 }
-

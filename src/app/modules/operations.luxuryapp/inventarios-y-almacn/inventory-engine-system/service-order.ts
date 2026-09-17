@@ -5,7 +5,7 @@ import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -33,7 +33,7 @@ export class ServiceOrder implements OnInit {
   authS = inject(AuthService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
-  public confirmationService = inject(ConfirmationService);
+  confirmS = inject(ConfirmService);
 
   maintenanceCalendars: any[] = [];
   idMachinery: number = 0;
@@ -62,22 +62,12 @@ export class ServiceOrder implements OnInit {
     });
   }
 
-  confirm(event: Event, Id: any) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: "óDesea Eliminar este registro?",
-      icon: "material-symbols-light:warning",
-      accept: () => {
-        //confirm action
-
-        const urlApi = Endpoints.MaintenanceCalendars.delete(Id);
-        this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
-          this.onLoadData();
-        });
-      },
-      reject: () => {
-        //reject action
-      },
+  async confirm(Id: any) {
+    const ok = await this.confirmS.confirm("óDesea Eliminar este registro?");
+    if (!ok) return;
+    const urlApi = Endpoints.MaintenanceCalendars.delete(Id);
+    this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
+      this.onLoadData();
     });
   }
   showModalMaintenanceCalendar(data: any) {

@@ -10,9 +10,8 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { AppDivider } from "@ui/web/divider/divider";
-import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -31,7 +30,6 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
     CommonModule,
     RouterModule,
     FormsModule,
-    InputTextModule,
     AppAvatar,
     AppDivider,
     AppIcon,
@@ -826,7 +824,9 @@ export class Sidebar {
       }
 
       if ((item as MenuItem).items && (item as MenuItem).items!.length > 0) {
-        primeNGItem.items = this.transformMenuItems((item as MenuItem).items!);
+        primeNGItem.items = this.transformMenuItems(
+          (item as MenuItem).items as (MenuItem | SubMenuItem)[],
+        );
       }
       return primeNGItem;
     });
@@ -845,7 +845,9 @@ export class Sidebar {
     if (item) {
       item.expanded = false;
       if (item.items) {
-        item.items.forEach((subItem) => this.resetExpandedState(subItem));
+        (item.items as MenuItem[]).forEach((subItem) =>
+          this.resetExpandedState(subItem),
+        );
       }
     }
   }
@@ -856,7 +858,7 @@ export class Sidebar {
       return true;
     }
     if (item.items) {
-      for (const subItem of item.items) {
+      for (const subItem of item.items as MenuItem[]) {
         if (this.findAndExpandActiveItem(subItem, url)) {
           item.expanded = true;
           return true;
@@ -892,7 +894,7 @@ export class Sidebar {
       const lowerCaseSearchText = this.searchText.toLowerCase();
       this.allMenuItems().forEach((menuItem) => {
         if (menuItem.items && menuItem.items.length > 0) {
-          menuItem.items.forEach((subItem) => {
+          (menuItem.items as MenuItem[]).forEach((subItem) => {
             if (subItem.label?.toLowerCase().includes(lowerCaseSearchText)) {
               this.searchResults.push(subItem as any);
             }
@@ -914,4 +916,3 @@ export class Sidebar {
     }
   }
 }
-

@@ -7,13 +7,11 @@ import {
   signal,
 } from "@angular/core";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import {
-  ConfirmationService,
-  MessageService,
-} from "@ui/web/primeng-api/primeng-api";
+import { MessageService } from "@core/services/message.service";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -54,13 +52,12 @@ import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-a
   ],
   templateUrl: "./admin-vacaciones-balance.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService],
 })
 export class AdminVacacionesBalance {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
-  confirmationService = inject(ConfirmationService);
+  confirmS = inject(ConfirmService);
   messageService = inject(MessageService);
   tableScrollHeightS = inject(TableScrollHeightService);
   loading = signal(true);
@@ -94,35 +91,33 @@ export class AdminVacacionesBalance {
       });
   }
 
-  onRecalculateAll() {
+  async onRecalculateAll() {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
 
-    this.confirmationService.confirm({
-      message:
-        "óEstés seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregiré los días totales de cada empleado segón su antigóedad actual. Esta acción no se puede deshacer.",
-      header: "Confirmación",
-      icon: "material-symbols-light:warning",
-      accept: () => {
-        this.loading.set(true);
-        this.apiResponseS
-          .onPost<boolean>(
-            Endpoints.HR.VacationBalanceAdmin.recalculateAll(customerId),
-            {},
-          )
-          .then((result) => {
-            this.messageService.add({
-              severity: result ? "success" : "warn",
-              summary: result ? "Completado" : "Atención",
-              detail: result
-                ? "Los balances de vacaciones se recalcularon correctamente."
-                : "No se pudo completar el recólculo de balances.",
-            });
-            this.onLoadData(customerId);
-          })
-          .catch(() => this.loading.set(false));
-      },
-    });
+    const ok = await this.confirmS.confirm(
+      "óEstés seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregiré los días totales de cada empleado segón su antigóedad actual. Esta acción no se puede deshacer.",
+      "Confirmación",
+    );
+    if (!ok) return;
+
+    this.loading.set(true);
+    this.apiResponseS
+      .onPost<boolean>(
+        Endpoints.HR.VacationBalanceAdmin.recalculateAll(customerId),
+        {},
+      )
+      .then((result) => {
+        this.messageService.add({
+          severity: result ? "success" : "warn",
+          summary: result ? "Completado" : "Atención",
+          detail: result
+            ? "Los balances de vacaciones se recalcularon correctamente."
+            : "No se pudo completar el recólculo de balances.",
+        });
+        this.onLoadData(customerId);
+      })
+      .catch(() => this.loading.set(false));
   }
 
   getSeverity(isDiscrepant: boolean): string {
@@ -149,4 +144,3 @@ export class AdminVacacionesBalance {
       });
   }
 }
-

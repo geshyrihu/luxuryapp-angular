@@ -1,22 +1,23 @@
 import { Directive } from "@angular/core";
-import { Tooltip } from "primeng/tooltip";
+import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 
 @Directive({
   selector: "[lxTooltip]",
 
   hostDirectives: [
     {
-      directive: Tooltip,
+      directive: NgbTooltip,
       inputs: [
-        "pTooltip: lxTooltip",
-        "tooltipPosition",
-        "tooltipDisabled",
-        "tooltipStyleClass",
-        "tooltipEvent",
-        "tooltipZIndex",
-        "escape",
-        "positionStyle",
-        "fitContent",
+        "ngbTooltip: lxTooltip",
+        "placement: tooltipPosition",
+        "disableTooltip: tooltipDisabled",
+        "tooltipClass: tooltipStyleClass",
+        "triggers: tooltipEvent",
+        "autoClose",
+        "animation",
+        "container",
+        "openDelay",
+        "closeDelay",
       ],
     },
   ],

@@ -16,7 +16,7 @@ import {
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppTag } from "@ui/web/tag/tag";
 import {
   DynamicDialogConfig,
@@ -44,7 +44,7 @@ interface DecisionOption {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
+    WebButtonLabel,
     AppTag,
     AppIcon,
     LxSpinner,
@@ -183,29 +183,20 @@ interface DecisionOption {
 
       <!-- Submit Buttons -->
       <div class="modal-actions">
-        <p-button
+        <il-button
           type="button"
           label="Cancelar"
-          class="p-button-text"
-          (click)="onCancel()"
-        >
-          <ng-template #icon>
-            <app-icon icon="material-symbols-light:close" />
-          </ng-template>
-        </p-button>
-        <p-button
+          variant="text"
+          icon="material-symbols-light:close"
+          (clicked)="onCancel()"
+        />
+        <il-button
           type="submit"
           [label]="isSubmitting() ? 'Guardando...' : 'Guardar Decisión'"
           [disabled]="form.invalid || isSubmitDisabled() || isSubmitting()"
-        >
-          <ng-template #icon>
-            @if (isSubmitting()) {
-              <lx-spinner [size]="16" />
-            } @else {
-              <app-icon icon="material-symbols-light:check" />
-            }
-          </ng-template>
-        </p-button>
+          [loading]="isSubmitting()"
+          icon="material-symbols-light:check"
+        />
       </div>
     </form>
   `,

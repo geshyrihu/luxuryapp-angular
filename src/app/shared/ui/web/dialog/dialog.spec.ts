@@ -3,8 +3,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Dialog } from './dialog';
 import { vi } from 'vitest';
 
-vi.mock('primeng/dialog', () => ({ DialogModule: class {} }));
-
 describe('Dialog', () => {
   let component: Dialog;
   let fixture: ComponentFixture<Dialog>;

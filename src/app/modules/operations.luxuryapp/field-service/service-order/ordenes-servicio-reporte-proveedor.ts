@@ -8,7 +8,6 @@ import {
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -39,7 +38,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 export class OrdenesServicioReporteProveedor {
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
-  messageS = inject(MessageService);
   apiResponseS = inject(ApiResponseService);
   ref = inject(DynamicDialogRef);
   dialogHandlerS = inject(DialogHandlerService);
@@ -86,4 +84,3 @@ export class OrdenesServicioReporteProveedor {
     });
   }
 }
-

@@ -12,7 +12,7 @@ import {
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxTree } from "@ui/adaptive/tree/tree";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { TreeNode } from "@ui/web/primeng-api/primeng-api";
+import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -20,6 +20,7 @@ import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 
 const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
+type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
 
 @Component({
   selector: "app-account-tree-select",
@@ -145,7 +146,7 @@ export class AccountTreeSelect {
   selectedCodes = model<string[]>([]);
 
   loading = signal(false);
-  nodes = signal<TreeNode[]>([]);
+  nodes = signal<TreeNode<AccountTreeData>[]>([]);
   filterText = signal("");
 
   filteredNodes = computed(() => {
@@ -154,11 +155,13 @@ export class AccountTreeSelect {
     return this.filterTree(this.nodes(), text);
   });
 
-  get selectedNodes(): TreeNode[] {
+  get selectedNodes(): TreeNode<AccountTreeData>[] {
     return this.mapCodesToNodes(this.nodes(), this.selectedCodes());
   }
 
-  set selectedNodes(val: TreeNode[] | undefined | null) {
+  set selectedNodes(
+    val: TreeNode<AccountTreeData>[] | undefined | null,
+  ) {
     if (!val) {
       this.selectedCodes.set([]);
       return;
@@ -231,7 +234,7 @@ export class AccountTreeSelect {
     livePreviewState.draggingType.set(null);
   }
 
-  onDragStart(event: DragEvent, node: TreeNode) {
+  onDragStart(event: DragEvent, node: TreeNode<AccountTreeData>) {
     if (!this.isDraggable()) return;
 
     const code = node.data?.code;
@@ -270,7 +273,9 @@ export class AccountTreeSelect {
     }
   }
 
-  private mapToTreeNodes(data: IAccountTreeNode[]): TreeNode[] {
+  private mapToTreeNodes(
+    data: IAccountTreeNode[],
+  ): TreeNode<AccountTreeData>[] {
     return data.map((item) => ({
       label: item.name,
       data: { code: item.code, name: item.name, level: item.level },
@@ -280,11 +285,14 @@ export class AccountTreeSelect {
     }));
   }
 
-  private mapCodesToNodes(nodes: TreeNode[], codes: string[]): TreeNode[] {
-    const result: TreeNode[] = [];
+  private mapCodesToNodes(
+    nodes: TreeNode<AccountTreeData>[],
+    codes: string[],
+  ): TreeNode<AccountTreeData>[] {
+    const result: TreeNode<AccountTreeData>[] = [];
     const codeSet = new Set(codes);
 
-    const traverse = (list: TreeNode[]) => {
+    const traverse = (list: TreeNode<AccountTreeData>[]) => {
       list.forEach((node) => {
         if (codeSet.has(node.data.code)) result.push(node);
         if (node.children) traverse(node.children);
@@ -295,7 +303,10 @@ export class AccountTreeSelect {
     return result;
   }
 
-  private filterTree(nodes: TreeNode[], text: string): TreeNode[] {
+  private filterTree(
+    nodes: TreeNode<AccountTreeData>[],
+    text: string,
+  ): TreeNode<AccountTreeData>[] {
     return nodes
       .map((node) => {
         const match =
@@ -310,7 +321,7 @@ export class AccountTreeSelect {
         }
         return null;
       })
-      .filter((node) => node !== null) as TreeNode[];
+      .filter((node) => node !== null) as TreeNode<AccountTreeData>[];
   }
 
   private isAncestorCode(ancestor: string, descendant: string): boolean {
@@ -339,4 +350,3 @@ export class AccountTreeSelect {
     return "warning";
   }
 }
-

@@ -6,8 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
+import { MessageService } from "@core/services/message.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TokenColor } from "./interfaces/token-color.interface";
 import { TokenGroup } from "./interfaces/token-group.interface";
@@ -18,11 +17,9 @@ import { TokenGroup } from "./interfaces/token-group.interface";
   imports: [
     CommonModule,
     LxTooltipDirective,
-    ToastModule,
     AppIcon,
   ],
   template: `
-    <p-toast position="top-right" />
 
     <!-- -- Material 3 Structural Roles ---------------------------- -->
     <div class="mb-6">

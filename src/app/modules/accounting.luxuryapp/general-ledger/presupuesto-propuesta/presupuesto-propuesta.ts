@@ -28,7 +28,6 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 
 import {
   BudgetProposalDTO,
@@ -101,7 +100,6 @@ import {
   selector: "app-presupuesto-propuesta",
   imports: [
     AppIcon,
-    CheckboxModule,
     CommonModule,
     CustomInputMultiselectSignal,
     CustomInputNumberSignal,
@@ -413,7 +411,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     // this.subscriptions.forEach((sub) => sub.unsubscribe()); // Handled by takeUntilDestroyed
     this.signalRService.leaveProposalGroup(
       this.customerId,
-      this.selectedFiscalYear,
+      this.fiscalYear,
     );
     this.signalRService.stop();
   }
@@ -473,9 +471,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           this.errorMensaje = null;
 
           // Se une al grupo de SignalR para recibir actualizaciones en tiempo real.
+          // El backend emite al grupo con el año de la propuesta (fiscalYear), no con el año base.
           this.signalRService.joinProposalGroup(
             this.customerId,
-            this.selectedFiscalYear,
+            this.fiscalYear,
           );
         } else {
           // Maneja el caso donde no se encuentra una propuesta.
@@ -1291,10 +1290,19 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   readonly months: string[] = this.monthColumns.map((m) => m.name);
 
   /** Opciones para el selector segmentado de los 3 primeros meses (para activar/desactivar). */
-  readonly firstThreeMonthsOptions: SegmentItem[] = [
+  readonly firstTwelveMonthsOptions: SegmentItem[] = [
     { value: "enero", label: "ENE" },
     { value: "febrero", label: "FEB" },
     { value: "marzo", label: "MAR" },
+    { value: "abril", label: "ABR" },
+    { value: "mayo", label: "MAY" },
+    { value: "junio", label: "JUN" },
+    { value: "julio", label: "JUL" },
+    { value: "agosto", label: "AGO" },
+    { value: "septiembre", label: "SEP" },
+    { value: "octubre", label: "OCT" },
+    { value: "noviembre", label: "NOV" },
+    { value: "diciembre", label: "DIC" },
   ];
 
   /** Signal que almacena los meses seleccionados para calcular el promedio. */
@@ -1640,6 +1648,66 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           .finally(() => this.loading.set(false));
       }
     });
+  }
+
+  /**
+   * Marca o revierte la finalización de una partida (analizada y lista).
+   * No bloquea la edición: solo registra el estado y quién lo finalizó.
+   */
+  toggleItemFinalized(item: BudgetProposalItemDTO): void {
+    if (this.currentProposal()?.status !== "Borrador") {
+      return;
+    }
+
+    const nextValue = !item.isFinalized;
+
+    this.loading.set(true);
+    this.apiResponseS
+      .onPut<BudgetProposalItemDTO>(
+        Endpoints.BudgetingProposal.finalizeItem(item.id),
+        { isFinalized: nextValue },
+      )
+      .then((response) => {
+        if (response) {
+          this.patchItemInState(response);
+          this.customToastService.showSuccess(
+            nextValue ? "Partida finalizada" : "Finalización revertida",
+            item.accountName,
+          );
+        }
+      })
+      .catch(() => {
+        this.customToastService.showError(
+          "Error",
+          "No se pudo actualizar la finalización de la partida.",
+        );
+      })
+      .finally(() => this.loading.set(false));
+  }
+
+  /**
+   * Aplica una partida actualizada al estado local (lista maestra y copia original).
+   */
+  private patchItemInState(updated: BudgetProposalItemDTO): void {
+    this.allProposalItems.update((items) => {
+      const index = items.findIndex((i) => i.id === updated.id);
+      if (index === -1) return items;
+      const newItems = [...items];
+      newItems[index] = { ...newItems[index], ...updated };
+      return newItems;
+    });
+
+    const originalIndex = this.originalProposalItems.findIndex(
+      (i) => i.id === updated.id,
+    );
+    if (originalIndex !== -1) {
+      this.originalProposalItems[originalIndex] = {
+        ...this.originalProposalItems[originalIndex],
+        ...updated,
+      };
+    }
+
+    this.applyFilters();
   }
 
   /**

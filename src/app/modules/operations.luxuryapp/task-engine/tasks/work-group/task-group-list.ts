@@ -7,11 +7,10 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -53,7 +52,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
@@ -63,7 +61,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LxTag,
-    PrimeNgCustomCaption,
+    WebButtonLabelAdd,
     StatusBadge,
     AppIcon,
     WebButtonIcon,
@@ -78,8 +76,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelDelete,
     EmptyState,
     CustomSearchInput,
-    NgbDropdownModule,
-    PrimeNgCustomTableFooter,
     DataViewMobile,
 
     LxTooltipDirective,

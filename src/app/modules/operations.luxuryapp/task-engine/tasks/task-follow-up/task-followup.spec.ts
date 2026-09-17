@@ -6,7 +6,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { vi } from "vitest";
 import { TaskFollowup } from "./task-followup";
-import { TaskFollowUpEvidenceImage } from "../task-shared/interfaces/task-refactor.interface";
+import { TaskFollowUpEvidenceImage } from "../shared/interfaces/task-refactor.interface";
 
 describe("TaskFollowup", () => {
   let component: TaskFollowup;

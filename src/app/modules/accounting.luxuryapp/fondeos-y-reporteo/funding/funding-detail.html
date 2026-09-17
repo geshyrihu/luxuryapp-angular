@@ -290,17 +290,18 @@
       </div>
     </div>
 
-    <app-table
-      [value]="grupo.ordenes"
-      class="p-datatable-sm p-datatable-gridlines font-sm border-0"
-      [reorderableColumns]="true"
+      <app-table
+        [value]="grupo.ordenes"
+        class="p-datatable-sm p-datatable-gridlines font-sm border-0"
+        [scrollable]="true"
+        [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '72rem' }"
+        [reorderableColumns]="true"
       (onRowReorder)="onRowReorder($event)"
     >
       <ng-template #header>
         <tr>
           <th
-            class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium"
-            class="table-col-3rem"
+            class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium table-col-3rem"
           >
             #
           </th>
@@ -311,26 +312,22 @@
             Proveedor / Comprobantes
           </th>
           <th
-            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium"
-            class="table-col-7rem"
+            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium table-col-7rem"
           >
             Fecha
           </th>
           <th
-            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium"
-            class="table-col-9rem"
+            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium table-col-9rem"
           >
             Monto
           </th>
           <th
-            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium"
-            class="table-col-10rem"
+            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium table-col-10rem"
           >
             Datos Pago
           </th>
           <th
-            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium"
-            class="table-col-7rem"
+            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium table-col-7rem"
           >
             Estado
           </th>
@@ -380,27 +377,24 @@
                 <lx-tag
                   severity="warning"
                   [value]="orden.listadoFacturas.length + ' Docs'"
-                  class="cursor-pointer transition-duration-200"
+                  class="cursor-pointer transition-duration-200 text-xs px-2 py-0 rounded-md"
                   (click)="showInvoices(orden)"
-                  class="text-xs px-2 py-0 rounded-md"
                 />
                 } @else if (orden.pdfFile || orden.factura) {
                 <lx-tag
                   severity="secondary"
                   value="PDF"
                   icon="material-symbols-light:picture-as-pdf"
-                  class="cursor-pointer transition-duration-200"
+                  class="cursor-pointer transition-duration-200 text-xs px-2 py-0 bg-bg-body-tertiary text-body rounded-md"
                   (click)="viewPdf(orden.pdfFile,'Factura')"
-                  class="text-xs px-2 py-0 bg-bg-body-tertiary text-body rounded-md"
                 />
                 } @if (orden.comprobantesPago?.length > 0) {
                 <lx-tag
                   severity="success"
                   value="Pago"
                   icon="material-symbols-light:check"
-                  class="cursor-pointer transition-duration-200"
+                  class="cursor-pointer transition-duration-200 text-xs px-2 py-0 rounded-md"
                   (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
-                  class="text-xs px-2 py-0 rounded-md"
                 />
                 }
               </div>

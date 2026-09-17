@@ -1,0 +1,60 @@
+@if (mode === 'before-after') {
+<div class="row g-3">
+  <div class="col-12 col-md-6">
+    <h3 class="photos-label">Antes</h3>
+    @if (beforeWork) {
+    <lx-image
+      [src]="beforeWork"
+      alt="Foto del antes"
+      [preview]="true"
+      imageClass="photos-preview"
+      styleClass="photos-trigger"
+    />
+    } @else {
+    <div class="photos-empty">Sin foto del antes.</div>
+    }
+  </div>
+  <div class="col-12 col-md-6">
+    <h3 class="photos-label">Después</h3>
+    @if (afterWork) {
+    <lx-image
+      [src]="afterWork"
+      alt="Foto del después"
+      [preview]="true"
+      imageClass="photos-preview"
+      styleClass="photos-trigger"
+    />
+    } @else {
+    <div class="photos-empty">Sin foto del después.</div>
+    }
+  </div>
+</div>
+} @else {
+  @if (loading()) {
+  <div class="d-flex justify-content-center p-4">
+    <app-spinner [size]="44" [strokeWidth]="4" />
+  </div>
+  } @else if (additionalImages().length > 0) {
+  <div class="d-flex flex-wrap gap-3">
+    @for (image of additionalImages(); track image.id) {
+    <figure class="photos-figure m-0">
+      <lx-image
+        [src]="image.path"
+        [alt]="image.fileName"
+        [preview]="true"
+        imageClass="photos-thumb"
+        styleClass="photos-trigger"
+      />
+      <figcaption class="photos-caption" [title]="image.fileName">
+        {{ image.fileName }}
+      </figcaption>
+    </figure>
+    }
+  </div>
+  } @else {
+  <div class="photos-empty p-4">
+    <app-icon icon="material-symbols-light:photo-library" class="photos-empty-icon" />
+    <p class="m-0">No hay imágenes adicionales para esta tarea.</p>
+  </div>
+  }
+}

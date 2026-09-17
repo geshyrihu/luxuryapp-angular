@@ -16,9 +16,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { MessageService } from "@core/services/message.service";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
@@ -54,7 +53,6 @@ import { OrdenCompraService } from "@core/services/orden-compra.service";
     AppSpinner,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    PrimeNgCustomToast,
     LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -262,4 +260,3 @@ export interface PurchaseOrderBudget {
   accountName: string;
   amount: number;
 }
-

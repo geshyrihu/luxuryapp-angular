@@ -12,7 +12,8 @@ import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { LxBadge } from "@ui/adaptive/badge/badge";
-import { MenuItem, SortEvent } from "@ui/web/primeng-api/primeng-api";
+import { MenuItem } from "@core/interfaces/menu-item.interface";
+import { SortEvent } from "@core/interfaces/sort-event.interface";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
@@ -60,22 +61,22 @@ const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.CajaChica]: "CAJA CHICA",
   [TipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [TipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [TipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
+  [TipoGasto.TarjetaDebito]: "TARJETA DE DÉBITO",
   [TipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [TipoGasto.Nomina]: "NóMINA",
+  [TipoGasto.Nomina]: "NÓMINA",
   [TipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
 const tipoGastoEmojis: { [key: number]: string } = {
-  [TipoGasto.Fijo]: "??",
-  [TipoGasto.Variable]: "??",
-  [TipoGasto.CajaChica]: "??",
-  [TipoGasto.Extraordinario]: "?",
-  [TipoGasto.Devoluciones]: "??",
-  [TipoGasto.TarjetaDebito]: "??",
-  [TipoGasto.Proyectos]: "???",
-  [TipoGasto.Nomina]: "??",
-  [TipoGasto.Impuestos]: "??",
+  [TipoGasto.Fijo]: "\u{1F3E0}",
+  [TipoGasto.Variable]: "\u{1F4C8}",
+  [TipoGasto.CajaChica]: "\u{1F4B5}",
+  [TipoGasto.Extraordinario]: "\u{26A1}",
+  [TipoGasto.Devoluciones]: "\u{1F504}",
+  [TipoGasto.TarjetaDebito]: "\u{1F4B3}",
+  [TipoGasto.Proyectos]: "\u{1F3D7}\u{FE0F}",
+  [TipoGasto.Nomina]: "\u{1F465}",
+  [TipoGasto.Impuestos]: "\u{1F9FE}",
 };
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -168,7 +169,7 @@ export class FundingDetail {
       .filter((key) => !isNaN(Number(TipoGasto[key])))
       .map((key) => {
         const id = Number(TipoGasto[key]);
-        const emoji = tipoGastoEmojis[id] || "??";
+        const emoji = tipoGastoEmojis[id] || "\u{1F4CB}";
         const title = tipoGastoTitles[id] || key;
         return {
           label: `${emoji} ${title}`,
@@ -229,7 +230,7 @@ export class FundingDetail {
     this.dialogHandlerS.openDialog(
       FundingGroupFiles,
       { grupo },
-      "?? | Facturas y XML",
+      "Facturas y XML",
       this.dialogHandlerS.sizeFull,
       true,
     );

@@ -11,7 +11,6 @@ import { OrdenCompraService } from "@core/services/orden-compra.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",

@@ -39,13 +39,12 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-work-contract-list",
   templateUrl: "./work-contract-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService],
   imports: [
     AppIcon,
     MobileListItem,
@@ -71,7 +70,7 @@ export class WorkContractList implements OnInit {
   dialogS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
   customerIdS = inject(CustomerIdService);
-  confirmationService = inject(ConfirmationService);
+  confirmS = inject(ConfirmService);
 
   items = signal<EmployeeWorkContractListDTO[]>([]);
   globalFilter = signal<string>("");
@@ -149,15 +148,12 @@ export class WorkContractList implements OnInit {
     );
   }
 
-  onDelete(id: string): void {
-    this.confirmationService.confirm({
-      message: "¿Está seguro de eliminar este contrato?",
-      accept: () => {
-        this.apiS
-          .onDelete(Endpoints.HR.EmployeeWorkContract.delete(id))
-          .then(() => this.onLoadData());
-      },
-    });
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm("¿Está seguro de eliminar este contrato?");
+    if (!ok) return;
+    this.apiS
+      .onDelete(Endpoints.HR.EmployeeWorkContract.delete(id))
+      .then(() => this.onLoadData());
   }
 
   onTerminate(item: EmployeeWorkContractListDTO): void {

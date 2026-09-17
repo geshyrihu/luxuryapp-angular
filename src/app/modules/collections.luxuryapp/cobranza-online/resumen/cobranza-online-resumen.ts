@@ -13,7 +13,6 @@ import {
 } from "@core/helpers/table-primeng-option";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
@@ -25,7 +24,7 @@ import {
 
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [CommonModule, SharedModule, PieChart],
+  imports: [CommonModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

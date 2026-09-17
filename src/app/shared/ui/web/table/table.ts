@@ -176,6 +176,19 @@ export class AppTableHeaderCheckbox {
   });
 }
 
+/**
+ * Evento de cambio para tablas server-side (`[lazy]="true"`).
+ * Mantiene los nombres de `TableLazyLoadEvent` de PrimeNG para que los
+ * consumidores migrados no necesiten cambiar sus handlers.
+ */
+export interface AppTableLazyEvent {
+  first: number;
+  rows: number;
+  globalFilter: string;
+  sortField: string | null;
+  sortOrder: 1 | -1;
+}
+
 @Component({
   selector: "app-table",
   host: { class: "app-table" },
@@ -377,6 +390,14 @@ export class AppTable {
 
   onPage = output<{ first: number; rows: number }>();
   onRowReorder = output<{ dragIndex: number; dropIndex: number }>();
+  /**
+   * Cambio de página, tamaño de página u orden en tablas `lazy`.
+   *
+   * El filtro global NO se emite desde aquí: el cambio de término lo
+   * maneja cada consumidor (p. ej. `(search)` del caption), para evitar
+   * una segunda carga por el mismo cambio.
+   */
+  onLazyLoad = output<AppTableLazyEvent>();
 
   sortField = linkedSignal<string | null>(
     () => this.initialSortField() ?? null,
@@ -493,9 +514,24 @@ export class AppTable {
   protected pageCount = computed(() =>
     Math.max(1, Math.ceil(this.effectiveTotal() / this.effectiveRows())),
   );
-  protected pageIndexes = computed(() =>
-    Array.from({ length: this.pageCount() }, (_, index) => index),
-  );
+  protected readonly maxPageButtons = 5;
+  protected pageIndexes = computed(() => {
+    const count = this.pageCount();
+    const max = this.maxPageButtons;
+    if (count <= max) {
+      return Array.from({ length: count }, (_, index) => index);
+    }
+
+    const current = this.currentPageIndex();
+    let start = Math.max(0, current - Math.floor(max / 2));
+    let end = start + max;
+    if (end > count) {
+      end = count;
+      start = end - max;
+    }
+
+    return Array.from({ length: end - start }, (_, index) => start + index);
+  });
   protected pageReport = computed(() => {
     const total = this.effectiveTotal();
     const first =
@@ -693,6 +729,25 @@ export class AppTable {
       this.sortField.set(field);
       this.sortOrder.set(1);
     }
+    this.emitLazy(
+      this.currentPageIndex() * this.effectiveRows(),
+      this.effectiveRows(),
+    );
+  }
+
+  /**
+   * Notifica a los consumidores server-side. Solo emite en modo `lazy`;
+   * nunca durante cambios de inputs, para no provocar cargas en bucle.
+   */
+  private emitLazy(first: number, rows: number): void {
+    if (!this.lazy()) return;
+    this.onLazyLoad.emit({
+      first,
+      rows,
+      globalFilter: this.filterTerm(),
+      sortField: this.sortField(),
+      sortOrder: this.sortOrder(),
+    });
   }
 
   public filterGlobal(term: string, _mode: string): void {
@@ -704,6 +759,7 @@ export class AppTable {
     this.rowsOverride.set(newRows);
     this.currentPageIndex.set(0);
     this.onPage.emit({ first: 0, rows: newRows });
+    this.emitLazy(0, newRows);
   }
 
   public goToPage(index: number): void {
@@ -713,5 +769,6 @@ export class AppTable {
       first: page * this.effectiveRows(),
       rows: this.effectiveRows(),
     });
+    this.emitLazy(page * this.effectiveRows(), this.effectiveRows());
   }
 }

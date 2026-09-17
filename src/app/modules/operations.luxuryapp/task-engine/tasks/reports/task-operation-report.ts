@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { MenuModule } from "@ui/web/primeng-menu/primeng-menu";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { SendOperationReport } from "@operations.luxuryapp/task-engine/tasks/send-operation-report/send-operation-report";
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
@@ -39,7 +38,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
-import { EITaskMessageDTOStatus } from "../task-message-status.enum";
+import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReadList } from "../task-read-list";
 
@@ -63,7 +62,6 @@ import { TaskReadList } from "../task-read-list";
     AppSorticon,
 
     PrimeNgCustomCaption,
-    MenuModule,
     PrimeNgCustomCaption,
     AppImage,
     CustomInputSwitch,
@@ -228,5 +226,4 @@ export class TaskMessageOperationReport {
       });
   }
 }
-
 

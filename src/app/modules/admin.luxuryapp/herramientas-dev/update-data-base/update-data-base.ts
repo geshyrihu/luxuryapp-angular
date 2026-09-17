@@ -288,6 +288,32 @@ this.loading.set(false);
       });
   }
 
+  runSeedLegacyWorkPositionSchedules() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Recuperando horarios históricos...",
+      "La semana disponible se repetirá en las cuatro semanas del puesto. Los puestos que ya tengan horario se omitirán.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedLegacyWorkPositionSchedules, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Horarios históricos recuperados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError("Error", "La recuperación de horarios históricos falló.");
+        this.loading.set(false);
+      });
+  }
+
   runRecalculateWorkPositionFolios() {
     this.loading.set(true);
     this.result.set(null);
@@ -346,4 +372,3 @@ this.loading.set(false);
       });
   }
 }
-

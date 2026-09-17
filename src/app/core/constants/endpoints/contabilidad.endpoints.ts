@@ -4,6 +4,8 @@ const budgetProposalEndpoints = {
     `budget-proposal?customerId=${customerId}&fiscalYear=${fiscalYear}`,
   forecast: "budget-proposal/forecast",
   updateItem: (itemId: string) => `budget-proposal/${itemId}`,
+  finalizeItem: (itemId: string) =>
+    `budget-proposal/item/${itemId}/finalize`,
   historyByItem: (itemId: string) => `budget-proposal/history/${itemId}`,
   availableAccounts: (
     customerId: string,

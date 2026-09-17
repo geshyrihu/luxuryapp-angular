@@ -13,7 +13,13 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
@@ -67,6 +73,8 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     PrimeNgCustomTableEmptyMessage,
     ApiDatePipe,
     AppTable,
+    AppReorderableRow,
+    AppReorderableRowHandle,
 
     AppSortableColumn,
 
@@ -265,8 +273,10 @@ export class SolicitudCompraList {
     this.router.navigate(ROUTES.COMPRAS.PRESENTACION_SOLICITUDES);
   }
 
-  async onRowReorder(event: any) {
+  async onRowReorder(event: { dragIndex: number; dropIndex: number }) {
     const reordered = [...this.data()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    reordered.splice(event.dropIndex, 0, moved);
     const orderedIds = reordered.map((item: any) => item.id);
 
     if (orderedIds.length === 0) {
@@ -285,8 +295,8 @@ export class SolicitudCompraList {
       return;
     }
 
-    this.data.update((prev) =>
-      prev.map((item, index) => ({ ...item, sortOrder: index })),
+    this.data.set(
+      reordered.map((item, index) => ({ ...item, sortOrder: index })),
     );
     this.selectedSolicitudIds.set(
       this.data()

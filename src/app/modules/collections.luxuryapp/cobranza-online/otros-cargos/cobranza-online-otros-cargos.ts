@@ -18,7 +18,6 @@ import {
   tablePrimeNgRows,
 } from "@core/helpers/table-primeng-option";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import type {
   CobranzaOnlineDashboardResponse,
   CobranzaOtroCargo,
@@ -33,7 +32,6 @@ import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.servi
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    SharedModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     DataViewMobile,
@@ -78,4 +76,3 @@ export class CobranzaOnlineOtrosCargos {
 
   constructor() {}
 }
-

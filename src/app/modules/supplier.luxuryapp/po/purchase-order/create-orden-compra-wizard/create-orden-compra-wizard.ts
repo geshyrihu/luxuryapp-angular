@@ -18,7 +18,7 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 // PrimeNG Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { MenuItem } from "@ui/web/primeng-api/primeng-api";
+import { MenuItem } from "@core/interfaces/menu-item.interface";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -438,8 +438,12 @@ export class CreateOrdenCompraWizard implements OnInit {
     );
   }
 
-  filterRichProducts(event: { originalEvent: Event; query: string }): void {
-    const query = event.query;
+  filterRichProducts(event: {
+    originalEvent?: Event;
+    query?: string;
+    term?: string;
+  }): void {
+    const query = (event?.query ?? event?.term ?? "").trim();
     if (query.length < 3) return;
 
     this.apiResponseS

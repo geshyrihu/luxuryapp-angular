@@ -51,6 +51,7 @@ import {
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
+  CustomInputDatepicker,
   CustomInputDateSignal,
   CustomInputMultiselectSignal,
   CustomInputNumberSignal,
@@ -58,19 +59,12 @@ import {
   CustomInputTextAreaSignal,
   CustomInputTextSignal,
 } from "@ui/inputs/web";
-import { AccordionModule } from "@ui/web/primeng-accordion/primeng-accordion";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DatePickerModule } from "@ui/web/primeng-datepicker/primeng-datepicker";
-import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
-import { InputNumberModule } from "@ui/web/primeng-inputnumber/primeng-inputnumber";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { MultiSelectModule } from "@ui/web/primeng-multiselect/primeng-multiselect";
-import { PopoverModule } from "@ui/web/primeng-popover/primeng-popover";
-import { SelectModule } from "@ui/web/primeng-select/primeng-select";
-import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
+import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
+import { AppPopover } from "@ui/web/popover/popover";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
-import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
+import { Tabs } from "@ui/web/tabs/tabs";
+import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppBadge } from "@ui/web/badge/badge";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
@@ -168,26 +162,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputNumberSignal,
     CustomInputCurrencySignal,
     CustomInputDateSignal,
+    CustomInputDatepicker,
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomInputCheckSignal,
     CustomInputTextAreaSignal,
 
-    AccordionModule,
-    ButtonModule,
-    DatePickerModule,
-    DialogModule,
-    InputNumberModule,
-    InputTextModule,
-    MultiSelectModule,
-    PopoverModule,
-    SelectModule,
-    SelectButtonModule,
+    Accordion,
+    AccordionPanel,
+    WebButtonLabel,
+    AppPopover,
+    AppSelectButton,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TabsModule,
-    ToggleSwitchModule,
+    Tabs,
+    AppToggleSwitch,
     AppBadge,
     Breadcrumbs,
     AppCheckbox,
@@ -255,32 +245,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Accordion - p-accordion</h3>
                 </div>
                 <div class="card-body">
-                  <p-accordion>
-                    <p-accordion-panel value="0">
-                      <p-accordion-header>Sección 1</p-accordion-header>
-                      <p-accordion-content
-                        ><p class="m-0">
-                          Contenido de la primera sección.
-                        </p></p-accordion-content
-                      >
-                    </p-accordion-panel>
-                    <p-accordion-panel value="1">
-                      <p-accordion-header>Sección 2</p-accordion-header>
-                      <p-accordion-content
-                        ><p class="m-0">
-                          Contenido de la segunda sección.
-                        </p></p-accordion-content
-                      >
-                    </p-accordion-panel>
-                    <p-accordion-panel value="2">
-                      <p-accordion-header>Sección 3</p-accordion-header>
-                      <p-accordion-content
-                        ><p class="m-0">
-                          Contenido de la tercera sección.
-                        </p></p-accordion-content
-                      >
-                    </p-accordion-panel>
-                  </p-accordion>
+                  <app-accordion
+                    [items]="[
+                      { id: '0', title: 'Sección 1' },
+                      { id: '1', title: 'Sección 2' },
+                      { id: '2', title: 'Sección 3' }
+                    ]"
+                    [(expandedIds)]="accordionExpandedIds"
+                  >
+                    <ng-template accordionPanel="0"><p class="m-0">Contenido de la primera sección.</p></ng-template>
+                    <ng-template accordionPanel="1"><p class="m-0">Contenido de la segunda sección.</p></ng-template>
+                    <ng-template accordionPanel="2"><p class="m-0">Contenido de la tercera sección.</p></ng-template>
+                  </app-accordion>
                 </div>
               </div>
             }
@@ -326,22 +302,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap gap-2">
-                    <p-button label="Primary" />
-                    <p-button label="Secondary" severity="secondary" />
-                    <p-button label="Success" severity="success" />
-                    <p-button label="Info" severity="info" />
-                    <p-button label="Warning" severity="warn" />
-                    <p-button label="Danger" severity="danger" />
-                    <p-button label="Help" severity="help" />
-                    <p-button label="Contrast" severity="contrast" />
+                    <il-button label="Primary" />
+                    <il-button label="Secondary" severity="secondary" />
+                    <il-button label="Success" severity="success" />
+                    <il-button label="Info" severity="info" />
+                    <il-button label="Warning" severity="warning" />
+                    <il-button label="Danger" severity="danger" />
+                    <il-button label="Help" severity="help" />
+                    <il-button label="Contrast" severity="contrast" />
                   </div>
                   <app-divider />
                   <div class="d-flex flex-wrap gap-2">
-                    <p-button label="Small" size="small" />
-                    <p-button label="Normal" />
-                    <p-button label="Large" size="large" />
-                    <p-button label="Disabled" [disabled]="true" />
-                    <p-button label="Loading" [loading]="true" />
+                    <il-button label="Small" size="sm" />
+                    <il-button label="Normal" />
+                    <il-button label="Large" size="lg" />
+                    <il-button label="Disabled" [disabled]="true" />
+                    <il-button label="Loading" [loading]="true" />
                   </div>
                 </div>
               </div>
@@ -521,9 +497,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <div class="card-body">
                       header="Con Subheader" subheader="Subtitulo">
                       <p class="m-0">Card con subheader y footer opcional.</p>
-                      <ng-template #footer
-                        ><p-button label="Accion"
-                      /></ng-template>
+                      <ng-template #footer><il-button label="Accion" /></ng-template>
                     </div>
                   </div>
                 </div>
@@ -555,10 +529,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">DatePicker - p-datepicker</h3>
                 </div>
                 <div class="card-body">
-                  <p-datepicker
+                  <custom-input-datepicker-signal
                     [(ngModel)]="dateVal"
                     dateFormat="dd/mm/yy"
-                    appendTo="body"
+                    [onlyInput]="true"
                   />
                 </div>
               </div>
@@ -569,25 +543,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Dialog - p-dialog</h3>
                 </div>
                 <div class="card-body">
-                  <p-button
-                    label="Abrir Dialog"
-                    (onClick)="dialogVisible.set(true)"
-                  />
-                  <p-dialog
-                    header="Ejemplo de Dialog"
-                    [(visible)]="dialogVisible"
-                    [modal]="true"
-                    [style]="{ width: 'min(92vw,30rem)' }"
-                  >
-                    <p>
-                      Contenido del dialog. Reservalo para decisiones breves.
-                    </p>
-                    <ng-template #footer
-                      ><p-button
-                        label="Cerrar"
-                        (onClick)="dialogVisible.set(false)"
-                    /></ng-template>
-                  </p-dialog>
+                  <il-button label="Abrir Dialog" (clicked)="dialogVisible.set(true)" />
+                  <div class="modal fade" [class.show]="dialogVisible()" [style.display]="dialogVisible() ? 'block' : 'none'" tabindex="-1" role="dialog" [attr.aria-hidden]="!dialogVisible()">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width: min(92vw, 30rem);">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Ejemplo de Dialog</h5>
+                          <button type="button" class="btn-close" aria-label="Cerrar" (click)="dialogVisible.set(false)"></button>
+                        </div>
+                        <div class="modal-body"><p>Contenido del dialog. Reservalo para decisiones breves.</p></div>
+                        <div class="modal-footer"><il-button label="Cerrar" (clicked)="dialogVisible.set(false)" /></div>
+                      </div>
+                    </div>
+                  </div>
+                  @if (dialogVisible()) {
+                    <div class="modal-backdrop fade show"></div>
+                  }
                 </div>
               </div>
             }
@@ -613,20 +584,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="row">
                     <div class="col-6">
-                      <p-inputnumber
+                      <custom-input-number-signal
                         [(ngModel)]="numVal"
-                        [showButtons]="true"
                         [min]="0"
                         [max]="100"
+                        [onlyInput]="true"
                         class="w-full"
                       />
                     </div>
                     <div class="col-6">
-                      <p-inputnumber
+                      <custom-input-number-signal
                         [(ngModel)]="numVal2"
-                        mode="currency"
-                        currency="MXN"
-                        locale="es-MX"
+                        [onlyInput]="true"
                         class="w-full"
                       />
                     </div>
@@ -641,15 +610,17 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-column gap-3">
-                    <input
-                      pInputText
+                    <custom-input-text-signal
                       [(ngModel)]="textVal"
                       placeholder="Texto libre"
+                      [onlyInput]="true"
                       class="w-full"
                     />
-                    <span p-fluid
-                      ><input pInputText placeholder="Fluid (ancho completo)"
-                    /></span>
+                    <custom-input-text-signal
+                      placeholder="Fluid (ancho completo)"
+                      [onlyInput]="true"
+                      class="w-full"
+                    />
                   </div>
                 </div>
               </div>
@@ -677,12 +648,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">MultiSelect - p-multiselect</h3>
                 </div>
                 <div class="card-body">
-                  <p-multiselect
-                    [options]="selectOptions"
+                  <custom-input-multiselect-signal
+                    [data]="selectOptions"
                     [(ngModel)]="multiVal"
                     optionLabel="label"
                     placeholder="Selecciona opciones"
-                    appendTo="body"
+                    [onlyInput]="true"
                     class="w-full"
                   />
                 </div>
@@ -694,17 +665,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Popover - p-popover</h3>
                 </div>
                 <div class="card-body">
-                  <p-button
-                    label="Abrir Popover"
-                    #popoverBtn
-                    (click)="popover.toggle($event)"
-                  />
-                  <p-popover #popover
-                    ><div class="p-3">
+                  <app-popover>
+                    <il-button appPopoverTrigger label="Abrir Popover" />
+                    <div class="p-3">
                       Contenido del popover. Ideal para menus contextuales
                       rapidos.
-                    </div></p-popover
-                  >
+                    </div>
+                  </app-popover>
                 </div>
               </div>
             }
@@ -774,12 +741,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Select - p-select</h3>
                 </div>
                 <div class="card-body">
-                  <p-select
-                    [options]="selectOptions"
+                  <custom-input-select-signal
+                    [data]="selectOptions"
                     [(ngModel)]="selectVal"
                     optionLabel="label"
                     placeholder="Selecciona una opcion"
-                    appendTo="body"
+                    [onlyInput]="true"
                     class="w-full"
                   />
                 </div>
@@ -791,10 +758,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">SelectButton - p-selectbutton</h3>
                 </div>
                 <div class="card-body">
-                  <p-selectbutton
+                  <app-select-button
                     [options]="selectOptions"
-                    [(ngModel)]="selectBtnVal"
-                    optionLabel="label"
+                    [(value)]="selectBtnVal"
                   />
                 </div>
               </div>
@@ -843,14 +809,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         <td>{{ row.name }}</td>
                         <td><app-tag [value]="row.status" severity="info" /></td>
                         <td>
-                          <p-button
-                            [rounded]="true"
-                            [text]="true"
-                          >
-                            <ng-template #icon>
-                              <app-icon icon="material-symbols-light:visibility" />
-                            </ng-template>
-                          </p-button>
+                          <il-button icon="material-symbols-light:visibility" />
                         </td>
                       </tr>
                     </ng-template>
@@ -864,24 +823,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Tabs - p-tabs</h3>
                 </div>
                 <div class="card-body">
-                  <p-tabs value="0">
-                    <p-tablist>
-                      <p-tab value="0">General</p-tab>
-                      <p-tab value="1">Detalle</p-tab>
-                      <p-tab value="2">Documentos</p-tab>
-                    </p-tablist>
-                    <p-tabpanels>
-                      <p-tabpanel value="0"
-                        ><p class="m-0">Contenido General.</p></p-tabpanel
-                      >
-                      <p-tabpanel value="1"
-                        ><p class="m-0">Contenido de Detalle.</p></p-tabpanel
-                      >
-                      <p-tabpanel value="2"
-                        ><p class="m-0">Documentos adjuntos.</p></p-tabpanel
-                      >
-                    </p-tabpanels>
-                  </p-tabs>
+                  <app-tabs
+                    [tabs]="[
+                      { id: '0', label: 'General' },
+                      { id: '1', label: 'Detalle' },
+                      { id: '2', label: 'Documentos' }
+                    ]"
+                    [(activeId)]="webItemTabActiveId"
+                  >
+                    <div tab="0"><p class="m-0">Contenido General.</p></div>
+                    <div tab="1"><p class="m-0">Contenido de Detalle.</p></div>
+                    <div tab="2"><p class="m-0">Documentos adjuntos.</p></div>
+                  </app-tabs>
                 </div>
               </div>
             }
@@ -945,7 +898,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
-                    <p-toggleswitch [(ngModel)]="toggleVal" />
+                    <app-toggle-switch [(checked)]="toggleVal" />
                     <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
                   </div>
                 </div>
@@ -962,16 +915,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     >
                   <ng-template #toolbarRight>
                       <div class="d-flex gap-2">
-                        <p-button label="Nuevo" size="small"
-                        >
-                          <ng-template #icon>
-                            <app-icon icon="material-symbols-light:add" />
-                          </ng-template>
-                        </p-button>
-                        <p-button
+                        <il-button
+                          label="Nuevo"
+                          size="sm"
+                          icon="material-symbols-light:add"
+                        />
+                        <il-button
                           label="Exportar"
                           severity="secondary"
-                          size="small"
+                          size="sm"
                         />
                       </div>
                   </ng-template>
@@ -989,18 +941,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex gap-3">
-                    <p-button
+                    <il-button
                       label="Hover me"
                       lxTooltip="Tooltip arriba"
                       tooltipPosition="top"
                     />
-                    <p-button
+                    <il-button
                       label="Hover me"
                       lxTooltip="Tooltip derecha"
                       severity="secondary"
                       tooltipPosition="right"
                     />
-                    <p-button
+                    <il-button
                       label="Hover me"
                       lxTooltip="Tooltip abajo"
                       severity="info"
@@ -1434,6 +1386,8 @@ export class CatalogWebItem {
   ];
 
   // Shared state
+  accordionExpandedIds = signal<string[]>(["0"]);
+  webItemTabActiveId = signal("0");
   dialogVisible = signal(false);
   selectOptions = [
     { label: "Opcion 1", value: 1 },

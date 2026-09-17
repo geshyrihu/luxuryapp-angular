@@ -2,12 +2,12 @@ import { Location } from "@angular/common";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MessageService } from "primeng/api";
 import { Subject, of } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HidescrollnavService } from "@core/services/hidescrollnav.service";
 import { MenuService } from "@core/services/menu.service";
 import { SearchService } from "@core/services/search.service";
@@ -79,6 +79,10 @@ const featureAnnouncementServiceMock = {
   showDialog: { set: vi.fn(), update: vi.fn() },
 };
 
+const dialogHandlerServiceMock = {
+  openDialog: vi.fn().mockResolvedValue(undefined),
+};
+
 const activatedRouteMock = {
   root: {
     firstChild: {
@@ -123,8 +127,8 @@ describe("HeaderEmployeedesktop", () => {
           provide: FeatureAnnouncementService,
           useValue: featureAnnouncementServiceMock,
         },
+        { provide: DialogHandlerService, useValue: dialogHandlerServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
       ],
     });
 
@@ -161,4 +165,3 @@ describe("HeaderEmployeedesktop", () => {
     expect(routerMock.navigateByUrl).toHaveBeenCalled();
   });
 });
-

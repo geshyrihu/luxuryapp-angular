@@ -5,7 +5,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { TreeNode } from "@ui/web/primeng-api/primeng-api";
+import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";

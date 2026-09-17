@@ -8,9 +8,10 @@ import {
   input,
   OnInit,
   signal,
+  TemplateRef,
+  viewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import {
   ActivatedRoute,
@@ -19,12 +20,6 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
-import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import type { MenuItem } from "primeng/api";
-import { filter, map, startWith } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -37,19 +32,27 @@ import { SearchService } from "@core/services/search.service";
 import { ThemeService } from "@core/services/theme.service";
 import { UpdateService } from "@core/services/update-pwa.service";
 import { PanicButton } from "@operations.luxuryapp/panic-alert/panic-button/panic-button";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
+import { filter, map, startWith } from "rxjs";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { Profiledesktop } from "../profile-desktop/profile-desktop";
 
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import * as htmlToImage from "html-to-image";
-import { DialogModule } from "primeng/dialog";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { AppMenu } from "@ui/web/menu/menu";
+import { FormControl } from "@angular/forms";
 import { AiService } from "@core/services/ai.service";
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "@core/services/dialog-handler.service";
+import { AppMenu } from "@ui/web/menu/menu";
+import * as htmlToImage from "html-to-image";
 import { ROUTES } from "src/app/routing/route-paths";
+import { HeaderEmployeeAiModal } from "./header-employee-ai-modal";
 
 @Component({
   selector: "app-header-employee-desktop",
@@ -57,16 +60,11 @@ import { ROUTES } from "src/app/routing/route-paths";
     AppIcon,
     Breadcrumbs,
     WebButtonLabel,
-    DialogModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppMenu,
     NotificationsGadget,
     PanicButton,
     Profiledesktop,
-    AppSpinner,
     RouterModule,
-    AppSelectButton,
     AppToolbar,
     LxTooltipDirective,
   ],
@@ -89,6 +87,7 @@ export class HeaderEmployeedesktop implements OnInit {
   public updateService = inject(UpdateService);
   public featureAnnouncementS = inject(FeatureAnnouncementService);
   public aiService = inject(AiService);
+  private readonly dialogHandlerS = inject(DialogHandlerService);
   public sanitizer = inject(DomSanitizer);
   activatedRoute = inject(ActivatedRoute);
 
@@ -137,6 +136,8 @@ export class HeaderEmployeedesktop implements OnInit {
     callToAction: string;
   } | null>(null);
   public currentMode = signal<"text" | "poster">("text");
+  public readonly aiModalContent =
+    viewChild.required<TemplateRef<unknown>>("aiModalContent");
 
   public documentColor = signal<"--ds-luxury-gold" | "--ds-document-neutral">(
     "--ds-luxury-gold",
@@ -368,11 +369,19 @@ export class HeaderEmployeedesktop implements OnInit {
   }
 
   onAiAnnouncement() {
-    setTimeout(() => this.displayAiModal.set(true));
     this.userIdeaControl.reset("");
     this.aiAnnouncementResult.set(null);
     this.aiAnnouncementImageResult.set(null);
     this.aiAnnouncementPosterPoints.set([]);
+    this.displayAiModal.set(true);
+    void this.dialogHandlerS
+      .openDialog(
+        HeaderEmployeeAiModal,
+        { content: this.aiModalContent() },
+        "Generador de Comunicados IA",
+        DialogSize.lg,
+      )
+      .finally(() => this.displayAiModal.set(false));
   }
 
   async generateOfficialAnnouncement(mode: "text" | "poster") {
@@ -475,5 +484,3 @@ CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS I
     window.print();
   }
 }
-
-

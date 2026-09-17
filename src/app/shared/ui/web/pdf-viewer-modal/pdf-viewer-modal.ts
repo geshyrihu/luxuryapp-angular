@@ -27,6 +27,7 @@ import { environment } from "src/environments/environment";
   imports: [PdfViewerModule, AppSpinner, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pdf-viewer-modal.html",
+  providers: [DialogService],
 })
 export class PdfViewerModal implements OnInit, OnDestroy {
   private dialogConfig = inject(DynamicDialogConfig);
@@ -93,4 +94,3 @@ export class PdfViewerModal implements OnInit, OnDestroy {
     });
   }
 }
-

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-16T19:28:28.945Z",
-  "totalMatches": 1952,
+  "generatedAt": "2026-09-17T17:37:23.257Z",
+  "totalMatches": 1946,
   "userFacingMatches": 419,
   "buttonEmojiInputs": 0,
   "byModule": [
@@ -10,7 +10,7 @@
     },
     {
       "key": "app/shared",
-      "count": 253
+      "count": 247
     },
     {
       "key": "src/styles",
@@ -70,7 +70,7 @@
     },
     {
       "key": "code_comment",
-      "count": 202
+      "count": 201
     },
     {
       "key": "code_string",
@@ -86,7 +86,7 @@
     },
     {
       "key": "code_misc",
-      "count": 30
+      "count": 25
     },
     {
       "key": "style_text",
@@ -338,7 +338,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 58,
+      "line": 56,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -349,7 +349,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 66,
+      "line": 64,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -360,7 +360,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 73,
+      "line": 71,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -371,7 +371,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 78,
+      "line": 76,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -382,7 +382,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 85,
+      "line": 83,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -393,7 +393,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 89,
+      "line": 87,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -404,7 +404,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 101,
+      "line": 99,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -415,7 +415,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 108,
+      "line": 106,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -426,7 +426,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 114,
+      "line": 112,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -437,7 +437,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 120,
+      "line": 118,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -448,7 +448,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 129,
+      "line": 127,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -459,7 +459,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 146,
+      "line": 144,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -470,7 +470,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 150,
+      "line": 148,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -481,7 +481,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 157,
+      "line": 155,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -492,7 +492,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 166,
+      "line": 164,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -503,7 +503,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 171,
+      "line": 169,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -514,7 +514,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 176,
+      "line": 174,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -2565,7 +2565,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/espejo-aspel-full/espejo-aspel-full.ts",
-      "line": 231,
+      "line": 229,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -6025,7 +6025,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 626,
+      "line": 627,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6036,7 +6036,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 633,
+      "line": 634,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6047,7 +6047,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.html",
-      "line": 678,
+      "line": 715,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6069,7 +6069,18 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.ts",
-      "line": 208,
+      "line": 75,
+      "category": "code_comment",
+      "module": "app/modules",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "* ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.ts",
+      "line": 227,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -7880,17 +7891,6 @@
       "preview": "Cada botón trae icono, label y variante por defecto (delete →"
     },
     {
-      "file": "src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-mobile/mobile-navigation/mobile-navigation.ts",
-      "line": 414,
-      "category": "code_misc",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "<div class=\"p-3\" style=\"border:1px solid var(--ds-border,#e2e8f0);border-radius:8px;\">Swipe me left →</div>"
-    },
-    {
       "file": "src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/shared/mobile-showcase-styles.css",
       "line": 44,
       "category": "style_comment",
@@ -7914,7 +7914,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/herramientas-dev/update-data-base/update-data-base.html",
-      "line": 242,
+      "line": 260,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -10652,7 +10652,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/cobranza-online/detalle-condominos/cobranza-online-detalle-condominos.ts",
-      "line": 92,
+      "line": 88,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11951,7 +11951,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 288,
+      "line": 284,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11962,7 +11962,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 290,
+      "line": 286,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11973,7 +11973,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 292,
+      "line": 288,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11984,7 +11984,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 294,
+      "line": 290,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -11995,7 +11995,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 296,
+      "line": 292,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12006,7 +12006,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 299,
+      "line": 295,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12017,7 +12017,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 301,
+      "line": 297,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12028,7 +12028,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 303,
+      "line": 299,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12039,7 +12039,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 305,
+      "line": 301,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12050,7 +12050,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 307,
+      "line": 303,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12061,7 +12061,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 500,
+      "line": 496,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12072,7 +12072,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 549,
+      "line": 545,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -18760,17 +18760,6 @@
       "preview": "* 🗓️ CUSTOM INPUT MONTH"
     },
     {
-      "file": "src/app/shared/ui/inputs/web/custom-input-ng-select-signal.ts",
-      "line": 7,
-      "category": "code_comment",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "✨"
-      ],
-      "preview": "* ✨ CUSTOM INPUT NG SELECT (WRAPPER)"
-    },
-    {
       "file": "src/app/shared/ui/inputs/web/custom-input-number-signal.ts",
       "line": 1,
       "category": "code_comment",
@@ -18825,17 +18814,6 @@
         "↔"
       ],
       "preview": "// El input de password ahora es ADAPTATIVO (web PrimeNG ↔ Ionic según plataforma)."
-    },
-    {
-      "file": "src/app/shared/ui/inputs/web/custom-input-select-prefix-signal.ts",
-      "line": 10,
-      "category": "code_comment",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🔣"
-      ],
-      "preview": "* 🔣 CUSTOM INPUT SELECT PREFIX"
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-select-signal.ts",
@@ -19069,17 +19047,6 @@
         "→"
       ],
       "preview": "*  - Iconify legacy:    `icon=\"material-symbols-light:person\"` → extrae nombre"
-    },
-    {
-      "file": "src/app/shared/ui/mobile/color-picker/color-picker.ts",
-      "line": 34,
-      "category": "code_misc",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "✕"
-      ],
-      "preview": "✕"
     },
     {
       "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.html",
@@ -19414,6 +19381,17 @@
       "preview": "✕"
     },
     {
+      "file": "src/app/shared/ui/shared/multiple-segmented-control/multiple-segmented-control.ts",
+      "line": 19,
+      "category": "code_comment",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "🎚"
+      ],
+      "preview": "* 🎚️ Control segmentado múltiple (multiple segmented control) — agnóstico web/mobile."
+    },
+    {
       "file": "src/app/shared/ui/shared/segmented-control/segmented-control.ts",
       "line": 19,
       "category": "code_comment",
@@ -19489,40 +19467,6 @@
         "→"
       ],
       "preview": "/** bar / line / area → opción ECharts cartesiana (soporta doble eje Y). */"
-    },
-    {
-      "file": "src/app/shared/ui/web/color-picker/color-picker.ts",
-      "line": 46,
-      "category": "code_misc",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "✕"
-      ],
-      "preview": "✕"
-    },
-    {
-      "file": "src/app/shared/ui/web/command-palette/command-palette.ts",
-      "line": 108,
-      "category": "code_misc",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "↑",
-        "↓"
-      ],
-      "preview": "<span><kbd>↑↓</kbd> Navegar</span>"
-    },
-    {
-      "file": "src/app/shared/ui/web/command-palette/command-palette.ts",
-      "line": 109,
-      "category": "code_misc",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "↵"
-      ],
-      "preview": "<span><kbd>↵</kbd> Seleccionar</span>"
     },
     {
       "file": "src/app/shared/ui/web/comparison-table/comparison-table.ts",
@@ -19743,17 +19687,6 @@
         "➕"
       ],
       "preview": "label=\"➕\""
-    },
-    {
-      "file": "src/app/shared/ui/web/whats-new/whats-new.ts",
-      "line": 7,
-      "category": "code_comment",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🎉"
-      ],
-      "preview": "* 🎉 WHATS NEW"
     },
     {
       "file": "src/app/shared/utils/icon-mapping.spec.ts",

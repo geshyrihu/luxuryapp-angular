@@ -12,9 +12,12 @@
  * ============================================================================
  */
 export enum EProposalStatus {
-  Draft = "Draft",
-  Approved = "Approved",
-  Rejected = "Rejected",
+  Borrador = "Borrador",
+  Enviado = "Enviado",
+  EnRevision = "En Revisión",
+  Aprobado = "Aprobado",
+  Rechazado = "Rechazado",
+  Cancelado = "Cancelado",
 }
 
 export interface CreateBudgetProposalDTO {
@@ -85,6 +88,10 @@ export interface BudgetProposalItemDTO {
   presupuestoNoviembre: number;
   presupuestoDiciembre: number;
   files: BudgetProposalItemSupportFileDTO[];
+  isFinalized: boolean;
+  finalizedById: string | null;
+  finalizedByUserName: string | null;
+  finalizedAt: Date | null;
 }
 
 export interface BudgetProposalItemHistoryDTO {

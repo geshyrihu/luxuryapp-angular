@@ -5,7 +5,7 @@ import { AppImage } from "@ui/web/image/image";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Image. Renderiza `app-image` (PrimeNG, con preview) o
+ * Wrapper multiplataforma de Image. Renderiza `app-image` (web, con preview) o
  * `ili-image` (Ionic ion-img) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-image [src]="..." [preview]="true" />`.
  */
@@ -20,6 +20,7 @@ import { PlatformService } from "@core/services/platform.service";
         [alt]="alt()"
         [width]="width()"
         [height]="height()"
+        [preview]="preview()"
         [imageClass]="imageClass()"
         [imageStyle]="imageStyle()"
         [styleClass]="styleClass()"
@@ -42,4 +43,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxImage extends ImageBase {
   protected platform = inject(PlatformService);
 }
-
