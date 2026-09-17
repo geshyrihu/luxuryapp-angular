@@ -14,7 +14,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -35,7 +34,6 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     FormsModule,
     RouterModule,
     NgbTooltipModule,
-    InputTextModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -89,4 +87,3 @@ export class MaintenanceReports {
     this.menu.set(MenuReportMaintenance);
   }
 }
-

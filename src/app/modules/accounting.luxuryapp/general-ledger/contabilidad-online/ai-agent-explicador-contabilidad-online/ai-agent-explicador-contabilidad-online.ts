@@ -10,7 +10,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
@@ -38,7 +37,6 @@ interface AiMessage {
     WebButtonLabel,
     CommonModule,
     FormsModule,
-    ButtonModule,
     CustomInputTextSignal,
     LxSpinner,
     LxSidebar,
@@ -224,4 +222,3 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
       .trim();
   }
 }
-

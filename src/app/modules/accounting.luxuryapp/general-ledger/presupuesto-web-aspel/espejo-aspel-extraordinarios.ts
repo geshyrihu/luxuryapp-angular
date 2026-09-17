@@ -10,9 +10,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -54,8 +52,6 @@ import { PurchaseHistory } from "./purchase-history";
     AppSortableColumn,
     AppSorticon,
     AppFrozenColumn,
-    MessageModule,
-    TagModule,
     DataViewMobile,
     LxTooltipDirective,
   ],
@@ -359,4 +355,3 @@ export class EspejoAspelExtraordinarios {
     return isParentAccount(cuenta);
   }
 }
-

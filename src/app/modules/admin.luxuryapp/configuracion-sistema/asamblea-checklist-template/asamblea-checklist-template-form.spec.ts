@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { MessageService } from "primeng/api";
 import {
   DialogService,
   DynamicDialogConfig,
@@ -19,7 +18,6 @@ describe("AsambleaChecklistTemplateForm", () => {
       imports: [AsambleaChecklistTemplateForm],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
         {
           provide: DialogService,
           useValue: {
@@ -52,4 +50,3 @@ describe("AsambleaChecklistTemplateForm", () => {
     expect(component).toBeTruthy();
   });
 });
-

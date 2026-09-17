@@ -12,7 +12,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -42,7 +41,6 @@ type TagSeverity =
     CustomInputMultiselectSignal,
     CustomSearchInput,
     DialogModule,
-    DividerModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -461,4 +459,3 @@ export class CatalogGuia {
     this.dialogVisible = true;
   }
 }
-

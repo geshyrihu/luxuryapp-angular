@@ -7,11 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
@@ -30,22 +25,20 @@ import { SolicitudVacanteForm } from "@operations.luxuryapp/reclutamiento-solici
 import { IWorkPosition } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
 import { JobDescriptionForm } from "@operations.luxuryapp/work-position/job-description-form";
 import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import {
-  AppIcon,
-  type AppIconName,
-} from "@ui/shared/app-icon/app-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon, type AppIconName } from "@ui/shared/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/shared/segmented-control/segmented-control";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
 import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import {
   ExcelColumn,
   ExcelExportService,
@@ -54,6 +47,10 @@ import { WorkSchedulePresentationService } from "@core/services/work-schedule-pr
 import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { CandidateInterviewerQueueService } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";
 
 @Component({
@@ -536,5 +533,3 @@ export class StaffBoardList {
     this.router.navigate(["/directory/employee-interviewer-queue"]);
   }
 }
-
-

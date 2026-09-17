@@ -35,7 +35,6 @@ import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-butt
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -91,7 +90,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ApiDatePipe,
     ReactiveFormsModule,
     DragDropModule,
-    ButtonModule,
     LxTag,
     CustomInputSelectButton,
     CustomInputSwitch,
@@ -640,4 +638,3 @@ export class ManualsAndProcessesEditor implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
-

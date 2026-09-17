@@ -13,7 +13,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -71,7 +70,6 @@ interface IChargeTemplateForm {
     CustomInputDateSignal,
     CustomInputNumberSignal,
     WebButtonLabelSave,
-    ButtonModule,
     LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -297,4 +295,3 @@ export class ChargeTemplateForm implements OnInit {
       });
   }
 }
-

@@ -40,10 +40,8 @@ import {
 } from "@ui/web/notification-center/notification-center";
 import { MenuItem, TreeNode } from "@ui/web/primeng-api/primeng-api";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { AppDivider } from "@ui/web/divider/divider";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
@@ -175,9 +173,7 @@ const CORE_LABELS: Record<string, string> = {
   selector: "app-catalog-core-item",
   imports: [
     ButtonModule,
-    CheckboxModule,
     AppDivider,
-    TagModule,
     ActionMenu,
     AppIcon,
     DataViewMobile,
@@ -2325,4 +2321,3 @@ export class CatalogCoreItem {
     },
   ];
 }
-

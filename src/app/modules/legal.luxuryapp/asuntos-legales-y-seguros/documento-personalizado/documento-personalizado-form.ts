@@ -17,7 +17,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -36,7 +35,6 @@ interface IDocumentoPersonalizadoForm {
   selector: "app-documento-personalizado-form",
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputFile,
@@ -148,4 +146,3 @@ export class DocumentoPersonalizadoForm implements OnInit {
     return formData;
   }
 }
-

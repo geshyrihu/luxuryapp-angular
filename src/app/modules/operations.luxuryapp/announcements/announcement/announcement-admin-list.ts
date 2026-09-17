@@ -21,7 +21,6 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -61,7 +60,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    SelectModule,
     WebButtonLabel,
 
     LxTag,
@@ -164,4 +162,3 @@ export class AnnouncementAdminList implements OnInit {
     }
   }
 }
-

@@ -8,17 +8,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { SplitButtonModule } from "@ui/web/primeng-splitbutton/primeng-splitbutton";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
-import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -31,8 +20,18 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AppImage } from "@ui/web/image/image";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../task-message/task-form";
 
 @Component({
@@ -46,13 +45,10 @@ import { TaskForm } from "../task-message/task-form";
     AppIcon,
     WebButtonLabel,
     AppTable,
-
     AppSortableColumn,
-
     AppSorticon,
     AppImage,
     AppAvatar,
-    SplitButtonModule,
     CustomInputSelectSignal,
     ReactiveFormsModule,
   ],
@@ -61,7 +57,10 @@ export class TaskReportWorkPlan implements OnInit {
   onUpdatePriority(taskId: string): void {
     this.apiResponseS
       .onGetItem(
-        Endpoints.Tasks.updatePriorityLower(taskId, this.authS.applicationUserId),
+        Endpoints.Tasks.updatePriorityLower(
+          taskId,
+          this.authS.applicationUserId,
+        ),
       )
       .then((result: boolean) => {
         if (!result) return;
@@ -162,5 +161,3 @@ export class TaskReportWorkPlan implements OnInit {
     );
   }
 }
-
-

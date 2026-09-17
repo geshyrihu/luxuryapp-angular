@@ -62,9 +62,6 @@ import { AccordionModule } from "@ui/web/primeng-accordion/primeng-accordion";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { DatePickerModule } from "@ui/web/primeng-datepicker/primeng-datepicker";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
-import { FloatLabelModule } from "@ui/web/primeng-floatlabel/primeng-floatlabel";
-import { IconFieldModule } from "@ui/web/primeng-iconfield/primeng-iconfield";
-import { InputIconModule } from "@ui/web/primeng-inputicon/primeng-inputicon";
 import { InputNumberModule } from "@ui/web/primeng-inputnumber/primeng-inputnumber";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { MultiSelectModule } from "@ui/web/primeng-multiselect/primeng-multiselect";
@@ -180,9 +177,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     ButtonModule,
     DatePickerModule,
     DialogModule,
-    FloatLabelModule,
-    IconFieldModule,
-    InputIconModule,
     InputNumberModule,
     InputTextModule,
     MultiSelectModule,

@@ -9,7 +9,6 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -18,7 +17,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-editor",
-  imports: [AppIcon, ToastModule],
+  imports: [AppIcon],
   templateUrl: "./diagram-editor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -139,4 +138,3 @@ export class DiagramEditor implements OnInit, OnDestroy {
       });
   }
 }
-

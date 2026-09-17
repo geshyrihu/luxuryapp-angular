@@ -3,7 +3,6 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 import { provideRouter } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { MessageService } from "primeng/api";
 import {
   DialogService,
   DynamicDialogConfig,
@@ -19,7 +18,6 @@ describe("CreateOrdenCompraWizard", () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         provideRouter([]),
-        MessageService,
         DialogService,
         { provide: ModalController, useValue: {} },
         { provide: DynamicDialogRef, useValue: { close: () => {} } },
@@ -66,4 +64,3 @@ describe("CreateOrdenCompraWizard", () => {
     expect(data.product.productName).toBe("Producto Demo");
   });
 });
-

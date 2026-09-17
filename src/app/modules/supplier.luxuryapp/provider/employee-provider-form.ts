@@ -18,7 +18,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { firstValueFrom } from "rxjs";
 import { EmployeeInternalService } from "@shared/integration/recursos-humanos";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -43,7 +42,6 @@ type Opcion = "none" | "vacante" | "alta";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputTextSignal,
     InputMask,
     CustomInputDateSignal,
@@ -416,4 +414,3 @@ export class EmployeeProviderForm implements OnInit {
     });
   }
 }
-

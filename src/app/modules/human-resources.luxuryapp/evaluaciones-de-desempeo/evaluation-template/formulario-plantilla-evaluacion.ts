@@ -22,21 +22,19 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { InputGroupModule } from "@ui/web/primeng-inputgroup/primeng-inputgroup";
-import { InputGroupAddonModule } from "@ui/web/primeng-inputgroupaddon/primeng-inputgroupaddon";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ROUTES } from "src/app/routing/route-paths";
+import { CustomerIdService } from "../../../../core/auth/services/customer-id.service";
 
 interface IQuestionForm {
   id: FormControl<string | null>;
@@ -56,8 +54,6 @@ interface CategoryForm {
   templateUrl: "./formulario-plantilla-evaluacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    InputGroupModule,
-    InputGroupAddonModule,
     LxTooltipDirective,
     LxFieldset,
     WebButtonLabel,
@@ -304,4 +300,3 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 }
-

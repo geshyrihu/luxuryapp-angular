@@ -21,7 +21,6 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -42,7 +41,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   selector: "app-budget-support-dialog",
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputFile,

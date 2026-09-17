@@ -27,7 +27,6 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { AppTable, AppSortableColumn, AppSorticon, AppTableCheckbox } from "@ui/web/table/table";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -58,7 +57,6 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
 
     AppSorticon,
     CustomInputTextSignal,
-    DialogModule,
     InputSelect,
     CustomInputDateSignal,
     LxTooltipDirective,

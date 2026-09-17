@@ -10,7 +10,6 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -57,7 +56,6 @@ import { PurchaseHistory } from "./purchase-history";
     AppSortableColumn,
     AppSorticon,
     AppFrozenColumn,
-    MessageModule,
     DataViewMobile,
     LxTooltipDirective,
     LxTag,

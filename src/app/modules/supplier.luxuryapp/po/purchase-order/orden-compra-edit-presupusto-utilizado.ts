@@ -16,7 +16,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 export interface IOrdenCompraPresupuestoForm {
@@ -34,7 +33,6 @@ export interface IOrdenCompraPresupuestoForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputTextSignal,
     CustomInputCurrencySignal,
     WebButtonLabelSave,
@@ -81,4 +79,3 @@ export class OrdenCompraEditPresupustoUtilizado implements OnInit {
       });
   }
 }
-

@@ -18,7 +18,6 @@ import {
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DataConnectorService } from "@core/services/data-connector.service";
@@ -35,7 +34,6 @@ interface IResetPasswordForm {
   selector: "app-reset-password",
   imports: [
     ReactiveFormsModule,
-    MessageModule,
     CustomInputPassword,
     WebButtonLabel,
     RouterModule,

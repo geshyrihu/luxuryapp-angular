@@ -13,7 +13,6 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -40,7 +39,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     ReactiveFormsModule,
     InputFile,
-    ButtonModule,
     WebButtonLabelSave,
   ],
 })
@@ -114,4 +112,3 @@ export class PresentacionJuntaComiteForm implements OnInit {
     this.form.patchValue({ archivo: null });
   }
 }
-

@@ -14,8 +14,6 @@ import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { IconFieldModule } from "@ui/web/primeng-iconfield/primeng-iconfield";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -60,8 +58,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
     AppSorticon,
     LxTag,
-    InputTextModule,
-    IconFieldModule,
     AppAvatar,
     DataViewMobile,
     LxTooltipDirective,

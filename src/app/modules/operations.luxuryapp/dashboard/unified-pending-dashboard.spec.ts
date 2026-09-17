@@ -11,7 +11,6 @@ import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
-import { MessageService } from "primeng/api";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -64,7 +63,6 @@ describe("UnifiedPendingDashboard", () => {
         { provide: SwalService, useValue: mockSwalService },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: MessageService, useValue: { add: vi.fn() } },
       ],
     });
     await TestBed.compileComponents();
@@ -236,4 +234,3 @@ describe("UnifiedPendingDashboard", () => {
     expect(() => component.onModalForm({})).not.toThrow();
   });
 });
-

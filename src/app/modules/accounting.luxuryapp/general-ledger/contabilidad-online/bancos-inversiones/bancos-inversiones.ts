@@ -6,7 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,7 +19,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-bancos-inversiones",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule, AppTable, AppSortableColumn, AppSorticon],
+  imports: [LxSkeleton, AppIcon, CommonModule,  AppTable, AppSortableColumn, AppSorticon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })
@@ -69,4 +68,3 @@ export class BancosInversionesComponent {
     this.loading.set(false);
   }
 }
-

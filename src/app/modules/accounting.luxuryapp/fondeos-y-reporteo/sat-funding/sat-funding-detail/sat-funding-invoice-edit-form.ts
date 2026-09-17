@@ -16,7 +16,6 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -41,7 +40,6 @@ interface ISatFundingInvoiceEditForm {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputSelectSignal,
     WebButtonLabelSave,
     CustomInputTextSignal,

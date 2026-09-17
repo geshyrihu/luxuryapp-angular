@@ -19,7 +19,6 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -49,7 +48,6 @@ interface ITaskTemplateItemForm {
     CustomInputTextAreaSignal,
     RecurrenceInput,
     InputDatepicker,
-    CheckboxModule,
     CustomInputCheckSignal,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -155,4 +153,3 @@ export class TaskTemplateItemForm implements OnInit {
     });
   }
 }
-

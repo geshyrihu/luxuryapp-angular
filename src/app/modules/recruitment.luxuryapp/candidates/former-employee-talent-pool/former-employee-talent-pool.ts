@@ -13,7 +13,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -67,7 +66,6 @@ interface FormerEmployeeCandidateResult {
     ApiDatePipe,
     CommonModule,
     CustomInputSelectSignal,
-    InputTextModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,

@@ -20,7 +20,6 @@ import {
   signal,
 } from "@angular/core";
 
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 
 import { LxCard } from "@ui/adaptive/card/card";
@@ -39,7 +38,7 @@ export interface IUniformFeeComparisonDTO {
 
 @Component({
   selector: "app-fee-comparison-by-fija",
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, DividerModule, LxCard, LxMessage],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon,  LxCard, LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fee-comparison-by-fija.html",
 })
@@ -68,4 +67,3 @@ export class FeeComparisonByFija implements OnInit {
       });
   }
 }
-

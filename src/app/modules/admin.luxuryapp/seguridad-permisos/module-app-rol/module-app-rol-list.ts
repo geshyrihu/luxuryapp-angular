@@ -11,7 +11,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -37,7 +36,6 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    ProgressSpinnerModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -107,4 +105,3 @@ export class ModuleAppRol {
     );
   }
 }
-

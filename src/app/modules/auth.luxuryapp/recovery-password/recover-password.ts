@@ -17,7 +17,6 @@ import {
 import { RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -37,7 +36,6 @@ interface IRecoverPasswordForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    MessageModule,
     CustomInputTextSignal,
     WebButtonLabel,
     RouterModule,
@@ -135,4 +133,3 @@ export class RecoverPassword implements OnInit, OnDestroy {
     }, 1000);
   }
 }
-

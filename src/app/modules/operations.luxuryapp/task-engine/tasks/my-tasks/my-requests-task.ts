@@ -12,7 +12,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppImage } from "@ui/web/image/image";
-import { ChipModule } from "@ui/web/primeng-chip/primeng-chip";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -53,7 +52,6 @@ import { TaskGroupService } from "../task.service";
     ActionMenu,
     TaskStatus,
     AppImage,
-    ChipModule,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     MobileListItem,

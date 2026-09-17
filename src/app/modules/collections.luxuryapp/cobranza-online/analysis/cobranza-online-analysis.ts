@@ -15,7 +15,6 @@ import {
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   DialogHandlerService,
@@ -30,7 +29,6 @@ import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-compos
     CommonModule,
     FormsModule,
     RouterModule,
-    ButtonModule,
     ChartWrapper,
     AppStatCard,
     AppBreakdownList,
@@ -317,4 +315,3 @@ export class CobranzaOnlineAnalysis {
     }
   }
 }
-

@@ -8,11 +8,9 @@ import {
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { BadgeModule } from "@ui/web/primeng-badge/primeng-badge";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { SplitButtonModule } from "@ui/web/primeng-splitbutton/primeng-splitbutton";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -61,8 +59,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    SplitButtonModule,
-    BadgeModule,
     RouterModule,
     DataViewMobile,
   ],

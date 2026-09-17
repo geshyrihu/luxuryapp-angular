@@ -26,12 +26,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { RippleModule } from "@ui/web/primeng-ripple/primeng-ripple";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
@@ -45,7 +44,6 @@ interface ISearchForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabel,
-    RippleModule,
     AppIcon,
     LxMessage,
   ],
@@ -150,4 +148,3 @@ export class AccountModalAdd implements OnInit {
     this.ref.close();
   }
 }
-

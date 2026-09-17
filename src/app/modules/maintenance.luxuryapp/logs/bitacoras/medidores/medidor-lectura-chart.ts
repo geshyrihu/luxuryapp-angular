@@ -15,7 +15,6 @@ import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango
 import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ChartType } from "@core/interfaces/chart-type.interface";
@@ -30,7 +29,6 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
     NgxEchartsDirective,
     CalendarRange,
     RangoCalendarioyyyymmdd,
-    RadioButtonModule,
     FormsModule,
   ],
 })
@@ -194,4 +192,3 @@ export class MedidorLecturaChart implements OnInit {
     this.chartOption.set(chartJsToCartesianOption(this.lineBarChart, "bar"));
   }
 }
-

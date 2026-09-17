@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AvatarModule } from "@ui/web/primeng-avatar/primeng-avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -60,7 +59,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    AvatarModule,
   ],
 })
 export class EmployeeList {
@@ -177,6 +175,5 @@ export class EmployeeList {
     this.router.navigateByUrl(urlApi);
   }
 }
-
 
 

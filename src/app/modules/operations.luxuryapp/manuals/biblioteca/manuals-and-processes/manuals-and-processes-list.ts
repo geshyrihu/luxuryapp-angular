@@ -16,7 +16,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -46,7 +45,6 @@ interface DeptGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    ButtonModule,
     CustomSearchInput,
     WebButtonLabel,
     WebButtonLabelDelete,
@@ -214,4 +212,3 @@ export class ManualsAndProcessesList implements OnInit {
       });
   }
 }
-

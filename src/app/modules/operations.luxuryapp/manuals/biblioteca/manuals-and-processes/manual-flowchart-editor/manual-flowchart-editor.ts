@@ -9,7 +9,6 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -62,7 +61,7 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
 
 @Component({
   selector: "app-manual-flowchart-editor",
-  imports: [ToastModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./manual-flowchart-editor.html",
 })
@@ -173,4 +172,3 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
       });
   }
 }
-

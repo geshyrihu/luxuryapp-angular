@@ -13,7 +13,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppImage } from "@ui/web/image/image";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -53,7 +52,6 @@ import { DialogSize } from "@core/enums/dialog-size.enum";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    DividerModule,
     AppImage,
     WebButtonLabel,
     LxModal,

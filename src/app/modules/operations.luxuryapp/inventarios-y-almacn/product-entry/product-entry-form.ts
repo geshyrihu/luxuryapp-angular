@@ -20,7 +20,6 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -51,7 +50,6 @@ interface IProductEntryForm {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
@@ -218,4 +216,3 @@ export class ProductEntryForm implements OnInit {
     });
   }
 }
-

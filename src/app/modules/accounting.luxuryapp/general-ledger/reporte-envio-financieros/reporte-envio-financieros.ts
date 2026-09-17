@@ -10,7 +10,6 @@ import { FormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -35,7 +34,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TagModule,
     LxTooltipDirective,
     CustomInputSelectSignal,
     FormsModule,
@@ -100,4 +98,3 @@ export class ReporteEnvioFinancieros implements OnInit {
     this.onLoadData();
   }
 }
-

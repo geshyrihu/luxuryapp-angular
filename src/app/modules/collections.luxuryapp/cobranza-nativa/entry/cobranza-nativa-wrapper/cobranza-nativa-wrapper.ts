@@ -7,7 +7,6 @@ import {
 import { Router } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -32,7 +31,6 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
   imports: [
     WebButtonLabel,
     AppIcon,
-    ButtonModule,
     LxTag,
     LxCard,
     LxTabs,
@@ -214,4 +212,3 @@ export default class CobranzaNativaWrapper {
       .find((card) => card.title === title);
   }
 }
-

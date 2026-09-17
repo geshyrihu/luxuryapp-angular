@@ -21,7 +21,6 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -29,7 +28,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, TagModule, AppIcon],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppIcon],
 })
 export class BudgetExecutionDetailsModal implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -1,10 +1,7 @@
 import { CommonModule, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -26,17 +23,14 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   WebButtonLabelEdit,
   CustomInputSelectSignal,
   FormsModule,
-  InputTextModule,
   IonInputCheckbox,
   IonInputSelect,
-  MessageModule,
   PrimeNgCustomCaption,
   PrimeNgCustomTableFooter,
   RouterModule,
   AppTable,
   AppSortableColumn,
   AppSorticon,
-  TagModule,
   LxTooltipDirective,
   UpperCasePipe,
 ];

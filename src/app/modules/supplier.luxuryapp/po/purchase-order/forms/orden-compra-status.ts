@@ -17,7 +17,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 export interface IOrdenCompraStatusForm {
@@ -39,7 +38,6 @@ export interface IOrdenCompraStatusForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,

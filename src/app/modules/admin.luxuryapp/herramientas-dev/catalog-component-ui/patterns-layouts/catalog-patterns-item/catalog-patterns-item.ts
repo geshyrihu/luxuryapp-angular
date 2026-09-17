@@ -10,7 +10,6 @@ import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppDivider } from "@ui/web/divider/divider";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -32,7 +31,6 @@ const PATTERNS_LABELS: Record<string, string> = {
     ButtonModule,
     AppDivider,
     InputTextModule,
-    MessageModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,

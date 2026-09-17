@@ -11,7 +11,6 @@ import { computed } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
 import { ToastController } from "@ionic/angular";
-import { MessageService } from "primeng/api";
 import { DialogService } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -33,7 +32,6 @@ describe("DashboardPendingItems", () => {
       imports: [DashboardPendingItems],
       providers: [
         { provide: AspRoleService, useValue: mockAspRoleS },
-        { provide: MessageService, useValue: { add: vi.fn() } },
         { provide: ToastController, useValue: {} },
         { provide: DialogService, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } },
@@ -92,4 +90,3 @@ describe("DashboardPendingItems", () => {
     expect(component.visibleModules()).toContain("Polizas");
   });
 });
-

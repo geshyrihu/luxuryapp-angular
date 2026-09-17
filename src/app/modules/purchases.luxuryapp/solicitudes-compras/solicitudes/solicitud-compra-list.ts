@@ -14,7 +14,6 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
@@ -72,7 +71,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     AppSortableColumn,
 
     AppSorticon,
-    TagModule,
     LxTooltipDirective,
     WebButtonLabel,
     PrimeNgCustomCaption,

@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -19,7 +18,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 @Component({
   selector: "app-proyectos-aprobados",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule, AppTable, AppSortableColumn, AppSorticon],
+  imports: [LxSkeleton, AppIcon, CommonModule, AppTable, AppSortableColumn, AppSorticon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })
@@ -81,4 +80,3 @@ export class ProyectosAprobadosComponent {
     this.loading.set(false);
   }
 }
-

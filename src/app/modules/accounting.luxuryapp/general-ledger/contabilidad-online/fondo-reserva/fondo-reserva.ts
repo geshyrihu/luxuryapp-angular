@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -18,7 +17,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 @Component({
   selector: "app-fondo-reserva",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, SkeletonModule],
+  imports: [LxSkeleton, AppIcon, CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fondo-reserva.html",
 })
@@ -66,4 +65,3 @@ export class FondoReservaComponent {
     this.loading.set(false);
   }
 }
-

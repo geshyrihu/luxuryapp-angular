@@ -36,7 +36,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { TaskGroupParticipant } from "@operations.luxuryapp/task-engine/tasks/participants/task-group-participant";
 import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EITaskMessageDTOStatus } from "../task-message-status.enum";
+import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
 
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";

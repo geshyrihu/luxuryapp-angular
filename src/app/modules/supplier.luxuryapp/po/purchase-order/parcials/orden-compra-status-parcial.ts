@@ -4,16 +4,16 @@ import {
   input,
   output,
 } from "@angular/core";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+
 @Component({
   selector: "app-orden-compra-status-parcial",
   templateUrl: "./orden-compra-status-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonModule, AppIcon, WebButtonIcon, LxTag],
+  imports: [ AppIcon, WebButtonIcon, LxTag],
 })
 export class OrdenCompraStatusParcial {
   ordenCompra = input<any>();
@@ -26,4 +26,3 @@ export class OrdenCompraStatusParcial {
     this.modalOrdenCompra.emit();
   }
 }
-

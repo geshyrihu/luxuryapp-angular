@@ -18,8 +18,6 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { SelectModule } from "@ui/web/primeng-select/primeng-select";
-import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -46,7 +44,6 @@ import { CustomerDataCompanyDto } from "./customer-data-company.dto";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    SelectButtonModule,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileButtonLabelEdit,
@@ -55,7 +52,6 @@ import { CustomerDataCompanyDto } from "./customer-data-company.dto";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileActionMenu,
-    SelectModule,
     CustomInputSelectSignal,
     MobileListItem,
     AppIcon,
@@ -159,4 +155,3 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 }
-

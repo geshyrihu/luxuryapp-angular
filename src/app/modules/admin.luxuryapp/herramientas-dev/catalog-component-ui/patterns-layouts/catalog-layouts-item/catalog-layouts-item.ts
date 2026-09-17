@@ -8,7 +8,6 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppDivider } from "@ui/web/divider/divider";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 const LAYOUTS_LABELS: Record<string, string> = {
   fullwidth: "Full Width",
@@ -20,7 +19,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [ButtonModule, AppDivider, TagModule],
+  imports: [ButtonModule, AppDivider],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

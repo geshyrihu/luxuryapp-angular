@@ -16,7 +16,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { InputNumberModule } from "@ui/web/primeng-inputnumber/primeng-inputnumber";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -70,7 +69,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
     AppSorticon,
     AppAvatar,
-    InputNumberModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     PrimeNgCustomCaption,

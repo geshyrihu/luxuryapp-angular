@@ -1,7 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
@@ -9,7 +7,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 @Component({
   selector: "app-catalog-layouts",
 
-  imports: [CommonModule, ButtonModule, DividerModule, AppTag, AppIcon],
+  imports: [CommonModule,   AppTag, AppIcon],
   template: `
     <div class="row">
       <!-- -- Layouts de Página --------------------------------------- -->
@@ -614,4 +612,3 @@ export class CatalogLayouts {
     },
   ];
 }
-

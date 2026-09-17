@@ -22,7 +22,6 @@ import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { Observable, of } from "rxjs";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -46,7 +45,6 @@ interface IEmployeeExternalForm {
   selector: "app-employee-external-form",
   imports: [
     ReactiveFormsModule,
-    InputTextModule,
     WebButtonLabel,
     CustomInputTextSignal,
     InputMask,
@@ -341,4 +339,3 @@ export class EmployeeExternalForm implements OnInit {
       });
   }
 }
-

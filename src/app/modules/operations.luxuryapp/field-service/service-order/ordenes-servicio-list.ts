@@ -17,7 +17,6 @@ import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -71,7 +70,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     ReactiveFormsModule,
     CustomInputTextSignal,
-    InputTextModule,
     PrimeNgCustomCaption,
     RouterModule,
     AppTable,
@@ -352,4 +350,3 @@ export class OrdenesServicio {
     this.route.navigate(["/tickets/ticket-messages", id, status, nameGroup]);
   }
 }
-

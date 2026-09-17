@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -46,7 +45,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    ButtonModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
@@ -178,4 +176,3 @@ export class CobranzaOnlineInspection {
     return `${day}-${month}-${year}`;
   }
 }
-

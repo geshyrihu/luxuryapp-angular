@@ -18,7 +18,6 @@ import { DialogService,
   DynamicDialogConfig,
   DynamicDialogRef, } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
@@ -64,7 +63,6 @@ type ModalStatus =
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TagModule,
     CustomInputCheckSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,

@@ -17,7 +17,6 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -47,7 +46,6 @@ interface ILegalEditarForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    SelectModule,
     InputAutocomplete,
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
@@ -183,4 +181,3 @@ export class TicketLegalEditar implements OnInit {
     });
   }
 }
-

@@ -3,14 +3,13 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [AppTable, AppSortableColumn, AppSorticon, AppTag, MessageModule],
+  imports: [AppTable, AppSortableColumn, AppSorticon, AppTag],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">

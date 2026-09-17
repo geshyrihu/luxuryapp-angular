@@ -28,7 +28,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
@@ -78,7 +77,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    ButtonModule,
     NgbTooltipModule,
     LxTooltipDirective,
     LxAccordion,

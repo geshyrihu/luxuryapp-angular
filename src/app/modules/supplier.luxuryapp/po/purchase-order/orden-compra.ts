@@ -18,7 +18,6 @@ import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 
@@ -71,7 +70,6 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
     RouterModule,
     AppTable,
 
-    SkeletonModule,
     AppSpinner,
     LxCard,
     LxMessage,

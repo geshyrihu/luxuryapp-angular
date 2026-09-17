@@ -1,10 +1,6 @@
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
@@ -15,11 +11,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
   selector: "app-catalog-audit",
   imports: [
     FormsModule,
-    ButtonModule,
     AppCheckbox,
-    DividerModule,
-    MessageModule,
-    TagModule,
     AppIcon,
   ],
   template: `

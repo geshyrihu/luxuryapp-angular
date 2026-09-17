@@ -17,12 +17,7 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
@@ -57,14 +52,9 @@ const GUIA_LABELS: Record<string, string> = {
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomSearchInput,
-    DialogModule,
-    DividerModule,
-    ProgressSpinnerModule,
-    SkeletonModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    ToolbarModule,
     AppCheckbox,
     AppMessage,
     AppRadioButton,

@@ -22,16 +22,11 @@ import { LxChip } from "@ui/adaptive/chip/chip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { AutoCompleteModule } from "@ui/web/primeng-autocomplete/primeng-autocomplete";
-import { BadgeModule } from "@ui/web/primeng-badge/primeng-badge";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { InputGroupModule } from "@ui/web/primeng-inputgroup/primeng-inputgroup";
-import { InputGroupAddonModule } from "@ui/web/primeng-inputgroupaddon/primeng-inputgroupaddon";
-import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -66,18 +61,13 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    AutoCompleteModule,
     LxTooltipDirective,
     CustomInputSelectSignal,
     CustomInputCheckSignal,
-    ProgressSpinnerModule,
-    BadgeModule,
     LxPopover,
     WebButtonLabel,
     WebButtonIcon,
     LxChip,
-    InputGroupModule,
-    InputGroupAddonModule,
     AccountTreeSelect,
     CurrencyPipe,
     AppIcon,
@@ -648,4 +638,3 @@ export class ReportBuilder implements OnInit, OnDestroy {
     }
   }
 }
-

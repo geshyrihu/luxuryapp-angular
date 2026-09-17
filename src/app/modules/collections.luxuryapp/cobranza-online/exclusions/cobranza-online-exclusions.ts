@@ -11,7 +11,6 @@ import { RouterModule } from "@angular/router";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -41,7 +40,6 @@ import type {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    ButtonModule,
     CustomInputCheckSignal,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -140,4 +138,3 @@ export class CobranzaOnlineExclusions {
 
   // Readonly view
 }
-

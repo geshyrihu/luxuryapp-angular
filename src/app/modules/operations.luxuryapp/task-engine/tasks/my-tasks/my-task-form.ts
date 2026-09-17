@@ -14,7 +14,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AvatarModule } from "@ui/web/primeng-avatar/primeng-avatar";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -43,7 +42,6 @@ import { TaskGroupService } from "../task.service";
     CustomInputTextAreaSignal,
     WebButtonLabel,
     WebButtonLabelSave,
-    AvatarModule,
     ImageAnalysisDialogComponent,
     LxFileUpload,
     AppIcon,
@@ -262,4 +260,3 @@ export class MyTaskForm implements OnInit, OnDestroy {
     }
   }
 }
-

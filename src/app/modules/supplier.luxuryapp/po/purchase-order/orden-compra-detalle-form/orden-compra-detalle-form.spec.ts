@@ -2,7 +2,6 @@ import { provideHttpClient } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 import { provideRouter } from "@angular/router";
-import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { OrdenCompraDetalleForm } from "./orden-compra-detalle-form";
 
@@ -14,7 +13,6 @@ describe("OrdenCompraDetalleForm - repro submit inactivo", () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         provideRouter([]),
-        MessageService,
         { provide: DynamicDialogRef, useValue: { close: () => {} } },
         {
           provide: DynamicDialogConfig,
@@ -68,4 +66,3 @@ describe("OrdenCompraDetalleForm - repro submit inactivo", () => {
     expect(btn?.disabled).toBe(false);
   });
 });
-

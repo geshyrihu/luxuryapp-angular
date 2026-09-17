@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,11 +8,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "@core/enums/candidate-decision";
 import { CandidateRejectionReason } from "@core/enums/candidate-rejection-reason";
@@ -28,6 +22,12 @@ import { InterviewerActionRequestDto } from "@shared/integration/reclutamiento/c
 import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "@shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { firstValueFrom } from "rxjs";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-employee-interview-response",
@@ -35,7 +35,6 @@ import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruit
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ApiDatePipe,
-
     FormsModule,
     AppTable,
     AppSortableColumn,
@@ -238,4 +237,3 @@ export class EmployeeInterviewResponse implements OnInit {
     void this.loadInterviewResponse(identifier);
   }
 }
-

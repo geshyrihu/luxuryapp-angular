@@ -1,7 +1,6 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { ConfirmationService, MessageService } from "primeng/api";
 import { DialogService } from "@core/services/dialog-handler.service";
 import { Subject } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -96,18 +95,6 @@ describe("GoogleCalendar", () => {
           },
         },
         {
-          provide: ConfirmationService,
-          useValue: {
-            confirm: vi.fn(),
-          },
-        },
-        {
-          provide: MessageService,
-          useValue: {
-            add: vi.fn(),
-          },
-        },
-        {
           provide: SignalRService,
           useValue: {
             googleCalendarEventUpdate$: new Subject(),
@@ -155,4 +142,3 @@ describe("GoogleCalendar", () => {
     expect(fixture.nativeElement.textContent).toContain("Google Calendar List");
   });
 });
-

@@ -53,10 +53,6 @@ import { AppPanelMenu } from "@ui/web/panel-menu/panel-menu";
 import { AppPanel } from "@ui/web/panel/panel";
 import { PickList } from "@ui/web/pick-list/pick-list";
 import { AppPopover } from "@ui/web/popover/popover";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
@@ -96,11 +92,6 @@ const EXTRAS_LABELS: Record<string, string> = {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    ButtonModule,
-    CheckboxModule,
-    DividerModule,
-    TagModule,
-    AppIcon,
     AppCheckbox,
     AppCascadeSelect,
     AppMultiSelect,
@@ -1232,4 +1223,3 @@ export class CatalogWebExtras {
     ],
   };
 }
-

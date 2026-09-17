@@ -13,10 +13,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   ActionMenu,
@@ -28,17 +25,14 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   WebButtonLabelEdit,
   CustomInputSelectSignal,
   FormsModule,
-  InputTextModule,
   IonInputCheckbox,
   IonInputSelect,
-  MessageModule,
   PrimeNgCustomCaption,
   PrimeNgCustomTableFooter,
   RouterModule,
   AppTable,
   AppSortableColumn,
   AppSorticon,
-  TagModule,
   LxTooltipDirective,
   UpperCasePipe,
 ];
