@@ -75,7 +75,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   templateUrl: "./orden-compra-list.html",
   styles: [
     `
-      :host ::ng-deep .orden-compra-table .p-datatable-table {
+      :host ::ng-deep .orden-compra-table .app-table-table {
         table-layout: fixed;
         width: 100%;
       }
@@ -116,7 +116,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       :host
         ::ng-deep
         .orden-compra-table
-        .p-datatable-tbody
+        .app-table-tbody
         > tr
         > td.oc-cell-wrap {
         white-space: normal;
@@ -127,13 +127,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       :host
         ::ng-deep
         .orden-compra-table
-        .p-datatable-tbody
+        .app-table-tbody
         > tr
         > td.oc-cell-total,
       :host
         ::ng-deep
         .orden-compra-table
-        .p-datatable-thead
+        .app-table-thead
         > tr
         > th:nth-child(6) {
         text-align: right;

@@ -47,7 +47,7 @@
       width: 8rem !important;
     }
 
-    @each $rem in 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 18 {
+    @each $rem in 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 18 {
       &.table-col-#{$rem}rem {
         width: #{$rem}rem !important;
       }
@@ -150,6 +150,41 @@
     }
 
     .app-table-tbody > tr > td {
+      &.table-col-icon {
+        width: 3rem !important;
+      }
+      &.table-col-xs {
+        width: 5rem !important;
+      }
+      &.table-col-sm {
+        width: 8rem !important;
+      }
+      &.table-col-md {
+        width: 10rem !important;
+      }
+      &.table-col-lg {
+        width: 15rem !important;
+      }
+      &.table-col-xl {
+        width: 20rem !important;
+      }
+      &.table-col-actions {
+        width: 8rem !important;
+      }
+
+      @each $rem in 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 18 {
+        &.table-col-#{$rem}rem {
+          width: #{$rem}rem !important;
+        }
+      }
+
+      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150,
+        160, 260, 320
+      {
+        &.table-col-#{$px}px {
+          width: #{$px}px !important;
+        }
+      }
     }
 
     .app-table-tbody > tr.row-status-completed > td:first-child {
@@ -263,6 +298,42 @@
       }
       &.table-col-10 {
         width: 10%;
+      }
+
+      &.table-col-icon {
+        width: 3rem !important;
+      }
+      &.table-col-xs {
+        width: 5rem !important;
+      }
+      &.table-col-sm {
+        width: 8rem !important;
+      }
+      &.table-col-md {
+        width: 10rem !important;
+      }
+      &.table-col-lg {
+        width: 15rem !important;
+      }
+      &.table-col-xl {
+        width: 20rem !important;
+      }
+      &.table-col-actions {
+        width: 8rem !important;
+      }
+
+      @each $rem in 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 18 {
+        &.table-col-#{$rem}rem {
+          width: #{$rem}rem !important;
+        }
+      }
+
+      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150,
+        160, 260, 320
+      {
+        &.table-col-#{$px}px {
+          width: #{$px}px !important;
+        }
       }
     }
 

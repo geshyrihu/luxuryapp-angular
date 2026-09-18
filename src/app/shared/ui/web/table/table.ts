@@ -223,6 +223,7 @@ export interface AppTableLazyEvent {
         [class.app-table-sm]="size() === 'small'"
         [ngStyle]="tableStyle()"
       >
+        <ng-container [ngTemplateOutlet]="colgroupTpl() ?? null" />
         <thead
           class="app-table-thead"
           (dragstart)="onColDragStart($event)"
@@ -449,6 +450,9 @@ export class AppTable {
   }
 
   protected captionTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("caption", {
+    read: TemplateRef,
+  });
+  protected colgroupTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("colgroup", {
     read: TemplateRef,
   });
   protected headerTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("header", {

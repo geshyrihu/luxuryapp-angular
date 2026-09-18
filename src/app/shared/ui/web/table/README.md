@@ -143,6 +143,7 @@ export interface AppTableLazyEvent {
 El componente detecta automáticamente las plantillas declaradas con `#` dentro de su cuerpo:
 
 - **`#caption`**: Cabecera externa de la tabla (útil para títulos, buscadores, botones de acción).
+- **`#colgroup`**: Definición opcional de `<colgroup>` para anchos y estilos de columnas; se renderiza dentro de `<table>` antes de `<thead>`.
 - **`#header`**: Estructura de cabecera `<thead>` (contiene los elementos `<th>`).
 - **`#body`**: Estructura de fila `<tr>` (contiene los elementos `<td>`). Recibe contextualmente el elemento actual (`let-item`) y su índice (`let-rowIndex`).
 - **`#emptymessage`**: Fila de fallback para renderizar cuando la tabla no tiene datos.
@@ -223,6 +224,13 @@ onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
 
 Los indices corresponden a `pagedValue()`. No mezclar reorder con orden activo
 o esperar indices globales cuando la tabla pagina localmente.
+
+### Anchos de columnas
+
+`table-col-*` funciona en `<col>` dentro de `#colgroup` y directamente en
+`<th>`/`<td>`. Las variantes porcentuales (`table-col-10`) y rem (`table-col-9rem`)
+usan el mismo contrato visual; los anchos fijos rem son útiles para columnas de
+acciones, iconos y controles dentro de tablas con layout automático.
 
 ### Columnas Congeladas (Sticky Columns)
 

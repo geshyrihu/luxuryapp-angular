@@ -124,6 +124,10 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       ordenCompraId: this.ordenCompraId,
       data: this.config.data,
     });
+
+    // AppTable no emite onLazyLoad en el render inicial (solo en goToPage/
+    // changeRows/sort), asi que la primera carga hay que dispararla aqui.
+    this.onLoadProduct();
   }
 
   loadDataLazy(event: any) {

@@ -106,6 +106,10 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
+
+    // AppTable no emite onLazyLoad en el render inicial (solo en goToPage/
+    // changeRows/sort), asi que la primera carga hay que dispararla aqui.
+    this.loadPage(this.currentPage, this.rows, this.currentFilter);
   }
 
   onModalTarjetaProducto(productoId: any): void {
