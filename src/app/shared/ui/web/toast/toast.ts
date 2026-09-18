@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { MessageService } from "@core/services/message.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
@@ -23,12 +23,17 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
               @if (msg.data?.actionLabel || msg.data?.cancelLabel) {
                 <div class="d-flex gap-2 mt-2">
                   @if (msg.data?.actionLabel) {
-                    <button type="button" class="btn btn-sm btn-primary" (click)="msg.data?.onAction?.()">
-                      {{ msg.data?.actionLabel }}
+                    <button type="button" class="btn btn-sm btn-primary" (click)="executeAction(msg)" [disabled]="isLoading(msg.id)">
+                      @if (isLoading(msg.id)) {
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>
+                        <span>Cargando...</span>
+                      } @else {
+                        {{ msg.data?.actionLabel }}
+                      }
                     </button>
                   }
                   @if (msg.data?.cancelLabel) {
-                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="msg.data?.onCancel?.()">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="executeCancel(msg)">
                       {{ msg.data?.cancelLabel }}
                     </button>
                   }
@@ -58,6 +63,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 })
 export class AppToast {
   protected messageService = inject(MessageService);
+  private loadingIds = signal<Set<number>>(new Set());
 
   protected icon(severity?: string): AppIconName {
     const map: Record<string, AppIconName> = {
@@ -67,6 +73,45 @@ export class AppToast {
       error: "material-symbols-light:error-outline",
     };
     return map[severity ?? "info"] ?? map["info"];
+  }
+
+  protected isLoading(id: number): boolean {
+    return this.loadingIds().has(id);
+  }
+
+  protected executeAction(msg: { id: number; data?: { onAction?: () => Promise<void> | void; onCancel?: () => void } }): void {
+    const action = msg.data?.onAction;
+    if (!action) return;
+
+    this.loadingIds.update((ids) => new Set(ids).add(msg.id));
+    try {
+      const result = action();
+      if (result instanceof Promise) {
+        result.finally(() => {
+          this.loadingIds.update((ids) => {
+            const next = new Set(ids);
+            next.delete(msg.id);
+            return next;
+          });
+        });
+      } else {
+        this.loadingIds.update((ids) => {
+          const next = new Set(ids);
+          next.delete(msg.id);
+          return next;
+        });
+      }
+    } catch {
+      this.loadingIds.update((ids) => {
+        const next = new Set(ids);
+        next.delete(msg.id);
+        return next;
+      });
+    }
+  }
+
+  protected executeCancel(msg: { id: number; data?: { onCancel?: () => void } }): void {
+    msg.data?.onCancel?.();
   }
 }
 

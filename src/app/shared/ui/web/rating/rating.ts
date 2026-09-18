@@ -3,10 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { RatingBase } from "@ui/base/rating.base";
-import { ButtonModule } from "primeng/button";
-import { RatingModule } from "primeng/rating";
+import { BarRatingModule } from "ngx-bar-rating";
 
 /**
  * AppRating — Wrapper sobre p-rating con etiqueta, tooltips y modo readonly.
@@ -16,7 +14,7 @@ import { RatingModule } from "primeng/rating";
 @Component({
   selector: "app-rating",
 
-  imports: [FormsModule, RatingModule, ButtonModule],
+  imports: [BarRatingModule],
   template: `
     <div class="app-rating-root">
       @if (label()) {
@@ -24,11 +22,12 @@ import { RatingModule } from "primeng/rating";
       }
 
       <div class="app-rating-row" [class.app-rating-disabled]="disabled()">
-        <p-rating
-          [ngModel]="value()"
-          [stars]="stars()"
+        <bar-rating
+          [rate]="value() ?? 0"
+          [max]="stars()"
           [readonly]="readonly() || disabled()"
-          (ngModelChange)="setValue($event)"
+          [attr.aria-label]="label() || 'Calificación'"
+          (rateChange)="setValue($event)"
         />
 
         <!-- Boton limpiar — reemplaza la propiedad cancel eliminada en PrimeNG 17+ -->

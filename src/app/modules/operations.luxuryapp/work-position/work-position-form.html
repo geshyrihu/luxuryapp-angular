@@ -5,7 +5,7 @@
   class="d-flex flex-column"
 >
   <div class="row g-4">
-    <div class="col-12 col-md-3">
+    <div class="col-12">
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
       <custom-input-text-signal
         [control]="form.controls.id"
@@ -18,58 +18,73 @@
       }
 
       <lx-message severity="info">Datos de puesto</lx-message>
-      <!-- Puesto/Rol -->
-      <custom-input-autocomplete-signal
-        (propagar)="saveApplicationRole($event)"
-        [control]="form.controls.applicationRoleName"
-        [data]="cb_applicationRole()"
-        label="Puesto"
-        placeholder="Escriba para buscar puesto..."
-        [horizontal]="false"
-      />
-
-      <!-- Colaborador -->
-      <custom-input-autocomplete-signal
-        (propagar)="saveEmployee($event)"
-        [control]="form.controls.employeeName"
-        [data]="cb_employee()"
-        label="Colaborador"
-        placeholder="Escriba para buscar colaborador..."
-        [horizontal]="false"
-      />
-
-      <custom-input-number-signal
-        [control]="form.controls.sueldoBase"
-        label="Sueldo Presupuestado"
-        placeholder="0.00"
-        [prefix]="'$ '"
-        [horizontal]="false"
-      />
-      <custom-input-number-signal
-        [control]="form.controls.sueldo"
-        label="Sueldo Actual"
-        placeholder="0.00"
-        [prefix]="'$ '"
-        [disabled]="!canEditCurrentSalary()"
-        [horizontal]="false"
-      />
-
-      <custom-input-select-signal
-        [control]="form.controls.state"
-        label="Estado de Vacante"
-        [data]="cb_state()"
-        [filter]="true"
-        [horizontal]="false"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.benefits"
-        label="Prestaciones"
-        placeholder="Ej. Seguro medico, vales de despensa, fondo de ahorro..."
-        [rows]="3"
-        [horizontal]="false"
-      />
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-autocomplete-signal
+            (propagar)="saveApplicationRole($event)"
+            [control]="form.controls.applicationRoleName"
+            [data]="cb_applicationRole()"
+            label="Puesto"
+            placeholder="Buscar puesto..."
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-autocomplete-signal
+            (propagar)="saveEmployee($event)"
+            [control]="form.controls.employeeName"
+            [data]="cb_employee()"
+            label="Colaborador"
+            placeholder="Buscar colaborador..."
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-number-signal
+            [control]="form.controls.sueldoBase"
+            label="Sueldo presupuestado"
+            placeholder="0.00"
+            [prefix]="'$ '"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-number-signal
+            [control]="form.controls.sueldo"
+            label="Sueldo actual"
+            placeholder="0.00"
+            [prefix]="'$ '"
+            [disabled]="!canEditCurrentSalary()"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-select-signal
+            [control]="form.controls.state"
+            label="Estado de vacante"
+            [data]="cb_state()"
+            [filter]="true"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <custom-input-textarea-signal
+            [control]="form.controls.benefits"
+            label="Prestaciones"
+            placeholder="Seguro, vales, fondo..."
+            [rows]="1"
+            [horizontal]="false"
+            customClass="form-control-sm"
+          />
+        </div>
+      </div>
     </div>
-    <div class="col-12 col-md-9">
+    <div class="col-12">
       <lx-message severity="info">Horario de Trabajo</lx-message>
       @if (scheduleError()) {
       <div class="alert alert-warning">{{ scheduleError() }}</div>
@@ -80,19 +95,32 @@
         <div class="row g-2 mb-3">
           <div class="col-md-5">
             <label class="form-label">Nombre</label
-            ><input class="form-control form-control-sm" formControlName="name" />
+            ><input
+              class="form-control form-control-sm"
+              formControlName="name"
+            />
           </div>
           <div class="col-md-3">
             <label class="form-label">Tipo de jornada</label
-            ><select class="form-select form-select-sm" formControlName="tipoJornada">
-              <option [ngValue]="1">Personalizado</option>
-              <option [ngValue]="2">Completo</option>
-              <option [ngValue]="3">Medio tiempo</option>
+            ><select
+              class="form-select form-select-sm"
+              formControlName="tipoJornada"
+            >
+              <option [ngValue]="1">Matutino</option>
+              <option [ngValue]="2">Vespertino</option>
+              <option [ngValue]="3">Nocturno</option>
+              <option [ngValue]="4">Guardia 24x24</option>
+              <option [ngValue]="5">Jornada 12x12</option>
+              <option [ngValue]="6">Jornada 16x36</option>
+              <option [ngValue]="7">Personalizado por día/ciclo</option>
             </select>
           </div>
           <div class="col-md-4">
             <label class="form-label">Observaciones</label
-            ><input class="form-control form-control-sm" formControlName="observaciones" />
+            ><input
+              class="form-control form-control-sm"
+              formControlName="observaciones"
+            />
           </div>
         </div>
         @if (scheduleForm.hasError('incompleteWorkDay')) {
@@ -104,7 +132,9 @@
         <div formArrayName="diasDeTrabajo" class="d-flex flex-column gap-3">
           @for (week of [1, 2, 3, 4]; track week) {
           <section class="schedule-week border rounded p-2">
-            <div class="schedule-week-header d-flex justify-content-between align-items-center mb-2">
+            <div
+              class="schedule-week-header d-flex justify-content-between align-items-center mb-2"
+            >
               <strong>Semana {{ week }}</strong
               ><span class="text-body-secondary"
                 >{{ weeklyHours()[week] || 0 }} hrs</span
@@ -121,45 +151,57 @@
             <div class="schedule-week-days">
               @for (day of days; track day.dw) { @if (findDay(week, day.dw); as
               dayControl) {
-              <div class="schedule-day border rounded" [formGroupName]="workDays.controls.indexOf(dayControl)">
-                  <div class="schedule-day-header d-flex justify-content-between align-items-center">
-                    <strong>{{ day.label }}</strong
-                    ><label
-                      ><input
-                        class="form-check-input me-1"
-                        type="checkbox"
-                        formControlName="esDescanso"
-                        (change)="onRestChange(dayControl, $any($event.target).checked)"
-                      />
-                      Descanso</label
-                    >
-                  </div>
-                  <div class="schedule-day-hours mt-2">
-                    <label
-                      >Entrada<input
-                        type="time"
-                        class="form-control form-control-sm"
-                        formControlName="horaEntrada" /></label
-                    ><label
-                      >Salida<input
-                        type="time"
-                        class="form-control form-control-sm"
-                        formControlName="horaSalida"
-                    /></label>
-                  </div>
-                  @if (dayHasError(dayControl)) {
-                  <small class="text-danger d-block"
-                    >Captura ambas horas o marca descanso.</small
+              <div
+                class="schedule-day border rounded"
+                [formGroupName]="workDays.controls.indexOf(dayControl)"
+              >
+                <div
+                  class="schedule-day-header d-flex justify-content-between align-items-center"
+                >
+                  <strong>{{ day.label }}</strong
+                  ><label
+                    ><input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      formControlName="esDescanso"
+                      (change)="onRestChange(dayControl, $any($event.target).checked)"
+                    />
+                    Descanso</label
                   >
-                  } @if (day.dw !== 1) {
-                  <button
-                    type="button"
-                    class="schedule-day-copy btn btn-link btn-sm p-0 mt-1"
-                    (click)="copyPreviousDay(week, day.dw)"
-                  >
-                    Copiar día anterior
-                  </button>
-                  }
+                </div>
+                <div class="schedule-day-hours mt-2">
+                  <custom-input-select-signal
+                    [control]="dayControl.controls.horaEntrada"
+                    [data]="timeOptions"
+                    [filter]="true"
+                    [horizontal]="false"
+                    placeholder="Entrada"
+                    [disabled]="dayControl.controls.esDescanso.value"
+                    size="small"
+                  />
+                  <custom-input-select-signal
+                    [control]="dayControl.controls.horaSalida"
+                    [data]="timeOptions"
+                    [filter]="true"
+                    [horizontal]="false"
+                    placeholder="Salida"
+                    [disabled]="dayControl.controls.esDescanso.value"
+                    size="small"
+                  />
+                </div>
+                @if (dayHasError(dayControl)) {
+                <small class="text-danger d-block"
+                  >Captura ambas horas o marca descanso.</small
+                >
+                } @if (day.dw !== 1) {
+                <button
+                  type="button"
+                  class="schedule-day-copy btn btn-link btn-sm p-0 mt-1"
+                  (click)="copyPreviousDay(week, day.dw)"
+                >
+                  Copiar día anterior
+                </button>
+                }
               </div>
               } }
             </div>

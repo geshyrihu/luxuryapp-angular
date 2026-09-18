@@ -17,7 +17,7 @@ import {
   WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -45,8 +45,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     ApiDatePipe,
     RouterModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTabs,
     WebButtonLabelAdd,
     WebButtonLabelEdit,

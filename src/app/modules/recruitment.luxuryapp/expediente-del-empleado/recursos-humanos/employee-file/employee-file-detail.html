@@ -4,19 +4,13 @@
 >
   <div class="d-flex flex-column flex-sm-row align-items-center gap-4 g-4">
     <div class="flex-shrink-0">
-      @if (header()!.photoUrl) {
-      <img
-        [src]="header()!.photoUrl"
-        [alt]="header()!.fullName"
-        class="w-8rem h-8rem rounded-circle object-cover border-3 border-primary shadow"
+      <lx-avatar
+        [image]="header()!.photoUrl"
+        [label]="header()!.fullName.charAt(0)"
+        shape="circle"
+        size="xlarge"
+        styleClass="border-3 border-primary shadow"
       />
-      } @else {
-      <div
-        class="w-8rem h-8rem rounded-circle bg-primary-100 d-flex align-items-center justify-content-center text-primary text-4xl font-black border-3 border-primary-200 shadow-sm"
-      >
-        {{ header()!.fullName.charAt(0) }}
-      </div>
-      }
     </div>
 
     <div class="flex-grow-1 text-center sm:text-start">

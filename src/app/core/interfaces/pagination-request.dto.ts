@@ -1,4 +1,4 @@
-import { TableLazyLoadEvent } from "primeng/table";
+import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 
 /**
  * Contrato de request de paginación — espejo de `PaginationCommonDTO` (backend).
@@ -41,7 +41,7 @@ export function defaultPaginationRequest(
  * el cálculo `page = first / rows + 1` que hoy cada componente reinventa.
  */
 export function lazyLoadToPaginationRequest(
-  event: TableLazyLoadEvent,
+  event: LazyLoadEvent,
   fallbackSize: number = PAGINATION_DEFAULT_SIZE,
 ): PaginationRequest {
   const rows = event.rows ?? fallbackSize;

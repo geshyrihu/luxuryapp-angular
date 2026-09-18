@@ -6,12 +6,10 @@ import {
   signal,
 } from "@angular/core";
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -22,7 +20,6 @@ import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Observable, of } from "rxjs";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -98,12 +95,12 @@ export class EmployeeExternalForm implements OnInit {
           Validators.email,
           Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
         ],
-        asyncValidators: [this.emailExistsValidator()],
+        updateOn: "change",
         nonNullable: true,
       }),
       phoneNumber: new FormControl("", {
         validators: [Validators.required],
-        asyncValidators: [this.phoneExistsValidator()],
+        updateOn: "change",
         nonNullable: true,
       }),
     },
@@ -259,70 +256,6 @@ export class EmployeeExternalForm implements OnInit {
       // y actualizo su estado interno imgBase64
       this.form.get("photoPath")?.markAsTouched();
     }
-  }
-
-  emailExistsValidator() {
-    return (
-      control: AbstractControl,
-    ):
-      | Promise<ValidationErrors | null>
-      | Observable<ValidationErrors | null> => {
-      const email = control.value;
-      const userId = this.userId;
-
-      if (!email || email.length < 5) {
-        return of(null);
-      }
-
-      return this.apiResponseS
-        .onGetListNotLoading(
-          Endpoints.EmployeeExternal.searchByEmail(
-            this.customerIdS.customerId(),
-            email,
-            userId,
-          ),
-        )
-        .then((res: any[]) => {
-          if (res && res.length > 0) {
-            return { emailExist: true };
-          }
-          return null;
-        })
-        .catch(() => null);
-    };
-  }
-
-  phoneExistsValidator() {
-    return (
-      control: AbstractControl,
-    ):
-      | Promise<ValidationErrors | null>
-      | Observable<ValidationErrors | null> => {
-      let phone = control.value;
-      const userId = this.userId;
-
-      if (!phone || phone.length < 10) {
-        return of(null);
-      }
-
-      phone = phone.replace(/\D/g, "");
-
-      return this.apiResponseS
-        .onGetListNotLoading(
-          Endpoints.EmployeeExternal.searchByPhone(
-            this.customerIdS.customerId(),
-            phone,
-            userId,
-          ),
-        )
-        .then((res: any[]) => {
-          if (res && res.length > 0) {
-            return { phoneExist: true };
-          }
-          return null;
-        })
-        .catch(() => null);
-    };
   }
 
   addAccessCustomer(applicationUserId: string) {

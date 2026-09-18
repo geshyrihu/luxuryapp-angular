@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -24,7 +24,7 @@ import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafic
   selector: "app-resumen-ordenes-servicio",
   templateUrl: "./resumen-ordenes-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ApiDatePipe, AppTable, AppSortableColumn, AppSorticon, ResumenOrdenesServicioGrafico, LxTag],
+  imports: [ApiDatePipe, AppTable, ResumenOrdenesServicioGrafico, LxTag],
 })
 export class ResumenOrdenesServicio implements OnInit {
   apiResponseS = inject(ApiResponseService);

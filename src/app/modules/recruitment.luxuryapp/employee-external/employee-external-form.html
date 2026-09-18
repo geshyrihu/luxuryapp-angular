@@ -82,6 +82,11 @@
       @if (existingApplicationUser().length > 0) {
       <div class="bg-body-tertiary p-3 rounded">
         <p class="text-body fw-bold mb-2">Usuarios existentes encontrados:</p>
+        <p class="text-body-secondary text-sm mb-2">
+          Si es la misma persona, usa "Dar Acceso" para vincularla a este
+          cliente (no se duplica el usuario). Si es otra persona, cambia el
+          correo: el correo es la credencial de acceso y no puede repetirse.
+        </p>
         <div class="d-flex flex-column gap-2">
           @for (user of existingApplicationUser(); track user.applicationUserId)
           {

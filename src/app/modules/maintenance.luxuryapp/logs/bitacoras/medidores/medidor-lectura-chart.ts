@@ -9,11 +9,9 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import type { EChartsCoreOption } from "echarts/core";
-import { NgxEchartsDirective } from "ngx-echarts";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -26,7 +24,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
   templateUrl: "./medidor-lectura-chart.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    NgxEchartsDirective,
+    ChartWrapper,
     CalendarRange,
     RangoCalendarioyyyymmdd,
     FormsModule,
@@ -146,7 +144,7 @@ export class MedidorLecturaChart implements OnInit {
     });
   }
   lineBarChart: ChartType;
-  chartOption = signal<EChartsCoreOption | null>(null);
+  chartOption = signal<unknown>(null);
   // lineBarChartDiario: ChartType;
   onLoadChart(
     label: string,
@@ -189,6 +187,5 @@ export class MedidorLecturaChart implements OnInit {
         },
       },
     };
-    this.chartOption.set(chartJsToCartesianOption(this.lineBarChart, "bar"));
   }
 }

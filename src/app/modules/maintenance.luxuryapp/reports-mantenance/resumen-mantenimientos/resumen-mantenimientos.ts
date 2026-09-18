@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -19,7 +19,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   selector: "app-resumen-mantenimientos",
   templateUrl: "./resumen-mantenimientos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppTable, AppSortableColumn, AppSorticon, PageTitleReportMaintenance],
+  imports: [AppTable, PageTitleReportMaintenance],
 })
 export class ResumenMantenimientos {
   apiResponseS = inject(ApiResponseService);

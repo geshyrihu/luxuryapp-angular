@@ -13,7 +13,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppTable, AppSortableColumn, AppSorticon, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
+import { AppTable, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -42,8 +42,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomTableFooter,
     StatusBadge,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppReorderableRow,
     AppReorderableRowHandle,
     MobileListItem,
@@ -108,11 +106,13 @@ export class TaskTemplateItems implements OnInit {
       });
   }
 
-  // New method for reordering
-  onRowReorder(event: any) {
-    // PrimeNG p-table automatically updates the value array on reorder
-    // The 'items' signal already holds the reordered array
-    const itemIdsInOrder = this.items().map((item) => item.id);
+  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
+    const reordered = [...this.items()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.items.set(reordered);
+    const itemIdsInOrder = reordered.map((item) => item.id);
     this.apiResponseS
       .onPut(Endpoints.RecurringTasks.Templates.reorderItems(this.templateId), {
         itemIdsInOrder,
@@ -252,4 +252,3 @@ export class TaskTemplateItems implements OnInit {
     return monthNames[month - 1] || month.toString();
   }
 }
-

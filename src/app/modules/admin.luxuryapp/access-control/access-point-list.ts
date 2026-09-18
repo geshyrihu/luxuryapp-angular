@@ -16,7 +16,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccessPointDto } from "@core/interfaces/access-point.dto";
@@ -30,8 +30,6 @@ import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
   imports: [
     ReactiveFormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,

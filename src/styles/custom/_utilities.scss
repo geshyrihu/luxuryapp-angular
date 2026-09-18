@@ -15,3 +15,43 @@
 .max-w-30rem { max-width: 30rem; }
 .max-w-40rem { max-width: 40rem; }
 .max-w-50rem { max-width: 50rem; }
+
+/* ------------------------------------------------------------
+   Restauración de utilidades PrimeFlex inertes
+   ------------------------------------------------------------
+   PrimeFlex ya no se carga (Fase 7 de la migración a Bootstrap,
+   ver docs/migration-template/), por lo que las clases `w-Nrem`,
+   `h-Nrem`, `rounded-*`, `object-*`, `font-black` y `cursor-pointer`
+   usadas en las plantillas quedaron sin definición: no aplicaban
+   ningún estilo. Se restauran aquí con valores y tokens del DS.
+   ------------------------------------------------------------ */
+
+/* Tamaños fijos: w-1rem .. w-12rem / h-1rem .. h-12rem */
+@for $i from 1 through 12 {
+  .w-#{$i}rem { width: #{$i}rem; }
+  .h-#{$i}rem { height: #{$i}rem; }
+}
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-w-0 { min-width: 0; }
+.min-h-0 { min-height: 0; }
+.min-h-screen { min-height: 100vh; }
+
+/* Radio: escala Tailwind/PrimeFlex mapeada a los tokens del DS
+   (el DS colapsa la escala a 3px por DESIGN.md). */
+.rounded-sm   { border-radius: var(--ds-radius-sm); }
+.rounded-md   { border-radius: var(--ds-radius-md); }
+.rounded-lg   { border-radius: var(--ds-radius-lg); }
+.rounded-xl   { border-radius: var(--ds-radius-xl); }
+.rounded-2xl  { border-radius: var(--ds-radius-2xl); }
+.rounded-full { border-radius: var(--ds-radius-full); }
+
+/* Ajuste de imagen dentro de contenedores recortados */
+.object-cover   { object-fit: cover; }
+.object-contain { object-fit: contain; }
+
+/* Peso máximo disponible en el DS (no existe 900) */
+.font-black { font-weight: var(--ds-font-weight-bold); }
+
+.cursor-pointer { cursor: pointer; }

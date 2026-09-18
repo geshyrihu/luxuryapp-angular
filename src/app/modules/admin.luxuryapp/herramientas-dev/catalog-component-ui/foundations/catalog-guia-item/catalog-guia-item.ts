@@ -17,13 +17,13 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
+import { AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { ButtonCatalog } from "./button-catalog/button-catalog";
 
 type TagSeverity =
@@ -53,8 +53,6 @@ const GUIA_LABELS: Record<string, string> = {
     CustomInputMultiselectSignal,
     CustomSearchInput,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppCheckbox,
     AppMessage,
     AppRadioButton,
@@ -170,7 +168,10 @@ const GUIA_LABELS: Record<string, string> = {
                     <code>{{ item.current }}</code>
                   </td>
                   <td>
-                    <app-tag [value]="item.verdict" [severity]="item.severity" />
+                    <app-tag
+                      [value]="item.verdict"
+                      [severity]="item.severity"
+                    />
                   </td>
                   <td>{{ item.recommendation }}</td>
                 </tr>
@@ -354,13 +355,17 @@ const GUIA_LABELS: Record<string, string> = {
                   [noMargin]="true"
                 />
               </div>
-              <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
+              <div
+                class="field col-12 col-md-4 d-flex align-items-center gap-3"
+              >
                 <app-checkbox [(checked)]="accepted" inputId="accepted" />
                 <label for="accepted" class="font-normal"
                   >Confirmacion requerida</label
                 >
               </div>
-              <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
+              <div
+                class="field col-12 col-md-4 d-flex align-items-center gap-3"
+              >
                 <label>Prioridad</label>
                 <div class="d-flex gap-3">
                   <div class="d-flex align-items-center gap-1">

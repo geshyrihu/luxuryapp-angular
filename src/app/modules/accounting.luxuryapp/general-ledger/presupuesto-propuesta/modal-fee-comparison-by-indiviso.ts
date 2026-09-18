@@ -22,7 +22,7 @@ import {
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";
@@ -172,7 +172,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, LxDivider, LxMessage],
+  imports: [CommonModule, AppTable, LxDivider, LxMessage],
 })
 export class FeeComparisonByIndivisoModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

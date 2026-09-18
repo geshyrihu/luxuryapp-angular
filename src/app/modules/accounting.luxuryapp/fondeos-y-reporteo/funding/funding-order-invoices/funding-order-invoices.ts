@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -11,7 +11,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   selector: "app-funding-order-invoices",
   imports: [
     WebButtonIconItem,
-    LxTooltipDirective,AppTable, AppSortableColumn, AppSorticon],
+    LxTooltipDirective, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-order-invoices.html",
 })

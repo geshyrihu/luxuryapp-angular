@@ -11,15 +11,15 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { TabItem } from "@ui/base/tabs.base";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-document/employee-document-list";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/base/tabs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTable } from "@ui/web/table/table";
+import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   EmployeeFileBankDataDTO,
@@ -36,6 +36,7 @@ import {
   EmployeeFileWorkPositionDTO,
 } from "./interfaces/employee-file.interfaces";
 
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -49,16 +50,13 @@ import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/emp
   imports: [
     LxCard,
     LxTag,
+    LxAvatar,
     LxTabs,
     WebButtonIconItem,
     LxTooltipDirective,
     ApiDatePipe,
     CurrencyPipe,
     AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
     AppIcon,
     EmployeeOnboardingChecklist,
     EmployeeDocumentList,
@@ -383,5 +381,3 @@ export class EmployeeFileDetail implements OnInit, OnDestroy {
     this.destroyed = true;
   }
 }
-
-

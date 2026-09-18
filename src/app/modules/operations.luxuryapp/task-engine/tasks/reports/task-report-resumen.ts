@@ -1,19 +1,19 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { tablePrimeNgRows } from "@core/helpers/table-primeng-option";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
+import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { AppTable } from "@ui/web/table/table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 @Component({
   selector: "app-task-report-resumen",
   templateUrl: "./task-report-resumen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TaskDateRangeSelector, ApiDatePipe, AppTable, AppSortableColumn, AppSorticon],
+  imports: [TaskDateRangeSelector, ApiDatePipe, AppTable],
 })
 export class TaskMessageReportResumen {
   apiResponseS = inject(ApiResponseService);
@@ -50,5 +50,3 @@ export class TaskMessageReportResumen {
     this.onLoadData(startDateFormatted, endDateFormatted);
   }
 }
-
-

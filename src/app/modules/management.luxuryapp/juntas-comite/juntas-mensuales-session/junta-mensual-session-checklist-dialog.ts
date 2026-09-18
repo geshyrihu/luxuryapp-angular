@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -67,8 +67,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ApiDatePipe,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CustomInputSelectSignal,
     WebButtonLabel,
     LxTag,

@@ -5,16 +5,16 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { AppTable } from "@ui/web/table/table";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
+import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
 
 /**
  * Vista de solo lectura de la entrevista vigente de un candidato, abierta desde el
@@ -29,10 +29,6 @@ import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
     ApiDatePipe,
     WebButtonIconViewPdf,
     AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
     CandidateStageBadge,
     MappedPTag,
   ],
@@ -64,4 +60,3 @@ export class CandidateInterviewDetailModal implements OnInit {
       .finally(() => this.loading.set(false));
   }
 }
-

@@ -5,19 +5,23 @@ import {
   computed,
   input,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button-save",
 
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [type]="type()"
       [class]="buttonClasses()"
       [disabled]="disabled() || submitting()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
       <app-icon

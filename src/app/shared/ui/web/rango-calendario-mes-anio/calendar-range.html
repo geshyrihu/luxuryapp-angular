@@ -1,26 +1,26 @@
 <div class="d-flex align-items-center gap-2">
-  <p-inputgroup>
-    <p-inputgroup-addon>De</p-inputgroup-addon>
+  <div class="input-group">
+    <span class="input-group-text">De</span>
     <input
-      pInputText
+      class="form-control"
       type="month"
       [(ngModel)]="fechaInicial"
       lxTooltip="Selecciona mes inicial"
       tooltipPosition="top"
       (change)="onSendDateRange(fechaInicial, fechaFinal)"
     />
-  </p-inputgroup>
-  <p-inputgroup>
-    <p-inputgroup-addon>a</p-inputgroup-addon>
+  </div>
+  <div class="input-group">
+    <span class="input-group-text">a</span>
     <input
-      pInputText
+      class="form-control"
       type="month"
       [(ngModel)]="fechaFinal"
       lxTooltip="Selecciona mes final"
       tooltipPosition="top"
       (change)="onSendDateRange(fechaInicial, fechaFinal)"
     />
-  </p-inputgroup>
+  </div>
 </div>
 
 

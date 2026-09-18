@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -23,8 +23,6 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     ApiDatePipe,
     SanitizeHtmlPipe,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppSpinner,
   ],
 })

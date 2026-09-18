@@ -24,7 +24,6 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 // Definimos la interfaz del DTO aqué mismo para simplicidad
@@ -38,7 +37,7 @@ export interface IUniformFeeComparisonDTO {
 
 @Component({
   selector: "app-fee-comparison-by-fija",
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon,  LxCard, LxMessage],
+  imports: [CommonModule, LxCard, LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fee-comparison-by-fija.html",
 })

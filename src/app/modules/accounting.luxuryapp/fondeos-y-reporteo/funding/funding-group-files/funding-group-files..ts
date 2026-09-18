@@ -13,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -25,8 +25,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     CustomInputSelectButton,
     LxCheckbox,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIconItem,

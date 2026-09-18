@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 
 import {
@@ -362,8 +362,6 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     CommonModule,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppSelectButton,
     AppToggleSwitch,
     MobileButtonIconAdd,

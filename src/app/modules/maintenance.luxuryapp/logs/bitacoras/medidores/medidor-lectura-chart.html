@@ -42,11 +42,13 @@
 @if (data !== undefined) {
 <div class="mt-3">
   <div class="border-1 border shadow-sm rounded-xl">
-    <div
-      echarts
+    <app-chart-wrapper
+      type="bar"
+      [data]="lineBarChart"
       [options]="chartOption()"
-      
-    ></div>
+      height="320px"
+      [showLegend]="false"
+    />
   </div>
 </div>
 }

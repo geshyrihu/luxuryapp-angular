@@ -2,27 +2,30 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  inject,
 } from "@angular/core";
 import { NgStyle } from "@angular/common";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Gallery, GalleryModule, ImageItem } from "ng-gallery";
+import { Lightbox, LightboxModule } from "ng-gallery/lightbox";
 import { ImageBase } from "@ui/base/image.base";
-import { TemplateRef, inject } from "@angular/core";
+
+let nextGalleryId = 0;
 
 /**
- * AppImage — Imagen nativa con preview accesible mediante NgbModal.
- * `appendTo` se conserva por contrato, pero se ignora: NgbModal monta en body.
+ * AppImage — Imagen nativa con preview accesible mediante ng-gallery.
+ * `appendTo` se conserva por contrato; el lightbox monta su overlay en body.
  */
 @Component({
   selector: "app-image",
 
-  imports: [NgStyle],
+  imports: [NgStyle, GalleryModule, LightboxModule],
   template: `
     @if (preview()) {
       <button
         type="button"
         [class]="('app-image-trigger ' + styleClass()).trim()"
         aria-label="Ampliar imagen"
-        (click)="openPreview(previewTemplate)"
+        (click)="openPreview()"
       >
         <img
           [src]="src()"
@@ -45,23 +48,6 @@ import { TemplateRef, inject } from "@angular/core";
         />
       </span>
     }
-
-    <ng-template #previewTemplate let-modal>
-      <div class="app-image-preview" role="dialog" aria-modal="true" [attr.aria-label]="alt() || 'Vista previa de imagen'">
-        <h2 id="app-image-preview-title" class="visually-hidden">
-          Vista previa de imagen
-        </h2>
-        <button
-          type="button"
-          class="app-image-preview-close"
-          aria-label="Cerrar vista previa"
-          (click)="modal.dismiss()"
-        >
-          X
-        </button>
-        <img [src]="src()" [alt]="alt()" [ngStyle]="imageStyle()" />
-      </div>
-    </ng-template>
   `,
   styles: [
     `
@@ -73,48 +59,9 @@ import { TemplateRef, inject } from "@angular/core";
         cursor: zoom-in;
       }
 
-      .app-image-trigger:focus-visible,
-      .app-image-preview-close:focus-visible {
+      .app-image-trigger:focus-visible {
         outline: 2px solid var(--ds-primary-500, #0d6efd);
         outline-offset: 2px;
-      }
-
-      .app-image-preview {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 3.5rem 1rem 1rem;
-        background: rgba(0, 0, 0, 0.85);
-      }
-
-      .app-image-preview-window .modal-content {
-        border: 0;
-        background: transparent;
-      }
-
-      .app-image-preview-window .modal-body {
-        padding: 0;
-      }
-
-      .app-image-preview img {
-        display: block;
-        max-width: 95vw;
-        max-height: 90vh;
-        object-fit: contain;
-      }
-
-      .app-image-preview-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        min-width: 2.75rem;
-        min-height: 2.75rem;
-        border: 0;
-        background: transparent;
-        color: #fff;
-        cursor: pointer;
       }
     `,
   ],
@@ -122,15 +69,21 @@ import { TemplateRef, inject } from "@angular/core";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppImage extends ImageBase {
-  private readonly modal = inject(NgbModal);
+  private readonly gallery = inject(Gallery);
+  private readonly lightbox = inject(Lightbox);
+  private readonly galleryId = `app-image-${nextGalleryId++}`;
 
-  openPreview(template: TemplateRef<unknown>): void {
-    this.modal.open(template, {
-      centered: true,
-      backdrop: true,
-      keyboard: true,
-      windowClass: "app-image-preview-window",
-      ariaLabelledBy: "app-image-preview-title",
+  openPreview(): void {
+    this.gallery.ref(this.galleryId).load([
+      new ImageItem({
+        src: this.src(),
+        alt: this.alt(),
+      }),
+    ]);
+    this.lightbox.open(0, this.galleryId, {
+      role: "dialog",
+      ariaLabel: this.alt() || "Vista previa de imagen",
+      keyboardShortcuts: true,
     });
   }
 

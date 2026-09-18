@@ -27,7 +27,14 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { AppTable, AppSortableColumn, AppSorticon, AppTableCheckbox } from "@ui/web/table/table";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppTable,
+  AppSortableColumn,
+  AppSorticon,
+  AppTableCheckbox,
+} from "@ui/web/table/table";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
@@ -51,6 +58,8 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     FormsModule,
     ReactiveFormsModule,
     AppTable,
+    AppReorderableRow,
+    AppReorderableRowHandle,
     AppTableCheckbox,
 
     AppSortableColumn,
@@ -157,8 +166,13 @@ export class SatFundingDetailComponent implements OnInit {
       });
   }
 
-  onRowReorder(event: any) {
-    const orderedIds = this.invoices().map((i) => i.satFundingDetailId);
+  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
+    const reordered = [...this.invoices()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.invoices.set(reordered);
+    const orderedIds = reordered.map((i) => i.satFundingDetailId);
     this.apiResponseService.onPut(Endpoints.SatFunding.updateOrder, orderedIds);
   }
 

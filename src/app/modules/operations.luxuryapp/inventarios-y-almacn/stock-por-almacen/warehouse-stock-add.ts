@@ -44,7 +44,7 @@ interface IWarehouseStockRowForm {
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
+import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
@@ -119,7 +119,7 @@ export class WarehouseStockAdd implements OnInit {
     );
   }
 
-  onLazyLoad(event: TableLazyLoadEvent): void {
+  onLazyLoad(event: LazyLoadEvent): void {
     this.currentPage =
       Math.floor((event.first ?? 0) / (event.rows ?? this.rows)) + 1;
     const pageSize = event.rows ?? this.rows;

@@ -7,9 +7,8 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { chartJsToCartesianOption } from "@ui/web/charts/echarts-adapters";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { NgxEchartsDirective } from "ngx-echarts";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -29,7 +28,7 @@ interface IDatoAgrupado {
   selector: "app-recepcion-pipas-agua-analisis",
   templateUrl: "./recepcion-pipas-agua-analisis.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [DecimalPipe, NgxEchartsDirective, RangoCalendarioyyyymmdd],
+  imports: [DecimalPipe, ChartWrapper, RangoCalendarioyyyymmdd],
 })
 export class RecepcionPipasAguaAnalisis implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -121,11 +120,6 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
     },
   }));
 
-  // Opción ECharts (barras) derivada del dataset de litros por mes
-  optLitros = computed(() =>
-    chartJsToCartesianOption(this.chartLitros(), "bar"),
-  );
-
   // Dataset para grafico de linea (diferencia de cisterna por mes)
   chartCisterna = computed(() => ({
     labels: this.tendenciaMensual().map((x) => x.periodo),
@@ -141,11 +135,6 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
     ],
     options: { maintainAspectRatio: false },
   }));
-
-  // Opción ECharts (línea con área) derivada del dataset de cisterna
-  optCisterna = computed(() =>
-    chartJsToCartesianOption(this.chartCisterna(), "line"),
-  );
 
   ngOnInit(): void {
     this.onLoadData();
@@ -177,4 +166,3 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
     this.onLoadData();
   }
 }
-

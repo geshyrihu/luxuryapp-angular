@@ -1,5 +1,6 @@
 <!-- Vista de escritorio -->
 <app-table
+  [reorderableRows]="true"
   [reorderableColumns]="true"
   (onRowReorder)="onRowReorder($event)"
   [globalFilterFields]="globalFilterFields"

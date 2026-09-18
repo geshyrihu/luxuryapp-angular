@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
@@ -16,7 +15,7 @@ const LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-core-item",
-  imports: [WebButtonLabel, EmptyState, FileUpload, FunnelChart, DataGrid, AppIcon],
+  imports: [EmptyState, FileUpload, FunnelChart, DataGrid, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4"><h2 class="text-3xl fw-bold m-0">{{ label() }}</h2></div>

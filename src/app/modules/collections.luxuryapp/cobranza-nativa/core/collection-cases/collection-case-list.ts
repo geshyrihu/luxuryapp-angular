@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,19 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { alertCircleOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -30,7 +16,21 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { alertCircleOutline } from "ionicons/icons";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
 @Component({
@@ -45,8 +45,6 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
     MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
@@ -139,4 +137,3 @@ export default class CollectionCaseList {
     return map[status] ?? { label: status, severity: "contrast" };
   }
 }
-

@@ -2,7 +2,6 @@ import { Component, inject, input, OnInit, ChangeDetectionStrategy } from "@angu
 import { FormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { InputTextModule } from "primeng/inputtext";
 import { FechasFiltro } from "@core/interfaces/fechas-filtro.interface";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
@@ -17,7 +16,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
   selector: "app-rango-calendario-yyyymmdd",
   templateUrl: "./rango-calendario-yyyymmdd.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, FlatpickrDirective, InputTextModule],
+  imports: [FormsModule, FlatpickrDirective],
 })
 export class RangoCalendarioyyyymmdd implements OnInit {
   private dateS = inject(DateService);
@@ -55,7 +54,6 @@ export class RangoCalendarioyyyymmdd implements OnInit {
     }
   }
 }
-
 
 
 

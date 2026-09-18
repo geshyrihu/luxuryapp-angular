@@ -13,11 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTag } from "@ui/web/tag/tag";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -29,6 +24,10 @@ import {
   ContractRenewalStatus,
 } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
 import { ContractRenewalService } from "@recruitment.luxuryapp/expediente-del-empleado/employees/services/contract-renewal.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTag } from "@ui/web/tag/tag";
 
 type StatusSeverity =
   "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -47,7 +46,6 @@ interface DecisionOption {
     WebButtonLabel,
     AppTag,
     AppIcon,
-    LxSpinner,
     CustomInputSelectSignal,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -464,5 +462,3 @@ export class ContractRenewalFormComponent implements OnInit {
     }
   }
 }
-
-

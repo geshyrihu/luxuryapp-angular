@@ -11,9 +11,8 @@ import {
   viewChild,
   ViewEncapsulation,
 } from "@angular/core";
-import { ButtonModule } from "primeng/button";
-import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
-import { ProgressBarModule } from "primeng/progressbar";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { PlatformService } from "@core/services/platform.service";
@@ -28,10 +27,15 @@ export interface UploadFile {
   objectURL?: string;
 }
 
+export interface FileUploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
+
 @Component({
   selector: "app-file-upload",
 
-  imports: [ButtonModule, ProgressBarModule, FileUploadModule, AppIcon],
+  imports: [WebButtonLabel, WebButtonIcon, AppIcon],
   template: `
     <div class="file-upload-root">
       <!-- Drop Zone -->
@@ -42,18 +46,15 @@ export interface UploadFile {
         (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
       >
-        <p-fileupload
-          #fileUpload
-          mode="basic"
-          [chooseLabel]="chooseLabel()"
+        <input
+          #chooseInput
+          type="file"
           [accept]="accept()"
-          [maxFileSize]="sourceMaxFileSize()"
           [multiple]="multiple()"
-          [auto]="true"
-          styleClass="w-full"
-          chooseStyleClass="w-full justify-content-center"
-          (onSelect)="onFilesSelected($event)"
+          (change)="onNativeInput($event)"
+          hidden
         />
+        <il-button [label]="chooseLabel()" class="w-100" (clicked)="chooseInput().nativeElement.click()" />
 
         @if (!files().length) {
           <span class="text-sm text-color-secondary"
@@ -66,28 +67,22 @@ export interface UploadFile {
       @if (isMobile() && mobileSource() !== "none") {
         <div class="d-flex gap-2 mt-2">
           @if (mobileSource() === "camera" || mobileSource() === "both") {
-            <p-button
-              [label]="'Tomar foto'"
+            <il-button
+              label="Tomar foto"
               severity="secondary"
-              styleClass="w-full justify-content-center"
-              (onClick)="cameraInput().nativeElement.click()"
-            >
-              <ng-template #icon>
-                <app-icon icon="material-symbols-light:photo-camera" />
-              </ng-template>
-            </p-button>
+              icon="material-symbols-light:photo-camera"
+              class="w-100"
+              (clicked)="cameraInput().nativeElement.click()"
+            />
           }
           @if (mobileSource() === "gallery" || mobileSource() === "both") {
-            <p-button
-              [label]="'Galería'"
+            <il-button
+              label="Galería"
               severity="secondary"
-              styleClass="w-full justify-content-center"
-              (onClick)="galleryInput().nativeElement.click()"
-            >
-              <ng-template #icon>
-                <app-icon icon="material-symbols-light:photo" />
-              </ng-template>
-            </p-button>
+              icon="material-symbols-light:photo"
+              class="w-100"
+              (clicked)="galleryInput().nativeElement.click()"
+            />
           }
         </div>
       }
@@ -138,7 +133,16 @@ export interface UploadFile {
                   formatSize(file.size)
                 }}</span>
                 @if (file.status === "uploading") {
-                  <p-progressbar [value]="file.progress" styleClass="h-1" />
+                  <div class="progress" style="height: 4px">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      [style.width.%]="file.progress"
+                      [attr.aria-valuenow]="file.progress"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
                 }
               </div>
 
@@ -155,15 +159,15 @@ export interface UploadFile {
                   style="color: var(--ds-danger)"
                 />
               } @else {
-                <p-button
+                <iw-button
+                  iconClass="material-symbols-light:close"
                   [rounded]="true"
                   [text]="true"
                   severity="danger"
                   size="small"
-                  (onClick)="removeFile(file)"
-                >
-                  <app-icon icon="material-symbols-light:close" class="text-lg" />
-                </p-button>
+                  ariaLabel="Eliminar archivo"
+                  (clicked)="removeFile(file)"
+                />
               }
             </div>
           }
@@ -215,7 +219,7 @@ export class FileUpload implements OnDestroy {
   mobileSource = input<"camera" | "gallery" | "both" | "none">("both");
 
   filesChange = output<UploadFile[]>();
-  upload = output<FileUploadHandlerEvent>();
+  upload = output<FileUploadEvent>();
   onSelect = output<any>();
 
   files = signal<UploadFile[]>([]);
@@ -231,6 +235,8 @@ export class FileUpload implements OnDestroy {
   cameraInput = viewChild.required<ElementRef<HTMLInputElement>>("cameraInput");
   galleryInput =
     viewChild.required<ElementRef<HTMLInputElement>>("galleryInput");
+  chooseInput =
+    viewChild.required<ElementRef<HTMLInputElement>>("chooseInput");
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
@@ -254,15 +260,6 @@ export class FileUpload implements OnDestroy {
       if (!files.length) return;
       this.addFiles(files);
       this.onSelect.emit({ originalEvent: event, files });
-    }
-  }
-
-  async onFilesSelected(event: FileUploadHandlerEvent): Promise<void> {
-    if (event.files?.length) {
-      const files = await this.prepareFiles(Array.from(event.files));
-      if (!files.length) return;
-      this.addFiles(files);
-      this.onSelect.emit({ ...event, files });
     }
   }
 
@@ -354,4 +351,3 @@ export class FileUpload implements OnDestroy {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   }
 }
-

@@ -1,17 +1,14 @@
 import { Directive, input } from "@angular/core";
-// Type-only: `MenuItem` es el modelo de menú estándar del proyecto; al ser
-// import type se borra en compilación → cero acoplamiento de runtime con PrimeNG.
-
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 /**
  * Base compartida de Breadcrumbs.
- *  - web:     `app-breadcrumbs` (PrimeNG p-breadcrumb)
+ *  - web:     `app-breadcrumbs` (Bootstrap nativo)
  *  - mobile:  `ili-breadcrumbs` (scroll horizontal nativo con chevrons)
  *  - wrapper: `lx-breadcrumbs`  (auto runtime)
- * `MenuItem` (primeng/api) es el modelo de menú estándar del proyecto.
+ * `MenuItem` es el modelo de menú estándar del proyecto.
  */
 @Directive()
 export abstract class BreadcrumbsBase {

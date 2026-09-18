@@ -4,24 +4,20 @@ import {
   computed,
   input,
 } from "@angular/core";
-import type { EChartsCoreOption } from "echarts/core";
-import { NgxEchartsDirective } from "ngx-echarts";
-import { NgxChartsDatum, ngxToPieOption, trackChartTheme } from "./echarts-adapters";
+import type { ChartOptions } from "chart.js";
+import { BaseChartDirective } from "ng2-charts";
+import { NgxChartsDatum, ngxToPieData, ngxToPieOption, trackChartTheme } from "./chart-adapters";
 
 /**
- * PieChart — pastel / dona. Motor: ECharts (ngx-echarts).
+ * PieChart — pastel / dona. Motor: Chart.js (ng2-charts).
  * API sin cambios: `dataGrafico` en formato ngx-charts `[{ name, value }]`.
  */
 @Component({
   selector: "app-pie-chart",
 
-  imports: [NgxEchartsDirective],
+  imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
-  template: `<div
-    echarts
-    [options]="option()"
-    [style.height]="chartHeight()"
-  ></div>`,
+  template: `<canvas baseChart type="pie" [data]="chartData()" [options]="option()" [style.height]="chartHeight()"></canvas>`,
 })
 export class PieChart {
   constructor() {
@@ -46,9 +42,11 @@ export class PieChart {
     return v ? `${v[1]}px` : "300px";
   });
 
-  option = computed<EChartsCoreOption>(() =>
+  option = computed<ChartOptions<any>>(() =>
     ngxToPieOption(this.dataGrafico(), this.colorScheme(), {
       doughnut: this.isDoughnut,
     }),
   );
+
+  chartData = computed(() => ngxToPieData(this.dataGrafico(), this.colorScheme()));
 }

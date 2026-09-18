@@ -21,7 +21,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -53,9 +53,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonLabelDelete,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     WebButtonLabel,
     ActionMenu,
     PrimeNgCustomCaption,

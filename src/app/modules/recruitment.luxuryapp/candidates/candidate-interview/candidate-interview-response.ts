@@ -8,11 +8,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "@core/enums/candidate-decision";
 import { CandidateRejectionReason } from "@core/enums/candidate-rejection-reason";
@@ -21,8 +16,13 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppTable } from "@ui/web/table/table";
+import { firstValueFrom } from "rxjs";
+import { ROUTES } from "src/app/routing/route-paths";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
@@ -39,8 +39,6 @@ import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-req
     WebButtonLabel,
     WebButtonIconViewPdf,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CandidateStageBadge,
     MappedPTag,
     CustomInputSelectSignal,
@@ -235,5 +233,3 @@ export class CandidateInterviewResponse implements OnInit {
     this.loadInterviewResponse(identifier);
   }
 }
-
-

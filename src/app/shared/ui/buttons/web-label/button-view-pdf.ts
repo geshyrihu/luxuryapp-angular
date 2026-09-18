@@ -5,19 +5,23 @@ import {
   inject,
   input,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "il-button-view-pdf",
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="handleClick($event)"
     >
       <app-icon

@@ -1,7 +1,7 @@
 import { Injectable, signal } from "@angular/core";
 
 export interface AppToastAction {
-  onAction?: () => void;
+  onAction?: () => Promise<void> | void;
   actionLabel?: string;
   onCancel?: () => void;
   cancelLabel?: string;

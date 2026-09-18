@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -32,8 +32,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppIcon,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTooltipDirective,
     CustomInputSelectSignal,
     FormsModule,

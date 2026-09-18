@@ -17,7 +17,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DialogService,
   DynamicDialogConfig,
   DynamicDialogRef, } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
@@ -61,8 +61,6 @@ type ModalStatus =
     ReactiveFormsModule,
     LxFileUpload,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CustomInputCheckSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,

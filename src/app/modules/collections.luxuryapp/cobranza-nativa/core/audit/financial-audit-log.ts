@@ -16,7 +16,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -33,8 +33,6 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
   selector: "app-financial-audit-log",
   imports: [
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PrimeNgCustomCaption,
     WebButtonLabel,
     LxCard,

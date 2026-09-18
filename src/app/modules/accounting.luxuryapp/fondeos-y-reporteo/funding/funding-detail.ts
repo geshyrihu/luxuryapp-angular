@@ -21,8 +21,6 @@ import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
 import {
   AppTable,
-  AppSortableColumn,
-  AppSorticon,
   AppReorderableRow,
   AppReorderableRowHandle,
 } from "@ui/web/table/table";
@@ -102,9 +100,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxSplitButton,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     AppReorderableRow,
     AppReorderableRowHandle,
     LxTooltipDirective,
@@ -583,9 +579,22 @@ export class FundingDetail {
     });
   }
 
-  onRowReorder(event: any) {
+  onRowReorder(
+    grupo: { ordenes: any[] },
+    event: { dragIndex: number; dropIndex: number },
+  ) {
+    const reordered = [...grupo.ordenes];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.dataSignal.update((groups) =>
+      groups.map((current) =>
+        current === grupo ? { ...current, ordenes: reordered } : current,
+      ),
+    );
+
     const allOrderedIds = this.dataSignal()
-      .flatMap((grupo) => grupo.ordenes)
+      .flatMap((group) => group.ordenes)
       .map((orden) => orden.ordenCompraId);
 
     this.apiResponseS

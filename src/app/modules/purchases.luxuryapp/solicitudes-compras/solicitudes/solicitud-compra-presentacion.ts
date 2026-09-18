@@ -6,13 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxCarousel } from "@ui/adaptive/carousel/carousel";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { TagSeverity } from "@ui/base/tag.base";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { AppImage } from "@ui/web/image/image";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -20,6 +13,13 @@ import { AutorizacionCuadroComparativo } from "@core/enums/autorizacion-cuadro-c
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SwalService } from "@core/services/swal.service";
+import { LxCarousel } from "@ui/adaptive/carousel/carousel";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { TagSeverity } from "@ui/base/tag.base";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { AppImage } from "@ui/web/image/image";
+import { AppTable } from "@ui/web/table/table";
 import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -35,8 +35,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     LxCarousel,
     AppImage,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
     WebButtonLabelViewPdf,
     LxTag,
@@ -139,11 +137,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
       .presentation-accent {
         height: 0.45rem;
-        background: linear-gradient(
-          90deg,
-          var(--ds-primary) 0%,
-          #0ea5e9 100%
-        );
+        background: linear-gradient(90deg, var(--ds-primary) 0%, #0ea5e9 100%);
       }
 
       .presentation-kicker {
@@ -170,7 +164,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
   ],
 })
 export class SolicitudCompraPresentacion {
-
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -338,8 +331,8 @@ export class SolicitudCompraPresentacion {
 
   getTipoSolicitudLabel(value: number): string {
     return (
-      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)
-        ?.label ?? "N/D"
+      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)?.label ??
+      "N/D"
     );
   }
 
@@ -352,8 +345,8 @@ export class SolicitudCompraPresentacion {
 
   getPrioridadLabel(value: number): string {
     return (
-      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)
-        ?.label ?? "N/D"
+      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)?.label ??
+      "N/D"
     );
   }
 

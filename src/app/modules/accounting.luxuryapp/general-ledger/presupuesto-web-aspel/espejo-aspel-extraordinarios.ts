@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
+import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -49,8 +49,6 @@ import { PurchaseHistory } from "./purchase-history";
     CommonModule,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppFrozenColumn,
     DataViewMobile,
     LxTooltipDirective,

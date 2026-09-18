@@ -6,13 +6,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppTable } from "@ui/web/table/table";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 
@@ -28,8 +28,6 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     LxTooltipDirective,
     ApiDatePipe,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTag,
     WebButtonLabel,
   ],
@@ -205,4 +203,3 @@ export class JuntasMensualesBackfill {
     );
   }
 }
-

@@ -11,7 +11,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -31,8 +31,6 @@ import { ApiDatePipe } from "../../../../../../../shared/pipes/api-date.pipe";
     WebButtonIcon,
     ReactiveFormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTag,
     WebButtonLabelSave,
     CustomInputDateSignal,

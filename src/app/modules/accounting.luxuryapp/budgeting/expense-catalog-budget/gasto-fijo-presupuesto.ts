@@ -17,7 +17,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
@@ -41,8 +41,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CommonModule,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     LxSpinner,

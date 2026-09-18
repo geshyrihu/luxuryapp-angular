@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -19,7 +18,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 
 @Component({
   selector: "app-flujo-efectivo",
-  imports: [AppIcon, FormsModule, AppTable, AppSortableColumn, AppSorticon, AccountingNumberPipe],
+  imports: [AppIcon, FormsModule, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./flujo-efectivo.html",
 })

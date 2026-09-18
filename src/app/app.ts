@@ -88,9 +88,10 @@ export class App implements OnInit {
    */
   private checkNotificationStatus(): void {
     const permission = this.messagingService.getPermissionStatus();
+    const dismissed = localStorage.getItem("notificationPromptDismissed") === "true";
 
-    // Solo mostrar si el usuario no ha decidido aún
-    if (permission === "default") {
+    // Solo mostrar si el usuario no ha decidido aún y no ha dismissado el prompt
+    if (permission === "default" && !dismissed) {
       // Esperar 5 segundos antes de mostrar el toast (menos intrusivo)
       setTimeout(() => {
         this.showNotificationPrompt();
@@ -110,25 +111,52 @@ export class App implements OnInit {
       key: "notification-prompt",
       severity: "info",
       summary: "🔔 Notificaciones",
-      detail: "¿Recibir notificaciones importantes? activarlas ahora.",
+      detail: "¿Recibir notificaciones importantes? Actívalas ahora.",
       sticky: true,
       data: {
-        onAction: async () => {
+        onAction: () => {
           this.logger.custom(
             "🔔",
             "#4CAF50",
             "[App] Usuario aceptó activar notificaciones",
           );
-          const result = await this.messagingService.requestPermission();
-          this.messageService.clear("notification-prompt");
-          if (result === "granted") {
+          this.messagingService.requestPermission().then((result) => {
+            this.messageService.clear("notification-prompt");
+            // Guardar que el usuario ya interactuó con el prompt (no volver a mostrar)
+            localStorage.setItem("notificationPromptDismissed", "true");
+            if (result === "granted") {
+              this.messageService.add({
+                severity: "success",
+                summary: "✅ ¡Listo!",
+                detail: "Notificaciones activadas correctamente",
+                life: 3000,
+              });
+            } else if (result === "denied") {
+              this.messageService.add({
+                severity: "warn",
+                summary: "⚠️ Permiso denegado",
+                detail: "Las notificaciones fueron bloqueadas. Puedes habilitarlas en la configuración del navegador.",
+                life: 5000,
+              });
+            } else {
+              this.messageService.add({
+                severity: "info",
+                summary: "ℹ️ Sin cambios",
+                detail: "No se modificó el estado de notificaciones.",
+                life: 3000,
+              });
+            }
+          }).catch((error) => {
+            this.logger.error("[App] Error solicitando permiso notificaciones", error);
+            this.messageService.clear("notification-prompt");
+            localStorage.setItem("notificationPromptDismissed", "true");
             this.messageService.add({
-              severity: "success",
-              summary: "✅ ¡Listo!",
-              detail: "Notificaciones activadas correctamente",
+              severity: "error",
+              summary: "❌ Error",
+              detail: "No se pudo activar notificaciones",
               life: 3000,
             });
-          }
+          });
         },
         actionLabel: "Activar",
         onCancel: () => {

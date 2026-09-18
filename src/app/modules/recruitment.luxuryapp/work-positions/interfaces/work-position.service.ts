@@ -5,12 +5,13 @@ import { ApiResponse } from '../models/api-response.model';
 import { WorkPositionScheduleDto } from '../models/work-position-schedule-dto.model';
 import { WorkPositionScheduleForm } from '../models/work-position-schedule-form.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkPositionService {
-  private readonly apiUrl = 'api/work-positions';
+  private readonly apiUrl = `${environment.API_BASE_URL}work-positions`;
 
   constructor(private http: HttpClient) {}
 

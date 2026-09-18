@@ -29,17 +29,16 @@ describe("PrimengRadarChart", () => {
     expect(component.chartData().labels).toEqual([]);
   });
 
-  it("should build a radar ECharts option", () => {
+  it("should build Chart.js radar data", () => {
     const testData = {
       labels: ["Speed", "Strength"],
       datasets: [{ data: [80, 90], label: "Player 1" }],
     };
     fixture.componentRef.setInput("chartData", testData);
     fixture.detectChanges();
-    const option = component.option() as any;
-    expect(option.radar.indicator.length).toBe(2);
-    expect(option.series[0].type).toBe("radar");
-    expect(option.series[0].data[0].value).toEqual([80, 90]);
+    const data = component.renderData() as any;
+    expect(data.labels.length).toBe(2);
+    expect(data.datasets[0].data).toEqual([80, 90]);
   });
 
   it("should return undefined for getBase64Image when chart is not initialized", () => {

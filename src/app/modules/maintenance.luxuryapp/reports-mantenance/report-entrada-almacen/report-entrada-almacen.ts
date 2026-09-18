@@ -10,7 +10,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -28,8 +28,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PageTitleReportMaintenance,
     PrimeNgCustomCaption,
   ],

@@ -36,7 +36,12 @@ export abstract class BaseButton {
   fluid = input<boolean>(false);
   type = input<"button" | "submit" | "reset">("button");
   ariaLabel = input<string>("");
+  tooltip = input<string>("");
+  tooltipPosition = input<"top" | "bottom" | "left" | "right">("top");
   clicked = output<Event>();
+  protected tooltipText = computed(() =>
+    this.tooltip() || this.title() || this.ariaLabel() || this.label(),
+  );
   protected normalizedSeverity = computed(() =>
     this.severity() === "warn" ? "warning" : this.severity(),
   );
@@ -91,4 +96,3 @@ export abstract class BaseButton {
     this.clicked.emit(event);
   }
 }
-

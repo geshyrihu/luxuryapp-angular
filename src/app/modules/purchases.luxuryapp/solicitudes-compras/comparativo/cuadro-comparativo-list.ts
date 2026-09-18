@@ -11,9 +11,6 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppImage } from "@ui/web/image/image";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { AutorizacionCuadroComparativo } from "@core/enums/autorizacion-cuadro-comparativo.enum";
@@ -28,6 +25,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppImage } from "@ui/web/image/image";
+import { AppTable } from "@ui/web/table/table";
 import Swal from "sweetalert2";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
@@ -35,9 +35,9 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
+import { DialogSize } from "@core/enums/dialog-size.enum";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 
 @Component({
   selector: "app-cuadro-comparativo-list",
@@ -50,8 +50,6 @@ import { DialogSize } from "@core/enums/dialog-size.enum";
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppImage,
     WebButtonLabel,
     LxModal,
@@ -576,7 +574,8 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!budgetData) return;
 
     const restanteReal =
-      Number(budgetData.availableBudget) - Number(budgetData.pendingPayments || 0);
+      Number(budgetData.availableBudget) -
+      Number(budgetData.pendingPayments || 0);
 
     const amountModal = await this.swalService.fire({
       title: "Monto a usar",

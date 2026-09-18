@@ -7,7 +7,7 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { IFlujoCajaDto } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
@@ -15,7 +15,7 @@ import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({
   selector: "app-flujo-efectivo-cliente",
-  imports: [AppIcon, AppTable, AppSortableColumn, AppSorticon, AccountingNumberPipe],
+  imports: [AppIcon, AppTable, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./flujo-efectivo-cliente.html",
 })

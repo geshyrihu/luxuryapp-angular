@@ -6,18 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { warningOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -27,7 +15,19 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { warningOutline } from "ionicons/icons";
 import { ELateFeeType } from "../../interfaces/enums";
 import { LateFeePolicyResponseDTO } from "../../interfaces/late-fee-policy.dto";
 import { LateFeePolicyForm } from "./late-fee-policy-form";
@@ -44,8 +44,6 @@ import { LateFeePolicyForm } from "./late-fee-policy-form";
     MobileButtonLabelDelete,
     LxTag,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PrimeNgCustomCaption,
     DecimalPipe,
     DataViewMobile,
@@ -127,4 +125,3 @@ export default class LateFeePolicyList {
     }
   }
 }
-

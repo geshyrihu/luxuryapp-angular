@@ -26,8 +26,8 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -36,7 +36,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -82,6 +88,7 @@ import { TaskStatus } from "../task-status/task-status";
 import { ITaskMessageDTO, ITaskResultDTO } from "./interfaces/task-message.dto";
 import { TaskForm } from "./task-form";
 import { TaskPhotosViewer } from "./task-photos-viewer/task-photos-viewer";
+import { TaskSummaryReport } from "./task-summary-report/task-summary-report";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonIcon } from "@ui/buttons/mobile-icon/button";
@@ -139,6 +146,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonIcon,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
+    AppReorderableRow,
+    AppReorderableRowHandle,
     AppSortableColumn,
     AppSorticon,
     ActionMenu,
@@ -455,6 +464,18 @@ export class TaskList implements OnInit {
     );
   }
 
+  onOpenSummaryReport() {
+    this.dialogHandlerS.openDialog(
+      TaskSummaryReport,
+      {
+        ticketGroupId: this.ticketGroupId,
+        groupName: this.dataSignal().nameGroup,
+      },
+      "Resumen de tareas",
+      this.dialogHandlerS.sizeFull,
+    );
+  }
+
   onViewAdditionalImages(item: ITaskMessageDTO) {
     this.dialogHandlerS.openDialog(
       TaskPhotosViewer,
@@ -732,19 +753,10 @@ export class TaskList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting — array already has new order.
-    // items[dropIndex] is the item the user dragged.
     let items = [...this.dataSignal().items];
-
-    const movedItem = items[event.dropIndex];
-    if (!movedItem) {
-      this.dataSignal.update((c) => ({ ...c, items }));
-      this.apiS.onPut(
-        Endpoints.Tasks.updateOrder,
-        items.map((i) => i.id),
-      );
-      return;
-    }
+    const [movedItem] = items.splice(event.dragIndex, 1);
+    if (!movedItem) return;
+    items.splice(event.dropIndex, 0, movedItem);
 
     // BFS: collect ALL transitive dependents —
     //   parentTaskId === currentId  (true child tasks)
@@ -849,6 +861,7 @@ export class TaskList implements OnInit {
   }
 
   onLinkDrop(event: DragEvent, targetTaskId: string): void {
+    if (!event.dataTransfer?.types.includes("application/task-link")) return;
     event.preventDefault();
     event.stopPropagation();
     const sourceId = this.linkDragSourceId();

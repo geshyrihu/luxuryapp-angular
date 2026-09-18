@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DashboardStatsDto } from "@core/interfaces/dashboard-stats.dto";
@@ -17,7 +17,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
   selector: "app-access-dashboard",
   templateUrl: "./access-dashboard.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, AppTable, AppSortableColumn, AppSorticon, WebButtonLabel],
+  imports: [ApiDatePipe, AppTable, WebButtonLabel],
 })
 export class AccessDashboard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

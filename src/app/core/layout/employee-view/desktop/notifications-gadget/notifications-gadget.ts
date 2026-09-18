@@ -9,7 +9,6 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -26,7 +25,6 @@ import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
     AppIcon,
     AppBadge,
     LxTooltipDirective,
-    WebButtonLabel,
     WebButtonIconDelete,
     NgbDropdownModule,
   ],

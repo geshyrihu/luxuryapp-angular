@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppDivider } from "@ui/web/divider/divider";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Tabs } from "@ui/web/tabs/tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -32,8 +32,6 @@ const PATTERNS_LABELS: Record<string, string> = {
     AppDivider,
     CustomInputTextSignal,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     Tabs,
     AppIcon,
     StatusBadge,

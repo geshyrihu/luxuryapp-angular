@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -26,8 +26,6 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
   imports: [
     CommonModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
     PrimeNgCustomCaption,
     CurrencyPipe,

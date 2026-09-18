@@ -51,7 +51,6 @@ import {
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
-  CustomInputDatepicker,
   CustomInputDateSignal,
   CustomInputMultiselectSignal,
   CustomInputNumberSignal,
@@ -62,7 +61,7 @@ import {
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import { AppPopover } from "@ui/web/popover/popover";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Tabs } from "@ui/web/tabs/tabs";
 import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppBadge } from "@ui/web/badge/badge";
@@ -162,7 +161,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputNumberSignal,
     CustomInputCurrencySignal,
     CustomInputDateSignal,
-    CustomInputDatepicker,
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomInputCheckSignal,
@@ -174,8 +172,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     AppPopover,
     AppSelectButton,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     Tabs,
     AppToggleSwitch,
     AppBadge,

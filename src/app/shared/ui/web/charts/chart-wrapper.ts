@@ -5,39 +5,44 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import type { EChartsCoreOption } from "echarts/core";
-import { NgxEchartsDirective } from "ngx-echarts";
+import { BaseChartDirective } from "ng2-charts";
+import type { ChartOptions } from "chart.js";
 import {
   ChartJsData,
+  chartJsToCartesianData,
   chartJsToCartesianOption,
+  chartJsToPieData,
   chartJsToPieOption,
+  chartJsToRadarData,
   chartJsToRadarOption,
   dsThemeTick,
   trackChartTheme,
-} from "./echarts-adapters";
+} from "./chart-adapters";
 
 export type ChartType =
   "bar" | "line" | "area" | "pie" | "doughnut" | "radar" | "polarArea";
 
 /**
- * ChartWrapper — envoltorio genérico de gráficos. Motor: ECharts (ngx-echarts).
+ * ChartWrapper — envoltorio genérico de gráficos. Motor: Chart.js (ng2-charts).
  * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`.
  */
 @Component({
   selector: "app-chart-wrapper",
 
-  imports: [NgxEchartsDirective],
+  imports: [BaseChartDirective],
   template: `
     <div class="chart-wrapper-root">
       @if (title()) {
         <strong class="chart-wrapper-title">{{ title() }}</strong>
       }
-      <div
-        echarts
+      <canvas
+        baseChart
+        [type]="type() === 'area' ? 'line' : type()"
+        [data]="chartData()"
         [options]="option()"
         [style.height]="height()"
         [style.width]="width()"
-      ></div>
+      ></canvas>
     </div>
   `,
   styles: [
@@ -67,13 +72,13 @@ export class ChartWrapper {
   type = input<ChartType>("bar");
   data = input.required<ChartJsData>();
   /**
-   * Opciones ECharts ya construidas. ESCAPE HATCH **NO** reactivo al tema:
+    * Opciones Chart.js ya construidas. ESCAPE HATCH **NO** reactivo al tema:
    * ChartWrapper no puede devolver la reactividad de tema a un valor que ya
    * llegó resuelto (RN-DS-040). Si pasas `[options]` construidas una sola vez,
    * el chart se congela en el tema en que se pintó por primera vez. Para
    * opciones que deban repintar al cambiar el tema, usa `optionsFactory`.
    */
-  options = input<EChartsCoreOption | null>(null);
+  options = input<ChartOptions<any> | null>(null);
 
   /**
    * Fábrica de options que se RE-INVOCA en cada cambio de tema (RN-DS-040).
@@ -82,18 +87,18 @@ export class ChartWrapper {
    * ChartWrapper re-ejecute la fábrica al cambiar el tema y repinta. Es la vía
    * reactiva; preferirla sobre `options` cuando el color dependa de tokens.
    */
-  optionsFactory = input<(() => EChartsCoreOption) | null>(null);
+  optionsFactory = input<(() => ChartOptions<any>) | null>(null);
   title = input<string>("");
   height = input<string>("300px");
   width = input<string>("100%");
   showLegend = input<boolean>(true);
   showGrid = input<boolean>(true);
 
-  option = computed<EChartsCoreOption>(() => {
+  option = computed<ChartOptions<any>>(() => {
     dsThemeTick(); // dependencia de tema en TODAS las ramas (RN-DS-015)
     const f = this.optionsFactory();
     if (f) return f(); // se re-invoca al cambiar el tema
-    if (this.options()) return this.options() as EChartsCoreOption;
+    if (this.options()) return this.options() as ChartOptions<any>;
     const t = this.type();
     const legendGrid = {
       showLegend: this.showLegend(),
@@ -119,5 +124,14 @@ export class ChartWrapper {
       t as "bar" | "line" | "area",
       legendGrid,
     );
+  });
+
+  chartData = computed(() => {
+    const t = this.type();
+    if (t === "pie" || t === "polarArea" || t === "doughnut") {
+      return chartJsToPieData(this.data());
+    }
+    if (t === "radar") return chartJsToRadarData(this.data());
+    return chartJsToCartesianData(this.data(), t as "bar" | "line" | "area");
   });
 }

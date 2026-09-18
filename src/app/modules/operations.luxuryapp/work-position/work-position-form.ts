@@ -114,6 +114,19 @@ export class WorkPositionForm implements OnInit {
     { label: "JUEVES", dw: 4 }, { label: "VIERNES", dw: 5 }, { label: "SÁBADO", dw: 6 }, { label: "DOMINGO", dw: 0 },
   ] as const;
 
+  readonly timeOptions: SelectItemDto[] = Array.from({ length: 48 }, (_, index) => {
+    const hour = Math.floor(index / 2);
+    const minutes = index % 2 === 0 ? "00" : "30";
+    const value = `${hour.toString().padStart(2, "0")}:${minutes}`;
+    const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+    const period = hour < 12 ? "AM" : "PM";
+
+    return {
+      value,
+      label: `${hour12.toString().padStart(2, "0")}:${minutes} ${period}`,
+    };
+  });
+
   readonly AspRole = ApplicationRole;
   readonly canEditCurrentSalary = computed(() =>
     this.aspRoleS.hasAny([ApplicationRole.RecursosHumanos, ApplicationRole.SuperUsuario]),
@@ -122,7 +135,7 @@ export class WorkPositionForm implements OnInit {
     id: this.fb.control(""),
     name: this.fb.control("Horario del puesto", [Validators.required, Validators.maxLength(100)]),
     isActive: this.fb.control(true),
-    tipoJornada: this.fb.control(1, Validators.required),
+    tipoJornada: this.fb.control(7, Validators.required),
     observaciones: this.fb.control("", Validators.maxLength(500)),
     diasDeTrabajo: this.fb.array<WorkDayGroup>(this.buildWorkDays()),
   }, { validators: scheduleValidator });
@@ -158,6 +171,7 @@ export class WorkPositionForm implements OnInit {
     state: [true as boolean | null, Validators.required],
     employeeId: [null as string | null],
     employeeName: [null as string | null],
+    workPositionScheduleId: [null as string | null],
     jobDescriptionId: [null as string | null],
     benefits: [""],
   });
@@ -260,7 +274,17 @@ export class WorkPositionForm implements OnInit {
     if (!this.id()) return;
     this.scheduleSaving.set(true);
     try {
-      await firstValueFrom(this.workPositionService.updateSchedule(this.id()!, this.scheduleForm.getRawValue() as WorkPositionScheduleForm));
+      const scheduleResponse = await firstValueFrom(
+        this.workPositionService.updateSchedule(
+          this.id()!,
+          this.scheduleForm.getRawValue() as WorkPositionScheduleForm,
+        ),
+      );
+      if (!scheduleResponse?.success) {
+        throw new Error(
+          scheduleResponse?.error?.message || "No se pudo actualizar el horario.",
+        );
+      }
       this.ref.close(true);
     } catch {
       this.scheduleError.set("El puesto se guardó, pero no se pudo actualizar su horario.");
@@ -298,7 +322,13 @@ export class WorkPositionForm implements OnInit {
     if (index <= 0) return;
     const source = this.findDay(week, order[index - 1]);
     const target = this.findDay(week, currentDay);
-    if (source && target) target.patchValue(source.getRawValue());
+    if (source && target) {
+      target.patchValue({
+        horaEntrada: source.controls.horaEntrada.value,
+        horaSalida: source.controls.horaSalida.value,
+        esDescanso: source.controls.esDescanso.value,
+      });
+    }
   }
 
   copyPreviousWeek(week: number): void {
@@ -306,7 +336,13 @@ export class WorkPositionForm implements OnInit {
     for (const day of this.days) {
       const source = this.findDay(week - 1, day.dw);
       const target = this.findDay(week, day.dw);
-      if (source && target) target.patchValue(source.getRawValue());
+      if (source && target) {
+        target.patchValue({
+          horaEntrada: source.controls.horaEntrada.value,
+          horaSalida: source.controls.horaSalida.value,
+          esDescanso: source.controls.esDescanso.value,
+        });
+      }
     }
   }
 
@@ -323,10 +359,16 @@ export class WorkPositionForm implements OnInit {
       id: this.fb.control(value?.id ?? ""),
       diaSemana: this.fb.control(value?.diaSemana ?? dayOfWeek),
       numeroSemanaCiclo: this.fb.control(value?.numeroSemanaCiclo ?? week),
-      horaEntrada: this.fb.control(value?.horaEntrada ?? null),
-      horaSalida: this.fb.control(value?.horaSalida ?? null),
+      horaEntrada: this.fb.control(this.normalizeTime(value?.horaEntrada)),
+      horaSalida: this.fb.control(this.normalizeTime(value?.horaSalida)),
       esDescanso: this.fb.control(value?.esDescanso ?? false),
     }, { validators: workDayValidator });
+  }
+
+  private normalizeTime(value: string | null | undefined): string | null {
+    if (!value) return null;
+    const match = value.match(/^(\d{2}:\d{2})/);
+    return match?.[1] ?? value;
   }
 
   private patchSchedule(schedule: WorkPositionScheduleDto): void {

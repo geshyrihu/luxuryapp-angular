@@ -14,7 +14,7 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -36,8 +36,6 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
   imports: [
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     CustomInputCurrencySignal,
     WebButtonLabel,
     LxTag,

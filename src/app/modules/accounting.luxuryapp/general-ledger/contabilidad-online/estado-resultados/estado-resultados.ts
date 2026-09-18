@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -57,8 +57,6 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     AppIcon,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxSkeleton,
     DataViewMobile,
     AccountingNumberPipe,

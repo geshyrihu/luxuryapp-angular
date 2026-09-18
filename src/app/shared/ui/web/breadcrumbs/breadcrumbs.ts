@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/
 import { RouterLink } from "@angular/router";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-// Type-only: ver la misma nota en breadcrumbs.base.ts — cero acoplamiento
-// de runtime con PrimeNG.
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Component({
   selector: "app-breadcrumbs",
@@ -89,4 +87,3 @@ export class Breadcrumbs extends BreadcrumbsBase {
     }
   }
 }
-

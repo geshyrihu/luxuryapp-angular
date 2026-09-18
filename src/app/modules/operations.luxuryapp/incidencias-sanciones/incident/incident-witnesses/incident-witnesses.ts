@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -27,8 +27,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     WebButtonIconDelete,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
     AppIcon,
   ],

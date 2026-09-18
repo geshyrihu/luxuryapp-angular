@@ -10,7 +10,8 @@
         <h1 class="text-xl fw-bold text-body m-0 line-height-2">
           {{ customerName() }}
         </h1>
-        <span class="text-sm text-body-secondary fw-medium d-flex align-items-center gap-1"
+        <span
+          class="text-sm text-body-secondary fw-medium d-flex align-items-center gap-1"
           ><app-icon [icon]="'material-symbols-light:calendar-today'" /> {{
           periodo() }}</span
         >
@@ -189,7 +190,10 @@
         >Pendiente — debe autorizarse</span
       >
       } @else {
-      <app-icon [icon]="'material-symbols-light:lock'" class="text-body-secondary" />
+      <app-icon
+        [icon]="'material-symbols-light:lock'"
+        class="text-body-secondary"
+      />
       <span class="text-body-secondary">Autorizar (requiere verificacion)</span>
       }
     </div>
@@ -203,9 +207,7 @@
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
-      <span class="text-green-700 fw-medium"
-        >Confirmado por Contabilidad</span
-      >
+      <span class="text-green-700 fw-medium">Confirmado por Contabilidad</span>
       } @else if (isAuthorized()) {
       <app-icon
         [icon]="'material-symbols-light:circle'"
@@ -215,7 +217,10 @@
         >Pendiente — debe confirmar Contabilidad</span
       >
       } @else {
-      <app-icon [icon]="'material-symbols-light:lock'" class="text-body-secondary" />
+      <app-icon
+        [icon]="'material-symbols-light:lock'"
+        class="text-body-secondary"
+      />
       <span class="text-body-secondary">Confirmar (requiere autorizacion)</span>
       }
     </div>
@@ -257,9 +262,7 @@
     >
   </div>
   } @for (grupo of dataSignal(); track grupo.tipoGasto) {
-  <div
-    class="card mb-3 border-1 border rounded-xl overflow-hidden shadow-sm"
-  >
+  <div class="card mb-3 border-1 border rounded-xl overflow-hidden shadow-sm">
     <!-- Group Header -->
     <div
       class="d-flex justify-content-between align-items-center bg-bg-body-tertiary px-3 py-2 border-bottom-1 border"
@@ -290,13 +293,14 @@
       </div>
     </div>
 
-      <app-table
-        [value]="grupo.ordenes"
-        class="p-datatable-sm p-datatable-gridlines font-sm border-0"
-        [scrollable]="true"
-        [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '72rem' }"
-        [reorderableColumns]="true"
-      (onRowReorder)="onRowReorder($event)"
+    <app-table
+      [value]="grupo.ordenes"
+      class="p-datatable-sm p-datatable-gridlines font-sm border-0"
+      [scrollable]="true"
+      [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '72rem' }"
+      [reorderableRows]="true"
+      [reorderableColumns]="true"
+      (onRowReorder)="onRowReorder(grupo, $event)"
     >
       <ng-template #header>
         <tr>
@@ -331,7 +335,9 @@
           >
             Estado
           </th>
-          <th class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium">
+          <th
+            class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium"
+          >
             Acciones
           </th>
         </tr>
@@ -340,13 +346,17 @@
       <ng-template #body let-orden let-rowIndex="rowIndex">
         <tr [pReorderableRow]="rowIndex" class="text-sm">
           <!-- Index -->
-          <td class="text-center p-1 text-body-secondary relative bg-bg-body-tertiary">
+          <td
+            class="text-center p-1 text-body-secondary relative bg-bg-body-tertiary"
+          >
             <app-icon
               [icon]="'material-symbols-light:more-vert'"
               class="text-body-secondary absolute left-0 top-50 mt--2 ms-1 cursor-move d-none d-md-block"
               pReorderableRowHandle
             />
-            <span class="fw-medium text-body-secondary">{{ orden.indice }}</span>
+            <span class="fw-medium text-body-secondary"
+              >{{ orden.indice }}</span
+            >
           </td>
 
           <!-- Concept / Account -->
@@ -355,7 +365,9 @@
               <span class="fw-bold text-body text-sm mb-1 line-height-2"
                 >{{ orden.justificacionGasto | uppercase }}</span
               >
-              <span class="text-xs text-body-secondary d-flex align-items-center gap-1">
+              <span
+                class="text-xs text-body-secondary d-flex align-items-center gap-1"
+              >
                 <span class="bg-blue-50 text-blue-700 px-1 rounded fw-medium"
                   >{{ orden.codigoCuenta }}</span
                 >
@@ -532,7 +544,9 @@
     </div>
 
     @if (ordenesFueraProceso().length === 0) {
-    <div class="d-flex align-items-center gap-2 p-3 text-body-secondary text-sm">
+    <div
+      class="d-flex align-items-center gap-2 p-3 text-body-secondary text-sm"
+    >
       <app-icon [icon]="'material-symbols-light:info'" />
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
@@ -551,9 +565,7 @@
         <tr>
           <td class="text-sm fw-medium">{{ orden.nameProvider }}</td>
           <td class="text-sm">{{ orden.justificacionGasto }}</td>
-          <td class="text-sm text-end">
-            {{ orden.total | number: "1.2-2" }}
-          </td>
+          <td class="text-sm text-end">{{ orden.total | number: "1.2-2" }}</td>
           <td class="text-center">
             <custom-input-check-signal
               [control]="orden.ordenCompraPagadaControl"
@@ -592,7 +604,9 @@
     [(visible)]="isDownloading"
     [closable]="false"
   >
-    <div class="d-flex flex-column align-items-center justify-content-center p-4">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center p-4"
+    >
       <lx-progress-bar [value]="downloadProgress()" class="mb-3" />
       <span class="text-body fw-medium">{{ downloadStatusText() }}</span>
       <span class="text-body-secondary text-sm mt-2"

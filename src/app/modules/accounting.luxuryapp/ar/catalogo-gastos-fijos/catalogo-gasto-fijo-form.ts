@@ -27,7 +27,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -63,9 +63,7 @@ interface ICatalogoGastoFijoForm {
     ReactiveFormsModule,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     InputAutocomplete,

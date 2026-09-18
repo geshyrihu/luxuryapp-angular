@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -29,8 +29,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     LxTooltipDirective,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
     CustomInputTextSignal,
     LxTag,

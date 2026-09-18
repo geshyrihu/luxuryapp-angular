@@ -5,13 +5,14 @@ import {
   computed,
   input,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "il-button-save",
 
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   styles: [
     `
       :host {
@@ -39,6 +40,9 @@ import { BaseButton } from "../base/base-button";
       [type]="type()"
       [class]="buttonClasses() + ' gap-2 relative'"
       [disabled]="disabled() || submitting()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
       [style.opacity]="submitting() ? 0.9 : 1"
     >

@@ -9,7 +9,7 @@ import {
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -31,9 +31,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CommonModule,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     NgbTooltip,
   ],
 })

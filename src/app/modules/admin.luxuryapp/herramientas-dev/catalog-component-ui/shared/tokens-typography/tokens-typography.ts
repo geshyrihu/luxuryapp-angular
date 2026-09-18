@@ -3,13 +3,13 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [AppTable, AppSortableColumn, AppSorticon, AppTag],
+  imports: [AppTable, AppTag],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">

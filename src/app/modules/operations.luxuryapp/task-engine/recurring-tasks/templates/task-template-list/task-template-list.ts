@@ -6,6 +6,11 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -13,12 +18,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskTemplateForm } from "../task-template-form/task-template-form";
 
@@ -45,12 +45,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelItem,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-
     DataViewMobile,
     PrimeNgCustomCaption,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     MobileListItem,
     AppIcon,
   ],
@@ -131,4 +128,3 @@ export class TaskTemplateList implements OnInit {
       });
   }
 }
-

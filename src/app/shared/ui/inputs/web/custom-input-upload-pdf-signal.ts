@@ -1,8 +1,8 @@
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { SharedModule } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 /**
  * 📤 SUBIR PDF (MODAL)
  * -------------------------------------------------------------------------
@@ -11,31 +11,25 @@ import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
  */
 @Component({
   selector: "app-subir-pdf",
-  imports: [FileUploadModule, SharedModule],
+  imports: [FileUpload, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-fileupload
-      name="files"
-      [customUpload]="true"
-      (uploadHandler)="customUploadHandler($event)"
-      [multiple]="true"
-      accept="application/pdf"
-      cancelLabel="Cancelar"
-      chooseLabel="Seleccionar PDFs"
-      uploadLabel="Cargar PDFs"
-      [maxFileSize]="maxFileSize"
-    >
-      <ng-template #toolbar>
-        <div class="py-3">Cargar o arrastrar PDF</div>
-      </ng-template>
-      <ng-template #content let-files>
-        <div>
-          @for (file of files; track file) {
-            <div>{{ file.name }} - {{ formatFileSize(file.size) }}</div>
-          }
+    <div class="p-3">
+      <p class="mb-3">Cargar o arrastrar PDF</p>
+      <app-file-upload
+        accept="application/pdf"
+        [multiple]="true"
+        [maxFileSize]="maxFileSize"
+        [autoUpload]="false"
+        chooseLabel="Seleccionar PDFs"
+        (onSelect)="onFilesSelected($event)"
+      />
+      @if (pendingFiles.length) {
+        <div class="d-flex justify-content-end mt-3">
+          <il-button label="Cargar PDFs" [loading]="uploading" (clicked)="uploadAll()" />
         </div>
-      </ng-template>
-    </p-fileupload>
+      }
+    </div>
   `,
 })
 export class SubirPdf implements OnInit {
@@ -45,34 +39,32 @@ export class SubirPdf implements OnInit {
   maxFileSize: number = 20000000;
   url: string = "";
   pathUrl: string = "";
+  pendingFiles: File[] = [];
+  uploading = false;
 
   ngOnInit(): void {
     this.pathUrl = this.config.data.pathUrl;
     this.url = `${this.pathUrl}${this.config.data.serviceOrderId}`;
   }
 
-  customUploadHandler(event: FileUploadHandlerEvent) {
-    const formData = new FormData();
+  onFilesSelected(event: { files: File[] }): void {
+    this.pendingFiles = event.files;
+  }
 
-    // Agregar todos los archivos con el nombre "files"
-    for (let file of event.files) {
+  async uploadAll(): Promise<void> {
+    if (!this.pendingFiles.length) return;
+    this.uploading = true;
+    const formData = new FormData();
+    for (const file of this.pendingFiles) {
       formData.append("files", file);
     }
-
-    this.apiResponse.onPostFile(this.url, formData).then((response) => {
+    try {
+      const response = await this.apiResponse.onPostFile(this.url, formData);
       if (response !== false) {
-        // Notificar éxito y cerrar
         this.ref.close(true);
       }
-    });
-  }
-
-  formatFileSize(bytes: number): string {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const sizes = ["Bytes", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
+    } finally {
+      this.uploading = false;
+    }
   }
 }
-

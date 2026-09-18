@@ -9,7 +9,7 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import type {
@@ -23,8 +23,6 @@ import type {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
     PrimeNgCustomCaption,
   ],

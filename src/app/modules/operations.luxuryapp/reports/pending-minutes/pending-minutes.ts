@@ -5,7 +5,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -21,7 +21,7 @@ interface PendingMinutesResponse {
 
 @Component({
   selector: "app-pending-minutes",
-  imports: [AppSpinner, AppIcon, AppTable, AppSortableColumn, AppSorticon],
+  imports: [AppSpinner, AppIcon, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pending-minutes.html",
 })

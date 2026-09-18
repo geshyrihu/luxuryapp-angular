@@ -7,19 +7,19 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTable } from "@ui/web/table/table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 export interface VacationHistoryItemDTO {
@@ -61,10 +61,6 @@ export interface VacationHistoryItemDTO {
     CustomInputSelectSignal,
     LxMessage,
     AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
     LxTag,
   ],
 })
@@ -242,5 +238,3 @@ export class VacacionesAdminAuditoria implements OnInit {
     return statusSeverityFn(status);
   }
 }
-
-

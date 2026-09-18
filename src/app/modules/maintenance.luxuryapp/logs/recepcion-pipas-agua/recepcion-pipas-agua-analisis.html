@@ -48,13 +48,13 @@
   <div class="col-12 col-md-7">
     <div class="card p-3">
       <p class="fw-semibold text-sm mb-2">Litros recibidos por mes</p>
-      <div echarts [options]="optLitros()" ></div>
+       <app-chart-wrapper type="bar" [data]="chartLitros()" height="320px" [showLegend]="false" />
     </div>
   </div>
   <div class="col-12 col-md-5">
     <div class="card p-3">
       <p class="fw-semibold text-sm mb-2">Diferencia promedio de cisterna</p>
-      <div echarts [options]="optCisterna()" ></div>
+       <app-chart-wrapper type="area" [data]="chartCisterna()" height="320px" [showLegend]="false" />
     </div>
   </div>
 </div>

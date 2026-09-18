@@ -8,14 +8,14 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ChartJsData } from "@ui/web/charts/echarts-adapters";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ChartJsData } from "@ui/web/charts/chart-adapters";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { AppTable } from "@ui/web/table/table";
 import {
   MappedPTag,
   MappedTagOption,
@@ -30,8 +30,6 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
     CommonModule,
     WebButtonLabel,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     MappedPTag,
     ChartWrapper,
     AppIcon,
@@ -454,5 +452,3 @@ export class CandidateApplicationKpis implements OnInit {
     };
   });
 }
-
-

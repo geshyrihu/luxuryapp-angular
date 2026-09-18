@@ -7,7 +7,7 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type {
   IBaseAccountDto,
@@ -74,7 +74,7 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
-  imports: [AppIcon, AppTable, AppSortableColumn, AppSorticon],
+  imports: [AppIcon, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal-cliente.html",
 })

@@ -5,6 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { confirmAction } from "../shared/confirm";
@@ -12,13 +13,16 @@ import { confirmAction } from "../shared/confirm";
 @Component({
   selector: "iw-button-confirm",
 
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="handleConfirm($event)"
     >
       @if (emoji()) {

@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
-import { NgbCarouselModule, NgbSlideEvent } from "@ng-bootstrap/ng-bootstrap";
+import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
 
 /**
  * AppCarousel — wrapper sobre NgbCarousel. [Fase 3 migración Bootstrap,
@@ -17,25 +17,18 @@ import { NgbCarouselModule, NgbSlideEvent } from "@ng-bootstrap/ng-bootstrap";
  */
 @Component({
   selector: "app-carousel",
-  imports: [NgbCarouselModule, NgTemplateOutlet],
+  imports: [CarouselModule, NgTemplateOutlet],
   template: `
-    <ngb-carousel
-      [interval]="autoplayInterval()"
-      [wrap]="circular()"
-      [showNavigationArrows]="showNavigators()"
-      [showNavigationIndicators]="showIndicators()"
-      [activeId]="'app-carousel-slide-' + page()"
-      (slide)="onSlide($event)"
-    >
+    <owl-carousel-o [options]="owlOptions" (changed)="onChanged($event)">
       @for (item of value(); track $index) {
-        <ng-template ngbSlide [id]="'app-carousel-slide-' + $index">
+        <ng-template carouselSlide [id]="'app-carousel-slide-' + $index">
           <ng-container
             [ngTemplateOutlet]="itemTemplate() ?? null"
             [ngTemplateOutletContext]="{ $implicit: item }"
           />
         </ng-template>
       }
-    </ngb-carousel>
+    </owl-carousel-o>
   `,
   styles: [
     `
@@ -49,10 +42,22 @@ import { NgbCarouselModule, NgbSlideEvent } from "@ng-bootstrap/ng-bootstrap";
   encapsulation: ViewEncapsulation.None,
 })
 export class Carousel extends CarouselBase {
-  protected onSlide(event: NgbSlideEvent): void {
-    const index = Number(event.current.replace("app-carousel-slide-", ""));
-    if (!Number.isNaN(index)) {
-      this.onPage.emit(index);
+  protected get owlOptions(): OwlOptions {
+    return {
+      items: this.numVisible(),
+      slideBy: this.numScroll(),
+      loop: this.circular(),
+      autoplay: this.autoplayInterval() > 0,
+      autoplayTimeout: this.autoplayInterval(),
+      nav: this.showNavigators(),
+      dots: this.showIndicators(),
+      startPosition: this.page(),
+    };
+  }
+
+  protected onChanged(event: { startPosition?: number }): void {
+    if (typeof event.startPosition === "number") {
+      this.onPage.emit(event.startPosition);
     }
   }
 }

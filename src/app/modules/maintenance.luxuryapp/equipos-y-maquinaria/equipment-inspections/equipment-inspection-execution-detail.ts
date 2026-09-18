@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppImage } from "@ui/web/image/image";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -21,8 +21,6 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTag,
     AppImage,
     WebButtonLabel,

@@ -2156,12 +2156,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/primeng-custom-table-footer/primeng-custom-table-footer.ts"
   },
   {
-    "selector": "primeng-custom-toast",
-    "className": "PrimeNgCustomToast",
-    "category": "web",
-    "path": "shared/ui/web/primeng-custom-toast/primeng-custom-toast.ts"
-  },
-  {
     "selector": "sb-chart-host",
     "className": "ChartHost",
     "category": "web",

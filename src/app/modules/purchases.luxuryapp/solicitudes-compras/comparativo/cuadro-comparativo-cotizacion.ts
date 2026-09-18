@@ -12,13 +12,6 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { debounceTime } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -29,6 +22,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra";
+import { LxCard } from "@ui/adaptive/card/card";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppTable } from "@ui/web/table/table";
+import { debounceTime } from "rxjs";
 
 @Component({
   selector: "app-cuadro-comparativo-cotizacion",
@@ -37,10 +37,6 @@ import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-
     CommonModule,
     ReactiveFormsModule,
     AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
     CustomInputTextSignal,
     CustomInputNumberSignal,
     WebButtonLabel,
@@ -459,5 +455,3 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
   }
 }
-
-

@@ -1,18 +1,21 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button-item",
 
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
       [attr.aria-label]="ariaLabel() || label() || null"
-      [attr.title]="title() || null"
+       [lxTooltip]="tooltipText()"
+       [tooltipPosition]="tooltipPosition()"
+       [tooltipDisabled]="!tooltipText()"
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >

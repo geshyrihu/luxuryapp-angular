@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type {
   IBaseAccountDto,
@@ -61,7 +61,7 @@ type ClientRow =
 
 @Component({
   selector: "app-estado-resultados-cliente",
-  imports: [AppIcon, AppTable, AppSortableColumn, AppSorticon, LxSkeleton, AccountingNumberPipe, DataViewMobile],
+  imports: [AppIcon, AppTable, LxSkeleton, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-cliente.html",
 })

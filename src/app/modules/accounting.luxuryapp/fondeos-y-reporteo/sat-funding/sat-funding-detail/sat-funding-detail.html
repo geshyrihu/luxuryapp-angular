@@ -38,14 +38,13 @@
       <app-table
         #dtInvoices
         [value]="invoices()"
+        [reorderableRows]="true"
         [rows]="10"
         [paginator]="true"
         [globalFilterFields]="['emisorNombre', 'folio', 'total']"
         [(selection)]="selection"
         dataKey="satCfdiId"
-        sortField="tipoGasto"
-        sortMode="multiple"
-        rowGroupMode="subheader"
+         [initialSortField]="'tipoGasto'"
         groupRowsBy="tipoGasto"
         (onRowReorder)="onRowReorder($event)"
         [scrollable]="true"
@@ -127,7 +126,7 @@
             <td>
               <div
                 class="d-flex align-items-center justify-content-center"
-                [pReorderableRowHandle]="i"
+                 pReorderableRowHandle
               >
                 <app-icon [icon]="'material-symbols-light:menu'" />
               </div>

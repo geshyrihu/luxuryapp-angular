@@ -5,7 +5,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -25,7 +25,7 @@ import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mant
   selector: "app-gastos-mantenimiento",
   templateUrl: "./gastos-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, AppTable, AppSortableColumn, AppSorticon],
+  imports: [AppIcon, AppTable],
 })
 export class GastosMantenimiento {
   apiResponseS = inject(ApiResponseService);

@@ -179,7 +179,7 @@ describe("TaskTemplateItems", () => {
       { id: "b", title: "B" } as any,
     ]);
 
-    component.onRowReorder({});
+    component.onRowReorder({ dragIndex: 0, dropIndex: 1 });
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
@@ -247,4 +247,3 @@ describe("TaskTemplateItems", () => {
     expect(component.formatRecurrenceRule("")).toBe("No definida");
   });
 });
-

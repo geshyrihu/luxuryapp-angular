@@ -1,17 +1,24 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Gallery } from "ng-gallery";
+import { Lightbox } from "ng-gallery/lightbox";
 import { AppImage } from "./image";
 
 describe("AppImage", () => {
   let fixture: ComponentFixture<AppImage>;
-  let modal: jasmine.SpyObj<NgbModal>;
+  let gallery: jasmine.SpyObj<Gallery>;
+  let lightbox: jasmine.SpyObj<Lightbox>;
 
   beforeEach(async () => {
-    modal = jasmine.createSpyObj<NgbModal>("NgbModal", ["open"]);
+    gallery = jasmine.createSpyObj<Gallery>("Gallery", ["ref"]);
+    gallery.ref.and.returnValue(jasmine.createSpyObj("GalleryRef", ["load"]));
+    lightbox = jasmine.createSpyObj<Lightbox>("Lightbox", ["open"]);
 
     await TestBed.configureTestingModule({
       imports: [AppImage],
-      providers: [{ provide: NgbModal, useValue: modal }],
+      providers: [
+        { provide: Gallery, useValue: gallery },
+        { provide: Lightbox, useValue: lightbox },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppImage);
@@ -37,18 +44,22 @@ describe("AppImage", () => {
     expect(fixture.nativeElement.querySelector(".wrapper")).toBeTruthy();
   });
 
-  it("opens NgbModal when preview is enabled", () => {
+  it("opens gallery lightbox when preview is enabled", () => {
+    fixture.componentRef.setInput("src", "/image.jpg");
+    fixture.componentRef.setInput("alt", "Example");
     fixture.componentRef.setInput("preview", true);
     fixture.detectChanges();
 
     (fixture.nativeElement.querySelector("button") as HTMLButtonElement).click();
 
-    expect(modal.open).toHaveBeenCalledWith(
-      jasmine.anything(),
+    expect(gallery.ref).toHaveBeenCalled();
+    expect(lightbox.open).toHaveBeenCalledWith(
+      0,
+      jasmine.any(String),
       jasmine.objectContaining({
-        centered: true,
-        backdrop: true,
-        keyboard: true,
+        role: "dialog",
+        ariaLabel: "Example",
+        keyboardShortcuts: true,
       }),
     );
   });

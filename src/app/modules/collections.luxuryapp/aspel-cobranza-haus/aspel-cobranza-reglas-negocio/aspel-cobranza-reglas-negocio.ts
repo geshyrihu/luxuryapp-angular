@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import type { AccordionItem } from "@ui/base/accordion.base";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -14,8 +14,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     Accordion,
     AccordionPanel,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppIcon,
   ],
 })

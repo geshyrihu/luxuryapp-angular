@@ -46,11 +46,10 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { EquiposList } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { Subscription } from "rxjs";
 import Swal from "sweetalert2";
 import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
@@ -101,7 +100,6 @@ import {
   imports: [
     AppIcon,
     CommonModule,
-    CustomInputMultiselectSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomSearchInput,
@@ -109,8 +107,6 @@ import {
     LxModal,
     LxTooltipDirective,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     MultipleSegmentedControl,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -409,10 +405,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    */
   ngOnDestroy(): void {
     // this.subscriptions.forEach((sub) => sub.unsubscribe()); // Handled by takeUntilDestroyed
-    this.signalRService.leaveProposalGroup(
-      this.customerId,
-      this.fiscalYear,
-    );
+    this.signalRService.leaveProposalGroup(this.customerId, this.fiscalYear);
     this.signalRService.stop();
   }
 
@@ -1665,22 +1658,15 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.apiResponseS
       .onPut<BudgetProposalItemDTO>(
         Endpoints.BudgetingProposal.finalizeItem(item.id),
-        { isFinalized: nextValue },
+        {
+          isFinalized: nextValue,
+          excludedConnectionId: this.signalRService.connectionId(),
+        },
       )
       .then((response) => {
         if (response) {
           this.patchItemInState(response);
-          this.customToastService.showSuccess(
-            nextValue ? "Partida finalizada" : "Finalización revertida",
-            item.accountName,
-          );
         }
-      })
-      .catch(() => {
-        this.customToastService.showError(
-          "Error",
-          "No se pudo actualizar la finalización de la partida.",
-        );
       })
       .finally(() => this.loading.set(false));
   }

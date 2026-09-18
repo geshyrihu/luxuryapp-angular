@@ -4,7 +4,6 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { TimelineBase } from "@ui/base/timeline.base";
-import { TimelineModule } from "primeng/timeline";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 export { type TimelineEvent } from "@ui/base/timeline.base";
@@ -12,44 +11,56 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
 @Component({
   selector: "app-timeline",
 
-  imports: [TimelineModule, AppIcon],
+  imports: [AppIcon],
   template: `
-    <p-timeline [value]="events()" [align]="align()" [layout]="layout()">
-      <ng-template #marker let-event>
-        <div
-          class="timeline-marker"
-          [style.background]="event.color || 'var(--ds-primary)'"
-        >
-          @if (event.icon) {
-            <app-icon [icon]="event.icon" class="text-sm text-white" />
-          }
-        </div>
-      </ng-template>
-      <ng-template #content let-event>
-        <div class="timeline-card">
-          <div class="timeline-card-header">
-            <strong>{{ event.title }}</strong>
-            @if (event.date) {
-              <span class="timeline-date">{{ event.date }}</span>
+    <div class="app-timeline">
+      @for (event of events(); track $index; let last = $last) {
+        <div class="app-timeline-row">
+          <div class="app-timeline-marker-col">
+            <div
+              class="timeline-marker"
+              [style.background]="event.color || 'var(--ds-primary)'"
+            >
+              @if (event.icon) {
+                <app-icon [icon]="event.icon" class="text-sm text-white" />
+              }
+            </div>
+            @if (!last) {
+              <div class="app-timeline-connector"></div>
             }
           </div>
-          @if (event.description) {
-            <p class="timeline-desc">{{ event.description }}</p>
-          }
-          @if (event.badge) {
-            <span
-              class="timeline-badge"
-              [style.background]="event.badgeColor || 'var(--ds-primary-light)'"
-            >
-              {{ event.badge }}
-            </span>
-          }
+          <div class="app-timeline-content-col">
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <strong>{{ event.title }}</strong>
+                @if (event.date) {
+                  <span class="timeline-date">{{ event.date }}</span>
+                }
+              </div>
+              @if (event.description) {
+                <p class="timeline-desc">{{ event.description }}</p>
+              }
+              @if (event.badge) {
+                <span
+                  class="timeline-badge"
+                  [style.background]="event.badgeColor || 'var(--ds-primary-light)'"
+                >
+                  {{ event.badge }}
+                </span>
+              }
+            </div>
+          </div>
         </div>
-      </ng-template>
-    </p-timeline>
+      }
+    </div>
   `,
   styles: [
     `
+      .app-timeline { display: flex; flex-direction: column; }
+      .app-timeline-row { display: flex; gap: 1rem; }
+      .app-timeline-marker-col { display: flex; flex-direction: column; align-items: center; }
+      .app-timeline-connector { flex: 1 1 auto; width: 2px; min-height: 0.75rem; background: var(--ds-border, #dee2e6); margin: 0.25rem 0; }
+      .app-timeline-content-col { flex: 1 1 auto; padding-bottom: 1.5rem; }
       .timeline-marker {
         width: 32px;
         height: 32px;
@@ -95,16 +106,9 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
         color: var(--ds-text-primary);
         font-weight: 500;
       }
-      .p-timeline-event-opposite {
-        display: none;
-      }
-      app-timeline .p-timeline-event {
-        padding-bottom: 1.5rem;
-      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Timeline extends TimelineBase {}
-

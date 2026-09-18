@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { AppSpinner } from "../../web/spinner/spinner";
 import { BaseButton } from "../base/base-button";
@@ -6,14 +7,16 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "il-button",
 
-  imports: [AppIcon, AppSpinner],
+   imports: [AppIcon, AppSpinner, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [type]="type()"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
-      [attr.title]="title() || ariaLabel() || label() || null"
+       [lxTooltip]="tooltipText()"
+       [tooltipPosition]="tooltipPosition()"
+       [tooltipDisabled]="!tooltipText()"
       [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="emitClick($event)"
     >

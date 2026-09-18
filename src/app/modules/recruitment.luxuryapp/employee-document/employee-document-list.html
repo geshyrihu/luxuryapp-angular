@@ -53,6 +53,7 @@
 
   <app-table
     [value]="documents()"
+    [reorderableRows]="true"
     [reorderableColumns]="true"
     (onRowReorder)="onRowReorder($event)"
     [tableStyle]="{ 'min-width': '60rem' }"

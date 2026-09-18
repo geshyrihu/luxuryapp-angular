@@ -1,0 +1,98 @@
+@if (loading()) {
+<div class="d-flex justify-content-center p-4">
+  <app-spinner [size]="44" [strokeWidth]="4" />
+</div>
+} @else {
+<div id="task-summary-report" class="d-flex flex-column gap-3">
+  <div class="d-flex flex-wrap align-items-end gap-3 no-print">
+    <div class="flex-fill" style="min-width: 12rem">
+      <custom-input-date-signal
+        [control]="fromControl"
+        label="Desde (fecha de creación)"
+        placeholder="fecha inicial"
+      />
+    </div>
+    <div class="flex-fill" style="min-width: 12rem">
+      <custom-input-date-signal
+        [control]="toControl"
+        label="Hasta"
+        placeholder="fecha final"
+      />
+    </div>
+    <div class="pb-3 d-flex gap-2">
+      <il-button
+        iconClass="material-symbols-light:picture-as-pdf"
+        label="PDF"
+        variant="outline"
+        size="small"
+        [disabled]="total() === 0"
+        [loading]="exportingPdf()"
+        (clicked)="exportPdf()"
+      />
+    </div>
+  </div>
+
+  <div>
+    <div class="fw-bold text-body">{{ groupName }}</div>
+    <div class="text-xs text-body-secondary">{{ metaLabel() }}</div>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-between text-sm">
+    <span class="text-body-secondary"
+      >{{ total() }} tarea(s) en el rango seleccionado.</span
+    >
+    @if (truncated()) {
+    <span class="text-orange-600 fw-semibold no-print">
+      <app-icon icon="material-symbols-light:warning" /> Hay más tareas de las
+      que se pudieron cargar; acota el rango de fechas.
+    </span>
+    }
+  </div>
+
+  @if (total() === 0) {
+  <div class="text-center p-4 text-body-secondary bg-body-tertiary rounded">
+    No hay tareas para el rango seleccionado.
+  </div>
+  } @for (group of groups(); track group.key) {
+  <section>
+    <div
+      class="px-3 py-2 rounded-top fw-bold text-sm"
+      [style.background]="group.background"
+      [style.color]="group.color"
+    >
+      {{ group.label }} ({{ group.rows.length }})
+    </div>
+
+    <div class="border border-top-0 rounded-bottom">
+      <table class="table m-0 align-middle summary-screen-table">
+        <thead>
+          <tr class="text-xs text-uppercase text-body-secondary">
+            <th style="width: 3rem">N°</th>
+            <th>Descripción</th>
+            <th style="width: 9rem">Fecha de ejecución</th>
+            <th style="width: 16rem">Último seguimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of group.rows; track row.index) {
+          <tr>
+            <td class="text-body-secondary">{{ row.index }}</td>
+            <td>
+              <div class="fw-semibold text-body text-sm">{{ row.title }}</div>
+              @if (row.description) {
+              <div class="cell-sub text-body-secondary">
+                {{ row.description }}
+              </div>
+              }
+            </td>
+            <td>{{ row.executionDate }}</td>
+            <td class="cell-sub text-body-secondary">{{ row.lastFollowUp }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  }
+</div>
+}

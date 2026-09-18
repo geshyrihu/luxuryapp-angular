@@ -6,6 +6,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="data()"
+  [reorderableRows]="true"
   (onRowReorder)="onRowReorder($event)"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"

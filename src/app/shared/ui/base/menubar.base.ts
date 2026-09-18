@@ -2,7 +2,7 @@ import { Directive, input, model } from "@angular/core";
 
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Directive()
 export abstract class MenubarBase {

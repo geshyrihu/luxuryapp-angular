@@ -7,14 +7,14 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 import { ECalculationMethod } from "../../interfaces/enums";
 import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
 
@@ -24,8 +24,6 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
     AppIcon,
     LxTag,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppFrozenColumn,
     PrimeNgCustomCaption,
     CurrencyPipe,

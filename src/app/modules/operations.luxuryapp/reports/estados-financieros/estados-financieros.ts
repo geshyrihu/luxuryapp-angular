@@ -5,7 +5,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -16,7 +16,7 @@ interface FinancialReportResponse {
 
 @Component({
   selector: "app-estados-financieros",
-  imports: [AppTable, AppSortableColumn, AppSorticon],
+  imports: [AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estados-financieros.html",
 })

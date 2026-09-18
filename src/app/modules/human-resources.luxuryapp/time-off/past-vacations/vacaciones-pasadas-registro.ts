@@ -25,7 +25,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -58,9 +58,7 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
     WebButtonLabelSave,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     LxTag,
   ],
 })

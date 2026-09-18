@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
-import { InputTextModule } from "primeng/inputtext";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 
 /**
@@ -12,7 +11,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
  */
 @Component({
   selector: "app-mesanio",
-  imports: [FormsModule, NgbTooltip, InputTextModule],
+  imports: [FormsModule, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="row gap-4 mb-4">
@@ -25,8 +24,8 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
       <div class="col-12 col-md-9">
         <input
           type="month"
-          ngbTooltip="SELECCIONA PERIODO"
-          pInputText
+          lxTooltip="SELECCIONA PERIODO"
+          class="form-control"
           [(ngModel)]="periodo"
           (change)="onChangePeriodo()"
         />
@@ -59,4 +58,3 @@ export class Mesanio implements OnInit {
     this.periodoEmit.emit(this.periodo);
   }
 }
-

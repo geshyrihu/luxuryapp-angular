@@ -5,6 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { AppBadge } from "../../web/badge/badge";
 import { BaseButton } from "../base/base-button";
@@ -13,12 +14,15 @@ import { TrackingEvent } from "../shared/tracking";
 @Component({
   selector: "iw-button-tracking",
 
-  imports: [AppIcon, AppBadge],
+   imports: [AppIcon, AppBadge, LxTooltipDirective],
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="onTrackingClick($event)"
     >
       <span class="tracking-badge-anchor">

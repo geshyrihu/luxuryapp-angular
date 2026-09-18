@@ -29,7 +29,7 @@ describe("MultiAxisChart", () => {
     expect(component.dataSignal()).toBeNull();
   });
 
-  it("should build a dual-axis ECharts option", () => {
+  it("should build dual-axis Chart.js data", () => {
     const testData = {
       labels: ["A", "B"],
       datasets: [
@@ -39,10 +39,9 @@ describe("MultiAxisChart", () => {
     };
     fixture.componentRef.setInput("data", testData);
     fixture.detectChanges();
-    const option = component.option() as any;
-    expect(option.yAxis.length).toBe(2);
-    expect(option.series.length).toBe(2);
-    expect(option.series[1].yAxisIndex).toBe(1);
+    const data = component.chartData() as any;
+    expect(data.datasets.length).toBe(2);
+    expect(data.datasets[1].yAxisID).toBe("y1");
   });
 
   it("should use provided options over defaults", () => {

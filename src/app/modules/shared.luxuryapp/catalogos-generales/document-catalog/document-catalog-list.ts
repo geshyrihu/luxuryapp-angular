@@ -111,11 +111,15 @@ export class DocumentCatalogList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }) {
-    const orderedIds = this.dataSignal().map((item) => item.id);
+    const reordered = [...this.dataSignal()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.dataSignal.set(reordered);
+    const orderedIds = reordered.map((item) => item.id);
     this.apiResponseS.onPut(
       Endpoints.Catalogs.DocumentCatalog.updateOrder,
       { orderedIds },
     );
   }
 }
-

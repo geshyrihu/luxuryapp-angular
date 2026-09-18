@@ -85,8 +85,13 @@ export class Asambleas {
     });
   }
 
-  onRowReorder(event: any) {
-    const documentIds = this.dataSignal().map((item) => item.id);
+  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
+    const reordered = [...this.dataSignal()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.dataSignal.set(reordered);
+    const documentIds = reordered.map((item) => item.id);
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
@@ -97,5 +102,4 @@ export class Asambleas {
       });
   }
 }
-
 

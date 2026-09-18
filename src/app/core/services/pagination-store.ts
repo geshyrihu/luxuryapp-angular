@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from "@angular/core";
-import { TableLazyLoadEvent } from "primeng/table";
+import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import {
@@ -66,7 +66,7 @@ export class PaginationStore<T> {
   }
 
   /** Handler directo para `(onLazyLoad)` de p-table. Conserva el filtro actual si el evento no lo trae. */
-  onLazyLoad(event: TableLazyLoadEvent): void {
+  onLazyLoad(event: LazyLoadEvent): void {
     const req = lazyLoadToPaginationRequest(event, this.request().recordsNumber);
     if (!req.filter) req.filter = this.request().filter ?? "";
     void this.load(req);
@@ -102,4 +102,3 @@ export class PaginationStore<T> {
     }
   }
 }
-

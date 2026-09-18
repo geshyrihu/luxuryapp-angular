@@ -6,122 +6,105 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageService } from "@core/services/message.service";
-import { ButtonModule } from "primeng/button";
-import { DialogModule } from "primeng/dialog";
-import { FileUploadModule } from "primeng/fileupload";
-import { ProgressBarModule } from "primeng/progressbar";
-import { TextareaModule } from "primeng/textarea";
 import { TicketAnalysisService } from "@core/services/ticket-analysis.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-image-analysis-dialog",
-  imports: [
-    FormsModule,
-    ButtonModule,
-    FileUploadModule,
-    DialogModule,
-    ProgressBarModule,
-    TextareaModule,
-    AppIcon,
-  ],
+  imports: [FormsModule, WebButtonLabel, AppIcon],
   template: `
-    <p-dialog
-      header="📸 Diagnóstico Inteligente (Vision)"
-      [(visible)]="visible"
-      [modal]="true"
-      [style]="{ width: '500px' }"
-      [draggable]="false"
-      [resizable]="false"
+    <div
+      class="modal fade"
+      [class.show]="visible"
+      [style.display]="visible ? 'block' : 'none'"
+      tabindex="-1"
+      role="dialog"
+      [attr.aria-hidden]="!visible"
     >
-      @if (!analysisResult) {
-        <div>
-          <p class="mb-3">
-            Sube una foto del problema (ej. fuga, cable roto) y la IA lo
-            analizará automáticamente.
-          </p>
+      <div class="modal-dialog modal-dialog-centered" style="width: 500px; max-width: 96vw;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">📸 Diagnóstico Inteligente (Vision)</h5>
+            <button type="button" class="btn-close" aria-label="Cerrar" (click)="visible = false"></button>
+          </div>
+          <div class="modal-body">
+            @if (!analysisResult) {
+              <div>
+                <p class="mb-3">
+                  Sube una foto del problema (ej. fuga, cable roto) y la IA lo
+                  analizará automáticamente.
+                </p>
 
-          <p-fileupload
-            mode="basic"
-            chooseLabel="Seleccionar Foto"
-            accept="image/*,.heic,.heif"
-            maxFileSize="20000000"
-            (onSelect)="onFileSelect($event)"
-            [auto]="false"
-          >
-          </p-fileupload>
+                <input
+                  #chooseInput
+                  type="file"
+                  accept="image/*,.heic,.heif"
+                  (change)="onFileSelect($event)"
+                  hidden
+                />
+                <il-button label="Seleccionar Foto" (clicked)="chooseInput.click()" />
 
-          @if (selectedFile) {
-            <div class="mt-3 text-center">
-              <img
-                [src]="previewUrl"
-                class="preview-img mb-3"
-                style="max-height: 200px; max-width: 100%; border-radius: 8px;"
-              />
+                @if (selectedFile) {
+                  <div class="mt-3 text-center">
+                    <img
+                      [src]="previewUrl"
+                      class="preview-img mb-3"
+                      style="max-height: 200px; max-width: 100%; border-radius: 8px;"
+                    />
 
-              @if (loading) {
-                <div class="mt-2">
-                  <p-progressbar
-                    mode="indeterminate"
-                    [style]="{ height: '6px' }"
-                  ></p-progressbar>
-                  <small class="text-muted"
-                    >Analizando imagen con Gemini Vision...</small
-                  >
+                    @if (loading) {
+                      <div class="mt-2">
+                        <div class="progress" style="height: 6px;">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                        </div>
+                        <small class="text-muted">Analizando imagen con Gemini Vision...</small>
+                      </div>
+                    }
+
+                    @if (!loading) {
+                      <il-button
+                        label="Analizar Ahora"
+                        icon="material-symbols-light:bolt"
+                        (clicked)="analyze()"
+                        class="w-100 mt-2"
+                      />
+                    }
+                  </div>
+                }
+              </div>
+            }
+
+            @if (analysisResult) {
+              <div class="result-container">
+                <div class="text-center mb-3">
+                  <app-icon
+                    [icon]="'material-symbols-light:check-circle'"
+                    class="text-green-500 text-3xl"
+                  />
+                  <h3 class="m-0">Análisis Completado</h3>
                 </div>
-              }
 
-              @if (!loading) {
-                <button
-                  pButton
-                  type="button"
-                  label="Analizar Ahora"
-                  icon="material-symbols-light:bolt"
-                  (click)="analyze()"
-                  class="p-button-primary w-full mt-2"
-                ></button>
-              }
-            </div>
-          }
-        </div>
-      }
+                <textarea class="form-control" [rows]="8" [(ngModel)]="analysisResult" readonly></textarea>
 
-      @if (analysisResult) {
-        <div class="result-container">
-          <div class="text-center mb-3">
-            <app-icon
-              [icon]="'material-symbols-light:check-circle'"
-              class="pi text-green-500 text-3xl"
-            />
-            <h3 class="m-0">Análisis Completado</h3>
-          </div>
-
-          <textarea
-            pTextarea
-            [rows]="8"
-            class="w-full"
-            [(ngModel)]="analysisResult"
-            readonly
-          ></textarea>
-
-          <div class="d-flex justify-end gap-2 mt-3">
-            <button
-              pButton
-              label="Cerrar"
-              class="p-button-outlined"
-              (click)="visible = false"
-            ></button>
-            <button
-              pButton
-              label="Copiar y Usar"
-              icon="material-symbols-light:content-copy"
-              (click)="useResult()"
-            ></button>
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                  <il-button label="Cerrar" severity="secondary" variant="outline" (clicked)="visible = false" />
+                  <il-button
+                    label="Copiar y Usar"
+                    icon="material-symbols-light:content-copy"
+                    (clicked)="useResult()"
+                  />
+                </div>
+              </div>
+            }
           </div>
         </div>
-      }
-    </p-dialog>
+      </div>
+    </div>
+    @if (visible) {
+      <div class="modal-backdrop fade show"></div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -129,6 +112,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       .preview-img {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
+      :host { position: relative; z-index: 1055; }
     `,
   ],
 })
@@ -166,10 +150,11 @@ export class ImageAnalysisDialogComponent implements OnDestroy {
   }
 
   async onFileSelect(event: any): Promise<void> {
-    if (event.files && event.files.length > 0) {
+    const files = (event.target as HTMLInputElement | null)?.files;
+    if (files?.length) {
       try {
         this.selectedFile = await this.imageProcessing.processImage(
-          event.files[0],
+          files[0],
           { maxBytes: 5 * 1024 * 1024, maxDimension: 2560 },
         );
         if (
@@ -226,4 +211,3 @@ export class ImageAnalysisDialogComponent implements OnDestroy {
     }
   }
 }
-

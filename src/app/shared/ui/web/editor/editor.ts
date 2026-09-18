@@ -1,24 +1,41 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   ViewEncapsulation,
   forwardRef,
+  OnInit,
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EditorBase } from "@ui/base/editor.base";
-import { EditorModule } from "primeng/editor";
+import { Editor, NgxEditorModule } from "ngx-editor";
 
 @Component({
   selector: "app-editor",
 
-  imports: [FormsModule, EditorModule],
-  template: `<p-editor
-    [(ngModel)]="_value"
-    (ngModelChange)="onChange($event)"
-    [style]="style()"
-    [placeholder]="placeholder()"
-    [class]="styleClass()"
-  ></p-editor>`,
+  imports: [FormsModule, NgxEditorModule],
+  template: `
+    <div class="app-editor NgxEditor__Wrapper" [class]="styleClass()" [style]="style()">
+      <ngx-editor-menu [editor]="editor" />
+      <ngx-editor
+        [editor]="editor"
+        outputFormat="html"
+        [placeholder]="placeholder() ?? ''"
+        [(ngModel)]="_value"
+        (ngModelChange)="onChange($event)"
+        (focusOut)="onTouch()"
+      />
+    </div>
+  `,
+  styles: [
+    `
+      .app-editor { display: block; }
+      .app-editor ::ng-deep .NgxEditor__Content {
+        min-height: 150px;
+        font-size: inherit;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -29,4 +46,14 @@ import { EditorModule } from "primeng/editor";
     },
   ],
 })
-export class AppEditor extends EditorBase {}
+export class AppEditor extends EditorBase implements OnInit, OnDestroy {
+  editor!: Editor;
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}

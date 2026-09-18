@@ -83,7 +83,7 @@ const CHARTS_LABELS: Record<string, string> = {
                   >Gráficos no disponibles en versión mobile</span
                 >
                 <span class="text-center text-xs"
-                  >Los gráficos se renderizan solo en web (ECharts /
+                  >Los gráficos se renderizan solo en web (Chart.js /
                   ngx-charts)</span
                 >
               </div>
@@ -283,4 +283,3 @@ export class CatalogChartsItem {
     plugins: { legend: { labels: { color: this.textColor } } },
   };
 }
-

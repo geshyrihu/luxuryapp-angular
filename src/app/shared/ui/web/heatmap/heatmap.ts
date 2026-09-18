@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { resolveDsColor, trackChartTheme } from "../charts/echarts-adapters";
+import { resolveDsColor, trackChartTheme } from "../charts/chart-adapters";
 
 export interface HeatmapCell {
   row: string;

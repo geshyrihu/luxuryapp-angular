@@ -33,7 +33,6 @@ import { EmployeeExternalAppUser } from "./employee-external-app-user";
 import { EmployeeExternalForm } from "./employee-external-form";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -42,7 +41,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
   selector: "app-employee-external-list",
   templateUrl: "./employee-external-list.html",
   imports: [
-    WebButtonIconActiveDesactive,
     WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
@@ -74,7 +72,6 @@ export class EmployeeExternalList {
   customerIdS = inject(CustomerIdService);
   rutaActiva = inject(ActivatedRoute);
   router = inject(Router);
-  activo: boolean = true;
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
@@ -93,18 +90,10 @@ export class EmployeeExternalList {
     });
   }
 
-  onSelectActive(active: boolean): any {
-    this.activo = active;
-    this.onLoadData();
-  }
-
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.EmployeeExternal.list(
-          this.customerIdS.customerId(),
-          this.activo,
-        ),
+        Endpoints.EmployeeExternal.list(this.customerIdS.customerId(), true),
       )
       .then((result: any) => {
         console.log("?? ~ EmployeeExternalList ~ onLoadData ~ result:", result);
@@ -139,7 +128,7 @@ export class EmployeeExternalList {
       });
   }
 
-  deleteAccessCustomer(applicationUserId: string) {
+  onRemoveFromCustomer(applicationUserId: string) {
     this.apiResponseS
       .onDelete(
         Endpoints.EmployeeExternal.deleteAccessCustomer(

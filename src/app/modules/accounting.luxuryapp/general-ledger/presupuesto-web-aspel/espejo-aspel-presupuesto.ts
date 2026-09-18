@@ -10,7 +10,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
+import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -53,8 +53,6 @@ import { PurchaseHistory } from "./purchase-history";
     CommonModule,
     FormsModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     AppFrozenColumn,
     DataViewMobile,
     LxTooltipDirective,

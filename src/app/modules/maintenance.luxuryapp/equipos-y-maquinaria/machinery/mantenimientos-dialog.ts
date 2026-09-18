@@ -4,7 +4,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -38,9 +38,7 @@ interface Equipo {
     CommonModule,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     WebButtonLabel,

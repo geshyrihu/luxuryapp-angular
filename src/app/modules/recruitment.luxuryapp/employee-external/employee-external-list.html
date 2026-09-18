@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="row g-4">
-      <div class="col-12 col-sm-10">
+      <div class="col-12">
         <primeng-custom-caption
           [title]="'DIRECTORIO DE PERSONAL EXTERNO'"
           (add)="
@@ -17,12 +17,6 @@
             })
           "
           [dt]="dt"
-        />
-      </div>
-      <div class="col-12 col-sm-2">
-        <iw-button-active-desactive
-          [state]="activo"
-          (stateChange)="onSelectActive($event)"
         />
       </div>
     </div>
@@ -84,7 +78,12 @@
             tooltipPosition="top"
             (clicked)="onModalUserApp(item.applicationUserId)"
           />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete
+            (confirmed)="onRemoveFromCustomer(item.applicationUserId)"
+            confirmHeader="Quitar del cliente"
+            confirmMessage="Estas seguro de quitar a este colaborador externo del cliente actual? Dejara de tener acceso a este cliente. Si no tiene otros clientes, tambien se le bloqueara el acceso a la app."
+            ariaLabel="Quitar del cliente"
+          />
         </div>
       </td>
     </tr>
@@ -134,7 +133,12 @@
             label="Usuario App"
             (clicked)="onModalUserApp(item.applicationUserId)"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <ili-button-delete
+            (confirmed)="onRemoveFromCustomer(item.applicationUserId)"
+            label="Quitar del cliente"
+            confirmHeader="Quitar del cliente"
+            confirmMessage="Estas seguro de quitar a este colaborador externo del cliente actual? Dejara de tener acceso a este cliente. Si no tiene otros clientes, tambien se le bloqueara el acceso a la app."
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

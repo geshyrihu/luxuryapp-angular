@@ -33,15 +33,14 @@ describe("AdvancedPieChart", () => {
     expect(component.colorScheme().domain?.length).toBe(3);
   });
 
-  it("should build an ECharts pie option from ngx-charts data", () => {
+  it("should build Chart.js pie data from ngx-charts data", () => {
     const testData = [
       { name: "A", value: 10 },
       { name: "B", value: 20 },
     ];
     fixture.componentRef.setInput("dataGrafico", testData);
     fixture.detectChanges();
-    const option = component.option() as any;
-    expect(option.series[0].type).toBe("pie");
-    expect(option.series[0].data.length).toBe(2);
+    const data = component.chartData() as any;
+    expect(data.datasets[0].data.length).toBe(2);
   });
 });

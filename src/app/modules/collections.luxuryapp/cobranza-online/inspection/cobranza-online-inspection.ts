@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -43,8 +43,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     LxTooltipDirective,
     RouterModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,

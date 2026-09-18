@@ -33,21 +33,25 @@ export class MessagingService {
     }
 
     try {
+      let permission: NotificationPermission;
       if (
         this.allowedOrigins.includes(window.location.origin) &&
         window.OneSignal?.Notifications?.requestPermission
       ) {
         await window.OneSignal.Notifications.requestPermission();
+        permission = Notification.permission;
       } else {
-        await Notification.requestPermission();
+        permission = await Notification.requestPermission();
       }
 
-      const permission = Notification.permission;
+      // Verificar el estado real del permiso después de la solicitud
+      // (algunos navegadores no actualizan Notification.permission inmediatamente)
+      const actualPermission = this.getPermissionStatus();
       console.log(
-        `%c[MessagingService] Resultado permiso: ${permission}`,
+        `%c[MessagingService] Resultado permiso solicitado: ${permission}, verificado: ${actualPermission}`,
         "color: dodgerblue; font-weight: bold;",
       );
-      return permission;
+      return actualPermission;
     } catch (error) {
       console.error("Error al solicitar permiso:", error);
       return "denied";

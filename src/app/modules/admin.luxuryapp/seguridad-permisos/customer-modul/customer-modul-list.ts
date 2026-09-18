@@ -7,14 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { chevronForwardOutline } from "ionicons/icons";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -24,7 +16,15 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { chevronForwardOutline } from "ionicons/icons";
 import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -39,8 +39,6 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     PrimeNgCustomTableEmptyMessage,
     RouterModule,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxAvatar,
     LxTag,
     DataViewMobile,
@@ -113,4 +111,3 @@ export class CustomerModulList implements OnInit {
     );
   }
 }
-

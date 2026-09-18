@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   DialogHandlerService,
@@ -34,8 +34,6 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
     WebButtonIconItem,
     LxTooltipDirective,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxTag,
     DataViewMobile,
     PrimeNgCustomCaption,

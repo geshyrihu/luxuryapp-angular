@@ -5,6 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { TrackingEvent } from "../shared/tracking";
@@ -12,13 +13,16 @@ import { TrackingEvent } from "../shared/tracking";
 @Component({
   selector: "il-button-tracking",
 
-  imports: [AppIcon],
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [lxTooltip]="tooltipText()"
+      [tooltipPosition]="tooltipPosition()"
+      [tooltipDisabled]="!tooltipText()"
       (click)="onTrackingClick($event)"
     >
       <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" />

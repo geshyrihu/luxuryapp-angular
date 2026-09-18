@@ -3,29 +3,33 @@ import {
   Component,
   computed,
   input,
+  ViewChild,
 } from "@angular/core";
-import type { ECharts, EChartsCoreOption } from "echarts/core";
-import { NgxEchartsDirective } from "ngx-echarts";
-import { ChartJsData, chartJsToRadarOption, resolveDsColor, trackChartTheme } from "./echarts-adapters";
+import type { Chart, ChartOptions } from "chart.js";
+import { BaseChartDirective } from "ng2-charts";
+import { ChartJsData, chartJsToRadarData, chartJsToRadarOption, trackChartTheme } from "./chart-adapters";
 
 /**
- * PrimengRadarChart — radar / araña. Motor: ECharts (ngx-echarts).
+ * PrimengRadarChart — radar / araña. Motor: Chart.js (ng2-charts).
  * API sin cambios: `chartData` en formato Chart.js `{ labels, datasets }`.
  * Mantiene `getBase64Image()` y `reinit()` para el flujo de impresión.
  */
 @Component({
   selector: "app-primeng-radar-chart",
 
-  imports: [NgxEchartsDirective],
+  imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if ((chartData().datasets?.[0]?.data?.length ?? 0) > 0) {
-      <div
-        echarts
+      <canvas
+        baseChart
+        #chart="base-chart"
+        type="radar"
+        [data]="renderData()"
         [options]="option()"
-        (chartInit)="onInit($event)"
+        (chartClick)="onInit(chart.chart)"
         style="height: 340px; display: block"
-      ></div>
+      ></canvas>
     }
   `,
 })
@@ -39,30 +43,30 @@ export class PrimengRadarChart {
     datasets: [{ data: [], label: "Cargando..." }],
   });
 
-  // Se conserva por compatibilidad de API (ECharts ignora opciones de Chart.js).
+  // Se conserva por compatibilidad de API.
   chartOptions = input<unknown>({});
 
-  private instance: ECharts | null = null;
+  @ViewChild(BaseChartDirective) private chartDirective?: BaseChartDirective;
 
-  option = computed<EChartsCoreOption>(() =>
+  option = computed<ChartOptions<"radar">>(() =>
     chartJsToRadarOption(this.chartData()),
   );
 
-  onInit(chart: ECharts): void {
-    this.instance = chart;
+  renderData = computed(() => chartJsToRadarData(this.chartData()));
+
+  onInit(chart?: Chart): void {
+    void chart;
   }
 
   /** Imagen base64 del gráfico (para impresión/exportación). */
   public getBase64Image(): string | undefined {
-    return this.instance?.getDataURL({
-      type: "png",
-      pixelRatio: 2,
-      backgroundColor: resolveDsColor("--ds-bg-surface"),
-    });
+    const canvas = this.chartDirective?.chart?.canvas;
+    if (!canvas) return undefined;
+    return canvas.toDataURL("image/png");
   }
 
   /** Redibuja el gráfico (útil al cambiar el tamaño del contenedor). */
   public reinit(): void {
-    this.instance?.resize();
+    this.chartDirective?.chart?.resize();
   }
 }

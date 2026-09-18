@@ -8,13 +8,13 @@ import {
   signal,
 } from "@angular/core";
 
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { globalFilterFields } from "@core/helpers/table-primeng-option";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppTable } from "@ui/web/table/table";
 import { EmployeeBeneficiaryForm } from "./employee-beneficiary-form";
 import { IEmployeeBeneficiary } from "./interfaces/employee-beneficiary.interface";
 
@@ -40,8 +40,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     PrimeNgCustomCaption,
     DataViewMobile,
   ],
@@ -106,5 +104,3 @@ export class EmployeeBeneficiaryList {
     });
   }
 }
-
-

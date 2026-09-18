@@ -44,14 +44,16 @@ export class AppSortableColumn {
 
 @Directive({
   selector: "[pReorderableRowHandle]",
-  host: { class: "app-table-row-handle" },
+  host: {
+    class: "app-table-row-handle",
+    draggable: "true",
+  },
 })
 export class AppReorderableRowHandle {}
 
 @Directive({
   selector: "[pReorderableRow]",
   host: {
-    draggable: "true",
     class: "app-table-reorderable-row",
     "[class.app-table-row-dragover]": "isDragOver()",
     "(dragstart)": "onDragStart($event)",
@@ -68,16 +70,28 @@ export class AppReorderableRow {
   protected isDragOver = signal(false);
 
   protected onDragStart(event: DragEvent): void {
+    if (!this.table.reorderableRows()) {
+      event.preventDefault();
+      return;
+    }
     const handle = this.host.nativeElement.querySelector(".app-table-row-handle");
-    if (handle && !(event.target === handle || handle.contains(event.target as Node))) {
+    if (
+      !handle ||
+      !(event.target === handle || handle.contains(event.target as Node))
+    ) {
       event.preventDefault();
       return;
     }
     this.table.startRowDrag(this.pReorderableRow());
+    if (event.dataTransfer) {
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.dropEffect = "move";
+    }
     event.dataTransfer?.setData("text/plain", String(this.pReorderableRow()));
   }
 
   protected onDragOver(event: DragEvent): void {
+    if (!this.table.reorderableRows()) return;
     event.preventDefault();
     this.isDragOver.set(true);
   }
@@ -87,6 +101,7 @@ export class AppReorderableRow {
   }
 
   protected onDrop(event: DragEvent): void {
+    if (!this.table.reorderableRows()) return;
     event.preventDefault();
     this.isDragOver.set(false);
     this.table.dropRow(this.pReorderableRow());
@@ -386,6 +401,7 @@ export class AppTable {
   groupRowsBy = input<string | undefined>(undefined);
   dataKey = input<string | undefined>(undefined);
   selection = model<unknown[]>([]);
+  reorderableRows = input<boolean>(false);
   reorderableColumns = input<boolean>(false);
 
   onPage = output<{ first: number; rows: number }>();
@@ -665,10 +681,12 @@ export class AppTable {
   }
 
   public startRowDrag(index: number): void {
+    if (!this.reorderableRows()) return;
     this.dragRowIndex.set(index);
   }
 
   public dropRow(dropIndex: number): void {
+    if (!this.reorderableRows()) return;
     const dragIndex = this.dragRowIndex();
     if (dragIndex === null || dragIndex === dropIndex) return;
 

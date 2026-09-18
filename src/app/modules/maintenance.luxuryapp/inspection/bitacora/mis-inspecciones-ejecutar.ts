@@ -20,7 +20,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { map } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -48,9 +48,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxTooltipDirective,
     AppTable,
 
-    AppSortableColumn,
 
-    AppSorticon,
     DataViewMobile,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

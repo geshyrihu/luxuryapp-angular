@@ -9,6 +9,11 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -16,13 +21,12 @@ import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { AppTable, AppSortableColumn, AppSorticon, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { CustomToastService } from "@core/services/custom-toast.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppTable,
+} from "@ui/web/table/table";
 import Swal from "sweetalert2";
 
 export interface CandidateHiringDocumentListItemDto {
@@ -57,10 +61,6 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonIcon,
     LxTag,
     AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
     AppReorderableRow,
     AppReorderableRowHandle,
     AppIcon,
@@ -140,7 +140,12 @@ export class EmployeeDocumentList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }) {
-    const orderedIds = this.documents().map((d) => d.id);
+    const reordered = [...this.documents()];
+    const [moved] = reordered.splice(event.dragIndex, 1);
+    if (!moved) return;
+    reordered.splice(event.dropIndex, 0, moved);
+    this.documents.set(reordered);
+    const orderedIds = reordered.map((d) => d.id);
     this.apiResponseS
       .onPut(
         EndpointsRecursosHumanos.EmployeeDocument.reorder(this.employeeId()),
@@ -346,4 +351,3 @@ export class EmployeeDocumentList implements OnInit {
     }
   }
 }
-

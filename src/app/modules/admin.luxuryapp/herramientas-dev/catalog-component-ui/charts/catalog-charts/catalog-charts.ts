@@ -8,7 +8,7 @@ import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
 
 /**
  * Catálogo de gráficos — ejemplos renderizados de los 6 componentes de charts
- * migrados a ECharts (ngx-echarts). Ruta: /settings/ui-catalog/charts.
+ * migrados a Chart.js (ng2-charts). Ruta: /settings/ui-catalog/charts.
  */
 @Component({
   selector: "app-catalog-charts",

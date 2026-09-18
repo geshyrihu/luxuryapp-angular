@@ -34,10 +34,9 @@ describe("PieChart", () => {
     expect(component.colorScheme().domain?.length).toBe(2);
   });
 
-  it("should build an ECharts pie option", () => {
-    const option = component.option() as any;
-    expect(option.series[0].type).toBe("pie");
-    expect(option.series[0].data.length).toBe(2);
+  it("should build Chart.js pie data", () => {
+    const data = component.chartData() as any;
+    expect(data.datasets[0].data.length).toBe(2);
   });
 
   it("should accept custom data via input", () => {
@@ -45,6 +44,6 @@ describe("PieChart", () => {
     fixture.componentRef.setInput("dataGrafico", customData);
     fixture.detectChanges();
     expect(component.dataGrafico()).toEqual(customData);
-    expect((component.option() as any).series[0].data.length).toBe(1);
+    expect((component.chartData() as any).datasets[0].data.length).toBe(1);
   });
 });

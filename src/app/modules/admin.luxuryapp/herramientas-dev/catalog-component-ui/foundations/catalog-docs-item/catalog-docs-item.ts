@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 
 type TagSeverity =
@@ -21,7 +21,7 @@ const DOCS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-docs-item",
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppTag],
+  imports: [CommonModule, AppTable, AppTag],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

@@ -1,10 +1,7 @@
 import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
-import { InputGroupModule } from "primeng/inputgroup";
-import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { InputTextModule } from "primeng/inputtext";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 /**
  * 🔢 TOUCHSPIN
@@ -14,32 +11,23 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
  */
 @Component({
   selector: "app-touchspin",
-  imports: [
-    ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    InputGroupModule,
-    InputGroupAddonModule,
-    LxTooltipDirective,
-  ],
+  imports: [ReactiveFormsModule, LxTooltipDirective, WebButtonLabel],
   template: `
-    <p-inputgroup>
-      <!-- 1. Addon con fondo blanco y botón rojo -->
-      <p-inputgroup-addon styleClass="surface-card">
-        <p-button
+    <div class="input-group" style="width: auto">
+      <span class="input-group-text surface-card p-0">
+        <il-button
           label="➖"
-          (onClick)="decrement()"
+          (clicked)="decrement()"
           [disabled]="disabled() || isMin()"
-          [outlined]="outlined()"
+          [variant]="outlined() ? 'outline' : 'solid'"
           lxTooltip="Disminuir"
           tooltipPosition="top"
-          size="small"
+          size="sm"
         />
-      </p-inputgroup-addon>
+      </span>
 
       <input
-        pInputText
-        class="text-center"
+        class="form-control form-control-sm text-center"
         style="width: 60px"
         type="number"
         [formControl]="control()"
@@ -47,22 +35,20 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
         [max]="maxValue()"
         [disabled]="disabled()"
         readonly
-        pSize="small"
       />
 
-      <!-- 2. Addon con fondo blanco y botón verde -->
-      <p-inputgroup-addon styleClass="surface-card">
-        <p-button
+      <span class="input-group-text surface-card p-0">
+        <il-button
           label="➕"
-          (onClick)="increment()"
+          (clicked)="increment()"
           [disabled]="disabled() || isMax()"
-          [outlined]="outlined()"
+          [variant]="outlined() ? 'outline' : 'solid'"
           lxTooltip="Aumentar"
           tooltipPosition="top"
-          size="small"
+          size="sm"
         />
-      </p-inputgroup-addon>
-    </p-inputgroup>
+      </span>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

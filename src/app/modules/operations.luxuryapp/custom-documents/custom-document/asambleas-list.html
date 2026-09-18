@@ -2,6 +2,7 @@
   <!-- Vista de escritorio -->
   <div class="d-none d-md-block">
     <app-table
+      [reorderableRows]="true"
       [reorderableColumns]="true"
       (onRowReorder)="onRowReorder($event)"
       [globalFilterFields]="globalFilterFields"

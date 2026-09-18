@@ -33,17 +33,17 @@ describe("CustomBarChart", () => {
     expect(component.chartType()).toBe("line");
   });
 
-  it("should build a cartesian ECharts option from Chart.js data", () => {
+  it("should build Chart.js data from the public Chart.js contract", () => {
     const testData = {
       labels: ["A", "B"],
       datasets: [{ label: "Test", data: [1, 2], borderColor: "var(--ds-text-primary)" }],
     };
     fixture.componentRef.setInput("data", testData);
     fixture.detectChanges();
-    const option = component.option() as any;
-    expect(option.xAxis.data).toEqual(["A", "B"]);
-    expect(option.series[0].type).toBe("line");
-    expect(option.series[0].data).toEqual([1, 2]);
+    const data = component.chartData() as any;
+    expect(data.labels).toEqual(["A", "B"]);
+    expect(data.datasets[0].type).toBe("line");
+    expect(data.datasets[0].data).toEqual([1, 2]);
   });
 
   it("should use provided options over defaults", () => {

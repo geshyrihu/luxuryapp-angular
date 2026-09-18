@@ -41,12 +41,11 @@ import { environment } from "src/environments/environment";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-// Echarts se importa dinámicamente en provider
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
+import { provideCharts, withDefaultRegisterables } from "ng2-charts";
 import { MessageService as PrimeMessageService } from "primeng/api";
 import { MessageService } from "@core/services/message.service";
 import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
@@ -116,7 +115,7 @@ export const appConfig: ApplicationConfig = {
     // --- Configuración de Librerías de UI y Terceros ---
     provideToastr(),
     providePrimeNG(primeNgConfig),
-    provideEchartsCore({ echarts: () => import("echarts") }),
+    provideCharts(withDefaultRegisterables()),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({
       locale: Spanish,

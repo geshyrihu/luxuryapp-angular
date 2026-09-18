@@ -1,8 +1,6 @@
 import { Component, computed, inject, input } from "@angular/core";
 import type { Meta, StoryObj } from "@storybook/angular-vite";
-import { applicationConfig } from "@storybook/angular-vite";
-import type { EChartsCoreOption } from "echarts/core";
-import { provideEchartsCore } from "ngx-echarts";
+import type { ChartOptions } from "chart.js";
 import { ThemeService } from "../../../../core/services/theme.service";
 import { ChartType, ChartWrapper } from "./chart-wrapper";
 import {
@@ -11,7 +9,7 @@ import {
   dsThemeTick,
   resolveDsColor,
   trackChartTheme,
-} from "./echarts-adapters";
+} from "./chart-adapters";
 
 /**
  * Host mínimo para verificar el repintado por tema (RN-DS-015 / RN-DS-040).
@@ -69,73 +67,40 @@ export class ChartHost {
   // creación. Es el caso realista de pasar [options] ya construidas y
   // "congeladas": pinta en el tema activo al crearse y no reacciona por sí
   // misma. Ejercita la ruta alterna del computed de chart-wrapper (T3.14).
-  staticOptions: EChartsCoreOption = this.buildStaticOptions();
+  staticOptions: ChartOptions<"bar"> = this.buildStaticOptions();
 
   // Ruta factory: el consumidor pasa UNA FUNCIÓN que produce las options en el
   // momento del repintado. ChartWrapper la re-invoca en cada cambio de tema
   // (RN-DS-040), así que resuelve los tokens frescos y el chart SÍ repinta. Es
   // la vía reactiva frente al escape hatch congelado de `options`.
-  optionsFactory: (() => EChartsCoreOption) | null = () =>
+  optionsFactory: (() => ChartOptions<"bar">) | null = () =>
     this.buildStaticOptions();
 
   constructor() {
     trackChartTheme();
   }
 
-  private buildStaticOptions(): EChartsCoreOption {
-    const c1 = resolveDsColor("--ds-cat-1");
-    const c4 = resolveDsColor("--ds-cat-4");
+  private buildStaticOptions(): ChartOptions<"bar"> {
     const textColor = resolveDsColor("--ds-text-secondary");
     const borderColor = resolveDsColor("--ds-border");
     return {
-      grid: { left: 8, right: 12, top: 32, bottom: 8, containLabel: true },
-      tooltip: { trigger: "axis" },
-      legend: { show: true, textStyle: { color: textColor }, top: 0 },
-      xAxis: {
-        type: "category",
-        data: sampleData.labels,
-        axisLabel: { color: textColor, fontSize: 11 },
-        axisLine: { lineStyle: { color: borderColor } },
-        splitLine: { show: false },
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, labels: { color: textColor } } },
+      scales: {
+        x: { ticks: { color: textColor }, grid: { color: borderColor } },
+        y: { ticks: { color: textColor }, grid: { color: borderColor } },
       },
-      yAxis: [
-        {
-          type: "value",
-          axisLabel: { color: textColor, fontSize: 11 },
-          splitLine: { show: true, lineStyle: { color: borderColor } },
-        },
-      ],
-      series: [
-        {
-          name: "Serie A",
-          type: "bar",
-          data: sampleData.datasets?.[0]?.data ?? [],
-          itemStyle: { color: c1 },
-        },
-        {
-          name: "Serie B",
-          type: "bar",
-          data: sampleData.datasets?.[1]?.data ?? [],
-          itemStyle: { color: c4 },
-        },
-      ],
     };
   }
 
   // Ruta alterna: el consumidor construye options y LAS reconstruye al cambiar
   // el tema (dependencia de dsThemeTick). Es el uso correcto cuando se pasa
   // [options] ya construidas a chart-wrapper.
-  themedOptions = computed<EChartsCoreOption | null>(() => {
+  themedOptions = computed<ChartOptions<"bar"> | null>(() => {
     dsThemeTick();
     if (this.mode() !== "options") return null;
-    const o = chartJsToCartesianOption(this.data(), "bar");
-    console.log(
-      "THEMEDOPTIONS recompute, tick=",
-      dsThemeTick(),
-      "series0=",
-      (o as any).series?.[0]?.itemStyle?.color,
-    );
-    return o;
+    return chartJsToCartesianOption(this.data(), "bar");
   });
 }
 
@@ -161,11 +126,6 @@ const meta: Meta<ChartWrapper> = {
   title: "Design System/Charts/ChartWrapper",
   component: ChartWrapper,
   tags: ["autodocs"],
-  decorators: [
-    applicationConfig({
-      providers: [provideEchartsCore({ echarts: () => import("echarts") })],
-    }),
-  ],
 };
 export default meta;
 type Story = StoryObj<ChartWrapper>;

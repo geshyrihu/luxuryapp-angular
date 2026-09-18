@@ -11,7 +11,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [
@@ -22,8 +22,6 @@ import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
     DecimalPipe,
     LxTag,
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
