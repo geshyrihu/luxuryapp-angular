@@ -60,18 +60,31 @@ $success-800: #0d5e3f !default; // on-success-container
 $success-900: #08402a !default;
 $success-950: #042417 !default;
 
-// Warning (Oro)
-$warning-50: #fdfcf7 !default;
-$warning-100: #fcf3e0 !default; // warning-container
-$warning-200: #f8e5b6 !default;
-$warning-300: #f3d58a !default;
-$warning-400: #efc45d !default;
-$warning-500: #e8b233 !default;
-$warning-600: #d4a74a !default; // warning / secondary-gold
-$warning-700: #a88132 !default;
-$warning-800: #7a5e15 !default; // on-warning-container
-$warning-900: #523c0b !default;
-$warning-950: #2b1f04 !default;
+// Warning (Ámbar operativo)
+$warning-50: #fffdf5 !default;
+$warning-100: #fff3c4 !default; // warning-container
+$warning-200: #ffe082 !default;
+$warning-300: #ffd54f !default;
+$warning-400: #ffca28 !default;
+$warning-500: #ffc107 !default;
+$warning-600: #ffb300 !default;
+$warning-700: #ffa000 !default;
+$warning-800: #ff8f00 !default;
+$warning-900: #e65100 !default;
+$warning-950: #5d2e00 !default;
+
+// Oro documental: reservado para reportes y elementos premium documentales.
+$report-gold-50: #fdfcf7 !default;
+$report-gold-100: #fcf3e0 !default;
+$report-gold-200: #f8e5b6 !default;
+$report-gold-300: #f3d58a !default;
+$report-gold-400: #efc45d !default;
+$report-gold-500: #e8b233 !default;
+$report-gold-600: #d4a74a !default;
+$report-gold-700: #a88132 !default;
+$report-gold-800: #7a5e15 !default;
+$report-gold-900: #523c0b !default;
+$report-gold-950: #2b1f04 !default;
 
 // Danger (Carmesí)
 $danger-50: #fefafa !default;
@@ -262,7 +275,7 @@ $ds-bg-hover: $secondary-50 !default;
 $ds-bg-input: $neutral-0 !default;
 $ds-bg-primary: $neutral-0 !default;
 $ds-bg-inverse: $secondary-800 !default;
-$ds-secondary-light: $warning-100 !default;
+$ds-secondary-light: $secondary-100 !default;
 // Consola embebida (mobile/terminal): identidad fuera de paleta — excepción
 // documentada (RN-DS-007 / T2.1). Light usa la escala neutra; dark usa los
 // literales de la identidad de la terminal (Catppuccin-like).

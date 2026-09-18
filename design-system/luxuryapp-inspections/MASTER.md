@@ -7,11 +7,25 @@
 ---
 
 **Project:** LuxuryApp Inspections (ERP Premium · Deep Navy)
-**Generated:** 2026-07-30 21:37:54 | **Updated:** 2026-07-30
+**Generated:** 2026-07-30 21:37:54 | **Updated:** 2026-09-18
 **Category:** Enterprise B2B Service (Maintenance/Inspection)
-**Stack:** Angular 22 + Ionic (mobile) + PrimeNG (web)
+**Stack:** Angular 22 + Ionic (mobile) + Bootstrap/native/shared UI (web)
 **Design Dials:** Density 8/10 (Dense / Dashboard) | Motion 5/10 (Standard)
 **Reference Docs:** `src/styles/DESIGN.md` | `src/styles/estandar-hoja-estilos.md`
+
+**Current Shared UI Runtime:**
+
+- Web primitives: Bootstrap 5 + native HTML + `shared/ui` components.
+- Mobile primitives: Ionic components under `shared/ui/mobile`.
+- Editor: `ngx-editor` with `ngx-editor-menu`.
+- Charts: Chart.js through `ng2-charts`; headless report capture preserves
+  synchronous rendering with `animation: false`.
+- Rating: `ngx-bar-rating`.
+- Carousel: `ngx-owl-carousel-o`.
+- Gallery/lightbox: `ng-gallery` on web; Ionic preview on mobile.
+- Dialogs: `DialogHandlerService` over `NgbModal` on web and `ion-modal` on
+  mobile.
+- PrimeNG is not an application dependency.
 
 ---
 
@@ -24,13 +38,13 @@ All color values defined there. CSS vars exposed in `src/styles/theme/_variables
 
 | Role               | Brand Token            | Hex                   | CSS Variable             | Usage                                         |
 | ------------------ | ---------------------- | --------------------- | ------------------------ | --------------------------------------------- |
-| **Primary**        | `primary-700`          | `#1B365D`             | `--primary-700`          | Headers, navs, primary buttons, active states |
+| **Primary**        | `primary-700`          | `#003152`             | `--primary-700`          | Headers, navs, primary buttons, active states |
 | **On Primary**     | `contrast-0`           | `#FFFFFF`             | `--ds-primary-text`      | Text/icons on primary bg                      |
 | **Secondary**      | `secondary-600`        | `#5A6878`             | `--secondary-600`        | Secondary text, disabled states               |
-| **Accent (Gold)**  | `warning-600`          | `#D4A74A`             | `--warning-600`          | Premium features, VIP badges, CTAs            |
+| **Report Gold**    | `report-gold-600`      | `#D4A74A`             | `--ds-luxury-gold`       | Reports and documentary premium elements      |
 | **Success**        | `success-600`          | `#1E9B6D`             | `--success-600`          | Save/confirm/positive actions                 |
 | **Danger**         | `danger-600`           | `#D34B4B`             | `--danger-600`           | Delete/reject/critical errors                 |
-| **Info**           | `info-600`             | `#4A90E2`             | `--info-600`             | Informational, help, links                    |
+| **Info**           | `info-600`             | `#3678C2`             | `--info-600`             | Informational, help, links                    |
 | **Surface**        | `surface`              | `#F8F9FC`             | `--ds-bg-surface`        | Main app background                           |
 | **Surface Card**   | `surface-card`         | `#FFFFFF`             | (native)                 | Cards, modals, elevated                       |
 | **Border**         | `outline`              | `#E2E8F0`             | `--ds-border-default`    | Dividers, card borders                        |
@@ -41,8 +55,8 @@ All color values defined there. CSS vars exposed in `src/styles/theme/_variables
 
 **Contrast Ratios (WCAG AAA):**
 
-- White text on `#1B365D` (primary): **9.5:1** ✓
-- Gold `#D4A74A` on `#1B365D`: **6.8:1** ✓ (premium sig)
+- Primary and report-gold contrast: validate with `npm run audit:contrast`
+- Report gold is not an operational warning color
 - Text `#1A2634` on `#F8F9FC` (surface): **15.1:1** ✓
 
 ### Typography
@@ -64,7 +78,7 @@ All color values defined there. CSS vars exposed in `src/styles/theme/_variables
 | **Label MD**    | 12px | 500    | 16px        | `.text-label-md`    | Small labels, tags            |
 | **Label SM**    | 10px | 600    | 14px        | `.text-label-sm`    | UPPERCASE micro labels        |
 
-**Min body size:** 14px (PrimeNG compliance, WCAG Level AAA)
+**Min body size:** 14px (WCAG Level AAA target)
 
 ### Spacing System
 
@@ -118,16 +132,15 @@ From `src/styles/core/_borders.scss`:
 
 ---
 
-## Component Specs (Angular + PrimeNG + Ionic)
+## Component Specs (Angular + Bootstrap/shared UI + Ionic)
 
-### Buttons — Web (PrimeNG)
+### Buttons — Web (Bootstrap/shared UI)
 
 **Reference:** `src/styles/web/_buttons.scss` + `src/styles/web/_prime-button.scss`
 
 ```scss
 // Primary button (CTA)
-.btn,
-.p-button.p-button-primary {
+.btn {
   padding: 12px 24px;
   border-radius: var(--ds-radius-md);
   font-weight: 600;
@@ -161,22 +174,20 @@ From `src/styles/core/_borders.scss`:
   }
 }
 
-// Accent button (gold for premium actions)
-.btn-accent,
-.p-button.p-button-warning {
-  background: var(--warning-600); // #D4A74A
+// Report accent button (gold reserved for reports)
+.btn-report-accent {
+  background: var(--ds-luxury-gold); // #D4A74A
   color: var(--primary-700); // Navy text on gold
-  border: 2px solid var(--warning-600);
+  border: 2px solid var(--ds-luxury-gold);
 
   &:hover {
-    background: var(--warning-700);
+    background: var(--ds-luxury-gold-hover);
     opacity: 0.9;
   }
 }
 
 // Danger button (delete/reject)
-.btn-danger,
-.p-button.p-button-danger {
+.btn-danger {
   background: var(--danger-600);
   color: white;
 
@@ -186,8 +197,7 @@ From `src/styles/core/_borders.scss`:
 }
 
 // Secondary button (outlined)
-.btn-secondary,
-.p-button.p-button-outlined {
+.btn-secondary {
   background: transparent;
   color: var(--primary-700);
   border: 2px solid var(--primary-700);
@@ -212,8 +222,7 @@ From `src/styles/core/_borders.scss`:
 }
 
 // Icon button
-.btn-icon,
-.p-button.p-button-rounded {
+.btn-icon {
   padding: 8px;
   min-width: 44px; // Touch target min
   min-height: 44px;
@@ -282,7 +291,7 @@ From `src/styles/core/_borders.scss`:
 
 ```scss
 .input,
-.p-inputtext {
+.form-control {
   padding: 12px 16px;
   border: 1px solid var(--outline);
   border-radius: var(--ds-radius-md);
@@ -346,23 +355,23 @@ From `src/styles/core/_borders.scss`:
 ### Modals & Dialogs
 
 ```scss
-// PrimeNG Dialog
-.p-dialog {
+// Bootstrap/shared dialog
+.modal-content {
   border-radius: var(--ds-radius-lg); // 12px
   box-shadow: var(--ds-shadow-4);
   backdrop-filter: blur(8px);
 
-  .p-dialog-header {
+  .modal-header {
     background: var(--primary-50);
     border-bottom: 1px solid var(--outline);
     padding: var(--ds-space-lg);
   }
 
-  .p-dialog-content {
+  .modal-body {
     padding: var(--ds-space-xl);
   }
 
-  .p-dialog-footer {
+  .modal-footer {
     border-top: 1px solid var(--outline);
     padding: var(--ds-space-lg);
     display: flex;
@@ -372,7 +381,7 @@ From `src/styles/core/_borders.scss`:
 }
 
 // Modal overlay
-.p-dialog-mask {
+.modal-backdrop {
   background: var(--ds-bg-overlay); // rgba(27,54,93,0.15)
 }
 ```
@@ -380,11 +389,10 @@ From `src/styles/core/_borders.scss`:
 ### Tables (Data-Dense Dashboard)
 
 ```scss
-.p-datatable,
 .custom-table {
   font-size: 14px;
 
-  .p-datatable-thead > tr > th {
+  thead > tr > th {
     background: var(--primary-700);
     color: white;
     font-weight: 600;
@@ -395,7 +403,7 @@ From `src/styles/core/_borders.scss`:
     border: none;
   }
 
-  .p-datatable-tbody > tr {
+  tbody > tr {
     border-bottom: 1px solid var(--outline);
 
     &:hover {
@@ -420,7 +428,7 @@ From `src/styles/core/_borders.scss`:
 
 ## Accessibility (WCAG AAA)
 
-**Status:** Full WCAG AAA compliance required. Reference: `src/styles/theme/_global.scss` + `src/styles/web/_prime-input.scss`
+**Status:** Full WCAG AAA compliance required. Reference: `src/styles/theme/_global.scss` and shared Bootstrap/native component styles.
 
 ### Color Contrast (Priority 1)
 
@@ -430,8 +438,8 @@ From `src/styles/core/_borders.scss`:
 | Headline            | `#FFFFFF`  | `#1B365D`  | 14.8:1   | AAA ✓          |
 | Secondary text      | `#FFFFFF`  | `#5A6878`  | 8.2:1    | AA ✓           |
 | Tertiary text       | `#FFFFFF`  | `#9AACBB`  | 5.4:1    | AA ✓           |
-| Gold accent on navy | `#1B365D`  | `#D4A74A`  | 6.8:1    | AA ✓           |
-| Gold text on white  | `#FFFFFF`  | `#D4A74A`  | 3.1:1    | ❌ (don't use) |
+| Report gold on navy | `--ds-document-ink` | `--ds-luxury-gold` | validate with audit | Report-only |
+| Report gold text on white | `#FFFFFF` | `#D4A74A` | insufficient | Do not use as normal text |
 
 **Dark Mode Overrides:**
 
@@ -443,7 +451,7 @@ From `src/styles/core/_borders.scss`:
 - All interactive elements **must** be reachable via Tab
 - Tab order must follow logical reading order (use `tabindex` sparingly, only `-1` for decorative)
 - Buttons, inputs, links, modals all keyboard-accessible
-- Modals must trap focus (PrimeNG `pDialog` does this by default)
+- Modals must trap focus through the shared dialog/modal implementation.
 
 ### Focus States (Priority 1)
 
@@ -591,11 +599,11 @@ When active (`body.theme-dark`):
 
 ### Directive Usage
 
-**Web (PrimeNG):**
+**Web (Bootstrap/shared UI):**
 
 - `<iw-button>` — Wrapper component for `.btn`
-- `<p-button>` — Direct PrimeNG (inherits MASTER colors via preset)
-- `<p-datatable>` — Tables (dense mode optimized)
+- `<il-button>` / `<iw-button>` — Shared semantic web buttons
+- `<app-table>` — Shared data table with client-side and lazy/server-side modes
 
 **Mobile (Ionic):**
 
@@ -812,7 +820,9 @@ import { Button } from "./local-button";
 
 - **Source of Truth:** `src/styles/core/_colors.scss`
 - **CSS Variables:** `src/styles/theme/_variables.scss`
-- **PrimeNG Preset:** `src/styles/theme/mypreset.ts`
+- **Web UI:** `src/app/shared/ui/web/` and `src/app/shared/ui/adaptive/`
+- **Mobile UI:** `src/app/shared/ui/mobile/`
+- **Shared UI architecture:** `src/app/shared/ui/arquitectura-shared-ui.md`
 - **Components:** `src/app/shared/ui/adaptive/`
 - **Catalog:** `src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/`
 - **Design Doc:** `src/styles/DESIGN.md`
@@ -820,4 +830,4 @@ import { Button } from "./local-button";
 
 ---
 
-_**Last Updated:** 2026-07-30 | **Next Review:** 2026-08-30_
+_**Last Updated:** 2026-09-18 | **Next Review:** 2026-10-18_

@@ -80,7 +80,7 @@ import { ImageBase } from "@ui/base/image.base";
         align-items: center;
         justify-content: center;
         padding: 3.5rem 1rem 1rem;
-        background: rgba(0, 0, 0, 0.85);
+        background: var(--ds-bg-overlay);
       }
 
       .ili-image-preview img {
@@ -97,14 +97,14 @@ import { ImageBase } from "@ui/base/image.base";
         min-height: 3rem;
         border: 0;
         background: transparent;
-        color: #fff;
+        color: var(--ds-text-inverse);
         font-size: 1.25rem;
       }
 
       .ili-image-trigger:focus-visible,
       .ili-image-preview:focus-visible,
       .ili-image-preview-close:focus-visible {
-        outline: 2px solid var(--ds-primary-500, #0d6efd);
+        outline: 2px solid var(--ds-primary-500, var(--ds-primary));
         outline-offset: 2px;
       }
     `,

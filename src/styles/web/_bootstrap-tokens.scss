@@ -27,19 +27,21 @@
 // fijos (tema claro). Se revisa explícitamente durante la verificación
 // visual de la Fase 1 (botones), no se asume resuelta por este archivo.
 
+@use "../core/colors" as c;
+
 // Colores de marca (fuente: src/styles/DESIGN.md, coincide con
 // core/_colors.scss $primary-700 y vecinos)
 $primary: #003152;
 $secondary: #5a6878; // on-surface-secondary / --ds-text-secondary
 $success: #1e9b6d;
 $danger: #d34b4b;
-$warning: #d4a74a;
-$info: #4a90e2;
+$warning: #ffb300;
+$info: #3678c2;
 
 // Superficie y texto base
-$body-bg: #f8f9fc; // surface
-$body-color: #1a2634; // on-surface
-$border-color: #e2e8f0; // outline
+$body-bg: c.$secondary-50; // surface
+$body-color: c.$secondary-800; // on-surface
+$border-color: c.$secondary-200; // outline
 
 // Radios — DESIGN.md unifica todo lo rectangular a 3px (2026-08-22)
 $border-radius: 3px;

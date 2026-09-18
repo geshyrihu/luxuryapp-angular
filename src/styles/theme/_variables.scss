@@ -311,12 +311,12 @@
   --ds-on-primary-container: #{c.$primary-700};
   --ds-inverse-primary: #{c.$primary-400};
 
-  // Secondary -> Gold (Accent)
-  --ds-secondary: #{c.$warning-600};
+  // Secondary -> neutral cold (estructura y superficies)
+  --ds-secondary: #{c.$secondary-600};
   --ds-icon-secondary: #{c.$neutral-400};
 
-  --ds-secondary-container: #{c.$warning-100};
-  --ds-on-secondary-container: #{c.$warning-800};
+  --ds-secondary-container: #{c.$secondary-100};
+  --ds-on-secondary-container: #{c.$secondary-800};
 
   // Tertiary -> Cyan (Accent)
   --ds-tertiary: #{c.$info-600}; /* info-600 #3678C2 — ≠ --primary-500 (RN-DS-002) */
@@ -382,8 +382,7 @@
   --ds-warning-hover: #{c.$warning-700};
   --ds-warning-light: var(--warning-bg);
   // Texto para botones de fondo sólido --ds-warning. Distinto de
-  // --ds-accent-text-warning (calibrado para texto sobre blanco, no sobre
-  // el propio dorado); medido: 7.24:1 contra --ds-warning (#D4A74A).
+  // --ds-accent-text-warning (calibrado para texto sobre blanco).
   --ds-warning-text: #{c.$warning-950};
   --ds-danger: var(--danger-color);
   --ds-danger-hover: #{c.$danger-700};
@@ -396,13 +395,13 @@
   --ds-accent-text-success: #{c.$success-700}; // #157A55 · 5.32:1 sobre blanco
   --ds-accent-text-danger:  #{c.$danger-700};  // #A63939 · 6.43:1
   --ds-accent-text-info:    #{c.$info-700};    // #245FA1 · 6.51:1
-  --ds-accent-text-warning: #{c.$warning-800}; // #7A5E15 · 6.11:1
+  --ds-accent-text-warning: #{c.$warning-950}; // ámbar oscuro para texto sobre blanco
 
   // Identidad Luxury / Documental
-  --ds-luxury-gold: #{c.$tertiary-400};
-  --ds-luxury-gold-hover: #{c.$tertiary-300};
-  --ds-luxury-gold-light: #{c.$tertiary-50};
-  --ds-luxury-gold-text: #{c.$tertiary-500};
+  --ds-luxury-gold: #{c.$report-gold-600};
+  --ds-luxury-gold-hover: #{c.$report-gold-700};
+  --ds-luxury-gold-light: #{c.$report-gold-50};
+  --ds-luxury-gold-text: #{c.$report-gold-800};
   --ds-document-neutral: #{c.$neutral-500};
   --ds-document-bg-muted: #{c.$secondary-50};
   --ds-document-ink: #{c.$primary-900};
@@ -689,7 +688,7 @@ body.theme-dark {
   --ds-bg-input: #{c.$primary-950};
   --ds-bg-primary: #{c.$primary-900};
   --ds-bg-inverse: #{c.$secondary-100};
-  --ds-secondary-light: color-mix(in srgb, #{c.$warning-400}, transparent 88%);
+  --ds-secondary-light: color-mix(in srgb, #{c.$secondary-200}, transparent 88%);
   --ds-bg-terminal: #1e1e2e; // excepción: identidad consola embebida (T2.1)
   --ds-text-terminal: #cdd6f4; // excepción: identidad consola embebida (T2.1)
   --ds-ai-gradient-from: #818cf8; // identidad chat IA (T3.8)
@@ -795,14 +794,14 @@ body.theme-dark {
   --ds-background: #{c.$primary-950};
   --ds-on-background: #{c.$primary-100};
 
-  --ds-luxury-gold: #{c.$tertiary-200};
-  --ds-luxury-gold-hover: #{c.$tertiary-100};
+  --ds-luxury-gold: #{c.$report-gold-300};
+  --ds-luxury-gold-hover: #{c.$report-gold-200};
   --ds-luxury-gold-light: color-mix(
     in srgb,
-    #{c.$tertiary-400},
+    #{c.$report-gold-400},
     transparent 84%
   );
-  --ds-luxury-gold-text: #{c.$tertiary-200};
+  --ds-luxury-gold-text: #{c.$report-gold-200};
   --ds-document-neutral: #{c.$neutral-400};
   --ds-document-bg-muted: #{c.$neutral-800};
   --ds-document-ink: #{c.$neutral-100};

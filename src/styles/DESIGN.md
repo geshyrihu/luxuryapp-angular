@@ -10,8 +10,8 @@ colors:
   on-primary-container: "#003152"
 
   # ─── SECUNDARIO (Acentos) ───
-  secondary-gold: "#D4A74A"
-  on-secondary-gold: "#1B365D"
+  report-gold: "#D4A74A"
+  on-report-gold: "#1B365D"
   secondary-emerald: "#1E9B6D"
   on-secondary-emerald: "#FFFFFF"
   secondary-crimson: "#D34B4B"
@@ -38,9 +38,9 @@ colors:
   error-container: "#FDE8E8"
   on-error-container: "#8A1F1F"
 
-  warning: "#D4A74A"
-  warning-container: "#FCF3E0"
-  on-warning-container: "#7A5E15"
+  warning: "#FFB300"
+  warning-container: "#FFF3C4"
+  on-warning-container: "#5D2E00"
 
   info: "#4A90E2"
   info-container: "#E8EEF6"
@@ -130,7 +130,7 @@ rounded:
   full: 9999px # Circular: avatares, pills, badges
 
 spacing:
-  unit: 8px
+  unit: 4px
   container-max-width: 1440px
   gutter: 24px
   margin-desktop: 40px
@@ -159,7 +159,7 @@ The aesthetic leans into **Minimalism** with a **Corporate Modern** execution. I
 ### Brand Pillars
 
 - **Trust** — Deep navy (`#003152`) conveys stability, security, and institutional authority.
-- **Precision** — Every spacing, type size, and color is mathematically grounded in an 8px grid.
+- **Precision** — Spacing uses a 4px base unit with an 8px macro-grid where appropriate.
 - **Clarity** — High contrast ratios (WCAG AA+ minimum) ensure legibility for all users.
 - **Efficiency** — Designed for dense data interfaces where information density is balanced with readability.
 
@@ -191,12 +191,12 @@ Accent colors are used sparingly to draw attention to specific actions or status
 
 | Token               | Hex       | Usage                                                            |
 | :------------------ | :-------- | :--------------------------------------------------------------- |
-| `secondary-gold`    | `#D4A74A` | High-priority modules, VIP badges, premium features, key metrics |
+| `report-gold`       | `#D4A74A` | Reportes, métricas documentales y elementos premium de reportes |
 | `secondary-emerald` | `#1E9B6D` | Success states, "Save" / "Confirm" actions, positive trends      |
 | `secondary-crimson` | `#D34B4B` | Danger states, "Delete" / "Reject" actions, critical errors      |
 | `secondary-cyan`    | `#4A90E2` | Informational links, help icons, non-critical notifications      |
 
-**Gold on Navy:** The gold accent (`#D4A74A`) on `#003152` achieves a **6.05:1** contrast ratio and is the signature "premium" combination (AA for large text).
+**Gold on Navy:** The report gold (`#D4A74A`) is reserved for reports and documentary premium elements. It is not the operational warning color.
 
 ---
 
