@@ -76,8 +76,67 @@ if (typeof globalThis.Worker === 'undefined') {
   };
 }
 
+// window.matchMedia polyfill for chart components in jsdom
+if (typeof window !== 'undefined' && typeof window.matchMedia === 'undefined') {
+  const matchMediaMock = (query: string): MediaQueryList => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }) as unknown as MediaQueryList;
+  (window as any).matchMedia = matchMediaMock;
+  (globalThis as any).matchMedia = matchMediaMock;
+}
+
+// IntersectionObserver polyfill for infinite-scroll components in jsdom
+if (typeof globalThis.IntersectionObserver === 'undefined') {
+  class IntersectionObserverMock {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() { return []; }
+    root = null;
+    rootMargin = '0px';
+    thresholds = [0];
+  }
+  (globalThis as any).IntersectionObserver = IntersectionObserverMock;
+}
+
 // Compatibility shim: alias 'jest' → 'vi' for existing specs
 (globalThis as any).jest = vi;
+
+// Compatibility shim: jasmine global spyOn → vi.spyOn with .and API
+const attachAnd = (fn: any) => {
+  if (!fn.and) {
+    fn.and = {
+      returnValue: (v: any) => { fn.mockReturnValue(v); return fn; },
+      callFake: (f: any) => { fn.mockImplementation(f); return fn; },
+      resolveTo: (v: any) => { fn.mockResolvedValue(v); return fn; },
+      rejectWith: (v: any) => { fn.mockRejectedValue(v); return fn; },
+      throwError: (e: any) => { fn.mockImplementation(() => { throw e; }); return fn; },
+      callThrough: () => fn,
+    };
+  }
+  return fn;
+};
+(globalThis as any).spyOn = (obj: any, method: string) =>
+  attachAnd(vi.spyOn(obj, method as never));
+
+// navigator.geolocation stub (jsdom lacks it)
+if (typeof navigator !== 'undefined' && typeof (navigator as any).geolocation === 'undefined') {
+  Object.defineProperty(navigator, 'geolocation', {
+    value: {
+      getCurrentPosition: () => {},
+      watchPosition: () => 0,
+      clearWatch: () => {},
+    },
+    configurable: true,
+  });
+}
 
 // Compatibility shim: jasmine.createSpy → vi.fn() for existing specs
 (globalThis as any).jasmine = {
@@ -104,10 +163,10 @@ if (typeof globalThis.Worker === 'undefined') {
   },
   createSpyObj(name: string, methods: string[]) {
     const obj: any = {};
-    methods.forEach((m) => { obj[m] = vi.fn(); });
+    methods.forEach((m) => { obj[m] = (this as any).createSpy(`${name}.${m}`); });
     return obj;
   },
-  any: (type: any) => type,
+  any: (type: any) => expect.any(type),
   anything: () => expect.anything(),
   objectContaining: (obj: any) => expect.objectContaining(obj),
   stringMatching: (pattern: RegExp | string) => expect.stringMatching(pattern),

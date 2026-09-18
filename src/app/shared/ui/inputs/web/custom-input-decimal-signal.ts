@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import { Component, computed, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -10,7 +11,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  */
 @Component({
   selector: "custom-input-decimal-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgClass],
   template: `
     <base-input-signal
       [control]="control()"
@@ -31,7 +32,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [readonly]="readonly()"
         [disabled]="disabled()"
         [step]="decimalStep()"
-        [class]="inputStyleClass()"
+        [ngClass]="inputStyleClass()"
       />
     </base-input-signal>
   `,

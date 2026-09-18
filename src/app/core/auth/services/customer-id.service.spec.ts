@@ -2,11 +2,11 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
-import { Endpoints } from "@core/constants/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { environment } from 'src/environments/environment';
-import { ConsoleLoggerService } from './console-logger.service';
+import { ConsoleLoggerService } from '../../services/console-logger.service';
 import { CustomerIdService } from './customer-id.service';
-import { StorageService } from './storage.service';
+import { StorageService } from '../../services/storage.service';
 
 describe('CustomerIdService', () => {
   let service: CustomerIdService;

@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { PlatformService } from '@core/services/platform.service';
 import { InputUrl } from './input-url';
-import { vi } from 'vitest';
-
-vi.mock('@core/services/platform.service', () => ({
-  PlatformService: class { isMobile = vi.fn(() => false) },
-}));
 
 describe('InputUrl', () => {
   it('renders the platform-selected input', () => {
-    TestBed.configureTestingModule({ imports: [InputUrl] });
+    TestBed.configureTestingModule({
+      imports: [InputUrl],
+      providers: [
+        { provide: PlatformService, useValue: { isMobile: () => false } },
+      ],
+    });
     const fixture = TestBed.createComponent(InputUrl);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();
   });
 });
-

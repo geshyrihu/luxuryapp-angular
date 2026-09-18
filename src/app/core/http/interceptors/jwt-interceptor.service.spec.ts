@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { JwtInterceptor } from './jwt-interceptor.service';
-import { AuthService } from './auth.service';
-import { ConsoleLoggerService } from './console-logger.service';
+import { AuthService } from '../../auth/services/auth.service';
+import { ConsoleLoggerService } from '../../services/console-logger.service';
 import { Router } from '@angular/router';
 
 describe('JwtInterceptor', () => {

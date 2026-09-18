@@ -563,7 +563,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       CuadroComparativoAddBudget,
       { budgetOptions: this.budgetSelectOptionsSignal() },
       "Agregar presupuesto",
-      DialogSize.sm,
+      DialogSize.lg,
     );
 
     if (!selectedAccountNumber) return;

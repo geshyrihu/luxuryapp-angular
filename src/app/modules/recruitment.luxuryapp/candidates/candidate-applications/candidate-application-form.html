@@ -30,7 +30,7 @@
             <div class="d-flex align-items-center gap-2">
               <span>{{ item.label }}</span>
               @if (item.isActiveEmployee) {
-                <lx-tag value="Empleado Activo" severity="info" />
+              <lx-tag value="Empleado Activo" severity="info" />
               }
             </div>
           </ng-template>
@@ -38,7 +38,7 @@
             <div class="d-flex align-items-center gap-2">
               <span>{{ item.label }}</span>
               @if (item.isActiveEmployee) {
-                <lx-tag value="Empleado Activo" severity="info" />
+              <lx-tag value="Empleado Activo" severity="info" />
               }
             </div>
           </ng-template>
@@ -163,9 +163,7 @@
             </div>
 
             <div class="col-12">
-              <div
-                class="border-1 border rounded p-3 bg-body"
-              >
+              <div class="border-1 border rounded p-3 bg-body">
                 <div
                   class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3 g-4"
                 >
@@ -198,9 +196,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center mb-3"
                     >
-                      <div class="fw-medium">
-                        Experiencia {{ $index + 1 }}
-                      </div>
+                      <div class="fw-medium">Experiencia {{ $index + 1 }}</div>
                       <il-button
                         label="Eliminar"
                         iconClass="material-symbols-light:delete-outline"
@@ -341,7 +337,7 @@
           [fileUrl]="currentCvUrl()"
           (fileSelected)="onCvSelected($event)"
           (fileEmitted)="onCvFile($event)"
-          label="CV maestro del candidato (PDF)"
+          label="CV maestro del candidato (PDF)ssss"
         />
       </div>
     </div>

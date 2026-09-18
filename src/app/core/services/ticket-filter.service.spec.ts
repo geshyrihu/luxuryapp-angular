@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { TicketFilterService } from './ticket-filter.service';
-import { AuthService } from './auth.service';
-import { CustomerIdService } from './customer-id.service';
+import { AuthService } from '../auth/services/auth.service';
+import { CustomerIdService } from '../auth/services/customer-id.service';
 
 describe('TicketFilterService', () => {
   let service: TicketFilterService;

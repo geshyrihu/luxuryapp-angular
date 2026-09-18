@@ -73,7 +73,7 @@ describe("ProductosForm", () => {
 
     await component.ngOnInit();
 
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("Categories");
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("categories");
     expect(mockEnumSelectS.productClasificacion).toHaveBeenCalled();
     expect(component.cb_category()).toEqual(mockCategories);
     expect(component.cb_clasificacion()).toEqual(mockClasificacion);
@@ -92,7 +92,7 @@ describe("ProductosForm", () => {
 
     await component.ngOnInit();
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("Productos/prod-1");
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("productos/prod-1");
   });
 
   it("onSubmit should call onPost when id is empty", () => {
@@ -100,8 +100,9 @@ describe("ProductosForm", () => {
 
     expect(mockApiResponseS.validateForm).toHaveBeenCalled();
     expect(mockApiResponseS.onPost).toHaveBeenCalledWith(
-      "Productos",
+      "productos",
       expect.any(FormData),
+      undefined,
     );
   });
 
@@ -110,8 +111,11 @@ describe("ProductosForm", () => {
     component.onSubmit();
 
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
-      "Productos/prod-1",
+      "productos/prod-1",
       expect.any(FormData),
+      true,
+      true,
+      undefined,
     );
   });
 

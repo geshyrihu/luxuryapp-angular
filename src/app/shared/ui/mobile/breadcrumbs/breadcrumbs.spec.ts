@@ -15,6 +15,7 @@ describe('MobileBreadcrumbs', () => {
 
     fixture = TestBed.createComponent(MobileBreadcrumbs);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('items', []);
     fixture.detectChanges();
   });
 

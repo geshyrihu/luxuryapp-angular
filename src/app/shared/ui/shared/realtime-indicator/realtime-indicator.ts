@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,11 +16,11 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
 @Component({
   selector: "app-realtime-indicator",
 
-  imports: [],
+  imports: [NgClass],
   template: `
     <div class="rt-root" [attr.aria-label]="statusLabel()">
       <!-- Pulsing dot -->
-      <span class="rt-dot" [class]="dotClass()">
+      <span class="rt-dot" [ngClass]="dotClass()">
         @if (status() === "live") {
           <span class="rt-pulse"></span>
         }

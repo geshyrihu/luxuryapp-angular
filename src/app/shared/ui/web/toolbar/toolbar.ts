@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,9 +9,9 @@ import { ToolbarBase } from "@ui/base/toolbar.base";
 @Component({
   selector: "app-toolbar",
 
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, NgClass],
   template: `
-    <div class="app-toolbar d-flex align-items-center justify-content-between" [class]="styleClass()">
+    <div class="app-toolbar d-flex align-items-center justify-content-between" [ngClass]="styleClass()">
       <div class="app-toolbar-start d-flex align-items-center">
         @if (leftTemplate(); as tpl) {
           <ng-container *ngTemplateOutlet="tpl" />

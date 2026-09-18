@@ -4,6 +4,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { CandidateListMobile } from "./candidate-list-mobile";
 import { CandidateListItem } from "../interfaces/candidate.dto";
+import { AuthService } from "@core/auth/services/auth.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
 
 const mockCandidateList: CandidateListItem[] = [
   {
@@ -33,9 +35,15 @@ describe("CandidateListMobile", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CandidateListMobile],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: AuthService, useValue: {} },
+        { provide: AspRoleService, useValue: { roleSignal: () => (() => false), hasRole: () => false, hasAny: () => false } },
+        { provide: "HttpClientWithoutInterceptors", useValue: (globalThis as any).__mockHttpClient },
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     });
+    TestBed.overrideComponent(CandidateListMobile, { set: { template: '<div></div>', imports: [] } });
 
     fixture = TestBed.createComponent(CandidateListMobile);
     component = fixture.componentInstance;

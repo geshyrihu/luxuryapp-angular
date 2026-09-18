@@ -7,6 +7,11 @@ describe('LxCarousel', () => {
   let fixture: ComponentFixture<LxCarousel>;
 
   beforeEach(async () => {
+    // Los carruseles internos (owl/ng-bootstrap) no compilan bajo JIT
+    // (vitest); se sustituye la plantilla del wrapper.
+    TestBed.overrideComponent(LxCarousel, {
+      set: { template: '<div></div>', imports: [] },
+    });
     await TestBed.configureTestingModule({
       imports: [LxCarousel],
       providers: [{ provide: PlatformService, useValue: { isMobile: () => false } }],

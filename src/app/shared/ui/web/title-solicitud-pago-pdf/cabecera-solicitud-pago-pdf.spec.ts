@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CabeceraSolicitudPagoPdf } from './cabecera-solicitud-pago-pdf';
-import { ApiResponseService } from '../../services/api-response.service';
-import { CustomerIdService } from '../../services/customer-id.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { CustomerIdService } from '@core/auth/services/customer-id.service';
 import { signal } from '@angular/core';
 import { vi } from 'vitest';
 

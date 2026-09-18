@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
-import { ApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../../enums/asp-net-roles.enum';
 import { AuthService } from '../services/auth.service';
 import { committeeGuard } from './committee.guard';
 

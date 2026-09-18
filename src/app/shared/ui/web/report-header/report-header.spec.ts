@@ -8,19 +8,8 @@ import { ReportHeader } from "./report-header";
 
 // Mock de Ionic
 vi.mock("@ionic/angular", async () => {
-  const { Component } = await import("@angular/core");
-  @Component({ selector: "ion-spinner", template: "", standalone: true })
-  class Mock {}
-  return {
-    IonSpinner: Mock,
-    IonButton: Mock,
-    IonIcon: Mock,
-    IonItem: Mock,
-    IonLabel: Mock,
-    IonContent: Mock,
-    IonList: Mock,
-    IonPopover: Mock,
-  };
+  const { IonicMocks } = await import("@core/testing/ionic-mocks");
+  return { ...IonicMocks };
 });
 
 describe("ReportHeader", () => {

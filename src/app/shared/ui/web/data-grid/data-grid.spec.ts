@@ -14,6 +14,8 @@ describe('DataGrid', () => {
 
     fixture = TestBed.createComponent(DataGrid);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', []);
+    fixture.componentRef.setInput('columns', []);
     fixture.detectChanges();
   });
 

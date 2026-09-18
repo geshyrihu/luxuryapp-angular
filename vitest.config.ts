@@ -9,15 +9,36 @@ import { storybookAngularVitest } from "@storybook/angular-vite/vitest";
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
+const jsdomTestShared = {
+  globals: true,
+  environment: 'jsdom',
+  setupFiles: ['src/test-setup.ts'],
+  server: {
+    deps: {
+      inline: [/@angular/, /primeng/, /@primeicons/, /@primeuix/, /@ionic\/angular/, /@ionic\/angular\/standalone/, /@ionic\/core/, /@stencil\/core/, /angularx-flatpickr/, /flatpickr/, /ng-gallery/, /@ng-bootstrap/, /@ng-select/]
+    }
+  }
+};
+
+// The supplier module has two parallel component trees with duplicated selectors:
+//   modules/supplier.luxuryapp/provider/*  (singular)
+//   modules/supplier.luxuryapp/providers/provider/* (plural)
+// The analog selector guard maintains a per-vite-server registry, so both trees
+// can never be transformed in the same project. Split them into isolated
+// projects, each with its own angular() plugin instance (fresh registry).
 export default defineConfig({
-  plugins: [angular()],
   resolve: {
     alias: {
       'src/': resolve(__dirname, 'src') + '/',
       '@core/': resolve(__dirname, 'src/app/core') + '/',
       '@ui/': resolve(__dirname, 'src/app/shared/ui') + '/',
       '@shared/': resolve(__dirname, 'src/app/shared') + '/',
-      '@operations.luxuryapp/': resolve(__dirname, 'src/app/modules/operations.luxuryapp') + '/'
+      '@operations.luxuryapp/': resolve(__dirname, 'src/app/modules/operations.luxuryapp') + '/',
+      '@legal.luxuryapp/': resolve(__dirname, 'src/app/modules/legal.luxuryapp') + '/',
+      '@management.luxuryapp/': resolve(__dirname, 'src/app/modules/management.luxuryapp') + '/',
+      '@recruitment.luxuryapp/': resolve(__dirname, 'src/app/modules/recruitment.luxuryapp') + '/',
+      '@supplier.luxuryapp/': resolve(__dirname, 'src/app/modules/supplier.luxuryapp') + '/',
+      '@accounting.luxuryapp/': resolve(__dirname, 'src/app/modules/accounting.luxuryapp') + '/'
     }
   },
   optimizeDeps: {
@@ -28,17 +49,34 @@ export default defineConfig({
     reporters: ['default'],
     projects: [{
       extends: true,
+      plugins: [angular()],
       test: {
-        globals: true,
-        environment: 'jsdom',
-        setupFiles: ['src/test-setup.ts'],
+        name: 'unit',
+        ...jsdomTestShared,
         include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-        exclude: ['node_modules', 'dist', 'android', 'ios'],
-        server: {
-          deps: {
-            inline: [/@angular/, /primeng/, /@primeicons/, /@primeuix/, /@ionic\/angular/, /@ionic\/angular\/standalone/, /@ionic\/core/, /@stencil\/core/, /angularx-flatpickr/, /flatpickr/]
-          }
-        }
+        exclude: [
+          'node_modules', 'dist', 'android', 'ios',
+          'src/app/modules/supplier.luxuryapp/provider/**',
+          'src/app/modules/supplier.luxuryapp/providers/**'
+        ]
+      }
+    }, {
+      extends: true,
+      plugins: [angular()],
+      test: {
+        name: 'supplier-provider',
+        ...jsdomTestShared,
+        include: ['src/app/modules/supplier.luxuryapp/provider/**/*.spec.ts'],
+        exclude: ['node_modules']
+      }
+    }, {
+      extends: true,
+      plugins: [angular()],
+      test: {
+        name: 'supplier-providers',
+        ...jsdomTestShared,
+        include: ['src/app/modules/supplier.luxuryapp/providers/**/*.spec.ts'],
+        exclude: ['node_modules']
       }
     }, {
       extends: true,

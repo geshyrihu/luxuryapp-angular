@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -10,7 +11,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
  */
 @Component({
   selector: "web-custom-input-email",
-  imports: [BaseInputSignal, ReactiveFormsModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgClass],
   template: `
     <base-input-signal
       [control]="control()"
@@ -30,7 +31,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [placeholder]="placeholder()"
         [readOnly]="readonly()"
         [disabled]="disabled()"
-        [class]="customClass()"
+        [ngClass]="customClass()"
         inputmode="email"
         autocomplete="email"
         fluid

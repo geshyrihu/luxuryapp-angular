@@ -5,7 +5,7 @@ import { of } from "rxjs";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { vi } from "vitest";
-import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
+import { EmployeeInternalService } from "../employee/employee-internal.service";
 import { EmployeeBankDataForm } from "./employee-bank-data-form";
 
 describe("EmployeeBankDataForm", () => {

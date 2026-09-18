@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { signal } from '@angular/core';
-import { ApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../../enums/asp-net-roles.enum';
 import { AspRoleService } from '../services/asp-role.service';
 import { superUserGuard } from './super-user.guard';
 

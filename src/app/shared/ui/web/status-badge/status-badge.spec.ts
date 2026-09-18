@@ -34,19 +34,19 @@ describe('StatusBadge', () => {
   it('should return danger badge class for Pendiente status', () => {
     fixture.componentRef.setInput('status', EStatus.Pendiente);
     fixture.detectChanges();
-    expect(component.getBadgeClass()).toBe('badge badge-danger');
+    expect(component.getSeverity()).toBe('danger');
   });
 
   it('should return success badge class for Concluido status', () => {
     fixture.componentRef.setInput('status', EStatus.Concluido);
     fixture.detectChanges();
-    expect(component.getBadgeClass()).toBe('badge badge-success');
+    expect(component.getSeverity()).toBe('success');
   });
 
   it('should return neutral badge class for unknown status', () => {
     fixture.componentRef.setInput('status', 999);
     fixture.detectChanges();
-    expect(component.getBadgeClass()).toBe('badge badge-neutral');
+    expect(component.getSeverity()).toBe('secondary');
     expect(component.getStatusText()).toBe('DESCONOCIDO');
   });
 
@@ -80,7 +80,7 @@ describe('StatusBadge', () => {
     fixture.componentRef.setInput('isVisibility', true);
     fixture.detectChanges();
 
-    expect(component.getBadgeClass()).toBe('badge badge-secondary');
+    expect(component.getSeverity()).toBe('secondary');
     expect(component.getStatusText()).toBe('INTERNO');
   });
 
@@ -89,7 +89,7 @@ describe('StatusBadge', () => {
     fixture.componentRef.setInput('isEmpresa', true);
     fixture.detectChanges();
 
-    expect(component.getBadgeClass()).toBe('badge badge-primary');
+    expect(component.getSeverity()).toBe('info');
     expect(component.getStatusText()).toBe('COBRANZA');
   });
 

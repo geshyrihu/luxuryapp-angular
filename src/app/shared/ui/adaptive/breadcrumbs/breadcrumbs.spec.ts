@@ -13,6 +13,7 @@ describe('LxBreadcrumbs', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(LxBreadcrumbs);
+    fixture.componentRef.setInput('items', [{ label: 'Inicio' }]);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,9 +15,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-chip",
 
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
-    <span class="app-chip" [class]="chipClass()" (click)="onClick()">
+    <span class="app-chip" [ngClass]="chipClass()" (click)="onClick()">
       @if (image()) {
         <img [src]="image()" class="app-chip-img" alt="" />
       } @else if (icon()) {

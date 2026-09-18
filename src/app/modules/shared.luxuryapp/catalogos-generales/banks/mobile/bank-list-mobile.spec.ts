@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BankListMobile } from './bank-list-mobile';
 import { BankDto } from '../interfaces/banks.dto';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('BankListMobile', () => {
   let component: BankListMobile;
@@ -17,10 +19,14 @@ describe('BankListMobile', () => {
     await TestBed.configureTestingModule({
       imports: [BankListMobile],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BankListMobile);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', []);
     fixture.detectChanges();
   });
 
@@ -29,25 +35,19 @@ describe('BankListMobile', () => {
   });
 
   it('should initialize with required input data', () => {
-    TestBed.runInInjectionContext(() => {
-      component.data = signal(mockBanks);
-    });
+    fixture.componentRef.setInput('data', mockBanks);
     fixture.detectChanges();
     expect(component.data()).toEqual(mockBanks);
   });
 
   it('should handle empty data', () => {
-    TestBed.runInInjectionContext(() => {
-      component.data = signal([]);
-    });
+    fixture.componentRef.setInput('data', []);
     fixture.detectChanges();
     expect(component.data().length).toBe(0);
   });
 
   it('should support global filter', () => {
-    TestBed.runInInjectionContext(() => {
-      component.globalFilterFields = signal(['code', 'shortName', 'largeName']);
-    });
+    fixture.componentRef.setInput('globalFilterFields', ['code', 'shortName', 'largeName']);
     expect(component.globalFilterFields().length).toBe(3);
   });
 
@@ -70,17 +70,13 @@ describe('BankListMobile', () => {
   });
 
   it('should render list with multiple items', () => {
-    TestBed.runInInjectionContext(() => {
-      component.data = signal(mockBanks);
-    });
+    fixture.componentRef.setInput('data', mockBanks);
     fixture.detectChanges();
     expect(component.data().length).toBe(3);
   });
 
   it('should have correct bank data structure', () => {
-    TestBed.runInInjectionContext(() => {
-      component.data = signal(mockBanks);
-    });
+    fixture.componentRef.setInput('data', mockBanks);
     fixture.detectChanges();
     const bank = component.data()[0];
     expect(bank).toHaveProperty('id');

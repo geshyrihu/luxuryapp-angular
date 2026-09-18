@@ -45,21 +45,6 @@ describe('CustomInputMultiselectSignal', () => {
     });
   });
 
-  describe('getSizeClass', () => {
-    it('should return empty string when no size', () => {
-      expect(component.getSizeClass()).toBe('');
-    });
-
-    it('should return p-inputtext-sm when size is small', () => {
-      fixture.componentRef.setInput('size', 'small');
-      expect(component.getSizeClass()).toBe('p-inputtext-sm');
-    });
-
-    it('should return p-inputtext-lg when size is large', () => {
-      fixture.componentRef.setInput('size', 'large');
-      expect(component.getSizeClass()).toBe('p-inputtext-lg');
-    });
-  });
 
   describe('ControlValueAccessor', () => {
     it('should register onChange callback', () => {

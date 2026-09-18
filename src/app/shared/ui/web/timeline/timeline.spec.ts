@@ -14,6 +14,7 @@ describe('Timeline', () => {
 
     fixture = TestBed.createComponent(Timeline);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('events', []);
     fixture.detectChanges();
   });
 

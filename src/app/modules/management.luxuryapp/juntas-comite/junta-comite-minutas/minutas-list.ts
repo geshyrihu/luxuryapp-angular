@@ -8,10 +8,27 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import {
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "@core/helpers/table-primeng-option";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ReportService } from "@core/services/report.service";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
@@ -30,24 +47,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
-import { CustomToastService } from "@core/services/custom-toast.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { ReportService } from "@core/services/report.service";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import {
   AreaDetailsTable,
   DetailEvent,
@@ -235,7 +235,7 @@ export class MinutasList {
           customerId: this.customerIdS.customerId(),
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.tipoJunta); // Recargar es necesario al agregar/editar una minuta completa.

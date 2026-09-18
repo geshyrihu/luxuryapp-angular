@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ModalController } from "@ionic/angular";
+import { ActivatedRoute } from "@angular/router";
+import { of } from "rxjs";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -40,11 +43,15 @@ describe("ComiteVigilanciaList", () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseStub },
+        { provide: ModalController, useValue: {} },
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: DialogHandlerService, useValue: dialogHandlerStub },
         { provide: AuthService, useValue: {} },
         { provide: CustomerIdService, useValue: { customerId: vi.fn(() => "customer-1") } },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(ComiteVigilanciaList, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(ComiteVigilanciaList);
     component = fixture.componentInstance;

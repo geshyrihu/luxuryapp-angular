@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppIcon } from './app-icon.component';
+import { AppIcon } from './app-icon';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AppIcon', () => {

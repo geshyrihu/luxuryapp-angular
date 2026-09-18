@@ -3,8 +3,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppPaginator } from './paginator';
 import { vi } from 'vitest';
 
-vi.mock('primeng/paginator', () => ({ PaginatorModule: class {} }));
-
 describe('AppPaginator', () => {
   let component: AppPaginator;
   let fixture: ComponentFixture<AppPaginator>;

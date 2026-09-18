@@ -95,7 +95,7 @@ describe("TaskMessageOperationReport", () => {
   it("onPreviewClicked should navigate to preview", () => {
     component.onPreviewClicked();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets/weekly-report-preview",
+      "/tickets", "weekly-report-preview",
     ]);
   });
 

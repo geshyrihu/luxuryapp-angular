@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { SyncQueueService } from './sync-queue.service';
 import { ConnectivityService } from '../../services/connectivity.service';
 import { ConsoleLoggerService } from '../../services/console-logger.service';
-import { of } from 'rxjs';
+import { of, firstValueFrom } from 'rxjs';
 
 describe('SyncQueueService', () => {
   let service: SyncQueueService;
@@ -25,10 +25,8 @@ describe('SyncQueueService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should expose queueLength$ observable', (done) => {
-    service.queueLength$.subscribe((length) => {
-      expect(typeof length).toBe('number');
-      done();
-    });
+  it('should expose queueLength$ observable', async () => {
+    const length = await firstValueFrom(service.queueLength$);
+    expect(typeof length).toBe('number');
   });
 });

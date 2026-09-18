@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { EnumSelectService } from './enum-select.service';
-import { ApiResponseService } from './api-response.service';
+import { ApiResponseService } from '../http/services/api-response.service';
 
 describe('EnumSelectService', () => {
   let service: EnumSelectService;

@@ -20,6 +20,7 @@ import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
 import { MobilePage } from "@ui/mobile/page/page";
 import { catchError, finalize, throwError } from "rxjs";
 import { LoginSliderService } from "@core/auth/services/login-slider.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
@@ -310,7 +311,7 @@ export class ResetPasswordMobile implements OnInit {
     };
 
     this.dataConnectorS
-      .post("Auth/ConfirmRecoverPassword", body)
+      .post(Endpoints.Auth.confirmRecoverPassword, body)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           const msg =
@@ -327,4 +328,3 @@ export class ResetPasswordMobile implements OnInit {
       });
   }
 }
-

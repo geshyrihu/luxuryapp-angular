@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,9 +14,9 @@ import { Editor, NgxEditorModule } from "ngx-editor";
 @Component({
   selector: "app-editor",
 
-  imports: [FormsModule, NgxEditorModule],
+  imports: [FormsModule, NgxEditorModule, NgClass],
   template: `
-    <div class="app-editor NgxEditor__Wrapper" [class]="styleClass()" [style]="style()">
+    <div class="app-editor NgxEditor__Wrapper" [ngClass]="styleClass()" [style]="style()">
       <ngx-editor-menu [editor]="editor" />
       <ngx-editor
         [editor]="editor"

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import type { MenuItem } from "primeng/api";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { MenubarBase } from "./menubar.base";
 
 @Component({ selector: "test-menubar", template: "" })

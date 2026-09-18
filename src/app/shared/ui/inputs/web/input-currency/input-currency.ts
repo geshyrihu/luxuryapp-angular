@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +12,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-currency",
 
-  imports: [BaseInputSignal, ReactiveFormsModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgClass],
   template: `
     <base-input-signal
       [control]="control()"
@@ -32,7 +33,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [placeholder]="placeholder()"
         [readonly]="readonly()"
         [disabled]="disabled()"
-        [class]="'form-control ' + inputStyleClass()"
+        [ngClass]="'form-control ' + inputStyleClass()"
       />
     </base-input-signal>
   `,

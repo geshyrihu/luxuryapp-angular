@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { TestBed } from '@angular/core/testing';
-import { MessageService } from 'primeng/api';
+import { MessageService } from './message.service';
 import { CustomToastService } from './custom-toast.service';
 
 vi.mock('@ionic/angular', () => ({

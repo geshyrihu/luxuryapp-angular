@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RangoCalendarioyyyymmdd } from './rango-calendario-yyyymmdd';
-import { DateService } from '../../services/date.service';
-import { FiltroCalendarService } from '../../services/filtro-calendar.service';
+import { DateService } from '@core/services/date.service';
+import { FiltroCalendarService } from '@core/services/filtro-calendar.service';
 import { vi } from 'vitest';
 
 const dateServiceMock = {

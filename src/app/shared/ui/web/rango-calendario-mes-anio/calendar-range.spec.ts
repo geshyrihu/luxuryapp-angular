@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalendarRange } from './calendar-range';
-import { DateService } from '../../services/date.service';
-import { FiltroCalendarService } from '../../services/filtro-calendar.service';
+import { DateService } from '@core/services/date.service';
+import { FiltroCalendarService } from '@core/services/filtro-calendar.service';
 
 describe('CalendarRange', () => {
   let component: CalendarRange;

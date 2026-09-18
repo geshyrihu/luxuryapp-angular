@@ -86,8 +86,7 @@ describe("TaskPendingBoard", () => {
   it("onBack should navigate back", () => {
     component.onBack();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets/messages",
-      "group-1",
+      "/tickets", "messages",      "group-1",
     ]);
   });
 

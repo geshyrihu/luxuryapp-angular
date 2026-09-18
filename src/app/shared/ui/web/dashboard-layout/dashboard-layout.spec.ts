@@ -12,6 +12,7 @@ describe('DashboardLayout', () => {
 
     fixture = TestBed.createComponent(DashboardLayout);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('widgets', []);
     fixture.detectChanges();
   });
 

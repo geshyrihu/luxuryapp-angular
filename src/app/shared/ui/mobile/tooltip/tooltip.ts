@@ -1,10 +1,11 @@
+import { NgClass } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TooltipBase } from "@ui/base/tooltip.base";
 
 @Component({
   selector: "ili-tooltip",
 
-  imports: [],
+  imports: [NgClass],
   template: `
     <div
       class="ili-tooltip-wrapper"
@@ -13,7 +14,7 @@ import { TooltipBase } from "@ui/base/tooltip.base";
     >
       <ng-content />
       @if (showTooltip()) {
-        <div class="ili-tooltip-popup" [class]="'ili-tooltip-' + position()">
+        <div class="ili-tooltip-popup" [ngClass]="'ili-tooltip-' + position()">
           {{ text() }}
         </div>
       }

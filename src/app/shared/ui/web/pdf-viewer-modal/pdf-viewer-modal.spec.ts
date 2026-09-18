@@ -1,13 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PdfViewerModal } from './pdf-viewer-modal';
-import { DynamicDialogConfig } from 'src/app/core/services/dialog-handler.service';
-import { ApiResponseService } from '../../services/api-response.service';
+import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'src/app/core/services/dialog-handler.service';
+import { ApiResponseService } from '@core/http/services/api-response.service';
 import { vi } from 'vitest';
 
 vi.mock('ng2-pdf-viewer', () => ({ PdfViewerModule: class {} }));
-vi.mock('primeng/button', () => ({ Button: class {}, ButtonModule: class {}, ButtonDirective: class {}, ButtonIcon: class {}, ButtonLabel: class {}, ButtonStyle: class {} }));
-vi.mock('primeng/progressspinner', () => ({ ProgressSpinnerModule: class {} }));
 
 const dialogConfigMock = {
   data: {
@@ -29,6 +27,7 @@ describe('PdfViewerModal', () => {
       set: {
         template: '<div>Mock PDF Viewer</div>',
         imports: [],
+        providers: [],
       },
     });
 
@@ -37,7 +36,9 @@ describe('PdfViewerModal', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: DynamicDialogConfig, useValue: dialogConfigMock },
+        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
+        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } },
       ],
     }).compileComponents();
 
@@ -68,6 +69,7 @@ describe('PdfViewerModal', () => {
       set: {
         template: '<div>Mock PDF Viewer</div>',
         imports: [],
+        providers: [],
       },
     });
     TestBed.configureTestingModule({
@@ -75,7 +77,9 @@ describe('PdfViewerModal', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: DynamicDialogConfig, useValue: emptyConfigMock },
+        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
+        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } },
       ],
     });
     const emptyFixture = TestBed.createComponent(PdfViewerModal);

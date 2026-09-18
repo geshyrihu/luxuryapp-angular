@@ -12,6 +12,7 @@ describe('ComparisonTable', () => {
 
     fixture = TestBed.createComponent(ComparisonTable);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('items', []);
     fixture.detectChanges();
   });
 

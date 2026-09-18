@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +8,7 @@ import { SidebarBase } from "@ui/base/sidebar.base";
 @Component({
   selector: "app-sidebar",
 
-  imports: [],
+  imports: [NgClass],
   template: `
     @if (visible()) {
       <div class="offcanvas-backdrop fade show" (click)="onHide()"></div>
@@ -19,7 +20,7 @@ import { SidebarBase } from "@ui/base/sidebar.base";
       [class.offcanvas-top]="position() === 'top'"
       [class.offcanvas-bottom]="position() === 'bottom'"
       [class.show]="visible()"
-      [class]="styleClass()"
+      [ngClass]="styleClass()"
       tabindex="-1"
       [attr.aria-hidden]="!visible()"
     >

@@ -73,7 +73,7 @@ describe("ProductosList", () => {
 
     await component.onLoadData();
 
-    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith("Productos");
+    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith("productos");
     expect(component.dataSignal()).toEqual(mockData);
     expect(component.filteredDataSignal()).toEqual(mockData);
   });

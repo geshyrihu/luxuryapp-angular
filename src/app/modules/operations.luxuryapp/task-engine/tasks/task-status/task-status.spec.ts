@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { vi } from "vitest";
-import { TaskGroupService } from "../../task.service";
+import { TaskGroupService } from "../task.service";
 import { TaskStatus } from "./task-status";
 
 describe("TaskStatus", () => {

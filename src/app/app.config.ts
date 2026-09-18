@@ -46,39 +46,18 @@ import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
 import { provideCharts, withDefaultRegisterables } from "ng2-charts";
-import { MessageService as PrimeMessageService } from "primeng/api";
 import { MessageService } from "@core/services/message.service";
-import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 // Importaciones de Archivos del Proyecto
 import { imageFormDataInterceptor } from "@core/http/interceptors/image-form-data.interceptor.fn";
 import { jwtInterceptor } from "@core/http/interceptors/jwt.interceptor.fn";
 import { offlineInterceptorFn } from "@core/http/interceptors/offline.interceptor.fn";
 import { preloadIconifyIcons } from "@core/services/icon-preload.service";
 import { MessagingService } from "@core/services/notification-messaging.service";
-import { PrimeNgSpanishLocale } from "src/app/mypreset";
-import { LuxuryPreset } from "src/styles/theme/mypreset";
 import { initializeAppState } from "./app-initializer";
 import { appRoutes } from "./app.routes";
 import { registerIonicons } from "./core/services/ionicons-registry";
 // Registrar datos locales para el pipe de fecha en español
 registerLocaleData(localeEs);
-
-// Configuración principal de la aplicación
-const primeNgConfig: PrimeNGConfigType = {
-  license:
-    "eyJpZCI6IjYwMjZhNmI2LTAxM2MtNGI1Yy1hZTc0LTFjMjUyZWI0NmRmNCIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODMzOTM4NjcsImV4cCI6MTgxNDkyOTg2N30.q9Bg8B3KhNVh6x40y5CBrosDUg5XsbUSUGE3tVtwl66DwRgF5pj8HdWB0906k5qFcEGQNTz5Gs7VzQAtoT0XBg",
-  theme: {
-    preset: LuxuryPreset,
-    options: {
-      darkModeSelector: '[data-theme="dark"], .theme-dark',
-      cssLayer: {
-        name: "primeng",
-        order: "primeng, primeflex",
-      },
-    },
-  },
-  translation: PrimeNgSpanishLocale,
-};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -114,7 +93,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     // --- Configuración de Librerías de UI y Terceros ---
     provideToastr(),
-    providePrimeNG(primeNgConfig),
     provideCharts(withDefaultRegisterables()),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({
@@ -144,7 +122,6 @@ export const appConfig: ApplicationConfig = {
 
     // --- Servicios Singleton Globales ---
     MessageService,
-    { provide: PrimeMessageService, useExisting: MessageService },
     DatePipe,
     MessagingService,
 
@@ -166,4 +143,3 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular({ mode: "ios" }),
   ],
 };
-

@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,13 +21,13 @@ import { PopoverBase } from "@ui/base/popover.base";
  */
 @Component({
   selector: "app-popover",
-  imports: [],
+  imports: [NgClass],
   template: `
     <span #trigger class="app-popover-trigger" (click)="toggle()">
       <ng-content select="[appPopoverTrigger]" />
     </span>
     <ng-template #panelTpl>
-      <div class="dropdown-menu show app-popover-panel" [class]="styleClass()">
+      <div class="dropdown-menu show app-popover-panel" [ngClass]="styleClass()">
         <ng-content />
       </div>
     </ng-template>

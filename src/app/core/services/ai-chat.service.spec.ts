@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AiChatService } from './ai-chat.service';
-import { ApiResponseService } from './api-response.service';
-import { CustomerIdService } from './customer-id.service';
+import { ApiResponseService } from '../http/services/api-response.service';
+import { CustomerIdService } from '../auth/services/customer-id.service';
 
 describe('AiChatService', () => {
   let service: AiChatService;

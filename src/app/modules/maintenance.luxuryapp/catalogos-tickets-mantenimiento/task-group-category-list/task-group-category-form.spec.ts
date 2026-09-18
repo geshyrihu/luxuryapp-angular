@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { of } from "rxjs";
 import { vi } from "vitest";
 import { TaskGroupCategoryForm } from "./task-group-category-form";
 
@@ -19,11 +20,7 @@ describe("TaskGroupCategoryForm", () => {
       onGetItem: vi.fn().mockResolvedValue({ name: "Category" }),
     };
     mockEnumService = {
-      departament: vi
-        .fn()
-        .mockReturnValue({
-          subscribe: vi.fn((cb: any) => cb([{ value: 1, label: "Dept 1" }])),
-        }),
+      departament: vi.fn().mockReturnValue(of([{ value: 1, label: "Dept 1" }])),
     };
     mockConfig = { data: { id: "" } };
     mockRef = { close: vi.fn() };

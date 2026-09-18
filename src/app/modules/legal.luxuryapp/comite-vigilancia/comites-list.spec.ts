@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ModalController } from "@ionic/angular";
+import { of } from "rxjs";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ComitesList } from "./comites-list";
 
@@ -33,7 +36,11 @@ describe("ComitesList", () => {
     await TestBed.configureTestingModule({
       imports: [ComitesList],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [{ provide: ApiResponseService, useValue: apiResponseStub }],
+      providers: [
+        { provide: ApiResponseService, useValue: apiResponseStub },
+        { provide: ModalController, useValue: {} },
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ComitesList);

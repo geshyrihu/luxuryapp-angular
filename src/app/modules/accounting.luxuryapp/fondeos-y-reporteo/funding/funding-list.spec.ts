@@ -36,7 +36,7 @@ describe("FundingList", () => {
       openDialog: vi.fn(),
       sizeLg: "900px",
     };
-    mockRouter = { navigateByUrl: vi.fn(), events: new Subject() };
+    mockRouter = { navigateByUrl: vi.fn(), navigate: vi.fn(), events: new Subject() };
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -85,8 +85,8 @@ describe("FundingList", () => {
 
   it("onDetails should navigate to detail page", () => {
     component.onDetails("fnd-001");
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(
-      "/funding/details/fnd-001",
+    expect(mockRouter.navigate).toHaveBeenCalledWith(
+      ["/funding", "details", "fnd-001"],
     );
   });
 

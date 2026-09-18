@@ -138,6 +138,7 @@ describe("TaskTemplateItemForm", () => {
     expect(mockApiResponseS.onPost).toHaveBeenCalledWith(
       "recurring-tasks/templates/tmpl-1/items",
       expect.objectContaining({ title: "New Item" }),
+      undefined,
     );
     await new Promise((resolve) => setTimeout(resolve));
     expect(mockRef.close).toHaveBeenCalledWith(true);
@@ -157,6 +158,9 @@ describe("TaskTemplateItemForm", () => {
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
       "recurring-tasks/templates/items/item-1",
       expect.objectContaining({ title: "Updated Item" }),
+      true,
+      true,
+      undefined,
     );
     await new Promise((resolve) => setTimeout(resolve));
     expect(mockRef.close).toHaveBeenCalledWith(true);

@@ -1,10 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
 import { Carousel } from "@ui/web/carousel/carousel";
-import { IconField } from "primeng/iconfield";
-import { InputIcon } from "primeng/inputicon";
-import { InputTextModule } from "primeng/inputtext";
 import { interval } from "rxjs";
 import { map } from "rxjs/operators";
 @Component({
@@ -14,10 +10,6 @@ import { map } from "rxjs/operators";
   imports: [
     RouterModule,
     Carousel,
-    InputTextModule,
-    ButtonModule,
-    IconField,
-    InputIcon,
   ],
 })
 

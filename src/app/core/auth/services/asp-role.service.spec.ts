@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
-import { ApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../../enums/asp-net-roles.enum';
 import { AspRoleService } from './asp-role.service';
 import { AuthService } from './auth.service';
 

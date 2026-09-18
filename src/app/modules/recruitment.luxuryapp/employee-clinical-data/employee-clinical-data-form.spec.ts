@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { vi } from "vitest";
-import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
+import { EmployeeInternalService } from "../employee/employee-internal.service";
 import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
 
 describe("EmployeeClinicalDataForm", () => {

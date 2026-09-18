@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlatformService } from '@core/services/platform.service';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -18,9 +21,14 @@ describe('CalendarioMaestroEquipo', () => {
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+        { provide: ModalController, useValue: {} },
+        { provide: NgbModal, useValue: {} },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(CalendarioMaestroEquipo, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(CalendarioMaestroEquipo);
     component = fixture.componentInstance;

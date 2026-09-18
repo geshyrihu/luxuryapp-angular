@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { PrimeNgNotificationService } from './primeng-notification.service';
-import { MessageService } from 'primeng/api';
+import { MessageService } from './message.service';
 
 describe('PrimeNgNotificationService', () => {
   let service: PrimeNgNotificationService;

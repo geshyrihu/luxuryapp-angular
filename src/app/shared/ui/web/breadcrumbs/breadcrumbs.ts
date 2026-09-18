@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
@@ -7,9 +8,9 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
 @Component({
   selector: "app-breadcrumbs",
 
-  imports: [RouterLink, AppIcon],
+  imports: [RouterLink, AppIcon, NgClass],
   template: `
-    <nav class="breadcrumbs-root" [class]="styleClass()" aria-label="breadcrumb">
+    <nav class="breadcrumbs-root" [ngClass]="styleClass()" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         @if (home(); as h) {
           <li class="breadcrumb-item">

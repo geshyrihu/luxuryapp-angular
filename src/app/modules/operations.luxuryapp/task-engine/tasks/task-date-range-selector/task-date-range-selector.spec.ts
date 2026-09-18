@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { vi } from 'vitest';
 import { TaskDateRangeSelector } from './task-date-range-selector';
-import { DateRangeStorageService } from '../../services/date-range-storage.service';
+import { DateRangeStorageService } from '../date-range-storage.service';
 
 describe('TaskDateRangeSelector', () => {
   let component: TaskDateRangeSelector;

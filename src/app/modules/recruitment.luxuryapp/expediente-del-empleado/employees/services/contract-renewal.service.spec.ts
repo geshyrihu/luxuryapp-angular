@@ -23,7 +23,7 @@ describe('ContractRenewalService', () => {
     service.clearStore();
     expect(service.renewals()).toEqual([]);
     expect(service.selectedRenewal()).toBeNull();
-    expect(service.isLoading()).toBeFalse();
+    expect(service.isLoading()).toBe(false);
   });
 
   it('should compute pending renewals', () => {

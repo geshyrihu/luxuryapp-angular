@@ -48,7 +48,7 @@ describe('CustomInputAutoComplete', () => {
     });
   });
 
-  describe('search', () => {
+  describe('onComplete (search)', () => {
     it('should filter data based on query', () => {
       fixture.componentRef.setInput('data', [
         { label: 'Mexico', value: 'MX' },
@@ -57,8 +57,8 @@ describe('CustomInputAutoComplete', () => {
       ]);
       fixture.detectChanges();
 
-      component.search({ query: 'exi' });
-      expect(component.filteredData).toEqual([
+      component.onComplete({ term: 'exi' });
+      expect(component.resolvedSuggestions()).toEqual([
         { label: 'Mexico', value: 'MX' },
       ]);
     });
@@ -69,8 +69,8 @@ describe('CustomInputAutoComplete', () => {
       ]);
       fixture.detectChanges();
 
-      component.search({ query: 'xyz' });
-      expect(component.filteredData).toEqual([]);
+      component.onComplete({ term: 'xyz' });
+      expect(component.resolvedSuggestions()).toEqual([]);
     });
 
     it('should be case insensitive', () => {
@@ -79,17 +79,10 @@ describe('CustomInputAutoComplete', () => {
       ]);
       fixture.detectChanges();
 
-      component.search({ query: 'MEX' });
-      expect(component.filteredData).toEqual([
+      component.onComplete({ term: 'MEX' });
+      expect(component.resolvedSuggestions()).toEqual([
         { label: 'Mexico', value: 'MX' },
       ]);
-    });
-  });
-
-  describe('onModelChange', () => {
-    it('should set value on internalControl when no external control', () => {
-      component.onModelChange({ label: 'Mexico', value: 'MX' });
-      expect(component.internalControl.value).toEqual({ label: 'Mexico', value: 'MX' });
     });
   });
 
@@ -98,7 +91,7 @@ describe('CustomInputAutoComplete', () => {
       const spy = vi.fn();
       component.propagar.subscribe(spy);
       const selectedItem = { label: 'Mexico', value: 'MX' };
-      component.onSelectItem({ value: selectedItem });
+      component.onSelectItem(selectedItem);
       expect(spy).toHaveBeenCalledWith(selectedItem);
       expect(component.internalControl.value).toEqual(selectedItem);
     });

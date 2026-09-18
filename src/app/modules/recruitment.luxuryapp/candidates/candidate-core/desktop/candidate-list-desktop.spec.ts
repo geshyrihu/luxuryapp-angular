@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { CandidateListDesktop } from "./candidate-list-desktop";
 import { CandidateListItem } from "../interfaces/candidate.dto";
+import { AuthService } from "@core/auth/services/auth.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
 
 const mockCandidateList: CandidateListItem[] = [
   {
@@ -33,7 +35,13 @@ describe("CandidateListDesktop", () => {
     TestBed.configureTestingModule({
       imports: [CandidateListDesktop],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: AuthService, useValue: {} },
+        { provide: AspRoleService, useValue: { roleSignal: () => (() => false), hasRole: () => false, hasAny: () => false } },
+        { provide: "HttpClientWithoutInterceptors", useValue: (globalThis as any).__mockHttpClient },
+      ],
     });
+    TestBed.overrideComponent(CandidateListDesktop, { set: { template: '<div></div>', imports: [] } });
 
     fixture = TestBed.createComponent(CandidateListDesktop);
     component = fixture.componentInstance;

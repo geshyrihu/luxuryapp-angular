@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,13 +13,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-avatar",
 
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
     <div
       class="app-avatar"
       [class.app-avatar-circle]="shape() === 'circle'"
       [class.app-avatar-square]="shape() === 'square'"
-      [class]="styleClass()"
+      [ngClass]="styleClass()"
       [style.width.px]="sizePx()"
       [style.height.px]="sizePx()"
     >

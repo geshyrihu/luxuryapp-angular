@@ -14,6 +14,7 @@ describe('MobileSwipeActions', () => {
 
     fixture = TestBed.createComponent(MobileSwipeActions);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('actions', []);
     fixture.detectChanges();
   });
 

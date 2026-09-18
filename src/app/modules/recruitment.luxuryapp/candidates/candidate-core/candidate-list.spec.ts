@@ -66,6 +66,7 @@ describe("CandidateList", () => {
         { provide: ApiResponseService, useValue: apiResponseService },
         { provide: DialogHandlerService, useValue: dialogHandlerService },
         { provide: PlatformService, useValue: platformService },
+        { provide: "HttpClientWithoutInterceptors", useValue: (globalThis as any).__mockHttpClient },
       ],
     });
 

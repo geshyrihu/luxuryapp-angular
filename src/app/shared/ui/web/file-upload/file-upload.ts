@@ -2,13 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  ElementRef,
   inject,
   input,
   OnDestroy,
   output,
   signal,
-  viewChild,
   ViewEncapsulation,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -54,7 +52,7 @@ export interface FileUploadEvent {
           (change)="onNativeInput($event)"
           hidden
         />
-        <il-button [label]="chooseLabel()" class="w-100" (clicked)="chooseInput().nativeElement.click()" />
+        <il-button [label]="chooseLabel()" class="w-100" (clicked)="chooseInput.click()" />
 
         @if (!files().length) {
           <span class="text-sm text-color-secondary"
@@ -72,7 +70,7 @@ export interface FileUploadEvent {
               severity="secondary"
               icon="material-symbols-light:photo-camera"
               class="w-100"
-              (clicked)="cameraInput().nativeElement.click()"
+              (clicked)="cameraInput.click()"
             />
           }
           @if (mobileSource() === "gallery" || mobileSource() === "both") {
@@ -81,7 +79,7 @@ export interface FileUploadEvent {
               severity="secondary"
               icon="material-symbols-light:photo"
               class="w-100"
-              (clicked)="galleryInput().nativeElement.click()"
+              (clicked)="galleryInput.click()"
             />
           }
         </div>
@@ -231,12 +229,6 @@ export class FileUpload implements OnDestroy {
       Math.max(this.maxFileSize(), this.maxFileSize() * 4),
     ),
   );
-
-  cameraInput = viewChild.required<ElementRef<HTMLInputElement>>("cameraInput");
-  galleryInput =
-    viewChild.required<ElementRef<HTMLInputElement>>("galleryInput");
-  chooseInput =
-    viewChild.required<ElementRef<HTMLInputElement>>("chooseInput");
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();

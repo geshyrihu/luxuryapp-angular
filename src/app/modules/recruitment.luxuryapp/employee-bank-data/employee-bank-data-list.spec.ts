@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { vi } from 'vitest';
 import { DialogHandlerService } from '@core/services/dialog-handler.service';
-import { EmployeeInternalService } from '../../employee-internal/services/employee-internal.service';
+import { EmployeeInternalService } from '../employee/employee-internal.service';
 import { EmployeeBankDataList } from './employee-bank-data-list';
 import { DialogSize } from '@core/enums/dialog-size.enum';
 

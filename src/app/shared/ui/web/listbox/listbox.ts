@@ -7,16 +7,16 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
-import { NgStyle, NgTemplateOutlet } from "@angular/common";
+import { NgClass, NgStyle, NgTemplateOutlet } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ListboxBase } from "@ui/base/listbox.base";
 
 @Component({
   selector: "app-listbox",
 
-  imports: [FormsModule, NgStyle, NgTemplateOutlet],
+  imports: [FormsModule, NgStyle, NgTemplateOutlet, NgClass],
   template: `
-    <div class="app-listbox" [class]="styleClass()" [ngStyle]="style()">
+    <div class="app-listbox" [ngClass]="styleClass()" [ngStyle]="style()">
       @if (filter()) {
         <div class="app-listbox-filter">
           <input

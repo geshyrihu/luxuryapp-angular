@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { vi } from "vitest";

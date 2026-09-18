@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-number",
 
-  imports: [BaseInputSignal, ReactiveFormsModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgClass],
   template: `
     <base-input-signal
       [control]="control() || internalControl"
@@ -39,7 +40,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [attr.min]="min()"
         [attr.max]="max()"
         [attr.step]="step()"
-        [class]="'form-control ' + inputStyleClass()"
+        [ngClass]="'form-control ' + inputStyleClass()"
         (onBlur)="blur.emit()"
         (keydown.enter)="enter.emit()"
       />

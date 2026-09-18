@@ -15,7 +15,7 @@ describe("CompleteTaskForm", () => {
 
   beforeEach(() => {
     mockApiResponseS = {
-      onPost: vi.fn().mockResolvedValue(true),
+      onPostFile: vi.fn().mockResolvedValue(true),
     };
     mockRef = { close: vi.fn() };
     mockConfig = { data: { task: { id: "task-1", title: "Test Task" } } };
@@ -58,19 +58,19 @@ describe("CompleteTaskForm", () => {
     component.ngOnInit();
     component.form.controls.comments.setErrors({ required: true });
     component.onSubmit();
-    expect(mockApiResponseS.onPost).not.toHaveBeenCalled();
+    expect(mockApiResponseS.onPostFile).not.toHaveBeenCalled();
   });
 
   it("should call API and close dialog on successful submit", async () => {
-    mockApiResponseS.onPost.mockResolvedValue(true);
+    mockApiResponseS.onPostFile.mockResolvedValue(true);
     component.ngOnInit();
     component.form.patchValue({ comments: "Done!", attachments: [] });
 
     component.onSubmit();
 
-    expect(mockApiResponseS.onPost).toHaveBeenCalledWith(
+    expect(mockApiResponseS.onPostFile).toHaveBeenCalledWith(
       "recurring-tasks/instances/task-1/complete",
-      { comments: "Done!" },
+      expect.any(FormData),
     );
     expect(component.submitting()).toBe(true);
     await new Promise((resolve) => setTimeout(resolve));
@@ -79,7 +79,7 @@ describe("CompleteTaskForm", () => {
   });
 
   it("should not close dialog when API returns false", async () => {
-    mockApiResponseS.onPost.mockResolvedValue(false);
+    mockApiResponseS.onPostFile.mockResolvedValue(false);
     component.ngOnInit();
     component.form.patchValue({ comments: "Failed", attachments: [] });
 

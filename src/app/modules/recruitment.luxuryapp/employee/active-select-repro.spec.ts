@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { NgSelectComponent } from "@ng-select/ng-select";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
@@ -40,29 +42,17 @@ describe("active boolean select repro", () => {
     fixture.detectChanges();
   });
 
-  function openAndSelect() {
-    const panel = document.querySelector(
-      ".p-select-overlay, .p-select-panel, .p-overlay",
-    ) as HTMLElement | null;
-    if (panel) {
-      const items = panel.querySelectorAll('p-select-item, li[role="option"]');
-      if (items.length) {
-        (items[items.length - 1] as HTMLElement).click();
-        fixture.detectChanges();
-        return;
-      }
-    }
-    const comp = document.querySelector("custom-input-select-signal") as any;
-    const web = document.querySelector("web-input-select") as any;
-  }
-
-  it("clicking Inactivo should set control to false", () => {
-    // open overlay
-    const select = document.querySelector("p-select") as HTMLElement;
-    (select as any).click();
+  it("selecting Inactivo should set control to false", () => {
+    const ngSelect = fixture.debugElement.query(
+      By.directive(NgSelectComponent),
+    ).componentInstance as NgSelectComponent;
+    ngSelect.open();
     fixture.detectChanges();
-    openAndSelect();
-    console.log("CONTROL VALUE AFTER CLICK:", host.control.value);
+    const inactivo = ngSelect.itemsList.items.find(
+      (i) => i.label === "Inactivo",
+    )!;
+    ngSelect.select(inactivo);
+    fixture.detectChanges();
     expect(host.control.value).toBe(false);
   });
 });

@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { ConnectivityService } from '../services/connectivity.service';
-import { ConsoleLoggerService } from '../services/console-logger.service';
+import { ConnectivityService } from '../../services/connectivity.service';
+import { ConsoleLoggerService } from '../../services/console-logger.service';
 import { authGuard } from './auth.guard';
 
 describe('authGuard', () => {

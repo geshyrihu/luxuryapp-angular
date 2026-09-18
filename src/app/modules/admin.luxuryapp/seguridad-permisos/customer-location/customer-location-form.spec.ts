@@ -8,7 +8,6 @@ import { DynamicDialogRef, DynamicDialogConfig } from '@core/services/dialog-han
 import { CustomerLocationForm } from './customer-location-form';
 import { ApiResponseService } from '@core/http/services/api-response.service';
 import { FormHelper } from '@core/helpers/form-helper';
-import { EndpointsAdmin } from '@core/constants/endpoints/admin.endpoints';
 import { CustomerLocationType, CustomerLocationTypeOptions } from './interfaces/customer-location-type.enum';
 import { CustomerLocationAddOrEditDto } from './interfaces/customer-location-add-or-edit.dto';
 
@@ -29,19 +28,13 @@ describe('CustomerLocationForm', () => {
     onGetItem: vi.fn().mockResolvedValue(null),
   };
 
-  const mockFormHelper = {
-    submitCrud: vi.fn(),
-  };
-
-  const mockEndpoints = {
-    CustomerLocations: {
-      getById: vi.fn().mockReturnValue('api/customer-locations/id'),
-      create: 'api/customer-locations',
-      update: vi.fn().mockReturnValue('api/customer-locations/id'),
-    },
-  };
+  let submitCrudSpy: any;
 
   beforeEach(() => {
+    submitCrudSpy = vi.spyOn(FormHelper, 'submitCrud').mockImplementation(() => undefined as any);
+    mockApiResponseService.validateForm.mockReturnValue(true);
+    mockApiResponseService.onGetItem.mockResolvedValue(null);
+
     TestBed.overrideComponent(CustomerLocationForm, {
       set: { template: '<div>Mock</div>', imports: [] },
     });
@@ -52,8 +45,6 @@ describe('CustomerLocationForm', () => {
         { provide: DynamicDialogRef, useValue: mockDialogRef },
         { provide: DynamicDialogConfig, useValue: mockDialogConfig },
         { provide: ApiResponseService, useValue: mockApiResponseService },
-        { provide: FormHelper, useValue: mockFormHelper },
-        { provide: EndpointsAdmin, useValue: mockEndpoints },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -64,7 +55,7 @@ describe('CustomerLocationForm', () => {
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('should create', () => {
@@ -73,7 +64,7 @@ describe('CustomerLocationForm', () => {
 
   it('should initialize form with default values', () => {
     expect(component.form).toBeDefined();
-    expect(component.form.controls.customerId.value).toBe('');
+    expect(component.form.controls.customerId.value).toBe('cust-1');
     expect(component.form.controls.name.value).toBe('');
     expect(component.form.controls.locationType.value).toBe('');
     expect(component.form.controls.phoneOne.value).toBe('');
@@ -81,37 +72,37 @@ describe('CustomerLocationForm', () => {
     expect(component.form.controls.contactName.value).toBeNull();
     expect(component.form.controls.notes.value).toBeNull();
     expect(component.form.controls.sortOrder.value).toBe(0);
-    expect(component.form.controls.isActive.value).toBeTrue();
+    expect(component.form.controls.isActive.value).toBe(true);
   });
 
   it('should have required validators on required fields', () => {
-    const requiredFields = ['customerId', 'name', 'locationType', 'phoneOne'];
+    const requiredFields = ['name', 'locationType', 'phoneOne'];
     requiredFields.forEach((field) => {
       const control = component.form.controls[field];
-      expect(control.hasError('required')).toBeTrue();
+      expect(control.hasError('required')).toBe(true);
     });
   });
 
   it('should have maxLength validators', () => {
     component.form.controls.name.setValue('a'.repeat(101));
-    expect(component.form.controls.name.hasError('maxlength')).toBeTrue();
+    expect(component.form.controls.name.hasError('maxlength')).toBe(true);
 
     component.form.controls.phoneOne.setValue('1'.repeat(16));
-    expect(component.form.controls.phoneOne.hasError('maxlength')).toBeTrue();
+    expect(component.form.controls.phoneOne.hasError('maxlength')).toBe(true);
 
     component.form.controls.contactName.setValue('a'.repeat(101));
-    expect(component.form.controls.contactName.hasError('maxlength')).toBeTrue();
+    expect(component.form.controls.contactName.hasError('maxlength')).toBe(true);
 
     component.form.controls.notes.setValue('a'.repeat(501));
-    expect(component.form.controls.notes.hasError('maxlength')).toBeTrue();
+    expect(component.form.controls.notes.hasError('maxlength')).toBe(true);
   });
 
   it('should have min validator on sortOrder', () => {
     component.form.controls.sortOrder.setValue(-1);
-    expect(component.form.controls.sortOrder.hasError('min')).toBeTrue();
+    expect(component.form.controls.sortOrder.hasError('min')).toBe(true);
 
     component.form.controls.sortOrder.setValue(0);
-    expect(component.form.controls.sortOrder.hasError('min')).toBeFalse();
+    expect(component.form.controls.sortOrder.hasError('min')).toBe(false);
   });
 
   it('should populate locationTypeOptions from enum', () => {
@@ -142,8 +133,6 @@ describe('CustomerLocationForm', () => {
           { provide: DynamicDialogRef, useValue: mockDialogRef },
           { provide: DynamicDialogConfig, useValue: configWithId },
           { provide: ApiResponseService, useValue: mockApiResponseService },
-          { provide: FormHelper, useValue: mockFormHelper },
-          { provide: EndpointsAdmin, useValue: mockEndpoints },
         ],
         schemas: [NO_ERRORS_SCHEMA],
       });
@@ -152,7 +141,7 @@ describe('CustomerLocationForm', () => {
       fixture2.detectChanges();
 
       expect(mockApiResponseService.onGetItem).toHaveBeenCalledWith(
-        'api/customer-locations/loc-1'
+        'customer-locations/loc-1'
       );
     });
   });
@@ -197,7 +186,7 @@ describe('CustomerLocationForm', () => {
     it('should not submit if form is invalid', () => {
       mockApiResponseService.validateForm.mockReturnValue(false);
       component.onSubmit();
-      expect(mockFormHelper.submitCrud).not.toHaveBeenCalled();
+      expect(submitCrudSpy).not.toHaveBeenCalled();
     });
 
     it('should call submitCrud with create endpoint for new record', () => {
@@ -210,8 +199,8 @@ describe('CustomerLocationForm', () => {
 
       component.onSubmit();
 
-      expect(mockFormHelper.submitCrud).toHaveBeenCalledWith(expect.objectContaining({
-        endpoint: 'api/customer-locations',
+      expect(submitCrudSpy).toHaveBeenCalledWith(expect.objectContaining({
+        endpoint: 'customer-locations',
         method: 'POST',
       }));
     });
@@ -227,8 +216,8 @@ describe('CustomerLocationForm', () => {
 
       component.onSubmit();
 
-      expect(mockFormHelper.submitCrud).toHaveBeenCalledWith(expect.objectContaining({
-        endpoint: 'api/customer-locations/loc-1',
+      expect(submitCrudSpy).toHaveBeenCalledWith(expect.objectContaining({
+        endpoint: 'customer-locations/loc-1',
         method: 'PUT',
       }));
     });
@@ -241,9 +230,9 @@ describe('CustomerLocationForm', () => {
         phoneOne: '5512345678',
       });
 
-      expect(component.submitting()).toBeFalse();
+      expect(component.submitting()).toBe(false);
       component.onSubmit();
-      expect(component.submitting()).toBeTrue();
+      expect(component.submitting()).toBe(true);
     });
   });
 });

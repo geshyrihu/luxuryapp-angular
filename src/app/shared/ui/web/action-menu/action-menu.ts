@@ -47,6 +47,12 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         gap: 0.25rem;
         padding: 0.375rem;
         min-width: 180px;
+        position: relative;
+        z-index: 1;
+        background-color: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        box-shadow: var(--ds-shadow-lg);
       }
       .menu-container button {
         width: 100%;

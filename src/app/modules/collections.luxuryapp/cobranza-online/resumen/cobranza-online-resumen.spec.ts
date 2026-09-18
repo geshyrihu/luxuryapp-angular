@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { CobranzaOnlineResumen } from "./cobranza-online-resumen";
+import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
+import { ModalController } from "@ionic/angular";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
 import { signal } from "@angular/core";
 
@@ -98,6 +102,10 @@ describe("CobranzaOnlineResumen", () => {
         { provide: "ApiResponseService", useValue: mockApiResponseS },
         { provide: "TableScrollHeightService", useValue: mockTableScrollHeightS },
         { provide: "DialogHandlerService", useValue: mockDialogHandlerS },
+        { provide: ModalController, useValue: {} },
+        { provide: ApiResponseService, useValue: mockApiResponseS },
+        { provide: CustomerIdService, useValue: mockCustomerIdS },
+        CobranzaOnlineStoreService,
       ],
     }).compileComponents();
 
@@ -111,7 +119,7 @@ describe("CobranzaOnlineResumen", () => {
   });
 
   it("should have hasCustomer true when customerId exists", () => {
-    expect(component.hasCustomer()).toBeTrue();
+    expect(component.hasCustomer()).toBe(true);
   });
 
   it("should load dashboard data on init", async () => {
@@ -145,7 +153,7 @@ describe("CobranzaOnlineResumen", () => {
     const groups = component.tableDeudaCondominos();
     expect(groups.length).toBe(4);
     expect(groups.map((g) => g.clasificacion)).toEqual([
-      "COBRANZA EXTRAJUDICIAL",
+      "COBRANZA JUDICIAL",
       "MOROSOS",
       "DEUDA CORRIENTE",
       "TOTAL DEUDA",

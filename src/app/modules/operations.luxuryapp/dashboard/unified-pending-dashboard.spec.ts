@@ -11,6 +11,8 @@ import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { of, Subject } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -40,7 +42,7 @@ describe("UnifiedPendingDashboard", () => {
       sizeMd: "600px",
       sizeLg: "900px",
     };
-    mockRouter = { navigateByUrl: vi.fn() };
+    mockRouter = { navigateByUrl: vi.fn(), events: new Subject() };
     mockAiService = { analyzeDashboard: vi.fn() };
     mockSwalService = {
       fire: vi.fn(),
@@ -63,6 +65,7 @@ describe("UnifiedPendingDashboard", () => {
         { provide: SwalService, useValue: mockSwalService },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
       ],
     });
     await TestBed.compileComponents();

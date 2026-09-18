@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { MessageService } from "@core/services/message.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -5,11 +6,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-toast",
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
     <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index: 99999">
       @for (msg of messageService.messages(); track msg.id) {
-        <div class="toast show app-toast" [class]="'app-toast-' + (msg.severity || 'info')" role="alert">
+        <div class="toast show app-toast" [ngClass]="'app-toast-' + (msg.severity || 'info')" role="alert">
           <div class="toast-header">
             <app-icon [icon]="icon(msg.severity)" class="me-2" />
             <strong class="me-auto">{{ msg.summary }}</strong>

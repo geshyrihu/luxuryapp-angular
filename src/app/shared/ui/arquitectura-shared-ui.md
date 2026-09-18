@@ -1,10 +1,10 @@
 Ruta: 📂 appsweb/angular > 🧩 src/app > 🤝 shared > 🎨 ui
 
-> 📅 Última Revisión: 06-jul-26
-> 🛡️ Estado: Vigente — librería consolidada; rollout de inputs adaptativos en curso
+> 📅 Última Revisión: 18-sep-26
+> 🛡️ Estado: Vigente — librería consolidada; web Bootstrap/native y móvil Ionic
 > 👤 Responsable: geshyrihu
 
-# 🎨 `shared/ui` — Librería de componentes (web PrimeNG ↔ móvil Ionic)
+# 🎨 `shared/ui` — Librería de componentes (web Bootstrap/native ↔ móvil Ionic)
 
 Documento maestro para **retomar en otra sesión**. Explica cómo está organizada la
 librería, cómo se usa, el patrón **adaptativo** de inputs, los estilos/overlays
@@ -14,7 +14,7 @@ móviles y las reglas que la mantienen sana.
 
 ## 1. 🎯 Resumen Ejecutivo
 
-La app tiene **dos UIs**: escritorio con **PrimeNG** y móvil con **Ionic**. Toda la
+La app tiene **dos UIs**: escritorio con **Bootstrap/shared UI** y móvil con **Ionic**. Toda la
 librería de componentes vive en **`src/app/shared/ui/`** (antes en `core/components`,
 ya eliminado). La regla central: **web y móvil son independientes por tipo de
 componente**; solo comparten **lógica** (bases `*.base.ts`). Una capa `adaptive/`
@@ -27,8 +27,8 @@ elige web o móvil en runtime.
 | Selección de plataforma | `PlatformService.isMobile()` (viewport, reactivo por `BreakpointObserver`) |
 
 > [!IMPORTANT]
-> **web/ nunca importa Ionic** · **mobile/ nunca importa PrimeNG** · **base/ no
-> importa ninguno** (solo `@angular/core`) · **adaptive/ es la única capa que cruza.**
+> **web/ nunca importa Ionic** · **mobile/ nunca importa web** · **base/ no
+> importa implementaciones de plataforma** · **adaptive/ es la única capa que cruza.**
 > Los `import type` se permiten en cualquier capa (se borran en compilación).
 
 ---
@@ -38,7 +38,7 @@ elige web o móvil en runtime.
 ```
 src/app/shared/ui/
 ├── base/            🧠 lógica compartida (BaseInputSignal, *.base.ts) — sin UI de plataforma
-├── web/             🖥️ implementaciones PrimeNG · selector app-* (interno: web-*)
+├── web/             🖥️ implementaciones Bootstrap/native · selector app-* (interno: web-*)
 ├── mobile/          📱 implementaciones Ionic   · selector ili-*
 ├── adaptive/        🔀 delegadores que eligen web/móvil en runtime · selector lx-* (o legacy)
 ├── shared/          🔧 agnósticos (app-icon, focus-trap, loader, kpi-card, …) — Angular puro
@@ -50,7 +50,7 @@ src/app/shared/ui/
 graph TD
     UI["shared/ui/"]
     UI --> BASE["base/ 🧠 lógica"]
-    UI --> WEB["web/ 🖥️ PrimeNG (app-*)"]
+    UI --> WEB["web/ 🖥️ Bootstrap/native (app-*)"]
     UI --> MOB["mobile/ 📱 Ionic (ili-*)"]
     UI --> ADA["adaptive/ 🔀 runtime (lx-* / legacy)"]
     UI --> SH["shared/ 🔧 agnósticos"]
@@ -68,7 +68,7 @@ graph TD
 
 | Capa | Tecnología | Selector | Ejemplo |
 |---|---|---|---|
-| 🖥️ Web | PrimeNG | `app-*` | `app-status-badge` |
+| 🖥️ Web | Bootstrap/native/shared | `app-*` | `app-status-badge` |
 | 📱 Móvil | Ionic | `ili-*` | `ili-status-badge` |
 | 🔀 Adaptativo (componentes) | elige runtime | `lx-*` | `lx-status-badge` |
 | 🔧 Agnóstico | Angular puro | `app-icon`, directivas | `app-icon`, `[appFocusTrap]` |
@@ -82,7 +82,7 @@ graph TD
 ### Botones (prefijos)
 | Prefijo | Qué es |
 |---|---|
-| `app-*` / `il-*` (label) / `iw-*` (icon) | Botones **web** (PrimeNG) |
+| `app-*` / `il-*` (label) / `iw-*` (icon) | Botones **web** (shared/Bootstrap) |
 | `ili-*` (label) / `ii-*` (icon) | Botones **móviles** (Ionic) |
 
 Los botones móviles aceptan `variant` semántico (`primary, secondary, outline,
@@ -94,14 +94,14 @@ solid`). Un `variant` desconocido cae a `fill`/`color` (no crashea). Ver
 
 ## 4. ✍️ Inputs adaptativos — el patrón (LO MÁS IMPORTANTE)
 
-Objetivo: un formulario renderiza **input PrimeNG en web** y **input Ionic en móvil**
+Objetivo: un formulario renderiza **input shared/Bootstrap en web** y **input Ionic en móvil**
 automáticamente, **sin cambiar el HTML del form** ni la lógica del `FormGroup`.
 
 ### 4.1 Anatomía (3 piezas por tipo)
 ```
 inputs/
 ├── base/base-input-signal.ts          🧠 CVA + inputs (control, label, required…) compartido
-├── web/input-<x>/input-<x>.ts          🖥️ Web<X> · selector web-input-<x>  (PrimeNG, interno)
+├── web/input-<x>/input-<x>.ts          🖥️ Web<X> · selector web-input-<x>  (Bootstrap/native, interno)
 ├── mobile/ion-input-<x>.ts             📱 IonInput<X> · selector ion-input-<x> (Ionic)
 ├── adaptive/input-<x>/input-<x>.ts     🔀 Input<X> · selector custom-input-<x>-signal (delegador CVA)
 └── web/custom-input-<x>-signal.ts      🌉 BRIDGE: re-exporta el adaptativo con la clase histórica
@@ -113,7 +113,7 @@ flowchart TD
     B["🌉 web/custom-input-text-signal.ts (bridge)<br/>export InputText as CustomInputTextSignal"]
     A["🔀 adaptive/input-text (InputText, CVA)"]
     P{"isMobile()?"}
-    W["🖥️ web-input-text (PrimeNG)"]
+    W["🖥️ web-input-text (Bootstrap/native)"]
     M["📱 ion-input-text (Ionic)"]
     F -->|import CustomInputTextSignal| B --> A --> P
     P -->|no| W
@@ -179,50 +179,46 @@ forms** (mismo import, mismo selector en el HTML) y todos se vuelven adaptativos
 `DialogHandlerService.openDialog(...)` / `openDialogCustom(...)` ramifican por
 plataforma:
 
-- **Web** → PrimeNG `DynamicDialog` (como siempre).
+- **Web** → `NgbModal` mediante `DialogHandlerService`.
 - **Móvil** (`PlatformService.isMobile()`) → `ion-modal` nativo vía
   `ModalController`, presentando el wrapper `IonicDialogModal`
   (`core/services/ionic-dialog-modal.ts`).
 
 El wrapper renderiza el **mismo** componente de formulario (`ngComponentOutlet`)
-dentro de `ion-header`+`ion-content`, y le inyecta —vía `Injector.create`— **stubs**
-de `DynamicDialogConfig` (`{ data, header }`) y `DynamicDialogRef` (`close()` →
+dentro de `ion-header`+`ion-content`, y le inyecta —vía `Injector.create`— contratos
+internos compatibles `DynamicDialogConfig` (`{ data, header }`) y `DynamicDialogRef` (`close()` →
 `modalCtrl.dismiss(result)`, más `onClose`/`onDestroy`). Así los **~170 forms no
 cambian**: siguen leyendo `config.data` y llamando `ref.close(true)`. El `Promise`
 de `openDialog` resuelve con `modal.onDidDismiss().data`.
 
 > [!IMPORTANT]
-> **Por qué ion-modal y no el diálogo PrimeNG en móvil.** `<ion-app>` tiene
+> **Por qué ion-modal y no un modal web en móvil.** `<ion-app>` tiene
 > `contain: layout size style` → contexto de apilamiento en z-index 0. Los overlays
 > de Ionic (action-sheet del `ion-select`, pickers) se montan dentro de `ion-app`;
-> con el diálogo PrimeNG en `<body>` (z-index 1100+) quedaban **detrás**. Con el
+> con overlays web montados en `<body>` podían quedar **detrás**. Con el
 > form dentro de un `ion-modal`, select y modal viven en el **mismo** sistema de
 > overlays de Ionic → el action-sheet abre por encima, sin trucos de z-index.
 >
-> El parche CSS previo (`body.p-overflow-hidden ion-app { contain: none !important }`
-> en `styles/mobile/_ionic-rn-theme.scss`) queda como red de seguridad para
-> cualquier `DynamicDialog` que aún se abra en móvil, pero el camino principal ya no
-> lo necesita. `DynamicDialogConfig` **NO** soporta `appendTo` (se probó, PrimeNG lo
-> ignora): por eso no se resolvió montando el diálogo en otro lado.
+> El camino principal ya no depende de overlays externos. `DynamicDialogConfig` y
+> `DynamicDialogRef` son nombres de contratos internos conservados para no tocar
+> los formularios consumidores.
 >
-> El wrapper vive en `core/services/` (no en `shared/ui`) porque necesita importar
-> los tokens de PrimeNG (`DynamicDialogConfig/Ref`) **como valores** para proveerlos
-> por DI — lo que violaría la frontera `mobile/` del audit. Es infraestructura de
-> puente, co-locada con `DialogHandlerService`.
+> El wrapper vive en `core/services/` porque concentra la infraestructura de modal
+> y sus contratos de compatibilidad compartidos por web y mobile.
 
-### 5.3 Panel del `p-select` en web
-PrimeNG 22 inyecta en runtime `.p-component.p-select-overlay` con un surface oscuro;
-en `styles/web/_prime-dropdown.scss` se fuerza `background: var(--ds-bg-surface)
-!important` en el panel y `transparent` en las opciones.
+### 5.3 Paneles de select en web
+Los selects web usan implementaciones shared/Bootstrap. Sus paneles deben respetar
+`--ds-bg-surface`, `--on-surface` y `--ds-border-default`, sin depender de clases
+o estilos específicos de una librería UI retirada.
 
 ---
 
 ## 6. 🔒 Fronteras + estilos por capas
 
-- **Audit**: `npm run audit:ui` falla si `mobile/` importa PrimeNG/web, `web/` importa
-  Ionic/mobile, o `base/` importa PrimeNG/Ionic. `adaptive/` exento. `import type` permitido.
+- **Audit**: `npm run audit:ui` falla si `mobile/` importa web, `web/` importa
+  Ionic/mobile, o `base/` importa implementaciones de plataforma. `adaptive/` exento.
 - **Estilos** (`src/styles/`, misma filosofía): `core/` (tokens SSOT) · `web/`
-  (PrimeNG + clases DS) · `mobile/` (Ionic: ionic-rn-theme, ili-buttons, header) ·
+  (Bootstrap/native + clases DS) · `mobile/` (Ionic: ionic-rn-theme, ili-buttons, header) ·
   `base/` (global, dark) · `shared/` (cdk, toast, auth, sidebar). Tokens móviles
   namespaced `--ds-m-*`.
 
@@ -238,7 +234,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 ```html
 <custom-input-text-signal [control]="form.controls.code" label="Código" />
 ```
-→ Se ve PrimeNG en web, Ionic en móvil, automáticamente.
+→ Se ve shared/Bootstrap en web, Ionic en móvil, automáticamente.
 
 **Usar un componente web/móvil/adaptativo directo:**
 ```ts
@@ -256,9 +252,13 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 - [x] `audit:ui` de fronteras en `npm run lint`.
 - [x] Estilos por capas (`src/styles`).
 - [x] Overhaul móvil de botones + action-sheet nativo.
+- [x] Web desacoplada de PrimeNG: Bootstrap/native/shared UI.
+- [x] Dialogs web sobre `NgbModal`; dialogs mobile sobre `ion-modal`.
+- [x] Editor, rating, charts, carousel y gallery usan integraciones actuales
+  documentadas en `design-system/luxuryapp-inspections/MASTER.md`.
 - [x] Inputs adaptativos: **text, select, number, textarea, checkbox**.
-- [x] Fixes runtime: select-detrás (appendTo ion-app), panel navy web, warning disabled,
-  crash de variant, NG0100 SoporteOrdenServicio.
+- [x] Fixes runtime: overlays mobile, warning disabled, crash de variant y
+  NG0100 SoporteOrdenServicio.
 - [ ] Inputs adaptativos restantes: currency, password, multiselect, select-bool, time,
   search, switch/toggle.
 - [ ] **date / autocomplete / file** (valor complejo — pase dedicado).
@@ -271,8 +271,8 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 ## 9. 🧯 Gotchas / troubleshooting
 | Síntoma | Causa / Fix |
 |---|---|
-| Overlay Ionic (select/picker) detrás del diálogo en móvil | **Resuelto en Fase 3**: en móvil el form se abre en `ion-modal` (`IonicDialogModal`), no en `DynamicDialog` → select y modal comparten overlay Ionic. Fallback CSS: `body.p-overflow-hidden ion-app { contain: none }`. |
-| Panel `p-select` oscuro o **opciones invisibles** en web | `_prime-dropdown.scss`: `background`/`color` con `!important` en `.p-select-overlay` y `.p-select-option` (PrimeNG 22 inyecta panel oscuro + texto claro en runtime). |
+| Overlay Ionic (select/picker) detrás del diálogo en móvil | Resuelto: los forms móviles se abren en `ion-modal` mediante `IonicDialogModal`; select y modal comparten overlay Ionic. |
+| Panel de select con contraste incorrecto en web | Revisar tokens shared/Bootstrap: `--ds-bg-surface`, `--on-surface` y `--ds-border-default`. |
 | Input Ionic sin recuadro / texto pegado | Falta `mode="md"` o el theme le mete border manual (ver §5.1). |
 | `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil. |
 | `NG0100 ExpressionChanged…` con datos async | `@if` que voltea al asignar en `.then()`; `cdr.detectChanges()` tras asignar o usar signals. |

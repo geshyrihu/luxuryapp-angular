@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FileExplorerService } from './file-explorer.service';
-import { ApiResponseService } from './api-response.service';
+import { ApiResponseService } from '../http/services/api-response.service';
 
 describe('FileExplorerService', () => {
   let service: FileExplorerService;

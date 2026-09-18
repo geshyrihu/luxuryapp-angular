@@ -135,8 +135,8 @@ export class ProductAdd implements OnInit {
       });
   }
 
-  searchProducts(event: { query: string }): void {
-    const query = event.query?.trim() ?? "";
+  searchProducts(event: { query?: string; term?: string }): void {
+    const query = (event.term ?? event.query ?? "").trim();
     this.form.patchValue({
       productName: query,
       productoId: null,
@@ -224,4 +224,3 @@ export class ProductAdd implements OnInit {
     return typeof item === "string" ? item : item.displayName;
   }
 }
-

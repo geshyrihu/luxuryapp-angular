@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FlatpickrDefaults } from 'angularx-flatpickr';
 import { WebInputDate } from './input-date';
 
 describe('WebInputDate', () => {
@@ -10,7 +11,10 @@ describe('WebInputDate', () => {
     await TestBed.configureTestingModule({
       imports: [WebInputDate],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+      providers: [{ provide: FlatpickrDefaults, useClass: FlatpickrDefaults }],
+    });
+    TestBed.overrideComponent(WebInputDate, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(WebInputDate);
     component = fixture.componentInstance;

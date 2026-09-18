@@ -6,6 +6,10 @@ describe('Carousel', () => {
   let fixture: ComponentFixture<Carousel>;
 
   beforeEach(async () => {
+    // ngx-owl-carousel-o no compila bajo JIT (vitest); se sustituye la plantilla.
+    TestBed.overrideComponent(Carousel, {
+      set: { template: '<div></div>', imports: [] },
+    });
     await TestBed.configureTestingModule({
       imports: [Carousel],
     }).compileComponents();

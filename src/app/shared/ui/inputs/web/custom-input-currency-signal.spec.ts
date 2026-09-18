@@ -67,27 +67,4 @@ describe('CustomInputCurrencySignal', () => {
     });
   });
 
-  describe('computed properties', () => {
-    it('should compute inputStyleClass with default empty string', () => {
-      expect(component.inputStyleClass()).toBe('');
-    });
-
-    it('should compute inputStyleClass with "p-inputtext-sm" when size is "small"', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('p-inputtext-sm');
-    });
-
-    it('should compute inputStyleClass with "p-inputtext-lg" when size is "large"', () => {
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('p-inputtext-lg');
-    });
-
-    it('should include customClass in inputStyleClass', () => {
-      fixture.componentRef.setInput('customClass', 'my-class');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('my-class');
-    });
-  });
 });

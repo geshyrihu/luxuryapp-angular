@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ export type TriState = true | false | null;
 @Component({
   selector: "app-tristate-switch",
 
-  imports: [],
+  imports: [NgClass],
   template: `
     <div
       class="tri-root"
@@ -38,7 +39,7 @@ export type TriState = true | false | null;
           [disabled]="disabled()"
           (click)="cycle()"
         >
-          <span class="tri-thumb" [class]="thumbClass()">
+          <span class="tri-thumb" [ngClass]="thumbClass()">
             @if (value() === true) {
               <span class="tri-icon">✓</span>
             } @else if (value() === null) {

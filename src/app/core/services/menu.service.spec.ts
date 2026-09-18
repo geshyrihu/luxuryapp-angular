@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { MenuService } from './menu.service';
-import { ApiResponseService } from './api-response.service';
-import { AuthService } from './auth.service';
+import { ApiResponseService } from '../http/services/api-response.service';
+import { AuthService } from '../auth/services/auth.service';
 import { ConsoleLoggerService } from './console-logger.service';
-import { CustomerIdService } from './customer-id.service';
+import { CustomerIdService } from '../auth/services/customer-id.service';
 import { signal } from '@angular/core';
 
 describe('MenuService', () => {

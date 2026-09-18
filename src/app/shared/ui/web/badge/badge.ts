@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,9 +12,9 @@ import { BadgeBase } from "@ui/base/badge.base";
 @Component({
   selector: "app-badge",
 
-  imports: [],
+  imports: [NgClass],
   template: `
-    <span class="badge" [class]="'app-badge-' + color() + ' app-badge-size-' + size()">{{ displayValue() }}</span>
+    <span class="badge" [ngClass]="'app-badge-' + color() + ' app-badge-size-' + size()">{{ displayValue() }}</span>
   `,
   styles: [
     `

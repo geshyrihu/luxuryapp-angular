@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,9 +10,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-steps",
 
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
-    <ol class="app-steps" [class]="styleClass()">
+    <ol class="app-steps" [ngClass]="styleClass()">
       @for (item of model() ?? []; track $index; let i = $index; let last = $last) {
         <li
           class="app-steps-item"

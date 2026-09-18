@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,13 +27,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
  */
 @Component({
   selector: "app-menu",
-  imports: [NgTemplateOutlet, AppIcon],
+  imports: [NgTemplateOutlet, AppIcon, NgClass],
   template: `
     <span #trigger class="app-menu-trigger" (click)="toggle()">
       <ng-content select="[appMenuTrigger]" />
     </span>
     <ng-template #panelTpl>
-      <div class="dropdown-menu show app-menu-panel" [class]="styleClass()">
+      <div class="dropdown-menu show app-menu-panel" [ngClass]="styleClass()">
         @for (item of model() ?? []; track $index) {
           @if (item.separator) {
             <div class="dropdown-divider"></div>

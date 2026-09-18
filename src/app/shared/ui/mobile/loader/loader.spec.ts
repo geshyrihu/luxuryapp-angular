@@ -6,13 +6,8 @@ import { Loader } from "./loader";
 
 // Mock de Ionic para evitar errores de Stencil en tests
 vi.mock("@ionic/angular", async () => {
-  const { Component } = await import("@angular/core");
-  @Component({
-    selector: "ion-spinner",
-    template: "",
-  })
-  class IonSpinnerMock {}
-  return { IonSpinner: IonSpinnerMock };
+  const { IonicMocks } = await import("@core/testing/ionic-mocks");
+  return { ...IonicMocks };
 });
 
 describe("Loader Component", () => {

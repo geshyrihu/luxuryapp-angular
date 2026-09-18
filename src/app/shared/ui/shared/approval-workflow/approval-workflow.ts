@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,13 +21,13 @@ export interface ApprovalNode {
 @Component({
   selector: "app-approval-workflow",
 
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
     <div class="approval-root">
       @for (node of nodes(); track node.id; let i = $index) {
-        <div class="approval-node" [class]="'approval-' + node.status">
+        <div class="approval-node" [ngClass]="'approval-' + node.status">
           <div class="approval-node-marker">
-            <div class="approval-dot" [class]="'approval-dot-' + node.status">
+            <div class="approval-dot" [ngClass]="'approval-dot-' + node.status">
               <app-icon [icon]="statusIcon(node.status)" class="text-xs" />
             </div>
             @if (i < nodes().length - 1) {
@@ -41,7 +42,7 @@ export interface ApprovalNode {
               <strong>{{ node.label }}</strong>
               <span
                 class="approval-badge"
-                [class]="'approval-badge-' + node.status"
+                [ngClass]="'approval-badge-' + node.status"
               >
                 {{ statusLabel(node.status) }}
               </span>

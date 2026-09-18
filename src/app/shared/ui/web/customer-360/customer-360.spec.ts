@@ -14,6 +14,7 @@ describe('AppCustomer360', () => {
 
     fixture = TestBed.createComponent(AppCustomer360);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', { name: 'Test' });
     fixture.detectChanges();
   });
 

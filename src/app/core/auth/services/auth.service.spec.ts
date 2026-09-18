@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { ConsoleLoggerService } from './console-logger.service';
+import { ConsoleLoggerService } from '../../services/console-logger.service';
 import { CustomerIdService } from './customer-id.service';
-import { SignalRService } from './signalr.service';
-import { Endpoints } from "@core/constants/endpoints";
+import { SignalRService } from '../../services/signalr.service';
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 describe('AuthService', () => {
   let service: AuthService;

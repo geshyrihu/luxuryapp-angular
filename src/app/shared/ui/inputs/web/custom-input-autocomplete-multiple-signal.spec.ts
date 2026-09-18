@@ -45,14 +45,14 @@ describe('CustomInputAutoMultiple', () => {
       expect(component.getSizeClass()).toBe('');
     });
 
-    it('should return p-inputtext-sm when size is small', () => {
+    it('should return ng-select-sm when size is small', () => {
       fixture.componentRef.setInput('size', 'small');
-      expect(component.getSizeClass()).toBe('p-inputtext-sm');
+      expect(component.getSizeClass()).toBe('ng-select-sm');
     });
 
-    it('should return p-inputtext-lg when size is large', () => {
+    it('should return ng-select-lg when size is large', () => {
       fixture.componentRef.setInput('size', 'large');
-      expect(component.getSizeClass()).toBe('p-inputtext-lg');
+      expect(component.getSizeClass()).toBe('ng-select-lg');
     });
   });
 
@@ -63,7 +63,7 @@ describe('CustomInputAutoMultiple', () => {
         { label: 'Banana', value: 2 },
         { label: 'Apricot', value: 3 },
       ]);
-      component.search({ query: 'ap' });
+      component.search({ term: 'ap' });
       expect(component.filteredData).toEqual([
         { label: 'Apple', value: 1 },
         { label: 'Apricot', value: 3 },
@@ -74,7 +74,7 @@ describe('CustomInputAutoMultiple', () => {
       fixture.componentRef.setInput('data', [
         { label: 'Apple', value: 1 },
       ]);
-      component.search({ query: 'xyz' });
+      component.search({ term: 'xyz' });
       expect(component.filteredData).toEqual([]);
     });
   });

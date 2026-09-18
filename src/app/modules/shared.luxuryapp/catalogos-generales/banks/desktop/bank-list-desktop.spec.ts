@@ -24,6 +24,7 @@ describe('BankListDesktop', () => {
 
     fixture = TestBed.createComponent(BankListDesktop);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', mockBanks);
     fixture.detectChanges();
   });
 

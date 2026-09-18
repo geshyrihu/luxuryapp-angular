@@ -14,6 +14,10 @@ describe('PivotTable', () => {
 
     fixture = TestBed.createComponent(PivotTable);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', []);
+    fixture.componentRef.setInput('rows', []);
+    fixture.componentRef.setInput('columns', { field: 'f', label: 'F' });
+    fixture.componentRef.setInput('values', []);
     fixture.detectChanges();
   });
 

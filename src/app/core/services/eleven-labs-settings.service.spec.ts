@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ElevenLabsSettingsService } from './eleven-labs-settings.service';
-import { ApiResponseService } from './api-response.service';
+import { ApiResponseService } from '../http/services/api-response.service';
 import { StorageService } from './storage.service';
 
 describe('ElevenLabsSettingsService', () => {

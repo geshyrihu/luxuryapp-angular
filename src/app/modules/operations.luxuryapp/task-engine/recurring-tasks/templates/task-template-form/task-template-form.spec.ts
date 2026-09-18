@@ -73,7 +73,7 @@ describe("TaskTemplateForm", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
-      "ApplicationRoles",
+      "application-roles",
     );
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
       "customers-active",

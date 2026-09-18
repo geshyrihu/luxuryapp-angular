@@ -11,6 +11,7 @@ describe('Breadcrumbs', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(Breadcrumbs);
+    fixture.componentRef.setInput('items', [{ label: 'Inicio' }]);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

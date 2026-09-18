@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +9,11 @@ import { SkeletonBase } from "@ui/base/skeleton.base";
 @Component({
   selector: "app-skeleton",
 
-  imports: [],
+  imports: [NgClass],
   template: `
     <div
       class="ds-skeleton"
-      [class]="styleClass()"
+      [ngClass]="styleClass()"
       [style.width]="width()"
       [style.height]="height()"
       [style.border-radius]="borderRadius()"

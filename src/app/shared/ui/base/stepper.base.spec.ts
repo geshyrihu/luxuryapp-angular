@@ -20,7 +20,7 @@ describe("StepperBase", () => {
   }
 
   it("lastStep reflects steps length", () => {
-    expect(make().componentInstance.lastStep).toBe(3);
+    expect(make().componentInstance.lastStep()).toBe(3);
   });
 
   it("next advances but clamps at last", () => {

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { SignalRService } from './signalr.service';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth/services/auth.service';
 import { ConsoleLoggerService } from './console-logger.service';
 
 describe('SignalRService', () => {

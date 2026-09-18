@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DialogHandlerService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { CustomerIdService } from '@core/auth/services/customer-id.service';
 import { ApiResponseService } from '@core/http/services/api-response.service';
@@ -12,14 +12,13 @@ describe('InspeccionesForm', () => {
   let fixture: ComponentFixture<InspeccionesForm>;
   let apiResponseServiceMock: jasmine.SpyObj<ApiResponseService>;
   let dialogRefMock: jasmine.SpyObj<DynamicDialogRef>;
-  let customerIdServiceMock: jasmine.SpyObj<CustomerIdService>;
+  let customerIdServiceMock: { customerId: () => string };
 
   beforeEach(async () => {
     apiResponseServiceMock = jasmine.createSpyObj('ApiResponseService', ['onGetItem', 'onGetEnumSelectItem']);
+    apiResponseServiceMock.onGetEnumSelectItem.and.returnValue(Promise.resolve([]));
     dialogRefMock = jasmine.createSpyObj('DynamicDialogRef', ['close']);
-    customerIdServiceMock = jasmine.createSpyObj('CustomerIdService', [], {
-      customerId: () => 'test-customer-id'
-    });
+    customerIdServiceMock = { customerId: () => 'test-customer-id' };
 
     await TestBed.configureTestingModule({
       imports: [InspeccionesForm, ReactiveFormsModule],
@@ -181,7 +180,7 @@ describe('InspeccionesForm', () => {
   describe('onValidateFrequency - Frequency Validation', () => {
     it('should clear weeklyDays when frequency changes to daily', () => {
       component.form.controls.frequency.setValue('weekly');
-      component.weeklyDays.push({ value: 1 } as any);
+      component.weeklyDays.push(new FormControl(1));
 
       component.onValidateFrequency('daily');
 

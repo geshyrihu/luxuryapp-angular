@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DialogHandlerService } from '@core/services/dialog-handler.service';
 import { WebButtonIconViewPdf } from './button-view-pdf';
 
 describe('WebButtonIconViewPdf', () => {
@@ -10,7 +11,10 @@ describe('WebButtonIconViewPdf', () => {
     await TestBed.configureTestingModule({
       imports: [WebButtonIconViewPdf],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+      providers: [{ provide: DialogHandlerService, useValue: { openDialog: vi.fn() } }],
+    });
+    TestBed.overrideComponent(WebButtonIconViewPdf, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(WebButtonIconViewPdf);
     component = fixture.componentInstance;

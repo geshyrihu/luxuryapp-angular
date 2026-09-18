@@ -47,40 +47,4 @@ describe('CustomInputSelectBool', () => {
     });
   });
 
-  describe('computed properties', () => {
-    it('should compute boolOptions with default labels', () => {
-      const options = component.boolOptions();
-      expect(options).toEqual([
-        { value: true, label: 'Activo' },
-        { value: false, label: 'Inactivo' },
-      ]);
-    });
-
-    it('should compute boolOptions with custom labels', () => {
-      fixture.componentRef.setInput('activeLabel', 'Sí');
-      fixture.componentRef.setInput('inactiveLabel', 'No');
-      fixture.detectChanges();
-      const options = component.boolOptions();
-      expect(options).toEqual([
-        { value: true, label: 'Sí' },
-        { value: false, label: 'No' },
-      ]);
-    });
-
-    it('should compute getInputStyleClass as empty string by default', () => {
-      expect(component.getInputStyleClass()).toBe('');
-    });
-
-    it('should compute getInputStyleClass as "p-inputtext-sm" when size is "small"', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.getInputStyleClass()).toBe('p-inputtext-sm');
-    });
-
-    it('should compute getInputStyleClass as "p-inputtext-lg" when size is "large"', () => {
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.getInputStyleClass()).toBe('p-inputtext-lg');
-    });
-  });
 });

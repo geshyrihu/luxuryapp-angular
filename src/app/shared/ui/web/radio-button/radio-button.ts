@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,11 +11,11 @@ import { RadioButtonBase } from "@ui/base/radio-button.base";
 @Component({
   selector: "app-radio-button",
 
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   template: `<input
     type="radio"
     class="form-check-input"
-    [class]="customClass()"
+    [ngClass]="customClass()"
     [value]="value()"
     [formControl]="control()"
     [id]="inputId()"

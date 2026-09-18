@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
 @Component({
   selector: "app-inventory-level",
 
-  imports: [AppIcon],
+  imports: [AppIcon, NgClass],
   template: `
     <div class="inv-root">
       <div class="inv-header">
@@ -30,7 +31,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
             <span class="inv-sku">{{ sku() }}</span>
           }
         </div>
-        <div class="inv-badge" [class]="'inv-badge-' + status()">
+        <div class="inv-badge" [ngClass]="'inv-badge-' + status()">
           <app-icon [icon]="statusIcon()" class="text-xs" />
           {{ statusLabel() }}
         </div>
@@ -51,7 +52,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
           <div
             class="inv-bar-fill"
             [style.width.%]="clampedPct()"
-            [class]="'inv-fill-' + status()"
+            [ngClass]="'inv-fill-' + status()"
           ></div>
         </div>
         <div class="inv-bar-labels">

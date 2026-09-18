@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { OrdenCompraService } from './orden-compra.service';
-import { ApiResponseService } from './api-response.service';
+import { ApiResponseService } from '../http/services/api-response.service';
 
 describe('OrdenCompraService', () => {
   let service: OrdenCompraService;

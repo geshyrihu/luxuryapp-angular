@@ -14,6 +14,7 @@ describe('MobileStepper', () => {
 
     fixture = TestBed.createComponent(MobileStepper);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('steps', []);
     fixture.detectChanges();
   });
 

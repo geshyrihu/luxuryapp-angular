@@ -51,7 +51,7 @@ describe("TarjetaProducto", () => {
 
     component.ngOnInit();
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("Productos/prod-1");
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("productos/prod-1");
   });
 
   it("ngOnInit should set producto from api result", async () => {

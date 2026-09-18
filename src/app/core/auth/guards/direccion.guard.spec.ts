@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
-import { ApplicationRole } from '../enums/asp-net-roles.enum';
+import { ApplicationRole } from '../../enums/asp-net-roles.enum';
 import { AuthService } from '../services/auth.service';
 import { direccionGuard } from './direccion.guard';
 

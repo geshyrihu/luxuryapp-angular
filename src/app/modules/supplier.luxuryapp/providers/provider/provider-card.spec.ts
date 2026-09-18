@@ -58,7 +58,7 @@ describe("TarjetaProveedor", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
-      "Providers/prov-001/cust-123",
+      "providers/prov-001/cust-123",
     );
     expect(component.model).toEqual(mockResult);
     expect(component.urlLogo).toBe("photo.jpg");

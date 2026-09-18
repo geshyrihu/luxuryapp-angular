@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { SecurityService } from './security.service';
-import { ConsoleLoggerService } from './console-logger.service';
-import { StorageService } from './storage.service';
+import { ConsoleLoggerService } from '../../services/console-logger.service';
+import { StorageService } from '../../services/storage.service';
 
 describe('SecurityService', () => {
   let service: SecurityService;
