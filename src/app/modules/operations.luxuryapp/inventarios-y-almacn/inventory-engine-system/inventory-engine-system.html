@@ -38,31 +38,31 @@
                 <div class="d-flex justify-content-center">
                   <iw-button
                     lxTooltip="Servicios calendarizados"
-                    class="p-button-outlined p-button-primary p-button-sm"
+                    class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:calendar-today"
                     (clicked)="showModalListOrderService(item.id)"
                   />
                   <iw-button
                     lxTooltip="Historico de servicios"
-                    class="p-button-outlined p-button-primary p-button-sm"
+                    class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:palette"
                     (clicked)="onServiceHistory(item.id)"
                   />
                   <iw-button
                     lxTooltip="Bitacora"
-                    class="p-button-outlined p-button-warning p-button-sm"
+                    class="btn btn-outline-warning btn-sm"
                     iconClass="material-symbols-light:book"
                     (clicked)="onBitacoraIndividual(item.id)"
                   />
                   <iw-button
                     lxTooltip="Ficha tócnica"
-                    class="p-button-outlined p-button-primary p-button-sm"
+                    class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:book"
                     (clicked)="showModalFichatecnica(item)"
                   />
                   <iw-button
                     iconClass="material-symbols-light:edit"
-                    class="p-button-outlined p-button-secondary p-button-sm"
+                    class="btn btn-outline-secondary btn-sm"
                     lxTooltip="Editar"
                     (clicked)="
                             onModalForm({
