@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
@@ -30,7 +30,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
     AppSorticon,
     AppAvatar,
     PageTitleReportMaintenance,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class ReportTicket {

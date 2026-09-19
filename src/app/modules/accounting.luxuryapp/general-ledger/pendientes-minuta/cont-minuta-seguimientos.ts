@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -27,7 +27,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     WebButtonIconConfirm,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     AppTable,
 

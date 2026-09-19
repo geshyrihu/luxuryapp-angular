@@ -6,15 +6,15 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FechasFiltro } from "@core/interfaces/fechas-filtro.interface";
 import { DateService } from "@core/services/date.service";
@@ -26,7 +26,7 @@ import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-eval
   selector: "app-evaluacion-areas",
   templateUrl: "./resultado-general-evaluacion-areas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [PrimeNgCustomTableEmptyMessage, AppTable, AppSortableColumn, AppSorticon, PrimeNgCustomCaption],
+  imports: [TableEmptyMessage, AppTable, AppSortableColumn, AppSorticon, TableCaption],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -40,7 +40,7 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

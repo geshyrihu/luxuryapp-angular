@@ -2,7 +2,7 @@
   <app-table
     #dt
     [value]="dataSignal()"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [paginator]="true"
     [globalFilterFields]="globalFilterFields()"
     [rowsPerPageOptions]="rowsPerPageOptions"
@@ -13,7 +13,7 @@
     groupRowsBy="employeeName"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         (add)="onModalForm({ id: '', title: 'Agregar Beneficiario' })"
         [dt]="dt"
       />
@@ -56,11 +56,11 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="5" />
+      <app-table-empty-message [colspan]="5" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="dataSignal()" />
+      <app-table-footer [data]="dataSignal()" />
     </ng-template>
   </app-table>
 

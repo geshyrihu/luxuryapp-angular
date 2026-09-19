@@ -8,15 +8,15 @@ import {
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -31,14 +31,14 @@ import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-or
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
 
     AppSortableColumn,
 
     AppSorticon,
     NgbTooltipModule,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class ServiceHistoryMachinery implements OnInit {
@@ -51,7 +51,7 @@ export class ServiceHistoryMachinery implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 

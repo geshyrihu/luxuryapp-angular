@@ -8,16 +8,16 @@ import {
 } from "@angular/core";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -34,13 +34,13 @@ import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     DataViewMobile,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
 })
 export class CalendarioMaestroEquipo implements OnInit {
@@ -53,7 +53,7 @@ export class CalendarioMaestroEquipo implements OnInit {
     globalFilterFields(this.dataSignal()),
   );
   loading = signal(true);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

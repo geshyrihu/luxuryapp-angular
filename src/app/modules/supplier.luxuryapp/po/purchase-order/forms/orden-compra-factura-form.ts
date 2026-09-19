@@ -15,7 +15,7 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip"; // Added
 import { AppTable } from "@ui/web/table/table";
@@ -43,7 +43,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
     CustomInputFile,

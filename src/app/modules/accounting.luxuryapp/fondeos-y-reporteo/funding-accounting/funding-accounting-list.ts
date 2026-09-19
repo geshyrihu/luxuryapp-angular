@@ -11,9 +11,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
@@ -22,8 +22,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FaqsFondeo } from "@accounting.luxuryapp/fondeos-y-reporteo/funding/faqs-fondeo";
@@ -42,9 +42,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppSortableColumn,
 
     AppSorticon,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableEmptyMessage,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -61,7 +61,7 @@ export class FundingAccountingList {
   loading = signal(true);
   dataSignal = signal<any[]>([]);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const current = this.dataSignal();

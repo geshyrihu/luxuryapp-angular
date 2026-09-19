@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { tablePrimeNgRows } from "@core/helpers/table-primeng-option";
+import { tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
@@ -24,7 +24,7 @@ export class TaskMessageReportResumen {
 
   data: any;
   status: number = this.TaskGroupService.taskGroupMessageStatus;
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   onLoadData(startDate: string, endDate: string) {

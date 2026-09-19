@@ -20,7 +20,7 @@ cb_departamento; track item) {
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [showAdd]="false"
       [dt]="dt"
@@ -124,7 +124,7 @@ cb_departamento; track item) {
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
 </app-table>
 

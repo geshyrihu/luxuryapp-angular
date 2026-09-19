@@ -17,8 +17,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
@@ -70,7 +70,7 @@ export class EspejoAspelExtraordinarios {
   allProyectos = signal<CuentaAspelTercerNivelDTO[]>([]);
 
   globalFilterFields = signal<string[]>([]);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   extraordinarias = computed(() =>

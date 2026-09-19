@@ -11,7 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {

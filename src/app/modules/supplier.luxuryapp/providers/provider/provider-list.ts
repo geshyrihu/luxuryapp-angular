@@ -29,8 +29,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -100,7 +100,7 @@ export class ListProvider implements OnInit {
       mobileSearchBlob: this.buildMobileSearchBlob(item),
     })),
   );
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   loading = signal(true);
 

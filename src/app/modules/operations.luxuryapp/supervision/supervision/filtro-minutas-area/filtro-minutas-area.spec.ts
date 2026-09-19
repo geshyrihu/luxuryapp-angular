@@ -69,7 +69,7 @@ describe("FiltroMinutasArea", () => {
     expect(component.meetingId).toBe("meet-1");
     expect(component.customerName).toBe("Test Customer");
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "Dashboard/FiltroMinutasArea/meet-1/1/0",
+      "dashboard/filtro-minutas-area/meet-1/1/0",
     );
   });
 
@@ -84,7 +84,7 @@ describe("FiltroMinutasArea", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "Dashboard/FiltroMinutasArea/meet-2/2/1",
+      "dashboard/filtro-minutas-area/meet-2/2/1",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });

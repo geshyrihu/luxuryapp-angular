@@ -5,7 +5,7 @@ import {
   computed,
   inject,
 } from "@angular/core";
-import { DynamicDialogConfig } from "@ui/web/primeng-dynamicdialog/primeng-dynamicdialog";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import type { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 

@@ -5,7 +5,7 @@
     <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       [value]="dataSignal()"
@@ -14,7 +14,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+        <app-table-caption [showAdd]="false" [dt]="dt" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -74,10 +74,10 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="7" />
+        <app-table-empty-message [colspan]="7" />
       </ng-template>
       <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="dataSignal()" />
+        <app-table-footer [data]="dataSignal()" />
       </ng-template>
     </app-table>
   </div>

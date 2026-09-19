@@ -19,13 +19,13 @@
       [scrollHeight]="scrollHeight"
       [globalFilterFields]="['accountNumber', 'accountName']"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     >
       <ng-template #caption>
-        <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+        <app-table-caption [dt]="dt" [showAdd]="false" />
       </ng-template>
       <ng-template #header>
         <tr>

@@ -8,8 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -17,8 +17,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EquipmentInspectionDefinitionForm } from "./equipment-inspection-definition-form";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
@@ -41,10 +41,10 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     WebButtonIconEdit,
     WebButtonIconDelete,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     LxTag,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class EquipmentInspectionDefinitionsList implements OnInit {
@@ -65,7 +65,7 @@ export class EquipmentInspectionDefinitionsList implements OnInit {
   loading = signal(true);
 
   globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
   ngOnInit(): void {

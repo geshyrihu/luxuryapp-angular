@@ -10,7 +10,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -24,7 +24,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     AppTable,
     WebButtonLabel,

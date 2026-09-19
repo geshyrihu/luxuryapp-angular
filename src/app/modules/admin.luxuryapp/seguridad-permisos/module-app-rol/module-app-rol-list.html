@@ -7,7 +7,7 @@
   [globalFilterFields]="globalFilterFields()"
   class="custom-table card d-none d-md-block"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -18,7 +18,7 @@
   [sortOrder]="1"
 >
   <ng-template #caption>
-    <primeng-custom-caption [dt]="dt1" />
+    <app-table-caption [dt]="dt1" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -57,7 +57,7 @@
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

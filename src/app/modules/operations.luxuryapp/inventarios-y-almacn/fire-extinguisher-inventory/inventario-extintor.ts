@@ -11,9 +11,9 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
@@ -28,8 +28,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { InventarioExtintorDto } from "@core/interfaces/inventario-extintor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -71,14 +71,14 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelDownload,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppIcon,
     AppImage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
   ],
 })
@@ -94,7 +94,7 @@ export class InventarioExtintor {
   dataSignal = signal<InventarioExtintorDto[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

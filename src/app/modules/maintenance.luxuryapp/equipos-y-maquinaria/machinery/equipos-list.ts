@@ -13,8 +13,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
@@ -36,8 +36,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -117,8 +117,8 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     LxTooltipDirective,
     NgbTooltipModule,
 
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     SanitizeHtmlPipe,
     CurrencyMexicoPipe,
     DataViewMobile,
@@ -225,7 +225,7 @@ export class EquiposList {
 
   globalFilterFields = computed(() => globalFilterFields(this.data()));
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 

@@ -12,15 +12,15 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeFileSummaryDTO } from "./interfaces/employee-file.interfaces";
@@ -44,10 +44,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelItem,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     CustomInputSelectSignal,
     DataViewMobile,
   ],
@@ -61,7 +61,7 @@ export class EmployeeFileList {
   dataSignal = signal<EmployeeFileSummaryDTO[]>([]);
   isActiveFilter = signal<boolean | null>(null);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

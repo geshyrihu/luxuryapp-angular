@@ -11,7 +11,7 @@ import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -32,7 +32,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     DataViewMobile,
     LxEmptyState,
     PageTitleReport,
-    PrimeNgCustomCaption,
+    TableCaption,
     TaskDateRangeSelector,
     MobileListItem,
     LxTag,

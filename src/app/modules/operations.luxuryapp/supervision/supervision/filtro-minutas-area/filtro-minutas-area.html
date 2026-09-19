@@ -9,7 +9,7 @@
     class="p-datatable-striped p-tag-success"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         [title]="'Minutas de Juntas ' + customerName + ' ' + areaName"
         [showAdd]="false"
         [showAdd]="false"
@@ -76,10 +76,10 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <app-table-empty-message [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="dataSignal()" />
+      <app-table-footer [data]="dataSignal()" />
     </ng-template>
   </app-table>
 </div>

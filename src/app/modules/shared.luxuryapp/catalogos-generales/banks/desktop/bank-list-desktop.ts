@@ -8,9 +8,9 @@ import {
 } from "@angular/core";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -19,8 +19,8 @@ import {
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { BankDto } from "../interfaces/banks.dto";
 
 @Component({
@@ -28,9 +28,9 @@ import { BankDto } from "../interfaces/banks.dto";
   templateUrl: "./bank-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableEmptyMessage,
+    TableFooter,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -49,7 +49,7 @@ export class BankListDesktop {
   delete = output<string>();
 
   loading = signal(true);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 }

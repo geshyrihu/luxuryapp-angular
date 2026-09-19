@@ -22,16 +22,16 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -57,7 +57,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
@@ -67,8 +67,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     WebButtonIconDelete,
     WebButtonLabelActiveDesactive,
     MobileButtonLabelActiveDesactive,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     AppIcon,
     CustomInputSelectSignal,
@@ -98,7 +98,7 @@ export class UserAccountList implements OnInit {
   });
 
   loading = signal(true);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   applicationUserId: string = "";

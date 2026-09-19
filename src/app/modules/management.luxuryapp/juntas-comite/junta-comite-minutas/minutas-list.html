@@ -12,7 +12,7 @@
       dataKey="id"
       class="custom-table"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -66,7 +66,7 @@
           </div>
 
           <div class="ms-auto">
-            <primeng-custom-caption
+            <app-table-caption
               [title]="'Minutas ' + tipoJuntaLabel"
               (add)="
                 showModalAddOrEditMeeting({ id: '', title: 'Nuevo Registro' })
@@ -249,11 +249,11 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="7" />
+        <app-table-empty-message [colspan]="7" />
       </ng-template>
 
       <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="dataSignal()" />
+        <app-table-footer [data]="dataSignal()" />
       </ng-template>
     </app-table>
   </div>
@@ -273,7 +273,7 @@
       (add)="showModalAddOrEditMeeting({ id: 0, title: 'Nuevo Registro' })"
     >
       <div customFilters>
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'Minutas ' + tipoJuntaLabel"
           (add)="showModalAddOrEditMeeting({ id: 0, title: 'Nuevo Registro' })"
           [showSearch]="false"

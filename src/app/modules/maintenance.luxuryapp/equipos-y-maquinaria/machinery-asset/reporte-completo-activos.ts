@@ -11,8 +11,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 // DETALLE IMPORTANTE: Una interfaz para la estructura de los datos.
@@ -51,7 +51,7 @@ export class ReporteCompletoActivos {
 
   // --- PROPIEDADES DE CONFIGURACIóN (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   titulo: string = ""; // Esta propiedad no se usa en el template, pero la mantenemos.
 

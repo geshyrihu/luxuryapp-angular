@@ -140,7 +140,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <app-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -192,6 +192,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
+    <app-table-empty-message [colspan]="5" />
   </ng-template>
 </app-table>

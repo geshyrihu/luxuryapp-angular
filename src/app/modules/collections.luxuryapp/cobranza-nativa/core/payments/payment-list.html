@@ -2,7 +2,7 @@
   <app-table
     [value]="dataSignal()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -11,7 +11,7 @@
   >
     <ng-template #caption>
       <div class="d-flex align-items-end justify-content-between flex-wrap mb-4">
-        <primeng-custom-caption
+        <app-table-caption
           title="Cobranza y Recepción de Pagos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
@@ -105,7 +105,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="9" />
+      <app-table-empty-message [colspan]="9" />
     </ng-template>
   </app-table>
 </div>

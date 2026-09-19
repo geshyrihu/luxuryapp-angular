@@ -12,7 +12,7 @@
   sortMode="single"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       title="Roles de Aplicación"
       (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
       [dt]="dt"
@@ -80,7 +80,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
 </app-table>
 

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PrimeNgCustomCaption } from './primeng-custom-caption';
+import { TableCaption } from './table-caption';
 import { provideRouter } from '@angular/router';
 
-describe('PrimeNgCustomCaption', () => {
-  let component: PrimeNgCustomCaption;
-  let fixture: ComponentFixture<PrimeNgCustomCaption>;
+describe('TableCaption', () => {
+  let component: TableCaption;
+  let fixture: ComponentFixture<TableCaption>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrimeNgCustomCaption],
+      imports: [TableCaption],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrimeNgCustomCaption);
+    fixture = TestBed.createComponent(TableCaption);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

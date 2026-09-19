@@ -11,8 +11,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -20,8 +20,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
@@ -40,8 +40,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
     AppSortableColumn,
 
     AppSorticon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
 })
 export class ContractsPolicies {
@@ -55,7 +55,7 @@ export class ContractsPolicies {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

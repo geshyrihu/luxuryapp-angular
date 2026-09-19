@@ -10,8 +10,8 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import FileSaver from "file-saver";
@@ -20,15 +20,15 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [
     AppIcon,
     WebButtonIconDownload,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     ApiDatePipe,
     FormsModule,
@@ -47,8 +47,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppSortableColumn,
     AppSorticon,
     WebButtonLabelDownload,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
 })
 export class RecepcionPipasAguaReporte implements OnInit {
@@ -59,7 +59,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
   dataSignal = signal<IRecepcionPipaAgua[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
   customerName = computed(

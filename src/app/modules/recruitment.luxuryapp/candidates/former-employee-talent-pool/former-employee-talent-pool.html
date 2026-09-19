@@ -6,7 +6,7 @@
     [globalFilterFields]="globalFilterFields()"
     [loading]="loading()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -18,7 +18,7 @@
       <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4">
         <!-- Parte Izquierda: Búsqueda -->
         <div class="flex-grow-1">
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dt"
             [showAdd]="false"
             [noPadding]="true"
@@ -124,10 +124,10 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <app-table-empty-message [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="dataSignal()" />
+      <app-table-footer [data]="dataSignal()" />
     </ng-template>
   </app-table>
 

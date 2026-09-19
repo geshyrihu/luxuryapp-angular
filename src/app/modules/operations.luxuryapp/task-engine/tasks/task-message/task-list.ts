@@ -18,8 +18,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -35,7 +35,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,
@@ -77,7 +77,7 @@ import {
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -111,7 +111,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         height: 100%;
         overflow: hidden;
       }
-      :host ::ng-deep primeng-custom-caption > div {
+      :host ::ng-deep app-table-caption > div {
         margin-bottom: 0 !important;
       }
       :host ::ng-deep app-task-status > div {
@@ -144,7 +144,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     MobileButtonIcon,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppReorderableRow,
     AppReorderableRowHandle,
@@ -160,7 +160,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CustomInputToggleSwitch,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNgCustomCaption,
+    TableCaption,
     DataViewMobile,
     LxTooltipDirective,
     LxPopover,
@@ -253,7 +253,7 @@ export class TaskList implements OnInit {
     this.printS.printElement(undefined, "Reporte de Tareas Pendientes");
   }
 
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   // Signals para estado de la lista

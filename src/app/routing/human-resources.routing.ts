@@ -222,6 +222,46 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
+  // PROYECCIÓN DE SUELDOS
+  // =============================================================
+  {
+    path: "salary-projections",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/salary-projections-list/salary-projections-list").then(
+        (m) => m.SalaryProjectionsList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Proyección de Sueldos",
+      breadcrumb: "Proyección de Sueldos",
+    },
+  },
+  {
+    path: "salary-projections/payroll-parameters",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/payroll-parameter-config/payroll-parameter-config").then(
+        (m) => m.PayrollParameterConfig,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Parámetros de Proyección",
+      breadcrumb: "Parámetros",
+    },
+  },
+  {
+    path: "salary-projections/:id",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/salary-projections-detail/salary-projections-detail").then(
+        (m) => m.SalaryProjectionsDetail,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Detalle de Proyección",
+      breadcrumb: "Detalle",
+    },
+  },
+
+  // =============================================================
   // CHECADOR DE EMPLEADOS
   // =============================================================
   {

@@ -8,8 +8,8 @@ import { getIconForFileHelper } from "@core/helpers/extension-file";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -32,7 +32,7 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
   loading = signal(true);
 
   // Opciones de la tabla PrimeNG
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

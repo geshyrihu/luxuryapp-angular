@@ -12,9 +12,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -23,8 +23,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -53,7 +53,7 @@ import { AspRoleService } from "../../../../core/auth/services/asp-role.service"
     WebButtonIconDownload,
     MobileActionMenu,
     MobileButtonLabelItem,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     FormsModule,
     AppTable,
 
@@ -62,8 +62,8 @@ import { AspRoleService } from "../../../../core/auth/services/asp-role.service"
     AppSorticon,
     LxTooltipDirective,
     LxTag,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     WebButtonIconEdit,
     DataViewMobile,
     WebButtonIconTracking,
@@ -86,7 +86,7 @@ export class TicketLegalLista implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   inputValue: string = "";
   scrollHeight = this.tableScrollHeightS.scrollHeight;

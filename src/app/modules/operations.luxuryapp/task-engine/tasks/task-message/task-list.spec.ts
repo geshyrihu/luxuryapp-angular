@@ -171,7 +171,8 @@ describe("TaskList", () => {
   it("onPreviewWeeklyReport should navigate", () => {
     component.onPreviewWeeklyReport();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets/weekly-report-preview",
+      "/tickets",
+      "weekly-report-preview",
     ]);
   });
 

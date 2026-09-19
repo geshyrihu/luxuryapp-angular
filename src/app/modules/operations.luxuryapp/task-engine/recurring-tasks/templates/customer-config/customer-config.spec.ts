@@ -133,6 +133,7 @@ describe("CustomerConfig", () => {
         customerId: "cust-123",
         enabledTaskItemIds: ["item-1"],
       },
+      undefined,
     );
     expect(component.submitting()).toBe(false);
   });

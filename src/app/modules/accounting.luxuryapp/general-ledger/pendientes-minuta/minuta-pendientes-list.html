@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -16,7 +16,7 @@
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'Contabilidad'"
           [showAdd]="false"
           [dt]="dt"
@@ -159,10 +159,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

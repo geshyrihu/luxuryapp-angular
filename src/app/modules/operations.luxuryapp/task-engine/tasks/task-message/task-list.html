@@ -2,7 +2,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [showCurrentPageReport]="true"
   (onLazyLoad)="onLazyLoad($event)"
   [lazy]="true"
@@ -27,7 +27,7 @@
         GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
       </h4>
       <div class="d-flex align-items-center gap-2">
-        <primeng-custom-caption
+        <app-table-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           (search)="onSearch($event)"
           [dt]="dt"
@@ -541,7 +541,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="17" />
+    <app-table-empty-message [colspan]="17" />
   </ng-template>
 
   <ng-template #paginatorleft>

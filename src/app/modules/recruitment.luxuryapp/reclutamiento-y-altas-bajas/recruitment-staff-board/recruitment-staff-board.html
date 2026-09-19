@@ -7,7 +7,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -20,7 +20,7 @@
       class="d-flex flex-wrap align-items-end justify-content-between w-full gap-3"
     >
       <div class="flex-grow-1">
-        <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+        <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
       <div class="d-flex flex-wrap gap-2 align-items-end pb-2">
         <il-button
@@ -363,11 +363,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="positions()" />
+    <app-table-footer [data]="positions()" />
   </ng-template>
 </app-table>
 

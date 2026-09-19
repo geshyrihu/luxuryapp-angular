@@ -146,7 +146,7 @@
   <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -158,7 +158,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         [dt]="dtAccounts"
         [showAdd]="false"
         label="Buscar cuenta"
@@ -195,7 +195,7 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="accountRows()" />
+      <app-table-footer [data]="accountRows()" />
     </ng-template>
   </app-table>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
@@ -268,7 +268,7 @@
   <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -280,7 +280,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         [dt]="dtEstado"
         [showAdd]="false"
         label="Buscar movimiento"
@@ -339,7 +339,7 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="estadoMovimientos()" />
+      <app-table-footer [data]="estadoMovimientos()" />
     </ng-template>
   </app-table>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
@@ -457,7 +457,7 @@
 
       <app-table
         [paginator]="true"
-        [rows]="tablePrimeNgRows"
+        [rows]="tableRows"
         [rowsPerPageOptions]="rowsPerPageOptions"
         [value]="detalleConceptRows()"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
@@ -567,7 +567,7 @@
       <app-table
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
-        [rows]="tablePrimeNgRows"
+        [rows]="tableRows"
         [rowsPerPageOptions]="rowsPerPageOptions"
         [scrollable]="true"
         [scrollHeight]="scrollHeight()"
@@ -579,7 +579,7 @@
         class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dtContra"
             [showAdd]="false"
             label="Buscar contrapartida"
@@ -617,7 +617,7 @@
         </ng-template>
 
         <ng-template #paginatorleft>
-          <primeng-custom-table-footer [data]="contrapartidaRows()" />
+          <app-table-footer [data]="contrapartidaRows()" />
         </ng-template>
       </app-table> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
@@ -686,7 +686,7 @@
   <app-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -698,7 +698,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         [dt]="dtDeudas"
         [showAdd]="false"
         label="Buscar propiedad con deuda"
@@ -767,7 +767,7 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="deudaActualRows()" />
+      <app-table-footer [data]="deudaActualRows()" />
     </ng-template>
   </app-table>
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
@@ -816,7 +816,7 @@
       <app-table
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
-        [rows]="tablePrimeNgRows"
+        [rows]="tableRows"
         [rowsPerPageOptions]="rowsPerPageOptions"
         [scrollable]="true"
         [scrollHeight]="scrollHeight()"
@@ -828,7 +828,7 @@
         class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dtPend"
             [showAdd]="false"
             label="Buscar concepto o cuenta"
@@ -909,7 +909,7 @@
         </ng-template>
 
         <ng-template #paginatorleft>
-          <primeng-custom-table-footer [data]="pendienteRows()" />
+          <app-table-footer [data]="pendienteRows()" />
         </ng-template>
       </app-table> -->
   } @else if (searched()) {

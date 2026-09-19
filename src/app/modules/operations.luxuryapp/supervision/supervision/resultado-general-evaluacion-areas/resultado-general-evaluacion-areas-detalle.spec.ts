@@ -58,7 +58,7 @@ describe("ResultadoGeneralEvaluacionAreasDetalle", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/EvaluacionAreasDetalle/2025-01-01/1/0",
+      "resumen-general/evaluacion-areas-detalle/2025-01-01/1/0",
     );
   });
 
@@ -70,7 +70,7 @@ describe("ResultadoGeneralEvaluacionAreasDetalle", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/EvaluacionAreasDetalle/2025-02-01/2/1",
+      "resumen-general/evaluacion-areas-detalle/2025-02-01/2/1",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });

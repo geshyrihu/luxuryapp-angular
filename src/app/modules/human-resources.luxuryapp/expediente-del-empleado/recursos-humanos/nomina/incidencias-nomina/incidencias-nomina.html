@@ -17,7 +17,7 @@
   [loading]="loading()"
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -27,7 +27,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between flex-wrap gap-2">
-      <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
+      <app-table-caption [dt]="dt" (add)="openAdd()" />
       <div class="d-flex gap-2">
         <il-button
           label="Sync Vacaciones"
@@ -91,7 +91,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
 </app-table>
 

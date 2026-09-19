@@ -76,7 +76,7 @@ describe("ResultadoGeneralPosicion", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
-      "resumen-general/Posicion/2025-01-01/2025-01-31",
+      "resumen-general/posicion/2025-01-01/2025-01-31",
     );
     expect(component.dataSignal()).toEqual(mockResult);
   });

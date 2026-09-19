@@ -89,7 +89,7 @@ describe("Cumpleanos", () => {
     component.onLoadData();
     await new Promise((resolve) => setTimeout(resolve));
     expect(apiResponseSMock.onGetList).toHaveBeenCalledWith(
-      "Birthday/cust-1/5",
+      "birthday/cust-1/5",
     );
     expect(component.dataSignal()).toEqual([{ name: "Test" }]);
   });

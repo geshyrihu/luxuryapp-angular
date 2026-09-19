@@ -2,7 +2,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -15,7 +15,7 @@
   <ng-template #caption>
     <div class="row align-items-center g-4">
       <div class="col-12 col-lg-6">
-        <primeng-custom-caption
+        <app-table-caption
           title="Reporte Semanal"
           (add)="
               onModalForm({

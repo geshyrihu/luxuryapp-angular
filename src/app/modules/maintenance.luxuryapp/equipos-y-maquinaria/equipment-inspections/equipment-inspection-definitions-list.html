@@ -4,7 +4,7 @@
     [loading]="loading()"
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -17,7 +17,7 @@
           <div class="fw-semibold text-lg">Inspecciones configuradas</div>
           <div class="text-sm text-body-secondary">{{ machineryName }}</div>
         </div>
-        <primeng-custom-caption
+        <app-table-caption
           [dt]="dt"
           [rolAuth]="
           aspRoleS.hasAny([
@@ -82,7 +82,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="6" />
+      <app-table-empty-message [colspan]="6" />
     </ng-template>
   </app-table>
 </div>

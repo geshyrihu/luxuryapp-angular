@@ -15,7 +15,7 @@
     [scrollHeight]="scrollHeight"
   >
     <ng-template #caption>
-      <primeng-custom-caption [dt]="dt" title="Listado de Fondeos SAT" />
+      <app-table-caption [dt]="dt" title="Listado de Fondeos SAT" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -49,7 +49,7 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="4" />
+      <app-table-empty-message [colspan]="4" />
     </ng-template>
   </app-table>
 </div>

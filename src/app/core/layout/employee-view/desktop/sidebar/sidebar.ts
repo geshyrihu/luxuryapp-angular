@@ -58,7 +58,7 @@ export class Sidebar {
     );
   }
 
-  public primengMenuItems: MenuItem[] = [];
+  public menuItems: MenuItem[] = [];
   public searchText: string = "";
   public searchResults: SubMenuItem[] = [];
   public isSearching: boolean = false;
@@ -798,7 +798,7 @@ export class Sidebar {
   constructor() {
     effect(() => {
       const items = this.menuService.sidebarMenuItems();
-      this.primengMenuItems = this.transformMenuItems(items);
+      this.menuItems = this.transformMenuItems(items);
       this.allMenuItems.set(JSON.parse(JSON.stringify(items)) as MenuItem[]);
       this.setActiveOnNavigation(this.router.url);
     });
@@ -833,8 +833,8 @@ export class Sidebar {
   }
 
   private setActiveOnNavigation(url: string): void {
-    this.primengMenuItems.forEach((item) => this.resetExpandedState(item));
-    for (const menuItem of this.primengMenuItems) {
+    this.menuItems.forEach((item) => this.resetExpandedState(item));
+    for (const menuItem of this.menuItems) {
       if (this.findAndExpandActiveItem(menuItem, url)) {
         break;
       }

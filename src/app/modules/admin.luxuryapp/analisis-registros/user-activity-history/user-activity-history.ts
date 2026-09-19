@@ -14,7 +14,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -24,8 +24,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
@@ -48,7 +48,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     CustomInputSelectSignal,
     DataViewMobile,
     MobileListItem,
-    PrimeNgCustomCaption,
+    TableCaption,
     AppIcon,
   ],
   templateUrl: "./user-activity-history.html",
@@ -70,7 +70,7 @@ export class UserActivityHistory implements OnInit {
 
   // Signals para paginación y bósqueda
   totalRecords = signal(0);
-  rows = signal(tablePrimeNgRows());
+  rows = signal(tableRows());
   searchTerm = signal<string>("");
   currentPage = signal(1);
 

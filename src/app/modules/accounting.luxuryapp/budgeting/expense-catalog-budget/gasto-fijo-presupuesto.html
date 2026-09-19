@@ -7,7 +7,7 @@
 } @if (presupuestoAgregados().length > 0) {
 <app-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [title]="'Partidas agregadas'"
       [showAdd]="false"
       [showSearch]="false"
@@ -40,7 +40,7 @@
   #dt
   class="custom-table card d-none d-md-block"
   [value]="dataSignal()"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [showCurrentPageReport]="true"
@@ -50,7 +50,7 @@
   <ng-template #caption>
     <div class="row col-12 g-4">
       <div class="col-12 col-md-10">
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'Cedula Presupuestal'"
           [showAdd]="false"
           [dt]="dt"
@@ -107,7 +107,7 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 }

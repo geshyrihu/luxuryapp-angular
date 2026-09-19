@@ -16,13 +16,13 @@ import {
 } from "@angular/forms";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
-import { rowsPerPageOptions } from "@core/helpers/table-primeng-option";
+import { rowsPerPageOptions } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
@@ -45,7 +45,7 @@ interface IWarehouseStockRowForm {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -60,10 +60,10 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 
     AppSorticon,
     CustomInputSelectSignal,
-    PrimeNgCustomTableFooter,
+    TableFooter,
     CustomInputNumberSignal,
     ReactiveFormsModule,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class WarehouseStockAdd implements OnInit {

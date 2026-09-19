@@ -55,7 +55,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -76,7 +76,7 @@
           (valueChange)="statusFilter.set($event || '')"
         />
       </div>
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" aria-label="Agenda de entrevistas" />
+      <app-table-caption [dt]="dt" [showAdd]="false" aria-label="Agenda de entrevistas" />
     </div>
   </ng-template>
   <ng-template #header>
@@ -176,10 +176,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="10" />
+    <app-table-empty-message [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="filteredData()" />
+    <app-table-footer [data]="filteredData()" />
   </ng-template>
 </app-table>
 

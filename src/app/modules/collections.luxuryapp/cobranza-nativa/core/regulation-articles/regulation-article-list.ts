@@ -14,15 +14,15 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -40,9 +40,9 @@ import { RegulationArticleForm } from "./regulation-article-form";
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
-    PrimeNgCustomCaption,
+    TableCaption,
     CurrencyPipe,
     DataViewMobile,
     MobileListItem,
@@ -55,7 +55,7 @@ export default class RegulationArticleList {
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = inject(TableScrollHeightService).scrollHeight;
 

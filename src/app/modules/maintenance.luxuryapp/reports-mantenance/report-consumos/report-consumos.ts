@@ -12,7 +12,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
@@ -95,7 +95,7 @@ interface IWeeklyExecutiveReport {
     CustomInputMultiselectSignal,
     WebButtonLabel,
     WebButtonLabelDownload,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class ReportConsumos {

@@ -1946,10 +1946,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/popover/popover.ts"
   },
   {
-    "selector": "app-primeng-radar-chart",
-    "className": "PrimengRadarChart",
+    "selector": "app-radar-chart",
+    "className": "RadarChart",
     "category": "web",
-    "path": "shared/ui/web/charts/primeng-radar-chart.ts"
+    "path": "shared/ui/web/charts/radar-chart.ts"
   },
   {
     "selector": "app-processing-overlay",
@@ -2132,28 +2132,28 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts"
   },
   {
-    "selector": "primeng-custom-caption",
-    "className": "PrimeNgCustomCaption",
+    "selector": "app-table-caption",
+    "className": "TableCaption",
     "category": "web",
-    "path": "shared/ui/web/primeng-custom-caption/primeng-custom-caption.ts"
+    "path": "shared/ui/web/app-table-caption/app-table-caption.ts"
   },
   {
-    "selector": "primeng-custom-global-filter",
-    "className": "PrimeNgCustomGlobalFilter",
+    "selector": "app-table-global-filter",
+    "className": "TableGlobalFilter",
     "category": "web",
-    "path": "shared/ui/web/primeng-custom-global-filter/primeng-custom-global-filter.ts"
+    "path": "shared/ui/web/table-global-filter/table-global-filter.ts"
   },
   {
-    "selector": "primeng-custom-table-emptymessage",
-    "className": "PrimeNgCustomTableEmptyMessage",
+    "selector": "app-table-empty-message",
+    "className": "TableEmptyMessage",
     "category": "web",
-    "path": "shared/ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage.ts"
+    "path": "shared/ui/web/app-table-empty-message/app-table-empty-message.ts"
   },
   {
-    "selector": "primeng-custom-table-footer",
-    "className": "PrimeNgCustomTableFooter",
+    "selector": "app-table-footer",
+    "className": "TableFooter",
     "category": "web",
-    "path": "shared/ui/web/primeng-custom-table-footer/primeng-custom-table-footer.ts"
+    "path": "shared/ui/web/app-table-footer/app-table-footer.ts"
   },
   {
     "selector": "sb-chart-host",

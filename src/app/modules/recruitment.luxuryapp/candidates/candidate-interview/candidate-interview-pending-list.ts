@@ -12,7 +12,7 @@ import { chatbubblesOutline } from "ionicons/icons";
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";

@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -41,7 +41,7 @@
           Todos
         </button>
       </div>
-      <primeng-custom-caption
+      <app-table-caption
         (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
         [dt]="dt"
         aria-label="Agregar nuevo candidato"
@@ -164,9 +164,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <app-table-empty-message [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="data()" />
+    <app-table-footer [data]="data()" />
   </ng-template>
 </app-table>

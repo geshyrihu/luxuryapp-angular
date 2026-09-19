@@ -8,17 +8,17 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -53,11 +53,11 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelItem,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     AppTable,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     WebButtonIconViewPdf,
   ],
@@ -74,7 +74,7 @@ export class WorkContractList implements OnInit {
 
   items = signal<EmployeeWorkContractListDTO[]>([]);
   globalFilter = signal<string>("");
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = globalFilterFields([
     "contractNumber",

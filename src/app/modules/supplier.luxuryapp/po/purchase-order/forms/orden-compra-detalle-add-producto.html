@@ -16,7 +16,7 @@
   class="custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [dt]="dt"
       [showAdd]="false"
       [(searchTerm)]="searchTerm"
@@ -149,7 +149,7 @@
     </ng-container>
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="formArray.getRawValue()" />
+    <app-table-footer [data]="formArray.getRawValue()" />
   </ng-template>
 </app-table>
 }

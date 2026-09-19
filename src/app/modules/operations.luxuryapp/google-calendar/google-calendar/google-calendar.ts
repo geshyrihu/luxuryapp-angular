@@ -16,8 +16,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -26,8 +26,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -148,7 +148,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     FullCalendarModule,
     AppTable,
 
@@ -156,7 +156,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
     AppSorticon,
     LxTag,
-    PrimeNgCustomCaption,
+    TableCaption,
     DataViewMobile,
     MobileListItem,
     AppIcon,
@@ -174,7 +174,7 @@ export class GoogleCalendar {
   readonly dataSignal = signal<IGoogleCalendarEventListItem[]>([]);
   readonly loading = signal(false);
   readonly scrollHeight = inject(TableScrollHeightService).scrollHeight;
-  readonly tablePrimeNgRows = tablePrimeNgRows();
+  readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly canCreate = this.aspRoleS.anyOf([
     ApplicationRole.Administrador,

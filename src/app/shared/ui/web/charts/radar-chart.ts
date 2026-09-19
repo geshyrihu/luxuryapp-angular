@@ -10,12 +10,12 @@ import { BaseChartDirective } from "ng2-charts";
 import { ChartJsData, chartJsToRadarData, chartJsToRadarOption, trackChartTheme } from "./chart-adapters";
 
 /**
- * PrimengRadarChart — radar / araña. Motor: Chart.js (ng2-charts).
+ * RadarChart — radar / araña. Motor: Chart.js (ng2-charts).
  * API sin cambios: `chartData` en formato Chart.js `{ labels, datasets }`.
  * Mantiene `getBase64Image()` y `reinit()` para el flujo de impresión.
  */
 @Component({
-  selector: "app-primeng-radar-chart",
+  selector: "app-radar-chart",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -33,7 +33,7 @@ import { ChartJsData, chartJsToRadarData, chartJsToRadarOption, trackChartTheme 
     }
   `,
 })
-export class PrimengRadarChart {
+export class RadarChart {
   constructor() {
     trackChartTheme();
   }

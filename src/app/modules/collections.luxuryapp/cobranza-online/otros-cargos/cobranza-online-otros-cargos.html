@@ -25,7 +25,7 @@
       [value]="otrosCargos()"
       [globalFilterFields]="['conceptName']"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
@@ -39,7 +39,7 @@
         <div
           class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 w-full g-4"
         >
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dt"
             [showAdd]="false"
             [showSearch]="true"
@@ -137,7 +137,7 @@
       </ng-template>
 
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="4" />
+        <app-table-empty-message [colspan]="4" />
       </ng-template>
 
       <ng-template #paginatorleft>

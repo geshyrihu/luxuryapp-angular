@@ -16,7 +16,7 @@
   [loading]="loading()"
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -25,7 +25,7 @@
   class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
+    <app-table-caption [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -81,7 +81,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <app-table-empty-message [colspan]="9" />
   </ng-template>
 </app-table>
 

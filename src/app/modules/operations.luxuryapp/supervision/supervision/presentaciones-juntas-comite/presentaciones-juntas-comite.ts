@@ -14,15 +14,15 @@ import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
@@ -35,13 +35,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconViewPdf,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     NgbTooltipModule,
-    PrimeNgCustomCaption,
+    TableCaption,
     DataViewMobile,
     WebButtonLabelViewPdf,
     CustomInputTextSignal,
@@ -61,7 +61,7 @@ export class PresentacionesJuntasComite implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   periodoControl = new FormControl<string>(
     this.dateS.onParseToInputMonth(this.rangoCalendarioService.fechaInicial),

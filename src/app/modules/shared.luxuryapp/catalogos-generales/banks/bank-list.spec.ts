@@ -7,7 +7,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { of } from "rxjs";
-import { Platform } from "@ionic/angular";
+import { ModalController, Platform } from "@ionic/angular";
 import { BankList } from "./bank-list";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
@@ -39,6 +39,7 @@ describe("BankList", () => {
           useValue: (globalThis as any).__mockHttpClient,
         },
         { provide: Platform, useValue: { is: vi.fn().mockReturnValue(false) } },
+{ provide: ModalController, useValue: { create: vi.fn(), dismiss: vi.fn() } },
         TableScrollHeightService,
       ],
     }).compileComponents();
@@ -96,5 +97,5 @@ describe("BankList", () => {
     expect(component.dialogHandlerS.openDialog).toHaveBeenCalled();
     expect(onLoadDataSpy).toHaveBeenCalledOnce();
   });
-}
+});
 

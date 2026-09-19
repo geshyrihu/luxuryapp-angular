@@ -14,8 +14,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -29,7 +29,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../task-message/task-form";
@@ -41,7 +41,7 @@ import { TaskForm } from "../task-message/task-form";
   imports: [
     DataViewMobile,
     MobileListItem,
-    PrimeNgCustomCaption,
+    TableCaption,
     AppIcon,
     WebButtonLabel,
     AppTable,
@@ -84,7 +84,7 @@ export class TaskReportWorkPlan implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   originalData: any[] = [];
   scrollHeight = this.tableScrollHeightS.scrollHeight;

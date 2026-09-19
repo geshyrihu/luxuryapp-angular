@@ -13,9 +13,9 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { MessageService } from "@core/services/message.service";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -31,8 +31,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { OrdenCompraService } from "@core/services/orden-compra.service";
 
@@ -42,7 +42,7 @@ import { OrdenCompraService } from "@core/services/orden-compra.service";
   imports: [
     WebButtonIconItem,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
     AppTable,
@@ -51,8 +51,8 @@ import { OrdenCompraService } from "@core/services/orden-compra.service";
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     AppSpinner,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -92,7 +92,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
 
   // Opciones de la tabla de PrimeNG
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   // Nota: eliminamos `total` porque ahora vive feliz en el servicio ??

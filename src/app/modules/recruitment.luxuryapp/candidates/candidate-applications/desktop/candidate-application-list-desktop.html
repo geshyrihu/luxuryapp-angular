@@ -20,7 +20,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -32,7 +32,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       (add)="add.emit({ id: '', title: 'Nuevo proceso de candidato' })"
       [dt]="dt"
       aria-label="Agregar nuevo proceso de candidato"
@@ -105,9 +105,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="data()" />
+    <app-table-footer [data]="data()" />
   </ng-template>
 </app-table>

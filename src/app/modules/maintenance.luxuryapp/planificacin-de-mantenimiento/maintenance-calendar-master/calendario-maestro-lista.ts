@@ -21,7 +21,7 @@ import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,

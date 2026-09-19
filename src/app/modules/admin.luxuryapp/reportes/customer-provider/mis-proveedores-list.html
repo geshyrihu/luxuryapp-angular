@@ -6,7 +6,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -60,7 +60,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="3" />
+    <app-table-empty-message [colspan]="3" />
   </ng-template>
 </app-table>
 <app-data-view-mobile

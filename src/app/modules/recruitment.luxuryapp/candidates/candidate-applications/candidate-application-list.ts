@@ -11,7 +11,7 @@ import { appsOutline } from "ionicons/icons";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";

@@ -131,7 +131,10 @@ describe("ListadoAnualMantenimiento", () => {
     expect(apiResponseSMock.onGetEnumSelectItem).toHaveBeenCalledWith(
       "month/false",
     );
-    expect(component.months()).toEqual(months);
+    expect(component.months()).toEqual([
+      { label: "Todos", value: "" },
+      ...months,
+    ]);
   });
 
   it("groupedData should group items by inventoryCategory", () => {

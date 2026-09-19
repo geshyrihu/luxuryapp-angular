@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -10,8 +10,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -41,8 +41,8 @@ import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -53,15 +53,15 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     IonInputCheckbox,
     IonInputSelect,
     DataViewMobile,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     WebButtonIconEdit,
     WebButtonIconDelete,
     LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     LxAccordion,
     LxTabs,
     LxCheckbox,
@@ -89,7 +89,7 @@ export class CatalogoGastosFijosList {
   public AspRole = ApplicationRole;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
   fundingYear = signal<number>(new Date().getFullYear()); // Default to current year

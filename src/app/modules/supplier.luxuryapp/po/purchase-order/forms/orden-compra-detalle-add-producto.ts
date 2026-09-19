@@ -26,13 +26,13 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AuthService } from "@core/auth/services/auth.service";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -71,8 +71,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     AppAvatar,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     LxMessage,
   ],
 })
@@ -106,7 +106,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
   });
 
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   mensajeError = false;
 

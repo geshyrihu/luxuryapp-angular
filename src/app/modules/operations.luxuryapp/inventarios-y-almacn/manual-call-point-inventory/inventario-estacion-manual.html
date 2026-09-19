@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -59,7 +59,7 @@
           Eliminar Todo
         </button>
       </div>
-      <primeng-custom-caption
+      <app-table-caption
         [title]="'Inventario de Estaciones Manuales'"
         (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
         [dt]="dt"
@@ -115,10 +115,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
+    <app-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

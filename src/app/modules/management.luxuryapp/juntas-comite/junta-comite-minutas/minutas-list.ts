@@ -9,7 +9,7 @@ import { Router, RouterModule } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -19,8 +19,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -45,8 +45,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import {
   AreaDetailsTable,
@@ -72,7 +72,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelConfirm,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -81,8 +81,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxTooltipDirective,
     LxAccordion,
     ActionMenu,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     AreaDetailsTable,
     RouterModule,
@@ -115,7 +115,7 @@ export class MinutasList {
   tipoJunta: number = 1;
 
   /** Opciones de configuración para la tabla PrimeNG. */
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight: string = "calc(100vh - 300px)";
 

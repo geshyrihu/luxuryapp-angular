@@ -11,7 +11,7 @@
   <ng-template #caption>
     <div class="row col-12 g-4">
       <div class="col-10">
-        <primeng-custom-caption
+        <app-table-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
         />
@@ -137,7 +137,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <app-table-empty-message [colspan]="9" />
   </ng-template>
 </app-table>
 

@@ -9,14 +9,14 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -28,7 +28,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -38,14 +38,14 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileListItem,
     WebButtonIcon,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     LxTag,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nominas.html",
@@ -60,7 +60,7 @@ export default class Nominas {
   loading = signal(true);
   data = signal<NominaEncabezadoDTO[]>([]);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

@@ -3,7 +3,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 @Component({
-  selector: "primeng-custom-table-emptymessage",
+  selector: "app-table-empty-message",
 
   imports: [EmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -32,7 +32,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     </tr>
   `,
 })
-export class PrimeNgCustomTableEmptyMessage {
+export class TableEmptyMessage {
   colspan = input<number | string>(4);
   icon = input<AppIconName>("material-symbols-light:database-off-outline");
   iconColor = input<string>("var(--ds-text-muted)");
@@ -45,4 +45,3 @@ export class PrimeNgCustomTableEmptyMessage {
     "primary" | "secondary" | "success" | "info" | "warn" | "danger"
   >("primary");
 }
-

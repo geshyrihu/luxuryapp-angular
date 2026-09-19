@@ -1,0 +1,152 @@
+<div class="d-flex flex-column gap-4">
+  <div class="card p-3">
+    <div class="d-flex align-items-center gap-3">
+      <iw-button
+        iconClass="material-symbols-light:arrow-back"
+        severity="secondary"
+        variant="text"
+        (clicked)="back()"
+      />
+      <div>
+        <h5 class="m-0">Parámetros de Proyección de Sueldos</h5>
+        <small class="text-body-secondary"
+          >Días de vacaciones federales (LFT) e ISN patronal por estado</small
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Vacaciones federales ─────────────────────────────────────────── -->
+  <div class="card p-0">
+    <app-table
+      [value]="federalParameters()"
+      [loading]="loading()"
+      [paginator]="true"
+      [rows]="15"
+    >
+      <ng-template #caption>
+        <h6 class="p-3 m-0">Vacaciones Federales por Antigüedad</h6>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-40" appSortableColumn="yearsOfService">
+            AÑOS DE SERVICIO <app-sorticon field="yearsOfService" />
+          </th>
+          <th class="table-col-40" appSortableColumn="vacationDays">
+            DÍAS DE VACACIONES <app-sorticon field="vacationDays" />
+          </th>
+          <th class="table-col-20"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.yearsOfService }}</td>
+          <td>{{ row.vacationDays }}</td>
+          <td class="text-center">
+            <iw-button
+              iconClass="material-symbols-light:edit"
+              severity="primary"
+              size="small"
+              variant="text"
+              (clicked)="openFederalEditor(row)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <app-table-empty-message [colspan]="3" />
+      </ng-template>
+    </app-table>
+  </div>
+
+  <!-- ── ISN por estado ──────────────────────────────────────────────── -->
+  <div class="card p-0">
+    <app-table
+      [value]="stateTaxParameters()"
+      [loading]="loading()"
+      [paginator]="true"
+      [rows]="15"
+    >
+      <ng-template #caption>
+        <h6 class="p-3 m-0">ISN Patronal por Estado</h6>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-50" appSortableColumn="state">
+            ESTADO <app-sorticon field="state" />
+          </th>
+          <th class="table-col-30" appSortableColumn="employerPayrollTaxPercentage">
+            ISN (%) <app-sorticon field="employerPayrollTaxPercentage" />
+          </th>
+          <th class="table-col-20"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ stateText(row.state) }}</td>
+          <td>{{ row.employerPayrollTaxPercentage * 100 | number: "1.2-4" }}%</td>
+          <td class="text-center">
+            <iw-button
+              iconClass="material-symbols-light:edit"
+              severity="primary"
+              size="small"
+              variant="text"
+              (clicked)="openStateEditor(row)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <app-table-empty-message [colspan]="3" />
+      </ng-template>
+    </app-table>
+  </div>
+</div>
+
+<!-- ── Sidepanel de edición ───────────────────────────────────────────── -->
+@if (editorOpen()) {
+<div class="app-sidepanel-backdrop" (click)="cancelEditor()"></div>
+<aside class="app-sidepanel" role="dialog" aria-modal="true">
+  <header class="app-sidepanel__header">
+    <h6 class="m-0">Editar parámetro</h6>
+    <iw-button
+      iconClass="material-symbols-light:close"
+      severity="secondary"
+      size="small"
+      variant="text"
+      (clicked)="cancelEditor()"
+    />
+  </header>
+
+  <form class="app-sidepanel__body">
+    <p class="text-body-secondary m-0">{{ editorLabel() }}</p>
+    <custom-input-text-signal
+      type="number"
+      [label]="
+        editorKind() === 'federal'
+          ? 'Días de vacaciones'
+          : 'Porcentaje de ISN (ej. 0.04)'
+      "
+      [ngModel]="editorValue()"
+      (ngModelChange)="updateValue($event)"
+    />
+  </form>
+
+  <footer class="app-sidepanel__footer">
+    <il-button
+      label="Cancelar"
+      severity="secondary"
+      variant="outline"
+      size="small"
+      (clicked)="cancelEditor()"
+    />
+    <il-button
+      label="Guardar"
+      iconClass="material-symbols-light:save"
+      severity="primary"
+      size="small"
+      (clicked)="applyEditor()"
+    />
+  </footer>
+</aside>
+}

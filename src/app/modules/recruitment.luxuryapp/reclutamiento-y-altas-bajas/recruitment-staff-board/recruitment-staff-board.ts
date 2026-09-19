@@ -19,9 +19,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -32,8 +32,8 @@ import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions as getRowsPerPageOptions,
-  tablePrimeNgRows as getTablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows as getTableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
@@ -67,7 +67,7 @@ import { CardEmployee, IEmployee } from "@shared/integration/recursos-humanos";
     WebButtonIconEdit,
     WebButtonIconItem,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
 
     AppSortableColumn,
@@ -81,8 +81,8 @@ import { CardEmployee, IEmployee } from "@shared/integration/recursos-humanos";
     CdkDragHandle,
     CdkDragPreview,
     CdkDropList,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     WebButtonLabel,
     WebButtonLabelItem,
     WebButtonLabelDelete,
@@ -101,7 +101,7 @@ export class RecruitmentStaffBoard {
 
   readonly AspRole = ApplicationRole;
   readonly rowsPerPageOptions = getRowsPerPageOptions();
-  readonly tablePrimeNgRows = getTablePrimeNgRows();
+  readonly tableRows = getTableRows();
 
   readonly interviewerQueue = signal<CandidateInterviewerQueueDto[]>([]);
   readonly interviewerLoading = signal(false);

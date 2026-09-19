@@ -25,7 +25,7 @@
     class="p-datatable-gridlines d-none d-md-block"
   >
     <ng-template #caption>
-      <app-primeng-custom-caption
+      <app-app-table-caption
         [title]="'Tareas Asignadas'"
         [showGlobalFilter]="false"
         [showAddButton]="false"
@@ -72,13 +72,13 @@
       </tr>
     </ng-template>
     <ng-template #summary>
-      <app-primeng-custom-table-footer
+      <app-app-table-footer
         [totalRecords]="data().length"
         [emptyMessage]="'No hay tareas para esta fecha.'"
       />
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="5" />
+      <app-table-empty-message [colspan]="5" />
     </ng-template>
   </app-table>
 

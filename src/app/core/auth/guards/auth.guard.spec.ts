@@ -66,11 +66,11 @@ describe('authGuard', () => {
     const result = await firstValueFrom(runGuard('/dashboard') as Observable<boolean>);
     expect(result).toBe(false);
     expect(routerMock.navigate).toHaveBeenCalledWith(
-      ['/auth/login'],
-      jasmine.objectContaining({
+      ['/auth', 'login'],
+      {
         queryParams: { returnUrl: '/dashboard' },
         replaceUrl: true,
-      }),
+      },
     );
   });
 });

@@ -46,7 +46,7 @@
   [value]="data()"
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -56,7 +56,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+      <app-table-caption [dt]="dt" [showAdd]="false" />
       <il-button
         label="Exportar Excel"
         iconClass="material-symbols-light:table-view"
@@ -110,7 +110,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
 </app-table>
 

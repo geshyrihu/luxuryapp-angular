@@ -97,3 +97,14 @@ export class MockIonButtonDelete {}
   template: "",
 })
 export class MockIonButtonEdit {}
+
+export class MockIonNote {}
+export class MockIonSelect {}
+export class MockIonSelectOption {}
+export class MockIonInput {}
+export class MockIonToggle {}
+export class MockIonSpinner {}
+export class MockIonSegment {}
+export class MockIonSegmentButton {}
+export class MockIonFab {}
+export class MockIonFabButton {}

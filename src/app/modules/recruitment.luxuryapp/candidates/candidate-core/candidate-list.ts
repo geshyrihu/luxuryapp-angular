@@ -13,7 +13,7 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { CandidateStatus } from "@core/enums/candidate-status";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";

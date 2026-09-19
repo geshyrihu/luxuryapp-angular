@@ -6,7 +6,7 @@
         #dt
         [value]="data()"
         [loading]="loading()"
-        [rows]="tablePrimeNgRows"
+        [rows]="tableRows"
         [paginator]="true"
         [globalFilterFields]="globalFilterFields()"
         [rowsPerPageOptions]="rowsPerPageOptions"
@@ -15,7 +15,7 @@
         [scrollHeight]="scrollHeight"
       >
         <ng-template #caption>
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dt"
             [showAdd]="false"
             [showSearch]="false"
@@ -189,7 +189,7 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <primeng-custom-table-emptymessage [colspan]="8" />
+          <app-table-empty-message [colspan]="8" />
         </ng-template>
       </app-table>
     </div>

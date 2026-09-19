@@ -6,12 +6,12 @@
     [scrollable]="true"
     [scrollHeight]="tableScrollH.scrollHeight()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         title="Sanciones Disciplinarias"
         [(globalFilter)]="globalFilter"
       />
@@ -62,10 +62,10 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <primeng-custom-table-footer [totalRecords]="items().length" />
+      <app-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <app-table-empty-message [colspan]="7" />
     </ng-template>
   </app-table>
 

@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -17,7 +17,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   selector: "app-resultado-general-posicion",
   templateUrl: "./resultado-general-posicion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppTable, PrimeNgCustomCaption],
+  imports: [AppTable, TableCaption],
 })
 export class ResultadoGeneralPosicion {
   apiResponseS = inject(ApiResponseService);

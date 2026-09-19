@@ -19,7 +19,7 @@
       <ng-template #caption>
         <div class="row align-items-center g-4">
           <div class="col-12 col-md-10">
-            <primeng-custom-caption
+            <app-table-caption
               (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
               [dt]="dt"
               label="Agregar asunto"
@@ -98,7 +98,7 @@
         }
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="4" />
+        <app-table-empty-message [colspan]="4" />
       </ng-template>
     </app-table>
   </div>

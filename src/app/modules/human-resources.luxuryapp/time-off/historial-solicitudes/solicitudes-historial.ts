@@ -12,7 +12,7 @@ import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -23,8 +23,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -35,7 +35,7 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../calendario-vacaciones-permisos/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../calendario-vacaciones-permisos/modal-vacacion-detalle";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 interface LeaveHistoryItemDTO {
   id: string;
   customerName?: string;
@@ -97,7 +97,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     WebButtonIconItem,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,
@@ -108,7 +108,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],
@@ -154,7 +154,7 @@ export class SolicitudesHistorial implements OnInit {
     });
   }
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   globalFilterFields = computed(() => {

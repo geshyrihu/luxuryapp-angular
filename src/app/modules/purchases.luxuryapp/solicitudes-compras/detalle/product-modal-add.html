@@ -8,7 +8,7 @@
   [lazy]="true"
   [loading]="loading()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -105,7 +105,7 @@
     }
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
   </app-table>
 }

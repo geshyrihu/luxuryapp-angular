@@ -13,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
@@ -43,7 +43,7 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     DataViewMobile,
     MobileListItem,
     AppIcon,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./initial-balance.html",

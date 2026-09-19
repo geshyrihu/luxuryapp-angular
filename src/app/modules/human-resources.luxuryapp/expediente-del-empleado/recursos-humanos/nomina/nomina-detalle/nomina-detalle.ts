@@ -10,13 +10,13 @@ import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -29,7 +29,7 @@ import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-edit
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -42,7 +42,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     WebButtonIconEdit,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     AppTable,
     AppSortableColumn,
@@ -50,7 +50,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonLabel,
     WebButtonLabelEdit,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",
@@ -67,7 +67,7 @@ export default class NominaDetalle {
   loading = signal(true);
   data = signal<NominaDetalleDTO[]>([]);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

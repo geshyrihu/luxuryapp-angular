@@ -2,7 +2,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -12,7 +12,7 @@
   <ng-template #caption>
     <div class="row g-4">
       <div class="col-10">
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'Catalogo de cuentas'"
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
@@ -61,10 +61,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
+    <app-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

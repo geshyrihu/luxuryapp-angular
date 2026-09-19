@@ -10,15 +10,15 @@ import { FormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
@@ -41,9 +41,9 @@ type ClasificacionOption =
     AppSorticon,
     LxTag,
     AppIcon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableEmptyMessage,
+    TableFooter,
     DataViewMobile,
     MobileListItem,
   ],
@@ -72,7 +72,7 @@ export class CobranzaOnlineDetalleCondominos {
     return this.selectedClassification() === cls;
   }
 
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
 

@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -11,7 +11,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center">
-      <primeng-custom-caption
+      <app-table-caption
         [title]="'Propiedades'"
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -135,10 +135,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="11" />
+    <app-table-empty-message [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

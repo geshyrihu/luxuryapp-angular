@@ -11,7 +11,7 @@ import { CronogramaAnualPdfStatusService } from "@core/services/cronograma-anual
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus";
 
@@ -27,7 +27,7 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
     AppSortableColumn,
 
     AppSorticon,
-    PrimeNgCustomCaption,
+    TableCaption,
     WebButtonLabel,
   ],
   providers: [CronogramaAnualPdfStatusService, HtmlPrintService],

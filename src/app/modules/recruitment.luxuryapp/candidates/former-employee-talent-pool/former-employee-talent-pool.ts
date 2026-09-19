@@ -10,9 +10,9 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -20,8 +20,8 @@ import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -66,9 +66,9 @@ interface FormerEmployeeCandidateResult {
     ApiDatePipe,
     CommonModule,
     CustomInputSelectSignal,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableEmptyMessage,
+    TableFooter,
     ReactiveFormsModule,
     AppTable,
 
@@ -88,7 +88,7 @@ export class FormerEmployeeTalentPool implements OnInit {
   readonly customers = signal<SelectItemDto[]>([]);
   readonly loading = signal(false);
   readonly customerControl = new FormControl<string | null>(null);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
   readonly globalFilterFields = computed(() =>

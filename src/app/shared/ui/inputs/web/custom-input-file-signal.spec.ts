@@ -41,10 +41,6 @@ describe('CustomInputFile', () => {
     expect(component.chooseLabel()).toBe('Seleccionar archivo');
   });
 
-  it('should have fileSelectedValue as null by default', () => {
-    expect(component.fileSelectedValue).toBeNull();
-  });
-
   it('should set accept via input', () => {
     fixture.componentRef.setInput('accept', '.pdf,.doc');
     fixture.detectChanges();
@@ -57,35 +53,27 @@ describe('CustomInputFile', () => {
       component.fileSelected.subscribe(emitSpy);
 
       const file = new File(['content'], 'test.txt', { type: 'text/plain' });
-      component.onFileSelected({ files: [file] });
+      component.onFileSelected(file);
 
       expect(emitSpy).toHaveBeenCalledWith(file);
-      expect(component.fileSelectedValue).toBe(file);
     });
 
     it('should emit null when file is removed', () => {
       const emitSpy = vi.fn();
       component.fileSelected.subscribe(emitSpy);
 
-      component.removeFile();
+      component.onFileSelected(null);
 
       expect(emitSpy).toHaveBeenCalledWith(null);
-      expect(component.fileSelectedValue).toBeNull();
     });
   });
 
-  describe('formatFileSize', () => {
-    it('should return "0 Bytes" for 0 bytes', () => {
-      expect(component.formatFileSize(0)).toBe('0 Bytes');
-    });
-
-    it('should format bytes correctly', () => {
-      expect(component.formatFileSize(1024)).toBe('1 KB');
-    });
-
-    it('should format MB correctly', () => {
-      const result = component.formatFileSize(1048576);
-      expect(result).toContain('MB');
+  describe('uploadError output', () => {
+    it('should re-emit upload errors', () => {
+      const emitSpy = vi.fn();
+      component.uploadError.subscribe(emitSpy);
+      component.onUploadError({ message: 'too big' });
+      expect(emitSpy).toHaveBeenCalledWith({ message: 'too big' });
     });
   });
 

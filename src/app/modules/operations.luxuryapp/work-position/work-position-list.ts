@@ -10,8 +10,8 @@ import {
 import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
@@ -30,7 +30,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { Department } from "@core/enums/department.enum";
 import { DialogSize } from "@core/enums/dialog-size.enum";
-import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -66,12 +66,12 @@ import {
     MobileActionMenu,
     WebButtonLabel,
     MobileButtonLabelItem,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     AppAvatar,
-    PrimeNgCustomCaption,
+    TableCaption,
     DataViewMobile,
     LxTag,
     MobileListItem,

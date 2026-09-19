@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -13,7 +13,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo item de checklist' })"
       [dt]="dt"
     />
@@ -76,11 +76,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <app-table-empty-message [colspan]="9" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

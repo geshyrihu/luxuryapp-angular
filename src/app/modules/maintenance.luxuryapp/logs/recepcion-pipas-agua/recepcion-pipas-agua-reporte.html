@@ -173,7 +173,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -182,7 +182,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [title]="'Detalle del periodo'"
       [dt]="dt"
       [showAdd]="false"
@@ -190,7 +190,7 @@
       <ng-template #extraButtons>
         <iw-button-download (clicked)="exportExcel()" />
       </ng-template>
-    </primeng-custom-caption>
+    </app-table-caption>
   </ng-template>
 
   <ng-template #header>
@@ -289,9 +289,9 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
 </app-table>

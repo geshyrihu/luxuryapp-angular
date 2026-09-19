@@ -15,15 +15,15 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
@@ -34,7 +34,7 @@ import { AuditEntry } from "./interfaces/audit-entry.interface";
 @Component({
   selector: "app-audit-entries",
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,
@@ -48,7 +48,7 @@ import { AuditEntry } from "./interfaces/audit-entry.interface";
     CustomInputSelectSignal,
     DataViewMobile,
     MobileListItem,
-    PrimeNgCustomCaption,
+    TableCaption,
     AppIcon,
   ],
   templateUrl: "./audit-entries.html",
@@ -63,7 +63,7 @@ export class AuditEntries implements OnInit {
   loading = signal(true);
 
   totalRecords = signal(0);
-  rows = signal(tablePrimeNgRows());
+  rows = signal(tableRows());
   searchTerm = signal<string>("");
   currentPage = signal(1);
 

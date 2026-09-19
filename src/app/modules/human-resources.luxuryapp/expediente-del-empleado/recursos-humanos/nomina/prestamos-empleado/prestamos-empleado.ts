@@ -8,15 +8,15 @@ import {
   signal,
 } from "@angular/core";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -40,7 +40,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIcon,
     WebButtonIconDelete,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     AppTable,
     AppSortableColumn,
@@ -48,7 +48,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     LxTag,
 
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./prestamos-empleado.html",
@@ -62,7 +62,7 @@ export default class PrestamosEmpleado {
   loading = signal(true);
   data = signal<PrestamoEmpleadoDTO[]>([]);
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

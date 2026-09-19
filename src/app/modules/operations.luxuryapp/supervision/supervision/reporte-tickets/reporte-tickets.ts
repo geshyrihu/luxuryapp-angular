@@ -16,20 +16,20 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -49,7 +49,7 @@ export class ReporteTickets {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

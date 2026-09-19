@@ -5,9 +5,9 @@ export function globalFilterFields(data: any[]): string[] {
   const firstItem = data[0];
   if (!firstItem) return []; // If the first item is null/undefined, return empty array
 
-  // Check if the first item is a PrimeNG TreeNode
+  // Check if the first item is a node with a data property
   if (typeof firstItem.data === 'object' && firstItem.data !== null) {
-    // If it's a TreeNode, get keys from its 'data' property
+    // If it has data, get keys from that property
     return Object.keys(firstItem.data);
   }
 
@@ -15,14 +15,14 @@ export function globalFilterFields(data: any[]): string[] {
   return Object.keys(firstItem);
 }
 
-export function tablePrimeNgRows() {
+export function tableRows() {
   return 30;
 }
 export function rowsPerPageOptions() {
   return [30, 50, 75, 100, 150, 200];
 }
 
-export const rowsTablePrimeNg = 50;
+export const tableDefaultRows = 50;
 
 
 

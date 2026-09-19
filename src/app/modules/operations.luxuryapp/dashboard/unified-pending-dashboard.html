@@ -3,7 +3,7 @@
     <app-table
       #dt
       [value]="data()"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [paginator]="true"
       [loading]="loading()"
@@ -97,7 +97,7 @@
               </app-action-icons-group>
 
               <!-- Search -->
-              <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+              <app-table-caption [showAdd]="false" [dt]="dt" />
             </div>
 
             <!-- Contextual Legend (Small) -->
@@ -280,7 +280,7 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="data()" />
+        <app-table-footer [data]="data()" />
       </ng-template>
     </app-table>
   </div>

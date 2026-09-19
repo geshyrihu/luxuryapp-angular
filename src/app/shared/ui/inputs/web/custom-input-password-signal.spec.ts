@@ -46,46 +46,15 @@ describe('CustomInputPassword', () => {
   });
 
   it('should have default weakLabel', () => {
-    expect(component.weakLabel()).toBe('Débil 😟');
+    expect(component.weakLabel()).toBe('Débil');
   });
 
   it('should have default mediumLabel', () => {
-    expect(component.mediumLabel()).toBe('Media 😐');
+    expect(component.mediumLabel()).toBe('Media');
   });
 
   it('should have default strongLabel', () => {
-    expect(component.strongLabel()).toBe('Fuerte 💪');
-  });
-
-  describe('computed - inputStyleClass', () => {
-    it('should return empty string when no customClass and no size', () => {
-      expect(component.inputStyleClass()).toBe('');
-    });
-
-    it('should include customClass when provided', () => {
-      fixture.componentRef.setInput('customClass', 'my-class');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('my-class');
-    });
-
-    it('should add p-inputtext-sm when size is small', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toContain('p-inputtext-sm');
-    });
-
-    it('should add p-inputtext-lg when size is large', () => {
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toContain('p-inputtext-lg');
-    });
-
-    it('should combine customClass and size classes', () => {
-      fixture.componentRef.setInput('customClass', 'my-class');
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('my-class p-inputtext-sm');
-    });
+    expect(component.strongLabel()).toBe('Fuerte');
   });
 
   describe('ControlValueAccessor', () => {

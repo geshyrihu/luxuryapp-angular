@@ -17,15 +17,15 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -69,8 +69,8 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-neg
     AppSorticon,
     AppIcon,
     WebButtonLabelDownload,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     AspelCobranzaHausQueryPanel,
     CurrencyPipe,
     NgClass,
@@ -141,7 +141,7 @@ export class AspelCobranzaHaus {
 
   request: AspelQueryRequest = this.buildDefaultRequest();
 
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

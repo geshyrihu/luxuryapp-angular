@@ -3,7 +3,7 @@
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [paginator]="true"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
@@ -11,7 +11,7 @@
   class="card custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <app-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -149,10 +149,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
+    <app-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 <!--📲INICIO: Componente adaptado para versión mívil -->

@@ -9,11 +9,11 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
@@ -27,7 +27,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    PrimeNgCustomCaption,
+    TableCaption,
     CommonModule,
     SanitizeHtmlPipe,
   ],

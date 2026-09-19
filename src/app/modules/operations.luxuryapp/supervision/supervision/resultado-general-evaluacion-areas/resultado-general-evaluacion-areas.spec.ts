@@ -79,7 +79,7 @@ describe("ResultadoGeneralEvaluacionAreas", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/EvaluacionAreas/2025-01-01/2025-01-31",
+      "resumen-general/evaluacion-areas/2025-01-01/2025-01-31",
     );
     expect(component.dataSignal()).toEqual(mockData);
   });

@@ -44,8 +44,8 @@ describe('BankListDesktop', () => {
     expect(component.loading()).toBe(true);
   });
 
-  it('should have non-null tablePrimeNgRows', () => {
-    expect(component.tablePrimeNgRows).toBeGreaterThan(0);
+  it('should have non-null tableRows', () => {
+    expect(component.tableRows).toBeGreaterThan(0);
   });
 
   it('should have non-empty rowsPerPageOptions', () => {

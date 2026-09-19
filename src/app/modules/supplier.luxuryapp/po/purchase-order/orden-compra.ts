@@ -14,7 +14,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
@@ -55,7 +55,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
     WebButtonLabel,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     WebButtonLabelItem,
     // Nuevo componente importado

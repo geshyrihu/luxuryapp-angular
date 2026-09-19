@@ -20,7 +20,7 @@
     >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
-        <primeng-custom-caption
+        <app-table-caption
           [dt]="dt"
           [rolAuth]="false"
           [noPadding]="true"
@@ -204,10 +204,10 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="10" />
+    <app-table-empty-message [colspan]="10" />
   </ng-template>
   <ng-template #footer>
-    <primeng-custom-table-footer [dt]="dt" />
+    <app-table-footer [dt]="dt" />
   </ng-template>
 </app-table>
 

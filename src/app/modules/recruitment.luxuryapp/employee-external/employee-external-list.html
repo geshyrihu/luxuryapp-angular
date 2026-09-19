@@ -8,7 +8,7 @@
   <ng-template #caption>
     <div class="row g-4">
       <div class="col-12">
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'DIRECTORIO DE PERSONAL EXTERNO'"
           (add)="
             onModalForm({
@@ -89,10 +89,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

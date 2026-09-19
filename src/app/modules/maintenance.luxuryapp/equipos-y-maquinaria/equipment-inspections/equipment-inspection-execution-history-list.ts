@@ -10,14 +10,14 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EquipmentInspectionExecutionDetail } from "./equipment-inspection-execution-detail";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
@@ -37,7 +37,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     AppTable,
     LxTag,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class EquipmentInspectionExecutionHistoryList implements OnInit {
@@ -56,7 +56,7 @@ export class EquipmentInspectionExecutionHistoryList implements OnInit {
   loading = signal(true);
 
   globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
   constructor() {

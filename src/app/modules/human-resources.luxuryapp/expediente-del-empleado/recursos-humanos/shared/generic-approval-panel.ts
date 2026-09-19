@@ -8,14 +8,14 @@ import {
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
@@ -35,8 +35,8 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
     AppSorticon,
     WebButtonLabel,
     WebButtonLabelViewPdf,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -44,7 +44,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
       [globalFilterFields]="globalFilterFields()"
       [value]="requests()"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -55,7 +55,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
       #dt
     >
       <ng-template #caption>
-        <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+        <app-table-caption [showAdd]="false" [dt]="dt" />
       </ng-template>
 
       <ng-template #header>
@@ -123,7 +123,7 @@ import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
       </ng-template>
 
       <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="requests()" />
+        <app-table-footer [data]="requests()" />
       </ng-template>
     </app-table>
   `,
@@ -137,7 +137,7 @@ export class GenericApprovalPanel {
   loading = input<boolean>(false);
 
   // --- CONFIGURACIóN ---
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

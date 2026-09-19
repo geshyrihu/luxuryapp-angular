@@ -89,7 +89,7 @@
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" label="Morosos" />
+      <app-table-caption [dt]="dt" [showAdd]="false" label="Morosos" />
     </ng-template>
 
     <ng-template #header>
@@ -152,7 +152,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage
+      <app-table-empty-message
         title="Sin morosos"
         message="No se encontraron propiedades con deuda."
       />

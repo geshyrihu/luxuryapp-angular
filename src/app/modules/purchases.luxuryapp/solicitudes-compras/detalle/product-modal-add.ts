@@ -19,14 +19,14 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
@@ -67,7 +67,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputTextSignal,
     CustomInputNumberSignal,
     AppAvatar,
-    PrimeNgCustomTableFooter,
+    TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationStore], // Instancia fresca del store de paginación por componente
@@ -98,7 +98,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   /** Opciones para el número de filas por página. */
   public rowsPerPageOptions: number[] = rowsPerPageOptions();
   /** Número de filas por defecto para la tabla PrimeNG. */
-  public tablePrimeNgRows: number = tablePrimeNgRows();
+  public tableRows: number = tableRows();
   /** Posición inicial de la paginación (óndice del primer registro). */
   public first: number = 0; // Se actualiza basado en el estado del servicio de paginación
 
@@ -154,7 +154,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(
       this.solicitudCompraId,
     );
-    this.store.configure(apiUrl, { recordsNumber: this.tablePrimeNgRows });
+    this.store.configure(apiUrl, { recordsNumber: this.tableRows });
 
     // Cargar los datos iniciales
     this.store.load();

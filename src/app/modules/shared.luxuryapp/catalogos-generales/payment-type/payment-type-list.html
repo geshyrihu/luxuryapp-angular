@@ -3,7 +3,7 @@
   #dt
   class="custom-table card d-none d-md-block"
   [value]="data()"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [showCurrentPageReport]="true"
@@ -13,7 +13,7 @@
   [scrollHeight]="scrollHeight()"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [title]="'Metodos de pago'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -54,11 +54,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="3" />
+    <app-table-empty-message [colspan]="3" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="data()" />
+    <app-table-footer [data]="data()" />
   </ng-template>
 </app-table>
 

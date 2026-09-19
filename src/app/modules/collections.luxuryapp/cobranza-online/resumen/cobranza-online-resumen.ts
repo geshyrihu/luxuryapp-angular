@@ -9,8 +9,8 @@ import { PieChart } from "@ui/web/charts/pie-chart";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
@@ -43,7 +43,7 @@ export class CobranzaOnlineResumen {
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
 

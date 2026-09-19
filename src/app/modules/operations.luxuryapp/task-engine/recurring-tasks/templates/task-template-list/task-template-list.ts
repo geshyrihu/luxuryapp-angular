@@ -16,8 +16,8 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskTemplateForm } from "../task-template-form/task-template-form";
@@ -44,9 +44,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelActiveDesactive,
     MobileButtonLabelItem,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
     AppTable,
     MobileListItem,
     AppIcon,

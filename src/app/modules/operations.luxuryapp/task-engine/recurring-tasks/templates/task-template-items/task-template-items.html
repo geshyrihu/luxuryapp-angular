@@ -27,7 +27,7 @@
 
       <!-- Caption a la derecha -->
       <div class="d-flex align-items-center">
-        <primeng-custom-caption (add)="showItemForm()" [dt]="dt" />
+        <app-table-caption (add)="showItemForm()" [dt]="dt" />
       </div>
     </div>
   </ng-template>
@@ -71,7 +71,7 @@
     </tr>
   </ng-template>
   <ng-template #summary>
-    <primeng-custom-table-footer
+    <app-table-footer
       [totalRecords]="items().length"
       [emptyMessage]="'No se encontraron items para esta plantilla.'"
     />

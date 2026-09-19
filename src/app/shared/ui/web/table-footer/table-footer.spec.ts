@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PrimeNgCustomTableFooter } from './primeng-custom-table-footer';
+import { TableFooter } from './table-footer';
 
-describe('PrimeNgCustomTableFooter', () => {
-  let component: PrimeNgCustomTableFooter;
-  let fixture: ComponentFixture<PrimeNgCustomTableFooter>;
+describe('TableFooter', () => {
+  let component: TableFooter;
+  let fixture: ComponentFixture<TableFooter>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PrimeNgCustomTableFooter],
+      imports: [TableFooter],
     });
-    fixture = TestBed.createComponent(PrimeNgCustomTableFooter);
+    fixture = TestBed.createComponent(TableFooter);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

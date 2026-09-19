@@ -12,8 +12,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -21,8 +21,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -61,8 +61,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppAvatar,
     DataViewMobile,
     LxTooltipDirective,
-    PrimeNgCustomTableFooter,
-    PrimeNgCustomCaption,
+    TableFooter,
+    TableCaption,
     ImageAnalysisDialogComponent,
     ActionIconsGroupComponent,
     AppIcon,
@@ -105,7 +105,7 @@ export class UnifiedPendingDashboard {
   loadedCustomerId = signal<string | null>(null);
 
   // Table Options
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
   // Usar el servicio global para scrollHeight

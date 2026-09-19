@@ -20,9 +20,9 @@ import {
   type SegmentItem,
   SegmentedControl,
 } from "@ui/shared/segmented-control/segmented-control";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { checkmarkCircleOutline } from "ionicons/icons";
@@ -32,8 +32,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
@@ -86,15 +86,15 @@ type HistorialComprasDateFilterForm = {
     WebButtonIconEdit,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     MobileListItem,
     AppIcon,
@@ -127,7 +127,7 @@ export class HistorialComprasList {
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
-  readonly tablePrimeNgRows = tablePrimeNgRows();
+  readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly filterForm = new FormGroup<HistorialComprasDateFilterForm>({
     fechaInicio: new FormControl<Date | string | null>(null),

@@ -6,7 +6,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
  * Pie de página simple para mostrar el conteo total de registros.
  */
 @Component({
-  selector: "primeng-custom-table-footer",
+  selector: "app-table-footer",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -16,7 +16,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
     </div>
   `,
 })
-export class PrimeNgCustomTableFooter {
+export class TableFooter {
   data = input<any[]>([]);
 }
 

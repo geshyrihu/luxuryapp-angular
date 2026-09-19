@@ -11,8 +11,8 @@ import { FormsModule } from "@angular/forms";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
@@ -23,8 +23,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
@@ -44,8 +44,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     LxSpinner,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     LxMessage,
   ],
 })
@@ -70,7 +70,7 @@ export class GastoFijoPresupuesto implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ngOnInit(): void {

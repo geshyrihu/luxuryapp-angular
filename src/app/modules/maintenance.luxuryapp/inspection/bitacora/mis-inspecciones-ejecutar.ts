@@ -18,8 +18,8 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { map } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -27,8 +27,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -50,8 +50,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 
     DataViewMobile,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mis-inspecciones-ejecutar.html",
@@ -71,7 +71,7 @@ export class MisInspeccionesEjecutar implements OnInit {
 
   dataSignal = signal<any[]>([]);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
-  tablePrimeNgRows = tablePrimeNgRows();
+  tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
 
   private paramsSignal = toSignal(this.activatedRoute.paramMap);

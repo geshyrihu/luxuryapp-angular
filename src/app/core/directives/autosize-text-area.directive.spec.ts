@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AutosizeDirective } from "./autosize-text-area.directive";
 
 @Component({
+  selector: "app-autosize-test-host",
   template: `<textarea appAutosize></textarea>`,
   imports: [AutosizeDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

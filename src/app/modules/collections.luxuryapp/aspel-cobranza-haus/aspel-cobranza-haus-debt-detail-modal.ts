@@ -14,7 +14,7 @@ import { AppTable } from "@ui/web/table/table";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
@@ -27,7 +27,7 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
     CommonModule,
     AppTable,
     WebButtonLabel,
-    PrimeNgCustomCaption,
+    TableCaption,
     CurrencyPipe,
     NgClass,
     LxTag,

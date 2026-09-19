@@ -14,8 +14,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PrintService } from "@core/services/print.service";
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import Swal from "sweetalert2";
 import { TaskClose } from "../task-close";
@@ -46,14 +46,14 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 @Component({
   selector: "app-my-assigned-tasks-list",
   templateUrl: "./my-assigned-tasks-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     WebButtonLabelEdit,
     WebButtonLabelItem,
     TaskStatus,
@@ -69,7 +69,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
     LxTooltipDirective,
     AppImage,
     AppAvatar,
-    PrimeNgCustomCaption,
+    TableCaption,
     InitialsAbbrPipe,
     AppIcon,
   ],
@@ -98,7 +98,7 @@ export class MyAssignedTasksList {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   searchTextSignal = signal("");
 

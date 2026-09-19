@@ -15,13 +15,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebBu
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import {
@@ -62,7 +62,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     CommonModule,
     WebButtonLabel,
     // AñadirWebButtonLabel a imports
@@ -70,7 +70,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     ReactiveFormsModule,
     CustomInputTextSignal,
-    PrimeNgCustomCaption,
+    TableCaption,
     RouterModule,
     AppTable,
     AppSortableColumn,

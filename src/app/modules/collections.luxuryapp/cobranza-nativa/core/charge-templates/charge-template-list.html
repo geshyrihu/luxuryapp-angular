@@ -2,7 +2,7 @@
   <app-table
     [value]="dataSignal()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         title="Plantillas de Cargos (Motor Nativo)"
         (add)="onModalForm()"
         [dt]="dt"
@@ -99,7 +99,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <app-table-empty-message [colspan]="7" />
     </ng-template>
   </app-table>
 </div>

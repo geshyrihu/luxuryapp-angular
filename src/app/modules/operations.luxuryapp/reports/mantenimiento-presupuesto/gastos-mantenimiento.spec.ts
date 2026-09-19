@@ -124,7 +124,7 @@ describe("GastosMantenimiento", () => {
 
     expect(component.totalGasto()).toBe(0);
 
-    expect(component.tablePrimeNgRows).toBe(30);
+    expect(component.tableRows).toBe(30);
 
     expect(component.rowsPerPageOptions).toEqual([30, 50, 75, 100, 150, 200]);
 

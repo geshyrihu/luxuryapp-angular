@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ClickOutsideDirective } from "./click-outside.directive";
 
 @Component({
+  selector: "app-click-outside-test-host",
   template: `
     <div (clickOutside)="onClickOutside($event)">
       <button id="inside">Inside</button>

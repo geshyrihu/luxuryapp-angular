@@ -5,7 +5,7 @@
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
@@ -14,7 +14,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [showAdd]="true"
       [dt]="dt"
       label="Nueva configuracion"
@@ -107,11 +107,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

@@ -57,7 +57,7 @@
     [value]="rows()"
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -68,7 +68,7 @@
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+      <app-table-caption [dt]="dt" [showAdd]="false" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -113,7 +113,7 @@
       </tr>
     </ng-template>
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="rows()" />
+      <app-table-footer [data]="rows()" />
     </ng-template>
   </app-table>
 

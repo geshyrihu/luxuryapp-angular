@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import type { TagSeverity } from "@ui/base/tag.base";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -25,8 +25,8 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     AppSortableColumn,
     AppSorticon,
     CurrencyPipe,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
+    TableCaption,
+    TableEmptyMessage,
     WebButtonIcon,
     LxTooltipDirective,
     AppStatCard,

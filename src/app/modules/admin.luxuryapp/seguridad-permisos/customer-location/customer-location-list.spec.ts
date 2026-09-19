@@ -38,7 +38,7 @@ describe('CustomerLocationList', () => {
 
   const mockEndpoints = {
     CustomerLocations: {
-      listByCustomer: vi.fn().mockReturnValue('api/customer-locations/customer/cust-1'),
+      listByCustomer: vi.fn().mockReturnValue('customer-locations/customer/cust-1'),
       delete: vi.fn().mockReturnValue('api/customer-locations/id'),
     },
   };
@@ -81,7 +81,7 @@ describe('CustomerLocationList', () => {
 
   it('should initialize signals with default values', () => {
     expect(component.dataSignal()).toEqual([]);
-    expect(component.loading()).toBe(true);
+    expect(component.loading()).toBe(false);
     expect(component.globalFilterFields()).toEqual([
       'name',
       'locationType',
@@ -122,10 +122,10 @@ describe('CustomerLocationList', () => {
       mockApiResponseService.onGetList.mockResolvedValue(mockData);
       component.onLoadData();
 
-      await Promise.resolve();
+      await new Promise((r) => setTimeout(r));
 
       expect(mockApiResponseService.onGetList).toHaveBeenCalledWith(
-        'api/customer-locations/customer/cust-1'
+        'customer-locations/customer/cust-1'
       );
       expect(component.dataSignal()).toEqual(mockData);
       expect(component.loading()).toBe(false);
@@ -249,7 +249,7 @@ describe('CustomerLocationList', () => {
       await Promise.resolve();
 
       expect(mockApiResponseService.onDelete).toHaveBeenCalledWith(
-        'api/customer-locations/loc-1'
+        'customer-locations/loc-1'
       );
       expect(component.dataSignal().length).toBe(1);
       expect(component.dataSignal()[0].id).toBe('loc-2');
@@ -306,11 +306,11 @@ describe('CustomerLocationList', () => {
 
   describe('table configuration', () => {
     it('should have correct rows per page options', () => {
-      expect(component.rowsPerPageOptions).toEqual([10, 25, 50, 100]);
+      expect(component.rowsPerPageOptions).toEqual([30, 50, 75, 100, 150, 200]);
     });
 
-    it('should have tablePrimeNgRows defined', () => {
-      expect(component.tablePrimeNgRows).toBeGreaterThan(0);
+    it('should have tableRows defined', () => {
+      expect(component.tableRows).toBeGreaterThan(0);
     });
   });
 });

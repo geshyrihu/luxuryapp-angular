@@ -11,8 +11,8 @@ import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 
 export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   ActionMenu,
@@ -25,8 +25,8 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   FormsModule,
   IonInputCheckbox,
   IonInputSelect,
-  PrimeNgCustomCaption,
-  PrimeNgCustomTableFooter,
+  TableCaption,
+  TableFooter,
   RouterModule,
   AppTable,
   AppSortableColumn,

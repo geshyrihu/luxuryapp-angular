@@ -7,16 +7,16 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineDashboardResponse,
@@ -32,8 +32,8 @@ import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.servi
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
+    TableCaption,
+    TableEmptyMessage,
     DataViewMobile,
     MobileListItem,
   ],
@@ -54,7 +54,7 @@ export class CobranzaOnlineOtrosCargos {
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
 

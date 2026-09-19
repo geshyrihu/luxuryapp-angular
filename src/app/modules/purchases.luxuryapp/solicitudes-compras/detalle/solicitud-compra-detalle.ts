@@ -14,7 +14,7 @@ import {
 import { SolicitudCompraService } from "@core/services/solicitud-compra.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { ProductoEdit } from "./producto-edit";
 
@@ -25,7 +25,7 @@ import { ProductoEdit } from "./producto-edit";
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
   ],
 })

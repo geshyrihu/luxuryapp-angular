@@ -1,0 +1,233 @@
+@if (projection(); as currentProjection) {
+<div class="d-flex flex-column gap-4">
+  <!-- ── Cabecera de la propuesta ─────────────────────────────────────── -->
+  <div class="card p-3">
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3"
+    >
+      <div class="d-flex align-items-center gap-3">
+        <iw-button
+          iconClass="material-symbols-light:arrow-back"
+          severity="secondary"
+          variant="text"
+          (clicked)="back()"
+        />
+        <div>
+          <div class="d-flex align-items-center gap-2">
+            <h5 class="m-0">{{ currentProjection.name }}</h5>
+            <lx-tag
+              [value]="stateText(currentProjection.state)"
+              [severity]="stateSeverity(currentProjection.state)"
+            />
+          </div>
+          <small class="text-body-secondary"
+            >Folio {{ currentProjection.folio }}</small
+          >
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        @if (simulating()) {
+        <span class="text-body-secondary text-sm"
+          ><i class="material-symbols-light:progress_activity"></i>
+          Calculando…</span
+        >
+        }
+        <il-button
+          label="Agregar plaza nueva"
+          iconClass="material-symbols-light:person_add"
+          severity="secondary"
+          variant="outline"
+          size="small"
+          (clicked)="openNewPosition()"
+        />
+        <il-button
+          label="Guardar propuesta"
+          iconClass="material-symbols-light:save"
+          severity="primary"
+          size="small"
+          (clicked)="saveProjection()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Escenarios (columnas) ────────────────────────────────────────── -->
+  <div class="d-flex flex-wrap align-items-center gap-2">
+    @for (scenario of scenarios(); track scenario.id) {
+    <il-button
+      [label]="scenario.name"
+      [severity]="scenario.id === activeScenarioId() ? 'primary' : 'secondary'"
+      [variant]="scenario.id === activeScenarioId() ? 'filled' : 'outline'"
+      size="small"
+      (clicked)="selectScenario(scenario.id)"
+    />
+    }
+    <span class="ms-auto text-body-secondary text-sm"
+      >Costo total del escenario:
+      <strong>{{ activeTotalCost() | number: "1.2-2" }}</strong></span
+    >
+  </div>
+
+  <!-- ── Matriz de detalle (solo lectura) ─────────────────────────────── -->
+  <div class="card p-0">
+    <app-table
+      [value]="activeItems()"
+      [loading]="loading()"
+      [paginator]="true"
+      [rows]="25"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first} - {last} de {totalRecords}"
+    >
+      <ng-template #header>
+        <tr>
+          <th class="table-col-20">EMPLEADO / PUESTO</th>
+          <th class="table-col-10">TIPO</th>
+          <th class="table-col-8">SUELDO DIARIO</th>
+          <th class="table-col-10">SUELDO MENSUAL</th>
+          <th class="table-col-10">PRIMA VAC.</th>
+          <th class="table-col-10">PRIMA DOM.</th>
+          <th class="table-col-10">AGUINALDO</th>
+          <th class="table-col-10">ISN</th>
+          <th class="table-col-10">COSTO EMPRESA</th>
+          <th class="table-col-8"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-item>
+        <tr>
+          <td class="fw-semibold">
+            {{ item.positionTitle || "Sin título" }}
+            @if (simulationOf(item.id); as simulation) {
+            <div class="text-body-secondary text-xs">
+              Antigüedad: {{ simulation.seniorityYears }} años ·
+              {{ simulation.vacationDays }} días
+            </div>
+            }
+          </td>
+          <td>
+            @if (item.isNewPosition) {
+            <lx-tag value="Nueva plaza" severity="info" />
+            } @else {
+            <lx-tag value="Existente" severity="secondary" />
+            }
+          </td>
+          <td>{{ item.baseSalary | number: "1.2-2" }}</td>
+          <td>
+            {{ simulations()[item.id]?.monthlySalary ?? 0 | number: "1.2-2" }}
+          </td>
+          <td>
+            {{ simulations()[item.id]?.vacationPremium ?? 0 | number: "1.2-2" }}
+          </td>
+          <td>
+            {{ simulations()[item.id]?.sundayPremium ?? 0 | number: "1.2-2" }}
+          </td>
+          <td>
+            {{ simulations()[item.id]?.christmasBonus ?? 0 | number: "1.2-2" }}
+          </td>
+          <td>
+            {{ simulations()[item.id]?.employerPayrollTax ?? 0 | number: "1.2-2" }}
+          </td>
+          <td class="fw-semibold">
+            {{ simulations()[item.id]?.totalEmployerCost ?? 0 | number: "1.2-2" }}
+          </td>
+          <td class="text-center">
+            <div class="d-flex gap-1 justify-content-center">
+              <iw-button
+                iconClass="material-symbols-light:edit"
+                severity="primary"
+                size="small"
+                variant="text"
+                (clicked)="openEditor(item)"
+              />
+              <iw-button
+                iconClass="material-symbols-light:delete"
+                severity="danger"
+                size="small"
+                variant="text"
+                (clicked)="removeItem(item.id)"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <app-table-empty-message [colspan]="10" />
+      </ng-template>
+    </app-table>
+  </div>
+</div>
+
+<!-- ── Sidepanel de edición ───────────────────────────────────────────── -->
+@if (editorOpen()) {
+<div class="app-sidepanel-backdrop" (click)="cancelEditor()"></div>
+<aside class="app-sidepanel" role="dialog" aria-modal="true">
+  <header class="app-sidepanel__header">
+    <h6 class="m-0">
+      {{ editorIsNew() ? "Nueva plaza proyectada" : "Editar sueldo y cuotas" }}
+    </h6>
+    <iw-button
+      iconClass="material-symbols-light:close"
+      severity="secondary"
+      size="small"
+      variant="text"
+      (clicked)="cancelEditor()"
+    />
+  </header>
+
+  @if (editorDraft(); as draft) {
+  <form class="app-sidepanel__body">
+    <custom-input-text-signal
+      label="Título del puesto"
+      [ngModel]="draft.positionTitle"
+      (ngModelChange)="updateDraft('positionTitle', $event)"
+    />
+    <custom-input-text-signal
+      type="number"
+      label="Sueldo diario"
+      [ngModel]="draft.baseSalary"
+      (ngModelChange)="updateDraft('baseSalary', $event)"
+    />
+    <custom-input-text-signal
+      type="number"
+      label="Cuota patronal RCV"
+      [ngModel]="draft.rcvEmployerFee"
+      (ngModelChange)="updateDraft('rcvEmployerFee', $event)"
+    />
+    <custom-input-text-signal
+      type="number"
+      label="Cuota patronal INFONAVIT"
+      [ngModel]="draft.infonavitEmployerFee"
+      (ngModelChange)="updateDraft('infonavitEmployerFee', $event)"
+    />
+    <custom-input-text-signal
+      type="number"
+      label="Cuota patronal IMSS"
+      [ngModel]="draft.imssEmployerFee"
+      (ngModelChange)="updateDraft('imssEmployerFee', $event)"
+    />
+  </form>
+  }
+
+  <footer class="app-sidepanel__footer">
+    <il-button
+      label="Cancelar"
+      severity="secondary"
+      variant="outline"
+      size="small"
+      (clicked)="cancelEditor()"
+    />
+    <il-button
+      label="Aplicar y simular"
+      iconClass="material-symbols-light:calculate"
+      severity="primary"
+      size="small"
+      (clicked)="applyEditor()"
+    />
+  </footer>
+</aside>
+}
+} @else {
+<div class="card p-4 text-center text-body-secondary">Cargando propuesta…</div>
+}

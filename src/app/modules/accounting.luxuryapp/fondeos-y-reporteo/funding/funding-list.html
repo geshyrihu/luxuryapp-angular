@@ -1,7 +1,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -17,7 +17,7 @@
       <div
         class="d-flex flex-wrap align-items-start align-items-md-center w-full md:w-auto justify-content-start justify-content-md-end gap-2"
       >
-        <primeng-custom-caption
+        <app-table-caption
           (add)="onModalCreate()"
           [dt]="dt"
           [showAdd]="false"
@@ -94,10 +94,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
+    <app-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

@@ -15,8 +15,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { StripTagsPipe } from "@shared/pipes/StripTags.pipe";
 @Component({
@@ -44,7 +44,7 @@ export class EntregaRecepcionInstalaciones {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   constructor() {

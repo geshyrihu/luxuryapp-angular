@@ -62,7 +62,7 @@ describe("ProductosList", () => {
     expect(component.dataSignal()).toEqual([]);
     expect(component.filteredDataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
-    expect(component.tablePrimeNgRows).toBe(30);
+    expect(component.tableRows).toBe(30);
     expect(component.AspRole).toBeDefined();
     expect(component.account_id).toBe("user-789");
   });

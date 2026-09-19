@@ -32,7 +32,7 @@
     <app-table
       #dt
       [value]="dataSignal()"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [paginator]="true"
       [loading]="loading()"
@@ -53,7 +53,7 @@
             <app-icon [icon]="'material-symbols-light:fact-check'" class="text-primary text-xl" />
             <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
           </div>
-          <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+          <app-table-caption [showAdd]="false" [dt]="dt" />
         </div>
       </ng-template>
 
@@ -195,7 +195,7 @@
       <!-- FOOTER / PAGINADOR -->
       <ng-template #paginatorleft>
         <div class="d-flex align-items-center gap-3 py-2">
-          <primeng-custom-table-footer [data]="dataSignal()" />
+          <app-table-footer [data]="dataSignal()" />
         </div>
       </ng-template>
     </app-table>

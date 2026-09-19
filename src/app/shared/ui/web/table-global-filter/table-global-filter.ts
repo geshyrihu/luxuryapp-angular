@@ -10,7 +10,7 @@ import { AppIcon } from "../../shared/app-icon/app-icon";
  * Se conecta a una p-table para filtrar en todos los campos configurados.
  */
 @Component({
-  selector: "primeng-custom-global-filter",
+  selector: "app-table-global-filter",
   imports: [FormsModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -27,7 +27,7 @@ import { AppIcon } from "../../shared/app-icon/app-icon";
     </div>
   `,
 })
-export class PrimeNgCustomGlobalFilter {
+export class TableGlobalFilter {
   dt = input<AppTable | undefined>(undefined);
 
   onFilter(event: Event) {

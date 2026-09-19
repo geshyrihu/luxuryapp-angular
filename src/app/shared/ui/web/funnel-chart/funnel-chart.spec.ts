@@ -7,12 +7,19 @@ describe('FunnelChart', () => {
   let fixture: ComponentFixture<FunnelChart>;
 
   beforeEach(async () => {
+    // ChartWrapper (Chart.js) inyecta ElementRef en contexto no soportado
+    // bajo vitest; se prueba el wrapper con la plantilla sustituida.
+    TestBed.overrideComponent(FunnelChart, {
+      set: { template: '<div></div>', imports: [] },
+    });
     await TestBed.configureTestingModule({
       imports: [FunnelChart],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FunnelChart);
+    fixture.componentRef.setInput('labels', ['A', 'B']);
+    fixture.componentRef.setInput('values', [10, 5]);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

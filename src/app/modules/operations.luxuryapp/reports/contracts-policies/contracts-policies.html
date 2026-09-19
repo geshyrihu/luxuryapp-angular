@@ -9,7 +9,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" />
+    <app-table-caption [showAdd]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -57,7 +57,7 @@
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

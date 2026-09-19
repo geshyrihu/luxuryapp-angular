@@ -9,7 +9,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -28,7 +28,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
   selector: "app-incident-attachments",
   imports: [
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ReactiveFormsModule,
     FileUploadModule,
     AppTable,

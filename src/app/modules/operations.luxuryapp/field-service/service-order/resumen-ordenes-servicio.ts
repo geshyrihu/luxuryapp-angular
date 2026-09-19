@@ -13,8 +13,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { ReporteOrdenesServicioService } from "@core/services/reporte-ordenes-servicio.service";
@@ -39,7 +39,7 @@ export class ResumenOrdenesServicio implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   dataGraficos: any[] = [];
   concluidos = 0;

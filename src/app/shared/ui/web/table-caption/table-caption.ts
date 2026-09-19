@@ -13,8 +13,8 @@ import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "@core/services/global-table-filter.service";
 
 @Component({
-  selector: "primeng-custom-caption",
-  templateUrl: "./primeng-custom-caption.html",
+  selector: "app-table-caption",
+  templateUrl: "./table-caption.html",
   imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -25,7 +25,7 @@ import { GlobalTableFilterService } from "@core/services/global-table-filter.ser
     `,
   ],
 })
-export class PrimeNgCustomCaption {
+export class TableCaption {
   private globalFilter = inject(GlobalTableFilterService);
   private destroyRef = inject(DestroyRef);
 
@@ -75,4 +75,3 @@ export class PrimeNgCustomCaption {
     }
   }
 }
-

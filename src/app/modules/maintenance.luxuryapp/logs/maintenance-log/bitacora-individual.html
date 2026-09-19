@@ -2,7 +2,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -16,7 +16,7 @@
         <app-rango-calendario-yyyymmdd />
       </div>
       <div class="col-12 col-sm-7">
-        <primeng-custom-caption
+        <app-table-caption
           [title]="nameMachinery"
           [showAdd]="false"
           [dt]="dt"
@@ -44,7 +44,7 @@
     </div>
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

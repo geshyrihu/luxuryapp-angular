@@ -15,15 +15,15 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -38,7 +38,7 @@ import { CustomerDataCompanyDto } from "./customer-data-company.dto";
   templateUrl: "./customer-data-company-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     FormsModule,
     ReactiveFormsModule,
     AppTable,
@@ -48,8 +48,8 @@ import { CustomerDataCompanyDto } from "./customer-data-company.dto";
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     MobileActionMenu,
     CustomInputSelectSignal,
@@ -70,7 +70,7 @@ export class CustomerDataCompanyList implements OnInit {
     "applicationRoleName",
   ]);
   loading = signal(true);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 

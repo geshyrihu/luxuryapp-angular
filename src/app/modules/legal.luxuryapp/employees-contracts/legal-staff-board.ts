@@ -4,7 +4,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LegalEmployeeService, type LegalEmployeeDTO } from "./legal-employee.service";
@@ -20,7 +20,7 @@ import { LegalEmployeeService, type LegalEmployeeDTO } from "./legal-employee.se
     AppIcon,
     LxTooltipDirective,
     WebButtonIconItem,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
   ],
 })
 export class LegalStaffBoard {

@@ -10,15 +10,15 @@ import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 
 export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   ActionMenu,
   DataViewMobile,
-  PrimeNgCustomTableEmptyMessage,
+  TableEmptyMessage,
   CommonModule,
   WebButtonLabel,
   WebButtonLabelDelete,
@@ -27,8 +27,8 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   FormsModule,
   IonInputCheckbox,
   IonInputSelect,
-  PrimeNgCustomCaption,
-  PrimeNgCustomTableFooter,
+  TableCaption,
+  TableFooter,
   RouterModule,
   AppTable,
   AppSortableColumn,

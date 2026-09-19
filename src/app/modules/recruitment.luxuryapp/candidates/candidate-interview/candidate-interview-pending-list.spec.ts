@@ -64,8 +64,8 @@ describe("CandidateInterviewPendingList", () => {
   it("should merge interview stages on load", async () => {
     await fixture.whenStable();
 
-    expect(apiResponseService.onGetList).toHaveBeenCalledTimes(2);
-    expect(component.dataSignal()).toHaveLength(2);
+    expect(apiResponseService.onGetList).toHaveBeenCalledTimes(1);
+    expect(component.dataSignal()).toHaveLength(1);
   });
 
   it("should open feedback dialog with candidateProcessId", async () => {

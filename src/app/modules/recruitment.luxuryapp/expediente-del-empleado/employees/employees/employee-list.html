@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-end flex-wrap">
-      <primeng-custom-caption
+      <app-table-caption
         (add)="showModalAddEmployee()"
         [dt]="dt"
         [rolAuth]="
@@ -123,10 +123,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

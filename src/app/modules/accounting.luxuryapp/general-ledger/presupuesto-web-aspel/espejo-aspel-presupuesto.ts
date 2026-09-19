@@ -20,8 +20,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -151,7 +151,7 @@ export class PresupuestoAspelEjercicioFiscal {
   });
 
   globalFilterFields = signal<string[]>([]);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   dt = viewChild<AppTable>("dt");
 

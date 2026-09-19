@@ -1,4 +1,15 @@
 export const EndpointsRecursosHumanos = {
+  SalaryProjections: {
+    base: "salary-projections",
+    byId: (id: string) => `salary-projections/${id}`,
+    simulate: "salary-projections/simulate",
+    federalVacationParameters: "salary-projections/federal-vacation-parameters",
+    federalVacationParameter: (id: string) =>
+      `salary-projections/federal-vacation-parameters/${id}`,
+    stateTaxParameters: "salary-projections/state-tax-parameters",
+    stateTaxParameter: (id: string) =>
+      `salary-projections/state-tax-parameters/${id}`,
+  },
   HR: {
     AddendumTemplate: {
       getAll: "hr/addendum-templates",

@@ -46,7 +46,9 @@ describe("GeneralAnualMantenimiento", () => {
   });
 
   it("should have empty cb_providers initially", () => {
-    expect(component.cb_providers()).toEqual([]);
+    expect(component.cb_providers()).toEqual([
+      { label: "Todos", value: "" },
+    ]);
   });
 
   it("should have providerIdControl as empty string", () => {
@@ -60,19 +62,23 @@ describe("GeneralAnualMantenimiento", () => {
     component.onLoadProveedores();
     await new Promise((resolve) => setTimeout(resolve));
     expect(apiResponseSMock.onGetList).toHaveBeenCalledWith(
-      "MaintenanceCalendars/ProveedoresCalendario/cust-1",
+      "maintenance-calendars/proveedores-calendario/cust-1",
     );
-    expect(component.cb_providers()).toEqual([{ value: 1, label: "Prov1" }]);
+    expect(component.cb_providers()).toEqual([
+      { label: "Todos", value: "" },
+      { value: 1, label: "Prov1" },
+    ]);
   });
 
   it("onLoadData should clear dataSignal, fetch and set data", async () => {
     component.dataSignal.set([{ dummy: true }]);
     apiResponseSMock.onGetList.mockResolvedValue([{ id: 1, name: "Item" }]);
+    component.providerIdControl.setValue("5");
     component.onLoadData();
     expect(component.dataSignal()).toEqual([]);
     await new Promise((resolve) => setTimeout(resolve));
     expect(apiResponseSMock.onGetList).toHaveBeenCalledWith(
-      "MaintenanceCalendars/GeneralMantenimiento/cust-1/",
+      "maintenance-calendars/general-mantenimiento/cust-1/5",
     );
     expect(component.dataSignal()).toEqual([{ id: 1, name: "Item" }]);
   });

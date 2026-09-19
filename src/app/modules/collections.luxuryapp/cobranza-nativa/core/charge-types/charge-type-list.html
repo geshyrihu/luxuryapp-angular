@@ -2,7 +2,7 @@
   <app-table
     [value]="dataSignal()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         title="Tipos de Cargo"
         (add)="onModalForm()"
         [dt]="dt"
@@ -54,7 +54,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage
+      <app-table-empty-message
         [colspan]="5"
         icon="material-symbols-light:category"
         title="Sin tipos de cargo"

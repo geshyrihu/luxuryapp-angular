@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PrimeNgCustomTableEmptyMessage } from './primeng-custom-table-emptymessage';
+import { TableEmptyMessage } from './table-empty-message';
 
-describe('PrimeNgCustomTableEmptyMessage', () => {
-  let component: PrimeNgCustomTableEmptyMessage;
-  let fixture: ComponentFixture<PrimeNgCustomTableEmptyMessage>;
+describe('TableEmptyMessage', () => {
+  let component: TableEmptyMessage;
+  let fixture: ComponentFixture<TableEmptyMessage>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PrimeNgCustomTableEmptyMessage],
+      imports: [TableEmptyMessage],
     });
-    fixture = TestBed.createComponent(PrimeNgCustomTableEmptyMessage);
+    fixture = TestBed.createComponent(TableEmptyMessage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -69,7 +69,7 @@
       </div>
 
       <!-- botón Agregar -->
-      <primeng-custom-caption
+      <app-table-caption
         (add)="onModal( {id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
@@ -259,10 +259,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <app-table-empty-message [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

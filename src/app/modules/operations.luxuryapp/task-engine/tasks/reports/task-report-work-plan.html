@@ -1,7 +1,7 @@
 @if (dataSignal().length > 0) {
 <app-table
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -15,7 +15,7 @@
   <ng-template #caption>
     <div class="row g-4">
       <div class="col-12 col-lg-7">
-        <primeng-custom-caption title="Plan de Trabajo" [dt]="dt" />
+        <app-table-caption title="Plan de Trabajo" [dt]="dt" />
       </div>
       <div class="col-12 col-lg-2">
         <il-button

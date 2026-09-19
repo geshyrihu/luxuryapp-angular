@@ -14,8 +14,8 @@ import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
@@ -27,8 +27,8 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DateService } from "@core/services/date.service";
@@ -80,11 +80,11 @@ interface SolicitudAltaListItem {
   imports: [
     MobileActionMenu,
     MobileButtonLabel, MobileButtonLabelConfirm,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    PrimeNgCustomTableFooter,
+    TableFooter,
     DataViewMobile,
     LxTag,
     WebButtonLabel, WebButtonLabelConfirm,
@@ -112,7 +112,7 @@ export class SolicitudAltaList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   @ViewChild("dt") dt?: AppTable;
   ref: DynamicDialogRef;

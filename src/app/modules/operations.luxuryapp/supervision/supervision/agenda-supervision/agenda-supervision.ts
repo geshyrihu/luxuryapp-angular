@@ -15,9 +15,9 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
@@ -28,8 +28,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FechasFiltro } from "@core/interfaces/fechas-filtro.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -47,7 +47,7 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     ActionMenu,
     WebButtonIcon,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     ApiDatePipe,
@@ -56,8 +56,8 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     AppSortableColumn,
     AppSorticon,
     LxMultiSelect,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
     RangoCalendarioyyyymmdd,
   ],
@@ -77,7 +77,7 @@ export class AgendaSupervision implements OnInit {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   AspRole = ApplicationRole;
   cb_user = signal<any[]>([]);

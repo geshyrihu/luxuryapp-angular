@@ -11,7 +11,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
@@ -23,8 +23,8 @@ import { TooltipPlacement } from "@core/enums/tooltip-placement.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CronogramaMantenimientoService } from "@core/services/cronograma-mantenimiento.service";
 import {
@@ -52,7 +52,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     FormsModule,
     WebButtonLabel,
     CommonModule,
-    PrimeNgCustomCaption,
+    TableCaption,
     AppIcon,
   ],
 })
@@ -70,7 +70,7 @@ export class CronogramaAnualMantenimiento {
   loading = signal(true);
   ref: DynamicDialogRef;
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   // ? MEJORA: Filtros globales calculados dinámicamente

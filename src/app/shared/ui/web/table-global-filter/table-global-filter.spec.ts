@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PrimeNgCustomGlobalFilter } from './primeng-custom-global-filter';
+import { TableGlobalFilter } from './table-global-filter';
 
-describe('PrimeNgCustomGlobalFilter', () => {
-  let component: PrimeNgCustomGlobalFilter;
-  let fixture: ComponentFixture<PrimeNgCustomGlobalFilter>;
+describe('TableGlobalFilter', () => {
+  let component: TableGlobalFilter;
+  let fixture: ComponentFixture<TableGlobalFilter>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrimeNgCustomGlobalFilter],
+        imports: [TableGlobalFilter],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrimeNgCustomGlobalFilter);
+    fixture = TestBed.createComponent(TableGlobalFilter);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
@@ -16,8 +16,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
@@ -29,7 +29,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   imports: [
     AppTable,
     PageTitleReportMaintenance,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class ReportRecorridoDiario {
@@ -46,7 +46,7 @@ export class ReportRecorridoDiario {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

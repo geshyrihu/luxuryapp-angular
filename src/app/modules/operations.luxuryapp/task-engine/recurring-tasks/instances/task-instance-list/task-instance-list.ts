@@ -19,9 +19,9 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -47,7 +47,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileActionMenu,
     MobileButtonLabelItem,
     MobileButtonLabelConfirm,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ActionMenu,
     ApiDatePipe,
     WebButtonLabel,
@@ -61,8 +61,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppSortableColumn,
     AppSorticon,
     LxToolbar,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
 
     WebButtonLabelConfirm,
     WebButtonLabelItem,

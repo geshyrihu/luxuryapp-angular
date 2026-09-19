@@ -59,20 +59,15 @@ describe('CustomInputDateSignal', () => {
         expect(component.internalControl.value).toBeUndefined();
       });
 
-      it('should convert ISO date string to Date object', () => {
+      it('should keep ISO date string as-is (conversión a Date ocurre en web-input-date)', () => {
         component.writeValue('2024-06-15');
-        const val = component.internalControl.value;
-        expect(val).toBeInstanceOf(Date);
-        expect(val.getFullYear()).toBe(2024);
-        expect(val.getMonth()).toBe(5);
-        expect(val.getDate()).toBe(15);
+        expect(component.internalControl.value).toBe('2024-06-15');
       });
 
       it('should pass through existing Date objects', () => {
         const date = new Date(2024, 5, 15);
         component.writeValue(date);
-        expect(component.internalControl.value).toBeInstanceOf(Date);
-        expect(component.internalControl.value.getTime()).toBe(date.getTime());
+        expect(component.internalControl.value).toBe(date);
       });
     });
 

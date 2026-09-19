@@ -88,7 +88,6 @@ describe("CandidateInterviewerQueue", () => {
 
     expect(queueService.executeAction).toHaveBeenCalledWith(
       expect.objectContaining({
-        candidateApplicationId: "application-1",
         candidateProcessId: "process-1",
       }),
     );

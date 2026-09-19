@@ -4,7 +4,7 @@ import { ButtonType } from "@core/enums/button-type.enum";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DestinatariosMailReporte } from "@core/interfaces/destinatarios-mail-reporte.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";

@@ -6,7 +6,7 @@
       [value]="flattenedDataSignal()"
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <div class="d-flex justify-content-between">
-          <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+          <app-table-caption [showAdd]="false" [dt]="dt" />
           <il-button
             iconClass="material-symbols-light:download"
             label="Exportar"
@@ -70,7 +70,7 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="flattenedDataSignal()" />
+        <app-table-footer [data]="flattenedDataSignal()" />
       </ng-template>
     </app-table>
   </div>

@@ -20,12 +20,12 @@ import {
   signal,
 } from "@angular/core";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -53,7 +53,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     AppTable,
-    PrimeNgCustomCaption,
+    TableCaption,
     DataViewMobile,
     MobileListItem,
     AppIcon,

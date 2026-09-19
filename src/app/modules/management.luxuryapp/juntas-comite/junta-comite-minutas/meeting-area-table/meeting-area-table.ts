@@ -10,7 +10,7 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
@@ -35,7 +35,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
   imports: [
     WebButtonIconAdd,
     WebButtonIconConfirm,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     WebButtonLabelItem,
     WebButtonLabelEdit,
     WebButtonLabelDelete,

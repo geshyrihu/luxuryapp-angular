@@ -6,7 +6,7 @@
       (onSort)="onSort()"
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       [value]="dataSignal()"
@@ -17,7 +17,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <primeng-custom-caption
+        <app-table-caption
           [title]="'Inventario'"
           (add)="addProductos({ id: 0, title: 'Agregar Registro' })"
           [dt]="dt"
@@ -122,7 +122,7 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="7" />
+        <app-table-empty-message [colspan]="7" />
       </ng-template>
     </app-table>
   </div>

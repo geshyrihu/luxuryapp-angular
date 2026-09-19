@@ -2,7 +2,7 @@
   <app-table
     [value]="dataSignal()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -11,7 +11,7 @@
   >
     <ng-template #caption>
       <div class="d-flex justify-content-between align-items-end mb-4">
-        <primeng-custom-caption
+        <app-table-caption
           title="Emisión de Cargos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
@@ -103,7 +103,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="8" />
+      <app-table-empty-message [colspan]="8" />
     </ng-template>
   </app-table>
 </div>

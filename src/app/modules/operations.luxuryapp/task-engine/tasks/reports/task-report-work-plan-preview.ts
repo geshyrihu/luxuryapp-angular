@@ -8,13 +8,13 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
@@ -29,7 +29,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     AppSortableColumn,
 
     AppSorticon,
-    PrimeNgCustomCaption,
+    TableCaption,
     ReactiveFormsModule,
 
     CustomInputTextSignal,

@@ -14,7 +14,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { Department } from "@core/enums/department.enum";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { PositionRequestStatus } from "@core/enums/position-request-status.enum";
-import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -33,8 +33,8 @@ import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/shared/segmented-control/segmented-control";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
 import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
@@ -62,7 +62,7 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     WebButtonIconEdit,
     WebButtonIconItem,
     LxTooltipDirective,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
 
     AppSortableColumn,
@@ -70,7 +70,7 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     AppSorticon,
     LxAvatar,
     LxTag,
-    PrimeNgCustomCaption,
+    TableCaption,
     WebButtonLabel,
     AppIcon,
     SegmentedControl,

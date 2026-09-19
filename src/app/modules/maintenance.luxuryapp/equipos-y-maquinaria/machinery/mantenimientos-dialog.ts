@@ -127,7 +127,7 @@ interface Equipo {
             </tr>
           </ng-template>
           <ng-template #emptymessage>
-            <primeng-custom-table-emptymessage [colspan]="13" />
+            <app-table-empty-message [colspan]="13" />
           </ng-template>
         </app-table>
       } @else {

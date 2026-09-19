@@ -1,0 +1,94 @@
+<div class="card p-0">
+  <app-table
+    [value]="rows()"
+    [loading]="loading()"
+    [paginator]="true"
+    [rows]="30"
+    [globalFilterFields]="globalFilterFields()"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} - {last} de {totalRecords}"
+  >
+    <ng-template #caption>
+      <div
+        class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 p-3 bg-body-tertiary rounded"
+      >
+        <div>
+          <h5 class="m-0">Proyección de Sueldos</h5>
+          <small class="text-body-secondary"
+            >Propuestas de ajuste salarial y nuevas plazas</small
+          >
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <il-button
+            label="Parámetros"
+            iconClass="material-symbols-light:tune"
+            severity="secondary"
+            variant="outline"
+            size="small"
+            (clicked)="openPayrollParameters()"
+          />
+          <custom-input-text-signal
+            label="Nombre de la propuesta"
+            [ngModel]="newName()"
+            (ngModelChange)="newName.set($event)"
+          />
+          <il-button
+            label="Nueva propuesta"
+            iconClass="material-symbols-light:add"
+            severity="primary"
+            size="small"
+            (clicked)="createProjection()"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="table-col-12" appSortableColumn="folio">
+          FOLIO <app-sorticon field="folio" />
+        </th>
+        <th class="table-col-30" appSortableColumn="name">
+          NOMBRE <app-sorticon field="name" />
+        </th>
+        <th class="table-col-10">ESCENARIOS</th>
+        <th class="table-col-12" appSortableColumn="state">
+          ESTADO <app-sorticon field="state" />
+        </th>
+        <th class="table-col-15" appSortableColumn="createdAt">
+          CREADO EL <app-sorticon field="createdAt" />
+        </th>
+        <th class="table-col-8"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="fw-semibold">{{ item.folio }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.scenarios.length }}</td>
+        <td>
+          <lx-tag
+            [value]="stateText(item.state)"
+            [severity]="stateSeverity(item.state)"
+          />
+        </td>
+        <td>{{ item.createdAt | apiDate }}</td>
+        <td class="text-center">
+          <iw-button
+            iconClass="material-symbols-light:visibility"
+            severity="primary"
+            size="small"
+            variant="text"
+            (clicked)="openDetail(item)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <app-table-empty-message [colspan]="6" />
+    </ng-template>
+  </app-table>
+</div>

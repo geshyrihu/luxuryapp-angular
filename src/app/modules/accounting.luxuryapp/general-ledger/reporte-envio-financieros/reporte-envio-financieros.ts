@@ -14,14 +14,14 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-reporte-envio-financieros",
@@ -30,7 +30,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     LxTooltipDirective,
     CustomInputSelectSignal,
@@ -69,7 +69,7 @@ export class ReporteEnvioFinancieros implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 

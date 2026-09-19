@@ -13,7 +13,7 @@
   <app-table
     [value]="dataSignal()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -42,7 +42,7 @@
           />
         </div>
         <div class="field col-12 col-md-3">
-          <primeng-custom-caption
+          <app-table-caption
             title="Facturas CFDI"
             [showAddButton]="false"
             [dt]="dt"

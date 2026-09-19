@@ -10,9 +10,9 @@ import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -20,8 +20,8 @@ import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -39,9 +39,9 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
     ApiDatePipe,
     WebButtonIconItem,
     WebButtonIconViewPdf,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableEmptyMessage,
+    TableFooter,
     AppTable,
 
     AppSortableColumn,
@@ -59,7 +59,7 @@ export class RecruitmentAgendaList implements OnInit {
   private router = inject(Router);
 
   dataSignal = signal<CandidateRecruitmentAgendaItem[]>([]);
-  readonly tablePrimeNgRows = tablePrimeNgRows();
+  readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 

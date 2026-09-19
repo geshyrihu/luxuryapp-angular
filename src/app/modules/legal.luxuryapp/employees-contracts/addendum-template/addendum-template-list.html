@@ -5,13 +5,13 @@
     [scrollable]="true"
     [scrollHeight]="tableScrollH.scrollHeight()"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [globalFilterFields]="globalFilterFields"
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Machote de Adenda' })"
         [dt]="dt"
       />
@@ -50,10 +50,10 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <primeng-custom-table-footer [data]="items()" />
+      <app-table-footer [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="6" />
+      <app-table-empty-message [colspan]="6" />
     </ng-template>
   </app-table>
 

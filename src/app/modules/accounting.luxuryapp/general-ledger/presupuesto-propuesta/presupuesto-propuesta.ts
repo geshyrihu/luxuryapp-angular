@@ -38,8 +38,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -317,7 +317,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /** Número de filas por página para la tabla. */
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   /** Opciones de número de filas por página. */
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 

@@ -15,7 +15,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimengRadarChart } from "@ui/web/charts/primeng-radar-chart";
+import { RadarChart } from "@ui/web/charts/radar-chart";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   ChartGeneratorService,
@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     LxDivider,
     LxTag,
     LxMessage,
-    PrimengRadarChart,
+    RadarChart,
     WebButtonLabel,
   ],
 })
@@ -300,4 +300,3 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
-

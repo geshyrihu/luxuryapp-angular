@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { PrimengRadarChart } from "./primeng-radar-chart";
+import { RadarChart } from "./radar-chart";
 
-describe("PrimengRadarChart", () => {
-  let component: PrimengRadarChart;
-  let fixture: ComponentFixture<PrimengRadarChart>;
+describe("RadarChart", () => {
+  let component: RadarChart;
+  let fixture: ComponentFixture<RadarChart>;
 
   beforeEach(async () => {
-    TestBed.overrideComponent(PrimengRadarChart, {
+    TestBed.overrideComponent(RadarChart, {
       set: { template: "<div>Mock RadarChart</div>", imports: [] },
     });
 
     await TestBed.configureTestingModule({
-      imports: [PrimengRadarChart],
+      imports: [RadarChart],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrimengRadarChart);
+    fixture = TestBed.createComponent(RadarChart);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

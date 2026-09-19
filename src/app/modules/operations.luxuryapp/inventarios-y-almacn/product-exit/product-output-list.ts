@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -20,14 +20,14 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
@@ -58,14 +58,14 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileActionMenu,
     MobileButtonLabelItem,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     AppTable,
 
     AppSortableColumn,
 
     AppSorticon,
-    PrimeNgCustomTableFooter,
+    TableFooter,
     CustomInputTextSignal,
     DataViewMobile,
 
@@ -109,7 +109,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
 
   // Configuración de la tabla
   // loading = signal(true); // Replaced by toSignal
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   // private subscriptions = new Subscription(); // Removed
@@ -140,7 +140,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
       : undefined;
     const url = Endpoints.ProductOutputs.getPaged(customerId, month, year);
 
-    this.store.configure(url, { recordsNumber: this.tablePrimeNgRows });
+    this.store.configure(url, { recordsNumber: this.tableRows });
     this.store.load();
   }
 

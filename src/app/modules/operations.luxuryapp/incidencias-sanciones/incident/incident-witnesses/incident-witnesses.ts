@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,7 +25,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     WebButtonLabel,
     AppIcon,

@@ -12,8 +12,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
@@ -45,7 +45,7 @@ export class EntregaRecepcionEquipos {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   constructor() {

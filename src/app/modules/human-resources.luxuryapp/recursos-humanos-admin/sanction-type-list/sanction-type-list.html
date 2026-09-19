@@ -4,7 +4,7 @@
     [value]="items()"
     [globalFilterFields]="globalFilterFields"
     [paginator]="true"
-    [rows]="tablePrimeNgRows"
+    [rows]="tableRows"
     [rowsPerPageOptions]="rowsPerPageOptions"
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -14,7 +14,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <primeng-custom-caption
+      <app-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
         [dt]="dt"
       />
@@ -73,10 +73,10 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="6" />
+      <app-table-empty-message [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="items()" />
+      <app-table-footer [data]="items()" />
     </ng-template>
   </app-table>
 

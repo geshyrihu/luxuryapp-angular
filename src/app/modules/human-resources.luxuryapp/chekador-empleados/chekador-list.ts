@@ -13,27 +13,27 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { IRegistroChecador } from './interfaces/chekador-empleados.models';
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { ChekadorEmpleadosService } from './chekador-empleados.service';
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -44,8 +44,8 @@ import { ChekadorEmpleadosService } from './chekador-empleados.service';
     CustomInputCheckSignal,
     IonInputCheckbox,
     FormsModule,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     DataViewMobile,
   ],
 })
@@ -68,7 +68,7 @@ export class ChekadorList {
     return globalFilterFields(data);
   });
 
-  readonly rows = tablePrimeNgRows();
+  readonly rows = tableRows();
   readonly rowsPerPage = rowsPerPageOptions();
 
   constructor() {

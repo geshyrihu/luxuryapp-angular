@@ -184,7 +184,7 @@ describe("TaskTemplateItems", () => {
 
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
       "recurring-tasks/templates/tmpl-1/items/reorder",
-      { itemIdsInOrder: ["a", "b"] },
+      { itemIdsInOrder: ["b", "a"] },
     );
   });
 

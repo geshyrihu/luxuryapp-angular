@@ -12,7 +12,7 @@ import { Router, RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -119,7 +119,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   templateUrl: "./juntas-mensuales-session.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     RouterModule,
     AppTable,

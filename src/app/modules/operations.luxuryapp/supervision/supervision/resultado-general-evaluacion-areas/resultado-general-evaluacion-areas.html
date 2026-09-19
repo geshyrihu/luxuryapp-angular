@@ -7,7 +7,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
+    <app-table-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -73,7 +73,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="11" />
+    <app-table-empty-message [colspan]="11" />
   </ng-template>
   <ng-template #body let-rowIndex="rowIndex" let-item>
     <tr>

@@ -3,7 +3,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -14,7 +14,7 @@
   dzfxcvcv
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <primeng-custom-caption (add)="onCreate()" [dt]="dt" />
+      <app-table-caption (add)="onCreate()" [dt]="dt" />
       <il-button
         (clicked)="onDownloadAll()"
         label="Descargar Todas"
@@ -82,10 +82,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

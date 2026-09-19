@@ -30,7 +30,7 @@
         <div
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
         >
-          <primeng-custom-caption
+          <app-table-caption
             [dt]="dt"
             [showAdd]="false"
             [noPadding]="true"
@@ -66,7 +66,7 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="7" />
+        <app-table-empty-message [colspan]="7" />
       </ng-template>
     </app-table>
 

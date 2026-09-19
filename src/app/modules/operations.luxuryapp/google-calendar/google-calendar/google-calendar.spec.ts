@@ -19,20 +19,20 @@ vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
 
 vi.mock("@ionic/angular", async () => {
   const mocks = await import("./ionic-mocks");
-  return {
-    IonItem: mocks.MockIonItem,
-    IonLabel: mocks.MockIonLabel,
-    IonButton: mocks.MockIonButton,
-    IonIcon: mocks.MockIonIcon,
-    IonPopover: mocks.MockIonPopover,
-    IonContent: mocks.MockIonContent,
-    IonList: mocks.MockIonList,
-    IonProgressBar: mocks.MockIonProgressBar,
-    IonItemDivider: mocks.MockIonItemDivider,
-    IonSearchbar: mocks.MockIonSearchbar,
-    IonInfiniteScroll: mocks.MockIonInfiniteScroll,
-    IonInfiniteScrollContent: mocks.MockIonInfiniteScrollContent,
-  };
+  // Proxy: cualquier export Ion*/Controller pedido por el componente o sus
+  // dependencias resuelve a un mock genérico (o al MockX dedicado si existe).
+  const cache: Record<string | symbol, any> = {};
+  return new Proxy(cache, {
+    get(target, prop) {
+      if (prop === "__esModule") return true;
+      if (prop === "then") return undefined;
+      if (!(prop in target)) {
+        target[prop] =
+          (mocks as any)[`Mock${String(prop)}`] ?? class {};
+      }
+      return target[prop];
+    },
+  });
 });
 
 vi.mock("@core/components/mobile/buttons", async () => {
@@ -65,6 +65,9 @@ vi.mock("@core/services/date.service", () => ({
 
 vi.mock("@core/services/dialog-handler.service", () => ({
   DialogHandlerService: class DialogHandlerService {},
+  DialogService: class DialogService {},
+  DynamicDialogRef: class DynamicDialogRef {},
+  DynamicDialogConfig: class DynamicDialogConfig {},
 }));
 
 describe("GoogleCalendar", () => {

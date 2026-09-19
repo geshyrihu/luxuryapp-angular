@@ -4,7 +4,7 @@
     <app-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="tableRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       [value]="dataSignal()"
@@ -29,7 +29,7 @@
 
           <!-- DERECHA: Buscador, Agregar e Imprimir -->
           <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-            <primeng-custom-caption
+            <app-table-caption
               (add)="onModalAdd({ id: '', title: 'Agregar' })"
               [dt]="dt"
               [noPadding]="true"
@@ -173,7 +173,7 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="19" />
+        <app-table-empty-message [colspan]="19" />
       </ng-template>
     </app-table>
     }

@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -24,7 +24,7 @@ import type {
   imports: [
     AppTable,
     WebButtonLabel,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {

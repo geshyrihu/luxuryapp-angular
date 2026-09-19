@@ -11,8 +11,8 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -38,8 +38,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
     StatusBadge,
     AppTable,
     AppReorderableRow,

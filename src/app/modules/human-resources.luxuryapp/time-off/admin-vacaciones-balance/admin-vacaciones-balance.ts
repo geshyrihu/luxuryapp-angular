@@ -12,14 +12,14 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MessageService } from "@core/services/message.service";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
@@ -29,7 +29,7 @@ import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-admin-view.interface";
 @Component({
@@ -38,14 +38,14 @@ import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-a
     AppIcon,
     MobileListItem,
     WebButtonIconEdit,
-    PrimeNgCustomTableEmptyMessage,
+    TableEmptyMessage,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
     LxTag,
-    PrimeNgCustomCaption,
+    TableCaption,
     WebButtonLabelEdit,
     DataViewMobile,
     LxConfirmDialog,
@@ -63,7 +63,7 @@ export class AdminVacacionesBalance {
   loading = signal(true);
   dataSignal = signal<VacationBalanceAdminViewDto[]>([]);
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

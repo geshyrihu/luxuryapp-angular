@@ -9,7 +9,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { AppImage } from "@ui/web/image/image";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { SendOperationReport } from "@operations.luxuryapp/task-engine/tasks/send-operation-report/send-operation-report";
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
@@ -21,8 +21,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -61,8 +61,8 @@ import { TaskReadList } from "../task-read-list";
 
     AppSorticon,
 
-    PrimeNgCustomCaption,
-    PrimeNgCustomCaption,
+    TableCaption,
+    TableCaption,
     AppImage,
     CustomInputSwitch,
     ReactiveFormsModule,
@@ -99,7 +99,7 @@ export class TaskMessageOperationReport {
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   assignee: string | null = null;

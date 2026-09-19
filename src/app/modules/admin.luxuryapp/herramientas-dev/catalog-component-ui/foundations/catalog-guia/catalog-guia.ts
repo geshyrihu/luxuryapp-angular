@@ -284,8 +284,8 @@ export class CatalogGuia {
     },
     {
       family: "Tabla PrimeNG",
-      selector: "primeng-custom-caption / footer",
-      source: "core/components/primeng-custom-*",
+      selector: "app-table-caption / footer",
+      source: "shared/ui/web/table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
       avoidWhen: "Listados mobile donde convenga DataViewMobile.",

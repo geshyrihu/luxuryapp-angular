@@ -13,7 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 import { ECalculationMethod } from "../../interfaces/enums";
 import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
@@ -25,7 +25,7 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
     LxTag,
     AppTable,
     AppFrozenColumn,
-    PrimeNgCustomCaption,
+    TableCaption,
     CurrencyPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

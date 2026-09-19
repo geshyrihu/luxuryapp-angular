@@ -7,7 +7,7 @@
   [loading]="loading()"
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -17,7 +17,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <primeng-custom-caption [dt]="dt" [showAddButton]="false" />
+      <app-table-caption [dt]="dt" [showAddButton]="false" />
       <il-button
         label="Recalcular Balances"
         iconClass="material-symbols-light:sync"
@@ -76,7 +76,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="11" />
+    <app-table-empty-message [colspan]="11" />
   </ng-template>
 </app-table>
 

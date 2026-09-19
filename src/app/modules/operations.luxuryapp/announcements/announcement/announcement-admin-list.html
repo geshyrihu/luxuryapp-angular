@@ -3,7 +3,7 @@
 <app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
-  [rows]="tablePrimeNgRows"
+  [rows]="tableRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -16,7 +16,7 @@
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <div class="flex-grow-1">
-        <primeng-custom-caption
+        <app-table-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
           [noPadding]="true"
@@ -151,10 +151,10 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
+    <app-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
 </app-table>
 

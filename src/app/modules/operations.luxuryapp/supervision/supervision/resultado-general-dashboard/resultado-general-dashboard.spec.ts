@@ -69,7 +69,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
-      "NombreCorto",
+      "nombre-corto",
     );
     expect(component.cb_customers.length).toBe(2);
     expect(mockApiResponseS.onGetList).toHaveBeenCalled();
@@ -91,7 +91,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/ReporteResumenPreventivos/2025-01-01/2025-01-01",
+      "resumen-general/reporte-resumen-preventivos/2025-01-01/2025-01-01",
     );
   });
 
@@ -100,7 +100,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/ReporteResumenTicket/2025-01-01/2025-01-01",
+      "resumen-general/reporte-resumen-ticket/2025-01-01/2025-01-01",
     );
   });
 
@@ -109,7 +109,7 @@ describe("ResultadoGeneralDashboard", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/ReporteResumenMinutasFiltro/2025-01-01/2025-01-01/3/0",
+      "resumen-general/reporte-resumen-minutas-filtro/2025-01-01/2025-01-01/3/0",
     );
   });
 
@@ -126,11 +126,11 @@ describe("ResultadoGeneralDashboard", () => {
   });
 
   it("onValueProgress should return correct colors", () => {
-    expect(component.onValueProgress(94)).toBe("#EF4444");
-    expect(component.onValueProgress(100)).toBe("#22C55E");
-    expect(component.onValueProgress(97)).toBe("#F59E0B");
-    expect(component.onValueProgress(95)).toBe("#F59E0B");
-    expect(component.onValueProgress(99)).toBe("#F59E0B");
+    expect(component.onValueProgress(94)).toBe("danger");
+    expect(component.onValueProgress(100)).toBe("success");
+    expect(component.onValueProgress(97)).toBe("warning");
+    expect(component.onValueProgress(95)).toBe("warning");
+    expect(component.onValueProgress(99)).toBe("warning");
   });
 });
 

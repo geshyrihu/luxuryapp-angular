@@ -5,7 +5,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <app-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -64,6 +64,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <app-table-empty-message [colspan]="7" />
   </ng-template>
 </app-table>

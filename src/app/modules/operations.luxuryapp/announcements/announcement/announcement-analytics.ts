@@ -11,7 +11,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-primeng-option";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

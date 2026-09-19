@@ -13,15 +13,15 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
@@ -35,9 +35,9 @@ import { CandidateApplicationListItem } from "../interfaces/candidate-applicatio
     CommonModule,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableEmptyMessage,
+    TableFooter,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -61,7 +61,7 @@ export class CandidateApplicationListDesktop {
   completeHiring = output<string>();
 
   loading = signal(true);
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly candidateProcessStage = CandidateProcessStage;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

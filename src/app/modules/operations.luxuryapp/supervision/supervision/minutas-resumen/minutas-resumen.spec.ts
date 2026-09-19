@@ -76,7 +76,7 @@ describe("MinutasResumen", () => {
 
     expect(component.periodo()).toBe("Enero 2025");
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
-      "NombreCorto",
+      "nombre-corto",
     );
     expect(mockApiResponseS.onGetList).toHaveBeenCalledTimes(2);
   });
@@ -94,10 +94,10 @@ describe("MinutasResumen", () => {
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/ResumenMinutasGeneralLista/2025-01-01/2025-01-31",
+      "resumen-general/resumen-minutas-general-lista/2025-01-01/2025-01-31",
     );
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "resumen-general/ResumenMinutasGeneralGrupo/2025-01-01/2025-01-31",
+      "resumen-general/resumen-minutas-general-grupo/2025-01-01/2025-01-31",
     );
     expect(component.generalMinutasSignal()).toEqual(mockGeneral);
     expect(component.generalMinutasGrupoSignal()).toEqual(mockGrupo);

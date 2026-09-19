@@ -15,8 +15,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { DynamicDialogConfig, DynamicDialogRef, DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -24,8 +24,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
@@ -43,8 +43,8 @@ import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
+    TableCaption,
+    TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -63,7 +63,7 @@ export class GastoFijoServicios implements OnInit {
 
   globalFilterFields = computed(() => getGlobalFilterFields(this.productos()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   mensajeError = false;
   catalogoGastosFijosDetalles: any;

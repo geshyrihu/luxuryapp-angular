@@ -15,7 +15,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <app-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -113,6 +113,6 @@
     </ng-container>
   </ng-template>
   <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="formArray.getRawValue()" />
+    <app-table-footer [data]="formArray.getRawValue()" />
   </ng-template>
 </app-table>

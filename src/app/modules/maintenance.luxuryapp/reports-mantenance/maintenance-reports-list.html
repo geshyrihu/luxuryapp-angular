@@ -28,7 +28,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
+    <app-table-caption
       [title]="'REPORTES'"
       [showAdd]="false"
       [showSearch]="false"
@@ -54,7 +54,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="2" />
+    <app-table-empty-message [colspan]="2" />
   </ng-template>
 </app-table>
 

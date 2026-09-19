@@ -24,7 +24,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
 
 @Component({
   selector: "app-equipment-inspection-qr-list",
@@ -36,7 +36,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
     AppTable,
     LxTag,
     DataViewMobile,
-    PrimeNgCustomCaption,
+    TableCaption,
   ],
 })
 export class EquipmentInspectionQrList implements OnInit {

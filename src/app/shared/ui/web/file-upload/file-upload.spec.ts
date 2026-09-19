@@ -43,10 +43,11 @@ describe("FileUpload", () => {
     const emitSpy = vi.fn();
     component.onSelect.subscribe(emitSpy);
 
-    await component.onFilesSelected({
-      files: [source],
-      originalEvent: new Event("change"),
-    } as any);
+    const input = document.createElement("input");
+    Object.defineProperty(input, "files", { value: [source] });
+    const event = new Event("change");
+    Object.defineProperty(event, "target", { value: input });
+    await component.onNativeInput(event);
 
     expect(imageProcessing.processFileIfImage).toHaveBeenCalledWith(source, {
       maxBytes: component.maxFileSize(),

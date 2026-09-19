@@ -22,8 +22,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "@core/helpers/table-primeng-option";
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
@@ -66,7 +66,7 @@ export class ReportCatalog implements OnInit {
   plantillas = signal<IReportDefinitionList[]>([]);
   loading = signal(false);
 
-  rows = tablePrimeNgRows();
+  rows = tableRows();
   rowsPerPage = rowsPerPageOptions();
   globalFilterFields = [
     "name",
