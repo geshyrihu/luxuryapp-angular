@@ -45,13 +45,10 @@
           </div>
           <div class="text-end">
             <div class="mb-2">
-              <span
-                class="p-tag"
-                [class.p-tag-danger]="t.priority === 'Alta'"
-                [class.p-tag-warning]="t.priority === 'Media'"
-                [class.p-tag-info]="t.priority === 'Baja'"
-                >{{ t.priority }}</span
-              >
+              <lx-tag
+                [value]="t.priority"
+                [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warn' : 'info'"
+              />
             </div>
             <span class="fw-bold text-body text-uppercase tracking-wider text-sm"
               >{{ t.status }}</span
@@ -414,7 +411,7 @@
       </h3>
       @if (t.seeEditingOptions) {
       <button
-        class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+        class="btn btn-rounded btn-text-primary btn-sm"
         (click)="onFollowUp(t.id)"
       >
         <app-icon
@@ -480,14 +477,14 @@
     <div class="d-flex flex-column gap-1">
       <div class="d-flex gap-1">
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onModalForm(t)"
         >
           <app-icon icon="material-symbols-light:edit-outline" slot="start" />
           Editar
         </button>
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onProgram(t.id)"
         >
           <app-icon icon="material-symbols-light:event" slot="start" />
@@ -498,14 +495,14 @@
       <div class="d-flex gap-1">
         @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onProgress(t.id)"
         >
           <app-icon icon="material-symbols-light:sync" slot="start" />
           Proceso
         </button>
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+          class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onClosed(t.id)"
         >
           <app-icon icon="material-symbols-light:lock-outline" slot="start" />
@@ -513,7 +510,7 @@
         </button>
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+          class="btn btn-rounded btn-text-danger btn-sm"
           (click)="onReopen(t.id)"
         >
           <app-icon
@@ -526,7 +523,7 @@
       </div>
 
       <button
-        class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+        class="btn btn-rounded btn-text-primary btn-sm"
         (click)="onFollowUp(t.id)"
       >
         <app-icon icon="material-symbols-light:forum-outline" slot="start" />
