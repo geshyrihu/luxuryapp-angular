@@ -46,7 +46,7 @@
           size="small"
           (clicked)="addCategory()"
           label="Nueva Categoría"
-          customClass="p-button-outlined"
+          customClass="btn-outline"
         />
         <il-button-save
           [propertyId]="id"
@@ -93,7 +93,7 @@
                 [size]="'small'"
                 (clicked)="addQuestion(i)"
                 label="Pregunta"
-                customClass="p-button-text p-button-sm"
+                customClass="btn-text-primary btn-sm"
               />
               <il-button-delete (confirmed)="removeCategory(i)" />
             </div>

@@ -298,37 +298,37 @@
 
             <div class="d-flex flex-wrap mt-2">
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onDocumentos(item.id)"
               >
                 <app-icon icon="material-symbols-light:description" slot="icon-only" />
               </button>
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onServiceHistory(item.id)"
               >
                 <app-icon icon="material-symbols-light:schedule" slot="icon-only" />
               </button>
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onBitacoraIndividual(item.id)"
               >
                 <app-icon icon="material-symbols-light:menu-book-outline" slot="icon-only" />
               </button>
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="showModalFichatecnica(item.id)"
               >
                 <app-icon icon="material-symbols-light:article-outline" slot="icon-only" />
               </button>
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onEquipmentInspections(item)"
               >
                 <app-icon icon="material-symbols-light:article-outline" slot="icon-only" />
               </button>
               <button
-                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="item.expanded = !item.expanded"
               >
                 <app-icon icon="material-symbols-light:handyman" slot="icon-only" />
@@ -344,7 +344,7 @@
                   >Servicios Programados</span
                 >
                 <button
-                  class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                  class="btn btn-rounded btn-text-primary btn-sm"
                   (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
                 >
                   <app-icon icon="material-symbols-light:add-circle-outline" slot="start" />
@@ -390,19 +390,19 @@
                     class="d-flex justify-content-end gap-1 mt-2 border-top-1 border pt-1"
                   >
                     <button
-                      class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary"
+                      class="btn btn-rounded btn-text-secondary btn-sm"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
                     >
                       <app-icon icon="material-symbols-light:content-copy" slot="icon-only" />
                     </button>
                     <button
-                      class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                      class="btn btn-rounded btn-text-primary btn-sm"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
                     >
                       <app-icon icon="material-symbols-light:edit-outline" slot="icon-only" />
                     </button>
                     <button
-                      class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+                      class="btn btn-rounded btn-text-danger btn-sm"
                       (click)="onDeleteOrder(service.id)"
                     >
                       <app-icon icon="material-symbols-light:delete-outline" slot="icon-only" />
@@ -425,13 +425,13 @@
             @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
             AspRole.Administrador, AspRole.SuperUsuario])) {
             <button
-              class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+              class="btn btn-rounded btn-text-primary btn-sm"
               (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
             >
               <app-icon icon="material-symbols-light:edit-outline" slot="icon-only" />
             </button>
             <button
-              class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+              class="btn btn-rounded btn-text-danger btn-sm"
               (click)="onDelete(item.id)"
             >
               <app-icon icon="material-symbols-light:delete-outline" slot="icon-only" />

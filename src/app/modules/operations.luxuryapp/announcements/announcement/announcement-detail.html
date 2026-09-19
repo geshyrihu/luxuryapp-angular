@@ -78,7 +78,7 @@
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="d-block d-md-none pb-5">
   <div class="p-2">
-    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="navigateBack()">
+    <button class="btn btn-rounded btn-text-secondary btn-sm" (click)="navigateBack()">
       <app-icon icon="material-symbols-light:arrow-back" slot="start" />
       Volver
     </button>
@@ -106,7 +106,7 @@
 
         @if (announcement().externalLink) {
         <div class="ion-margin-top">
-          <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary">
+          <button class="btn btn-rounded btn-text-primary btn-sm">
             Visitar Enlace <app-icon icon="material-symbols-light:open-in-new" slot="end" />
           </button>
         </div>
