@@ -72,16 +72,16 @@ describe('CustomInputDecimal', () => {
       expect(component.inputStyleClass()).toBe('');
     });
 
-    it('should compute inputStyleClass with "p-inputtext-sm" when size is "small"', () => {
+    it('should compute inputStyleClass with "form-control-sm" when size is "small"', () => {
       fixture.componentRef.setInput('size', 'small');
       fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('p-inputtext-sm');
+      expect(component.inputStyleClass()).toBe('form-control-sm');
     });
 
-    it('should compute inputStyleClass with "p-inputtext-lg" when size is "large"', () => {
+    it('should compute inputStyleClass with "form-control-lg" when size is "large"', () => {
       fixture.componentRef.setInput('size', 'large');
       fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('p-inputtext-lg');
+      expect(component.inputStyleClass()).toBe('form-control-lg');
     });
 
     it('should include customClass in inputStyleClass', () => {

@@ -56,8 +56,8 @@ export class WebInputSelectBool extends BaseInputSignal {
   ]);
 
   getInputStyleClass = computed(() => {
-    if (this.size() === "small") return "p-inputtext-sm";
-    if (this.size() === "large") return "p-inputtext-lg";
+    if (this.size() === "small") return "form-control-sm";
+    if (this.size() === "large") return "form-control-lg";
     return "";
   });
 }

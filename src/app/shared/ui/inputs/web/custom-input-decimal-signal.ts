@@ -60,8 +60,8 @@ export class CustomInputDecimal extends BaseInputSignal {
   // <--- Computados --->
   inputStyleClass = computed(() => {
     let classes = this.customClass();
-    if (this.size() === "small") classes += " p-inputtext-sm";
-    if (this.size() === "large") classes += " p-inputtext-lg";
+    if (this.size() === "small") classes += " form-control-sm";
+    if (this.size() === "large") classes += " form-control-lg";
     return classes.trim();
   });
 
