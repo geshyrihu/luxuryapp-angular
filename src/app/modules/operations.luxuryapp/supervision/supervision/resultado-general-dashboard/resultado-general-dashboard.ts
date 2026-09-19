@@ -7,8 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -33,12 +31,10 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    FormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    LxMultiSelect,
     CustomInputTextSignal,
     LxTag,
     LxProgressBar,
@@ -154,4 +150,3 @@ export class ResultadoGeneralDashboard implements OnInit {
     return color;
   }
 }
-

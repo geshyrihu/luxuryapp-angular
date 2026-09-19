@@ -132,7 +132,7 @@
               </div>
             </td>
             <td>
-              <p-tablecheckbox [value]="invoice"></p-tablecheckbox>
+              <app-table-selection-checkbox [value]="invoice"></app-table-selection-checkbox>
             </td>
             <td>{{ invoice.fechaEmision | apiDate: 'short' }}</td>
             <td>{{ invoice.emisorNombre }}</td>

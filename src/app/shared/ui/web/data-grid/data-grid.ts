@@ -96,7 +96,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <th style="width: 3rem">
-                <p-tableheadercheckbox />
+                <app-table-header-checkbox />
               </th>
             }
             @for (col of columns(); track col.field) {
@@ -136,7 +136,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
-                <p-tablecheckbox [value]="row" />
+                <app-table-selection-checkbox [value]="row" />
               </td>
             }
             @for (col of columns(); track col.field) {

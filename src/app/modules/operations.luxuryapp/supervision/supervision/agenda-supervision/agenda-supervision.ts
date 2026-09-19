@@ -7,8 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
@@ -51,11 +49,9 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     ApiDatePipe,
-    FormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LxMultiSelect,
     TableCaption,
     TableFooter,
     DataViewMobile,
@@ -161,4 +157,3 @@ export class AgendaSupervision implements OnInit {
       });
   }
 }
-

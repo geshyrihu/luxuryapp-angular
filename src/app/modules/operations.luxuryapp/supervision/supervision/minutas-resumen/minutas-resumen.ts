@@ -6,8 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
@@ -23,7 +21,7 @@ import { FiltroMinutasArea } from "../filtro-minutas-area/filtro-minutas-area";
   selector: "app-minutas-resumen",
   templateUrl: "./minutas-resumen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, FormsModule, AppTable, AppSortableColumn, AppSorticon, LxMultiSelect, MesAnio],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, MesAnio],
 })
 export class MinutasResumen implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -23,30 +23,6 @@
       <th rowspan="2" class="table-col-16" appSortableColumn="numeroCliente">
         CLIENTE
         <app-sorticon field="numeroCliente" />
-        <p-columnfilter
-          field="customer"
-          matchMode="in"
-          display="menu"
-          [showMatchModes]="false"
-          [showOperator]="false"
-          [showAddButton]="false"
-        >
-          <ng-template #filter let-value let-filter="filterCallback">
-            <lx-multi-select
-              [ngModel]="value"
-              [options]="cb_customers()"
-              placeholder="Ninguno"
-              (onChange)="filter($event.value)"
-              optionLabel="label"
-            >
-              <ng-template let-option #item>
-                <div class="p-multiselect-representative-option">
-                  <span class="ms-1">{{ option.label }}</span>
-                </div>
-              </ng-template>
-            </lx-multi-select>
-          </ng-template>
-        </p-columnfilter>
       </th>
       <th colspan="3">
         <p class="p-2 w-full rounded text-white bg-contable">CONTABLE</p>

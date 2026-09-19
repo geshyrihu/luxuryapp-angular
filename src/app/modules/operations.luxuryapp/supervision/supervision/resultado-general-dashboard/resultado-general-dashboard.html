@@ -86,31 +86,6 @@
       <th appSortableColumn="numeroCliente" class="table-col-20">
         Cliente
         <app-sorticon field="numeroCliente" />
-        <p-columnfilter
-          field="customer"
-          matchMode="in"
-          display="menu"
-          locale="es"
-          [showMatchModes]="false"
-          [showOperator]="false"
-          [showAddButton]="false"
-        >
-          <ng-template #filter let-value let-filter="filterCallback">
-            <lx-multi-select
-              [ngModel]="value"
-              [options]="cb_customers"
-              placeholder="Ninguno"
-              (onChange)="filter($event.value)"
-              optionLabel="label"
-            >
-              <ng-template let-option #item>
-                <div class="p-multiselect-representative-option">
-                  <span class="ms-1">{{ option.label }}</span>
-                </div>
-              </ng-template>
-            </lx-multi-select>
-          </ng-template>
-        </p-columnfilter>
       </th>
       @if (mostrar) {
       <th appSortableColumn="solicitudesTotal" class="table-col-20">

@@ -152,7 +152,7 @@ export class AppSorticon {
 }
 
 @Component({
-  selector: "p-tablecheckbox",
+  selector: "app-table-selection-checkbox",
   template: `
     <input
       type="checkbox"
@@ -171,7 +171,7 @@ export class AppTableCheckbox {
 }
 
 @Component({
-  selector: "p-tableheadercheckbox",
+  selector: "app-table-header-checkbox",
   template: `
     <input
       type="checkbox"
