@@ -119,7 +119,7 @@ import {
             <il-button
               label="Limpiar"
               iconClass="material-symbols-light:ink-eraser"
-              customClass="flex-1 p-button-secondary"
+              customClass="flex-1 btn-secondary"
               (clicked)="clear.emit()"
             />
           </div>

@@ -34,6 +34,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppMessage } from "@ui/web/message/message";
 
 @Component({
   selector: "app-reglamentos",
@@ -61,6 +62,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonLabelViewPdf,
     MobileListItem,
     AppIcon,
+    AppMessage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",
@@ -149,4 +151,3 @@ export class Reglamentos {
       .catch((error) => {});
   }
 }
-

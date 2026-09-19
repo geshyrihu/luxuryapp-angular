@@ -13,10 +13,11 @@ import { MarkdownModule } from "ngx-markdown";
 import { AuthService } from "@core/auth/services/auth.service";
 import { AiChatService } from "@core/services/ai-chat.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
   selector: "app-ai-chat-widget",
-  imports: [AppIcon, CommonModule, FormsModule, MarkdownModule],
+  imports: [AppIcon, AppTag, CommonModule, FormsModule, MarkdownModule],
   templateUrl: "./ai-chat-widget.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -189,4 +190,3 @@ export class AiChatWidget {
     }
   }
 }
-

@@ -12,6 +12,7 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppMessage } from "@ui/web/message/message";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -32,6 +33,7 @@ import {
     WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
+    AppMessage,
     AiAgentComponent,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

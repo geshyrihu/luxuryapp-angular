@@ -121,17 +121,10 @@
   (visibleChange)="showConsultationDialog.set($event)"
 >
   <div class="d-flex flex-column">
-    <div class="p-message p-message-info border-0 m-0 shadow-none">
-      <div class="p-message-wrapper p-3">
-        <span
-          class="p-message-icon material-symbols-light:info text-xl"
-        ></span>
-        <span class="p-message-text ms-2"
-          >Haz una pregunta específica sobre este reglamento y la IA analizaré
-          el documento para responderte.</span
-        >
-      </div>
-    </div>
+    <app-message severity="info">
+      Haz una pregunta específica sobre este reglamento y la IA analizará el
+      documento para responderte.
+    </app-message>
 
     <div class="mb-4">
       <label for="query" class="fw-bold d-block mb-2">Tu Consulta</label>

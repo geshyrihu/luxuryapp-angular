@@ -61,9 +61,7 @@
   @if (advertencias().length > 0) {
     <div class="mb-3">
       @for (w of advertencias(); track w) {
-        <div class="p-message p-message-warn p-3 mb-1 rounded text-sm">
-          {{ w }}
-        </div>
+        <app-message severity="warn" class="mb-1 text-sm">{{ w }}</app-message>
       }
     </div>
   }

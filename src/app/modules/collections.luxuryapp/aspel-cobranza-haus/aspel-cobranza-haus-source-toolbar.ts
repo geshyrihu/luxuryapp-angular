@@ -48,7 +48,7 @@ import {
                 iconClass="material-symbols-light:database-outline"
                 [loading]="syncing"
                 [disabled]="syncing || !customerId"
-                customClass="p-button-secondary"
+                customClass="btn-secondary"
                 (clicked)="syncCobranza.emit()"
               />
               <il-button
@@ -56,7 +56,7 @@ import {
                 iconClass="material-symbols-light:sync"
                 [loading]="syncing"
                 [disabled]="syncing || !customerId"
-                customClass="p-button-secondary"
+                customClass="btn-secondary"
                 (clicked)="syncCompleta.emit()"
               />
               <il-button
@@ -64,7 +64,7 @@ import {
                 iconClass="material-symbols-light:dns"
                 [loading]="statusLoading"
                 [disabled]="statusLoading || !customerId"
-                customClass="p-button-secondary"
+                customClass="btn-secondary"
                 (clicked)="refreshStatus.emit()"
               />
             </div>
