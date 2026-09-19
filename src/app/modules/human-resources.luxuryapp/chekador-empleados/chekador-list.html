@@ -41,7 +41,7 @@
             type="date"
             [ngModel]="filtroDesde()"
             (ngModelChange)="filtroDesde.set($event)"
-            class="p-inputtext-sm"
+            class="form-control-sm"
           />
         </div>
 
@@ -54,7 +54,7 @@
             type="date"
             [ngModel]="filtroHasta()"
             (ngModelChange)="filtroHasta.set($event)"
-            class="p-inputtext-sm"
+            class="form-control-sm"
           />
         </div>
 
@@ -229,7 +229,7 @@
           type="date"
           [ngModel]="filtroDesde()"
           (ngModelChange)="filtroDesde.set($event)"
-          class="p-inputtext-sm flex-fill"
+          class="form-control-sm flex-fill"
         />
       </div>
       <div class="d-flex align-items-center gap-2">
@@ -238,7 +238,7 @@
           type="date"
           [ngModel]="filtroHasta()"
           (ngModelChange)="filtroHasta.set($event)"
-          class="p-inputtext-sm flex-fill"
+          class="form-control-sm flex-fill"
         />
       </div>
       <ion-input-checkbox

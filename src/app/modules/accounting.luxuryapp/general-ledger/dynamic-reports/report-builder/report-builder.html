@@ -378,7 +378,7 @@
                         [ngModel]="row.formula"
                         (ngModelChange)="row.formula = $event; livePreviewS.triggerCompute()"
                         placeholder="{ID1} + {ID2}"
-                        class="p-inputtext p-inputtext-sm border-0 bg-bg-body-tertiary focus:bg-white"
+                        class="form-control form-control-sm border-0 bg-bg-body-tertiary focus:bg-white"
                       />
                     </div>
                   </div>
@@ -656,7 +656,7 @@
       <label class="text-xs fw-bold text-body-secondary">DESCRIPCIÓN</label>
       <textarea
         [formControl]="form.controls.description"
-        class="p-inputtext p-inputtext-sm w-full"
+        class="form-control form-control-sm w-full"
         rows="3"
         placeholder="Objetivo del reporte..."
       ></textarea>

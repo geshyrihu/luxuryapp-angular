@@ -78,7 +78,7 @@
               @if (fila.esManual) {
               <input
                 type="number"
-                class="p-inputtext p-component p-inputtext-sm w-full text-end bg-white"
+                class="form-control form-control-sm w-full text-end bg-white"
                 [ngModel]="monto"
                 (ngModelChange)="onManualInput($event, fila.concepto, colIdx)"
               />

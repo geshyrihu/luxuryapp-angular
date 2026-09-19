@@ -127,7 +127,7 @@ interface DecisionOption {
             type="date"
             id="decisionDate"
             formControlName="decisionDate"
-            class="p-inputtext p-component"
+            class="form-control"
             [class.ng-invalid]="
               form.get('decisionDate')?.invalid &&
               form.get('decisionDate')?.touched
@@ -147,7 +147,7 @@ interface DecisionOption {
             id="comments"
             formControlName="comments"
             rows="3"
-            class="p-inputtext p-inputtextarea p-component"
+            class="form-control"
             placeholder="Observaciones sobre la decisión..."
           ></textarea>
         </div>
@@ -158,7 +158,7 @@ interface DecisionOption {
             id="justification"
             formControlName="justification"
             rows="3"
-            class="p-inputtext p-inputtextarea p-component"
+            class="form-control"
             placeholder="Justificación técnica de la decisión (obligatoria para No Renovar)..."
           ></textarea>
         </div>
