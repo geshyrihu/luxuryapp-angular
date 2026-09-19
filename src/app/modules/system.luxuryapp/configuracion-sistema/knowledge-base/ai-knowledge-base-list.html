@@ -39,14 +39,12 @@
     <tr>
       <td>{{ item.topic }}</td>
       <td>
-        <span
-          class="p-tag"
-          [ngClass]="{'green-100 text-green-700': !item.moduleAppId, 'orange-100 text-orange-700': item.moduleAppId}"
-        >
-          {{ item.moduleAppName || 'General' }}
-        </span>
+        <app-tag
+          [value]="item.moduleAppName || 'General'"
+          [severity]="item.moduleAppId ? 'warn' : 'success'"
+        />
       </td>
-      <td><span class="p-tag p-tag-info">{{ item.keywords }}</span></td>
+      <td><app-tag [value]="item.keywords" severity="info" /></td>
       <td><code>{{ item.route }}</code></td>
       <td>
         <app-icon

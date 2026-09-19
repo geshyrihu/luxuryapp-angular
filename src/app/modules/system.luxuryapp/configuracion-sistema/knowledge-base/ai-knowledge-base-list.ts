@@ -32,6 +32,7 @@ import {
   DialogService,
 } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTag } from "@ui/web/tag/tag";
 import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
 
 @Component({
@@ -53,6 +54,7 @@ import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     AppIcon,
+    AppTag,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DialogService],
