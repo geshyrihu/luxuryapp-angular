@@ -213,8 +213,7 @@ export default class FinancialReportsWrapper {
       // Detectar cualquier indicador de carga activo
       const stillLoading = !!(
         section.querySelector(".pi-spin") ||
-        section.querySelector("p-skeleton") ||
-        section.querySelector(".p-skeleton")
+        section.querySelector(".ds-skeleton")
       );
 
       if (!stillLoading || Date.now() - start >= MAX_MS) {

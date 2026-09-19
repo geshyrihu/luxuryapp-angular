@@ -246,14 +246,6 @@ $transition-speed: 0.25s;
   }
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
-// PRIMENG OVERRIDES
-// ═════════════════════════════════════════════════════════════════════════════
-.catalog-root p-divider ::ng-deep .p-divider-vertical {
-  height: 24px;
-  margin: 0 0.5rem;
-}
-
 pre {
   background: var(--ds-bg-sunken);
   padding: 1rem;

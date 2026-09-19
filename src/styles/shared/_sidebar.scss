@@ -354,7 +354,6 @@ body.theme-dark .p-panelmenu {
    rediseñó a fondo claro, pero la migración quedó a medias: los iconos y el
    breadcrumb se corrigieron y el resto del texto siguió en blanco sobre blanco.
    Se completó la migración; el contenido va sobre --header-bg, no sobre oscuro. */
-.hidden.md\:block .p-toolbar,
 .mobile-header-toolbar {
   border-radius: 0 !important;
   height: 70px;
@@ -363,11 +362,6 @@ body.theme-dark .p-panelmenu {
   background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
-  /* PrimeNG 21 breadcrumb design tokens (cascadan al componente hijo).
-     El color de los ítems lo fija `nav.header-breadcrumb *` más abajo. */
-  --p-breadcrumb-background: transparent;
-  --p-breadcrumb-border-color: transparent;
 
   .customer-name {
     color: var(--ds-text-primary) !important;
@@ -440,11 +434,6 @@ nav.header-breadcrumb * {
 
 nav.header-breadcrumb {
   border: none;
-}
-
-nav.header-breadcrumb .p-breadcrumb-separator,
-nav.header-breadcrumb .p-breadcrumb-separator * {
-  color: var(--ds-text-secondary);
 }
 
 /* Customer selector button */

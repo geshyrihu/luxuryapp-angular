@@ -378,34 +378,6 @@
     }
   }
 
-  // ── 14. CHIPS, TAGS, BADGE ────────────────────────────────────
-
-  .p-chip {
-    background-color: var(--ds-bg-elevated);
-    color: var(--ds-text-primary);
-  }
-
-  .p-progressbar {
-    background-color: var(--ds-bg-elevated);
-
-    .p-progressbar-value {
-      background-color: var(--ds-primary);
-    }
-  }
-
-  .p-skeleton {
-    background-color: var(--ds-bg-elevated);
-
-    &::after {
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.04),
-        transparent
-      );
-    }
-  }
-
   .p-tooltip .p-tooltip-text {
     background-color: var(--ds-bg-elevated);
     color: var(--ds-text-primary);
