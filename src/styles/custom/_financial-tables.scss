@@ -132,12 +132,12 @@
 }
 
 // ── FINANCIAL DATA TABLE ───────────────────────────────────
-// Modificador PrimeNG para tablas de datos contables densos.
-// Uso: class="custom-table  financial-data-table p-datatable-sm"
+// Modificador para tablas de datos contables densos.
+// Uso: class="custom-table financial-data-table app-table-sm"
 .financial-data-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-thead > tr > th {
+  &.app-table,
+  .app-table {
+    .app-table-thead > tr > th {
       background-color: var(--rf-thead-dense-bg) !important;
       color: var(--rf-on-dark) !important;
       border-color: var(--rf-thead-dense-border) !important;
@@ -149,16 +149,16 @@
       white-space: nowrap;
     }
 
-    .p-datatable-tbody > tr > td {
+    .app-table-tbody > tr > td {
       padding: 0.3rem 0.5rem;
       font-size: 0.8rem;
     }
 
-    .p-sortable-column-icon {
+    .app-table-sorticon {
       color: var(--rf-on-dark) !important;
     }
 
-    .p-sortable-column:hover {
+    .app-table-sortable-column:hover {
       background-color: var(--primary-600) !important;
     }
   }
@@ -168,15 +168,15 @@
 // Fija el tfoot al borde inferior del área de scroll.
 // Uso: styleClass="budget-sticky-footer-table"
 .budget-sticky-footer-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-tfoot {
+  &.app-table,
+  .app-table {
+    .app-table-tfoot {
       position: sticky;
       bottom: 0;
       z-index: 2;
     }
 
-    .p-datatable-tfoot > tr > td {
+    .app-table-tfoot > tr > td {
       background-color: var(--ds-bg-sunken);
       border-top: 2px solid var(--ds-border);
       font-weight: 700;
@@ -240,10 +240,10 @@
 // La clase numeric-column conserva la alineación tabular, pero no debe
 // cambiar la familia ni reducir el tamaño de los importes a monospace.
 .proposal-budget-table {
-  .p-datatable-table,
-  .p-datatable-thead,
-  .p-datatable-tbody,
-  .p-datatable-tfoot {
+  .app-table-table,
+  .app-table-thead,
+  .app-table-tbody,
+  .app-table-tfoot {
     font-family: var(--ds-font-family-base);
   }
 
@@ -554,18 +554,18 @@
   color: var(--rf-muted);
 }
 
-// Variante para p-table / PrimeNG manteniendo el look rf-*.
+// Variante para app-table manteniendo el look rf-*.
 .rf-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-table {
+  &.app-table,
+  .app-table {
+    .app-table-table {
       width: 100%;
       min-width: 760px;
       border-collapse: collapse;
       font-size: 0.9rem;
     }
 
-    .p-datatable-thead > tr > th {
+    .app-table-thead > tr > th {
       background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%) !important;
       color: var(--rf-on-dark) !important;
       font-weight: 800;
@@ -576,7 +576,7 @@
       white-space: nowrap;
     }
 
-    .p-datatable-tbody > tr > td {
+    .app-table-tbody > tr > td {
       padding: 0.55rem 0.9rem;
       border: 1px solid var(--rf-line) !important;
       white-space: nowrap;
@@ -589,63 +589,63 @@
 // Necesario porque .rf-table aplica background:var(--rf-surface) a todos los td
 // con especificidad suficiente para tapar las clases rf-row-*.
 .rf-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-tbody > tr.rf-row-section > td {
+  &.app-table,
+  .app-table {
+    .app-table-tbody > tr.rf-row-section > td {
       background: var(--rf-soft) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .p-datatable-tbody > tr.rf-row-total > td {
+    .app-table-tbody > tr.rf-row-total > td {
       background: var(--rf-total) !important;
       color: var(--rf-total-ink) !important;
       font-weight: 800 !important;
     }
 
-    .p-datatable-tbody > tr.rf-row-result > td {
+    .app-table-tbody > tr.rf-row-result > td {
       background: var(--rf-result) !important;
       color: var(--rf-result-ink) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .p-datatable-tbody > tr.rf-row-fondo > td {
+    .app-table-tbody > tr.rf-row-fondo > td {
       background: var(--rf-fondo-row) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .p-datatable-tbody > tr.rf-row-group > td {
+    .app-table-tbody > tr.rf-row-group > td {
       background: var(--rf-row-group) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
     }
 
     // tfoot: respeta la clase del tr igual que tbody
-    .p-datatable-tfoot > tr.rf-row-section > td {
+    .app-table-tfoot > tr.rf-row-section > td {
       background: var(--rf-soft) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .p-datatable-tfoot > tr.rf-row-total > td {
+    .app-table-tfoot > tr.rf-row-total > td {
       background: var(--rf-total) !important;
       color: var(--rf-total-ink) !important;
       font-weight: 800 !important;
     }
 
-    .p-datatable-tfoot > tr.rf-row-result > td {
+    .app-table-tfoot > tr.rf-row-result > td {
       background: var(--rf-result) !important;
       color: var(--rf-result-ink) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .p-datatable-tfoot > tr.rf-row-concepto > td {
+    .app-table-tfoot > tr.rf-row-concepto > td {
       background: var(--rf-surface) !important;
       color: var(--rf-ink) !important;
     }
@@ -655,50 +655,50 @@
 // Permite que las tablas rf con encabezados semánticos de presupuesto
 // conserven sus colores especiales por columna/mes.
 .rf-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-thead > tr > th.th-selected {
+  &.app-table,
+  .app-table {
+    .app-table-thead > tr > th.th-selected {
       background-color: var(--rf-selected-bg) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-deselected {
+    .app-table-thead > tr > th.th-deselected {
       background-color: var(--rf-deselected-bg) !important;
       color: var(--rf-deselected-ink) !important;
       opacity: 0.7;
     }
 
-    .p-datatable-thead > tr > th.th-col-dark {
+    .app-table-thead > tr > th.th-col-dark {
       background-color: var(--rf-col-dark) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-green {
+    .app-table-thead > tr > th.th-col-green {
       background-color: var(--rf-selected-bg) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-orange {
+    .app-table-thead > tr > th.th-col-orange {
       background-color: var(--rf-orange) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-red {
+    .app-table-thead > tr > th.th-col-red {
       background-color: var(--rf-red) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-blue-medium {
+    .app-table-thead > tr > th.th-col-blue-medium {
       background-color: var(--rf-blue-medium) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-blue-dark {
+    .app-table-thead > tr > th.th-col-blue-dark {
       background-color: var(--rf-blue-dark) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .p-datatable-thead > tr > th.th-col-navy {
+    .app-table-thead > tr > th.th-col-navy {
       background: var(--rf-navy) !important;
       color: var(--rf-on-dark) !important;
     }
@@ -769,17 +769,17 @@
 // Código 1=Activo (azul), 2=Pasivo (rojo), 3=Capital (verde).
 // Se aplican a rf-row-section para sobreescribir el fondo neutro.
 .rf-table {
-  &.p-datatable,
-  .p-datatable {
-    .p-datatable-tbody > tr.rf-row-section--activo > td {
+  &.app-table,
+  .app-table {
+    .app-table-tbody > tr.rf-row-section--activo > td {
       background-color: var(--rf-activo-bg) !important;
       color: var(--rf-activo-ink) !important;
     }
-    .p-datatable-tbody > tr.rf-row-section--pasivo > td {
+    .app-table-tbody > tr.rf-row-section--pasivo > td {
       background-color: var(--rf-pasivo-bg) !important;
       color: var(--rf-pasivo-ink) !important;
     }
-    .p-datatable-tbody > tr.rf-row-section--capital > td {
+    .app-table-tbody > tr.rf-row-section--capital > td {
       background-color: var(--rf-capital-bg) !important;
       color: var(--rf-capital-ink) !important;
     }

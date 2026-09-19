@@ -1,14 +1,14 @@
 /* ==========================================================================
-   CUSTOM TABLE — Wrapper/overlay para p-datatable con scroll vertical
+   CUSTOM TABLE — Wrapper/overlay para app-table con scroll vertical
    Extraído de styles.scss (Phase 3 — Design System integration)
 
    Uso:
-     Case 1 — wrapper:      <div class="custom-table"><p-table>...</p-table></div>
-     Case 2 — styleClass:   <p-table class="custom-table ">
+     Case 1 — wrapper:      <div class="custom-table"><app-table>...</app-table></div>
+     Case 2 — class:        <app-table class="custom-table ">
    ========================================================================== */
 
 .custom-table {
-  /* Case 1: Used as a wrapper <div class="custom-table"><p-table>... */
+  /* Case 1: Used as a wrapper <div class="custom-table"><app-table>... */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -63,8 +63,7 @@
     }
   }
 
-  /* Case 2: Used in styleClass <p-table class="custom-table ">
-     This places the class ON the p-datatable-component or the div.p-datatable */
+  /* Case 2: Used on the app-table host */
   &.app-table,
   .app-table {
     display: flex;
@@ -76,7 +75,6 @@
     .app-table-caption,
     .app-table-thead,
     .app-table-tfoot,
-    .p-datatable-footer,
     .app-table-paginator {
       flex-shrink: 0;
     }
@@ -86,7 +84,7 @@
       /* height: auto !important; <-- REMOVED: Breaks [scrollHeight] */
       display: flex;
       flex-direction: column;
-      /* overflow-y: auto; <-- PrimeNG handles this */
+      /* app-table owns scroll behavior */
       min-height: 0;
     }
 
@@ -100,13 +98,13 @@
     }
 
     /* Encabezado azul de marca (2026-08-12).
-       Antes heredaba `--ds-bg-sunken` de `web/_prime-table.scss`, que resuelve
+       Antes heredaba `--ds-bg-sunken` de la capa de tablas, que resuelve
        a $primary-100 (#ddeaf4): del mismo matiz H=204, pero casi blanco. Se
        alinea con `_financial-tables.scss`, que ya usaba encabezado oscuro.
 
        Gana por especificidad, no por !important: este selector aporta 3 clases
-       (.custom-table + .p-datatable + .p-datatable-thead) frente a las 2 de
-       `body .p-datatable …`. Ambas hojas van fuera de capa.
+       (.custom-table + .app-table + .app-table-thead) frente a las 2 de
+       `body .app-table …`. Ambas hojas van fuera de capa.
 
        Los tokens giran solos con el tema: en oscuro `--ds-primary` pasa a
        $primary-200 y `--ds-primary-text` a $primary-900, así que el encabezado
@@ -246,7 +244,7 @@
       color: var(--ds-primary-text) !important;
     }
 
-    /* Fix: Remove default PrimeNG caption borders/background LOCALLY for custom-table */
+    /* Normalize caption borders/background locally for custom-table. */
     .app-table-caption {
       border: none !important;
       background: transparent !important;
@@ -256,7 +254,7 @@
 }
 
 /* ─── Modifier: sin scroll horizontal ───────────────────────────
-   Uso: <p-table class="custom-table  custom-table-fixed">
+   Uso: <app-table class="custom-table custom-table-fixed">
    Elimina min-width fijo, fuerza table-layout:fixed y permite
    que las celdas envuelvan texto en vez de desbordar.
    ─────────────────────────────────────────────────────────────── */

@@ -272,23 +272,23 @@
     }
   }
 
-  // ── 12. DATATABLE COMPLEMENTOS ───────────────────────────────
+  // ── 12. APP TABLE COMPLEMENTS ────────────────────────────────
 
-  .p-datatable {
-    .p-datatable-header,
-    .p-datatable-footer {
+  .app-table {
+    .app-table-caption,
+    .app-table-paginator {
       background-color: var(--ds-bg-surface);
       color: var(--ds-text-primary);
       border-color: var(--ds-border);
     }
 
-    .p-datatable-thead > tr > th {
+    .app-table-thead > tr > th {
       background-color: var(--ds-bg-sunken);
       color: var(--ds-text-secondary);
       border-color: var(--ds-border);
     }
 
-    .p-datatable-tbody > tr {
+    .app-table-tbody > tr {
       background-color: var(--ds-bg-surface);
       color: var(--ds-text-primary);
 
@@ -304,13 +304,9 @@
         background-color: var(--ds-bg-elevated);
       }
 
-      &.p-highlight {
-        background-color: var(--ds-primary-light);
-        color: var(--ds-primary);
-      }
     }
 
-    .p-datatable-tfoot > tr > td {
+    .app-table-tfoot > tr > td {
       background-color: var(--ds-bg-sunken);
       color: var(--ds-text-primary);
       border-color: var(--ds-border);
