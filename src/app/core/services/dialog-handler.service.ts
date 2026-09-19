@@ -77,13 +77,10 @@ export class DialogHandlerService {
     if (this.platform.isMobile()) {
       return this.openMobileModal<T>(component, data, title);
     }
-    const modalRef = this.ngbModal.open(DesktopDialogShell, {
-      centered: true,
-      scrollable: true,
-      backdrop: true,
-      keyboard: true,
-      modalDialogClass: size,
-    });
+    const modalRef = this.ngbModal.open(
+      DesktopDialogShell,
+      this.getDesktopModalOptions(size),
+    );
     modalRef.componentInstance.initialize(component, data, title);
 
     if (autoMaximize) {
@@ -99,13 +96,10 @@ export class DialogHandlerService {
     if (this.platform.isMobile()) {
       return this.openMobileModal<T>(component, config.data, config.title);
     }
-    const modalRef = this.ngbModal.open(DesktopDialogShell, {
-      centered: true,
-      scrollable: true,
-      backdrop: true,
-      keyboard: true,
-      modalDialogClass: config.size,
-    });
+    const modalRef = this.ngbModal.open(
+      DesktopDialogShell,
+      this.getDesktopModalOptions(config.size, config),
+    );
     modalRef.componentInstance.initialize(component, config.data, config.title);
     return modalRef.result.catch(() => undefined as T);
   }
@@ -129,6 +123,24 @@ export class DialogHandlerService {
     await modal.present();
     const { data: result } = await modal.onDidDismiss();
     return result as T;
+  }
+
+  private getDesktopModalOptions(
+    size: DialogSize,
+    config?: DialogConfig,
+  ) {
+    const isFullscreen = size === DialogSize.full;
+
+    return {
+      centered: true,
+      scrollable: true,
+      backdrop: config?.dismissableMask === false ? ("static" as const) : true,
+      keyboard: config?.closeOnEscape !== false,
+      fullscreen: isFullscreen,
+      // Bootstrap has no modal-md class; default modal width is Lagos' medium size.
+      modalDialogClass:
+        size === DialogSize.md || isFullscreen ? undefined : size,
+    };
   }
 
   readonly sizeSm: DialogSize = DialogSize.sm;
