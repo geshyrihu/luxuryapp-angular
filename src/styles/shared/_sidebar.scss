@@ -374,7 +374,6 @@ body.theme-dark .p-panelmenu {
   }
 
   /* Button icons visibility */
-  .p-button-text,
   .monitor-toolbar-button {
     color: var(--ds-text-primary) !important;
 
@@ -522,17 +521,12 @@ app-header-employee-monitor .customer-selector-btn {
   margin: 0.25rem 0;
 }
 
-/* P-toolbar p-button margin reset */
-app-header-employee-monitor .p-toolbar p-button {
-  margin: 0 !important;
-}
-
-/* Drawer (profile, notifications) — inline fixed position */
-.p-drawer {
+/* Bootstrap offcanvas (profile, notifications) — inline fixed position */
+.offcanvas {
   background: var(--ds-bg-surface, #ffffff) !important;
 }
 
-.p-drawer-mask {
+.offcanvas-backdrop {
   background: var(--ds-bg-overlay) !important;
 }
 

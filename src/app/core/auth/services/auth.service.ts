@@ -248,10 +248,10 @@ export class AuthService {
     this.currentUserSession.next(null);
     this.customerIdS.clearCustomerData();
 
-    // Limpiar máscaras y clases de PrimeNG (p-drawer, p-dialog) para evitar UI bloqueada
+    // Limpiar overlays activos para evitar UI bloqueada durante logout.
     document.body.classList.remove("p-overflow-hidden");
     const overlays = document.querySelectorAll(
-      ".p-component-overlay, .p-dialog-mask, .p-drawer-mask, .p-sidebar-mask",
+      ".p-component-overlay, .p-dialog-mask, .p-sidebar-mask, .offcanvas-backdrop, .modal-backdrop",
     );
     overlays.forEach((overlay) => overlay.remove());
 
@@ -268,4 +268,3 @@ export class AuthService {
     return throwError(() => error);
   }
 }
-

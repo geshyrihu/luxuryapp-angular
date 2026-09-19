@@ -77,13 +77,13 @@ import { DataConnectorService } from "@core/services/data-connector.service";
         align-items: center;
       }
 
-      :host ::ng-deep custom-input-select-button-signal .p-selectbutton {
+      :host ::ng-deep custom-input-select-button-signal .btn-group {
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
       }
 
-      :host ::ng-deep custom-input-select-button-signal .p-togglebutton {
+      :host ::ng-deep custom-input-select-button-signal .btn {
         flex: 1 1 auto;
         justify-content: center;
         white-space: nowrap;
@@ -209,4 +209,3 @@ export class FilterRequests {
     this.filterRequestsService.setSearch(term);
   }
 }
-
