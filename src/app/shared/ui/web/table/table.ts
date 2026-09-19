@@ -278,48 +278,52 @@ export interface AppTableLazyEvent {
           <span class="app-table-page-report">{{ pageReport() }}</span>
         }
         <div class="app-table-paginator-controls">
-          <button
-            type="button"
-            class="app-table-paginator-element"
-            [disabled]="currentPageIndex() === 0"
-            (click)="goToPage(0)"
-          >
-            «
-          </button>
-          <button
-            type="button"
-            class="app-table-paginator-element"
-            [disabled]="currentPageIndex() === 0"
-            (click)="goToPage(currentPageIndex() - 1)"
-          >
-            ‹
-          </button>
-          @for (page of pageIndexes(); track page) {
-            <button
-              type="button"
-              class="app-table-paginator-element"
-              [class.is-active]="page === currentPageIndex()"
-              (click)="goToPage(page)"
-            >
-              {{ page + 1 }}
-            </button>
-          }
-          <button
-            type="button"
-            class="app-table-paginator-element"
-            [disabled]="currentPageIndex() >= pageCount() - 1"
-            (click)="goToPage(currentPageIndex() + 1)"
-          >
-            ›
-          </button>
-          <button
-            type="button"
-            class="app-table-paginator-element"
-            [disabled]="currentPageIndex() >= pageCount() - 1"
-            (click)="goToPage(pageCount() - 1)"
-          >
-            »
-          </button>
+          <nav aria-label="Páginas de tabla">
+            <ul class="pagination pagination-primary pagin-border-primary mb-0">
+              <li
+                class="page-item"
+                [class.disabled]="currentPageIndex() === 0"
+              >
+                <button
+                  type="button"
+                  class="page-link"
+                  [disabled]="currentPageIndex() === 0"
+                  (click)="goToPage(currentPageIndex() - 1)"
+                >
+                  Previous
+                </button>
+              </li>
+              @for (page of pageIndexes(); track page) {
+                <li
+                  class="page-item"
+                  [class.active]="page === currentPageIndex()"
+                  [attr.aria-current]="page === currentPageIndex() ? 'page' : null"
+                >
+                  <button
+                    type="button"
+                    class="page-link"
+                    [disabled]="page === currentPageIndex()"
+                    (click)="goToPage(page)"
+                  >
+                    {{ page + 1 }}
+                  </button>
+                </li>
+              }
+              <li
+                class="page-item"
+                [class.disabled]="currentPageIndex() >= pageCount() - 1"
+              >
+                <button
+                  type="button"
+                  class="page-link"
+                  [disabled]="currentPageIndex() >= pageCount() - 1"
+                  (click)="goToPage(currentPageIndex() + 1)"
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
           <select
             class="app-table-rows-select form-select form-select-sm"
             style="width: auto"
