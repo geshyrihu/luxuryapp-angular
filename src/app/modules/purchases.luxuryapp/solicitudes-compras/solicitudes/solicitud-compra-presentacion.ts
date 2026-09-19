@@ -604,8 +604,12 @@ export class SolicitudCompraPresentacion {
     }
   }
 
-  onCarouselPage(event: { page: number }) {
-    this.currentPage.set(event.page ?? 0);
+  onCarouselPage(event: number | { page?: number; startPosition?: number }) {
+    const page =
+      typeof event === "number"
+        ? event
+        : (event.page ?? event.startPosition ?? 0);
+    this.currentPage.set(page);
   }
 
   goToSummary() {
