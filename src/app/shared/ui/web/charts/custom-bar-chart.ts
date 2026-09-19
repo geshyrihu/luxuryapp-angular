@@ -18,7 +18,7 @@ import { ChartJsData, chartJsToCartesianData, chartJsToCartesianOption, dsThemeT
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <div class="p-card">
+    <div class="card">
       <canvas baseChart [type]="chartType() === 'line' ? 'line' : 'bar'" [data]="chartData()" [options]="option()" style="height: 320px"></canvas>
     </div>
     <hr />

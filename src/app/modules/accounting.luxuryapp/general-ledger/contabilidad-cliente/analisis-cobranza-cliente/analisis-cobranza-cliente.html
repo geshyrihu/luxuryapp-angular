@@ -176,7 +176,7 @@
         <div class="text-sm text-body-secondary">Agrupación de la deuda por cada torre del condominio.</div>
       </div>
       
-      <app-table [value]="towers()" class="rf-prime-table p-datatable-sm d-none d-md-block">
+      <app-table [value]="towers()" class="rf-table p-datatable-sm d-none d-md-block">
         <ng-template #header>
           <tr>
             <th appSortableColumn="towerName">
@@ -351,7 +351,7 @@
 
       <app-table
         [value]="filteredRows()"
-        class="rf-prime-table p-datatable-sm p-datatable-striped"
+        class="rf-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'min-width': '1000px' }"
         [paginator]="true"
         [rows]="50"

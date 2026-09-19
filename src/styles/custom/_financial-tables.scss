@@ -555,7 +555,7 @@
 }
 
 // Variante para p-table / PrimeNG manteniendo el look rf-*.
-.rf-prime-table {
+.rf-table {
   &.p-datatable,
   .p-datatable {
     .p-datatable-table {
@@ -585,10 +585,10 @@
   }
 }
 
-// Overrides de filas semánticas dentro de rf-prime-table.
-// Necesario porque .rf-prime-table aplica background:var(--rf-surface) a todos los td
+// Overrides de filas semánticas dentro de rf-table.
+// Necesario porque .rf-table aplica background:var(--rf-surface) a todos los td
 // con especificidad suficiente para tapar las clases rf-row-*.
-.rf-prime-table {
+.rf-table {
   &.p-datatable,
   .p-datatable {
     .p-datatable-tbody > tr.rf-row-section > td {
@@ -654,7 +654,7 @@
 
 // Permite que las tablas rf con encabezados semánticos de presupuesto
 // conserven sus colores especiales por columna/mes.
-.rf-prime-table {
+.rf-table {
   &.p-datatable,
   .p-datatable {
     .p-datatable-thead > tr > th.th-selected {
@@ -768,7 +768,7 @@
 // ── ENCABEZADOS SEMÁNTICOS DEL BALANCE MENSUAL ────────────
 // Código 1=Activo (azul), 2=Pasivo (rojo), 3=Capital (verde).
 // Se aplican a rf-row-section para sobreescribir el fondo neutro.
-.rf-prime-table {
+.rf-table {
   &.p-datatable,
   .p-datatable {
     .p-datatable-tbody > tr.rf-row-section--activo > td {
