@@ -71,7 +71,7 @@ import { CardEmployee } from "@shared/integration/recursos-humanos";
 
 import Swal from "sweetalert2";
 
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import {
   WebButtonLabelDelete,

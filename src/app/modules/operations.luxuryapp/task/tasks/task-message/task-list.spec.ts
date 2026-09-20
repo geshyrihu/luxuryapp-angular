@@ -8,7 +8,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PrintService } from "@core/services/print.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { TaskList } from "./task-list";
 

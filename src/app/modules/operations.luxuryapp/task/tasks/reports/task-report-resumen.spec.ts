@@ -4,7 +4,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { TaskMessageReportResumen } from "./task-report-resumen";
 

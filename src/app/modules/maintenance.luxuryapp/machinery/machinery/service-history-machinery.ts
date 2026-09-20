@@ -23,7 +23,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
+import { ServiceOrderForm } from "@operations.luxuryapp/service-orders/service-order/service-order-form";
 
 @Component({
   selector: "app-service-history-machinery",

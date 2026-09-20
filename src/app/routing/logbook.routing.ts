@@ -4,7 +4,7 @@ export const logbookRoutes: Routes = [
   {
     path: "maintenance-orders", // Ruta anterior: 'ordenes-mantenimiento'
     loadComponent: () =>
-      import("@operations.luxuryapp/field-service/service-order/ordenes-servicio-list").then(
+      import("@operations.luxuryapp/service-orders/service-order/ordenes-servicio-list").then(
         (m) => m.OrdenesServicio,
       ),
     canActivate: [authGuard],

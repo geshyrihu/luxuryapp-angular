@@ -20,7 +20,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";

@@ -172,8 +172,8 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 - `src/app/shared/ui/web/table/table.ts`
 - `src/app/shared/ui/web/table/README.md`
-- `src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-list.ts`
-- `src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-list.html`
+- `src/app/modules/operations.luxuryapp/task/tasks/task-message/task-list.ts`
+- `src/app/modules/operations.luxuryapp/task/tasks/task-message/task-list.html`
 
 ### Tareas
 

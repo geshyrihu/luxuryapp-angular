@@ -7,7 +7,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { MyTaskForm } from "./my-task-form";
 

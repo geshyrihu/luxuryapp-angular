@@ -133,16 +133,16 @@
 
 | Archivo                                               | Línea | Método     | Ruta                             | Componente                 |
 | ----------------------------------------------------- | ----- | ---------- | -------------------------------- | -------------------------- |
-| `operations/task-engine/.../task-list.ts`             | 492   | `navigate` | `/tickets/message/` + ids        | TaskList                   |
-| `operations/task-engine/.../task-list.ts`             | 615   | `navigate` | `/tickets/weekly-report-preview` | TaskList                   |
-| `operations/task-engine/.../task-list.ts`             | 665   | `navigate` | `/tickets/work-plan-preview`     | TaskList                   |
-| `operations/task-engine/.../task-list.ts`             | 669   | `navigate` | `/tickets/pending-board` + id    | TaskList                   |
-| `operations/task-engine/.../task-view.ts`             | 223   | `navigate` | `/Tasks/messages` + id           | TaskView                   |
-| `operations/task-engine/.../task-pending-board.ts`    | 67    | `navigate` | `/tickets/messages` + id         | TaskPendingBoard           |
-| `operations/task-engine/.../task-group-list.ts`       | 170   | `navigate` | `/tickets/messages/` + id        | TaskGroupList              |
-| `operations/task-engine/.../task-report-work-plan.ts` | 109   | `navigate` | `/tickets/work-plan-preview`     | TaskReportWorkPlan         |
-| `operations/task-engine/.../task-operation-report.ts` | 192   | `navigate` | `/tickets/weekly-report-preview` | TaskMessageOperationReport |
-| `operations/task-engine/.../task-template-list.ts`    | 75    | `navigate` | `/recurring-tasks` + id + items  | TaskTemplateList           |
+| `operations/task/.../task-list.ts`             | 492   | `navigate` | `/tickets/message/` + ids        | TaskList                   |
+| `operations/task/.../task-list.ts`             | 615   | `navigate` | `/tickets/weekly-report-preview` | TaskList                   |
+| `operations/task/.../task-list.ts`             | 665   | `navigate` | `/tickets/work-plan-preview`     | TaskList                   |
+| `operations/task/.../task-list.ts`             | 669   | `navigate` | `/tickets/pending-board` + id    | TaskList                   |
+| `operations/task/.../task-view.ts`             | 223   | `navigate` | `/Tasks/messages` + id           | TaskView                   |
+| `operations/task/.../task-pending-board.ts`    | 67    | `navigate` | `/tickets/messages` + id         | TaskPendingBoard           |
+| `operations/task/.../task-group-list.ts`       | 170   | `navigate` | `/tickets/messages/` + id        | TaskGroupList              |
+| `operations/task/.../task-report-work-plan.ts` | 109   | `navigate` | `/tickets/work-plan-preview`     | TaskReportWorkPlan         |
+| `operations/task/.../task-operation-report.ts` | 192   | `navigate` | `/tickets/weekly-report-preview` | TaskMessageOperationReport |
+| `operations/task/.../task-template-list.ts`    | 75    | `navigate` | `/recurring-tasks` + id + items  | TaskTemplateList           |
 
 ### 1.9 Operaciones / Juntas y Comités
 
@@ -170,12 +170,12 @@
 | `operations/manuals/.../manuals-and-processes-editor.ts` | 481   | `navigate`      | `/library/manuals-and-processes/flowchart-editor` + id | ManualsAndProcessesEditor |
 | `operations/manuals/.../manuals-and-processes-editor.ts` | 609   | `navigate`      | `/library/manuals-and-processes`                       | ManualsAndProcessesEditor |
 | `operations/manuals/.../manual-flowchart-editor.ts`      | 137   | `navigateByUrl` | `this.returnTo()` (dinámico)                           | ManualFlowchartEditor     |
-| `operations/diagrams/.../diagram-list.ts`                | 102   | `navigate`      | `/diagram/editor` + id                                 | DiagramList               |
-| `operations/diagrams/.../diagram-list.ts`                | 106   | `navigate`      | `/diagram/view` + id                                   | DiagramList               |
-| `operations/diagrams/.../diagram-list.ts`                | 110   | `navigate`      | `/diagram/gallery`                                     | DiagramList               |
-| `operations/diagrams/.../diagram-editor.ts`              | 93    | `navigate`      | `/diagram`                                             | DiagramEditor             |
-| `operations/diagrams/.../diagram-gallery.ts`             | 122   | `navigate`      | `/diagram/view` + id                                   | DiagramGallery            |
-| `operations/diagrams/.../diagram-gallery.ts`             | 126   | `navigate`      | `/diagram`                                             | DiagramGallery            |
+| `operations/diagram/.../diagram-list.ts`                | 102   | `navigate`      | `/diagram/editor` + id                                 | DiagramList               |
+| `operations/diagram/.../diagram-list.ts`                | 106   | `navigate`      | `/diagram/view` + id                                   | DiagramList               |
+| `operations/diagram/.../diagram-list.ts`                | 110   | `navigate`      | `/diagram/gallery`                                     | DiagramList               |
+| `operations/diagram/.../diagram-editor.ts`              | 93    | `navigate`      | `/diagram`                                             | DiagramEditor             |
+| `operations/diagram/.../diagram-gallery.ts`             | 122   | `navigate`      | `/diagram/view` + id                                   | DiagramGallery            |
+| `operations/diagram/.../diagram-gallery.ts`             | 126   | `navigate`      | `/diagram`                                             | DiagramGallery            |
 
 ### 1.11 Operaciones / Inventarios
 
@@ -285,9 +285,9 @@
 | `purchasing/.../solicitud-compra.html`                             | `['/purchases/pdf-solicitud-compra', id]`                                   | PDF solicitud                   |
 | `system/.../settings-home.html`                                    | `item.routerLink`                                                           | Menú configuración              |
 | `recruitment/.../filter-requests.html`                             | `['/recruitment/requests/', item.path]`                                     | Filtro solicitudes              |
-| `operations/task-engine/.../task-report.html`                      | `['/tickets/weekly-report']`                                                | Reporte semanal                 |
-| `operations/task-engine/.../task-report.html`                      | `['/tickets/work-plan']`                                                    | Plan de trabajo                 |
-| `operations/task-engine/.../task-report.html`                      | `['/tickets/resumen']`                                                      | Resumen                         |
+| `operations/task/.../task-report.html`                      | `['/tickets/weekly-report']`                                                | Reporte semanal                 |
+| `operations/task/.../task-report.html`                      | `['/tickets/work-plan']`                                                    | Plan de trabajo                 |
+| `operations/task/.../task-report.html`                      | `['/tickets/resumen']`                                                      | Resumen                         |
 | `maintenance/logs/.../piscina-list.html`                           | `['/logbook/piscina-bitacora/', item.id]`                                   | Bitácora alberca                |
 | `purchasing/.../orden-compra-datos-cotizacion.html`                | `['/purchases/solicitud-compra/', id]`                                      | Vínculo solicitud               |
 | `purchasing/.../orden-compra.html`                                 | `['//purchases/cuadro-comparativo/', id]`                                   | Cuadro comparativo              |
@@ -297,7 +297,7 @@
 | `core/components/.../data-view-mobile.html`                        | `item.routerLink`                                                           | Vista móvil genérica            |
 | `accounting/.../catalogo-gastos-fijos-list.html`                   | `['/purchases/catalogo-gastos-fijos-form', id]`                             | Form gasto fijo                 |
 | `operations/announcements/.../announcement-admin-list.html`        | `['/announcements/analytics', id]`                                          | Analytics anuncio               |
-| `operations/field-service/.../ordenes-servicio-list.html`          | `['/report/maintenance-report/soporte-orden-servicio', id]`                 | Soporte OS                      |
+| `operations/service-orders/.../ordenes-servicio-list.html`          | `['/report/maintenance-report/soporte-orden-servicio', id]`                 | Soporte OS                      |
 | `operations/inspecciones/.../maintenance-reports-list.html`        | `[item.route]`                                                              | Reportes mtto                   |
 | `operations/inspecciones/.../mis-inspecciones-lista.html`          | `['/inspections/result', id]` / `['/logbook/my-inspection', id]`            | Inspecciones                    |
 | `operations/inspecciones/.../lista-inspecciones.html`              | `['/inspections/inspection-report-list']` / `['/inspections/details/', id]` | Lista inspecciones              |

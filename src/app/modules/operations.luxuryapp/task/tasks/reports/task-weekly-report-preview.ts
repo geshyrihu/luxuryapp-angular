@@ -6,8 +6,8 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DateRangeStorageService } from "@operations.luxuryapp/task-engine/tasks/date-range-storage.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { DateRangeStorageService } from "@operations.luxuryapp/task/tasks/date-range-storage.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";

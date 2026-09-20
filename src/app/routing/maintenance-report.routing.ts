@@ -125,7 +125,7 @@ export const maintenanceReportRoutes: Routes = [
   //   path: "preventive-maintenance-report", // Ruta anterior: 'mantenimiento-preventivo-reporte'
   //   loadComponent: () =>
   //     import(
-  //       "@operations.luxuryapp/field-service/reporte-ordenes-servicio"
+  //       "@operations.luxuryapp/service-orders/reporte-ordenes-servicio"
   //     ).then((m) => m.ReporteOrdenesServicio),
   //   data: {
   //     title: "Reporte de Mantenimiento Preventivo",
@@ -136,7 +136,7 @@ export const maintenanceReportRoutes: Routes = [
     // Suggested path: 'service-order-support/:id'
     path: "soporte-orden-servicio/:id",
     loadComponent: () =>
-      import("@operations.luxuryapp/field-service/service-order/soporte-orden-servicio").then(
+      import("@operations.luxuryapp/service-orders/service-order/soporte-orden-servicio").then(
         (m) => m.SoporteOrdenServicio,
       ),
     data: {

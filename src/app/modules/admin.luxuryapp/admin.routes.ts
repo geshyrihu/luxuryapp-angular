@@ -374,7 +374,7 @@ export const adminRoutes: Routes = [
   {
     path: "recurring-task-catalog",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/recurring-tasks/catalog/recurring-task-catalog-list/recurring-task-catalog-list").then(
+      import("@operations.luxuryapp/task/recurring-tasks/catalog/recurring-task-catalog-list/recurring-task-catalog-list").then(
         (m) => m.RecurringTaskCatalogList,
       ),
     canActivate: [authGuard],

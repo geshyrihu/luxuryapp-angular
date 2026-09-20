@@ -1,19 +1,21 @@
 import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
-import { TaskReportWorkPlan } from "./task-report-work-plan";
+import { TaskGroupList } from "./task-group-list";
 
-describe("TaskReportWorkPlan", () => {
-  let component: TaskReportWorkPlan;
-  let fixture: ComponentFixture<TaskReportWorkPlan>;
+describe("TaskGroupList", () => {
+  let component: TaskGroupList;
+  let fixture: ComponentFixture<TaskGroupList>;
   let mockApiResponseS: any;
+  let mockAspRoleS: any;
   let mockAuthS: any;
   let mockCustomerIdS: any;
   let mockDialogHandlerS: any;
@@ -24,7 +26,11 @@ describe("TaskReportWorkPlan", () => {
   beforeEach(() => {
     mockApiResponseS = {
       onGetList: vi.fn().mockResolvedValue([]),
+      onPatch: vi.fn().mockResolvedValue(true),
+      onPost: vi.fn().mockResolvedValue(true),
+      onDelete: vi.fn().mockResolvedValue(true),
     };
+    mockAspRoleS = { roleSignal: vi.fn().mockReturnValue(signal(false)) };
     mockAuthS = { applicationUserId: "user-001" };
     mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
     mockDialogHandlerS = {
@@ -32,17 +38,21 @@ describe("TaskReportWorkPlan", () => {
       sizeLg: "1200px",
     };
     mockTableScrollHeightS = { scrollHeight: signal("600px") };
-    mockTaskGroupService = { taskGroupMessageStatus: 0 };
+    mockTaskGroupService = {
+      taskGroupMessageStatus: 0,
+      setStatus: vi.fn(),
+    };
     mockRouter = { navigate: vi.fn() };
 
     TestBed.resetTestingModule();
-    TestBed.overrideComponent(TaskReportWorkPlan, {
+    TestBed.overrideComponent(TaskGroupList, {
       set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
-      imports: [TaskReportWorkPlan],
+      imports: [TaskGroupList],
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
+        { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: AuthService, useValue: mockAuthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
@@ -53,7 +63,7 @@ describe("TaskReportWorkPlan", () => {
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(TaskReportWorkPlan);
+    fixture = TestBed.createComponent(TaskGroupList);
     component = fixture.componentInstance;
   });
 
@@ -64,29 +74,47 @@ describe("TaskReportWorkPlan", () => {
   it("should have default signals", () => {
     expect(component.dataSignal()).toEqual([]);
     expect(component.loading()).toBe(true);
-    expect(component.status).toBe(0);
+    expect(component.value()).toBe(true);
   });
 
   it("onLoadData should call api and set signals", async () => {
-    const mockData = [
-      { id: "1", assigneeId: "u1", assignee: "User 1" },
-      { id: "2", assigneeId: "u2", assignee: "User 2" },
-    ];
+    const mockData = [{ id: "1", nameGroup: "Group A" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(component.dataSignal()).toEqual(mockData);
-    expect(component.cb_assignee.length).toBe(3);
+    expect(component.loading()).toBe(false);
   });
 
-  it("onPreviewClicked should navigate", () => {
-    component.onPreviewClicked();
+  it("onChange should toggle value and reload", () => {
+    const spy = vi.spyOn(component, "onLoadData");
+    component.onChange(false);
+    expect(component.value()).toBe(false);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("onDelete should remove item from signal", async () => {
+    await new Promise((resolve) => setTimeout(resolve));
+    component.dataSignal.set([{ id: "1" }, { id: "2" }]);
+    mockApiResponseS.onDelete.mockResolvedValue(true);
+
+    component.onDelete("1");
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(component.dataSignal().length).toBe(1);
+    expect(component.dataSignal()[0].id).toBe("2");
+  });
+
+  it("onNavigateMessage should navigate and set status", () => {
+    component.onNavigateMessage("group-1", 0 as any);
+    expect(mockTaskGroupService.taskGroupMessageStatus).toBe(0);
+    expect(mockTaskGroupService.setStatus).toHaveBeenCalledWith(0);
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/tickets",
-
-      "work-plan-preview",
+      "messages",
+      "group-1",
     ]);
   });
 });

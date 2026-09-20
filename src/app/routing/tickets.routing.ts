@@ -4,7 +4,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "groups-list",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/work-group/task-group-list").then(
+      import("@operations.luxuryapp/task/tasks/work-group/task-group-list").then(
         (m) => m.TaskGroupList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "my-assignments",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/my-tasks/my-assigned-tasks-list").then(
+      import("@operations.luxuryapp/task/tasks/my-tasks/my-assigned-tasks-list").then(
         (m) => m.MyAssignedTasksList,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "my-requests",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/my-tasks/my-requests-task").then(
+      import("@operations.luxuryapp/task/tasks/my-tasks/my-requests-task").then(
         (m) => m.MyRequestsTask,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "messages/:ticketGroupId",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/task-message/task-list").then(
+      import("@operations.luxuryapp/task/tasks/task-message/task-list").then(
         (m) => m.TaskList,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "pending-board/:ticketGroupId",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/task-message/task-pending-board").then(
+      import("@operations.luxuryapp/task/tasks/task-message/task-pending-board").then(
         (m) => m.TaskPendingBoard,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "message/:ticketMessageId/:ticketGroupId",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/task-message/task-view").then(
+      import("@operations.luxuryapp/task/tasks/task-message/task-view").then(
         (m) => m.TaskView,
       ),
     canActivate: [authGuard],
@@ -76,7 +76,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "reports",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/task-message/task-report").then(
+      import("@operations.luxuryapp/task/tasks/task-message/task-report").then(
         (m) => m.TaskReport,
       ),
     canActivate: [authGuard],
@@ -88,7 +88,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "summary", // Ruta anterior: 'resumen'
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/reports/task-report-resumen").then(
+      import("@operations.luxuryapp/task/tasks/reports/task-report-resumen").then(
         (m) => m.TaskMessageReportResumen,
       ),
     canActivate: [authGuard],
@@ -100,7 +100,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "work-plan",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/reports/task-report-work-plan").then(
+      import("@operations.luxuryapp/task/tasks/reports/task-report-work-plan").then(
         (m) => m.TaskReportWorkPlan,
       ),
     canActivate: [authGuard],
@@ -112,7 +112,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "work-plan-preview",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/reports/task-report-work-plan-preview").then(
+      import("@operations.luxuryapp/task/tasks/reports/task-report-work-plan-preview").then(
         (m) => m.TaskReportWorkPlanPreview,
       ),
     canActivate: [authGuard],
@@ -124,7 +124,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "weekly-report",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/reports/task-operation-report").then(
+      import("@operations.luxuryapp/task/tasks/reports/task-operation-report").then(
         (m) => m.TaskMessageOperationReport,
       ),
     canActivate: [authGuard],
@@ -136,7 +136,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "weekly-report-preview",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/reports/task-weekly-report-preview").then(
+      import("@operations.luxuryapp/task/tasks/reports/task-weekly-report-preview").then(
         (m) => m.TaskWeeklyReportPreview,
       ),
     canActivate: [authGuard],
@@ -161,7 +161,7 @@ export const ticketsRoutes: Routes = [
   {
     path: "legal/:ticketGroupId",
     loadComponent: () =>
-      import("@operations.luxuryapp/task-engine/tasks/task-message/task-list").then(
+      import("@operations.luxuryapp/task/tasks/task-message/task-list").then(
         (m) => m.TaskList,
       ),
     canActivate: [authGuard],

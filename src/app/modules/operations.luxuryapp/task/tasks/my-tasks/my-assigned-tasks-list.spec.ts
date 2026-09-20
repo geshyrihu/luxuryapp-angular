@@ -7,7 +7,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PrintService } from "@core/services/print.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { MyAssignedTasksList } from "./my-assigned-tasks-list";
 

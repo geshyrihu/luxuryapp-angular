@@ -5,8 +5,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TaskDateRangeSelector } from "@operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { AppTable } from "@ui/web/table/table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 @Component({

@@ -43,7 +43,7 @@ export const reportsRoutes: Routes = [
     // Suggested path: 'service-orders-summary'
     path: "resumen-ordenes-servicio",
     loadComponent: () =>
-      import("@operations.luxuryapp/field-service/service-order/resumen-ordenes-servicio").then(
+      import("@operations.luxuryapp/service-orders/service-order/resumen-ordenes-servicio").then(
         (m) => m.ResumenOrdenesServicio,
       ),
     canActivate: [authGuard],

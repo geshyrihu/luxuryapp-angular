@@ -4,10 +4,10 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 
-import { DateRangeStorageService } from "@operations.luxuryapp/task-engine/tasks/date-range-storage.service";
+import { DateRangeStorageService } from "@operations.luxuryapp/task/tasks/date-range-storage.service";
 
 
-import { TaskGroupService } from "@operations.luxuryapp/task-engine/tasks/task.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
