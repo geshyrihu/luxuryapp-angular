@@ -526,7 +526,7 @@ export const adminRoutes: Routes = [
   {
     path: "mini-postman",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/mini-postman/mini-postman").then(
+      import("@admin.luxuryapp/infrastructure/mini-postman/mini-postman").then(
         (m) => m.MiniPostman,
       ),
     canActivate: [authGuard],
@@ -538,7 +538,7 @@ export const adminRoutes: Routes = [
   {
     path: "app-implementation-report",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/app-implementation-tracking/app-implementation-tracking-manual").then(
+      import("@admin.luxuryapp/infrastructure/app-implementation-tracking/app-implementation-tracking-manual").then(
         (m) => m.AppImplementationTrackingManual,
       ),
     canActivate: [authGuard],
@@ -550,7 +550,7 @@ export const adminRoutes: Routes = [
   {
     path: "ui-catalog",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-layout/catalog-layout").then(
+      import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-layout/catalog-layout").then(
         (m) => m.CatalogLayout,
       ),
     canActivate: [authGuard],
@@ -577,77 +577,77 @@ export const adminRoutes: Routes = [
       {
         path: "tokens/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-tokens-item/catalog-tokens-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/foundations/catalog-tokens-item/catalog-tokens-item").then(
             (m) => m.CatalogTokensItem,
           ),
       },
       {
         path: "web/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-web-item/catalog-web-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-web-item/catalog-web-item").then(
             (m) => m.CatalogWebItem,
           ),
       },
       {
         path: "mobile/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-mobile-item/catalog-mobile-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-mobile-item/catalog-mobile-item").then(
             (m) => m.CatalogMobileItem,
           ),
       },
       {
         path: "core/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-core-item/catalog-core-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-core-item/catalog-core-item").then(
             (m) => m.CatalogCoreItem,
           ),
       },
       {
         path: "charts/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/charts/catalog-charts-item/catalog-charts-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/charts/catalog-charts-item/catalog-charts-item").then(
             (m) => m.CatalogChartsItem,
           ),
       },
       {
         path: "patterns/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/patterns-layouts/catalog-patterns-item/catalog-patterns-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/patterns-layouts/catalog-patterns-item/catalog-patterns-item").then(
             (m) => m.CatalogPatternsItem,
           ),
       },
       {
         path: "layouts/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/patterns-layouts/catalog-layouts-item/catalog-layouts-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/patterns-layouts/catalog-layouts-item/catalog-layouts-item").then(
             (m) => m.CatalogLayoutsItem,
           ),
       },
       {
         path: "docs/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-docs-item/catalog-docs-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/foundations/catalog-docs-item/catalog-docs-item").then(
             (m) => m.CatalogDocsItem,
           ),
       },
       {
         path: "audit/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-audit-item/catalog-audit-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/foundations/catalog-audit-item/catalog-audit-item").then(
             (m) => m.CatalogAuditItem,
           ),
       },
       {
         path: "guide/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-guide-item/catalog-guia-item").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/foundations/catalog-guide-item/catalog-guia-item").then(
             (m) => m.CatalogGuiaItem,
           ),
       },
       {
         path: "extras/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
+          import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
             (m) => m.CatalogWebExtras,
           ),
       },
@@ -656,7 +656,7 @@ export const adminRoutes: Routes = [
   {
     path: "depuration",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/update-data-base/update-data-base").then(
+      import("@admin.luxuryapp/infrastructure/update-data-base/update-data-base").then(
         (m) => m.UpdateDataBase,
       ),
     canActivate: [authGuard],
@@ -668,7 +668,7 @@ export const adminRoutes: Routes = [
   {
     path: "testsignalr",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/signalr-test/testsignalr").then(
+      import("@admin.luxuryapp/infrastructure/signalr-test/testsignalr").then(
         (m) => m.Testsignalr,
       ),
     canActivate: [authGuard],
@@ -680,7 +680,7 @@ export const adminRoutes: Routes = [
   {
     path: "test-email",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/send-email/test-email").then(
+      import("@admin.luxuryapp/infrastructure/send-email/test-email").then(
         (m) => m.TestEmail,
       ),
     canActivate: [authGuard],
@@ -704,7 +704,7 @@ export const adminRoutes: Routes = [
   {
     path: "ai-test",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/ai-test/ia-test.component").then(
+      import("@admin.luxuryapp/infrastructure/ai-test/ia-test.component").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -716,7 +716,7 @@ export const adminRoutes: Routes = [
   {
     path: "pricing-calculator",
     loadComponent: () =>
-      import("@admin.luxuryapp/dev-tools/quotations/cotizador.component").then(
+      import("@admin.luxuryapp/infrastructure/quotations/cotizador.component").then(
         (m) => m.CotizadorComponent,
       ),
     canActivate: [authGuard],
