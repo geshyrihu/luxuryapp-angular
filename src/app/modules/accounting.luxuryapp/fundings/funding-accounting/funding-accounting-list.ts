@@ -37,12 +37,12 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     MobileListItem,
     WebButtonIconItem,
     LxTooltipDirective,
-    TableEmptyMessage,
     AppTable,
 
     AppSortableColumn,
 
     AppSorticon,
+    TableEmptyMessage,
     TableCaption,
     TableFooter,
     DataViewMobile,

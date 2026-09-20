@@ -360,7 +360,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/contabilidad-online/financial-reports-wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/accounting-online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -371,7 +371,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/contabilidad-online/validacion-catalogo/catalog-replica").then(
+      import("@accounting.luxuryapp/general-ledger/accounting-online/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -382,7 +382,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/contabilidad-online/monthly-balance/balance-mensual").then(
+      import("@accounting.luxuryapp/general-ledger/accounting-online/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {
@@ -501,7 +501,7 @@ export const pagesRoutes: Routes = [
   {
     path: "sat-funding",
     loadChildren: () =>
-      import("@accounting.luxuryapp/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
+      import("@accounting.luxuryapp/fundings/sat-funding/sat-funding.routes").then(
         (m) => m.SAT_FUNDING_ROUTES,
       ),
     data: {

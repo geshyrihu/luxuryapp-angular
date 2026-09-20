@@ -1,0 +1,58 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+  untracked,
+} from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { EspejoAspelExtraordinarios } from "../../aspel-web-budget/espejo-aspel-extraordinarios";
+import { PresupuestoWebAspelService } from "../../aspel-web-budget/presupuesto-web-aspel.service";
+
+@Component({
+  selector: "app-cedula-extraordinaria-cliente",
+  imports: [EspejoAspelExtraordinarios, LxSkeleton],
+  providers: [PresupuestoWebAspelService],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: "./cedula-extraordinaria-cliente.html",
+})
+export class CedulaExtraordinariaClienteComponent {
+  private aspelSharedS = inject(PresupuestoWebAspelService);
+  private customerIdS = inject(CustomerIdService);
+
+  readonly customerId = input.required<string>();
+  readonly year = input.required<number>();
+  readonly mes = input.required<number>();
+
+  showEspejo = signal<boolean>(true);
+
+  constructor() {
+    effect(
+      () => {
+        const selectedYear = this.year();
+        const cid = this.customerId();
+
+        if (selectedYear) {
+          this.aspelSharedS.intYear.set(selectedYear);
+        }
+
+        if (cid) {
+          this.customerIdS.setCustomerId(cid).subscribe();
+        }
+
+        // Forzar la recreación del componente para limpiar su estado y hacer fetch de nuevo
+        untracked(() => {
+          this.showEspejo.set(false);
+          setTimeout(() => {
+            this.showEspejo.set(true);
+          }, 50);
+        });
+      },
+      { allowSignalWrites: true },
+    );
+  }
+}
+

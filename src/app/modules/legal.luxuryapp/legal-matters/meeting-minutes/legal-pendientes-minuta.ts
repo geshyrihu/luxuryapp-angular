@@ -1,4 +1,4 @@
-import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
+import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pending-minutes/cont-minuta-seguimientos";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,

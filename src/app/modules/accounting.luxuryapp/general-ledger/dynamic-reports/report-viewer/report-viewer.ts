@@ -17,8 +17,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/contabilidad-online/ai-agent/ai-agent";
-import { reportFilterState } from "@accounting.luxuryapp/general-ledger/contabilidad-online/state/financial-report-filter.state";
+import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/accounting-online/ai-agent/ai-agent";
+import { reportFilterState } from "@accounting.luxuryapp/general-ledger/accounting-online/state/financial-report-filter.state";
 import {
   IReportColumn,
   IReportResult,

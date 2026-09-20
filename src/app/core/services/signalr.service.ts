@@ -2,7 +2,7 @@ import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
-import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
+import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
 import { PanicAlertRealTimeDto } from "@operations.luxuryapp/panic-alert/interfaces/panic-alert-real-time.dto";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../auth/services/auth.service";

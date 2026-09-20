@@ -4,7 +4,7 @@ export const fundingRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("@accounting.luxuryapp/fondeos-y-reporteo/funding/funding-list").then(
+      import("@accounting.luxuryapp/fundings/funding/funding-list").then(
         (m) => m.FundingList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const fundingRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("@accounting.luxuryapp/fondeos-y-reporteo/funding/funding-detail").then(
+      import("@accounting.luxuryapp/fundings/funding/funding-detail").then(
         (m) => m.FundingDetail,
       ),
     canActivate: [authGuard],

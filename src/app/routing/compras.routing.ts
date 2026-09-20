@@ -5,7 +5,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'budget'
     path: "presupuesto",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/aspel-web-budget/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -104,7 +104,7 @@ export const comprasRoutes: Routes = [
   {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
-      import("@accounting.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
+      import("@accounting.luxuryapp/ar/fixed-expense-catalogs/catalogo-gastos-fijos-list").then(
         (m) => m.CatalogoGastosFijosList,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'fixed-expenses-catalog-form/:id'
     path: "catalogo-gastos-fijos-form/:id",
     loadComponent: () =>
-      import("@accounting.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
+      import("@accounting.luxuryapp/ar/fixed-expense-catalogs/catalogo-gasto-fijo-form").then(
         (m) => m.CatalogoGastoFijoForm,
       ),
     canActivate: [authGuard],

@@ -103,10 +103,12 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
       :host ::ng-deep .presentation-carousel .p-carousel-content {
         align-items: stretch;
         gap: 0;
+        overflow: hidden;
       }
 
       :host ::ng-deep .presentation-carousel .p-carousel-container {
         align-items: flex-start;
+        overflow: hidden;
       }
 
       :host ::ng-deep .presentation-carousel .p-carousel-indicator-list {
@@ -117,6 +119,10 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
       :host ::ng-deep .presentation-carousel .p-carousel-item {
         padding: 0 !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
       }
 
       :host ::ng-deep .presentation-carousel .p-carousel-item > div {

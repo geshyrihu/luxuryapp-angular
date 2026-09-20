@@ -19,7 +19,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "budget",
     loadComponent: () =>
-      import("./presupuesto-web-aspel/wrapper").then(
+      import("./aspel-web-budget/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -47,7 +47,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "minutes-pendings",
     loadComponent: () =>
-      import("./pendientes-minuta/cont-list-minuta-pendientes").then(
+      import("./pending-minutes/cont-list-minuta-pendientes").then(
         (m) => m.ContListMinutaPendientes,
       ),
     canActivate: [authGuard],
@@ -103,7 +103,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "budget-execution",
     loadComponent: () =>
-      import("./espejo-aspel/projected-expenses-list").then((m) => m.default),
+      import("./aspel-mirror/projected-expenses-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Espejo Aspel",
@@ -115,7 +115,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "financial-report-sending",
     loadComponent: () =>
-      import("./reporte-envio-financieros/reporte-envio-financieros").then(
+      import("./financial-report-delivery/reporte-envio-financieros").then(
         (m) => m.ReporteEnvioFinancieros,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "financial-statements",
     loadComponent: () =>
-      import("./estados-financieros/estado-financiero-list").then(
+      import("./financial-statements/estado-financiero-list").then(
         (m) => m.EstadoFinancieroList,
       ),
     canActivate: [authGuard],
@@ -143,7 +143,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "financial-summary",
     loadComponent: () =>
-      import("./resumen-financiero/financial-summary").then(
+      import("./financial-summary/financial-summary").then(
         (m) => m.FinancialSummary,
       ),
     canActivate: [authGuard],
@@ -157,7 +157,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "budget-proposal",
     loadComponent: () =>
-      import("./presupuesto-propuesta/presupuesto-propuesta").then(
+      import("./budget-proposals/presupuesto-propuesta").then(
         (m) => m.PresupuestoPropuesta,
       ),
     canActivate: [authGuard],
@@ -170,7 +170,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "collections/presupuesto-contabilidad",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/contabilidad-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
+      import("@accounting.luxuryapp/general-ledger/accounting-online/accounting-budget/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
     canActivate: [authGuard],
@@ -205,7 +205,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "financial-statements-reports",
     loadComponent: () =>
-      import("./contabilidad-online/financial-reports-wrapper").then(
+      import("./accounting-online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -247,7 +247,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "espejo-aspel-full",
     loadComponent: () =>
-      import("./espejo-aspel-full/espejo-aspel-full").then(
+      import("./aspel-full-mirror/espejo-aspel-full").then(
         (m) => m.EspejoAspelFull,
       ),
     canActivate: [authGuard],
@@ -259,7 +259,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "autitoria-cuentas-aspel",
     loadComponent: () =>
-      import("./autitoria-cuentas-aspel/autitoria-cuentas-aspel").then(
+      import("./aspel-account-audit/autitoria-cuentas-aspel").then(
         (m) => m.AutitoriaCuentasAspel,
       ),
     canActivate: [authGuard],

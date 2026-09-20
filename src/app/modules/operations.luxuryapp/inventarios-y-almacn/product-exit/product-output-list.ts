@@ -31,7 +31,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
-import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
+import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/budget-proposals/excel-export.service";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
 
