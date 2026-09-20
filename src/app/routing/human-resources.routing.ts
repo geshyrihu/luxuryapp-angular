@@ -338,7 +338,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/dashboard/nomina-dashboard").then(
+      import("@human-resources.luxuryapp/payroll/dashboard/nomina-dashboard").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -347,7 +347,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/configuracion",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/configuration/configuracion-nomina").then(
+      import("@human-resources.luxuryapp/payroll/configuration/configuracion-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -356,7 +356,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/periodos",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/periods/periodos-nomina").then(
+      import("@human-resources.luxuryapp/payroll/periods/periodos-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -365,7 +365,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/nominas",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/headers/nominas").then(
+      import("@human-resources.luxuryapp/payroll/headers/nominas").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -374,7 +374,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/nominas/:id/detalle",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/details/nomina-detalle").then(
+      import("@human-resources.luxuryapp/payroll/details/nomina-detalle").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -383,7 +383,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/incidencias",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/incidents/incidencias-nomina").then(
+      import("@human-resources.luxuryapp/payroll/incidents/incidencias-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -392,7 +392,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/tiempo-extra",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/overtime/tiempo-extra").then(
+      import("@human-resources.luxuryapp/payroll/overtime/tiempo-extra").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -401,7 +401,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/prestamos",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/loans/prestamos-empleado").then(
+      import("@human-resources.luxuryapp/payroll/loans/prestamos-empleado").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -410,7 +410,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/evidencias",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/evidence/evidencias-nomina").then(
+      import("@human-resources.luxuryapp/payroll/evidence/evidencias-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -419,7 +419,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/hoja-incidencias",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/payroll/incident-sheet/hoja-incidencias").then(
+      import("@human-resources.luxuryapp/payroll/incident-sheet/hoja-incidencias").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],

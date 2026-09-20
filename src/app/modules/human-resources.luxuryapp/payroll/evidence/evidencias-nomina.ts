@@ -1,4 +1,4 @@
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,

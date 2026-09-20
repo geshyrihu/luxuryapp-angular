@@ -1,5 +1,4 @@
-import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,12 +21,11 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
-import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
-import ModalTiempoExtraAdd from "./add-overtime-modal/modal-tiempo-extra-add";
+import ModalDiasNoHabiles from "./non-working-days-modal/modal-dias-no-habiles";
+import ModalPeriodoAdd from "./add-period-modal/modal-periodo-add";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -39,7 +37,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
-  selector: "app-tiempo-extra",
+  selector: "app-periodos-nomina",
   imports: [
     AppIcon,
     MobileListItem,
@@ -48,7 +46,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,
-    CommonModule,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
@@ -61,18 +58,17 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     TableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./tiempo-extra.html",
+  templateUrl: "./periodos-nomina.html",
 })
-export default class TiempoExtra {
+export default class PeriodosNomina {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   loading = signal(true);
-  data = signal<TiempoExtraDTO[]>([]);
-  periodos = signal<SelectItemDto[]>([]);
-  periodoSeleccionado = signal<string>("");
+  data = signal<PeriodoNominaDTO[]>([]);
+  anioFiltro = signal<number>(new Date().getFullYear());
 
   tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
@@ -80,95 +76,94 @@ export default class TiempoExtra {
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];
-    return ["nombreEmpleado", "fecha"];
+    return ["quincenaDisplay", "mes", "anio", "estado"];
   });
+
+  readonly aniosDisponibles = Array.from(
+    { length: 5 },
+    (_, i) => new Date().getFullYear() - 1 + i,
+  );
 
   constructor() {
     effect(() => {
       const customerId = this.customerIdS.customerId();
-      if (customerId) this.loadPeriodos(customerId);
+      const anio = this.anioFiltro();
+      if (customerId) this.onLoadData(customerId, anio);
     });
   }
 
-  async loadPeriodos(customerId: string): Promise<void> {
-    const anio = new Date().getFullYear();
+  async onLoadData(customerId: string, anio: number): Promise<void> {
+    this.loading.set(true);
     await this.apiResponseS.onPost(
       Endpoints.HR.Nomina.Periodos.autoCrear(customerId),
       {},
     );
-    const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
+    const resp = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
       Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
-    const options: SelectItemDto[] = ((result as any) ?? []).map((p: any) => ({
-      label: p.quincenaDisplay,
-      value: p.id,
-    }));
-    this.periodos.set(options);
-    if (options.length) {
-      this.periodoSeleccionado.set(options[0].value);
-      this.onLoadData(options[0].value);
-    } else {
-      this.loading.set(false);
-    }
+    this.data.set((resp as any) ?? []);
+    this.loading.set(false);
   }
 
-  onLoadData(periodoId: string): void {
-    this.loading.set(true);
-    this.apiResponseS
-      .onGetList<TiempoExtraDTO[]>(
-        Endpoints.HR.Nomina.TiempoExtra.list(periodoId),
-      )
-      .then((resp: any) => {
-        this.data.set(resp ?? []);
-        this.loading.set(false);
-      });
-  }
-
-  cambiarPeriodo(periodoId: string): void {
-    this.periodoSeleccionado.set(periodoId);
-    this.onLoadData(periodoId);
+  cambiarAnio(anio: number): void {
+    this.anioFiltro.set(anio);
   }
 
   openAdd(): void {
     this.dialogHandlerS
       .openDialog(
-        ModalTiempoExtraAdd,
-        { periodoNominaId: this.periodoSeleccionado() },
-        "Registrar Tiempo Extra",
+        ModalPeriodoAdd,
+        {},
+        "Nuevo Periodo de Nomina",
         this.dialogHandlerS.sizeMd,
       )
       .then((result) => {
-        if (result) this.onLoadData(this.periodoSeleccionado());
+        if (result)
+          this.onLoadData(this.customerIdS.customerId(), this.anioFiltro());
       });
   }
 
-  openEdit(item: TiempoExtraDTO): void {
+  openEdit(item: PeriodoNominaDTO): void {
     this.dialogHandlerS
       .openDialog(
-        ModalTiempoExtraAdd,
+        ModalPeriodoAdd,
         { item },
-        "Editar Tiempo Extra",
+        "Editar Periodo",
         this.dialogHandlerS.sizeMd,
       )
       .then((result) => {
-        if (result) this.onLoadData(this.periodoSeleccionado());
+        if (result)
+          this.onLoadData(this.customerIdS.customerId(), this.anioFiltro());
       });
   }
 
-  async aprobar(item: TiempoExtraDTO): Promise<void> {
-    const result = await this.apiResponseS.onPut(
-      Endpoints.HR.Nomina.TiempoExtra.approve(item.id),
-      {},
-    );
-    if (result) this.onLoadData(this.periodoSeleccionado());
+  openDiasNoHabiles(item: PeriodoNominaDTO): void {
+    this.dialogHandlerS
+      .openDialog(
+        ModalDiasNoHabiles,
+        { periodoId: item.id },
+        `Dias No Habiles - ${item.quincenaDisplay}`,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then(() => {});
   }
 
-  onDelete(item: TiempoExtraDTO): void {
+  onDelete(item: PeriodoNominaDTO): void {
     this.apiResponseS
-      .onDelete(Endpoints.HR.Nomina.TiempoExtra.delete(item.id))
+      .onDelete(Endpoints.HR.Nomina.Periodos.delete(item.id))
       .then((result) => {
-        if (result) this.onLoadData(this.periodoSeleccionado());
+        if (result)
+          this.onLoadData(this.customerIdS.customerId(), this.anioFiltro());
       });
+  }
+
+  getEstadoSeverity(estado: string): string {
+    const map: Record<string, string> = {
+      Abierto: "success",
+      EnProceso: "info",
+      Cerrado: "secondary",
+    };
+    return map[estado] ?? "secondary";
   }
 }
 

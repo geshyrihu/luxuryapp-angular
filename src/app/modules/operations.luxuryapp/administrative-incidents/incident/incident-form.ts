@@ -33,7 +33,7 @@ import { TabItem } from "@ui/base/tabs.base";
 import {
   IncidentTypeListDTO,
   SanctionTypeListDTO,
-} from "@human-resources.luxuryapp/performance-evaluations/hr-catalog/interfaces/hr-catalog.interfaces";
+} from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
 import { IncidentAttachmentsComponent } from "./incident-attachments/incident-attachments";
 import { IncidentWitnessesComponent } from "./incident-witnesses/incident-witnesses";
 import {

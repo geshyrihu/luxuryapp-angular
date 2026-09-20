@@ -23,7 +23,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { SanctionTypeDetailDTO } from "@human-resources.luxuryapp/performance-evaluations/hr-catalog/interfaces/hr-catalog.interfaces";
+import { SanctionTypeDetailDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
 import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface";
 
 @Component({
