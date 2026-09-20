@@ -50,7 +50,7 @@ export const directoryRoutes: Routes = [
   {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("@recruitment.luxuryapp/employee-file/employees/org-chart/org-chart").then(
+      import("@recruitment.luxuryapp/employee-org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],

@@ -1,4 +1,4 @@
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -10,7 +10,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
-import { EmployeeOnboardingChecklistItemDTO } from "../interfaces/employee-file.interfaces";
+import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 
 @Component({
   selector: "app-employee-onboarding-checklist",

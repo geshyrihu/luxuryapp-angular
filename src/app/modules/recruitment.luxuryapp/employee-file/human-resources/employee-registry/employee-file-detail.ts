@@ -41,7 +41,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/employee-onboarding-checklist";
+import { EmployeeOnboardingChecklist } from "@recruitment.luxuryapp/employee-onboarding-checklists/employee-onboarding-checklist";
 
 @Component({
   selector: "app-employee-file-detail",

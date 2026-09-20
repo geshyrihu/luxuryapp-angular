@@ -50,7 +50,6 @@
           [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
           size="small"
         />
-        @if (isPendingView()) {
         <il-button
           iconClass="material-symbols-light:play-lesson"
           label="Modo presentacion"
@@ -60,7 +59,6 @@
           size="small"
           [disabled]="selectedSolicitudIds().length === 0"
         />
-        }
         <il-button
           iconClass="material-symbols-light:link"
           label="Actualizar Referencias"
@@ -105,7 +103,6 @@
   </ng-template>
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
-      @if (isPendingView()) {
       <td class="text-center pointer">
         <app-icon
           [icon]="'material-symbols-light:menu'"
@@ -116,11 +113,10 @@
       <td class="text-center">
         <input
           type="checkbox"
-          [checked]="isSelected(item.id)"
+          [checked]="isInPresentation(item.id)"
           (change)="onToggleSelection(item.id, $any($event.target).checked)"
         />
       </td>
-      }
       <td>{{ item.folio }}</td>
       <td>{{ item.fechaSolicitud | apiDate }}</td>
       <td>{{ item.solicita }}</td>
@@ -188,6 +184,12 @@
         }
       </td>
 
+      <td class="text-center">
+        @if (isInPresentation(item.id)) {
+        <lx-tag value="En presentación" severity="info" [rounded]="true" size="small" />
+        }
+      </td>
+
       <td>
         <div class="d-flex">
           <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
@@ -211,15 +213,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      @if (isPendingView()) {
       <div start class="d-flex align-items-center justify-content-center">
         <input
           type="checkbox"
-          [checked]="isSelected(item.id)"
+          [checked]="isInPresentation(item.id)"
           (change)="onToggleSelection(item.id, $any($event.target).checked)"
         />
       </div>
-      }
       <div start>
         <app-icon
           icon="material-symbols-light:shopping-cart-outline"
@@ -241,6 +241,9 @@
           [severity]="getPrioridadSeverity(item.prioridad)"
           [rounded]="true"
         />
+        @if (isInPresentation(item.id)) {
+        <lx-tag value="En presentación" severity="info" [rounded]="true" size="small" />
+        }
       </div>
 
       <ili-action-menu slot="end">
@@ -256,7 +259,6 @@
   </ng-template>
 </app-data-view-mobile>
 
-@if (isPendingView()) {
 <div class="d-md-none mt-3 d-flex justify-content-end">
   <il-button
     iconClass="material-symbols-light:play-lesson"
@@ -268,4 +270,3 @@
     [disabled]="selectedSolicitudIds().length === 0"
   />
 </div>
-}
