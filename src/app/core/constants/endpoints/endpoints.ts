@@ -19,11 +19,10 @@ import { EndpointsSystem } from "./system.endpoints";
 import { EndpointsWeb } from "./web.endpoints";
 
 /**
- * Archivo centralizado de endpoints del API - LuxuryApp.
- * Consolida todas las constantes de módulos en un solo objeto plano.
- * Los módulos se importan individualmente para mejor organización,
- * y se hace spread en orden, con EndpointsShared al final
- * para que los valores compartidos tengan prioridad.
+ * @deprecated Desde 2026-09-20. Use imports directos desde cada módulo (ej: `import { EndpointsAdmin } from '@core/constants/endpoints/admin.endpoints'`).
+ * Plan de eliminación: 3 meses (2026-12-20).
+ * Este archivo re-exporta todo para compatibilidad legacy.
+ * Código NUEVO debe importar desde los archivos específicos de cada módulo.
  */
 export const Endpoints = {
   ...EndpointsAuth,

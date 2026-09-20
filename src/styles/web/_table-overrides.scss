@@ -6,8 +6,8 @@
 
 :root {
   --ds-table-border-color:              var(--ds-border);
-  --ds-table-header-background:         var(--ds-bg-sunken);
-  --ds-table-header-color:              var(--ds-text-secondary);
+  --ds-table-header-background:         var(--primary-700);
+  --ds-table-header-color:              var(--ds-on-primary);
   --ds-table-header-font-weight:        600;
   --ds-table-row-background:            var(--ds-bg-surface);
   --ds-table-row-odd-background:        var(--ds-bg-sunken);
@@ -26,24 +26,13 @@ body .app-table {
   border: 1px solid var(--ds-border);
   box-shadow: var(--ds-shadow-sm);
 
-   // Neutralizado 2026-09-15: paridad visual con el encabezado blanco actual
-   // de producción; la intención de diseño original queda documentada.
-   .app-table-thead > tr > th {
-     // background-color: var(--ds-bg-sunken);
-     // color: var(--ds-text-secondary);
-     font-size: 0.8125rem;
-     // font-weight: 600;
-     // text-transform: uppercase;
-     // letter-spacing: 0.04em;
-     // Neutralización explícita: Bootstrap aplica una regla de encabezado
-     // propia; estos valores preservan la paridad blanca de producción.
-     // El fondo heredado de Bootstrap resuelve a azul muy pálido en esta
-     // tabla; el token de superficie conserva el blanco de producción.
-     background-color: var(--ds-bg-surface);
-     color: inherit;
-     font-weight: inherit;
-     text-transform: none;
-     letter-spacing: normal;
+    .app-table-thead > tr > th {
+      font-size: 0.8125rem;
+      background-color: var(--ds-table-header-background);
+      color: var(--ds-table-header-color);
+      font-weight: var(--ds-table-header-font-weight);
+      text-transform: none;
+      letter-spacing: normal;
      border-color: var(--ds-border);
      padding: 0.25rem 0.5rem;
      white-space: nowrap;

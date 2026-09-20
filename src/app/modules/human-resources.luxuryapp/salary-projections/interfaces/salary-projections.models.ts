@@ -47,6 +47,7 @@ export interface ISalaryProjectionItem {
   isNewPosition: boolean;
   workPositionId: string | null;
   employeeId: string | null;
+  applicationUserId: string | null;
   employeeName: string | null;
   positionTitle: string;
   netMonthlySalary: number;

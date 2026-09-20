@@ -1,3 +1,4 @@
+import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,17 +6,19 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { DecimalPipe } from "@angular/common";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subject, debounceTime } from "rxjs";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
+import { DialogHandlerService, DialogSize } from "@core/services/dialog-handler.service";
+import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
+import { Subject, debounceTime } from "rxjs";
 import {
   ISalaryProjection,
   ISalaryProjectionItem,
@@ -79,14 +82,14 @@ interface ComparisonRow {
       }
       .app-sidepanel__header,
       .app-sidepanel__footer {
+        padding: 1rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: var(--ds-space-sm, 8px);
-        padding: var(--ds-space-lg, 16px);
+        gap: 1rem;
+        border-bottom: 1px solid var(--ds-border, #e5e7eb);
       }
       .app-sidepanel__header {
-        border-bottom: 1px solid var(--ds-border, #dee2e6);
+        justify-content: space-between;
       }
       .app-sidepanel__footer {
         justify-content: flex-end;
@@ -126,12 +129,15 @@ export class SalaryProjectionsDetail {
   private readonly service = inject(SalaryProjectionsService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly dialogHandlerS = inject(DialogHandlerService);
 
   /** ♻️ Cola de simulación con debounce para no saturar el backend. */
   private readonly simulateQueue = new Subject<void>();
 
   readonly projection = signal<ISalaryProjection | null>(null);
-  readonly simulations = signal<Record<string, ISalaryProjectionItemSimulation>>({});
+  readonly simulations = signal<
+    Record<string, ISalaryProjectionItemSimulation>
+  >({});
   readonly activeScenarioId = signal<string | null>(null);
   readonly loading = signal(true);
   readonly simulating = signal(false);
@@ -173,7 +179,8 @@ export class SalaryProjectionsDetail {
 
     for (const scenario of scenarios) {
       for (const item of scenario.items) {
-        const key = item.workPositionId ?? item.applicationRoleId ?? item.positionTitle;
+        const key =
+          item.workPositionId ?? item.applicationRoleId ?? item.positionTitle;
         if (!rows.has(key)) {
           rows.set(key, {
             key,
@@ -184,28 +191,90 @@ export class SalaryProjectionsDetail {
       }
     }
 
-    return [...rows.values()].map((row) => ({
-      ...row,
-      comparisons: scenarios.map((scenario) => {
-        const item = scenario.items.find(
-          (candidate) =>
-            (candidate.workPositionId ?? candidate.applicationRoleId ?? candidate.positionTitle) === row.key,
-        ) ?? null;
-        return {
-          scenarioId: scenario.id,
-          scenarioName: scenario.name,
-          item,
-          simulation: item ? this.simulationOf(item.id) : null,
-        };
-      }),
-    }));
+      const sims = this.simulations();
+      return [...rows.values()].map((row) => ({
+        ...row,
+        comparisons: scenarios.map((scenario) => {
+          const item =
+            scenario.items.find(
+              (i) =>
+                (i.workPositionId && i.workPositionId === row.key) ||
+                (!i.workPositionId && i.applicationRoleId === row.key) ||
+                (!i.workPositionId &&
+                  !i.applicationRoleId &&
+                  i.positionTitle === row.key),
+            ) || null;
+
+          return {
+            scenarioId: scenario.id,
+            scenarioName: scenario.name,
+            item,
+            simulation: item ? this.simulationOf(item.id) : null,
+          };
+        }),
+      }));
+  });
+
+  readonly scenarioTotals = computed<Record<string, ISalaryProjectionItemSimulation & { netMonthlySalary: number, rcvEmployerFee: number, infonavitEmployerFee: number, imssEmployerFee: number }>>(() => {
+    const scenarios = this.comparedScenarios();
+    const sims = this.simulations();
+    const totals: Record<string, any> = {};
+
+    for (const scenario of scenarios) {
+      let netMonthlySalary = 0;
+      let vacationPremium = 0;
+      let holidayPremium = 0;
+      let sundayPremium = 0;
+      let christmasBonus = 0;
+      let monthlyPerceptions = 0;
+      let rcvEmployerFee = 0;
+      let infonavitEmployerFee = 0;
+      let imssEmployerFee = 0;
+      let employerPayrollTax = 0;
+      let totalEmployerCost = 0;
+
+      for (const item of scenario.items) {
+        netMonthlySalary += item.netMonthlySalary || 0;
+        rcvEmployerFee += item.rcvEmployerFee || 0;
+        infonavitEmployerFee += item.infonavitEmployerFee || 0;
+        imssEmployerFee += item.imssEmployerFee || 0;
+
+        const sim = sims[item.id];
+        if (sim) {
+          vacationPremium += sim.vacationPremium || 0;
+          holidayPremium += sim.holidayPremium || 0;
+          sundayPremium += sim.sundayPremium || 0;
+          christmasBonus += sim.christmasBonus || 0;
+          monthlyPerceptions += sim.monthlyPerceptions || 0;
+          employerPayrollTax += sim.employerPayrollTax || 0;
+          totalEmployerCost += sim.totalEmployerCost || 0;
+        }
+      }
+
+      totals[scenario.id] = {
+        netMonthlySalary,
+        vacationPremium,
+        holidayPremium,
+        sundayPremium,
+        christmasBonus,
+        monthlyPerceptions,
+        rcvEmployerFee,
+        infonavitEmployerFee,
+        imssEmployerFee,
+        employerPayrollTax,
+        totalEmployerCost
+      };
+    }
+
+    return totals;
   });
 
   readonly comparisonScenarioTotals = computed(() =>
     this.comparedScenarios().map((scenario) => ({
       scenario,
       total: scenario.items.reduce(
-        (total, item) => total + (this.simulations()[item.id]?.totalEmployerCost ?? 0),
+        (total, item) =>
+          total + (this.simulations()[item.id]?.totalEmployerCost ?? 0),
         0,
       ),
     })),
@@ -243,13 +312,20 @@ export class SalaryProjectionsDetail {
       if (data) {
         this.projection.set(data);
         const currentScenarioId = this.activeScenarioId();
-        if (!data.scenarios.some((scenario) => scenario.id === currentScenarioId)) {
+        if (
+          !data.scenarios.some((scenario) => scenario.id === currentScenarioId)
+        ) {
           this.activeScenarioId.set(data.scenarios[0]?.id ?? null);
         }
-        const availableIds = data.scenarios.slice(0, 3).map((scenario) => scenario.id);
+        const availableIds = data.scenarios
+          .slice(0, 3)
+          .map((scenario) => scenario.id);
         if (
           this.selectedScenarioIds().length === 0 ||
-          this.selectedScenarioIds().every((scenarioId) => !data.scenarios.some((scenario) => scenario.id === scenarioId))
+          this.selectedScenarioIds().every(
+            (scenarioId) =>
+              !data.scenarios.some((scenario) => scenario.id === scenarioId),
+          )
         ) {
           this.selectedScenarioIds.set(availableIds);
         }
@@ -266,7 +342,10 @@ export class SalaryProjectionsDetail {
 
   selectScenario(scenarioId: string): void {
     this.activeScenarioId.set(scenarioId);
-    if (!this.selectedScenarioIds().includes(scenarioId) && this.selectedScenarioIds().length < 3) {
+    if (
+      !this.selectedScenarioIds().includes(scenarioId) &&
+      this.selectedScenarioIds().length < 3
+    ) {
       this.selectedScenarioIds.update((ids) => [...ids, scenarioId]);
     }
   }
@@ -277,7 +356,9 @@ export class SalaryProjectionsDetail {
       if (selectedIds.length === 1) {
         return;
       }
-      this.selectedScenarioIds.set(selectedIds.filter((id) => id !== scenarioId));
+      this.selectedScenarioIds.set(
+        selectedIds.filter((id) => id !== scenarioId),
+      );
       if (this.activeScenarioId() === scenarioId) {
         this.activeScenarioId.set(this.selectedScenarioIds()[0] ?? null);
       }
@@ -397,7 +478,10 @@ export class SalaryProjectionsDetail {
     this.editorDraft.set(null);
   }
 
-  updateDraft(field: keyof ISalaryProjectionItemEdit, value: string | number | boolean): void {
+  updateDraft(
+    field: keyof ISalaryProjectionItemEdit,
+    value: string | number | boolean,
+  ): void {
     const draft = this.editorDraft();
     if (!draft) {
       return;
@@ -432,7 +516,10 @@ export class SalaryProjectionsDetail {
 
     const scenarios = projection.scenarios.map((scenario) =>
       scenario.id === scenarioId
-        ? { ...scenario, items: scenario.items.filter((item) => item.id !== itemId) }
+        ? {
+            ...scenario,
+            items: scenario.items.filter((item) => item.id !== itemId),
+          }
         : scenario,
     );
 
@@ -490,6 +577,7 @@ export class SalaryProjectionsDetail {
       isNewPosition: draft.isNewPosition,
       workPositionId: null,
       employeeId: draft.employeeId,
+      applicationUserId: null,
       employeeName: null,
       positionTitle: draft.positionTitle,
       netMonthlySalary: Number(draft.netMonthlySalary) || 0,
@@ -546,5 +634,28 @@ export class SalaryProjectionsDetail {
     const month = `${now.getMonth() + 1}`.padStart(2, "0");
     const day = `${now.getDate()}`.padStart(2, "0");
     return `${now.getFullYear()}-${month}-${day}`;
+  }
+
+  openEmployeeDetails(row: ComparisonRow): void {
+    const item = row.comparisons[0]?.item;
+    if (item?.applicationUserId) {
+      this.dialogHandlerS.openDialog(
+        CardEmployee,
+        { applicationUserId: item.applicationUserId },
+        "Colaborador",
+        DialogSize.sm,
+      );
+    }
+  }
+
+  openScheduleDetails(workPositionId: string): void {
+    if (workPositionId) {
+      this.dialogHandlerS.openDialog(
+        WorkPositionForm,
+        { id: workPositionId },
+        "Detalles del Puesto",
+        DialogSize.full,
+      );
+    }
   }
 }

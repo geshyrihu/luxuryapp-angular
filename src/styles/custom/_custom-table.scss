@@ -109,12 +109,8 @@
        Los tokens giran solos con el tema: en oscuro `--ds-primary` pasa a
        $primary-200 y `--ds-primary-text` a $primary-900, así que el encabezado
        se invierte a azul claro con texto oscuro sin regla aparte. */
-     // Neutralizado 2026-09-15: paridad visual con el encabezado blanco actual
-     // de producción; se conserva la intención azul documentada arriba.
-     .app-table-thead > tr > th {
-       // background-color: var(--ds-primary);
-       // color: var(--ds-primary-text);
-      border-color: var(--ds-border);
+       .app-table-thead > tr > th {
+       border-color: var(--ds-border);
 
       /* Los iconos de orden heredan el color del encabezado */
       app-sorticon,
@@ -125,11 +121,10 @@
       }
     }
 
-     .app-table-thead > tr > th.app-table-sortable-column:hover {
-       // Neutralizado 2026-09-15: el encabezado permanece blanco también al hover.
-       // background-color: var(--ds-primary-hover);
-       // color: var(--ds-primary-text);
-    }
+      .app-table-thead > tr > th.app-table-sortable-column:hover {
+        background-color: var(--primary-700);
+        color: var(--ds-on-primary);
+     }
 
     /* Encabezado centrado (2026-08-12).
        SOLO el encabezado (`<ng-template #header>` → <th>). El cuerpo

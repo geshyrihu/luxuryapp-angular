@@ -60,11 +60,10 @@
   </div>
 
   <div class="card p-0">
-    <app-table [value]="comparisonRows()" [loading]="loading()" [paginator]="true" [rows]="25" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} de {totalRecords}">
+    <app-table [value]="comparisonRows()" [loading]="loading()" [paginator]="false" styleClass="p-datatable-sm" [showCurrentPageReport]="false">
       <ng-template #header>
         <tr>
-          <th class="table-col-20 text-start" rowspan="2">PUESTO / ROL</th>
-          <th class="table-col-20 text-start" rowspan="2">EMPLEADO</th>
+          <th class="table-col-25 text-start" rowspan="2">PUESTO / ROL</th>
           <th class="text-center" rowspan="2" title="Horas Semanales">HRS / SEM</th>
           @for (scenario of comparedScenarios(); track scenario.id) {
           <th class="text-center border-start" colspan="11">{{ scenario.name }}</th>
@@ -90,13 +89,26 @@
       <ng-template #body let-row>
         <tr>
           <td class="fw-semibold">
-            {{ row.positionTitle }}
-            @if (row.applicationRoleId; as roleId) {
-            <div class="text-body-secondary text-xs">Rol: {{ roleId }}</div>
+            <div class="mb-1">{{ row.positionTitle }}</div>
+            <div class="text-body-secondary text-xs fw-normal cursor-pointer hover:text-primary transition-colors d-inline-block"
+                 (click)="openEmployeeDetails(row)">
+              {{ row.comparisons[0]?.item?.employeeName || "VACANTE" }}
+            </div>
+          </td>
+          <td class="text-center">
+            @if (row.comparisons[0]?.item?.workPositionId; as wpId) {
+            <lx-tag
+              [value]="(row.comparisons[0]?.item?.weeklyHours || '-') + ' hrs'"
+              icon="material-symbols-light:calendar-month"
+              severity="secondary"
+              class="cursor-pointer hover:bg-body-tertiary transition-colors transition-duration-150 rounded"
+              lxTooltip="Ver detalles del horario"
+              (click)="openScheduleDetails(wpId)"
+            />
+            } @else {
+            <span class="text-body-secondary">{{ row.comparisons[0]?.item?.weeklyHours || "-" }}</span>
             }
           </td>
-          <td class="text-body-secondary">{{ row.comparisons[0]?.item?.employeeName || "VACANTE" }}</td>
-          <td class="text-center text-body-secondary">{{ row.comparisons[0]?.item?.weeklyHours || "-" }}</td>
 
           @for (cell of row.comparisons; track cell.scenarioId) {
           <td class="text-end border-start comparison-cell fw-semibold" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.item?.netMonthlySalary ?? 0 | number: "1.2-2" }}</td>
@@ -121,6 +133,25 @@
             </div>
             }
           </td>
+          }
+        </tr>
+      </ng-template>
+
+      <ng-template #footer>
+        <tr>
+          <td colspan="2" class="text-end fw-bold">TOTALES</td>
+          @for (scenario of comparedScenarios(); track scenario.id) {
+            <td class="text-end fw-bold">{{ scenarioTotals()[scenario.id]?.netMonthlySalary | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.vacationPremium | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.holidayPremium | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.sundayPremium | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.christmasBonus | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-primary">{{ scenarioTotals()[scenario.id]?.monthlyPerceptions | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.rcvEmployerFee | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.infonavitEmployerFee | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.imssEmployerFee | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-sm">{{ scenarioTotals()[scenario.id]?.employerPayrollTax | number: "1.2-2" }}</td>
+            <td class="text-end fw-bold text-success">{{ scenarioTotals()[scenario.id]?.totalEmployerCost | number: "1.2-2" }}</td>
           }
         </tr>
       </ng-template>

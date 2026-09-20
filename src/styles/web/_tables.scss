@@ -22,7 +22,7 @@
 
   // Cabecera
   thead {
-    background-color: var(--ds-bg-sunken);
+    background-color: var(--primary-700);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -32,7 +32,7 @@
       text-align: left;
       font-weight: 600;
       font-size: 0.8125rem;
-      color: var(--ds-text-secondary);
+      color: var(--ds-on-primary);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       white-space: nowrap;

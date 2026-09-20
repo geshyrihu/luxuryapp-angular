@@ -142,20 +142,21 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
       },
       {
         title: "Checklist de Onboarding",
-        description: "Tareas, días SLA y roles aplicables por alta de personal.",
+        description:
+          "Tareas, días SLA y roles aplicables por alta de personal.",
         route: "/admin/onboarding-checklist-options",
         icon: "material-symbols-light:fact-check",
         color: "#0e7490",
         bgColor: "#cffafe",
       },
-      {
-        title: "Horarios de Puesto",
-        description: "Catálogo de turnos y horarios disponibles para puestos de trabajo.",
-        route: "/admin/work-position-schedules",
-        icon: "material-symbols-light:schedule",
-        color: "#0e7490",
-        bgColor: "#cffafe",
-      },
+      // {
+      //   title: "Horarios de Puesto",
+      //   description: "Catálogo de turnos y horarios disponibles para puestos de trabajo.",
+      //   route: "/admin/work-position-schedules",
+      //   icon: "material-symbols-light:schedule",
+      //   color: "#0e7490",
+      //   bgColor: "#cffafe",
+      // },
     ],
   },
   // -------------------------------------------------------------
@@ -532,4 +533,3 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
     ],
   },
 ];
-
