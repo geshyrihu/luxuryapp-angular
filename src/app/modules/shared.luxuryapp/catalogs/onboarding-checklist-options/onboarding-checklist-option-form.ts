@@ -25,7 +25,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ApplicationRoleDto } from "../../../admin.luxuryapp/seguridad-permisos/application-role/interfaces/application-role.dto";
+import { ApplicationRoleDto } from "../../../admin.luxuryapp/security-permissions/application-roles/interfaces/application-role.dto";
 import { OnboardingChecklistOptionFormGroup } from "./interfaces/onboarding-checklist-option-form.interface";
 import {
   OnboardingChecklistOptionAddOrEdit,

@@ -11,7 +11,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { UpdatePasswordAccount } from "@shared/user-account-access/update-password-account";
 import { UpdateRole } from "@shared/user-account-access/update-role";
-import { AccessCustomer } from "../acceso-customer/access-customer";
+import { AccessCustomer } from "../customer-access/access-customer";
 @Component({
   selector: "app-md-edit-account",
   templateUrl: "./edit-account.html",

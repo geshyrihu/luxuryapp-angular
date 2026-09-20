@@ -123,7 +123,7 @@ export const directoryRoutes: Routes = [
     // Suggested path: 'my-providers'
     path: "mis-proveedores",
     loadComponent: () =>
-      import("@admin.luxuryapp/reportes/customer-provider/mis-proveedores-list").then(
+      import("@admin.luxuryapp/reports/customer-provider/mis-proveedores-list").then(
         (m) => m.MisProveedores,
       ),
     canActivate: [authGuard],

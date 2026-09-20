@@ -20,7 +20,7 @@ export const adminRoutes: Routes = [
   {
     path: "customers",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/customer/customer-list").then(
+      import("@admin.luxuryapp/security-permissions/customer/customer-list").then(
         (m) => m.CustomerList,
       ),
     canActivate: [authGuard],
@@ -32,7 +32,7 @@ export const adminRoutes: Routes = [
   {
     path: "user-accounts",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/user-accounts/user-account-list").then(
+      import("@admin.luxuryapp/security-permissions/user-accounts/user-account-list").then(
         (m) => m.UserAccountList,
       ),
     canActivate: [authGuard],
@@ -44,7 +44,7 @@ export const adminRoutes: Routes = [
   {
     path: "roles",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/application-role/roles-list").then(
+      import("@admin.luxuryapp/security-permissions/application-roles/roles-list").then(
         (m) => m.RolesList,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const adminRoutes: Routes = [
   {
     path: "module-app",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/module-app/module-app-list").then(
+      import("@admin.luxuryapp/security-permissions/module-apps/module-app-list").then(
         (m) => m.ModuleAppList,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const adminRoutes: Routes = [
   {
     path: "customer-module",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/customer-modul/customer-modul-list").then(
+      import("@admin.luxuryapp/security-permissions/customer-modules/customer-modul-list").then(
         (m) => m.CustomerModulList,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const adminRoutes: Routes = [
   {
     path: "customer-module-edit/:customerId/:customerName",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/customer-modul/customer-modul-edit").then(
+      import("@admin.luxuryapp/security-permissions/customer-modules/customer-modul-edit").then(
         (m) => m.CustomerModulEdit,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const adminRoutes: Routes = [
   {
     path: "module-app-role",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/module-app-rol/module-app-rol-list").then(
+      import("@admin.luxuryapp/security-permissions/module-app-roles/module-app-rol-list").then(
         (m) => m.ModuleAppRol,
       ),
     canActivate: [authGuard],
@@ -104,7 +104,7 @@ export const adminRoutes: Routes = [
   {
     path: "module-app-role-update/:roleId/:roleName",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/module-app-rol/module-app-rol-update").then(
+      import("@admin.luxuryapp/security-permissions/module-app-roles/module-app-rol-update").then(
         (m) => m.ModuleAppRolUpdate,
       ),
     canActivate: [authGuard],
@@ -116,7 +116,7 @@ export const adminRoutes: Routes = [
   {
     path: "approval-rules",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules").then(
+      import("@admin.luxuryapp/security-permissions/approval-rules/approval-rules").then(
         (m) => m.ApprovalRules,
       ),
     canActivate: [authGuard],
@@ -128,7 +128,7 @@ export const adminRoutes: Routes = [
   {
     path: "interviewer-matrix",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/interviewer-matrix/interviewer-matrix").then(
+      import("@admin.luxuryapp/security-permissions/interviewer-matrices/interviewer-matrix").then(
         (m) => m.InterviewerMatrix,
       ),
     canActivate: [superUsuarioGuard],
@@ -140,7 +140,7 @@ export const adminRoutes: Routes = [
   {
     path: "employee-permissions/:applicationUserId",
     loadComponent: () =>
-      import("@admin.luxuryapp/seguridad-permisos/profile-users/employee-permission-app").then(
+      import("@admin.luxuryapp/security-permissions/profile-users/employee-permission-app").then(
         (m) => m.EmployeePermissionApp,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -362,7 +362,7 @@ export const adminRoutes: Routes = [
   {
     path: "assembly-checklist-catalog",
     loadComponent: () =>
-      import("@admin.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
+      import("@admin.luxuryapp/system-configuration/assembly-checklist-templates/asamblea-checklist-template-list").then(
         (m) => m.AsambleaChecklistTemplateList,
       ),
     canActivate: [authGuard],
@@ -410,7 +410,7 @@ export const adminRoutes: Routes = [
   {
     path: "jobs",
     loadComponent: () =>
-      import("@admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
+      import("@admin.luxuryapp/system-configuration/jobs/jobs-dashboard").then(
         (m) => m.JobsDashboard,
       ),
     canActivate: [authGuard],
@@ -424,7 +424,7 @@ export const adminRoutes: Routes = [
   {
     path: "customer-data-company",
     loadComponent: () =>
-      import("@admin.luxuryapp/configuracion-correo/customer-data-company/customer-data-company-list").then(
+      import("@admin.luxuryapp/email-configuration/customer-data-companies/customer-data-company-list").then(
         (m) => m.CustomerDataCompanyList,
       ),
     canActivate: [authGuard],
@@ -436,7 +436,7 @@ export const adminRoutes: Routes = [
   {
     path: "email-data",
     loadComponent: () =>
-      import("@admin.luxuryapp/configuracion-correo/email-data/email-data-list").then(
+      import("@admin.luxuryapp/email-configuration/email-data/email-data-list").then(
         (m) => m.EmailDataList,
       ),
     canActivate: [authGuard],
@@ -476,7 +476,7 @@ export const adminRoutes: Routes = [
   {
     path: "audit-entries",
     loadComponent: () =>
-      import("@admin.luxuryapp/analisis-registros/audit-entries/audit-entries").then(
+      import("@admin.luxuryapp/system-audit-logs/audit-entries/audit-entries").then(
         (m) => m.AuditEntries,
       ),
     canActivate: [authGuard],
@@ -488,7 +488,7 @@ export const adminRoutes: Routes = [
   {
     path: "user-activity-history",
     loadComponent: () =>
-      import("@admin.luxuryapp/analisis-registros/user-activity-history/user-activity-history").then(
+      import("@admin.luxuryapp/system-audit-logs/user-activity-history/user-activity-history").then(
         (m) => m.UserActivityHistory,
       ),
     canActivate: [authGuard],
@@ -500,7 +500,7 @@ export const adminRoutes: Routes = [
   {
     path: "log-api-report",
     loadComponent: () =>
-      import("@admin.luxuryapp/analisis-registros/log-api-report/log-api-report").then(
+      import("@admin.luxuryapp/system-audit-logs/log-api-report/log-api-report").then(
         (m) => m.LogApiReport,
       ),
     canActivate: [authGuard],
@@ -512,7 +512,7 @@ export const adminRoutes: Routes = [
   {
     path: "brevo-logs",
     loadComponent: () =>
-      import("@admin.luxuryapp/analisis-registros/brevo/brevo-email-logs").then(
+      import("@admin.luxuryapp/system-audit-logs/brevo/brevo-email-logs").then(
         (m) => m.BrevoEmailLogs,
       ),
     canActivate: [authGuard],
@@ -526,7 +526,7 @@ export const adminRoutes: Routes = [
   {
     path: "mini-postman",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/mini-postman/mini-postman").then(
+      import("@admin.luxuryapp/dev-tools/mini-postman/mini-postman").then(
         (m) => m.MiniPostman,
       ),
     canActivate: [authGuard],
@@ -538,7 +538,7 @@ export const adminRoutes: Routes = [
   {
     path: "app-implementation-report",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/app-implementation-tracking/app-implementation-tracking-manual").then(
+      import("@admin.luxuryapp/dev-tools/app-implementation-tracking/app-implementation-tracking-manual").then(
         (m) => m.AppImplementationTrackingManual,
       ),
     canActivate: [authGuard],
@@ -550,7 +550,7 @@ export const adminRoutes: Routes = [
   {
     path: "ui-catalog",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-layout/catalog-layout").then(
+      import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-layout/catalog-layout").then(
         (m) => m.CatalogLayout,
       ),
     canActivate: [authGuard],
@@ -577,77 +577,77 @@ export const adminRoutes: Routes = [
       {
         path: "tokens/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/foundations/catalog-tokens-item/catalog-tokens-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-tokens-item/catalog-tokens-item").then(
             (m) => m.CatalogTokensItem,
           ),
       },
       {
         path: "web/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-web-item/catalog-web-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-web-item/catalog-web-item").then(
             (m) => m.CatalogWebItem,
           ),
       },
       {
         path: "mobile/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-mobile-item/catalog-mobile-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-mobile-item/catalog-mobile-item").then(
             (m) => m.CatalogMobileItem,
           ),
       },
       {
         path: "core/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-core-item/catalog-core-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-core-item/catalog-core-item").then(
             (m) => m.CatalogCoreItem,
           ),
       },
       {
         path: "charts/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/charts/catalog-charts-item/catalog-charts-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/charts/catalog-charts-item/catalog-charts-item").then(
             (m) => m.CatalogChartsItem,
           ),
       },
       {
         path: "patterns/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/patterns-layouts/catalog-patterns-item/catalog-patterns-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/patterns-layouts/catalog-patterns-item/catalog-patterns-item").then(
             (m) => m.CatalogPatternsItem,
           ),
       },
       {
         path: "layouts/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/patterns-layouts/catalog-layouts-item/catalog-layouts-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/patterns-layouts/catalog-layouts-item/catalog-layouts-item").then(
             (m) => m.CatalogLayoutsItem,
           ),
       },
       {
         path: "docs/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/foundations/catalog-docs-item/catalog-docs-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-docs-item/catalog-docs-item").then(
             (m) => m.CatalogDocsItem,
           ),
       },
       {
         path: "audit/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/foundations/catalog-audit-item/catalog-audit-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-audit-item/catalog-audit-item").then(
             (m) => m.CatalogAuditItem,
           ),
       },
       {
         path: "guide/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/foundations/catalog-guia-item/catalog-guia-item").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/foundations/catalog-guide-item/catalog-guia-item").then(
             (m) => m.CatalogGuiaItem,
           ),
       },
       {
         path: "extras/:item",
         loadComponent: () =>
-          import("@admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
+          import("@admin.luxuryapp/dev-tools/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
             (m) => m.CatalogWebExtras,
           ),
       },
@@ -656,7 +656,7 @@ export const adminRoutes: Routes = [
   {
     path: "depuration",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/update-data-base/update-data-base").then(
+      import("@admin.luxuryapp/dev-tools/update-data-base/update-data-base").then(
         (m) => m.UpdateDataBase,
       ),
     canActivate: [authGuard],
@@ -668,7 +668,7 @@ export const adminRoutes: Routes = [
   {
     path: "testsignalr",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/testsignalr/testsignalr").then(
+      import("@admin.luxuryapp/dev-tools/signalr-test/testsignalr").then(
         (m) => m.Testsignalr,
       ),
     canActivate: [authGuard],
@@ -680,7 +680,7 @@ export const adminRoutes: Routes = [
   {
     path: "test-email",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/send-email/test-email").then(
+      import("@admin.luxuryapp/dev-tools/send-email/test-email").then(
         (m) => m.TestEmail,
       ),
     canActivate: [authGuard],
@@ -704,7 +704,7 @@ export const adminRoutes: Routes = [
   {
     path: "ai-test",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/ia-test/ia-test.component").then(
+      import("@admin.luxuryapp/dev-tools/ai-test/ia-test.component").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -716,7 +716,7 @@ export const adminRoutes: Routes = [
   {
     path: "pricing-calculator",
     loadComponent: () =>
-      import("@admin.luxuryapp/herramientas-dev/cotizador/cotizador.component").then(
+      import("@admin.luxuryapp/dev-tools/quotations/cotizador.component").then(
         (m) => m.CotizadorComponent,
       ),
     canActivate: [authGuard],

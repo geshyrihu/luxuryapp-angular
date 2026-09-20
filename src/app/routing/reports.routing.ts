@@ -16,7 +16,7 @@ export const reportsRoutes: Routes = [
   {
     path: "access-history",
     loadComponent: () =>
-      import("@admin.luxuryapp/reportes/access-history/bitacora-acceso-list").then(
+      import("@admin.luxuryapp/reports/access-history/bitacora-acceso-list").then(
         (m) => m.BitacoraAcceso,
       ),
     canActivate: [authGuard],

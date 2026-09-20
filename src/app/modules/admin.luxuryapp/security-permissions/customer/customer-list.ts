@@ -40,7 +40,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { CustomerLocationList } from "../customer-location/customer-location-list";
+import { CustomerLocationList } from "../customer-locations/customer-location-list";
 import { CustomerAddress } from "./customer-address";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
