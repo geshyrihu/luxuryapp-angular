@@ -9,14 +9,11 @@
      5. Tema: global, toast, header, sidebar, auth, dark-mode
      6. Componentes especiales: avatars, listas, tablas custom
      7. Fonts (cargadas desde index.html)
-     8. Overrides: PrimeNG Image Preview, animaciones Iconify
+     8. Overrides y animaciones Iconify
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Capas CSS (RN-DS-012). El orden declara prioridad: mayor = gana.
-   El preset de PrimeNG se inyecta en runtime dentro de @layer primeng/primevue.
-   Los estilos UNLAYERED ganan sobre cualquier capa (intencional en
-   _dark-mode.scss y en los overrides web/_prime-*.scss). */
-@layer ionic, reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
+ /* Capas CSS (RN-DS-012). El orden declara prioridad: mayor = gana. */
+ @layer ionic, reset, tokens, bootstrap, base, components, utilities, overrides;
 
 /* 1. VARIABLES & TOKENS */
 @layer tokens {
@@ -42,7 +39,7 @@
 
 /* 3. CUSTOM */
 @import "custom/utilities";
-/* PrimeFlex se carga desde angular.json para utilidades de layout. */
+/* Bootstrap utilities se cargan desde ds-entry.scss. */
 
 /* 4. TEMA CORE */
 @import "base/global";
@@ -134,21 +131,6 @@ iconify-icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.125em;
-}
-
-/* 9. MODAL BORDER OVERRIDE */
-body .p-dialog {
-  border: 1px solid var(--ds-border) !important;
-  border-radius: var(--ds-radius-modal) !important;
-}
-
-/* 🖼️ FIX: PrimeNG Image Preview en Móvil (Ionic)
-   --------------------------------------------------------------------------
-   Asegura que el overlay del preview de imagen esté siempre por encima
-   de los contenedores de Ionic y overlays globales.
-*/
-.p-image-mask {
-  z-index: 110000 !important;
 }
 
 /* --- ANIMACIONES ICONIFY --- */

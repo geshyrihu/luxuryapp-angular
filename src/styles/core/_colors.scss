@@ -244,9 +244,7 @@ $color-contrast-hover: $neutral-900 !default;
 $color-contrast-light: $neutral-100 !default;
 $color-contrast-text: $neutral-0 !default;
 
-// NOTA: Los CSS Custom Properties (--ds-*, --p-*) se generan en:
-//   theme/_variables.scss -> --primary-50..950, --ds-*, --ion-*, --z-*
-//   prime-overrides/_prime-tokens.scss -> --p-* bridge de PrimeNG
+// NOTA: CSS Custom Properties se generan en theme/_variables.scss.
 // Este archivo solo define SCSS variables para uso en componentes via @use.
 
 // ── DECISIONES VISUALES DE MARCA ─────────────────────────────

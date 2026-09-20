@@ -132,28 +132,9 @@ i,
 }
 
 /* 4. SOBRESCRITURAS DE Z-INDEX (Capas) */
-/* SweetAlert sobre PrimeNG */
+/* SweetAlert sobre overlays globales */
 .my-swal-container {
   z-index: 111000 !important;
-}
-
-/* PrimeNG Overlays sobre Ionic/Otros */
-.p-select-overlay,
-.p-dropdown-panel,
-.p-overlay,
-.p-confirm-dialog,
-.p-dynamic-dialog,
-.p-toast {
-  z-index: 40000 !important;
-}
-
-.p-datepicker {
-  z-index: 111000 !important;
-}
-
-.p-tooltip {
-  z-index: 40000 !important;
-  font-size: 0.75rem !important;
 }
 
 /* 5. IMPRESIÓN */
@@ -212,12 +193,6 @@ i,
 /* Los estilos de validación (bordes rojos, íconos) ahora viven en web/_inputs.scss */
 
 /* Feedback visual adicional para el placeholder (opcional) */
-.p-inputtext.ng-invalid.ng-dirty::placeholder {
-  /* Sin equivalente en el DS: ΔE 5.3 frente a --ds-on-error-container
-     y 7.5 frente a --ds-accent-text-danger. Alinear sería visible. */
-  color: var(--gl-placeholder-invalid);
-}
-
 /* ============================================================
    DS COLOR ALIASES — Tailwind → Design System tokens
    Redirige las clases Tailwind de color a los tokens --ds-*

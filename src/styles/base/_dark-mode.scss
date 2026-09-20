@@ -4,7 +4,7 @@
 //
 // Por qué este archivo existe:
 //   Algunos componentes y templates usan backgrounds hardcodeados (#fff, bg-white)
-//   que no responden al sistema de tokens de PrimeNG. Este archivo es unlayered
+//   que no responden al sistema de tokens del Design System. Este archivo es unlayered
 //   (no está dentro de ningún @layer), por lo que gana en cascada sobre
 //   cualquier @layer sin necesidad de !important.
 //
@@ -27,27 +27,10 @@
     background-color: var(--ds-bg-surface);
   }
 
-  // ── 1. COMPAT PrimeNG v16 ────────────────────────────────────
-  // surface-card / text-color usados en 36 templates — definidos en _prime-tokens.scss,
-  // se sobreescriben aquí con los valores navy del dark palette.
-
-  .surface-card {
-    background-color: var(--ds-bg-surface);
-    color: var(--ds-text-primary);
-  }
-
-  .surface-ground,
-  .surface-section {
-    background-color: var(--ds-bg-page);
-    color: var(--ds-text-primary);
-  }
-
-  .surface-border {
-    border-color: var(--ds-border);
-  }
-  .text-color {
-    color: var(--ds-text-primary);
-  }
+  .surface-card { background-color: var(--ds-bg-surface); color: var(--ds-text-primary); }
+  .surface-ground, .surface-section { background-color: var(--ds-bg-page); color: var(--ds-text-primary); }
+  .surface-border { border-color: var(--ds-border); }
+  .text-color { color: var(--ds-text-primary); }
   .text-color-secondary {
     color: var(--ds-text-secondary);
   }
@@ -189,90 +172,7 @@
   .card.border-info    { box-shadow: var(--ds-glow-info);    border-color: var(--ds-info);    }
   .card.border-help    { box-shadow: var(--ds-glow-help);    border-color: var(--ds-help); }
 
-  // ── 9. PrimeNG PANEL & FIELDSET ──────────────────────────────
-
-  .p-panel {
-    background-color: var(--ds-bg-surface);
-    border-color: var(--ds-border);
-    color: var(--ds-text-primary);
-
-    .p-panel-header {
-      background-color: var(--ds-bg-sunken);
-      color: var(--ds-text-primary);
-      border-bottom-color: var(--ds-border);
-    }
-
-    .p-panel-content {
-      background-color: var(--ds-bg-surface);
-      color: var(--ds-text-primary);
-    }
-  }
-
-  .p-fieldset {
-    background-color: var(--ds-bg-surface);
-    border-color: var(--ds-border);
-    color: var(--ds-text-primary);
-
-    .p-fieldset-legend {
-      background-color: var(--ds-bg-surface);
-      color: var(--ds-text-primary);
-      border-color: var(--ds-border);
-    }
-  }
-
-  // ── 10. TABVIEW ──────────────────────────────────────────────
-
-  .p-tabview {
-    .p-tabview-nav {
-      background-color: var(--ds-bg-surface);
-      border-color: var(--ds-border);
-
-      li .p-tabview-nav-link {
-        color: var(--ds-text-secondary);
-        background-color: transparent;
-        border-color: transparent;
-      }
-
-      li.p-highlight .p-tabview-nav-link {
-        color: var(--ds-primary);
-        border-bottom-color: var(--ds-primary);
-        background-color: transparent;
-      }
-    }
-
-    .p-tabview-panels {
-      background-color: var(--ds-bg-surface);
-      color: var(--ds-text-primary);
-    }
-  }
-
-  // ── 11. ACCORDION ────────────────────────────────────────────
-
-  .p-accordion {
-    .p-accordion-header .p-accordion-header-link {
-      background-color: var(--ds-bg-sunken);
-      color: var(--ds-text-primary);
-      border-color: var(--ds-border);
-
-      &:hover {
-        background-color: var(--ds-bg-elevated);
-      }
-    }
-
-    .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-      background-color: var(--ds-bg-surface);
-      color: var(--ds-primary);
-      border-color: var(--ds-primary);
-    }
-
-    .p-accordion-content {
-      background-color: var(--ds-bg-surface);
-      color: var(--ds-text-primary);
-      border-color: var(--ds-border);
-    }
-  }
-
-  // ── 12. APP TABLE COMPLEMENTS ────────────────────────────────
+  // ── 9. APP TABLE COMPLEMENTS ─────────────────────────────────
 
   .app-table {
     .app-table-caption,
@@ -313,79 +213,8 @@
     }
   }
 
-  // ── 13. OVERLAYS: DROPDOWN, AUTOCOMPLETE, CALENDAR ───────────
-  // Teleportados a <body> pero siguen dentro de html.theme-dark
-
-  .p-dropdown-panel,
-  .p-multiselect-panel,
-  .p-autocomplete-panel,
-  .p-listbox {
-    background-color: var(--ds-bg-surface);
-    border-color: var(--ds-border);
-    color: var(--ds-text-primary);
-
-    .p-dropdown-header,
-    .p-multiselect-header {
-      background-color: var(--ds-bg-sunken);
-      border-bottom-color: var(--ds-border);
-      color: var(--ds-text-primary);
-    }
-
-    .p-dropdown-item,
-    .p-multiselect-item,
-    .p-listbox-item {
-      color: var(--ds-text-primary);
-
-      &:not(.p-highlight):hover {
-        background-color: var(--ds-bg-sunken);
-      }
-
-      &.p-highlight {
-        background-color: var(--ds-primary-light);
-        color: var(--ds-primary);
-      }
-    }
-  }
-
-  .p-datepicker {
-    background-color: var(--ds-bg-surface);
-    border-color: var(--ds-border);
-    color: var(--ds-text-primary);
-
-    .p-datepicker-header {
-      background-color: var(--ds-bg-sunken);
-      border-bottom-color: var(--ds-border);
-      color: var(--ds-text-primary);
-    }
-
-    table td > span {
-      color: var(--ds-text-primary);
-
-      &:hover {
-        background-color: var(--ds-bg-sunken);
-      }
-
-      &.p-highlight {
-        background-color: var(--ds-primary);
-        color: var(--ds-on-primary);
-      }
-    }
-
-    table td.p-datepicker-today > span {
-      background-color: var(--ds-bg-elevated);
-      color: var(--ds-primary);
-      border-color: var(--ds-primary);
-    }
-  }
-
-  .p-tooltip .p-tooltip-text {
-    background-color: var(--ds-bg-elevated);
-    color: var(--ds-text-primary);
-    border: 1px solid var(--ds-border);
-  }
-
-  // ── 15. COBERTURA DE UTILIDADES ADICIONALES ───────────────────
-  // Clases numéricas PrimeFlex / TailwindCSS usadas en templates
+  // ── 10. COBERTURA DE UTILIDADES ADICIONALES ───────────────────
+  // Clases numéricas usadas en templates
 
   .text-900, .text-800 { color: var(--ds-text-primary); }
   .text-700, .text-600 { color: var(--ds-text-secondary); }
@@ -400,20 +229,4 @@
   .bg-orange-50    { background-color: var(--ds-warning-light); color: var(--ds-warning); }
   .bg-cyan-50      { background-color: var(--ds-info-light);    color: var(--ds-info);    }
 
-  // ── 16. FOCUS NEON ────────────────────────────────────────────
-
-  .p-inputtext:focus,
-  .p-password input:focus,
-  .p-textarea:focus {
-    border-color: var(--ds-primary);
-    box-shadow: var(--ds-shadow-focus);
-  }
-
-  .p-multiselect.p-focus,
-  .p-dropdown.p-focus,
-  .p-select.p-focus,
-  .p-autocomplete.p-focus {
-    border-color: var(--ds-primary);
-    box-shadow: var(--ds-shadow-focus);
-  }
 }

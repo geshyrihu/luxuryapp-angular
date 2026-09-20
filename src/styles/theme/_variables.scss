@@ -555,12 +555,6 @@
   --ds-border-success: #{c.$success-500};
   --ds-control-border-width: 1px; /* desktop */
 
-  // 💎 PrimeNG 21 Native Mapping (Bridge) — valores no cubiertos por _prime-tokens.scss
-  --p-content-border-radius: var(--ds-radius-md);
-  --p-card-border-radius: var(--ds-radius-card);
-  --p-card-box-shadow: var(--ds-shadow-sm);
-  --p-overlay-shadow: var(--ds-shadow-lg);
-
   // Shadows para Light Mode
   --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --ds-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);

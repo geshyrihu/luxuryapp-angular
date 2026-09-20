@@ -40,7 +40,6 @@
       "@residents.luxuryapp/*": ["./src/app/modules/residents.luxuryapp/*"],
       "@shared.luxuryapp/*": ["./src/app/modules/shared.luxuryapp/*"],
       "@supplier.luxuryapp/*": ["./src/app/modules/supplier.luxuryapp/*"],
-      "@system.luxuryapp/*": ["./src/app/modules/system.luxuryapp/*"],
       "@web.luxuryapp/*": ["./src/app/modules/web.luxuryapp/*"]
     },
     "importHelpers": true,

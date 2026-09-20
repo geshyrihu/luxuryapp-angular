@@ -338,7 +338,7 @@ export const adminRoutes: Routes = [
   {
     path: "ai-knowledge-base",
     loadComponent: () =>
-      import("@system.luxuryapp/system-configuration/knowledge-base/ai-knowledge-base-list").then(
+      import("@admin.luxuryapp/system-configuration/knowledge-base/ai-knowledge-base-list").then(
         (m) => m.AiKnowledgeBaseList,
       ),
     canActivate: [authGuard],
@@ -350,7 +350,7 @@ export const adminRoutes: Routes = [
   {
     path: "monthly-meetings-reconciliation",
     loadComponent: () =>
-      import("@system.luxuryapp/system-configuration/monthly-meetings-backfill/juntas-mensuales-backfill").then(
+      import("@operations.luxuryapp/monthly-meetings/backfill/juntas-mensuales-backfill").then(
         (m) => m.JuntasMensualesBackfill,
       ),
     canActivate: [authGuard],
@@ -386,7 +386,7 @@ export const adminRoutes: Routes = [
   {
     path: "vault-secrets",
     loadComponent: () =>
-      import("@system.luxuryapp/system-configuration/vault-secrets/vault-secrets-list").then(
+      import("@admin.luxuryapp/system-configuration/vault-secrets/vault-secrets-list").then(
         (m) => m.VaultSecretsList,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -398,7 +398,7 @@ export const adminRoutes: Routes = [
   {
     path: "database-backup",
     loadComponent: () =>
-      import("@system.luxuryapp/system-configuration/database-backup/database-backup-list").then(
+      import("@admin.luxuryapp/system-configuration/database-backup/database-backup-list").then(
         (m) => m.DatabaseBackupList,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -692,7 +692,7 @@ export const adminRoutes: Routes = [
   {
     path: "eleven-labs",
     loadComponent: () =>
-      import("@system.luxuryapp/system-configuration/eleven-labs/eleven-labs-settings").then(
+      import("@admin.luxuryapp/system-configuration/eleven-labs/eleven-labs-settings").then(
         (m) => m.ElevenLabsSettingsComponent,
       ),
     canActivate: [authGuard],
