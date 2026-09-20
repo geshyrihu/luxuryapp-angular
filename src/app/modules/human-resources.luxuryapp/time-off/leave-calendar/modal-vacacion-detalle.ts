@@ -10,7 +10,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { getStatusSeverity } from "../../employee-file/human-resources/helpers/status-severity.helper";
+import { getStatusSeverity } from "../../shared/helpers/status-severity.helper";
 interface VacationRequestCalendarDetailDTO {
   employeeFullName: string;
   requestDate?: string;

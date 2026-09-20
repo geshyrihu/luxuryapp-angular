@@ -16,7 +16,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import {
@@ -24,9 +24,9 @@ import {
   ApprovalPanelRequest,
   LeaveHistorySummaryDTO,
   OverlappingApprovalRequestDTO,
-} from "../../../interfaces/approval.interface";
-import { EPaidStatus } from "../../../interfaces/leave-request.interface";
-import { VacationBalanceDTO } from "../../../interfaces/vacation-balance.interface";
+} from "../interfaces/approval.interface";
+import { EPaidStatus } from "../interfaces/leave-request.interface";
+import { VacationBalanceDTO } from "../interfaces/vacation-balance.interface";
 import { ApprovalInfoService } from "./approval-info.service";
 @Component({
   selector: "app-approval-confirmation-modal",

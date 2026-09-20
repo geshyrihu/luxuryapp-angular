@@ -10,7 +10,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/employee-file/human-resources/dashboard/hr-dashboard").then(
+      import("@human-resources.luxuryapp/shared/dashboard/hr-dashboard").then(
         (m) => m.HRDashboard,
       ),
     canActivate: [

@@ -9,7 +9,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { getStatusSeverity } from "@human-resources.luxuryapp/employee-file/human-resources/helpers/status-severity.helper";
+import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { LeaveRequestDetailDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 

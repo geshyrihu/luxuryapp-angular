@@ -10,7 +10,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { getStatusSeverity } from "@human-resources.luxuryapp/employee-file/human-resources/helpers/status-severity.helper";
+import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { ROUTES } from "src/app/routing/route-paths";
 interface LeaveApprovalDetailDTO {
   id: string;

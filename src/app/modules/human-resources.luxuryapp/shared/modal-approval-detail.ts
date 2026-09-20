@@ -14,8 +14,8 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
-import { getStatusSeverity } from "../helpers/status-severity.helper";
+import { ApprovalPanelRequest } from "../interfaces/approval.interface";
+import { getStatusSeverity } from "./helpers/status-severity.helper";
 
 interface LeaveApprovalDetailDTO {
   id: string;

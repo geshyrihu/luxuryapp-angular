@@ -11,7 +11,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/employee-file/human-resources/helpers/status-severity.helper";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";

@@ -17,8 +17,8 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
-import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
  * ✨ COMPONENTE GENóRICO PARA PANELES DE APROBACIóN ✨

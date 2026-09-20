@@ -6,9 +6,9 @@ import {
 } from "@angular/core";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
-import { GenericApprovalPanel } from "../../employee-file/human-resources/shared/generic-approval-panel";
-import { ApprovalConfirmationModal } from "../../employee-file/human-resources/shared/modal-approval-confirmation";
-import { ApprovalDetailModal } from "../../employee-file/human-resources/shared/modal-approval-detail";
+import { GenericApprovalPanel } from "../../shared/generic-approval-panel";
+import { ApprovalConfirmationModal } from "../../shared/modal-approval-confirmation";
+import { ApprovalDetailModal } from "../../shared/modal-approval-detail";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
