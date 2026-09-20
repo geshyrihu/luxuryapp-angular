@@ -37,8 +37,8 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@core/services/orden-compra.service";
-import { SolicitudCompraService } from "@core/services/solicitud-compra.service";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { SolicitudCompraService } from "./services/solicitud-compra.service";
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { ROUTES } from "src/app/routing/route-paths";

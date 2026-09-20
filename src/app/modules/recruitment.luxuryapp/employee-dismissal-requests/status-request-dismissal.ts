@@ -16,7 +16,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { CardEmployee } from "@shared/integration/recursos-humanos";

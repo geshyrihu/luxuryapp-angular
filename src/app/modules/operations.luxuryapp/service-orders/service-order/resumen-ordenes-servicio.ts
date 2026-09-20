@@ -17,7 +17,7 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
-import { ReporteOrdenesServicioService } from "@core/services/reporte-ordenes-servicio.service";
+import { ReporteOrdenesServicioService } from "@operations.luxuryapp/service-orders/service-order/services/reporte-ordenes-servicio.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafico";
 @Component({

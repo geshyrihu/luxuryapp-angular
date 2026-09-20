@@ -11,7 +11,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { SolicitudCompraService } from "@core/services/solicitud-compra.service";
+import { SolicitudCompraService } from "@purchases.luxuryapp/purchase-requests/requests/services/solicitud-compra.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";

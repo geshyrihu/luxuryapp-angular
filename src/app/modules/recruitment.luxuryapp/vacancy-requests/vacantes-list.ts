@@ -10,17 +10,19 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { briefcaseOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { AuthService } from "@core/auth/services/auth.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -29,14 +31,11 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import Swal from "sweetalert2";
+import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 import { VacanteDetailModal } from "./vacante-detail-modal";
 import { VacanteForm } from "./vacante-form";
-import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -54,6 +53,7 @@ import {
   requestStatusBorderColor,
   requestStatusTagSeverity,
 } from "../recruitment-shared/request-status-style";
+import { StatusSolicitudVacanteService } from "./services/status-solicitud-vacante.service";
 
 interface VacanteListItem {
   id: string;
@@ -119,8 +119,10 @@ export class VacantesList implements OnInit {
   readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   canManageVacancyCandidates(): boolean {
-    return this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) ||
-      this.aspRoleS.hasRole(ApplicationRole.Reclutamiento);
+    return (
+      this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) ||
+      this.aspRoleS.hasRole(ApplicationRole.Reclutamiento)
+    );
   }
 
   dataSignal = signal<VacanteListItem[]>([]);
@@ -157,7 +159,7 @@ export class VacantesList implements OnInit {
       .then((result) => this.dataSignal.set(result));
   }
 
-onDelete(id: string) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestPosition.delete(id))
       .then((result: boolean) => {
@@ -171,9 +173,10 @@ onDelete(id: string) {
   async onDeletePermanente(id: string) {
     if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) return;
 
-    const impact = await this.apiResponseS.onGetItem<RequestPositionDeleteImpact>(
-      EndpointsReclutamiento.RequestPosition.deleteImpact(id),
-    );
+    const impact =
+      await this.apiResponseS.onGetItem<RequestPositionDeleteImpact>(
+        EndpointsReclutamiento.RequestPosition.deleteImpact(id),
+      );
     if (!impact) return;
 
     const result = await Swal.fire({
@@ -202,9 +205,7 @@ onDelete(id: string) {
       EndpointsReclutamiento.RequestPosition.deleteCascade(id),
     );
     if (deleted) {
-      this.dataSignal.update((data) =>
-        data.filter((item) => item.id !== id),
-      );
+      this.dataSignal.update((data) => data.filter((item) => item.id !== id));
     }
   }
 
@@ -230,13 +231,20 @@ onDelete(id: string) {
     );
   }
 
-  async goToVacancyCandidates(workPositionId: string, requestPositionId: string) {
-    if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) &&
-        !this.aspRoleS.hasRole(ApplicationRole.Reclutamiento)) {
+  async goToVacancyCandidates(
+    workPositionId: string,
+    requestPositionId: string,
+  ) {
+    if (
+      !this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) &&
+      !this.aspRoleS.hasRole(ApplicationRole.Reclutamiento)
+    ) {
       return;
     }
 
-    const item = this.dataSignal().find((vacancy) => vacancy.id === requestPositionId);
+    const item = this.dataSignal().find(
+      (vacancy) => vacancy.id === requestPositionId,
+    );
     const result = await this.dialogHandlerS.openDialog<boolean>(
       VacanteCandidatesModal,
       {
@@ -250,5 +258,4 @@ onDelete(id: string) {
 
     if (result) this.onLoadData();
   }
-
 }

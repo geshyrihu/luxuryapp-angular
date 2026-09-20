@@ -9,15 +9,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -29,9 +20,17 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
-import { ReporteOrdenesServicioService } from "@core/services/reporte-ordenes-servicio.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
@@ -48,6 +47,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ReporteOrdenesServicioService } from "./services/reporte-ordenes-servicio.service";
 
 @Component({
   selector: "app-ordenes-servicio-list",
@@ -110,8 +110,16 @@ export class OrdenesServicio {
   filtroEquiposValue: any = "todos";
   filtroId: any | string = "";
   filtroEquipos: { icon: AppIconName; id: any | string; nombre: string }[] = [
-    { icon: "material-symbols-light:format-list-bulleted", id: "", nombre: "todos" },
-    { icon: "material-symbols-light:star-outline", id: 2, nombre: "amenidades" },
+    {
+      icon: "material-symbols-light:format-list-bulleted",
+      id: "",
+      nombre: "todos",
+    },
+    {
+      icon: "material-symbols-light:star-outline",
+      id: 2,
+      nombre: "amenidades",
+    },
     { icon: "material-symbols-light:home", id: 8, nombre: "A. Comunes" },
     { icon: "material-symbols-light:package", id: 7, nombre: "bodegas" },
     { icon: "material-symbols-light:settings", id: 1, nombre: "equipos" },

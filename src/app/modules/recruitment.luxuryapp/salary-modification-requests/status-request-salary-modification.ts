@@ -16,7 +16,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

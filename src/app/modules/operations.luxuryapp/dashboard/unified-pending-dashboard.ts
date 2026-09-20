@@ -21,13 +21,13 @@ import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-for
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ImageAnalysisDialogComponent } from "@ui/image-analysis-dialog/image-analysis-dialog.component";
 import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 

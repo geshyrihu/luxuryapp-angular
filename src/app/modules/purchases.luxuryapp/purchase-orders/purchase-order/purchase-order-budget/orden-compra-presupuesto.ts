@@ -34,7 +34,7 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 
 @Component({
   selector: "app-orden-compra-presupuesto",

@@ -37,7 +37,7 @@ import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";

@@ -5,9 +5,9 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MessageService } from "@core/services/message.service";
-import { TicketAnalysisService } from "@core/services/ticket-analysis.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
+import { MessageService } from "@core/services/message.service";
+import { TicketAnalysisService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-analysis.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
@@ -23,11 +23,19 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       role="dialog"
       [attr.aria-hidden]="!visible"
     >
-      <div class="modal-dialog modal-dialog-centered" style="width: 500px; max-width: 96vw;">
+      <div
+        class="modal-dialog modal-dialog-centered"
+        style="width: 500px; max-width: 96vw;"
+      >
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">📸 Diagnóstico Inteligente (Vision)</h5>
-            <button type="button" class="btn-close" aria-label="Cerrar" (click)="visible = false"></button>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Cerrar"
+              (click)="visible = false"
+            ></button>
           </div>
           <div class="modal-body">
             @if (!analysisResult) {
@@ -44,7 +52,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
                   (change)="onFileSelect($event)"
                   hidden
                 />
-                <il-button label="Seleccionar Foto" (clicked)="chooseInput.click()" />
+                <il-button
+                  label="Seleccionar Foto"
+                  (clicked)="chooseInput.click()"
+                />
 
                 @if (selectedFile) {
                   <div class="mt-3 text-center">
@@ -57,9 +68,14 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
                     @if (loading) {
                       <div class="mt-2">
                         <div class="progress" style="height: 6px;">
-                          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                          <div
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 100%"
+                          ></div>
                         </div>
-                        <small class="text-muted">Analizando imagen con Gemini Vision...</small>
+                        <small class="text-muted"
+                          >Analizando imagen con Gemini Vision...</small
+                        >
                       </div>
                     }
 
@@ -86,10 +102,20 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
                   <h3 class="m-0">Análisis Completado</h3>
                 </div>
 
-                <textarea class="form-control" [rows]="8" [(ngModel)]="analysisResult" readonly></textarea>
+                <textarea
+                  class="form-control"
+                  [rows]="8"
+                  [(ngModel)]="analysisResult"
+                  readonly
+                ></textarea>
 
                 <div class="d-flex justify-content-end gap-2 mt-3">
-                  <il-button label="Cerrar" severity="secondary" variant="outline" (clicked)="visible = false" />
+                  <il-button
+                    label="Cerrar"
+                    severity="secondary"
+                    variant="outline"
+                    (clicked)="visible = false"
+                  />
                   <il-button
                     label="Copiar y Usar"
                     icon="material-symbols-light:content-copy"
@@ -112,7 +138,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       .preview-img {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      :host { position: relative; z-index: 1055; }
+      :host {
+        position: relative;
+        z-index: 1055;
+      }
     `,
   ],
 })
@@ -153,10 +182,10 @@ export class ImageAnalysisDialogComponent implements OnDestroy {
     const files = (event.target as HTMLInputElement | null)?.files;
     if (files?.length) {
       try {
-        this.selectedFile = await this.imageProcessing.processImage(
-          files[0],
-          { maxBytes: 5 * 1024 * 1024, maxDimension: 2560 },
-        );
+        this.selectedFile = await this.imageProcessing.processImage(files[0], {
+          maxBytes: 5 * 1024 * 1024,
+          maxDimension: 2560,
+        });
         if (
           typeof this.previewUrl === "string" &&
           this.previewUrl.startsWith("blob:")

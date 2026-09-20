@@ -7,7 +7,7 @@ import {
   output,
   Signal,
 } from "@angular/core";
-import { OrdenCompraService } from "@core/services/orden-compra.service";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
