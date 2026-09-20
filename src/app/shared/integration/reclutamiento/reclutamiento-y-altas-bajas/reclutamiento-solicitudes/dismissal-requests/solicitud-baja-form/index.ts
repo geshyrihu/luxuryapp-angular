@@ -1,2 +1,2 @@
-export * from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+export * from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 

@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 

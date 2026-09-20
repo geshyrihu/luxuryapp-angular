@@ -34,7 +34,7 @@ import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machin
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/maintenance-planning/maintenance-calendar-master/calendario-maestro-readonly";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";

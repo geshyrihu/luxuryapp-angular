@@ -14,7 +14,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
-import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 
 import { GastosMantenimiento } from "./gastos-mantenimiento";
 

@@ -4,7 +4,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "inventory-engine-system",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/inventory-engine-system/inventory-engine-system").then(
+      import("@operations.luxuryapp/inventory/inventory-engine-system/inventory-engine-system").then(
         (m) => m.InventoryEngineSystem,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "keys", // Ruta anterior: 'llaves'
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/key-inventory/inventario-llaves-list").then(
+      import("@operations.luxuryapp/inventory/key-inventory/inventario-llaves-list").then(
         (m) => m.InventarioLlavesList,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "radios",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/radio-communication-inventory/radio-comunicacion-list").then(
+      import("@operations.luxuryapp/inventory/radio-communication-inventory/radio-comunicacion-list").then(
         (m) => m.RadioComunicacionList,
       ),
     canActivate: [authGuard],
@@ -105,7 +105,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'annual-maintenance-schedule'
     path: "cedula-anual-mantenimientos",
     loadComponent: () =>
-      import("@operations.luxuryapp/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("@operations.luxuryapp/reports/maintenance-budget/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "extinguishers", // Ruta anterior: 'extintores'
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
+      import("@operations.luxuryapp/inventory/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("@operations.luxuryapp/inventory/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],
@@ -141,7 +141,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "hydrants",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/hydrant-inventory/inventario-hidrante").then(
+      import("@operations.luxuryapp/inventory/hydrant-inventory/inventario-hidrante").then(
         (m) => m.InventarioHidrante,
       ),
     canActivate: [authGuard],
@@ -153,7 +153,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "manual-call-points",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/manual-call-point-inventory/inventario-estacion-manual").then(
+      import("@operations.luxuryapp/inventory/manual-call-point-inventory/inventario-estacion-manual").then(
         (m) => m.InventarioEstacionManual,
       ),
     canActivate: [authGuard],
@@ -165,7 +165,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "smoke-detectors",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/smoke-detector-inventory/inventario-detector-humo").then(
+      import("@operations.luxuryapp/inventory/smoke-detector-inventory/inventario-detector-humo").then(
         (m) => m.InventarioDetectorHumo,
       ),
     canActivate: [authGuard],

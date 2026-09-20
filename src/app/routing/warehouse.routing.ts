@@ -4,7 +4,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/warehouse/warehouse-list").then(
+      import("@operations.luxuryapp/inventory/warehouse/warehouse-list").then(
         (m) => m.WarehouseList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "products/:almacenId",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+      import("@operations.luxuryapp/inventory/stock-by-warehouse/warehouse-stock-list").then(
         (m) => m.WarehouseStockList,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-output", // Ruta anterior: 'salida-productos'
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-list").then(
+      import("@operations.luxuryapp/inventory/product-exit/product-output-list").then(
         (m) => m.ProductOutputList,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-entry", // Ruta anterior: 'entrada-productos'
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/product-entry/product-entry-list").then(
+      import("@operations.luxuryapp/inventory/product-entry/product-entry-list").then(
         (m) => m.ProductEntryList,
       ),
     canActivate: [authGuard],

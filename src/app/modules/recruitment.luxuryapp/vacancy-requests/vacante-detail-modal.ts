@@ -14,7 +14,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
-import { IWorkPositionForm } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
+import { IWorkPositionForm } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 interface IJobDescription {

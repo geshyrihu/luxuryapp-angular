@@ -36,7 +36,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { MantenimientoPreventivoForm } from "../mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { MantenimientoPreventivoForm } from "../preventive-maintenance/mantenimiento-preventivo-form";
 const date = new Date();
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

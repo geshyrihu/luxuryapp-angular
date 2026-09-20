@@ -30,7 +30,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ProductOutputForm } from "@operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
+import { ProductOutputForm } from "@operations.luxuryapp/inventory/product-exit/product-output-form";
 import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";

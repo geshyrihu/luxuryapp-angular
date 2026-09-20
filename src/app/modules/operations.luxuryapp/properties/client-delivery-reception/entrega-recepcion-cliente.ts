@@ -37,7 +37,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { EntregaRecepcionClienteForm } from "@operations.luxuryapp/properties/entrega-recepcion/entrega-recepcion-cliente-form";
+import { EntregaRecepcionClienteForm } from "@operations.luxuryapp/properties/delivery-reception/entrega-recepcion-cliente-form";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({

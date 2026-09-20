@@ -1,2 +1,2 @@
-export * from "@operations.luxuryapp/work-position/work-position-form";
+export * from "@operations.luxuryapp/work-positions/work-position-form";
 

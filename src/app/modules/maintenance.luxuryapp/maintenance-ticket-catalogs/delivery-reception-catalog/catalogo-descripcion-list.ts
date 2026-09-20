@@ -26,7 +26,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { CatalogoDescripcionForm } from "@operations.luxuryapp/properties/entrega-recepcion/catalogo-descripcion-form";
+import { CatalogoDescripcionForm } from "@operations.luxuryapp/properties/delivery-reception/catalogo-descripcion-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";

@@ -14,7 +14,7 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { IWorkPosition } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
+import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {

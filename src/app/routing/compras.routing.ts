@@ -193,7 +193,7 @@ export const comprasRoutes: Routes = [
   {
     path: "maintenance-budget", // Ruta anterior: 'mtto-presupuesto'
     loadComponent: () =>
-      import("@operations.luxuryapp/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("@operations.luxuryapp/reports/maintenance-budget/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],

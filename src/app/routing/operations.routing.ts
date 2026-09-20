@@ -22,7 +22,7 @@ export const operationsRoutes: Routes = [
   {
     path: "incidents",
     loadComponent: () =>
-      import("@operations.luxuryapp/incidencias-sanciones/incident/incident-list").then(
+      import("@operations.luxuryapp/administrative-incidents/incident/incident-list").then(
         (m) => m.IncidentList,
       ),
     canActivate: [
@@ -40,7 +40,7 @@ export const operationsRoutes: Routes = [
   {
     path: "incident-dashboard",
     loadComponent: () =>
-      import("@operations.luxuryapp/incidencias-sanciones/incident/incident-dashboard/incident-dashboard").then(
+      import("@operations.luxuryapp/administrative-incidents/incident/incident-dashboard/incident-dashboard").then(
         (m) => m.IncidentDashboardComponent,
       ),
     canActivate: [
@@ -63,7 +63,7 @@ export const operationsRoutes: Routes = [
   {
     path: "incident-reports",
     loadComponent: () =>
-      import("@operations.luxuryapp/incidencias-sanciones/incident-report/incident-report").then(
+      import("@operations.luxuryapp/administrative-incidents/incident-report/incident-report").then(
         (m) => m.IncidentReport,
       ),
     canActivate: [
@@ -85,7 +85,7 @@ export const operationsRoutes: Routes = [
   {
     path: "sanctions",
     loadComponent: () =>
-      import("@operations.luxuryapp/incidencias-sanciones/sanction/sanction-list").then(
+      import("@operations.luxuryapp/administrative-incidents/sanction/sanction-list").then(
         (m) => m.SanctionList,
       ),
     canActivate: [
@@ -104,7 +104,7 @@ export const operationsRoutes: Routes = [
   {
     path: "my-building", // Ruta anterior: 'mi-edificio'
     loadComponent: () =>
-      import("@operations.luxuryapp/properties/mi-edificio/mi-edificio").then(
+      import("@operations.luxuryapp/properties/my-building/mi-edificio").then(
         (m) => m.MiEdificio,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const operationsRoutes: Routes = [
   {
     path: "inventario-productos",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+      import("@operations.luxuryapp/inventory/stock-by-warehouse/warehouse-stock-list").then(
         (m) => m.WarehouseStockList,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
+      import("@operations.luxuryapp/inventory/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -141,7 +141,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("@operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("@operations.luxuryapp/inventory/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],

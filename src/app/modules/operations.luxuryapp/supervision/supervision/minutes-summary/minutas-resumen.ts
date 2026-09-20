@@ -16,7 +16,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { FiltroMinutasArea } from "../filtro-minutas-area/filtro-minutas-area";
+import { FiltroMinutasArea } from "../area-minutes-filter/filtro-minutas-area";
 @Component({
   selector: "app-minutas-resumen",
   templateUrl: "./minutas-resumen.html",

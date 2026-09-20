@@ -37,10 +37,10 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
-import { IWorkPosition } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
-import { JobDescriptionForm } from "@operations.luxuryapp/work-position/job-description-form";
-import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
-import { SolicitudVacanteForm } from "@operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
+import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
+import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-description-form";
+import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
+import { SolicitudVacanteForm } from "@operations.luxuryapp/recruitment-requests/vacancy-requests/solicitud-vacante-form";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 import { LxModal } from "@ui/adaptive/modal/modal";

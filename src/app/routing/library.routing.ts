@@ -19,7 +19,7 @@ export const libraryRoutes: Routes = [
   {
     path: "financial-report",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/financial-report/informe-financiero-list").then(
+      import("@operations.luxuryapp/manuals/library/financial-report/informe-financiero-list").then(
         (m) => m.InformeFinanciero,
       ),
     canActivate: [authGuard],
@@ -44,7 +44,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-list").then(
+      import("@operations.luxuryapp/manuals/library/manuals-and-processes/manuals-and-processes-list").then(
         (m) => m.ManualsAndProcessesList,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/guide",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-guide/manuals-and-processes-guide").then(
+      import("@operations.luxuryapp/manuals/library/manuals-and-processes/manuals-and-processes-guide/manuals-and-processes-guide").then(
         (m) => m.ManualsAndProcessesGuide,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/detail/:id",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-detail").then(
+      import("@operations.luxuryapp/manuals/library/manuals-and-processes/manuals-and-processes-detail").then(
         (m) => m.ManualsAndProcessesDetail,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/editor/:id",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-editor/manuals-and-processes-editor").then(
+      import("@operations.luxuryapp/manuals/library/manuals-and-processes/manuals-and-processes-editor/manuals-and-processes-editor").then(
         (m) => m.ManualsAndProcessesEditor,
       ),
     canActivate: [authGuard, superUserGuard],
@@ -92,7 +92,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/flowchart-editor/:id",
     loadComponent: () =>
-      import("@operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manual-flowchart-editor/manual-flowchart-editor").then(
+      import("@operations.luxuryapp/manuals/library/manuals-and-processes/manual-flowchart-editor/manual-flowchart-editor").then(
         (m) => m.ManualFlowchartEditor,
       ),
     canActivate: [authGuard, superUserGuard],

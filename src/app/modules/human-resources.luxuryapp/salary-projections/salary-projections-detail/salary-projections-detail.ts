@@ -17,7 +17,7 @@ import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-messa
 import { AppTable } from "@ui/web/table/table";
 import { DialogHandlerService, DialogSize } from "@core/services/dialog-handler.service";
 import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
-import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
+import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { Subject, debounceTime } from "rxjs";
 import {
   ISalaryProjection,

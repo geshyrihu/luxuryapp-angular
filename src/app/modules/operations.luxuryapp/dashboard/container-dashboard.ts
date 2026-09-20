@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { MiEdificio } from "@operations.luxuryapp/properties/mi-edificio/mi-edificio";
+import { MiEdificio } from "@operations.luxuryapp/properties/my-building/mi-edificio";
 import { DashboardPendingItems } from "./dashboard-pending-items";
 @Component({
   selector: "app-container-dashboard",

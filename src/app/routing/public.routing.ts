@@ -41,7 +41,7 @@ export const publicRoutes: Routes = [
     // Suggested path: 'provider-pending-tickets-report/:customerId/:departmentId'
     path: "reporte-ticket-pendientes-proveedor/:customerId/:departamentId",
     loadComponent: () =>
-      import("@operations.luxuryapp/reports/reporte-ticket-pendientes-proveedor/reporte-ticket-pendientes-proveedor").then(
+      import("@operations.luxuryapp/reports/report-pending-provider-tickets/reporte-ticket-pendientes-proveedor").then(
         (m) => m.ReporteTicketPendientesProveedor,
       ),
     data: {

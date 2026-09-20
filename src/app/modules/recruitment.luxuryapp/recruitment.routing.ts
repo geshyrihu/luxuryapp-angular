@@ -32,7 +32,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "plantilla-interna",
         loadComponent: () =>
-          import("@operations.luxuryapp/work-position/work-position-list").then(
+          import("@operations.luxuryapp/work-positions/work-position-list").then(
             (m) => m.WorkPositionList,
           ),
         data: {

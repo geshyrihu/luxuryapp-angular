@@ -525,7 +525,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("@operations.luxuryapp/properties/entrega-recepcion-check/entrega-recepcion-check").then(
+      import("@operations.luxuryapp/properties/delivery-reception-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {

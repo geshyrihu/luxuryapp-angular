@@ -1,7 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from "@angular/core";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { GeneralAnualMantenimiento } from "../general-anual-mantenimiento/general-anual-mantenimiento";
-import { ListadoAnualMantenimiento } from "../listado-anual-mantenimiento/listado-anual-mantenimiento";
+import { GeneralAnualMantenimiento } from "../annual-maintenance-general/general-anual-mantenimiento";
+import { ListadoAnualMantenimiento } from "../annual-maintenance-list/listado-anual-mantenimiento";
 import { CronogramaAnualMantenimiento } from "./cronograma-anual-mantenimiento";
 @Component({
   selector: "app-calendario-mtto-list",

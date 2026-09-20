@@ -4,7 +4,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "jewish-holidays", // Ruta anterior: 'fiestas-judias'
     loadComponent: () =>
-      import("@operations.luxuryapp/google-calendar/calendar/fiestas-judias/fiestas-judias").then(
+      import("@operations.luxuryapp/google-calendar/calendar/jewish-holidays/fiestas-judias").then(
         (m) => m.FiestasJudias,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "christian-holidays", // Ruta anterior: 'fiestas-cristianas'
     loadComponent: () =>
-      import("@operations.luxuryapp/google-calendar/calendar/fiestas-cristianas/fiestas-cristianas").then(
+      import("@operations.luxuryapp/google-calendar/calendar/christian-holidays/fiestas-cristianas").then(
         (m) => m.FiestasCristianas,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "fundings", // Ruta anterior: 'fondeos'
     loadComponent: () =>
-      import("@operations.luxuryapp/google-calendar/calendar/fondeos/fondeos").then(
+      import("@operations.luxuryapp/google-calendar/calendar/fundings/fondeos").then(
         (m) => m.Fondeos,
       ),
     canActivate: [authGuard],

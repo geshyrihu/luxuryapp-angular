@@ -132,7 +132,7 @@ export interface EmployeeFileSalaryModDTO {
   status: string;
 }
 
-import { DiaDeTrabajoDto } from "@operations.luxuryapp/work-position/interfaces/work-position.model";
+import { DiaDeTrabajoDto } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 
 export interface EmployeeFileWorkPositionDTO {
   puesto: string;

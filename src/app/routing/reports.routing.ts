@@ -68,7 +68,7 @@ export const reportsRoutes: Routes = [
   {
     path: "financial-statements", // Ruta anterior: 'estados-financieros'
     loadComponent: () =>
-      import("@operations.luxuryapp/reports/estados-financieros/estados-financieros").then(
+      import("@operations.luxuryapp/reports/financial-statements/estados-financieros").then(
         (m) => m.EstadosFinancieros,
       ),
     canActivate: [authGuard],
