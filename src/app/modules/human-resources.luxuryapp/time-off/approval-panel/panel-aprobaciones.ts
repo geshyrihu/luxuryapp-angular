@@ -6,14 +6,14 @@ import {
 } from "@angular/core";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
-import { GenericApprovalPanel } from "../../expediente-del-empleado/recursos-humanos/shared/generic-approval-panel";
-import { ApprovalConfirmationModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-confirmation";
-import { ApprovalDetailModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-detail";
+import { GenericApprovalPanel } from "../../employee-file/human-resources/shared/generic-approval-panel";
+import { ApprovalConfirmationModal } from "../../employee-file/human-resources/shared/modal-approval-confirmation";
+import { ApprovalDetailModal } from "../../employee-file/human-resources/shared/modal-approval-detail";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
 } from "../../interfaces/approval.interface";
-import { MotivoRechazoFormulario } from "../motivo-rechazo-formulario/motivo-rechazo-formulario";
+import { MotivoRechazoFormulario } from "../rejection-reason-form/motivo-rechazo-formulario";
 import { ApprovalStateService } from "./approval-state.service";
 @Component({
   selector: "app-panel-aprobaciones",

@@ -22,7 +22,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
-import ModalGenerarNomina from "./modal-generar-nomina/modal-generar-nomina";
+import ModalGenerarNomina from "./generate-payroll-modal/modal-generar-nomina";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

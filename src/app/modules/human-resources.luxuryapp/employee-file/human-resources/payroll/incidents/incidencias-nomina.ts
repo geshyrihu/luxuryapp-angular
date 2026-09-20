@@ -29,7 +29,7 @@ import {
   SincronizarIncidenciasDTO,
 } from "../interfaces/incidencia-nomina.interface";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
-import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
+import ModalIncidenciaAdd from "./add-incident-modal/modal-incidencia-add";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

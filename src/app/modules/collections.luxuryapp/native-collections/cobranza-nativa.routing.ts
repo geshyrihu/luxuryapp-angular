@@ -6,7 +6,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./entry/cobranza-nativa-wrapper/cobranza-nativa-wrapper").then(
+      import("./entry/native-collections-wrapper/cobranza-nativa-wrapper").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -20,7 +20,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("./core/cobranza-dashboard/cobranza-dashboard").then(
+      import("./core/collections-dashboard/cobranza-dashboard").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],

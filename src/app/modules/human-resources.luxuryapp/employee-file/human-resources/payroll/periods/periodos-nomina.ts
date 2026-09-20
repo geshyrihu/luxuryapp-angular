@@ -24,8 +24,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
-import ModalDiasNoHabiles from "./modal-dias-no-habiles/modal-dias-no-habiles";
-import ModalPeriodoAdd from "./modal-periodo-add/modal-periodo-add";
+import ModalDiasNoHabiles from "./non-working-days-modal/modal-dias-no-habiles";
+import ModalPeriodoAdd from "./add-period-modal/modal-periodo-add";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

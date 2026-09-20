@@ -27,7 +27,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
-import ModalTiempoExtraAdd from "./modal-tiempo-extra-add/modal-tiempo-extra-add";
+import ModalTiempoExtraAdd from "./add-overtime-modal/modal-tiempo-extra-add";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

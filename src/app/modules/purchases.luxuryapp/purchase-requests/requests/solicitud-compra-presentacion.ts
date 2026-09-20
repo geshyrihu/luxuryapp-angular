@@ -23,6 +23,7 @@ import { AppTable } from "@ui/web/table/table";
 import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { Dialog } from "@ui/web/dialog/dialog";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
@@ -38,8 +39,9 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     WebButtonLabel,
     WebButtonLabelViewPdf,
     LxTag,
+    Dialog,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {
@@ -160,6 +162,11 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
       .provider-footer-row:first-child td {
         border-top: 1px solid var(--surface-border);
       }
+
+      .provider-card-best {
+        border-color: var(--ds-warning) !important;
+        background: var(--ds-warning-light) !important;
+      }
     `,
   ],
 })
@@ -174,6 +181,9 @@ export class SolicitudCompraPresentacion {
   optimizeMap = signal<Record<string, boolean>>({});
   solicitudIds: string[] = [];
   currentPage = signal(0);
+
+  productDetailModalVisible = signal(false);
+  productDetailSolicitud = signal<any | null>(null);
 
   autorizacionOptions: SelectItemDto[] = [
     { label: "Comite", value: AutorizacionCuadroComparativo.Comite },
@@ -415,6 +425,31 @@ export class SolicitudCompraPresentacion {
   getProviderColumnWidth(providerCount: number): number {
     if (providerCount <= 0) return 0;
     return 50 / providerCount;
+  }
+
+  getBestProvider(solicitud: any): any | null {
+    const providers = solicitud?.providerSummaries || [];
+    if (providers.length === 0) return null;
+    return providers.reduce((best: any, current: any) => {
+      const bestTotal = best.total || Infinity;
+      const currentTotal = current.total || Infinity;
+      return currentTotal < bestTotal ? current : best;
+    });
+  }
+
+  isBestProvider(solicitud: any, provider: any): boolean {
+    const best = this.getBestProvider(solicitud);
+    return best?.id === provider?.id;
+  }
+
+  openProductDetailModal(solicitud: any): void {
+    this.productDetailSolicitud.set(solicitud);
+    this.productDetailModalVisible.set(true);
+  }
+
+  closeProductDetailModal(): void {
+    this.productDetailModalVisible.set(false);
+    this.productDetailSolicitud.set(null);
   }
 
   isAuthorized(solicitud: any): boolean {

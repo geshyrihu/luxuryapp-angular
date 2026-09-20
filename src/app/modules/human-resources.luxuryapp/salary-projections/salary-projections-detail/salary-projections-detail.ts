@@ -16,7 +16,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { DialogHandlerService, DialogSize } from "@core/services/dialog-handler.service";
-import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
 import { WorkPositionForm } from "@operations.luxuryapp/work-position/work-position-form";
 import { Subject, debounceTime } from "rxjs";
 import {

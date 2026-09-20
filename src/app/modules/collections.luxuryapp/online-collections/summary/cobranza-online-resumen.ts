@@ -13,7 +13,7 @@ import {
 } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
+import { ChargeTemplateForm } from "../../native-collections/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";

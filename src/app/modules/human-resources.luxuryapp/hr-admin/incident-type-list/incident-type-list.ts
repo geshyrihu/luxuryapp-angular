@@ -21,7 +21,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { IncidentTypeListDTO } from "@human-resources.luxuryapp/evaluaciones-de-desempeo/hr-catalog/interfaces/hr-catalog.interfaces";
+import { IncidentTypeListDTO } from "@human-resources.luxuryapp/performance-evaluations/hr-catalog/interfaces/hr-catalog.interfaces";
 import { IncidentTypeForm } from "./incident-type-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

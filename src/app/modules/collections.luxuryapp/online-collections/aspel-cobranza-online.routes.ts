@@ -17,7 +17,7 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       {
         path: "",
         loadComponent: () =>
-          import("./resumen/cobranza-online-resumen").then(
+          import("./summary/cobranza-online-resumen").then(
             (m) => m.CobranzaOnlineResumen,
           ),
         data: {
@@ -43,7 +43,7 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       {
         path: "detalle-condominos",
         loadComponent: () =>
-          import("./detalle-condominos/cobranza-online-detalle-condominos").then(
+          import("./condo-owners-detail/cobranza-online-detalle-condominos").then(
             (m) => m.CobranzaOnlineDetalleCondominos,
           ),
         data: {
@@ -56,7 +56,7 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       {
         path: "morosidad",
         loadComponent: () =>
-          import("./morosidad/cobranza-online-morosidad").then(
+          import("./delinquency/cobranza-online-morosidad").then(
             (m) => m.CobranzaOnlineMorosidad,
           ),
         data: {
@@ -69,7 +69,7 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       {
         path: "otros-cargos",
         loadComponent: () =>
-          import("./otros-cargos/cobranza-online-otros-cargos").then(
+          import("./other-charges/cobranza-online-otros-cargos").then(
             (m) => m.CobranzaOnlineOtrosCargos,
           ),
         data: {
@@ -82,7 +82,7 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       {
         path: "movimientos",
         loadComponent: () =>
-          import("./movimientos/cobranza-online-movimientos").then(
+          import("./transactions/cobranza-online-movimientos").then(
             (m) => m.CobranzaOnlineMovimientos,
           ),
         data: {

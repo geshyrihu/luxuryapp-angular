@@ -15,7 +15,7 @@ import {
   DialogSize,
 } from "@core/services/dialog-handler.service";
 import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
-import { CobranzaOnlineMorosidadDetailModalComponent } from "../morosidad/cobranza-online-morosidad-detail-modal";
+import { CobranzaOnlineMorosidadDetailModalComponent } from "../delinquency/cobranza-online-morosidad-detail-modal";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
 /**

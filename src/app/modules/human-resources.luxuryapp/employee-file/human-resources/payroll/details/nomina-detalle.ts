@@ -25,7 +25,7 @@ import {
   NominaEncabezadoDTO,
   NominaResumenDTO,
 } from "../interfaces/nomina-encabezado.interface";
-import ModalEditarEmpleadoNomina from "./modal-editar-empleado-nomina/modal-editar-empleado-nomina";
+import ModalEditarEmpleadoNomina from "./edit-payroll-employee-modal/modal-editar-empleado-nomina";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";

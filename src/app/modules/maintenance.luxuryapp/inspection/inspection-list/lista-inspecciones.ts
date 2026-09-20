@@ -22,7 +22,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
+import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionListItem } from "../models/inspection.model";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

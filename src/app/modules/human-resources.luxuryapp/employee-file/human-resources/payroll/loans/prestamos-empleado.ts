@@ -21,8 +21,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { PrestamoEmpleadoDTO } from "../interfaces/prestamo-empleado.interface";
-import ModalPrestamoAdd from "./modal-prestamo-add/modal-prestamo-add";
-import ModalPrestamoDetalle from "./modal-prestamo-detalle/modal-prestamo-detalle";
+import ModalPrestamoAdd from "./add-loan-modal/modal-prestamo-add";
+import ModalPrestamoDetalle from "./loan-detail-modal/modal-prestamo-detalle";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

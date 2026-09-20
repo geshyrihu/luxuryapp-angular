@@ -229,6 +229,14 @@
             />
             }
             <il-button
+              iconClass="material-symbols-light:list"
+              label="Ver productos"
+              (clicked)="openProductDetailModal(solicitud)"
+              severity="info"
+              variant="outline"
+              size="small"
+            />
+            <il-button
               [iconClass]="isAuthorized(solicitud) ? 'material-symbols-light:close' : (isDenied(solicitud) ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
               [label]="isAuthorized(solicitud) ? 'Desautorizar' : (isDenied(solicitud) ? 'Resolver' : 'Autorizar')"
               (clicked)="onOpenAutorizarModal(solicitud)"
@@ -290,175 +298,62 @@
             <div
               class="presentation-kicker text-body-secondary text-sm fw-semibold mb-3"
             >
-              Comparativo de productos
+              Comparativo de proveedores
             </div>
-            <app-table
-              [value]="getDisplayedSolicitudDetalle(solicitud)"
-              class="custom-table text-sm"
-              [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '78rem' }"
+            @if (solicitud.providerSummaries.length === 0) {
+            <div
+              class="bg-body rounded-xl border-1 border p-4 text-body-secondary"
             >
-              <ng-template #header>
-                <tr>
-                  <th rowspan="2">DESCRIPCION</th>
-                  <th rowspan="2" class="text-end">CANTIDAD</th>
-                  <th rowspan="2">UNIDAD</th>
-                  @if (solicitud.providerSummaries.length >= 1) {
-                  <th
-                    colspan="4"
-                    class="text-center"
-                    [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
-                  >
-                    {{ solicitud.providerSummaries[0].nameProvider }}
-                  </th>
-                  } @if (solicitud.providerSummaries.length >= 2) {
-                  <th
-                    colspan="4"
-                    class="text-center"
-                    [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
-                  >
-                    {{ solicitud.providerSummaries[1].nameProvider }}
-                  </th>
-                  } @if (solicitud.providerSummaries.length >= 3) {
-                  <th
-                    colspan="4"
-                    class="text-center"
-                    [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
-                  >
-                    {{ solicitud.providerSummaries[2].nameProvider }}
-                  </th>
+              No hay proveedores para comparar.
+            </div>
+            } @else {
+            <div class="row g-3">
+              @for (provider of solicitud.providerSummaries; track provider.id) {
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="h-100 p-3 rounded-xl border-1 transition-shadow"
+                  [class]="isBestProvider(solicitud, provider) ? 'border-warning bg-yellow-50 shadow-sm' : 'border surface-border shadow-sm'"
+                  [style.box-shadow]="isBestProvider(solicitud, provider) ? '0 4px 12px rgba(255, 193, 7, 0.15)' : '0 2px 8px rgba(15, 23, 42, 0.08)'"
+                >
+                  @if (isBestProvider(solicitud, provider)) {
+                  <div class="d-flex align-items-center gap-1 mb-2">
+                    <span class="material-symbols-light text-warning" style="font-size: 1rem;">star</span>
+                    <span class="text-xs fw-semibold text-warning">Mejor opción</span>
+                  </div>
                   }
-                </tr>
-                <tr>
-                  @if (solicitud.providerSummaries.length >= 1) {
-                  <th class="text-end text-xs">Entrega</th>
-                  <th class="text-end text-xs">Garantía</th>
-                  <th class="text-end text-xs">Pago</th>
-                  <th class="text-center text-xs">Cotización</th>
-                  } @if (solicitud.providerSummaries.length >= 2) {
-                  <th class="text-end text-xs">Entrega</th>
-                  <th class="text-end text-xs">Garantía</th>
-                  <th class="text-end text-xs">Pago</th>
-                  <th class="text-center text-xs">Cotización</th>
-                  } @if (solicitud.providerSummaries.length >= 3) {
-                  <th class="text-end text-xs">Entrega</th>
-                  <th class="text-end text-xs">Garantía</th>
-                  <th class="text-end text-xs">Pago</th>
-                  <th class="text-center text-xs">Cotización</th>
+                  <div class="fw-semibold text-body mb-1">{{ provider.nameProvider }}</div>
+                  <div class="text-2xl fw-bold text-primary mb-3">
+                    {{ provider.total | number : "1.0-0" }}
+                    <span class="text-base fw-normal text-body-secondary"> CON IVA</span>
+                  </div>
+                  <div class="mb-2">
+                    <div class="text-xs text-body-secondary">Tiempo de entrega</div>
+                    <div class="text-sm fw-medium">{{ provider.entrega || "N/D" }}</div>
+                  </div>
+                  <div class="mb-2">
+                    <div class="text-xs text-body-secondary">Políticas de pago</div>
+                    <div class="text-sm fw-medium">{{ provider.politicaPago || "N/D" }}</div>
+                  </div>
+                  <div class="mb-3">
+                    <div class="text-xs text-body-secondary">Garantía</div>
+                    <div class="text-sm fw-medium">{{ provider.garantia || "N/D" }}</div>
+                  </div>
+                  @if (provider.filePath) {
+                  <il-button-view-pdf
+                    [url]="provider.filePath"
+                    [fileName]="'Cotizacion ' + provider.nameProvider"
+                    label="Ver cotización"
+                    iconClass="material-symbols-light:description"
+                    variant="outline"
+                    size="small"
+                    class="w-100"
+                  />
                   }
-                </tr>
-              </ng-template>
-              <ng-template #body let-item>
-                <tr>
-                  <td
-                    [class.font-semibold]="isOptimized(solicitud.id)"
-                    class="line-height-3"
-                  >
-                    {{ item.producto }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ item.cantidad }}
-                  </td>
-                  <td class="text-nowrap">{{ item.unidadMedida }}</td>
-                  @if (solicitud.providerSummaries.length >= 1) {
-                  <td
-                    colspan="4"
-                    class="text-end text-nowrap"
-                    [class.bg-yellow-100]="item.total > 0 && item.total <= (item.total2 || item.total) && item.total <= (item.total3 || item.total)"
-                  >
-                    {{ item.total | number : "1.0-0" }}
-                  </td>
-                  } @if (solicitud.providerSummaries.length >= 2) {
-                  <td
-                    colspan="4"
-                    class="text-end text-nowrap"
-                    [class.bg-yellow-100]="item.total2 > 0 && item.total2 <= (item.total || item.total2) && item.total2 <= (item.total3 || item.total2)"
-                  >
-                    {{ item.total2 | number : "1.0-0" }}
-                  </td>
-                  } @if (solicitud.providerSummaries.length >= 3) {
-                  <td
-                    colspan="4"
-                    class="text-end text-nowrap"
-                    [class.bg-yellow-100]="item.total3 > 0 && item.total3 <= (item.total || item.total3) && item.total3 <= (item.total2 || item.total3)"
-                  >
-                    {{ item.total3 | number : "1.0-0" }}
-                  </td>
-                  }
-                </tr>
-              </ng-template>
-              <ng-template #footer>
-                <tr class="provider-footer-row g-4">
-                  <td colspan="3"></td>
-                  @if (solicitud.providerSummaries.length >= 1) {
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[0].entrega || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[0].garantia || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[0].politicaPago || "N/D" }}
-                  </td>
-                  <td class="text-center">
-                    @if (solicitud.providerSummaries[0].filePath) {
-                    <il-button-view-pdf
-                      [url]="solicitud.providerSummaries[0].filePath"
-                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[0].nameProvider"
-                      label="PDF"
-                      iconClass="material-symbols-light:description"
-                      variant="outline"
-                      size="small"
-                    />
-                    }
-                  </td>
-                  } @if (solicitud.providerSummaries.length >= 2) {
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[1].entrega || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[1].garantia || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[1].politicaPago || "N/D" }}
-                  </td>
-                  <td class="text-center">
-                    @if (solicitud.providerSummaries[1].filePath) {
-                    <il-button-view-pdf
-                      [url]="solicitud.providerSummaries[1].filePath"
-                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[1].nameProvider"
-                      label="PDF"
-                      iconClass="material-symbols-light:description"
-                      variant="outline"
-                      size="small"
-                    />
-                    }
-                  </td>
-                  } @if (solicitud.providerSummaries.length >= 3) {
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[2].entrega || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[2].garantia || "N/D" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ solicitud.providerSummaries[2].politicaPago || "N/D" }}
-                  </td>
-                  <td class="text-center">
-                    @if (solicitud.providerSummaries[2].filePath) {
-                    <il-button-view-pdf
-                      [url]="solicitud.providerSummaries[2].filePath"
-                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[2].nameProvider"
-                      label="PDF"
-                      iconClass="material-symbols-light:description"
-                      variant="outline"
-                      size="small"
-                    />
-                    }
-                  </td>
-                  }
-                </tr>
-              </ng-template>
-            </app-table>
+                </div>
+              </div>
+              }
+            </div>
+            }
           </div>
 
           <div>
@@ -523,5 +418,50 @@
       }
     </ng-template>
   </lx-carousel>
-  }
+
+  <app-dialog
+    [visible]="productDetailModalVisible()"
+    [header]="'Detalle de productos - ' + (productDetailSolicitud()?.equipoOInstalacion || '')"
+    (dismiss)="closeProductDetailModal()"
+  >
+    @if (productDetailSolicitud()) {
+    <div class="p-2">
+      <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 3rem">N°</th>
+              <th>PRODUCTO</th>
+              <th class="text-end" style="width: 8rem">CANTIDAD</th>
+              <th style="width: 8rem">UNIDAD</th>
+              <th class="text-end" style="width: 10rem">TOTAL 1</th>
+              <th class="text-end" style="width: 10rem">TOTAL 2</th>
+              <th class="text-end" style="width: 10rem">TOTAL 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (detail of productDetailSolicitud()?.solicitudCompraDetalle; track detail.id; let i = $index) {
+            <tr>
+              <td class="fw-semibold text-center">{{ i + 1 }}</td>
+              <td class="line-height-3">{{ detail.producto }}</td>
+              <td class="text-end text-nowrap">{{ detail.cantidad }}</td>
+              <td class="text-nowrap">{{ detail.unidadMedida }}</td>
+              <td class="text-end text-nowrap">{{ detail.total | number : "1.0-0" }}</td>
+              <td class="text-end text-nowrap">{{ detail.total2 | number : "1.0-0" }}</td>
+              <td class="text-end text-nowrap">{{ detail.total3 | number : "1.0-0" }}</td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="7" class="text-center text-body-secondary py-4">
+                No hay productos en esta solicitud.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    }
+  </app-dialog>
+}
 </div>

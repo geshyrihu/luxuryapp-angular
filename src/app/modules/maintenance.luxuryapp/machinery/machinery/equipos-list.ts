@@ -23,16 +23,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { EquipmentInspectionQrPrintService } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
-import { EquipmentInspectionService } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
-import { EquipmentInspectionsShell } from "@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
-import { ActivosForm } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { ActivosDocumentos } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-document/activos-documentos";
-import { FichaTecnicaActivo } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { MantenimientosDialog } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/mantenimientos-dialog";
-import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { EquipmentInspectionQrPrintService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-qr-print.service";
+import { EquipmentInspectionService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection.service";
+import { EquipmentInspectionsShell } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspections-shell";
+import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
+import { ActivosDocumentos } from "@maintenance.luxuryapp/machinery/machinery-document/activos-documentos";
+import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
+import { MantenimientosDialog } from "@maintenance.luxuryapp/machinery/machinery/mantenimientos-dialog";
+import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
-import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
+import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/maintenance-planning/maintenance-calendar-master/calendario-maestro-readonly";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";

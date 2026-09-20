@@ -12,7 +12,7 @@ import { EndpointsCobranza } from "@core/constants/endpoints/cobranza.endpoints"
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AspelCobranzaDetalleResponse } from "../../aspel-cobranza-haus/aspel-cobranza-haus.models";
+import { AspelCobranzaDetalleResponse } from "../../aspel-collections-haus/aspel-cobranza-haus.models";
 import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
 @Component({

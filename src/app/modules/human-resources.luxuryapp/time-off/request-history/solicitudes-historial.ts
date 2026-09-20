@@ -32,8 +32,8 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import Swal from "sweetalert2";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
-import { PermisoDetalleModal } from "../calendario-vacaciones-permisos/modal-permiso-detalle";
-import { VacacionDetalleModal } from "../calendario-vacaciones-permisos/modal-vacacion-detalle";
+import { PermisoDetalleModal } from "../leave-calendar/modal-permiso-detalle";
+import { VacacionDetalleModal } from "../leave-calendar/modal-vacacion-detalle";
 
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 interface LeaveHistoryItemDTO {

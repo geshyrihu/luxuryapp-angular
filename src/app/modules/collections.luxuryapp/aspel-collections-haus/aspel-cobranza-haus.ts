@@ -55,7 +55,7 @@ import {
   AspelQueryRequest,
   SelectItem,
 } from "./aspel-cobranza-haus.models";
-import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-negocio/aspel-cobranza-reglas-negocio";
+import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-business-rules/aspel-cobranza-reglas-negocio";
 
 @Component({
   selector: "app-aspel-cobranza-haus",
