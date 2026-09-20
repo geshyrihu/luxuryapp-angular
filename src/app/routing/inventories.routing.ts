@@ -16,7 +16,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "areas-equipment", // Ruta anterior: 'areas-equipos'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
+      import("@maintenance.luxuryapp/machinery/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'gym'
     path: "gimnasio",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
+      import("@maintenance.luxuryapp/machinery/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'equipment-report'
     path: "reporte-equipos",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/reporte-completo-activos").then(
+      import("@maintenance.luxuryapp/machinery/machinery-asset/reporte-completo-activos").then(
         (m) => m.ReporteCompletoActivos,
       ),
     canActivate: [authGuard],

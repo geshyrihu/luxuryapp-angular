@@ -26,9 +26,9 @@ import {
   DialogHandlerService,
   DialogSize,
 } from "@core/services/dialog-handler.service";
-import { CobranzaOnlineComposicionReportesModal } from "@collections.luxuryapp/cobranza-online/analysis/cobranza-online-composicion-reportes-modal";
-import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
-import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
+import { CobranzaOnlineComposicionReportesModal } from "@collections.luxuryapp/online-collections/analysis/cobranza-online-composicion-reportes-modal";
+import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/online-collections/interfaces/cobranza-online-analysis.model";
+import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/online-collections/interfaces/cobranza-online-dashboard.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";

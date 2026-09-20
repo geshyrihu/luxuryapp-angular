@@ -12,7 +12,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { CobranzaOnlineStoreService } from "@collections.luxuryapp/cobranza-online/state/cobranza-online-store.service";
+import { CobranzaOnlineStoreService } from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AiAgentContabilidadOnlineComponent } from "./ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "./ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";

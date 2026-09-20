@@ -13,7 +13,7 @@ import { AppCard } from "@ui/web/card/card";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
+import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionEdit } from "../models/inspection.model";
 
 @Component({

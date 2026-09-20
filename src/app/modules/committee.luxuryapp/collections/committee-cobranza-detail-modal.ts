@@ -12,7 +12,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AspelCobranzaDetalleResponse } from "@collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
+import { AspelCobranzaDetalleResponse } from "@collections.luxuryapp/aspel-collections-haus/aspel-cobranza-haus.models";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 

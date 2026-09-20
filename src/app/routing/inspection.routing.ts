@@ -4,7 +4,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "catalog",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/lista-inspecciones/lista-inspecciones").then(
+      import("@maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones").then(
         (m) => m.ListaInspecciones,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "inspection-report-list",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/lista-reportes-inspeccion/lista-informe-inspeccion").then(
+      import("@maintenance.luxuryapp/inspection/inspection-report-list/lista-informe-inspeccion").then(
         (m) => m.ListaInformeInspeccion,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "result/:id",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/resultado-inspeccion/resultado-inspeccion").then(
+      import("@maintenance.luxuryapp/inspection/inspection-result/resultado-inspeccion").then(
         (m) => m.ResultadoInspeccion,
       ),
     canActivate: [authGuard],

@@ -1,4 +1,4 @@
-import { AspelCobranzaDetalleResponse } from "@collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
+import { AspelCobranzaDetalleResponse } from "@collections.luxuryapp/aspel-collections-haus/aspel-cobranza-haus.models";
 
 export type CommitteeClasificacion =
   | "COBRANZA JUDICIAL"

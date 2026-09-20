@@ -15,7 +15,7 @@ import { PurchaseHistory } from "@accounting.luxuryapp/general-ledger/presupuest
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
-} from "@collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
+} from "@collections.luxuryapp/online-collections/interfaces/presupuesto-contabilidad.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { reportFilterState } from "../state/financial-report-filter.state";
 

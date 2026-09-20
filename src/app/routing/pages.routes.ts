@@ -135,7 +135,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("@collections.luxuryapp/cobranza-nativa/cobranza-nativa.routing").then(
+      import("@collections.luxuryapp/native-collections/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {

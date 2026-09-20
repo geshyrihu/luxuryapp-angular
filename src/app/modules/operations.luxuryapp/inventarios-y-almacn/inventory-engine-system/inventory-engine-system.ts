@@ -21,9 +21,9 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ActivosForm } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { FichaTecnicaActivo } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
+import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
+import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 
 @Component({

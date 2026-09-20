@@ -24,7 +24,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluaciones-de-desempeo/hr-catalog/interfaces/hr-catalog.interfaces";
+import { SanctionTypeListDTO } from "@human-resources.luxuryapp/performance-evaluations/hr-catalog/interfaces/hr-catalog.interfaces";
 import { ESanctionStatus } from "./interfaces/sanction.dto";
 
 interface ISanctionForm {

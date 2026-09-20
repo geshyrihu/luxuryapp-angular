@@ -16,20 +16,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { AppBadge } from "@ui/web/badge/badge";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -40,12 +32,20 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { ProductAdd } from "@purchases.luxuryapp/solicitudes-compras/detalle/product-add";
-import { ProductModalAdd } from "@purchases.luxuryapp/solicitudes-compras/detalle/product-modal-add";
-import { SolicitudCompraDetalle } from "@purchases.luxuryapp/solicitudes-compras/detalle/solicitud-compra-detalle";
+import { ProductAdd } from "@purchases.luxuryapp/purchase-requests/details/product-add";
+import { ProductModalAdd } from "@purchases.luxuryapp/purchase-requests/details/product-modal-add";
+import { SolicitudCompraDetalle } from "@purchases.luxuryapp/purchase-requests/details/solicitud-compra-detalle";
 import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "@supplier.luxuryapp/po/purchase-order/create-orden-compra";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { firstValueFrom } from "rxjs";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -358,5 +358,3 @@ export class SolicitudCompra implements OnInit {
       });
   }
 }
-
-

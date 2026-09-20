@@ -16,7 +16,7 @@ export const logbookRoutes: Routes = [
   {
     path: "inspections-areas",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/areas-inspeccion/inspections-areas").then(
+      import("@maintenance.luxuryapp/inspection/inspection-areas/inspections-areas").then(
         (m) => m.InspectionsAreas,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const logbookRoutes: Routes = [
   {
     path: "pool", // Ruta anterior: 'piscina'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/piscina/piscina-list").then(
+      import("@maintenance.luxuryapp/logs/pool/piscina-list").then(
         (m) => m.PiscinaList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'pool-logbook/:poolId'
     path: "piscina-bitacora/:piscinaId",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/piscina-bitacora/piscina-bitacora-list").then(
+      import("@maintenance.luxuryapp/logs/pool-logbook/piscina-bitacora-list").then(
         (m) => m.PiscinaBitacoraList,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const logbookRoutes: Routes = [
   {
     path: "meter-list", // Ruta anterior: 'lista-medidor'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/bitacoras/medidores/medidores-list").then(
+      import("@maintenance.luxuryapp/logs/logbooks/meters/medidores-list").then(
         (m) => m.MedidoresList,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'meter-reading-list/:id'
     path: "lista-medidor-lectura/:id", // Corregido typo "medidar"
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/bitacoras/medidores/medidor-lectura-list").then(
+      import("@maintenance.luxuryapp/logs/logbooks/meters/medidor-lectura-list").then(
         (m) => m.MedidorLecturaList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'chart/:id'
     path: "grafico/:id",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/bitacoras/medidores/medidor-lectura-chart").then(
+      import("@maintenance.luxuryapp/logs/logbooks/meters/medidor-lectura-chart").then(
         (m) => m.MedidorLecturaChart,
       ),
     canActivate: [authGuard],
@@ -127,7 +127,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
+      import("@maintenance.luxuryapp/logs/water-truck-receipts/recepcion-pipas-agua-list").then(
         (m) => m.RecepcionPipasAguaList,
       ),
     canActivate: [authGuard],
@@ -139,7 +139,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/reporte",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
+      import("@maintenance.luxuryapp/logs/water-truck-receipts/recepcion-pipas-agua-reporte").then(
         (m) => m.RecepcionPipasAguaReporte,
       ),
     canActivate: [authGuard],
@@ -151,7 +151,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/analisis",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/logs/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
+      import("@maintenance.luxuryapp/logs/water-truck-receipts/recepcion-pipas-agua-analisis").then(
         (m) => m.RecepcionPipasAguaAnalisis,
       ),
     canActivate: [authGuard],
@@ -199,7 +199,7 @@ export const logbookRoutes: Routes = [
   {
     path: "equipment-inspection/:code",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-entry").then(
+      import("@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-qr-entry").then(
         (m) => m.EquipmentInspectionQrEntry,
       ),
     canActivate: [authGuard],

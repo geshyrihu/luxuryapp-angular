@@ -44,7 +44,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
-import { EquiposList } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list";
+import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";

@@ -5,6 +5,15 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { globalFilterFields } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { AsuntoLegalForm } from "@legal.luxuryapp/legal-matters/legal-matter/asunto-legal-form";
+import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/legal-matters/legal-matter/categoria-asunto-legal-form";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -19,15 +28,6 @@ import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-messa
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { globalFilterFields } from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { AsuntoLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
-import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -127,5 +127,3 @@ export class AsuntoLegalLista {
       });
   }
 }
-
-

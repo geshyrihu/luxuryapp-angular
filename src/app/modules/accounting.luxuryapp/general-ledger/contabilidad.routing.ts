@@ -222,7 +222,7 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "aspel-cobranza",
     loadComponent: () =>
-      import("@collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus").then(
+      import("@collections.luxuryapp/aspel-collections-haus/aspel-cobranza-haus").then(
         (m) => m.AspelCobranzaHaus,
       ),
     data: {

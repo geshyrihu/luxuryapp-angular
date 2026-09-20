@@ -16,7 +16,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
-import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/employee-file/human-resources/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

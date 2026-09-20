@@ -3,7 +3,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "panel",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/maintenance-reports-list").then(
+      import("@maintenance.luxuryapp/maintenance-reports/maintenance-reports-list").then(
         (m) => m.MaintenanceReports,
       ),
     data: {
@@ -14,7 +14,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "maintenances-summary", // Ruta anterior: 'resumen-mantenimientos'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/resumen-mantenimientos/resumen-mantenimientos").then(
+      import("@maintenance.luxuryapp/maintenance-reports/maintenance-summary/resumen-mantenimientos").then(
         (m) => m.ResumenMantenimientos,
       ),
     data: {
@@ -25,7 +25,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "consumptions", // Ruta anterior: 'consumos'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-consumos/report-consumos").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-consumos/report-consumos").then(
         (m) => m.ReportConsumos,
       ),
     data: {
@@ -36,7 +36,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "warehouse-entry", // Ruta anterior: 'entrada-almacen'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-entrada-almacen/report-entrada-almacen").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-warehouse-entry/report-entrada-almacen").then(
         (m) => m.ReportEntradaAlmacen,
       ),
     data: {
@@ -47,7 +47,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "warehouse-exit", // Ruta anterior: 'salida-almacen'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-salida-almacen/report-salida-almacen").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-warehouse-exit/report-salida-almacen").then(
         (m) => m.ReportSalidaAlmacen,
       ),
     data: {
@@ -58,7 +58,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "daily-tour", // Ruta anterior: 'recorrido-diario'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-recorrido-diario/report-recorrido-diario").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-recorrido-diario/report-recorrido-diario").then(
         (m) => m.ReportRecorridoDiario,
       ),
     data: {
@@ -69,7 +69,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tool-loan-report", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-prestamo-herramienta/report-prestamo-herramienta").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-prestamo-herramienta/report-prestamo-herramienta").then(
         (m) => m.ReportPrestamoHerramienta,
       ),
     data: {
@@ -80,7 +80,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "purchase-request-report", // Ruta anterior: 'solicitud-compra'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-solicitud-compra/report-solicitud-compra").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-purchase-request/report-solicitud-compra").then(
         (m) => m.ReportSolicitudCompra,
       ),
     data: {
@@ -91,7 +91,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "pool-report", // Ruta anterior: 'alberca'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-bitacora-alberca/report-bitacora-alberca").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-bitacora-alberca/report-bitacora-alberca").then(
         (m) => m.ReportBitacoraAlberca,
       ),
     data: {
@@ -102,7 +102,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tickets",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/reports-mantenance/report-ticket/report-ticket").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-ticket/report-ticket").then(
         (m) => m.ReportTicket,
       ),
     data: {

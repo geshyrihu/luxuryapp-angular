@@ -1,9 +1,9 @@
 import { Injectable, inject } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
-import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
-import type { PresupuestoContabilidadResponse } from "@collections.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
+import type { CobranzaOnlineAnalysisResponse } from "@collections.luxuryapp/online-collections/interfaces/cobranza-online-analysis.model";
+import type { CobranzaOnlineDashboardResponse } from "@collections.luxuryapp/online-collections/interfaces/cobranza-online-dashboard.model";
+import type { PresupuestoContabilidadResponse } from "@collections.luxuryapp/online-collections/interfaces/presupuesto-contabilidad.model";
 import type {
   IAnalisisCobranzaOnlineDto,
   IBancosInversionesDto,
