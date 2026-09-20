@@ -57,7 +57,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "status-solicitud-baja",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/dismissal-requests/status-request-dismissal").then(
+          import("@recruitment.luxuryapp/employee-dismissal-requests/status-request-dismissal").then(
             (m) => m.StatusRequestDismissal,
           ),
         data: {
@@ -100,7 +100,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "dismissal-requests",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/dismissal-requests/solicitud-baja-list").then(
+          import("@recruitment.luxuryapp/employee-dismissal-requests/solicitud-baja-list").then(
             (m) => m.SolicitudBajaList,
           ),
         data: {

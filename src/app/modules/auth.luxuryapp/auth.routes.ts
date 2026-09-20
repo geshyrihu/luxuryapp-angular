@@ -4,7 +4,7 @@ export const authRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@auth.luxuryapp/login/login-wrapper").then(
+      import("@auth.luxuryapp/auth/login-wrapper").then(
         (m) => m.LoginWrapper,
       ),
     data: {
@@ -15,7 +15,7 @@ export const authRoutes: Routes = [
   {
     path: "login",
     loadComponent: () =>
-      import("@auth.luxuryapp/login/login-wrapper").then(
+      import("@auth.luxuryapp/auth/login-wrapper").then(
         (m) => m.LoginWrapper,
       ),
     data: {
@@ -26,7 +26,7 @@ export const authRoutes: Routes = [
   {
     path: "reset-password",
     loadComponent: () =>
-      import("@auth.luxuryapp/reset-password/reset-password-wrapper").then(
+      import("@auth.luxuryapp/account-recovery/reset-password/reset-password-wrapper").then(
         (m) => m.ResetPasswordWrapper,
       ),
     data: {
@@ -37,7 +37,7 @@ export const authRoutes: Routes = [
   {
     path: "recovery-code",
     loadComponent: () =>
-      import("@auth.luxuryapp/recovery-code/recovery-code-wrapper").then(
+      import("@auth.luxuryapp/account-recovery/recovery-code/recovery-code-wrapper").then(
         (m) => m.RecoveryCodeWrapper,
       ),
     data: {
@@ -48,7 +48,7 @@ export const authRoutes: Routes = [
   {
     path: "update-user-profile",
     loadComponent: () =>
-      import("@auth.luxuryapp/user-profile/update-profile-wrapper").then(
+      import("@auth.luxuryapp/profile-users/update-profile-wrapper").then(
         (m) => m.UpdateProfileWrapper,
       ),
     canActivate: [authGuard],

@@ -32,7 +32,7 @@ export const recruitmentRequestsRoutes: Routes = [
       {
         path: "dismissals",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/dismissal-requests/solicitud-baja-list").then(
+          import("@recruitment.luxuryapp/employee-dismissal-requests/solicitud-baja-list").then(
             (m) => m.SolicitudBajaList,
           ),
         data: { title: "Bajas", breadcrumb: "Bajas" },
