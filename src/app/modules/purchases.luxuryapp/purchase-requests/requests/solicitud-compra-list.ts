@@ -39,8 +39,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { OrdenCompraService } from "@core/services/orden-compra.service";
 import { SolicitudCompraService } from "@core/services/solicitud-compra.service";
-import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
-import { OrdenCompra } from "@supplier.luxuryapp/po/purchase-order/orden-compra";
+import { PurchaseLinkManager } from "@supplier.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
+import { OrdenCompra } from "@supplier.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

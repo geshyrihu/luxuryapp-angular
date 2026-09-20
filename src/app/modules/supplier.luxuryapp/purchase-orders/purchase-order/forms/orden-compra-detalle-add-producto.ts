@@ -36,8 +36,8 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ProductosForm } from "@supplier.luxuryapp/product/productos-form";
-import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
+import { ProductosForm } from "@supplier.luxuryapp/products/productos-form";
+import { TarjetaProducto } from "@supplier.luxuryapp/products/tarjeta-producto";
 
 interface IOrdenCompraDetalleRowForm {
   productoId: FormControl<string | null>;

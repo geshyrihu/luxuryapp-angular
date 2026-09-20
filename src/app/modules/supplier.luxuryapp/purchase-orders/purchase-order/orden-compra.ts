@@ -29,12 +29,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service"; // Import added
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { OrdenCompraService } from "@core/services/orden-compra.service";
-import { PdfGenerationService } from "@supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
-import { PurchaseLinkManager } from "@supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
-import { OrdenCompraDatosAuthParcial } from "@supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-auth-parcial";
-import { OrdenCompraDatosCotizacion } from "@supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-cotizacion";
-import { OrdenCompraDatosPagoParcial } from "@supplier.luxuryapp/po/purchase-order/parcials/orden-compra-datos-pago-parcial";
-import { OrdenCompraStatusParcial } from "@supplier.luxuryapp/po/purchase-order/parcials/orden-compra-status-parcial";
+import { PdfGenerationService } from "@supplier.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
+import { PurchaseLinkManager } from "@supplier.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
+import { OrdenCompraDatosAuthParcial } from "@supplier.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-auth-parcial";
+import { OrdenCompraDatosCotizacion } from "@supplier.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-cotizacion";
+import { OrdenCompraDatosPagoParcial } from "@supplier.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-pago-parcial";
+import { OrdenCompraStatusParcial } from "@supplier.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-status-parcial";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
 import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
@@ -44,7 +44,7 @@ import { OrdenCompraStatus } from "./forms/orden-compra-status";
 import { OrdenCompraEditDetalle } from "./orden-compra-edit-detalle";
 import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupusto-utilizado";
 import { ModalOrdenCompra } from "./orden-compra-modal";
-import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
+import { OrdenCompraPresupuesto } from "./purchase-order-budget/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
 
 @Component({

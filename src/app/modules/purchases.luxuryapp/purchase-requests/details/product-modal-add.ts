@@ -35,7 +35,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
-import { TarjetaProducto } from "@supplier.luxuryapp/product/tarjeta-producto";
+import { TarjetaProducto } from "@supplier.luxuryapp/products/tarjeta-producto";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.

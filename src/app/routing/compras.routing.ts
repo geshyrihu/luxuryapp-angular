@@ -29,7 +29,7 @@ export const comprasRoutes: Routes = [
   {
     path: "products-services",
     loadComponent: () =>
-      import("@supplier.luxuryapp/product/productos-list").then(
+      import("@supplier.luxuryapp/products/productos-list").then(
         (m) => m.ProductosList,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-orders", // Ruta anterior: 'ordenes-compra'
     loadComponent: () =>
-      import("@supplier.luxuryapp/po/purchase-order/orden-compra-list").then(
+      import("@supplier.luxuryapp/purchase-orders/purchase-order/orden-compra-list").then(
         (m) => m.OrdenCompraList,
       ),
     canActivate: [authGuard],
@@ -142,7 +142,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-order/:id'
     path: "orden-compra/:id",
     loadComponent: () =>
-      import("@supplier.luxuryapp/po/purchase-order/orden-compra").then(
+      import("@supplier.luxuryapp/purchase-orders/purchase-order/orden-compra").then(
         (m) => m.OrdenCompra,
       ),
     canActivate: [authGuard],
@@ -155,7 +155,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-order-pdf/:id'
     path: "orden-compra-pdf/:id",
     loadComponent: () =>
-      import("@supplier.luxuryapp/po/purchase-order/orden-compra-pdf/orden-compra-pdf").then(
+      import("@supplier.luxuryapp/purchase-orders/purchase-order/purchase-order-pdf/orden-compra-pdf").then(
         (m) => m.OrdenCompraPdf,
       ),
     canActivate: [authGuard],
@@ -168,7 +168,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'payment-request-pdf/:id'
     path: "solicitud-pago-pdf/:id",
     loadComponent: () =>
-      import("@supplier.luxuryapp/po/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf").then(
+      import("@supplier.luxuryapp/purchase-orders/purchase-order/payment-request-pdf/solicitud-pago-pdf").then(
         (m) => m.SolicitudPagoPdfComponent,
       ),
     canActivate: [authGuard],
