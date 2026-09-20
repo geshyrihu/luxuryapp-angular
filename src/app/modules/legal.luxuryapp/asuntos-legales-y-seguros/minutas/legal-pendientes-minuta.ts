@@ -1,3 +1,4 @@
+import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -7,22 +8,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -36,11 +21,26 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
-import { MeetingSeguimientoEdit } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { MeetingSeguimientoEdit } from "@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { WebButtonLabelItem } from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-legal-pendientes-minuta",
@@ -163,5 +163,3 @@ export class LegalPendientesMinuta implements OnInit {
     this.onLoadData();
   }
 }
-
-

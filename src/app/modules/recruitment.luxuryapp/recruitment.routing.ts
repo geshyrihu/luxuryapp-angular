@@ -111,7 +111,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "document-catalog",
         loadComponent: () =>
-          import("@shared.luxuryapp/catalogos-generales/document-catalog/document-catalog-list").then(
+          import("@shared.luxuryapp/catalogs/document-catalog/document-catalog-list").then(
             (m) => m.DocumentCatalogList,
           ),
         data: {
@@ -204,5 +204,3 @@ export const recruitmentRoutes: Routes = [
     ],
   },
 ];
-
-

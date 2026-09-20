@@ -6,17 +6,17 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
-import { MeetingSeguimientoEdit } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MeetingSeguimientoEdit } from "@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-seguimiento-edit";
+import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppTable } from "@ui/web/table/table";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -30,7 +30,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableEmptyMessage,
     CommonModule,
     AppTable,
-
 
     NgbTooltip,
   ],
@@ -81,5 +80,3 @@ export class ContMinutaSeguimientos implements OnInit {
       });
   }
 }
-
-

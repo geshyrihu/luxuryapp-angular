@@ -16,9 +16,7 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("@resident.luxuryapp/owner/owner-list").then(
-        (m) => m.OwnerList,
-      ),
+      import("@resident.luxuryapp/owner/owner-list").then((m) => m.OwnerList),
     canActivate: [authGuard],
     data: {
       title: "Condominos",
@@ -112,7 +110,7 @@ export const directoryRoutes: Routes = [
   {
     path: "emergency-phones", // Ruta anterior: 'telefonos-emergencia'
     loadComponent: () =>
-      import("@public.luxuryapp/telefonos-emergencia/telefonos-emergencia").then(
+      import("@public.luxuryapp/emergency-phones/telefonos-emergencia").then(
         (m) => m.TelefonosEmergencia,
       ),
     canActivate: [authGuard],
@@ -135,5 +133,3 @@ export const directoryRoutes: Routes = [
     },
   },
 ];
-
-

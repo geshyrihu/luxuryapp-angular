@@ -4,7 +4,7 @@ export const committeeMeetingsRoutes: Routes = [
   {
     path: "sessions",
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/juntas-mensuales-session/juntas-mensuales-session").then(
+      import("@management.luxuryapp/monthly-meetings/session/juntas-mensuales-session").then(
         (m) => m.JuntasMensualesSession,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const committeeMeetingsRoutes: Routes = [
   {
     path: "presentations", // Ruta anterior: 'presentaciones'
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/presentacion-junta-comite/presentacion-junta-comite").then(
+      import("@management.luxuryapp/monthly-meetings/presentation/presentacion-junta-comite").then(
         (m) => m.PresentacionJuntaComite,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const committeeMeetingsRoutes: Routes = [
   {
     path: "presentations-contador", // Ruta anterior: 'presentaciones'
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/presentacion-junta-comite/presentacion-junta-comite-contador").then(
+      import("@management.luxuryapp/monthly-meetings/presentation/presentacion-junta-comite-contador").then(
         (m) => m.PresentacionJuntaComiteContador,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const committeeMeetingsRoutes: Routes = [
   {
     path: "minutes", // Ruta anterior: 'minutas'
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/junta-comite-minutas/minutas-list").then(
+      import("@management.luxuryapp/monthly-meetings/meeting-minutes/minutas-list").then(
         (m) => m.MinutasList,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const committeeMeetingsRoutes: Routes = [
     // Suggested path: 'minutes-summary/:meetingId'
     path: "resumen-minuta/:meetingId",
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/junta-comite-minutas/resumen-minuta").then(
+      import("@management.luxuryapp/monthly-meetings/meeting-minutes/resumen-minuta").then(
         (m) => m.ResumenMinuta,
       ),
     canActivate: [authGuard],
@@ -65,7 +65,7 @@ export const committeeMeetingsRoutes: Routes = [
   {
     path: "gestion-minuta/:id",
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-management").then(
+      import("@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-management").then(
         (m) => m.MeetingManagement,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const committeeMeetingsRoutes: Routes = [
     // Suggested path: 'pending-minutes'
     path: "minuta-pendientes",
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-pendientes").then(
+      import("@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-pendientes").then(
         (m) => m.MinutaPendientes,
       ),
     canActivate: [authGuard],
@@ -91,7 +91,7 @@ export const committeeMeetingsRoutes: Routes = [
     // Suggested path: 'minutes-follow-up/:area'
     path: "seguimiento-minutas/:area",
     loadComponent: () =>
-      import("@management.luxuryapp/juntas-comite/junta-comite-minutas/seguimiento-minutas").then(
+      import("@management.luxuryapp/monthly-meetings/meeting-minutes/seguimiento-minutas").then(
         (m) => m.SeguimientoMinuta,
       ),
     canActivate: [authGuard],
@@ -101,5 +101,3 @@ export const committeeMeetingsRoutes: Routes = [
     },
   },
 ];
-
-

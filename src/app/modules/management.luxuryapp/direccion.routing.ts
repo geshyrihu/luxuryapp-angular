@@ -5,7 +5,7 @@ export const direccionRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./home-direccion/home-direccion").then((m) => m.HomeDireccion),
+      import("./management-home/home-direccion").then((m) => m.HomeDireccion),
     canActivate: [authGuard],
     data: {
       title: "Inicio Direccion",
@@ -18,4 +18,3 @@ export const direccionRoutes: Routes = [
       import("src/app/routing/profile.routing").then((m) => m.profileRoutes),
   },
 ];
-

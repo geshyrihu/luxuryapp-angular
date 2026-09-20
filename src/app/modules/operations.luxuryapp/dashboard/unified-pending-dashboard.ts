@@ -8,42 +8,39 @@ import {
   viewChild,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { TaskForm } from "@operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ImageAnalysisDialogComponent } from "@ui/image-analysis-dialog/image-analysis-dialog.component";
+import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
 import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
 import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";
 import { VacanteForm } from "@recruitment.luxuryapp/solicitud-vacantes/vacante-form";
 import { SolicitudBajaUpdateStatus } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -549,5 +546,3 @@ export class UnifiedPendingDashboard {
     });
   }
 }
-
-

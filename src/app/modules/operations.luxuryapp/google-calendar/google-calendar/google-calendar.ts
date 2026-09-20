@@ -8,17 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { FullCalendarModule } from "@fullcalendar/angular";
-import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
-import esLocale from "@fullcalendar/core/locales/es";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -33,8 +22,19 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { JuntaMensualSessionChecklistDialog } from "@management.luxuryapp/juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
+import { FullCalendarModule } from "@fullcalendar/angular";
+import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
+import esLocale from "@fullcalendar/core/locales/es";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import { JuntaMensualSessionChecklistDialog } from "@management.luxuryapp/monthly-meetings/session/junta-mensual-session-checklist-dialog";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -523,5 +523,3 @@ export class GoogleCalendar {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
-
-

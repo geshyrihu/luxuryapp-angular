@@ -7,8 +7,21 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AiService } from "@core/services/ai.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
+import { PolicyContractForm } from "@operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
+import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
+import { TaskForm } from "@operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -21,19 +34,6 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AiService } from "@core/services/ai.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { SwalService } from "@core/services/swal.service";
-import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { MinutaDetalleForm } from "@management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { PolicyContractForm } from "@operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
-import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
-import { TaskForm } from "@operations.luxuryapp/task-engine/tasks/task-message/task-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
@@ -373,5 +373,3 @@ export class UnifiedPendingDashboardMobile {
     return "medium";
   }
 }
-
-

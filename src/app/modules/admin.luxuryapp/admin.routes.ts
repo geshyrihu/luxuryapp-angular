@@ -154,7 +154,7 @@ export const adminRoutes: Routes = [
   {
     path: "banks",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/banks/bank-list").then(
+      import("@shared.luxuryapp/catalogs/banks/bank-list").then(
         (m) => m.BankList,
       ),
     canActivate: [authGuard],
@@ -166,7 +166,7 @@ export const adminRoutes: Routes = [
   {
     path: "payment-method",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/payment-method/payment-method-list").then(
+      import("@shared.luxuryapp/catalogs/payment-method/payment-method-list").then(
         (m) => m.PaymentMethodList,
       ),
     canActivate: [authGuard],
@@ -178,7 +178,7 @@ export const adminRoutes: Routes = [
   {
     path: "payment-type",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/payment-type/payment-type-list").then(
+      import("@shared.luxuryapp/catalogs/payment-type/payment-type-list").then(
         (m) => m.PaymentTypeList,
       ),
     canActivate: [authGuard],
@@ -190,7 +190,7 @@ export const adminRoutes: Routes = [
   {
     path: "cfdi-use",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/cfdi-use/cfdi-use-list").then(
+      import("@shared.luxuryapp/catalogs/cfdi-usage/cfdi-use-list").then(
         (m) => m.CfdiUseList,
       ),
     canActivate: [authGuard],
@@ -202,7 +202,7 @@ export const adminRoutes: Routes = [
   {
     path: "units-of-measurement",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/units-of-measurement/unit-of-measurement-list").then(
+      import("@shared.luxuryapp/catalogs/units-of-measurement/unit-of-measurement-list").then(
         (m) => m.UnitOfMeasurementList,
       ),
     canActivate: [authGuard],
@@ -214,7 +214,7 @@ export const adminRoutes: Routes = [
   {
     path: "recruitment-sources",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/recruitment-sources/recruitment-source-catalog-list").then(
+      import("@shared.luxuryapp/catalogs/recruitment-sources/recruitment-source-catalog-list").then(
         (m) => m.RecruitmentSourceCatalogList,
       ),
     canActivate: [authGuard],
@@ -226,7 +226,7 @@ export const adminRoutes: Routes = [
   {
     path: "document-catalogs",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/document-catalog/document-catalog-list").then(
+      import("@shared.luxuryapp/catalogs/document-catalog/document-catalog-list").then(
         (m) => m.DocumentCatalogList,
       ),
     canActivate: [authGuard],
@@ -238,7 +238,7 @@ export const adminRoutes: Routes = [
   {
     path: "onboarding-checklist-options",
     loadComponent: () =>
-      import("@shared.luxuryapp/catalogos-generales/onboarding-checklist-options/onboarding-checklist-option-list").then(
+      import("@shared.luxuryapp/catalogs/onboarding-checklist-options/onboarding-checklist-option-list").then(
         (m) => m.OnboardingChecklistOptionList,
       ),
     canActivate: [authGuard],
@@ -338,7 +338,7 @@ export const adminRoutes: Routes = [
   {
     path: "ai-knowledge-base",
     loadComponent: () =>
-      import("@system.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list").then(
+      import("@system.luxuryapp/system-configuration/knowledge-base/ai-knowledge-base-list").then(
         (m) => m.AiKnowledgeBaseList,
       ),
     canActivate: [authGuard],
@@ -350,7 +350,7 @@ export const adminRoutes: Routes = [
   {
     path: "monthly-meetings-reconciliation",
     loadComponent: () =>
-      import("@system.luxuryapp/configuracion-sistema/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
+      import("@system.luxuryapp/system-configuration/monthly-meetings-backfill/juntas-mensuales-backfill").then(
         (m) => m.JuntasMensualesBackfill,
       ),
     canActivate: [authGuard],
@@ -386,7 +386,7 @@ export const adminRoutes: Routes = [
   {
     path: "vault-secrets",
     loadComponent: () =>
-      import("@system.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(
+      import("@system.luxuryapp/system-configuration/vault-secrets/vault-secrets-list").then(
         (m) => m.VaultSecretsList,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -398,7 +398,7 @@ export const adminRoutes: Routes = [
   {
     path: "database-backup",
     loadComponent: () =>
-      import("@system.luxuryapp/configuracion-sistema/database-backup/database-backup-list").then(
+      import("@system.luxuryapp/system-configuration/database-backup/database-backup-list").then(
         (m) => m.DatabaseBackupList,
       ),
     canActivate: [authGuard, superUsuarioGuard],
@@ -692,7 +692,7 @@ export const adminRoutes: Routes = [
   {
     path: "eleven-labs",
     loadComponent: () =>
-      import("@system.luxuryapp/configuracion-sistema/eleven-labs/eleven-labs-settings").then(
+      import("@system.luxuryapp/system-configuration/eleven-labs/eleven-labs-settings").then(
         (m) => m.ElevenLabsSettingsComponent,
       ),
     canActivate: [authGuard],
