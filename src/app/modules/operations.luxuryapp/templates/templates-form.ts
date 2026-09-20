@@ -6,9 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -17,7 +14,10 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { EDocumentType } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
+import { EDocumentType } from "@legal.luxuryapp/legal-matters/interfaces/document-type.enum";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-templates-form",
@@ -110,5 +110,3 @@ export class TemplatesForm implements OnInit {
     return formData;
   }
 }
-
-

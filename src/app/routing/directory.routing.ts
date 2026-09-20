@@ -16,7 +16,7 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("@resident.luxuryapp/owner/owner-list").then((m) => m.OwnerList),
+      import("@residents.luxuryapp/owner/owner-list").then((m) => m.OwnerList),
     canActivate: [authGuard],
     data: {
       title: "Condominos",
@@ -26,7 +26,7 @@ export const directoryRoutes: Routes = [
   {
     path: "properties", // Ruta anterior: 'propiedades'
     loadComponent: () =>
-      import("@resident.luxuryapp/property/propiedades-list").then(
+      import("@residents.luxuryapp/properties/propiedades-list").then(
         (m) => m.PropiedadesList,
       ),
     canActivate: [authGuard],
@@ -38,7 +38,7 @@ export const directoryRoutes: Routes = [
   {
     path: "vigilance-committee", // Ruta anterior: 'comite-vigilancia'
     loadComponent: () =>
-      import("@legal.luxuryapp/comite-vigilancia/comite-vigilancia-list").then(
+      import("@legal.luxuryapp/vigilance-committees/comite-vigilancia-list").then(
         (m) => m.ComiteVigilanciaList,
       ),
     canActivate: [authGuard],

@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "@core/auth/guards/auth.guard";
-import { documentTypeRoutesConfig } from "@legal.luxuryapp/asuntos-legales-y-seguros/interfaces/documentTypeRoutesConfig";
+import { documentTypeRoutesConfig } from "@legal.luxuryapp/legal-matters/interfaces/documentTypeRoutesConfig";
 // Definición del componente de detalle para reutilizar
 const CustomDocumentList = () =>
   import("@committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo-detalle").then(
@@ -33,7 +33,7 @@ export const committeeRoutes: Routes = [
   {
     path: "cobranza",
     loadComponent: () =>
-      import("./cobranza/committee-cobranza-wrapper").then(
+      import("./collections/committee-cobranza-wrapper").then(
         (m) => m.CommitteeCobranzaWrapper,
       ),
     canActivate: [authGuard],
@@ -45,7 +45,7 @@ export const committeeRoutes: Routes = [
   {
     path: "directorio",
     loadComponent: () =>
-      import("./directorio/directorio").then((m) => m.CommitteeDirectorio),
+      import("./board-directors/directorio").then((m) => m.CommitteeDirectorio),
     canActivate: [authGuard],
     data: {
       title: "Directorio",
@@ -105,7 +105,7 @@ export const committeeRoutes: Routes = [
         path: "building-insurance-policy", // Ruta anterior: 'poliza-seguro-edificio'
 
         loadComponent: () =>
-          import("@committee.luxuryapp/poliza-seguro-edificio/poliza-seguro-edificio").then(
+          import("@committee.luxuryapp/building-insurance-policy/poliza-seguro-edificio").then(
             (m) => m.PolizaSeguroEdificio,
           ),
         canActivate: [authGuard],
@@ -148,5 +148,3 @@ export const committeeRoutes: Routes = [
     ],
   },
 ];
-
-

@@ -33,7 +33,7 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TicketLegalForm } from "@legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { TicketLegalForm } from "@legal.luxuryapp/legal-matters/legal-tickets/ticket-legal-form";
 import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
 import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
 import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";

@@ -41,7 +41,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-requests", // Ruta anterior: 'solicitudes-compra'
     loadComponent: () =>
-      import("@purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
+      import("@purchases.luxuryapp/purchase-requests/requests/solicitud-compra-list").then(
         (m) => m.SolicitudCompraList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request/:id'
     path: "solicitud-compra/:id",
     loadComponent: () =>
-      import("@purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
+      import("@purchases.luxuryapp/purchase-requests/requests/solicitud-compra").then(
         (m) => m.SolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -67,7 +67,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request-pdf/:id'
     path: "pdf-solicitud-compra/:id",
     loadComponent: () =>
-      import("@purchases.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
+      import("@purchases.luxuryapp/purchase-requests/requests/pdf-solicitud-compra").then(
         (m) => m.PdfSolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'comparison-chart/:id'
     path: "cuadro-comparativo/:id",
     loadComponent: () =>
-      import("@purchases.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
+      import("@purchases.luxuryapp/purchase-requests/comparison/cuadro-comparativo-list").then(
         (m) => m.CuadroComparativoList,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const comprasRoutes: Routes = [
   {
     path: "solicitud-compra-presentacion",
     loadComponent: () =>
-      import("@purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
+      import("@purchases.luxuryapp/purchase-requests/requests/solicitud-compra-presentacion").then(
         (m) => m.SolicitudCompraPresentacion,
       ),
     canActivate: [authGuard],
@@ -181,7 +181,7 @@ export const comprasRoutes: Routes = [
   {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
-      import("@purchases.luxuryapp/historial-compras/historial-compras-wrapper").then(
+      import("@purchases.luxuryapp/purchase-history/historial-compras-wrapper").then(
         (m) => m.HistorialComprasWrapper,
       ),
     canActivate: [authGuard],
@@ -203,5 +203,3 @@ export const comprasRoutes: Routes = [
     },
   },
 ];
-
-

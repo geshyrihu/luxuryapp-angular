@@ -37,7 +37,7 @@
       "@public.luxuryapp/*": ["./src/app/modules/public.luxuryapp/*"],
       "@purchases.luxuryapp/*": ["./src/app/modules/purchases.luxuryapp/*"],
       "@recruitment.luxuryapp/*": ["./src/app/modules/recruitment.luxuryapp/*"],
-      "@resident.luxuryapp/*": ["./src/app/modules/resident.luxuryapp/*"],
+      "@residents.luxuryapp/*": ["./src/app/modules/residents.luxuryapp/*"],
       "@shared.luxuryapp/*": ["./src/app/modules/shared.luxuryapp/*"],
       "@supplier.luxuryapp/*": ["./src/app/modules/supplier.luxuryapp/*"],
       "@system.luxuryapp/*": ["./src/app/modules/system.luxuryapp/*"],
