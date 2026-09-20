@@ -90,7 +90,7 @@ export const accountingRoutes: Routes = [
   {
     path: "budget-execution",
     loadComponent: () =>
-      import("@accounting.luxuryapp/ar/aspel-mirror/projected-expenses-list").then(
+      import("@accounting.luxuryapp/accounting-catalogs/aspel-mirror/projected-expenses-list").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -176,7 +176,7 @@ export const accountingRoutes: Routes = [
   {
     path: "aspel-customer-empresa",
     loadComponent: () =>
-      import("@accounting.luxuryapp/ar/aspel-customer-company/aspel-customer-empresa-list").then(
+      import("@accounting.luxuryapp/accounting-catalogs/aspel-customer-company/aspel-customer-empresa-list").then(
         (m) => m.AspelCustomerEmpresaList,
       ),
     canActivate: [authGuard],
@@ -188,7 +188,7 @@ export const accountingRoutes: Routes = [
   {
     path: "aspel-sync",
     loadComponent: () =>
-      import("@accounting.luxuryapp/ar/aspel-sync/aspel-sync").then(
+      import("@accounting.luxuryapp/accounting-catalogs/aspel-sync/aspel-sync").then(
         (m) => m.AspelSyncComponent,
       ),
     canActivate: [authGuard],
