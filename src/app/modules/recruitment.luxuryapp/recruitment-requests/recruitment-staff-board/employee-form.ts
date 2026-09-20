@@ -17,11 +17,11 @@ import {
 } from "@ui/web/section-nav/section-nav";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { EmployeeBankDataList } from "@recruitment.luxuryapp/employee-bank-data/employee-bank-data-list";
-import { EmployeeBeneficiaryList } from "@recruitment.luxuryapp/employee-beneficiary/employee-beneficiary-list";
-import { EmployeeClinicalDataList } from "@recruitment.luxuryapp/employee-clinical-data/employee-clinical-data-list";
-import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-document/employee-document-list";
-import { EmployeeEmergencyContactList } from "@recruitment.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
+import { EmployeeBankDataList } from "@recruitment.luxuryapp/employee-bank-data-records/employee-bank-data-list";
+import { EmployeeBeneficiaryList } from "@recruitment.luxuryapp/employee-beneficiaries/employee-beneficiary-list";
+import { EmployeeClinicalDataList } from "@recruitment.luxuryapp/employee-clinical-data-records/employee-clinical-data-list";
+import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-documents/employee-document-list";
+import { EmployeeEmergencyContactList } from "@recruitment.luxuryapp/employee-emergency-contacts/employee-emergency-contact-list";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
 

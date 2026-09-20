@@ -44,7 +44,7 @@ import {
   ExcelExportService,
 } from "@core/services/excel-export.service";
 import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
-import { CardEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
 import { CandidateInterviewerQueueService } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { LxTag } from "@ui/adaptive/tag/tag";

@@ -1,2 +1,2 @@
-export * from "@recruitment.luxuryapp/solicitud-bajas/solicitud-baja-update-status";
+export * from "@recruitment.luxuryapp/dismissal-requests/solicitud-baja-update-status";
 

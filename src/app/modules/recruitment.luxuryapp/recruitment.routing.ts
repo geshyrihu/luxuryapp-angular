@@ -21,7 +21,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "staff-board",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/recruitment-staff-board").then(
+          import("@recruitment.luxuryapp/recruitment-requests/recruitment-staff-board/recruitment-staff-board").then(
             (m) => m.RecruitmentStaffBoard,
           ),
         data: {
@@ -43,7 +43,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "requests",
         loadChildren: () =>
-          import("@recruitment.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests.routing").then(
+          import("@recruitment.luxuryapp/recruitment-requests/requests/recruitment-requests.routing").then(
             (m) => m.recruitmentRequestsRoutes,
           ),
         data: {
@@ -57,7 +57,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "status-solicitud-baja",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/solicitud-bajas/status-request-dismissal").then(
+          import("@recruitment.luxuryapp/dismissal-requests/status-request-dismissal").then(
             (m) => m.StatusRequestDismissal,
           ),
         data: {
@@ -68,7 +68,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "status-solicitud-modificacion-salario",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/solicitud-modificaciones-sueldo/status-request-salary-modification").then(
+          import("@recruitment.luxuryapp/salary-modification-requests/status-request-salary-modification").then(
             (m) => m.StatusRequestSalaryModification,
           ),
         data: {
@@ -79,7 +79,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "solicitudes_cliente",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-client-requests/solicitudes-cliente-list").then(
+          import("@recruitment.luxuryapp/recruitment-requests/recruitment-client-requests/solicitudes-cliente-list").then(
             (m) => m.SolicitudesClienteList,
           ),
         data: {
@@ -100,7 +100,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "dismissal-requests",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/solicitud-bajas/solicitud-baja-list").then(
+          import("@recruitment.luxuryapp/dismissal-requests/solicitud-baja-list").then(
             (m) => m.SolicitudBajaList,
           ),
         data: {
@@ -122,7 +122,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "empleado/:employeeId/:applicationUserId",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/employee-form").then(
+          import("@recruitment.luxuryapp/recruitment-requests/recruitment-staff-board/employee-form").then(
             (m) => m.EmployeeForm,
           ),
         data: {
@@ -136,7 +136,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "contract-renewals",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/expediente-del-empleado/employees/contract-renewal-list").then(
+          import("@recruitment.luxuryapp/employee-file/employees/contract-renewal-list").then(
             (m) => m.ContractRenewalListComponent,
           ),
         canActivate: [
@@ -159,7 +159,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "employee-files",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-list").then(
+          import("@recruitment.luxuryapp/employee-file/human-resources/employee-registry/employee-file-list").then(
             (m) => m.EmployeeFileList,
           ),
         data: {
@@ -170,7 +170,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "employee-files/:employeeId",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-detail").then(
+          import("@recruitment.luxuryapp/employee-file/human-resources/employee-registry/employee-file-detail").then(
             (m) => m.EmployeeFileDetail,
           ),
 
@@ -186,7 +186,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "bank-data",
         loadComponent: () =>
-          import("@recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-bank-data/employee-bank-data-list").then(
+          import("@recruitment.luxuryapp/employee-file/human-resources/employee-bank-data/employee-bank-data-list").then(
             (m) => m.EmployeeBankDataList,
           ),
         canActivate: [

@@ -50,7 +50,7 @@ export const directoryRoutes: Routes = [
   {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("@recruitment.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
+      import("@recruitment.luxuryapp/employee-file/employees/org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],
@@ -62,7 +62,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("@recruitment.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
+      import("@recruitment.luxuryapp/employee-file/employees/employee-registry/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],
@@ -74,7 +74,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviewer-queue",
     loadComponent: () =>
-      import("@recruitment.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
+      import("@recruitment.luxuryapp/employee-file/employees/employee-interviewer-queue/employee-interviewer-queue").then(
         (m) => m.EmployeeInterviewerQueue,
       ),
     canActivate: [authGuard],
@@ -86,7 +86,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviews/respond",
     loadComponent: () =>
-      import("@recruitment.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
+      import("@recruitment.luxuryapp/employee-file/employees/employee-interviewer-queue/employee-interview-response").then(
         (m) => m.EmployeeInterviewResponse,
       ),
     canActivate: [authGuard],
@@ -98,7 +98,7 @@ export const directoryRoutes: Routes = [
   {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
-      import("@recruitment.luxuryapp/employee-external/employee-external-list").then(
+      import("@recruitment.luxuryapp/external-staffs/employee-external-list").then(
         (m) => m.EmployeeExternalList,
       ),
     canActivate: [authGuard],

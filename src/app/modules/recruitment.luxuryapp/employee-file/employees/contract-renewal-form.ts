@@ -22,8 +22,8 @@ import {
   ContractRenewalDecisionDTO,
   ContractRenewalEvaluationDTO,
   ContractRenewalStatus,
-} from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
-import { ContractRenewalService } from "@recruitment.luxuryapp/expediente-del-empleado/employees/services/contract-renewal.service";
+} from "@recruitment.luxuryapp/employee-file/employees/employee-registry/interfaces/contract-renewal.dto";
+import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/employees/services/contract-renewal.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

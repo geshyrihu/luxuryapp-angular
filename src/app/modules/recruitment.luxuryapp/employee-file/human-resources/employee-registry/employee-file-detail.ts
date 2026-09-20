@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-document/employee-document-list";
+import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-documents/employee-document-list";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";

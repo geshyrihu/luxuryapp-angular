@@ -21,7 +21,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
+import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
 import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.interface";
 
 @Component({

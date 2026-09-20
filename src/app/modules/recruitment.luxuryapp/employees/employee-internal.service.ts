@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { IEmployee } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/employee.interface";
+import { IEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/interfaces/employee.interface";
 @Injectable({
   providedIn: "root",
 })

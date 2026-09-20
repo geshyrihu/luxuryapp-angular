@@ -14,7 +14,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudAltaForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
+import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "employee-reclutamiento",

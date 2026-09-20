@@ -24,7 +24,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { ROUTES } from "src/app/routing/route-paths";
-import { StatusRequestDismissalDiscountForm } from "../reclutamiento-y-altas-bajas/request-dismissal-discount/status-request-dismissal-discount-form";
+import { StatusRequestDismissalDiscountForm } from "../recruitment-requests/request-dismissal-discount/status-request-dismissal-discount-form";
 
 interface RequestDismissalStatusDetail {
   id: string;

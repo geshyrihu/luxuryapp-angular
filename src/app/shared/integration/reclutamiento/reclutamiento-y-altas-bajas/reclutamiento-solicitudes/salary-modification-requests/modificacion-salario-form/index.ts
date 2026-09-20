@@ -1,2 +1,2 @@
-export * from "@recruitment.luxuryapp/solicitud-modificaciones-sueldo/modificacion-salario-form";
+export * from "@recruitment.luxuryapp/salary-modification-requests/modificacion-salario-form";
 

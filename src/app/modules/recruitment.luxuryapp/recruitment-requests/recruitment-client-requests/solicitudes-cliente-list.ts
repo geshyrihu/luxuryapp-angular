@@ -34,8 +34,8 @@ import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-v
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudAltaForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-form";
-import { VacanteForm } from "@recruitment.luxuryapp/solicitud-vacantes/vacante-form";
+import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
+import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 

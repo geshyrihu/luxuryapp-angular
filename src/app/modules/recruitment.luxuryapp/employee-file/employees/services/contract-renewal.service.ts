@@ -1,7 +1,7 @@
 import { Injectable, computed, effect, inject, signal } from "@angular/core";
 import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ContractRenewalEvaluationDTO } from "@recruitment.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
+import { ContractRenewalEvaluationDTO } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/interfaces/contract-renewal.dto";
 
 @Injectable({
   providedIn: "root",

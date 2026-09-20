@@ -36,8 +36,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { TicketLegalForm } from "@legal.luxuryapp/legal-matters/legal-tickets/ticket-legal-form";
 import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
 import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";
-import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";
-import { VacanteForm } from "@recruitment.luxuryapp/solicitud-vacantes/vacante-form";
+import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-status-form";
+import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
 import { SolicitudBajaUpdateStatus } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";

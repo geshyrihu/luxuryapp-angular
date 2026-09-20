@@ -7,7 +7,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
+import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
 import { beforeEach, describe } from "vitest";
 import { EmployeeProviderForm } from "./employee-provider-form";
 

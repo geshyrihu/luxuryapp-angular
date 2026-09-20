@@ -24,7 +24,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { EmployeeInternalService } from "@recruitment.luxuryapp/employee/employee-internal.service";
+import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
 import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface";
 
 @Component({

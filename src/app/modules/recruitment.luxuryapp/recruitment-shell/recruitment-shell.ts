@@ -10,7 +10,7 @@ import { Menubar } from "@ui/web/menubar/menubar";
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { filter, map, startWith } from "rxjs/operators";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import { FilterRequests } from "@recruitment.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests";
+import { FilterRequests } from "@recruitment.luxuryapp/recruitment-requests/requests/recruitment-shared/filter-requests";
 
 type ShellFilterConfig = {
   apiUrl?: string;
