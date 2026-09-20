@@ -26,9 +26,10 @@ describe('AppPaginator', () => {
 
   it('should handle page change', () => {
     const fn = vi.fn();
-    component.pageChange.subscribe(fn);
-    component.onPrimePageChange({ first: 20, rows: 10, totalRecords: 100 });
+    component.paginationChange.subscribe(fn);
+    fixture.componentRef.setInput('totalRecords', 100);
+    component.onPageChange(2);
     expect(component.page()).toBe(2);
-    expect(fn).toHaveBeenCalledWith({ page: 2, rows: 10, totalRecords: 100 });
+    expect(fn).toHaveBeenCalledWith({ page: 2, rows: 20, totalRecords: 100 });
   });
 });

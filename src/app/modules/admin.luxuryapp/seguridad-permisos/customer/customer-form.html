@@ -79,6 +79,13 @@
         [filter]="true"
       />
 
+      <custom-input-select-signal
+        [control]="form.controls.state"
+        label="Estado"
+        [data]="stateOptions"
+        [filter]="true"
+      />
+
       <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"

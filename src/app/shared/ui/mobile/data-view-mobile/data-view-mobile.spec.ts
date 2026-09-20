@@ -65,7 +65,7 @@ describe('DataViewMobile', () => {
 
   it('should return id property for items with id', () => {
     const item = { id: '123', name: 'test' };
-    expect(component.trackByFn(0, item)).toBe('123');
+    expect(component.trackByFn(0, item)).toBe('123-0');
   });
 
   it('should return index for items without id', () => {

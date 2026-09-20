@@ -1,0 +1,6 @@
+<form class="p-md-3 d-flex flex-column gap-3" autocomplete="off" (ngSubmit)="submit()">
+  <custom-input-select-signal label="Estado" [control]="stateControl" [data]="stateOptions" optionLabel="label" optionValue="value" [filter]="true" />
+  <custom-input-text-signal type="number" label="Año" [ngModel]="year()" (ngModelChange)="year.set(+$event)" name="year" />
+  <custom-input-text-signal type="number" label="Porcentaje de ISN (ej. 0.04)" [ngModel]="percentage()" (ngModelChange)="percentage.set(+$event)" name="percentage" />
+  <div class="d-flex justify-content-end gap-2"><il-button type="button" label="Cancelar" severity="secondary" variant="outline" size="small" (clicked)="close()" /><il-button type="submit" label="Guardar" severity="primary" size="small" [loading]="saving()" /></div>
+</form>

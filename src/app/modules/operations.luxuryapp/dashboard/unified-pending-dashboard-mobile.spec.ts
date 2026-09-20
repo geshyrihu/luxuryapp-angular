@@ -139,13 +139,13 @@ describe("UnifiedPendingDashboardMobile", () => {
   });
 
   it("getModuleIcon should return correct icon name", () => {
-    expect(component.getModuleIcon("Tickets")).toBe("ticket-outline");
-    expect(component.getModuleIcon("Minutas")).toBe("document-text-outline");
-    expect(component.getModuleIcon("Mantenimiento")).toBe("build-outline");
-    expect(component.getModuleIcon("Legal")).toBe("briefcase-outline");
-    expect(component.getModuleIcon("Polizas")).toBe("clipboard-outline");
-    expect(component.getModuleIcon("Reclutamiento")).toBe("people-outline");
-    expect(component.getModuleIcon("Unknown")).toBe("hammer-outline");
+    expect(component.getModuleIcon("Tickets")).toBe("material-symbols-light:confirmation-number");
+    expect(component.getModuleIcon("Minutas")).toBe("material-symbols-light:description-outline");
+    expect(component.getModuleIcon("Mantenimiento")).toBe("material-symbols-light:construction");
+    expect(component.getModuleIcon("Legal")).toBe("material-symbols-light:work-outline");
+    expect(component.getModuleIcon("Polizas")).toBe("material-symbols-light:fact-check");
+    expect(component.getModuleIcon("Reclutamiento")).toBe("material-symbols-light:group-outline");
+    expect(component.getModuleIcon("Unknown")).toBe("material-symbols-light:construction");
   });
 
   it("getModuleColor should return correct color", () => {
@@ -208,10 +208,11 @@ describe("UnifiedPendingDashboardMobile", () => {
     expect(grouped["Minutas"].length).toBe(1);
   });
 
-  it("onNavigate should call router.navigateByUrl for polizas with urlRoute", () => {
+  it("onNavigate should open policy dialog for polizas", () => {
     const item: any = { module: "Polizas", urlRoute: "/some-route", id: "1" };
     component.onNavigate(item);
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith("/some-route");
+    expect(mockDialogHandlerS.openDialog).toHaveBeenCalled();
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
   });
 
   it("onNavigate should handle default case with urlRoute", () => {

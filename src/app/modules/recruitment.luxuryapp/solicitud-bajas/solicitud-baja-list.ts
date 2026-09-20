@@ -9,16 +9,16 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personRemoveOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -124,8 +124,8 @@ export class SolicitudBajaList implements OnInit {
     this.apiResponseS
       .onGetList<SolicitudBajaListItem[]>(urlApi, params)
       .then((result) => {
-      this.dataSignal.set(result);
-    });
+        this.dataSignal.set(result);
+      });
   }
   onModalForm(data: SolicitudBajaListItem) {
     this.dialogHandlerS
@@ -136,7 +136,7 @@ export class SolicitudBajaList implements OnInit {
           status: data.status,
         },
         data.title,
-        this.dialogHandlerS.sizeSm,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

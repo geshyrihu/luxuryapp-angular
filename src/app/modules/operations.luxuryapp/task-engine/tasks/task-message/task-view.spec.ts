@@ -80,7 +80,8 @@ describe("TaskView", () => {
     component.ticketGroupId = "group-1";
     component.goBack();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/Tasks/messages",
+      "/tickets",
+      "messages",
       "group-1",
     ]);
   });

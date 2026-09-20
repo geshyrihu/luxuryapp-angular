@@ -36,6 +36,7 @@
         NOMBRE
         <app-sorticon field="nameCustomer" />
       </th>
+      <th>ESTADO</th>
       <th>TélefonoS</th>
       <th class="table-col-10"></th>
     </tr>
@@ -53,6 +54,7 @@
         />
       </td>
       <td>{{ item.nameCustomer }}</td>
+      <td>{{ getStateLabel(item.state) }}</td>
       <td>
         {{ item.phoneOne }}
         <br />
@@ -88,7 +90,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <app-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
     <app-table-footer [data]="dataSignal()" />
@@ -130,6 +132,9 @@
 
       <div class="ion-text-wrap">
         <p class="fw-semibold m-0 text-body">{{ item.nameCustomer }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          Estado: {{ getStateLabel(item.state) }}
+        </p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
           {{ item.phoneOne }}{{ item.phoneTwo ? ' é ' + item.phoneTwo : '' }}
         </p>

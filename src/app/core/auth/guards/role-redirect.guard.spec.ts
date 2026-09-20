@@ -1,15 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { AspRoleService } from '../services/asp-role.service';
+import { ApplicationRole } from '../../enums/asp-net-roles.enum';
 import { roleRedirectGuard } from './role-redirect.guard';
 
 describe('roleRedirectGuard', () => {
   let aspRoleMock: { hasRole: ReturnType<typeof jasmine.createSpy> };
-  let routerMock: { navigate: ReturnType<typeof jasmine.createSpy> };
+  let routerMock: { createUrlTree: ReturnType<typeof jasmine.createSpy> };
+  const dummyTree = {} as UrlTree;
 
   beforeEach(() => {
-    aspRoleMock = { hasRole: jasmine.createSpy('spy') };
-    routerMock = { navigate: jasmine.createSpy('spy') };
+    aspRoleMock = { hasRole: jasmine.createSpy('hasRole') };
+    routerMock = { createUrlTree: jasmine.createSpy('createUrlTree').and.returnValue(dummyTree) };
 
     TestBed.configureTestingModule({
       providers: [
@@ -23,30 +25,20 @@ describe('roleRedirectGuard', () => {
     TestBed.runInInjectionContext(() => roleRedirectGuard({} as any, {} as any));
 
   it('should redirect to /committee when user has Comite role', () => {
-    aspRoleMock.hasRole.and.returnValue(true);
-    expect(runGuard()).toBe(false);
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/committee'], { replaceUrl: true });
+    aspRoleMock.hasRole.and.callFake((role: ApplicationRole) => role === ApplicationRole.Comite);
+    expect(runGuard()).toBe(dummyTree);
+    expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/committee']);
   });
 
-  it('should redirect to /dashboard when user does NOT have Comite role', () => {
-    aspRoleMock.hasRole.and.returnValue(false);
-    expect(runGuard()).toBe(false);
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard'], { replaceUrl: true });
+  it('should redirect to /direccion when user has Direccion role', () => {
+    aspRoleMock.hasRole.and.callFake((role: ApplicationRole) => role === ApplicationRole.Direccion);
+    expect(runGuard()).toBe(dummyTree);
+    expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/direccion']);
   });
 
-  it('should always return false (it only redirects)', () => {
-    aspRoleMock.hasRole.and.returnValue(true);
-    expect(runGuard()).toBe(false);
+  it('should redirect to /dashboard when user has neither role', () => {
     aspRoleMock.hasRole.and.returnValue(false);
-    expect(runGuard()).toBe(false);
+    expect(runGuard()).toBe(dummyTree);
+    expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/dashboard']);
   });
 });
-
-
-
-
-
-
-
-
-

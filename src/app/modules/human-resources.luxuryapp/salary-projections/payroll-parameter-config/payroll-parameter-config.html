@@ -29,18 +29,22 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th class="table-col-40" appSortableColumn="yearsOfService">
+          <th class="table-col-25" appSortableColumn="yearsOfService">
             AÑOS DE SERVICIO <app-sorticon field="yearsOfService" />
           </th>
-          <th class="table-col-40" appSortableColumn="vacationDays">
+          <th class="table-col-15" appSortableColumn="year">
+            AÑO <app-sorticon field="year" />
+          </th>
+          <th class="table-col-35" appSortableColumn="vacationDays">
             DÍAS DE VACACIONES <app-sorticon field="vacationDays" />
           </th>
-          <th class="table-col-20"></th>
+          <th class="table-col-25"></th>
         </tr>
       </ng-template>
       <ng-template #body let-row>
         <tr>
           <td>{{ row.yearsOfService }}</td>
+          <td>{{ row.year }}</td>
           <td>{{ row.vacationDays }}</td>
           <td class="text-center">
             <iw-button
@@ -72,10 +76,13 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th class="table-col-50" appSortableColumn="state">
+          <th class="table-col-40" appSortableColumn="state">
             ESTADO <app-sorticon field="state" />
           </th>
-          <th class="table-col-30" appSortableColumn="employerPayrollTaxPercentage">
+          <th class="table-col-15" appSortableColumn="year">
+            AÑO <app-sorticon field="year" />
+          </th>
+          <th class="table-col-25" appSortableColumn="employerPayrollTaxPercentage">
             ISN (%) <app-sorticon field="employerPayrollTaxPercentage" />
           </th>
           <th class="table-col-20"></th>
@@ -84,6 +91,7 @@
       <ng-template #body let-row>
         <tr>
           <td>{{ stateText(row.state) }}</td>
+          <td>{{ row.year }}</td>
           <td>{{ row.employerPayrollTaxPercentage * 100 | number: "1.2-4" }}%</td>
           <td class="text-center">
             <iw-button
@@ -118,7 +126,7 @@
     />
   </header>
 
-  <form class="app-sidepanel__body">
+  <div class="app-sidepanel__body">
     <p class="text-body-secondary m-0">{{ editorLabel() }}</p>
     <custom-input-text-signal
       type="number"
@@ -130,7 +138,7 @@
       [ngModel]="editorValue()"
       (ngModelChange)="updateValue($event)"
     />
-  </form>
+  </div>
 
   <footer class="app-sidepanel__footer">
     <il-button

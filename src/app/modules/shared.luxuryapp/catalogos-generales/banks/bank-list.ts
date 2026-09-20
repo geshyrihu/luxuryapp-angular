@@ -6,17 +6,17 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { addIcons } from "ionicons";
-import { businessOutline } from "ionicons/icons";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { addIcons } from "ionicons";
+import { businessOutline } from "ionicons/icons";
 import { BankForm } from "./bank-form";
 import { BankListDesktop } from "./desktop/bank-list-desktop";
-import { BankListMobile } from "./mobile/bank-list-mobile";
 import { BankDto } from "./interfaces/banks.dto";
+import { BankListMobile } from "./mobile/bank-list-mobile";
 
 @Component({
   selector: "app-bank-list",
@@ -75,4 +75,3 @@ export class BankList implements OnInit {
       });
   }
 }
-

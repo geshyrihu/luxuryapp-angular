@@ -4,11 +4,19 @@ export const EndpointsRecursosHumanos = {
     byId: (id: string) => `salary-projections/${id}`,
     simulate: "salary-projections/simulate",
     federalVacationParameters: "salary-projections/federal-vacation-parameters",
-    federalVacationParameter: (id: string) =>
-      `salary-projections/federal-vacation-parameters/${id}`,
+    federalVacationParameter: (yearsOfService: number, year: number) =>
+      `salary-projections/federal-vacation-parameters/${yearsOfService}/${year}`,
+    federalVacationDelete: (yearsOfService: number, year: number) =>
+      `salary-projections/federal-vacation-parameters/${yearsOfService}/${year}`,
     stateTaxParameters: "salary-projections/state-tax-parameters",
-    stateTaxParameter: (id: string) =>
-      `salary-projections/state-tax-parameters/${id}`,
+    stateTaxParameter: (state: number, year: number) =>
+      `salary-projections/state-tax-parameters/${state}/${year}`,
+    stateTaxDelete: (state: number, year: number) =>
+      `salary-projections/state-tax-parameters/${state}/${year}`,
+    federalLaborLawParameters:
+      "salary-projections/federal-labor-law-parameters",
+    federalLaborLawParameter: (year: number) =>
+      `salary-projections/federal-labor-law-parameters/${year}`,
   },
   HR: {
     AddendumTemplate: {

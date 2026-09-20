@@ -7,27 +7,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import {
-  addCircleOutline,
-  clipboardOutline,
-  constructOutline,
-  copyOutline,
-  createOutline,
-  documentTextOutline,
-  readerOutline,
-  timeOutline,
-  trashOutline,
-} from "ionicons/icons";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -54,9 +33,30 @@ import { MantenimientosDialog } from "@maintenance.luxuryapp/equipos-y-maquinari
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppImage } from "@ui/web/image/image";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import {
+  addCircleOutline,
+  clipboardOutline,
+  constructOutline,
+  copyOutline,
+  createOutline,
+  documentTextOutline,
+  readerOutline,
+  timeOutline,
+  trashOutline,
+} from "ionicons/icons";
 // ... el resto de las importaciones de componentes y mdulos ...
 // ...
 
@@ -420,7 +420,7 @@ export class EquiposList {
               </td>
               <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
                 <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
-                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicacin:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
+                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
                 <table style="width: 100%; border: none;">
                   <tr>
                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
@@ -701,5 +701,3 @@ ${this.htmlPrintS.getStandardCss()}
     await this.refreshData();
   }
 }
-
-

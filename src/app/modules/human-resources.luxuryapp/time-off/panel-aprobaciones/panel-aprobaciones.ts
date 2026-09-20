@@ -4,8 +4,8 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { GenericApprovalPanel } from "../../expediente-del-empleado/recursos-humanos/shared/generic-approval-panel";
 import { ApprovalConfirmationModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-confirmation";
 import { ApprovalDetailModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-detail";
@@ -71,7 +71,7 @@ export class PanelAprobaciones implements OnInit {
         MotivoRechazoFormulario,
         {},
         `Motivo del Rechazo (${request.requestType})`,
-        this.dialogHandlerS.sizeSm,
+        this.dialogHandlerS.sizeLg,
       )
       .then((reason: string) => {
         if (reason) {
@@ -80,4 +80,3 @@ export class PanelAprobaciones implements OnInit {
       });
   }
 }
-

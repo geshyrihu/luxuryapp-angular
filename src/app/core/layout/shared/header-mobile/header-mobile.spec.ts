@@ -48,6 +48,7 @@ describe('HeaderMobile', () => {
     };
 
     routerMock = {
+      navigate: vi.fn(),
       navigateByUrl: vi.fn(),
     };
 
@@ -81,13 +82,13 @@ describe('HeaderMobile', () => {
     navigationServiceMock.canGoBack.mockReturnValue(true);
     component.onBack();
     expect(locationMock.back).toHaveBeenCalled();
-    expect(routerMock.navigateByUrl).not.toHaveBeenCalled();
+    expect(routerMock.navigate).not.toHaveBeenCalled();
   });
 
-  it('should navigate to /committee when cannot go back', () => {
+  it('should navigate to default dashboard when cannot go back', () => {
     navigationServiceMock.canGoBack.mockReturnValue(false);
     component.onBack();
-    expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/committee');
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard/default']);
     expect(locationMock.back).not.toHaveBeenCalled();
   });
 });

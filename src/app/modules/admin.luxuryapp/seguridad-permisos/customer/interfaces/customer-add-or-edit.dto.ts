@@ -7,6 +7,7 @@ export interface CustomerAddOrEditDto {
   phoneTwo: string;
   register: string;
   active: boolean;
+  state?: number;
   photoPath: any; // IFormFile / File / string
   folioPrefix: string;
 }

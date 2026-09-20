@@ -1,15 +1,44 @@
 // 🧮 Contratos del módulo de proyección de sueldos.
 
 export interface IFederalVacationParameter {
-  id: string;
   yearsOfService: number;
+  year: number;
   vacationDays: number;
 }
 
 export interface IStateTaxParameter {
-  id: string;
   state: number;
+  year: number;
   employerPayrollTaxPercentage: number;
+}
+
+export interface IFederalLaborLawParameter {
+  year: number;
+  christmasBonusDays: number;
+  vacationPremiumPercentage: number;
+  sundayPremiumPercentage: number;
+}
+
+export interface IUpdateFederalLaborLawParameter {
+  christmasBonusDays: number;
+  vacationPremiumPercentage: number;
+  sundayPremiumPercentage: number;
+}
+
+export interface ISalaryProjectionBonus {
+  id: string;
+  salaryProjectionItemId: string;
+  concept: string;
+  amount: number;
+  isTaxableForISN: boolean;
+  isTaxableForIMSS: boolean;
+}
+
+export interface ISalaryProjectionBonusInput {
+  concept: string;
+  amount: number;
+  isTaxableForISN: boolean;
+  isTaxableForIMSS: boolean;
 }
 
 export interface ISalaryProjectionItem {
@@ -18,12 +47,17 @@ export interface ISalaryProjectionItem {
   isNewPosition: boolean;
   workPositionId: string | null;
   employeeId: string | null;
+  employeeName: string | null;
   positionTitle: string;
-  baseSalary: number;
+  netMonthlySalary: number;
+  applicationRoleId: string | null;
+  weeklyHours: number | null;
+  dateAdmission: string | null;
   rcvEmployerFee: number;
   infonavitEmployerFee: number;
   imssEmployerFee: number;
   isTaxableForPayrollTax: boolean;
+  bonuses: ISalaryProjectionBonus[];
 }
 
 export interface ISalaryProjectionScenario {
@@ -37,6 +71,7 @@ export interface ISalaryProjectionScenario {
 export interface ISalaryProjection {
   id: string;
   customerId: string;
+  targetYear: number;
   folio: string;
   name: string;
   state: number;
@@ -51,6 +86,7 @@ export interface ISalaryProjectionItemSimulation {
   dailySalary: number;
   monthlySalary: number;
   vacationPremium: number;
+  holidayPremium: number;
   sundayPremium: number;
   christmasBonus: number;
   monthlyPerceptions: number;
@@ -62,7 +98,7 @@ export interface ISimulateSalaryProjectionItem {
   itemId: string;
   isNewPosition: boolean;
   employeeId: string | null;
-  baseSalary: number;
+  netMonthlySalary: number;
   rcvEmployerFee: number;
   infonavitEmployerFee: number;
   imssEmployerFee: number;
@@ -78,11 +114,15 @@ export interface ISalaryProjectionItemInput {
   employeeId: string | null;
   isNewPosition: boolean;
   positionTitle: string;
-  baseSalary: number;
+  netMonthlySalary: number;
+  applicationRoleId: string | null;
+  weeklyHours: number | null;
+  dateAdmission: string | null;
   rcvEmployerFee: number;
   infonavitEmployerFee: number;
   imssEmployerFee: number;
   isTaxableForPayrollTax: boolean;
+  bonuses: ISalaryProjectionBonusInput[];
 }
 
 export interface ISalaryProjectionScenarioInput {
@@ -168,7 +208,10 @@ export interface ISalaryProjectionItemEdit {
   isNewPosition: boolean;
   employeeId: string | null;
   positionTitle: string;
-  baseSalary: number;
+  netMonthlySalary: number;
+  applicationRoleId: string | null;
+  weeklyHours: number | null;
+  dateAdmission: string | null;
   rcvEmployerFee: number;
   infonavitEmployerFee: number;
   imssEmployerFee: number;

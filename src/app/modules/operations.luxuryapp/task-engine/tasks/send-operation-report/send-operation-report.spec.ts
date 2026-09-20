@@ -56,11 +56,12 @@ describe("SendOperationReport", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should initialize service with config data", () => {
+  it("should initialize service with config data", async () => {
     const service = fixture.debugElement.injector.get(SendOperationReportBaseService);
     expect(service.year).toBe(2024);
     expect(service.numeroSemana).toBe(42);
-    expect(service.loading()).toBe(true);
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(service.loading()).toBe(false);
   });
 });
 

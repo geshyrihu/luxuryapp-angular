@@ -45,6 +45,7 @@ import { CustomerAddress } from "./customer-address";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
 import { CustomerDto } from "./interfaces/customer.dto";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -185,6 +186,48 @@ export class CustomerList implements OnInit {
     this.state = valor;
     this.state === true ? (this.title = "Activos") : (this.title = "Inactivos");
     this.onLoadData();
+  }
+
+  /** Entidades federativas para mostrar en la tabla (espejo de MexicanStateEnum). */
+  stateOptions = computed<SelectItemDto[]>(() => [
+    "Aguascalientes",
+    "Baja California",
+    "Baja California Sur",
+    "Campeche",
+    "Chiapas",
+    "Chihuahua",
+    "Ciudad de México",
+    "Coahuila",
+    "Colima",
+    "Durango",
+    "Estado de México",
+    "Guanajuato",
+    "Guerrero",
+    "Hidalgo",
+    "Jalisco",
+    "Michoacán",
+    "Morelos",
+    "Nayarit",
+    "Nuevo León",
+    "Oaxaca",
+    "Puebla",
+    "Querétaro",
+    "Quintana Roo",
+    "San Luis Potosí",
+    "Sinaloa",
+    "Sonora",
+    "Tabasco",
+    "Tamaulipas",
+    "Tlaxcala",
+    "Veracruz",
+    "Yucatán",
+    "Zacatecas",
+  ].map((label, index) => ({ value: index, label })));
+
+  /** Obtiene el label del estado para un valor numérico. */
+  getStateLabel(stateValue: number): string {
+    const found = this.stateOptions().find((opt) => opt.value === stateValue);
+    return found?.label ?? "Desconocido";
   }
 }
 

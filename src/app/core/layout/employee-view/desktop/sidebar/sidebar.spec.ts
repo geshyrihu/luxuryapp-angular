@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { LayoutService } from "@core/services/layout.service";
@@ -24,6 +25,10 @@ const customerIdServiceMock = {
 
 const authServiceMock = {
   infoUserAuth: { photoPath: "profile.jpg" },
+};
+
+const aspRoleServiceMock = {
+  roleSignal: vi.fn(() => () => false),
 };
 
 const routerMock = {
@@ -58,6 +63,7 @@ describe("Sidebar", () => {
         { provide: MenuService, useValue: menuServiceMock },
         { provide: CustomerIdService, useValue: customerIdServiceMock },
         { provide: AuthService, useValue: authServiceMock },
+        { provide: AspRoleService, useValue: aspRoleServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: LayoutService, useValue: layoutServiceMock },
       ],

@@ -8,6 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -18,9 +19,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
 import { AppPaginator } from "@ui/web/paginator/paginator";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -35,6 +34,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { CalificacionProveedor } from "@supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
@@ -269,7 +269,7 @@ export class ListProvider implements OnInit {
           providerId: data.providerId,
         },
         "Calificar a " + data.nameProvider,
-        this.dialogHandlerS.sizeSm,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
         if (result) this.applyFilter();
@@ -365,5 +365,3 @@ export class ListProvider implements OnInit {
     return Array.from(tokens).join(" ");
   }
 }
-
-

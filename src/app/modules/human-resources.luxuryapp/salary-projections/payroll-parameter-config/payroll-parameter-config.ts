@@ -65,7 +65,6 @@ const LIST_URL = "/hr/salary-projections";
         justify-content: space-between;
         gap: var(--ds-space-sm, 8px);
         padding: var(--ds-space-lg, 16px);
-        border-color: var(--ds-border, #dee2e6);
       }
       .app-sidepanel__header {
         border-bottom: 1px solid var(--ds-border, #dee2e6);
@@ -93,10 +92,12 @@ export class PayrollParameterConfig {
   readonly stateTaxParameters = signal<IStateTaxParameter[]>([]);
   readonly loading = signal(true);
 
-  // Sidepanel de edición.
+  // Sidepanel de edición (clave compuesta: año + antigüedad / año + estado).
   readonly editorOpen = signal(false);
   readonly editorKind = signal<PayrollParameterKind>("federal");
-  readonly editorId = signal("");
+  readonly editorYearsOfService = signal(0);
+  readonly editorState = signal(0);
+  readonly editorYear = signal(0);
   readonly editorLabel = signal("");
   readonly editorValue = signal(0);
 
@@ -131,16 +132,18 @@ export class PayrollParameterConfig {
 
   openFederalEditor(row: IFederalVacationParameter): void {
     this.editorKind.set("federal");
-    this.editorId.set(row.id);
-    this.editorLabel.set(`${row.yearsOfService} años de antigüedad`);
+    this.editorYearsOfService.set(row.yearsOfService);
+    this.editorYear.set(row.year);
+    this.editorLabel.set(`${row.yearsOfService} años de antigüedad · ${row.year}`);
     this.editorValue.set(row.vacationDays);
     this.editorOpen.set(true);
   }
 
   openStateEditor(row: IStateTaxParameter): void {
     this.editorKind.set("state");
-    this.editorId.set(row.id);
-    this.editorLabel.set(this.stateText(row.state));
+    this.editorState.set(row.state);
+    this.editorYear.set(row.year);
+    this.editorLabel.set(`${this.stateText(row.state)} · ${row.year}`);
     this.editorValue.set(row.employerPayrollTaxPercentage);
     this.editorOpen.set(true);
   }
@@ -154,21 +157,38 @@ export class PayrollParameterConfig {
   }
 
   async applyEditor(): Promise<void> {
-    const id = this.editorId();
     const value = Number(this.editorValue()) || 0;
 
     if (this.editorKind() === "federal") {
-      const updated = await this.service.updateFederalVacationParameter(id, value);
+      const yearsOfService = this.editorYearsOfService();
+      const year = this.editorYear();
+      const updated = await this.service.updateFederalVacationParameter(
+        yearsOfService,
+        year,
+        value,
+      );
       if (updated) {
         this.federalParameters.update((rows) =>
-          rows.map((row) => (row.id === id ? updated : row)),
+          rows.map((row) =>
+            row.yearsOfService === yearsOfService && row.year === year
+              ? updated
+              : row,
+          ),
         );
       }
     } else {
-      const updated = await this.service.updateStateTaxParameter(id, value);
+      const state = this.editorState();
+      const year = this.editorYear();
+      const updated = await this.service.updateStateTaxParameter(
+        state,
+        year,
+        value,
+      );
       if (updated) {
         this.stateTaxParameters.update((rows) =>
-          rows.map((row) => (row.id === id ? updated : row)),
+          rows.map((row) =>
+            row.state === state && row.year === year ? updated : row,
+          ),
         );
       }
     }

@@ -444,15 +444,34 @@
       </td>
 
       <td>
-        <div class="d-flex align-items-center justify-content-center gap-1">
-          <iw-button
-            icon="material-symbols-light:photo-camera"
-            variant="soft"
-            size="small"
-            ariaLabel="Ver fotos antes y después"
-            [disabled]="!item.beforeWork && !item.afterWork"
-            (clicked)="onViewPhotos(item)"
-          />
+        <div class="d-flex align-items-center justify-content-center gap-2">
+          @if (item.beforeWork) {
+          <figure class="m-0 text-center">
+            <lx-image
+              [src]="item.beforeWork"
+              alt="."
+              [preview]="true"
+              imageClass="task-evidence-thumb"
+            />
+            <figcaption class="text-xs text-body-secondary mt-1">
+              Antes
+            </figcaption>
+          </figure>
+          } @if (item.afterWork) {
+          <figure class="m-0 text-center">
+            <lx-image
+              [src]="item.afterWork"
+              alt="."
+              [preview]="true"
+              imageClass="task-evidence-thumb"
+            />
+            <figcaption class="text-xs text-body-secondary mt-1">
+              Después
+            </figcaption>
+          </figure>
+          } @if (!item.beforeWork && !item.afterWork) {
+          <span class="text-xs text-body-secondary">—</span>
+          }
           <iw-button
             icon="material-symbols-light:photo-library"
             variant="soft"

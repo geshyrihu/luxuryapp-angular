@@ -15,12 +15,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AppTable } from "@ui/web/table/table";
 import {
   ISalaryProjection,
   ISalaryProjectionItem,
   ISalaryProjectionItemEdit,
   ISalaryProjectionItemSimulation,
+  ISalaryProjectionScenario,
   salaryProjectionStateSeverity,
   salaryProjectionStateText,
 } from "../interfaces/salary-projections.models";
@@ -28,14 +29,26 @@ import { SalaryProjectionsService } from "../salary-projections.service";
 
 const LIST_URL = "/hr/salary-projections";
 
+interface ComparisonCell {
+  scenarioId: string;
+  scenarioName: string;
+  item: ISalaryProjectionItem | null;
+  simulation: ISalaryProjectionItemSimulation | null;
+}
+
+interface ComparisonRow {
+  key: string;
+  positionTitle: string;
+  applicationRoleId: string | null;
+  comparisons: ComparisonCell[];
+}
+
 @Component({
   selector: "app-salary-projections-detail",
   templateUrl: "./salary-projections-detail.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppTable,
-    AppSortableColumn,
-    AppSorticon,
     TableEmptyMessage,
     LxTag,
     WebButtonLabel,
@@ -87,6 +100,25 @@ const LIST_URL = "/hr/salary-projections";
         overflow-y: auto;
         flex: 1;
       }
+      .comparison-bar {
+        height: 6px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: var(--ds-bg-muted, #e9ecef);
+      }
+      .comparison-bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--ds-action-primary, #0d6efd);
+        transition: width 180ms ease-out;
+      }
+      .comparison-cell {
+        cursor: pointer;
+      }
+      .comparison-cell:hover {
+        background: var(--ds-bg-subtle, #f8f9fa);
+      }
     `,
   ],
 })
@@ -104,6 +136,7 @@ export class SalaryProjectionsDetail {
   readonly loading = signal(true);
   readonly simulating = signal(false);
   readonly saving = signal(false);
+  readonly selectedScenarioIds = signal<string[]>([]);
 
   // Sidepanel de edición de fila.
   readonly editorOpen = signal(false);
@@ -125,6 +158,62 @@ export class SalaryProjectionsDetail {
   });
 
   readonly activeItems = computed(() => this.activeScenario()?.items ?? []);
+
+  readonly comparedScenarios = computed(() => {
+    const scenarios = this.scenarios();
+    const selectedIds = this.selectedScenarioIds();
+    return selectedIds.length > 0
+      ? scenarios.filter((scenario) => selectedIds.includes(scenario.id))
+      : scenarios.slice(0, 3);
+  });
+
+  readonly comparisonRows = computed<ComparisonRow[]>(() => {
+    const scenarios = this.comparedScenarios();
+    const rows = new Map<string, Omit<ComparisonRow, "comparisons">>();
+
+    for (const scenario of scenarios) {
+      for (const item of scenario.items) {
+        const key = item.workPositionId ?? item.applicationRoleId ?? item.positionTitle;
+        if (!rows.has(key)) {
+          rows.set(key, {
+            key,
+            positionTitle: item.positionTitle || "Sin título",
+            applicationRoleId: item.applicationRoleId,
+          });
+        }
+      }
+    }
+
+    return [...rows.values()].map((row) => ({
+      ...row,
+      comparisons: scenarios.map((scenario) => {
+        const item = scenario.items.find(
+          (candidate) =>
+            (candidate.workPositionId ?? candidate.applicationRoleId ?? candidate.positionTitle) === row.key,
+        ) ?? null;
+        return {
+          scenarioId: scenario.id,
+          scenarioName: scenario.name,
+          item,
+          simulation: item ? this.simulationOf(item.id) : null,
+        };
+      }),
+    }));
+  });
+
+  readonly comparisonScenarioTotals = computed(() =>
+    this.comparedScenarios().map((scenario) => ({
+      scenario,
+      total: scenario.items.reduce(
+        (total, item) => total + (this.simulations()[item.id]?.totalEmployerCost ?? 0),
+        0,
+      ),
+    })),
+  );
+
+  readonly comparisonMaxTotal = computed(() =>
+    Math.max(...this.comparisonScenarioTotals().map((entry) => entry.total), 1),
+  );
 
   readonly activeTotalCost = computed(() => {
     const simulations = this.simulations();
@@ -157,6 +246,13 @@ export class SalaryProjectionsDetail {
         if (!data.scenarios.some((scenario) => scenario.id === currentScenarioId)) {
           this.activeScenarioId.set(data.scenarios[0]?.id ?? null);
         }
+        const availableIds = data.scenarios.slice(0, 3).map((scenario) => scenario.id);
+        if (
+          this.selectedScenarioIds().length === 0 ||
+          this.selectedScenarioIds().every((scenarioId) => !data.scenarios.some((scenario) => scenario.id === scenarioId))
+        ) {
+          this.selectedScenarioIds.set(availableIds);
+        }
         this.queueSimulation();
       }
     } finally {
@@ -170,6 +266,39 @@ export class SalaryProjectionsDetail {
 
   selectScenario(scenarioId: string): void {
     this.activeScenarioId.set(scenarioId);
+    if (!this.selectedScenarioIds().includes(scenarioId) && this.selectedScenarioIds().length < 3) {
+      this.selectedScenarioIds.update((ids) => [...ids, scenarioId]);
+    }
+  }
+
+  toggleScenarioComparison(scenarioId: string): void {
+    const selectedIds = this.selectedScenarioIds();
+    if (selectedIds.includes(scenarioId)) {
+      if (selectedIds.length === 1) {
+        return;
+      }
+      this.selectedScenarioIds.set(selectedIds.filter((id) => id !== scenarioId));
+      if (this.activeScenarioId() === scenarioId) {
+        this.activeScenarioId.set(this.selectedScenarioIds()[0] ?? null);
+      }
+      return;
+    }
+
+    if (selectedIds.length < 3) {
+      this.selectedScenarioIds.set([...selectedIds, scenarioId]);
+    }
+  }
+
+  isScenarioSelected(scenarioId: string): boolean {
+    return this.selectedScenarioIds().includes(scenarioId);
+  }
+
+  comparisonBarWidth(total: number): string {
+    return `${Math.max((total / this.comparisonMaxTotal()) * 100, total > 0 ? 4 : 0)}%`;
+  }
+
+  scenarioItemCount(scenario: ISalaryProjectionScenario): number {
+    return scenario.items.length;
   }
 
   back(): void {
@@ -192,7 +321,7 @@ export class SalaryProjectionsDetail {
         itemId: item.id,
         isNewPosition: item.isNewPosition,
         employeeId: item.employeeId,
-        baseSalary: Number(item.baseSalary) || 0,
+        netMonthlySalary: Number(item.netMonthlySalary) || 0,
         rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
         infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
         imssEmployerFee: Number(item.imssEmployerFee) || 0,
@@ -222,14 +351,20 @@ export class SalaryProjectionsDetail {
     }
   }
 
-  openEditor(item: ISalaryProjectionItem): void {
+  openEditor(item: ISalaryProjectionItem, scenarioId?: string): void {
+    if (scenarioId) {
+      this.activeScenarioId.set(scenarioId);
+    }
     this.editorIsNew.set(false);
     this.editorDraft.set({
       id: item.id,
       isNewPosition: item.isNewPosition,
       employeeId: item.employeeId,
       positionTitle: item.positionTitle ?? "",
-      baseSalary: item.baseSalary,
+      netMonthlySalary: item.netMonthlySalary,
+      applicationRoleId: item.applicationRoleId,
+      weeklyHours: item.weeklyHours,
+      dateAdmission: item.dateAdmission,
       rcvEmployerFee: item.rcvEmployerFee,
       infonavitEmployerFee: item.infonavitEmployerFee,
       imssEmployerFee: item.imssEmployerFee,
@@ -245,7 +380,10 @@ export class SalaryProjectionsDetail {
       isNewPosition: true,
       employeeId: null,
       positionTitle: "",
-      baseSalary: 0,
+      netMonthlySalary: 0,
+      applicationRoleId: null,
+      weeklyHours: null,
+      dateAdmission: null,
       rcvEmployerFee: 0,
       infonavitEmployerFee: 0,
       imssEmployerFee: 0,
@@ -321,11 +459,15 @@ export class SalaryProjectionsDetail {
             employeeId: item.employeeId,
             isNewPosition: item.isNewPosition,
             positionTitle: item.positionTitle,
-            baseSalary: Number(item.baseSalary) || 0,
+            netMonthlySalary: Number(item.netMonthlySalary) || 0,
+            applicationRoleId: item.applicationRoleId,
+            weeklyHours: item.weeklyHours,
+            dateAdmission: item.dateAdmission,
             rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
             infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
             imssEmployerFee: Number(item.imssEmployerFee) || 0,
             isTaxableForPayrollTax: item.isTaxableForPayrollTax,
+            bonuses: [],
           })),
         })),
       });
@@ -348,12 +490,17 @@ export class SalaryProjectionsDetail {
       isNewPosition: draft.isNewPosition,
       workPositionId: null,
       employeeId: draft.employeeId,
+      employeeName: null,
       positionTitle: draft.positionTitle,
-      baseSalary: Number(draft.baseSalary) || 0,
+      netMonthlySalary: Number(draft.netMonthlySalary) || 0,
+      applicationRoleId: draft.applicationRoleId,
+      weeklyHours: draft.weeklyHours,
+      dateAdmission: draft.dateAdmission,
       rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
       infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
       imssEmployerFee: Number(draft.imssEmployerFee) || 0,
       isTaxableForPayrollTax: draft.isTaxableForPayrollTax,
+      bonuses: [],
     };
 
     const scenarios = projection.scenarios.map((scenario) =>
@@ -378,7 +525,10 @@ export class SalaryProjectionsDetail {
           ? {
               ...item,
               positionTitle: draft.positionTitle,
-              baseSalary: Number(draft.baseSalary) || 0,
+              netMonthlySalary: Number(draft.netMonthlySalary) || 0,
+              applicationRoleId: draft.applicationRoleId,
+              weeklyHours: draft.weeklyHours,
+              dateAdmission: draft.dateAdmission,
               rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
               infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
               imssEmployerFee: Number(draft.imssEmployerFee) || 0,

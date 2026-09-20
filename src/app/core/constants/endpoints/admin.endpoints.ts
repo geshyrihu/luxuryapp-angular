@@ -109,6 +109,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
     recalculateWorkPositionFolios:
       "admin/system-maintenance/recalculate-work-position-folios",
+    seedFederalLaborLawParameters:
+      "admin/system-maintenance/seed-federal-labor-law-parameters",
   },
   AppImplementationTracking: {
     triggerEmployeeValidation:

@@ -112,7 +112,9 @@ describe("TaskGroupList", () => {
     expect(mockTaskGroupService.taskGroupMessageStatus).toBe(0);
     expect(mockTaskGroupService.setStatus).toHaveBeenCalledWith(0);
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets/messages/group-1",
+      "/tickets",
+      "messages",
+      "group-1",
     ]);
   });
 });

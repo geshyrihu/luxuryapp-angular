@@ -5,14 +5,14 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import {
@@ -21,6 +21,7 @@ import {
   salaryProjectionStateText,
 } from "../interfaces/salary-projections.models";
 import { SalaryProjectionsService } from "../salary-projections.service";
+import { SalaryProjectionCreateDialog } from "./salary-projection-create-dialog";
 
 const DETAIL_URL = "/hr/salary-projections";
 
@@ -36,8 +37,7 @@ const DETAIL_URL = "/hr/salary-projections";
     LxTag,
     WebButtonLabel,
     WebButtonIcon,
-    CustomInputTextSignal,
-    FormsModule,
+    WebButtonIconConfirm,
     ApiDatePipe,
   ],
 })
@@ -45,11 +45,12 @@ export class SalaryProjectionsList {
   private readonly service = inject(SalaryProjectionsService);
   private readonly customerIdService = inject(CustomerIdService);
   private readonly router = inject(Router);
+  private readonly dialogHandler = inject(DialogHandlerService);
 
   readonly rows = signal<ISalaryProjection[]>([]);
   readonly loading = signal(true);
   readonly creating = signal(false);
-  readonly newName = signal("");
+  readonly deletingId = signal<string | null>(null);
   readonly globalFilterFields = signal(["folio", "name"]);
 
   readonly stateText = salaryProjectionStateText;
@@ -80,20 +81,44 @@ export class SalaryProjectionsList {
     void this.router.navigate([DETAIL_URL, item.id]);
   }
 
-  openPayrollParameters(): void {
-    void this.router.navigate([DETAIL_URL, "payroll-parameters"]);
+  async deleteProjection(item: ISalaryProjection): Promise<void> {
+    if (this.deletingId()) {
+      return;
+    }
+
+    this.deletingId.set(item.id);
+    try {
+      const deleted = await this.service.delete(item.id);
+      if (deleted) {
+        this.rows.update((currentRows) =>
+          currentRows.filter((row) => row.id !== item.id),
+        );
+      }
+    } finally {
+      this.deletingId.set(null);
+    }
   }
 
-  async createProjection(): Promise<void> {
-    const name = this.newName().trim();
-    if (!name || this.creating()) {
+  async openCreateDialog(): Promise<void> {
+    if (this.creating()) {
+      return;
+    }
+
+    const result = await this.dialogHandler.openDialog<{ name: string }>(
+      SalaryProjectionCreateDialog,
+      {},
+      "Nueva propuesta",
+      this.dialogHandler.sizeSm,
+    );
+
+    if (!result?.name) {
       return;
     }
 
     this.creating.set(true);
     try {
       const created = await this.service.create({
-        name,
+        name: result.name,
         folio: "",
         scenarios: [
           {
@@ -105,7 +130,6 @@ export class SalaryProjectionsList {
       });
 
       if (created) {
-        this.newName.set("");
         await this.router.navigate([DETAIL_URL, created.id]);
       }
     } finally {

@@ -3,12 +3,14 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   ICreateSalaryProjection,
+  IFederalLaborLawParameter,
   IFederalVacationParameter,
   ISalaryProjection,
   ISalaryProjectionItemSimulation,
   ISimulateSalaryProjectionRequest,
   IStateTaxParameter,
   IUpdateSalaryProjection,
+  IUpdateFederalLaborLawParameter,
 } from "./interfaces/salary-projections.models";
 
 /**
@@ -54,10 +56,27 @@ export class SalaryProjectionsService {
     );
   }
 
-  updateFederalVacationParameter(id: string, vacationDays: number) {
+  createFederalVacationParameter(parameter: IFederalVacationParameter) {
+    return this.api.onPost<IFederalVacationParameter>(
+      Endpoints.SalaryProjections.federalVacationParameters,
+      parameter,
+    );
+  }
+
+  updateFederalVacationParameter(
+    yearsOfService: number,
+    year: number,
+    vacationDays: number,
+  ) {
     return this.api.onPut<IFederalVacationParameter>(
-      Endpoints.SalaryProjections.federalVacationParameter(id),
+      Endpoints.SalaryProjections.federalVacationParameter(yearsOfService, year),
       { vacationDays },
+    );
+  }
+
+  deleteFederalVacationParameter(yearsOfService: number, year: number) {
+    return this.api.onDelete(
+      Endpoints.SalaryProjections.federalVacationDelete(yearsOfService, year),
     );
   }
 
@@ -67,13 +86,56 @@ export class SalaryProjectionsService {
     );
   }
 
+  createStateTaxParameter(parameter: IStateTaxParameter) {
+    return this.api.onPost<IStateTaxParameter>(
+      Endpoints.SalaryProjections.stateTaxParameters,
+      parameter,
+    );
+  }
+
   updateStateTaxParameter(
-    id: string,
+    state: number,
+    year: number,
     employerPayrollTaxPercentage: number,
   ) {
     return this.api.onPut<IStateTaxParameter>(
-      Endpoints.SalaryProjections.stateTaxParameter(id),
+      Endpoints.SalaryProjections.stateTaxParameter(state, year),
       { employerPayrollTaxPercentage },
+    );
+  }
+
+  deleteStateTaxParameter(state: number, year: number) {
+    return this.api.onDelete(
+      Endpoints.SalaryProjections.stateTaxDelete(state, year),
+    );
+  }
+
+  getFederalLaborLawParameters() {
+    return this.api.onGetList<IFederalLaborLawParameter[]>(
+      Endpoints.SalaryProjections.federalLaborLawParameters,
+    );
+  }
+
+  updateFederalLaborLawParameter(
+    year: number,
+    dto: IUpdateFederalLaborLawParameter,
+  ) {
+    return this.api.onPut<IFederalLaborLawParameter>(
+      Endpoints.SalaryProjections.federalLaborLawParameter(year),
+      dto,
+    );
+  }
+
+  createFederalLaborLawParameter(parameter: IFederalLaborLawParameter) {
+    return this.api.onPost<IFederalLaborLawParameter>(
+      Endpoints.SalaryProjections.federalLaborLawParameters,
+      parameter,
+    );
+  }
+
+  deleteFederalLaborLawParameter(year: number) {
+    return this.api.onDelete(
+      Endpoints.SalaryProjections.federalLaborLawParameter(year),
     );
   }
 }

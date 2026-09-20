@@ -4,12 +4,3 @@ export enum DialogSize {
   lg = "modal-lg",
   full = "modal-fullscreen", // clase que forzará 100vw x 100vh
 }
-
-
-
-
-
-
-
-
-

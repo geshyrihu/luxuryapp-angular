@@ -38,8 +38,7 @@ describe('TableCaption', () => {
     const spy = vi.fn();
     component.search.subscribe(spy);
 
-    const event = { target: { value: 'search-term' } } as any;
-    component.onSearch(event);
+    component.onSearch('search-term');
 
     expect(spy).toHaveBeenCalledWith('search-term');
     expect(tableMock.filterGlobal).toHaveBeenCalledWith('search-term', 'contains');

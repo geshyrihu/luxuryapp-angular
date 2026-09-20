@@ -21,24 +21,11 @@
 
         <div class="d-flex align-items-center gap-2">
           <il-button
-            label="Parámetros"
-            iconClass="material-symbols-light:tune"
-            severity="secondary"
-            variant="outline"
-            size="small"
-            (clicked)="openPayrollParameters()"
-          />
-          <custom-input-text-signal
-            label="Nombre de la propuesta"
-            [ngModel]="newName()"
-            (ngModelChange)="newName.set($event)"
-          />
-          <il-button
             label="Nueva propuesta"
             iconClass="material-symbols-light:add"
             severity="primary"
             size="small"
-            (clicked)="createProjection()"
+            (clicked)="openCreateDialog()"
           />
         </div>
       </div>
@@ -82,6 +69,16 @@
             size="small"
             variant="text"
             (clicked)="openDetail(item)"
+          />
+          <iw-button-confirm
+            iconClass="material-symbols-light:delete"
+            severity="danger"
+            variant="text"
+            size="small"
+            title="Eliminar propuesta"
+            swalText="¿Estás seguro de que quieres eliminar esta propuesta?"
+            [loading]="deletingId() === item.id"
+            (confirmed)="deleteProjection(item)"
           />
         </td>
       </tr>

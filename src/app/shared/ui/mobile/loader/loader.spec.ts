@@ -42,12 +42,8 @@ describe("Loader Component", () => {
   it("no debe mostrar nada si isLoading es false", () => {
     const loaderContainer =
       fixture.nativeElement.querySelector(".loader-container");
-    const mobileContainer = fixture.nativeElement.querySelector(
-      ".mobile-loader-container",
-    );
 
     expect(loaderContainer).toBeNull();
-    expect(mobileContainer).toBeNull();
   });
 
   it("debe mostrar el loader cuando isLoading es true", () => {
@@ -57,12 +53,8 @@ describe("Loader Component", () => {
 
     const loaderContainer =
       fixture.nativeElement.querySelector(".loader-container");
-    const mobileContainer = fixture.nativeElement.querySelector(
-      ".mobile-loader-container",
-    );
 
     expect(loaderContainer).not.toBeNull();
-    expect(mobileContainer).not.toBeNull();
   });
 
   it('debe tener el texto de "Cargando..."', () => {

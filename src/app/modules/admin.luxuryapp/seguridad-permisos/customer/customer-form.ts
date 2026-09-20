@@ -58,12 +58,49 @@ export class CustomerForm implements OnInit {
     { value: false, label: "Inactivo" },
   ];
 
+  /** Entidades federativas (espejo de MexicanStateEnum del backend). */
+  stateOptions: SelectItemDto[] = [
+    "Aguascalientes",
+    "Baja California",
+    "Baja California Sur",
+    "Campeche",
+    "Chiapas",
+    "Chihuahua",
+    "Ciudad de México",
+    "Coahuila",
+    "Colima",
+    "Durango",
+    "Estado de México",
+    "Guanajuato",
+    "Guerrero",
+    "Hidalgo",
+    "Jalisco",
+    "Michoacán",
+    "Morelos",
+    "Nayarit",
+    "Nuevo León",
+    "Oaxaca",
+    "Puebla",
+    "Querétaro",
+    "Quintana Roo",
+    "San Luis Potosí",
+    "Sinaloa",
+    "Sonora",
+    "Tabasco",
+    "Tamaulipas",
+    "Tlaxcala",
+    "Veracruz",
+    "Yucatán",
+    "Zacatecas",
+  ].map((label, index) => ({ value: index, label }));
+
   model: CustomerFormDto;
   photoFileUpdate: boolean = false;
 
   form: FormGroup<CustomerFormGroup> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     active: new FormControl<boolean | null>(null),
+    state: new FormControl<number | null>(6),
     nameCustomer: new FormControl("", {
       validators: [Validators.required, Validators.minLength(5)],
       nonNullable: true,
@@ -138,6 +175,7 @@ export class CustomerForm implements OnInit {
   private createFormData(customerAdCustomerForm: CustomerFormDto): FormData {
     const formData = new FormData();
     formData.append("active", String(customerAdCustomerForm.active));
+    formData.append("state", String(customerAdCustomerForm.state));
     formData.append("adreess", customerAdCustomerForm.adreess);
     formData.append("folioPrefix", customerAdCustomerForm.folioPrefix);
     formData.append("nameCustomer", customerAdCustomerForm.nameCustomer);

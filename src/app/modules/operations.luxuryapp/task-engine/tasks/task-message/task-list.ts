@@ -25,6 +25,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxPopover } from "@ui/adaptive/popover/popover";
+import { LxImage } from "@ui/adaptive/image/image";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -131,6 +132,14 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
       :host ::ng-deep tr.task-chain-member > td:nth-child(2) {
         border-left: 3px solid rgba(147, 51, 234, 0.45);
       }
+      :host ::ng-deep .task-evidence-thumb {
+        display: block;
+        width: 2.75rem;
+        height: 2.75rem;
+        object-fit: cover;
+        border-radius: 0.375rem;
+        border: 1px solid var(--ds-border, #dee2e6);
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -164,6 +173,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     DataViewMobile,
     LxTooltipDirective,
     LxPopover,
+    LxImage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,

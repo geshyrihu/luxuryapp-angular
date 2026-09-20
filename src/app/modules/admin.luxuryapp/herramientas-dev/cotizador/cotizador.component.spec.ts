@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import CotizadorComponent from './cotizador.component';
+import { CotizadorComponent } from './cotizador.component';
 
 describe('CotizadorComponent', () => {
   let component: CotizadorComponent;
@@ -51,10 +51,10 @@ describe('CotizadorComponent', () => {
 
   it('should toggle module selection', () => {
     component.toggleModule(component.modules()[0], true);
-    expect(component.modules()[0].selected).toBeTrue();
+    expect(component.modules()[0].selected).toBe(true);
 
     component.toggleModule(component.modules()[0], false);
-    expect(component.modules()[0].selected).toBeFalse();
+    expect(component.modules()[0].selected).toBe(false);
   });
 
   it('should update departmentsCount', () => {

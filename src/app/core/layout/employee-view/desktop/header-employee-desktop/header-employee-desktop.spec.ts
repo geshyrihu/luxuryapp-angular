@@ -10,6 +10,8 @@ import { FeatureAnnouncementService } from "@core/services/feature-announcement.
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HidescrollnavService } from "@core/services/hidescrollnav.service";
 import { MenuService } from "@core/services/menu.service";
+import { RefreshService } from "@core/services/refresh.service";
+import { AiService } from "@core/services/ai.service";
 import { SearchService } from "@core/services/search.service";
 import { ThemeService } from "@core/services/theme.service";
 import { UpdateService } from "@core/services/update-pwa.service";
@@ -51,10 +53,17 @@ const menuServiceMock = {
 const routerMock = {
   events: new Subject(),
   url: "",
+  navigate: vi.fn(() => Promise.resolve(true)) as any,
   navigateByUrl: vi.fn(() => Promise.resolve(true)) as any,
   routeReuseStrategy: { shouldReuseRoute: vi.fn(() => true) },
   routerState: { snapshot: {} },
 };
+
+const refreshServiceMock = {
+  forceRouteReload: vi.fn(),
+};
+
+const aiServiceMock = {};
 
 const searchServiceMock = {
   text: "",
@@ -120,6 +129,8 @@ describe("HeaderEmployeedesktop", () => {
         { provide: Location, useValue: locationMock },
         { provide: MenuService, useValue: menuServiceMock },
         { provide: Router, useValue: routerMock },
+        { provide: RefreshService, useValue: refreshServiceMock },
+        { provide: AiService, useValue: aiServiceMock },
         { provide: SearchService, useValue: searchServiceMock },
         { provide: ThemeService, useValue: themeServiceMock },
         { provide: UpdateService, useValue: updateServiceMock },
@@ -147,7 +158,7 @@ describe("HeaderEmployeedesktop", () => {
 
   it("should navigate to home", () => {
     component.onHome();
-    expect(routerMock.navigateByUrl).toHaveBeenCalledWith("/dashboard");
+    expect(routerMock.navigate).toHaveBeenCalledWith(["/dashboard"]);
   });
 
   it("should navigate back", () => {
@@ -162,6 +173,6 @@ describe("HeaderEmployeedesktop", () => {
 
   it("should refresh current route", () => {
     component.onRefresh();
-    expect(routerMock.navigateByUrl).toHaveBeenCalled();
+    expect(refreshServiceMock.forceRouteReload).toHaveBeenCalled();
   });
 });

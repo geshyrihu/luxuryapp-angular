@@ -99,7 +99,7 @@ interface IResetPasswordForm {
                 />
               </div>
 
-              <div class="mt-4">
+              <div class="mt-4 w-full">
                 <il-button
                   type="submit"
                   label="CAMBIAR CONTRASEÑA"

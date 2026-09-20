@@ -78,7 +78,7 @@ describe('IonInputSelect', () => {
     component.selectionChange.subscribe(spy);
     const event = { detail: { value: 'opt1' } };
     component.onSelectionChange(event);
-    expect(spy).toHaveBeenCalledWith('opt1');
+    expect(spy).toHaveBeenCalledWith({ value: 'opt1' });
   });
 
   it('should set onChange callback via registerOnChange', () => {

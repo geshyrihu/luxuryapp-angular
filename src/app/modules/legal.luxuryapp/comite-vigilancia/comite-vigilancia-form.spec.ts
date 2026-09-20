@@ -61,6 +61,7 @@ describe("ComiteVigilanciaForm", () => {
   });
 
   it("should load select items on init", async () => {
+    apiResponseStub.onGetSelectItem.mockClear();
     await component.onLoadSelectItems();
 
     expect(apiResponseStub.onGetSelectItem).toHaveBeenCalledOnce();

@@ -371,4 +371,33 @@ this.loading.set(false);
         this.loading.set(false);
       });
   }
+
+  runSeedFederalLaborLawParameters() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Sembrando parámetros de la LFT...",
+      "Inyectando Aguinaldo, Prima Vacacional y Prima Dominical (2025-2027)."
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedFederalLaborLawParameters, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Parámetros sembrados correctamente."
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La inyección de parámetros falló."
+        );
+        this.loading.set(false);
+      });
+  }
 }

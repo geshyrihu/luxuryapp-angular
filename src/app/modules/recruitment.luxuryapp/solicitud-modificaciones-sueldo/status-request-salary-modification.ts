@@ -6,20 +6,22 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
 
@@ -81,7 +83,7 @@ export class StatusRequestSalaryModification implements OnInit {
         applicationUserId,
       },
       "Tarjeta de colaborador",
-      this.dialogHandlerS.sizeSm,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -110,4 +112,3 @@ export class StatusRequestSalaryModification implements OnInit {
       });
   }
 }
-

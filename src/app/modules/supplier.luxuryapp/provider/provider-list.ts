@@ -8,23 +8,10 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LxRating } from "@ui/adaptive/rating/rating";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { LxRating } from "@ui/adaptive/rating/rating";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -39,6 +26,19 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { CalificacionProveedor } from "@supplier.luxuryapp/providers/provider-qualification/calificacion-proveedor";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
@@ -277,7 +277,7 @@ export class ListProvider implements OnInit {
           providerId: data.providerId,
         },
         "Calificar a " + data.nameProvider,
-        this.dialogHandlerS.sizeSm,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
         if (result) this.applyFilter();
@@ -373,5 +373,3 @@ export class ListProvider implements OnInit {
     return Array.from(tokens).join(" ");
   }
 }
-
-

@@ -8,6 +8,7 @@ export interface CustomerDto {
   phoneTwo: string;
   register: string; // DateTime string
   active: boolean;
+  state: number;
   photoPath: string;
   latitud: number;
   longitud: number;

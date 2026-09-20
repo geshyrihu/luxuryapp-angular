@@ -247,7 +247,6 @@ export const adminRoutes: Routes = [
       breadcrumb: "Checklist de Onboarding",
     },
   },
-  
 
   // Catálogos de Tickets y Mantenimiento
   {
@@ -662,8 +661,8 @@ export const adminRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Depuración",
-      breadcrumb: "Depuración",
+      title: "UpdateDataBase",
+      breadcrumb: "UpdateDataBase",
     },
   },
   {

@@ -227,13 +227,61 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "salary-projections",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/salary-projections/salary-projections-list/salary-projections-list").then(
-        (m) => m.SalaryProjectionsList,
+      import("@human-resources.luxuryapp/salary-projections/master-dashboard/master-dashboard").then(
+        (m) => m.SalaryProjectionsMasterDashboard,
       ),
     canActivate: [authGuard],
     data: {
       title: "Proyección de Sueldos",
       breadcrumb: "Proyección de Sueldos",
+    },
+  },
+  {
+    path: "salary-projections/proposals",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/salary-projections-list/salary-projections-list").then(
+        (m) => m.SalaryProjectionsList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Propuestas Salariales",
+      breadcrumb: "Propuestas",
+    },
+  },
+  {
+    path: "salary-projections/federal-vacation-parameters",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/federal-vacation-parameters/federal-vacation-parameters").then(
+        (m) => m.FederalVacationParameters,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Vacaciones Federales",
+      breadcrumb: "Vacaciones Federales",
+    },
+  },
+  {
+    path: "salary-projections/state-tax-parameters",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/state-tax-parameters/state-tax-parameters").then(
+        (m) => m.StateTaxParameters,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "ISN Patronal por Estado",
+      breadcrumb: "ISN por Estado",
+    },
+  },
+  {
+    path: "salary-projections/federal-labor-law-parameters",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/federal-labor-law-parameters/federal-labor-law-parameters").then(
+        (m) => m.FederalLaborLawParameters,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Parámetros LFT",
+      breadcrumb: "Parámetros LFT",
     },
   },
   {
@@ -378,5 +426,3 @@ export const humanResourcesRoutes: Routes = [
     data: { title: "Hoja de Incidencias", breadcrumb: "Hoja de Incidencias" },
   },
 ];
-
-

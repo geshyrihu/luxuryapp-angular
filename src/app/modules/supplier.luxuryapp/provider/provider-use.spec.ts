@@ -39,7 +39,7 @@ describe("ProviderUse", () => {
 
   it("should have default signal values", () => {
     expect(component.loading()).toBe(true);
-    expect(component.data).toEqual([]);
+    expect(component.data()).toEqual([]);
     expect(component.providerId).toBe("");
   });
 
@@ -56,7 +56,7 @@ describe("ProviderUse", () => {
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
       "providers/coincidencias/prov-001",
     );
-    expect(component.data).toEqual(mockResult);
+    expect(component.data()).toEqual(mockResult);
     expect(component.providerId).toBe("prov-001");
   });
 
@@ -69,7 +69,7 @@ describe("ProviderUse", () => {
     component.ngOnInit();
     await new Promise((resolve) => setTimeout(resolve));
 
-    expect(component.data).toEqual([]);
+    expect(component.data()).toEqual([]);
   });
 
   it("should handle null result gracefully", async () => {
@@ -81,7 +81,7 @@ describe("ProviderUse", () => {
     component.ngOnInit();
     await new Promise((resolve) => setTimeout(resolve));
 
-    expect(component.data).toBeNull();
+    expect(component.data()).toBeNull();
   });
 
   it("should call onLoadData even when providerId is not provided", async () => {

@@ -2,10 +2,16 @@ import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
+  viewChild,
   ViewEncapsulation,
 } from "@angular/core";
 import { CarouselBase } from "@ui/base/carousel.base";
-import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
+import {
+  CarouselComponent as OwlCarouselComponent,
+  CarouselModule,
+  OwlOptions,
+} from "ngx-owl-carousel-o";
 
 /**
  * AppCarousel — wrapper sobre NgbCarousel. [Fase 3 migración Bootstrap,
@@ -36,12 +42,45 @@ import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
         display: block;
         width: 100%;
       }
+
+      owl-carousel-o,
+      owl-carousel-o .owl-carousel,
+      owl-carousel-o .owl-stage-outer {
+        display: block;
+        width: 100%;
+      }
+
+      owl-carousel-o .owl-stage-outer {
+        overflow: hidden;
+      }
+
+      owl-carousel-o .owl-stage {
+        display: flex;
+      }
+
+      owl-carousel-o .owl-item {
+        flex: 0 0 auto;
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Carousel extends CarouselBase {
+  private readonly carousel = viewChild(OwlCarouselComponent);
+
+  constructor() {
+    super();
+    effect(() => {
+      const carousel = this.carousel();
+      const page = this.page();
+
+      if (carousel && this.value().length > 0) {
+        carousel.to(`app-carousel-slide-${page}`);
+      }
+    });
+  }
+
   protected get owlOptions(): OwlOptions {
     return {
       items: this.numVisible(),

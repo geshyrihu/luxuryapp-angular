@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject } from 'rxjs';
 import { TicketAnalysisService } from '@core/services/ticket-analysis.service';
 import { MessageService } from '@core/services/message.service';
+import { ImageProcessingService } from '@core/services/image-processing.service';
 import { ImageAnalysisDialogComponent } from './image-analysis-dialog.component';
 
 describe('ImageAnalysisDialogComponent', () => {
@@ -19,14 +20,29 @@ describe('ImageAnalysisDialogComponent', () => {
     clearObserver: new Subject(),
   };
 
+  const mockImageProcessing = {
+    processImage: vi.fn((file: File) => Promise.resolve(file)),
+  };
+
   beforeEach(() => {
     const ticketAnalysisS = { analyzeImage: vi.fn() } as any;
+    mockImageProcessing.processImage.mockImplementation((file: File) =>
+      Promise.resolve(file),
+    );
+
+    if (!URL.createObjectURL) {
+      URL.createObjectURL = vi.fn(() => 'blob:mock') as any;
+    }
+    if (!URL.revokeObjectURL) {
+      URL.revokeObjectURL = vi.fn() as any;
+    }
 
     TestBed.configureTestingModule({
       imports: [ImageAnalysisDialogComponent, NoopAnimationsModule],
       providers: [
         { provide: TicketAnalysisService, useValue: ticketAnalysisS },
         { provide: MessageService, useValue: mockMessageService },
+        { provide: ImageProcessingService, useValue: mockImageProcessing },
       ],
     });
     fixture = TestBed.createComponent(ImageAnalysisDialogComponent);
@@ -73,15 +89,15 @@ describe('ImageAnalysisDialogComponent', () => {
     expect(component.loading).toBe(false);
   });
 
-  it('onFileSelect should set selectedFile', () => {
+  it('onFileSelect should set selectedFile', async () => {
     const file = new File(['dummy'], 'test.jpg', { type: 'image/jpeg' });
-    const event = { files: [file] };
-    component.onFileSelect(event);
+    const event = { target: { files: [file] } };
+    await component.onFileSelect(event);
     expect(component.selectedFile).toBe(file);
   });
 
-  it('onFileSelect should handle empty files', () => {
-    component.onFileSelect({ files: [] });
+  it('onFileSelect should handle empty files', async () => {
+    await component.onFileSelect({ target: { files: [] } });
     expect(component.selectedFile).toBeNull();
   });
 

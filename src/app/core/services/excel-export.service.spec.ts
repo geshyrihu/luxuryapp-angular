@@ -27,7 +27,8 @@ describe('ExcelExportService', () => {
       'Sheet1',
       'test-export'
     );
-    await new Promise((r) => setTimeout(r, 100));
-    expect(exportService.downloadFileWithTimestamp).toHaveBeenCalled();
+    await vi.waitFor(() => {
+      expect(exportService.downloadFileWithTimestamp).toHaveBeenCalled();
+    }, { timeout: 5000 });
   });
 });

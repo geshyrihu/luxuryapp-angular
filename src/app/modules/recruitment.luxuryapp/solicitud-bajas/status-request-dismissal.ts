@@ -6,10 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -21,9 +17,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "@core/services/status-solicitud-vacante.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { SolicitudBajaForm } from "@operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
-import { ROUTES } from "src/app/routing/route-paths";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestDismissalDiscountForm } from "../reclutamiento-y-altas-bajas/request-dismissal-discount/status-request-dismissal-discount-form";
 
 interface RequestDismissalStatusDetail {
@@ -86,7 +86,7 @@ export class StatusRequestDismissal implements OnInit {
           applicationUserId,
         },
         "Tarjeta de Colaborador",
-        this.dialogHandlerS.sizeSm,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -153,5 +153,3 @@ export class StatusRequestDismissal implements OnInit {
     });
   }
 }
-
-

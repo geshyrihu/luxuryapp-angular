@@ -47,6 +47,9 @@ export default defineConfig({
   },
   test: {
     reporters: ['default'],
+    // En Windows el paralelismo alto (~un worker por CPU) deja la suite inestable
+    // (EBUSY en cache de vite, timeouts esporadicos de 5s). 4 workers = verde y estable.
+    maxWorkers: 4,
     projects: [{
       extends: true,
       plugins: [angular()],
@@ -57,7 +60,10 @@ export default defineConfig({
         exclude: [
           'node_modules', 'dist', 'android', 'ios',
           'src/app/modules/supplier.luxuryapp/provider/**',
-          'src/app/modules/supplier.luxuryapp/providers/**'
+          'src/app/modules/supplier.luxuryapp/providers/**',
+          'src/app/core/layout/employee-view/**',
+          'src/app/modules/accounting.luxuryapp/ar/**',
+          'src/app/modules/accounting.luxuryapp/general-ledger/aspel-*/**'
         ]
       }
     }, {
@@ -76,6 +82,33 @@ export default defineConfig({
         name: 'supplier-providers',
         ...jsdomTestShared,
         include: ['src/app/modules/supplier.luxuryapp/providers/**/*.spec.ts'],
+        exclude: ['node_modules']
+      }
+    }, {
+      extends: true,
+      plugins: [angular()],
+      test: {
+        name: 'employee-layout',
+        ...jsdomTestShared,
+        include: ['src/app/core/layout/employee-view/**/*.spec.ts'],
+        exclude: ['node_modules']
+      }
+    }, {
+      extends: true,
+      plugins: [angular()],
+      test: {
+        name: 'accounting-aspel-ar',
+        ...jsdomTestShared,
+        include: ['src/app/modules/accounting.luxuryapp/ar/**/*.spec.ts'],
+        exclude: ['node_modules']
+      }
+    }, {
+      extends: true,
+      plugins: [angular()],
+      test: {
+        name: 'accounting-aspel-general-ledger',
+        ...jsdomTestShared,
+        include: ['src/app/modules/accounting.luxuryapp/general-ledger/aspel-*/**/*.spec.ts'],
         exclude: ['node_modules']
       }
     }, {

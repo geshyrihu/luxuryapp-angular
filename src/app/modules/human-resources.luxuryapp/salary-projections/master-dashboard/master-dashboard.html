@@ -1,0 +1,102 @@
+<div class="d-none d-md-block fadein">
+  <div class="mb-6">
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <div
+        class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
+      >
+        <app-icon icon="material-symbols-light:payments" />
+      </div>
+      <div>
+        <h1 class="ds-heading text-3xl fw-bold text-body m-0">
+          Recursos Humanos
+        </h1>
+        <p class="ds-text-secondary text-base m-0">
+          Gestión integral de colaboradores, nómina y prestaciones
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center gap-2 mb-4 mt-5">
+    <app-icon icon="material-symbols-light:payments" />
+    <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
+      Proyección de Sueldos
+    </h2>
+    <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
+  </div>
+
+  <div class="row g-4">
+    @for (option of options; track option.route) {
+    <div class="col-12 col-sm-6 col-md-3">
+      <lx-card
+        class="card card--interactive card--elevated h-full"
+        (click)="navigateTo(option.route)"
+      >
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <div
+              class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
+              [style.backgroundColor]="option.backgroundColor"
+            >
+              <app-icon [icon]="option.icon" [style.color]="option.color" />
+            </div>
+            <app-icon
+              icon="material-symbols-light:north-east"
+              class="text-body-secondary"
+            />
+          </div>
+          <div>
+            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
+              {{ option.title }}
+            </h3>
+            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+              {{ option.description }}
+            </p>
+          </div>
+        </div>
+      </lx-card>
+    </div>
+    }
+  </div>
+</div>
+
+<div class="d-block d-md-none fadein">
+  <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
+    <div
+      class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+    >
+      <app-icon icon="material-symbols-light:payments" />
+    </div>
+    <div>
+      <h2 class="fw-bold m-0 text-body">Recursos Humanos</h2>
+      <p class="text-xs m-0 text-body-secondary">
+        Colaboradores, nómina y prestaciones
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <div class="px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <app-icon icon="material-symbols-light:payments" />
+        <span class="text-xs fw-bold text-uppercase">Proyección de Sueldos</span>
+      </div>
+    </div>
+
+    @for (option of options; track option.route) {
+    <ili-list-item class="ion-no-padding" (click)="navigateTo(option.route)">
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        [style.backgroundColor]="option.backgroundColor"
+      >
+        <app-icon [icon]="option.icon" [style.color]="option.color" />
+      </div>
+      <h3 class="fw-semibold m-0 text-body">{{ option.title }}</h3>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
+        {{ option.description }}
+      </p>
+    </ili-list-item>
+    }
+  </div>
+</div>

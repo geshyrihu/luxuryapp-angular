@@ -1,0 +1,39 @@
+<div class="d-flex flex-column gap-4">
+  <div class="card p-3">
+    <div class="d-flex align-items-center justify-content-between gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <iw-button iconClass="material-symbols-light:arrow-back" severity="secondary" variant="text" (clicked)="back()" />
+        <div>
+          <h5 class="m-0">Vacaciones Federales por Antigüedad</h5>
+          <small class="text-body-secondary">Catálogo administrable de días de vacaciones LFT</small>
+        </div>
+      </div>
+      <il-button label="Nuevo parámetro" iconClass="material-symbols-light:add" severity="primary" size="small" (clicked)="openModal()" />
+    </div>
+  </div>
+
+  <div class="card p-0">
+    <app-table [value]="rows()" [loading]="loading()" [paginator]="true" [rows]="15">
+      <ng-template #header>
+        <tr>
+          <th appSortableColumn="yearsOfService">AÑOS DE SERVICIO <app-sorticon field="yearsOfService" /></th>
+          <th appSortableColumn="year">AÑO <app-sorticon field="year" /></th>
+          <th appSortableColumn="vacationDays">DÍAS DE VACACIONES <app-sorticon field="vacationDays" /></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.yearsOfService }}</td>
+          <td>{{ row.year }}</td>
+          <td>{{ row.vacationDays }}</td>
+          <td class="text-center">
+            <iw-button iconClass="material-symbols-light:edit" severity="primary" size="small" variant="text" title="Editar" (clicked)="openModal(row)" />
+            <iw-button-confirm iconClass="material-symbols-light:delete" severity="danger" size="small" variant="text" title="Eliminar" swalText="¿Estás seguro de que quieres eliminar este parámetro?" [loading]="deletingKey() === row.yearsOfService + '-' + row.year" (confirmed)="delete(row)" />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage><app-table-empty-message [colspan]="4" /></ng-template>
+    </app-table>
+  </div>
+</div>

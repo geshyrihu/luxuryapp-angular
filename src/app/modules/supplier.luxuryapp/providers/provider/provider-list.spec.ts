@@ -170,9 +170,9 @@ describe("ListProvider", () => {
     expect(result).toBe(4.5);
   });
 
-  it("should update pagination via loadDataLazy", () => {
+  it("should update pagination via onPageChange", () => {
     vi.spyOn(component as any, "onLoadData");
-    component.loadDataLazy({ first: 30, rows: 30 });
+    component.onPageChange({ page: 1, rows: 30 });
     expect(component.page).toBe(2);
     expect(component.rows).toBe(30);
     expect(component.first).toBe(30);

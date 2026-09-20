@@ -1,230 +1,156 @@
 @if (projection(); as currentProjection) {
 <div class="d-flex flex-column gap-4">
-  <!-- ── Cabecera de la propuesta ─────────────────────────────────────── -->
   <div class="card p-3">
-    <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3"
-    >
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
       <div class="d-flex align-items-center gap-3">
-        <iw-button
-          iconClass="material-symbols-light:arrow-back"
-          severity="secondary"
-          variant="text"
-          (clicked)="back()"
-        />
+        <iw-button iconClass="material-symbols-light:arrow-back" severity="secondary" variant="text" ariaLabel="Volver" (clicked)="back()" />
         <div>
           <div class="d-flex align-items-center gap-2">
             <h5 class="m-0">{{ currentProjection.name }}</h5>
-            <lx-tag
-              [value]="stateText(currentProjection.state)"
-              [severity]="stateSeverity(currentProjection.state)"
-            />
+            <lx-tag [value]="stateText(currentProjection.state)" [severity]="stateSeverity(currentProjection.state)" />
           </div>
-          <small class="text-body-secondary"
-            >Folio {{ currentProjection.folio }}</small
-          >
+          <small class="text-body-secondary">Folio {{ currentProjection.folio }} · Año {{ currentProjection.targetYear }}</small>
         </div>
       </div>
-
-      <div class="d-flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
         @if (simulating()) {
-        <span class="text-body-secondary text-sm"
-          ><i class="material-symbols-light:progress_activity"></i>
-          Calculando…</span
-        >
+        <span class="text-body-secondary text-sm">Calculando…</span>
         }
-        <il-button
-          label="Agregar plaza nueva"
-          iconClass="material-symbols-light:person_add"
-          severity="secondary"
-          variant="outline"
-          size="small"
-          (clicked)="openNewPosition()"
-        />
-        <il-button
-          label="Guardar propuesta"
-          iconClass="material-symbols-light:save"
-          severity="primary"
-          size="small"
-          (clicked)="saveProjection()"
-        />
+        <il-button label="Agregar plaza nueva" iconClass="material-symbols-light:person_add" severity="secondary" variant="outline" size="small" (clicked)="openNewPosition()" />
+        <il-button label="Guardar propuesta" iconClass="material-symbols-light:save" severity="primary" size="small" (clicked)="saveProjection()" />
       </div>
     </div>
   </div>
 
-  <!-- ── Escenarios (columnas) ────────────────────────────────────────── -->
-  <div class="d-flex flex-wrap align-items-center gap-2">
-    @for (scenario of scenarios(); track scenario.id) {
-    <il-button
-      [label]="scenario.name"
-      [severity]="scenario.id === activeScenarioId() ? 'primary' : 'secondary'"
-      [variant]="scenario.id === activeScenarioId() ? 'filled' : 'outline'"
-      size="small"
-      (clicked)="selectScenario(scenario.id)"
-    />
-    }
-    <span class="ms-auto text-body-secondary text-sm"
-      >Costo total del escenario:
-      <strong>{{ activeTotalCost() | number: "1.2-2" }}</strong></span
-    >
+  <div class="card p-3">
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <div>
+        <strong>Comparar escenarios</strong>
+        <div class="text-body-secondary text-sm">Selecciona hasta 3 escenarios.</div>
+      </div>
+      <div class="d-flex flex-wrap gap-2 ms-md-auto">
+        @for (scenario of scenarios(); track scenario.id) {
+        <il-button [label]="scenario.name" [severity]="isScenarioSelected(scenario.id) ? 'primary' : 'secondary'" [variant]="isScenarioSelected(scenario.id) ? 'filled' : 'outline'" size="small" [disabled]="!isScenarioSelected(scenario.id) && selectedScenarioIds().length >= 3" (clicked)="toggleScenarioComparison(scenario.id)" />
+        }
+      </div>
+    </div>
   </div>
 
-  <!-- ── Matriz de detalle (solo lectura) ─────────────────────────────── -->
+  <div class="row g-3">
+    @for (entry of comparisonScenarioTotals(); track entry.scenario.id) {
+    <div class="col-12 col-md-4">
+      <div class="card h-100 p-3">
+        <div class="d-flex justify-content-between gap-2">
+          <span class="text-body-secondary text-sm">{{ entry.scenario.name }}</span>
+          <span class="text-body-secondary text-xs">{{ scenarioItemCount(entry.scenario) }} puestos</span>
+        </div>
+        <strong class="fs-4">{{ entry.total | number: "1.2-2" }}</strong>
+        <span class="text-body-secondary text-sm">Costo total empresa</span>
+        <div class="comparison-bar mt-2" aria-hidden="true"><span [style.width]="comparisonBarWidth(entry.total)"></span></div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="d-flex flex-wrap align-items-center gap-2">
+    @for (scenario of scenarios(); track scenario.id) {
+    <il-button [label]="scenario.name" [severity]="scenario.id === activeScenarioId() ? 'primary' : 'secondary'" [variant]="scenario.id === activeScenarioId() ? 'filled' : 'outline'" size="small" (clicked)="selectScenario(scenario.id)" />
+    }
+    <span class="ms-auto text-body-secondary text-sm">Escenario editable: <strong>{{ activeScenario()?.name ?? "—" }}</strong> · Costo total: <strong>{{ activeTotalCost() | number: "1.2-2" }}</strong></span>
+  </div>
+
   <div class="card p-0">
-    <app-table
-      [value]="activeItems()"
-      [loading]="loading()"
-      [paginator]="true"
-      [rows]="25"
-      [showCurrentPageReport]="true"
-      currentPageReportTemplate="{first} - {last} de {totalRecords}"
-    >
+    <app-table [value]="comparisonRows()" [loading]="loading()" [paginator]="true" [rows]="25" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} de {totalRecords}">
       <ng-template #header>
         <tr>
-          <th class="table-col-20">EMPLEADO / PUESTO</th>
-          <th class="table-col-10">TIPO</th>
-          <th class="table-col-8">SUELDO DIARIO</th>
-          <th class="table-col-10">SUELDO MENSUAL</th>
-          <th class="table-col-10">PRIMA VAC.</th>
-          <th class="table-col-10">PRIMA DOM.</th>
-          <th class="table-col-10">AGUINALDO</th>
-          <th class="table-col-10">ISN</th>
-          <th class="table-col-10">COSTO EMPRESA</th>
-          <th class="table-col-8"></th>
+          <th class="table-col-20 text-start" rowspan="2">PUESTO / ROL</th>
+          <th class="table-col-20 text-start" rowspan="2">EMPLEADO</th>
+          <th class="text-center" rowspan="2" title="Horas Semanales">HRS / SEM</th>
+          @for (scenario of comparedScenarios(); track scenario.id) {
+          <th class="text-center border-start" colspan="11">{{ scenario.name }}</th>
+          }
+        </tr>
+        <tr>
+          @for (scenario of comparedScenarios(); track scenario.id) {
+          <th class="text-end border-start">SUELDO LIBRE</th>
+          <th class="text-end text-body-secondary text-sm">PRIMA VACAC.</th>
+          <th class="text-end text-body-secondary text-sm">DÍAS FESTIVOS</th>
+          <th class="text-end text-body-secondary text-sm">PRIMA DOM.</th>
+          <th class="text-end text-body-secondary text-sm">AGUINALDO</th>
+          <th class="text-end fw-semibold text-primary">TOTAL PERCEP.</th>
+          <th class="text-end text-body-secondary text-sm" title="Retiro, Cesantía y Vejez">RCV</th>
+          <th class="text-end text-body-secondary text-sm">INFONAVIT</th>
+          <th class="text-end text-body-secondary text-sm">CUOTA IMSS</th>
+          <th class="text-end text-body-secondary text-sm" title="Impuesto Sobre Nómina">ISN</th>
+          <th class="text-end fw-bold text-success">CARGA LABORAL TOTAL</th>
+          }
         </tr>
       </ng-template>
 
-      <ng-template #body let-item>
+      <ng-template #body let-row>
         <tr>
           <td class="fw-semibold">
-            {{ item.positionTitle || "Sin título" }}
-            @if (simulationOf(item.id); as simulation) {
-            <div class="text-body-secondary text-xs">
-              Antigüedad: {{ simulation.seniorityYears }} años ·
-              {{ simulation.vacationDays }} días
+            {{ row.positionTitle }}
+            @if (row.applicationRoleId; as roleId) {
+            <div class="text-body-secondary text-xs">Rol: {{ roleId }}</div>
+            }
+          </td>
+          <td class="text-body-secondary">{{ row.comparisons[0]?.item?.employeeName || "VACANTE" }}</td>
+          <td class="text-center text-body-secondary">{{ row.comparisons[0]?.item?.weeklyHours || "-" }}</td>
+
+          @for (cell of row.comparisons; track cell.scenarioId) {
+          <td class="text-end border-start comparison-cell fw-semibold" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.item?.netMonthlySalary ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.vacationPremium ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.holidayPremium ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.sundayPremium ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.christmasBonus ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell fw-semibold text-primary" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.monthlyPerceptions ?? 0 | number: "1.2-2" }}</td>
+          
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.item?.rcvEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.item?.infonavitEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.item?.imssEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end comparison-cell text-sm" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">{{ cell.simulation?.employerPayrollTax ?? 0 | number: "1.2-2" }}</td>
+          
+          <td class="text-end fw-bold text-success comparison-cell" [class.text-muted]="!cell.item" (click)="cell.item && openEditor(cell.item, cell.scenarioId)">
+            {{ cell.simulation?.totalEmployerCost ?? 0 | number: "1.2-2" }}
+            
+            @if (cell.item; as item) {
+            <div class="d-flex justify-content-end gap-1 mt-1">
+              <iw-button iconClass="material-symbols-light:edit" severity="secondary" size="small" variant="text" ariaLabel="Editar fila del escenario" (clicked)="openEditor(item, cell.scenarioId); $event.stopPropagation()" />
+              <iw-button iconClass="material-symbols-light:delete" severity="danger" size="small" variant="text" ariaLabel="Eliminar fila del escenario" (clicked)="removeItem(item.id); $event.stopPropagation()" />
             </div>
             }
           </td>
-          <td>
-            @if (item.isNewPosition) {
-            <lx-tag value="Nueva plaza" severity="info" />
-            } @else {
-            <lx-tag value="Existente" severity="secondary" />
-            }
-          </td>
-          <td>{{ item.baseSalary | number: "1.2-2" }}</td>
-          <td>
-            {{ simulations()[item.id]?.monthlySalary ?? 0 | number: "1.2-2" }}
-          </td>
-          <td>
-            {{ simulations()[item.id]?.vacationPremium ?? 0 | number: "1.2-2" }}
-          </td>
-          <td>
-            {{ simulations()[item.id]?.sundayPremium ?? 0 | number: "1.2-2" }}
-          </td>
-          <td>
-            {{ simulations()[item.id]?.christmasBonus ?? 0 | number: "1.2-2" }}
-          </td>
-          <td>
-            {{ simulations()[item.id]?.employerPayrollTax ?? 0 | number: "1.2-2" }}
-          </td>
-          <td class="fw-semibold">
-            {{ simulations()[item.id]?.totalEmployerCost ?? 0 | number: "1.2-2" }}
-          </td>
-          <td class="text-center">
-            <div class="d-flex gap-1 justify-content-center">
-              <iw-button
-                iconClass="material-symbols-light:edit"
-                severity="primary"
-                size="small"
-                variant="text"
-                (clicked)="openEditor(item)"
-              />
-              <iw-button
-                iconClass="material-symbols-light:delete"
-                severity="danger"
-                size="small"
-                variant="text"
-                (clicked)="removeItem(item.id)"
-              />
-            </div>
-          </td>
+          }
         </tr>
       </ng-template>
 
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="10" />
+        <app-table-empty-message [colspan]="1 + comparedScenarios().length * 3" />
       </ng-template>
     </app-table>
   </div>
 </div>
 
-<!-- ── Sidepanel de edición ───────────────────────────────────────────── -->
 @if (editorOpen()) {
 <div class="app-sidepanel-backdrop" (click)="cancelEditor()"></div>
-<aside class="app-sidepanel" role="dialog" aria-modal="true">
+<aside class="app-sidepanel" role="dialog" aria-modal="true" aria-labelledby="salary-editor-title">
   <header class="app-sidepanel__header">
-    <h6 class="m-0">
-      {{ editorIsNew() ? "Nueva plaza proyectada" : "Editar sueldo y cuotas" }}
-    </h6>
-    <iw-button
-      iconClass="material-symbols-light:close"
-      severity="secondary"
-      size="small"
-      variant="text"
-      (clicked)="cancelEditor()"
-    />
+    <h6 id="salary-editor-title" class="m-0">{{ editorIsNew() ? "Nueva plaza proyectada" : "Editar sueldo y cuotas" }}</h6>
+    <iw-button iconClass="material-symbols-light:close" severity="secondary" size="small" variant="text" ariaLabel="Cerrar editor" (clicked)="cancelEditor()" />
   </header>
-
   @if (editorDraft(); as draft) {
-  <form class="app-sidepanel__body">
-    <custom-input-text-signal
-      label="Título del puesto"
-      [ngModel]="draft.positionTitle"
-      (ngModelChange)="updateDraft('positionTitle', $event)"
-    />
-    <custom-input-text-signal
-      type="number"
-      label="Sueldo diario"
-      [ngModel]="draft.baseSalary"
-      (ngModelChange)="updateDraft('baseSalary', $event)"
-    />
-    <custom-input-text-signal
-      type="number"
-      label="Cuota patronal RCV"
-      [ngModel]="draft.rcvEmployerFee"
-      (ngModelChange)="updateDraft('rcvEmployerFee', $event)"
-    />
-    <custom-input-text-signal
-      type="number"
-      label="Cuota patronal INFONAVIT"
-      [ngModel]="draft.infonavitEmployerFee"
-      (ngModelChange)="updateDraft('infonavitEmployerFee', $event)"
-    />
-    <custom-input-text-signal
-      type="number"
-      label="Cuota patronal IMSS"
-      [ngModel]="draft.imssEmployerFee"
-      (ngModelChange)="updateDraft('imssEmployerFee', $event)"
-    />
-  </form>
+  <div class="app-sidepanel__body">
+    <custom-input-text-signal label="Título del puesto" [ngModel]="draft.positionTitle" (ngModelChange)="updateDraft('positionTitle', $event)" />
+    <custom-input-text-signal type="number" label="Sueldo mensual neto" [ngModel]="draft.netMonthlySalary" (ngModelChange)="updateDraft('netMonthlySalary', $event)" />
+    <custom-input-text-signal type="number" label="Cuota patronal RCV" [ngModel]="draft.rcvEmployerFee" (ngModelChange)="updateDraft('rcvEmployerFee', $event)" />
+    <custom-input-text-signal type="number" label="Cuota patronal INFONAVIT" [ngModel]="draft.infonavitEmployerFee" (ngModelChange)="updateDraft('infonavitEmployerFee', $event)" />
+    <custom-input-text-signal type="number" label="Cuota patronal IMSS" [ngModel]="draft.imssEmployerFee" (ngModelChange)="updateDraft('imssEmployerFee', $event)" />
+  </div>
   }
-
   <footer class="app-sidepanel__footer">
-    <il-button
-      label="Cancelar"
-      severity="secondary"
-      variant="outline"
-      size="small"
-      (clicked)="cancelEditor()"
-    />
-    <il-button
-      label="Aplicar y simular"
-      iconClass="material-symbols-light:calculate"
-      severity="primary"
-      size="small"
-      (clicked)="applyEditor()"
-    />
+    <il-button label="Cancelar" severity="secondary" variant="outline" size="small" (clicked)="cancelEditor()" />
+    <il-button label="Aplicar y simular" iconClass="material-symbols-light:calculate" severity="primary" size="small" (clicked)="applyEditor()" />
   </footer>
 </aside>
 }

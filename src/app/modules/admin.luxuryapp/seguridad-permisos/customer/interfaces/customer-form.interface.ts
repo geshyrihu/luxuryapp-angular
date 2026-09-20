@@ -3,6 +3,7 @@ import { FormControl } from "@angular/forms";
 export interface CustomerFormGroup {
   id: FormControl<string | null>;
   active: FormControl<boolean | null>;
+  state: FormControl<number | null>;
   nameCustomer: FormControl<string>;
   nombreCorto: FormControl<string>;
   numeroCliente: FormControl<string>;

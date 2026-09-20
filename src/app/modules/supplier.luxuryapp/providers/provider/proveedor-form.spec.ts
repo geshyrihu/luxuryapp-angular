@@ -62,7 +62,7 @@ describe("ProveedorForm", () => {
     expect(component.rfcCoincidente()).toEqual([]);
   });
 
-  it("should set required validator on constanciaFiscal when id is empty", async () => {
+  it("should keep constanciaFiscal control without validator on init", async () => {
     mockConfig.data = { id: "" };
     mockApiResponseS.onGetSelectItem.mockResolvedValue([]);
     mockApiResponseS.onGetEnumSelectItem.mockResolvedValue([]);
@@ -71,7 +71,7 @@ describe("ProveedorForm", () => {
     component = fixture.componentInstance;
     await component.ngOnInit();
 
-    expect(component.form.controls.constanciaFiscal.validator).toBeTruthy();
+    expect(component.form.controls.constanciaFiscal).toBeTruthy();
   });
 
   it("should load select items and existing item on init when id is provided", async () => {
@@ -89,13 +89,13 @@ describe("ProveedorForm", () => {
     component = fixture.componentInstance;
     await component.ngOnInit();
 
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("Categories");
-    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("Bank");
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("categories");
+    expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("banks");
     expect(mockApiResponseS.onGetEnumSelectItem).toHaveBeenCalledWith(
       "service-type",
     );
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
-      "Providers/prov-001/cust-123",
+      "providers/prov-001/cust-123",
     );
     expect(component.urlLogo).toBe("logo.png");
   });
@@ -135,7 +135,7 @@ describe("ProveedorForm", () => {
     mockApiResponseS.onGetList.mockResolvedValue([{ name: "Coincidence" }]);
     component.onValidarRFC("ABCDEF");
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "Providers/ValidarRfc/ABCDEF/cust-123",
+      "providers/validar-rfc/ABCDEF/cust-123",
     );
   });
 

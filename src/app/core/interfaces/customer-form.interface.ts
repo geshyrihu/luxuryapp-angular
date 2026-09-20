@@ -1,5 +1,6 @@
 export interface CustomerFormDto {
   active: boolean;
+  state: number;
   adreess: string;
   nameCustomer: string;
   nombreCorto: string;

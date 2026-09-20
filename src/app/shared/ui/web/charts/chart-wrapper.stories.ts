@@ -55,7 +55,9 @@ import {
     </div>
   `,
 })
-export class ChartHost {
+// No exportar: Storybook trata cada export nombrado como story e intenta
+// "render" la clase (Class constructor ... without 'new'). Se mantiene local.
+class ChartHost {
   theme = inject(ThemeService);
   mode = input<"data" | "options" | "static" | "factory">("data");
   type = input<ChartType>("bar");

@@ -37,9 +37,9 @@ describe("CreateOrdenCompraWizard", () => {
 
     const el: HTMLElement = fixture.nativeElement;
     // Regresión: con ng-content duplicado en base-input-signal, la rama
-    // onlyInput del paso 2 renderizaba vacía (sin p-autocomplete).
+    // onlyInput del paso 2 renderizaba vacía (sin el ng-select del autocomplete).
     const input = el.querySelector(
-      "custom-input-autocomplete-signal p-autocomplete input",
+      "custom-input-autocomplete-signal ng-select input",
     );
     expect(input).not.toBeNull();
   });
