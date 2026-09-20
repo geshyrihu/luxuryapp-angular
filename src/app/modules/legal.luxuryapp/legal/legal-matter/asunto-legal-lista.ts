@@ -12,8 +12,8 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AsuntoLegalForm } from "@legal.luxuryapp/legal-matters/legal-matter/asunto-legal-form";
-import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/legal-matters/legal-matter/categoria-asunto-legal-form";
+import { AsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/asunto-legal-form";
+import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/categoria-asunto-legal-form";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";

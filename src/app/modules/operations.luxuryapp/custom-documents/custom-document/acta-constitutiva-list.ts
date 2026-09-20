@@ -16,7 +16,7 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { EDocumentType } from "@legal.luxuryapp/legal-matters/interfaces/document-type.enum";
+import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";

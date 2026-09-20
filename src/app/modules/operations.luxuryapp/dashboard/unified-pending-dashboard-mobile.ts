@@ -13,7 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
-import { TicketLegalForm } from "@legal.luxuryapp/legal-matters/legal-tickets/ticket-legal-form";
+import { TicketLegalForm } from "@legal.luxuryapp/legal/legal-tickets/ticket-legal-form";
 import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
 import { PolicyContractForm } from "@operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
 import { ServiceOrderForm } from "@operations.luxuryapp/field-service/service-order/service-order-form";

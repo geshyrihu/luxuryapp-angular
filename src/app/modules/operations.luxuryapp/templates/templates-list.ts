@@ -24,7 +24,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { EDocumentType } from "@legal.luxuryapp/legal-matters/interfaces/document-type.enum";
+import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import {
   NgbDropdownModule,
   NgbTooltipModule,

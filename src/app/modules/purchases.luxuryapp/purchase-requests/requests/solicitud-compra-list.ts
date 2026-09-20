@@ -198,8 +198,8 @@ export class SolicitudCompraList {
     return this.statusCompra() === 2;
   }
 
-  isSelected(id: string): boolean {
-    return this.selectedSolicitudIds().includes(id);
+  isInPresentation(id: string): boolean {
+    return this.data().some(item => item.id === id && item.selectedForPresentation);
   }
 
   async onToggleSelection(id: string, checked: boolean) {
@@ -236,11 +236,6 @@ export class SolicitudCompraList {
   }
 
   async onToggleAllVisible(checked: boolean) {
-    if (!this.isPendingView()) {
-      this.selectedSolicitudIds.set([]);
-      return;
-    }
-
     const visibleItems = this.data().filter(
       (item) => item.selectedForPresentation !== checked,
     );
@@ -260,9 +255,9 @@ export class SolicitudCompraList {
   }
 
   areAllVisibleSelected(): boolean {
-    return this.isPendingView() && this.data().length > 0
+    return this.data().length > 0
       ? this.data().every((item) =>
-          this.selectedSolicitudIds().includes(item.id),
+          this.data().some(d => d.id === item.id && d.selectedForPresentation),
         )
       : false;
   }

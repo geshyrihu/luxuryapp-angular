@@ -74,7 +74,6 @@
 
   <ng-template #header>
     <tr>
-      @if (isPendingView()) {
       <th class="table-col-5 text-center"></th>
       <th class="table-col-5 text-center">
         <input
@@ -83,7 +82,6 @@
           (change)="onToggleAllVisible($any($event.target).checked)"
         />
       </th>
-      }
       <th class="table-col-10" appSortableColumn="folio">
         FOLIO
         <app-sorticon field="folio" />
@@ -101,6 +99,7 @@
       <th class="table-col-10">PRIORIDAD</th>
       <th class="table-col-5 text-center">COT</th>
       <th class="table-col-13">OC</th>
+      <th class="table-col-10">PRES.</th>
       <th class="table-col-10"></th>
     </tr>
   </ng-template>

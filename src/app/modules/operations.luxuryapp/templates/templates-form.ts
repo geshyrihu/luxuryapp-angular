@@ -14,7 +14,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { EDocumentType } from "@legal.luxuryapp/legal-matters/interfaces/document-type.enum";
+import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";

@@ -17,8 +17,8 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { DocumentoPersonalizadoForm } from "@legal.luxuryapp/legal-matters/custom-documents/documento-personalizado-form";
-import { EDocumentType } from "@legal.luxuryapp/legal-matters/interfaces/document-type.enum";
+import { DocumentoPersonalizadoForm } from "@legal.luxuryapp/legal/custom-documents/documento-personalizado-form";
+import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

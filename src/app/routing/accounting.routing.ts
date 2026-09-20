@@ -65,7 +65,7 @@ export const accountingRoutes: Routes = [
   {
     path: "legal-minutes-pendings", // Ruta anterior: 'pendientes-minutas-legal'
     loadComponent: () =>
-      import("@legal.luxuryapp/legal-matters/meeting-minutes/legal-pendientes-minuta").then(
+      import("@legal.luxuryapp/legal/meeting-minutes/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],

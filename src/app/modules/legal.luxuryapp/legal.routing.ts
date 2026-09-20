@@ -10,7 +10,7 @@ export const legalRoutes: Routes = [
   {
     path: "employees-contracts",
     loadComponent: () =>
-      import("./employees-contracts/legal-staff-board").then(
+      import("./employee-contracts/legal-staff-board").then(
         (m) => m.LegalStaffBoard,
       ),
     canActivate: [authGuard],

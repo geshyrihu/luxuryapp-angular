@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "@core/auth/guards/auth.guard";
-import { documentTypeRoutesConfig } from "@legal.luxuryapp/legal-matters/interfaces/documentTypeRoutesConfig";
+import { documentTypeRoutesConfig } from "@legal.luxuryapp/legal/interfaces/documentTypeRoutesConfig";
 // Definición del componente de detalle para reutilizar
 const CustomDocumentList = () =>
   import("@committee.luxuryapp/board-directors-library/biblioteca-consejo-directivo-detalle").then(

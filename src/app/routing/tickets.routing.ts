@@ -149,7 +149,7 @@ export const ticketsRoutes: Routes = [
     // Suggested path: 'legal'
     path: "legal",
     loadComponent: () =>
-      import("@legal.luxuryapp/legal-matters/legal-tickets/ticket-legal-lista-cliente").then(
+      import("@legal.luxuryapp/legal/legal-tickets/ticket-legal-lista-cliente").then(
         (m) => m.TicketLegalListaCliente,
       ),
     canActivate: [authGuard],
