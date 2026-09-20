@@ -3,5 +3,5 @@
 // `supplier.luxuryapp` que otros módulos (p.ej. recursos-humanos)
 // necesitan consumir, SIN cruzar la frontera de apps/.
 // ═══════════════════════════════════════════════════════════════════
-export * from "@supplier.luxuryapp/provider/employee-provider-form";
+export * from "@operations.luxuryapp/providers/employee-provider-form";
 

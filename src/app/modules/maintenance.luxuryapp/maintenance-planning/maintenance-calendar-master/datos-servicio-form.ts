@@ -9,7 +9,7 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
-import { TarjetaProveedor } from "@supplier.luxuryapp/providers/provider/provider-card";
+import { TarjetaProveedor } from "@operations.luxuryapp/providers/provider-card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({

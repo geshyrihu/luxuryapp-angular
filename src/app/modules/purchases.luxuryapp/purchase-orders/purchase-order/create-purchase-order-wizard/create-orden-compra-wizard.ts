@@ -43,8 +43,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service"; // Added
-import { ProductosForm } from "@supplier.luxuryapp/products/productos-form";
-import { TarjetaProducto } from "@supplier.luxuryapp/products/tarjeta-producto";
+import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
+import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 import { OrdenCompraDetalleForm } from "../purchase-order-detail-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",

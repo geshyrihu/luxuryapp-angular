@@ -26,7 +26,7 @@ import {
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
 import { OrdenCompraService } from "@core/services/orden-compra.service";
-import { OrdenCompra } from "@supplier.luxuryapp/purchase-orders/purchase-order/orden-compra";
+import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 

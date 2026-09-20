@@ -21,7 +21,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { CreateOrdenCompra } from "@supplier.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
+import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";

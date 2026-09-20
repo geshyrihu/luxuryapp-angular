@@ -30,7 +30,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TarjetaProducto } from "@supplier.luxuryapp/products/tarjeta-producto";
+import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;

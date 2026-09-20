@@ -34,8 +34,8 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { OrdenCompraService } from "@core/services/orden-compra.service";
-import { PdfGenerationService } from "@supplier.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
-import { PurchaseLinkManager } from "@supplier.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
+import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
+import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
 

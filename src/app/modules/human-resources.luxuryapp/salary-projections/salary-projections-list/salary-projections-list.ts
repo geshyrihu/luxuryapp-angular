@@ -4,6 +4,7 @@ import {
   effect,
   inject,
   signal,
+  untracked,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -60,7 +61,9 @@ export class SalaryProjectionsList {
     effect(() => {
       const customerId = this.customerIdService.customerId();
       if (customerId) {
-        void this.load();
+        untracked(() => {
+          void this.load();
+        });
       }
     });
   }

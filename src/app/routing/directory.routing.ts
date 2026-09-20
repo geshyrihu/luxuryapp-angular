@@ -4,7 +4,7 @@ export const directoryRoutes: Routes = [
   {
     path: "provider", // Ruta anterior: 'proveedor'
     loadComponent: () =>
-      import("@supplier.luxuryapp/providers/provider/provider-list").then(
+      import("@operations.luxuryapp/providers/provider-list").then(
         (m) => m.ListProvider,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,9 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("@residents.luxuryapp/owner/owner-list").then((m) => m.OwnerList),
+      import("src/app/modules/operations.luxuryapp/owner/owner-list").then(
+        (m) => m.OwnerList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Condominos",
@@ -26,7 +28,7 @@ export const directoryRoutes: Routes = [
   {
     path: "properties", // Ruta anterior: 'propiedades'
     loadComponent: () =>
-      import("@residents.luxuryapp/properties/propiedades-list").then(
+      import("src/app/modules/operations.luxuryapp/properties/propiedades-list").then(
         (m) => m.PropiedadesList,
       ),
     canActivate: [authGuard],

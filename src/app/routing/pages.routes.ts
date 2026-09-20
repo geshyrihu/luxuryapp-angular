@@ -16,9 +16,7 @@ export const pagesRoutes: Routes = [
   {
     path: "admin",
     loadChildren: () =>
-      import("@admin.luxuryapp/admin.routes").then(
-        (m) => m.adminRoutes,
-      ),
+      import("@admin.luxuryapp/admin.routes").then((m) => m.adminRoutes),
     data: { title: "LuxuryApp-Sistema", breadcrumb: "Sistema" },
   },
   {
@@ -525,7 +523,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("@operations.luxuryapp/properties/delivery-reception-check/entrega-recepcion-check").then(
+      import("src/app/modules/operations.luxuryapp/delivery-receptions/delivery-reception-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {
@@ -558,17 +556,13 @@ export const pagesRoutes: Routes = [
   {
     path: "hr",
     loadChildren: () =>
-      import("@human-resources.luxuryapp/hr.routing").then(
-        (m) => m.hrRoutes,
-      ),
+      import("@human-resources.luxuryapp/hr.routing").then((m) => m.hrRoutes),
     data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
   },
   {
     path: "legal",
     loadChildren: () =>
-      import("@legal.luxuryapp/legal.routing").then(
-        (m) => m.legalRoutes,
-      ),
+      import("@legal.luxuryapp/legal.routing").then((m) => m.legalRoutes),
     data: { title: "Legal", breadcrumb: "Legal" },
   },
   {
@@ -619,14 +613,10 @@ export const pagesRoutes: Routes = [
   {
     path: "**",
     loadComponent: () =>
-      import("@core/pages-extras/page404/page404").then(
-        (m) => m.Page404,
-      ),
+      import("@core/pages-extras/page404/page404").then((m) => m.Page404),
     data: {
       title: "Página No Encontrada",
       breadcrumb: "Error 404",
     },
   },
 ];
-
-
