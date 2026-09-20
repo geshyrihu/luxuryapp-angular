@@ -371,7 +371,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/validacion-catalogo/catalog-replica").then(
+      import("@accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {

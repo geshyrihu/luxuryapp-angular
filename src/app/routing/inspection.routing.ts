@@ -16,7 +16,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-detalle/inspection-detalle").then(
+      import("@maintenance.luxuryapp/inspection/inspection-detail/inspection-detalle").then(
         (m) => m.InspectionDetailComponent,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection-list",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-lista").then(
+      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-lista").then(
         (m) => m.MisInspeccionesLista,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],

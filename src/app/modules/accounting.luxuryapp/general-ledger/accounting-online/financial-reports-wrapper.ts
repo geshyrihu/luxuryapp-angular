@@ -21,14 +21,14 @@ import { AnalisisCobranza } from "./collection-analysis/analisis-cobranza";
 import { BancosInversionesComponent } from "./banks-investments/bancos-inversiones";
 import { CedulaExtraordinaria } from "./extraordinary-statement/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./budget-statement/cedula-presupuestal";
-import { EstadoPosicionFinanciera } from "./estado-posicion-financiera/estado-posicion-financiera";
+import { EstadoPosicionFinanciera } from "./financial-position-statement/estado-posicion-financiera";
 import { EstadoResultadosV2 } from "./income-statement-v2/estado-resultados-v2";
 import { EstadoResultados } from "./income-statement/estado-resultados";
 import { FlujoEfectivo } from "./cash-flow/flujo-efectivo";
 import { FondoReservaComponent } from "./reserve-fund/fondo-reserva";
 import { PresupuestoContabilidad } from "./accounting-budget/presupuesto-contabilidad";
 import { ProyectosAprobadosComponent } from "./approved-projects/proyectos-aprobados";
-import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
+import { ReporteFinanciero } from "./financial-report/reporte-financiero";
 import { reportFilterState } from "./state/financial-report-filter.state";
 
 const REPORT_META = [

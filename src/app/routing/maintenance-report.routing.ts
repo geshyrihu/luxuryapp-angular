@@ -25,7 +25,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "consumptions", // Ruta anterior: 'consumos'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/maintenance-reports/report-consumos/report-consumos").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-consumption/report-consumos").then(
         (m) => m.ReportConsumos,
       ),
     data: {
@@ -58,7 +58,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "daily-tour", // Ruta anterior: 'recorrido-diario'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/maintenance-reports/report-recorrido-diario/report-recorrido-diario").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-daily-round/report-recorrido-diario").then(
         (m) => m.ReportRecorridoDiario,
       ),
     data: {
@@ -69,7 +69,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tool-loan-report", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/maintenance-reports/report-prestamo-herramienta/report-prestamo-herramienta").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-tool-loan/report-prestamo-herramienta").then(
         (m) => m.ReportPrestamoHerramienta,
       ),
     data: {
@@ -91,7 +91,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "pool-report", // Ruta anterior: 'alberca'
     loadComponent: () =>
-      import("@maintenance.luxuryapp/maintenance-reports/report-bitacora-alberca/report-bitacora-alberca").then(
+      import("@maintenance.luxuryapp/maintenance-reports/report-pool-logbook/report-bitacora-alberca").then(
         (m) => m.ReportBitacoraAlberca,
       ),
     data: {

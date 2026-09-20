@@ -115,7 +115,7 @@ export const logbookRoutes: Routes = [
   {
     path: "my-inspection/:customerInspectionId",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],

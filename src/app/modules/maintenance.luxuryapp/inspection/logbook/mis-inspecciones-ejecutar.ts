@@ -32,7 +32,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MisInspeccionesAgregarImagenes } from "@maintenance.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes";
+import { MisInspeccionesAgregarImagenes } from "@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
