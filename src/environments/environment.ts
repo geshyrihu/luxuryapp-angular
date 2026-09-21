@@ -1,3 +1,5 @@
+import { APP_VERSION } from "./app-version";
+
 // const urlApi = `https://x3z6jr1n-7069.usw3.devtunnels.ms/`;
 // const urlApi = `https://luxurybuildingapp.com/`;
 // const urlApi = `https://luxurybuildingapp.com/test/`;
@@ -8,6 +10,7 @@ const urlApi = `http://localhost:7070/`;
 
 export const environment = {
   production: false,
+  APP_VERSION,
 
   API_BASE_URL: urlApi + "api/",
   API_DOMONIO: urlApi,

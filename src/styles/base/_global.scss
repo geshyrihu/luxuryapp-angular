@@ -83,10 +83,10 @@ body {
 /* =======================================
    IONIC MOBILE LAYOUT FIX
    Estilos explícitos para el layout mobile.
-   Necesarios porque las utilidades de PrimeFlex tienen menor
+   Necesarios porque las utilidades de layout tienen menor
    especificidad que las clases unlayered, causando que las
    utilidades (flex, h-full, grow) no se apliquen correctamente
-   cuando hay conflictos con la capa de compatibilidad PrimeFlex.
+   cuando hay conflictos de especificidad.
    ======================================= */
 ion-app {
   display: flex;

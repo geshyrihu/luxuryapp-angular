@@ -1,6 +1,6 @@
 // ============================================================
 // _buttons.scss
-// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Design System | Angular 22 + Bootstrap 5.3 + Ionic 9 | SCSS Puro
 // Sistema completo de botones
 // ============================================================
 
@@ -473,8 +473,8 @@
   }
 }
 
-// ── ALIASES DE SEVERITY (compatibilidad con PrimeNG severity names) ──────────
-// PrimeNG usa "warn" y "help"; el DS usa "warning". Los aliases permiten pasar
+// ── ALIASES DE SEVERITY ──────────────────────────────────────────────────────
+// Se aceptan nombres de estado cortos usados por componentes existentes.
 // severity="warn" a BaseButton sin romperse.
 
 .btn-warn {

@@ -208,6 +208,7 @@ export class ApiResponseService {
     data: unknown = null,
     onRequestError?: ApiRequestErrorHandler,
     showLoader: boolean = true,
+    showSuccessToast: boolean = true,
   ): Promise<T | false> {
     if (showLoader) this.loaderS.show();
     try {
@@ -215,7 +216,7 @@ export class ApiResponseService {
         this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
       );
       const result = this.processResponse(responseData.body, {
-        showSuccessToast: true,
+        showSuccessToast,
         logColor: "green",
         urlApi: `POST: ${urlApi}`,
       });

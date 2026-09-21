@@ -1,4 +1,4 @@
-import { DecimalPipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,42 +9,31 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "@core/services/dialog-handler.service";
+import { WorkPositionHours } from "@operations.luxuryapp/work-positions/work-position-hours";
+import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
-import { DialogHandlerService, DialogSize } from "@core/services/dialog-handler.service";
-import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
-import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { Subject, debounceTime } from "rxjs";
 import {
   ISalaryProjection,
   ISalaryProjectionItem,
   ISalaryProjectionItemEdit,
   ISalaryProjectionItemSimulation,
-  ISalaryProjectionScenario,
   salaryProjectionStateSeverity,
   salaryProjectionStateText,
 } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
 
 const LIST_URL = "/hr/salary-projections";
-
-interface ComparisonCell {
-  scenarioId: string;
-  scenarioName: string;
-  item: ISalaryProjectionItem | null;
-  simulation: ISalaryProjectionItemSimulation | null;
-}
-
-interface ComparisonRow {
-  key: string;
-  positionTitle: string;
-  applicationRoleId: string | null;
-  comparisons: ComparisonCell[];
-}
 
 @Component({
   selector: "app-salary-projections-detail",
@@ -58,6 +47,7 @@ interface ComparisonRow {
     WebButtonIcon,
     CustomInputTextSignal,
     FormsModule,
+    DatePipe,
     DecimalPipe,
   ],
   styles: [
@@ -93,40 +83,23 @@ interface ComparisonRow {
       }
       .app-sidepanel__footer {
         justify-content: flex-end;
-        border-top: 1px solid var(--ds-border, #dee2e6);
+        border-bottom: none;
+        border-top: 1px solid var(--ds-border, #e5e7eb);
       }
       .app-sidepanel__body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
-        gap: var(--ds-space-lg, 16px);
-        padding: var(--ds-space-lg, 16px);
-        overflow-y: auto;
-        flex: 1;
+        gap: 1.25rem;
       }
-      .comparison-bar {
-        height: 6px;
-        overflow: hidden;
-        border-radius: 999px;
-        background: var(--ds-bg-muted, #e9ecef);
-      }
-      .comparison-bar span {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: var(--ds-action-primary, #0d6efd);
-        transition: width 180ms ease-out;
-      }
-      .comparison-cell {
-        cursor: pointer;
-      }
-      .comparison-cell:hover {
-        background: var(--ds-bg-subtle, #f8f9fa);
-      }
+
     `,
   ],
 })
 export class SalaryProjectionsDetail {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly dialogHandlerS = inject(DialogHandlerService);
@@ -138,11 +111,16 @@ export class SalaryProjectionsDetail {
   readonly simulations = signal<
     Record<string, ISalaryProjectionItemSimulation>
   >({});
-  readonly activeScenarioId = signal<string | null>(null);
+
   readonly loading = signal(true);
   readonly simulating = signal(false);
   readonly saving = signal(false);
-  readonly selectedScenarioIds = signal<string[]>([]);
+  readonly submitting = signal(false);
+
+  readonly activeScenarioId = signal<string | null>(null);
+
+  /** Control del panel lateral para edición rápida. */
+  readonly editingItem = signal<ISalaryProjectionItemEdit | null>(null);
 
   // Sidepanel de edición de fila.
   readonly editorOpen = signal(false);
@@ -154,69 +132,55 @@ export class SalaryProjectionsDetail {
 
   readonly scenarios = computed(() => this.projection()?.scenarios ?? []);
 
-  readonly activeScenario = computed(() => {
-    const scenarios = this.scenarios();
-    return (
-      scenarios.find((scenario) => scenario.id === this.activeScenarioId()) ??
-      scenarios[0] ??
-      null
-    );
-  });
+  readonly activeScenario = computed(() =>
+    this.projection()?.scenarios.find((s) => s.id === this.activeScenarioId()),
+  );
 
   readonly activeItems = computed(() => this.activeScenario()?.items ?? []);
 
-  readonly comparedScenarios = computed(() => {
-    const scenarios = this.scenarios();
-    const selectedIds = this.selectedScenarioIds();
-    return selectedIds.length > 0
-      ? scenarios.filter((scenario) => selectedIds.includes(scenario.id))
-      : scenarios.slice(0, 3);
+  /** Determina si el escenario activo se puede editar.
+   * Reglas:
+   * 1. La propuesta debe estar en Borrador (0).
+   * 2. El escenario activo NO debe ser el escenario base (índice 0).
+   */
+  readonly isEditable = computed(() => {
+    const proj = this.projection();
+    const activeId = this.activeScenarioId();
+    if (!proj || !activeId) return false;
+
+    // Solo editable en Borrador (0)
+    if (proj.state !== 0) return false;
+
+    // El escenario base (el primero) es de solo lectura
+    const baseId = proj.scenarios[0]?.id;
+    return activeId !== baseId;
   });
 
-  readonly comparisonRows = computed<ComparisonRow[]>(() => {
-    const scenarios = this.comparedScenarios();
-    const rows = new Map<string, Omit<ComparisonRow, "comparisons">>();
-
-    for (const scenario of scenarios) {
-      for (const item of scenario.items) {
-        const key =
-          item.workPositionId ?? item.applicationRoleId ?? item.positionTitle;
-        if (!rows.has(key)) {
-          rows.set(key, {
-            key,
-            positionTitle: item.positionTitle || "Sin título",
-            applicationRoleId: item.applicationRoleId,
-          });
-        }
+  readonly tableRows = computed<ISalaryProjectionItem[]>(() => {
+    return [...this.activeItems()].sort((a, b) => {
+      const depA = a.departament ?? 999;
+      const depB = b.departament ?? 999;
+      if (depA !== depB) {
+        return depA - depB;
       }
-    }
-
-      const sims = this.simulations();
-      return [...rows.values()].map((row) => ({
-        ...row,
-        comparisons: scenarios.map((scenario) => {
-          const item =
-            scenario.items.find(
-              (i) =>
-                (i.workPositionId && i.workPositionId === row.key) ||
-                (!i.workPositionId && i.applicationRoleId === row.key) ||
-                (!i.workPositionId &&
-                  !i.applicationRoleId &&
-                  i.positionTitle === row.key),
-            ) || null;
-
-          return {
-            scenarioId: scenario.id,
-            scenarioName: scenario.name,
-            item,
-            simulation: item ? this.simulationOf(item.id) : null,
-          };
-        }),
-      }));
+      const orderA = a.sortOrder ?? 999;
+      const orderB = b.sortOrder ?? 999;
+      return orderA - orderB;
+    });
   });
 
-  readonly scenarioTotals = computed<Record<string, ISalaryProjectionItemSimulation & { netMonthlySalary: number, rcvEmployerFee: number, infonavitEmployerFee: number, imssEmployerFee: number }>>(() => {
-    const scenarios = this.comparedScenarios();
+  readonly scenarioTotals = computed<
+    Record<
+      string,
+      ISalaryProjectionItemSimulation & {
+        netMonthlySalary: number;
+        rcvEmployerFee: number;
+        infonavitEmployerFee: number;
+        imssEmployerFee: number;
+      }
+    >
+  >(() => {
+    const scenarios = this.scenarios();
     const sims = this.simulations();
     const totals: Record<string, any> = {};
 
@@ -262,27 +226,12 @@ export class SalaryProjectionsDetail {
         infonavitEmployerFee,
         imssEmployerFee,
         employerPayrollTax,
-        totalEmployerCost
+        totalEmployerCost,
       };
     }
 
     return totals;
   });
-
-  readonly comparisonScenarioTotals = computed(() =>
-    this.comparedScenarios().map((scenario) => ({
-      scenario,
-      total: scenario.items.reduce(
-        (total, item) =>
-          total + (this.simulations()[item.id]?.totalEmployerCost ?? 0),
-        0,
-      ),
-    })),
-  );
-
-  readonly comparisonMaxTotal = computed(() =>
-    Math.max(...this.comparisonScenarioTotals().map((entry) => entry.total), 1),
-  );
 
   readonly activeTotalCost = computed(() => {
     const simulations = this.simulations();
@@ -308,26 +257,19 @@ export class SalaryProjectionsDetail {
 
     this.loading.set(true);
     try {
-      const data = await this.service.getById(id);
+      const data = await this.api.onGetItem<ISalaryProjection>(
+        Endpoints.SalaryProjections.byId(id),
+      );
       if (data) {
         this.projection.set(data);
         const currentScenarioId = this.activeScenarioId();
         if (
-          !data.scenarios.some((scenario) => scenario.id === currentScenarioId)
+          !currentScenarioId ||
+          !data.scenarios.some((s) => s.id === currentScenarioId)
         ) {
-          this.activeScenarioId.set(data.scenarios[0]?.id ?? null);
-        }
-        const availableIds = data.scenarios
-          .slice(0, 3)
-          .map((scenario) => scenario.id);
-        if (
-          this.selectedScenarioIds().length === 0 ||
-          this.selectedScenarioIds().every(
-            (scenarioId) =>
-              !data.scenarios.some((scenario) => scenario.id === scenarioId),
-          )
-        ) {
-          this.selectedScenarioIds.set(availableIds);
+          this.activeScenarioId.set(
+            data.scenarios[0].id || data.scenarios[0].id,
+          );
         }
         this.queueSimulation();
       }
@@ -342,44 +284,6 @@ export class SalaryProjectionsDetail {
 
   selectScenario(scenarioId: string): void {
     this.activeScenarioId.set(scenarioId);
-    if (
-      !this.selectedScenarioIds().includes(scenarioId) &&
-      this.selectedScenarioIds().length < 3
-    ) {
-      this.selectedScenarioIds.update((ids) => [...ids, scenarioId]);
-    }
-  }
-
-  toggleScenarioComparison(scenarioId: string): void {
-    const selectedIds = this.selectedScenarioIds();
-    if (selectedIds.includes(scenarioId)) {
-      if (selectedIds.length === 1) {
-        return;
-      }
-      this.selectedScenarioIds.set(
-        selectedIds.filter((id) => id !== scenarioId),
-      );
-      if (this.activeScenarioId() === scenarioId) {
-        this.activeScenarioId.set(this.selectedScenarioIds()[0] ?? null);
-      }
-      return;
-    }
-
-    if (selectedIds.length < 3) {
-      this.selectedScenarioIds.set([...selectedIds, scenarioId]);
-    }
-  }
-
-  isScenarioSelected(scenarioId: string): boolean {
-    return this.selectedScenarioIds().includes(scenarioId);
-  }
-
-  comparisonBarWidth(total: number): string {
-    return `${Math.max((total / this.comparisonMaxTotal()) * 100, total > 0 ? 4 : 0)}%`;
-  }
-
-  scenarioItemCount(scenario: ISalaryProjectionScenario): number {
-    return scenario.items.length;
   }
 
   back(): void {
@@ -415,10 +319,13 @@ export class SalaryProjectionsDetail {
 
     this.simulating.set(true);
     try {
-      const result = await this.service.simulate({
-        cutOffDate: this.todayIso(),
-        items,
-      });
+      const result = await this.api.onPost<ISalaryProjectionItemSimulation[]>(
+        Endpoints.SalaryProjections.simulate,
+        {
+          cutOffDate: this.todayIso(),
+          items,
+        },
+      );
 
       if (result) {
         const map: Record<string, ISalaryProjectionItemSimulation> = {};
@@ -527,37 +434,61 @@ export class SalaryProjectionsDetail {
     this.queueSimulation();
   }
 
+  onSalaryChange(itemId: string, value: string | number): void {
+    const projection = this.projection();
+    const scenarioId = this.activeScenario()?.id;
+    if (!projection || !scenarioId) {
+      return;
+    }
+    const netMonthlySalary = Number(value) || 0;
+    const scenarios = projection.scenarios.map((scenario) =>
+      scenario.id === scenarioId
+        ? {
+            ...scenario,
+            items: scenario.items.map((item) =>
+              item.id === itemId ? { ...item, netMonthlySalary } : item,
+            ),
+          }
+        : scenario,
+    );
+    this.projection.set({ ...projection, scenarios });
+    this.queueSimulation();
+  }
+
   async saveProjection(): Promise<void> {
     const projection = this.projection();
-    if (!projection || this.saving()) {
+    if (!projection) {
       return;
     }
 
     this.saving.set(true);
     try {
-      await this.service.update(projection.id, {
-        name: projection.name,
-        state: projection.state,
-        scenarios: projection.scenarios.map((scenario) => ({
-          name: scenario.name,
-          description: scenario.description,
-          items: scenario.items.map((item) => ({
-            workPositionId: item.workPositionId,
-            employeeId: item.employeeId,
-            isNewPosition: item.isNewPosition,
-            positionTitle: item.positionTitle,
-            netMonthlySalary: Number(item.netMonthlySalary) || 0,
-            applicationRoleId: item.applicationRoleId,
-            weeklyHours: item.weeklyHours,
-            dateAdmission: item.dateAdmission,
-            rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
-            infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
-            imssEmployerFee: Number(item.imssEmployerFee) || 0,
-            isTaxableForPayrollTax: item.isTaxableForPayrollTax,
-            bonuses: [],
+      await this.api.onPut<ISalaryProjection>(
+        Endpoints.SalaryProjections.byId(projection.id),
+        {
+          name: projection.name,
+          state: projection.state,
+          scenarios: projection.scenarios.map((scenario) => ({
+            name: scenario.name,
+            description: scenario.description,
+            items: scenario.items.map((item) => ({
+              workPositionId: item.workPositionId,
+              employeeId: item.employeeId,
+              isNewPosition: item.isNewPosition,
+              positionTitle: item.positionTitle,
+              netMonthlySalary: Number(item.netMonthlySalary) || 0,
+              applicationRoleId: item.applicationRoleId,
+              weeklyHours: item.weeklyHours,
+              dateAdmission: item.dateAdmission,
+              rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
+              infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
+              imssEmployerFee: Number(item.imssEmployerFee) || 0,
+              isTaxableForPayrollTax: item.isTaxableForPayrollTax,
+              bonuses: [],
+            })),
           })),
-        })),
-      });
+        },
+      );
 
       await this.load();
     } finally {
@@ -577,6 +508,7 @@ export class SalaryProjectionsDetail {
       isNewPosition: draft.isNewPosition,
       workPositionId: null,
       employeeId: draft.employeeId,
+      numberEmployee: null,
       applicationUserId: null,
       employeeName: null,
       positionTitle: draft.positionTitle,
@@ -602,29 +534,34 @@ export class SalaryProjectionsDetail {
 
   private patchItem(itemId: string, draft: ISalaryProjectionItemEdit): void {
     const projection = this.projection();
-    if (!projection) {
+    const scenarioId = this.activeScenarioId();
+    if (!projection || !scenarioId) {
       return;
     }
 
-    const scenarios = projection.scenarios.map((scenario) => ({
-      ...scenario,
-      items: scenario.items.map((item) =>
-        item.id === itemId
-          ? {
-              ...item,
-              positionTitle: draft.positionTitle,
-              netMonthlySalary: Number(draft.netMonthlySalary) || 0,
-              applicationRoleId: draft.applicationRoleId,
-              weeklyHours: draft.weeklyHours,
-              dateAdmission: draft.dateAdmission,
-              rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
-              infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
-              imssEmployerFee: Number(draft.imssEmployerFee) || 0,
-              isTaxableForPayrollTax: draft.isTaxableForPayrollTax,
-            }
-          : item,
-      ),
-    }));
+    const scenarios = projection.scenarios.map((scenario) =>
+      scenario.id === scenarioId
+        ? {
+            ...scenario,
+            items: scenario.items.map((item) =>
+              item.id === itemId
+                ? {
+                    ...item,
+                    positionTitle: draft.positionTitle,
+                    netMonthlySalary: Number(draft.netMonthlySalary) || 0,
+                    applicationRoleId: draft.applicationRoleId,
+                    weeklyHours: draft.weeklyHours,
+                    dateAdmission: draft.dateAdmission,
+                    rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
+                    infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
+                    imssEmployerFee: Number(draft.imssEmployerFee) || 0,
+                    isTaxableForPayrollTax: draft.isTaxableForPayrollTax,
+                  }
+                : item,
+            ),
+          }
+        : scenario,
+    );
 
     this.projection.set({ ...projection, scenarios });
   }
@@ -636,24 +573,23 @@ export class SalaryProjectionsDetail {
     return `${now.getFullYear()}-${month}-${day}`;
   }
 
-  openEmployeeDetails(row: ComparisonRow): void {
-    const item = row.comparisons[0]?.item;
+  openEmployeeDetails(item: ISalaryProjectionItem): void {
     if (item?.applicationUserId) {
       this.dialogHandlerS.openDialog(
         CardEmployee,
         { applicationUserId: item.applicationUserId },
         "Colaborador",
-        DialogSize.sm,
+        DialogSize.lg,
       );
     }
   }
 
-  openScheduleDetails(workPositionId: string): void {
+  openScheduleDetails(workPositionId: string, positionTitle?: string): void {
     if (workPositionId) {
       this.dialogHandlerS.openDialog(
-        WorkPositionForm,
-        { id: workPositionId },
-        "Detalles del Puesto",
+        WorkPositionHours,
+        { id: workPositionId, applicationRoleName: positionTitle },
+        positionTitle ? `Horarios - ${positionTitle}` : "Horarios de Trabajo",
         DialogSize.full,
       );
     }

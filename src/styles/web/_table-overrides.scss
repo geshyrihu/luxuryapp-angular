@@ -52,10 +52,6 @@ body .app-table {
       background-color: var(--ds-table-row-hover-background);
     }
 
-    &.p-highlight {
-      background-color: var(--ds-table-row-selected-background);
-      color: var(--ds-table-row-selected-color);
-    }
   }
 
   .app-table-tfoot > tr > td {

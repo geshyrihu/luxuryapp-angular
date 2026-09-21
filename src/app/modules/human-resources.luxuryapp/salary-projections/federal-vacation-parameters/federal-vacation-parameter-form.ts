@@ -4,7 +4,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IFederalVacationParameter } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { Endpoints } from '@core/constants/endpoints/endpoints';
 
 @Component({
   selector: "app-federal-vacation-parameter-form",
@@ -13,7 +14,7 @@ import { SalaryProjectionsService } from "../salary-projections.service";
   imports: [FormsModule, CustomInputTextSignal, WebButtonLabel],
 })
 export class FederalVacationParameterForm {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
   readonly saving = signal(false);
@@ -37,11 +38,12 @@ export class FederalVacationParameterForm {
     this.saving.set(true);
     try {
       const result = this.row()
-        ? await this.service.updateFederalVacationParameter(this.yearsOfService(), this.year(), this.vacationDays())
-        : await this.service.createFederalVacationParameter({ year: this.year(), yearsOfService: this.yearsOfService(), vacationDays: this.vacationDays() });
+        ? await this.api.onPut<IFederalVacationParameter>(Endpoints.SalaryProjections.federalVacationParameter(this.yearsOfService(), this.year()), { vacationDays: this.vacationDays() })
+        : await this.api.onPost<IFederalVacationParameter>(Endpoints.SalaryProjections.federalVacationParameters, { year: this.year(), yearsOfService: this.yearsOfService(), vacationDays: this.vacationDays() });
       if (result) this.ref.close(true);
     } finally { this.saving.set(false); }
   }
 
   close(): void { this.ref.close(false); }
 }
+

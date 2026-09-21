@@ -343,6 +343,43 @@ this.loading.set(false);
       });
   }
 
+  runRepairPurchaseRequestFolios() {
+    if (
+      !window.confirm(
+        "Se reasignaran folios duplicados de Solicitudes de Compra. La operacion conserva IDs y relaciones, pero modifica datos historicos. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Reasignando folios duplicados de solicitudes...",
+      "Conservara un folio por grupo y reasignara los restantes sin cambiar IDs ni relaciones.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.repairPurchaseRequestFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Folios de solicitudes reparados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La reasignacion de folios de solicitudes fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedDocumentCatalogs() {
     this.loading.set(true);
     this.result.set(null);

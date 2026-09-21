@@ -17,7 +17,8 @@ import {
   IStateTaxParameter,
   mexicanStateText,
 } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { Endpoints } from '@core/constants/endpoints/endpoints';
 
 type PayrollParameterKind = "federal" | "state";
 
@@ -85,7 +86,7 @@ const LIST_URL = "/hr/salary-projections";
   ],
 })
 export class PayrollParameterConfig {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly router = inject(Router);
 
   readonly federalParameters = signal<IFederalVacationParameter[]>([]);
@@ -111,8 +112,8 @@ export class PayrollParameterConfig {
     this.loading.set(true);
     try {
       const [federal, stateTax] = await Promise.all([
-        this.service.getFederalVacationParameters(),
-        this.service.getStateTaxParameters(),
+        this.api.onGetList<IFederalVacationParameter[]>(Endpoints.SalaryProjections.federalVacationParameters),
+        this.api.onGetList<IStateTaxParameter[]>(Endpoints.SalaryProjections.stateTaxParameters),
       ]);
 
       if (federal) {
@@ -162,32 +163,33 @@ export class PayrollParameterConfig {
     if (this.editorKind() === "federal") {
       const yearsOfService = this.editorYearsOfService();
       const year = this.editorYear();
-      const updated = await this.service.updateFederalVacationParameter(
-        yearsOfService,
-        year,
-        value,
+      const updated = await this.api.onPut<IFederalVacationParameter>(
+        Endpoints.SalaryProjections.federalVacationParameter(
+          yearsOfService,
+          year,
+        ),
+        { vacationDays: value },
       );
       if (updated) {
-        this.federalParameters.update((rows) =>
-          rows.map((row) =>
-            row.yearsOfService === yearsOfService && row.year === year
+        this.federalParameters.update((current) =>
+          current.map((p) =>
+            p.yearsOfService === yearsOfService && p.year === year
               ? updated
-              : row,
+              : p,
           ),
         );
       }
     } else {
       const state = this.editorState();
       const year = this.editorYear();
-      const updated = await this.service.updateStateTaxParameter(
-        state,
-        year,
-        value,
+      const updated = await this.api.onPut<IStateTaxParameter>(
+        Endpoints.SalaryProjections.stateTaxParameter(state, year),
+        { employerPayrollTaxPercentage: value },
       );
       if (updated) {
-        this.stateTaxParameters.update((rows) =>
-          rows.map((row) =>
-            row.state === state && row.year === year ? updated : row,
+        this.stateTaxParameters.update((current) =>
+          current.map((p) =>
+            p.state === state && p.year === year ? updated : p,
           ),
         );
       }

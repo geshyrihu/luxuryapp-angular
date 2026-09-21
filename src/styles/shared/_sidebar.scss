@@ -1,101 +1,8 @@
 /* ==========================================================================
    SIDEBAR STYLES
-   Estilos del sidebar: layout, PrimNG PanelMenu, Guide Menu y dark header.
+   Estilos del sidebar: layout, Guide Menu y dark header.
    Extraídos de styles.scss (Phase 3 — Design System integration)
    ========================================================================== */
-
-/* =======================================
-   PRIME PANELMENU (Sidebar)
-   ======================================= */
-.p-panelmenu {
-  .p-panelmenu-panel,
-  .p-panelmenu-header,
-  .p-panelmenu-content {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  .p-panelmenu-header-content {
-    border-radius: 0 !important;
-    transition: background-color 0.2s;
-    &:hover {
-      background-color: var(--ds-bg-sunken) !important;
-    }
-  }
-
-  /* Panel header expanded/active — fondo suave, no sólido */
-  .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content,
-  .p-highlight .p-panelmenu-header-content {
-    background-color: var(--ds-primary-light) !important;
-    .p-panelmenu-header-action {
-      color: var(--ds-primary) !important;
-      font-weight: 600 !important;
-      .p-menuitem-icon {
-        color: var(--ds-primary) !important;
-      }
-    }
-  }
-
-  .p-panelmenu-header-action {
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.75rem 1rem !important;
-    color: var(--ds-text-primary);
-    display: flex;
-    align-items: center;
-
-    .p-menuitem-icon {
-      order: 0;
-      margin-right: 0.75rem !important;
-      color: var(--ds-text-secondary);
-    }
-    .p-panelmenu-icon {
-      order: 1;
-      margin-left: auto !important;
-    }
-  }
-
-  /* Submenu */
-  .p-submenu-list {
-    background: transparent !important;
-    padding-left: 0 !important;
-  }
-
-  .p-menuitem-link {
-    padding: 0.6rem 1rem 0.6rem 2.5rem !important; /* Indented */
-    font-size: 0.9rem;
-    position: relative;
-    &:hover {
-      background-color: var(--ds-bg-sunken) !important;
-    }
-    &.p-menuitem-link-active {
-      font-weight: 600;
-      color: var(--ds-primary) !important;
-      background-color: var(--ds-primary-light) !important;
-      border-left: 3px solid var(--ds-primary) !important;
-
-      .p-menuitem-icon {
-        color: var(--ds-primary) !important;
-      }
-    }
-  }
-}
-
-body.theme-dark .p-panelmenu {
-  .p-panelmenu-header-content:hover,
-  .p-menuitem-link:hover {
-    background-color: var(--ds-bg-sunken) !important;
-  }
-  .p-menuitem-link.p-menuitem-link-active {
-    background-color: var(--ds-bg-elevated) !important;
-    color: var(--ds-text-primary) !important;
-    border-left-color: var(--ds-primary);
-    .p-menuitem-icon {
-      color: var(--ds-primary) !important;
-    }
-  }
-}
 
 /* =======================================
    STRICT SIDEBAR OVERRIDES (Fix for Truncation & Layout)
@@ -437,14 +344,17 @@ nav.header-breadcrumb {
 }
 
 /* Customer selector button */
-app-header-employee-monitor .customer-selector-btn {
+:is(app-header-employee-monitor, app-header-employee-desktop) .customer-selector-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 0.75rem;
+  min-width: 11rem;
+  max-width: 15rem;
+  height: 2.75rem;
+  padding: 0.375rem 0.625rem;
   background: var(--ds-bg-sunken);
   border: 1px solid var(--ds-border-base);
-  border-radius: 3px;
+  border-radius: var(--ds-radius-md);
   color: var(--ds-text-primary);
   font-weight: 500;
   font-size: 0.875rem;
@@ -453,6 +363,26 @@ app-header-employee-monitor .customer-selector-btn {
 
   &:hover {
     background-color: var(--ds-bg-base);
+  }
+
+  img {
+    width: 2rem !important;
+    height: 2rem !important;
+    flex: 0 0 2rem;
+    object-fit: contain;
+  }
+
+  .customer-selector-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  app-icon {
+    flex: 0 0 auto;
+    margin-left: auto;
   }
 
   &:active {
@@ -515,29 +445,49 @@ app-header-employee-monitor .customer-selector-btn {
   background: var(--ds-bg-surface, #ffffff) !important;
 }
 
-.offcanvas-backdrop {
-  background: var(--ds-bg-overlay) !important;
+/* Customer menu is rendered in CDK overlay attached to body. */
+.customer-menu-panel {
+  width: min(18rem, calc(100vw - 2rem)) !important;
+  max-width: min(18rem, calc(100vw - 2rem)) !important;
+  padding: 0.375rem !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-lg) !important;
+  background: var(--ds-bg-surface) !important;
+  box-shadow: var(--ds-shadow-lg) !important;
 }
 
-/* Select dropdown overlay (teleported to body) */
-.p-select-overlay {
-  background: rgba(var(--ds-bg-auth-panel-rgb), 0.95) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--ds-surface-dark-active) !important;
+.customer-menu-panel .dropdown-item {
+  padding: 0 !important;
+  border-radius: var(--ds-radius-md);
+  color: var(--ds-text-primary);
+  overflow: hidden;
+}
 
-  .p-select-option {
-    color: var(--ds-on-dark-label) !important;
+.customer-menu-panel .dropdown-item:hover,
+.customer-menu-panel .dropdown-item:focus {
+  background: var(--ds-bg-sunken);
+}
 
-    &:hover {
-      background: var(--ds-surface-dark-hover) !important;
-    }
+.customer-menu-item {
+  min-height: 3rem;
+}
 
-    &.p-select-option-selected {
-      background: var(--ds-surface-dark-active) !important;
-      color: var(--ds-on-dark) !important;
-    }
-  }
+.customer-menu-logo {
+  width: 2rem !important;
+  height: 2rem !important;
+  flex: 0 0 2rem;
+  object-fit: contain;
+}
+
+.customer-menu-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.offcanvas-backdrop {
+  background: var(--ds-bg-overlay) !important;
 }
 
 @media print {
@@ -556,8 +506,5 @@ app-header-employee-monitor .customer-selector-btn {
     margin: 0;
     padding: 20px;
     box-shadow: none !important;
-  }
-  .p-dialog-mask {
-    background-color: transparent !important;
   }
 }

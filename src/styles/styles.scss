@@ -80,6 +80,12 @@ body {
 @import "shared/auth";
 @import "base/dark-mode"; /* último: unlayered, máxima prioridad en cascade */
 
+/* Bootstrap tooltip is appended to body by LxTooltipDirective. Keep it above
+   fixed headers and scrollable content. */
+.tooltip {
+  z-index: 1080 !important;
+}
+
 /* 5. COMPONENTES CUSTOM */
 @import "custom/avatars";
 @import "custom/list";

@@ -27,9 +27,18 @@
  * En resumen: soy ligero, reactivo y zen. 🧘‍♂️
  * Mi lema: *"Menos responsabilidades, más elegancia."*
  */
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { AuthService } from "@core/auth/services/auth.service";
+import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { MessageService } from "@core/services/message.service";
+import { fromEvent, merge } from "rxjs";
 import { filter } from "rxjs/operators";
 // 🧩 Componentes globales que acompañan siempre a la app
 import { AppToast } from "@ui/web/toast/toast";
@@ -56,9 +65,14 @@ export class App implements OnInit {
   // --- 💉 Inyección de dependencias minimalista (solo lo esencial) ---
   private messagingService = inject(MessagingService);
   private updateService = inject(UpdateService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
   private messageService = inject(MessageService);
   private logger = inject(ConsoleLoggerService);
   private featureAnnouncementService = inject(FeatureAnnouncementService);
+  private destroyRef = inject(DestroyRef);
+  private updateIdleTimer?: ReturnType<typeof setTimeout>;
+  private readonly updateIdleDelayMs = 60_000;
   // Inyectamos TitleService para que se instancie y el effect del título funcione
   private titleService = inject(TitleService);
   // --- 🚀 Ciclo de vida inicial ---
@@ -76,6 +90,7 @@ export class App implements OnInit {
     // 🪄 Inicializa servicios verdaderamente globales (sin importar el usuario)
     this.checkNotificationStatus();
     this.initializeUpdateListener(); // Escucha nuevas versiones del PWA
+    this.initializeSafeUpdateTriggers();
 
     // Verificar novedades de versión
     this.featureAnnouncementService.checkForUpdates();
@@ -88,7 +103,8 @@ export class App implements OnInit {
    */
   private checkNotificationStatus(): void {
     const permission = this.messagingService.getPermissionStatus();
-    const dismissed = localStorage.getItem("notificationPromptDismissed") === "true";
+    const dismissed =
+      localStorage.getItem("notificationPromptDismissed") === "true";
 
     // Solo mostrar si el usuario no ha decidido aún y no ha dismissado el prompt
     if (permission === "default" && !dismissed) {
@@ -120,43 +136,50 @@ export class App implements OnInit {
             "#4CAF50",
             "[App] Usuario aceptó activar notificaciones",
           );
-          this.messagingService.requestPermission().then((result) => {
-            this.messageService.clear("notification-prompt");
-            // Guardar que el usuario ya interactuó con el prompt (no volver a mostrar)
-            localStorage.setItem("notificationPromptDismissed", "true");
-            if (result === "granted") {
+          this.messagingService
+            .requestPermission()
+            .then((result) => {
+              this.messageService.clear("notification-prompt");
+              // Guardar que el usuario ya interactuó con el prompt (no volver a mostrar)
+              localStorage.setItem("notificationPromptDismissed", "true");
+              if (result === "granted") {
+                this.messageService.add({
+                  severity: "success",
+                  summary: "✅ ¡Listo!",
+                  detail: "Notificaciones activadas correctamente",
+                  life: 3000,
+                });
+              } else if (result === "denied") {
+                this.messageService.add({
+                  severity: "warn",
+                  summary: "⚠️ Permiso denegado",
+                  detail:
+                    "Las notificaciones fueron bloqueadas. Puedes habilitarlas en la configuración del navegador.",
+                  life: 5000,
+                });
+              } else {
+                this.messageService.add({
+                  severity: "info",
+                  summary: "ℹ️ Sin cambios",
+                  detail: "No se modificó el estado de notificaciones.",
+                  life: 3000,
+                });
+              }
+            })
+            .catch((error) => {
+              this.logger.error(
+                "[App] Error solicitando permiso notificaciones",
+                error,
+              );
+              this.messageService.clear("notification-prompt");
+              localStorage.setItem("notificationPromptDismissed", "true");
               this.messageService.add({
-                severity: "success",
-                summary: "✅ ¡Listo!",
-                detail: "Notificaciones activadas correctamente",
+                severity: "error",
+                summary: "❌ Error",
+                detail: "No se pudo activar notificaciones",
                 life: 3000,
               });
-            } else if (result === "denied") {
-              this.messageService.add({
-                severity: "warn",
-                summary: "⚠️ Permiso denegado",
-                detail: "Las notificaciones fueron bloqueadas. Puedes habilitarlas en la configuración del navegador.",
-                life: 5000,
-              });
-            } else {
-              this.messageService.add({
-                severity: "info",
-                summary: "ℹ️ Sin cambios",
-                detail: "No se modificó el estado de notificaciones.",
-                life: 3000,
-              });
-            }
-          }).catch((error) => {
-            this.logger.error("[App] Error solicitando permiso notificaciones", error);
-            this.messageService.clear("notification-prompt");
-            localStorage.setItem("notificationPromptDismissed", "true");
-            this.messageService.add({
-              severity: "error",
-              summary: "❌ Error",
-              detail: "No se pudo activar notificaciones",
-              life: 3000,
             });
-          });
         },
         actionLabel: "Activar",
         onCancel: () => {
@@ -169,48 +192,78 @@ export class App implements OnInit {
       },
     });
   }
-  // --- 🔄 Gestión de actualizaciones de la PWA ---
+  // --- 🔄 Actualizaciones silenciosas de la PWA ---
   /**
    * Escucha el observable del `UpdateService` que anuncia
    * cuando hay una nueva versión lista para instalar.
-   * Cuando eso ocurre, se lanza un toast bonito para invitar al usuario a actualizar. 💌
+   *
+   * No mostramos un toast: los despliegues pueden ocurrir diariamente y una
+   * alerta repetitiva interrumpe el trabajo. La versión queda pendiente y se
+   * activa mediante uno de los disparadores seguros definidos abajo.
    */
   private initializeUpdateListener(): void {
     this.updateService.updateAvailable$
       .pipe(filter((available: boolean) => available))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.logger.custom(
           "🆕",
           "#FF9800",
-          '[App] ¡Nueva versión detectada! Mostrando el botón de "Actualizar ahora".',
+          "[App] Nueva versión lista. Se aplicará en un punto seguro.",
         );
-        this.showUpdateToast();
+        this.scheduleUpdateAfterInactivity();
       });
   }
 
-  /**
-   * 🎨 Muestra un toast con acción personalizada (tipo snackbar),
-   * para avisar que hay una nueva versión disponible del PWA.
-   * Al presionar “Actualizar”, el servicio `UpdateService` aplicará la nueva versión y refrescará la app.
-   */
-  private showUpdateToast(): void {
-    this.logger.custom("🔔", "#FF9800", "Mostrando toast de actualización...");
-    this.messageService.add({
-      key: "update-toast",
-      severity: "info",
-      summary: "Actualización Disponible",
-      detail: "Hay una nueva versión de la aplicación. ¡Actualiza ahora! 🚀",
-      sticky: true, // permanece hasta que el usuario actúe
-      data: {
-        onAction: () => {
-          this.logger.success(
-            '[App] Usuario hizo clic en "Actualizar". Aplicando nueva versión...',
-          );
-          this.messageService.clear("update-toast");
-          this.updateService.activateUpdate();
-        },
-        actionLabel: "Actualizar",
-      },
+  private initializeSafeUpdateTriggers(): void {
+    // Tras iniciar sesión, el usuario ya cruzó el límite de autenticación y
+    // podemos aplicar una versión pendiente antes de comenzar su jornada.
+    this.authService.isAuthenticated$
+      .pipe(
+        filter((authenticated) => authenticated),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => this.activateUpdateIfAvailable("inicio de sesión"));
+
+    // NavigationEnd ocurre después de completar navegación. Es un momento
+    // natural para actualizar sin cortar una operación en curso.
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => this.activateUpdateIfAvailable("cambio de módulo"));
+
+    // Si el usuario sigue trabajando, no recargamos la aplicación. Cada
+    // interacción reinicia la espera y la actualización ocurre 60 s después
+    // de la última actividad.
+    merge(
+      fromEvent(document, "pointerdown"),
+      fromEvent(document, "keydown"),
+      fromEvent(document, "touchstart"),
+    )
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.scheduleUpdateAfterInactivity());
+
+    this.destroyRef.onDestroy(() => {
+      if (this.updateIdleTimer) clearTimeout(this.updateIdleTimer);
     });
+  }
+
+  private activateUpdateIfAvailable(reason: string): void {
+    if (!this.updateService.isUpdateAvailable()) return;
+
+    this.logger.custom("🔄", "#FF9800", `[App] Actualizando por ${reason}...`);
+    void this.updateService.activateUpdate();
+  }
+
+  private scheduleUpdateAfterInactivity(): void {
+    if (!this.updateService.isUpdateAvailable()) return;
+
+    if (this.updateIdleTimer) clearTimeout(this.updateIdleTimer);
+    this.updateIdleTimer = setTimeout(() => {
+      this.updateIdleTimer = undefined;
+      this.activateUpdateIfAvailable("inactividad");
+    }, this.updateIdleDelayMs);
   }
 }

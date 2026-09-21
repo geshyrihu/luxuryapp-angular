@@ -1,5 +1,8 @@
+import { APP_VERSION } from "./app-version";
+
 export const environment = {
   production: true,
+  APP_VERSION,
   // API_BASE_URL: "https://luxury-app.com/api/",
   // API_DOMONIO: "https://luxury-app.com",
   // API_BASE_SIGNALR: "https://luxury-app.com/ws/notificationHub",

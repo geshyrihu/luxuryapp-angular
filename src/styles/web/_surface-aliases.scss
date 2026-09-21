@@ -1,0 +1,18 @@
+// Shared surface aliases for legacy templates.
+:root {
+  --surface-ground: var(--ds-bg-page);
+  --surface-section: var(--ds-bg-page);
+  --surface-card: var(--ds-bg-surface);
+  --surface-overlay: var(--ds-bg-surface);
+  --surface-border: var(--ds-border);
+  --text-color: var(--ds-text-primary);
+  --text-color-secondary: var(--ds-text-secondary);
+  --text-color-muted: var(--ds-text-muted);
+}
+
+.surface-card { background-color: var(--ds-bg-surface); color: var(--ds-text-primary); }
+.surface-ground, .surface-section { background-color: var(--ds-bg-page); color: var(--ds-text-primary); }
+.surface-border { border-color: var(--ds-border); }
+.text-color { color: var(--ds-text-primary); }
+.text-color-secondary { color: var(--ds-text-secondary); }
+.text-color-muted { color: var(--ds-text-muted); }

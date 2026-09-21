@@ -1,6 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
+  computed,
   Component,
   effect,
   viewChild,
@@ -25,7 +26,7 @@ import {
   selector: "app-carousel",
   imports: [CarouselModule, NgTemplateOutlet],
   template: `
-    <owl-carousel-o [options]="owlOptions" (changed)="onChanged($event)">
+      <owl-carousel-o [options]="owlOptions()" (changed)="onChanged($event)">
       @for (item of value(); track $index) {
         <ng-template carouselSlide [id]="'app-carousel-slide-' + $index">
           <ng-container
@@ -81,8 +82,7 @@ export class Carousel extends CarouselBase {
     });
   }
 
-  protected get owlOptions(): OwlOptions {
-    return {
+  protected owlOptions = computed<OwlOptions>(() => ({
       items: this.numVisible(),
       slideBy: this.numScroll(),
       loop: this.circular(),
@@ -91,8 +91,7 @@ export class Carousel extends CarouselBase {
       nav: this.showNavigators(),
       dots: this.showIndicators(),
       startPosition: this.page(),
-    };
-  }
+    }));
 
   protected onChanged(event: { startPosition?: number }): void {
     if (typeof event.startPosition === "number") {

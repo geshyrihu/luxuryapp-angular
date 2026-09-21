@@ -109,6 +109,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
     recalculateWorkPositionFolios:
       "admin/system-maintenance/recalculate-work-position-folios",
+    repairPurchaseRequestFolios:
+      "admin/database-backup/purchase-requests/repair-folios",
     seedFederalLaborLawParameters:
       "admin/system-maintenance/seed-federal-labor-law-parameters",
   },

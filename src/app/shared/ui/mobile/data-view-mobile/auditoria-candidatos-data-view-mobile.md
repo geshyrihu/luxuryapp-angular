@@ -28,8 +28,8 @@ Estos archivos ya tienen `hidden md:block` + sección mobile debajo. Verificar q
 | #   | Archivo                                                                                          | Notas                   |
 | --- | ------------------------------------------------------------------------------------------------ | ----------------------- |
 | 1   | `features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery.html`             | Ya tiene sección mobile |
-| 2   | `features/operations/task-engine/recurring-tasks/instances/daily-task-list/daily-task-list.html` | Ya tiene sección mobile |
-| 3   | `features/operations/task-engine/tasks/my-tasks/pages/my-tasks-list.html`                        | Ya tiene sección mobile |
+| 2   | `features/operations/task/recurring-tasks/instances/daily-task-list/daily-task-list.html` | Ya tiene sección mobile |
+| 3   | `features/operations/task/tasks/my-tasks/pages/my-tasks-list.html`                        | Ya tiene sección mobile |
 | 4   | `apps/admin.luxuryapp/reportes/access-history/bitacora-acceso-list.html`                         | Ya tiene sección mobile |
 
 ---
@@ -44,8 +44,8 @@ Listas CRUD limpias con paginator, filtros, y acciones de fila. Ideales para `<a
 | 2   | `features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-execution-history-list.html`               | Mantenimiento | Historial de ejecución de inspecciones |
 | 3   | `features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-list.html`                              | Mantenimiento | Lista QR de inspecciones               |
 | 4   | `features/operations/reports/contracts-policies/contracts-policies`                                                              | Operaciones   | Contratos y pólizas                    |
-| 5   | `features/operations/task-engine/tasks/reports/pages/task-operation-report.html`                                                 | Tareas        | Reporte semanal de operaciones         |
-| 6   | `features/operations/task-engine/tasks/reports/pages/task-report-work-plan.html`                                                 | Tareas        | Plan de trabajo                        |
+| 5   | `features/operations/task/tasks/reports/pages/task-operation-report.html`                                                 | Tareas        | Reporte semanal de operaciones         |
+| 6   | `features/operations/task/tasks/reports/pages/task-report-work-plan.html`                                                 | Tareas        | Plan de trabajo                        |
 | 7   | `features/operations/supervision/supervision/agenda-supervision/agenda-supervision.html`                                         | Supervisión   | Agenda de supervisión                  |
 | 8   | `features/operations/supervision/supervision/filtro-minutas-area/filtro-minutas-area.html`                                       | Supervisión   | Filtro de minutas por área             |
 | 9   | `features/operations/supervision/supervision/resultado-general-evaluacion-areas/resultado-general-evaluacion-areas-detalle.html` | Supervisión   | Detalle de evaluación por áreas        |
@@ -64,7 +64,7 @@ Requieren evaluación. Pueden tener layout agrupado, tablas comparativas, o cont
 
 | #   | Archivo                                                                                                           | Módulo        | Razón para evaluar                        |
 | --- | ----------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------- |
-| 1   | `apps/admin.luxuryapp/seguridad-permisos/approval-rules/approval-rules`                                           | Admin         | Matriz de aprobación con badges de estado |
+| 1   | `apps/admin.luxuryapp/security-permissions/approval-rules/approval-rules`                                           | Admin         | Matriz de aprobación con badges de estado |
 | 2   | `features/accounting/general-ledger/cobranza-nativa/pages/charge-template-coverage/charge-template-coverage.html` | Contabilidad  | Filas agrupadas con subheaders            |
 | 3   | `features/operations/supervision/supervision/reporte-tickets/reporte-tickets.html`                                | Supervisión   | Reporte de tickets con `hidden md:block`  |
 | 4   | `features/accounting/general-ledger/contabilidad-online/pages/validacion-catalogo/catalog-replica.html`           | Contabilidad  | Árbol con filas expandibles               |
@@ -74,8 +74,8 @@ Requieren evaluación. Pueden tener layout agrupado, tablas comparativas, o cont
 | 8   | `features/operations/properties/entrega-recepcion/entrega-recepcion-instalaciones.html`                           | Propiedades   | Inventario de instalaciones               |
 | 9   | `features/operations/properties/entrega-recepcion/entrega-recepcion-insumos.html`                                 | Propiedades   | Inventario de insumos                     |
 | 10  | `features/operations/properties/entrega-recepcion/entrega-recepcion-llaves.html`                                  | Propiedades   | Inventario de llaves                      |
-| 11  | `features/operations/field-service/service-order/ordenes-servicio-reporte-proveedor.html`                         | Field Service | Reporte proveedor (3 columnas simples)    |
-| 12  | `features/operations/field-service/service-order/resumen-ordenes-servicio.html`                                   | Field Service | Resumen de órdenes de servicio            |
+| 11  | `features/operations/service-orders/service-order/ordenes-servicio-reporte-proveedor.html`                         | Field Service | Reporte proveedor (3 columnas simples)    |
+| 12  | `features/operations/service-orders/service-order/resumen-ordenes-servicio.html`                                   | Field Service | Resumen de órdenes de servicio            |
 | 13  | `features/accounting/general-ledger/cobranza-online/pages/dashboard/cobranza-online-dashboard.html`               | Contabilidad  | Dashboard con `hidden md:block`           |
 | 14  | `features/operations/inspecciones-y-auditora/inspection/lista-inspecciones/lista-inspecciones.html`               | Inspecciones  | Lista de inspecciones                     |
 

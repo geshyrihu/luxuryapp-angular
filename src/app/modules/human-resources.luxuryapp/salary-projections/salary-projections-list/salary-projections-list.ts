@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -21,7 +23,6 @@ import {
   salaryProjectionStateSeverity,
   salaryProjectionStateText,
 } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
 import { SalaryProjectionCreateDialog } from "./salary-projection-create-dialog";
 
 const DETAIL_URL = "/hr/salary-projections";
@@ -43,7 +44,7 @@ const DETAIL_URL = "/hr/salary-projections";
   ],
 })
 export class SalaryProjectionsList {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly customerIdService = inject(CustomerIdService);
   private readonly router = inject(Router);
   private readonly dialogHandler = inject(DialogHandlerService);
@@ -71,7 +72,9 @@ export class SalaryProjectionsList {
   async load(): Promise<void> {
     this.loading.set(true);
     try {
-      const data = await this.service.getList();
+      const data = await this.api.onGetList<ISalaryProjection[]>(
+        Endpoints.SalaryProjections.base,
+      );
       if (data) {
         this.rows.set(data);
       }
@@ -91,7 +94,9 @@ export class SalaryProjectionsList {
 
     this.deletingId.set(item.id);
     try {
-      const deleted = await this.service.delete(item.id);
+      const deleted = await this.api.onDelete(
+        Endpoints.SalaryProjections.byId(item.id),
+      );
       if (deleted) {
         this.rows.update((currentRows) =>
           currentRows.filter((row) => row.id !== item.id),
@@ -111,7 +116,7 @@ export class SalaryProjectionsList {
       SalaryProjectionCreateDialog,
       {},
       "Nueva propuesta",
-      this.dialogHandler.sizeSm,
+      this.dialogHandler.sizeMd,
     );
 
     if (!result?.name) {
@@ -120,17 +125,20 @@ export class SalaryProjectionsList {
 
     this.creating.set(true);
     try {
-      const created = await this.service.create({
-        name: result.name,
-        folio: "",
-        scenarios: [
-          {
-            name: "Escenario Base",
-            description: "Escenario base de la proyección",
-            items: [],
-          },
-        ],
-      });
+      const created = await this.api.onPost<ISalaryProjection>(
+        Endpoints.SalaryProjections.base,
+        {
+          name: result.name,
+          folio: "",
+          scenarios: [
+            {
+              name: "Escenario Base",
+              description: "Escenario base de la proyeccin",
+              items: [],
+            },
+          ],
+        },
+      );
 
       if (created) {
         await this.router.navigate([DETAIL_URL, created.id]);

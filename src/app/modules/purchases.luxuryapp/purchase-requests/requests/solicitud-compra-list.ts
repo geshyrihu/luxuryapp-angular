@@ -304,6 +304,47 @@ export class SolicitudCompraList {
     this.router.navigate(ROUTES.COMPRAS.CUADRO_COMPARATIVO(id));
   }
 
+  isAuthorizedView(): boolean {
+    return this.statusCompra() === 0;
+  }
+
+  onAuthorizationDetail(item: any) {
+    Swal.fire({
+      title: `Autorización ${item.folio}`,
+      text: [
+        `Autorizada por: ${item.autorizadaPorDisplay || "Sin registro"}`,
+        `Fecha: ${item.fechaAutorizacion || "Sin registro"}`,
+        `Hora: ${item.horaAutorizacion || "Sin registro"}`,
+      ].join("\n"),
+      icon: "info",
+      confirmButtonText: "Cerrar",
+    });
+  }
+
+  onDesauthorize(item: any) {
+    Swal.fire({
+      title: "Desautorizar solicitud",
+      text: `La solicitud ${item.folio} volverá a estado pendiente.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Desautorizar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (!result.isConfirmed) return;
+
+      this.apiResponseS
+        .onPut(Endpoints.PurchaseRequests.cuadroComparativoUpdate(item.id), {
+          estatus: 2,
+          autorizadaPor: null,
+          motivoNoAutorizacion: "",
+          applicationUserId: this.authS.applicationUserId,
+        })
+        .then((response) => {
+          if (response) this.onLoadData();
+        });
+    });
+  }
+
   onManageLinks() {
     this.dialogHandlerS
       .openDialog(

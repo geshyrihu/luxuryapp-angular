@@ -20,10 +20,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "@ui/web/table/table";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "@ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 
+import { DialogSize } from "@core/enums/dialog-size.enum";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { Dialog } from "@ui/web/dialog/dialog";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
@@ -39,7 +42,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     WebButtonLabel,
     WebButtonLabelViewPdf,
     LxTag,
-    Dialog,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
@@ -50,13 +53,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
       .presentation-shell {
         position: relative;
-        background:
-          radial-gradient(
-            circle at top right,
-            rgba(25, 118, 210, 0.08),
-            transparent 26%
-          ),
-          linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+        background: var(--ds-bg-sunken);
         min-height: 100%;
         overflow-x: hidden;
       }
@@ -94,58 +91,29 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         top: 0;
         right: 1.25rem;
         z-index: 5;
-        background: #ffffff;
-        border-radius: 999px;
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 0.25rem;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+        box-shadow: var(--ds-shadow-sm);
       }
 
-      :host ::ng-deep .presentation-carousel .p-carousel-content {
-        align-items: stretch;
-        gap: 0;
-        overflow: hidden;
-      }
 
-      :host ::ng-deep .presentation-carousel .p-carousel-container {
-        align-items: flex-start;
-        overflow: hidden;
-      }
-
-      :host ::ng-deep .presentation-carousel .p-carousel-indicator-list {
-        margin: 0.35rem 0 0;
-        gap: 0.35rem;
-        justify-content: center;
-      }
-
-      :host ::ng-deep .presentation-carousel .p-carousel-item {
-        padding: 0 !important;
-        width: 100% !important;
-        min-width: 100% !important;
-        max-width: 100% !important;
-        flex: 0 0 100% !important;
-      }
-
-      :host ::ng-deep .presentation-carousel .p-carousel-item > div {
-        width: 100%;
-      }
-
-      :host ::ng-deep .presentation-carousel .p-carousel-indicator button {
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 999px;
-      }
 
       .presentation-slide {
-        background: #ffffff;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        border-radius: 24px;
-        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-card);
+        box-shadow: var(--ds-shadow-sm);
         overflow: hidden;
       }
 
       .presentation-accent {
-        height: 0.45rem;
-        background: linear-gradient(90deg, var(--ds-primary) 0%, #0ea5e9 100%);
+        height: 0.25rem;
+        background: var(--ds-primary);
       }
 
       .presentation-kicker {
@@ -153,15 +121,240 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         text-transform: uppercase;
       }
 
+      .presentation-detail-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+        grid-template-areas:
+          "evidence providers"
+          "budget budget";
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .presentation-section {
+        min-width: 0;
+      }
+
+      .presentation-section-providers {
+        grid-area: providers;
+      }
+
+      .presentation-section-evidence {
+        grid-area: evidence;
+      }
+
+      .presentation-section-budget {
+        grid-area: budget;
+      }
+
+      .detail-meta {
+        min-height: 4.5rem;
+      }
+
+      .provider-fact {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        column-gap: 0.5rem;
+        align-items: baseline;
+      }
+
+      .provider-fact > :last-child {
+        text-align: right;
+      }
+
+      :host ::ng-deep .presentation-section .custom-table {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+      }
+
+      :host ::ng-deep .presentation-section .custom-table table {
+        width: 100%;
+        min-width: 0 !important;
+      }
+
+      :host ::ng-deep .presentation-section .custom-table th,
+      :host ::ng-deep .presentation-section .custom-table td {
+        padding: 0.4rem 0.55rem;
+      }
+
       .evidence-frame {
-        background: #fff;
+        background: var(--ds-bg-surface);
         border: 1px solid var(--surface-border);
-        border-radius: 16px;
+        border-radius: var(--ds-radius-card);
         overflow: hidden;
       }
 
+      .provider-card {
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-card);
+        box-shadow: var(--ds-shadow-sm);
+      }
+
+      .provider-card-best {
+        background: var(--ds-warning-light);
+        border-color: var(--ds-warning);
+      }
+
+      @media (max-width: 991.98px) {
+        .presentation-detail-grid {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-areas:
+            "evidence evidence"
+            "providers providers"
+            "budget budget";
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .presentation-detail-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .provider-fact {
+          grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        }
+      }
+
+      .summary-priority-legend {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .summary-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--ds-text-secondary);
+        font-size: 0.75rem;
+      }
+
+      .summary-priority-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: var(--ds-radius-full);
+        font-size: 0.9rem;
+      }
+
+      .summary-priority-icon-danger {
+        background: var(--ds-danger-light);
+        color: var(--ds-danger);
+      }
+
+      .summary-priority-icon-warn {
+        background: var(--ds-warning-light);
+        color: var(--ds-warning-dark, var(--ds-warning));
+      }
+
+      .summary-priority-icon-info {
+        background: var(--ds-info-light);
+        color: var(--ds-info);
+      }
+
+      .summary-priority-icon-secondary {
+        background: var(--ds-bg-sunken);
+        color: var(--ds-text-secondary);
+      }
+
+      .summary-table {
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-card);
+        box-shadow: var(--ds-shadow-sm);
+        overflow: hidden;
+      }
+
+      .summary-table-scroll {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .summary-table-grid {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+        border-collapse: collapse;
+      }
+
+      .summary-table-grid th {
+        padding: 0.5rem 0.75rem;
+        background: var(--ds-primary);
+        color: var(--ds-primary-text);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .summary-table-grid td {
+        padding: 0.55rem 0.75rem;
+        border-top: 1px solid var(--ds-border);
+        vertical-align: middle;
+      }
+
+      .summary-table-grid tbody tr:hover {
+        background: var(--ds-bg-sunken);
+      }
+
+      .summary-table .summary-row-danger td:first-child {
+        border-left: 4px solid var(--ds-danger);
+      }
+
+      .summary-table .summary-row-warn td:first-child {
+        border-left: 4px solid var(--ds-warning);
+      }
+
+      .summary-table .summary-row-info td:first-child {
+        border-left: 4px solid var(--ds-info);
+      }
+
+      .summary-table .summary-row-secondary td:first-child {
+        border-left: 4px solid var(--ds-border-strong);
+      }
+
+      .summary-description-title {
+        color: var(--ds-text-primary);
+        font-weight: 650;
+        line-height: 1.35;
+      }
+
+      .summary-description-justification {
+        display: -webkit-box;
+        overflow: hidden;
+        color: var(--ds-text-secondary);
+        font-size: 0.8rem;
+        line-height: 1.35;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      @media (max-width: 767.98px) {
+        .summary-table-scroll {
+          overflow-x: auto;
+        }
+
+        .summary-table-grid {
+          min-width: 62rem;
+        }
+      }
+
+      .summary-money {
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
       .provider-footer-row td {
-        background: #f8fafc;
+        background: var(--ds-bg-sunken);
         font-size: 0.8rem;
       }
 
@@ -169,10 +362,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         border-top: 1px solid var(--surface-border);
       }
 
-      .provider-card-best {
-        border-color: var(--ds-warning) !important;
-        background: var(--ds-warning-light) !important;
-      }
     `,
   ],
 })
@@ -181,15 +370,17 @@ export class SolicitudCompraPresentacion {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   swalService = inject(SwalService);
+  dialogHandlerS = inject(DialogHandlerService);
 
   solicitudesSignal = signal<any[]>([]);
   presentationSlides = signal<any[]>([]);
-  optimizeMap = signal<Record<string, boolean>>({});
   solicitudIds: string[] = [];
   currentPage = signal(0);
-
-  productDetailModalVisible = signal(false);
-  productDetailSolicitud = signal<any | null>(null);
+  loadingPresentation = signal(true);
+  presentationError = signal<string | null>(null);
+  private presentationLoadSequence = 0;
+  priorityOptions = [...NIVEL_PRIORIDAD_TAG_OPTIONS].reverse();
+  typeOptions = TIPO_SOLICITUD_TAG_OPTIONS;
 
   autorizacionOptions: SelectItemDto[] = [
     { label: "Comite", value: AutorizacionCuadroComparativo.Comite },
@@ -207,18 +398,36 @@ export class SolicitudCompraPresentacion {
       if (customerId) {
         this.onLoadSelectedSolicitudes(customerId);
       } else {
+        this.presentationLoadSequence++;
         this.solicitudesSignal.set([]);
         this.presentationSlides.set([]);
+        this.presentationError.set(null);
+        this.loadingPresentation.set(false);
       }
     });
   }
 
   async onLoadSelectedSolicitudes(customerId: string) {
+    const loadSequence = ++this.presentationLoadSequence;
     this.currentPage.set(0);
-
+    this.loadingPresentation.set(true);
+    this.presentationError.set(null);
     const selectedItems = await this.apiResponseS.onGetList<any[]>(
       Endpoints.PurchaseRequests.presentation(customerId),
+      false,
     );
+
+    if (loadSequence !== this.presentationLoadSequence) return;
+    if (selectedItems === null) {
+      this.solicitudIds = [];
+      this.solicitudesSignal.set([]);
+      this.presentationSlides.set([]);
+      this.presentationError.set(
+        "No se pudo cargar la selección de presentación.",
+      );
+      this.loadingPresentation.set(false);
+      return;
+    }
 
     const ids = Array.from(selectedItems || []).map((item: any) => item.id);
     this.solicitudIds = ids;
@@ -226,21 +435,35 @@ export class SolicitudCompraPresentacion {
     if (ids.length === 0) {
       this.solicitudesSignal.set([]);
       this.presentationSlides.set([]);
+      this.loadingPresentation.set(false);
       return;
     }
 
-    await this.onLoadSolicitudes(ids);
-  }
-
-  async onLoadSolicitudes(ids: string[]) {
-    const requests = ids.map((id) =>
-      this.apiResponseS.onGetItem(
-        Endpoints.PurchaseRequests.cuadroComparativo(id),
-      ),
+    const batchResult = await this.apiResponseS.onPost<any[]>(
+      Endpoints.PurchaseRequests.cuadroComparativoBatch,
+      { solicitudCompraIds: ids },
+      undefined,
+      false,
+      false,
     );
 
-    const results = await Promise.all(requests);
-    const formatted = (results || [])
+    if (loadSequence !== this.presentationLoadSequence) return;
+    if (batchResult === false) {
+      this.solicitudesSignal.set([]);
+      this.presentationSlides.set([]);
+      this.presentationError.set(
+        "No se pudieron cargar los comparativos seleccionados.",
+      );
+      this.loadingPresentation.set(false);
+      return;
+    }
+
+    const resultById = new Map(
+      (batchResult || []).map((item: any) => [item.id, item]),
+    );
+    const missingIds = ids.filter((id) => !resultById.has(id));
+    const formatted = ids
+      .map((id) => resultById.get(id))
       .filter(Boolean)
       .map((item: any) => this.mapSolicitudForPresentation(item));
 
@@ -249,9 +472,11 @@ export class SolicitudCompraPresentacion {
       {
         id: "summary-slide",
         kind: "summary",
-        rows: formatted.map((solicitud, index) =>
-          this.mapSolicitudSummaryRow(solicitud, index),
-        ),
+        rows: formatted
+          .map((solicitud, index) =>
+            this.mapSolicitudSummaryRow(solicitud, index),
+          )
+          .sort((left, right) => right.prioridad - left.prioridad),
       },
       ...formatted.map((solicitud) => ({
         kind: "solicitud",
@@ -259,13 +484,12 @@ export class SolicitudCompraPresentacion {
       })),
     ]);
     this.currentPage.set(0);
-    this.optimizeMap.update((prev) => {
-      const next = { ...prev };
-      for (const solicitud of formatted) {
-        next[solicitud.id] = next[solicitud.id] ?? false;
-      }
-      return next;
-    });
+    if (missingIds.length > 0) {
+      this.presentationError.set(
+        `${missingIds.length} solicitud(es) seleccionada(s) no está(n) disponible(s) para presentación.`,
+      );
+    }
+    this.loadingPresentation.set(false);
   }
 
   mapSolicitudForPresentation(item: any) {
@@ -322,6 +546,8 @@ export class SolicitudCompraPresentacion {
     return {
       numero: index + 1,
       descripcion: solicitud.equipoOInstalacion,
+      area: solicitud.solicita || "Sin área",
+      justificacion: solicitud.justificacionGasto || "Sin justificación registrada",
       costoTotalConIva: solicitud.cheapestTotal || 0,
       partidaPresupuestal:
         budgets.length > 0
@@ -373,6 +599,21 @@ export class SolicitudCompraPresentacion {
     );
   }
 
+  getPrioridadIcon(value: number): string {
+    switch (value) {
+      case 4:
+        return AppIconCatalog.AlertCircle;
+      case 3:
+        return AppIconCatalog.ArrowUp;
+      case 2:
+        return AppIconCatalog.Minus;
+      case 1:
+        return AppIconCatalog.ArrowDown;
+      default:
+        return AppIconCatalog.HelpOutline;
+    }
+  }
+
   getSummaryTotal(rows: any[]): number {
     return Array.from(rows || []).reduce(
       (sum: number, row: any) => sum + (row.costoTotalConIva || 0),
@@ -383,43 +624,6 @@ export class SolicitudCompraPresentacion {
   getCheapestTotal(totals: number[]): number {
     const validTotals = totals.filter((total) => total > 0);
     return validTotals.length > 0 ? Math.min(...validTotals) : 0;
-  }
-
-  canOptimizeProducts(solicitud: any): boolean {
-    return (solicitud?.solicitudCompraDetalle?.length || 0) > 4;
-  }
-
-  isOptimized(solicitudId: string): boolean {
-    return !!this.optimizeMap()[solicitudId];
-  }
-
-  toggleOptimizeProducts(solicitudId: string) {
-    this.optimizeMap.update((prev) => ({
-      ...prev,
-      [solicitudId]: !prev[solicitudId],
-    }));
-  }
-
-  getDisplayedSolicitudDetalle(solicitud: any): any[] {
-    const details = Array.from(solicitud?.solicitudCompraDetalle || []);
-    if (!this.isOptimized(solicitud.id) || details.length <= 4) {
-      return details;
-    }
-
-    return [
-      {
-        id: `${solicitud.id}-grouped`,
-        producto: `PRODUCTOS AGRUPADOS (${details.length} PARTIDAS)`,
-        cantidad: details.reduce(
-          (sum: number, item: any) => sum + (item.cantidad || 0),
-          0,
-        ),
-        unidadMedida: "Lote",
-        total: solicitud.total1,
-        total2: solicitud.total2,
-        total3: solicitud.total3,
-      },
-    ];
   }
 
   getBudgetAccumulated(budget: any): number {
@@ -448,14 +652,16 @@ export class SolicitudCompraPresentacion {
     return best?.id === provider?.id;
   }
 
-  openProductDetailModal(solicitud: any): void {
-    this.productDetailSolicitud.set(solicitud);
-    this.productDetailModalVisible.set(true);
-  }
-
-  closeProductDetailModal(): void {
-    this.productDetailModalVisible.set(false);
-    this.productDetailSolicitud.set(null);
+  async openProductDetailModal(solicitud: any): Promise<void> {
+    const { ProductDetailModalComponent } =
+      await import("./product-detail-modal/product-detail-modal");
+    await this.dialogHandlerS.openDialog(
+      ProductDetailModalComponent,
+      { solicitud },
+      `Detalle de productos - ${solicitud?.equipoOInstalacion || ""}`,
+      DialogSize.full,
+      true,
+    );
   }
 
   isAuthorized(solicitud: any): boolean {
@@ -637,12 +843,38 @@ export class SolicitudCompraPresentacion {
       payload,
     );
 
-    if (result) {
-      const customerId = this.customerIdS.customerId();
-      if (customerId) {
-        await this.onLoadSelectedSolicitudes(customerId);
-      }
-    }
+    if (result) this.applyAuthorizationUpdate(solicitudId, payload);
+  }
+
+  private applyAuthorizationUpdate(solicitudId: string, payload: any) {
+    const statusDisplay =
+      payload.estatus === 0
+        ? "Autorizado"
+        : payload.estatus === 1
+          ? "Denegado"
+          : "Pendiente";
+    const authorizer = this.autorizacionOptions.find(
+      (option) => option.value === payload.autorizadaPor,
+    );
+
+    const updateSolicitud = (solicitud: any) =>
+      solicitud.id === solicitudId
+        ? {
+            ...solicitud,
+            estatus: payload.estatus,
+            estatusDisplay: statusDisplay,
+            autorizadaPor: payload.autorizadaPor ?? null,
+            autorizadaPorDisplay: authorizer?.label ?? "Sin autorizacion",
+            motivoNoAutorizacion: payload.motivoNoAutorizacion || "",
+          }
+        : solicitud;
+
+    this.solicitudesSignal.update((items) => items.map(updateSolicitud));
+    this.presentationSlides.update((slides) =>
+      slides.map((slide) =>
+        slide.kind === "solicitud" ? updateSolicitud(slide) : slide,
+      ),
+    );
   }
 
   onCarouselPage(event: number | { page?: number; startPosition?: number }) {

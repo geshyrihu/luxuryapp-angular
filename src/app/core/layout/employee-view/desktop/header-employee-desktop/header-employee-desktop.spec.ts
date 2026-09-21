@@ -81,6 +81,7 @@ const themeServiceMock = {
 const updateServiceMock = {
   forceCheckUpdate: undefined,
   updateAvailable$: of(false),
+  isUpdateAvailable: vi.fn(() => false),
   activateUpdate: vi.fn(),
 };
 

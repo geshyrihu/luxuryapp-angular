@@ -22,4 +22,9 @@ import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
     },
   ],
 })
-export class LxTooltipDirective {}
+export class LxTooltipDirective {
+  constructor(private readonly tooltip: NgbTooltip) {
+    // Render global overlays outside header stacking contexts and overflow.
+    this.tooltip.container = "body";
+  }
+}

@@ -511,7 +511,7 @@ export class AppTable {
         if (ga !== gb) {
           if (ga == null) return -1;
           if (gb == null) return 1;
-          return ga < gb ? -1 : 1;
+          return (ga < gb ? -1 : 1) * order;
         }
       }
       if (!sortField) return 0;

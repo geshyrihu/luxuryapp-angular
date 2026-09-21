@@ -10,7 +10,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TicketFilterService } from "@core/services/ticket-filter.service";
+import { TicketFilterService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-filter.service";
 
 /**
  * 👤 HEADER CUSTOMER

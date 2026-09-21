@@ -17,7 +17,7 @@
   colgroup col {
     // Porcentajes
     @each $pct in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20,
-      25, 28, 30, 32, 33, 35, 40, 45, 50, 55, 60, 66, 70, 75, 80, 90, 100
+      25, 28, 30, 32, 33, 35, 40, 44, 45, 50, 55, 60, 66, 70, 75, 80, 90, 100
     {
       &.table-col-#{$pct} {
         width: ($pct * 1%) !important;
@@ -135,7 +135,7 @@
        de recorrer, y columnas de importes que deben mantener los dígitos
        alineados a la derecha.
 
-       Las utilidades de PrimeFlex (`.text-left`, `.text-center`,
+       Las utilidades de alineación (`.text-left`, `.text-center`,
        `.text-right`) se declaran con `!important`, así que cualquier <th> que
        ya traiga alineación escrita a mano sigue mandando sobre esta regla. */
     .app-table-thead > tr > th {
@@ -279,6 +279,9 @@
       }
       &.table-col-12 {
         width: 12%;
+      }
+      &.table-col-44 {
+        width: 44%;
       }
       &.table-col-50 {
         width: 50%;

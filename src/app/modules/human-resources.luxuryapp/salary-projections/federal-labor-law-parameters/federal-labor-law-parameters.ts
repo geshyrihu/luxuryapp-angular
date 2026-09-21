@@ -8,7 +8,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { IFederalLaborLawParameter } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { Endpoints } from '@core/constants/endpoints/endpoints';
 import { FederalLaborLawParameterForm } from "./federal-labor-law-parameter-form";
 
 const DASHBOARD_URL = "/hr/salary-projections";
@@ -20,7 +21,7 @@ const DASHBOARD_URL = "/hr/salary-projections";
   imports: [AppTable, AppSortableColumn, AppSorticon, TableEmptyMessage, WebButtonLabel, WebButtonIcon, WebButtonIconConfirm, DecimalPipe],
 })
 export class FederalLaborLawParameters {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly router = inject(Router);
   private readonly dialogHandler = inject(DialogHandlerService);
 
@@ -33,7 +34,7 @@ export class FederalLaborLawParameters {
   async load(): Promise<void> {
     this.loading.set(true);
     try {
-      const rows = await this.service.getFederalLaborLawParameters();
+      const rows = await this.api.onGetList<IFederalLaborLawParameter[]>(Endpoints.SalaryProjections.federalLaborLawParameters);
       if (rows) this.rows.set(rows);
     } finally { this.loading.set(false); }
   }
@@ -48,10 +49,11 @@ export class FederalLaborLawParameters {
     if (this.deletingYear()) return;
     this.deletingYear.set(row.year);
     try {
-      if (await this.service.deleteFederalLaborLawParameter(row.year)) {
+      if (await this.api.onDelete(Endpoints.SalaryProjections.federalLaborLawParameter(row.year))) {
         this.rows.update((rows) => rows.filter((item) => item.year !== row.year));
       }
     } finally { this.deletingYear.set(null); }
   }
 
 }
+

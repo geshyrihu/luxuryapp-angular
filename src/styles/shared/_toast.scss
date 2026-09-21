@@ -1,102 +1,11 @@
-/* =======================================
-   TOAST NOTIFICATIONS (Global Overrides)
-   ======================================= */
-
-/* -------------------------------------------------------------------------
-   1. PRIMENG TOAST (Web / Desktop)
-   ------------------------------------------------------------------------- */
-/* Aumentamos especificidad y usamos colores vibrantes */
-
-.p-toast .p-toast-message {
-  border-width: 0 0 0 8px !important; /* Borde lateral más grueso */
-  box-shadow: var(--ds-shadow-lg) !important;
-  opacity: 1 !important;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif !important;
-
-  .p-toast-message-content {
-    padding: 1.25rem !important;
-    align-items: center;
-  }
-
-  .p-toast-message-icon {
-    font-size: 1.8rem !important;
-    margin-right: 1rem !important;
-    font-weight: bold !important;
-  }
-
-  .p-toast-summary {
-    font-weight: 800 !important;
-    font-size: 1.1rem !important;
-    margin-bottom: 0.25rem !important;
-  }
-
-  .p-toast-detail {
-    margin-top: 0.25rem !important;
-    font-size: 0.95rem !important;
-    line-height: 1.4 !important;
-    font-weight: 500 !important;
-  }
-}
-
-/* SUCCESS (Web) */
-.p-toast-message-success {
-  background: var(--ds-success-light) !important;
-  border-left-color: var(--ds-success) !important;
-  color: var(--ds-text-primary) !important;
-
-  .p-toast-message-icon {
-    color: var(--ds-success) !important;
-  }
-}
-
-/* ERROR (Web) */
-.p-toast-message-error {
-  background: var(--ds-danger-light) !important;
-  border-left-color: var(--ds-danger) !important;
-  color: var(--ds-text-primary) !important;
-
-  .p-toast-message-icon {
-    color: var(--ds-danger) !important;
-  }
-}
-
-/* INFO (Web) */
-.p-toast-message-info {
-  background: var(--ds-info-light) !important;
-  border-left-color: var(--ds-info) !important;
-  color: var(--ds-text-primary) !important;
-
-  .p-toast-message-icon {
-    color: var(--ds-info) !important;
-  }
-}
-
-/* WARN (Web) */
-.p-toast-message-warn {
-  background: var(--ds-warning-light) !important;
-  border-left-color: var(--ds-warning) !important;
-  color: var(--ds-text-primary) !important;
-
-  .p-toast-message-icon {
-    color: var(--ds-warning) !important;
-  }
-}
-
-/* -------------------------------------------------------------------------
-   2. IONIC TOAST (Mobile / Tablet)
-   ------------------------------------------------------------------------- */
-/* Estilos para el toast nativo de Ionic con la clase 'custom-mobile-toast' */
-
+/* Ionic toast (mobile/tablet). */
 ion-toast.custom-mobile-toast {
   --box-shadow: var(--ds-shadow-lg);
   --border-radius: 3px;
   --start-padding: 16px;
   --end-padding: 16px;
-  --opacity: 1; /* Forzar opacidad total */
-  
-  /* Sobrescribimos variables por defecto para asegurar legibilidad */
+  --opacity: 1;
+
   &::part(message) {
     font-weight: 600;
     font-size: 1rem;
@@ -109,16 +18,14 @@ ion-toast.custom-mobile-toast {
     font-size: 1rem;
   }
 
-  /* SUCCESS (Mobile) */
   &.ion-color-success {
     --ion-color-base: var(--ds-success) !important;
     --ion-color-contrast: var(--ds-primary-text) !important;
-    --background: var(--ds-success) !important; 
+    --background: var(--ds-success) !important;
     --color: var(--ds-primary-text) !important;
     --button-color: var(--ds-primary-text) !important;
   }
 
-  /* ERROR (Mobile) */
   &.ion-color-danger {
     --ion-color-base: var(--ds-danger) !important;
     --ion-color-contrast: var(--ds-primary-text) !important;
@@ -127,7 +34,6 @@ ion-toast.custom-mobile-toast {
     --button-color: var(--ds-primary-text) !important;
   }
 
-  /* WARN (Mobile) */
   &.ion-color-warning {
     --ion-color-base: var(--ds-warning) !important;
     --ion-color-contrast: var(--ds-primary-text) !important;
@@ -136,7 +42,6 @@ ion-toast.custom-mobile-toast {
     --button-color: var(--ds-primary-text) !important;
   }
 
-  /* INFO / PRIMARY (Mobile) */
   &.ion-color-primary,
   &.ion-color-medium {
     --ion-color-base: var(--ds-primary) !important;
@@ -146,7 +51,3 @@ ion-toast.custom-mobile-toast {
     --button-color: var(--ds-primary-text) !important;
   }
 }
-
-
-
-

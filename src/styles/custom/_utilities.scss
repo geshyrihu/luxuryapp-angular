@@ -1,5 +1,5 @@
 /* ============================================================
-   UTILIDADES ADICIONALES (Complemento a PrimeFlex)
+   UTILIDADES ADICIONALES
    ============================================================ */
 
 .tracking-tighter { letter-spacing: -0.05em; }
@@ -9,7 +9,7 @@
 .tracking-wider   { letter-spacing: 0.05em; }
 .tracking-widest  { letter-spacing: 0.1em; }
 
-/* Alturas y anchos específicos si PrimeFlex no los cubre */
+/* Alturas y anchos específicos */
 .h-15rem { height: 15rem; }
 .h-20rem { height: 20rem; }
 .max-w-30rem { max-width: 30rem; }
@@ -17,9 +17,9 @@
 .max-w-50rem { max-width: 50rem; }
 
 /* ------------------------------------------------------------
-   Restauración de utilidades PrimeFlex inertes
+   Restauración de utilidades de layout inertes
    ------------------------------------------------------------
-   PrimeFlex ya no se carga (Fase 7 de la migración a Bootstrap,
+   La aplicación usa Bootstrap para utilidades de layout,
    ver docs/migration-template/), por lo que las clases `w-Nrem`,
    `h-Nrem`, `rounded-*`, `object-*`, `font-black` y `cursor-pointer`
    usadas en las plantillas quedaron sin definición: no aplicaban
@@ -38,7 +38,7 @@
 .min-h-0 { min-height: 0; }
 .min-h-screen { min-height: 100vh; }
 
-/* Radio: escala Tailwind/PrimeFlex mapeada a los tokens del DS
+/* Radio: escala de utilidades mapeada a los tokens del DS
    (el DS colapsa la escala a 3px por DESIGN.md). */
 .rounded-sm   { border-radius: var(--ds-radius-sm); }
 .rounded-md   { border-radius: var(--ds-radius-md); }

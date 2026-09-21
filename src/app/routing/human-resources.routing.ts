@@ -225,7 +225,7 @@ export const humanResourcesRoutes: Routes = [
   // PROYECCIÓN DE SUELDOS
   // =============================================================
   {
-    path: "salary-projections",
+    path: "master-dashboard",
     loadComponent: () =>
       import("@human-resources.luxuryapp/salary-projections/master-dashboard/master-dashboard").then(
         (m) => m.SalaryProjectionsMasterDashboard,

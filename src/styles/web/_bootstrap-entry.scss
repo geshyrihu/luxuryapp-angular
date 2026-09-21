@@ -1,6 +1,6 @@
 // ============================================================
 // _bootstrap-entry.scss
-// Entrada de Bootstrap 5.3.8 para la migración PrimeNG -> Bootstrap.
+// Entrada de Bootstrap 5.3.8.
 // Ver docs/migration-template/02-plan-migracion.md §4 y §6 (Fase 0).
 // ============================================================
 //
@@ -19,7 +19,7 @@
 // (Sass no permite declarar ese orden en medio de un bloque de `@use`,
 // se intentó y se revirtió — ver el comentario en ds-entry.scss), sino
 // que TODO lo demás relevante (web/_buttons.scss, _cards.scss,
-// web/_prime-*.scss) es "unlayered": por especificación CSS, cualquier
+// los overrides DS son "unlayered": por especificación CSS, cualquier
 // regla fuera de un `@layer` gana SIEMPRE sobre cualquier regla dentro de
 // un `@layer`, sin importar el orden entre capas ni la especificidad. Por
 // eso basta con que Bootstrap esté en UNA capa nombrada (cualquiera): ya

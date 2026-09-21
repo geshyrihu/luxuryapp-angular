@@ -4,7 +4,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IFederalLaborLawParameter } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { Endpoints } from '@core/constants/endpoints/endpoints';
 
 @Component({
   selector: "app-federal-labor-law-parameter-form",
@@ -13,7 +14,7 @@ import { SalaryProjectionsService } from "../salary-projections.service";
   imports: [FormsModule, CustomInputTextSignal, WebButtonLabel],
 })
 export class FederalLaborLawParameterForm {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
   readonly saving = signal(false);
@@ -39,12 +40,12 @@ export class FederalLaborLawParameterForm {
     this.saving.set(true);
     try {
       const result = this.row()
-        ? await this.service.updateFederalLaborLawParameter(this.year(), {
+        ? await this.api.onPut<IFederalLaborLawParameter>(Endpoints.SalaryProjections.federalLaborLawParameter(this.year()), {
             christmasBonusDays: this.christmasBonusDays(),
             vacationPremiumPercentage: this.vacationPremiumPercentage(),
             sundayPremiumPercentage: this.sundayPremiumPercentage(),
           })
-        : await this.service.createFederalLaborLawParameter({
+        : await this.api.onPost<IFederalLaborLawParameter>(Endpoints.SalaryProjections.federalLaborLawParameters, {
             year: this.year(),
             christmasBonusDays: this.christmasBonusDays(),
             vacationPremiumPercentage: this.vacationPremiumPercentage(),
@@ -56,3 +57,5 @@ export class FederalLaborLawParameterForm {
 
   close(): void { this.ref.close(false); }
 }
+
+

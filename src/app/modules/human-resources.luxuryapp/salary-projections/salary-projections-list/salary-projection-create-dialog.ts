@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   DynamicDialogConfig,
@@ -20,19 +25,15 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
         label="Nombre de la propuesta"
         [ngModel]="name()"
         (ngModelChange)="name.set($event)"
+        [horizontal]="false"
       />
       @if (showError()) {
-        <small class="text-danger">El nombre de la propuesta es requerido.</small>
+        <small class="text-danger"
+          >El nombre de la propuesta es requerido.</small
+        >
       }
 
       <div class="d-flex justify-content-end gap-2">
-        <il-button
-          label="Cancelar"
-          severity="secondary"
-          variant="outline"
-          size="small"
-          (clicked)="cancel()"
-        />
         <il-button
           label="Crear propuesta"
           iconClass="material-symbols-light:add"

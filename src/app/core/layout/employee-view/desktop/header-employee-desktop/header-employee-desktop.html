@@ -26,6 +26,7 @@
         #customerMenu
         [model]="customerMenuItems()"
         [itemTemplate]="customerMenuItemTpl"
+        styleClass="customer-menu-panel"
       >
         <button appMenuTrigger type="button" class="customer-selector-btn">
           <img
@@ -34,7 +35,7 @@
             aria-hidden="true"
             style="width: 24px; height: 24px; object-fit: contain"
           />
-          <span>{{ customerName() }}</span>
+          <span class="customer-selector-label">{{ customerName() }}</span>
           <app-icon
             icon="material-symbols-light:keyboard-arrow-down"
             class="text-sm"
@@ -42,14 +43,15 @@
         </button>
       </app-menu>
       <ng-template #customerMenuItemTpl let-item>
-        <div class="d-flex align-items-center gap-2 px-3 py-2 cursor-pointer">
+        <div class="customer-menu-item d-flex align-items-center gap-2 px-3 py-2 cursor-pointer">
           <img
+            class="customer-menu-logo"
             [src]="item.data.image"
             alt=""
             aria-hidden="true"
             style="width: 22px; height: 22px; object-fit: contain"
           />
-          <span [class.font-bold]="item.styleClass === 'font-bold'"
+          <span class="customer-menu-label" [class.font-bold]="item.styleClass === 'font-bold'"
             >{{ item.label }}</span
           >
         </div>

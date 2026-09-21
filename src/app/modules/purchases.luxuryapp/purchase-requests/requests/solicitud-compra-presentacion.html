@@ -1,11 +1,24 @@
 <div class="presentation-shell py-2 px-0 py-md-3 px-md-0">
-  @if (solicitudesSignal().length === 0) {
+  @if (loadingPresentation()) {
   <div
-    class="bg-body rounded-2xl border-1 border p-5 text-center text-body-secondary"
+    class="bg-body rounded-md border-1 border p-5 text-center text-body-secondary"
   >
-    No hay solicitudes seleccionadas para mostrar en modo presentación.
+    Cargando solicitudes para modo presentación...
   </div>
-  } @else {
+  } @else if (solicitudesSignal().length === 0) {
+  <div
+    class="bg-body rounded-md border-1 border p-5 text-center text-body-secondary"
+  >
+    {{ presentationError() || "No hay solicitudes seleccionadas para mostrar en
+    modo presentación." }}
+  </div>
+  } @else { @if (presentationError()) {
+  <div
+    class="bg-yellow-50 border-1 border-yellow-200 rounded-md p-3 mb-3 text-yellow-800"
+  >
+    {{ presentationError() }}
+  </div>
+  }
   <div class="presentation-nav-floating d-flex align-items-center gap-1">
     <iw-button
       iconClass="material-symbols-light:receipt-long"
@@ -58,21 +71,43 @@
         <div class="p-3 p-md-4">
           <div class="row align-items-start mb-4 g-4">
             <div class="col-12 col-lg-8">
-              <div
-                class="presentation-kicker text-body-secondary text-sm fw-semibold mb-2"
-              >
-                Matriz de importancia
-              </div>
               <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-body">
-                Resumen de solicitudes de compra
+                Resumen de solicitudes
               </h2>
               <p class="text-body text-lg line-height-3 mt-2 mb-0">
-                De la más urgente a la menos urgente, según el orden de
-                presentación definido.
+                Ordenadas por urgencia: Crítica a Baja.
               </p>
+              <div
+                class="summary-priority-legend"
+                aria-label="Leyenda de prioridades"
+              >
+                @for (priority of priorityOptions; track priority.value) {
+                <span class="summary-legend-item">
+                  <span
+                    class="summary-priority-icon"
+                    [class.summary-priority-icon-danger]="priority.severity === 'danger'"
+                    [class.summary-priority-icon-warn]="priority.severity === 'warn'"
+                    [class.summary-priority-icon-info]="priority.severity === 'info'"
+                    [class.summary-priority-icon-secondary]="priority.severity === 'secondary'"
+                  >
+                    <app-icon [icon]="getPrioridadIcon(priority.value)" />
+                  </span>
+                  {{ priority.label }}
+                </span>
+                }
+                <span class="text-body-secondary text-xs ms-2">Tipos:</span>
+                @for (type of typeOptions; track type.value) {
+                <lx-tag
+                  [value]="type.label"
+                  [severity]="type.severity"
+                  [rounded]="true"
+                  size="small"
+                />
+                }
+              </div>
             </div>
             <div class="col-12 col-lg-4">
-              <div class="bg-body-tertiary rounded-2xl p-3 h-full d-flex gap-4">
+              <div class="bg-body-tertiary rounded-md p-3 h-full d-flex gap-4">
                 <div>
                   <div class="text-xs text-body-secondary mb-1">
                     Solicitudes consideradas
@@ -93,60 +128,60 @@
             </div>
           </div>
 
-          <app-table
-            [value]="slide.rows"
-            class="custom-table text-sm"
-            [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '66rem' }"
-            groupRowsBy="prioridad"
-            initialSortField="prioridad"
-            sortMode="single"
-            [sortOrder]="-1"
-          >
-            <ng-template #header>
-              <tr>
-                <th style="width: 3rem">N°</th>
-                <th style="width: 26rem">DESCRIPCION</th>
-                <th style="width: 9rem">TIPO</th>
-                <th class="text-end" style="width: 10rem">
-                  COSTO TOTAL CON IVA
-                </th>
-                <th style="width: 12rem">PARTIDA PRESUPUESTAL</th>
-                <th class="text-end" style="width: 10rem">
-                  DINERO DISPONIBLE
-                </th>
-              </tr>
-            </ng-template>
-            <ng-template #groupheader let-row>
-              <tr>
-                <td
-                  [attr.colspan]="6"
-                  [class]="'priority-group-header priority-group-' + row.prioridadSeverity"
-                >
-                  Prioridad: {{ row.prioridadLabel }}
-                </td>
-              </tr>
-            </ng-template>
-            <ng-template #body let-row>
-              <tr>
-                <td class="fw-semibold text-center">{{ row.numero }}</td>
-                <td class="line-height-3">{{ row.descripcion }}</td>
-                <td>
-                  <lx-tag
-                    [value]="row.tipoSolicitudLabel"
-                    [severity]="row.tipoSolicitudSeverity"
-                    [rounded]="true"
-                  />
-                </td>
-                <td class="text-end text-nowrap fw-semibold">
-                  {{ row.costoTotalConIva | number : "1.0-0" }}
-                </td>
-                <td class="line-height-3">{{ row.partidaPresupuestal }}</td>
-                <td class="text-end text-nowrap">
-                  {{ row.dineroDisponible | number : "1.0-0" }}
-                </td>
-              </tr>
-            </ng-template>
-          </app-table>
+          <div class="summary-table">
+            <div class="summary-table-scroll">
+              <table class="summary-table-grid text-sm">
+                <thead>
+                  <tr>
+                    <th style="width: 28%">DESCRIPCIÓN</th>
+                    <th style="width: 27%">JUSTIFICACIÓN</th>
+                    <th style="width: 17%">PRESUPUESTO</th>
+                    <th class="text-end" style="width: 14%">COSTO TOTAL</th>
+                    <th class="text-end" style="width: 14%">
+                      DINERO DISPONIBLE
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of slide.rows; track row.numero) {
+                  <tr
+                    [class.summary-row-danger]="row.prioridadSeverity === 'danger'"
+                    [class.summary-row-warn]="row.prioridadSeverity === 'warn'"
+                    [class.summary-row-info]="row.prioridadSeverity === 'info'"
+                    [class.summary-row-secondary]="row.prioridadSeverity === 'secondary'"
+                  >
+                    <td class="summary-description-cell">
+                      <div class="summary-description-title">
+                        {{ row.area }}
+                      </div>
+                      <div class="text-body-secondary">
+                        {{ row.descripcion }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="summary-description-justification">
+                        {{ row.justificacion }}
+                      </div>
+                    </td>
+                    <td class="text-body-secondary">
+                      {{ row.partidaPresupuestal }}
+                    </td>
+                    <td class="text-end text-nowrap summary-money">
+                      {{ row.costoTotalConIva | number : "1.0-0" }}
+                    </td>
+                    <td
+                      class="text-end text-nowrap summary-money"
+                      [class.text-success]="row.dineroDisponible > 0"
+                      [class.text-danger]="row.dineroDisponible <= 0"
+                    >
+                      {{ row.dineroDisponible | number : "1.0-0" }}
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
       } @else { @let solicitud = slide;
@@ -154,9 +189,9 @@
         <div class="presentation-accent"></div>
 
         <div class="p-3 p-md-4">
-          <div class="row align-items-start mb-3 g-4">
+          <div class="row align-items-start mb-2 g-2">
             <div class="col-12 col-lg-7">
-              <div class="d-flex align-items-center gap-2 mb-2">
+              <div class="d-flex align-items-center gap-2 mb-1">
                 <lx-tag
                   [value]="getTipoSolicitudLabel(solicitud.tipoSolicitud)"
                   [severity]="getTipoSolicitudSeverity(solicitud.tipoSolicitud)"
@@ -168,17 +203,17 @@
                   [rounded]="true"
                 />
               </div>
-              <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-body">
+              <h2 class="text-2xl md:text-3xl line-height-2 m-0 text-body">
                 {{ solicitud.equipoOInstalacion }}
               </h2>
-              <p class="text-body text-lg line-height-3 mt-2 mb-0">
+              <p class="text-body text-base line-height-2 mt-1 mb-0">
                 {{ solicitud.justificacionGasto }}
               </p>
             </div>
 
             <div class="col-12 col-lg-5">
               <div
-                class="bg-body-tertiary rounded-2xl p-3 h-full d-flex flex-column justify-content-center"
+                class="detail-meta bg-body-tertiary rounded-md p-2 h-full d-flex flex-column justify-content-center"
               >
                 <div
                   class="d-flex align-items-center justify-content-between gap-3 flex-wrap"
@@ -196,7 +231,9 @@
                     </div>
                   </div>
                   <div class="min-w-0">
-                    <div class="text-xs text-body-secondary mb-1">Autorizada por</div>
+                    <div class="text-xs text-body-secondary mb-1">
+                      Autorizada por
+                    </div>
                     <div
                       class="fw-semibold text-body text-nowrap overflow-hidden text-truncate"
                     >
@@ -217,17 +254,7 @@
             </div>
           </div>
 
-          <div class="d-flex flex-wrap justify-content-end gap-2 mb-3">
-            @if (canOptimizeProducts(solicitud)) {
-            <il-button
-              [iconClass]="isOptimized(solicitud.id) ? 'material-symbols-light:view-list' : 'material-symbols-light:table'"
-              [label]="isOptimized(solicitud.id) ? 'Ver detalle' : 'Optimizar items'"
-              (clicked)="toggleOptimizeProducts(solicitud.id)"
-              severity="info"
-              variant="outline"
-              size="small"
-            />
-            }
+          <div class="d-flex flex-wrap justify-content-end gap-2 mb-2">
             <il-button
               iconClass="material-symbols-light:list"
               label="Ver productos"
@@ -248,7 +275,7 @@
 
           @if (isDenied(solicitud) && solicitud.motivoNoAutorizacion) {
           <div
-            class="bg-body border-1 border-red-200 bg-red-50 rounded-xl p-3 mb-4"
+            class="bg-body border-1 border-red-200 bg-red-50 rounded-md p-3 mb-4"
           >
             <div class="text-red-700 fw-semibold mb-1">
               Motivo de no autorización
@@ -257,211 +284,175 @@
           </div>
           }
 
-          <div class="mb-4">
-            <div
-              class="presentation-kicker text-body-secondary text-sm fw-semibold mb-3"
-            >
-              Evidencias
-            </div>
-            @if (solicitud.evidencias.length === 0) {
-            <div
-              class="bg-body rounded-xl border-1 border p-4 text-body-secondary"
-            >
-              No hay evidencias cargadas para esta solicitud.
-            </div>
-            } @else {
-            <div class="row mx-0 g-4">
-              @for (evidencia of solicitud.evidencias; track evidencia.id) {
-              <div class="col-12 col-md-3 px-2">
-                <div class="evidence-frame p-2">
-                  <app-image
-                    [src]="evidencia.fileUrl"
-                    [alt]="evidencia.fileName || 'Evidencia'"
-                    styleClass="block w-full"
-                    [imageStyle]="{
+          <div class="presentation-detail-grid">
+            <div class="presentation-section presentation-section-evidence">
+              <div
+                class="presentation-kicker text-body-secondary text-xs fw-semibold mb-2"
+              >
+                Evidencias
+              </div>
+              @if (solicitud.evidencias.length === 0) {
+              <div
+                class="bg-body rounded-md border-1 border p-2 text-sm text-body-secondary"
+              >
+                No hay evidencias cargadas para esta solicitud.
+              </div>
+              } @else {
+              <div class="row mx-0 g-2">
+                @for (evidencia of solicitud.evidencias; track evidencia.id) {
+                <div class="col-6 col-md-3 px-1">
+                  <div class="evidence-frame p-1">
+                    <app-image
+                      [src]="evidencia.fileUrl"
+                      [alt]="evidencia.fileName || 'Evidencia'"
+                      styleClass="block w-full"
+                      [imageStyle]="{
                       width: '100%',
-                      height: '220px',
+                       height: '120px',
                       display: 'block',
                       'object-fit': 'cover',
                       'border-radius': '12px'
                     }"
-                    [preview]="true"
-                  />
+                      [preview]="true"
+                    />
+                  </div>
                 </div>
+                }
               </div>
               }
             </div>
-            }
-          </div>
 
-          <div class="mb-4">
-            <div
-              class="presentation-kicker text-body-secondary text-sm fw-semibold mb-3"
-            >
-              Comparativo de proveedores
-            </div>
-            @if (solicitud.providerSummaries.length === 0) {
-            <div
-              class="bg-body rounded-xl border-1 border p-4 text-body-secondary"
-            >
-              No hay proveedores para comparar.
-            </div>
-            } @else {
-            <div class="row g-3">
-              @for (provider of solicitud.providerSummaries; track provider.id) {
-              <div class="col-12 col-md-6 col-lg-4">
-                <div
-                  class="h-100 p-3 rounded-xl border-1 transition-shadow"
-                  [class]="isBestProvider(solicitud, provider) ? 'border-warning bg-yellow-50 shadow-sm' : 'border surface-border shadow-sm'"
-                  [style.box-shadow]="isBestProvider(solicitud, provider) ? '0 4px 12px rgba(255, 193, 7, 0.15)' : '0 2px 8px rgba(15, 23, 42, 0.08)'"
-                >
-                  @if (isBestProvider(solicitud, provider)) {
-                  <div class="d-flex align-items-center gap-1 mb-2">
-                    <span class="material-symbols-light text-warning" style="font-size: 1rem;">star</span>
-                    <span class="text-xs fw-semibold text-warning">Mejor opción</span>
+            <div class="presentation-section presentation-section-providers">
+              <div
+                class="presentation-kicker text-body-secondary text-xs fw-semibold mb-2"
+              >
+                Comparativo de proveedores
+              </div>
+              @if (solicitud.providerSummaries.length === 0) {
+              <div
+                class="bg-body rounded-md border-1 border p-2 text-sm text-body-secondary"
+              >
+                No hay proveedores para comparar.
+              </div>
+              } @else {
+              <div class="row g-2">
+                @for (provider of solicitud.providerSummaries; track
+                provider.id) {
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div
+                    class="provider-card h-100 p-2 transition-shadow"
+                    [class.provider-card-best]="isBestProvider(solicitud, provider)"
+                  >
+                    <div class="fw-semibold text-body mb-1">
+                      {{ provider.nameProvider }}
+                    </div>
+                    <div class="text-xl fw-bold text-primary mb-2">
+                      {{ provider.total | number : "1.0-0" }}
+                    </div>
+                    <div class="provider-fact mb-1">
+                      <div class="text-xs text-body-secondary">
+                        Tiempo de entrega
+                      </div>
+                      <div class="text-sm fw-medium">
+                        {{ provider.entrega || "N/D" }}
+                      </div>
+                    </div>
+                    <div class="provider-fact mb-1">
+                      <div class="text-xs text-body-secondary">
+                        Políticas de pago
+                      </div>
+                      <div class="text-sm fw-medium">
+                        {{ provider.politicaPago || "N/D" }}
+                      </div>
+                    </div>
+                    <div class="provider-fact mb-2">
+                      <div class="text-xs text-body-secondary">Garantía</div>
+                      <div class="text-sm fw-medium">
+                        {{ provider.garantia || "N/D" }}
+                      </div>
+                    </div>
+                    @if (provider.filePath) {
+                    <il-button-view-pdf
+                      [url]="provider.filePath"
+                      [fileName]="'Cotizacion ' + provider.nameProvider"
+                      label="Ver cotización"
+                      iconClass="material-symbols-light:description"
+                      variant="outline"
+                      size="small"
+                      class="w-100"
+                    />
+                    }
                   </div>
-                  }
-                  <div class="fw-semibold text-body mb-1">{{ provider.nameProvider }}</div>
-                  <div class="text-2xl fw-bold text-primary mb-3">
-                    {{ provider.total | number : "1.0-0" }}
-                    <span class="text-base fw-normal text-body-secondary"> CON IVA</span>
-                  </div>
-                  <div class="mb-2">
-                    <div class="text-xs text-body-secondary">Tiempo de entrega</div>
-                    <div class="text-sm fw-medium">{{ provider.entrega || "N/D" }}</div>
-                  </div>
-                  <div class="mb-2">
-                    <div class="text-xs text-body-secondary">Políticas de pago</div>
-                    <div class="text-sm fw-medium">{{ provider.politicaPago || "N/D" }}</div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="text-xs text-body-secondary">Garantía</div>
-                    <div class="text-sm fw-medium">{{ provider.garantia || "N/D" }}</div>
-                  </div>
-                  @if (provider.filePath) {
-                  <il-button-view-pdf
-                    [url]="provider.filePath"
-                    [fileName]="'Cotizacion ' + provider.nameProvider"
-                    label="Ver cotización"
-                    iconClass="material-symbols-light:description"
-                    variant="outline"
-                    size="small"
-                    class="w-100"
-                  />
-                  }
                 </div>
+                }
               </div>
               }
             </div>
-            }
-          </div>
 
-          <div>
-            <div
-              class="presentation-kicker text-body-secondary text-sm fw-semibold mb-3"
-            >
-              Presupuesto seleccionado
+            <div class="presentation-section presentation-section-budget">
+              <div
+                class="presentation-kicker text-body-secondary text-xs fw-semibold mb-2"
+              >
+                Presupuesto seleccionado
+              </div>
+              <app-table
+                [value]="solicitud.budgets"
+                class="custom-table text-sm"
+                [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '0', width: '100%' }"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th>CUENTA</th>
+                    <th class="text-end">PRE-MEN</th>
+                    <th class="text-end">ACUMULADO</th>
+                    <th class="text-end">%</th>
+                    <th class="text-end">PRE-TOTAL</th>
+                    <th class="text-end">RESTANTE</th>
+                    <th class="text-end">MONTO A USAR</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-budget>
+                  <tr>
+                    <td>
+                      <div class="fw-semibold">{{ budget.accountNumber }}</div>
+                      <div class="text-body-secondary">
+                        {{ budget.accountName }}
+                      </div>
+                    </td>
+                    <td class="text-end text-nowrap">
+                      {{ budget.presupuestoMensual | number : "1.0-0" }}
+                    </td>
+                    <td class="text-end text-nowrap">
+                      {{ getBudgetAccumulated(budget) | number : "1.0-0" }}
+                    </td>
+                    <td class="text-end text-nowrap">
+                      {{ budget.porcentajeGastado | number : "1.0-0" }}%
+                    </td>
+                    <td class="text-end text-nowrap">
+                      {{ budget.presupuestoAnual | number : "1.0-0" }}
+                    </td>
+                    <td class="text-end text-nowrap">
+                      {{ budget.presupuestoRestante | number : "1.0-0" }}
+                    </td>
+                    <td class="text-end fw-semibold text-nowrap">
+                      {{ budget.amount | number : "1.0-0" }}
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template #emptymessage>
+                  <tr>
+                    <td colspan="7" class="text-body-secondary">
+                      No hay presupuesto seleccionado para esta solicitud.
+                    </td>
+                  </tr>
+                </ng-template>
+              </app-table>
             </div>
-            <app-table
-              [value]="solicitud.budgets"
-              class="custom-table text-sm"
-              [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '72rem' }"
-            >
-              <ng-template #header>
-                <tr>
-                  <th>CUENTA</th>
-                  <th class="text-end">PRE-MEN</th>
-                  <th class="text-end">ACUMULADO</th>
-                  <th class="text-end">%</th>
-                  <th class="text-end">PRE-TOTAL</th>
-                  <th class="text-end">RESTANTE</th>
-                  <th class="text-end">MONTO A USAR</th>
-                </tr>
-              </ng-template>
-              <ng-template #body let-budget>
-                <tr>
-                  <td>
-                    <div class="fw-semibold">{{ budget.accountNumber }}</div>
-                    <div class="text-body-secondary">{{ budget.accountName }}</div>
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ budget.presupuestoMensual | number : "1.0-0" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ getBudgetAccumulated(budget) | number : "1.0-0" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ budget.porcentajeGastado | number : "1.0-0" }}%
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ budget.presupuestoAnual | number : "1.0-0" }}
-                  </td>
-                  <td class="text-end text-nowrap">
-                    {{ budget.presupuestoRestante | number : "1.0-0" }}
-                  </td>
-                  <td class="text-end fw-semibold text-nowrap">
-                    {{ budget.amount | number : "1.0-0" }}
-                  </td>
-                </tr>
-              </ng-template>
-              <ng-template #emptymessage>
-                <tr>
-                  <td colspan="7" class="text-body-secondary">
-                    No hay presupuesto seleccionado para esta solicitud.
-                  </td>
-                </tr>
-              </ng-template>
-            </app-table>
           </div>
         </div>
       </section>
       }
     </ng-template>
   </lx-carousel>
-
-  <app-dialog
-    [visible]="productDetailModalVisible()"
-    [header]="'Detalle de productos - ' + (productDetailSolicitud()?.equipoOInstalacion || '')"
-    (dismiss)="closeProductDetailModal()"
-  >
-    @if (productDetailSolicitud()) {
-    <div class="p-2">
-      <div class="table-responsive">
-        <table class="table table-sm table-hover mb-0">
-          <thead class="table-light">
-            <tr>
-              <th style="width: 3rem">N°</th>
-              <th>PRODUCTO</th>
-              <th class="text-end" style="width: 8rem">CANTIDAD</th>
-              <th style="width: 8rem">UNIDAD</th>
-              <th class="text-end" style="width: 10rem">TOTAL 1</th>
-              <th class="text-end" style="width: 10rem">TOTAL 2</th>
-              <th class="text-end" style="width: 10rem">TOTAL 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (detail of productDetailSolicitud()?.solicitudCompraDetalle; track detail.id; let i = $index) {
-            <tr>
-              <td class="fw-semibold text-center">{{ i + 1 }}</td>
-              <td class="line-height-3">{{ detail.producto }}</td>
-              <td class="text-end text-nowrap">{{ detail.cantidad }}</td>
-              <td class="text-nowrap">{{ detail.unidadMedida }}</td>
-              <td class="text-end text-nowrap">{{ detail.total | number : "1.0-0" }}</td>
-              <td class="text-end text-nowrap">{{ detail.total2 | number : "1.0-0" }}</td>
-              <td class="text-end text-nowrap">{{ detail.total3 | number : "1.0-0" }}</td>
-            </tr>
-            } @empty {
-            <tr>
-              <td colspan="7" class="text-center text-body-secondary py-4">
-                No hay productos en esta solicitud.
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-    }
-  </app-dialog>
-}
+  }
 </div>

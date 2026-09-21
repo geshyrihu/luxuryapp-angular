@@ -47,11 +47,14 @@ export interface ISalaryProjectionItem {
   isNewPosition: boolean;
   workPositionId: string | null;
   employeeId: string | null;
+  numberEmployee: number | null;
   applicationUserId: string | null;
   employeeName: string | null;
   positionTitle: string;
   netMonthlySalary: number;
   applicationRoleId: string | null;
+  departament?: number | null;
+  sortOrder?: number;
   weeklyHours: number | null;
   dateAdmission: string | null;
   rcvEmployerFee: number;
@@ -117,6 +120,8 @@ export interface ISalaryProjectionItemInput {
   positionTitle: string;
   netMonthlySalary: number;
   applicationRoleId: string | null;
+  departament?: number | null;
+  sortOrder?: number;
   weeklyHours: number | null;
   dateAdmission: string | null;
   rcvEmployerFee: number;
@@ -211,6 +216,8 @@ export interface ISalaryProjectionItemEdit {
   positionTitle: string;
   netMonthlySalary: number;
   applicationRoleId: string | null;
+  departament?: number | null;
+  sortOrder?: number;
   weeklyHours: number | null;
   dateAdmission: string | null;
   rcvEmployerFee: number;

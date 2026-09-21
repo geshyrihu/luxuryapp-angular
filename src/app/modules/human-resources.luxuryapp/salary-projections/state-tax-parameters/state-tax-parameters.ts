@@ -8,7 +8,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { IStateTaxParameter } from "../interfaces/salary-projections.models";
-import { SalaryProjectionsService } from "../salary-projections.service";
+import { ApiResponseService } from '@core/http/services/api-response.service';
+import { Endpoints } from '@core/constants/endpoints/endpoints';
 import { StateTaxParameterForm } from "./state-tax-parameter-form";
 
 const DASHBOARD_URL = "/hr/salary-projections";
@@ -20,7 +21,7 @@ const DASHBOARD_URL = "/hr/salary-projections";
   imports: [AppTable, AppSortableColumn, AppSorticon, TableEmptyMessage, WebButtonLabel, WebButtonIcon, WebButtonIconConfirm, DecimalPipe],
 })
 export class StateTaxParameters {
-  private readonly service = inject(SalaryProjectionsService);
+  private readonly api = inject(ApiResponseService);
   private readonly router = inject(Router);
   private readonly dialogHandler = inject(DialogHandlerService);
 
@@ -33,7 +34,7 @@ export class StateTaxParameters {
   async load(): Promise<void> {
     this.loading.set(true);
     try {
-      const rows = await this.service.getStateTaxParameters();
+      const rows = await this.api.onGetList<IStateTaxParameter[]>(Endpoints.SalaryProjections.stateTaxParameters);
       if (rows) this.rows.set(rows);
     } finally { this.loading.set(false); }
   }
@@ -49,7 +50,7 @@ export class StateTaxParameters {
     if (this.deletingKey()) return;
     this.deletingKey.set(key);
     try {
-      if (await this.service.deleteStateTaxParameter(row.state, row.year)) {
+      if (await this.api.onDelete(Endpoints.SalaryProjections.stateTaxDelete(row.state, row.year))) {
         this.rows.update((rows) => rows.filter((item) => this.key(item.state, item.year) !== key));
       }
     } finally { this.deletingKey.set(null); }
@@ -57,3 +58,4 @@ export class StateTaxParameters {
 
   private key(state: number, year: number): string { return `${state}-${year}`; }
 }
+

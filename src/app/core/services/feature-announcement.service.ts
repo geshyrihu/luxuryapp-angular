@@ -1,11 +1,11 @@
 import { Injectable, signal } from "@angular/core";
+import { environment } from "../../../environments/environment";
+
 @Injectable({
   providedIn: "root",
 })
 export class FeatureAnnouncementService {
-  // Hardcoded version matching package.json or slightly simpler
-  // In a real build pipeline, this could come from environment.ts
-  private readonly CURRENT_VERSION = "5.0.2";
+  private readonly currentVersion = environment.APP_VERSION;
 
   public showDialog = signal<boolean>(false);
 
@@ -14,23 +14,14 @@ export class FeatureAnnouncementService {
   public checkForUpdates(): void {
     const lastSeenVersion = localStorage.getItem("lastSeenVersion");
 
-    if (lastSeenVersion !== this.CURRENT_VERSION) {
+    if (lastSeenVersion !== this.currentVersion) {
       // New version detected!
       this.showDialog.set(true);
     }
   }
 
   public markAsSeen(): void {
-    localStorage.setItem("lastSeenVersion", this.CURRENT_VERSION);
+    localStorage.setItem("lastSeenVersion", this.currentVersion);
     this.showDialog.set(false);
   }
 }
-
-
-
-
-
-
-
-
-

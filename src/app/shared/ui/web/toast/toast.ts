@@ -51,13 +51,56 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
       .app-toast {
         min-width: 300px;
         margin-bottom: 0.5rem;
+        display: block;
         --bs-toast-bg: var(--ds-bg-surface);
         --bs-toast-header-bg: var(--ds-bg-surface);
       }
-      .app-toast-success { border-left: 4px solid var(--ds-success); }
-      .app-toast-info { border-left: 4px solid var(--ds-info); }
-      .app-toast-warn { border-left: 4px solid var(--ds-warning); }
-      .app-toast-error { border-left: 4px solid var(--ds-danger); }
+      .app-toast .toast-header,
+      .app-toast .toast-body {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .app-toast .toast-header,
+      .app-toast .toast-body {
+        background-color: transparent;
+        color: inherit;
+      }
+      .app-toast-success {
+        --bs-toast-bg: color-mix(in srgb, var(--ds-success) 12%, var(--ds-bg-surface));
+        --bs-toast-header-bg: var(--bs-toast-bg);
+        color: var(--ds-text-primary);
+        border: 1px solid color-mix(in srgb, var(--ds-success) 30%, transparent);
+        border-left: 4px solid var(--ds-success);
+      }
+      .app-toast-info {
+        --bs-toast-bg: color-mix(in srgb, var(--ds-info) 12%, var(--ds-bg-surface));
+        --bs-toast-header-bg: var(--bs-toast-bg);
+        color: var(--ds-text-primary);
+        border: 1px solid color-mix(in srgb, var(--ds-info) 30%, transparent);
+        border-left: 4px solid var(--ds-info);
+      }
+      .app-toast-warn {
+        --bs-toast-bg: color-mix(in srgb, var(--ds-warning) 14%, var(--ds-bg-surface));
+        --bs-toast-header-bg: var(--bs-toast-bg);
+        color: var(--ds-text-primary);
+        border: 1px solid color-mix(in srgb, var(--ds-warning) 35%, transparent);
+        border-left: 4px solid var(--ds-warning);
+      }
+      .app-toast-error {
+        --bs-toast-bg: color-mix(in srgb, var(--ds-danger) 12%, var(--ds-bg-surface));
+        --bs-toast-header-bg: var(--bs-toast-bg);
+        color: var(--ds-text-primary);
+        border: 1px solid color-mix(in srgb, var(--ds-danger) 30%, transparent);
+        border-left: 4px solid var(--ds-danger);
+      }
+      .app-toast-success app-icon,
+      .app-toast-success .toast-header strong { color: var(--ds-success); }
+      .app-toast-info app-icon,
+      .app-toast-info .toast-header strong { color: var(--ds-info); }
+      .app-toast-warn app-icon,
+      .app-toast-warn .toast-header strong { color: var(--ds-warning-text); }
+      .app-toast-error app-icon,
+      .app-toast-error .toast-header strong { color: var(--ds-danger); }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -115,4 +158,3 @@ export class AppToast {
     msg.data?.onCancel?.();
   }
 }
-

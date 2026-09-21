@@ -27,17 +27,6 @@
     background-color: var(--ds-bg-surface);
   }
 
-  .surface-card { background-color: var(--ds-bg-surface); color: var(--ds-text-primary); }
-  .surface-ground, .surface-section { background-color: var(--ds-bg-page); color: var(--ds-text-primary); }
-  .surface-border { border-color: var(--ds-border); }
-  .text-color { color: var(--ds-text-primary); }
-  .text-color-secondary {
-    color: var(--ds-text-secondary);
-  }
-  .text-color-muted {
-    color: var(--ds-text-muted);
-  }
-
   // ── 2. BACKGROUNDS DE UTILIDADES (bg-white, bg-gray-*, etc.) ─
   // Cubre los usos de bg-white/bg-gray-* en templates heredados.
   // Unlayered gana sobre @layer utilities sin !important.
@@ -151,7 +140,7 @@
   }
 
   // ── 8. NEON GLOW EN CARDS INTERACTIVAS ───────────────────────
-  // Hover glow sobre .card y .p-card usando el token --ds-glow-*
+  // Hover glow sobre tarjetas usando token --ds-glow-*
 
   .card.card-interactive,
   .card[tabindex],

@@ -1,6 +1,6 @@
 // ============================================================
 // _inputs.scss
-// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Design System | Angular 22 + Bootstrap 5.3 + Ionic 9 | SCSS Puro
 // Sistema completo de inputs y controles de formulario
 // ============================================================
 
@@ -129,13 +129,7 @@
 .input.ng-invalid.ng-touched,
 .input.ng-invalid.ng-dirty,
 .form-control.ng-invalid.ng-touched,
-.form-control.ng-invalid.ng-dirty,
-.p-inputtext.ng-invalid.ng-touched,
-.p-inputtext.ng-invalid.ng-dirty,
-.p-inputnumber-input.ng-invalid.ng-touched,
-.p-inputnumber-input.ng-invalid.ng-dirty,
-.p-password-input.ng-invalid.ng-touched,
-.p-password-input.ng-invalid.ng-dirty {
+.form-control.ng-invalid.ng-dirty {
   border-color: var(--ds-danger) !important;
   padding-right: calc(1.5em + 0.94rem) !important;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc2626'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc2626' stroke='none'/%3e%3c/svg%3e") !important;
@@ -152,9 +146,7 @@
 
 // Mismo para textarea
 .textarea.ng-invalid.ng-touched,
-.textarea.ng-invalid.ng-dirty,
-.p-textarea.ng-invalid.ng-touched,
-.p-textarea.ng-invalid.ng-dirty {
+.textarea.ng-invalid.ng-dirty {
   border-color: var(--ds-danger) !important;
   padding-right: calc(1.5em + 0.94rem) !important;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc2626'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc2626' stroke='none'/%3e%3c/svg%3e") !important;

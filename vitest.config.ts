@@ -15,7 +15,7 @@ const jsdomTestShared = {
   setupFiles: ['src/test-setup.ts'],
   server: {
     deps: {
-      inline: [/@angular/, /primeng/, /@primeicons/, /@primeuix/, /@ionic\/angular/, /@ionic\/angular\/standalone/, /@ionic\/core/, /@stencil\/core/, /angularx-flatpickr/, /flatpickr/, /ng-gallery/, /@ng-bootstrap/, /@ng-select/]
+       inline: [/@angular/, /@ionic\/angular/, /@ionic\/angular\/standalone/, /@ionic\/core/, /@stencil\/core/, /angularx-flatpickr/, /flatpickr/, /ng-gallery/, /@ng-bootstrap/, /@ng-select/]
     }
   }
 };

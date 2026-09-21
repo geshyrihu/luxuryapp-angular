@@ -1,6 +1,6 @@
 // ============================================================
 // _alerts.scss
-// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Design System | Angular 22 + Bootstrap 5.3 + Ionic 9 | SCSS Puro
 // Toasts, alertas inline, modales y drawers
 // ============================================================
 
@@ -75,6 +75,77 @@
   background-color: var(--ds-bg-sunken);
   border-color: var(--ds-border);
   color: var(--ds-text-secondary);
+}
+
+// ── MODIFICADORES DE PRESENTACIÓN ─────────────────────────────
+// Variantes inspiradas en Lagos, expresadas con tokens LuxuryApp.
+.alert--dark {
+  background-color: var(--ds-bg-elevated);
+  border-color: var(--ds-border-strong, var(--ds-border));
+  color: var(--ds-text-primary);
+}
+
+.alert--light {
+  background-color: var(--ds-bg-surface);
+  border-color: var(--ds-border);
+  color: var(--ds-text-primary);
+}
+
+.alert--outline {
+  background-color: transparent;
+  border-color: currentColor;
+}
+
+.alert--dismissible {
+  padding-right: 2.75rem;
+  position: relative;
+}
+
+.alert--dismissible .alert__close {
+  position: absolute;
+  top: 0.875rem;
+  right: 1rem;
+}
+
+.alert--additional .alert-heading {
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.375rem;
+}
+
+.alert__action {
+  align-self: center;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--ds-radius-sm, 0.25rem);
+  padding: 0.375rem 0.75rem;
+  background: currentColor;
+  color: var(--ds-bg-surface);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.alert__action:hover {
+  opacity: 0.85;
+}
+
+.alert__arrow {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  margin: -0.875rem 0 -0.875rem -1rem;
+  padding: 0 0.875rem;
+  background: currentColor;
+  color: var(--ds-bg-surface);
+}
+
+.alert-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 // ── CON BORDE LATERAL ─────────────────────────────────────────

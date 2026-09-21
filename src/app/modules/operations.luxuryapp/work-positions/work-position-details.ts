@@ -54,13 +54,17 @@ export class WorkPositionDetails implements OnInit {
     this.departamentLabel.set(data.departamentLabel ?? "");
     const id = data.id;
     if (id) this.onLoadData(id, data.jobDescriptionId ?? null);
+
+    if (!data.jobDescriptionId) {
+      this.activeTab.set("general");
+    }
   }
 
   async onLoadData(id: string, jobDescriptionId: string | null): Promise<void> {
     const [general, hours] = await Promise.all([
-      this.apiS.onGetItem<any>(`operation/recruitment/work-positions/for-edit/${id}`),
+      this.apiS.onGetItem<any>(`work-positions/for-edit/${id}`),
       this.apiS
-        .onGetItem<IWorkPositionHours>(`operation/recruitment/work-positions/hours/${id}`)
+        .onGetItem<IWorkPositionHours>(`work-positions/hours/${id}`)
         .catch(() => null),
     ]);
     this.general.set(general);
@@ -68,7 +72,7 @@ export class WorkPositionDetails implements OnInit {
 
     if (jobDescriptionId) {
       const desc = await this.apiS.onGetItem<any>(
-        `operation/recruitment/job-descriptions/${jobDescriptionId}`,
+        `job-descriptions/${jobDescriptionId}`,
       );
       this.description.set(desc);
     }

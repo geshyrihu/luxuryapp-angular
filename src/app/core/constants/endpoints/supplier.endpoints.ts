@@ -8,6 +8,7 @@ export const EndpointsSupplier = {
     create: "purchaserequest",
     deleteProduct: (id: string | number) => `purchaserequest/delete-product/${id}`,
     cuadroComparativo: (id: string) => `solicitud-compra/cuadro-comparativo/${id}`,
+    cuadroComparativoBatch: "solicitud-compra/cuadro-comparativo/batch",
     cuadroComparativoUpdate: (id: string) => `solicitud-compra/cuadro-comparativo/${id}`,
     delete: (id: string | number) => `solicitud-compra/${id}`,
     getById: (id: string | number) => `solicitud-compra/${id}`,

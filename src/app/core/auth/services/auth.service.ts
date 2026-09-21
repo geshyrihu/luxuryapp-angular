@@ -251,7 +251,7 @@ export class AuthService {
     // Limpiar overlays activos para evitar UI bloqueada durante logout.
     document.body.classList.remove("p-overflow-hidden");
     const overlays = document.querySelectorAll(
-      ".p-component-overlay, .p-dialog-mask, .p-sidebar-mask, .offcanvas-backdrop, .modal-backdrop",
+      ".offcanvas-backdrop, .modal-backdrop",
     );
     overlays.forEach((overlay) => overlay.remove());
 

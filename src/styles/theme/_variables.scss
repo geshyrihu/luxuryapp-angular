@@ -49,7 +49,7 @@
   --secondary-900: #{c.$secondary-900};
   --secondary-950: #{c.$secondary-950};
 
-  // Dark surface scale (para PrimeNG dark mode, desde core/_colors.scss)
+  // Dark surface scale desde core/_colors.scss
   --surface-dark-0: #{c.$surface-dark-0};
   --surface-dark-50: #{c.$surface-dark-50};
   --surface-dark-100: #{c.$surface-dark-100};
@@ -123,7 +123,7 @@
   --task-completed-tint: var(--ds-success-light);
   --task-reopened-tint: var(--ds-danger-light);
 
-  // Colores semánticos (raw, para PrimeNG preset)
+  // Colores semánticos base
   --success-color: #{c.$color-success-brand};
   --success-bg: #{c.$color-success-bg};
   --warning-color: #{c.$color-warning-brand};
@@ -835,12 +835,6 @@ body.theme-dark {
   --ds-glow-help:
     0 0 0 1px color-mix(in srgb, #{c.$help-400}, transparent 55%),
     0 0 14px color-mix(in srgb, #{c.$help-400}, transparent 80%);
-
-  // 💎 PrimeNG 21 Dark Mapping
-  --p-primary-color: var(--ds-primary);
-  --p-primary-contrast-color: var(--ds-primary-text);
-  --p-content-background: var(--ds-bg-surface);
-  --p-content-border-color: var(--ds-border);
 
   // ===================================================================
   // HIGH CONTRAST MODE (Dark) — RN-DS-013

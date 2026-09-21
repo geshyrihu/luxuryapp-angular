@@ -75,7 +75,7 @@
   }
 
   /* Reducir el tamaño base (rem) global al imprimir para que textos,
-     paddings y márgenes (basados en PrimeFlex) sean más compactos y 
+     paddings y márgenes sean más compactos y
      el documento consuma menos hojas. */
   html, body {
     font-size: 11px;
@@ -169,9 +169,8 @@
   }
 
   /* Ocultar tooltips en la impresion */
-  .p-tooltip,
-  p-tooltip,
-  .p-tooltip-text {
+  .app-tooltip,
+  app-tooltip {
     display: none;
   }
 
@@ -540,7 +539,7 @@
     box-shadow: none;
   }
 
-  /* 8. Forzar 2 columnas EPF (PrimeFlex lg: usa @media screen) */
+  /* 8. Forzar 2 columnas EPF en viewport amplio */
   .print-all-reports .grid {
     display: flex;
     flex-wrap: wrap;
@@ -622,4 +621,3 @@
     opacity: 1 !important;
   }
 }
-

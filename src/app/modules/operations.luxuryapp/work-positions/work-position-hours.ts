@@ -13,13 +13,14 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { IWorkPositionHours } from "./interfaces/work-position.model";
 
 @Component({
   selector: "app-work-position-hours",
   templateUrl: "./work-position-hours.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, AppIcon],
+  imports: [LxCard, AppIcon, WebButtonLabel],
 })
 export class WorkPositionHours implements OnInit {
   // --- INYECCIÓN DE DEPENDENCIAS ---
@@ -41,6 +42,8 @@ export class WorkPositionHours implements OnInit {
     { n: "Domingo", dw: 0 },
   ];
 
+  semanas = signal<number[]>([1]);
+
   ngOnInit() {
     const id = this.config.data?.id;
     this.readOnly.set(this.config.data?.readOnly === true);
@@ -51,9 +54,41 @@ export class WorkPositionHours implements OnInit {
 
   async onLoadData(id: string) {
     const result = await this.apiS.onGetItem<IWorkPositionHours>(
-      `operation/recruitment/work-positions/hours/${id}`,
+      `work-positions/hours/${id}`,
     );
     this.data.set(result);
+    
+    if (result && result.diasDeTrabajo) {
+      const max = Math.max(1, ...result.diasDeTrabajo.map(d => d.numeroSemanaCiclo || 1));
+      this.semanas.set(Array.from({ length: max }, (_, i) => i + 1));
+    }
+  }
+
+  getDayData(dayOfWeek: number, week: number) {
+    return this.data()?.diasDeTrabajo?.find(d => d.diaSemana === dayOfWeek && (d.numeroSemanaCiclo || 1) === week);
+  }
+  
+  getWeeklyHours(week: number): string {
+    let totalMinutes = 0;
+    const days = this.data()?.diasDeTrabajo?.filter(d => (d.numeroSemanaCiclo || 1) === week && !d.esDescanso) || [];
+    
+    for (const d of days) {
+      if (d.horaEntrada && d.horaSalida) {
+        const [hE, mE] = d.horaEntrada.split(':').map(Number);
+        const [hS, mS] = d.horaSalida.split(':').map(Number);
+        let minsE = hE * 60 + (mE || 0);
+        let minsS = hS * 60 + (mS || 0);
+        if (minsS < minsE) minsS += 24 * 60; // cruce de medianoche
+        totalMinutes += (minsS - minsE);
+      }
+    }
+    
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    return `${h} hrs${m > 0 ? ' ' + m + 'm' : ''}`;
+  }
+  
+  close(): void {
+    this.ref.close();
   }
 }
-

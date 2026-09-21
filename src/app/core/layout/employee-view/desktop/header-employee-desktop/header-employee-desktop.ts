@@ -333,6 +333,11 @@ export class HeaderEmployeedesktop implements OnInit {
   };
 
   onRefresh = () => {
+    // Refresh voluntario es punto seguro: si existe versión pendiente, se
+    // activa antes de ejecutar el refresh visual normal de la ruta.
+    if (this.updateService.isUpdateAvailable()) {
+      void this.updateService.activateUpdate();
+    }
     this.refreshService.forceRouteReload();
   };
 

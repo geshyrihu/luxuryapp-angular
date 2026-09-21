@@ -10,7 +10,7 @@ import {
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TicketFilterService } from "@core/services/ticket-filter.service";
+import { TicketFilterService } from "../../../../modules/operations.luxuryapp/service-orders/service-order/services/ticket-filter.service";
 
 /**
  * 📄 REPORT HEADER
@@ -85,4 +85,3 @@ export class ReportHeader {
     });
   }
 }
-
