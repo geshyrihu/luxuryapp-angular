@@ -84,7 +84,7 @@ export class BitacoraAcceso {
   // ngOnInit(): void { ... }
 
   private onLoadData(fechaInicial: string, fechaFinal: string): void {
-    // óCORRECCIóN! Leemos el valor del customerId con paróntesis.
+    // ¡CORRECCIÓN! Leemos el valor del customerId con paréntesis.
     const urlApi = Endpoints.UserActivityHistory.byCustomerAndRange(
       this.customerIdS.customerId(),
       fechaInicial,

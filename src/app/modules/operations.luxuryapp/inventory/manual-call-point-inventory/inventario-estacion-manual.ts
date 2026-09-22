@@ -38,6 +38,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";
+import { InventarioEstacionManualPdfService } from "./inventario-estacion-manual-pdf.service";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
@@ -84,6 +85,7 @@ export class InventarioEstacionManual {
   tableScrollHeightS = inject(TableScrollHeightService);
   excelS = inject(AccountingCatalogExcelService);
   qrS = inject(InventarioEstacionManualQrService);
+  pdfS = inject(InventarioEstacionManualPdfService);
   router = inject(Router);
 
   dataSignal = signal<InventarioEstacionManualDto[]>([]);
@@ -130,6 +132,10 @@ export class InventarioEstacionManual {
 
   async onDownloadAllQr() {
     await this.qrS.downloadAllQr(this.dataSignal());
+  }
+
+  onDownloadPdf() {
+    void this.pdfS.downloadPdf(this.dataSignal());
   }
 
   onViewHistory(item: InventarioEstacionManualDto) {
@@ -215,4 +221,3 @@ export class InventarioEstacionManual {
       });
   }
 }
-

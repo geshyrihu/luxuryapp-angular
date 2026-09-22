@@ -19,7 +19,7 @@
         <div
           class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4"
         >
-          <!-- Parte Izquierda: Tútulo y bósqueda -->
+          <!-- Parte Izquierda: Título y bósqueda -->
           <div class="flex-grow-1">
             <app-table-caption
               (add)="onModalForm('', 'Crear Cuenta')"
@@ -150,7 +150,7 @@
   </div>
 </div>
 
-<!--📲INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="filteredDataSignal()"
   (add)="onModalForm('', 'Crear Cuenta')"

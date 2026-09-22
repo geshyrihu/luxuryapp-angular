@@ -1863,7 +1863,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/accounting-catalogs/aspel-mirror/projected-expenses-list.html",
@@ -1885,7 +1885,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/accounting-catalogs/fixed-expense-catalogs/catalogo-gastos-fijos-list.html",
@@ -1907,7 +1907,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/fundings/funding-accounting/funding-accounting-detail.html",
@@ -2030,7 +2030,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-catalog/accounting-catalog.html",
@@ -2199,7 +2199,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
@@ -2562,7 +2562,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
@@ -6185,7 +6185,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-summary/financial-summary.html",
@@ -6218,7 +6218,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/funding-accounting/funding-accounting-detail.html",
@@ -7845,7 +7845,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/email-configuration/email-data/email-data-list.html",
@@ -7867,7 +7867,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/infrastructure/catalog-component-ui/catalog-mobile/mobile-buttons/mobile-buttons.ts",
@@ -7955,7 +7955,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/security-permissions/customer-locations/customer-location-list.html",
@@ -8010,7 +8010,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/security-permissions/customer/customer-list.html",
@@ -8021,7 +8021,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/security-permissions/module-app-roles/module-app-rol-list.html",
@@ -8087,7 +8087,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/security-permissions/user-accounts/user-account-list.html",
@@ -8109,7 +8109,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/security-permissions/user-accounts/user-account-list.ts",
@@ -8164,7 +8164,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/auth.luxuryapp/account-recovery/recovery-code/recovery-code.ts",
@@ -10990,7 +10990,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/evaluation/evaluation-template/performance-evaluation/realizar-evaluacion.html",
@@ -11023,7 +11023,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/hr-admin/sanction-type-list/sanction-type-list.html",
@@ -11034,7 +11034,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/salary-projections/interfaces/salary-projections.models.ts",
@@ -11089,7 +11089,7 @@
       "symbols": [
         "✨"
       ],
-      "preview": "* ✨ COMPONENTE GENóRICO PARA PANELES DE APROBACIóN ✨"
+      "preview": "* ✨ COMPONENTE GENÉRICORICO PARA PANELES DE APROBACIÓNN ✨"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/admin-vacaciones-balance/admin-vacaciones-balance.html",
@@ -11111,7 +11111,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/leave-calendar/calendario-vacaciones-permisos.ts",
@@ -11199,7 +11199,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/past-vacations/vacaciones-pasadas-registro.ts",
@@ -11265,7 +11265,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Vista para míviles -->"
+      "preview": "<!--📲INICIO: Vista para móviles -->"
     },
     {
       "file": "src/app/modules/legal.luxuryapp/legal/meeting-minutes/legal-pendientes-minuta.html",
@@ -11287,7 +11287,7 @@
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones.html",
@@ -11353,7 +11353,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/elevator-emergency-call/elevators-emergency-call-list.html",
@@ -11375,7 +11375,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/elevator-spare-parts/elevator-spare-parts-change-list.html",
@@ -11397,7 +11397,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/logbooks/meters/medidor-lectura-chart.html",
@@ -11452,7 +11452,7 @@
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/logbooks/tool-loan/prestamo-herramientas-control.html",
@@ -11463,7 +11463,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/maintenance-log/bitacora-individual.html",
@@ -11507,7 +11507,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/pool/piscina-list.html",
@@ -11529,7 +11529,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/tool-loan/tool-list.html",
@@ -11551,7 +11551,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/water-truck-receipts/recepcion-pipas-agua-reporte.html",
@@ -11695,7 +11695,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/delivery-reception-catalog/catalogo-descripcion-list.html",
@@ -11717,7 +11717,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/inspection-revision-catalog/catalogo-revisiones-inspeccion.html",
@@ -11739,7 +11739,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/machinery-classification/machinery-classification-list.html",
@@ -11761,7 +11761,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/meter-category/meter-category-list.html",
@@ -11783,7 +11783,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/product-category/product-category-list.html",
@@ -11805,7 +11805,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/minutas-list.html",
@@ -11827,7 +11827,7 @@
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/resumen-minuta.html",
@@ -11959,7 +11959,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/announcements/announcement/announcement-analytics.html",
@@ -12994,7 +12994,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/inventory/product-exit/product-output-list.html",
@@ -13016,7 +13016,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/inventory/stock-by-warehouse/warehouse-stock-list.html",
@@ -13038,7 +13038,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/inventory/warehouse/warehouse-list.html",
@@ -13060,7 +13060,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/manuals/library/financial-report/informe-financiero-list.html",
@@ -13082,7 +13082,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/properties/propiedades-list.ts",
@@ -13324,7 +13324,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/supervision/supervision/general-result-area-evaluation/resultado-general-evaluacion-areas-detalle.html",
@@ -13368,7 +13368,7 @@
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/operations.luxuryapp/task/tasks/reports/task-operation-report.html",
@@ -13423,7 +13423,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager.html",
@@ -14558,7 +14558,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/external-staffs/employee-external-list.html",
@@ -14569,7 +14569,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/recruitment.luxuryapp/provider-supports/provider-support.html",
@@ -14646,7 +14646,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/shared.luxuryapp/catalogs/document-catalog/document-catalog-list.html",
@@ -14690,7 +14690,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/shared.luxuryapp/catalogs/payment-type/payment-type-list.html",
@@ -14712,7 +14712,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/shared.luxuryapp/catalogs/recruitment-sources/recruitment-source-catalog-list.html",
@@ -14756,7 +14756,7 @@
       "symbols": [
         "📲"
       ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/modules/web.luxuryapp/accounting/accounting-page.ts",

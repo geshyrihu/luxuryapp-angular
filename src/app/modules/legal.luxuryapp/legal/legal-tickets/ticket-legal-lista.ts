@@ -243,8 +243,8 @@ export class TicketLegalLista implements OnInit {
       { header: "ASUNTO", key: "title", width: 40 },
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
-      { header: "FECHA CONCLUSIóN", key: "completionDate", width: 18 },
-      { header: "DóAS", key: "dias", width: 8 },
+      { header: "FECHA CONCLUSIÓN", key: "completionDate", width: 18 },
+      { header: "DÍAS", key: "dias", width: 8 },
     ];
 
     // Encabezado

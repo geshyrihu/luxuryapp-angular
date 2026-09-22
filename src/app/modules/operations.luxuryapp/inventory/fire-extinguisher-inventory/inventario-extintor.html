@@ -14,8 +14,9 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center w-full">
       <div class="d-flex align-items-center gap-2">
-        <iw-button-download
+        <iw-button-item
           (clicked)="onDownloadPdf()"
+          iconClass="material-symbols-light:picture-as-pdf"
           lxTooltip="PDF"
           tooltipPosition="top"
         />
@@ -25,7 +26,10 @@
           tooltipPosition="top"
           tooltip="Descargar todos los QR"
         />
-        <iw-button (clicked)="onOpenScanner()" [iconClass]="'material-symbols-light:qr-code'" />
+        <iw-button
+          (clicked)="onOpenScanner()"
+          [iconClass]="'material-symbols-light:qr-code'"
+        />
         <iw-button
           (clicked)="onBulkExpiration()"
           [iconClass]="'material-symbols-light:calendar-today'"
@@ -138,7 +142,10 @@
       class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div slot="start">
-        <app-icon icon="material-symbols-light:local-fire-department" class="text-xl text-red-500" />
+        <app-icon
+          icon="material-symbols-light:local-fire-department"
+          class="text-xl text-red-500"
+        />
       </div>
       <span class="">
         <h3>
@@ -154,7 +161,11 @@
             label="Historial"
             iconName="list-outline"
           />
-          <ili-button-download (clicked)="onDownloadPdf()" label="PDF" />
+          <ili-button-download
+            (clicked)="onDownloadPdf()"
+            iconClass="material-symbols-light:picture-as-pdf"
+            label="PDF"
+          />
           <ili-button-download (clicked)="onDownloadQr(item)" label="QR" />
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

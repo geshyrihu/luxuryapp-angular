@@ -23,7 +23,7 @@
         <il-button
           variant="outline"
           iconClass="material-symbols-light:add"
-          label="NUEVA PRESENTACIóN"
+          label="NUEVA PRESENTACIÓN"
           size="sm"
           (clicked)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
         />
@@ -90,7 +90,7 @@
               class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg fw-bold border-1 border-green-100"
             >
               <app-icon icon="material-symbols-light:lock" />
-              <span>VERSIóN FINAL</span>
+              <span>VERSIÓN FINAL</span>
             </div>
             } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])()) {
@@ -317,7 +317,7 @@
               <div class="d-flex flex-column gap-2">
                 <il-button-confirm
                   iconClass="material-symbols-light:send"
-                  label="ENVIAR COMITé"
+                  label="ENVIAR COMITÉ"
                   [fluid]="true"
                   swalTitle="óEnviar presentación?"
                   swalText="Se notificaré a todos los miembros."

@@ -177,7 +177,7 @@ export class ProfileUserMobile {
         this.consoleLogger.info(`[Profile] Service Workers desregistrados`);
       }
 
-      // 3. Recargar la pógina
+      // 3. Recargar la página
       window.location.reload();
     } catch (error) {
       this.consoleLogger.error("[Profile] Error al limpiar caché:", error);

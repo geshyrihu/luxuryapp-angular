@@ -139,7 +139,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
         @case ("navhub") {
           <!-- ------------------------------------------------------------ -->
-          <!-- ESTéNDAR: Navigation Hub Page                               -->
+          <!-- ESTÁNDAR: Navigation Hub Page                               -->
           <!-- Aplica a: settings-home, master-dashboard, cobranza-nativa  -->
           <!-- ------------------------------------------------------------ -->
 
@@ -245,7 +245,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                           <code>col-2 xl é col-3 lg é col-4 md é col-6 sm</code>
                         </li>
                         <li>
-                          Header de grupo: barra vertical + uppercase + lónea
+                          Header de grupo: barra vertical + uppercase + línea
                         </li>
                       </ul>
                     </div>

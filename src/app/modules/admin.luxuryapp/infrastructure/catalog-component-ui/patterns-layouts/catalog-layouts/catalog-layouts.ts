@@ -15,7 +15,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
         <div class="card"><div class="card-header fw-semibold">Layouts de Página - Patrones ERP</div><div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los 5 layouts base del ERP. Cada uno resuelve una clase distinta de
-            tarea operativa. Selecciona el layout segón la
+            tarea operativa. Selecciona el layout según la
             <strong>densidad de información</strong> y el
             <strong>flujo de trabajo</strong> del módulo.
           </p>
@@ -89,7 +89,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
       <div class="col-12">
         <div class="card"><div class="card-header fw-semibold">Form Layouts - Organización de Campos</div><div class="card-body">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Elige la densidad del formulario segón el contexto: mís columnas =
+            Elige la densidad del formulario según el contexto: mís columnas =
             mís densidad pero mayor riesgo de errores de captura. En mobile
             siempre usa una columna.
           </p>
@@ -218,7 +218,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                   }
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
-                  Configuración, preferencias, formularios de bósqueda en lónea.
+                  Configuración, preferencias, formularios de bósqueda en línea.
                 </p>
               </div>
             </div>
@@ -319,7 +319,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                 <div class="col-12 col-md-4">
                   <div class="surface-card border-1 border-round p-3 h-full">
                     <strong class="text-xs text-color-secondary d-block mb-2"
-                      >DISTRIBUCIóN</strong
+                      >DISTRIBUCIÓN</strong
                     >
                     <!-- Fake pie -->
                     <div class="d-flex flex-column gap-2 mt-2">

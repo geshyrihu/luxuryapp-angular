@@ -19,6 +19,12 @@
           [iconClass]="'material-symbols-light:qr-code'"
           tooltip="Escanear QR"
         />
+        <iw-button-item
+          (clicked)="onDownloadPdf()"
+          iconClass="material-symbols-light:picture-as-pdf"
+          lxTooltip="PDF"
+          tooltipPosition="top"
+        />
         <iw-button-download
           (clicked)="onDownloadAllQr()"
           lxTooltip="QR"
@@ -172,6 +178,11 @@
             (clicked)="onViewHistory(item)"
             label="Historial"
             iconName="list-outline"
+          />
+          <ili-button-download
+            (clicked)="onDownloadPdf()"
+            iconClass="material-symbols-light:picture-as-pdf"
+            label="PDF"
           />
           <ili-button-download (clicked)="onDownloadQr(item)" label="QR" />
           <ili-button-edit

@@ -277,6 +277,18 @@ export const humanResourcesRoutes: Routes = [
     },
   },
   {
+    path: "salary-projections-risk-premium",
+    loadComponent: () =>
+      import("@human-resources.luxuryapp/salary-projections/risk-premium-list/risk-premium-list").then(
+        (m) => m.RiskPremiumList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Prima de Riesgo por Cliente",
+      breadcrumb: "Prima de Riesgo",
+    },
+  },
+  {
     path: "employee-time-clock",
     loadComponent: () =>
       import("@human-resources.luxuryapp/employee-time-clock/chekador-list").then(

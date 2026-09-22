@@ -84,7 +84,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                 [icon]="'material-symbols-light:history'"
                 class="text-xl"
               />
-              <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
+              <h5 class="mb-0 font-semibold">Historial (últimos 3 meses)</h5>
             </div>
             <p class="text-600">
               El empleado ha solicitado

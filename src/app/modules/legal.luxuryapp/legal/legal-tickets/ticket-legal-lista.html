@@ -71,8 +71,8 @@
         ESTATUS
         <app-sorticon field="status" />
       </th>
-      <th class="table-col-10">FECHA CONCLUSIóN</th>
-      <th class="table-col-3">DíAS</th>
+      <th class="table-col-10">FECHA CONCLUSIÓN</th>
+      <th class="table-col-3">DÍAS</th>
       <th colspan="2" class="table-col-7">SEGUIMIENTO</th>
     </tr>
   </ng-template>
@@ -147,7 +147,7 @@
   </ng-template>
 </app-table>
 
-<!-- ?? Versión mívil -->
+<!-- ?? Versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

@@ -38,6 +38,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { InventarioDetectorHumoForm } from "./inventario-detector-humo-form";
 import { InventarioDetectorHumoQrService } from "./inventario-detector-humo-qr.service";
+import { InventarioDetectorHumoPdfService } from "./inventario-detector-humo-pdf.service";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
@@ -84,6 +85,7 @@ export class InventarioDetectorHumo {
   tableScrollHeightS = inject(TableScrollHeightService);
   excelS = inject(AccountingCatalogExcelService);
   qrS = inject(InventarioDetectorHumoQrService);
+  pdfS = inject(InventarioDetectorHumoPdfService);
   router = inject(Router);
 
   dataSignal = signal<InventarioDetectorHumoDto[]>([]);
@@ -130,6 +132,10 @@ export class InventarioDetectorHumo {
 
   async onDownloadAllQr() {
     await this.qrS.downloadAllQr(this.dataSignal());
+  }
+
+  onDownloadPdf() {
+    void this.pdfS.downloadPdf(this.dataSignal());
   }
 
   onViewHistory(item: InventarioDetectorHumoDto) {
@@ -212,4 +218,3 @@ export class InventarioDetectorHumo {
       });
   }
 }
-

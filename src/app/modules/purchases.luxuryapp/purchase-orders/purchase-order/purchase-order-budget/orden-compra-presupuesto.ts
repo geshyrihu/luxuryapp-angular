@@ -59,7 +59,7 @@ import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/service
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
-  // 1. INYECCIóN DE DEPENDENCIAS
+  // 1. INYECCIÓNN DE DEPENDENCIAS
   //----------------------------------------------------------------
   // Aqué puro `inject`, nada de constructores kilomótricos ?
   apiResponseS = inject(ApiResponseService);

@@ -31,7 +31,7 @@ export const superUserGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  // Si no esté autorizado, lo mandamos a la pógina de acceso no autorizado
+  // Si no esté autorizado, lo mandamos a la página de acceso no autorizado
   console.warn(
     `[Access Denied] Intento de acceso a ruta protegida: ${state.url}`,
   );

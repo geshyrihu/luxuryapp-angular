@@ -121,7 +121,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIóN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIÓNN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
 
   <div class="body-doc">
     <div class="subheader">DETALLE DE artículos/ SERVICIOS</div>

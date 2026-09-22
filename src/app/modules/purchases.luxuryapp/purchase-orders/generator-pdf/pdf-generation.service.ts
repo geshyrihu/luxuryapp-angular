@@ -295,7 +295,7 @@ ${this.htmlPrintS.getStandardCss()}
       </div>
     </div>
 
-    <div class="subheader">JUSTIFICACIóN DEL GASTO</div>
+    <div class="subheader">JUSTIFICACIÓN DEL GASTO</div>
     <div class="justificacion">${this.htmlPrintS.esc(model.justificacionGasto || "N/A")}</div>
 
     <div class="subheader">DESGLOSE DE PAGO</div>

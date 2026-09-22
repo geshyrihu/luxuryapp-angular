@@ -389,7 +389,7 @@ export class RecruitmentStaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCIóN de puesto: " + applicationRoleName,
+      "DESCRIPCIÓN de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }

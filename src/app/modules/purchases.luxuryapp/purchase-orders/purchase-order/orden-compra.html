@@ -8,7 +8,7 @@
 }
 
 <!-- ================================================================== -->
-<!-- SECCIóN DE ALERTA DE ESTADO DE LA ORDEN DE COMPRA                  -->
+<!-- SECCIÓN DE ALERTA DE ESTADO DE LA ORDEN DE COMPRA                  -->
 <!-- ================================================================== -->
 <div class="row g-4">
   <div class="col-12 col-md-6">
@@ -19,7 +19,7 @@
     <lx-message severity="warn" icon="material-symbols-light:warning" class="mt-2 p-0 w-full"><div class="d-flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
-          ({{oc.folioSolicitudCompra}}) pero no estó vinculada
+          ({{oc.folioSolicitudCompra}}) pero no está vinculada
           formalmente.</span
         >
         <il-button
@@ -44,7 +44,7 @@
 </div>
 
 <!-- ================================================================== -->
-<!-- SECCIóN DE PANELES DE DATOS PRINCIPALES                            -->
+<!-- SECCIÓN DE PANELES DE DATOS PRINCIPALES                            -->
 <!-- ================================================================== -->
 @if (ordenCompra(); as oc) {
 <div class="row mt-0 g-4">
@@ -80,7 +80,7 @@
 }
 
 <!-- ================================================================== -->
-<!-- SECCIóN DE FACTURAS (RELACIóN DE GASTOS)                           -->
+<!-- SECCIÓN DE FACTURAS (RELACIÓNN DE GASTOS)                           -->
 <!-- ================================================================== -->
 
 <!-- Colocar en esta zoan el boton para agregar facturas -->
@@ -105,7 +105,7 @@
 }
 
 <!-- ================================================================== -->
-<!-- SECCIóN DE PRESUPUESTO Y GASTOS RELACIONADOS                       -->
+<!-- SECCIÓN DE PRESUPUESTO Y GASTOS RELACIONADOS                       -->
 <!-- ================================================================== -->
 @if(ordenCompra(); as oc) { @if (!oc.isDevolucion) {
 <div class="row mb-2 g-4">
@@ -218,7 +218,7 @@
 } }
 
 <!-- ================================================================== -->
-<!-- SECCIóN DE DETALLE DE PRODUCTOS                                    -->
+<!-- SECCIÓN DE DETALLE DE PRODUCTOS                                    -->
 <!-- ================================================================== -->
 <app-table
   [value]="ordenCompraDetalle()"
@@ -308,7 +308,7 @@
     @if (totals().retencionIva > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">RETENCIóN IVA</td>
+      <td colspan="3" class="text-sm text-end">RETENCIÓNN IVA</td>
       <td class="text-end">
         - {{ totals().retencionIva | number: '1.2-2' }}
       </td>
@@ -317,7 +317,7 @@
     } @if (totals().retencionIsr > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">RETENCIóN ISR</td>
+      <td colspan="3" class="text-sm text-end">RETENCIÓNN ISR</td>
       <td class="text-end">
         - {{ totals().retencionIsr | number: '1.2-2' }}
       </td>

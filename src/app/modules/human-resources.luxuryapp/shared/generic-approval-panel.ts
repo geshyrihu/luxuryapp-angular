@@ -21,9 +21,9 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
- * ✨ COMPONENTE GENóRICO PARA PANELES DE APROBACIóN ✨
+ * ✨ COMPONENTE GENÉRICO PARA PANELES DE APROBACIÓN ✨
  *
- * Basado en el esténdar de tablas del proyecto (Referencia: BankList).
+ * Basado en el estándar de tablas del proyecto (Referencia: BankList).
  * Utiliza Signal Inputs para una reactividad óptima.
  */
 @Component({
@@ -136,7 +136,7 @@ export class GenericApprovalPanel {
   columns = input<{ field: string; header: string; isDate?: boolean }[]>([]);
   loading = input<boolean>(false);
 
-  // --- CONFIGURACIóN ---
+  // --- CONFIGURACIÓNN ---
   tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;

@@ -96,7 +96,7 @@ export class AdminVacacionesBalance {
     if (!customerId) return;
 
     const ok = await this.confirmS.confirm(
-      "óEstés seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregiré los días totales de cada empleado segón su antigóedad actual. Esta acción no se puede deshacer.",
+      "óEstés seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregiré los días totales de cada empleado según su antigóedad actual. Esta acción no se puede deshacer.",
       "Confirmación",
     );
     if (!ok) return;

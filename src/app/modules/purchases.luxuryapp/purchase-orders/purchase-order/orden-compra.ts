@@ -76,7 +76,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
 })
 export class OrdenCompra implements OnInit {
   //----------------------------------------------------------------
-  // 1. INYECCIóN DE DEPENDENCIAS
+  // 1. INYECCIÓN DE DEPENDENCIAS
   //----------------------------------------------------------------
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
@@ -84,10 +84,10 @@ export class OrdenCompra implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   routeActive = inject(ActivatedRoute);
   router = inject(Router);
-  public ordenCompraService = inject(OrdenCompraService); // Póblico para usar sus signals en el template
+  public ordenCompraService = inject(OrdenCompraService); // Público para usar sus signals en el template
   public pdfGenerationService = inject(PdfGenerationService);
   //----------------------------------------------------------------
-  // 2. SEóALES DE ESTADO (STATE SIGNALS)
+  // 2. SEÑALES DE ESTADO (STATE SIGNALS)
   //----------------------------------------------------------------
   // REFACTOR: El estado del componente ahora se gestiona con WritableSignal.
   ordenCompraId: WritableSignal<string> = signal("");
@@ -108,7 +108,7 @@ export class OrdenCompra implements OnInit {
   // icon: string = ""; // No se usa en el template.
 
   //----------------------------------------------------------------
-  // 3. SEóALES COMPUTADAS (COMPUTED SIGNALS) PARA LíGICA DE UI
+  // 3. SEÑALES COMPUTADAS (COMPUTED SIGNALS) PARA LÓGICA DE UI
   //----------------------------------------------------------------
   // REFACTOR: Centralizamos la lígica condicional en `computed` signals.
   // Esto limpia el template y hace que la lígica sea mís fócil de mantener.
@@ -355,7 +355,7 @@ export class OrdenCompra implements OnInit {
       .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());
   }
-  /** Número de columnas del cuerpo de la tabla (10 o 11 segón permisos). */
+  /** Número de columnas del cuerpo de la tabla (10 o 11 según permisos). */
   tableColumnCount: Signal<number> = computed(() => {
     return this.canEditBudget() ? 11 : 10;
   });
@@ -373,7 +373,7 @@ export class OrdenCompra implements OnInit {
     this.pdfGenerationService.generateSolicitudPagoPdf(this.ordenCompraId());
   }
 
-  // --- MéTODOS DE ARCHIVOS Y VALIDACIóN (Traódos de OrdenCompraStatusParcial) ---
+  // --- MéTODOS DE ARCHIVOS Y VALIDACIÓNN (Traódos de OrdenCompraStatusParcial) ---
 
   descargarArchivo(url: string): void {
     const link = document.createElement("a");

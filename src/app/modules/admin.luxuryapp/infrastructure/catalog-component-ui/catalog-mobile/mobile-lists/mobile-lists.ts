@@ -138,7 +138,7 @@ import { Task } from "./interfaces/task.interface";
           </ion-list>
         </div>
       </div>
-      <!-- --- PATRóN: Lista con Buscador + Botón Agregar --- -->
+      <!-- --- PATRÓN: Lista con Buscador + Botón Agregar --- -->
       <div class="mt-4">
         <div class="font-bold text-sm mb-3">
           Patrón: Buscador + Lista + Agregar (esténdar ERP)
@@ -264,7 +264,7 @@ import { Task } from "./interfaces/task.interface";
         }
       </div>
 
-      <!-- --- PATRóN: Task List (ui-stiich Corporate Integrity) --- -->
+      <!-- --- PATRÓN: Task List (ui-stiich Corporate Integrity) --- -->
       <div class="stiich-section">
         <div class="stiich-section__header">
           <span class="stiich-section__eyebrow">Corporate Integrity</span>
@@ -328,7 +328,7 @@ import { Task } from "./interfaces/task.interface";
         </div>
       </div>
 
-      <!-- --- PATRóN: Contacts Directory (ui-stiich Corporate Integrity) --- -->
+      <!-- --- PATRÓN: Contacts Directory (ui-stiich Corporate Integrity) --- -->
       <div class="stiich-section">
         <div class="stiich-section__header">
           <span class="stiich-section__eyebrow">Corporate Integrity</span>
