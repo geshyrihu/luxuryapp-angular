@@ -47,7 +47,7 @@ describe('FaqsFondeo', () => {
   });
 
   it('should be case insensitive', () => {
-    component.searchTerm = 'RETENCIóN';
+    component.searchTerm = 'RETENCIÓN';
     expect(component.filteredFaqs.length).toBe(1);
   });
 });

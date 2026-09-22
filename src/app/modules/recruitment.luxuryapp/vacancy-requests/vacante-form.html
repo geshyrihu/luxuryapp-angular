@@ -76,7 +76,7 @@
 
       <il-button-save
         [propertyId]="id"
-        [disabled]="form.invalid"
+       [disabled]="form.controls.status.invalid"
         [submitting]="submitting()"
       />
     </form>

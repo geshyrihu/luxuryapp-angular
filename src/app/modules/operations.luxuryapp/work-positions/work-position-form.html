@@ -85,6 +85,63 @@
       </div>
     </div>
     <div class="col-12">
+      <lx-message severity="info">Prestaciones del puesto</lx-message>
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-6 col-xl-3">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="tieneVales" />
+            <span class="form-check-label">Incluye vales</span>
+          </label>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <custom-input-number-signal
+            [control]="form.controls.totalValesMensuales"
+            label="Total de vales mensuales"
+            placeholder="0.00"
+            [prefix]="'$ '"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="aguinaldo" />
+            <span class="form-check-label">Aguinaldo</span>
+          </label>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="vacaciones" />
+            <span class="form-check-label">Vacaciones</span>
+          </label>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="imss" />
+            <span class="form-check-label">IMSS</span>
+          </label>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="infonavit" />
+            <span class="form-check-label">INFONAVIT</span>
+          </label>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="afore" />
+            <span class="form-check-label">AFORE</span>
+          </label>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <label class="form-check d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input" type="checkbox" formControlName="trabajaDiasFestivos" />
+            <span class="form-check-label">Trabaja días festivos</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
       <lx-message severity="info">Horario de Trabajo</lx-message>
       @if (scheduleError()) {
       <div class="alert alert-warning">{{ scheduleError() }}</div>

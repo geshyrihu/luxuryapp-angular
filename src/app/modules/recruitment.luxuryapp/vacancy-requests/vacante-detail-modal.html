@@ -1,194 +1,153 @@
 @let wp = workPosition(); @let jd = jobDescription();
 
-<lx-tabs [tabs]="tabs" [(activeId)]="activeTab">
-  <!-- HORARIOS -->
-  <div tab="horarios">
-    @if (wp) {
-    <div class="d-flex flex-column gap-2">
-      <div
-        class="d-flex align-items-center gap-3 p-3 bg-body-tertiary rounded-lg mb-2"
-      >
-        <app-icon
-          [icon]="'material-symbols-light:schedule'"
-          class="text-2xl text-body-secondary"
-        />
-        <div>
-          <div class="fw-bold text-body">Turno de trabajo</div>
-          <div class="text-sm text-body-secondary">{{ wp.tipoJornadaName }}</div>
+<div class="vacancy-detail-shell">
+  @if (wp; as position) {
+  <header class="vacancy-detail-hero">
+    <div>
+      <p class="vacancy-detail-eyebrow">Consulta de puesto</p>
+      <h2 class="vacancy-detail-title">{{ position.applicationRoleName || "Puesto sin asignar" }}</h2>
+      <p class="vacancy-detail-subtitle">Información laboral, prestaciones y horario operativo</p>
+    </div>
+    <lx-tag
+      [value]="stateLabel(position.state)"
+      [severity]="stateLabel(position.state) === 'Activo' ? 'success' : 'secondary'"
+    />
+  </header>
+  }
+
+  <lx-tabs [tabs]="tabs" [(activeId)]="activeTab">
+    <div tab="resumen">
+      @if (wp; as position) {
+      <div class="vacancy-detail-meta">
+        <div class="vacancy-detail-stat">
+          <div class="vacancy-detail-stat-label">Folio</div>
+          <div class="vacancy-detail-stat-value">{{ position.folio || "Sin folio" }}</div>
+        </div>
+        <div class="vacancy-detail-stat">
+          <div class="vacancy-detail-stat-label">Colaborador</div>
+          <div class="vacancy-detail-stat-value">{{ position.employeeName || "Vacante" }}</div>
+        </div>
+        <div class="vacancy-detail-stat">
+          <div class="vacancy-detail-stat-label">Horario</div>
+          <div class="vacancy-detail-stat-value">{{ position.workPositionScheduleName || position.tipoJornadaName || "Sin horario" }}</div>
         </div>
       </div>
-
-      <div class="d-flex flex-wrap gap-1 mb-2">
-        @for (day of schedulePresentationS.indicators(wp); track day.label) {
-        <span
-          class="border-1 rounded px-1 py-0 text-xs fw-bold line-height-2"
-          [class.bg-green-100]="day.worked"
-          [class.text-green-800]="day.worked"
-          [class.border-green-300]="day.worked"
-          [class.bg-red-50]="!day.worked"
-          [class.text-red-700]="!day.worked"
-          [class.border-red-200]="!day.worked"
-          [title]="day.tooltip"
-        >
-          {{ day.label }}
-        </span>
-        }
-      </div>
-      <div class="text-primary text-sm fw-semibold mb-2">
-        {{ schedulePresentationS.hoursSummary(wp) }}
-      </div>
-
-      @for (dia of dias; track dia.n) { @let entrada = wp.diasDeTrabajo?.find(d
-      => d.diaSemana === dia.dw)?.horaEntrada ?? null; @let salida =
-      wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
-      <div
-        class="d-flex justify-content-between align-items-center p-2 border-bottom-1 border rounded hover:bg-body-tertiary"
-      >
-        <span class="fw-semibold text-body w-7rem">{{ dia.n }}</span>
-        @if (entrada && salida) {
-        <span class="d-flex align-items-center gap-2 text-primary fw-semibold">
-          <app-icon [icon]="'material-symbols-light:login'" class="text-xs" />{{
-          entrada }}
-          <app-icon
-            [icon]="'material-symbols-light:arrow-forward'"
-            class="text-xs text-body-secondary"
-          />
-          <app-icon
-            [icon]="'material-symbols-light:logout'"
-            class="text-xs"
-          />{{ salida }}
-        </span>
-        } @else {
-        <span class="text-body-secondary fst-italic text-sm">Descanso / Sin asignar</span>
-        }
-      </div>
-      } @if (wp.observaciones) {
-      <div class="p-3 bg-body-tertiary rounded mt-2">
-        <div class="fw-semibold text-body-secondary mb-1">
-          <app-icon
-            [icon]="'material-symbols-light:info'"
-            class="me-1"
-          />Observaciones de horario
-        </div>
-        <p class="m-0 text-sm text-body white-space-pre-line">
-          {{ wp.observaciones }}
-        </p>
-      </div>
-      }
-    </div>
-    } @else {
-    <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">
-      <app-icon
-        [icon]="'material-symbols-light:progress-activity'"
-        class="text-2xl me-2"
-      />
-      Cargando...
-    </div>
-    }
-  </div>
-
-  <!-- DESCRIPCION DEL PUESTO -->
-  <div tab="descripcion">
-    @if (jd) {
-    <div class="d-flex flex-column gap-3">
-      @if (jd.summary) {
-      <div>
-        <div class="fw-bold text-body mb-1">Resumen</div>
-        <p class="m-0 text-sm line-height-3 text-body">{{ jd.summary }}</p>
-      </div>
-      <lx-divider />
-      } @if (jd.responsibilities) {
-      <div>
-        <div class="fw-bold text-body mb-1">Responsabilidades</div>
-        <p class="m-0 text-sm line-height-3 text-body">
-          {{ jd.responsibilities }}
-        </p>
-      </div>
-      <lx-divider />
-      } @if (jd.skills) {
-      <div>
-        <div class="fw-bold text-body mb-1">Habilidades requeridas</div>
-        <p class="m-0 text-sm line-height-3 text-body">{{ jd.skills }}</p>
-      </div>
-      <lx-divider />
-      } @if (jd.additionalRequirements) {
-      <div>
-        <div class="fw-bold text-body mb-1">Requisitos adicionales</div>
-        <p class="m-0 text-sm line-height-3 text-body">
-          {{ jd.additionalRequirements }}
-        </p>
-      </div>
-      <lx-divider />
-      } @if (jd.workEnvironment) {
-      <div>
-        <div class="fw-bold text-body mb-1">Entorno de trabajo</div>
-        <p class="m-0 text-sm line-height-3 text-body">
-          {{ jd.workEnvironment }}
-        </p>
-      </div>
-      <lx-divider />
-      }
-
-      <div class="d-flex align-items-center gap-2">
-        <span class="fw-bold text-body">Requiere fin de semana:</span>
-        <lx-tag
-          [value]="jd.requiresWeekendShift ? 'Sí' : 'No'"
-          [severity]="jd.requiresWeekendShift ? 'warn' : 'success'"
-        />
-      </div>
-    </div>
-    } @else {
-    <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">
-      <app-icon
-        [icon]="'material-symbols-light:note-alt'"
-        class="text-2xl me-2"
-      />
-      <span>No hay DESCRIPCIÓN de puesto registrada.</span>
-    </div>
-    }
-  </div>
-
-  <!-- PRESTACIONES Y OBSERVACIONES -->
-  <div tab="prestaciones">
-    @if (wp) {
-    <div class="d-flex flex-column gap-3">
-      <div class="d-flex align-items-center gap-3 p-3 bg-body-tertiary rounded-lg">
-        <app-icon
-          [icon]="'material-symbols-light:attach-money'"
-          class="text-2xl text-body-secondary"
-        />
-        <div>
-          <div class="text-xs text-body-secondary">Sueldo base presupuestado</div>
-          <div class="fw-bold text-body text-lg">
-            {{ wp.sueldoBase | currency:'MXN':'symbol-narrow':'1.0-0' }}
+      <div class="vacancy-detail-card mt-3">
+        <h3 class="vacancy-detail-card-title">
+          <app-icon icon="material-symbols-light:badge" class="text-primary" />
+          Perfil del puesto
+        </h3>
+        <div class="vacancy-detail-meta">
+          <div class="vacancy-detail-stat">
+            <div class="vacancy-detail-stat-label">Sueldo presupuestado</div>
+            <div class="vacancy-detail-stat-value">{{ position.sueldoBase | currency:'MXN':'symbol-narrow':'1.0-2' }}</div>
+          </div>
+          <div class="vacancy-detail-stat">
+            <div class="vacancy-detail-stat-label">Ciclo de trabajo</div>
+            <div class="vacancy-detail-stat-value">{{ position.duracionCicloSemanas || 4 }} semanas</div>
+          </div>
+          <div class="vacancy-detail-stat">
+            <div class="vacancy-detail-stat-label">Días festivos</div>
+            <div class="vacancy-detail-stat-value">{{ position.trabajaDiasFestivos ? 'Sí trabaja' : 'No trabaja' }}</div>
           </div>
         </div>
       </div>
-
-      @if (wp.benefits) {
-      <div>
-        <div class="fw-bold text-body mb-1">
-          <app-icon
-            [icon]="'material-symbols-light:redeem'"
-            class="me-1"
-          />Prestaciones
-        </div>
-        <p class="m-0 text-sm line-height-3 text-body white-space-pre-line">
-          {{ wp.benefits }}
-        </p>
-      </div>
       } @else {
-      <p class="text-body-secondary fst-italic text-sm">Sin prestaciones registradas.</p>
+      <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">Cargando información del puesto...</div>
       }
     </div>
-    } @else {
-    <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">
-      <app-icon
-        [icon]="'material-symbols-light:progress-activity'"
-        class="text-2xl me-2"
-      />
-      Cargando...
+
+    <div tab="horarios">
+      @if (wp; as position) {
+      <div class="vacancy-detail-card">
+        <h3 class="vacancy-detail-card-title">
+          <app-icon icon="material-symbols-light:schedule" class="text-primary" />
+          Horario de trabajo
+        </h3>
+        <div class="schedule-meta">
+          <span class="schedule-meta-item">Turno: <strong>{{ position.tipoJornadaName || "Personalizado" }}</strong></span>
+          <span class="schedule-meta-item">Ciclo: <strong>{{ position.duracionCicloSemanas || 4 }} semanas</strong></span>
+        </div>
+        <div class="schedule-scroll">
+          <div class="schedule-grid" role="table" aria-label="Horario de trabajo por semana">
+            <div class="schedule-cell schedule-header">Semana</div>
+            @for (day of dias; track day.dw) {
+            <div class="schedule-cell schedule-header">{{ day.n }}</div>
+            }
+            @for (week of semanas; track week) {
+            <div class="schedule-cell schedule-week">Semana {{ week }}</div>
+            @for (day of dias; track day.dw) { @let cell = scheduleCell(week, day.dw);
+            <div class="schedule-cell" [class.schedule-worked]="cell && !cell.esDescanso" [class.schedule-rest]="!cell || cell.esDescanso">
+              @if (cell && !cell.esDescanso && cell.horaEntrada && cell.horaSalida) {
+              <div class="schedule-time">{{ cell.horaEntrada }}<span>–</span>{{ cell.horaSalida }}</div>
+              } @else { Descanso }
+            </div>
+            }
+            }
+          </div>
+        </div>
+        @if (position.observaciones) {
+        <div class="mt-3">
+          <div class="vacancy-detail-stat-label mb-1">Observaciones</div>
+          <p class="vacancy-detail-copy">{{ position.observaciones }}</p>
+        </div>
+        }
+      </div>
+      } @else {
+      <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">Cargando horario...</div>
+      }
     </div>
-    }
-  </div>
-</lx-tabs>
+
+    <div tab="descripcion">
+      @if (jd; as description) {
+      <div class="d-flex flex-column gap-3">
+        @for (section of [
+          { title: 'Resumen', value: description.summary },
+          { title: 'Responsabilidades', value: description.responsibilities },
+          { title: 'Habilidades requeridas', value: description.skills },
+          { title: 'Requisitos adicionales', value: description.additionalRequirements },
+          { title: 'Entorno de trabajo', value: description.workEnvironment }
+        ]; track section.title) { @if (section.value) {
+        <div class="vacancy-detail-card">
+          <h3 class="vacancy-detail-card-title">{{ section.title }}</h3>
+          <p class="vacancy-detail-copy">{{ section.value }}</p>
+        </div>
+        } }
+        <div class="vacancy-detail-card d-flex align-items-center justify-content-between gap-3">
+          <span class="vacancy-detail-stat-label">Requiere trabajo en fin de semana</span>
+          <lx-tag [value]="description.requiresWeekendShift ? 'Sí' : 'No'" [severity]="description.requiresWeekendShift ? 'warn' : 'success'" />
+        </div>
+      </div>
+      } @else {
+      <div class="vacancy-detail-card text-body-secondary">No hay descripción registrada para este puesto.</div>
+      }
+    </div>
+
+    <div tab="prestaciones">
+      @if (wp; as position) {
+      <div class="d-flex flex-column gap-3">
+        <div class="vacancy-detail-card">
+          <h3 class="vacancy-detail-card-title">
+            <app-icon icon="material-symbols-light:redeem" class="text-primary" />
+            Prestaciones configuradas
+          </h3>
+          <div class="benefit-grid">
+            <div class="benefit-item"><span class="benefit-label">Aguinaldo</span><span class="benefit-value">{{ position.aguinaldo ? 'Incluido' : 'No incluido' }}</span></div>
+            <div class="benefit-item"><span class="benefit-label">Vacaciones</span><span class="benefit-value">{{ position.vacaciones ? 'Incluidas' : 'No incluidas' }}</span></div>
+            <div class="benefit-item"><span class="benefit-label">IMSS</span><span class="benefit-value">{{ position.imss ? 'Incluido' : 'No incluido' }}</span></div>
+            <div class="benefit-item"><span class="benefit-label">INFONAVIT</span><span class="benefit-value">{{ position.infonavit ? 'Incluido' : 'No incluido' }}</span></div>
+            <div class="benefit-item"><span class="benefit-label">AFORE</span><span class="benefit-value">{{ position.afore ? 'Incluida' : 'No incluida' }}</span></div>
+            <div class="benefit-item"><span class="benefit-label">Vales mensuales</span><span class="benefit-value">{{ position.tieneVales ? (position.totalValesMensuales | currency:'MXN':'symbol-narrow':'1.0-2') : 'No incluidos' }}</span></div>
+          </div>
+        </div>
+        <div class="vacancy-detail-card">
+          <h3 class="vacancy-detail-card-title">Prestaciones adicionales</h3>
+          @if (position.benefits) { <p class="vacancy-detail-copy">{{ position.benefits }}</p> } @else { <p class="vacancy-detail-copy text-body-secondary">No hay prestaciones adicionales registradas.</p> }
+        </div>
+      </div>
+      } @else {
+      <div class="vacancy-detail-card text-body-secondary">Cargando prestaciones...</div>
+      }
+    </div>
+  </lx-tabs>
+</div>

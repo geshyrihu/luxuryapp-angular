@@ -139,7 +139,8 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     this.onLoadProduct();
   }
 
-  applyFilter() {
+  applyFilter(term: string): void {
+    this.searchTerm = term;
     this.page = 1;
     this.onLoadProduct();
   }

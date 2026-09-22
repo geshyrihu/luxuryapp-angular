@@ -61,7 +61,7 @@ export class PresupuestoAspelExcelService {
   }
 
   // --- SHEET: PRESUPUESTO / PROYECTOS --------------------------------------
-  // 18 columnas: CUENTA | PRE-MEN | ENEóDIC | ACUMULADO | % | PRE-TOTAL | RESTANTE
+  // 18 columnas: CUENTA | PRE-MEN | ENE-DIC | ACUMULADO | % | PRE-TOTAL | RESTANTE
 
   private buildMainSheet(
     wb: ExcelJS.Workbook,
@@ -273,7 +273,7 @@ export class PresupuestoAspelExcelService {
   }
 
   // --- SHEET: EXTRAORDINARIOS (605) ----------------------------------------
-  // 14 columnas: CUENTA | ENEóDIC | ACUMULADO
+  // 14 columnas: CUENTA | ENE-DIC | ACUMULADO
 
   private buildExtSheet(
     wb: ExcelJS.Workbook,
@@ -406,7 +406,7 @@ export class PresupuestoAspelExcelService {
     const pctEjercido      = totalPresupuesto > 0 ? totalGasto / totalPresupuesto : 0;
     const totalRestante    = totalPresupuesto - totalGasto;
 
-    this.addSectionHeader(ws, "INDICADORES CLAVE DE DESEMPEíO", "A", "E");
+    this.addSectionHeader(ws, "INDICADORES CLAVE DE DESEMPEÑO", "A", "E");
 
     const kpis: [string, number | null, string][] = [
       ["Presupuesto Total Anual",    totalPresupuesto, "#,##0"],

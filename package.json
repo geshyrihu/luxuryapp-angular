@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "audit:emoji": "node scripts/audit-emoji-usage.mjs",
-    "audit:css": "npx -y tsx scripts/audit-css-classes.ts",
+    "audit:css": "node scripts/audit-scss-build.mjs",
     "audit:encoding": "node scripts/audit-encoding.mjs",
     "audit:ui": "node scripts/audit-ui-boundaries.mjs",
     "audit:apps": "node scripts/audit-apps-boundaries.mjs",

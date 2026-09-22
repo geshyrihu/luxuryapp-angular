@@ -33,6 +33,14 @@ export interface IWorkPosition {
   observaciones?: string | null;
   state: number;
   benefits: string | null;
+  tieneVales?: boolean;
+  totalValesMensuales?: number;
+  aguinaldo?: boolean;
+  vacaciones?: boolean;
+  imss?: boolean;
+  infonavit?: boolean;
+  afore?: boolean;
+  trabajaDiasFestivos?: boolean;
   hasPendingDocuments?: boolean;
   isOverdueDocuments?: boolean;
   positionRequest: {
@@ -80,6 +88,14 @@ export interface IWorkPositionForm {
   duracionCicloSemanas?: number | null;
   diasDeTrabajo?: DiaDeTrabajoDto[];
   benefits: string;
+  tieneVales: boolean;
+  totalValesMensuales: number;
+  aguinaldo: boolean;
+  vacaciones: boolean;
+  imss: boolean;
+  infonavit: boolean;
+  afore: boolean;
+  trabajaDiasFestivos: boolean;
 }
 
 export interface IWorkPositionHours {

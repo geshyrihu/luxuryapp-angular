@@ -33,19 +33,19 @@
         Sin movimientos registrados en bitácora.
       </div>
       } @else {
-      <div class="candidate-timeline-events">
+      <ul class="square-timeline candidate-timeline-events">
         @for (event of candidate.events; track event.createdAt || event.eventDate || $index) {
-        <div class="candidate-timeline-event">
-          <small class="text-body-secondary text-nowrap candidate-timeline-date">
-            {{ (event.createdAt || event.eventDate) | apiDate: "mediumDate" }}
-          </small>
-          <div class="candidate-timeline-marker-column">
-            <span
-              class="timeline-marker rounded-circle"
-              [style.background-color]="event.markerColor"
-            ></span>
-          </div>
-          <div class="timeline-event-card p-3 mb-3 rounded">
+        <li class="timeline-event">
+          <label
+            class="timeline-event-icon"
+            [style.--timeline-marker]="event.markerColor"
+            aria-hidden="true"
+          ></label>
+          <div class="timeline-event-wrapper">
+            <small class="text-body-secondary text-nowrap candidate-timeline-date">
+              {{ (event.createdAt || event.eventDate) | apiDate: "mediumDate" }}
+            </small>
+            <div class="candidate-timeline-event-card p-3 rounded">
             <div class="d-flex align-items-center flex-wrap gap-2">
               <span class="text-sm text-body-secondary">{{ event.fromStageName }}</span>
               <app-icon icon="material-symbols-light:arrow-right-alt" class="text-body-secondary" />
@@ -62,10 +62,11 @@
             @if (event.changedBy) {
             <small class="text-body-secondary mt-2 d-block">Registrado por {{ event.changedBy }}</small>
             }
+            </div>
           </div>
-        </div>
+        </li>
         }
-      </div>
+      </ul>
       }
     </section>
     }

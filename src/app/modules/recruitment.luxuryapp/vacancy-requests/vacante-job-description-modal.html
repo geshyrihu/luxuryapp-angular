@@ -1,0 +1,36 @@
+@if (description(); as item) {
+<div class="description-shell">
+  <header class="description-hero">
+    <p class="description-eyebrow">Perfil del puesto</p>
+    <h2 class="description-title">Descripción detallada de la vacante</h2>
+  </header>
+
+  @for (section of [
+    { title: 'Resumen', icon: 'material-symbols-light:short-text', value: item.summary },
+    { title: 'Responsabilidades', icon: 'material-symbols-light:task-alt', value: item.responsibilities },
+    { title: 'Habilidades requeridas', icon: 'material-symbols-light:psychology', value: item.skills },
+    { title: 'Requisitos adicionales', icon: 'material-symbols-light:fact-check', value: item.additionalRequirements },
+    { title: 'Entorno de trabajo', icon: 'material-symbols-light:domain', value: item.workEnvironment }
+  ]; track section.title) {
+  @if (section.value) {
+  <section class="description-card">
+    <h3><app-icon [icon]="section.icon" class="text-primary" />{{ section.title }}</h3>
+    <p>{{ section.value }}</p>
+  </section>
+  }
+  }
+
+  <div class="description-footer">
+    <span class="text-body-secondary">Cobertura de fin de semana</span>
+    <lx-tag
+      [value]="item.requiresWeekendShift ? 'Requerida' : 'No requerida'"
+      [severity]="item.requiresWeekendShift ? 'warn' : 'success'"
+    />
+  </div>
+</div>
+} @else {
+<div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">
+  <app-icon icon="material-symbols-light:progress-activity" class="me-2" />
+  Cargando descripción del puesto...
+</div>
+}

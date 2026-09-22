@@ -217,7 +217,7 @@ export class ReportGuide {
     {
       tipo: "table-simple",
       descripcion:
-        "Tabla esténdar. Una fila por renglon, una columna por periodo. Formato numírico con indentación segón indent.",
+        "Tabla estándar. Una fila por renglon, una columna por periodo. Formato numérico con indentación según indent.",
     },
     {
       tipo: "table-twoColumn",

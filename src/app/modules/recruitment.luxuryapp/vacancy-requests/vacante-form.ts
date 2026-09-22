@@ -16,7 +16,6 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
@@ -197,20 +196,18 @@ export class VacanteForm implements OnInit {
 
   async onSubmit() {
     if (this.submitting()) return;
-    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    const statusControl = this.form.controls.status;
+    statusControl.markAsTouched();
+    if (statusControl.invalid || !this.id) return;
 
     this.submitting.set(true);
 
     try {
-      const vacancyResult = await FormHelper.submitCrud({
-        form: this.form,
-        api: this.apiResponseS,
-        endpoint: EndpointsReclutamiento.RequestPosition.base,
-        id: this.id,
-        submitting: this.submitting,
-        closeOnSuccess: false,
-        transformPayload: () => this.form.getRawValue(),
-      });
+      const vacancyResult = await this.apiResponseS.onPatch<boolean>(
+        EndpointsReclutamiento.RequestPosition.updateStatus(this.id),
+        { status: statusControl.getRawValue() },
+      );
 
       if (vacancyResult === false) return;
 

@@ -7,14 +7,16 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { InterviewerMatrixBoardDto } from "./interfaces/interviewer-matrix-board.dto";
 import { InterviewerMatrixItemDto } from "./interfaces/interviewer-matrix-item.dto";
 import { InterviewerMatrixRoleOptionDto } from "./interfaces/interviewer-matrix-role-option.dto";
-import { InterviewerMatrixService } from "./interviewer-matrix.service";
 
 type MatrixCellState = "active" | "inactive" | "empty";
 
@@ -26,7 +28,7 @@ type MatrixCellState = "active" | "inactive" | "empty";
   imports: [LxCard, LxSkeleton, AppIcon, AppTag],
 })
 export class InterviewerMatrix implements OnInit {
-  private service = inject(InterviewerMatrixService);
+  private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
   loading = signal(true);
@@ -122,6 +124,13 @@ export class InterviewerMatrix implements OnInit {
     this.loading.set(false);
   }
 
+  reload(): void {
+    const customerId = this.activeCustomerId();
+    if (customerId) {
+      void this.loadMatrixForCustomer(customerId);
+    }
+  }
+
   private async loadMatrixForCustomer(customerId: string): Promise<void> {
     if (!customerId) {
       this.interviewerRoles.set([]);
@@ -132,13 +141,26 @@ export class InterviewerMatrix implements OnInit {
 
     this.loading.set(true);
     try {
-      const board = await this.service.getBoard(customerId);
-      this.interviewerRoles.set(board?.interviewerRoles ?? []);
-      this.workPositionRoles.set(board?.workPositionRoles ?? []);
+      const board =
+        await this.apiResponseS.onGetItem<InterviewerMatrixBoardDto>(
+          EndpointsReclutamiento.InterviewerMatrix.board(customerId),
+        );
+      this.interviewerRoles.set(this.sortRoles(board?.interviewerRoles ?? []));
+      this.workPositionRoles.set(
+        this.sortRoles(board?.workPositionRoles ?? []),
+      );
       this.rules.set(board?.rules ?? []);
     } finally {
       this.loading.set(false);
     }
+  }
+
+  private sortRoles(
+    roles: InterviewerMatrixRoleOptionDto[],
+  ): InterviewerMatrixRoleOptionDto[] {
+    return [...roles].sort(
+      (a, b) => a.sortOrder - b.sortOrder || a.value - b.value,
+    );
   }
 
   getCellKey(interviewerRole: number, workPositionRole: number): string {
@@ -187,12 +209,16 @@ export class InterviewerMatrix implements OnInit {
     this.savingKey.set(cellKey);
     try {
       if (!existingRule) {
-        const created = await this.service.create({
-          customerId,
-          interviewerRole,
-          workPositionRole,
-          isActive: true,
-        });
+        const created =
+          await this.apiResponseS.onPost<InterviewerMatrixItemDto>(
+            EndpointsReclutamiento.InterviewerMatrix.base,
+            {
+              customerId,
+              interviewerRole,
+              workPositionRole,
+              isActive: true,
+            },
+          );
 
         if (created && typeof created !== "boolean") {
           this.rules.update((current) => [...current, created]);
@@ -201,20 +227,25 @@ export class InterviewerMatrix implements OnInit {
       }
 
       if (existingRule.isActive) {
-        await this.service.remove(existingRule.id);
+        await this.apiResponseS.onDelete(
+          `${EndpointsReclutamiento.InterviewerMatrix.base}/${existingRule.id}`,
+        );
         this.rules.update((current) =>
           current.filter((rule) => rule.id !== existingRule.id),
         );
         return;
       }
 
-      const updated = await this.service.update(existingRule.id, {
-        id: existingRule.id,
-        customerId: existingRule.customerId,
-        interviewerRole,
-        workPositionRole,
-        isActive: true,
-      });
+      const updated = await this.apiResponseS.onPut<InterviewerMatrixItemDto>(
+        `${EndpointsReclutamiento.InterviewerMatrix.base}/${existingRule.id}`,
+        {
+          id: existingRule.id,
+          customerId: existingRule.customerId,
+          interviewerRole,
+          workPositionRole,
+          isActive: true,
+        },
+      );
 
       if (updated && typeof updated !== "boolean") {
         this.rules.update((current) =>
@@ -226,4 +257,3 @@ export class InterviewerMatrix implements OnInit {
     }
   }
 }
-

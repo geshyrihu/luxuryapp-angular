@@ -174,6 +174,14 @@ export class WorkPositionForm implements OnInit {
     workPositionScheduleId: [null as string | null],
     jobDescriptionId: [null as string | null],
     benefits: [""],
+    tieneVales: [false],
+    totalValesMensuales: [0],
+    aguinaldo: [true],
+    vacaciones: [true],
+    imss: [true],
+    infonavit: [true],
+    afore: [true],
+    trabajaDiasFestivos: [false],
   });
 
   async ngOnInit(): Promise<void> {

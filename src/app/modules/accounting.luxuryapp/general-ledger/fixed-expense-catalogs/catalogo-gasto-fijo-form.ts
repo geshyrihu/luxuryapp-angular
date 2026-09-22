@@ -182,7 +182,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       formaDePagoId: result.formaDePagoId ? String(result.formaDePagoId) : null,
     });
 
-    // Mapear colecciones segón el DTO: CatalogoGastosFijosDTO
+    // Mapear colecciones según el DTO: CatalogoGastosFijosDTO
     this.detalles.set(result.detalles || []);
     this.budgets.set(result.presupuesto || []);
   }

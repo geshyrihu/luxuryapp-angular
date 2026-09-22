@@ -17,7 +17,7 @@
         <span class="text-body-secondary text-sm">Calculando…</span>
         }
         @if (isEditable()) {
-        <il-button label="Agregar plaza nueva" iconClass="material-symbols-light:person_add" severity="secondary" variant="outline" size="small" (clicked)="openNewPosition()" [disabled]="activeScenario()?.name === 'Escenario Base'" />
+        <il-button label="Agregar plaza nueva" iconClass="material-symbols-light:person_add" severity="secondary" variant="outline" size="small" (clicked)="addNewPositionRow()" [disabled]="activeScenario()?.name === 'Escenario Base'" />
         <il-button label="Guardar propuesta" iconClass="material-symbols-light:save" severity="primary" size="small" (clicked)="saveProjection()" />
         }
       </div>
@@ -69,7 +69,11 @@
             <div class="text-primary hover:text-primary-emphasis transition-colors d-inline-block" (click)="openEmployeeDetails(item); $event.stopPropagation()">
               {{ item.employeeName || "VACANTE" }}
             </div>
+            @if (item.isNewPosition && isEditable()) {
+            <input type="text" class="form-control form-control-sm mt-1" [ngModel]="item.positionTitle" (ngModelChange)="onPositionTitleChange(item.id, $event)" (blur)="queueAutoSave()" />
+            } @else {
             <div class="text-body-secondary text-xs">{{ item.positionTitle }}</div>
+            }
           </td>
           <td class="text-center">
             @if (item.workPositionId; as wpId) {
@@ -91,7 +95,7 @@
           <td class="text-end">{{ simulationOf(item.id)?.dailySalary ?? 0 | number: "1.2-2" }}</td>
           <td class="text-end fw-semibold">
             @if (isEditable()) {
-            <input type="number" min="0" class="form-control form-control-sm text-end" [ngModel]="item.netMonthlySalary" (ngModelChange)="onSalaryChange(item.id, $event)" (click)="$event.stopPropagation()" />
+            <input type="number" min="0" class="form-control form-control-sm text-end" [ngModel]="item.netMonthlySalary" (ngModelChange)="onSalaryChange(item.id, $event)" (blur)="queueAutoSave()" (click)="$event.stopPropagation()" />
             } @else {
             {{ item.netMonthlySalary ?? 0 | number: "1.2-2" }}
             }
@@ -109,8 +113,7 @@
             <div class="d-flex align-items-center justify-content-end gap-2">
               {{ simulationOf(item.id)?.totalEmployerCost ?? 0 | number: "1.2-2" }}
               @if (isEditable()) {
-              <il-button iconClass="material-symbols-light:edit" severity="secondary" variant="text" size="small" (clicked)="openEditor(item); $event.stopPropagation()" />
-              <il-button iconClass="material-symbols-light:delete" severity="danger" variant="text" size="small" (clicked)="removeItem(item.id); $event.stopPropagation()" />
+              <iw-button iconClass="material-symbols-light:delete" severity="danger" variant="text" size="small" ariaLabel="Eliminar plaza" (clicked)="removeItem(item.id); $event.stopPropagation()" />
               }
             </div>
           </td>
@@ -145,33 +148,6 @@
     </app-table>
   </div>
 </div>
-
-@if (editorOpen()) {
-<div class="app-sidepanel-backdrop" (click)="cancelEditor()"></div>
-<aside class="app-sidepanel" role="dialog" aria-modal="true" aria-labelledby="salary-editor-title">
-  <header class="app-sidepanel__header">
-    <h6 id="salary-editor-title" class="m-0">{{ editorIsNew() ? "Nueva plaza proyectada" : "Editar sueldo y cuotas" }}</h6>
-    <iw-button iconClass="material-symbols-light:close" severity="secondary" size="small" variant="text" ariaLabel="Cerrar editor" (clicked)="cancelEditor()" />
-  </header>
-  @if (editorDraft(); as draft) {
-  <div class="app-sidepanel__body">
-    <custom-input-text-signal label="Título del puesto" [ngModel]="draft.positionTitle" (ngModelChange)="updateDraft('positionTitle', $event)" [disabled]="!isEditable()" />
-    <custom-input-text-signal type="number" label="Sueldo mensual neto" [ngModel]="draft.netMonthlySalary" (ngModelChange)="updateDraft('netMonthlySalary', $event)" [disabled]="!isEditable()" />
-    <custom-input-text-signal type="number" label="Cuota patronal RCV" [ngModel]="draft.rcvEmployerFee" (ngModelChange)="updateDraft('rcvEmployerFee', $event)" [disabled]="!isEditable()" />
-    <custom-input-text-signal type="number" label="Cuota patronal INFONAVIT" [ngModel]="draft.infonavitEmployerFee" (ngModelChange)="updateDraft('infonavitEmployerFee', $event)" [disabled]="!isEditable()" />
-    <custom-input-text-signal type="number" label="Cuota patronal IMSS" [ngModel]="draft.imssEmployerFee" (ngModelChange)="updateDraft('imssEmployerFee', $event)" [disabled]="!isEditable()" />
-  </div>
-  }
-  <footer class="app-sidepanel__footer">
-    @if (isEditable()) {
-    <il-button label="Cancelar" severity="secondary" variant="outline" size="small" (clicked)="cancelEditor()" />
-    <il-button label="Aplicar y simular" iconClass="material-symbols-light:calculate" severity="primary" size="small" (clicked)="applyEditor()" />
-    } @else {
-    <il-button label="Cerrar" severity="secondary" variant="outline" size="small" (clicked)="cancelEditor()" />
-    }
-  </footer>
-</aside>
-}
 } @else {
 <div class="card p-4 text-center text-body-secondary">Cargando propuesta…</div>
 }

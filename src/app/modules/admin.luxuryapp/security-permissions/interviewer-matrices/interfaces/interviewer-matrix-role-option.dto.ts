@@ -1,4 +1,5 @@
 export interface InterviewerMatrixRoleOptionDto {
   value: number;
   label: string;
+  sortOrder: number;
 }

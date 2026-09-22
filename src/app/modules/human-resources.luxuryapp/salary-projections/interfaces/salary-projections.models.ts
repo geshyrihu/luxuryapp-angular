@@ -101,6 +101,7 @@ export interface ISalaryProjectionItemSimulation {
 export interface ISimulateSalaryProjectionItem {
   itemId: string;
   isNewPosition: boolean;
+  workPositionId: string | null;
   employeeId: string | null;
   netMonthlySalary: number;
   rcvEmployerFee: number;
@@ -114,6 +115,7 @@ export interface ISimulateSalaryProjectionRequest {
 }
 
 export interface ISalaryProjectionItemInput {
+  id?: string | null;
   workPositionId: string | null;
   employeeId: string | null;
   isNewPosition: boolean;
@@ -132,6 +134,7 @@ export interface ISalaryProjectionItemInput {
 }
 
 export interface ISalaryProjectionScenarioInput {
+  id?: string | null;
   name: string;
   description: string;
   items: ISalaryProjectionItemInput[];

@@ -23,6 +23,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
+import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { EquipmentInspectionQrPrintService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-qr-print.service";
 import { EquipmentInspectionService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection.service";
 import { EquipmentInspectionsShell } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspections-shell";
@@ -31,7 +32,6 @@ import { ActivosDocumentos } from "@maintenance.luxuryapp/machinery/machinery-do
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
 import { MantenimientosDialog } from "@maintenance.luxuryapp/machinery/machinery/mantenimientos-dialog";
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
-import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/maintenance-planning/maintenance-calendar-master/calendario-maestro-readonly";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
@@ -109,14 +109,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
     WebButtonIconDelete,
     CommonModule,
     AppTable,
-
     AppSortableColumn,
-
     AppSorticon,
     AppImage,
     LxTooltipDirective,
     NgbTooltipModule,
-
     TableCaption,
     TableFooter,
     SanitizeHtmlPipe,

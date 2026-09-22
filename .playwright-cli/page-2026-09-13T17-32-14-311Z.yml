@@ -1,7 +1,0 @@
-- generic [active]:
-  - link "Saltar al contenido principal" [ref=f29e1] [cursor=pointer]:
-    - /url: "#app-root-outlet"
-  - generic "Aplicación LuxuryApp":
-    - generic:
-      - alertdialog
-    - main

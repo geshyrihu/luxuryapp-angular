@@ -48,6 +48,7 @@ interface ITicketMessageFollowupForm {
 @Component({
   selector: "app-task-followup",
   templateUrl: "./task-followup.html",
+  styleUrl: "./task-followup.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,

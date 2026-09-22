@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- SECCIóN 1: DATOS GENERALES -->
+      <!-- SECCIÓN 1: DATOS GENERALES -->
       <h5>Datos Generales</h5>
       <hr />
       <div class="row g-4">
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <!-- SECCIóN 4: BOTóN DE ENVÍO -->
+      <!-- SECCIÓN 4: BOTÓN DE ENVÍO -->
       <div class="d-flex justify-content-end">
         @if (!id()) {
         <lx-message severity="info" class="me-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
@@ -105,7 +105,7 @@
     <br />
     <hr class="my-4" />
 
-    <!-- SECCIóN 3: PRODUCTOS/SERVICIOS -->
+    <!-- SECCIÓN 3: PRODUCTOS/SERVICIOS -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="mb-0">Productos y Servicios</h5>
     </div>
@@ -173,7 +173,7 @@
 
     <hr class="my-4" />
 
-    <!-- SECCIóN 2: PRESUPUESTO -->
+    <!-- SECCIÓN 2: PRESUPUESTO -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="mb-0">Cuentas de Presupuesto</h5>
     </div>

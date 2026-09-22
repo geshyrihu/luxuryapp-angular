@@ -35,6 +35,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import Swal from "sweetalert2";
 import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 import { VacanteDetailModal } from "./vacante-detail-modal";
+import { VacanteJobDescriptionModal } from "./vacante-job-description-modal";
 import { VacanteForm } from "./vacante-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -227,6 +228,15 @@ export class VacantesList implements OnInit {
       VacanteDetailModal,
       { workPositionId },
       "Detalle del puesto",
+      this.dialogHandlerS.sizeFull,
+    );
+  }
+
+  onModalJobDescription(workPositionId: string) {
+    this.dialogHandlerS.openDialog(
+      VacanteJobDescriptionModal,
+      { workPositionId },
+      "Descripción del puesto",
       this.dialogHandlerS.sizeLg,
     );
   }

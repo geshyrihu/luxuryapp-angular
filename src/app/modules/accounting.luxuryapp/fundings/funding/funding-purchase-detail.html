@@ -32,7 +32,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
   <!-- Cuerpo de la Tarjeta -->
 
   <div class="p-4">
-    <!-- SECCIóN 1: INFORMACIóN GENERAL -->
+    <!-- SECCIÓN 1: INFORMACIÓN GENERAL -->
     <h5 class="text-xl fw-medium m-0">Información General</h5>
     <hr class="my-3 border" />
     <div class="row mb-4 g-4">
@@ -67,7 +67,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         <p>{{ data().equipoOInstalacion }}</p>
       </div>
     </div>
-    <!-- SECCIóN 2: DATOS DEL PROVEEDOR Y PAGO -->
+    <!-- SECCIÓN 2: DATOS DEL PROVEEDOR Y PAGO -->
     <h5 class="text-xl fw-medium m-0 mt-4">Datos del Proveedor y Pago</h5>
     <hr class="my-3 border" />
     <div class="row mb-4 g-4">
@@ -89,7 +89,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       </div>
       <div class="col-12 col-md-4">
         <label class="d-block text-body-secondary fw-medium"
-          >Mótodo de Pago</label
+          >Método de Pago</label
         >
         <p>{{ data().metodoDePago }}</p>
       </div>
@@ -100,7 +100,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         <p>{{ data().formaDePago }}</p>
       </div>
     </div>
-    <!-- SECCIóN 3: ESTADO DE LA ORDEN -->
+    <!-- SECCIÓN 3: ESTADO DE LA ORDEN -->
     <h5 class="text-xl fw-medium m-0 mt-4">Estado de la Orden</h5>
     <hr class="my-3 border" />
     <div class="row mb-4 g-4">
@@ -122,7 +122,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           <lx-tag
             class="text-base"
             [severity]="data().seRecibio ? 'success' : 'secondary'"
-            [value]="data().seRecibio ? 'Só' : 'No'"
+            [value]="data().seRecibio ? 'Sí' : 'No'"
           />
         </p>
       </div>
@@ -132,13 +132,13 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           <lx-tag
             class="text-base"
             [severity]="data().sePago ? 'success' : 'secondary'"
-            [value]="data().sePago ? 'Só' : 'No'"
+            [value]="data().sePago ? 'Sí' : 'No'"
           />
         </p>
       </div>
       <div class="col-12 col-md-3">
         <label class="d-block text-body-secondary fw-medium"
-          >Trómite de Pago</label
+          >Trámite de Pago</label
         >
         <p>
           <lx-tag
@@ -161,7 +161,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         <p>{{ data().fechaAutorizacion || "N/A" }}</p>
       </div>
     </div>
-    <!-- SECCIóN 4: DETALLE DE PRODUCTOS -->
+    <!-- SECCIÓN 4: DETALLE DE PRODUCTOS -->
     <h5 class="text-xl fw-medium m-0 mt-4">Detalle de Productos</h5>
     <div class="py-3">
       <app-table
@@ -197,7 +197,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         </ng-template>
       </app-table>
     </div>
-    <!-- SECCIóN 5: TOTALES -->
+    <!-- SECCIÓN 5: TOTALES -->
     <div class="d-flex justify-content-end mt-3">
       <div class="w-full md:w-6">
         <div class="row g-4">
@@ -218,7 +218,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
         </div>
       </div>
     </div>
-    <!-- SECCIóN 6: AFECTACIóN PRESUPUESTAL -->
+    <!-- SECCIÓN 6: AFECTACIÓN PRESUPUESTAL -->
     <h5 class="text-xl fw-medium m-0 mt-4">Afectación Presupuestal</h5>
     <div class="py-3">
       <app-table [value]="data().detallePresupuesto" showGridlines="true">

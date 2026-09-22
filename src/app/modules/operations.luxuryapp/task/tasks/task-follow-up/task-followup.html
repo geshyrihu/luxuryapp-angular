@@ -62,13 +62,13 @@
     </h3>
 
     @if (description() && description().length > 0) {
-    <div class="d-flex flex-column gap-3">
+    <ul class="square-timeline task-followup-timeline">
       @for(follow of description(); track $index) {
-      <div
-        class="bg-body p-3 rounded shadow-sm border-left-3 border-primary"
-      >
+      <li class="timeline-event">
+        <label class="timeline-event-icon" aria-hidden="true"></label>
+        <div class="timeline-event-wrapper">
         <div class="d-flex align-items-center justify-content-between mb-2">
-          <span class="fw-bold text-body text-sm">
+          <span class="timeline-thumbnail fw-bold text-sm">
             <app-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
             {{ follow.applicationUser }}
           </span>
@@ -84,7 +84,7 @@
         <p class="m-0 text-body line-height-3 text-sm">
           {{ follow.description }}
         </p>
-        <div class="mt-3 pt-3 border-top">
+        <div class="timeline-evidence">
           <span class="text-xs fw-semibold text-uppercase">Evidencia</span>
           <lx-file-upload
             accept="image/*,.heic,.heif"
@@ -123,9 +123,10 @@
           </div>
           }
         </div>
-      </div>
+        </div>
+      </li>
       }
-    </div>
+    </ul>
     } @else {
     <div
       class="d-flex flex-column align-items-center justify-content-center p-5 bg-body-tertiary rounded"
@@ -139,14 +140,3 @@
     }
   </div>
 </div>
-
-<style>
-  .evidence-preview {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 14rem;
-    object-fit: contain;
-  }
-</style>

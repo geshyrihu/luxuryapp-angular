@@ -19,8 +19,7 @@
     <app-table-caption
       [dt]="dt"
       [showAdd]="false"
-      [(searchTerm)]="searchTerm"
-      (searchTermChange)="applyFilter()"
+      (search)="applyFilter($event)"
     />
   </ng-template>
   <ng-template #header>

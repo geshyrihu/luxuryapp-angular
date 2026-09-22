@@ -20,14 +20,12 @@ import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/emp
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { Subject, debounceTime } from "rxjs";
 import {
   ISalaryProjection,
   ISalaryProjectionItem,
-  ISalaryProjectionItemEdit,
   ISalaryProjectionItemSimulation,
   salaryProjectionStateSeverity,
   salaryProjectionStateText,
@@ -45,57 +43,9 @@ const LIST_URL = "/hr/salary-projections";
     LxTag,
     WebButtonLabel,
     WebButtonIcon,
-    CustomInputTextSignal,
     FormsModule,
     DatePipe,
     DecimalPipe,
-  ],
-  styles: [
-    `
-      .app-sidepanel-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.35);
-        z-index: 1040;
-      }
-      .app-sidepanel {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: min(480px, 100vw);
-        background: var(--ds-bg-surface, #ffffff);
-        z-index: 1041;
-        display: flex;
-        flex-direction: column;
-        box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
-      }
-      .app-sidepanel__header,
-      .app-sidepanel__footer {
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        border-bottom: 1px solid var(--ds-border, #e5e7eb);
-      }
-      .app-sidepanel__header {
-        justify-content: space-between;
-      }
-      .app-sidepanel__footer {
-        justify-content: flex-end;
-        border-bottom: none;
-        border-top: 1px solid var(--ds-border, #e5e7eb);
-      }
-      .app-sidepanel__body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-      }
-
-    `,
   ],
 })
 export class SalaryProjectionsDetail {
@@ -106,6 +56,8 @@ export class SalaryProjectionsDetail {
 
   /** ♻️ Cola de simulación con debounce para no saturar el backend. */
   private readonly simulateQueue = new Subject<void>();
+  /** 💾 Cola de auto-guardado con debounce. */
+  private readonly autoSaveQueue = new Subject<void>();
 
   readonly projection = signal<ISalaryProjection | null>(null);
   readonly simulations = signal<
@@ -115,17 +67,8 @@ export class SalaryProjectionsDetail {
   readonly loading = signal(true);
   readonly simulating = signal(false);
   readonly saving = signal(false);
-  readonly submitting = signal(false);
 
   readonly activeScenarioId = signal<string | null>(null);
-
-  /** Control del panel lateral para edición rápida. */
-  readonly editingItem = signal<ISalaryProjectionItemEdit | null>(null);
-
-  // Sidepanel de edición de fila.
-  readonly editorOpen = signal(false);
-  readonly editorIsNew = signal(false);
-  readonly editorDraft = signal<ISalaryProjectionItemEdit | null>(null);
 
   readonly stateText = salaryProjectionStateText;
   readonly stateSeverity = salaryProjectionStateSeverity;
@@ -246,6 +189,10 @@ export class SalaryProjectionsDetail {
       .pipe(debounceTime(500), takeUntilDestroyed())
       .subscribe(() => void this.runSimulation());
 
+    this.autoSaveQueue
+      .pipe(debounceTime(800), takeUntilDestroyed())
+      .subscribe(() => void this.persistProjection());
+
     void this.load();
   }
 
@@ -294,6 +241,83 @@ export class SalaryProjectionsDetail {
     this.simulateQueue.next();
   }
 
+  queueAutoSave(): void {
+    if (!this.isEditable()) {
+      return;
+    }
+    this.autoSaveQueue.next();
+  }
+
+  private buildScenariosPayload(projection: ISalaryProjection) {
+    return projection.scenarios.map((scenario) => ({
+      id: scenario.id,
+      name: scenario.name,
+      description: scenario.description,
+      items: scenario.items.map((item) => ({
+        id: item.id,
+        workPositionId: item.workPositionId,
+        employeeId: item.employeeId,
+        isNewPosition: item.isNewPosition,
+        positionTitle: item.positionTitle,
+        netMonthlySalary: Number(item.netMonthlySalary) || 0,
+        applicationRoleId: item.applicationRoleId,
+        weeklyHours: item.weeklyHours,
+        dateAdmission: item.dateAdmission,
+        rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
+        infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
+        imssEmployerFee: Number(item.imssEmployerFee) || 0,
+        isTaxableForPayrollTax: item.isTaxableForPayrollTax,
+        bonuses: [],
+      })),
+    }));
+  }
+
+  private persisting = false;
+  private pendingPersist = false;
+
+  private async persist(silent: boolean, reload: boolean): Promise<void> {
+    const projection = this.projection();
+    if (!projection || !this.isEditable()) {
+      return;
+    }
+    if (this.persisting) {
+      this.pendingPersist = true;
+      return;
+    }
+    this.persisting = true;
+    try {
+      if (!silent) {
+        this.saving.set(true);
+      }
+      await this.api.onPut<ISalaryProjection>(
+        Endpoints.SalaryProjections.byId(projection.id),
+        {
+          name: projection.name,
+          state: projection.state,
+          scenarios: this.buildScenariosPayload(projection),
+        },
+        !silent, // showSuccess
+        !silent, // showLoader
+      );
+      if (reload) {
+        await this.load();
+      }
+    } finally {
+      if (!silent) {
+        this.saving.set(false);
+      }
+      this.persisting = false;
+      if (this.pendingPersist) {
+        this.pendingPersist = false;
+        await this.persist(true, false);
+      }
+    }
+  }
+
+  private async persistProjection(): Promise<void> {
+    await this.persist(true, false);
+  }
+
   async runSimulation(): Promise<void> {
     const projection = this.projection();
     if (!projection) {
@@ -305,6 +329,7 @@ export class SalaryProjectionsDetail {
       .map((item) => ({
         itemId: item.id,
         isNewPosition: item.isNewPosition,
+        workPositionId: item.workPositionId,
         employeeId: item.employeeId,
         netMonthlySalary: Number(item.netMonthlySalary) || 0,
         rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
@@ -322,9 +347,12 @@ export class SalaryProjectionsDetail {
       const result = await this.api.onPost<ISalaryProjectionItemSimulation[]>(
         Endpoints.SalaryProjections.simulate,
         {
-          cutOffDate: this.todayIso(),
+          cutOffDate: projection.targetYear ? `${projection.targetYear}-12-31` : this.todayIso(),
           items,
         },
+        undefined,
+        false,
+        false,
       );
 
       if (result) {
@@ -339,34 +367,21 @@ export class SalaryProjectionsDetail {
     }
   }
 
-  openEditor(item: ISalaryProjectionItem, scenarioId?: string): void {
-    if (scenarioId) {
-      this.activeScenarioId.set(scenarioId);
+  addNewPositionRow(): void {
+    const projection = this.projection();
+    const scenarioId = this.activeScenario()?.id;
+    if (!projection || !scenarioId) {
+      return;
     }
-    this.editorIsNew.set(false);
-    this.editorDraft.set({
-      id: item.id,
-      isNewPosition: item.isNewPosition,
-      employeeId: item.employeeId,
-      positionTitle: item.positionTitle ?? "",
-      netMonthlySalary: item.netMonthlySalary,
-      applicationRoleId: item.applicationRoleId,
-      weeklyHours: item.weeklyHours,
-      dateAdmission: item.dateAdmission,
-      rcvEmployerFee: item.rcvEmployerFee,
-      infonavitEmployerFee: item.infonavitEmployerFee,
-      imssEmployerFee: item.imssEmployerFee,
-      isTaxableForPayrollTax: item.isTaxableForPayrollTax,
-    });
-    this.editorOpen.set(true);
-  }
-
-  openNewPosition(): void {
-    this.editorIsNew.set(true);
-    this.editorDraft.set({
+    const newItem: ISalaryProjectionItem = {
       id: crypto.randomUUID(),
+      salaryProjectionScenarioId: scenarioId,
       isNewPosition: true,
+      workPositionId: null,
       employeeId: null,
+      numberEmployee: null,
+      applicationUserId: null,
+      employeeName: null,
       positionTitle: "",
       netMonthlySalary: 0,
       applicationRoleId: null,
@@ -376,42 +391,15 @@ export class SalaryProjectionsDetail {
       infonavitEmployerFee: 0,
       imssEmployerFee: 0,
       isTaxableForPayrollTax: true,
-    });
-    this.editorOpen.set(true);
-  }
-
-  cancelEditor(): void {
-    this.editorOpen.set(false);
-    this.editorDraft.set(null);
-  }
-
-  updateDraft(
-    field: keyof ISalaryProjectionItemEdit,
-    value: string | number | boolean,
-  ): void {
-    const draft = this.editorDraft();
-    if (!draft) {
-      return;
-    }
-    this.editorDraft.set({ ...draft, [field]: value });
-  }
-
-  applyEditor(): void {
-    const draft = this.editorDraft();
-    const scenarioId = this.activeScenario()?.id;
-    if (!draft || !scenarioId) {
-      return;
-    }
-
-    if (this.editorIsNew()) {
-      this.addItem(scenarioId, draft);
-    } else {
-      this.patchItem(draft.id, draft);
-    }
-
-    this.editorOpen.set(false);
-    this.editorDraft.set(null);
-    this.queueSimulation();
+      bonuses: [],
+    };
+    const scenarios = projection.scenarios.map((scenario) =>
+      scenario.id === scenarioId
+        ? { ...scenario, items: [...scenario.items, newItem] }
+        : scenario,
+    );
+    this.projection.set({ ...projection, scenarios });
+    this.queueAutoSave();
   }
 
   removeItem(itemId: string): void {
@@ -432,6 +420,7 @@ export class SalaryProjectionsDetail {
 
     this.projection.set({ ...projection, scenarios });
     this.queueSimulation();
+    this.queueAutoSave();
   }
 
   onSalaryChange(itemId: string, value: string | number): void {
@@ -453,117 +442,32 @@ export class SalaryProjectionsDetail {
     );
     this.projection.set({ ...projection, scenarios });
     this.queueSimulation();
+    this.queueAutoSave();
   }
 
-  async saveProjection(): Promise<void> {
+  onPositionTitleChange(itemId: string, value: string): void {
     const projection = this.projection();
-    if (!projection) {
-      return;
-    }
-
-    this.saving.set(true);
-    try {
-      await this.api.onPut<ISalaryProjection>(
-        Endpoints.SalaryProjections.byId(projection.id),
-        {
-          name: projection.name,
-          state: projection.state,
-          scenarios: projection.scenarios.map((scenario) => ({
-            name: scenario.name,
-            description: scenario.description,
-            items: scenario.items.map((item) => ({
-              workPositionId: item.workPositionId,
-              employeeId: item.employeeId,
-              isNewPosition: item.isNewPosition,
-              positionTitle: item.positionTitle,
-              netMonthlySalary: Number(item.netMonthlySalary) || 0,
-              applicationRoleId: item.applicationRoleId,
-              weeklyHours: item.weeklyHours,
-              dateAdmission: item.dateAdmission,
-              rcvEmployerFee: Number(item.rcvEmployerFee) || 0,
-              infonavitEmployerFee: Number(item.infonavitEmployerFee) || 0,
-              imssEmployerFee: Number(item.imssEmployerFee) || 0,
-              isTaxableForPayrollTax: item.isTaxableForPayrollTax,
-              bonuses: [],
-            })),
-          })),
-        },
-      );
-
-      await this.load();
-    } finally {
-      this.saving.set(false);
-    }
-  }
-
-  private addItem(scenarioId: string, draft: ISalaryProjectionItemEdit): void {
-    const projection = this.projection();
-    if (!projection) {
-      return;
-    }
-
-    const newItem: ISalaryProjectionItem = {
-      id: draft.id,
-      salaryProjectionScenarioId: scenarioId,
-      isNewPosition: draft.isNewPosition,
-      workPositionId: null,
-      employeeId: draft.employeeId,
-      numberEmployee: null,
-      applicationUserId: null,
-      employeeName: null,
-      positionTitle: draft.positionTitle,
-      netMonthlySalary: Number(draft.netMonthlySalary) || 0,
-      applicationRoleId: draft.applicationRoleId,
-      weeklyHours: draft.weeklyHours,
-      dateAdmission: draft.dateAdmission,
-      rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
-      infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
-      imssEmployerFee: Number(draft.imssEmployerFee) || 0,
-      isTaxableForPayrollTax: draft.isTaxableForPayrollTax,
-      bonuses: [],
-    };
-
-    const scenarios = projection.scenarios.map((scenario) =>
-      scenario.id === scenarioId
-        ? { ...scenario, items: [...scenario.items, newItem] }
-        : scenario,
-    );
-
-    this.projection.set({ ...projection, scenarios });
-  }
-
-  private patchItem(itemId: string, draft: ISalaryProjectionItemEdit): void {
-    const projection = this.projection();
-    const scenarioId = this.activeScenarioId();
+    const scenarioId = this.activeScenario()?.id;
     if (!projection || !scenarioId) {
       return;
     }
-
     const scenarios = projection.scenarios.map((scenario) =>
       scenario.id === scenarioId
         ? {
             ...scenario,
             items: scenario.items.map((item) =>
-              item.id === itemId
-                ? {
-                    ...item,
-                    positionTitle: draft.positionTitle,
-                    netMonthlySalary: Number(draft.netMonthlySalary) || 0,
-                    applicationRoleId: draft.applicationRoleId,
-                    weeklyHours: draft.weeklyHours,
-                    dateAdmission: draft.dateAdmission,
-                    rcvEmployerFee: Number(draft.rcvEmployerFee) || 0,
-                    infonavitEmployerFee: Number(draft.infonavitEmployerFee) || 0,
-                    imssEmployerFee: Number(draft.imssEmployerFee) || 0,
-                    isTaxableForPayrollTax: draft.isTaxableForPayrollTax,
-                  }
-                : item,
+              item.id === itemId ? { ...item, positionTitle: value } : item,
             ),
           }
         : scenario,
     );
-
     this.projection.set({ ...projection, scenarios });
+    this.queueSimulation();
+    this.queueAutoSave();
+  }
+
+  async saveProjection(): Promise<void> {
+    await this.persist(false, true);
   }
 
   private todayIso(): string {

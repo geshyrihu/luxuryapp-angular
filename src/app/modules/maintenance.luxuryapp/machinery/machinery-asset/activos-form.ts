@@ -209,7 +209,7 @@ export class ActivosForm implements OnInit {
     );
     formData.append("observations", machineryDTO.observations);
     // ... Si hay un archivo cargado agrega la prop photoPath con su valor
-    if (machineryDTO.photoPath) {
+    if (machineryDTO.photoPath instanceof File) {
       formData.append("photoPath", machineryDTO.photoPath);
     }
     return formData;
@@ -224,4 +224,3 @@ export class ActivosForm implements OnInit {
       });
   }
 }
-

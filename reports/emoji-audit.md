@@ -53,4 +53,3 @@
 - Full detail lives in `reports/emoji-audit.json`.
 - `styles/emojis.md` is treated as documentation/reference and should not block UI cleanup.
 - This audit is line-based: it is conservative and designed to over-report rather than miss visual cases.
-

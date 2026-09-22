@@ -76,7 +76,13 @@
             iconClass="material-symbols-light:info"
             lxTooltip="Detalle del puesto"
             tooltipPosition="top"
-            (clicked)="onModalDetail(item.workPositionId)"
+           (clicked)="onModalDetail(item.workPositionId)"
+          />
+          <iw-button-item
+            iconClass="material-symbols-light:description"
+            lxTooltip="Descripción del puesto"
+            tooltipPosition="top"
+            (clicked)="onModalJobDescription(item.workPositionId)"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
           @if (isSuperUser()) {
@@ -125,7 +131,17 @@
             (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
             label="Editar"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <ili-button-item
+            (clicked)="onModalDetail(item.workPositionId)"
+            label="Detalle del puesto"
+            iconClass="material-symbols-light:info"
+          />
+          <ili-button-item
+            (clicked)="onModalJobDescription(item.workPositionId)"
+            label="Descripción del puesto"
+            iconClass="material-symbols-light:description"
+          />
           @if (isSuperUser()) {
             <ili-button-item
               (clicked)="onDeletePermanente(item.id)"

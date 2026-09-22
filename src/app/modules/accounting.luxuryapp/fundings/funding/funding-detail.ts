@@ -372,12 +372,12 @@ export class FundingDetail {
     const urlApi = Endpoints.Funding.updatePurchasePaidStatus(ordenId);
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante mótodo onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
+    // 2. Llamamos a nuestro nuevo y flamante método onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y éxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
-      // 3. Manejamos el caso de error. Si la API falla, 'success' seré false.
+      // 3. Manejamos el caso de error. Si la API falla, 'success' será false.
       if (!success) {
-        // óCRóTICO! Si la actualización fallé en el backend,
+        // ¡CRÍTICO! Si la actualización falló en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
           `Fallé la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,

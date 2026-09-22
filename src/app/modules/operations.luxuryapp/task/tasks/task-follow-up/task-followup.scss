@@ -1,0 +1,20 @@
+.task-followup-timeline {
+  .timeline-event-wrapper {
+    padding-bottom: 1.25rem;
+  }
+
+  .timeline-evidence {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--ds-border);
+  }
+}
+
+.evidence-preview {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 14rem;
+  object-fit: contain;
+}

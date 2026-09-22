@@ -34,6 +34,7 @@ export const EndpointsReclutamiento = {
     base: "request-position",
     list: "request-position",
     getById: (id: Id) => `request-position/${id}`,
+    updateStatus: (id: Id) => `request-position/${id}/status`,
     delete: (id: Id) => `request-position/${id}`,
     deleteImpact: (id: Id) => `request-position/${id}/delete-impact`,
     deleteCascade: (id: Id) => `request-position/${id}/cascade`,

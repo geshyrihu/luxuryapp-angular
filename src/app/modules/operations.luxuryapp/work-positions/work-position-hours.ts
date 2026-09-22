@@ -13,14 +13,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { IWorkPositionHours } from "./interfaces/work-position.model";
 
 @Component({
   selector: "app-work-position-hours",
   templateUrl: "./work-position-hours.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, AppIcon, WebButtonLabel],
+  imports: [LxCard, AppIcon],
 })
 export class WorkPositionHours implements OnInit {
   // --- INYECCIÓN DE DEPENDENCIAS ---

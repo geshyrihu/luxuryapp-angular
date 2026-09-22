@@ -221,7 +221,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       BudgetAuditDialog,
       { items: this.proposalItems() },
       "🤖 Reporte de Auditoría Presupuestal",
-      this.dialogHandlerS.sizeMd, // Ajustar tamaño segón preferencia
+      this.dialogHandlerS.sizeMd, // Ajustar tamaño según preferencia
     );
   }
 
@@ -750,7 +750,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Filtra la lista maestra (`allProposalItems`) segón el estado de los toggles `showExtraordinarios`, `showProyectos`,
+   * Filtra la lista maestra (`allProposalItems`) según el estado de los toggles `showExtraordinarios`, `showProyectos`,
    * y el modo de vista (normal, level1, level2).
    */
   applyFilters(): void {
@@ -843,7 +843,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Calcula dinámicamente el `colspan` para el encabezado 'PRESUPUESTO ACTUAL'.
-   * El valor cambia segón las columnas de presupuesto base que estén visibles.
+   * El valor cambia según las columnas de presupuesto base que estén visibles.
    * @returns El número de columnas que debe abarcar el encabezado.
    */
   /**
@@ -1725,7 +1725,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       {
         proposalId: proposal.id,
       },
-      "COMPARACIóN DE CUOTAS DE MANTENIMIENTO (POR INDIVISO)",
+      "COMPARACIÓN DE CUOTAS DE MANTENIMIENTO (POR INDIVISO)",
       this.dialogHandlerS.sizeLg,
     );
   }
