@@ -30,7 +30,7 @@ describe('MinutaPdfService', () => {
   });
 
   it('should call printHtml when downloadMinuta is called', async () => {
-    const data = { minuta: { date: '2026-01-01 10:00', eTypeMeeting: 'Junta' }, comite: [], administracion: [], externos: [], asuntos: [] };
+    const data = { minuta: { date: '2026-01-01 10:00', typeMeeting: 'Junta' }, comite: [], administracion: [], externos: [], asuntos: [] };
 
     await service.downloadMinuta(data, 'test-file');
 

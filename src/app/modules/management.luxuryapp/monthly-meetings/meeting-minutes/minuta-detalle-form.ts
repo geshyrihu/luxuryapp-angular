@@ -34,10 +34,10 @@ interface IMinutaDetalleForm {
   id: FormControl<string | null>;
   deliveryDate: FormControl<Date | null>;
   status: FormControl<number | null>;
-  AreaMinutasDetalles: FormControl<number | null>;
+  areaMinutasDetalles: FormControl<number | null>;
   title: FormControl<string>;
   requestService: FormControl<string>;
-  meetingId: FormControl<number | null>;
+  meetingId: FormControl<string | null>;
   applicationUserId: FormControl<string>;
 }
 
@@ -81,9 +81,10 @@ export class MinutaDetalleForm implements OnInit {
     id: new FormControl({ value: this.config.data.id, disabled: true }),
     deliveryDate: new FormControl<Date | null>(null, [Validators.required]),
     status: new FormControl(0, [Validators.required]),
-      AreaMinutasDetalles: new FormControl(this.config.data.areaResponsable ?? 0, [
-        Validators.required,
-      ]),
+      areaMinutasDetalles: new FormControl(
+        this.config.data.areaResponsable ?? 0,
+        [Validators.required],
+      ),
     title: new FormControl("", {
       validators: [Validators.required],
       nonNullable: true,
@@ -92,7 +93,9 @@ export class MinutaDetalleForm implements OnInit {
       validators: [Validators.required],
       nonNullable: true,
     }),
-    meetingId: new FormControl(this.config.data.meetingId),
+    meetingId: new FormControl(this.config.data.meetingId ?? null, [
+      Validators.required,
+    ]),
     applicationUserId: new FormControl(this.authS.applicationUserId, {
       nonNullable: true,
     }),
@@ -125,10 +128,10 @@ export class MinutaDetalleForm implements OnInit {
             this.dateS.parseDate(result.deliveryDate),
           );
         }
-        if (result.AreaMinutasDetalles !== undefined) {
-          this.form.controls.AreaMinutasDetalles.setValue(result.AreaMinutasDetalles);
+        if (result.areaMinutasDetalles !== undefined) {
+          this.form.controls.areaMinutasDetalles.setValue(result.areaMinutasDetalles);
         } else if (this.config.data.areaResponsable !== undefined) {
-          this.form.controls.AreaMinutasDetalles.setValue(this.config.data.areaResponsable);
+          this.form.controls.areaMinutasDetalles.setValue(this.config.data.areaResponsable);
         }
       });
   }

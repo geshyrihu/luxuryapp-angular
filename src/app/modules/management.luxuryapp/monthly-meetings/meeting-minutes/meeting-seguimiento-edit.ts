@@ -58,7 +58,7 @@ export class MeetingSeguimientoEdit implements OnInit {
     }),
     seguimiento: new FormControl<string>("", {
       nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(250)],
+      validators: [Validators.required, Validators.maxLength(300)],
     }),
     applicationUserId: new FormControl<string>(this.authS.applicationUserId, {
       nonNullable: true,

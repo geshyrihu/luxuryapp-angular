@@ -31,6 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-resumen-minuta",
   templateUrl: "./resumen-minuta.html",
+  styleUrl: "./resumen-minuta.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DataViewMobile,
@@ -84,10 +85,10 @@ export class ResumenMinuta implements OnInit {
 
           // Transform seguimiento dates
           if (
-            item.meetingDertailsSeguimientos &&
-            item.meetingDertailsSeguimientos.length > 0
+            item.meetingDetailsFollowUps &&
+            item.meetingDetailsFollowUps.length > 0
           ) {
-            item.meetingDertailsSeguimientos.forEach((seguimiento: any) => {
+            item.meetingDetailsFollowUps.forEach((seguimiento: any) => {
               if (seguimiento.fecha) {
                 seguimiento.fecha = this.dateS.parseDate(seguimiento.fecha);
               }
@@ -123,7 +124,7 @@ export class ResumenMinuta implements OnInit {
         return "danger";
       case 1: // Concluido
         return "success";
-      case 2: // Cancelado
+      case 2: // No Autorizado
         return "warn";
       default:
         return "secondary";
@@ -137,10 +138,9 @@ export class ResumenMinuta implements OnInit {
       case 1:
         return "Concluido";
       case 2:
-        return "Cancelado";
+        return "No Autorizado";
       default:
         return "Desconocido";
     }
   }
 }
-

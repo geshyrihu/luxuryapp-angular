@@ -23,7 +23,7 @@
             {{ i + 1 }}.- {{ asunto.title | titlecase }}
           </div>
           <div>
-            @if (asunto.status === 0) {
+            @if (asunto.status === 0 || asunto.status === "PENDIENTE") {
             <lx-tag severity="danger" [value]="asunto.status"  />
             }
           </div>

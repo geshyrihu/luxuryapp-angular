@@ -34,6 +34,47 @@
         <lx-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
+          (click)="runBackfillMeetingFolios()"
+        >
+          <div class="d-flex align-items-start gap-3">
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-primary-50 text-2xl"
+            >
+              MIN
+            </div>
+            <div class="d-flex flex-column gap-1">
+              <div class="fw-bold text-body">Asignar folios a minutas</div>
+              <div class="text-xs text-body-secondary line-height-2">
+                Asigna el folio de minuta (MIN-TIPO-YYMM-NNN) a todas las
+                minutas que aun no lo tienen, en todos los clientes.
+              </div>
+            </div>
+          </div>
+        </lx-card>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <lx-card
+          class="cursor-pointer h-full d-block"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
+          (click)="runRepairPurchaseOrderFolios()"
+        >
+          <div class="d-flex align-items-start gap-3">
+            <div class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-orange-50 text-2xl">OC</div>
+            <div class="d-flex flex-column gap-1">
+              <div class="fw-bold text-body">Reparar folios de Órdenes de Compra</div>
+              <div class="text-xs text-body-secondary line-height-2">
+                Conserva un folio por grupo duplicado y reasigna los demás. No modifica IDs ni relaciones.
+              </div>
+            </div>
+          </div>
+        </lx-card>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <lx-card
+          class="cursor-pointer h-full d-block"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateCoiAspel()"
         >
           <div class="d-flex align-items-start gap-3">

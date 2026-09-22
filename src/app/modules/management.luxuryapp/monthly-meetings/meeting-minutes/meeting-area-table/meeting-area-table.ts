@@ -1,20 +1,16 @@
-import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
+import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
+import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-// Definimos interfaces para los eventos de salida para mayor claridad y tipado
+
 export interface DetailEvent {
   meetingId: any;
   id: any;
@@ -27,33 +23,28 @@ export interface SeguimientoEvent {
   idMeetingSeguimiento: number;
 }
 
-import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-
 @Component({
   selector: "app-area-details-table",
   imports: [
+    AppIcon,
     WebButtonIconAdd,
     WebButtonIconConfirm,
-    TableEmptyMessage,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     WebButtonLabelItem,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-
-    LxTag,
     LxTooltipDirective,
     ActionMenu,
     SanitizeHtmlPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-area-table.html",
+  styleUrl: "./meeting-area-table.scss",
 })
 export class AreaDetailsTable {
   title = input<string>("");
+  icon = input<string>("material-symbols-light:article");
   meetingId = input<any>(0);
   details = input<any[]>([]);
   areaResponsable = input<number>(0);
@@ -65,8 +56,6 @@ export class AreaDetailsTable {
   addSeguimiento = output<SeguimientoEvent>();
   editSeguimiento = output<SeguimientoEvent>();
   deleteSeguimiento = output<number>();
-
-  // --- métodos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -112,39 +101,26 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- métodos de ayuda para la vista (Helpers) ---
-
-  /** Devuelve la clase CSS para el badge de estatus. */
-  /** Devuelve el severity de PrimeNG para el estatus. */
-  getStatusSeverity(
-    status: number,
-  ): "danger" | "success" | "secondary" | "info" {
+  /** 0 = Pendiente, 1 = Concluido, 2 = No autorizado. */
+  statusIcon(status: number): string {
     switch (status) {
-      case 0:
-        return "danger"; // Rojo
       case 1:
-        return "success"; // Verde
+        return "material-symbols-light:check-circle";
       case 2:
-        return "secondary"; // Gris
+        return "material-symbols-light:block";
       default:
-        return "info"; // Azul claro
+        return "material-symbols-light:schedule";
     }
   }
 
-  /** Devuelve el emoji para el estatus. */
-  getStatusEmoji(status: number): string {
+  statusLabel(status: number): string {
     switch (status) {
-      case 0:
-        return "?"; // Cancelado/Rechazado
       case 1:
-        return "?"; // Completado/Aprobado
+        return "Concluido";
       case 2:
-        return "??"; // Bloqueado/Prohibido
+        return "No autorizado";
       default:
-        return "?"; // Desconocido
+        return "Pendiente";
     }
   }
-
-  // Elimina el método getStatusIcon ya que usamos emojis
 }
-

@@ -1,0 +1,91 @@
+// Estilos compartidos del submódulo Minutas (MeetingMinutes).
+// Chips de indicadores, leyenda y estado vacío. Todo vía tokens del DS.
+
+.mm-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-lg);
+}
+
+.mm-chip {
+  --mm-chip-color: var(--ds-text-secondary);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-xs);
+  padding: var(--ds-space-xs) var(--ds-space-sm);
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-full);
+  color: var(--mm-chip-color);
+  font-size: var(--ds-font-size-help);
+  font-weight: var(--ds-font-weight-semibold);
+  white-space: nowrap;
+}
+
+.mm-chip--total {
+  --mm-chip-color: var(--primary-700);
+}
+
+.mm-chip--done {
+  --mm-chip-color: var(--success-500);
+}
+
+.mm-chip--pending {
+  --mm-chip-color: var(--danger-500);
+}
+
+.mm-chip--denied {
+  --mm-chip-color: var(--ds-text-secondary);
+}
+
+button.mm-chip {
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+button.mm-chip:hover:not(:disabled) {
+  background: var(--ds-surface-container);
+  border-color: var(--mm-chip-color);
+}
+
+button.mm-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.mm-chip__value {
+  font-size: var(--ds-font-size-body);
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.mm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-space-sm);
+}
+
+.mm-legend__title {
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-font-size-micro);
+  font-weight: var(--ds-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-space-sm);
+  padding: var(--ds-space-xl);
+  color: var(--ds-text-secondary);
+  text-align: center;
+}
+
+.mm-empty__icon {
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-font-size-display);
+  opacity: 0.5;
+}

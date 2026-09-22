@@ -1,0 +1,80 @@
+.resumen-minuta-table {
+  font-size: 1.05rem;
+
+  .app-table-table {
+    line-height: 1.45;
+  }
+
+  .app-table-thead th {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .app-table-tbody td {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .resumen-minuta-title {
+    font-size: 1.2rem;
+  }
+
+  .resumen-minuta-request-service,
+  .resumen-minuta-followup-text {
+    font-size: 1rem;
+  }
+
+  .resumen-minuta-status-tag {
+    font-size: 1rem;
+  }
+
+  .app-table-scroll {
+    overflow-x: hidden;
+  }
+
+  .app-table-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .resumen-minuta-col-request {
+    width: 48%;
+  }
+
+  .resumen-minuta-col-followup {
+    width: 34%;
+  }
+
+  .resumen-minuta-col-status {
+    width: 18%;
+  }
+
+  .resumen-minuta-request-service,
+  .resumen-minuta-followup-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .resumen-minuta-request-service {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .resumen-minuta-followup {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .resumen-minuta-followup-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+}

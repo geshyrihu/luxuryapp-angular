@@ -23,7 +23,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { AdministrationFormList } from "./administration-form-list";
@@ -34,7 +33,7 @@ interface IMeetingForm {
   id: FormControl<string | null>;
   date: FormControl<string>;
   time: FormControl<string>;
-  eTypeMeeting: FormControl<number | null>;
+  typeMeeting: FormControl<number | null>;
   customerId: FormControl<string | null>;
   applicationUserId: FormControl<string | null>;
   presentacionJuntaComiteId: FormControl<string | null>;
@@ -60,7 +59,6 @@ interface IMeetingForm {
 export class MeetingForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
-  customToastS = inject(CustomToastService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   enumSelectS = inject(EnumSelectService);
@@ -77,7 +75,7 @@ export class MeetingForm implements OnInit {
     id: [""],
     date: [this.dateNow, Validators.required],
     time: [""],
-    eTypeMeeting: [null as number | null, Validators.required],
+    typeMeeting: [null as number | null, Validators.required],
     customerId: [this.customerId],
     applicationUserId: [this.authS.applicationUserId],
     presentacionJuntaComiteId: [null],
@@ -101,17 +99,6 @@ export class MeetingForm implements OnInit {
 
   async onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
-    if (
-      !this.id &&
-      this.form.controls.eTypeMeeting.value !== 2 &&
-      !this.form.controls.juntaMensualSessionId.value
-    ) {
-      this.customToastS.showInfo(
-        "Alta desde agenda",
-        "Las minutas de comite y asamblea ya no pueden crearse directamente aqui. Primero registra la agenda de la junta para generar la sesion mensual y, desde ella, la minuta vinculada.",
-      );
-      return;
-    }
 
     const formValue = this.form.getRawValue();
     const payload = {

@@ -1,114 +1,126 @@
-<!-- La tabla ahora es genórica y se alimenta de los inputs -->
-<app-table [value]="details()" dataKey="id" class="p-datatable-sm">
-  <ng-template #header>
-    <!-- Cabecera con acciones para agregar y enviar email -->
-    <tr>
-      <th colspan="7" class="bg-bg-body-tertiary border-0 p-3">
-        <div class="d-flex align-items-center gap-2">
-          <iw-button-add
-            (clicked)="onAddDetail()"
-            [lxTooltip]="title() | uppercase"
-            tooltipPosition="top"
-            size="sm"
-            [ngbTooltip]="'Agregar pendiente a ' + title()"
-          />
-          @if (details() && details().length > 0) {
-          <iw-button-confirm
-            swalTitle="Confirmar"
-            [swalText]="'Enviar Email a ' + title()"
-            [lxTooltip]="'Enviar Email a ' + title()"
-            tooltipPosition="top"
-            [ngbTooltip]="'Enviar Email a ' + title()"
-            classButton="btn btn-sm btn-light"
-            swalConfirmButtonText="Sí, enviar"
-            (confirmed)="onSendAreaEmail()"
-          />
-          }
-        </div>
-      </th>
-    </tr>
-    <!-- Columnas de la tabla -->
-    @if (details() && details().length > 0) {
-    <tr class="bg-bg-body-tertiary">
-      <th class="text-center fw-bold text-body">#</th>
-      <th appSortableColumn="title" class="fw-bold text-body">
-        Asunto
-        <app-sorticon field="title" />
-      </th>
-      <th class="fw-bold text-body">Seguimiento</th>
-      <th></th>
-    </tr>
-    }
-  </ng-template>
-  <ng-template #body let-rowIndex="rowIndex" let-detail>
-    <tr class="transition-colors transition-duration-200">
-      <td class="text-center">{{ rowIndex + 1 }}</td>
-      <td>
-        <div class="text-lg fw-bold text-body mb-2">
-          <div class="d-flex align-items-center gap-2">
-            <lx-tag
-              [severity]="getStatusSeverity(detail.status)"
-              [value]="getStatusEmoji(detail.status)"
-            />
-            <span>{{ detail.title }}</span>
-          </div>
+<section class="mm-area">
+  <header class="mm-area__head">
+    <span class="mm-area__title">
+      <app-icon [icon]="icon()" class="mm-area__icon" aria-hidden="true" />
+      {{ title() }}
+      <span class="mm-chip mm-chip--total">
+        <span class="mm-chip__value">{{ details().length }}</span>
+      </span>
+    </span>
+
+    <div class="mm-area__actions">
+      <iw-button-add
+        size="sm"
+        lxTooltip="Agregar asunto"
+        tooltipPosition="top"
+        (clicked)="onAddDetail()"
+      />
+      @if (details().length > 0) {
+      <iw-button-confirm
+        swalTitle="Confirmar envío"
+        [swalText]="'Enviar por correo los pendientes de ' + title()"
+        lxTooltip="Enviar pendientes por correo"
+        tooltipPosition="top"
+        swalConfirmButtonText="Sí, enviar"
+        (confirmed)="onSendAreaEmail()"
+      />
+      }
+    </div>
+  </header>
+
+  @if (details().length === 0) {
+  <p class="mm-area__empty">Sin asuntos registrados en esta área.</p>
+  } @else {
+  <ul class="mm-area__list">
+    @for (detail of details(); track detail.id; let i = $index) {
+    <li class="mm-item">
+      <div>
+        <div class="mm-item__head">
+          <span class="mm-item__index">{{ i + 1 }}</span>
+          <span
+            class="mm-chip"
+            [class.mm-chip--pending]="detail.status === 0"
+            [class.mm-chip--done]="detail.status === 1"
+            [class.mm-chip--denied]="detail.status === 2"
+          >
+            <app-icon [icon]="statusIcon(detail.status)" aria-hidden="true" />
+            {{ statusLabel(detail.status) }}
+          </span>
+          <h3 class="mm-item__title">{{ detail.title }}</h3>
         </div>
         <div
-          class="text-justify text-sm text-body-secondary line-height-3"
+          class="mm-item__desc"
           [innerHTML]="detail.requestService | sanitizeHtml"
         ></div>
-      </td>
-      <td>
-        <!-- Lista de seguimientos -->
-        <ol [start]="detail.seguimiento?.length || 0" reversed class="m-0 ps-3">
-          @for (item of detail.seguimiento; track item.id) {
-          <li class="mb-2 last:mb-0">
-            <div class="d-flex align-items-center justify-content-between w-full">
-              <div class="d-flex flex-column text-sm">
-                <span class="fw-bold text-primary">{{ item.fecha }}</span>
-                <span class="text-body">{{ item.seguimiento }}</span>
+      </div>
+
+      <div class="mm-item__side">
+        <span class="mm-item__side-label">Seguimiento</span>
+        @if (detail.seguimiento?.length) {
+        <ul class="mm-followups">
+          @for (seg of detail.seguimiento; track seg.id) {
+          <li class="mm-followup">
+            <div class="mm-followup__box">
+              <app-icon
+                icon="material-symbols-light:comment"
+                class="mm-followup__icon"
+                aria-hidden="true"
+              />
+              <div class="mm-followup__body">
+                <span class="mm-followup__date">{{ seg.fecha }}</span>
+                <span class="mm-followup__text">{{ seg.seguimiento }}</span>
               </div>
-              <app-action-menu>
-                <ng-container actions>
-                  <il-button-edit
-                    (clicked)="onEditSeguimiento(detail.id, item.id)"
-                    label="Editar"
-                  />
-                  <il-button-delete
-                    (confirmed)="onDeleteSeguimiento(item.id)"
-                    label="Eliminar"
-                  />
-                </ng-container>
-              </app-action-menu>
+            </div>
+            <div class="mm-followup__actions">
+              <iw-button-edit
+                size="sm"
+                [tooltip]="'Editar seguimiento'"
+                tooltipPosition="top"
+                (clicked)="onEditSeguimiento(detail.id, seg.id)"
+              />
+              <iw-button-delete
+                size="sm"
+                [tooltip]="'Eliminar seguimiento'"
+                tooltipPosition="top"
+                confirmHeader="Eliminar seguimiento"
+                confirmMessage="¿Está seguro de eliminar este seguimiento?"
+                (confirmed)="onDeleteSeguimiento(seg.id)"
+              />
             </div>
           </li>
           }
-        </ol>
-      </td>
-      <td class="no-print text-center">
-        <!-- Acciones a nivel de detalle -->
-        <app-action-menu>
-          <ng-container actions>
-            <il-button-item
-              iconClass="material-symbols-light:article"
-              label="Seguimiento"
-              (clicked)="onAddSeguimiento(detail.id)"
-            />
+        </ul>
+        } @else {
+        <span class="mm-item__muted">Sin seguimientos</span>
+        }
+      </div>
 
-            <il-button-edit
-              (clicked)="onEditDetail(detail.id)"
-              label="Editar"
-            />
-            <il-button-delete
-              (confirmed)="onDeleteDetail(detail.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </app-action-menu>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
-  </ng-template>
-</app-table>
+      <div class="mm-item__actions">
+        <span
+          lxTooltip="Acciones del asunto"
+          tooltipPosition="left"
+        >
+          <app-action-menu>
+            <ng-container actions>
+              <il-button-item
+                iconClass="material-symbols-light:forum"
+                label="Agregar seguimiento"
+                (clicked)="onAddSeguimiento(detail.id)"
+              />
+              <il-button-edit
+                label="Editar"
+                (clicked)="onEditDetail(detail.id)"
+              />
+              <il-button-delete
+                label="Eliminar"
+                (confirmed)="onDeleteDetail(detail.id)"
+              />
+            </ng-container>
+          </app-action-menu>
+        </span>
+      </div>
+    </li>
+    }
+  </ul>
+  }
+</section>

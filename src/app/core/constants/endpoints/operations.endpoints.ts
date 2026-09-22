@@ -309,6 +309,8 @@ resumenGastosByCustomer: (customerId: string) =>
     delete: (id: string) => `meetings/${id}`,
     getById: (id: string) => `meetings/${id}`,
     getDetails: (meetingId: string | null) => `meetings/get-details/${meetingId}`,
+    emailDispatches: (meetingId: string) =>
+      `meetings/${meetingId}/email-dispatches`,
     list: (customerId: string, tipoJunta: number) =>
       `meetings/list/${customerId}/${tipoJunta}`,
     reportPdf: (meetingId: string | number) =>

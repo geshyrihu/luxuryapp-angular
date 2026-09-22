@@ -16,12 +16,8 @@
       label="Hora de Junta"
       placeholder="Hora de Junta"
     />
-    <div class="mb-3 p-2 rounded bg-yellow-50 text-body text-sm">
-      Al cambiar la fecha u hora de la junta, este dato debe mantenerse alineado
-      con la agenda mensual y con la presentación vinculada.
-    </div>
     <custom-input-select-signal
-      [control]="form.controls.eTypeMeeting"
+      [control]="form.controls.typeMeeting"
       label="Tipo de junta"
       [data]="cb_typeMeeting()"
       [filter]="true"

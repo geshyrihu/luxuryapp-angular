@@ -14,7 +14,7 @@ export class MinutaPdfService {
 
   private buildHtml(data: any, logo: string | null, generatedAt: Date): string {
     const dateLabel = this.formatDate(data.minuta?.date);
-    const tipo = data.minuta?.eTypeMeeting || "Junta";
+    const tipo = data.minuta?.typeMeeting || "Junta";
 
     let asistentesHtml = "";
     if (data.comite?.length > 0) {

@@ -380,6 +380,72 @@ this.loading.set(false);
       });
   }
 
+  runRepairPurchaseOrderFolios() {
+    if (
+      !window.confirm(
+        "Se reasignaran folios duplicados de Ordenes de Compra. La operacion conserva IDs y relaciones, pero modifica datos historicos. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Reasignando folios duplicados de órdenes...",
+      "Conservará un folio por grupo y reasignará los restantes sin cambiar IDs ni relaciones.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.repairPurchaseOrderFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Folios de órdenes reparados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La reasignación de folios de órdenes falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
+  runBackfillMeetingFolios() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Asignando folios a las minutas...",
+      "Se asigna el folio MIN-{TIPO}-{yyMM}-{NNN} a todas las minutas que aun no lo tienen, en todos los clientes.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.backfillMeetingFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Folios de minutas asignados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La asignacion de folios de minutas fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedDocumentCatalogs() {
     this.loading.set(true);
     this.result.set(null);

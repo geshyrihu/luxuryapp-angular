@@ -77,11 +77,11 @@ export class MinutaPendientes {
 
     // Define columns
     worksheet.columns = [
-      { header: "área Responsable", key: "area", width: 30 },
+      { header: "Área Responsable", key: "area", width: 30 },
       { header: "Asunto", key: "asunto", width: 40 },
       { header: "Solicitud", key: "solicitud", width: 50 },
-      { header: "óltimo Seguimiento", key: "seguimiento", width: 50 },
-      { header: "Fecha óltimo Seguimiento", key: "fecha", width: 25 },
+      { header: "Último Seguimiento", key: "seguimiento", width: 50 },
+      { header: "Fecha último Seguimiento", key: "fecha", width: 25 },
       { header: "Estatus", key: "estatus", width: 15 },
     ];
 
@@ -117,7 +117,10 @@ export class MinutaPendientes {
           solicitud: stripHtml(asunto.requestService),
           seguimiento: stripHtml(lastSeguimiento.seguimiento),
           fecha: lastSeguimiento.fecha,
-          estatus: asunto.status === 0 ? "Pendiente" : "Completado",
+          estatus:
+            asunto.status === "PENDIENTE" || asunto.status === 0
+              ? "Pendiente"
+              : "Completado",
         });
       });
     });

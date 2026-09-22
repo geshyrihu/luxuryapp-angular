@@ -5,10 +5,11 @@ export interface MeetingIndex {
   time?: string;
   dateFormat: string;
   timeFormat?: string;
-  eTypeMeeting: string;
+  typeMeeting: string;
+  folio: string;
   issues: number;
   pending: number;
-  concluidos: number;
+  terminados: number;
   noAutorizado: number;
   contable: MeetingDetail[];
   operaciones: MeetingDetail[];

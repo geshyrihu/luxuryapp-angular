@@ -108,7 +108,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   meeting: {
     id: string;
     date: string;
-    eTypeMeeting: number;
+    typeMeeting: number;
     meetingTypeDisplayName: string;
     hasPresentationLinked: boolean;
   } | null;

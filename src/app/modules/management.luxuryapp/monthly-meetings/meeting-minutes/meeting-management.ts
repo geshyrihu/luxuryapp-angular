@@ -6,13 +6,15 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
+import { MeetingEmailDispatch } from "@core/interfaces/meeting-email-dispatch.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   AreaDetailsTable,
   DetailEvent,
@@ -23,22 +25,37 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [LxTag, WebButtonLabel, AppIcon, RouterModule, AreaDetailsTable],
+  imports: [WebButtonLabel, AppIcon, RouterModule, AreaDetailsTable, ApiDatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
+  styleUrl: "./meeting-management.scss",
 })
 export class MeetingManagement implements OnInit {
   private route = inject(ActivatedRoute);
   private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private authS = inject(AuthService);
 
   meetingId: string | null = null;
   meetingData = signal<MeetingIndex | null>(null);
+  emailDispatches = signal<MeetingEmailDispatch[]>([]);
 
   ngOnInit(): void {
     this.meetingId = this.route.snapshot.paramMap.get("id");
     if (this.meetingId) {
       this.onLoadDetails();
+    }
+  }
+
+  /** Icono del tipo de junta a partir del nombre para mostrar del API. */
+  get typeIcon(): string {
+    switch (this.meetingData()?.typeMeeting) {
+      case "Asamblea":
+        return "material-symbols-light:account-balance";
+      case "Operación":
+        return "material-symbols-light:settings";
+      default:
+        return "material-symbols-light:groups";
     }
   }
 
@@ -48,6 +65,24 @@ export class MeetingManagement implements OnInit {
       .then((result) => {
         this.meetingData.set(result);
       });
+    this.onLoadDispatches();
+  }
+
+  onLoadDispatches(): void {
+    if (!this.meetingId) {
+      return;
+    }
+
+    this.apiResponseS
+      .onGetList(Endpoints.Meetings.emailDispatches(this.meetingId))
+      .then((result: MeetingEmailDispatch[]) => {
+        this.emailDispatches.set(result ?? []);
+      });
+  }
+
+  /** Convierte la lista 'a;b;c' en texto legible. */
+  formatRecipients(value: string): string {
+    return value ? value.split(";").join(", ") : "";
   }
 
   onModalFormMinutaDetalle(data: DetailEvent): void {
@@ -100,7 +135,6 @@ export class MeetingManagement implements OnInit {
   }
 
   onSendEmail(area: number): void {
-    // Lígica de envío de email (reutilizando la del componente anterior)
     const customerId = this.meetingData()?.customerId;
     this.apiResponseS
       .onPost(
@@ -108,10 +142,9 @@ export class MeetingManagement implements OnInit {
           this.meetingId,
           customerId,
           area,
-          "0",
+          this.authS.applicationUserId,
         ),
       )
       .then(() => {});
   }
 }
-

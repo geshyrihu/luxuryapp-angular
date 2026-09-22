@@ -19,10 +19,10 @@
         <h1 class="text-3xl md:text-4xl fw-bold text-body m-0" style="font-family: var(--ds-font-family-document), serif;">
           {{ data.minutaCliente.customer }}
         </h1>
-        } @if (data.minuta?.eTypeMeeting) {
-        <h2 class="text-base md:text-lg fw-semibold text-primary mt-3 mt-md-4 m-0">
-          Minuta de Junta: {{ data.minuta.eTypeMeeting }}
-        </h2>
+        } @if (data.minuta?.typeMeeting) {
+          <h2 class="text-base md:text-lg fw-semibold text-primary mt-3 mt-md-4 m-0">
+            Minuta de Junta: {{ data.minuta.typeMeeting }}
+          </h2>
         } @if (data.minuta?.date) {
         <p class="text-sm md:text-base text-body-secondary mt-2 mt-md-3 m-0">
           {{ data.minuta.date | apiDate : "longDate" }}

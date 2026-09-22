@@ -1,39 +1,160 @@
-@if (meetingData()) {
-<div class="p-4">
-  <div class="card" [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
-    <div class="mb-3 d-flex align-items-center justify-content-between">
-      <a routerLink="/junta-comite/list-minutas" class="no-underline">
+@if (meetingData(); as m) {
+<div class="mm-page">
+  <header
+    class="mm-head"
+    [class.mm-head--asamblea]="m.typeMeeting === 'Asamblea'"
+    [class.mm-head--comite]="m.typeMeeting === 'Comité'"
+    [class.mm-head--operacion]="m.typeMeeting === 'Operación'"
+  >
+    <div class="mm-head__bar">
+      <a routerLink="/committee-meetings/minutes" class="no-underline">
         <il-button
           label="VOLVER AL LISTADO"
           iconClass="material-symbols-light:arrow-back"
           severity="secondary"
-          size="small"
+          size="sm"
         />
       </a>
-      <div class="d-flex gap-2">
-        <lx-tag
-          severity="info"
-          [value]="'Total: ' + meetingData()?.issues"
-          class="p-2"
-         />
-        <lx-tag
-          severity="success"
-          [value]="'Concluidos: ' + meetingData()?.concluidos"
-          class="p-2"
-         />
-        <lx-tag
-          severity="danger"
-          [value]="'Pendientes: ' + meetingData()?.pending"
-          class="p-2"
-         />
-      </div>
     </div>
 
-    <!-- Tabla para Contable -->
+    <div class="mm-head__main">
+      <div class="mm-head__identity">
+        <span class="mm-head__icon">
+          <app-icon [icon]="typeIcon" aria-hidden="true" />
+        </span>
+        <div>
+          <h1 class="mm-head__type">{{ m.typeMeeting }}</h1>
+          <div class="mm-head__when">
+            @if (m.folio) {
+            <span>
+              <app-icon icon="material-symbols-light:label" aria-hidden="true" />
+              {{ m.folio }}
+            </span>
+            }
+            <span>
+              <app-icon icon="material-symbols-light:event" aria-hidden="true" />
+              {{ m.dateFormat }}
+            </span>
+            @if (m.timeFormat) {
+            <span>
+              <app-icon
+                icon="material-symbols-light:schedule"
+                aria-hidden="true"
+              />
+              {{ m.timeFormat }}
+            </span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mm-legend">
+        <span class="mm-chip mm-chip--total">
+          <app-icon icon="material-symbols-light:bar-chart" aria-hidden="true" />
+          Total
+          <span class="mm-chip__value">{{ m.issues }}</span>
+        </span>
+        <span class="mm-chip mm-chip--done">
+          <app-icon
+            icon="material-symbols-light:check-circle"
+            aria-hidden="true"
+          />
+          Concluidos
+          <span class="mm-chip__value">{{ m.terminados }}</span>
+        </span>
+        <span class="mm-chip mm-chip--pending">
+          <app-icon icon="material-symbols-light:schedule" aria-hidden="true" />
+          Pendientes
+          <span class="mm-chip__value">{{ m.pending }}</span>
+        </span>
+        <span class="mm-chip mm-chip--denied">
+          <app-icon icon="material-symbols-light:block" aria-hidden="true" />
+          No autorizado
+          <span class="mm-chip__value">{{ m.noAutorizado }}</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <section class="mm-dispatch">
+    <header class="mm-dispatch__head">
+      <span class="mm-dispatch__title">
+        <app-icon
+          icon="material-symbols-light:mail-outline"
+          class="mm-dispatch__icon"
+          aria-hidden="true"
+        />
+        Envíos al comité
+        <span class="mm-chip mm-chip--total">
+          <span class="mm-chip__value">{{ emailDispatches().length }}</span>
+        </span>
+      </span>
+    </header>
+
+    @if (emailDispatches().length === 0) {
+    <p class="mm-dispatch__empty">Aún no se ha enviado la minuta al comité.</p>
+    } @else {
+    <ul class="mm-dispatch__list">
+      @for (d of emailDispatches(); track d.id; let first = $first) {
+      <li class="mm-dispatch__item" [class.mm-dispatch__item--latest]="first">
+        <div class="mm-dispatch__row">
+          <span
+            class="mm-chip"
+            [class.mm-chip--done]="d.success"
+            [class.mm-chip--pending]="!d.success"
+          >
+            <app-icon
+              [icon]="
+                d.success
+                  ? 'material-symbols-light:check-circle'
+                  : 'material-symbols-light:error'
+              "
+              aria-hidden="true"
+            />
+            {{ d.success ? "Enviado" : "Falló" }}
+          </span>
+          <span class="mm-dispatch__meta">
+            <app-icon icon="material-symbols-light:event" aria-hidden="true" />
+            {{ d.sentAt | apiDate: "short" }}
+          </span>
+          <span class="mm-dispatch__meta">
+            <app-icon icon="material-symbols-light:person" aria-hidden="true" />
+            {{ d.sentByName || d.sentByUserId }}
+          </span>
+          <span class="mm-dispatch__meta">
+            <app-icon icon="material-symbols-light:group" aria-hidden="true" />
+            {{ d.recipientsCount }} destinatarios
+          </span>
+        </div>
+
+        <div class="mm-dispatch__subject">{{ d.subject }}</div>
+
+        @if (d.errorMessage) {
+        <div class="mm-dispatch__error">{{ d.errorMessage }}</div>
+        } @if (d.to || d.cc || d.bcc) {
+        <details class="mm-dispatch__details">
+          <summary>Ver destinatarios</summary>
+          @if (d.to) {
+          <p><strong>Para:</strong> {{ formatRecipients(d.to) }}</p>
+          } @if (d.cc) {
+          <p><strong>CC:</strong> {{ formatRecipients(d.cc) }}</p>
+          } @if (d.bcc) {
+          <p><strong>BCC:</strong> {{ formatRecipients(d.bcc) }}</p>
+          }
+        </details>
+        }
+      </li>
+      }
+    </ul>
+    }
+  </section>
+
+  <div class="mm-areas">
     <app-area-details-table
       title="Contable"
-      [meetingId]="meetingData()!.id"
-      [details]="meetingData()!.contable"
+      icon="material-symbols-light:calculate"
+      [meetingId]="m.id"
+      [details]="m.contable ?? []"
       [areaResponsable]="0"
       (addDetail)="onModalFormMinutaDetalle($event)"
       (editDetail)="onModalFormMinutaDetalle($event)"
@@ -44,12 +165,11 @@
       (deleteSeguimiento)="onDeleteSeguimiento($event)"
     />
 
-    <!-- Tabla para Operaciones -->
     <app-area-details-table
       title="Operaciones"
-      class="mt-4 d-block"
-      [meetingId]="meetingData()!.id"
-      [details]="meetingData()!.operaciones"
+      icon="material-symbols-light:handyman"
+      [meetingId]="m.id"
+      [details]="m.operaciones ?? []"
       [areaResponsable]="1"
       (addDetail)="onModalFormMinutaDetalle($event)"
       (editDetail)="onModalFormMinutaDetalle($event)"
@@ -60,12 +180,11 @@
       (deleteSeguimiento)="onDeleteSeguimiento($event)"
     />
 
-    <!-- Tabla para Legal -->
     <app-area-details-table
       title="Legal"
-      class="mt-4 d-block"
-      [meetingId]="meetingData()!.id"
-      [details]="meetingData()!.legal"
+      icon="material-symbols-light:gavel"
+      [meetingId]="m.id"
+      [details]="m.legal ?? []"
       [areaResponsable]="2"
       (addDetail)="onModalFormMinutaDetalle($event)"
       (editDetail)="onModalFormMinutaDetalle($event)"
@@ -78,10 +197,11 @@
   </div>
 </div>
 } @else {
-<div class="d-flex align-items-center justify-content-center h-screen">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
-  <span class="ms-3 text-lg fw-medium text-body"
-    >Cargando detalles de la minuta...</span
-  >
+<div class="mm-loading">
+  <app-icon
+    icon="material-symbols-light:progress-activity"
+    aria-hidden="true"
+  />
+  <span>Cargando detalles de la minuta…</span>
 </div>
 }

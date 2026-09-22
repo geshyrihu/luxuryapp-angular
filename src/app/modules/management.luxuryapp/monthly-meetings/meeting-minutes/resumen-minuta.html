@@ -1,4 +1,4 @@
-<div class="fadein">
+<div class="fadein resumen-minuta-page">
   <!-- 🏛️ CABECERA EJECUTIVA -->
   <div
     class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-4 mb-5 g-4"
@@ -37,13 +37,19 @@
       [paginator]="true"
       [loading]="loading()"
       [globalFilterFields]="['title', 'requestService']"
-      class="p-datatable-sm p-datatable-gridlines font-sm border-0"
+       class="resumen-minuta-table p-datatable-sm p-datatable-gridlines font-sm border-0"
       size="small"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
     >
+      <ng-template #colgroup>
+        <col class="resumen-minuta-col-request" />
+        <col class="resumen-minuta-col-followup" />
+        <col class="resumen-minuta-col-status" />
+      </ng-template>
+
       <!-- CAPTION PERSONALIZADO -->
       <ng-template #caption>
         <div
@@ -85,15 +91,15 @@
           class="transition-all hover:bg-bg-body-tertiary border-bottom-1 border"
         >
           <!-- Columna: Requerimiento -->
-          <td class="vertical-align-top py-4 ps-4">
+           <td class="vertical-align-top py-4 ps-4">
             <div class="d-flex flex-column gap-2">
               <span
-                class="fw-bold text-body text-lg line-height-2 tracking-tight"
+                 class="resumen-minuta-title fw-bold text-body line-height-2 tracking-tight"
               >
                 {{ item.title | uppercase }}
               </span>
               <div
-                class="text-body-secondary text-sm line-height-3 overflow-hidden text-truncate"
+                 class="resumen-minuta-request-service text-body-secondary text-sm line-height-3"
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -101,10 +107,10 @@
 
           <!-- Columna: Seguimiento -->
           <td class="vertical-align-top py-4">
-            @if (item.meetingDertailsSeguimientos &&
-            item.meetingDertailsSeguimientos.length > 0) {
+            @if (item.meetingDetailsFollowUps &&
+            item.meetingDetailsFollowUps.length > 0) {
             <div
-              class="d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
+               class="resumen-minuta-followup d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
             >
               <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-2">
@@ -113,17 +119,17 @@
                     class="text-primary text-xs"
                   />
                   <span class="fw-bold text-xs text-primary-700 text-uppercase">
-                    {{ item.meetingDertailsSeguimientos[0].fecha | apiDate:
+                    {{ item.meetingDetailsFollowUps[0].fecha | apiDate:
                     'mediumDate' }}
                   </span>
                 </div>
               </div>
               <div
-                class="text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
-                [lxTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
+                 class="resumen-minuta-followup-text text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
+                [lxTooltip]="item.meetingDetailsFollowUps[0].seguimiento"
                 tooltipPosition="top"
               >
-                "{{ item.meetingDertailsSeguimientos[0].seguimiento }}"
+                "{{ item.meetingDetailsFollowUps[0].seguimiento }}"
               </div>
             </div>
             } @else {
@@ -143,24 +149,9 @@
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
-                class="px-3 py-1 fw-bold text-xs shadow-sm"
+                 class="resumen-minuta-status-tag px-3 py-1 fw-bold shadow-sm"
               />
 
-              @if (item.status === 0) {
-              <div
-                class="d-flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm fw-semibold text-xs border-1 border-red-100"
-              >
-                <app-icon [icon]="'material-symbols-light:event-busy'" />
-                <span>Vence: {{ item.deliveryDate | apiDate: 'shortDate' }}</span>
-              </div>
-              } @if (item.status === 1) {
-              <div
-                class="d-flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm fw-semibold text-xs border-1 border-green-100"
-              >
-                <app-icon [icon]="'material-symbols-light:check-circle'" />
-                <span>Completado</span>
-              </div>
-              }
             </div>
           </td>
         </tr>
@@ -206,7 +197,7 @@
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
-        <p class="text-xs m-0 text-body-secondary">{{ item.status }}</p>
+        <p class="text-xs m-0 text-body-secondary">{{ getSeverityText(item.status) }}</p>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

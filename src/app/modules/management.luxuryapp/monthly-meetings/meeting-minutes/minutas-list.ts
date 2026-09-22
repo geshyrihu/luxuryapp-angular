@@ -5,92 +5,51 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { Router } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { ReportService } from "@core/services/report.service";
-import { LxAccordion } from "@ui/adaptive/accordion/accordion";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
-import {
-  AreaDetailsTable,
-  DetailEvent,
-  SeguimientoEvent,
-} from "./meeting-area-table/meeting-area-table";
 import { MeetingDetailForm } from "./meeting-detail-form";
 import { MeetingForm } from "./meeting-form";
-import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "./minuta-detalle-form";
 import { MinutaPdfService } from "./minuta-pdf.service";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+/** Icono por tipo de junta (el acento de color vive en el SCSS del módulo). */
+interface JuntaVisual {
+  readonly icon: string;
+}
 
 @Component({
   selector: "app-minutas-list",
   templateUrl: "./minutas-list.html",
+  styleUrl: "./minutas-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelConfirm,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
     WebButtonLabel,
-    NgbTooltipModule,
-    LxTooltipDirective,
-    LxAccordion,
-    ActionMenu,
-    TableCaption,
-    TableFooter,
-    DataViewMobile,
-    AreaDetailsTable,
-    RouterModule,
     WebButtonLabelConfirm,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
     WebButtonLabelItem,
-    MobileListItem,
+    ActionMenu,
+    LxTooltipDirective,
     AppIcon,
   ],
 })
@@ -98,38 +57,34 @@ export class MinutasList {
   // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
-  reportService = inject(ReportService);
-  minutaPdfS = inject(MinutaPdfService);
   customToastS = inject(CustomToastService);
+  minutaPdfS = inject(MinutaPdfService);
   route = inject(Router);
   readonly ROUTES = ROUTES;
-  // --- Propiedades del Componente ---
-  dataSignal = signal<MeetingIndex[]>([]);
-  ref: DynamicDialogRef;
   public AspRole = ApplicationRole;
 
-  /** Tipo de junta actual que se está mostrando ('Comité', 'Asamblea', etc.). */
+  // --- Estado ---
+  dataSignal = signal<MeetingIndex[]>([]);
+
+  /** Tipo de junta actual (enum TypeMeeting: Asamblea=0, Comite=1, Operacion=2). Por defecto Comité. */
   tipoJunta: number = 1;
 
-  /** Opciones de configuración para la tabla PrimeNG. */
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  scrollHeight: string = "calc(100vh - 300px)";
+  /** Icono y acento por tipo de junta (el color vive en el SCSS del módulo). */
+  private readonly juntaVisuals: Record<number, JuntaVisual> = {
+    0: { icon: "material-symbols-light:account-balance" },
+    1: { icon: "material-symbols-light:groups" },
+    2: { icon: "material-symbols-light:settings" },
+  };
 
-  /**
-   * Campos utilizados por el filtro global de la tabla PrimeNG.
-   * Optimizado: Solo campos de primer nivel para evitar lag de procesamiento.
-   */
-  globalFilterFields: string[] = ["dateFormat", "eTypeMeeting"];
+  private readonly juntaLabels: Record<number, string> = {
+    0: "Asamblea",
+    1: "Comité",
+    2: "Operación",
+  };
 
   constructor() {
-    /**
-     * Efecto que se ejecuta cuando el customerId cambia,
-     * recargando los datos para el nuevo cliente.
-     */
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
@@ -138,17 +93,12 @@ export class MinutasList {
     });
   }
 
-  /**
-   * Carga la lista de minutas desde la API segón el tipo de junta.
-   * @param tipoJunta El tipo de junta a cargar ('Comité', 'Asamblea', 'Operación').
-   */
+  get tipoJuntaVisual(): JuntaVisual {
+    return this.juntaVisuals[this.tipoJunta] ?? this.juntaVisuals[0];
+  }
+
   get tipoJuntaLabel(): string {
-    const labels: Record<number, string> = {
-      0: "Comité",
-      1: "Asamblea",
-      2: "Operación",
-    };
-    return labels[this.tipoJunta] ?? "";
+    return this.juntaLabels[this.tipoJunta] ?? "";
   }
 
   onLoadData(tipoJuntaEnum: number): void {
@@ -162,41 +112,34 @@ export class MinutasList {
       });
   }
 
-  navigateToPendientes() {
+  navigateToPendientes(): void {
     this.route.navigate(ROUTES.JUNTAS_COMITE.MINUTAS_PENDIENTES);
   }
 
-  navigateToSeguimiento() {
-    this.route.navigate(
-      ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS("operaciones"),
-    );
+  navigateToSeguimiento(): void {
+    this.route.navigate(ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS("operaciones"));
   }
 
-  navigateToGestionMinuta(id: string) {
+  navigateToGestionMinuta(id: string): void {
     this.route.navigate(ROUTES.JUNTAS_COMITE.GESTION_MINUTA(id));
   }
 
-  /**
-   * Exporta los pendientes de una minuta a un fichero Excel.
-   * @param meetingId El ID de la minuta.
-   */
-  exportToExcel(meetingId: any): void {
+  resumenMinuta(id: string): void {
+    this.route.navigate(ROUTES.JUNTAS_COMITE.RESUMEN_MINUTA(id));
+  }
+
+  exportToExcel(meetingId: string): void {
     this.apiResponseS.exportToExcel(
       Endpoints.MeetingDetailsTracking.exportSummaryToExcel(meetingId),
       "Pendientes Minuta",
     );
   }
 
-  /**
-   * Elimina una minuta completa.
-   * @param id El ID de la minuta a eliminar.
-   */
   onDelete(id: string): void {
     this.apiResponseS
       .onDelete(Endpoints.Meetings.delete(id))
       .then((result: boolean) => {
         if (result) {
-          // Optimización: Eliminar el item del array local en lugar de recargar todo.
           this.dataSignal.update((data) =>
             data.filter((meeting) => meeting.id !== id),
           );
@@ -204,29 +147,17 @@ export class MinutasList {
       });
   }
 
-  /**
-   * Envía la minuta por correo electrónico al Comité.
-   * @param meetingId El ID de la minuta.
-   */
-  onSendEmailMeeting(meetingId: any): void {
+  onSendEmailMeeting(meetingId: string): void {
     this.apiResponseS
       .onPost(Endpoints.SendEmail.meeting(meetingId))
       .then(() => {});
   }
 
   /**
-   * Abre el modal para agregar o editar una minuta.
-   * @param data Objeto con el ID de la minuta (0 para nuevo) y el título del modal.
+   * Abre el modal de alta o edición de una minuta.
+   * La administración de minutas es independiente del calendario/agenda.
    */
   showModalAddOrEditMeeting(data: { id: string; title: string }): void {
-    if (!data.id && this.tipoJunta !== 2) {
-      this.customToastS.showInfo(
-        "Alta desde agenda",
-        "Las minutas de comite y asamblea no pueden crearse directamente aqui. Primero registra la agenda de la junta para generar la sesion mensual y, desde ella, la minuta vinculada.",
-      );
-      return;
-    }
-
     this.dialogHandlerS
       .openDialog(
         MeetingForm,
@@ -238,18 +169,16 @@ export class MinutasList {
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
-        if (result) this.onLoadData(this.tipoJunta); // Recargar es necesario al agregar/editar una minuta completa.
+        if (result) this.onLoadData(this.tipoJunta);
       });
   }
 
   /**
-   * Abre un modal que muestra una lista filtrada de asuntos de una minuta.
-   * @param id El ID de la minuta.
-   * @param header El título para el modal.
-   * @param status El estatus por el cual filtrar los asuntos.
+   * Abre una lista filtrada de asuntos de una minuta.
+   * @param status 0=Pendiente, 1=Concluido, 2=No autorizado, 4=Todos.
    */
   showModalAddOrEditMeetingDetails(
-    id: any,
+    id: string,
     header: string,
     status: number,
   ): void {
@@ -261,46 +190,18 @@ export class MinutasList {
     );
   }
 
-  /**
-   * Abre el modal para agregar o editar un detalle (asunto) de una minuta.
-   * Este método es llamado por el evento del componente hijo.
-   * @param data El objeto de evento con los datos necesarios.
-   */
-  onModalFormMinutaDetalle(data: DetailEvent): void {
-    this.dialogHandlerS
-      .openDialog(
-        MinutaDetalleForm,
-        {
-          id: data.id,
-          meetingId: data.meetingId,
-          areaResponsable: data.areaResponsable,
-        },
-        data.header,
-        this.dialogHandlerS.sizeLg,
-      )
-      .then((result: boolean) => {
-        if (result) this.onLoadData(this.tipoJunta); // Recargar al agregar/editar un seguimiento.
-      });
-  }
-
-  /** Genera y descarga el PDF de una minuta sin navegar. */
-  onNavigateMinutaPublico(id: any): void {
+  onNavigateMinutaPublico(id: string): void {
     this.onGenerarMinutaPdf(id);
   }
 
-  /** Alias usado en la vista móvil. */
-  onGeneretePDF(id: any): void {
-    this.onGenerarMinutaPdf(id);
-  }
-
-  private onGenerarMinutaPdf(meetingId: any): void {
+  private onGenerarMinutaPdf(meetingId: string): void {
     this.customToastS.showInfo(
       "Generando PDF",
       "Espere un momento por favor...",
     );
     this.apiResponseS
       .onGetList(Endpoints.Meetings.reportPdf(meetingId))
-      .then(async (meetingData: any) => {
+      .then((meetingData: any) => {
         if (!meetingData) {
           this.customToastS.showError(
             "Error",
@@ -312,7 +213,7 @@ export class MinutasList {
         const dateLabel = meetingData.minuta?.date
           ? String(meetingData.minuta.date).split(" ")[0]
           : "N/A";
-        const tipo = meetingData.minuta?.eTypeMeeting ?? "Junta";
+        const tipo = meetingData.minuta?.typeMeeting ?? "Junta";
         this.minutaPdfS.downloadMinuta(
           meetingData,
           `Minuta-${tipo}-${dateLabel}`,
@@ -324,104 +225,6 @@ export class MinutasList {
           "Error",
           "No se pudieron obtener los datos de la minuta.",
         );
-      });
-  }
-
-  /**
-   * Navega a la pógina de resumen de una minuta.
-   * @param id El ID de la minuta.
-   */
-  resumenMinuta(id: any): void {
-    this.route.navigate(["/committee-meetings/resumen-minuta", id]);
-  }
-
-  /**
-   * Envía un correo electrónico a los responsables de un área específica de una minuta.
-   * @param id El ID de la minuta.
-   * @param eAreaMinutasDetalles El identificador numérico del área.
-   */
-  onSendEmail(id: any, eAreaMinutasDetalles: number): void {
-    this.apiResponseS
-      .onPost(
-        Endpoints.Meetings.sendEmailResponsible(
-          id,
-          this.customerIdS.customerId(),
-          eAreaMinutasDetalles,
-          this.authS.infoUserAuth.applicationUserId,
-        ),
-      )
-      .then(() => {});
-  }
-
-  /**
-   * Abre el modal para agregar o editar un seguimiento de un asunto.
-   * @param event El objeto de evento con los IDs necesarios.
-   */
-  onModalFormSeguimiento(event: SeguimientoEvent): void {
-    this.dialogHandlerS
-      .openDialog(
-        MeetingSeguimientoEdit,
-        {
-          meetingDetailsId: event.meetingDetailsId,
-          idMeetingSeguimiento: event.idMeetingSeguimiento,
-        },
-        "Seguimiento",
-        this.dialogHandlerS.sizeLg,
-      )
-      .then((result: boolean) => {
-        if (result) this.onLoadData(this.tipoJunta); // Recargar al agregar/editar un seguimiento.
-      });
-  }
-
-  /**
-   * Elimina un seguimiento de un asunto.
-   * @param id El ID del seguimiento a eliminar.
-   */
-  onDeleteSeguimiento(id: any): void {
-    this.apiResponseS
-      .onDelete(Endpoints.MeetingDetailsTracking.delete(id))
-      .then(() => {
-        // Optimización: Eliminar el seguimiento del array local.
-        this.dataSignal.update((data) => {
-          data.forEach((meeting) => {
-            ["contable", "operaciones", "legal"].forEach((area) => {
-              meeting[area]?.forEach((detail) => {
-                if (detail.seguimiento) {
-                  detail.seguimiento = detail.seguimiento.filter(
-                    (seg) => seg.id !== id,
-                  );
-                }
-              });
-            });
-          });
-          return data;
-        });
-      });
-  }
-
-  /**
-   * Elimina un detalle (asunto) completo de una minuta.
-   * @param id El ID del detalle a eliminar.
-   */
-  onDeleteMeetingDetail(id: any): void {
-    this.apiResponseS
-      .onDelete(Endpoints.MeetingsDetails.delete(id))
-      .then(() => {
-        // Optimización: Eliminar el detalle del array local.
-        this.dataSignal.update((data) => {
-          data.forEach((meeting: any) => {
-            meeting.contable =
-              meeting.contable?.filter((detail) => detail.id !== id) || [];
-            meeting.operaciones =
-              meeting.operaciones?.filter((detail) => detail.id !== id) || [];
-            meeting.legal =
-              meeting.legal?.filter((detail) => detail.id !== id) || [];
-          });
-          return data;
-        });
-        // Podríamos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mós simple.
-        // Por simplicidad, una recarga puede ser aceptable aquó si los totales deben ser 100% precisos.
-        this.onLoadData(this.tipoJunta);
       });
   }
 }
