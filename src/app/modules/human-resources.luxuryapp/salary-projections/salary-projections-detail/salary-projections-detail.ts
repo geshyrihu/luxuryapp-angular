@@ -142,9 +142,6 @@ export class SalaryProjectionsDetail {
 
       for (const item of scenario.items) {
         netMonthlySalary += item.netMonthlySalary || 0;
-        rcvEmployerFee += item.rcvEmployerFee || 0;
-        infonavitEmployerFee += item.infonavitEmployerFee || 0;
-        imssEmployerFee += item.imssEmployerFee || 0;
 
         const sim = sims[item.id];
         if (sim) {
@@ -154,6 +151,9 @@ export class SalaryProjectionsDetail {
           christmasBonus += sim.christmasBonus || 0;
           monthlyPerceptions += sim.monthlyPerceptions || 0;
           employerPayrollTax += sim.employerPayrollTax || 0;
+          rcvEmployerFee += sim.rcvEmployerFee || 0;
+          infonavitEmployerFee += sim.infonavitEmployerFee || 0;
+          imssEmployerFee += sim.imssEmployerFee || 0;
           totalEmployerCost += sim.totalEmployerCost || 0;
         }
       }

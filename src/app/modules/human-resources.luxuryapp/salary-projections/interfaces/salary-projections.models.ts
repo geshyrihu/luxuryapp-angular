@@ -95,8 +95,12 @@ export interface ISalaryProjectionItemSimulation {
   christmasBonus: number;
   monthlyPerceptions: number;
   employerPayrollTax: number;
+  rcvEmployerFee: number;
+  infonavitEmployerFee: number;
+  imssEmployerFee: number;
   totalEmployerCost: number;
 }
+
 
 export interface ISimulateSalaryProjectionItem {
   itemId: string;

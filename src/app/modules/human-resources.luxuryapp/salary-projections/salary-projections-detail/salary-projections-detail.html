@@ -105,9 +105,9 @@
           <td class="text-end text-sm">{{ simulationOf(item.id)?.sundayPremium ?? 0 | number: "1.2-2" }}</td>
           <td class="text-end text-sm">{{ simulationOf(item.id)?.christmasBonus ?? 0 | number: "1.2-2" }}</td>
           <td class="text-end fw-semibold text-primary">{{ simulationOf(item.id)?.monthlyPerceptions ?? 0 | number: "1.2-2" }}</td>
-          <td class="text-end text-sm">{{ item.rcvEmployerFee ?? 0 | number: "1.2-2" }}</td>
-          <td class="text-end text-sm">{{ item.infonavitEmployerFee ?? 0 | number: "1.2-2" }}</td>
-          <td class="text-end text-sm">{{ item.imssEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end text-sm">{{ simulationOf(item.id)?.rcvEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end text-sm">{{ simulationOf(item.id)?.infonavitEmployerFee ?? 0 | number: "1.2-2" }}</td>
+          <td class="text-end text-sm">{{ simulationOf(item.id)?.imssEmployerFee ?? 0 | number: "1.2-2" }}</td>
           <td class="text-end text-sm">{{ simulationOf(item.id)?.employerPayrollTax ?? 0 | number: "1.2-2" }}</td>
           <td class="text-end fw-bold text-success">
             <div class="d-flex align-items-center justify-content-end gap-2">

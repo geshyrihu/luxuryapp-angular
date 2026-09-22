@@ -185,7 +185,7 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
-  // ADMINISTRACIóN (SOLO SUPERUSUARIO)
+  // ADMINISTRACIÓNN (SOLO SUPERUSUARIO)
   // =============================================================
   {
     path: "admin-balances-vacaciones",
