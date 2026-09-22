@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "@core/auth/guards/auth.guard";
+import { hasRolesGuard } from "@core/auth/guards/has-roles.guard";
 export const pagesRoutes: Routes = [
   {
     path: "",
@@ -29,6 +30,49 @@ export const pagesRoutes: Routes = [
     data: {
       title: "Dashboard",
       breadcrumb: "Dashboard",
+    },
+  },
+  {
+    path: "dashboard/metrics",
+    loadComponent: () =>
+      import("@operations.luxuryapp/dashboard/metrics/dashboard-metrics").then(
+        (m) => m.DashboardMetrics,
+      ),
+    canActivate: [authGuard, hasRolesGuard],
+    data: {
+      title: "Métricas Operativas",
+      breadcrumb: "Métricas",
+      allowedRoles: [
+        "SuperUsuario", "Direccion",
+        "Legal", "CoordinacionLegal", "RecursosHumanos", "Reclutamiento", 
+        "GerenteMantenimiento", "SistemasGeneral", "Mensajeria", 
+        "SupervisionOperativa", "Administrador", "GerenteOperaciones", 
+        "GerenteAtencion", "Asistente", "Contador", "Cobranza", "JefeMantenimiento",
+        "TecnicoMantenimiento", "MttoNocturno", "Almacenista", "SupervisorObra",
+        "Recepcionista", "MasterConcierge", "Concierge", "JefeSeguridadInterna",
+        "SeguridadInterna", "Monitorista", "Sistemas", "EntrenadorGimnasio",
+        "Ludotecaria", "Paqueteria", "Chofer", "BellBoy", "SnackBar", "Salvavidas",
+        "JardineriaInterna", "Jardineria", "Limpieza", "Seguridad", "Proveedor"
+      ]
+    },
+  },
+  {
+    path: "dashboard/metrics/catalog",
+    loadComponent: () =>
+      import("@operations.luxuryapp/dashboard/metrics/catalog/kpi-catalog").then(
+        (m) => m.KpiCatalog,
+      ),
+    canActivate: [authGuard, hasRolesGuard],
+    data: {
+      title: "Catálogo de KPIs",
+      breadcrumb: "Catálogo de KPIs",
+      allowedRoles: [
+        "SuperUsuario", "Direccion", "Legal", "CoordinacionLegal", 
+        "RecursosHumanos", "Reclutamiento", "GerenteMantenimiento", 
+        "SistemasGeneral", "Mensajeria", "SupervisionOperativa", 
+        "Administrador", "GerenteOperaciones", "GerenteAtencion", 
+        "Asistente", "Contador", "Cobranza", "JefeMantenimiento"
+      ]
     },
   },
 

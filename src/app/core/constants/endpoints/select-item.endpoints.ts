@@ -8,6 +8,7 @@ export const EndpointsSelectItem = {
     applicationRoles: "application-roles",
     applicationRolesByRoleType: (roleType: number) =>
       `roles-by-role-type/${roleType}`,
+    dashboardKpiRoles: "dashboard-kpi-roles",
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
     applicationUserProvider: "application-user-providers",

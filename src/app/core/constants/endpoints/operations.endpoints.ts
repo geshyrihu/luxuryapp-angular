@@ -285,6 +285,10 @@ resumenGastosByCustomer: (customerId: string) =>
       `dashboard/send-executive-report/${customerId}`,
     globalPendingItems: (customerId: string) =>
       `dashboard/global-pending-items/${customerId}`,
+    operationalMetrics: (params: string) => `dashboard/metrics/operational?${params}`,
+    maintenanceOrders: (params: string) => `dashboard/metrics/maintenance-orders?${params}`,
+    ticketsByGroup: (params: string) => `dashboard/metrics/tickets-by-group?${params}`,
+    contractsExpiring: (params: string) => `dashboard/metrics/contracts-expiring?${params}`,
   },
   CommitteePresentations: {
     generalByDate: (date: string) => `presentaciones-junta-comite/generales/${date}/`,
