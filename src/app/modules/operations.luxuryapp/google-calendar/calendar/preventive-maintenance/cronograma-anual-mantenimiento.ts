@@ -431,7 +431,7 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th style="width: 25%;">DESCRIPCIóN</th>
+          <th style="width: 25%;">DESCRIPCIÓN</th>
           ${monthsHeaders}
         </tr>
       </thead>

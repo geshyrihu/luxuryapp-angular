@@ -157,10 +157,10 @@ export class WarehouseForm implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.Almacen.getById(this.id))
       .then((result: any) => {
-        // Llenamos los campos bósicos del formulario
+        // Llenamos los campos básicos del formulario
         this.form.patchValue(result);
 
-        // Separamos usuarios disponibles y asignados segón los datos cargados
+        // Separamos usuarios disponibles y asignados según los datos cargados
         const assignedIds = result.responsablesIds || [];
         this.assignedUsers = this.allUsers.filter((u) =>
           assignedIds.includes(u.value),
@@ -254,7 +254,7 @@ export class WarehouseForm implements OnInit {
   }
 
   /**
-   * Filtra la lista de usuarios disponibles segón el texto de bósqueda.
+   * Filtra la lista de usuarios disponibles según el texto de búsqueda.
    * @returns Lista de usuarios filtrados
    */
   filteredAvailableUsers() {

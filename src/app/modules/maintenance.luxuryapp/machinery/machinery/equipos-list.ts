@@ -386,7 +386,7 @@ export class EquiposList {
       // Group by system
       const groups = sortedData.reduce(
         (acc, item) => {
-          const system = item.equipoClasificacion || "SIN CLASIFICACIóN";
+          const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[system]) acc[system] = [];
           acc[system].push(item);
           return acc;

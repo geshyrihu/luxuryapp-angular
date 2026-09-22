@@ -69,7 +69,7 @@ ${this.htmlPrintS.getStandardCss()}
   .tc { text-align:center; }
 </style>
 </head><body><div class="container">
-${this.htmlPrintS.buildStandardHeader(logo, "BITóCORA DE HIDRANTES", "", generatedAt, "HIDRANTE", period)}
+${this.htmlPrintS.buildStandardHeader(logo, "BITÁCORA DE HIDRANTES", "", generatedAt, "HIDRANTE", period)}
 <div class="body-doc">
   <table class="data-table">
     <thead><tr>

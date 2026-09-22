@@ -39,7 +39,7 @@ export class TaskStatus implements OnInit {
   status: string = this.TaskGroupService.taskGroupMessageStatus || "NotStarted";
   statusChange = output<string>();
 
-  isMobile: boolean = false; // Propiedad para detectar mívil
+  isMobile: boolean = false; // Propiedad para detectar móvil
 
   constructor() {
     addIcons({

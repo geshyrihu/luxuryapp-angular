@@ -72,11 +72,11 @@
   </ng-template>
 </app-table>
 
-<!--📲INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   [showAdd]="isAdmin"
-  (add)="onModalForm({ id: '', title: 'Nuevo Almacón' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
 >

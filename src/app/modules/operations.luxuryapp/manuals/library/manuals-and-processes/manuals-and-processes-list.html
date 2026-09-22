@@ -131,12 +131,12 @@
               {{ manual.folio }}
             </span>
 
-            <!-- DESCRIPCIÓN/Tútulo del Manual -->
+            <!-- DESCRIPCIÓN/Título del Manual -->
             <span class="text-base text-body fw-semibold truncate">
-              {{ manual.description || 'é' }}
+              {{ manual.description || 'Sin descripción' }}
             </span>
 
-            <!-- Lónea punteada de óndice (TOC Leader Line) -->
+            <!-- Línea punteada de índice (TOC Leader Line) -->
             <div
               class="flex-grow-1 border-bottom-1 border-dotted border mx-3 align-self-end mb-2 d-none d-md-block"
             ></div>
@@ -197,7 +197,7 @@
   }
 </div>
 
-<!-- MOBILE: Componente adaptado para versión mívil (oculto en md en adelante) -->
+<!-- MOBILE: Componente adaptado para versión móvil (oculto en md en adelante) -->
 <div class="d-block d-md-none">
   <app-data-view-mobile
     [data]="dataSignal()"

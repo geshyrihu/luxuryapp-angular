@@ -21,7 +21,7 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="code">
-        CATEGORóA
+        CATEGORÍA
         <app-sorticon field="code" />
       </th>
       <th class="table-col-5"></th>
@@ -50,7 +50,7 @@
   </ng-template>
 </app-table>
 
-<!--📲INICIO: Componente adaptado para versión mívil -->
+<!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="data()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

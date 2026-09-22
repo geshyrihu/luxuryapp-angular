@@ -228,7 +228,7 @@ export class TaskTemplateItems implements OnInit {
       case "4":
         return "cuarto";
       case "-1":
-        return "óltimo";
+        return "último";
       default:
         return position;
     }

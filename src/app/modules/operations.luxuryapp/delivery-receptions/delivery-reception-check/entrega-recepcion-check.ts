@@ -135,7 +135,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones anuales y mensuales (óltimos 5 años) con papeles de trabajo.",
+              "Declaraciones anuales y mensuales (últimos 5 años) con papeles de trabajo.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -233,7 +233,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones de riesgo de trabajo y de sueldos y salarios (óltimos 5 años).",
+              "Declaraciones de riesgo de trabajo y de sueldos y salarios (últimos 5 años).",
             type: "Obligatorio",
             status: null,
             observations: "",

@@ -86,9 +86,9 @@ export class ListProvider implements OnInit {
   totalRecords: number = 0; // Total de registros para paginador
   AspRole = ApplicationRole;
   // Configuración de paginación y filtro
-  rows: number = 30; // Registros por pógina
-  first: number = 0; // óndice del primer registro
-  page: number = 1; // Pógina actual
+  rows: number = 30; // Registros por página
+  first: number = 0; // índice del primer registro
+  page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
   // Opciones de paginación y filtro global para PrimeNG
@@ -144,10 +144,10 @@ export class ListProvider implements OnInit {
     return this.aspRoleS.hasAny(value);
   }
 
-  // Este mótodo se llama cada vez que el usuario escribe en el buscador
+  // Este método se llama cada vez que el usuario escribe en el buscador
   applyGlobalFilter(filterValue: string) {
-    this.searchTerm = filterValue; // Actualizamos el tórmino de bósqueda
-    this.first = 0; // Reiniciamos la paginación a la primera pógina
+    this.searchTerm = filterValue; // Actualizamos el término de búsqueda
+    this.first = 0; // Reiniciamos la paginación a la primera página
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }

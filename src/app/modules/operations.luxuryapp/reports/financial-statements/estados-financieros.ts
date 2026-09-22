@@ -20,9 +20,9 @@ interface FinancialReportResponse {
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estados-financieros.html",
 })
-// óCAMBIO! Ya no es necesario implementar OnInit.
+// ¡CAMBIO! Ya no es necesario implementar OnInit.
 export class EstadosFinancieros {
-  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
+  // --- INYECCIÓN DE DEPENDENCIAS (sin cambios) ---
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);

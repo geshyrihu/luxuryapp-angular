@@ -38,18 +38,18 @@ interface ActivoGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SanitizeHtmlPipe, AppSpinner],
 })
-// óCAMBIO! Ya no implementamos OnInit.
+// ¡CAMBIO! Ya no implementamos OnInit.
 export class ReporteCompletoActivos {
-  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
+  // --- INYECCIÓN DE DEPENDENCIAS (sin cambios) ---
   private customerIdS = inject(CustomerIdService);
   apiResponseS = inject(ApiResponseService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
 
-  // óCAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
+  // ¡CAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
   data = signal<ActivoGroup[]>([]);
   loading = signal(true);
 
-  // --- PROPIEDADES DE CONFIGURACIóN (sin cambios) ---
+  // --- PROPIEDADES DE CONFIGURACIÓN (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

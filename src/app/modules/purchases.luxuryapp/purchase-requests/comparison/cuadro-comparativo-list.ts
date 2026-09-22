@@ -581,7 +581,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       title: "Monto a usar",
       input: "number",
       inputLabel: `${budgetData.accountNumber} | Restante ${this.formatCurrency(restanteReal)}`,
-      inputValue: String(this.getCheapestQuotationTotal()),
+      inputValue: String(this.getMissingBudgetAmount()),
       inputAttributes: {
         min: "0.01",
         step: "0.01",
@@ -659,6 +659,41 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     }
 
     return Math.min(...validTotals);
+  }
+
+  getTotalBudgetAssigned() {
+    return this.budgetSignal().reduce(
+      (total, budget) => total + Number(budget.amount || 0),
+      0,
+    );
+  }
+
+  getMissingBudgetAmount() {
+    return Math.max(
+      0,
+      this.getCheapestQuotationTotal() - this.getTotalBudgetAssigned(),
+    );
+  }
+
+  getBudgetCoverageDifference() {
+    return this.getTotalBudgetAssigned() - this.getCheapestQuotationTotal();
+  }
+
+  hasEnoughBudgetCoverage() {
+    const requiredAmount = this.getCheapestQuotationTotal();
+    return requiredAmount > 0 && this.getTotalBudgetAssigned() >= requiredAmount;
+  }
+
+  hasQuotationTotal() {
+    return this.getCheapestQuotationTotal() > 0;
+  }
+
+  isBudgetOverAvailable(budget: any) {
+    return Number(budget.amount || 0) > Number(budget.presupuestoRestante || 0);
+  }
+
+  hasBudgetOverAvailable() {
+    return this.budgetSignal().some((budget) => this.isBudgetOverAvailable(budget));
   }
 
   onEvidenceFilesSelected(event: Event) {

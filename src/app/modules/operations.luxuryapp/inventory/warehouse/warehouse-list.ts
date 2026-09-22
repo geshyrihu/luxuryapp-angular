@@ -173,7 +173,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORóA";
+          const category = item.category || "SIN CATEGORÍA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -226,7 +226,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacón: ${warehouseName}`, generatedAt, "ALMACóN")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
 
   <div class="body-doc">
     <table class="data-table">

@@ -134,7 +134,7 @@ export class InventarioLlavesList {
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =
-            item.equipoClasificacion || "SIN CLASIFICACIóN";
+            item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[classification]) acc[classification] = [];
           acc[classification].push(item);
           return acc;

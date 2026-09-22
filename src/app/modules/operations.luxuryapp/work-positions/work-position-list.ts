@@ -80,7 +80,7 @@ import {
   ],
 })
 export class WorkPositionList {
-  // --- INYECCIóN DE DEPENDENCIAS ---
+  // --- INYECCIÓN DE DEPENDENCIAS ---
   public authS = inject(AuthService);
   readonly apiS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);

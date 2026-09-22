@@ -87,7 +87,7 @@ const scheduleValidator: ValidatorFn = (control: AbstractControl): ValidationErr
   ],
 })
 export class WorkPositionForm implements OnInit {
-  // --- INYECCIóN DE DEPENDENCIAS ---
+  // --- INYECCIÓN DE DEPENDENCIAS ---
   readonly apiS = inject(ApiResponseService);
   private fb = inject(FormBuilder);
   public authS = inject(AuthService);

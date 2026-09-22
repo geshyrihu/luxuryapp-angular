@@ -78,13 +78,13 @@ export class EntregaRecepcionClienteLista {
   // óMEJORA! El departamento ahora es un signal.
   departamento = signal<string>("");
 
-  // --- PROPIEDADES ESTóTICAS (sin cambios) ---
+  // --- PROPIEDADES ESTÁTICAS (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   cb_departamento = [
     { value: "JURIDICO" },
-    { value: "ADMINISTRACIóN Y FINANZAS" },
+    { value: "ADMINISTRACIÓN Y FINANZAS" },
     { value: "OPERACIONES Y MANTENIMIENTO" },
   ];
   ref: DynamicDialogRef;
@@ -128,7 +128,7 @@ export class EntregaRecepcionClienteLista {
     // * Peticion para generar los items de entrega recepcion (sin cambios)
     this.apiResponseS.onGetItem(Endpoints.EntregaRecepcionCliente.generateData);
 
-    // óCORRECCIóN! Leemos los valores de los signals con ()
+    // ¡CORRECCIÓN! Leemos los valores de los signals con ()
     const urlApi = Endpoints.EntregaRecepcionCliente.getByCustomerAndDepartment(
       this.customerIdS.customerId(),
       this.departamento(),

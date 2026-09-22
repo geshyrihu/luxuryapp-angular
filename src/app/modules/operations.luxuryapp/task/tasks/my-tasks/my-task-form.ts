@@ -75,7 +75,7 @@ export class MyTaskForm implements OnInit, OnDestroy {
   form = this.formB.nonNullable.group({
     id: [{ value: "", disabled: true }],
     ticketGroupId: [this.config.data.ticketGroupId, Validators.required], // ticketGroupId
-    title: ["", [Validators.required, Validators.maxLength(100)]], // Tútulo
+    title: ["", [Validators.required, Validators.maxLength(100)]], // Título
     description: ["", [Validators.required, Validators.maxLength(150)]], // DESCRIPCIÓN
     priority: [1, Validators.required], // Prioridad (enum)
     creatorId: [this.authS.applicationUserId], // Id del creador
