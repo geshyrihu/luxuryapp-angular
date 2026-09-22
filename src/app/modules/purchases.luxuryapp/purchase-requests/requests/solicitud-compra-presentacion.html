@@ -72,7 +72,7 @@
           <div class="row align-items-start mb-4 g-4">
             <div class="col-12 col-lg-8">
               <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-body">
-                Resumen de solicitudes
+                Requisiciones pendientes
               </h2>
               <p class="text-body text-lg line-height-3 mt-2 mb-0">
                 Ordenadas por urgencia: Crítica a Baja.
@@ -133,11 +133,12 @@
               <table class="summary-table-grid text-sm">
                 <thead>
                   <tr>
-                    <th style="width: 28%">DESCRIPCIÓN</th>
-                    <th style="width: 27%">JUSTIFICACIÓN</th>
-                    <th style="width: 17%">PRESUPUESTO</th>
-                    <th class="text-end" style="width: 14%">COSTO TOTAL</th>
-                    <th class="text-end" style="width: 14%">
+                    <th style="width: 25%">DESCRIPCIÓN</th>
+                    <th style="width: 25%">JUSTIFICACIÓN</th>
+                    <th style="width: 12%">TIPO</th>
+                    <th style="width: 16%">PRESUPUESTO</th>
+                    <th class="text-end" style="width: 11%">COSTO TOTAL</th>
+                    <th class="text-end" style="width: 11%">
                       DINERO DISPONIBLE
                     </th>
                   </tr>
@@ -163,18 +164,38 @@
                         {{ row.justificacion }}
                       </div>
                     </td>
-                    <td class="text-body-secondary">
-                      {{ row.partidaPresupuestal }}
+                    <td>
+                      <lx-tag
+                        [value]="row.tipoSolicitudLabel"
+                        [severity]="row.tipoSolicitudSeverity"
+                        [rounded]="true"
+                        size="small"
+                      />
+                    </td>
+                    <td>
+                      <div class="fw-semibold text-body">
+                        {{ row.partidaPresupuestalDescripcion }}
+                      </div>
+                      <div class="text-body-secondary text-xs">
+                        {{ row.partidaPresupuestal }}
+                      </div>
                     </td>
                     <td class="text-end text-nowrap summary-money">
                       {{ row.costoTotalConIva | number : "1.0-0" }}
                     </td>
                     <td
                       class="text-end text-nowrap summary-money"
-                      [class.text-success]="row.dineroDisponible > 0"
-                      [class.text-danger]="row.dineroDisponible <= 0"
+                      [class.text-success]="getSummaryBudgetBalance(row) >= 0"
+                      [class.text-danger]="getSummaryBudgetBalance(row) < 0"
                     >
-                      {{ row.dineroDisponible | number : "1.0-0" }}
+                      <div>{{ row.dineroDisponible | number : "1.0-0" }}</div>
+                      <div class="text-xs fw-semibold">
+                        @if (getSummaryBudgetBalance(row) >= 0) {
+                        Alcanza
+                        } @else {
+                        Excede por {{ -getSummaryBudgetBalance(row) | number : "1.0-0" }}
+                        }
+                      </div>
                     </td>
                   </tr>
                   }
@@ -431,11 +452,24 @@
                     <td class="text-end text-nowrap">
                       {{ budget.presupuestoAnual | number : "1.0-0" }}
                     </td>
-                    <td class="text-end text-nowrap">
+                    <td
+                      class="text-end text-nowrap"
+                      [class.text-danger]="isBudgetExceeded(budget)"
+                    >
                       {{ budget.presupuestoRestante | number : "1.0-0" }}
                     </td>
-                    <td class="text-end fw-semibold text-nowrap">
-                      {{ budget.amount | number : "1.0-0" }}
+                    <td
+                      class="text-end fw-semibold text-nowrap"
+                      [class.text-danger]="isBudgetExceeded(budget)"
+                    >
+                      <div>{{ budget.amount | number : "1.0-0" }}</div>
+                      <div class="text-xs">
+                        @if (isBudgetExceeded(budget)) {
+                        Excede por {{ -getBudgetBalanceAfterUse(budget) | number : "1.0-0" }}
+                        } @else {
+                        Disponible después {{ getBudgetBalanceAfterUse(budget) | number : "1.0-0" }}
+                        }
+                      </div>
                     </td>
                   </tr>
                 </ng-template>

@@ -111,6 +111,36 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         overflow: hidden;
       }
 
+      .presentation-carousel {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      :host ::ng-deep .presentation-carousel owl-carousel-o,
+      :host ::ng-deep .presentation-carousel owl-carousel-o .owl-carousel,
+      :host ::ng-deep .presentation-carousel .owl-stage-outer {
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      :host ::ng-deep .presentation-carousel .owl-stage {
+        display: flex;
+      }
+
+      :host ::ng-deep .presentation-carousel .owl-item {
+        flex: 0 0 auto;
+        max-width: 100%;
+      }
+
+      :host ::ng-deep .presentation-carousel .owl-item > .presentation-slide {
+        width: 100%;
+        max-width: 100%;
+      }
+
       .presentation-accent {
         height: 0.25rem;
         background: var(--ds-primary);
@@ -549,6 +579,10 @@ export class SolicitudCompraPresentacion {
       area: solicitud.solicita || "Sin área",
       justificacion: solicitud.justificacionGasto || "Sin justificación registrada",
       costoTotalConIva: solicitud.cheapestTotal || 0,
+      partidaPresupuestalDescripcion:
+        budgets.length > 0
+          ? budgets.map((budget: any) => budget.accountName).filter(Boolean).join(", ") || "Sin descripción"
+          : "Sin descripción",
       partidaPresupuestal:
         budgets.length > 0
           ? budgets.map((budget: any) => budget.accountNumber).join(", ")
@@ -630,6 +664,18 @@ export class SolicitudCompraPresentacion {
     return (
       (budget.totalGastadoEjecutado || 0) + (budget.totalGastosPendientes || 0)
     );
+  }
+
+  getBudgetBalanceAfterUse(budget: any): number {
+    return (budget.presupuestoRestante || 0) - (budget.amount || 0);
+  }
+
+  isBudgetExceeded(budget: any): boolean {
+    return this.getBudgetBalanceAfterUse(budget) < 0;
+  }
+
+  getSummaryBudgetBalance(row: any): number {
+    return (row.dineroDisponible || 0) - (row.costoTotalConIva || 0);
   }
 
   getProviderColumnWidth(providerCount: number): number {
@@ -882,7 +928,7 @@ export class SolicitudCompraPresentacion {
       typeof event === "number"
         ? event
         : (event.page ?? event.startPosition ?? 0);
-    this.currentPage.set(page);
+    if (page !== this.currentPage()) this.currentPage.set(page);
   }
 
   goToSummary() {

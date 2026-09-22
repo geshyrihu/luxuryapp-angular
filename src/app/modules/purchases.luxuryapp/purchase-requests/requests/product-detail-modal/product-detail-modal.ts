@@ -24,8 +24,8 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
       </div>
 
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
-          <thead class="table-light">
+        <table class="product-detail-table table table-sm table-hover align-middle mb-0">
+          <thead>
             <tr>
               <th style="width: 3rem">N°</th>
               <th>PRODUCTO</th>
@@ -64,6 +64,21 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
     `
       :host {
         display: block;
+      }
+
+      .product-detail-table thead {
+        background: var(--ds-primary);
+        color: var(--ds-primary-text);
+      }
+
+      .product-detail-table thead th {
+        background: inherit;
+        color: inherit;
+        font-size: 0.75rem;
+        font-weight: 650;
+        letter-spacing: 0.04em;
+        padding: 0.55rem 0.65rem;
+        white-space: nowrap;
       }
     `,
   ],

@@ -69,6 +69,8 @@ import {
 })
 export class Carousel extends CarouselBase {
   private readonly carousel = viewChild(OwlCarouselComponent);
+  private lastNavigatedCarousel: OwlCarouselComponent | undefined;
+  private lastNavigatedPage = -1;
 
   constructor() {
     super();
@@ -76,7 +78,13 @@ export class Carousel extends CarouselBase {
       const carousel = this.carousel();
       const page = this.page();
 
-      if (carousel && this.value().length > 0) {
+      if (
+        carousel &&
+        this.value().length > 0 &&
+        (carousel !== this.lastNavigatedCarousel || page !== this.lastNavigatedPage)
+      ) {
+        this.lastNavigatedCarousel = carousel;
+        this.lastNavigatedPage = page;
         carousel.to(`app-carousel-slide-${page}`);
       }
     });
@@ -94,7 +102,10 @@ export class Carousel extends CarouselBase {
     }));
 
   protected onChanged(event: { startPosition?: number }): void {
-    if (typeof event.startPosition === "number") {
+    if (
+      typeof event.startPosition === "number" &&
+      event.startPosition !== this.page()
+    ) {
       this.onPage.emit(event.startPosition);
     }
   }
