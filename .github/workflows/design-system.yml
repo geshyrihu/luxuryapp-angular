@@ -62,6 +62,14 @@ jobs:
       - name: Nombres de icono existentes
         run: npm run audit:icon-names
 
+      # ── Encoding ────────────────────────────────────────────────────────
+      # Cero corruptelas mojibake (double UTF-8 encoding). Detecta caracteres
+      # españoles mal codificados (mívil→móvil, Tútulo→Título, etc.).
+      # Fase 1-10 de remediación completada 2026-09-21: 254 corruptelas
+      # identificadas y corregidas. Este gate previene regresión.
+      - name: Textos sin mojibake (encoding correcto)
+        run: npm run audit:encoding
+
   # ── Accesibilidad ─────────────────────────────────────────────────────
   # Separado porque necesita levantar la aplicación y una sesión. Hoy en
   # MODO REPORTE: publica el resultado y nunca bloquea. Pasa a bloqueante
