@@ -5,8 +5,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
-import { CustomerDto } from "@modules/admin.luxuryapp/security-permissions/customer/interfaces/customer.dto";
-import { CustomToastService } from "@core/services/custom-toast.service";
+import { CustomerDto } from "../../../admin.luxuryapp/security-permissions/customer/interfaces/customer.dto";
 import { FormsModule } from "@angular/forms";
 import { NgClass } from "@angular/common";
 
@@ -63,7 +62,6 @@ const MODULE_OPTIONS: SalaryProjectionModuleOption[] = [
 export class SalaryProjectionsMasterDashboard implements OnInit {
   private readonly router = inject(Router);
   private readonly apiResponse = inject(ApiResponseService);
-  private readonly toast = inject(CustomToastService);
 
   readonly options = MODULE_OPTIONS;
   customers = signal<CustomerDto[]>([]);
@@ -89,11 +87,6 @@ export class SalaryProjectionsMasterDashboard implements OnInit {
     this.updatingCustomerId.set(customer.id);
     this.apiResponse
       .onPut(EndpointsAdmin.Customers.updateRiskPremium(customer.id), customer.riskPremiumPercentage)
-      .then((res) => {
-        if (res) {
-          this.toast.onSuccess("Prima de riesgo actualizada correctamente");
-        }
-      })
       .finally(() => {
         this.updatingCustomerId.set(null);
       });
