@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { LxCard } from "@ui/adaptive/card/card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
+import { CustomerDto } from "@modules/admin.luxuryapp/security-permissions/customer/interfaces/customer.dto";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { FormsModule } from "@angular/forms";
+import { NgClass } from "@angular/common";
 
 interface SalaryProjectionModuleOption {
   title: string;
@@ -50,14 +56,48 @@ const MODULE_OPTIONS: SalaryProjectionModuleOption[] = [
 
 @Component({
   selector: "app-salary-projections-master-dashboard",
-  imports: [AppIcon, LxCard, MobileListItem],
+  imports: [AppIcon, LxCard, MobileListItem, FormsModule, NgClass],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./master-dashboard.html",
 })
-export class SalaryProjectionsMasterDashboard {
+export class SalaryProjectionsMasterDashboard implements OnInit {
   private readonly router = inject(Router);
+  private readonly apiResponse = inject(ApiResponseService);
+  private readonly toast = inject(CustomToastService);
 
   readonly options = MODULE_OPTIONS;
+  customers = signal<CustomerDto[]>([]);
+  updatingCustomerId = signal<string | null>(null);
+
+  ngOnInit() {
+    this.loadCustomers();
+  }
+
+  loadCustomers() {
+    this.apiResponse
+      .onGetList<CustomerDto[]>(EndpointsAdmin.Customers.getAll(true))
+      .then((res) => {
+        if (res) {
+          this.customers.set(res);
+        }
+      });
+  }
+
+  onUpdateRiskPremium(customer: CustomerDto) {
+    if (customer.riskPremiumPercentage === null || customer.riskPremiumPercentage === undefined) return;
+    
+    this.updatingCustomerId.set(customer.id);
+    this.apiResponse
+      .onPut(EndpointsAdmin.Customers.updateRiskPremium(customer.id), customer.riskPremiumPercentage)
+      .then((res) => {
+        if (res) {
+          this.toast.onSuccess("Prima de riesgo actualizada correctamente");
+        }
+      })
+      .finally(() => {
+        this.updatingCustomerId.set(null);
+      });
+  }
 
   navigateTo(route: string): void {
     void this.router.navigateByUrl(route);

@@ -13,4 +13,5 @@ export interface CustomerDto {
   latitud: number;
   longitud: number;
   folioPrefix: string;
+  riskPremiumPercentage: number;
 }

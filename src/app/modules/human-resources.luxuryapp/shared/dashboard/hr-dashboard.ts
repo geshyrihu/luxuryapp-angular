@@ -50,15 +50,15 @@ export class HRDashboard {
     // INCIDENCIAS Y SANCIONES
     // -------------------------------------------------------------
     {
-      label: "Incidencias y Sanciones",
-      emoji: "??",
+label: "Incidencias y Sanciones",
+       emoji: "🚨",
       cards: [
         {
-          title: "Incidencias Disciplinarias",
-          description:
-            "Registro y seguimiento de incidentes de conducta, desempeño, seguridad o cumplimiento.",
-          route: "/recursos-humanos/incidents",
-          emoji: "??",
+title: "Incidencias Disciplinarias",
+           description:
+             "Registro y seguimiento de incidentes de conducta, desempeño, seguridad o cumplimiento.",
+           route: "/recursos-humanos/incidents",
+           emoji: "🚨",
           color: "#dc2626",
           bgColor: "#fee2e2",
           roles: [
@@ -71,11 +71,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Dashboard de Incidencias",
-          description:
-            "Mátricas y análisis de incidencias: KPIs, gróficos por mes/tipo/severidad y ranking de empleados.",
-          route: "/recursos-humanos/incident-dashboard",
-          emoji: "??",
+title: "Dashboard de Incidencias",
+           description:
+             "Mátricas y análisis de incidencias: KPIs, gróficos por mes/tipo/severidad y ranking de empleados.",
+           route: "/recursos-humanos/incident-dashboard",
+           emoji: "📊",
           color: "#0f766e",
           bgColor: "#ccfbf1",
           roles: [
@@ -85,11 +85,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Reportes de Incidencias",
-          description:
-            "Reportes estadósticos consolidados de incidencias con filtros avanzados y exportación.",
-          route: "/recursos-humanos/incident-reports",
-          emoji: "??",
+title: "Reportes de Incidencias",
+           description:
+             "Reportes estadósticos consolidados de incidencias con filtros avanzados y exportación.",
+           route: "/recursos-humanos/incident-reports",
+           emoji: "📄",
           color: "#0891b2",
           bgColor: "#cffafe",
           roles: [
@@ -98,11 +98,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Sanciones",
-          description:
-            "Gestión de sanciones aplicadas con seguimiento, apelación y trazabilidad completa.",
-          route: "/recursos-humanos/sanctions",
-          emoji: "??",
+title: "Sanciones",
+           description:
+             "Gestión de sanciones aplicadas con seguimiento, apelación y trazabilidad completa.",
+           route: "/recursos-humanos/sanctions",
+           emoji: "⚖️",
           color: "#7c2d12",
           bgColor: "#fed7aa",
           roles: [
@@ -119,25 +119,25 @@ export class HRDashboard {
     // PERMISOS
     // -------------------------------------------------------------
     {
-      label: "Permisos",
-      emoji: "???",
+label: "Permisos",
+       emoji: "📝",
       cards: [
         {
-          title: "Mis Solicitudes de Permiso",
-          description:
-            "Visualiza y gestiona tus solicitudes de permiso personal, módico o laboral.",
-          route: "/recursos-humanos/my-requests",
-          emoji: "??",
+title: "Mis Solicitudes de Permiso",
+           description:
+             "Visualiza y gestiona tus solicitudes de permiso personal, módico o laboral.",
+           route: "/recursos-humanos/my-requests",
+           emoji: "📝",
           color: "#0369a1",
           bgColor: "#e0f2fe",
           roles: [],
         },
         {
-          title: "Aprobaciones de Permisos",
-          description:
-            "Panel de aprobación y rechazo de solicitudes de permiso del equipo a cargo.",
-          route: "/recursos-humanos/approval",
-          emoji: "?",
+title: "Aprobaciones de Permisos",
+           description:
+             "Panel de aprobación y rechazo de solicitudes de permiso del equipo a cargo.",
+           route: "/recursos-humanos/approval",
+           emoji: "✅",
           color: "#15803d",
           bgColor: "#dcfce7",
           roles: [
@@ -156,55 +156,55 @@ export class HRDashboard {
     // VACACIONES
     // -------------------------------------------------------------
     {
-      label: "Vacaciones",
-      emoji: "???",
+label: "Vacaciones",
+       emoji: "🏖️",
       cards: [
         {
-          title: "Mis Vacaciones",
-          description:
-            "Consulta tu historial de solicitudes de vacaciones y el estado de cada período.",
-          route: "/recursos-humanos/my-vacations",
-          emoji: "??",
+title: "Mis Vacaciones",
+           description:
+             "Consulta tu historial de solicitudes de vacaciones y el estado de cada período.",
+           route: "/recursos-humanos/my-vacations",
+           emoji: "🏖️",
           color: "#0891b2",
           bgColor: "#cffafe",
           roles: [],
         },
         {
-          title: "Saldo de Vacaciones",
-          description:
-            "Visualiza tu saldo disponible de días de vacaciones y el historial de consumo.",
-          route: "/recursos-humanos/saldo-vacaciones",
-          emoji: "??",
+title: "Saldo de Vacaciones",
+           description:
+             "Visualiza tu saldo disponible de días de vacaciones y el historial de consumo.",
+           route: "/recursos-humanos/saldo-vacaciones",
+           emoji: "📅",
           color: "#7c3aed",
           bgColor: "#ede9fe",
           roles: [],
         },
         {
-          title: "Calendario de Personal",
-          description:
-            "Vista de calendario unificada con permisos y vacaciones de todo el equipo.",
-          route: "/recursos-humanos/vacation-calendar",
-          emoji: "??",
+title: "Calendario de Personal",
+           description:
+             "Vista de calendario unificada con permisos y vacaciones de todo el equipo.",
+           route: "/recursos-humanos/vacation-calendar",
+           emoji: "🗓️",
           color: "#0f766e",
           bgColor: "#ccfbf1",
           roles: [],
         },
         {
-          title: "Historial de Solicitudes",
-          description:
-            "Consulta el historial completo de solicitudes de permisos y vacaciones.",
-          route: "/recursos-humanos/requests-history",
-          emoji: "???",
+title: "Historial de Solicitudes",
+           description:
+             "Consulta el historial completo de solicitudes de permisos y vacaciones.",
+           route: "/recursos-humanos/requests-history",
+           emoji: "📜",
           color: "#92400e",
           bgColor: "#fef3c7",
           roles: [],
         },
         {
-          title: "Registrar Vacaciones Pasadas",
-          description:
-            "Registra períodos de vacaciones anteriores al sistema para completar el historial.",
-          route: "/recursos-humanos/register-past-vacations",
-          emoji: "??",
+title: "Registrar Vacaciones Pasadas",
+           description:
+             "Registra períodos de vacaciones anteriores al sistema para completar el historial.",
+           route: "/recursos-humanos/register-past-vacations",
+           emoji: "➕",
           color: "#6b7280",
           bgColor: "#f3f4f6",
           roles: [
@@ -214,11 +214,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Auditoría de Vacaciones",
-          description:
-            "Revisa el saldo e historial de vacaciones de cualquier empleado del cliente.",
-          route: "/recursos-humanos/auditoria-vacaciones",
-          emoji: "??",
+title: "Auditoría de Vacaciones",
+           description:
+             "Revisa el saldo e historial de vacaciones de cualquier empleado del cliente.",
+           route: "/recursos-humanos/auditoria-vacaciones",
+           emoji: "🔍",
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
@@ -227,11 +227,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Administración de Balances",
-          description:
-            "Ajuste y administración de saldos de vacaciones para todos los empleados.",
-          route: "/recursos-humanos/admin-balances-vacaciones",
-          emoji: "??",
+title: "Administración de Balances",
+           description:
+             "Ajuste y administración de saldos de vacaciones para todos los empleados.",
+           route: "/recursos-humanos/admin-balances-vacaciones",
+           emoji: "⚙️",
           color: "#374151",
           bgColor: "#e5e7eb",
           roles: [ApplicationRole.SuperUsuario],
@@ -243,15 +243,15 @@ export class HRDashboard {
     // CONTRATOS
     // -------------------------------------------------------------
     {
-      label: "Contratos",
-      emoji: "??",
+label: "Contratos",
+       emoji: "📄",
       cards: [
         {
-          title: "Contratos Laborales",
-          description:
-            "Gestión de contratos de trabajo, historial laboral y documentación contractual de empleados.",
-          route: "/legal/contracts",
-          emoji: "??",
+title: "Contratos Laborales",
+           description:
+             "Gestión de contratos de trabajo, historial laboral y documentación contractual de empleados.",
+           route: "/legal/contracts",
+           emoji: "📄",
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
@@ -261,11 +261,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Machotes de Contratos",
-          description:
-            "Plantillas reutilizables para generación rópida de contratos con variables dinámicas.",
-          route: "/legal/contract-templates",
-          emoji: "??",
+title: "Machotes de Contratos",
+           description:
+             "Plantillas reutilizables para generación rópida de contratos con variables dinámicas.",
+           route: "/legal/contract-templates",
+           emoji: "📑",
           color: "#059669",
           bgColor: "#d1fae5",
           roles: [
@@ -274,11 +274,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Adendas a Contratos",
-          description:
-            "Modificaciones formales a contratos existentes: salarios, puestos, extensiones y condiciones.",
-          route: "/legal/contract-addendums",
-          emoji: "??",
+title: "Adendas a Contratos",
+           description:
+             "Modificaciones formales a contratos existentes: salarios, puestos, extensiones y condiciones.",
+           route: "/legal/contract-addendums",
+           emoji: "📝",
           color: "#7c3aed",
           bgColor: "#ede9fe",
           roles: [
@@ -288,11 +288,11 @@ export class HRDashboard {
           ],
         },
         {
-          title: "Machotes de Adendas",
-          description:
-            "Plantillas estandarizadas para adendas de modificación salarial, cambio de puesto y mós.",
-          route: "/legal/addendum-templates",
-          emoji: "??",
+title: "Machotes de Adendas",
+           description:
+             "Plantillas estandarizadas para adendas de modificación salarial, cambio de puesto y mós.",
+           route: "/legal/addendum-templates",
+           emoji: "📑",
           color: "#ea580c",
           bgColor: "#ffedd5",
           roles: [
@@ -307,15 +307,15 @@ export class HRDashboard {
     // CONFIGURACIóN
     // -------------------------------------------------------------
     {
-      label: "Configuración",
-      emoji: "??",
+label: "Configuración",
+       emoji: "⚙️",
       cards: [
         {
-          title: "Catálogos de RH",
-          description:
-            "Administración de tipos de incidencia y tipos de sanción del sistema.",
-          route: "/admin/incident-types",
-          emoji: "??",
+title: "Catálogos de RH",
+           description:
+             "Administración de tipos de incidencia y tipos de sanción del sistema.",
+           route: "/admin/incident-types",
+           emoji: "📚",
           color: "#4338ca",
           bgColor: "#e0e7ff",
           roles: [

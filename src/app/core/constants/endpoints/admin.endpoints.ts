@@ -30,6 +30,7 @@ export const EndpointsAdmin = {
     getByIdLegacy: (id: string) => `customers/${id}`,
     getPdf: (id: string) => `customers/${id}/pdf`,
     update: (id: string) => `customers/${id}`,
+    updateRiskPremium: (id: string) => `customers/${id}/risk-premium`,
   },
   CustomerAddresses: {
     getByCustomerId: (customerId: string) => `customer-addresses/${customerId}`,
