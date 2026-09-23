@@ -10,7 +10,7 @@
     <strong>EjercicioFiscal</strong> en Aspel.
   </p>
   } @if (!loading() && data(); as reporte) {
-  <div class="rf-card">
+  <div class="rf-card d-none d-md-block">
     <div class="rf-wrap">
       <table class="rf-table">
         <thead>
@@ -115,5 +115,58 @@
       </table>
     </div>
   </div>
+
+  <app-data-view-mobile
+    class="d-md-none"
+    [data]="reporte.filas"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-fila>
+      @if (!isFilaVacia(fila)) {
+      <div
+        class="p-3 mb-2 rounded shadow-sm bg-body"
+        [class.rf-mobile-section]="fila.nivel === 1"
+        [class.rf-mobile-total]="fila.nivel === 4"
+      >
+        <div class="fw-bold mb-2">{{ fila.descripcion }}</div>
+        <div class="row m-0 text-xs text-body-secondary g-2">
+          <div class="col-6 p-0">
+            Psto mensual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.pstoMensual < 0"
+              >{{ fila.pstoMensual | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            Acumulado:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.acumuladoAnual < 0"
+              >{{ fila.acumuladoAnual | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            Psto anual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.presupAnual < 0"
+              >{{ fila.presupAnual | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            Restante:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.presupRestante < 0"
+              >{{ fila.presupRestante | accountingNumber }}</span
+            >
+          </div>
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
   }
 </div>

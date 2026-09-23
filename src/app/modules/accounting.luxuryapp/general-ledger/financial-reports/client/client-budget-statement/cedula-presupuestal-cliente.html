@@ -9,7 +9,7 @@
     No hay datos para el periodo seleccionado.
   </p>
   } @if (!loading() && rows().length) {
-  <div class="rf-card rf-wrap">
+  <div class="rf-card rf-wrap d-none d-md-block">
     <app-table
       [value]="rows()"
       class="rf-table p-datatable-sm"
@@ -129,5 +129,69 @@
       </ng-template>
     </app-table>
   </div>
+
+  <app-data-view-mobile
+    class="d-md-none"
+    [data]="rows()"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-fila>
+      @if (fila.tipo === 'header') {
+      <div class="rf-mobile-section p-2 text-xs mb-2 rounded-sm">
+        {{ fila.descripcion }}
+      </div>
+      } @else {
+      <div
+        class="p-3 mb-2 rounded shadow-sm"
+        [class.bg-body]="fila.tipo === 'item'"
+        [class.rf-mobile-total]="fila.tipo === 'total-extra'"
+        [class.rf-mobile-result]="fila.tipo === 'gran-total'"
+      >
+        <div class="fw-bold mb-2">{{ fila.descripcion }}</div>
+        <div class="row m-0 text-xs text-body-secondary g-2">
+          <div class="col-6 p-0">
+            Presup. mensual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.presupMes < 0"
+              >{{ fila.presupMes | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            {{ monthHeaders()[2] }}:
+            <span class="text-body fw-medium d-block" [class.rf-neg]="fila.mes < 0"
+              >{{ fila.mes | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            Acumulado:
+            <span class="text-body fw-medium d-block" [class.rf-neg]="fila.acum < 0"
+              >{{ fila.acum | accountingNumber }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            P. anual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.presupAnual < 0"
+              >{{ fila.presupAnual | accountingNumber }}</span
+            >
+          </div>
+        </div>
+        <div
+          class="mt-2 pt-2 border-top-1 border-100 d-flex justify-content-between align-items-center"
+        >
+          <span class="text-xs fw-bold text-uppercase text-body-secondary"
+            >Restante</span
+          >
+          <span class="text-sm fw-bold" [class.rf-neg]="fila.restante < 0">
+            {{ fila.restante | accountingNumber }}
+          </span>
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
   }
 </div>

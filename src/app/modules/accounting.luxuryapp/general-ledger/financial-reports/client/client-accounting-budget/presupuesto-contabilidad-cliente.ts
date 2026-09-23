@@ -18,10 +18,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-presupuesto-contabilidad-cliente",
-  imports: [AppIcon, CommonModule, AccountingNumberPipe],
+  imports: [AppIcon, CommonModule, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad-cliente.html",
 })

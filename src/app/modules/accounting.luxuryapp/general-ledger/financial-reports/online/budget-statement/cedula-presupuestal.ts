@@ -11,6 +11,7 @@ import { AppTable } from "@ui/web/table/table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,
@@ -86,7 +87,7 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [AppIcon, FormsModule, AppTable, AccountingNumberPipe],
+  imports: [AppIcon, FormsModule, AppTable, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })

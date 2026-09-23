@@ -12,7 +12,7 @@
     <strong>EjercicioFiscal</strong> en Aspel.
   </div>
   } @if (rows().length) {
-  <div class="rf-card rf-wrap pt-4">
+  <div class="rf-card rf-wrap pt-4 d-none d-md-block">
     <app-table
       [value]="rows()"
       class="rf-table p-datatable-sm"
@@ -124,5 +124,72 @@
       </ng-template>
     </app-table>
   </div>
+
+  <app-data-view-mobile
+    class="d-md-none"
+    [data]="rows()"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-row>
+      @if (row.tipo === 'header') {
+      <div class="rf-mobile-section p-2 text-xs mb-2 rounded-sm">
+        {{ row.descripcion }}
+      </div>
+      } @else {
+      <div
+        class="p-3 mb-2 rounded shadow-sm"
+        [class.bg-body]="row.tipo === 'item'"
+        [class.rf-mobile-total]="row.tipo === 'total-extra'"
+        [class.rf-mobile-result]="row.tipo === 'gran-total'"
+      >
+        @if (row.numeroCuenta) {
+        <div class="rf-td-cuenta mb-1">{{ row.numeroCuenta }}</div>
+        }
+        <div class="fw-bold mb-2">{{ row.descripcion }}</div>
+        <div class="row m-0 text-xs text-body-secondary g-2">
+          <div class="col-6 p-0">
+            Presup. mensual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="row.presupMes < 0"
+              >{{ row.presupMes | accountingNumber : "1.0-0" }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            {{ monthHeaders()[2] }}:
+            <span class="text-body fw-medium d-block" [class.rf-neg]="row.mes < 0"
+              >{{ row.mes | accountingNumber : "1.0-0" }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            Acumulado:
+            <span class="text-body fw-medium d-block" [class.rf-neg]="row.acum < 0"
+              >{{ row.acum | accountingNumber : "1.0-0" }}</span
+            >
+          </div>
+          <div class="col-6 p-0">
+            P. anual:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="row.presupAnual < 0"
+              >{{ row.presupAnual | accountingNumber : "1.0-0" }}</span
+            >
+          </div>
+        </div>
+        <div
+          class="mt-2 pt-2 border-top-1 border-100 d-flex justify-content-between align-items-center"
+        >
+          <span class="text-xs fw-bold text-uppercase text-body-secondary"
+            >Restante</span
+          >
+          <span class="text-sm fw-bold" [class.rf-neg]="row.restante < 0">
+            {{ row.restante | accountingNumber : "1.0-0" }}
+          </span>
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
   }
 </div>

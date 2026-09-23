@@ -11,7 +11,7 @@
     No hay datos. Verifique el periodo seleccionado.
   </div>
   } @if (grupos().length) {
-  <div class="rf-card">
+  <div class="rf-card d-none d-md-block">
     <app-table [value]="grupos()" class="rf-table p-datatable-sm">
       <ng-template #header>
         <tr>
@@ -70,6 +70,35 @@
         }
       </ng-template>
     </app-table>
+  </div>
+
+  <div class="d-md-none d-flex flex-column gap-3">
+    @for (grupo of grupos(); track grupo.nombre) {
+    <div class="rf-mobile-section p-2 text-xs rounded-sm">
+      {{ grupo.nombre }}
+    </div>
+    @for (fila of grupo.filas; track $index) {
+    <div
+      class="p-3 mb-2 rounded shadow-sm bg-body"
+      [class.rf-mobile-total]="fila.esFilaTotal"
+    >
+      <div class="fw-bold mb-2" [class.text-uppercase]="fila.esFilaTotal">
+        {{ fila.signo }} {{ fila.concepto }}
+      </div>
+      <div class="row m-0 text-xs text-body-secondary g-2">
+        @for (monto of fila.montos; track $index; let colIdx = $index) {
+        <div class="col-6 p-0">
+          {{ columnas()[colIdx] }}:
+          <span class="text-body fw-medium d-block" [class.rf-neg]="monto < 0"
+            >{{ monto === 0 && !fila.esFilaTotal ? "-" : (monto |
+            accountingNumber: "1.0-0") }}</span
+          >
+        </div>
+        }
+      </div>
+    </div>
+    }
+    }
   </div>
   }
 </div>

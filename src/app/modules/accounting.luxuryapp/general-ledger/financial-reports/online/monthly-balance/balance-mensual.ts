@@ -13,6 +13,7 @@ import { AppTable } from "@ui/web/table/table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,6 +28,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
     WebButtonLabel,
     CustomInputTextSignal,
     AccountingNumberPipe,
+    DataViewMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./balance-mensual.html",

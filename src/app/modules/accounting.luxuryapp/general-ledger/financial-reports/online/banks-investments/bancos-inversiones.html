@@ -6,7 +6,7 @@
     <lx-skeleton width="100%" height="15rem" />
   </div>
   } @else if (data()) {
-  <div class="rf-card pt-4">
+  <div class="rf-card pt-4 d-none d-md-block">
     <div class="px-4 pb-4 pt-0 mb-4">
       <!-- Bloque de Bancos -->
       <div class="mb-5">
@@ -106,6 +106,59 @@
           </ng-template>
         </app-table>
       </div>
+    </div>
+  </div>
+
+  <div class="d-md-none d-flex flex-column gap-3">
+    <div class="rf-mobile-section p-2 text-xs rounded-sm">
+      SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
+    </div>
+    <app-data-view-mobile
+      [data]="data()?.bancos || []"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-banco>
+        <div class="p-3 mb-2 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2">
+          <span class="rf-td-descripcion--item">{{ banco.cuenta }}</span>
+          <span class="rf-td-number">{{ banco.importe | accountingNumber }}</span>
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+    <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">(1) SUMA</span>
+      <span class="rf-td-number--total">{{ data()?.sumaBancos | accountingNumber }}</span>
+    </div>
+
+    <div class="rf-mobile-section p-2 text-xs rounded-sm mt-2">
+      SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
+    </div>
+    <app-data-view-mobile
+      [data]="data()?.inversionesOrdinarias || []"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-inv>
+        <div class="p-3 mb-2 rounded shadow-sm bg-body">
+          <div class="rf-td-cuenta mb-1">{{ inv.cuenta }}</div>
+          <div class="d-flex justify-content-between align-items-center gap-2">
+            <span class="rf-td-descripcion--item">{{ inv.descripcion }}</span>
+            <span class="rf-td-number">{{ inv.importe | accountingNumber }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+    <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">(2) SUBTOTAL</span>
+      <span class="rf-td-number--total">{{ data()?.subtotalInversiones | accountingNumber }}</span>
+    </div>
+    @if (data()?.fondoReserva; as fondoReserva) {
+    <div class="p-3 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2">
+      <span class="rf-td-descripcion--item">{{ fondoReserva.cuenta }} · {{ fondoReserva.descripcion }}</span>
+      <span class="rf-td-number">{{ fondoReserva.importe | accountingNumber }}</span>
+    </div>
+    }
+    <div class="rf-mobile-result p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">SUMA</span>
+      <span class="rf-td-number--total">{{ data()?.sumaInversiones | accountingNumber }}</span>
     </div>
   </div>
   } @else {

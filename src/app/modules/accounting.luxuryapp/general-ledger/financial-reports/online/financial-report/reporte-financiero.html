@@ -9,7 +9,7 @@
     No hay datos. Verifique el cliente, el año y el mes base seleccionados.
   </p>
   } @if (!loading() && data(); as reporte) {
-  <div class="rf-card pt-4">
+  <div class="rf-card pt-4 d-none d-md-block">
     <div class="rf-wrap">
       <table class="rf-table rf-table--with-account">
         <thead>
@@ -261,6 +261,61 @@
           }
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="d-md-none d-flex flex-column gap-3">
+    <div class="rf-mobile-section p-2 text-xs rounded-sm">Ingresos</div>
+    @for (fila of reporte.ingresos; track fila.concepto) { @if
+    (!isFilaVacia(fila)) {
+    <div class="p-3 mb-2 rounded shadow-sm bg-body">
+      <div class="rf-td-cuenta mb-1">{{ fila.numeroCuenta }}</div>
+      <div class="fw-bold mb-2">{{ fila.concepto }}</div>
+      <div class="row m-0 text-xs text-body-secondary g-2">
+        @for (val of fila.valores; track $index) {
+        <div class="col-6 p-0">
+          {{ reporte.meses[$index] }}:
+          <span class="text-body fw-medium d-block" [class.rf-neg]="val < 0"
+            >{{ val | accountingNumber }}</span
+          >
+        </div>
+        }
+      </div>
+    </div>
+    } }
+    <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">TOTAL INGRESOS</span>
+      <span class="rf-td-number--total">{{ reporte.totalIngresos[reporte.totalIngresos.length - 1] | accountingNumber }}</span>
+    </div>
+
+    <div class="rf-mobile-section p-2 text-xs rounded-sm mt-2">
+      - ) Gastos Generales
+    </div>
+    @for (fila of reporte.gastosGenerales; track fila.concepto) { @if
+    (!isFilaVacia(fila)) {
+    <div class="p-3 mb-2 rounded shadow-sm bg-body">
+      <div class="rf-td-cuenta mb-1">{{ fila.numeroCuenta }}</div>
+      <div class="fw-bold mb-2">{{ fila.concepto }}</div>
+      <div class="row m-0 text-xs text-body-secondary g-2">
+        @for (val of fila.valores; track $index) {
+        <div class="col-6 p-0">
+          {{ reporte.meses[$index] }}:
+          <span class="text-body fw-medium d-block" [class.rf-neg]="val < 0"
+            >{{ val | accountingNumber }}</span
+          >
+        </div>
+        }
+      </div>
+    </div>
+    } }
+    <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">TOTAL GASTOS GENERALES</span>
+      <span class="rf-td-number--total">{{ reporte.totalGastos[reporte.totalGastos.length - 1] | accountingNumber }}</span>
+    </div>
+
+    <div class="rf-mobile-result p-3 rounded d-flex justify-content-between">
+      <span class="fw-bold">RESULTADO DEL PERIODO</span>
+      <span class="rf-td-number--total">{{ reporte.resultadoPeriodo[reporte.resultadoPeriodo.length - 1] | accountingNumber }}</span>
     </div>
   </div>
   }

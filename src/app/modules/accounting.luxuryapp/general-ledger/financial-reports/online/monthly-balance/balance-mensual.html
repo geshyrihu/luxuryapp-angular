@@ -50,7 +50,7 @@
 
   <!-- Tabla -->
   @if (rows().length) {
-  <div class="rf-card rf-wrap pt-4">
+  <div class="rf-card rf-wrap pt-4 d-none d-md-block">
     <app-table
       [value]="rows()"
       class="rf-table p-datatable-sm"
@@ -117,5 +117,42 @@
       </ng-template>
     </app-table>
   </div>
+
+  <app-data-view-mobile
+    class="d-md-none"
+    [data]="rows()"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-row>
+      @if (row.tipo === 'header') {
+      <div class="rf-mobile-section p-2 text-xs mb-2 rounded-sm">
+        {{ row.descripcion }}
+      </div>
+      } @else {
+      <div
+        class="p-3 mb-2 rounded shadow-sm bg-body"
+        [class.rf-mobile-total]="row.tipo === 'subtotal'"
+      >
+        @if (row.numeroCuenta) {
+        <div class="rf-td-cuenta mb-1">{{ row.numeroCuenta }}</div>
+        }
+        <div class="fw-bold mb-2">{{ row.descripcion }}</div>
+        <div class="row m-0 text-xs text-body-secondary g-2">
+          @for (monto of row.montos; track $index) {
+          <div class="col-4 p-0">
+            {{ MONTHS[$index] }}:
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="monto < 0"
+              >{{ monto | accountingNumber : "1.0-0" }}</span
+            >
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
   }
 </div>

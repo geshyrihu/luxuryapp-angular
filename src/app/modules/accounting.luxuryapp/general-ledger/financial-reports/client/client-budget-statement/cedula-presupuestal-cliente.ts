@@ -15,6 +15,7 @@ import type {
 } from "../../interfaces/aspel-budget.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 const MONTH_NAMES = [
@@ -76,7 +77,7 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
-  imports: [AppIcon, AppTable],
+  imports: [AppIcon, AppTable, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal-cliente.html",
 })

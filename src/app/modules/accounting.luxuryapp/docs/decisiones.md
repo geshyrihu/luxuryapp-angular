@@ -84,6 +84,41 @@ Implicaciones:
 - las vistas publicas proveen el token en `false` (no auto-carga por sesion)
 - `loadFor` omite la peticion de sync-status
 
+### D9. Cobertura movil de financial-reports
+
+Patron: `app-data-view-mobile` (o markup `rf-mobile-*`) con bloque desktop
+`d-none d-md-block` y bloque movil `d-md-none`. `PlatformService.isMobile` =
+hibrido || ancho < 768.
+
+Con vista movil:
+
+- EPF (online y cliente)
+- Estado de Resultados y V2 (online y cliente, ya existian)
+- Cedula Presupuestal (online y cliente)
+- Presupuesto Contabilidad (online y cliente)
+- Bancos e Inversiones (online y cliente)
+- Flujo Efectivo (online y cliente; en online conserva inputs editables)
+- Reporte Financiero (online y cliente)
+- Proyectos Aprobados (online y cliente; usa las cards existentes)
+- Balance Mensual (online)
+- Replica de catalogo (online)
+- Dashboard Cobranza (cliente)
+
+**Fix base obligatorio**: `LxTabs` proyecta los paneles una sola vez
+(`.lx-tabs-panels`) y `app-tabs`/`ili-tabs` trabajan en `navOnly`. Ademas
+`.lx-tabs-panels > [tab]` y sus hijos llevan `display:block; min-width:0;
+max-width:100%` para evitar el overflow horizontal que entregaban los custom
+elements en movil.
+
+**Deuda pendiente (requiere cambio en shared, con analisis de impacto):**
+
+1. **Dashboard Cobranza (online)**: su cuerpo son componentes compartidos de
+   `collections.luxuryapp/online-collections/*` (`cobranza-online-analysis`,
+   `-morosidad`, `-towers`, `-advances`). Hacerlos moviles cambia tambien las
+   paginas propias del modulo Cobranza.
+2. **Cedula Extraordinaria**: renderiza `espejo-aspel-extraordinarios`,
+   compartido con el modulo Presupuestos.
+
 ### D7. Contratos sensibles
 
 - No cambiar parametros de ruta publica `:customerId/:anio/:mes`.

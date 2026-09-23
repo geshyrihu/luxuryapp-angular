@@ -119,7 +119,7 @@
   <app-table
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
-    class="custom-table p-datatable-gridlines"
+    class="custom-table p-datatable-gridlines d-none d-md-block"
   >
     <ng-template #header>
       <tr>
@@ -195,5 +195,37 @@
       </tr>
     </ng-template>
   </app-table>
+
+  <div class="d-md-none d-flex flex-column gap-2">
+    @for (account of flatData(); track account.numeroCuenta) { @if
+    (account.visible) {
+    <div
+      class="p-3 rounded shadow-sm bg-body"
+      [class.rf-mobile-section]="account.nivel === 1"
+    >
+      <div class="d-flex align-items-center gap-2 mb-1">
+        @if (account.nivel === 1) {
+        <iw-button
+          [lxTooltip]="account.expanded ? 'Contraer' : 'Expandir'"
+          tooltipPosition="top"
+          variant="text"
+          size="sm"
+          (clicked)="toggleNode(account)"
+        />
+        }
+        <span class="rf-td-cuenta">{{ account.numeroCuenta }}</span>
+      </div>
+      <div class="fw-bold mb-1">{{ account.descripcion }}</div>
+      <div class="text-xs text-body-secondary mb-2">{{ account.origenDatos }}</div>
+      <div class="d-flex flex-wrap gap-1">
+        @if (account.epf) { <lx-tag value="EPF" severity="info" /> } @if
+        (account.er) { <lx-tag value="ER" severity="success" /> } @if
+        (account.cedP) { <lx-tag value="CedP" severity="warn" /> } @if
+        (account.fe) { <lx-tag value="FE" severity="secondary" /> } @if
+        (account.aCob) { <lx-tag value="ACob" severity="danger" /> }
+      </div>
+    </div>
+    } }
+  </div>
   }
 </div>

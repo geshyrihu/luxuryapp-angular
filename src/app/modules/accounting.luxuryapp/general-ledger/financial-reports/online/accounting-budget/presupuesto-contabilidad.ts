@@ -15,6 +15,7 @@ import type {
   PresupuestoContabilidadResponse,
 } from "@collections.luxuryapp/online-collections/interfaces/presupuesto-contabilidad.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -22,7 +23,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 @Component({
   selector: "app-presupuesto-contabilidad",
-  imports: [AppIcon, CommonModule, AccountingNumberPipe],
+  imports: [AppIcon, CommonModule, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad.html",
 })

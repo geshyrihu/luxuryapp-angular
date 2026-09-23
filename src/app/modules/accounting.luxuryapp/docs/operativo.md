@@ -141,6 +141,15 @@ Uso en plantilla:
 En componentes compartidos (`app-stat-card`, `app-ranked-list`,
 `app-breakdown-list`) pasar `format="number"`; su default es `"currency"`.
 
+## Vista movil
+
+- `PlatformService.isMobile` = hibrido || ancho < 768.
+- Patron: bloque desktop `d-none d-md-block` + bloque movil `d-md-none` con
+  `app-data-view-mobile` (o markup `rf-mobile-*`).
+- `LxTabs` proyecta los paneles una sola vez; no volver a poner `<ng-content>`
+  en ramas `@if` ni `min-width: min-content` sobre `lx-tabs`.
+- Cobertura y deuda: ver `docs/decisiones.md` D9.
+
 ## Smoke test
 
 1. Entrar a `/contabilidad/financial-statements-reports`.

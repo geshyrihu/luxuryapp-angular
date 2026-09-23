@@ -10,13 +10,14 @@ import {
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 
 @Component({
   selector: "app-bancos-inversiones-cliente",
-  imports: [CommonModule, LxSkeleton, AppTable, AppIcon],
+  imports: [CommonModule, LxSkeleton, AppTable, AppIcon, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones-cliente.html",
 })

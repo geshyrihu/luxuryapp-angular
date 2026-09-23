@@ -836,6 +836,20 @@
   color: var(--rf-neg) !important;
 }
 
+// ── CONTENEDOR DE TABS: evitar overflow horizontal ─────────
+// Los componentes de reporte son custom elements (display: inline por defecto)
+// y aportan min-content que puede superar el viewport en movil.
+.lx-tabs-panels > [tab] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.lx-tabs-panels > [tab] > * {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
 // Paneles tipo EPF: mismo lenguaje visual rf-* sin tabla formal.
 .rf-panel {
   display: flex;
