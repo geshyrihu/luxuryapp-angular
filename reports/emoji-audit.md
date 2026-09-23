@@ -1,9 +1,9 @@
 # Emoji Audit
 
-- Generated at: 2026-09-21T01:33:17.405Z
+- Generated at: 2026-09-23T20:38:51.322Z
 - Scope: `src/`
-- Total matches: 1986
-- User-facing matches: 428
+- Total matches: 2009
+- User-facing matches: 452
 - Button emoji inputs: 0
 
 ## Priority Order
@@ -15,7 +15,7 @@
 
 ## Top Modules
 
-- app/modules: 1253
+- app/modules: 1276
 - app/shared: 282
 - src/styles: 148
 - app/routing: 136
@@ -26,7 +26,7 @@
 
 ## Top User-Facing Modules
 
-- app/modules: 323
+- app/modules: 347
 - app/core: 63
 - app/shared: 20
 - app/root: 16
@@ -35,10 +35,10 @@
 ## Top Categories
 
 - docs: 1101
+- code_string: 229
 - template_text: 217
-- code_string: 205
-- code_comment: 199
-- template_comment: 177
+- code_comment: 200
+- template_comment: 175
 - style_comment: 44
 - code_misc: 25
 - style_text: 9
@@ -53,3 +53,4 @@
 - Full detail lives in `reports/emoji-audit.json`.
 - `styles/emojis.md` is treated as documentation/reference and should not block UI cleanup.
 - This audit is line-based: it is conservative and designed to over-report rather than miss visual cases.
+

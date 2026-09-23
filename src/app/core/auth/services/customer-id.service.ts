@@ -1,5 +1,12 @@
 import { HttpClient } from "@angular/common/http";
-import { computed, inject, Injectable, NgZone, signal } from "@angular/core";
+import {
+  computed,
+  inject,
+  Injectable,
+  NgZone,
+  signal,
+  untracked,
+} from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import type { ApiResponseDto } from "@core/http/services/api-response.service";
@@ -56,10 +63,14 @@ export class CustomerIdService {
     origin: string,
     extra: Record<string, unknown> = {},
   ): void {
-    this.consoleLogger.custom("", "#FF9800", `[CustomerTrace] ${origin}`, {
+    const snapshot = untracked(() => ({
       at: new Date().toISOString(),
       state: this.customerState(),
       storedCustomerId: this.storageS.retrieve("customerId"),
+    }));
+
+    this.consoleLogger.custom("", "#FF9800", `[CustomerTrace] ${origin}`, {
+      ...snapshot,
       ...extra,
     });
   }

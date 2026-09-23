@@ -13,7 +13,6 @@ import { AutorizacionCuadroComparativo } from "@core/enums/autorizacion-cuadro-c
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SwalService } from "@core/services/swal.service";
-import { LxCarousel } from "@ui/adaptive/carousel/carousel";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TagSeverity } from "@ui/base/tag.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -36,7 +35,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
   imports: [
     WebButtonIcon,
     CommonModule,
-    LxCarousel,
     AppImage,
     AppTable,
     WebButtonLabel,
@@ -118,27 +116,26 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         overflow: hidden;
       }
 
-      :host ::ng-deep .presentation-carousel owl-carousel-o,
-      :host ::ng-deep .presentation-carousel owl-carousel-o .owl-carousel,
-      :host ::ng-deep .presentation-carousel .owl-stage-outer {
-        display: block;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden !important;
-      }
-
-      :host ::ng-deep .presentation-carousel .owl-stage {
+      .presentation-indicators {
         display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 0 0;
       }
 
-      :host ::ng-deep .presentation-carousel .owl-item {
-        flex: 0 0 auto;
-        max-width: 100%;
+      .presentation-indicator {
+        width: 0.55rem;
+        height: 0.55rem;
+        padding: 0;
+        border: 0;
+        border-radius: var(--ds-radius-full);
+        background: var(--ds-border);
+        cursor: pointer;
       }
 
-      :host ::ng-deep .presentation-carousel .owl-item > .presentation-slide {
-        width: 100%;
-        max-width: 100%;
+      .presentation-indicator-active {
+        background: var(--ds-primary);
+        transform: scale(1.25);
       }
 
       .presentation-accent {
@@ -921,14 +918,6 @@ export class SolicitudCompraPresentacion {
         slide.kind === "solicitud" ? updateSolicitud(slide) : slide,
       ),
     );
-  }
-
-  onCarouselPage(event: number | { page?: number; startPosition?: number }) {
-    const page =
-      typeof event === "number"
-        ? event
-        : (event.page ?? event.startPosition ?? 0);
-    if (page !== this.currentPage()) this.currentPage.set(page);
   }
 
   goToSummary() {

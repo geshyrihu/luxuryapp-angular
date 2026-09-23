@@ -230,11 +230,12 @@
             <ng-template #header>
               <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
                 <div
-                  class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0"
+                  class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+                  style="background-color: var(--ds-info-container);"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:call'"
-                    class="text-blue-500"
+                    style="color: var(--ds-info);"
                   />
                 </div>
                 <h4 class="m-0 fw-bold text-body">Contacto</h4>
@@ -274,19 +275,20 @@
         </div>
         <div class="col-12 col-lg-4">
           <div
-            class="rounded-xl bg-primary shadow-sm p-4 h-full d-flex flex-column justify-content-center gap-2"
+            class="rounded-xl shadow-sm p-4 h-full d-flex flex-column justify-content-center gap-2"
+            style="background-color: var(--ds-primary); color: var(--ds-text-inverse);"
           >
-            <div class="d-flex align-items-center gap-2 text-white opacity-80">
+            <div class="d-flex align-items-center gap-2" style="opacity: 0.8;">
               <app-icon
                 [icon]="'material-symbols-light:payments'"
                 class="text-lg"
               />
               <span class="text-xs fw-bold text-uppercase">Salario Mensual</span>
             </div>
-            <p class="text-4xl font-black text-white m-0">
+            <p class="text-4xl font-black m-0">
               {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
             </p>
-            <p class="text-xs text-white opacity-60 m-0">
+            <p class="text-xs m-0" style="opacity: 0.6;">
               Bruto mensual en MXN
             </p>
           </div>
@@ -298,11 +300,12 @@
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+              style="background-color: var(--ds-warning-container);"
             >
               <app-icon
                 [icon]="'material-symbols-light:location-on'"
-                class="text-orange-500"
+                style="color: var(--ds-warning);"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">Dirección de Residencia</h4>
@@ -380,7 +383,7 @@
     @if (emergencyContacts().length > 0) {
     <app-table
       [value]="emergencyContacts()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -433,7 +436,7 @@
     @if (clinicalData().length > 0) {
     <app-table
       [value]="clinicalData()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -447,9 +450,9 @@
             <div class="d-flex align-items-center gap-2">
               <app-icon
                 [icon]="'material-symbols-light:favorite'"
-                class="text-red-500"
+                style="color: var(--ds-danger);"
               />
-              <span class="fw-medium text-red-600">{{ item.name }}</span>
+              <span class="fw-medium" style="color: var(--ds-danger);">{{ item.name }}</span>
             </div>
           </td>
           <td class="text-body">{{ item.description }}</td>
@@ -459,11 +462,13 @@
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle bg-green-50 d-flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
+        style="background-color: var(--ds-success-container);"
       >
         <app-icon
           [icon]="'material-symbols-light:favorite'"
-          class="text-4xl text-green-400"
+          class="text-4xl"
+          style="color: var(--ds-success);"
         />
       </div>
       <p class="text-body-secondary m-0">Sin condiciones clónicas registradas.</p>
@@ -476,7 +481,7 @@
     @if (bankData().length > 0) {
     <app-table
       [value]="bankData()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -513,7 +518,7 @@
     @if (beneficiaries().length > 0) {
     <app-table
       [value]="beneficiaries()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -647,7 +652,7 @@
     } @if (contracts().length > 0) {
     <app-table
       [value]="contracts()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -805,11 +810,12 @@
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-teal-100 d-flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+              style="background-color: var(--ds-info-container);"
             >
               <app-icon
                 [icon]="'material-symbols-light:calendar-clock'"
-                class="text-teal-500"
+                style="color: var(--ds-info);"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">Horario Semanal</h4>
@@ -907,11 +913,12 @@
       <div>
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+            style="background-color: var(--ds-warning-container);"
           >
             <app-icon
               [icon]="'material-symbols-light:history'"
-              class="text-orange-500"
+              style="color: var(--ds-warning);"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">
@@ -920,7 +927,7 @@
         </div>
         <app-table
           [value]="wp.salaryModifications"
-          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+          class="shadow-sm rounded-xl overflow-hidden"
         >
           <ng-template #header>
             <tr>
@@ -951,7 +958,7 @@
                   <span class="text-body-secondary line-through"
                     >{{ item.salarioAnterior | currency:'MXN' }}</span
                   >
-                  <span class="fw-bold text-green-600"
+                  <span class="fw-bold" style="color: var(--ds-success);"
                     >{{ item.salarioNuevo | currency:'MXN' }}</span
                   >
                 </div>
@@ -990,17 +997,18 @@
       <!-- Balance -->
       @if (vl.balance) {
       <lx-card
-        class="shadow-sm rounded-xl overflow-hidden bg-primary-reverse"
+        class="shadow-sm rounded-xl overflow-hidden"
         [elevated]="true"
       >
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-yellow-100 d-flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+              style="background-color: var(--ds-warning-container);"
             >
               <app-icon
                 [icon]="'material-symbols-light:calculate'"
-                class="text-yellow-600"
+                style="color: var(--ds-warning);"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">
@@ -1029,7 +1037,7 @@
             <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Usados</label
             >
-            <p class="font-black text-orange-500 m-0 text-xl">
+            <p class="font-black m-0 text-xl" style="color: var(--ds-warning);">
               {{ vl.balance.usedDays }}
             </p>
           </div>
@@ -1037,7 +1045,7 @@
             <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Pendientes</label
             >
-            <p class="font-black text-blue-500 m-0 text-xl">
+            <p class="font-black m-0 text-xl" style="color: var(--ds-info);">
               {{ vl.balance.pendingDays }}
             </p>
           </div>
@@ -1045,7 +1053,7 @@
             <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Disponibles</label
             >
-            <p class="font-black text-green-500 m-0 text-2xl">
+            <p class="font-black m-0 text-2xl" style="color: var(--ds-success);">
               {{ vl.balance.availableDays }}
             </p>
           </div>
@@ -1057,11 +1065,12 @@
       <div>
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+            style="background-color: var(--ds-warning-container);"
           >
             <app-icon
               [icon]="'material-symbols-light:sunny'"
-              class="text-orange-500"
+              style="color: var(--ds-warning);"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitudes de Vacaciones</h4>
@@ -1069,7 +1078,7 @@
         @if (vl.vacations.length > 0) {
         <app-table
           [value]="vl.vacations"
-          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+          class="shadow-sm rounded-xl overflow-hidden"
         >
           <ng-template #header>
             <tr>
@@ -1120,11 +1129,12 @@
       <div>
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+            style="background-color: var(--ds-info-container);"
           >
             <app-icon
               [icon]="'material-symbols-light:schedule'"
-              class="text-blue-500"
+              style="color: var(--ds-info);"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Permisos y Ausencias</h4>
@@ -1132,7 +1142,7 @@
         @if (vl.leaves.length > 0) {
         <app-table
           [value]="vl.leaves"
-          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+          class="shadow-sm rounded-xl overflow-hidden"
         >
           <ng-template #header>
             <tr>
@@ -1157,7 +1167,8 @@
               </td>
               <td>
                 <span
-                  [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')"
+                  class="badge"
+                  [style]="'background-color: ' + (item.paidStatus === 'Con Goce' ? 'var(--ds-success-container)' : 'var(--ds-error-container)') + '; color: ' + (item.paidStatus === 'Con Goce' ? 'var(--ds-success)' : 'var(--ds-danger)')"
                   >{{ item.paidStatus }}</span
                 >
               </td>
@@ -1180,7 +1191,7 @@
     @if (incidents().length > 0) {
     <app-table
       [value]="incidents()"
-      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
       <ng-template #header>
         <tr>
@@ -1219,7 +1230,7 @@
           <td>
             @if (item.sanction) {
             <div class="d-flex flex-column">
-              <span class="fw-semibold text-red-600 text-sm"
+              <span class="fw-semibold text-sm" style="color: var(--ds-danger);"
                 >{{ item.sanction.sanctionTypeName }}</span
               >
               <small class="text-body-secondary"
@@ -1254,11 +1265,13 @@
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
-        class="w-5rem h-5rem rounded-circle bg-green-50 d-flex align-items-center justify-content-center"
+        class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
+        style="background-color: var(--ds-success-container);"
       >
         <app-icon
           [icon]="'material-symbols-light:verified'"
-          class="text-4xl text-green-400"
+          class="text-4xl"
+          style="color: var(--ds-success);"
         />
       </div>
       <p class="text-body-secondary m-0">
@@ -1358,11 +1371,12 @@
       <div class="col-12 col-lg-6">
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-green-100 d-flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+            style="background-color: var(--ds-success-container);"
           >
             <app-icon
               [icon]="'material-symbols-light:person-add'"
-              class="text-green-500"
+              style="color: var(--ds-success);"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitud de Ingreso (Alta)</h4>
@@ -1426,23 +1440,25 @@
       <div class="col-12 col-lg-6">
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
-            class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0"
+            class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
+            style="background-color: var(--ds-error-container);"
           >
             <app-icon
               [icon]="'material-symbols-light:person-remove'"
-              class="text-red-500"
+              style="color: var(--ds-danger);"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitud de Egreso (Baja)</h4>
         </div>
         @if (req.dismissalRequest; as d) {
         <div
-          class="bg-body shadow-sm rounded-xl border-left-3 border-red-500 p-4"
+          class="bg-body shadow-sm rounded-xl border-left-3 p-4"
+          style="border-left-color: var(--ds-danger);"
         >
           <div class="row row-gap-3 g-4">
             <div class="col-6">
               <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Folio</span>
-              <span class="fw-bold text-red-600 text-lg">#{{ d.folio }}</span>
+              <span class="fw-bold text-lg" style="color: var(--ds-danger);">#{{ d.folio }}</span>
             </div>
             <div class="col-6">
               <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Estatus</span>
@@ -1462,9 +1478,9 @@
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
-                  class="text-green-500"
+                  style="color: var(--ds-success);"
                 />
-                <span class="text-sm fw-medium text-green-700"
+                <span class="text-sm fw-medium" style="color: var(--ds-success);"
                   >{{ d.legalAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
@@ -1486,9 +1502,9 @@
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
-                  class="text-green-500"
+                  style="color: var(--ds-success);"
                 />
-                <span class="text-sm fw-medium text-green-700"
+                <span class="text-sm fw-medium" style="color: var(--ds-success);"
                   >{{ d.payrollAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
@@ -1524,7 +1540,8 @@
                 >Justificación</span
               >
               <p
-                class="m-0 text-body italic border-left-3 border-red-200 ps-3 line-height-3"
+                class="m-0 text-body italic border-left-3 ps-3 line-height-3"
+                style="border-left-color: var(--ds-error-container);"
               >
                 "{{ d.reasonForLeaving }}"
               </p>

@@ -10,25 +10,29 @@
   groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
-    <div class="d-flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
+    <div class="d-flex align-items-center flex-wrap gap-2 no-print mb-4 mt-1">
       <custom-input-text-signal
         [control]="fechaControl"
         type="month"
-        customClass="" style="width: 15rem"
+        customClass=""
+        style="width: 15rem"
         (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
         lxTooltip="Seleccionar Mes y Año"
         tooltipPosition="top"
         [horizontal]="false"
         [noMargin]="true"
       />
-      <div class="d-flex flex-wrap gap-1">
+      <div
+        class="d-flex align-items-center flex-wrap gap-1 p-1 rounded bg-body-tertiary"
+      >
         @for (item of filtroEquipos; track item) {
         <iw-button
           [lxTooltip]="'Ver ' + item.nombre"
           tooltipPosition="bottom"
           [iconClass]="item.icon"
-          variant="outline"
-          [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
+          [variant]="filtroEquiposValue == item.nombre ? 'solid' : 'outline'"
+          [severity]="filtroEquiposValue == item.nombre ? 'primary' : 'secondary'"
+          customClass="btn-sm"
           (clicked)="onReloadOrdenes(item.id, item.nombre)"
         />
         }
@@ -43,6 +47,12 @@
         iconClass="material-symbols-light:table"
         label="Reporte por categoria"
         (click)="onNavigateToReportTabla()"
+        variant="outline"
+      />
+      <il-button
+        iconClass="material-symbols-light:precision-manufacturing"
+        label="Reporte por equipo"
+        (click)="onNavigateToReportPorEquipo()"
         variant="outline"
       />
       <div class="ms-auto">
@@ -70,11 +80,11 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-10" appSortableColumn="maintenanceCalendarId">
-        CL-ID
-        <app-sorticon field="maintenanceCalendarId" class="no-print" />
+      <th class="table-col-15" appSortableColumn="folio">
+        Folio
+        <app-sorticon field="folio" class="no-print" />
       </th>
-      <th class="table-col-20" appSortableColumn="machinery">
+      <th class="table-col-15" appSortableColumn="machinery">
         Equipo
         <app-sorticon field="machinery" class="no-print" />
       </th>
@@ -110,10 +120,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>
-        <!-- Esto mostrará los últimos 5 dígitos -->
-        {{ item.maintenanceCalendarId | slice:-5 }}
-      </td>
+      <td><small>{{ item.folio || "Sin folio" }}</small></td>
       <!-- {{ item.machineryId }} | -->
       <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
       <td>
@@ -261,6 +268,15 @@
           fullWidth="true"
         />
       </div>
+      <div class="mb-2">
+        <ili-button-item
+          iconName="construct-outline"
+          label="Reporte por equipo"
+          (click)="onNavigateToReportPorEquipo()"
+          variant="outline"
+          fullWidth="true"
+        />
+      </div>
 
       <!-- Contador Totales -->
       <div class="d-flex align-items-center justify-content-end px-2 pb-2">
@@ -293,7 +309,7 @@
           </h2>
         </div>
         <p class="mb-1 text-body-secondary text-sm">
-          CL-ID: {{ item.maintenanceCalendarId }}
+          Folio: {{ item.folio || "Sin folio" }}
         </p>
         <p class="mb-1 text-sm">
           <lx-tag

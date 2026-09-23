@@ -1,4 +1,4 @@
-import { CommonModule, formatDate } from "@angular/common";
+import { CommonModule, DatePipe, formatDate } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,6 +35,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   selector: "app-recepcion-pipas-agua-reporte",
   templateUrl: "./recepcion-pipas-agua-reporte.html",
   changeDetection: ChangeDetectionStrategy.Eager,
+  providers: [ApiDatePipe, DatePipe],
   imports: [
     AppIcon,
     WebButtonIconDownload,
@@ -340,4 +341,3 @@ ${this.htmlPrintS.getStandardCss()}
     });
   }
 }
-

@@ -94,5 +94,3 @@ describe("MyRequestsTask", () => {
     expect(component.dataSignal()[0].priority).toBe("Baja");
   });
 });
-
-

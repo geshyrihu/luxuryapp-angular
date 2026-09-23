@@ -4,6 +4,7 @@ import {
   ElementRef,
   ViewEncapsulation,
   effect,
+  input,
   viewChild,
 } from "@angular/core";
 import { TabsBase } from "@ui/base/tabs.base";
@@ -35,14 +36,35 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         </li>
       }
     </ul>
+    @if (!navOnly()) {
     <div class="app-tabs-panels" #panels>
       <ng-content />
     </div>
+    }
   `,
   styles: [
     `
       :host {
         display: block;
+      }
+      .nav-tabs {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scrollbar-width: thin;
+        border-bottom: 1px solid var(--bs-border-color);
+        margin-bottom: 0;
+        gap: 0.5rem;
+        padding: 0.25rem;
+      }
+      .nav-tabs li {
+        flex-shrink: 0;
+      }
+      .nav-tabs button[ngbNavLink] {
+        padding: 0.75rem 1rem !important;
+        white-space: nowrap;
+        font-size: 0.95rem;
       }
     `,
   ],
@@ -50,6 +72,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class Tabs extends TabsBase {
+  /** Solo navegacion: el consumidor (p. ej. `lx-tabs`) proyecta los paneles. */
+  navOnly = input<boolean>(false);
+
   private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
 
   constructor() {
@@ -58,6 +83,7 @@ export class Tabs extends TabsBase {
     // tab activa. Si no hay paneles proyectados no hace nada (uso como selector).
     effect(() => {
       const active = this.activeId();
+      if (this.navOnly()) return;
       const host = this.panelsRef()?.nativeElement;
       if (!host) return;
       const panels = host.querySelectorAll<HTMLElement>(":scope > [tab]");

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-21T01:33:17.405Z",
-  "totalMatches": 1986,
-  "userFacingMatches": 428,
+  "generatedAt": "2026-09-23T20:38:51.322Z",
+  "totalMatches": 2009,
+  "userFacingMatches": 452,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/modules",
-      "count": 1253
+      "count": 1276
     },
     {
       "key": "app/shared",
@@ -40,7 +40,7 @@
   "byUserFacingModule": [
     {
       "key": "app/modules",
-      "count": 323
+      "count": 347
     },
     {
       "key": "app/core",
@@ -65,20 +65,20 @@
       "count": 1101
     },
     {
+      "key": "code_string",
+      "count": 229
+    },
+    {
       "key": "template_text",
       "count": 217
     },
     {
-      "key": "code_string",
-      "count": 205
-    },
-    {
       "key": "code_comment",
-      "count": 199
+      "count": 200
     },
     {
       "key": "template_comment",
-      "count": 177
+      "count": 175
     },
     {
       "key": "style_comment",
@@ -2077,109 +2077,6 @@
       "preview": "📂 {{ item.cuentaPadre }}</small"
     },
     {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/accounting-budget/presupuesto-contabilidad.html",
-      "line": 41,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "🛒"
-      ],
-      "preview": "{{ fila.numeroCuenta }} 🛒"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 147,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "⬆",
-        "⬇",
-        "➡",
-        "⬅"
-      ],
-      "preview": "<!-- ⬆️ ⬇️ ➡️ ⬅️ -->"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 150,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "⬇",
-        "➡"
-      ],
-      "preview": "[lxTooltip]=\"account.expanded ? '⬇️' : '➡️'\""
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 175,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "<td class=\"text-center\">{{ account.esCuentaMadre ? \"❌\" : \"\" }}</td>"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 182,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "<td class=\"text-center\">@if (account.epf) { ✔️ }</td>"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 183,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "<td class=\"text-center\">@if (account.er) { ✔️ }</td>"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 184,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "<td class=\"text-center\">@if (account.cedP) { ✔️ }</td>"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 185,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "<td class=\"text-center\">@if (account.fe) { ✔️ }</td>"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica.html",
-      "line": 186,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "<td class=\"text-center\">@if (account.aCob) { ✔️ }</td>"
-    },
-    {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-customer-company/aspel-customer-empresa-list.html",
       "line": 1,
       "category": "template_comment",
@@ -2610,7 +2507,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
-      "line": 312,
+      "line": 310,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -2621,7 +2518,18 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
-      "line": 316,
+      "line": 314,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🛒"
+      ],
+      "preview": ">{{ cuenta.descripcion_Cuenta }} 🛒</span"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
+      "line": 346,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -2633,17 +2541,6 @@
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
       "line": 350,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "🛒"
-      ],
-      "preview": ">{{ cuenta.descripcion_Cuenta }} 🛒</span"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-web-budget/espejo-aspel-extraordinarios.html",
-      "line": 354,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6133,17 +6030,6 @@
       "preview": "\"🤖 Reporte de Auditoría Presupuestal\","
     },
     {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/client-accounting/client-accounting-budget/presupuesto-contabilidad-cliente.html",
-      "line": 43,
-      "category": "template_text",
-      "module": "app/modules",
-      "severity": "medium",
-      "symbols": [
-        "🛒"
-      ],
-      "preview": "{{ fila.descripcion }} 🛒"
-    },
-    {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-report-delivery/reporte-envio-financieros.html",
       "line": 1,
       "category": "template_comment",
@@ -6164,6 +6050,120 @@
         "💡"
       ],
       "preview": "💡 Regla: El informe del mes anterior debe enviarse a más tardar el"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/client/client-accounting-budget/presupuesto-contabilidad-cliente.html",
+      "line": 43,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🛒"
+      ],
+      "preview": "{{ fila.descripcion }} 🛒"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/accounting-budget/presupuesto-contabilidad.html",
+      "line": 41,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🛒"
+      ],
+      "preview": "{{ fila.numeroCuenta }} 🛒"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 147,
+      "category": "template_comment",
+      "module": "app/modules",
+      "severity": "low",
+      "symbols": [
+        "⬆",
+        "⬇",
+        "➡",
+        "⬅"
+      ],
+      "preview": "<!-- ⬆️ ⬇️ ➡️ ⬅️ -->"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 150,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "⬇",
+        "➡"
+      ],
+      "preview": "[lxTooltip]=\"account.expanded ? '⬇️' : '➡️'\""
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 175,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"text-center\">{{ account.esCuentaMadre ? \"❌\" : \"\" }}</td>"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 182,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✔"
+      ],
+      "preview": "<td class=\"text-center\">@if (account.epf) { ✔️ }</td>"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 183,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✔"
+      ],
+      "preview": "<td class=\"text-center\">@if (account.er) { ✔️ }</td>"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 184,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✔"
+      ],
+      "preview": "<td class=\"text-center\">@if (account.cedP) { ✔️ }</td>"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 185,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✔"
+      ],
+      "preview": "<td class=\"text-center\">@if (account.fe) { ✔️ }</td>"
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica.html",
+      "line": 186,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✔"
+      ],
+      "preview": "<td class=\"text-center\">@if (account.aCob) { ✔️ }</td>"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-statements/estado-financiero-list.html",
@@ -7904,7 +7904,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/infrastructure/update-data-base/update-data-base.html",
-      "line": 278,
+      "line": 361,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -10653,7 +10653,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/online-collections/condo-owners-detail/cobranza-online-detalle-condominos.ts",
-      "line": 88,
+      "line": 90,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11049,7 +11049,7 @@
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/salary-projections/salary-projections-detail/salary-projections-detail.ts",
-      "line": 107,
+      "line": 57,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11057,6 +11057,17 @@
         "♻"
       ],
       "preview": "/** ♻️ Cola de simulación con debounce para no saturar el backend. */"
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/salary-projections/salary-projections-detail/salary-projections-detail.ts",
+      "line": 59,
+      "category": "code_comment",
+      "module": "app/modules",
+      "severity": "low",
+      "symbols": [
+        "💾"
+      ],
+      "preview": "/** 💾 Cola de auto-guardado con debounce. */"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/salary-projections/salary-projections-list/salary-projection-create-dialog.ts",
@@ -11081,6 +11092,259 @@
       "preview": "<h1 class=\"text-2xl fw-bold text-body mb-1\">🏢 Recursos Humanos</h1>"
     },
     {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 54,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🚨"
+      ],
+      "preview": "emoji: \"🚨\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 61,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🚨"
+      ],
+      "preview": "emoji: \"🚨\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 78,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📊"
+      ],
+      "preview": "emoji: \"📊\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 92,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "emoji: \"📄\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 105,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "⚖"
+      ],
+      "preview": "emoji: \"⚖️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 123,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "emoji: \"📝\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 130,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "emoji: \"📝\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 140,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "emoji: \"✅\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 160,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🏖"
+      ],
+      "preview": "emoji: \"🏖️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 167,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🏖"
+      ],
+      "preview": "emoji: \"🏖️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 177,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📅"
+      ],
+      "preview": "emoji: \"📅\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 187,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🗓"
+      ],
+      "preview": "emoji: \"🗓️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 197,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📜"
+      ],
+      "preview": "emoji: \"📜\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 207,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "➕"
+      ],
+      "preview": "emoji: \"➕\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 221,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🔍"
+      ],
+      "preview": "emoji: \"🔍\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 234,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "⚙"
+      ],
+      "preview": "emoji: \"⚙️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 247,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "emoji: \"📄\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 254,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "emoji: \"📄\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 268,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📑"
+      ],
+      "preview": "emoji: \"📑\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 281,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "emoji: \"📝\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 295,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📑"
+      ],
+      "preview": "emoji: \"📑\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 311,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "⚙"
+      ],
+      "preview": "emoji: \"⚙️\","
+    },
+    {
+      "file": "src/app/modules/human-resources.luxuryapp/shared/dashboard/hr-dashboard.ts",
+      "line": 318,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "📚"
+      ],
+      "preview": "emoji: \"📚\","
+    },
+    {
       "file": "src/app/modules/human-resources.luxuryapp/shared/generic-approval-panel.ts",
       "line": 24,
       "category": "code_comment",
@@ -11089,7 +11353,7 @@
       "symbols": [
         "✨"
       ],
-      "preview": "* ✨ COMPONENTE GENÉRICORICO PARA PANELES DE APROBACIÓNN ✨"
+      "preview": "* ✨ COMPONENTE GENÉRICO PARA PANELES DE APROBACIÓN ✨"
     },
     {
       "file": "src/app/modules/human-resources.luxuryapp/time-off/admin-vacaciones-balance/admin-vacaciones-balance.html",
@@ -11368,7 +11632,7 @@
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/elevator-emergency-call/elevators-emergency-call-list.html",
-      "line": 90,
+      "line": 98,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11390,7 +11654,7 @@
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/logs/elevator-spare-parts/elevator-spare-parts-change-list.html",
-      "line": 95,
+      "line": 103,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -11808,28 +12072,6 @@
       "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
-      "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/minutas-list.html",
-      "line": 2,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/minutas-list.html",
-      "line": 262,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
-    },
-    {
       "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/resumen-minuta.html",
       "line": 2,
       "category": "template_comment",
@@ -11853,7 +12095,7 @@
     },
     {
       "file": "src/app/modules/management.luxuryapp/monthly-meetings/meeting-minutes/resumen-minuta.html",
-      "line": 204,
+      "line": 195,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -12039,6 +12281,17 @@
       "preview": "emoji: \"🏢\","
     },
     {
+      "file": "src/app/modules/operations.luxuryapp/dashboard/metrics/catalog/kpi-catalog.config.ts",
+      "line": 105,
+      "category": "code_string",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "fuenteDeDatos: \"ServiceOrders (RequestDate→ExecutionDate) + Tasks (CreatedAt→ClosedDate)\","
+    },
+    {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard-mobile.ts",
       "line": 308,
       "category": "code_string",
@@ -12161,7 +12414,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 281,
+      "line": 279,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12172,7 +12425,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 283,
+      "line": 281,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12183,7 +12436,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 285,
+      "line": 283,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12194,7 +12447,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 287,
+      "line": 285,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12205,7 +12458,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 289,
+      "line": 287,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12216,7 +12469,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 292,
+      "line": 290,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12227,7 +12480,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 294,
+      "line": 292,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12238,7 +12491,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 296,
+      "line": 294,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12249,7 +12502,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 298,
+      "line": 296,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12260,7 +12513,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 300,
+      "line": 298,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12271,7 +12524,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 493,
+      "line": 491,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12282,7 +12535,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 542,
+      "line": 540,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -13141,7 +13394,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/service-orders/service-order/ordenes-servicio-list.html",
-      "line": 197,
+      "line": 204,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -15585,7 +15838,7 @@
     },
     {
       "file": "src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation.html",
-      "line": 37,
+      "line": 57,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -15596,7 +15849,7 @@
     },
     {
       "file": "src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation.html",
-      "line": 63,
+      "line": 83,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -15607,7 +15860,7 @@
     },
     {
       "file": "src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation.html",
-      "line": 95,
+      "line": 115,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -15618,7 +15871,7 @@
     },
     {
       "file": "src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation.html",
-      "line": 127,
+      "line": 148,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -15629,7 +15882,7 @@
     },
     {
       "file": "src/app/modules/web.luxuryapp/maintenance/procedures/staff-evaluation/staff-evaluation.html",
-      "line": 159,
+      "line": 181,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",

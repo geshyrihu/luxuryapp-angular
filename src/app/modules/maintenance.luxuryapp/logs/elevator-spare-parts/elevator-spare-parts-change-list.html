@@ -15,10 +15,18 @@
     >
       <!-- class="p-datatable-sm" -->
       <ng-template #caption>
-        <app-table-caption
-          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-          [dt]="dt"
-        />
+        <div class="d-flex justify-content-between align-items-center w-full">
+          <iw-button-download
+            (clicked)="onPdfReport()"
+            lxTooltip="Descargar PDF"
+            tooltipPosition="top"
+            tooltip="Descargar listado de cambios de refacciones"
+          />
+          <app-table-caption
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
+          />
+        </div>
       </ng-template>
 
       <ng-template #header>
@@ -93,6 +101,15 @@
 </div>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
+<div class="d-flex d-md-none justify-content-end mb-2">
+  <iw-button-download
+    (clicked)="onPdfReport()"
+    lxTooltip="Descargar PDF"
+    tooltipPosition="top"
+    tooltip="Descargar listado de cambios de refacciones"
+  />
+</div>
+
 <div class="d-block d-md-none">
   <div class="card">
     <app-data-view-mobile
@@ -114,24 +131,31 @@
           </div>
 
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <h2 class="fw-bold m-0 text-base text-wrap">
-              {{ item.partName }}
-            </h2>
+            <h2 class="fw-bold m-0 text-base text-wrap">{{ item.partName }}</h2>
             <span class="fw-bold text-lg text-green-600"
               >{{ item.price | currency }}</span
             >
           </div>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" />
+            <app-icon
+              [icon]="'material-symbols-light:currency-pound'"
+              class="me-1 text-xs"
+            />
             Folio: {{ item.folio }}
           </p>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" />
+            <app-icon
+              [icon]="'material-symbols-light:calendar-today'"
+              class="me-1 text-xs"
+            />
             {{ item.changeDate }}
           </p>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon [icon]="'material-symbols-light:settings'" class="me-1 text-xs" /> {{
-            item.machinery }}
+            <app-icon
+              [icon]="'material-symbols-light:settings'"
+              class="me-1 text-xs"
+            />
+            {{ item.machinery }}
           </p>
           <p class="text-sm text-body mt-2 mb-1">
             <strong>Falla:</strong> {{ item.failure }}

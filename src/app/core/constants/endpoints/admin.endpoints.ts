@@ -112,6 +112,10 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/recalculate-work-position-folios",
     backfillMeetingFolios:
       "admin/system-maintenance/backfill-meeting-folios",
+    backfillServiceOrderFolios:
+      "admin/system-maintenance/backfill-service-order-folios",
+    recalculateElevatorFolios:
+      "admin/system-maintenance/recalculate-elevator-folios",
     repairPurchaseRequestFolios:
       "admin/database-backup/purchase-requests/repair-folios",
     repairPurchaseOrderFolios:

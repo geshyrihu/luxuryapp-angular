@@ -15,10 +15,18 @@
     >
       <!-- class="p-datatable-sm" -->
       <ng-template #caption>
-        <app-table-caption
-          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-          [dt]="dt"
-        />
+        <div class="d-flex justify-content-between align-items-center w-full">
+          <iw-button-download
+            (clicked)="onPdfReport()"
+            lxTooltip="Descargar PDF"
+            tooltipPosition="top"
+            tooltip="Descargar listado de llamadas de emergencia"
+          />
+          <app-table-caption
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
+          />
+        </div>
       </ng-template>
 
       <ng-template #header>
@@ -89,6 +97,15 @@
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 
+<div class="d-flex d-md-none justify-content-end mb-2">
+  <iw-button-download
+    (clicked)="onPdfReport()"
+    lxTooltip="Descargar PDF"
+    tooltipPosition="top"
+    tooltip="Descargar listado de llamadas de emergencia"
+  />
+</div>
+
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -111,12 +128,18 @@
         <h2 class="fw-bold m-0 text-base text-wrap">{{ item.machinery }}</h2>
       </div>
       <p class="text-sm text-body-secondary m-0">
-        <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" /> Folio: {{
-        item.folio }}
+        <app-icon
+          [icon]="'material-symbols-light:currency-pound'"
+          class="me-1 text-xs"
+        />
+        Folio: {{ item.folio }}
       </p>
       <p class="text-sm text-body-secondary m-0">
-        <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" /> {{
-        item.requestDate }}
+        <app-icon
+          [icon]="'material-symbols-light:calendar-today'"
+          class="me-1 text-xs"
+        />
+        {{ item.requestDate }}
       </p>
       <p class="text-sm text-body mt-2 mb-1">
         <strong>Reporte:</strong> {{ item.report }}

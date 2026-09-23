@@ -3,6 +3,7 @@ import {
   ElementRef,
   ViewEncapsulation,
   effect,
+  input,
   viewChild,
 } from "@angular/core";
 import { TabsBase } from "@ui/base/tabs.base";
@@ -36,9 +37,11 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         </button>
       }
     </div>
+    @if (!navOnly()) {
     <div class="ili-tab-panels" #panels>
       <ng-content />
     </div>
+    }
   `,
   styles: [
     `
@@ -106,6 +109,9 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTabs extends TabsBase {
+  /** Solo navegacion: el consumidor (p. ej. `lx-tabs`) proyecta los paneles. */
+  navOnly = input<boolean>(false);
+
   private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
 
   constructor() {
@@ -115,6 +121,7 @@ export class MobileTabs extends TabsBase {
     // feature), no hace nada.
     effect(() => {
       const active = this.activeId();
+      if (this.navOnly()) return;
       const host = this.panelsRef()?.nativeElement;
       if (!host) return;
       const panels = host.querySelectorAll<HTMLElement>(":scope > [tab]");

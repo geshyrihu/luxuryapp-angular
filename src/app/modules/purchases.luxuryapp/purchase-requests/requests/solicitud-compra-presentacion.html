@@ -51,20 +51,8 @@
       tooltip="Siguiente solicitud"
     />
   </div>
-  <lx-carousel
-    #presentationCarousel
-    [value]="presentationSlides()"
-    [numVisible]="1"
-    [numScroll]="1"
-    [page]="currentPage()"
-    [circular]="false"
-    [autoplayInterval]="0"
-    [showIndicators]="solicitudesSignal().length > 1"
-    [showNavigators]="false"
-    class="presentation-carousel"
-    (onPage)="onCarouselPage($event)"
-  >
-    <ng-template let-slide #item>
+  <div class="presentation-carousel">
+    @for (slide of presentationSlides(); track $index) { @if ($index === currentPage()) {
       @if (slide.kind === "summary") {
       <section class="presentation-slide">
         <div class="presentation-accent"></div>
@@ -486,7 +474,21 @@
         </div>
       </section>
       }
-    </ng-template>
-  </lx-carousel>
+    } }
+    @if (presentationSlides().length > 1) {
+    <div class="presentation-indicators" aria-label="Slides de presentación">
+      @for (slide of presentationSlides(); track $index) {
+      <button
+        type="button"
+        class="presentation-indicator"
+        [class.presentation-indicator-active]="$index === currentPage()"
+        [attr.aria-label]="'Ir a slide ' + ($index + 1)"
+        [attr.aria-current]="$index === currentPage() ? 'step' : null"
+        (click)="currentPage.set($index)"
+      ></button>
+      }
+    </div>
+    }
+  </div>
   }
 </div>

@@ -14,6 +14,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import {
   DialogHandlerService,
@@ -82,6 +83,7 @@ import { ReporteOrdenesServicioService } from "./services/reporte-ordenes-servic
 })
 export class OrdenesServicio {
   apiResponseS = inject(ApiResponseService);
+  customToastS = inject(CustomToastService);
   authS = inject(AuthService);
   route = inject(Router);
   customerIdS = inject(CustomerIdService);
@@ -184,6 +186,24 @@ export class OrdenesServicio {
       fechaFormateada,
       this.filtroEquiposValue,
     );
+  }
+
+  onNavigateToReportPorEquipo() {
+    const desdePeriodo = window.prompt(
+      "Generar reportes por equipo desde mes y año (AAAA-MM):",
+      this.fechaControl.value || "",
+    );
+
+    if (desdePeriodo === null) return;
+    if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(desdePeriodo)) {
+      this.customToastS.showWarn(
+        "Periodo inválido",
+        "Capture el periodo con formato AAAA-MM.",
+      );
+      return;
+    }
+
+    void this.pdfService.downloadReportesPorEquipo(desdePeriodo);
   }
 
   onModalFormUploadImg(id: any) {

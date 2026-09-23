@@ -22,6 +22,18 @@
   overflow: hidden;
 }
 
+// ===== SELECTOR DE PERIODO EN LA BARRA DE CONTEXTO =====
+// Ancho acotado para que el datepicker conviva con el acordeón de contexto
+// sin empujar los datos de Origen / Última Act. / Condóminos.
+.cobranza-period-field {
+  min-width: 0;
+
+  @media (min-width: 768px) {
+    flex: 0 0 14rem;
+    width: 14rem;
+  }
+}
+
 // ===== CONTENIDO DURANTE LA CARGA =====
 // El overlay de "Consultando Aspel" es translúcido, así que el componente hijo
 // se veía por debajo: encabezados de tabla, el vacío "Sin registros", la fila de

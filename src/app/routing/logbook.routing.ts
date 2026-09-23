@@ -362,5 +362,3 @@ export const logbookRoutes: Routes = [
     },
   },
 ];
-
-

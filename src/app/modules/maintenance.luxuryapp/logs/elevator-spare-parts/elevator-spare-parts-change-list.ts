@@ -28,9 +28,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ElevatorSparePartsChangeForm } from "./elevator-spare-parts-change-form";
+import { ElevatorLogsPdfService } from "../elevator-reports/elevator-logs-pdf.service";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
@@ -40,6 +42,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconEdit,
+    WebButtonIconDownload,
     WebButtonIconDelete,
     MobileActionMenu,
     MobileButtonLabelEdit,
@@ -60,6 +63,7 @@ export class ElevatorSparePartsChangeList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
+  pdfS = inject(ElevatorLogsPdfService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -102,6 +106,10 @@ export class ElevatorSparePartsChangeList {
       });
   }
 
+  onPdfReport() {
+    void this.pdfS.downloadSpareParts(this.dataSignal());
+  }
+
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -118,4 +126,3 @@ export class ElevatorSparePartsChangeList {
       });
   }
 }
-

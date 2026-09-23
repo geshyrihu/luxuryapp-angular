@@ -33,7 +33,8 @@ export const EndpointsOperations = {
     // Ownership canonico: OperationsLuxuryApp.
     send: "access-controls/invitations",
     resend: (id: string) => `access-controls/invitations/${id}/resend`,
-    byVisit: (visitId: string) => `access-controls/invitations/by-visit/${visitId}`,
+    byVisit: (visitId: string) =>
+      `access-controls/invitations/by-visit/${visitId}`,
   },
   AccessControlVisitors: {
     // Ownership canonico: OperationsLuxuryApp.
@@ -51,16 +52,22 @@ export const EndpointsOperations = {
     getByClosed: (id: string) => `tasks/get-by-closed/${id}`,
     getById: (id: string) => `tasks/${id}`,
     getStatus: (id: string) => `tasks/${id}/status`,
-    groupListByCustomer: (customerId: string) => `task-group-list/${customerId}`,
+    groupListByCustomer: (customerId: string) =>
+      `task-group-list/${customerId}`,
     inProgress: (id: string, applicationUserId: string) =>
       `tickets/in-progress/${id}/${applicationUserId}`,
     inProgressLower: (id: string, applicationUserId: string) =>
       `tasks/in-progress/${id}/${applicationUserId}`,
-    legalAll: (customerId?: string) => customerId ? `tasks/legal/all?customer-id=${customerId}` : `tasks/legal/all`,
+    legalAll: (customerId?: string) =>
+      customerId
+        ? `tasks/legal/all?customer-id=${customerId}`
+        : `tasks/legal/all`,
     legalByCustomer: "tasks/legal/customer",
     legalPending: (isInternal?: boolean, unassigned: boolean = false) => {
       if (unassigned) return "tasks/legal/pending?unassigned=true";
-      return isInternal !== undefined ? `tasks/legal/pending?is-internal=${isInternal}` : "tasks/legal/pending";
+      return isInternal !== undefined
+        ? `tasks/legal/pending?is-internal=${isInternal}`
+        : "tasks/legal/pending";
     },
     list: (ticketGroupId: string, status: string) =>
       `tasks/list/${ticketGroupId}/${status}`,
@@ -76,7 +83,8 @@ export const EndpointsOperations = {
     ) => `tasks/my-request/${applicationUserId}/${status}/${customerId}`,
 
     myTicketProgramation: (id: string) => `tasks/my-ticket/programation/${id}`,
-    participants: (ticketGroupId: string) => `tasks/participant/${ticketGroupId}`,
+    participants: (ticketGroupId: string) =>
+      `tasks/participant/${ticketGroupId}`,
     programation: (id: string) => `tasks/programation/${id}`,
     reopen: "tasks/reopen",
     update: (id: string) => `tasks/update/${id}`,
@@ -138,8 +146,10 @@ export const EndpointsOperations = {
       `task-follow-up/list/${ticketMessageId}`,
   },
   TaskFollowUpEvidenceImages: {
-    list: (followUpId: string) => `task-follow-up/${followUpId}/evidence-images`,
-    upload: (followUpId: string) => `task-follow-up/${followUpId}/evidence-images`,
+    list: (followUpId: string) =>
+      `task-follow-up/${followUpId}/evidence-images`,
+    upload: (followUpId: string) =>
+      `task-follow-up/${followUpId}/evidence-images`,
     reorder: (followUpId: string) =>
       `task-follow-up/${followUpId}/evidence-images/reorder`,
     delete: (followUpId: string, imageId: string) =>
@@ -150,14 +160,16 @@ export const EndpointsOperations = {
     delete: (id: string | number) => `task-group-categories/${id}`,
     getAll: "task-group-categories",
     getById: (id: string) => `task-group-categories/${id}`,
-    selectByCustomer: (customerId: string) => `task-group-category/${customerId}`,
+    selectByCustomer: (customerId: string) =>
+      `task-group-category/${customerId}`,
   },
   TaskGroupParticipants: {
     availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
       `task-group-participant/participants/${customerId}/${taskGroupId}`,
     base: "task-group-participant",
     delete: (id: string | number) => `task-group-participant/${id}`,
-    listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
+    listByGroup: (taskGroupId: string) =>
+      `task-group-participant/${taskGroupId}`,
     update: (id: string) => `task-group-participant/${id}`,
   },
   TaskGroups: {
@@ -191,7 +203,8 @@ export const EndpointsOperations = {
       startDate: string | null,
       endDate: string | null,
       status: string | number,
-    ) => `task-report/weekly-report/${customerId}/${startDate}/${endDate}/${status}`,
+    ) =>
+      `task-report/weekly-report/${customerId}/${startDate}/${endDate}/${status}`,
   },
   TaskWorkPlans: {
     create: (
@@ -199,7 +212,8 @@ export const EndpointsOperations = {
       customerId: string,
       year: number,
       weekNumber: number,
-    ) => `task-work-plan/create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    ) =>
+      `task-work-plan/create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
     pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
     preview: (customerId: string, year: number, weekNumber: number) =>
       `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
@@ -211,7 +225,8 @@ export const EndpointsOperations = {
   RecurringTasks: {
     Templates: {
       delete: (templateId: string) => `recurring-tasks/templates/${templateId}`,
-      getById: (templateId: string) => `recurring-tasks/templates/${templateId}`,
+      getById: (templateId: string) =>
+        `recurring-tasks/templates/${templateId}`,
       getActiveList: "recurring-tasks/templates/list/true",
       getByState: (state: boolean) => `recurring-tasks/templates/list/${state}`,
       customerConfig: (customerId: string) =>
@@ -237,7 +252,8 @@ export const EndpointsOperations = {
 
       return `recurring-task-templates?${params.toString()}`;
     },
-    toggleStatus: (id: string) => `recurring-task-templates/${id}/toggle-status`,
+    toggleStatus: (id: string) =>
+      `recurring-task-templates/${id}/toggle-status`,
   },
   AiAssistant: {
     // Alias legacy.
@@ -258,7 +274,7 @@ export const EndpointsOperations = {
       `birthday/${customerId}/${month}`,
   },
   BudgetMaintenance: {
-resumenGastosByCustomer: (customerId: string) =>
+    resumenGastosByCustomer: (customerId: string) =>
       `budget-maintenance/resumen-gastos/${customerId}`,
     summaryOfExpensesByCustomer: (customerId: string) =>
       `budget-maintenance/summary-of-expenses/${customerId}`,
@@ -285,13 +301,18 @@ resumenGastosByCustomer: (customerId: string) =>
       `dashboard/send-executive-report/${customerId}`,
     globalPendingItems: (customerId: string) =>
       `dashboard/global-pending-items/${customerId}`,
-    operationalMetrics: (params: string) => `dashboard/metrics/operational?${params}`,
-    maintenanceOrders: (params: string) => `dashboard/metrics/maintenance-orders?${params}`,
-    ticketsByGroup: (params: string) => `dashboard/metrics/tickets-by-group?${params}`,
-    contractsExpiring: (params: string) => `dashboard/metrics/contracts-expiring?${params}`,
+    operationalMetrics: (params: string) =>
+      `dashboard/metrics/operational?${params}`,
+    maintenanceOrders: (params: string) =>
+      `dashboard/metrics/maintenance-orders?${params}`,
+    ticketsByGroup: (params: string) =>
+      `dashboard/metrics/tickets-by-group?${params}`,
+    contractsExpiring: (params: string) =>
+      `dashboard/metrics/contracts-expiring?${params}`,
   },
   CommitteePresentations: {
-    generalByDate: (date: string) => `presentaciones-junta-comite/generales/${date}/`,
+    generalByDate: (date: string) =>
+      `presentaciones-junta-comite/generales/${date}/`,
   },
   DiagramDraw: {
     create: "diagram-draw",
@@ -308,7 +329,8 @@ resumenGastosByCustomer: (customerId: string) =>
     base: "meetings",
     delete: (id: string) => `meetings/${id}`,
     getById: (id: string) => `meetings/${id}`,
-    getDetails: (meetingId: string | null) => `meetings/get-details/${meetingId}`,
+    getDetails: (meetingId: string | null) =>
+      `meetings/get-details/${meetingId}`,
     emailDispatches: (meetingId: string) =>
       `meetings/${meetingId}/email-dispatches`,
     list: (customerId: string, tipoJunta: number) =>
@@ -399,8 +421,7 @@ resumenGastosByCustomer: (customerId: string) =>
     getAll: "manuals",
     getById: (id: string) => `manuals/${id}`,
     getDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
-    reordenarPasos: (manualId: string) =>
-      `manuals/${manualId}/pasos/reordenar`,
+    reordenarPasos: (manualId: string) => `manuals/${manualId}/pasos/reordenar`,
     subirImagen: (manualId: string, pasoId: string) =>
       `manuals/${manualId}/pasos/${pasoId}/imagenes`,
     update: (id: string) => `manuals/${id}`,
@@ -409,7 +430,8 @@ resumenGastosByCustomer: (customerId: string) =>
       `manuals/${manualId}/pasos/${pasoId}`,
   },
   FinancialReport: {
-    listByCustomer: (customerId: string) => `financial-report/list/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `financial-report/list/${customerId}`,
   },
   ResumenGeneral: {
     evaluationAreas: (startDate: string, endDate: string) =>
@@ -431,7 +453,8 @@ resumenGastosByCustomer: (customerId: string) =>
       startDate: string,
       endDate: string,
       reportLevel: string | number,
-    ) => `resumen-general/reporte-resumen-minutas/${startDate}/${endDate}/${reportLevel}`,
+    ) =>
+      `resumen-general/reporte-resumen-minutas/${startDate}/${endDate}/${reportLevel}`,
     reporteResumenMinutasFiltro: (
       startDate: string,
       endDate: string,
@@ -445,7 +468,8 @@ resumenGastosByCustomer: (customerId: string) =>
       customerId: string,
       startDate: string,
       endDate: string,
-    ) => `resumen-general/reporte-resumen-ticket/${customerId}/${startDate}/${endDate}`,
+    ) =>
+      `resumen-general/reporte-resumen-ticket/${customerId}/${startDate}/${endDate}`,
     reporteResumenTicket: (startDate: string, endDate: string) =>
       `resumen-general/reporte-resumen-ticket/${startDate}/${endDate}`,
     filtroDto: "resumen-general/filtro-dto",
@@ -477,7 +501,8 @@ resumenGastosByCustomer: (customerId: string) =>
     update: (id: string) => `manual-flowcharts/${id}`,
   },
   MiEdificio: {
-    caratulaByCustomer: (customerId: string) => `mi-edificio/caratula/${customerId}`,
+    caratulaByCustomer: (customerId: string) =>
+      `mi-edificio/caratula/${customerId}`,
   },
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
@@ -514,7 +539,8 @@ resumenGastosByCustomer: (customerId: string) =>
     generalMaintenanceByCustomerAndProvider: (
       customerId: string,
       providerId: string | number,
-    ) => `maintenance-calendars/general-mantenimiento/${customerId}/${providerId}`,
+    ) =>
+      `maintenance-calendars/general-mantenimiento/${customerId}/${providerId}`,
     get: (id: string | number) => `maintenance-calendars/get/${id}`,
     listAnnualByCustomerAndMonth: (
       customerId: string,
@@ -529,9 +555,10 @@ resumenGastosByCustomer: (customerId: string) =>
       filterId?: string | number,
       year?: number,
     ) => {
-      const base = filterId === undefined || filterId === null || filterId === ""
-        ? `maintenance-calendars/cronograma-anual/${customerId}`
-        : `maintenance-calendars/cronograma-anual/${customerId}/${filterId}`;
+      const base =
+        filterId === undefined || filterId === null || filterId === ""
+          ? `maintenance-calendars/cronograma-anual/${customerId}`
+          : `maintenance-calendars/cronograma-anual/${customerId}/${filterId}`;
       const params = new URLSearchParams();
       if (year) params.set("year", String(year));
       const qs = params.toString();
@@ -599,7 +626,8 @@ resumenGastosByCustomer: (customerId: string) =>
     getById: (id: string | number) => `inventario-extintor/${id}`,
     groupedByCustomer: (customerId: string) =>
       `inventario-extintor/get-all-group/${customerId}`,
-    listByCustomer: (customerId: string) => `inventario-extintor/list/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-extintor/list/${customerId}`,
     update: (id: string | number) => `inventario-extintor/${id}`,
   },
   Hydrants: {
@@ -608,14 +636,16 @@ resumenGastosByCustomer: (customerId: string) =>
     getById: (id: string | number) => `inventario-hidrante/${id}`,
     importByCustomer: (customerId: string) =>
       `InventarioHidrante/import/${customerId}`,
-    listByCustomer: (customerId: string) => `inventario-hidrante/list/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-hidrante/list/${customerId}`,
     update: (id: string | number) => `inventario-hidrante/${id}`,
   },
   KeyInventory: {
     create: "inventario-llave",
     delete: (id: string | number) => `inventario-llave/${id}`,
     getById: (id: string | number) => `inventario-llave/${id}`,
-    listByCustomer: (customerId: string) => `inventario-llave/list/${customerId}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-llave/list/${customerId}`,
     update: (id: string | number) => `inventario-llave/${id}`,
   },
   ManualCallPoints: {
@@ -661,10 +691,12 @@ resumenGastosByCustomer: (customerId: string) =>
     update: (id: string) => `radios-comunicacion/${id}`,
   },
   ServiceOrders: {
-    uploadImg: (serviceOrderId: string) => `service-orders/subir-img/${serviceOrderId}`,
+    uploadImg: (serviceOrderId: string) =>
+      `service-orders/subir-img/${serviceOrderId}`,
     create: "service-orders",
     delete: (id: string | number) => `service-orders/${id}`,
-    deleteDocument: (id: string | number) => `service-orders/delete-document/${id}`,
+    deleteDocument: (id: string | number) =>
+      `service-orders/delete-document/${id}`,
     deleteImg: (id: string | number) => `service-orders/delete-img/${id}`,
     getById: (id: string | number) => `service-orders/${id}`,
     listByCustomerAndDate: (customerId: string, date: string) =>
@@ -675,6 +707,8 @@ resumenGastosByCustomer: (customerId: string) =>
       `service-orders/ordenes-servicio-fotos/${id}/${customerId}`,
     reporte: (customerId: string, periodo: string) =>
       `service-orders/reporte-ordenes-servicio/${customerId}/${periodo}`,
+    reportePorEquipoZip: (customerId: string, periodo: string) =>
+      `service-orders/reporte-ordenes-servicio-por-equipo/${customerId}/${periodo}`,
     reporteProveedor: (id: string, customerId: string) =>
       `service-orders/ordenes-servicio-reporte-proveedor/${id}/${customerId}`,
     soporte: (id: string) => `service-orders/soporte-orden-servicio/${id}`,

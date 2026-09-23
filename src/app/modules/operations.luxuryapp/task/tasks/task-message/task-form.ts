@@ -14,18 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom } from "rxjs";
-import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -39,15 +27,27 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { TaskFollowup } from "../task-follow-up/task-followup";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { firstValueFrom } from "rxjs";
 import {
   TaskAdditionalImage,
   TaskImageReorderPayload,
   TaskResponsible,
   TaskResponsibleAddPayload,
 } from "../shared/interfaces/task-refactor.interface";
+import { TaskFollowup } from "../task-follow-up/task-followup";
 
 interface ITaskMessageForm {
   id: FormControl<string>;
@@ -228,8 +228,10 @@ export class TaskForm implements OnInit, OnDestroy {
     const selected = this.form.controls.responsiblesToAdd.value;
     const legacySelection = this.form.controls.responsibleToAdd.value;
     const ids = selected.length
-      ? selected.map((item) => typeof item === "string" ? item : item.value)
-      : legacySelection ? [legacySelection] : [];
+      ? selected.map((item) => (typeof item === "string" ? item : item.value))
+      : legacySelection
+        ? [legacySelection]
+        : [];
     for (const applicationUserId of [...new Set(ids.filter(Boolean))]) {
       const payload: TaskResponsibleAddPayload = { applicationUserId };
       const result = await this.apiResponseS.onPost<TaskResponsible>(
@@ -685,7 +687,7 @@ export class TaskForm implements OnInit, OnDestroy {
             }
           } else if (key === "dependsOnTaskId") {
             if (value) formData.append(key, value);
-           } else if (key !== "assignee" && key !== "responsibleToAdd") {
+          } else if (key !== "assignee" && key !== "responsibleToAdd") {
             formData.append(key, value != null ? value : "");
           }
         });
@@ -700,5 +702,3 @@ export class TaskForm implements OnInit, OnDestroy {
     }
   }
 }
-
-

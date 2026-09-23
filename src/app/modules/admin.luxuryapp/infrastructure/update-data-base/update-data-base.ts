@@ -446,6 +446,80 @@ this.loading.set(false);
       });
   }
 
+  runBackfillServiceOrderFolios() {
+    if (
+      !window.confirm(
+        "Se asignaran folios OS a órdenes de servicio sin folio. Los folios existentes no se modificaran. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Asignando folios a órdenes de servicio...",
+      "Se usara el formato OS-RFC-YYMM-NNN y se conservaran los folios existentes.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.backfillServiceOrderFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Folios de órdenes de servicio asignados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La asignación de folios de órdenes de servicio falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
+  runRecalculateElevatorFolios() {
+    if (
+      !window.confirm(
+        "Se recalcularan los folios de Llamados de Emergencia y Cambios de Refacciones de Elevador. La operacion conserva IDs y relaciones, pero modifica datos historicos. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Recalculando folios de elevadores...",
+      "Se generara el formato RFC-NNNN por cliente, ordenado por fecha e ID.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.recalculateElevatorFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Folios de elevadores recalculados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "El recálculo de folios de elevadores falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedDocumentCatalogs() {
     this.loading.set(true);
     this.result.set(null);

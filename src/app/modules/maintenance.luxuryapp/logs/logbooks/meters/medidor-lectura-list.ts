@@ -1,4 +1,5 @@
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -44,6 +45,7 @@ import { AuthService } from "../../../../../core/auth/services/auth.service";
   selector: "app-medidor-lectura-list",
   templateUrl: "./medidor-lectura-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
+  providers: [ApiDatePipe, DatePipe],
   imports: [
     ActionMenu,
     WebButtonIconDownload,
@@ -192,4 +194,3 @@ export class MedidorLecturaList implements OnInit {
   ];
   numeros = [65, 59, 80, 81, 56, 55, 40, 36, 95, 85];
 }
-

@@ -123,6 +123,17 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 
+  async downloadReportesPorEquipo(desdePeriodo: string): Promise<void> {
+    const customerId = this.customerIdS.customerId();
+    await this.apiResponseS.onDownloadFile(
+      Endpoints.ServiceOrders.reportePorEquipoZip(
+        customerId,
+        `${desdePeriodo}-01`,
+      ),
+      `Reportes_Ordenes_Por_Equipo_${desdePeriodo}.zip`,
+    );
+  }
+
   async downloadReporte(periodo: string, filterName: string) {
     this.customToastS.showInfo(
       "Generando Reporte",
@@ -158,10 +169,12 @@ ${this.htmlPrintS.getStandardCss()}
   ${this.htmlPrintS.getStandardCss()}
   <style>
   body { background-color: white !important; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-  .report-container { background: white; margin-bottom: 2rem; max-width: 210mm; margin: 0 auto; }
+  @page { size: letter portrait; margin: 10mm; }
+  .report-container { background: white; max-width: 100%; margin: 0; padding: 0; break-after: page; page-break-after: always; }
+  .report-container:last-child { break-after: auto; page-break-after: auto; }
   .report-logo { max-height: 80px; max-width: 100%; object-fit: contain; }
   .signature-line { border-bottom: 1px solid #333; height: 1px; width: 80%; margin: 0 auto; }
-  .page-break { page-break-after: always; break-after: page; min-height: 95vh; position: relative; }
+  .page-break { position: relative; }
   .break-inside-avoid { page-break-inside: avoid; break-inside: avoid; }
   .surface-50 { background-color: #f9fafb !important; }
   .surface-100 { background-color: #f3f4f6 !important; }
@@ -170,12 +183,12 @@ ${this.htmlPrintS.getStandardCss()}
   .border-1 { border: 1px solid #e5e7eb; }
   .p-3 { padding: 1rem; }
   .mb-4 { margin-bottom: 1.5rem; }
-  .grid { display: flex; flex-wrap: wrap; }
-  .col-6 { width: 50%; padding: 0.5rem; }
-  .col-12 { width: 100%; padding: 0.5rem; }
-  .col-3 { width: 25%; padding: 0.5rem; }
-  .col-4 { width: 33.33%; padding: 0.5rem; }
-  .col-5 { width: 41.66%; padding: 0.5rem; }
+  .grid, .row { display: flex; flex-wrap: wrap; width: 100%; }
+  .col-6 { flex: 0 0 50%; width: 50%; padding: 0.5rem; }
+  .col-12 { flex: 0 0 100%; width: 100%; padding: 0.5rem; }
+  .col-3 { flex: 0 0 25%; width: 25%; padding: 0.5rem; }
+  .col-4 { flex: 0 0 33.33%; width: 33.33%; padding: 0.5rem; }
+  .col-5 { flex: 0 0 41.66%; width: 41.66%; padding: 0.5rem; }
   .text-center { text-align: center; }
   .text-right { text-align: right; }
   .text-xs { font-size: 0.75rem; }
@@ -192,7 +205,13 @@ ${this.htmlPrintS.getStandardCss()}
   .uppercase { text-transform: uppercase; }
   .line-height-3 { line-height: 1.5; }
   .flex { display: flex; }
+  .d-flex { display: flex; }
+  .d-block { display: block; }
   .align-items-center { align-items: center; }
+  .justify-content-between { justify-content: space-between; }
+  .justify-content-center { justify-content: center; }
+  .flex-wrap { flex-wrap: wrap; }
+  .flex-shrink-0 { flex-shrink: 0; }
   .mb-1 { margin-bottom: 0.25rem; }
   .mb-2 { margin-bottom: 0.5rem; }
   .mb-3 { margin-bottom: 1rem; }
@@ -252,7 +271,7 @@ ${this.htmlPrintS.getStandardCss()}
             <div class="col-4 text-right">
               <h3 class="text-lg font-bold text-primary mb-2">ORDEN DE SERVICIO</h3>
               <div class="text-xs">
-                <div class="mb-1"><span class="font-bold">Folio:</span> #${this.htmlPrintS.esc(item.id || "S/N")}</div>
+                 <div class="mb-1"><span class="font-bold">Folio:</span> ${this.htmlPrintS.esc(item.folio || item.id || "S/N")}</div>
                 <div class="mb-1"><span class="font-bold">Solicitud:</span> ${this.htmlPrintS.esc(item.requestDate)}</div>
                 <div class="mb-1"><span class="font-bold">Ejecución:</span> ${this.htmlPrintS.esc(item.executionDate)}</div>
                 <div class="mt-2 text-xs uppercase font-medium bg-primary rounded" style="display:inline-block; padding: 2px 4px;">
@@ -319,7 +338,7 @@ ${this.htmlPrintS.getStandardCss()}
             </div>
           </div>
 
-          <div class="signature-section mt-6 break-inside-avoid">
+          <div class="signature-section mt-6">
             <div class="row">
               <div class="col-6 text-center">
                 <div class="signature-line mb-2"></div>
@@ -344,4 +363,3 @@ ${this.htmlPrintS.getStandardCss()}
     this.htmlPrintS.printHtml(html, `Reporte-Ordenes-${filterName}-${periodo}`);
   }
 }
-

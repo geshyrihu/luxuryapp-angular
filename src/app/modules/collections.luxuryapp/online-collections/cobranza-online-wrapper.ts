@@ -14,20 +14,16 @@ import {
 } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { AccordionItem } from "@ui/base/accordion.base";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { CobranzaDatePickerModalComponent } from "./cobranza-date-picker-modal";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
 
 @Component({
   selector: "app-cobranza-online-wrapper",
-  imports: [RouterModule, AppIcon, LxSpinner],
+  imports: [RouterModule, AppIcon, LxSpinner, CustomInputDateSignal],
   templateUrl: "./cobranza-online-wrapper.html",
   styleUrls: ["./cobranza-online.styles.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,7 +33,6 @@ export class CobranzaOnlineWrapper {
   private activatedRoute = inject(ActivatedRoute);
   private customerIdS = inject(CustomerIdService);
   private store = inject(CobranzaOnlineStoreService);
-  private dialogS = inject(DialogHandlerService);
 
   readonly pageTitle = signal("Cobranza Online");
   readonly pageDescription = signal("");
@@ -152,19 +147,6 @@ export class CobranzaOnlineWrapper {
 
   async onSyncNow() {
     await this.store.forceSyncWithAspel();
-  }
-
-  async onOpenDatePickerDialog() {
-    try {
-      await this.dialogS.openDialog(
-        CobranzaDatePickerModalComponent,
-        { dateControl: this.dateControl },
-        "Seleccionar Fecha",
-        DialogSize.md,
-      );
-    } catch (error) {
-      console.error("Error opening date picker", error);
-    }
   }
 
   formatDateShort(date: Date) {
