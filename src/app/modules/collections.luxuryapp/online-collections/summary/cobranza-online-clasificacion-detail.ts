@@ -18,9 +18,11 @@ export interface ClasificacionDetailData {
   })[];
 }
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-clasificacion-detail",
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon],
+  imports: [
+    AccountingNumberPipe,CommonModule, AppTable, AppSortableColumn, AppSorticon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-2">
@@ -98,24 +100,21 @@ export interface ClasificacionDetailData {
               <td>{{ row.propertyFullName || row.accountName }}</td>
               <td class="text-right">
                 {{
-                  row.maintenanceBalance | currency: "MXN" : "symbol" : "1.0-0"
-                }}
+                  row.maintenanceBalance | accountingNumber}}
               </td>
               <td class="text-right">
                 {{
                   row.extraordinaryBalance
-                    | currency: "MXN" : "symbol" : "1.0-0"
-                }}
+                    | accountingNumber}}
               </td>
               <td class="text-right">
-                {{ row.finesBalance | currency: "MXN" : "symbol" : "1.0-0" }}
+                {{ row.finesBalance | accountingNumber}}
               </td>
               <td class="text-right text-color-secondary text-sm">
                 @if (row.currentMonthCharge > 0) {
                   {{
                     row.currentMonthCharge
-                      | currency: "MXN" : "symbol" : "1.0-0"
-                  }}
+                      | accountingNumber}}
                 } @else {
                   <span class="text-xs">Sin cargo</span>
                 }
@@ -130,7 +129,7 @@ export interface ClasificacionDetailData {
                       : ''
                 "
               >
-                {{ row.balance | currency: "MXN" : "symbol" : "1.0-0" }}
+                {{ row.balance | accountingNumber}}
               </td>
             </tr>
           </ng-template>
@@ -138,19 +137,18 @@ export interface ClasificacionDetailData {
             <tr class="font-bold border-top-2 surface-border bg-black-alpha-10">
               <td colspan="2" class="text-right">Totales:</td>
               <td class="text-right">
-                {{ totalMaintenance() | currency: "MXN" : "symbol" : "1.0-0" }}
+                {{ totalMaintenance() | accountingNumber}}
               </td>
               <td class="text-right">
                 {{
-                  totalExtraordinary() | currency: "MXN" : "symbol" : "1.0-0"
-                }}
+                  totalExtraordinary() | accountingNumber}}
               </td>
               <td class="text-right">
-                {{ totalFines() | currency: "MXN" : "symbol" : "1.0-0" }}
+                {{ totalFines() | accountingNumber}}
               </td>
               <td class="text-right text-color-secondary"></td>
               <td class="text-right text-primary">
-                {{ totalBalance() | currency: "MXN" : "symbol" : "1.0-0" }}
+                {{ totalBalance() | accountingNumber}}
               </td>
             </tr>
           </ng-template>

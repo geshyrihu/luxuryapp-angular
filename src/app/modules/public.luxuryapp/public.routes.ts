@@ -46,9 +46,9 @@ export const publicRoutes: Routes = [
     },
   },
   {
-    path: "client-accounting/:customerId/:year/:month",
+    path: "client-accounting/:customerId/:anio/:mes",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/client-accounting/contabilidad-cliente-wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/client/client-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {

@@ -40,16 +40,16 @@
           <td>{{ row.towerName }}</td>
           <td class="text-end">{{ row.departmentCount }}</td>
           <td class="text-end">
-            {{ row.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ row.maintenanceBalance | accountingNumber}}
           </td>
           <td class="text-end">
-            {{ row.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ row.extraordinaryBalance | accountingNumber}}
           </td>
           <td class="text-end">
-            {{ row.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ row.finesBalance | accountingNumber}}
           </td>
           <td class="text-end fw-medium">
-            {{ row.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ row.totalBalance | accountingNumber}}
           </td>
         </tr>
       </ng-template>
@@ -60,18 +60,16 @@
             {{ totalTowers()?.departmentCount }}
           </td>
           <td class="text-end fw-bold">
-            {{ totalTowers()?.maintenanceBalance | currency:
-            "MXN":"symbol":"1.0-0" }}
+            {{ totalTowers()?.maintenanceBalance | accountingNumber}}
           </td>
           <td class="text-end fw-bold">
-            {{ totalTowers()?.extraordinaryBalance | currency:
-            "MXN":"symbol":"1.0-0" }}
+            {{ totalTowers()?.extraordinaryBalance | accountingNumber}}
           </td>
           <td class="text-end fw-bold">
-            {{ totalTowers()?.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ totalTowers()?.finesBalance | accountingNumber}}
           </td>
           <td class="text-end fw-bold">
-            {{ totalTowers()?.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
+            {{ totalTowers()?.totalBalance | accountingNumber}}
           </td>
         </tr>
       </ng-template>
@@ -93,13 +91,11 @@
                 {{ row.departmentCount }} departamentos
               </p>
               <p class="text-xs m-0 mt-1 text-body-secondary">
-                Mtto {{ row.maintenanceBalance | currency:
-                'MXN':'symbol':'1.0-0' }} · Ext {{ row.extraordinaryBalance |
-                currency: 'MXN':'symbol':'1.0-0' }} · Multas {{ row.finesBalance
-                | currency: 'MXN':'symbol':'1.0-0' }}
+                Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{ row.extraordinaryBalance | accountingNumber}} · Multas {{ row.finesBalance
+                | accountingNumber}}
               </p>
               <p class="text-xs m-0 mt-1 text-primary fw-medium">
-                Total {{ row.totalBalance | currency: 'MXN':'symbol':'1.0-0' }}
+                Total {{ row.totalBalance | accountingNumber}}
               </p>
             </div>
           </ili-list-item>

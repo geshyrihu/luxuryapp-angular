@@ -151,11 +151,12 @@ export class CobranzaOnlineInspection {
       return "Sin saldo";
     }
 
-    return new Intl.NumberFormat("es-MX", {
-      style: "currency",
-      currency: "MXN",
+    const formateado = new Intl.NumberFormat("es-MX", {
       minimumFractionDigits: 2,
-    }).format(value);
+      maximumFractionDigits: 2,
+    }).format(Math.abs(value));
+
+    return value < 0 ? `(${formateado})` : formateado;
   }
 
   formatDate(value: string | null | undefined) {

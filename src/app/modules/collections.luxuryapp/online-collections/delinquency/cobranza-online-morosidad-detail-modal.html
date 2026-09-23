@@ -57,7 +57,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
               <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
-                {{ item.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}
+                {{ item.saldoFinal | accountingNumber}}
               </strong>
             </div>
           </div>
@@ -70,7 +70,7 @@
                       <span class="text-body">{{ v.conceptoDetalle }}</span>
                     </div>
                     <span class="font-mono fw-semibold" [ngClass]="getBalanceClass(v.saldoPendiente)">
-                      {{ v.saldoPendiente | currency: 'MXN':'symbol':'1.2-2' }}
+                      {{ v.saldoPendiente | accountingNumber}}
                     </span>
                   </div>
                 }
@@ -81,7 +81,7 @@
             <div class="d-flex justify-content-end mt-3 border-top-1 border pt-2">
               <span class="fw-semibold text-sm text-body-secondary me-2">Total {{ item.concepto }}:</span>
               <span class="fw-bold text-sm" [ngClass]="getBalanceClass(item.saldoFinal)">
-                {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
+                {{ item.saldoFinal | accountingNumber}}
               </span>
             </div>
           </div>
@@ -97,7 +97,7 @@
           <div class="d-flex justify-content-between text-sm py-1 border-bottom-1 border">
             <span class="text-body-secondary">{{ item.concepto }}</span>
             <span class="font-mono fw-medium" [ngClass]="getBalanceClass(item.saldoFinal)">
-              {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
+              {{ item.saldoFinal | accountingNumber}}
             </span>
           </div>
         }
@@ -106,7 +106,7 @@
       <div class="d-flex justify-content-between text-lg fw-bold border-top-1 border pt-3 mt-2">
         <span class="text-body">Total Adeudo</span>
         <span [ngClass]="getBalanceClass(detail()?.saldoFinalTotal)">
-          {{ (detail()?.saldoFinalTotal) | currency: 'MXN':'symbol':'1.2-2' }}
+          {{ (detail()?.saldoFinalTotal) | accountingNumber}}
         </span>
       </div>
     </div>

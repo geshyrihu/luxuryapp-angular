@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { FinancialReportFilterStore } from "@accounting.luxuryapp/general-ledger/financial-reports/online/state/financial-report-filter.store.service";
 import { authGuard } from "@core/auth/guards/auth.guard";
 
 export const accountingRoutes: Routes = [
@@ -180,7 +181,7 @@ export const accountingRoutes: Routes = [
   {
     path: "financial-statements-reports",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/financial-reports-wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -204,9 +205,10 @@ export const accountingRoutes: Routes = [
   {
     path: "collections/accounting-budget",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/accounting-budget/presupuesto-contabilidad").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/online/accounting-budget/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
+    providers: [FinancialReportFilterStore],
     canActivate: [authGuard],
     data: {
       title: "Presupuesto Contabilidad",

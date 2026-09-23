@@ -1,0 +1,197 @@
+<section
+  class="bg-body-tertiary min-h-screen d-flex flex-column gap-3 print-financial-report"
+>
+  <div class="w-full xl:w-11 mx-auto d-flex flex-column gap-3">
+    <header
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden print-hide-on-print"
+    >
+      <div class="bg-primary"></div>
+
+      <div class="bg-body-tertiary p-2 d-flex gap-2">
+        <div class="d-flex align-items-center gap-2 flex-fill min-w-0">
+          <div class="d-flex flex-column gap-1 min-w-0">
+            <small class="text-primary fw-bold text-uppercase">
+              LuxuryApp | Contabilidad Online
+            </small>
+            <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
+              Estados Financieros
+            </h1>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-between gap-2">
+          <div class="d-flex flex-column gap-1">
+            <p class="text-body fw-semibold m-0 line-height-3">
+              {{ activeReportTitle() }}
+            </p>
+            <!-- <p class="text-body-secondary line-height-3 m-0">
+              {{ activeReportDescription() }}
+            </p> -->
+          </div>
+          <div class="d-flex justify-content-end">
+            <div
+              class="d-flex align-items-center gap-2 bg-white px-2 py-1 rounded-lg border-1 border-200 flex-wrap"
+            >
+              <div>
+                <custom-input-text-signal
+                  [(ngModel)]="filterS.year"
+                  type="number"
+                  size="small"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
+
+              <div>
+                <custom-input-select-signal
+                  [data]="[
+                  { label: 'Enero', value: 0 },
+                  { label: 'Febrero', value: 1 },
+                  { label: 'Marzo', value: 2 },
+                  { label: 'Abril', value: 3 },
+                  { label: 'Mayo', value: 4 },
+                  { label: 'Junio', value: 5 },
+                  { label: 'Julio', value: 6 },
+                  { label: 'Agosto', value: 7 },
+                  { label: 'Septiembre', value: 8 },
+                  { label: 'Octubre', value: 9 },
+                  { label: 'Noviembre', value: 10 },
+                  { label: 'Diciembre', value: 11 }
+                ]"
+                  [(ngModel)]="filterS.mesIdx"
+                  optionLabel="label"
+                  optionValue="value"
+                  size="small"
+                  [showClear]="false"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                  [filter]="true"
+                />
+              </div>
+
+              <div class="d-flex gap-2 flex-wrap align-items-center">
+                <il-button
+                  iconClass="material-symbols-light:refresh"
+                  label="Actualizar"
+                  variant="outline"
+                  severity="secondary"
+                  size="small"
+                  (clicked)="refreshReports()"
+                />
+                <il-button
+                  [iconClass]="isPreparing() ? 'material-symbols-light:progress-activity pi-spinner' : 'material-symbols-light:picture-as-pdf'"
+                  [label]="isPreparing() ? 'Generando...' : 'PDF'"
+                  variant="outline"
+                  severity="secondary"
+                  size="small"
+                  [disabled]="isPreparing()"
+                  (clicked)="openPdf()"
+                />
+                <il-button
+                  iconClass="material-symbols-light:forum"
+                  label="Explicar IA"
+                  variant="outline"
+                  size="small"
+                  severity="info"
+                  (clicked)="aiAgentExplicador.togglePanel()"
+                />
+                <il-button
+                  iconClass="material-symbols-light:auto-awesome-motion"
+                  label="Auditor CO"
+                  variant="outline"
+                  size="small"
+                  severity="contrast"
+                  (clicked)="aiAgentContabilidadOnline.togglePanel()"
+                />
+                <il-button
+                  iconClass="material-symbols-light:auto-awesome-motion"
+                  label="Auditor IA"
+                  variant="outline"
+                  size="small"
+                  severity="help"
+                  (clicked)="aiAgent.togglePanel()"
+                />
+                <il-button
+                  iconClass="material-symbols-light:open-in-new"
+                  label="Vista cliente"
+                  variant="outline"
+                  size="small"
+                  severity="success"
+                  [disabled]="!clienteUrl()"
+                  (clicked)="openClienteView()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-yellow-500"></div>
+    </header>
+
+    <div
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-x-auto"
+      style="scrollbar-width: thin;"
+    >
+      <lx-tabs
+        [tabs]="reportTabs()"
+        [activeId]="reportIndex().toString()"
+        (tabChange)="onTabChange($event)"
+        style="display: block; min-width: min-content"
+      >
+        <div tab="0" class="p-3 pt-4">
+          <app-estado-posicion-financiera />
+        </div>
+        <div tab="1" class="p-3 pt-4">
+          <app-estado-resultados />
+        </div>
+        <div tab="2" class="p-3 pt-4">
+          <app-estado-resultados-v2 />
+        </div>
+        <div tab="3" class="p-3 pt-4">
+          <app-cedula-extraordinaria />
+        </div>
+        <div tab="4" class="p-3 pt-4">
+          <app-cedula-presupuestal />
+        </div>
+        <div tab="5" class="p-3 pt-4">
+          <app-reporte-financiero />
+        </div>
+        <div tab="6" class="p-3 pt-4">
+          <app-flujo-efectivo />
+        </div>
+        <div tab="7" class="p-3 pt-4">
+          <app-analisis-cobranza />
+        </div>
+        <div tab="8" class="p-3 pt-4">
+          <app-presupuesto-contabilidad />
+        </div>
+        <div tab="9" class="p-3 pt-4">
+          <app-bancos-inversiones />
+        </div>
+        <div tab="10" class="p-3 pt-4">
+          <app-fondo-reserva />
+        </div>
+        <div tab="11" class="p-3 pt-4">
+          <app-proyectos-aprobados />
+        </div>
+      </lx-tabs>
+    </div>
+
+    <app-ai-agent-contable
+      #aiAgent
+      [autoReadResponses]="true"
+      class="print-hide-on-print"
+    />
+    <app-ai-agent-contabilidad
+      #aiAgentContabilidadOnline
+      [autoReadResponses]="true"
+      class="print-hide-on-print"
+    />
+    <app-ai-agent-explicador
+      #aiAgentExplicador
+      [autoReadResponses]="true"
+      class="print-hide-on-print"
+    />
+  </div>
+</section>

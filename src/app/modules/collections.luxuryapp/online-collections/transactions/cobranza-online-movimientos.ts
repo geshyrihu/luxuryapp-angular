@@ -37,9 +37,11 @@ export interface PivotRowMovimientos {
   [key: string]: number | string | CellMovimiento;
 }
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-movimientos",
   imports: [
+    AccountingNumberPipe,
     CommonModule,
     RouterModule,
     AppIcon,

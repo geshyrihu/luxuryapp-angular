@@ -1,0 +1,123 @@
+<div class="d-flex flex-column gap-4">
+  @if (loading()) {
+  <div class="d-flex flex-column gap-3">
+    <lx-skeleton width="100%" height="4rem" />
+    <lx-skeleton width="100%" height="15rem" />
+    <lx-skeleton width="100%" height="15rem" />
+  </div>
+  } @else if (data()) {
+  <div class="rf-card pt-4">
+    <div class="px-4 pb-4 pt-0 mb-4">
+      <!-- Bloque de Bancos -->
+      <div class="mb-5">
+        <app-table
+          [value]="data()?.bancos || []"
+          class="rf-table p-datatable-sm"
+          [tableStyle]="{'max-width': '700px'}"
+        >
+          <ng-template #caption>
+            <div class="text-lg fw-bold text-primary">
+              SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
+            </div>
+          </ng-template>
+          <ng-template #header>
+            <tr>
+              <th>No. CUENTA DE CHEQUES</th>
+              <th class="text-end">IMPORTE</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-banco>
+            <tr class="rf-row-concepto g-4">
+              <td class="rf-td-descripcion--item">{{ banco.cuenta }}</td>
+              <td class="text-end rf-td-number">
+                {{ banco.importe | number:'1.0-0' }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template #footer>
+            <tr class="rf-row-total g-4">
+              <td class="rf-td-descripcion fw-bold text-end">(1) SUMA</td>
+              <td class="text-end rf-td-number--total">
+                {{ data()?.sumaBancos | number:'1.0-0' }}
+              </td>
+            </tr>
+          </ng-template>
+        </app-table>
+      </div>
+
+      <!-- Bloque de Inversiones -->
+      <div>
+        <app-table
+          [value]="data()?.inversionesOrdinarias || []"
+          class="rf-table p-datatable-sm"
+          [tableStyle]="{'max-width': '900px'}"
+        >
+          <ng-template #caption>
+            <div class="text-lg fw-bold text-primary">
+              SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
+            </div>
+          </ng-template>
+          <ng-template #header>
+            <tr>
+              <th>No. CUENTA</th>
+              <th class="text-end">IMPORTE</th>
+              <th>DESCRIPCIÓN</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-inv>
+            <tr class="rf-row-concepto g-4">
+              <td class="rf-td-descripcion--item">{{ inv.cuenta }}</td>
+              <td class="text-end rf-td-number">
+                {{ inv.importe | number:'1.0-0' }}
+              </td>
+              <td class="rf-td-descripcion--item">{{ inv.descripcion }}</td>
+            </tr>
+          </ng-template>
+          <ng-template #footer>
+            <tr class="rf-row-result g-4">
+              <td class="rf-td-descripcion fw-bold text-end">
+                (2) SUBTOTAL
+              </td>
+              <td class="text-end rf-td-number--total">
+                {{ data()?.subtotalInversiones | number:'1.0-0' }}
+              </td>
+              <td></td>
+            </tr>
+            @if (data()?.fondoReserva; as fondoReserva) {
+            <tr class="rf-row-concepto g-4">
+              <td class="rf-td-descripcion--item text-end">
+                (3) {{ fondoReserva.cuenta }}
+              </td>
+              <td class="text-end rf-td-number">
+                {{ fondoReserva.importe | number:'1.0-0' }}
+              </td>
+              <td class="rf-td-descripcion--item">
+                {{ fondoReserva.descripcion }}
+              </td>
+            </tr>
+            }
+            <tr class="rf-row-total g-4">
+              <td class="rf-td-descripcion fw-bold text-end">SUMA</td>
+              <td class="text-end rf-td-number--total">
+                {{ data()?.sumaInversiones | number:'1.0-0' }}
+              </td>
+              <td></td>
+            </tr>
+          </ng-template>
+        </app-table>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div
+    class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
+  >
+    <app-icon
+      [icon]="'material-symbols-light:table-view'"
+      class="text-5xl mb-4 opacity-50"
+    />
+    <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
+  </div>
+  }
+</div>

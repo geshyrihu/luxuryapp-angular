@@ -17,8 +17,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/accounting-online/ai-agent/ai-agent";
-import { reportFilterState } from "@accounting.luxuryapp/general-ledger/accounting-online/state/financial-report-filter.state";
+import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/financial-reports/online/ai-agent/ai-agent";
+import { FinancialReportFilterStore } from "@accounting.luxuryapp/general-ledger/financial-reports/online/state/financial-report-filter.store.service";
 import {
   IReportColumn,
   IReportResult,
@@ -36,6 +36,7 @@ import {
     AppMessage,
     AiAgentComponent,
   ],
+  providers: [FinancialReportFilterStore],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-viewer.html",
 })
@@ -46,7 +47,7 @@ export class ReportViewer implements OnInit {
   private customerIdS = inject(CustomerIdService);
   private toastS = inject(CustomToastService);
   private fb = inject(NonNullableFormBuilder);
-  public filterS = reportFilterState;
+  public filterS = inject(FinancialReportFilterStore);
 
   aiAgent = viewChild<AiAgentComponent>("aiAgent");
 

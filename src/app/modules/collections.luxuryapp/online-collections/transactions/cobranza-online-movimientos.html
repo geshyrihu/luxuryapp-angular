@@ -69,15 +69,13 @@
             <div class="d-flex flex-column gap-1 align-items-center">
               @if (cell.cargo > 0) {
               <lx-tag
-                [value]="'+' + (cell.cargo | currency:'MXN':'symbol':'1.0-0')"
+                [value]="'+' + (cell.cargo | accountingNumber)"
                 severity="danger"
-                class="text-xs font-mono"
               />
               } @if (cell.abono > 0) {
               <lx-tag
-                [value]="'-' + (cell.abono | currency:'MXN':'symbol':'1.0-0')"
+                [value]="'-' + (cell.abono | accountingNumber)"
                 severity="success"
-                class="text-xs font-mono"
               />
               }
             </div>
@@ -95,11 +93,11 @@
             <div class="d-flex flex-column gap-1 align-items-end">
               @if (row.totalCargos > 0) {
               <div class="text-xs text-danger fw-bold font-mono">
-                +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
+                +{{ row.totalCargos | accountingNumber}}
               </div>
               } @if (row.totalAbonos > 0) {
               <div class="text-xs text-success fw-bold font-mono">
-                -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
+                -{{ row.totalAbonos | accountingNumber}}
               </div>
               } @if (row.totalCargos === 0 && row.totalAbonos === 0) {
               <span class="text-body-secondary">—</span>
@@ -150,14 +148,14 @@
                 <div>
                   <div class="text-xs text-body-secondary">Cargos</div>
                   <div class="text-sm fw-bold text-danger">
-                    +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
+                    +{{ row.totalCargos | accountingNumber}}
                   </div>
                 </div>
                 } @if (row.totalAbonos > 0) {
                 <div>
                   <div class="text-xs text-body-secondary">Abonos</div>
                   <div class="text-sm fw-bold text-success">
-                    -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
+                    -{{ row.totalAbonos | accountingNumber}}
                   </div>
                 </div>
                 }

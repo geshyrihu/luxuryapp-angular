@@ -1,5 +1,6 @@
 import {
   Injectable,
+  InjectionToken,
   computed,
   effect,
   inject,
@@ -13,10 +14,23 @@ import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-onl
 import type { CobranzaOnlineAnalysisResponse } from "../interfaces/cobranza-online-analysis.model";
 import type { CobranzaOnlineSyncMetadata, CobranzaOnlineSyncResponse } from "../interfaces/cobranza-online-sync.model";
 
+/**
+ * Controla si el store se auto-carga a partir del `CustomerIdService` y los
+ * filtros globales. Por defecto `true` (comportamiento online).
+ *
+ * Las vistas que cargan con parámetros explícitos (p. ej. la vista pública de
+ * cliente, sin sesión) proveen este token en `false` y llaman a `loadFor(...)`.
+ */
+export const COBRANZA_ONLINE_STORE_AUTOLOAD = new InjectionToken<boolean>(
+  "COBRANZA_ONLINE_STORE_AUTOLOAD",
+  { providedIn: "root", factory: () => true },
+);
+
 @Injectable()
 export class CobranzaOnlineStoreService {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private autoLoad = inject(COBRANZA_ONLINE_STORE_AUTOLOAD);
 
   // Filtros globales
   private year = cobranzaOnlineFilterState.year;
@@ -37,6 +51,12 @@ export class CobranzaOnlineStoreService {
   private pollingIntervalId: any = null;
 
   constructor() {
+    // Auto-carga desde filtros globales (comportamiento online). Se omite
+    // cuando el consumidor controla la carga con parámetros explícitos.
+    if (!this.autoLoad) {
+      return;
+    }
+
     // Escuchar cambios en los filtros para recargar los datos
     effect(() => {
       const cId = this.customerIdS.customerId();
@@ -56,21 +76,46 @@ export class CobranzaOnlineStoreService {
     });
   }
 
+  /**
+   * Carga dashboard y análisis con parámetros explícitos, sin depender del
+   * `CustomerIdService` ni de los filtros globales. Pensado para vistas que
+   * reciben el corte por URL (p. ej. vista pública de cliente).
+   */
+  async loadFor(
+    customerId: string,
+    year: number,
+    month: number,
+    day: number,
+    showLoader = true,
+  ) {
+    this.clearStore();
+    await this.loadLocalData(customerId, year, month, day, showLoader, false);
+  }
+
   private currentRequestId = 0;
 
   /**
    * Carga los datos desde nuestra API (base de datos local) sin tocar Aspel directo
    * @param showLoader Si es true, pone `isLoading = true` (bloquea pantalla). 
    *                   Si es false, lo hace silenciosamente.
+   * @param includeSyncStatus Si es false, omite la petición de metadatos de sync
+   *                          (consumidores que solo necesitan dashboard/análisis).
    */
-  async loadLocalData(customerId: string, year: number, month: number, day: number, showLoader = false) {
+  async loadLocalData(
+    customerId: string,
+    year: number,
+    month: number,
+    day: number,
+    showLoader = false,
+    includeSyncStatus = true,
+  ) {
     const reqId = ++this.currentRequestId;
     if (showLoader) {
       this.isLoading.set(true);
     }
 
     try {
-      // Lanzamos las 3 peticiones en paralelo para rehidratar todo el store
+      // Lanzamos las peticiones en paralelo para rehidratar todo el store
       const [dashboard, analysis, status] = await Promise.all([
         this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
           Endpoints.CobranzaOnline.Dashboard.get(customerId, year, month, day),
@@ -78,9 +123,11 @@ export class CobranzaOnlineStoreService {
         this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
           Endpoints.CobranzaOnline.Dashboard.analysis(customerId, year, month, day),
         ),
-        this.apiResponseS.onGetItem<CobranzaOnlineSyncMetadata>(
-          Endpoints.CobranzaOnline.Dashboard.syncStatus(customerId, year),
-        )
+        includeSyncStatus
+          ? this.apiResponseS.onGetItem<CobranzaOnlineSyncMetadata>(
+              Endpoints.CobranzaOnline.Dashboard.syncStatus(customerId, year),
+            )
+          : Promise.resolve(null),
       ]);
 
       if (this.currentRequestId !== reqId) {
@@ -89,7 +136,9 @@ export class CobranzaOnlineStoreService {
 
       this.dashboardData.set(dashboard ?? null);
       this.analysisData.set(analysis ?? null);
-      this.syncStatus.set(status ?? null);
+      if (includeSyncStatus) {
+        this.syncStatus.set(status ?? null);
+      }
     } catch (error) {
       console.error("Error cargando store de cobranza:", error);
     } finally {

@@ -1,0 +1,121 @@
+<div class="rf-shell">
+  <!-- Filtros -->
+  <div class="d-flex mb-4 align-items-center">
+    <div class="mb-0">
+      <custom-input-text-signal
+        [ngModel]="year()"
+        (ngModelChange)="year.set($event)"
+        [ngModelOptions]="{ standalone: true }"
+        type="number"
+        size="small"
+        [horizontal]="false"
+        [onlyInput]="true"
+        [noMargin]="true"
+        customClass="w-10rem"
+      />
+    </div>
+    <div class="mb-0">
+      <il-button
+        label="Cargar"
+        iconClass="material-symbols-light:refresh"
+        size="sm"
+        [loading]="loading()"
+        (clicked)="onLoad()"
+      />
+    </div>
+    @if (nombreEmpresa()) {
+    <span class="text-sm text-body-secondary">
+      <strong>{{ nombreEmpresa() }}</strong> &mdash; {{ periodo() }}
+    </span>
+    }
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+  <div
+    class="rf-card p-4 d-flex align-items-center text-body-secondary mb-4 gap-2"
+  >
+    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <span>Consultando datos en Aspel...</span>
+  </div>
+  }
+
+  <!-- Sin datos -->
+  @if (!loading() && !rows().length) {
+  <div class="rf-card rf-empty">
+    No hay datos. Verifique el cliente y el año, luego pulse
+    <strong>Cargar</strong>.
+  </div>
+  }
+
+  <!-- Tabla -->
+  @if (rows().length) {
+  <div class="rf-card rf-wrap pt-4">
+    <app-table
+      [value]="rows()"
+      class="rf-table p-datatable-sm"
+      [tableStyle]="{ 'min-width': '1200px' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Cuenta</th>
+          <th>DESCRIPCIÓN</th>
+          @for (mes of MONTHS; track mes) {
+          <th class="text-end">{{ mes }}</th>
+          }
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-row>
+        <!-- Fila: encabezado de clasificación -->
+        @if (row.tipo === "header") {
+        <tr
+          class="rf-row-section g-4"
+          [class.rf-row-section--activo]="row.clasificacionCodigo === '1'"
+          [class.rf-row-section--pasivo]="row.clasificacionCodigo === '2'"
+          [class.rf-row-section--capital]="row.clasificacionCodigo === '3'"
+        >
+          <td colspan="14" class="fw-bold text-sm py-2 px-3">
+            {{ row.descripcion }}
+          </td>
+        </tr>
+        }
+
+        <!-- Fila: cuenta Mayor -->
+        @if (row.tipo === "cuenta") {
+        <tr class="rf-row-concepto g-4">
+          <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+          <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
+          @for (monto of row.montos; track $index) {
+          <td class="rf-td-number" [class.rf-neg]="monto < 0">
+            {{ monto === 0 ? "-" : (monto | accountingNumber: "1.2-2") }}
+          </td>
+          }
+        </tr>
+        }
+
+        <!-- Fila: subtotal de clasificación -->
+        @if (row.tipo === "subtotal") {
+        <tr class="rf-row-total g-4">
+          <td></td>
+          <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+          @for (monto of row.montos; track $index) {
+          <td class="rf-td-number--total" [class.rf-neg]="monto < 0">
+            {{ monto | accountingNumber: "1.2-2" }}
+          </td>
+          }
+        </tr>
+        }
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="14" class="text-center py-4 text-body-secondary">
+            Sin registros.
+          </td>
+        </tr>
+      </ng-template>
+    </app-table>
+  </div>
+  }
+</div>

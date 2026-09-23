@@ -27,12 +27,12 @@ import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.servi
  * Los importes se muestran en positivo: para el condómino un saldo de -49,252 es
  * un haber de 49,252, y presentarlo en negativo se lee como deuda.
  */
-import { formatCurrency, registerLocaleData } from "@angular/common";
+import { formatNumber, registerLocaleData } from "@angular/common";
 import localeMx from "@angular/common/locales/es-MX";
 
 registerLocaleData(localeMx, "es-MX");
 
-const formatMxn = (val: number) => formatCurrency(val, "es-MX", "$", "MXN");
+const formatMxn = (val: number) => formatNumber(Math.abs(val), "es-MX", "1.0-0");
 
 @Component({
   selector: "app-cobranza-online-advances",

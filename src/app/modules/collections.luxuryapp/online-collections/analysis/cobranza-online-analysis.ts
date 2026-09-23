@@ -14,7 +14,7 @@ import {
   type BreakdownItem,
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   DialogHandlerService,
@@ -23,13 +23,15 @@ import {
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-composicion-reportes-modal";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-analysis",
   imports: [
+    AccountingNumberPipe,
     CommonModule,
     FormsModule,
     RouterModule,
-    ChartWrapper,
+    GooglePieChart4,
     AppStatCard,
     AppBreakdownList,
   ],
@@ -88,11 +90,7 @@ export class CobranzaOnlineAnalysis {
     if (!d?.totalCondominios) return "";
 
     const promedio = d.cuotaMttoVigente / d.totalCondominios;
-    const formateado = new Intl.NumberFormat("es-MX", {
-      style: "currency",
-      currency: "MXN",
-      maximumFractionDigits: 0,
-    }).format(promedio);
+    const formateado = this.moneda(promedio);
 
     return `Promedio ${formateado} por condómino`;
   });
@@ -183,11 +181,13 @@ export class CobranzaOnlineAnalysis {
   });
 
   private moneda(value: number): string {
-    return new Intl.NumberFormat("es-MX", {
-      style: "currency",
-      currency: "MXN",
+    if (value === 0) return "-";
+
+    const formateado = new Intl.NumberFormat("es-MX", {
       maximumFractionDigits: 0,
-    }).format(value);
+    }).format(Math.abs(value));
+
+    return value < 0 ? `(${formateado})` : formateado;
   }
 
   private token(key: string, fallback: string): string {

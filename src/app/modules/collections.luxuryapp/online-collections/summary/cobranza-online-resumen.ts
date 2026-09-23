@@ -22,9 +22,11 @@ import {
   type ClasificacionDetailData,
 } from "./cobranza-online-clasificacion-detail";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [CommonModule, PieChart],
+  imports: [
+    AccountingNumberPipe,CommonModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

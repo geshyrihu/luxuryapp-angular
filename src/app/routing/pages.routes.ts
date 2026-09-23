@@ -402,7 +402,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/financial-reports-wrapper").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/online/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -413,7 +413,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/catalog-validation/catalog-replica").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/online/catalog-validation/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -424,7 +424,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/accounting-online/monthly-balance/balance-mensual").then(
+      import("@accounting.luxuryapp/general-ledger/financial-reports/online/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {

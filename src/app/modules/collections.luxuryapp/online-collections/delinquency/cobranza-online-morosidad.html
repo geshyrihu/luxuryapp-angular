@@ -19,7 +19,7 @@
         orientation="horizontal"
         label="Cartera vencida"
         [value]="totalCartera()"
-        format="currency"
+        format="number"
         icon="material-symbols-light:payments"
         iconColor="var(--ds-danger)"
         iconBg="var(--ds-danger-light)"
@@ -31,7 +31,7 @@
         orientation="horizontal"
         label="Morosos"
         [value]="totalMorosos()"
-        format="currency"
+        format="number"
         icon="material-symbols-light:person-alert"
         iconColor="var(--ds-warning)"
         iconBg="var(--ds-warning-light)"
@@ -43,7 +43,7 @@
         orientation="horizontal"
         label="Cobranza judicial"
         [value]="totalJudicial()"
-        format="currency"
+        format="number"
         icon="material-symbols-light:gavel"
         iconColor="var(--ds-danger)"
         iconBg="var(--ds-danger-light)"
@@ -56,9 +56,10 @@
   <div class="row g-4">
     <div class="col-12 col-lg-6">
       <app-ranked-list
-        heading="Morosos"
-        [items]="morosos()"
-        [total]="totalMorosos()"
+            heading="Morosos"
+            [items]="morosos()"
+            [total]="totalMorosos()"
+            format="number"
         accent="var(--ds-warning)"
         maxHeight="32rem"
         emptyMessage="Ningún condómino alcanza los umbrales de moroso."
@@ -67,9 +68,10 @@
     </div>
     <div class="col-12 col-lg-6">
       <app-ranked-list
-        heading="Cobranza judicial"
-        [items]="judicial()"
-        [total]="totalJudicial()"
+            heading="Cobranza judicial"
+            [items]="judicial()"
+            [total]="totalJudicial()"
+            format="number"
         accent="var(--ds-danger)"
         maxHeight="32rem"
         emptyMessage="Ningún condómino en cobranza judicial."

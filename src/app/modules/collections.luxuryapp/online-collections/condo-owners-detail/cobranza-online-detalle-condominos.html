@@ -175,8 +175,7 @@
           [class.text-success]="row.saldo < 0"
           [class.text-danger]="row.saldo > 0"
         >
-          {{ row.saldo === 0 ? '—' : (row.saldo |
-          currency:'MXN':'symbol':'1.0-0') }}
+          {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber) }}
         </td>
       </tr>
     </ng-template>
@@ -188,7 +187,7 @@
           [class.text-danger]="totales().total > 0"
           [class.text-success]="totales().total < 0"
         >
-          {{ totales().total | currency:'MXN':'symbol':'1.0-0' }}
+          {{ totales().total | accountingNumber}}
         </td>
       </tr>
     </ng-template>
@@ -230,8 +229,7 @@
               [class.text-success]="item.saldo < 0"
               [class.text-danger]="item.saldo > 0"
             >
-              {{ item.saldo === 0 ? '—' : (item.saldo |
-              currency:'MXN':'symbol':'1.0-0') }}
+              {{ item.saldo === 0 ? '—' : (item.saldo | accountingNumber) }}
             </span>
           </div>
         </div>

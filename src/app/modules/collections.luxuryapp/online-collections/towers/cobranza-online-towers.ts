@@ -14,9 +14,11 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-towers",
   imports: [
+    AccountingNumberPipe,
     CommonModule,
     RouterModule,
     AppTable,

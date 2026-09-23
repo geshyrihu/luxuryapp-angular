@@ -36,7 +36,7 @@
             <td pFrozenColumn>
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="fw-semibold text-body">
+                <span class="rf-td-cuenta">
                   {{ cuenta.codigo_Cuenta }}
                 </span>
                 <span class="text-body-secondary">|</span>
@@ -162,7 +162,7 @@
             <td pFrozenColumn [attr.colspan]="2">
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="fw-semibold text-body">
+                <span class="rf-td-cuenta">
                   {{ cuenta.codigo_Cuenta }}
                 </span>
                 <span class="text-body-secondary">|</span>
@@ -305,9 +305,7 @@
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {
-            <span class="text-sm fw-bold text-body"
-              >{{ cuenta.codigo_Cuenta }}</span
-            >
+            <span class="rf-td-cuenta">{{ cuenta.codigo_Cuenta }}</span>
             <span class="text-sm text-body-secondary mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >
@@ -343,9 +341,7 @@
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {
-            <span class="text-sm fw-bold text-body"
-              >{{ cuenta.codigo_Cuenta }}</span
-            >
+            <span class="rf-td-cuenta">{{ cuenta.codigo_Cuenta }}</span>
             <span class="text-sm text-body-secondary mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >

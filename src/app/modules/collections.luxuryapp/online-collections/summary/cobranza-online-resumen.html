@@ -38,22 +38,19 @@
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">A recaudar:</span>
               <span class="fw-bold"
-                >{{ currentCharges.maintenance.total | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.maintenance.total | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Abonado:</span>
               <span class="fw-bold text-success"
-                >{{ currentCharges.maintenance.collected | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.maintenance.collected | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Faltante por cobrar:</span>
               <span class="fw-bold text-warning"
-                >{{ currentCharges.maintenance.pending | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.maintenance.pending | accountingNumber}}</span
               >
             </div>
           </div>
@@ -79,22 +76,19 @@
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">A recaudar:</span>
               <span class="fw-bold"
-                >{{ currentCharges.extraordinary.total | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.extraordinary.total | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Abonado:</span>
               <span class="fw-bold text-success"
-                >{{ currentCharges.extraordinary.collected | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.extraordinary.collected | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Faltante por cobrar:</span>
               <span class="fw-bold text-warning"
-                >{{ currentCharges.extraordinary.pending | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.extraordinary.pending | accountingNumber}}</span
               >
             </div>
           </div>
@@ -121,22 +115,19 @@
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">A recaudar:</span>
               <span class="fw-bold"
-                >{{ currentCharges.restaurant.total | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.restaurant.total | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Abonado:</span>
               <span class="fw-bold text-success"
-                >{{ currentCharges.restaurant.collected | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.restaurant.collected | accountingNumber}}</span
               >
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-body-secondary">Faltante por cobrar:</span>
               <span class="fw-bold text-warning"
-                >{{ currentCharges.restaurant.pending | currency:
-                "MXN":"symbol":"1.0-0" }}</span
+                >{{ currentCharges.restaurant.pending | accountingNumber}}</span
               >
             </div>
           </div>
@@ -169,8 +160,7 @@
               <div class="text-2xl fw-bold text-body">
                 {{ (currentCharges.maintenance.total +
                 currentCharges.extraordinary.total +
-                currentCharges.restaurant.total) | currency:
-                "MXN":"symbol":"1.0-0" }}
+                currentCharges.restaurant.total) | accountingNumber}}
               </div>
             </div>
           </div>
@@ -200,7 +190,7 @@
 
         <div class="d-flex align-items-end justify-content-between gap-3">
           <div class="text-xl fw-semibold">
-            {{ template.amount | currency: "MXN":"symbol":"1.0-0" }}
+            {{ template.amount | accountingNumber}}
           </div>
           <div class="text-end text-body-secondary text-sm">
             <div>Día {{ template.dayOfMonth }}</div>

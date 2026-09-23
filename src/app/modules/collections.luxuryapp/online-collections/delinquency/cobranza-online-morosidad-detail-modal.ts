@@ -15,10 +15,12 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AspelCobranzaDetalleResponse } from "../../aspel-collections-haus/aspel-cobranza-haus.models";
 import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-morosidad-detail-modal",
 
-  imports: [CommonModule, LxTag, NgClass, LxSpinner, AppIcon],
+  imports: [
+    AccountingNumberPipe,CommonModule, LxTag, NgClass, LxSpinner, AppIcon],
   templateUrl: "./cobranza-online-morosidad-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

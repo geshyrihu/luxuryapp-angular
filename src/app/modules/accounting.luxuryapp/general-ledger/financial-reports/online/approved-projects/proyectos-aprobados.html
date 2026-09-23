@@ -1,0 +1,232 @@
+<div class="d-flex flex-column gap-4">
+  @if (loading()) {
+  <lx-skeleton width="100%" height="20rem" />
+  } @else if (data(); as reporte) {
+  <div
+    class="bg-body rounded-xl border-1 border shadow-sm p-0 p-xl-4 pt-3 pt-xl-3 overflow-hidden"
+  >
+    <div class="text-center mb-4">
+      <h2 class="rf-panel-title text-2xl">PROYECTOS APROBADOS</h2>
+    </div>
+
+    <!-- Card Total General -->
+    @if (reporte.totalGeneral; as total) {
+    <div class="rf-card p-4 mb-4 border-2 border-primary">
+      <div
+        class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 border pb-3"
+      >
+        <span class="fw-bold text-uppercase text-lg line-height-3 text-primary">
+          <app-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
+          total.descripcion }}
+        </span>
+        <span class="rf-td-cuenta">{{ total.numeroCuenta }}</span>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
+              >Total a Cobrar</span
+            >
+            <span class="text-body fw-bold text-2xl"
+              >{{ total.totalACobrar | accountingNumber}}</span
+            >
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
+              >Total Cobrado</span
+            >
+            <span class="text-green-600 fw-bold text-2xl"
+              >{{ total.totalCobrado | accountingNumber}}</span
+            >
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column gap-1">
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
+              >Saldo Restante</span
+            >
+            <span class="fw-bold text-2xl text-primary"
+              >{{ total.saldoRestante | accountingNumber}}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Resumen Cards Individuales -->
+    <p class="fw-bold text-uppercase mb-3 text-sm" >
+      Detalle por Proyecto
+    </p>
+    <div class="row mb-4 g-4">
+      @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
+      <div class="col-12 col-md-6 col-xl-4">
+        <div
+          class="rf-card p-4 h-full"
+          
+        >
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-body fw-bold text-uppercase text-sm line-height-3"
+              >{{ proyecto.descripcion }}</span
+            >
+            <span class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</span>
+          </div>
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex justify-content-between">
+              <span class="text-body-secondary fw-medium">Total a Cobrar</span>
+              <span class="text-body fw-bold"
+                >{{ proyecto.totalACobrar | accountingNumber}}</span
+              >
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-body-secondary fw-medium">Total Cobrado</span>
+              <span class="text-green-600 fw-bold"
+                >{{ proyecto.totalCobrado | accountingNumber}}</span
+              >
+            </div>
+            <div
+              class="d-flex justify-content-between border-top-1 border pt-2"
+            >
+              <span class="text-body-secondary fw-medium">Saldo Restante</span>
+              <span class="fw-bold text-primary"
+                >{{ proyecto.saldoRestante | accountingNumber}}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="rf-wrap">
+      <app-table
+        [value]="reporte.proyectos"
+        class="rf-table p-datatable-sm"
+      >
+        <ng-template #header>
+          <tr>
+            <th class="th-col-dark" >CUENTA</th>
+            <th class="th-col-green">PRE-MEN</th>
+
+            @for (mes of mesesNombres; track mes) {
+            <th class="th-col-dark">{{ mes | uppercase }}</th>
+            }
+
+            <th class="th-col-blue-medium">ACUMULADO</th>
+            <th class="th-col-dark">%</th>
+            <th class="th-col-green">PRE-TOTAL</th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-proyecto>
+          <tr class="rf-row-concepto g-4">
+            <td class="rf-td-descripcion--item">
+              <div class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</div>
+              <div class="fw-bold text-sm text-uppercase">
+                {{ proyecto.descripcion }}
+              </div>
+            </td>
+
+            <td class="rf-td-number--total text-green-600">
+              {{ proyecto.presupuestoMensual > 0 ? (proyecto.presupuestoMensual
+              | number:'1.0-0') : '0' }}
+            </td>
+
+            @for (m of proyecto.meses; track m.mes) {
+            <td class="p-1" >
+              <div
+                class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
+              >
+                <span class="rf-td-cuenta text-xs">
+                  {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
+                  }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
+                >
+                  {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                </span>
+              </div>
+            </td>
+            }
+
+            <td class="rf-td-number--total">
+              {{ proyecto.ejecutadoAnual > 0 ? (proyecto.ejecutadoAnual |
+              number:'1.0-0') : '0' }}
+            </td>
+            <td class="rf-td-number">
+              {{ (proyecto.porcentajeAvance / 100) | percent:'1.0-0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ proyecto.presupuestoAnual | number:'1.0-0' }}
+            </td>
+          </tr>
+        </ng-template>
+
+        @if (reporte.totalGeneral; as total) {
+        <ng-template #footer>
+          <tr class="rf-row-result g-4">
+            <td class="rf-td-descripcion">TOTAL GENERAL</td>
+            <td class="rf-td-number--total text-green-400">
+              {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual |
+              number:'1.0-0') : '0' }}
+            </td>
+            @for (m of total.meses; track m.mes) {
+            <td class="p-1">
+              <div
+                class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
+              >
+                <span
+                  class="rf-td-cuenta text-xs"
+                  
+                >
+                  {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
+                  }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
+                >
+                  {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                </span>
+              </div>
+            </td>
+            }
+            <td class="rf-td-number--total">
+              {{ total.ejecutadoAnual > 0 ? (total.ejecutadoAnual |
+              number:'1.0-0') : '0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ (total.porcentajeAvance / 100) | percent:'1.0-0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ total.presupuestoAnual | number:'1.0-0' }}
+            </td>
+          </tr>
+        </ng-template>
+        }
+
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="29" class="text-center p-4 text-body-secondary">
+              No se encontraron proyectos aprobados (Cuentas 606 con
+              presupuesto).
+            </td>
+          </tr>
+        </ng-template>
+      </app-table>
+    </div>
+  </div>
+  } @else {
+  <div
+    class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
+  >
+    <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
+    <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
+  </div>
+  }
+</div>

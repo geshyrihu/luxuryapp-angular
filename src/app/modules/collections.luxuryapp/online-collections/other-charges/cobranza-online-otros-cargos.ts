@@ -25,9 +25,11 @@ import type {
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-otros-cargos",
   imports: [
+    AccountingNumberPipe,
     CommonModule,
     AppTable,
     AppSortableColumn,

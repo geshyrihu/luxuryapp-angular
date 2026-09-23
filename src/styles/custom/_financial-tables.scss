@@ -137,15 +137,20 @@
 .financial-data-table {
   &.app-table,
   .app-table {
+    // Encabezado unico (navy) para toda tabla financiera.
     .app-table-thead > tr > th {
-      background-color: var(--rf-thead-dense-bg) !important;
+      background: linear-gradient(
+        180deg,
+        var(--rf-grad-from) 0%,
+        var(--rf-grad-to) 100%
+      ) !important;
       color: var(--rf-on-dark) !important;
-      border-color: var(--rf-thead-dense-border) !important;
-      font-weight: 600;
-      font-size: 0.75rem;
+      border-color: var(--rf-line) !important;
+      font-weight: 800;
+      font-size: 0.8rem;
       padding: 0.4rem 0.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       white-space: nowrap;
     }
 
@@ -784,6 +789,51 @@
       color: var(--rf-capital-ink) !important;
     }
   }
+}
+
+// ── NORMALIZACION DE CELDAS (reportes financieros) ────────
+// Regla unica: cuenta = mono pequena tenue; numero = una sola tinta;
+// encabezado = un solo tamano. Las filas semanticas (rf-row-total,
+// rf-row-result, rf-row-fondo) conservan su color por mayor especificidad.
+.rf-td-cuenta,
+.rf-table.app-table .app-table-tbody > tr > td.rf-td-cuenta,
+.rf-table .app-table .app-table-tbody > tr > td.rf-td-cuenta,
+.rf-table.app-table .app-table-tfoot > tr > td.rf-td-cuenta,
+.rf-table .app-table .app-table-tfoot > tr > td.rf-td-cuenta {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace !important;
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  color: var(--rf-muted) !important;
+}
+
+.rf-table thead th,
+.financial-data-table thead th,
+.rf-table.app-table .app-table-thead > tr > th,
+.financial-data-table .app-table-thead > tr > th {
+  font-size: 0.8rem !important;
+}
+
+.rf-table.app-table,
+.rf-table .app-table {
+  .app-table-tbody > tr > td,
+  .app-table-tfoot > tr > td {
+    color: var(--rf-ink) !important;
+  }
+}
+
+// Un solo color base para numeros, tambien cuando rf-td-number se usa en divs.
+.rf-td-number {
+  color: var(--rf-ink);
+}
+
+// El negativo siempre gana, incluso dentro de filas semanticas.
+.rf-table.app-table .app-table-tbody > tr > td.rf-neg,
+.rf-table .app-table .app-table-tbody > tr > td.rf-neg,
+.rf-table.app-table .app-table-tfoot > tr > td.rf-neg,
+.rf-table .app-table .app-table-tfoot > tr > td.rf-neg {
+  color: var(--rf-neg) !important;
 }
 
 // Paneles tipo EPF: mismo lenguaje visual rf-* sin tabla formal.

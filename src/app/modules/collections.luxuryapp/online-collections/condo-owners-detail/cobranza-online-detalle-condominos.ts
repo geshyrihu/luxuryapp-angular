@@ -31,9 +31,11 @@ type ClasificacionOption =
   | "SIN ADEUDO"
   | "ANTICIPOS";
 
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-detalle-condominos",
   imports: [
+    AccountingNumberPipe,
     CommonModule,
     FormsModule,
     AppTable,

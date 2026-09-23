@@ -57,7 +57,7 @@
                 Total Cargado
               </div>
               <div class="text-lg fw-bold text-body">
-                {{ totales().total | currency: 'MXN':'symbol':'1.0-0' }}
+                {{ totales().total | accountingNumber}}
               </div>
             </div>
 
@@ -71,7 +71,7 @@
                 Total Abonado
               </div>
               <div class="text-lg fw-bold text-success">
-                {{ totales().collected | currency: 'MXN':'symbol':'1.0-0' }}
+                {{ totales().collected | accountingNumber}}
               </div>
             </div>
 
@@ -89,7 +89,7 @@
                 [class.text-warning]="totales().pending > 0"
                 [class.text-success]="totales().pending <= 0"
               >
-                {{ totales().pending | currency: 'MXN':'symbol':'1.0-0' }}
+                {{ totales().pending | accountingNumber}}
               </div>
             </div>
           </div>
@@ -121,17 +121,17 @@
         <tr class="border-bottom-1 border">
           <td class="fw-medium">{{ row.conceptName }}</td>
           <td class="text-end font-mono">
-            {{ row.total | currency: 'MXN':'symbol':'1.0-0' }}
+            {{ row.total | accountingNumber}}
           </td>
           <td class="text-end font-mono text-success">
-            {{ row.collected | currency: 'MXN':'symbol':'1.0-0' }}
+            {{ row.collected | accountingNumber}}
           </td>
           <td
             class="text-end font-mono fw-semibold"
             [class.text-warning]="row.pending > 0"
             [class.text-success]="row.pending <= 0"
           >
-            {{ row.pending | currency: 'MXN':'symbol':'1.0-0' }}
+            {{ row.pending | accountingNumber}}
           </td>
         </tr>
       </ng-template>
@@ -145,14 +145,13 @@
           <span
             >Cargos:
             <span class="text-body"
-              >{{ totales().total | currency: 'MXN':'symbol':'1.0-0' }}</span
+              >{{ totales().total | accountingNumber}}</span
             ></span
           >
           <span
             >Abonado:
             <span class="text-success"
-              >{{ totales().collected | currency: 'MXN':'symbol':'1.0-0'
-              }}</span
+              >{{ totales().collected | accountingNumber}}</span
             ></span
           >
           <span
@@ -160,7 +159,7 @@
             <span
               [class.text-warning]="totales().pending > 0"
               [class.text-success]="totales().pending <= 0"
-              >{{ totales().pending | currency: 'MXN':'symbol':'1.0-0' }}</span
+              >{{ totales().pending | accountingNumber}}</span
             ></span
           >
         </div>
@@ -179,17 +178,17 @@
           <div class="flex-fill min-w-0 ion-text-wrap p-2">
             <p class="fw-semibold m-0 text-body">{{ item.conceptName }}</p>
             <p class="text-xs m-0 mt-1 text-body-secondary">
-              Cargos: {{ item.total | currency: 'MXN':'symbol':'1.0-0' }}
+              Cargos: {{ item.total | accountingNumber}}
             </p>
             <p class="text-xs m-0 mt-1 text-success">
-              Abonado: {{ item.collected | currency: 'MXN':'symbol':'1.0-0' }}
+              Abonado: {{ item.collected | accountingNumber}}
             </p>
             <p
               class="text-xs m-0 mt-1 fw-semibold"
               [class.text-warning]="item.pending > 0"
               [class.text-success]="item.pending <= 0"
             >
-              Por cobrar: {{ item.pending | currency: 'MXN':'symbol':'1.0-0' }}
+              Por cobrar: {{ item.pending | accountingNumber}}
             </p>
           </div>
         </ili-list-item>

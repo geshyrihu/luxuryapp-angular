@@ -146,6 +146,8 @@ export const EndpointsContabilidad = {
         `contabilidad-online/fondo-reserva/${customerId}/${year}/${mes}`,
       proyectosAprobados: (customerId: string, year: number) =>
         `contabilidad-online/proyectos-aprobados/${customerId}/${year}`,
+      estadosFinancierosPdf: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/estados-financieros/${customerId}/${year}/${mes}/pdf`,
       cashFlow: (customerId: string, year: number) =>
         `contabilidad-online/flujo-caja/${customerId}/${year}`,
       collectionAnalysis: (customerId: string, year: number, month: number) =>

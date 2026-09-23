@@ -1,0 +1,434 @@
+<div class="rf-shell px-3 px-md-4 pb-3 pb-md-4 pt-0">
+  <div *ngIf="loading()" class="d-flex flex-column gap-4 p-4">
+    <app-skeleton width="100%" height="300px" borderRadius="12px" />
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+      </div>
+      <div class="col-12 col-md-6">
+        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading() && dashboardData() && analysisData()">
+    <!-- Top KPIs -->
+    <div class="row mb-4 g-4">
+      @for (kpi of kpis(); track kpi.label) {
+      <div class="col-12 col-md-4 col-xl-4">
+        <app-stat-card
+          orientation="horizontal"
+          [label]="kpi.label"
+          [value]="kpi.value"
+          format="number"
+          [icon]="kpi.icon"
+          [iconColor]="kpi.iconColor"
+          [iconBg]="kpi.iconBg"
+          [subtitle]="kpi.subtitle"
+        />
+      </div>
+      }
+    </div>
+
+    <!-- Analysis Breakdown -->
+    <div class="row mb-4 g-4">
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
+          <div class="flex-fill">
+            <app-breakdown-list
+              heading="Análisis de Cobranza Mensual"
+              [subheading]="analysisData()?.periodo ?? ''"
+            [items]="filasAnalisisMensual()"
+            format="number"
+          />
+          </div>
+          <div
+            class="p-3 border-top-1 border bg-gray-50 d-flex justify-content-end"
+          >
+            <il-button
+              type="button"
+              label="Cómo se compone"
+              icon="material-symbols-light:help-outline"
+              variant="text"
+              severity="secondary"
+              (clicked)="onOpenComposicionReportes()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
+          <app-breakdown-list
+            heading="Deuda Condóminos (EF)"
+            subheading="Clasificación del saldo final por cuenta al corte consultado."
+            [items]="filasDeudaCondominos()"
+            format="number"
+          >
+            @if (analysisData()?.saldoBalanza) {
+            <div
+              class="border-top-1 border-primary bg-blue-50 py-2 px-4 d-flex justify-content-between text-blue-800"
+            >
+              <span>Saldo según balanza</span>
+              <span class="fw-bold"
+                >{{ analysisData()?.saldoBalanza | accountingNumber}}</span
+              >
+            </div>
+            }
+          </app-breakdown-list>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-4">
+        <div class="rf-card p-4 h-full d-flex flex-column">
+          <div class="text-lg fw-semibold mb-1">Composición de Cobranza</div>
+          <div class="text-body-secondary mb-3">Distribución de la cartera</div>
+          <div class="flex-grow-1 d-flex align-items-center justify-content-center w-full">
+            @if (chartData(); as googlePieData) {
+            <app-google-pie-chart4
+              class="d-block w-full"
+              [embedded]="true"
+              [data]="googlePieData"
+            />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Morosidad -->
+    <div class="rf-card p-4 mb-4">
+      <div class="mb-2 mt-1">
+        <div class="text-lg fw-semibold text-body">Detalle de Morosidad</div>
+        <div class="text-sm text-body-secondary">
+          Clasificación de condóminos según su deuda actual.
+        </div>
+      </div>
+
+      <!-- KPIs de cartera vencida -->
+      <div class="row mb-4 g-4">
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="Cartera vencida"
+            [value]="totalCartera()"
+            format="number"
+            icon="material-symbols-light:payments"
+            iconColor="var(--ds-danger)"
+            iconBg="var(--ds-danger-light)"
+            [subtitle]="cuentasEnCartera() + ' cuentas en cartera'"
+          />
+        </div>
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="Morosos"
+            [value]="totalMorosos()"
+            format="number"
+            icon="material-symbols-light:person-alert"
+            iconColor="var(--ds-warning)"
+            iconBg="var(--ds-warning-light)"
+            [subtitle]="morosos().length + ' condóminos'"
+          />
+        </div>
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="Cobranza judicial"
+            [value]="totalJudicial()"
+            format="number"
+            icon="material-symbols-light:gavel"
+            iconColor="var(--ds-danger)"
+            iconBg="var(--ds-danger-light)"
+            [subtitle]="judicial().length + ' condóminos'"
+          />
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <app-ranked-list
+            heading="Morosos"
+            [items]="morosos()"
+            [total]="totalMorosos()"
+            format="number"
+            accent="var(--ds-warning)"
+            maxHeight="32rem"
+            emptyMessage="Ningún condómino alcanza los umbrales de moroso."
+          />
+        </div>
+        <div class="col-12 col-lg-6">
+          <app-ranked-list
+            heading="Cobranza judicial"
+            [items]="judicial()"
+            [total]="totalJudicial()"
+            format="number"
+            accent="var(--ds-danger)"
+            maxHeight="32rem"
+            emptyMessage="Ningún condómino en cobranza judicial."
+          />
+        </div>
+      </div>
+
+      <p class="m-0 text-xs text-body-secondary mt-3">
+        Moroso: 2 o más cuotas de mantenimiento vencidas, o 1 o más
+        extraordinarias. Cobranza judicial: más de 5 de mantenimiento, o 5 o más
+        extraordinarias. Quien debe sin alcanzar esos umbrales se consulta en
+        Detalle por Condómino.
+      </p>
+    </div>
+
+    <!-- Towers -->
+    <div class="rf-card p-4 mb-4">
+      <div class="mb-3">
+        <div class="text-lg fw-semibold text-body">Resumen por Torres</div>
+        <div class="text-sm text-body-secondary">
+          Agrupación de la deuda por cada torre del condominio.
+        </div>
+      </div>
+
+      <app-table
+        [value]="towers()"
+        class="rf-table p-datatable-sm d-none d-md-block"
+      >
+        <ng-template #header>
+          <tr>
+            <th appSortableColumn="towerName">
+              Torre <app-sorticon field="towerName" />
+            </th>
+            <th class="text-end" appSortableColumn="departmentCount">
+              Deptos. <app-sorticon field="departmentCount" />
+            </th>
+            <th class="text-end" appSortableColumn="maintenanceBalance">
+              Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
+            </th>
+            <th class="text-end" appSortableColumn="extraordinaryBalance">
+              Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
+            </th>
+            <th class="text-end" appSortableColumn="finesBalance">
+              Multas <app-sorticon field="finesBalance" />
+            </th>
+            <th class="text-end" appSortableColumn="totalBalance">
+              Total Adeudo <app-sorticon field="totalBalance" />
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-row>
+          <tr>
+            <td>{{ row.towerName }}</td>
+            <td class="text-end">{{ row.departmentCount }}</td>
+            <td class="text-end">
+              {{ row.maintenanceBalance | accountingNumber}}
+            </td>
+            <td class="text-end">
+              {{ row.extraordinaryBalance | accountingNumber}}
+            </td>
+            <td class="text-end">
+              {{ row.finesBalance | accountingNumber}}
+            </td>
+            <td class="text-end fw-medium">
+              {{ row.totalBalance | accountingNumber}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #footer>
+          @if (totalTowers(); as totalTowers) {
+          <tr>
+            <td class="text-end fw-bold">Total:</td>
+            <td class="text-end fw-bold">{{ totalTowers.departmentCount }}</td>
+            <td class="text-end fw-bold">
+              {{ totalTowers.maintenanceBalance | accountingNumber}}
+            </td>
+            <td class="text-end fw-bold">
+              {{ totalTowers.extraordinaryBalance | accountingNumber}}
+            </td>
+            <td class="text-end fw-bold">
+              {{ totalTowers.finesBalance | accountingNumber}}
+            </td>
+            <td class="text-end fw-bold">
+              {{ totalTowers.totalBalance | accountingNumber}}
+            </td>
+          </tr>
+          }
+        </ng-template>
+      </app-table>
+
+      <div class="d-md-none">
+        <app-data-view-mobile [data]="towers()" [showAdd]="false">
+          <ng-template #listItemTemplate let-row>
+            <ili-list-item class="ion-no-padding">
+              <div
+                start
+                class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+              >
+                <app-icon icon="material-symbols-light:location-city" />
+              </div>
+              <div class="flex-fill min-w-0 ion-text-wrap">
+                <p class="fw-semibold m-0 text-body">{{ row.towerName }}</p>
+                <p class="text-xs m-0 mt-1 text-body-secondary">
+                  {{ row.departmentCount }} departamentos
+                </p>
+                <p class="text-xs m-0 mt-1 text-body-secondary">
+                  Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{ row.extraordinaryBalance | accountingNumber}} · Multas {{
+                  row.finesBalance | accountingNumber}}
+                </p>
+                <p class="text-xs m-0 mt-1 text-primary fw-medium">
+                  Total {{ row.totalBalance | accountingNumber}}
+                </p>
+              </div>
+            </ili-list-item>
+          </ng-template>
+        </app-data-view-mobile>
+      </div>
+    </div>
+
+    <!-- Reporte de Anticipos -->
+    <div class="rf-card p-4 mb-4">
+      <div class="mb-3">
+        <div class="text-lg fw-semibold text-body">Reporte de Anticipos</div>
+        <div class="text-sm text-body-secondary">
+          Condóminos con saldo a favor al corte del periodo.
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="Total a favor"
+            [value]="totalAFavor()"
+            format="number"
+            icon="material-symbols-light:add-card"
+            iconColor="var(--ds-success)"
+            iconBg="var(--ds-success-light)"
+            [subtitle]="condominosConSaldo() + ' condóminos con saldo a favor'"
+          />
+        </div>
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="Anticipo promedio"
+            [value]="promedioAFavor()"
+            format="number"
+            icon="material-symbols-light:show-chart"
+            iconColor="var(--ds-info)"
+            iconBg="var(--ds-info-light)"
+            subtitle="Por condómino con saldo a favor"
+          />
+        </div>
+        <div class="col-12 col-md-4">
+          <app-stat-card
+            orientation="horizontal"
+            label="A favor en mantenimiento"
+            [value]="totalMtto()"
+            format="number"
+            icon="material-symbols-light:location-city"
+            iconColor="var(--ds-primary)"
+            iconBg="var(--ds-primary-light)"
+            [subtitle]="subtituloMtto()"
+          />
+        </div>
+      </div>
+
+      <app-ranked-list
+            heading="Saldos a favor"
+            [items]="anticiposItems()"
+            [total]="totalAFavor()"
+            format="number"
+        accent="var(--ds-success)"
+        maxHeight="34rem"
+        emptyMessage="Ningún condómino tiene saldo a favor al corte."
+      />
+
+      <p class="m-0 text-xs text-body-secondary mt-3">
+        Importes mostrados como haber del condómino. El desglose por concepto se
+        consulta en Detalle por Condómino.
+      </p>
+    </div>
+
+    <!-- Detalle por condómino -->
+    <div class="rf-card p-4">
+      <div
+        class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
+      >
+        <div>
+          <div class="text-lg fw-semibold">Detalle por condómino</div>
+          <div class="text-body-secondary text-sm">
+            Tabla base para auditar cómo se clasifica la cuenta al corte.
+          </div>
+        </div>
+        <custom-input-select-signal
+          [data]="classificationOptions"
+          [ngModel]="selectedClassification()"
+          (ngModelChange)="selectedClassification.set($event)"
+          [showClear]="false"
+          [onlyInput]="true"
+          [noMargin]="true"
+          customClass="w-14rem"
+        />
+      </div>
+
+      <app-table
+        [value]="filteredRows()"
+        class="rf-table p-datatable-sm p-datatable-striped"
+        [tableStyle]="{ 'min-width': '1000px' }"
+        [paginator]="true"
+        [rows]="50"
+        [rowsPerPageOptions]="[25, 50, 100, 250]"
+        dataKey="numeroCuenta"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Condómino</th>
+            @for (col of uniqueConcepts(); track col) {
+            <th class="text-end">{{ col }}</th>
+            }
+            <th class="text-end text-primary fw-bold">Saldo Final</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-row>
+          <tr>
+            <td class="rf-td-descripcion--item">
+              <!-- Numero de cuenta oculto en version cliente -->
+              <div class="fw-bold">{{ cleanName(row.condomino) }}</div>
+            </td>
+            @for (col of uniqueConcepts(); track col) {
+            <td class="rf-td-number">
+              {{ getConceptBalance(row, col) === 0 ? '—' :
+              (getConceptBalance(row, col) | accountingNumber) }}
+            </td>
+            }
+            <td class="rf-td-number fw-bold" [class.rf-neg]="row.saldo < 0">
+              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
+              }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #footer>
+          <tr>
+            <td class="text-end fw-bold py-2">Totales:</td>
+            @for (col of uniqueConcepts(); track col) {
+            <td
+              class="rf-td-number fw-bold border-top-1 border py-2 text-primary"
+            >
+              {{ getTotalConceptBalance(col) === 0 ? '—' :
+              (getTotalConceptBalance(col) | accountingNumber) }}
+            </td>
+            }
+            <td
+              class="rf-td-number fw-bold border-top-1 border text-primary text-lg py-2"
+            >
+              {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="10" class="text-center py-4 text-body-secondary">
+              No hay condóminos en esta clasificación.
+            </td>
+          </tr>
+        </ng-template>
+      </app-table>
+    </div>
+  </div>
+</div>
