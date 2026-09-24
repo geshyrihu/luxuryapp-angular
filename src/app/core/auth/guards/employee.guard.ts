@@ -26,10 +26,7 @@ export const employeeGuard: CanActivateFn = (route, state) => {
       if (roles.has(ApplicationRole.Comite)) {
         return router.createUrlTree(["/committee"]);
       }
-      if (
-        roles.has(ApplicationRole.Direccion) ||
-        roles.has(ApplicationRole.SuperUsuario)
-      ) {
+      if (roles.has(ApplicationRole.Direccion)) {
         return router.createUrlTree(["/direccion"]);
       }
       return true;

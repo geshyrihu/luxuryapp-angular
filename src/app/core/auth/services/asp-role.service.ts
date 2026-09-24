@@ -25,23 +25,35 @@ export class AspRoleService {
     return acc;
   }, {} as RoleSignalsMap);
 
+  private readonly rawRoleChecks: RoleSignalsMap = (Object.values(
+    ApplicationRole,
+  ) as ApplicationRole[]).reduce((acc, role) => {
+    acc[role] = signal(false);
+    return acc;
+  }, {} as RoleSignalsMap);
+
   constructor() {
     this.authS.userToken$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((session) => {
-        const current = new Set(session?.roles ?? []);
+        const actual = new Set(session?.roles ?? []);
+        const effective = new Set(actual);
 
         if (
-          current.has(ApplicationRole.SuperUsuario) ||
-          current.has(ApplicationRole.Direccion)
+          effective.has(ApplicationRole.SuperUsuario) ||
+          effective.has(ApplicationRole.Direccion)
         ) {
-          current.add(ApplicationRole.SuperUsuario);
-          current.add(ApplicationRole.Direccion);
+          effective.add(ApplicationRole.SuperUsuario);
+          effective.add(ApplicationRole.Direccion);
         }
 
         for (const role of Object.values(ApplicationRole) as ApplicationRole[]) {
+          const rawSig = this.rawRoleChecks[role];
+          const rawNext = actual.has(role);
+          if (rawSig() !== rawNext) rawSig.set(rawNext);
+
           const sig = this.roleChecks[role];
-          const next = current.has(role);
+          const next = effective.has(role);
           if (sig() !== next) sig.set(next);
         }
       });
@@ -53,6 +65,14 @@ export class AspRoleService {
 
   hasRole(role: ApplicationRole): boolean {
     return this.roleChecks[role]();
+  }
+
+  rawRoleSignal(role: ApplicationRole): Signal<boolean> {
+    return this.rawRoleChecks[role];
+  }
+
+  hasRawRole(role: ApplicationRole): boolean {
+    return this.rawRoleChecks[role]();
   }
 
   hasAny(roles: ApplicationRole[]): boolean {

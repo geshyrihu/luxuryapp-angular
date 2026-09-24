@@ -25,7 +25,7 @@ export const roleRedirectGuard: CanActivateFn = (): UrlTree => {
 
   if (aspRoleS.hasRole(ApplicationRole.Comite)) {
     return router.createUrlTree(["/committee"]);
-  } else if (aspRoleS.hasRole(ApplicationRole.Direccion)) {
+  } else if (aspRoleS.hasRawRole(ApplicationRole.Direccion)) {
     return router.createUrlTree(["/direccion"]);
   }
   return router.createUrlTree(["/dashboard"]);

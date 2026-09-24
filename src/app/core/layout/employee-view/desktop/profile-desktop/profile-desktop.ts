@@ -40,7 +40,7 @@ export class Profiledesktop {
   customerPhotoPath = this.customerIdS.customerPhotoPath();
 
   profileRoute = computed(() =>
-    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
+    this.aspRoleS.rawRoleSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );
