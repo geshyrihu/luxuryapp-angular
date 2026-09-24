@@ -43,7 +43,9 @@
         </button>
       </app-menu>
       <ng-template #customerMenuItemTpl let-item>
-        <div class="customer-menu-item d-flex align-items-center gap-2 px-3 py-2 cursor-pointer">
+        <div
+          class="customer-menu-item d-flex align-items-center gap-2 px-3 py-2 cursor-pointer"
+        >
           <img
             class="customer-menu-logo"
             [src]="item.data.image"
@@ -51,7 +53,9 @@
             aria-hidden="true"
             style="width: 22px; height: 22px; object-fit: contain"
           />
-          <span class="customer-menu-label" [class.font-bold]="item.styleClass === 'font-bold'"
+          <span
+            class="customer-menu-label"
+            [class.font-bold]="item.styleClass === 'font-bold'"
             >{{ item.label }}</span
           >
         </div>
@@ -114,7 +118,7 @@
 
       <!-- Componentes de la derecha -->
       @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
-      <app-panic-button variant="desktop" />
+      <!-- <app-panic-button variant="desktop" /> -->
       <app-notifications-gadget />
       }
 

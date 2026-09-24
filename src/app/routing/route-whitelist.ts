@@ -18,6 +18,7 @@ const ROUTE_WHITELIST = new Set([
   "/admin/module-app-role",
   "/admin/module-app",
   "/admin/approval-rules",
+  "/admin/evaluation-authorization-matrix",
   "/admin/customer-data-company",
   "/admin/email-data",
   "/admin/depuration",

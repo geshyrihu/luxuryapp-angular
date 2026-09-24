@@ -15,9 +15,7 @@
   <div id="main-content" class="ion-page h-full d-flex flex-column">
     <!-- Header fijo -->
     <ion-header class="ion-no-border">
-      <ion-toolbar class="ion-no-padding">
-        <app-header-mobile />
-      </ion-toolbar>
+      <app-header-mobile />
     </ion-header>
 
     <!-- área de contenido con scroll nativo Ionic -->
@@ -39,13 +37,13 @@
     </ion-content>
 
     <!-- Footer fijo (fuera del scroll) -->
-    <footer class="footer">
+    <ion-footer>
       <app-footer-employee-mobile />
-    </footer>
+    </ion-footer>
 
-    <!-- Panic Button FAB (flotante, accesible con el pulgar) -->
-    <div class="panic-fab">
+    Panic Button FAB (flotante, accesible con el pulgar)
+    <!-- <div class="panic-fab">
       <app-panic-button variant="mobile" class="mobile" />
-    </div>
+    </div> -->
   </div>
 </ion-app>

@@ -11,6 +11,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { OneSignalService } from "@core/services/one-signal.service";
 import { SignalRService } from "@core/services/signalr.service";
+import { PlatformService } from "@core/services/platform.service";
 import { PanicAlertIncomingDialog } from "@operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
 import { ViewEmployeedesktop } from "./desktop/view-employee-desktop/view-employee-desktop";
 import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-mobile";
@@ -47,19 +48,7 @@ export class LayoutEmployee implements OnInit {
   private authService = inject(AuthService);
   private signalRService = inject(SignalRService);
   private oneSignalService = inject(OneSignalService);
-  private breakpointObserver = inject(BreakpointObserver);
-
-  /**
-   * 📱 Signal reactivo que indica si estamos en vista mobile.
-   * Usa BreakpointObserver del CDK en vez de window.innerWidth,
-   * lo que lo hace compatible con Zoneless y SSR. ✨
-   */
-  isMobileView = toSignal(
-    this.breakpointObserver
-      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
-      .pipe(map((result) => result.matches)),
-    { initialValue: false },
-  );
+  isMobileView = inject(PlatformService).isMobile;
 
   ngOnInit(): void {
     this.logger.custom(

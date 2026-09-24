@@ -12,6 +12,7 @@ import {
   IonMenu,
   IonTitle,
   IonToolbar,
+  IonFooter,
   MenuController,
 } from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
@@ -33,6 +34,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
     IonContent,
     IonHeader,
     IonToolbar,
+    IonFooter,
     IonMenu,
     IonTitle,
     LxLoader,
@@ -53,7 +55,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
       }
       .panic-fab {
         position: fixed;
-        bottom: 80px;
+        bottom: calc(80px + env(safe-area-inset-bottom, 0px));
         right: 16px;
         z-index: 1000;
       }

@@ -1,0 +1,121 @@
+<div class="authorization-page">
+  <lx-card
+    header="Matriz de autorización de evaluaciones"
+    subheader="Define qué roles pueden administrar plantillas, con qué alcance y para qué roles aplican."
+  >
+    @if (loading()) {
+      <lx-skeleton />
+    } @else {
+      <div class="authorization-toolbar">
+        <div>
+          <span class="eyebrow">Configuración sensible</span>
+          <p>Solo SuperUsuario y Direccion pueden modificar estas reglas.</p>
+        </div>
+        <button type="button" class="primary-button" (click)="beginCreate()">
+          <app-icon icon="material-symbols-light:add" /> Nueva regla
+        </button>
+      </div>
+
+      @if (editingId() !== null || matrices().length === 0) {
+        <section class="editor-panel">
+          <div class="editor-heading">
+            <div>
+              <span class="eyebrow">{{ editingId() ? "Editar regla" : "Nueva regla" }}</span>
+              <h2>Autorización por rol</h2>
+            </div>
+            @if (editingId()) {
+              <button type="button" class="text-button" (click)="cancelEdit()">Cancelar</button>
+            }
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Rol administrador
+              <select [(ngModel)]="administratorRoleId">
+                <option value="">Seleccionar rol</option>
+                @for (role of administratorRoles(); track role.id) {
+                  <option [value]="role.id">{{ role.displayName || role.name }}</option>
+                }
+              </select>
+            </label>
+            <label>
+              Alcance
+              <select [(ngModel)]="allowedScope">
+                <option [ngValue]="2">Global</option>
+                <option [ngValue]="1">Mismo customer</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="permission-list">
+            <label><input type="checkbox" [(ngModel)]="canCreate" /> Crear</label>
+            <label><input type="checkbox" [(ngModel)]="canEdit" /> Editar</label>
+            <label><input type="checkbox" [(ngModel)]="canDeactivate" /> Desactivar</label>
+            <label><input type="checkbox" [(ngModel)]="canDelete" /> Eliminar físicamente</label>
+          </div>
+
+          <div class="targets-heading">
+            <h3>Roles aplicables</h3>
+            <span>{{ targetRoleIds.size }} seleccionados</span>
+          </div>
+          <div class="target-grid">
+            @for (role of targetRoles(); track role.id) {
+              <label class="target-option">
+                <input
+                  type="checkbox"
+                  [checked]="isTargetSelected(role.id)"
+                  (change)="toggleTargetRole(role.id)"
+                />
+                <span>{{ role.displayName || role.name }}</span>
+                <small>{{ role.roleType }}</small>
+              </label>
+            }
+          </div>
+
+          <button
+            type="button"
+            class="primary-button"
+            [disabled]="saving() || !administratorRoleId || targetRoleIds.size === 0"
+            (click)="save()"
+          >
+            {{ saving() ? "Guardando..." : "Guardar regla" }}
+          </button>
+        </section>
+      }
+
+      <section class="rules-list">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Reglas activas</span>
+            <h2>{{ matrices().length }} configuraciones</h2>
+          </div>
+          <app-tag value="Fail-closed" icon="material-symbols-light/security" />
+        </div>
+
+        @for (matrix of matrices(); track matrix.id) {
+          <article class="rule-card">
+            <div class="rule-main">
+              <strong>{{ matrix.administratorRoleName }}</strong>
+              <span>{{ matrix.allowedScope === 2 ? "Global" : "Mismo customer" }}</span>
+              <small>{{ matrix.targetRoles.length }} roles aplicables</small>
+            </div>
+            <div class="rule-permissions">
+              @if (matrix.canCreate) { <span>Crear</span> }
+              @if (matrix.canEdit) { <span>Editar</span> }
+              @if (matrix.canDeactivate) { <span>Desactivar</span> }
+              @if (matrix.canDelete) { <span>Eliminar</span> }
+            </div>
+            <div class="rule-actions">
+              <button type="button" class="text-button" (click)="beginEdit(matrix)">Editar</button>
+              @if (matrix.canDelete) {
+                <button type="button" class="danger-button" (click)="remove(matrix)">Eliminar</button>
+              }
+            </div>
+          </article>
+        } @empty {
+          <div class="empty-state">No hay reglas configuradas.</div>
+        }
+      </section>
+    }
+  </lx-card>
+</div>

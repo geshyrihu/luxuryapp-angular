@@ -14,7 +14,10 @@ export const direccionGuard: CanActivateFn = (route, state) => {
     switchMap(() => authS.userToken$),
     map((session) => {
       const roles = new Set(session?.roles ?? []);
-      if (roles.has(ApplicationRole.Direccion)) {
+      if (
+        roles.has(ApplicationRole.Direccion) ||
+        roles.has(ApplicationRole.SuperUsuario)
+      ) {
         return true;
       }
       return router.createUrlTree(["/unauthorized"]);

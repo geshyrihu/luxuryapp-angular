@@ -42,6 +42,16 @@ describe('AspRoleService', () => {
     expect(service.hasRole(ApplicationRole.SuperUsuario)).toBe(false);
   });
 
+  it('should treat SuperUsuario and Direccion as equivalent', () => {
+    userToken$.next({ roles: [ApplicationRole.SuperUsuario] });
+    expect(service.hasRole(ApplicationRole.SuperUsuario)).toBe(true);
+    expect(service.hasRole(ApplicationRole.Direccion)).toBe(true);
+
+    userToken$.next({ roles: [ApplicationRole.Direccion] });
+    expect(service.hasRole(ApplicationRole.SuperUsuario)).toBe(true);
+    expect(service.hasRole(ApplicationRole.Direccion)).toBe(true);
+  });
+
   it('hasAny() should return true if user has at least one of the roles', () => {
     userToken$.next({ roles: [ApplicationRole.Comite] });
     expect(service.hasAny([ApplicationRole.Comite, ApplicationRole.SuperUsuario])).toBe(true);

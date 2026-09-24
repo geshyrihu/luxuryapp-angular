@@ -11,9 +11,25 @@ export class PlatformService {
   readonly isMobile = signal(this._check());
 
   constructor() {
+    this._updateBodyClass(this._check());
+    
     fromEvent(window, "resize")
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.isMobile.set(this._check()));
+      .subscribe(() => {
+        const isMobile = this._check();
+        this.isMobile.set(isMobile);
+        this._updateBodyClass(isMobile);
+      });
+  }
+
+  private _updateBodyClass(isMobile: boolean) {
+    if (isMobile) {
+      document.body.classList.add('is-mobile');
+      document.body.classList.remove('is-web');
+    } else {
+      document.body.classList.add('is-web');
+      document.body.classList.remove('is-mobile');
+    }
   }
 
   private _check(): boolean {

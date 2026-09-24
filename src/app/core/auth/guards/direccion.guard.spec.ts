@@ -49,6 +49,14 @@ describe('direccionGuard', () => {
     expect(result).toBe(true);
   });
 
+  it('should allow access when user has SuperUsuario role', async () => {
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.SuperUsuario] });
+    const result = await firstValueFrom(
+      runGuard() as Observable<boolean | UrlTree>,
+    );
+    expect(result).toBe(true);
+  });
+
   it('should redirect to unauthorized when user does not have Direccion role', async () => {
     authServiceMock.userToken$.next({ roles: [ApplicationRole.Comite] });
     const result = await firstValueFrom(

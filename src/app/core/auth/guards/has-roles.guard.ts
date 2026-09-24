@@ -1,35 +1,30 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { AuthService } from "@core/auth/services/auth.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 
 export const hasRolesGuard: CanActivateFn = (route, state) => {
-  const authS = inject(AuthService);
+  const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
   const consoleLogger = inject(ConsoleLoggerService);
 
-  const allowedRoles: string[] = route.data['allowedRoles'] || [];
+  const allowedRoles: string[] = route.data["allowedRoles"] || [];
 
   if (!allowedRoles || allowedRoles.length === 0) {
     return true; // No roles restricted
   }
 
-  return authS.userRole$.pipe(
-    map((userRole) => {
-      if (userRole && allowedRoles.includes(userRole)) {
-        return true;
-      }
+  if (aspRoleS.hasAny(allowedRoles as ApplicationRole[])) {
+    return true;
+  }
 
-      consoleLogger.custom(
-        "🚫",
-        "#FF0000",
-        `[HasRolesGuard] Acceso denegado. Rol actual: ${userRole}. Roles requeridos: ${allowedRoles.join(", ")}.`,
-      );
-      // Opcionalmente redirigir a unauthorized
-      router.navigate(['/']);
-      return false;
-    })
+  consoleLogger.custom(
+    "🚫",
+    "#FF0000",
+    `[HasRolesGuard] Acceso denegado. Roles requeridos: ${allowedRoles.join(", ")}.`,
   );
+  // Opcionalmente redirigir a unauthorized
+  router.navigate(["/"]);
+  return false;
 };
-

@@ -31,6 +31,14 @@ export class AspRoleService {
       .subscribe((session) => {
         const current = new Set(session?.roles ?? []);
 
+        if (
+          current.has(ApplicationRole.SuperUsuario) ||
+          current.has(ApplicationRole.Direccion)
+        ) {
+          current.add(ApplicationRole.SuperUsuario);
+          current.add(ApplicationRole.Direccion);
+        }
+
         for (const role of Object.values(ApplicationRole) as ApplicationRole[]) {
           const sig = this.roleChecks[role];
           const next = current.has(role);

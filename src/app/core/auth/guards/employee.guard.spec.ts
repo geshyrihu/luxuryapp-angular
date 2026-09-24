@@ -47,6 +47,13 @@ describe('employeeGuard', () => {
     expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/committee']);
   });
 
+  it('should redirect to /direccion when user IS SuperUsuario', async () => {
+    authServiceMock.userToken$.next({ roles: [ApplicationRole.SuperUsuario] });
+    const result = await firstValueFrom(runGuard() as Observable<boolean | UrlTree>);
+    expect(result).not.toBe(true);
+    expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/direccion']);
+  });
+
   it('should allow access when user has no roles', async () => {
     authServiceMock.userToken$.next({ roles: [] });
     const result = await firstValueFrom(runGuard() as Observable<boolean | UrlTree>);
