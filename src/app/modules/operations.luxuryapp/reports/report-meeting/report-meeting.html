@@ -27,6 +27,10 @@
         <p class="text-sm md:text-base text-body-secondary mt-2 mt-md-3 m-0">
           {{ data.minuta.date | apiDate : "longDate" }}
         </p>
+        } @if (data.minuta?.folio) {
+        <p class="text-sm md:text-base text-body-secondary mt-2 m-0">
+          Folio: {{ data.minuta.folio }}
+        </p>
         }
       </div>
     </div>
