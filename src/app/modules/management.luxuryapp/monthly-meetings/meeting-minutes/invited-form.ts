@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
@@ -26,7 +26,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   imports: [
     ReactiveFormsModule,
     WebButtonLabelItem,
-    WebButtonLabelDelete,
+    WebButtonIconDelete,
     CustomInputTextSignal,
   ],
 })

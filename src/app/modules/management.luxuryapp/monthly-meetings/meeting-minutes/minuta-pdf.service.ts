@@ -15,6 +15,7 @@ export class MinutaPdfService {
   private buildHtml(data: any, logo: string | null, generatedAt: Date): string {
     const dateLabel = this.formatDate(data.minuta?.date);
     const tipo = data.minuta?.typeMeeting || "Junta";
+    const folio = data.minuta?.folio || "Sin folio";
 
     let asistentesHtml = "";
     if (data.comite?.length > 0) {
@@ -60,10 +61,18 @@ ${this.htmlPrintS.getStandardCss()}
   .area-title { font-size: 0.95rem; font-weight: bold; color: #0B3164; background: #E8EEF8; padding: 6px 10px; margin: 16px 0 8px 0; border-radius: 4px; }
   .asunto-title { font-size: 0.85rem; font-weight: bold; margin-top: 10px; color: #111827; }
   .asunto-desc { font-size: 0.8rem; color: #4B5563; margin-left: 16px; margin-top: 4px; border-left: 2px solid #D1D5DB; padding-left: 8px; }
+
+  /* Mantiene el bloque de firmas completo en una sola pagina. */
+  .firmas-block { break-inside: avoid; page-break-inside: avoid; }
+  .firmas-line { display: flex; gap: 40px; justify-content: space-around; break-inside: avoid; page-break-inside: avoid; }
+  .firma-item { text-align: center; flex: 1; }
+  .firma-item .firma-linea { border-top: 1px solid #111827; width: 120px; margin: 0 auto; height: 40px; }
+  .firma-item .firma-nombre { font-size: 0.75rem; font-weight: bold; color: #111827; margin-top: 4px; }
+  .firma-item .firma-cargo { font-size: 0.7rem; color: #4B5563; }
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "MINUTA DE JUNTA", `MINUTA-${tipo.toUpperCase()}`, generatedAt, "ADMINISTRACIÓN", `Fecha de junta: ${dateLabel}`)}
+  ${this.htmlPrintS.buildStandardHeader(logo, "MINUTA DE JUNTA", `MINUTA-${tipo.toUpperCase()}`, generatedAt, "ADMINISTRACIÓN", `Folio: ${folio} | Fecha de junta: ${dateLabel}`)}
 
   <div class="body-doc">
     <div class="subheader" style="margin-top:0;">ASISTENTES</div>
@@ -147,22 +156,20 @@ ${this.htmlPrintS.getStandardCss()}
       lineas.push(comiteOrdenado.slice(i, i + 3));
     }
 
-    let firmasHtml = `<div class="subheader" style="margin-top: 30px;">FIRMAS DEL COMITÉ</div>
-    <div style="margin-top: 30px;">`;
+    let firmasHtml = `
+    <div class="firmas-block">
+      <div class="subheader" style="margin-top: 30px;">FIRMAS DEL COMITÉ</div>
+      <div style="margin-top: 30px;">`;
 
     lineas.forEach((linea) => {
-      firmasHtml += `<div style="display: flex; gap: 40px; margin-bottom: 50px; justify-content: space-around;">`;
+      firmasHtml += `<div class="firmas-line" style="margin-bottom: 50px;">`;
 
       linea.forEach((miembro) => {
         firmasHtml += `
-          <div style="text-align: center; flex: 1;">
-            <div style="border-top: 1px solid #111827; width: 120px; margin: 0 auto; height: 40px;"></div>
-            <div style="font-size: 0.75rem; font-weight: bold; color: #111827; margin-top: 4px;">
-              ${this.htmlPrintS.esc(miembro.nombre)}
-            </div>
-            <div style="font-size: 0.7rem; color: #4B5563;">
-              ${this.htmlPrintS.esc(miembro.cargo)}
-            </div>
+          <div class="firma-item">
+            <div class="firma-linea"></div>
+            <div class="firma-nombre">${this.htmlPrintS.esc(miembro.nombre)}</div>
+            <div class="firma-cargo">${this.htmlPrintS.esc(miembro.cargo)}</div>
           </div>
         `;
       });
@@ -170,7 +177,7 @@ ${this.htmlPrintS.getStandardCss()}
       firmasHtml += `</div>`;
     });
 
-    firmasHtml += `</div>`;
+    firmasHtml += `</div></div>`;
 
     return firmasHtml;
   }

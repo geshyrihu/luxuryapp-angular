@@ -1,29 +1,35 @@
 <div class="d-flex flex-column">
   <div class="p-2 bg-body-tertiary fw-semibold">Invitados</div>
-  <div class="row col-12 align-items-center g-4">
-    <div class="col-10">
-      <div class="mb-2">
-        <custom-input-text-signal
-          [control]="invitado"
-          [horizontal]="false"
-          placeholder="Nombre del invitado"
-        />
-      </div>
-    </div>
-    <div class="col-2 mb-2">
-      @if (invitado.value) {
-       <il-button-item
-         label="Agregar"
-         iconClass="material-symbols-light:add"
-         (clicked)="onSubmit()"
-       />
-      }
-    </div>
+
+  <div class="d-flex flex-column gap-2 p-2">
+    <custom-input-text-signal
+      class="d-block w-full"
+      [control]="invitado"
+      [horizontal]="false"
+      label="Invitado"
+      placeholder="Nombre del invitado"
+    />
+    <il-button-item
+      label="Agregar"
+      iconClass="material-symbols-light:add"
+      [fluid]="true"
+      [disabled]="!invitado.value"
+      (clicked)="onSubmit()"
+    />
   </div>
+
   @for (item of listaInvitados(); track item.id) {
-  <div class="d-flex align-items-center justify-content-between p-2">
-    {{ item.invitado }}
-    <il-button-delete (confirmed)="onDelete(item.id)" />
+  <div
+    class="d-flex align-items-center justify-content-between gap-2 p-2 border-bottom-1 border"
+  >
+    <span class="text-sm text-body">{{ item.invitado }}</span>
+    <iw-button-delete
+      size="sm"
+      [tooltip]="'Eliminar'"
+      tooltipPosition="top"
+      confirmMessage="¿Eliminar a este invitado?"
+      (confirmed)="onDelete(item.id)"
+    />
   </div>
   }
 </div>

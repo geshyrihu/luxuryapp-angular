@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -27,7 +27,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     WebButtonLabelItem,
-    WebButtonLabelDelete,
+    WebButtonIconDelete,
   ],
 })
 export class AdministrationFormList implements OnInit {
