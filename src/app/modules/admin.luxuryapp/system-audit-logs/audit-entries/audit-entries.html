@@ -175,7 +175,8 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item>
+         <ili-list-item>
+           <ion-label>
           <div class="d-flex justify-content-between align-items-center mb-1">
             <div class="d-flex align-items-center gap-2">
               <lx-tag
@@ -226,8 +227,9 @@
             (clicked)="toggleExpand(item)"
             [customClass]="'mt-1'"
           />
-          }
-        </ili-list-item>
+           }
+           </ion-label>
+         </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
 

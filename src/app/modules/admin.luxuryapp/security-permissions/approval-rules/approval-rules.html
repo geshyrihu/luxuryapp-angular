@@ -1,83 +1,121 @@
-<lx-card>
-  <ng-template #header>
-    <div
-      class="p-4 d-flex justify-content-between align-items-center border-bottom-1 border"
-    >
-      <div>
-        <h5 class="m-0">Matriz de Jerarquóa de Aprobación</h5>
-        <p class="m-0 mt-1 text-body-secondary text-sm">
-          Seleccione el alcance de la aprobación para cada par de roles.
-        </p>
-      </div>
-      <il-button-save
+@if (platform.isMobile()) {
+  <ion-toolbar class="approval-rules-mobile-toolbar">
+    <ion-title>Matriz de aprobación</ion-title>
+    <ion-buttons slot="end">
+      <ili-button-save
         label="Guardar Cambios"
         [disabled]="loading() || saving()"
         [submitting]="saving()"
         (click)="onSave()"
       />
-    </div>
-  </ng-template>
+    </ion-buttons>
+  </ion-toolbar>
 
   @if (loading()) {
-  <div class="p-4">
-    <lx-skeleton height="400px" />
-  </div>
+    <div class="approval-rules-mobile-loading">
+      <lx-skeleton height="220px" />
+    </div>
   } @else {
-  <div class="table-container">
-    <app-table
-      [value]="targetRoles()"
-      class="custom-table d-none d-md-block"
-      [scrollable]="true"
-      [scrollHeight]="scrollHeight()"
-      [stripedRows]="true"
-    >
-      <ng-template #header>
-        <tr>
-          <th
-            
-            pFrozenColumn
-            class="header-cell sticky-column"
-          >
-            Rol Solicitante
-          </th>
-          @for (approver of approverRoles(); track approver) {
-          <th class="header-cell text-center" >
-            <span>{{ approver }}</span>
-          </th>
-          }
-        </tr>
-      </ng-template>
-      <ng-template #body let-target>
-        <tr>
-          <td
-            
-            pFrozenColumn
-            class="body-cell sticky-column"
-          >
-            <strong>{{ target }}</strong>
-          </td>
-          @for (approver of approverRoles(); track approver) {
-          <td class="body-cell text-center">
-            <custom-input-select-button-signal
-              [options]="scopeOptions"
-              [ngModel]="getScope(approver, target)"
-              (ngModelChange)="onRuleChange(approver, target, $event)"
-              optionLabel="label"
-              optionValue="value"
-            >
-              <ng-template #item let-item>
-                <app-icon [icon]="item.icon" class="me-2" />
-                <span>{{ item.label }}</span>
-              </ng-template>
-            </custom-input-select-button-signal>
-          </td>
-          }
-        </tr>
-      </ng-template>
-    </app-table>
-  </div>
-  <div class="d-block d-md-none p-4 text-center text-body-secondary">
-    <p>La matriz de aprobación estó optimizada para pantallas de escritorio.</p>
-  </div>
+    <ion-list class="approval-rules-mobile-list" lines="none">
+      @for (target of targetRoles(); track target) {
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ target }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            @for (approver of approverRoles(); track approver) {
+              <ion-item lines="full">
+                <ion-label>{{ approver }}</ion-label>
+                <ion-select
+                  interface="action-sheet"
+                  [value]="getScope(approver, target)"
+                  aria-label="Alcance de aprobación"
+                  (ionChange)="onRuleChange(approver, target, $event.detail.value)"
+                >
+                  @for (option of scopeOptions; track option.value) {
+                    <ion-select-option [value]="option.value">
+                      {{ option.label }}
+                    </ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
+            }
+          </ion-card-content>
+        </ion-card>
+      }
+    </ion-list>
   }
-</lx-card>
+} @else {
+  <lx-card>
+    <ng-template #header>
+      <div
+        class="p-4 d-flex justify-content-between align-items-center border-bottom-1 border"
+      >
+        <div>
+          <h5 class="m-0">Matriz de Jerarquía de Aprobación</h5>
+          <p class="m-0 mt-1 text-body-secondary text-sm">
+            Seleccione el alcance de la aprobación para cada par de roles.
+          </p>
+        </div>
+        <il-button-save
+          label="Guardar Cambios"
+          [disabled]="loading() || saving()"
+          [submitting]="saving()"
+          (click)="onSave()"
+        />
+      </div>
+    </ng-template>
+
+    @if (loading()) {
+      <div class="p-4">
+        <lx-skeleton height="400px" />
+      </div>
+    } @else {
+      <div class="table-container">
+        <app-table
+          [value]="targetRoles()"
+          class="custom-table"
+          [scrollable]="true"
+          [scrollHeight]="scrollHeight()"
+          [stripedRows]="true"
+        >
+          <ng-template #header>
+            <tr>
+              <th pFrozenColumn class="header-cell sticky-column">
+                Rol Solicitante
+              </th>
+              @for (approver of approverRoles(); track approver) {
+                <th class="header-cell text-center">
+                  <span>{{ approver }}</span>
+                </th>
+              }
+            </tr>
+          </ng-template>
+          <ng-template #body let-target>
+            <tr>
+              <td pFrozenColumn class="body-cell sticky-column">
+                <strong>{{ target }}</strong>
+              </td>
+              @for (approver of approverRoles(); track approver) {
+                <td class="body-cell text-center">
+                  <custom-input-select-button-signal
+                    [options]="scopeOptions"
+                    [ngModel]="getScope(approver, target)"
+                    (ngModelChange)="onRuleChange(approver, target, $event)"
+                    optionLabel="label"
+                    optionValue="value"
+                  >
+                    <ng-template #item let-item>
+                      <app-icon [icon]="item.icon" class="me-2" />
+                      <span>{{ item.label }}</span>
+                    </ng-template>
+                  </custom-input-select-button-signal>
+                </td>
+              }
+            </tr>
+          </ng-template>
+        </app-table>
+      </div>
+    }
+  </lx-card>
+}

@@ -1,0 +1,102 @@
+<div class="d-flex flex-column h-full min-h-0">
+  <div class="d-flex align-items-center justify-content-between p-2 pb-0">
+    <ion-searchbar
+      aria-label="Buscar cuentas de usuario"
+      placeholder="Buscar usuario"
+      [value]="query()"
+      (ionInput)="query.set($any($event).detail.value ?? '')"
+      class="p-0 m-0 flex-grow-1"
+    ></ion-searchbar>
+    <ion-button fill="clear" color="primary" (click)="add.emit()">
+      <ion-icon name="add-circle" style="font-size: 2rem;"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-accordion-group class="px-2 mt-2">
+    <ion-accordion value="filtros" class="bg-transparent border rounded">
+      <ion-item slot="header" color="light">
+        <ion-label class="text-sm fw-bold">Filtros y Búsqueda</ion-label>
+      </ion-item>
+      <div class="p-2" slot="content">
+        <div class="user-account-mobile-filters">
+          <custom-input-select-signal
+            [data]="customers()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Seleccionar Cliente"
+            [horizontal]="false"
+            [noMargin]="true"
+            [filter]="true"
+            (selectionChange)="customerChange.emit($event.value)"
+          />
+          <custom-input-select-signal
+            [data]="typePeople()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Tipo de Persona"
+            [control]="typePersonControl()"
+            [horizontal]="false"
+            [noMargin]="true"
+            [filter]="true"
+            (selectionChange)="typePersonChange.emit($event.value)"
+          />
+          <ili-button-active-desactive
+            fluid
+            [state]="active()"
+            (stateChange)="activeChange.emit($event)"
+          />
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <div class="flex-grow-1 overflow-y-auto mt-2">
+    <ion-list inset="true" lines="full" class="m-0 bg-transparent">
+      @for (item of visibleData(); track item.id) {
+        <ion-item>
+          <ion-avatar slot="start" (click)="employeeSelected.emit(item.id)">
+            <img
+              [src]="item.photoPath || 'assets/images/default-avatar.png'"
+              [alt]="item.fullName"
+            />
+          </ion-avatar>
+          <ion-label>
+            <h2 class="ion-text-wrap fw-bold">{{ item.fullName }}</h2>
+            <p class="ion-text-wrap text-primary fw-medium mb-1">{{ item.userName }} - {{ item.role }}</p>
+            <p class="ion-text-wrap text-xs text-body-secondary"><ion-icon name="business-outline"></ion-icon> {{ item.customer || "Sin Cliente" }}</p>
+            <p class="ion-text-wrap text-xs text-body-secondary"><ion-icon name="mail-outline"></ion-icon> {{ item.email }}</p>
+          </ion-label>
+          <ili-action-menu slot="end">
+            @if (item.active) {
+              <ili-button-item
+                label="Bloquear"
+                iconName="lock-closed-outline"
+                (clicked)="block.emit(item.id)"
+              />
+            } @else {
+              <ili-button-item
+                label="Desbloquear"
+                iconName="lock-open-outline"
+                (clicked)="unlock.emit(item.id)"
+              />
+            }
+            <ili-button-item
+              label="Permisos"
+              iconName="person-outline"
+              (clicked)="permissions.emit({ id: item.id, email: item.email })"
+            />
+            <ili-button-edit label="Editar" (clicked)="edit.emit(item.id)" />
+            <ili-button-delete
+              label="Eliminar"
+              (confirmed)="delete.emit(item.id)"
+            />
+          </ili-action-menu>
+        </ion-item>
+      } @empty {
+        <ion-item>
+          <ion-label class="text-center py-4">No hay cuentas para mostrar.</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  </div>
+</div>

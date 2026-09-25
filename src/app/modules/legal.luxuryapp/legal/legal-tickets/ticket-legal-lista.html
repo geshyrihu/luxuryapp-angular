@@ -173,7 +173,7 @@
         </p>
         <p class="font-normal m-0 text-xs text-end">{{ item.customer }}</p>
       </div>
-      <h2 class="text-sm fw-semibold m-0 text-wrap mb-1">{{ item.title }}</h2>
+       <h2 class="text-sm fw-semibold m-0 text-wrap mb-1">{{ item.title }}</h2>
       <div class="d-flex flex-wrap mt-1">
         <span
           class="text-xs"
@@ -182,7 +182,7 @@
           [class.text-green-500]="item.status === 2"
           [class.text-gray-500]="item.status === 4"
         >
-          {{ item.status === 0 ? 'PENDIENTE' : item.status === 1 ? 'EN PROCESO'
+           {{ item.status === 0 ? 'PENDIENTE' : item.status === 1 ? 'EN PROCESO'
           : item.status === 2 ? 'CONCLUIDO' : item.status === 4 ? 'CANCELADO' :
           '' }}
         </span>
@@ -205,7 +205,7 @@
           />
           <ili-button-item
             iconName="refresh-outline"
-            label="Status"
+             label="Status"
             (clicked)="onModalUpdateStatus({ id: item.id })"
             []="true"
           />

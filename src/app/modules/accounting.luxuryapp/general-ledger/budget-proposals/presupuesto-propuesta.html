@@ -433,6 +433,32 @@
             <span class="text-green-700 fw-bold">(-)</span>
             <span>Ahorro / Reducción</span>
           </div>
+
+          <div
+            class="d-flex align-items-center gap-2 ms-auto flex-wrap"
+            lxTooltip="Avance de finalización de partidas (solo cuentas hoja)"
+          >
+            <span
+              class="px-2 py-1 rounded text-xs fw-semibold bg-blue-100 text-blue-700"
+            >
+              Por trabajar: {{ totalWorkItems() }}
+            </span>
+            <span
+              class="px-2 py-1 rounded text-xs fw-semibold bg-green-100 text-green-800"
+            >
+              Finalizadas: {{ finalizedWorkItems() }}
+            </span>
+            <span
+              class="px-2 py-1 rounded text-xs fw-semibold bg-yellow-100 text-yellow-800"
+            >
+              Pendientes: {{ pendingWorkItems() }}
+            </span>
+            <span
+              class="px-2 py-1 rounded text-xs fw-semibold bg-gray-100 text-gray-700"
+            >
+              Avance: {{ finalizedPercent() }}%
+            </span>
+          </div>
         </div>
       </div>
     </ng-template>

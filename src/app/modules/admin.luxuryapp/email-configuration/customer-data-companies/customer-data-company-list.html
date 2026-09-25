@@ -129,29 +129,22 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:apartment"
-          class="text-xl text-primary"
-        />
-      </div>
-      <div class="d-flex justify-content-between align-items-start mb-2">
-        <span class="text-xs fw-bold text-primary">{{ item.customer }}</span>
-        <span class="text-xs text-body-secondary">{{ item.applicationRoleName }}</span>
-      </div>
-      <h2 class="text-base fw-bold mb-1">{{ item.applicationUser }}</h2>
-      <div class="d-flex align-items-center text-sm text-body-secondary mb-1">
-        <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs" />
-        <span>{{ item.email }}</span>
-      </div>
-      <div class="d-flex align-items-center text-sm text-body-secondary">
-        <app-icon [icon]="'material-symbols-light:call'" class="text-xs" />
-        <span>{{ item.phoneNumber }}</span>
-      </div>
+       <app-icon slot="start" icon="material-symbols-light:apartment" class="text-xl text-primary" />
+       <ion-label>
+         <div class="d-flex justify-content-between align-items-start mb-2">
+           <span class="text-xs fw-bold text-primary">{{ item.customer }}</span>
+           <span class="text-xs text-body-secondary">{{ item.applicationRoleName }}</span>
+         </div>
+         <h2 class="text-base fw-bold mb-1">{{ item.applicationUser }}</h2>
+         <div class="d-flex align-items-center text-sm text-body-secondary mb-1">
+           <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs" />
+           <span>{{ item.email }}</span>
+         </div>
+         <div class="d-flex align-items-center text-sm text-body-secondary">
+           <app-icon [icon]="'material-symbols-light:call'" class="text-xs" />
+           <span>{{ item.phoneNumber }}</span>
+         </div>
+       </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

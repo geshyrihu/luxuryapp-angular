@@ -104,14 +104,16 @@
     @for(item of data(); track item.employeeId) {
     <div>
       <ili-list-item>
-        <div start>
-          <img [src]="item.photoPath" alt="Avatar" />
-        </div>
+         <ion-avatar slot="start">
+           <img [src]="item.photoPath" alt="Avatar" />
+         </ion-avatar>
 
-        <h2>{{ item.fullName }}</h2>
-        <p class="text-xs text-medium">
-          {{ item.historial.length }} registro(s) y
-        </p>
+         <ion-label>
+           <h2>{{ item.fullName }}</h2>
+           <p class="text-xs text-medium">
+             {{ item.historial.length }} registro(s) y
+           </p>
+         </ion-label>
       </ili-list-item>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {

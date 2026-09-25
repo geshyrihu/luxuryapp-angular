@@ -7,25 +7,14 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -36,27 +25,26 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { UserAccountDto } from "./interfaces/user-account.dto";
 import { MdEditAccount } from "./md-edit-account";
 import { UserAccountForm } from "./user-account-form";
+import { UserAccountListMobile } from "./user-account-list-mobile";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-user-account-list",
   templateUrl: "./user-account-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MobileListItem,
+    UserAccountListMobile,
     WebButtonIconItem,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
@@ -66,15 +54,13 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonLabelActiveDesactive,
-    MobileButtonLabelActiveDesactive,
     TableCaption,
     TableFooter,
-    DataViewMobile,
-    AppIcon,
     CustomInputSelectSignal,
   ],
 })
 export class UserAccountList implements OnInit {
+  readonly platform = inject(PlatformService);
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   enumSelectS = inject(EnumSelectService);
@@ -301,4 +287,3 @@ export class UserAccountList implements OnInit {
       });
   }
 }
-

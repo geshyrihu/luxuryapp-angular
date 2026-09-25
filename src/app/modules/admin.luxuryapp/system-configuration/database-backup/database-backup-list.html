@@ -123,20 +123,17 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-blue-100"
-      >
-        <app-icon icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
-      </div>
+       <app-icon slot="start" icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
 
-      <p class="mt-0 mb-0 fw-semibold">{{ item.name }}</p>
-      <p class="text-body-secondary font-size-12 mt-0 mb-0">
-        {{ destinationLabel(item.destinationType) }} &bull; {{
-        item.cronExpression }} @if (item.lastRunStatus) {
-        &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
-        }
-      </p>
+       <ion-label>
+         <p class="mt-0 mb-0 fw-semibold">{{ item.name }}</p>
+         <p class="text-body-secondary font-size-12 mt-0 mb-0">
+           {{ destinationLabel(item.destinationType) }} &bull; {{
+           item.cronExpression }} @if (item.lastRunStatus) {
+           &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
+           }
+         </p>
+       </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

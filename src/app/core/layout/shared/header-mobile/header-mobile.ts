@@ -19,6 +19,7 @@ import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
     IonButton,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: "./header-mobile.scss",
   templateUrl: "./header-mobile.html",
 })
 export class HeaderMobile {
@@ -39,4 +40,3 @@ export class HeaderMobile {
     }
   }
 }
-

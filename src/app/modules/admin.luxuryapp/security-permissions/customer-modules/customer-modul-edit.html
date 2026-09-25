@@ -122,14 +122,12 @@
       >
         @for (item of group.items; track item.moduleAppId) {
         <ili-list-item class="ion-no-padding">
-          <div slot="start" class="ps-3 py-2 d-flex align-items-center">
-            <app-icon
-              [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
-              [class.text-green-500]="item.isAssigned"
-              [class.text-400]="!item.isAssigned"
-            />
-          </div>
-          <div class="ion-text-wrap py-2">
+           <app-icon slot="start"
+             [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
+             [class.text-green-500]="item.isAssigned"
+             [class.text-400]="!item.isAssigned"
+           />
+           <ion-label class="ion-text-wrap py-2">
             <h2
               class="text-sm fw-medium"
               [class.text-900]="item.isAssigned"
@@ -137,7 +135,7 @@
             >
               {{ item.moduleAppName }}
             </h2>
-          </div>
+           </ion-label>
           <ion-input-toggle
             [ngModel]="item.isAssigned"
             (toggleChange)="toggleModuleActivation(item)"
@@ -149,4 +147,3 @@
     }
   </div>
 </div>
-

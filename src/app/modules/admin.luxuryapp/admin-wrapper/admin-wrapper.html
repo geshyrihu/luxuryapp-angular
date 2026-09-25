@@ -96,17 +96,13 @@
 
     @for (module of group.cards; track module.route) {
     <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        [style.backgroundColor]="module.bgColor"
-      >
-        <app-icon [icon]="module.icon" [style.color]="module.color" />
-      </div>
-      <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
-      <p class="text-xs m-0 mt-1 text-body-secondary">
-        {{ module.description }}
-      </p>
+       <app-icon slot="start" [icon]="module.icon" [style.color]="module.color" />
+       <ion-label>
+         <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
+         <p class="text-xs m-0 mt-1 text-body-secondary">
+           {{ module.description }}
+         </p>
+       </ion-label>
     </ili-list-item>
     }
   </div>

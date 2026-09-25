@@ -74,7 +74,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         justify-content: center;
         min-width: 44px;
         min-height: 44px;
-        padding: 8px;
+         padding: 8px 0 8px 8px;
         border: none;
         background: none;
         color: var(--ds-text-secondary);
@@ -187,4 +187,3 @@ export class MobileActionMenu {
     this.overlayRef = undefined;
   }
 }
-

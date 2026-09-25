@@ -118,7 +118,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item lines="full" detail="false">
       <!-- Logo / avatar del cliente -->
-      <div slot="start" class="customer-logo-slot">
+       <ion-avatar slot="start" class="customer-logo-slot">
         @if (item.photoPath) {
         <img
           [src]="item.photoPath"
@@ -128,17 +128,17 @@
         } @else {
         <app-icon icon="material-symbols-light:domain" class="text-xl" />
         }
-      </div>
+       </ion-avatar>
 
-      <div class="ion-text-wrap">
+       <ion-label class="ion-text-wrap">
         <p class="fw-semibold m-0 text-body">{{ item.nameCustomer }}</p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
           Estado: {{ getStateLabel(item.state) }}
         </p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
-          {{ item.phoneOne }}{{ item.phoneTwo ? ' é ' + item.phoneTwo : '' }}
+          {{ item.phoneOne }}{{ item.phoneTwo ? ' - ' + item.phoneTwo : '' }}
         </p>
-      </div>
+       </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

@@ -25,7 +25,7 @@
       </th>
       <th appSortableColumn="name">Nombre Interno <app-sorticon field="name" /></th>
       <th appSortableColumn="displayName">
-        Nombre para Mostrar <app-sorticon field="displayName" />
+        Nombre para mostrar <app-sorticon field="displayName" />
       </th>
       <th appSortableColumn="code">Código <app-sorticon field="code" /></th>
       <th appSortableColumn="departament">
@@ -92,34 +92,27 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:shield-person"
-          class="text-xl text-primary"
-        />
-      </div>
-      <h2 class="fw-bold m-0 d-flex align-items-center gap-2">
-        {{ item.displayName || item.name }}
-        @if (item.code) {
-          <span
-            [ngStyle]="{
-              'background-color': item.colorHex || '#64748b',
-              color: '#fff',
-            }"
-            class="px-2 py-1 rounded text-xs fw-semibold"
-          >
-            {{ item.code }}
-          </span>
-        }
-      </h2>
-      <p class="text-sm text-body-secondary m-0">
-        {{ item.roleType }} - {{ item.departament }}
-      </p>
-      <p class="text-xs text-body-secondary m-0">Orden: {{ item.sortOrder }}</p>
+       <ion-avatar slot="start" class="ion-margin-end" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
+         <app-icon icon="material-symbols-light:shield-person" style="font-size: 24px; color: var(--ion-color-primary);" />
+       </ion-avatar>
+       <ion-label>
+         <h2 class="ion-text-wrap d-flex align-items-center gap-2">
+           <span>{{ item.displayName || item.name }}</span>
+           @if (item.code) {
+             <span
+               [ngStyle]="{
+                 'background-color': item.colorHex || '#64748b',
+                 color: '#fff',
+               }"
+               class="px-2 py-1 rounded text-xs fw-semibold"
+             >
+               {{ item.code }}
+             </span>
+           }
+         </h2>
+         <p class="ion-text-wrap">{{ item.roleType }} - {{ item.departament }}</p>
+         <p class="ion-text-wrap">Orden: {{ item.sortOrder }}</p>
+       </ion-label>
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

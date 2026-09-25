@@ -6,12 +6,28 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import {
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonSelect,
+  IonSelectOption,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/angular";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
@@ -33,9 +49,23 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     LxSkeleton,
     AppIcon,
     WebButtonLabelSave,
+    MobileButtonLabelSave,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonSelect,
+    IonSelectOption,
+    IonTitle,
+    IonToolbar,
   ],
 })
 export class ApprovalRules implements OnInit {
+  readonly platform = inject(PlatformService);
   private apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
 

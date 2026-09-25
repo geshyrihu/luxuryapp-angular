@@ -31,7 +31,6 @@ import { RefreshService } from "@core/services/refresh.service";
 import { SearchService } from "@core/services/search.service";
 import { ThemeService } from "@core/services/theme.service";
 import { UpdateService } from "@core/services/update-pwa.service";
-import { PanicButton } from "@operations.luxuryapp/panic-alert/panic-button/panic-button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
@@ -62,7 +61,6 @@ import { HeaderEmployeeAiModal } from "./header-employee-ai-modal";
     WebButtonLabel,
     AppMenu,
     NotificationsGadget,
-    PanicButton,
     Profiledesktop,
     RouterModule,
     AppToolbar,

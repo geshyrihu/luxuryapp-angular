@@ -183,6 +183,28 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       (item) => !item.esFilaAgrupadora && item.percentageIncrease > 5,
     ),
   );
+  /** Total de partidas hoja (cuentas a trabajar). Excluye filas agrupadoras. */
+  totalWorkItems = computed(
+    () => this.allProposalItems().filter((item) => !item.esFilaAgrupadora).length,
+  );
+  /** Partidas hoja ya marcadas como finalizadas (listas). */
+  finalizedWorkItems = computed(
+    () =>
+      this.allProposalItems().filter(
+        (item) => !item.esFilaAgrupadora && item.isFinalized,
+      ).length,
+  );
+  /** Partidas hoja pendientes por finalizar. */
+  pendingWorkItems = computed(
+    () => this.totalWorkItems() - this.finalizedWorkItems(),
+  );
+  /** Porcentaje de avance de finalización (0 si no hay partidas). */
+  finalizedPercent = computed(() => {
+    const total = this.totalWorkItems();
+    return total === 0
+      ? 0
+      : Math.round((this.finalizedWorkItems() / total) * 100);
+  });
   /** Copia profunda de las partidas originales para comparar cambios y evitar llamadas innecesarias al API. */
   originalProposalItems: BudgetProposalItemDTO[] = [];
 

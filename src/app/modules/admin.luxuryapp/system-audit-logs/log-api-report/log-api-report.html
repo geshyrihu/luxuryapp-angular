@@ -164,13 +164,12 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <div start class="me-2">
-            <lx-tag
-              [value]="item.level.charAt(0).toUpperCase()"
-              [severity]="getLevelSeverity(item.level)"
-            ></lx-tag>
-          </div>
+         <ili-list-item>
+           <lx-tag slot="start"
+             [value]="item.level.charAt(0).toUpperCase()"
+             [severity]="getLevelSeverity(item.level)"
+           ></lx-tag>
+           <ion-label>
           <div class="d-flex justify-content-between align-items-center mb-1">
             <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
             <p class="text-medium text-body-secondary m-0 text-sm">
@@ -209,7 +208,8 @@
 {{ item.exception }}</pre>
           </div>
           }
-        </ili-list-item>
+           </ion-label>
+         </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
 

@@ -23,8 +23,8 @@
   <ng-template #header>
     <tr>
       <th class="table-col-70">Rol</th>
-      <th class="table-col-20 text-center" appSortableColumn="modules">
-        Módulos Asignados
+         <th class="table-col-20 text-center" appSortableColumn="modules">
+         Módulos asignados
         <app-sorticon field="modules" />
       </th>
       <th class="table-col-10"></th>
@@ -69,21 +69,14 @@
   [groupedData]="groupedData()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon icon="material-symbols-light:view-module" class="text-xl text-primary" />
-      </div>
-      <h2
-        class="font-normal m-0"
-        (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
-      >
-        {{ item.roleName }}
-      </h2>
-      <span end class="text-sm me-2">{{ item.modules }} Módulos</span>
+    <ili-list-item (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })">
+      <ion-avatar slot="start" class="ion-margin-end" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
+        <app-icon icon="material-symbols-light:view-module" style="font-size: 24px; color: var(--ion-color-primary);" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap">{{ item.roleName }}</h2>
+      </ion-label>
+      <ion-note slot="end" color="medium">{{ item.modules }} módulos</ion-note>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -41,19 +41,19 @@
           <app-sorticon field="nameModule" />
         </th>
         <th appSortableColumn="label">
-          Label
+           Etiqueta
           <app-sorticon field="label" />
         </th>
         <th appSortableColumn="icon">
-          Icon
+           Icono
           <app-sorticon field="icon" />
         </th>
         <th appSortableColumn="routerLink">
-          RouterLink
+           Enlace de ruta
           <app-sorticon field="routerLink" />
         </th>
         <th appSortableColumn="viewMobil">
-          Modulo celular
+           Módulo móvil
           <app-sorticon field="viewMobil" />
         </th>
         <th appSortableColumn="rolLevel">
@@ -110,13 +110,15 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <app-icon
-        start
+        slot="start"
         icon="material-symbols-light:devices-other"
         [color]="item.viewMobil ? 'success' : 'medium'"
-        class="text-2xl"
+        style="font-size: 24px; margin-right: 16px;"
       />
-      <h2 class="font-normal m-0">{{ item.nameModule }}</h2>
-      <p class="text-medium text-body-secondary m-0">{{ item.label }}</p>
+      <ion-label>
+        <h2 class="ion-text-wrap">{{ item.nameModule }}</h2>
+        <p class="ion-text-wrap">{{ item.label }}</p>
+      </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

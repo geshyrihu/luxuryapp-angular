@@ -49,8 +49,8 @@ export const adminRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "RolesApp",
-      breadcrumb: "RolesApp",
+      title: "Roles de Aplicación",
+      breadcrumb: "Roles de Aplicación",
     },
   },
   {
@@ -61,8 +61,8 @@ export const adminRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catalogo de Modulos",
-      breadcrumb: "Catalogo de Modulos",
+      title: "Catálogo de Módulos",
+      breadcrumb: "Catálogo de Módulos",
     },
   },
   {
@@ -97,8 +97,8 @@ export const adminRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Administración Roles-Modulos",
-      breadcrumb: "Administración Roles-Modulos",
+      title: "Administración Roles-Módulos",
+      breadcrumb: "Administración Roles-Módulos",
     },
   },
   {
@@ -109,8 +109,8 @@ export const adminRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Actualizar modulos a Role",
-      breadcrumb: "Actualizar modulos a Role",
+      title: "Actualizar módulos del rol",
+      breadcrumb: "Actualizar módulos del rol",
     },
   },
   {

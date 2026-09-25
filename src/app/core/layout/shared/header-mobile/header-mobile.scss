@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.header-mobile-toolbar {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+ion-buttons {
+  flex: 0 0 auto;
+  min-width: 44px;
+}
+
+.header-mobile-center {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding-inline: var(--ds-space-xs);
+  text-align: center;
+}

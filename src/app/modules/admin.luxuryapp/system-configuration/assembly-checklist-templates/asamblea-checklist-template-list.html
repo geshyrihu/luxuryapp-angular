@@ -92,31 +92,24 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:fact-check"
-          class="text-xl text-primary"
-        />
-      </div>
+       <app-icon slot="start" icon="material-symbols-light:fact-check" class="text-xl text-primary" />
 
-      <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
-      <p class="text-xs m-0 mt-1 text-body-secondary">
-        {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
-        }}
-      </p>
-      <p class="text-xs m-0 mt-1 text-body-secondary">
-        Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} | V{{
-        item.version }}
-      </p>
-      <p class="text-xs m-0 mt-1">
-        <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
-          {{ item.isActive ? "Activo" : "Inactivo" }}
-        </span>
-      </p>
+       <ion-label>
+         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+         <p class="text-xs m-0 mt-1 text-body-secondary">
+           {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+           }}
+         </p>
+         <p class="text-xs m-0 mt-1 text-body-secondary">
+           Orden {{ item.sortOrder }} | Día {{ item.offsetDaysFromMeeting }} | V{{
+           item.version }}
+         </p>
+         <p class="text-xs m-0 mt-1">
+           <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+             {{ item.isActive ? "Activo" : "Inactivo" }}
+           </span>
+         </p>
+       </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

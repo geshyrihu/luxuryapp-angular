@@ -1,4 +1,38 @@
 :host ::ng-deep {
+  .approval-rules-mobile-toolbar {
+    --padding-start: 0;
+    --padding-end: 0;
+    --background: var(--ds-bg-surface);
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  .approval-rules-mobile-toolbar ion-buttons {
+    min-width: 44px;
+  }
+
+  .approval-rules-mobile-loading {
+    padding: var(--ds-space-md);
+  }
+
+  .approval-rules-mobile-list {
+    padding: var(--ds-space-sm);
+    background: transparent;
+  }
+
+  .approval-rules-mobile-list ion-card {
+    margin: var(--ds-space-sm) 0;
+    background: var(--ds-bg-surface);
+  }
+
+  .approval-rules-mobile-list ion-card-title {
+    font-size: 1rem;
+  }
+
+  .approval-rules-mobile-list ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+
   .table-container {
     overflow-x: auto;
     max-width: 100%;

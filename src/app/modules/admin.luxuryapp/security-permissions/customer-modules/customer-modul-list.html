@@ -117,7 +117,7 @@
       class="ion-no-padding"
       detail="true"
     >
-      <div slot="start" class="mobile-avatar-slot">
+       <ion-avatar slot="start" class="mobile-avatar-slot">
         @if (customer.photoPath) {
         <img
           [src]="customer.photoPath"
@@ -130,15 +130,15 @@
           
         />
         }
-      </div>
-      <div class="ion-text-wrap">
-        <p class="fw-semibold m-0 text-body">
+       </ion-avatar>
+       <ion-label class="ion-text-wrap">
+         <p class="fw-semibold m-0 text-body">
           {{ customer.nameCustomer }}
         </p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
           #{{ customer.numeroCliente }}
         </p>
-      </div>
+       </ion-label>
       <div slot="end" class="d-flex align-items-center me-2">
         @if (customer.isAssigned) {
         <lx-tag severity="success" value="Asignado"></lx-tag>
