@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="row g-4">
+        <div class="col-12">
+          <custom-input-select-signal
+            [control]="form.controls.suspensionReasonId"
+            [data]="reasons()"
+            label="Motivo de suspensión"
+            placeholder="Selecciona un motivo"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12">
+          <custom-input-textarea-signal
+            [control]="form.controls.suspensionNotes"
+            label="Notas (opcional)"
+            placeholder="Detalle adicional de la suspensión"
+            [rows]="3"
+            [maxLength]="300"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-4">
+        <il-button-save
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

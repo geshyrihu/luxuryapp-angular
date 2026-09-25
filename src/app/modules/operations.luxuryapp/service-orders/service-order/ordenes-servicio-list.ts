@@ -32,10 +32,13 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AyudaOrdenesServicio } from "./ayuda-ordenes-servicio";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
+import { SeguimientoOrdenServicio } from "./seguimiento-orden-servicio";
 import { ServiceOrderForm } from "./service-order-form";
+import { SuspensionOrdenServicio } from "./suspension-orden-servicio";
 import { UploadImgForm } from "./upload-img-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -259,6 +262,62 @@ export class OrdenesServicio {
         "Reportes de proveedor",
         this.dialogHandlerS.sizeLg,
       )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onModalAyuda() {
+    this.dialogHandlerS.openDialog(
+      AyudaOrdenesServicio,
+      {},
+      "Ayuda: Seguimiento y Suspensión",
+      this.dialogHandlerS.sizeLg,
+      true,
+    );
+  }
+
+  onModalSeguimiento(id: string) {
+    this.dialogHandlerS
+      .openDialog(
+        SeguimientoOrdenServicio,
+        { id },
+        "Seguimiento de la orden",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onModalSuspension(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        SuspensionOrdenServicio,
+        {
+          id: data.id,
+          suspensionReasonId: data.suspensionReasonId,
+          suspensionNotes: data.suspensionNotes,
+        },
+        "Suspender orden de servicio",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onResume(id: string) {
+    if (
+      !window.confirm(
+        "Se reanudara la orden de servicio y se limpiara la marca de suspensión. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.apiResponseS
+      .onPost(Endpoints.ServiceOrders.resume(id), {})
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

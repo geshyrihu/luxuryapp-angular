@@ -124,6 +124,8 @@ export const EndpointsAdmin = {
       "admin/database-backup/service-orders/repair-folios",
     seedFederalLaborLawParameters:
       "admin/system-maintenance/seed-federal-labor-law-parameters",
+    seedServiceOrderSuspensionReasons:
+      "admin/system-maintenance/seed-service-order-suspension-reasons",
   },
   AppImplementationTracking: {
     triggerEmployeeValidation:

@@ -712,6 +712,26 @@ export const EndpointsOperations = {
     reporteProveedor: (id: string, customerId: string) =>
       `service-orders/ordenes-servicio-reporte-proveedor/${id}/${customerId}`,
     soporte: (id: string) => `service-orders/soporte-orden-servicio/${id}`,
+    suspend: (id: string | number) => `service-orders/${id}/suspend`,
+    resume: (id: string | number) => `service-orders/${id}/resume`,
+  },
+  ServiceOrderSuspensionReasons: {
+    base: "service-order-suspension-reasons",
+    list: (customerId: string) =>
+      `service-order-suspension-reasons/list/${customerId}`,
+    getById: (id: string | number) =>
+      `service-order-suspension-reasons/${id}`,
+    create: (customerId: string) =>
+      `service-order-suspension-reasons/${customerId}`,
+    update: (id: string | number) => `service-order-suspension-reasons/${id}`,
+    delete: (id: string | number) => `service-order-suspension-reasons/${id}`,
+  },
+  ServiceOrderFollowUps: {
+    base: "service-order-follow-ups",
+    list: (serviceOrderId: string) =>
+      `service-order-follow-ups/list/${serviceOrderId}`,
+    create: "service-order-follow-ups",
+    delete: (id: string | number) => `service-order-follow-ups/${id}`,
   },
   ApprovalRules: {
     matrix: "approval-rules/matrix",

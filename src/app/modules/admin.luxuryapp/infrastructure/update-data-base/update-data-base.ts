@@ -586,6 +586,35 @@ this.loading.set(false);
       });
   }
 
+  runSeedServiceOrderSuspensionReasons() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Sembrando motivos de suspensión de OS...",
+      "Crea los motivos base (Falta de presupuesto, refacciones, etc.) por cliente activo si no existen.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedServiceOrderSuspensionReasons, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Motivos de suspensión sembrados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La siembra de motivos de suspensión falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedFederalLaborLawParameters() {
     this.loading.set(true);
     this.result.set(null);

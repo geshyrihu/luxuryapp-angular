@@ -1,0 +1,73 @@
+<div class="d-flex flex-column gap-4 p-1">
+  <p class="m-0 text-sm text-body-secondary line-height-3">
+    Las órdenes de servicio cuentan con acciones para dar seguimiento al
+    mantenimiento. Aquí se explica para qué sirve cada una.
+  </p>
+
+  <div class="border-1 border rounded p-3">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <app-icon
+        icon="material-symbols-light:forum"
+        class="text-xl text-primary"
+      />
+      <span class="fw-bold text-body">Seguimiento</span>
+    </div>
+    <p class="m-0 text-sm text-body-secondary line-height-3">
+      Bitácora de notas por orden de servicio. Sirve para dejar registro del
+      avance o de las gestiones realizadas (llamadas, acuerdos, cambios de
+      fecha, etc.).
+    </p>
+    <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
+      <li>Cada nota guarda automáticamente el usuario y la fecha.</li>
+      <li>Cada nota requiere entre 10 y 200 caracteres.</li>
+      <li>No incluye imágenes (a diferencia de las evidencias fotográficas).</li>
+      <li>Solo el autor o un administrador puede eliminar una nota.</li>
+    </ul>
+  </div>
+
+  <div class="border-1 border rounded p-3">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <app-icon
+        icon="material-symbols-light:pause-circle"
+        class="text-xl text-warning"
+      />
+      <span class="fw-bold text-body">Suspender / Reanudar</span>
+    </div>
+    <p class="m-0 text-sm text-body-secondary line-height-3">
+      Marca que una orden <strong>no se ejecutará por ahora</strong>, sin
+      cambiar su estatus. Es útil, por ejemplo, cuando no hay presupuesto
+      aprobado: la orden sigue siendo "Pendiente", pero se identifica que está
+      detenida y por qué.
+    </p>
+    <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
+      <li>Requiere seleccionar un motivo (catálogo por cliente).</li>
+      <li>Puedes agregar notas opcionales (máx. 300 caracteres).</li>
+      <li>La orden se muestra con la etiqueta <strong>"Detenida"</strong>.</li>
+      <li>No aplica a órdenes concluidas, canceladas o no autorizadas.</li>
+      <li>
+        <strong>Reanudar</strong> limpia el motivo, las notas, la fecha y el
+        usuario de suspensión.
+      </li>
+    </ul>
+  </div>
+
+  <div class="border-1 border rounded p-3">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <app-icon
+        icon="material-symbols-light:block"
+        class="text-xl text-danger"
+      />
+      <span class="fw-bold text-body">Cancelar / Estatus final</span>
+    </div>
+    <p class="m-0 text-sm text-body-secondary line-height-3">
+      El estatus de la orden se administra desde el formulario de edición. Una
+      orden en un estatus final queda bloqueada para edición y suspensión.
+    </p>
+    <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
+      <li><strong>Concluido:</strong> el servicio terminó. Requiere fecha de ejecución.</li>
+      <li><strong>No Autorizado:</strong> el servicio no fue aprobado.</li>
+      <li><strong>Cancelado:</strong> el servicio se descartó.</li>
+      <li>La marca de suspensión es independiente del estatus.</li>
+    </ul>
+  </div>
+</div>

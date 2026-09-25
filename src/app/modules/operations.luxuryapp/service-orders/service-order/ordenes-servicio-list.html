@@ -10,7 +10,7 @@
   groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
-    <div class="d-flex align-items-center flex-wrap gap-2 no-print mb-4 mt-1">
+    <div class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3">
       <custom-input-text-signal
         [control]="fechaControl"
         type="month"
@@ -30,31 +30,45 @@
           [lxTooltip]="'Ver ' + item.nombre"
           tooltipPosition="bottom"
           [iconClass]="item.icon"
+          size="sm"
           [variant]="filtroEquiposValue == item.nombre ? 'solid' : 'outline'"
           [severity]="filtroEquiposValue == item.nombre ? 'primary' : 'secondary'"
-          customClass="btn-sm"
           (clicked)="onReloadOrdenes(item.id, item.nombre)"
         />
         }
       </div>
-      <il-button
-        iconClass="material-symbols-light:description"
-        label="Reporte de órdenes"
-        (click)="onNavigateToReport()"
+      <iw-button
+        iconClass="material-symbols-light:help"
+        size="sm"
         variant="outline"
+        severity="secondary"
+        lxTooltip="¿Cómo funcionan Seguimiento y Suspensión?"
+        tooltipPosition="bottom"
+        (clicked)="onModalAyuda()"
       />
-      <il-button
-        iconClass="material-symbols-light:table"
-        label="Reporte por categoria"
-        (click)="onNavigateToReportTabla()"
-        variant="outline"
-      />
-      <il-button
-        iconClass="material-symbols-light:precision-manufacturing"
-        label="Reporte por equipo"
-        (click)="onNavigateToReportPorEquipo()"
-        variant="outline"
-      />
+      <div class="d-flex align-items-center flex-wrap gap-2">
+        <il-button
+          iconClass="material-symbols-light:description"
+          label="Reporte de órdenes"
+          size="sm"
+          (click)="onNavigateToReport()"
+          variant="outline"
+        />
+        <il-button
+          iconClass="material-symbols-light:table"
+          label="Reporte por categoria"
+          size="sm"
+          (click)="onNavigateToReportTabla()"
+          variant="outline"
+        />
+        <il-button
+          iconClass="material-symbols-light:precision-manufacturing"
+          label="Reporte por equipo"
+          size="sm"
+          (click)="onNavigateToReportPorEquipo()"
+          variant="outline"
+        />
+      </div>
       <div class="ms-auto">
         <app-table-caption
           [title]="filtroEquiposValue | titlecase"
@@ -73,7 +87,7 @@
       </div>
     </div>
     <div
-      class="d-flex align-items-center justify-content-between text-sm text-body-secondary pt-2 border-top-1 border-200"
+      class="d-flex align-items-center justify-content-between text-sm text-body-secondary pt-2 px-3 border-top-1 border-200"
     >
       Servicios Totales: {{ dataSignal() ? dataSignal().length : 0 }} .
     </div>
@@ -143,6 +157,14 @@
           [value]="getStatusLabel(item.status)"
           [severity]="getBadgeSeverity(item.status)"
         />
+        @if (item.isSuspended) {
+        <lx-tag
+          value="Detenida"
+          severity="warning"
+          [lxTooltip]="item.suspensionReason || 'Suspendida'"
+          tooltipPosition="top"
+        />
+        }
       </td>
       <td class="text-center">
         <lx-tag
@@ -183,6 +205,32 @@
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outline"
           />
+
+          <iw-button-item
+            iconClass="material-symbols-light:forum"
+            lxTooltip="Seguimiento"
+            tooltipPosition="top"
+            (clicked)="onModalSeguimiento(item.id)"
+            variant="outline"
+          />
+
+          @if (item.isSuspended) {
+          <iw-button-item
+            iconClass="material-symbols-light:play-circle"
+            lxTooltip="Reanudar"
+            tooltipPosition="top"
+            (clicked)="onResume(item.id)"
+            variant="outline"
+          />
+          } @else {
+          <iw-button-item
+            iconClass="material-symbols-light:pause-circle"
+            lxTooltip="Suspender"
+            tooltipPosition="top"
+            (clicked)="onModalSuspension(item)"
+            variant="outline"
+          />
+          }
           <iw-button-edit
             (clicked)="onEdit({
                   id: item.id,
@@ -328,6 +376,9 @@
             [value]="getStatusLabel(item.status)"
             [severity]="getBadgeSeverity(item.status)"
           />
+          @if (item.isSuspended) {
+          <lx-tag value="Detenida" severity="warning" />
+          }
           <lx-tag
             (click)="onModalFotos(item.id)"
             [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
@@ -361,6 +412,24 @@
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outline"
           />
+          <ili-button-item
+            iconName="chatbubbles-outline"
+            label="Seguimiento"
+            (clicked)="onModalSeguimiento(item.id)"
+          />
+          @if (item.isSuspended) {
+          <ili-button-item
+            iconName="play-circle-outline"
+            label="Reanudar"
+            (clicked)="onResume(item.id)"
+          />
+          } @else {
+          <ili-button-item
+            iconName="pause-circle-outline"
+            label="Suspender"
+            (clicked)="onModalSuspension(item)"
+          />
+          }
           <ili-button-edit
             (clicked)="onEdit({
                     id: item.id,

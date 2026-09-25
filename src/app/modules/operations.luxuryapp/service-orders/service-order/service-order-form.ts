@@ -198,15 +198,16 @@ export class ServiceOrderForm implements OnInit {
   }
 
   private async loadStatus(): Promise<void> {
+    // defaultOption=false omite el placeholder "--Seleccione una opción--".
     const data = await this.apiResponseS.onGetEnumSelectItem(
-      "status",
+      "status/false",
     );
     this.cb_Status.set((data as SelectItemDto[]) || []);
   }
 
   private async loadTypeMaintance(): Promise<void> {
     const data = await this.apiResponseS.onGetEnumSelectItem<SelectItemDto[]>(
-      "type-maintance",
+      "type-maintance/false",
     );
     this.cb_TypeMaintance.set(data || []);
   }
