@@ -1,26 +1,22 @@
 @if (footerItems().length > 0) {
-<ion-tab-bar class="employee-mobile-tab-bar shadow-sm border-0">
+<ion-tab-bar
+  class="app-tab-bar"
+  slot="bottom"
+>
   @for (item of footerItems(); track item.label) {
   <ion-tab-button
-    class="employee-mobile-tab-button"
     [routerLink]="item.link || []"
     (click)="item.action ? item.action() : null"
     [selected]="item.link ? isActive(item.link!) : false"
   >
-    <ion-icon [name]="item.icon" class="employee-mobile-tab-icon"></ion-icon>
+    <ion-icon [name]="item.icon"></ion-icon>
 
-    <ion-label class="employee-mobile-tab-label">{{ item.label }}</ion-label>
+    <ion-label>{{ item.label }}</ion-label>
 
     @if (item.showNotification && messageInNotRead() > 0) {
-      <ion-badge color="danger">{{ messageInNotRead() }}</ion-badge>
+    <ion-badge color="danger">{{ messageInNotRead() }}</ion-badge>
     }
   </ion-tab-button>
   }
 </ion-tab-bar>
 }
-
-
-
-
-
-

@@ -1,6 +1,30 @@
-<ili-bottom-nav
-  [items]="items"
-  [(activeId)]="activeId"
-  ariaLabel="Navegación del comité"
-  (navChange)="onNav($event)"
-/>
+<ion-tab-bar class="app-tab-bar" slot="bottom">
+  <ion-tab-button
+    (click)="onNav('inicio')"
+    [selected]="activeId() === 'inicio'"
+  >
+    <ion-icon name="home-outline"></ion-icon>
+    <ion-label>Inicio</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button
+    (click)="onNav('directorio')"
+    [selected]="activeId() === 'directorio'"
+  >
+    <ion-icon name="people-outline"></ion-icon>
+    <ion-label>Directorio</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button
+    (click)="onNav('perfil')"
+    [selected]="activeId() === 'perfil'"
+  >
+    <ion-icon name="person-outline"></ion-icon>
+    <ion-label>Perfil</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button (click)="onNav('salir')">
+    <ion-icon name="log-out-outline"></ion-icon>
+    <ion-label>Salir</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>

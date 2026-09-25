@@ -43,34 +43,6 @@ interface FooterItem {
   imports: [RouterModule, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./footer-employee-mobile.html",
-  styles: [
-    `
-      .employee-mobile-tab-bar {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-around;
-      }
-
-      .employee-mobile-tab-button {
-        flex: 1 1 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-width: 0;
-      }
-
-      .employee-mobile-tab-icon,
-      .employee-mobile-tab-label {
-        display: block;
-        margin: 0;
-      }
-
-      .employee-mobile-tab-icon {
-        line-height: 1;
-      }
-    `,
-  ],
 })
 export class FooterEmployeeMobile implements OnInit {
   authS = inject(AuthService);

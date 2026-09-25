@@ -9,13 +9,13 @@ import {
   IonFooter,
   IonHeader,
   IonToolbar,
+  IonIcon,
 } from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
 import { HidescrollnavService } from "@core/services/hidescrollnav.service";
 import { NavigationService } from "@core/services/navigation.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CustomerHeaderDataCommittee } from "./desktop/client-data";
 import { CommitteeMobileNav } from "./desktop/mobile-nav";
 import { ProfileCommitteedesktop } from "./desktop/profile";
@@ -24,7 +24,7 @@ import { ProfileCommitteedesktop } from "./desktop/profile";
   selector: "app-committee-mobile",
   imports: [
     RouterOutlet,
-    AppIcon,
+    IonIcon,
     CustomerHeaderDataCommittee,
     ProfileCommitteedesktop,
     CommitteeMobileNav,

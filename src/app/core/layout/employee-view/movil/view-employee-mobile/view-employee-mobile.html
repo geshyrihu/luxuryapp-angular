@@ -1,3 +1,4 @@
+<div class="ion-app-shell">
 <ion-app>
   <!-- Side Menu -->
   <ion-menu side="start" menuId="employee-mobile-menu" contentId="main-content">
@@ -12,7 +13,7 @@
   </ion-menu>
 
   <!-- Main Content -->
-  <div id="main-content" class="ion-page h-full d-flex flex-column">
+  <div id="main-content" class="ion-page" style="height: 100%; display: flex; flex-direction: column;">
     <!-- Header fijo -->
     <ion-header class="ion-no-border">
       <app-header-mobile />
@@ -37,9 +38,10 @@
     </ion-content>
 
     <!-- Footer fijo (fuera del scroll) -->
-    <ion-footer>
+    <ion-footer class="ion-no-border app-footer-floating">
       <app-footer-employee-mobile />
     </ion-footer>
 
   </div>
 </ion-app>
+</div>

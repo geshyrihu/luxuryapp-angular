@@ -242,12 +242,15 @@
 
 // ── Grid de accesos del home ──────────────────────────────────────
 .committee-grid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   // Móvil: 1 columna a todo el ancho (banners), gap compacto para ver las 7 sin scroll
   gap: 0.5rem;
-  grid-template-columns: 1fr;
 
   @media (min-width: 768px) {
+    display: grid;
+    height: auto;
     gap: clamp(0.75rem, 2vw, 1.25rem);
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -261,6 +264,8 @@
 .committee-card {
   display: block;
   text-decoration: none;
+  flex: 1;
+  min-height: 0;
   border-radius: var(--ds-radius-lg);
   overflow: hidden;
   background: var(--ds-surface-container-lowest);
@@ -273,8 +278,8 @@
 
   &__media {
     position: relative;
-    // Móvil: banner ancho y bajo (las 7 opciones caben sin scroll)
-    aspect-ratio: 9 / 2;
+    // Móvil: estirar para llenar la tarjeta
+    height: 100%;
     overflow: hidden;
     // Fallback navy cuando la imagen no existe o aún no carga
     background: linear-gradient(
@@ -374,6 +379,19 @@
 // El bottom-nav del catálogo (ili-bottom-nav) aporta fondo, borde y safe-area.
 .committee-mobile-footer::before {
   display: none; // Elimina la línea/sombra por defecto del ion-footer (iOS)
+}
+
+// El .ion-page es flex-column: si el contenido del home es más alto que el
+// espacio disponible, el footer (flex-shrink: 1 por defecto) se encogía y
+// recortaba las etiquetas del tab bar. El header/footer no deben encogerse y
+// el contenido sí puede (min-height: 0).
+.committee-mobile-header,
+.committee-mobile-footer {
+  flex-shrink: 0;
+}
+
+.committee-mobile-content {
+  min-height: 0;
 }
 
 // ══════════════════════════════════════════════════════════════════

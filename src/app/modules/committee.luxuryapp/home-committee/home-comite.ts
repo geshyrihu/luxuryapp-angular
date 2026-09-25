@@ -7,6 +7,12 @@ import { MenuOption } from "@core/interfaces/menu-option.interface";
   imports: [RouterModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-comite.html",
+  styles: [`
+    :host {
+      display: block;
+      height: 100%;
+    }
+  `]
 })
 export class HomeComite {
   public comiteMenuOptions: MenuOption[] = [

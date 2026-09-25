@@ -1,105 +1,89 @@
 @if (baseService.morososData(); as data) {
-<div class="committee-cobranza">
-  <!-- Cartera vencida: el dato de portada para el comité -->
+<div class="committee-cobranza ion-padding-top">
+  <!-- Cartera vencida -->
   @if (baseService.carteraVencida(); as cartera) {
-  <div class="px-3 pt-3">
-    <div class="committee-cobranza__hero" style="padding: 1.5rem 1rem">
-      <span class="committee-cobranza__hero-label" style="font-size: 0.8rem"
-        >Cartera vencida</span
-      >
-      <span class="committee-cobranza__hero-amount" style="font-size: 1.8rem">
+  <ion-card color="primary">
+    <ion-card-header>
+      <ion-card-subtitle style="color: rgba(255,255,255,0.8);">Cartera vencida</ion-card-subtitle>
+      <ion-card-title style="font-size: 1.8rem; color: #fff;">
         {{ cartera.total | currency: "MXN" : "symbol" : "1.0-0" }}
-      </span>
-      <div class="committee-cobranza__hero-meta">
-        <span>
-          <app-icon icon="material-symbols-light:location-city" />
-          {{ cartera.condominosConAdeudo }} de
-          {{ cartera.totalCondominos }} condóminos deben
-        </span>
-      </div>
-    </div>
-  </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="color: rgba(255,255,255,0.9);">
+      <app-icon icon="material-symbols-light:location-city" />
+      {{ cartera.condominosConAdeudo }} de {{ cartera.totalCondominos }} condóminos deben
+    </ion-card-content>
+  </ion-card>
   }
 
-  <div class="px-3 pt-3 d-flex flex-column gap-3">
-    <!-- Avance de la cobranza del mes -->
-    @if (baseService.avanceCobranza(); as avance) {
-    <div class="bg-body p-3 shadow-1 rounded">
-      <div class="d-flex align-items-baseline justify-content-between mb-1">
-        <span class="text-sm text-body-secondary">Cobrado del mes</span>
-        <span class="text-sm fw-bold text-success">
+  <!-- Avance de la cobranza del mes -->
+  @if (baseService.avanceCobranza(); as avance) {
+  <ion-card>
+    <ion-card-content>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+        <span style="font-size: 14px; color: var(--ion-color-medium);">Cobrado del mes</span>
+        <span style="font-size: 14px; font-weight: bold; color: var(--ion-color-success);">
           {{ avance.cobrado | currency: "MXN" : "symbol" : "1.0-0" }}
         </span>
       </div>
-      <app-progress-bar
-        [value]="avance.porcentaje * 100"
-        [showValue]="true"
-        color="auto"
-      />
-      <div class="d-flex align-items-baseline justify-content-between mt-2">
-        <span class="text-xs text-body-secondary">Meta del mes</span>
-        <span class="text-xs fw-medium">
+      <ion-progress-bar [value]="avance.porcentaje" color="success"></ion-progress-bar>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px;">
+        <span style="font-size: 12px; color: var(--ion-color-medium);">Meta del mes</span>
+        <span style="font-size: 12px; font-weight: 500; color: var(--ion-color-dark);">
           {{ avance.meta | currency: "MXN" : "symbol" : "1.0-0" }}
         </span>
       </div>
-    </div>
-    }
+    </ion-card-content>
+  </ion-card>
+  }
 
-    <!-- Cobranza judicial -->
-    @if (baseService.cobranzaJudicial(); as judicial) {
-    <div class="bg-body p-3 shadow-1 rounded">
-      <div class="d-flex align-items-center gap-3">
-        <app-icon icon="material-symbols-light:gavel" class="text-2xl text-danger" />
-        <div class="flex-fill">
-          <div class="text-sm text-body-secondary">En cobranza judicial</div>
-          <div class="text-xl fw-bold">{{ judicial.cantidad }}</div>
-        </div>
-        <div class="text-end">
-          <div class="text-sm fw-bold text-danger">
-            {{ judicial.deuda | currency: "MXN" : "symbol" : "1.0-0" }}
-          </div>
-          <div class="text-xs text-body-secondary">acumulados</div>
-        </div>
+  <!-- Cobranza judicial -->
+  @if (baseService.cobranzaJudicial(); as judicial) {
+  <ion-card>
+    <ion-card-content style="display: flex; align-items: center; gap: 16px;">
+      <app-icon icon="material-symbols-light:gavel" style="font-size: 32px; color: var(--ion-color-danger);" />
+      <div style="flex: 1;">
+        <div style="font-size: 14px; color: var(--ion-color-medium);">En cobranza judicial</div>
+        <div style="font-size: 20px; font-weight: bold; color: var(--ion-color-dark);">{{ judicial.cantidad }}</div>
       </div>
-    </div>
-    }
-  </div>
+      <div style="text-align: right;">
+        <div style="font-size: 14px; font-weight: bold; color: var(--ion-color-danger);">
+          {{ judicial.deuda | currency: "MXN" : "symbol" : "1.0-0" }}
+        </div>
+        <div style="font-size: 12px; color: var(--ion-color-medium);">acumulados</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  }
 
-  <!-- Lista de condóminos con adeudo (ordenada por saldo desc) -->
+  <!-- Lista de condóminos con adeudo -->
   @if (data.propiedades.length) {
-  <div class="committee-doc-list">
+  <ion-list inset="true" lines="full">
+    <ion-list-header>
+      <ion-label>Adeudos</ion-label>
+    </ion-list-header>
     @for (item of data.propiedades; track item.numCtaBase) {
-    <button
-      type="button"
-      class="committee-doc-item"
-      (click)="openDetailModal(item)"
-    >
-      <span class="committee-doc-item__content">
-        <span class="committee-doc-item__title">
-          {{ item.departamento || "Sin nombre" }}
-        </span>
-        <lx-tag
-          [value]="item.clasificacion"
-          [severity]="clasificacionSeverity(item.clasificacion)"
-        />
-      </span>
-      <span class="committee-cobranza__amount">
+    <ion-item button (click)="openDetailModal(item)" detail="true">
+      <ion-label class="ion-text-wrap">
+        <h2>{{ item.departamento || "Sin nombre" }}</h2>
+        <p style="margin-top: 4px;"><lx-tag [value]="item.clasificacion" [severity]="clasificacionSeverity(item.clasificacion)" /></p>
+      </ion-label>
+      <ion-note slot="end" color="dark" style="font-weight: bold; font-size: 14px;">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
-      </span>
-      <app-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
-    </button>
+      </ion-note>
+    </ion-item>
     }
-  </div>
+  </ion-list>
   } @else {
-  <div class="committee-doc-empty">
-    <app-icon icon="material-symbols-light:check-circle-outline" class="committee-doc-empty__icon" />
-    <p class="committee-doc-empty__text">Sin propiedades con deuda.</p>
+  <div style="text-align: center; padding: 32px; color: var(--ion-color-medium);">
+    <app-icon icon="material-symbols-light:check-circle-outline" style="font-size: 48px;" />
+    <p>Sin propiedades con deuda.</p>
   </div>
   }
 </div>
 } @else if (!baseService.loading()) {
-<div class="committee-doc-empty">
-  <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
-  <p class="committee-doc-empty__text">No hay información de cobranza.</p>
+<div style="text-align: center; padding: 32px; color: var(--ion-color-medium);">
+  <app-icon icon="material-symbols-light:folder-open" style="font-size: 48px;" />
+  <p>No hay información de cobranza.</p>
 </div>
 }

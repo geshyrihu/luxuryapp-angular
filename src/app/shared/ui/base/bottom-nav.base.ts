@@ -11,8 +11,8 @@ export interface BottomNavItem {
 
 @Directive()
 export abstract class BottomNavBase {
-  items     = input<BottomNavItem[]>([]);
-  activeId  = model<string>("");
+  items = input<BottomNavItem[]>([]);
+  activeId = model<string>("");
   ariaLabel = input<string>("Navegación principal");
 
   navChange = output<string>();

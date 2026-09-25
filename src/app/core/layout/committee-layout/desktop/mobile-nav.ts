@@ -1,14 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
-import { Router } from "@angular/router";
 import {
-  BottomNavItem,
-  MobileBottomNav,
-} from "@ui/mobile/bottom-nav/bottom-nav";
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
+import { IonIcon, IonLabel, IonTabBar, IonTabButton } from "@ionic/angular";
+import { addIcons } from "ionicons";
+import {
+  homeOutline,
+  logOutOutline,
+  peopleOutline,
+  personOutline,
+} from "ionicons/icons";
 
 @Component({
   selector: "app-committee-mobile-nav",
-  imports: [MobileBottomNav],
+  imports: [IonTabBar, IonTabButton, IonIcon, IonLabel],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mobile-nav.html",
 })
@@ -18,12 +27,14 @@ export class CommitteeMobileNav {
 
   public activeId = signal("inicio");
 
-  public items: BottomNavItem[] = [
-    { id: "inicio", icon: "material-symbols-light:home", label: "Inicio" },
-    { id: "directorio", icon: "material-symbols-light:badge-outline", label: "Directorio" },
-    { id: "perfil", icon: "material-symbols-light:manage-accounts", label: "Perfil" },
-    { id: "salir", icon: "material-symbols-light:logout", label: "Salir" },
-  ];
+  constructor() {
+    addIcons({
+      homeOutline,
+      peopleOutline,
+      personOutline,
+      logOutOutline,
+    });
+  }
 
   onNav(id: string): void {
     switch (id) {
@@ -42,4 +53,3 @@ export class CommitteeMobileNav {
     }
   }
 }
-

@@ -14,7 +14,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       (click)="tapToTop()"
       [ngStyle]="{ display: show ? 'block' : 'none' }"
     >
-      <ili-icon icon="material-symbols-light:arrow-upward" class="m-0 icon icon-" />
+      <ili-icon icon="ArrowUp" class="m-0 icon icon-" />
     </div>
   `,
   styles: [

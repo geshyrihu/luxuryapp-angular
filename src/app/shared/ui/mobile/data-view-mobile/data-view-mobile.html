@@ -1,4 +1,4 @@
-<div class="ion-page d-flex flex-column d-md-none no-print" style="position: relative; contain: none; flex: 1;">
+<div class="d-flex flex-column d-md-none no-print w-100 h-100" style="position: relative; flex: 1 1 100%;">
   
   <ion-header class="ion-no-border">
     <ion-toolbar>
@@ -33,11 +33,7 @@
     }
   </ion-header>
 
-  <ion-content>
-    <!-- Add Refresher to the core wrapper -->
-    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+  <div class="flex-grow-1 overflow-y-auto w-100" style="flex: 1 1 auto; height: 100%; -webkit-overflow-scrolling: touch;">
     @if (isGrouped()) {
       <div class="pb-4">
         @for (group of objectKeys(groupedData()); track group) { 
@@ -96,7 +92,7 @@
         </ion-infinite-scroll>
       }
     }
-  </ion-content>
+  </div>
 
   <!-- Default Template (Fallback) -->
   <ng-template #defaultListItemTemplate let-item="item">

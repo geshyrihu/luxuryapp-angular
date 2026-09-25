@@ -27,7 +27,8 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
       :host {
         display: block;
         height: 100vh;
-        width: 100vw;
+        height: 100dvh;
+        width: 100%;
       }
       ion-app {
         height: 100%;
