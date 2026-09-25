@@ -613,44 +613,23 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-between w-full">
-        <button
-          class="btn btn-rounded btn-text-primary btn-sm flex-fill px-0"
-          (click)="onPendingBoard()"
-        >
-          <app-icon
-            icon="material-symbols-light:grid-view-outline"
-            class="me-1"
-          />
+      <div class="d-flex gap-2 overflow-x-auto w-full hide-scrollbar mt-2">
+        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPendingBoard()">
+          <app-icon icon="material-symbols-light:grid-view-outline" slot="start"></app-icon>
           Tablero
-        </button>
-        <button
-          class="btn btn-rounded btn-text-primary btn-sm flex-fill px-0"
-          (click)="onPreviewClickedWorkPlan()"
-        >
-          <app-icon
-            icon="material-symbols-light:article-outline"
-            class="me-1"
-          />
+        </ion-button>
+        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewClickedWorkPlan()">
+          <app-icon icon="material-symbols-light:article-outline" slot="start"></app-icon>
           Plan
-        </button>
-        <button
-          class="btn btn-rounded btn-text-primary btn-sm flex-fill px-0"
-          (click)="onPreviewWeeklyReport()"
-        >
-          <app-icon
-            icon="material-symbols-light:visibility-outline"
-            class="me-1"
-          />
+        </ion-button>
+        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewWeeklyReport()">
+          <app-icon icon="material-symbols-light:visibility-outline" slot="start"></app-icon>
           Previa
-        </button>
-        <button
-          class="btn btn-rounded btn-text-primary btn-sm flex-fill px-0"
-          (click)="onSendWeeklyReport()"
-        >
-          <app-icon icon="material-symbols-light:send-outline" class="me-1" />
+        </ion-button>
+        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onSendWeeklyReport()">
+          <app-icon icon="material-symbols-light:send-outline" slot="start"></app-icon>
           Reporte
-        </button>
+        </ion-button>
       </div>
     </div>
   </ng-container>

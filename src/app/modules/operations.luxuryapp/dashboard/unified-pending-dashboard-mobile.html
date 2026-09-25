@@ -12,10 +12,10 @@
 >
   <!-- Custom Filters (Tabs) inside the data view -->
   <div customFilters class="px-2 py-2 overflow-x-auto no-scrollbar border-bottom-1 border">
-    <div class="d-flex align-items-center gap-2 w-max">
+    <div class="d-flex flex-nowrap align-items-center gap-2 w-max">
       <!-- AI Report Action -->
       <div 
-        class="px-3 py-2 rounded-3xl d-flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white"
+        class="px-3 py-2 rounded-3xl d-flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white flex-shrink-0 text-nowrap"
         (click)="generateDailyReport()"
       >
         <app-icon icon="material-symbols-light:add" class="text-white" />
@@ -24,7 +24,7 @@
 
       <!-- 'All' Filter -->
       <div 
-        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors flex-shrink-0 text-nowrap"
         [class.bg-primary]="selectedModule() === null"
         [class.text-white]="selectedModule() === null"
         [class.bg-body-tertiary]="selectedModule() !== null"
@@ -37,7 +37,7 @@
       <!-- Dynamic Module Filters -->
       @for (mod of uniqueModules(); track mod) {
       <div 
-        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors flex-shrink-0 text-nowrap"
         [class.bg-primary]="selectedModule() === mod"
         [class.text-white]="selectedModule() === mod"
         [class.bg-body-tertiary]="selectedModule() !== mod"

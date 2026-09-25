@@ -1,166 +1,112 @@
-<!-- data-view-mobile.html -->
-<div class="d-flex d-md-none flex-column no-print h-full min-h-0">
-  <!-- Sticky Header: Breadcrumb + Search + Add -->
-  <div
-    style="
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: var(--ds-bg-surface);
-    "
-    class="pb-1"
-  >
-    <!-- 🧭 Breadcrumb Premium -->
-    @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
-    <div class="d-flex justify-content-center px-3 py-1 bg-transparent">
-      <div
-        class="d-flex align-items-center gap-1 overflow-x-auto no-scrollbar max-w-full"
-      >
-        @for (item of breadcrumbItems(); track $index; let last = $last) {
-        <div class="d-flex align-items-center">
-          @if (item.icon) {
-          <a [routerLink]="item.routerLink">
-            <app-icon
-              [icon]="item.icon"
-              class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
-            />
-          </a>
-          } @else {
-          <span
-            class="text-xs fw-bold px-1 whitespace-nowrap"
-            [class.text-primary]="last"
-            [class.text-500]="!last"
-          >
-            {{ item.label }}
-          </span>
-          } @if (!last) {
-          <app-icon
-            icon="material-symbols-light:chevron-right"
-            class="text-body-secondary text-xs mx-1"
-          />
-          }
-        </div>
+<div class="ion-page d-flex flex-column d-md-none no-print" style="position: relative; contain: none; flex: 1;">
+  
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>{{ title() }}</ion-title>
+      <ion-buttons slot="end">
+        @if (showAdd()) {
+          <ion-button (click)="onAdd($event)" fill="clear">
+            <app-icon icon="material-symbols-light:add-circle" class="text-3xl text-primary"></app-icon>
+          </ion-button>
         }
-      </div>
-    </div>
+      </ion-buttons>
+    </ion-toolbar>
+    
+    @if (globalFilterFields()?.length > 0) {
+      <ion-toolbar>
+        <ion-searchbar
+          [value]="filterValue()"
+          (ionInput)="applyFilter($event.target.value)"
+          placeholder="Buscar..."
+          animated="true"
+        ></ion-searchbar>
+      </ion-toolbar>
     }
-
-    <!-- Controls: Search & Add -->
-    <div class="d-flex align-items-center gap-2 px-2 pb-1">
-      @if (globalFilterFields()?.length > 0) {
-      <ion-searchbar
-        [value]="filterValue()"
-        (ionInput)="applyFilter($event.target.value)"
-        placeholder="Buscar..."
-        class="flex-grow-1 p-0 custom-searchbar"
-        animated="true"
-      ></ion-searchbar>
-      }
-
-      <!-- Inline Add Button -->
-      @if (showAdd()) {
-      <ion-button
-        fill="clear"
-        icon-only
-        color="primary"
-        (click)="onAdd($event)"
-        class="ion-button-touch-target ion-add-button"
-      >
-        <app-icon icon="material-symbols-light:add-circle" slot="icon-only" style="color: var(--ds-color-primary, #3880ff); font-size: 2rem;" />
-      </ion-button>
-      }
-    </div>
 
     <!-- Custom Filters Slot -->
     @if (filterValue() === '') {
-    <ng-content select="[customFilters]"></ng-content>
+      <ion-toolbar>
+        <div class="px-3">
+          <ng-content select="[customFilters]"></ng-content>
+        </div>
+      </ion-toolbar>
     }
-  </div>
+  </ion-header>
 
-  <!-- Content List -->
-  <div class="flex-grow-1 relative overflow-y-auto min-h-0">
+  <ion-content>
+    <!-- Add Refresher to the core wrapper -->
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     @if (isGrouped()) {
-    <div class="pb-4">
-      @for (group of objectKeys(groupedData()); track group) { @if
-      (groupedData()[group]?.length > 0) {
+      <div class="pb-4">
+        @for (group of objectKeys(groupedData()); track group) { 
+          @if (groupedData()[group]?.length > 0) {
+            <!-- Group Header Native Style -->
+            <ion-item-divider sticky="true" color="light">
+              <ion-label class="fw-bold tracking-wider">{{ group }}</ion-label>
+              <ion-badge slot="end" color="medium">{{ groupedData()[group].length }}</ion-badge>
+            </ion-item-divider>
 
-      <!-- Group Header Premium -->
-      <div
-        class="sticky z-2 d-flex align-items-center justify-content-between px-3 py-2 bg-body-tertiary border-y-1 border shadow-sm mb-2 mt-2 mx-2 rounded"
-        style="top: 0"
-      >
-        <span class="text-sm fw-bold text-body text-uppercase tracking-wider"
-          >{{ group }}</span
-        >
-        <span
-          class="text-xs fw-medium text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-xl"
-        >
-          {{ groupedData()[group].length }}
-        </span>
+            <!-- Group Items -->
+            <ion-list inset="true" lines="full" class="mt-0">
+              @for (item of groupedData()[group]; track trackByFn($index, item)) { 
+                @if (item.visible !== false) {
+                  <ng-container *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate(); context: { $implicit: item, item: item }"></ng-container>
+                } 
+              }
+            </ion-list>
+          } 
+        }
       </div>
-
-      <!-- Group Items -->
-      <div>
-        @for (item of groupedData()[group]; track trackByFn($index, item)) { @if
-        (item.visible !== false) {
-        <ng-container
-          *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
-        ></ng-container>
-        } }
-      </div>
-
-      } }
-    </div>
     } @else {
-    <!-- Loading Indicator -->
-    @if (loading()) {
-    <div class="p-3">
-      <ion-progress-bar type="indeterminate"></ion-progress-bar>
-    </div>
-    }
-
-    <!-- Data List -->
-    @if (filteredData().length > 0) {
-    <ion-list class="bg-transparent" lines="full">
-      @for (item of filteredData(); track trackByFn($index, item)) {
-      <ng-container
-        *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
-      ></ng-container>
+      <!-- Loading Indicator -->
+      @if (loading()) {
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
       }
-    </ion-list>
-    } @else if (filterValue() && !loading()) {
-    <ili-empty-state
-      icon="material-symbols-light:search"
-      title="Sin resultados"
-      [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
-    />
-    } @else if (!loading() && filteredData().length === 0) {
-    <ili-empty-state
-      icon="material-symbols-light:move-to-inbox-outline"
-      title="Sin registros"
-      message="No hay registros disponibles."
-    />
-    }
 
-    <!-- Infinite Scroll -->
-    @if (enablePagination()) {
-    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Cargando mós registros..."
-      >
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    } }
-  </div>
+      <!-- Data List -->
+      @if (filteredData().length > 0) {
+        <ion-list inset="true" lines="full">
+          @for (item of filteredData(); track trackByFn($index, item)) {
+            <ng-container *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate(); context: { $implicit: item, item: item }"></ng-container>
+          }
+        </ion-list>
+      } @else if (filterValue() && !loading()) {
+        <ili-empty-state
+          icon="material-symbols-light:search"
+          title="Sin resultados"
+          [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
+        />
+      } @else if (!loading() && filteredData().length === 0) {
+        <ili-empty-state
+          icon="material-symbols-light:move-to-inbox-outline"
+          title="Sin registros"
+          message="No hay registros disponibles."
+        />
+      }
+
+      <!-- Infinite Scroll -->
+      @if (enablePagination()) {
+        <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Cargando más registros..."
+          ></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      }
+    }
+  </ion-content>
 
   <!-- Default Template (Fallback) -->
   <ng-template #defaultListItemTemplate let-item="item">
     <ion-item>
       <ion-label>
-        @for (key of objectKeys(item); track key) { @if (key !== 'id') {
-        <p><strong>{{ key }}:</strong> {{ item[key] }}</p>
-        } }
+        @for (key of objectKeys(item); track key) { 
+          @if (key !== 'id') {
+            <p><strong>{{ key }}:</strong> {{ item[key] }}</p>
+          } 
+        }
       </ion-label>
     </ion-item>
   </ng-template>

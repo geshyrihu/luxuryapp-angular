@@ -41,8 +41,8 @@
         iconClass="material-symbols-light:help"
         size="sm"
         variant="outline"
-        severity="secondary"
-        lxTooltip="¿Cómo funcionan Seguimiento y Suspensión?"
+        severity="help"
+        lxTooltip="Guía del módulo de Órdenes de Servicio"
         tooltipPosition="bottom"
         (clicked)="onModalAyuda()"
       />
@@ -264,102 +264,61 @@
   [dt]="dt"
 >
   <ng-container customFilters>
-    <!-- tu bloque aqué -->
-    <div class="card-body p-0">
-      <!-- Sección Título y Fecha -->
-      <div class="d-flex flex-column mb-3">
-        <div
-          class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
-        >
-          <span class="fw-bold text-lg mb-1">
-            {{ filtroEquiposValue | titlecase }}
-          </span>
-          <custom-input-text-signal
-            [control]="fechaControl"
-            name="fecha"
-            type="month"
-            customClass="w-100"
-            (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-            lxTooltip="Seleccionar Mes y Año"
-            tooltipPosition="top"
-            [horizontal]="false"
-          />
+    <ion-accordion-group class="px-2 pb-2">
+      <ion-accordion value="opciones" class="bg-transparent border rounded">
+        <ion-item slot="header" color="light">
+          <ion-label class="text-sm fw-bold">Opciones y Filtros</ion-label>
+        </ion-item>
+        <div class="p-2" slot="content">
+          <!-- Filtro de Fecha -->
+          <div class="d-flex align-items-center mb-3">
+            <span class="fw-bold me-2">{{ filtroEquiposValue | titlecase }}</span>
+            <custom-input-text-signal
+              [control]="fechaControl"
+              name="fecha"
+              type="month"
+              customClass="flex-grow-1"
+              (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
+              [horizontal]="false"
+            />
+          </div>
+
+          <!-- Filtro de Equipos -->
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            @for (item of filtroEquipos; track item) {
+              <ion-button size="small" [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'" (click)="onReloadOrdenes(item.id, item.nombre)">
+                <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+                {{ item.nombre | titlecase }}
+              </ion-button>
+            }
+          </div>
+
+          <!-- Botones de Reporte -->
+          <div class="d-flex flex-column gap-2">
+            <ion-button expand="block" fill="outline" (click)="onNavigateToReport()">Reporte de órdenes</ion-button>
+            <ion-button expand="block" fill="outline" (click)="onNavigateToReportTabla()">Reporte por categoría</ion-button>
+            <ion-button expand="block" fill="outline" (click)="onNavigateToReportPorEquipo()">Reporte por equipo</ion-button>
+          </div>
+          
+          <div class="text-end text-sm text-body-secondary mt-2">
+            Servicios Totales: <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong>
+          </div>
         </div>
-      </div>
-
-      <!-- Segmento de Filtros (Scrollable) -->
-      <div class="d-flex gap-2 mb-3 bg-bg-body-tertiary p-1 rounded">
-        @for (item of filtroEquipos; track item) {
-        <button class="btn btn-text-primary btn-sm flex-fill">
-          <app-icon [icon]="item.icon" class="text-xl mb-1" />
-          <span class="text-xs">{{ item.nombre | titlecase }}</span>
-        </button>
-        }
-      </div>
-
-      <!-- botón Reporte -->
-      <div class="mb-2">
-        <ili-button-item
-          iconName="document-text-outline"
-          label="Reporte de órdenes"
-          (click)="onNavigateToReport()"
-          variant="outline"
-          fullWidth="true"
-        />
-      </div>
-      <div class="mb-2">
-        <ili-button-item
-          iconName="grid-outline"
-          label="Reporte por categoria"
-          (click)="onNavigateToReportTabla()"
-          variant="outline"
-          fullWidth="true"
-        />
-      </div>
-      <div class="mb-2">
-        <ili-button-item
-          iconName="construct-outline"
-          label="Reporte por equipo"
-          (click)="onNavigateToReportPorEquipo()"
-          variant="outline"
-          fullWidth="true"
-        />
-      </div>
-
-      <!-- Contador Totales -->
-      <div class="d-flex align-items-center justify-content-end px-2 pb-2">
-        <small class="text-body-secondary"
-          >Servicios Totales:
-          <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></small
-        >
-      </div>
-    </div>
+      </ion-accordion>
+    </ion-accordion-group>
   </ng-container>
 
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
-    <div
-      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
-    >
-      <div
-        slot="start"
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:build"
-          class="text-xl text-yellow-500"
-        />
-      </div>
-      <span class="">
-        <div class="d-flex justify-content-between align-items-center mb-1">
-          <h2 class="fw-bold m-0 text-base text-wrap">
-            {{ item.machineryId }}- {{ item.machinery }}
-          </h2>
-        </div>
-        <p class="mb-1 text-body-secondary text-sm">
-          Folio: {{ item.folio || "Sin folio" }}
-        </p>
-        <p class="mb-1 text-sm">
+    <ion-item>
+      <ion-avatar slot="start" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
+        <app-icon icon="material-symbols-light:build" class="text-xl text-yellow-500"></app-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap fw-bold m-0">{{ item.machineryId }} - {{ item.machinery }}</h2>
+        <p class="ion-text-wrap text-sm text-body-secondary mb-1">Folio: {{ item.folio || "Sin folio" }}</p>
+        
+        <div class="d-flex flex-wrap gap-1 mb-1">
           <lx-tag
             [value]="item.typeMaintanceFilter"
             [severity]="
@@ -368,16 +327,13 @@
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
           />
-          <span class="ms-2 text-body-secondary">({{ item.provider }})</span>
-        </p>
-
-        <div class="d-flex flex-wrap mt-2">
-          <lx-tag
-            [value]="getStatusLabel(item.status)"
-            [severity]="getBadgeSeverity(item.status)"
-          />
+          <span class="text-xs text-body-secondary align-self-center">({{ item.provider }})</span>
+        </div>
+        
+        <div class="d-flex flex-wrap gap-1">
+          <lx-tag [value]="getStatusLabel(item.status)" [severity]="getBadgeSeverity(item.status)" />
           @if (item.isSuspended) {
-          <lx-tag value="Detenida" severity="warning" />
+            <lx-tag value="Detenida" severity="warning" />
           }
           <lx-tag
             (click)="onModalFotos(item.id)"
@@ -390,59 +346,24 @@
             [value]="item.serviceOrderDocument.length + ' Reportes'"
           />
         </div>
-      </span>
+      </ion-label>
 
-      <ili-action-menu end>
+      <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            iconName="print-outline"
-            label="Imprimir soporte"
-            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-          />
-
-          <ili-button-item
-            iconName="image-outline"
-            label="Cargar imagen"
-            (clicked)="onModalFormUploadImg(item.id)"
-          />
-
-          <ili-button-item
-            iconName="ellipsis-horizontal-outline"
-            label="Cargar documentos"
-            (clicked)="onModalFormUploadDoc(item.id)"
-            variant="outline"
-          />
-          <ili-button-item
-            iconName="chatbubbles-outline"
-            label="Seguimiento"
-            (clicked)="onModalSeguimiento(item.id)"
-          />
+          <ili-button-item iconName="print-outline" label="Imprimir soporte" [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]" />
+          <ili-button-item iconName="image-outline" label="Cargar imagen" (clicked)="onModalFormUploadImg(item.id)" />
+          <ili-button-item iconName="ellipsis-horizontal-outline" label="Cargar documentos" (clicked)="onModalFormUploadDoc(item.id)" variant="outline" />
+          <ili-button-item iconName="chatbubbles-outline" label="Seguimiento" (clicked)="onModalSeguimiento(item.id)" />
           @if (item.isSuspended) {
-          <ili-button-item
-            iconName="play-circle-outline"
-            label="Reanudar"
-            (clicked)="onResume(item.id)"
-          />
+            <ili-button-item iconName="play-circle-outline" label="Reanudar" (clicked)="onResume(item.id)" />
           } @else {
-          <ili-button-item
-            iconName="pause-circle-outline"
-            label="Suspender"
-            (clicked)="onModalSuspension(item)"
-          />
+            <ili-button-item iconName="pause-circle-outline" label="Suspender" (clicked)="onModalSuspension(item)" />
           }
-          <ili-button-edit
-            (clicked)="onEdit({
-                    id: item.id,
-                    title: 'Editar',
-                    machineryId: item.machineryId,
-                    providerId: item.providerId
-                    })"
-            label="Editar"
-          />
+          <ili-button-edit (clicked)="onEdit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-    </div>
+    </ion-item>
   </ng-template>
 </app-data-view-mobile>
 

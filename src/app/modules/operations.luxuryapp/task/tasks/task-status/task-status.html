@@ -20,6 +20,7 @@
     [value]="status" 
     (ionChange)="onStatusChange($event.detail.value)"
     class="bg-bg-body-tertiary p-1"
+    scrollable="true"
   >
     @for (item of cb_status; track item.value) {
     <ion-segment-button [value]="item.value">

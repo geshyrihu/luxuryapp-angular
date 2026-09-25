@@ -23,6 +23,9 @@ import {
 } from "@angular/router";
 import {
   IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
@@ -30,11 +33,15 @@ import {
   IonList,
   IonProgressBar,
   IonSearchbar,
+  IonTitle,
+  IonToolbar,
+  IonRefresher,
+  IonRefresherContent,
 } from "@ionic/angular";
-import { filter, map, startWith } from "rxjs";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { MobileEmptyState } from "../empty-state/empty-state";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { filter, map, startWith } from "rxjs";
+import { MobileEmptyState } from "../empty-state/empty-state";
 
 export interface IMobileBreadcrumbItem {
   icon?: AppIconName;
@@ -66,6 +73,13 @@ export interface IMobileBreadcrumbItem {
     IonButton,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonContent,
+    IonRefresher,
+    IonRefresherContent,
     AppIcon,
     MobileEmptyState,
   ],
@@ -252,8 +266,14 @@ export class DataViewMobile implements OnInit {
     this.nextPage.emit(event);
   }
 
+  handleRefresh(event: any) {
+    // Basic refresher logic
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
+
   objectKeys(obj: any) {
     return obj ? Object.keys(obj) : [];
   }
 }
-

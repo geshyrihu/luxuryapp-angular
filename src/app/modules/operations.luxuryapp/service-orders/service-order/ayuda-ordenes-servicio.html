@@ -1,73 +1,265 @@
 <div class="d-flex flex-column gap-4 p-1">
-  <p class="m-0 text-sm text-body-secondary line-height-3">
-    Las órdenes de servicio cuentan con acciones para dar seguimiento al
-    mantenimiento. Aquí se explica para qué sirve cada una.
-  </p>
+  <!-- Encabezado -->
+  <div class="d-flex align-items-start gap-3">
+    <div
+      class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-purple-50"
+    >
+      <app-icon
+        icon="material-symbols-light:help"
+        class="text-2xl text-purple-600"
+      />
+    </div>
+    <div class="d-flex flex-column">
+      <span class="fw-bold text-lg text-body"
+        >Guía del módulo de Órdenes de Servicio</span
+      >
+      <span class="text-sm text-body-secondary line-height-3">
+        Todo lo que puedes hacer en una orden: ejecutar el mantenimiento,
+        registrar seguimiento, suspender por falta de presupuesto y concluir o
+        cancelar.
+      </span>
+    </div>
+  </div>
 
+  <!-- Diagrama de flujo horizontal -->
+  <div class="border-1 border rounded p-3 bg-body-tertiary">
+    <div class="fw-bold text-body mb-3">Flujo de una orden de servicio</div>
+    <div class="d-flex align-items-center flex-wrap gap-2">
+      <div class="flow-step">
+        <app-icon
+          icon="material-symbols-light:add-circle"
+          class="text-xl text-blue-600"
+        />
+        <span class="flow-step-title">Se crea</span>
+        <span class="flow-step-sub">Pendiente</span>
+      </div>
+      <app-icon
+        icon="material-symbols-light:arrow-forward"
+        class="text-xl text-body-secondary"
+      />
+      <div class="flow-step">
+        <app-icon
+          icon="material-symbols-light:build"
+          class="text-xl text-blue-600"
+        />
+        <span class="flow-step-title">Se ejecuta</span>
+        <span class="flow-step-sub">Proceso</span>
+      </div>
+      <app-icon
+        icon="material-symbols-light:arrow-forward"
+        class="text-xl text-body-secondary"
+      />
+      <div class="flow-step">
+        <app-icon
+          icon="material-symbols-light:task-alt"
+          class="text-xl text-green-600"
+        />
+        <span class="flow-step-title">Se concluye</span>
+        <span class="flow-step-sub">Concluido</span>
+      </div>
+    </div>
+    <div
+      class="d-flex align-items-center flex-wrap gap-2 mt-3 ps-2 border-start-3 border-warning"
+    >
+      <span class="text-sm text-body-secondary"
+        >En cualquier momento antes de concluir:</span
+      >
+      <span class="flow-branch">
+        <app-icon
+          icon="material-symbols-light:forum"
+          class="text-base text-purple-600"
+        />
+        Seguimiento
+      </span>
+      <span class="flow-branch">
+        <app-icon
+          icon="material-symbols-light:pause-circle"
+          class="text-base text-orange-600"
+        />
+        Suspender / Reanudar
+      </span>
+      <span class="flow-branch">
+        <app-icon
+          icon="material-symbols-light:block"
+          class="text-base text-red-600"
+        />
+        No Autorizado / Cancelado
+      </span>
+    </div>
+  </div>
+
+  <!-- Seguimiento -->
   <div class="border-1 border rounded p-3">
     <div class="d-flex align-items-center gap-2 mb-2">
-      <app-icon
-        icon="material-symbols-light:forum"
-        class="text-xl text-primary"
-      />
-      <span class="fw-bold text-body">Seguimiento</span>
+      <div
+        class="d-flex h-2rem w-2rem flex-shrink-0 align-items-center justify-content-center rounded-lg bg-purple-50"
+      >
+        <app-icon
+          icon="material-symbols-light:forum"
+          class="text-lg text-purple-600"
+        />
+      </div>
+      <span class="fw-bold text-body">Seguimiento (bitácora)</span>
     </div>
     <p class="m-0 text-sm text-body-secondary line-height-3">
-      Bitácora de notas por orden de servicio. Sirve para dejar registro del
-      avance o de las gestiones realizadas (llamadas, acuerdos, cambios de
-      fecha, etc.).
+      Registra el avance o las gestiones de la orden: llamadas al proveedor,
+      acuerdos, cambios de fecha, incidencias, etc. Es el historial de lo que va
+      pasando.
     </p>
     <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
+      <li>
+        Agrega una nota desde el botón <strong>Seguimiento</strong> de cada fila.
+      </li>
       <li>Cada nota guarda automáticamente el usuario y la fecha.</li>
-      <li>Cada nota requiere entre 10 y 200 caracteres.</li>
-      <li>No incluye imágenes (a diferencia de las evidencias fotográficas).</li>
-      <li>Solo el autor o un administrador puede eliminar una nota.</li>
+      <li>La nota debe tener entre 10 y 200 caracteres.</li>
+      <li>
+        No lleva imágenes; para evidencias fotográficas usa el botón
+        <strong>Cargar imagen</strong>.
+      </li>
+      <li>Solo el autor de la nota o un administrador puede eliminarla.</li>
     </ul>
   </div>
 
+  <!-- Suspender / Reanudar -->
   <div class="border-1 border rounded p-3">
     <div class="d-flex align-items-center gap-2 mb-2">
-      <app-icon
-        icon="material-symbols-light:pause-circle"
-        class="text-xl text-warning"
-      />
+      <div
+        class="d-flex h-2rem w-2rem flex-shrink-0 align-items-center justify-content-center rounded-lg bg-orange-50"
+      >
+        <app-icon
+          icon="material-symbols-light:pause-circle"
+          class="text-lg text-orange-600"
+        />
+      </div>
       <span class="fw-bold text-body">Suspender / Reanudar</span>
     </div>
     <p class="m-0 text-sm text-body-secondary line-height-3">
-      Marca que una orden <strong>no se ejecutará por ahora</strong>, sin
-      cambiar su estatus. Es útil, por ejemplo, cuando no hay presupuesto
-      aprobado: la orden sigue siendo "Pendiente", pero se identifica que está
-      detenida y por qué.
+      Marca que la orden <strong>no se ejecutará por ahora</strong> sin cambiar
+      su estatus. El caso típico es <strong>falta de presupuesto</strong>: la
+      orden sigue siendo "Pendiente", pero queda identificada como detenida y
+      con el motivo visible.
     </p>
     <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
-      <li>Requiere seleccionar un motivo (catálogo por cliente).</li>
-      <li>Puedes agregar notas opcionales (máx. 300 caracteres).</li>
-      <li>La orden se muestra con la etiqueta <strong>"Detenida"</strong>.</li>
+      <li>
+        Selecciona un <strong>motivo</strong> del catálogo (por ejemplo, "Falta
+        de presupuesto").
+      </li>
+      <li>
+        Puedes agregar <strong>notas</strong> opcionales (máx. 300 caracteres).
+      </li>
+      <li>
+        La orden muestra la etiqueta <strong>"Detenida"</strong> junto al
+        estatus.
+      </li>
       <li>No aplica a órdenes concluidas, canceladas o no autorizadas.</li>
       <li>
-        <strong>Reanudar</strong> limpia el motivo, las notas, la fecha y el
-        usuario de suspensión.
+        <strong>Reanudar</strong> quita la marca y limpia motivo, notas, fecha y
+        usuario de suspensión; la orden vuelve a su flujo normal.
       </li>
     </ul>
   </div>
 
+  <!-- Estatus y ciclo -->
   <div class="border-1 border rounded p-3">
     <div class="d-flex align-items-center gap-2 mb-2">
-      <app-icon
-        icon="material-symbols-light:block"
-        class="text-xl text-danger"
-      />
-      <span class="fw-bold text-body">Cancelar / Estatus final</span>
+      <div
+        class="d-flex h-2rem w-2rem flex-shrink-0 align-items-center justify-content-center rounded-lg bg-red-50"
+      >
+        <app-icon
+          icon="material-symbols-light:block"
+          class="text-lg text-red-600"
+        />
+      </div>
+      <span class="fw-bold text-body">Estatus y cierre</span>
     </div>
     <p class="m-0 text-sm text-body-secondary line-height-3">
-      El estatus de la orden se administra desde el formulario de edición. Una
-      orden en un estatus final queda bloqueada para edición y suspensión.
+      El estatus se administra desde el formulario de edición de la orden. Un
+      estatus final bloquea la edición y la suspensión.
     </p>
     <ul class="mt-2 mb-0 text-sm text-body-secondary line-height-3 ps-4">
-      <li><strong>Concluido:</strong> el servicio terminó. Requiere fecha de ejecución.</li>
+      <li>
+        <strong>Pendiente:</strong> aún no se ejecuta (puede estar "Detenida").
+      </li>
+      <li><strong>Proceso:</strong> el mantenimiento está en ejecución.</li>
+      <li>
+        <strong>Concluido:</strong> el servicio terminó; requiere fecha de
+        ejecución.
+      </li>
       <li><strong>No Autorizado:</strong> el servicio no fue aprobado.</li>
       <li><strong>Cancelado:</strong> el servicio se descartó.</li>
       <li>La marca de suspensión es independiente del estatus.</li>
     </ul>
   </div>
+
+  <!-- Otras acciones -->
+  <div class="border-1 border rounded p-3">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <div
+        class="d-flex h-2rem w-2rem flex-shrink-0 align-items-center justify-content-center rounded-lg bg-blue-50"
+      >
+        <app-icon
+          icon="material-symbols-light:handyman"
+          class="text-lg text-blue-600"
+        />
+      </div>
+      <span class="fw-bold text-body">Otras acciones</span>
+    </div>
+    <ul class="m-0 text-sm text-body-secondary line-height-3 ps-4">
+      <li>
+        <strong>Cargar imagen:</strong> evidencias fotográficas
+        (antes/durante/después).
+      </li>
+      <li>
+        <strong>Cargar documentos:</strong> reportes del proveedor (PDF, Word,
+        Excel).
+      </li>
+      <li><strong>Imprimir soporte:</strong> genera el reporte PDF de la orden.</li>
+      <li>
+        <strong>Editar:</strong> actualiza datos, fechas, precio, proveedor y
+        responsable.
+      </li>
+      <li>
+        <strong>Filtros:</strong> por mes y por categoría de equipo (amenidades,
+        sistemas, pintura, etc.).
+      </li>
+      <li>
+        <strong>Reportes del encabezado:</strong> de órdenes, por categoría y
+        por equipo.
+      </li>
+    </ul>
+  </div>
 </div>
+
+<style>
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 6.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--ds-border-default, #e2e8f0);
+    border-radius: 0.5rem;
+    background: var(--ds-bg-surface, #fff);
+  }
+  .flow-step-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ds-text-primary, #1a2634);
+  }
+  .flow-step-sub {
+    font-size: 0.6875rem;
+    color: var(--ds-text-muted, #75899c);
+  }
+  .flow-branch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--ds-bg-surface, #fff);
+    border: 1px solid var(--ds-border-default, #e2e8f0);
+    font-size: 0.75rem;
+    color: var(--ds-text-secondary, #5a6878);
+  }
+</style>

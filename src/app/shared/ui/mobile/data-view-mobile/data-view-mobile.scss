@@ -4,6 +4,10 @@
 // ============================================================
 
 // Ionic button touch target compliance (WCAG 2.5.5)
+:host {
+  display: contents;
+}
+
 // Ensure icon-only buttons meet 44×44px minimum
 .ion-button-touch-target {
   --min-width: 44px;

@@ -23,6 +23,14 @@ import {
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { 
+  IonItem, 
+  IonLabel, 
+  IonAvatar, 
+  IonAccordionGroup, 
+  IonAccordion, 
+  IonButton 
+} from "@ionic/angular";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
@@ -82,6 +90,12 @@ import { ReporteOrdenesServicioService } from "./services/reporte-ordenes-servic
     LxTag,
     LxTooltipDirective,
     AppIcon,
+    IonItem, 
+    IonLabel, 
+    IonAvatar, 
+    IonAccordionGroup, 
+    IonAccordion, 
+    IonButton
   ],
 })
 export class OrdenesServicio {
