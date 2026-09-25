@@ -6,10 +6,12 @@ import {
   signal,
 } from "@angular/core";
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -99,6 +101,7 @@ export class ServiceOrderForm implements OnInit {
     status: new FormControl<number | null>(null, [Validators.required]),
     providerId: new FormControl<number | null>(null),
     provider: new FormControl<string | null>(null),
+    // La validación de coherencia se aplica por grupo más abajo.
     price: new FormControl<number | null>(null, [Validators.required]),
     employeeResponsableId: new FormControl("", {
       nonNullable: true,
@@ -127,7 +130,35 @@ export class ServiceOrderForm implements OnInit {
     maintenanceCalendarId: new FormControl<number | null>(null),
   });
 
+  private static coherenceValidator = (
+    group: AbstractControl,
+  ): ValidationErrors | null => {
+    const requestDate = group.get("requestDate")?.value;
+    const executionDate = group.get("executionDate")?.value;
+    const price = group.get("price")?.value;
+    const status = group.get("status")?.value;
+    const errors: ValidationErrors = {};
+
+    if (price != null && Number(price) < 0) errors["negativePrice"] = true;
+
+    if (
+      requestDate &&
+      executionDate &&
+      new Date(executionDate) < new Date(requestDate)
+    ) {
+      errors["executionBeforeRequest"] = true;
+    }
+
+    // Status.Concluido === 1 requiere fecha de ejecución.
+    if (status === 1 && !executionDate) errors["concludedWithoutExecution"] = true;
+
+    return Object.keys(errors).length ? errors : null;
+  };
+
   async ngOnInit(): Promise<void> {
+    this.form.setValidators(ServiceOrderForm.coherenceValidator);
+    this.form.updateValueAndValidity();
+
     this.id.set(this.config.data.id);
 
     await Promise.all([

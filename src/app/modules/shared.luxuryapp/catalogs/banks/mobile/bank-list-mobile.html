@@ -1,30 +1,69 @@
-<app-data-view-mobile
-  [data]="data()"
-  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  aria-label="Lista de bancos"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div class="d-flex flex-column gap-1">
-        <p class="fw-semibold m-0 text-body line-height-2">{{ item.shortName }}</p>
-        <p class="text-xs m-0 text-body-secondary">
-          {{ item.code }} - {{ item.largeName }}
-        </p>
-      </div>
+<div class="ion-page h-full min-h-0">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>Bancos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button
+          (click)="add.emit({ id: '', title: 'Nuevo Registro' })"
+          aria-label="Agregar banco"
+        >
+          <ion-icon name="add-circle" class="text-2xl text-primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar
+        placeholder="Buscar banco..."
+        animated
+        [value]="query()"
+        (ionInput)="query.set($any($event).detail.value ?? '')"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
 
-      <ili-action-menu slot="end">
-        <ili-button-edit
-          (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-          label="Editar"
-          [attr.aria-label]="'Editar banco ' + item.shortName"
-        />
-        <ili-button-delete
-          (confirmed)="delete.emit(item.id)"
-          label="Eliminar"
-          [attr.aria-label]="'Eliminar banco ' + item.shortName"
-        />
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  <ion-content>
+    <ion-list inset="true" lines="full">
+      @for(item of visibleData(); track item.id) {
+      <ion-item>
+        <ion-avatar
+          slot="start"
+          class="ion-margin-end"
+          style="
+            background: var(--ion-color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <app-icon
+            icon="material-symbols-light:account-balance-outline"
+            style="font-size: 24px; color: var(--ion-color-primary)"
+          ></app-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2 class="ion-text-wrap fw-bold">{{ item.shortName }}</h2>
+          <p class="ion-text-wrap text-sm text-body-secondary">
+            {{ item.code }} - {{ item.largeName }}
+          </p>
+        </ion-label>
+        <ili-action-menu slot="end">
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit(item.id)"
+            label="Eliminar"
+          />
+        </ili-action-menu>
+      </ion-item>
+      } @empty {
+      <ion-item>
+        <ion-label class="text-center text-body-secondary py-4"
+          >No hay bancos para mostrar.</ion-label
+        >
+      </ion-item>
+      }
+    </ion-list>
+  </ion-content>
+</div>

@@ -53,6 +53,14 @@ export class OrdenesServicioFotos implements OnInit {
   }
 
   confirmDelete(id: string): void {
+    if (
+      !window.confirm(
+        "Se eliminara la imagen de evidencia. Esta acción no se puede deshacer. Continuar?",
+      )
+    ) {
+      return;
+    }
+
     this.deleteImg(id);
   }
 

@@ -483,6 +483,43 @@ this.loading.set(false);
       });
   }
 
+  runRepairServiceOrderFolios() {
+    if (
+      !window.confirm(
+        "Se reasignaran folios duplicados de Ordenes de Servicio. La operacion conserva IDs y relaciones, pero modifica datos historicos. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Reasignando folios duplicados de ordenes de servicio...",
+      "Conservara un folio por grupo duplicado y reasignara los demas sin cambiar IDs ni relaciones.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.repairServiceOrderFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Folios de órdenes de servicio reparados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La reparación de folios de órdenes de servicio falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runRecalculateElevatorFolios() {
     if (
       !window.confirm(

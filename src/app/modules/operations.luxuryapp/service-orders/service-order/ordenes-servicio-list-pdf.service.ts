@@ -272,6 +272,7 @@ ${this.htmlPrintS.getStandardCss()}
               <h3 class="text-lg font-bold text-primary mb-2">ORDEN DE SERVICIO</h3>
               <div class="text-xs">
                  <div class="mb-1"><span class="font-bold">Folio:</span> ${this.htmlPrintS.esc(item.folio || item.id || "S/N")}</div>
+                 <div class="mb-1"><span class="font-bold">Estatus:</span> ${this.htmlPrintS.esc(this.getStatusLabel(item.status))}</div>
                 <div class="mb-1"><span class="font-bold">Solicitud:</span> ${this.htmlPrintS.esc(item.requestDate)}</div>
                 <div class="mb-1"><span class="font-bold">Ejecución:</span> ${this.htmlPrintS.esc(item.executionDate)}</div>
                 <div class="mt-2 text-xs uppercase font-medium bg-primary rounded" style="display:inline-block; padding: 2px 4px;">
@@ -294,7 +295,7 @@ ${this.htmlPrintS.getStandardCss()}
             <div class="col-6">
               <div class="p-3 surface-50 rounded border-1 h-full">
                 <span class="d-block text-xs font-bold text-500 uppercase mb-1">Proveedor de Servicio</span>
-                <div class="text-base font-medium text-900">${this.htmlPrintS.esc(item.nameComercial)}</div>
+                <div class="text-base font-medium text-900">${this.htmlPrintS.esc(item.nameComercial || item.provider || "Sin proveedor asignado")}</div>
               </div>
             </div>
           </div>
@@ -302,11 +303,11 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="row mb-4">
             <div class="col-6">
               <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Actividad Realizada</h4>
-              <div class="text-xs line-height-3 text-700">${item.activity || ""}</div>
+              <div class="text-xs line-height-3 text-700">${this.htmlPrintS.esc(item.activity || "")}</div>
             </div>
             <div class="col-6">
               <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Observaciones Tócnicas</h4>
-              <div class="text-xs line-height-3 text-700">${item.observations || ""}</div>
+              <div class="text-xs line-height-3 text-700">${this.htmlPrintS.esc(item.observations || "")}</div>
             </div>
           </div>
 
@@ -347,7 +348,7 @@ ${this.htmlPrintS.getStandardCss()}
               </div>
               <div class="col-6 text-center">
                 <div class="signature-line mb-2"></div>
-                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.nameComercial || "Proveedor")}</div>
+                <div class="text-sm font-bold text-900">${this.htmlPrintS.esc(item.nameComercial || item.provider || "Proveedor")}</div>
                 <div class="text-xs text-500 uppercase mt-1">Realizado por</div>
               </div>
             </div>

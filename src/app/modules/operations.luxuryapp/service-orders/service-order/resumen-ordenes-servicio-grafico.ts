@@ -21,7 +21,7 @@ export class ResumenOrdenesServicioGrafico {
   isDoughnut: boolean = false;
 
   colorScheme: any = {
-    domain: ["#5AA454", "#A10A28", "#3b3838"],
+    domain: ["#5AA454", "#A10A28", "#3b3838", "#0B3164", "#C9A84C"],
   };
 }
 

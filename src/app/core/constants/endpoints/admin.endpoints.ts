@@ -120,6 +120,8 @@ export const EndpointsAdmin = {
       "admin/database-backup/purchase-requests/repair-folios",
     repairPurchaseOrderFolios:
       "admin/database-backup/purchase-orders/repair-folios",
+    repairServiceOrderFolios:
+      "admin/database-backup/service-orders/repair-folios",
     seedFederalLaborLawParameters:
       "admin/system-maintenance/seed-federal-labor-law-parameters",
   },

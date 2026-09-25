@@ -279,16 +279,20 @@ export class OrdenesServicio {
       this.customerIdS.customerId(),
       this.dateS.getDateFormat(converToDate),
     );
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.dataSignal.set(result || []);
-      this.reporteOrdenesServicioService.setData(this.dataSignal());
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => {
+        this.dataSignal.set(result || []);
+        this.reporteOrdenesServicioService.setData(this.dataSignal());
 
-      if (this.dataSignal().length !== 0) {
-        this.nameCarpetaFecha = this.dateS.getDateFormat(
-          this.dataSignal()[0].requestDate,
-        );
-      }
-    });
+        if (this.dataSignal().length !== 0) {
+          this.nameCarpetaFecha = this.dateS.getDateFormat(
+            this.dataSignal()[0].requestDate,
+          );
+        }
+      })
+      .finally(() => this.loading.set(false));
   }
   onLoadData() {
     let converToDate = this.parseFechaControl();
@@ -302,17 +306,21 @@ export class OrdenesServicio {
     if (this.filtroId) {
       urlApi += `?inventoryCategory=${this.filtroId}`;
     }
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.dataSignal.set(result || []);
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => {
+        this.dataSignal.set(result || []);
 
-      this.reporteOrdenesServicioService.setData(this.dataSignal());
+        this.reporteOrdenesServicioService.setData(this.dataSignal());
 
-      if (this.dataSignal().length !== 0) {
-        this.nameCarpetaFecha = this.dateS.getDateFormat(
-          this.dataSignal()[0].requestDate,
-        );
-      }
-    });
+        if (this.dataSignal().length !== 0) {
+          this.nameCarpetaFecha = this.dateS.getDateFormat(
+            this.dataSignal()[0].requestDate,
+          );
+        }
+      })
+      .finally(() => this.loading.set(false));
   }
 
   onEdit(data: any) {
@@ -333,6 +341,14 @@ export class OrdenesServicio {
   }
 
   onDelete(id: string) {
+    if (
+      !window.confirm(
+        "Se eliminara la orden de servicio junto con sus imágenes y documentos. Esta acción no se puede deshacer. Continuar?",
+      )
+    ) {
+      return;
+    }
+
     this.apiResponseS
       .onDelete(Endpoints.ServiceOrders.delete(id))
       .then((result: boolean) => {
@@ -349,13 +365,15 @@ export class OrdenesServicio {
       case 0:
         return "Pendiente";
       case 1:
-        return "Terminado";
+        return "Concluido";
       case 2:
         return "No Autorizado";
+      case 3:
+        return "Proceso";
       case 4:
         return "Cancelado";
       default:
-        return "";
+        return "Sin estatus";
     }
   }
 
@@ -367,10 +385,12 @@ export class OrdenesServicio {
         return "success"; // bg-success en Bootstrap
       case 2:
         return "secondary"; // bg-secondary en Bootstrap
+      case 3:
+        return "info";
       case 4:
         return "secondary"; // bg-secondary en Bootstrap
       default:
-        return "";
+        return "secondary";
     }
   }
 

@@ -50,7 +50,7 @@ export class OrdenesServicioReporteProveedor {
   loading = signal(true);
 
   constructor() {
-    this.id = this.config.data.id;
+    this.id = this.config.data?.id;
     if (this.id) this.onLoadData();
   }
   onLoadData() {
@@ -75,6 +75,10 @@ export class OrdenesServicioReporteProveedor {
   }
 
   deleteDoc(id: string): void {
+    if (!window.confirm("Se eliminara el documento. Esta acción no se puede deshacer. Continuar?")) {
+      return;
+    }
+
     const urlApi = Endpoints.ServiceOrders.deleteDocument(id);
 
     this.apiResponseS.onDelete(urlApi).then(() => {
