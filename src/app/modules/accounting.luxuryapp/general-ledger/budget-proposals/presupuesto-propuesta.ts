@@ -1616,7 +1616,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         this.getPresupuestoDelMes(item, mes) === 0,
     );
 
-    return hasNoActivity;
+    return hasNoActivity && item.currentAmount === 0;
   }
 
   /**
