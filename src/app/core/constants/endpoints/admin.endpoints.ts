@@ -126,6 +126,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/seed-federal-labor-law-parameters",
     seedServiceOrderSuspensionReasons:
       "admin/system-maintenance/seed-service-order-suspension-reasons",
+    migrateFireProtectionAssets:
+      "admin/system-maintenance/migrate-fire-protection-assets",
   },
   AppImplementationTracking: {
     triggerEmployeeValidation:

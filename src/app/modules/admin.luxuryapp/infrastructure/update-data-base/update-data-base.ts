@@ -615,6 +615,43 @@ this.loading.set(false);
       });
   }
 
+  runMigrateFireProtectionAssets() {
+    if (
+      !window.confirm(
+        "Se copiaran los activos de contra incendio (extintores, hidrantes, detectores y estaciones manuales) a Equipment + su detalle. Es seguro repetirlo: solo migra lo que falta.",
+      )
+    ) {
+      return;
+    }
+
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Migrando activos de contra incendio...",
+      "Copia los 4 inventarios de fuego a Equipment. Es idempotente: la segunda corrida no reprocesa nada.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.migrateFireProtectionAssets, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Éxito",
+          res?.message || "Activos de contra incendio migrados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La migración de activos de contra incendio falló.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedFederalLaborLawParameters() {
     this.loading.set(true);
     this.result.set(null);

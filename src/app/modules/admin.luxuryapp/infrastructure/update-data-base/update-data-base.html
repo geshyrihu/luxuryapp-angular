@@ -475,6 +475,32 @@
         <lx-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
+          (click)="runMigrateFireProtectionAssets()"
+        >
+          <div class="d-flex align-items-start gap-3">
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-red-50 text-2xl"
+            >
+              🔥
+            </div>
+            <div class="d-flex flex-column gap-1">
+              <div class="fw-bold text-body">
+                Migrar activos de contra incendio a Equipment
+              </div>
+              <div class="text-xs text-body-secondary line-height-2">
+                Copia extintores, hidrantes, detectores y estaciones manuales
+                hacia Equipment con su detalle. Es idempotente: solo migra lo
+                que falta y no sobrescribe equipos de otra categoría.
+              </div>
+            </div>
+          </div>
+        </lx-card>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <lx-card
+          class="cursor-pointer h-full d-block"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedFederalLaborLawParameters()"
         >
           <div class="d-flex align-items-start gap-3">
