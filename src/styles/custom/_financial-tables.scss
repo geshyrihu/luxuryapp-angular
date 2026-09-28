@@ -309,7 +309,7 @@
 
 // ── FILAS JERÁRQUICAS — presupuesto-web-aspel / presupuesto-propuesta ──
 .fila-nivel-1 > td {
-  background-color: var(--rf-navy) !important;
+  background-color: #475569 !important;
   color: var(--rf-on-dark) !important;
   font-weight: 700;
   height: 2.25rem !important;
@@ -319,8 +319,8 @@
 }
 
 .fila-nivel-2-agrupadora > td {
-  background-color: var(--rf-navy-soft) !important;
-  color: var(--rf-navy) !important;
+  background-color: #e2e8f0 !important;
+  color: #1e293b !important;
   font-weight: 600;
   height: 2.25rem !important;
   max-height: 2.25rem !important;
@@ -343,8 +343,7 @@
 // En las vistas Mayor y 2do Nivel las filas son agregados informativos;
 // conservan el fondo neutro de la tabla, igual que las filas normales.
 .fila-vista-agregada > td {
-  background-color: var(--rf-surface) !important;
-  color: inherit !important;
+  /* Conservamos el background original del nivel para no dejar la fila blanca */
 }
 
 // ── ESPEJO ASPEL FULL — utilidades específicas ────────────
@@ -933,3 +932,5 @@
 .fila-alerta-incremento > td:first-child {
   box-shadow: inset 4px 0 0 0 var(--ds-warning) !important; /* Borde izquierdo indicador */
 }
+
+

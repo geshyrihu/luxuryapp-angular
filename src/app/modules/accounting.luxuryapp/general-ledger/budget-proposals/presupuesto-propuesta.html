@@ -534,26 +534,27 @@
     <ng-template #body let-item>
       @if (item.esFilaAgrupadora) {
       <tr
-        [class.text-white]="item.nivelCuenta === 1"
+
         [class.fila-nivel-1]="viewMode() === 'normal' && item.nivelCuenta === 1 && item.esFilaAgrupadora"
         [class.fila-nivel-2-agrupadora]="viewMode() === 'normal' && item.nivelCuenta === 2 && item.esFilaAgrupadora"
         [class.fila-vista-agregada]="viewMode() !== 'normal'"
       >
-        <td pFrozenColumn [class.text-white]="item.nivelCuenta === 1">
+        <td pFrozenColumn>
           <div [style.fontWeight]="'bold'">
             {{ item.accountNumber }} | {{ item.accountName }}
           </div>
         </td>
         @for (month of months; track month) {
-        <td class="text-end numeric-column fw-semibold" [class.text-white]="item.nivelCuenta === 1">
-          <span class="text-xs" [class.text-white]="item.nivelCuenta === 1">
+        <td class="text-end numeric-column fw-semibold">
+          <span class="text-xs">
             {{ getPresupuestoDelMes(item, month) > 0 ?
             (getPresupuestoDelMes(item, month) | number: "1.0-0") : "-" }}
           </span>
           <br />
           <span
             [class.font-semibold]="gastoExcedePresupuesto(item, month)"
-            [class.text-white]="item.nivelCuenta === 1"
+            [class.text-red-700]="gastoExcedePresupuesto(item, month)"
+            [class.bg-red-50]="gastoExcedePresupuesto(item, month)"
           >
             {{ getGastoDelMes(item, month) !== 0 ? (getGastoDelMes(item, month)
             | number: "1.0-0") : "-" }}
@@ -564,7 +565,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ getAverageMonthlyExpense(item) | number: "1.0-0" }}
         </td>
@@ -573,7 +574,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ item.currentAmount | number: "1.0-0" }}
         </td>
@@ -582,7 +583,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ item.currentAmount * 12 | number: "1.0-0" }}
         </td>
@@ -590,7 +591,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ item.proposedAmount | number: "1.0-0" }}
         </td>
@@ -599,7 +600,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ item.proposedAmount * 12 | number: "1.0-0" }}
         </td>
@@ -607,7 +608,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ getItemDifference(item) | number: "1.0-0" }}
         </td>
@@ -615,7 +616,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-          [class.text-white]="item.nivelCuenta === 1"
+
         >
           {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
         </td>

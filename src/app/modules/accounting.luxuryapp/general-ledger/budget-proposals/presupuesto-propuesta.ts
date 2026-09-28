@@ -781,9 +781,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
     // Aplicar filtro por nivel de cuenta DESPUÉS de calcular totales
     if (mode === "level1") {
-      filteredData = filteredData.filter((p) => p.nivelCuenta === 1);
+      filteredData = filteredData.filter((p) => p.nivelCuenta === 1 && p.esFilaAgrupadora);
     } else if (mode === "level2") {
-      filteredData = filteredData.filter((p) => p.nivelCuenta === 2);
+      filteredData = filteredData.filter((p) => p.nivelCuenta === 2 && p.esFilaAgrupadora);
+    } else if (mode === "normal") {
+      filteredData = filteredData.filter((p) => !p.esFilaAgrupadora);
     }
 
     if (!this.showExtraordinarios) {
