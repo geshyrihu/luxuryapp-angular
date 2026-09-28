@@ -323,19 +323,15 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param item Partida a evaluar
    */
   getItemDifference(item: BudgetProposalItemDTO): number {
-    return item.proposedAmount - this.getAverageMonthlyExpense(item);
+    return item.difference;
   }
 
   /**
-   * Porcentaje de variación del monto propuesto respecto al gasto promedio mensual ejecutado (columna %).
+   * Porcentaje de variación del monto propuesto respecto al presupuesto actual (columna %).
    * @param item Partida a evaluar
    */
   getItemPercentageIncrease(item: BudgetProposalItemDTO): number {
-    const avgExpense = this.getAverageMonthlyExpense(item);
-    if (avgExpense === 0) {
-      return item.proposedAmount > 0 ? 100 : 0;
-    }
-    return ((item.proposedAmount - avgExpense) / avgExpense) * 100;
+    return item.percentageIncrease;
   }
 
   /** Número de filas por página para la tabla. */
@@ -779,10 +775,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     let filteredData = [...this.allProposalItems()];
 
     // Calcular totales agregados ANTES de filtrar por nivel
+    filteredData = this.calculateAggregateTotals(filteredData);
+
     const mode = this.viewMode();
-    if (mode === "level1" || mode === "level2") {
-      filteredData = this.calculateAggregateTotals(filteredData);
-    }
 
     // Aplicar filtro por nivel de cuenta DESPUÉS de calcular totales
     if (mode === "level1") {
@@ -1069,6 +1064,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     }
 
     this.recalculateTotals();
+    // Actualizar también las filas agrupadoras dinámicamente
+    this.applyFilters();
   }
 
   /**
@@ -1201,7 +1198,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   //   return `${change > 0 ? "+" : ""}${change.toFixed(0)}%`;
   // }
   getTotalPercentageChange(): number {
-    const currentTotal = this.getTotalAverageMonthlyExpense();
+    const currentTotal = this.getSumaTotalPresupuestoActual();
     const proposeDTOtal = this.currentProposal()?.totalAmount;
 
     if (currentTotal === null || proposeDTOtal === null || currentTotal === 0) {
@@ -1218,7 +1215,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    */
   getTotalDifferenceVsAverage(): number {
     const proposeDTOtal = this.currentProposal()?.totalAmount ?? 0;
-    return proposeDTOtal - this.getTotalAverageMonthlyExpense();
+    return proposeDTOtal - this.getSumaTotalPresupuestoActual();
   }
 
   // --------------------------------------------------------------------------------
@@ -1497,13 +1494,25 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
+   * Verifica si el gasto de un mes para una partida excede su presupuesto ignorando decimales.
+   * @param item La partida.
+   * @param month El nombre del mes.
+   * @returns `true` si el gasto es mayor al presupuesto o negativo, `false` en caso contrario.
+   */
+  gastoExcedePresupuesto(item: BudgetProposalItemDTO, month: string): boolean {
+    const gasto = Math.round(this.getGastoDelMes(item, month) || 0);
+    const presupuesto = Math.round(this.getPresupuestoDelMes(item, month) || 0);
+    return gasto < 0 || gasto > presupuesto;
+  }
+
+  /**
    * Verifica si el gasto total de un mes ha excedido su presupuesto.
    * @param mes El nombre del mes.
    * @returns `true` si el gasto es mayor al presupuesto, `false` en caso contrario.
    */
   gastoDelMesExcedido(mes: string): boolean {
-    const gasto = this.getTotalGastoPorMes(mes);
-    const presupuesto = this.getTotalPresupuestoPorMes(mes);
+    const gasto = Math.round(this.getTotalGastoPorMes(mes));
+    const presupuesto = Math.round(this.getTotalPresupuestoPorMes(mes));
     return presupuesto > 0 && gasto > presupuesto;
   }
 

@@ -290,7 +290,7 @@ export interface AppTableLazyEvent {
                   [disabled]="currentPageIndex() === 0"
                   (click)="goToPage(currentPageIndex() - 1)"
                 >
-                  Previous
+                  Anterior
                 </button>
               </li>
               @for (page of pageIndexes(); track page) {
@@ -319,7 +319,7 @@ export interface AppTableLazyEvent {
                   [disabled]="currentPageIndex() >= pageCount() - 1"
                   (click)="goToPage(currentPageIndex() + 1)"
                 >
-                  Next
+                  Siguiente
                 </button>
               </li>
             </ul>

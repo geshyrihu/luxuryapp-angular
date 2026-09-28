@@ -134,7 +134,7 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
 
     // --- Configuración del Service Worker (PWA) ---
-    provideServiceWorker("ngsw-worker.js", {
+    provideServiceWorker("OneSignalSDKWorker.js", {
       enabled: !isDevMode(),
       registrationStrategy: "registerWhenStable:30000",
     }),

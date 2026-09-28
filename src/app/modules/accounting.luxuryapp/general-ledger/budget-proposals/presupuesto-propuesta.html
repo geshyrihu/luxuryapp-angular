@@ -534,25 +534,26 @@
     <ng-template #body let-item>
       @if (item.esFilaAgrupadora) {
       <tr
+        [class.text-white]="item.nivelCuenta === 1"
         [class.fila-nivel-1]="viewMode() === 'normal' && item.nivelCuenta === 1 && item.esFilaAgrupadora"
         [class.fila-nivel-2-agrupadora]="viewMode() === 'normal' && item.nivelCuenta === 2 && item.esFilaAgrupadora"
         [class.fila-vista-agregada]="viewMode() !== 'normal'"
       >
-        <td pFrozenColumn>
+        <td pFrozenColumn [class.text-white]="item.nivelCuenta === 1">
           <div [style.fontWeight]="'bold'">
             {{ item.accountNumber }} | {{ item.accountName }}
           </div>
         </td>
         @for (month of months; track month) {
-        <td class="text-end numeric-column fw-semibold">
-          <span class="text-xs text-body-secondary">
+        <td class="text-end numeric-column fw-semibold" [class.text-white]="item.nivelCuenta === 1">
+          <span class="text-xs" [class.text-white]="item.nivelCuenta === 1">
             {{ getPresupuestoDelMes(item, month) > 0 ?
             (getPresupuestoDelMes(item, month) | number: "1.0-0") : "-" }}
           </span>
           <br />
           <span
-            [class.font-semibold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
-            [class.text-red-700]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+            [class.font-semibold]="gastoExcedePresupuesto(item, month)"
+            [class.text-white]="item.nivelCuenta === 1"
           >
             {{ getGastoDelMes(item, month) !== 0 ? (getGastoDelMes(item, month)
             | number: "1.0-0") : "-" }}
@@ -563,6 +564,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ getAverageMonthlyExpense(item) | number: "1.0-0" }}
         </td>
@@ -571,6 +573,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ item.currentAmount | number: "1.0-0" }}
         </td>
@@ -579,6 +582,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ item.currentAmount * 12 | number: "1.0-0" }}
         </td>
@@ -586,6 +590,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ item.proposedAmount | number: "1.0-0" }}
         </td>
@@ -594,6 +599,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ item.proposedAmount * 12 | number: "1.0-0" }}
         </td>
@@ -601,6 +607,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ getItemDifference(item) | number: "1.0-0" }}
         </td>
@@ -608,6 +615,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
+          [class.text-white]="item.nivelCuenta === 1"
         >
           {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
         </td>
@@ -734,14 +742,15 @@
           </span>
           <br />
           <span
-            [class.font-bold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
-            [class.text-red-700]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
-            [class.bg-red-50]="getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+            [class.font-bold]="gastoExcedePresupuesto(item, month)"
+            [class.text-red-700]="gastoExcedePresupuesto(item, month)"
+            [class.bg-red-50]="gastoExcedePresupuesto(item, month)"
           >
-            @if(getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) >
-            getPresupuestoDelMes(item, month)) { {{ getGastoDelMes(item, month)
-            | number: "1.0-0" }} } @else if (getGastoDelMes(item, month) > 0) {
-            {{ getGastoDelMes(item, month) | number: "1.0-0" }} } @else { - }
+            @if(gastoExcedePresupuesto(item, month)) { 
+              {{ getGastoDelMes(item, month) | number: "1.0-0" }} 
+            } @else if (getGastoDelMes(item, month) > 0) {
+              {{ getGastoDelMes(item, month) | number: "1.0-0" }} 
+            } @else { - }
           </span>
         </td>
         }
@@ -855,8 +864,8 @@
           alignFrozen="right"
           class="text-end numeric-column amount-total"
         >
-          <!-- Alinea con "PROM MENSUAL": misma base que cada fila (gasto promedio), no el presupuesto -->
-          {{ getTotalAverageMonthlyExpense() | number:'1.0-0' }}
+          <!-- Muestra el promedio mensual presupuestado para la fila de totales de Presupuesto -->
+          {{ getTotalAverageMonthlyBudget() | number:'1.0-0' }}
         </td>
         <td
           [hidden]="!showBaseBudgetMonthlyColumn()"
