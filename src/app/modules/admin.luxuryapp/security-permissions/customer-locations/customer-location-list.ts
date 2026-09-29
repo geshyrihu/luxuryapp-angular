@@ -6,10 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -140,7 +137,7 @@ export class CustomerLocationList implements OnInit {
         CustomerLocationForm,
         { customerId: this.customerId },
         "Nueva Ubicación",
-        DialogSize.md,
+        DialogSize.lg,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

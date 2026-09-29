@@ -24,9 +24,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
-import { EquipmentInspectionQrPrintService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-qr-print.service";
-import { EquipmentInspectionService } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection.service";
-import { EquipmentInspectionsShell } from "@maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspections-shell";
+import { InspectionQrPrintService } from "@maintenance.luxuryapp/inspection/inspection-qr-print.service";
 import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
 import { ActivosDocumentos } from "@maintenance.luxuryapp/machinery/machinery-document/activos-documentos";
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
@@ -131,10 +129,7 @@ export class EquiposList {
   private dialogHandlerS = inject(DialogHandlerService);
   private customerIdS = inject(CustomerIdService);
   private htmlPrintS = inject(HtmlPrintService);
-  private equipmentInspectionS = inject(EquipmentInspectionService);
-  private equipmentInspectionQrPrintS = inject(
-    EquipmentInspectionQrPrintService,
-  );
+  private inspectionQrPrintS = inject(InspectionQrPrintService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   data = signal<any[]>([]);
   loading = signal(true);
@@ -519,41 +514,24 @@ ${this.htmlPrintS.getStandardCss()}
       .then((result) => this.reloadDataAfterDialog(result));
   }
 
-  async onDownloadEquipmentInspectionQrBatch(): Promise<void> {
+  async onDownloadInspectionQrBatch(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const machineryIds = this.data()
+    const equipmentIds = this.data()
       .map((item) => item.id)
       .filter(Boolean);
 
-    if (!customerId || machineryIds.length === 0) {
+    if (!customerId || equipmentIds.length === 0) {
       return;
     }
 
-    const result = await this.equipmentInspectionS.downloadQrBatch({
-      customerId,
-      machineryIds,
-      qrLabelIds: [],
-      onlyActive: true,
-    });
+    const result = await this.apiResponseS.onPost<any[]>(
+      Endpoints.InspectionQrLabels.downloadBatch,
+      { customerId, equipmentIds, qrLabelIds: [], onlyActive: true },
+    );
 
     if (result && result.length > 0) {
-      await this.equipmentInspectionQrPrintS.printMany(
-        result,
-        `QR-${this.title()}`,
-      );
+      await this.inspectionQrPrintS.printMany(result, `QR-${this.title()}`);
     }
-  }
-
-  onEquipmentInspections(item: Equipo) {
-    this.dialogHandlerS.openDialog(
-      EquipmentInspectionsShell,
-      {
-        id: item.id,
-        nameMachinery: item.nameMachinery,
-      },
-      `Inspecciones de ${item.nameMachinery}`,
-      this.dialogHandlerS.sizeLg,
-    );
   }
 
   onModalAddOrEdit(data: any) {

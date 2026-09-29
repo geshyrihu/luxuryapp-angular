@@ -168,6 +168,7 @@
           (searchChange)="sharedS.searchTerm.set($event)"
           class="w-15rem"
         />
+        @if (!isClientView) {
 
          <!-- Botón para navegar a la guía del módulo -->
          <iw-button
@@ -235,6 +236,7 @@
           />
           }
         </div>
+        }
       </div>
       }
     </div>
@@ -259,9 +261,9 @@
   </div>
 
   <!-- =========================
-       VISTA MÓVIL
+       VISTA M�VIL
        ========================= -->
-  <div class="d-block d-md-none">
+  <div class="d-flex d-md-none flex-column flex-fill min-h-0">
     <div class="d-flex align-items-center gap-2 p-2 bg-body rounded mb-2">
       <custom-input-select-signal
         id="yearSelectorMobile"
@@ -289,7 +291,7 @@
       class="mb-3 d-block"
     />
 
-    <div class="mt-2">
+    <div class="mt-2 flex-fill min-h-0 d-flex flex-column">
       @switch (activeTabValue()) { @case ('presupuesto') {
       <app-presupuesto-aspel-ejercicio-fiscal />
       } @case ('especiales') {
@@ -298,3 +300,5 @@
     </div>
   </div>
 </div>
+
+

@@ -32,13 +32,6 @@
           tooltipPosition="top"
           tooltip="Descargar todos los QR"
         />
-        <iw-button-item
-          (clicked)="onViewPeriodos()"
-          [iconClass]="'material-symbols-light:schedule'"
-          lxTooltip="Periodos"
-          tooltipPosition="top"
-          tooltip="Configurar periodos de inspección"
-        />
         <iw-button-download
           (clicked)="downloadTemplate()"
           lxTooltip="Plantilla"
@@ -141,13 +134,6 @@
     >
       <app-icon icon="material-symbols-light:qr-code" slot="start" />
       Escanear QR
-    </button>
-    <button
-      class="btn btn-rounded btn-text-primary btn-sm"
-      (click)="onViewPeriodos()"
-    >
-      <app-icon icon="material-symbols-light:schedule" slot="start" />
-      Periodos de Inspección
     </button>
     <button
       class="btn btn-rounded btn-text-danger btn-sm"

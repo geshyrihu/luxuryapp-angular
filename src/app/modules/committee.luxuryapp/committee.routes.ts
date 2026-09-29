@@ -20,6 +20,18 @@ const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
 
 export const committeeRoutes: Routes = [
   {
+    path: "financial-information",
+    loadComponent: () =>
+      import("@committee.luxuryapp/financial-information/informacion-financiera").then(
+        (m) => m.InformacionFinanciera,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Información Financiera",
+      breadcrumb: "Información Financiera",
+    },
+  },
+  {
     path: "",
     loadComponent: () =>
       import("@committee.luxuryapp/home-committee/home-comite").then(

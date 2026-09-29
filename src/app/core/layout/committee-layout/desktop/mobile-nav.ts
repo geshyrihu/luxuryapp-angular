@@ -13,6 +13,7 @@ import {
   logOutOutline,
   peopleOutline,
   personOutline,
+  barChartOutline,
 } from "ionicons/icons";
 
 @Component({
@@ -33,13 +34,18 @@ export class CommitteeMobileNav {
       peopleOutline,
       personOutline,
       logOutOutline,
+      barChartOutline,
     });
   }
 
   onNav(id: string): void {
+    this.activeId.set(id);
     switch (id) {
       case "inicio":
         this.router.navigate(["/committee"]);
+        break;
+      case "if":
+        this.router.navigate(["/committee/financial-information"]);
         break;
       case "directorio":
         this.router.navigate(["/committee/directorio"]);

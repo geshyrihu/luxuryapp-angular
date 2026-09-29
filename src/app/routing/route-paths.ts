@@ -571,8 +571,8 @@ export const ROUTES = {
     ],
     SCANNER_EQUIPOS: ["/logbook", "fire-equipment-scanner"],
     INSPECCION_EQUIPO: (code: string) => [
-      "/logbook",
-      "equipment-inspection",
+      "/inspections",
+      "qr",
       code,
     ],
     HIDRANTE_BITACORA: (hydrantId: string) => [
@@ -600,33 +600,6 @@ export const ROUTES = {
       "/logbook",
       "smoke-detector-checklist",
       id,
-    ],
-    PERIODOS_INSPECCION: ["/logbook", "fire-inspection-periods"],
-    CICLOS_INSPECCION: ["/logbook", "fire-inspection-cycles"],
-    CICLO_INSPECCION: (cycleId: string) => [
-      "/logbook",
-      "fire-inspection-cycle",
-      cycleId,
-    ],
-    PERIODO_EXTINTOR: (periodId: string) => [
-      "/logbook",
-      "fire-inspection-period-extintor",
-      periodId,
-    ],
-    PERIODO_HIDRANTE: (periodId: string) => [
-      "/logbook",
-      "fire-inspection-period-hidrante",
-      periodId,
-    ],
-    PERIODO_ESTACION: (periodId: string) => [
-      "/logbook",
-      "fire-inspection-period-estacion",
-      periodId,
-    ],
-    PERIODO_DETECTOR: (periodId: string) => [
-      "/logbook",
-      "fire-inspection-period-detector",
-      periodId,
     ],
   },
 

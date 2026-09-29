@@ -78,7 +78,7 @@
                 iconClass="material-symbols-light:qr-code"
                 [severity]="'secondary'"
                 [variant]="'outlined'"
-                (clicked)="onDownloadEquipmentInspectionQrBatch()"
+                 (clicked)="onDownloadInspectionQrBatch()"
                 lxTooltip="Imprimir QR activos de los equipos visibles"
                 tooltipPosition="top"
               />
@@ -184,13 +184,6 @@
                 tooltipPosition="top"
                 variant="text"
               />
-              <iw-button-item
-                (clicked)="onEquipmentInspections(item)"
-                iconClass="material-symbols-light:task-alt"
-                lxTooltip="Inspecciones"
-                tooltipPosition="top"
-                variant="text"
-              />
               @if (!mostrarPreventivos()) {
               <iw-button-item
                 (clicked)="openMantenimientosDialog(item)"
@@ -272,7 +265,7 @@
             [severity]="'secondary'"
             [size]="'small'"
             [isFullWidth]="true"
-            (clicked)="onDownloadEquipmentInspectionQrBatch()"
+             (clicked)="onDownloadInspectionQrBatch()"
           />
         </div>
       </ng-template>
@@ -318,12 +311,6 @@
               <button
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="showModalFichatecnica(item.id)"
-              >
-                <app-icon icon="material-symbols-light:article-outline" slot="icon-only" />
-              </button>
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="onEquipmentInspections(item)"
               >
                 <app-icon icon="material-symbols-light:article-outline" slot="icon-only" />
               </button>

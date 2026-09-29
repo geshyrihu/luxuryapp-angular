@@ -42,6 +42,13 @@ body {
   touch-action: manipulation; /* Desactiva doble-tap zoom en todos los elementos */
 }
 
+/* En PWA instalada, evita pinch zoom del viewport sin quitar scroll/pan.
+   El modo navegador conserva zoom; iOS tiene respaldo gesturestart en main.ts. */
+html.pwa-standalone,
+html.pwa-standalone body {
+  touch-action: pan-x pan-y;
+}
+
 /* ♿ ACCESIBILIDAD - Skip-to-content link (WCAG 2.4.1) */
 .skip-link {
   position: absolute;

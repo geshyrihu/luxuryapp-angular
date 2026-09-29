@@ -125,12 +125,6 @@ export class InventarioExtintor {
     this.router.navigate(ROUTES.BITACORAS.SCANNER_EQUIPOS);
   }
 
-  onViewPeriodos() {
-    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
-      queryParams: { type: "extintor" },
-    });
-  }
-
   onBulkExpiration() {
     this.dialogHandlerS
       .openDialog(

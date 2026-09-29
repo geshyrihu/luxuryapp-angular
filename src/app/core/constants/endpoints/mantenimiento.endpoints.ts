@@ -28,20 +28,6 @@ export const EndpointsMantenimiento = {
     ) =>
       `bitacora-mantenimiento/list/${customerId}/${fechaInicial}/${fechaFinal}`,
   },
-  FireInspectionPeriod: {
-    base: "fire-inspection-period",
-    delete: (id: string) => `fire-inspection-period/${id}`,
-    getById: (periodId: string) => `fire-inspection-period/${periodId}`,
-    listByCustomer: (customerId: string) =>
-      `fire-inspection-period/list/${customerId}`,
-  },
-  FireInspectionCycle: {
-    active: (periodId: string) => `fire-inspection-cycle/active/${periodId}`,
-    generate: (periodId: string) => `fire-inspection-cycle/generate/${periodId}`,
-    getById: (cycleId: string) => `fire-inspection-cycle/${cycleId}`,
-    listByCustomer: (customerId: string) =>
-      `fire-inspection-cycle/list/${customerId}`,
-  },
   FireEquipment: {
     resolveById: (id: string) => `fire-equipment/resolve/${id}`,
   },
@@ -70,42 +56,6 @@ export const EndpointsMantenimiento = {
       listByEquipment: (detectorId: string) =>
         `bitacora-detector-humo/list/${detectorId}`,
     },
-  },
-  FireCycleInspection: {
-    detector: {
-      base: "fire-cycle-inspection/detector",
-      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
-        `fire-cycle-inspection/detector/${cycleId}/${equipmentId}`,
-    },
-    estacion: {
-      base: "fire-cycle-inspection/estacion",
-      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
-        `fire-cycle-inspection/estacion/${cycleId}/${equipmentId}`,
-    },
-    extintor: {
-      base: "fire-cycle-inspection/extintor",
-      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
-        `fire-cycle-inspection/extintor/${cycleId}/${equipmentId}`,
-    },
-    hidrante: {
-      base: "fire-cycle-inspection/hidrante",
-      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
-        `fire-cycle-inspection/hidrante/${cycleId}/${equipmentId}`,
-    },
-  },
-  FireInspectionPeriodItems: {
-    detectorList: (periodId: string) => `fire-inspection-period-items/detector/list/${periodId}`,
-    detectorDetail: (periodId: string, equipmentId: string) => `fire-inspection-period-items/detector/${periodId}/${equipmentId}`,
-    detectorDelete: (id: string) => `fire-inspection-period-items/detector/${id}`,
-    estacionList: (periodId: string) => `fire-inspection-period-items/estacion/list/${periodId}`,
-    estacionDetail: (periodId: string, equipmentId: string) => `fire-inspection-period-items/estacion/${periodId}/${equipmentId}`,
-    estacionDelete: (id: string) => `fire-inspection-period-items/estacion/${id}`,
-    extintorList: (periodId: string) => `fire-inspection-period-items/extintor/list/${periodId}`,
-    extintorDetail: (periodId: string, equipmentId: string) => `fire-inspection-period-items/extintor/${periodId}/${equipmentId}`,
-    extintorDelete: (id: string) => `fire-inspection-period-items/extintor/${id}`,
-    hidranteList: (periodId: string) => `fire-inspection-period-items/hidrante/list/${periodId}`,
-    hidranteDetail: (periodId: string, equipmentId: string) => `fire-inspection-period-items/hidrante/${periodId}/${equipmentId}`,
-    hidranteDelete: (id: string) => `fire-inspection-period-items/hidrante/${id}`,
   },
   InventarioDetectorHumo: {
     list: (customerId: string) => `inventario-detector-humo/list/${customerId}`,
@@ -184,38 +134,15 @@ export const EndpointsMantenimiento = {
     listByMachinery: (machineryId: string) =>
       `machinery-document/list/${machineryId}`,
   },
-  EquipmentInspectionDefinitions: {
-    byMachinery: (machineryId: string) =>
-      `equipment-inspection-definitions/by-machinery/${machineryId}`,
-    getById: (id: string) => `equipment-inspection-definitions/${id}`,
-    create: "equipment-inspection-definitions",
-    update: (id: string) => `equipment-inspection-definitions/${id}`,
-    toggleActive: (id: string, isActive: boolean) =>
-      `equipment-inspection-definitions/${id}/active/${isActive}`,
-    delete: (id: string) => `equipment-inspection-definitions/${id}`,
-  },
-  EquipmentInspectionExecutions: {
-    pending: (customerId: string) =>
-      `equipment-inspection-executions/pending/${customerId}`,
-    byMachinery: (machineryId: string) =>
-      `equipment-inspection-executions/by-machinery/${machineryId}`,
-    getById: (id: string) => `equipment-inspection-executions/${id}`,
-    startFromQr: "equipment-inspection-executions/start-from-qr",
-    startManual: (definitionId: string) =>
-      `equipment-inspection-executions/start-manual/${definitionId}`,
-    complete: (id: string) => `equipment-inspection-executions/${id}/complete`,
-    administrativeUpdate: (id: string) =>
-      `equipment-inspection-executions/${id}/administrative-update`,
-  },
-  EquipmentQrLabels: {
-    byMachinery: (machineryId: string) =>
-      `equipment-qr-labels/by-machinery/${machineryId}`,
-    getById: (id: string) => `equipment-qr-labels/${id}`,
-    create: "equipment-qr-labels",
-    regenerate: (id: string) => `equipment-qr-labels/${id}/regenerate`,
-    download: (id: string) => `equipment-qr-labels/${id}/download`,
-    downloadBatch: "equipment-qr-labels/download-batch",
-    resolve: (code: string) => `equipment-qr-labels/resolve/${encodeURIComponent(code)}`,
+  InspectionQrLabels: {
+    byEquipment: (equipmentId: string) =>
+      `inspection-qr-labels/by-equipment/${equipmentId}`,
+    getById: (id: string) => `inspection-qr-labels/${id}`,
+    create: "inspection-qr-labels",
+    markPrinted: (id: string) => `inspection-qr-labels/${id}/mark-printed`,
+    download: (id: string) => `inspection-qr-labels/${id}/download`,
+    downloadBatch: "inspection-qr-labels/download-batch",
+    resolve: (code: string) => `inspection-qr-labels/resolve/${encodeURIComponent(code)}`,
   },
   MachineryClassification: {
     create: "equipo-clasificacion",
@@ -231,11 +158,8 @@ export const EndpointsMantenimiento = {
     getById: (id: string) => `catalog-asset/${id}`,
     update: (id: string) => `catalog-asset/${id}`,
   },
-  CondominiumAssets: {
-    selectByCustomer: (customerId: string) => `condominium-asset/${customerId}`,
-  },
   InspectionCondominiumAssets: {
-    create: "inspection-condominium-asset",
+    create: "inspection/add-or-update-condominium-asset",
     deleteArea: (id: string) => `inspection-condominium-asset/delete-area/${id}`,
     deleteReview: (reviewId: string) =>
       `inspection-condominium-asset/delete-review/${reviewId}`,
@@ -246,6 +170,7 @@ export const EndpointsMantenimiento = {
   },
   Inspections: {
     create: "inspection",
+    equipmentByCustomer: (customerId: string) => `inspection/equipment/${customerId}`,
     delete: (id: string | number) => `inspection/${id}`,
     getById: (id: string) => `inspection/${id}`,
     listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
@@ -313,15 +238,7 @@ export const EndpointsMantenimiento = {
     bitacoraExtintorListById: (extinguisherId: any) => `bitacora-extintor/list/${extinguisherId}`,
     bitacoraHidranteById: (id: any) => `bitacora-hidrante/${id}`,
     bitacoraHidranteListById: (hydrantId: any) => `bitacora-hidrante/list/${hydrantId}`,
-    fireCycleInspectionDetectorByIdById: (cycleId: any, equipmentId: any) => `fire-cycle-inspection/detector/${cycleId}/${equipmentId}`,
-    fireCycleInspectionEstacionByIdById: (cycleId: any, equipmentId: any) => `fire-cycle-inspection/estacion/${cycleId}/${equipmentId}`,
-    fireCycleInspectionExtintorByIdById: (cycleId: any, equipmentId: any) => `fire-cycle-inspection/extintor/${cycleId}/${equipmentId}`,
-    fireCycleInspectionHidranteByIdById: (cycleId: any, equipmentId: any) => `fire-cycle-inspection/hidrante/${cycleId}/${equipmentId}`,
-    fireInspectionCycleById: (cycleId: any) => `fire-inspection-cycle/${cycleId}`,
     fireEquipmentResolveById: (p0: any) => `fire-equipment/resolve/${p0}`,
-    fireInspectionCycleListById: (customerIdS: any) => `fire-inspection-cycle/list/${customerIdS}`,
-    fireInspectionPeriodById: (id: any) => `fire-inspection-period/${id}`,
-    fireInspectionPeriodListById: (customerIdS: any) => `fire-inspection-period/list/${customerIdS}`,
     bitacoraEstacionManualById: (id: any) => `bitacora-estacion-manual/${id}`,
     bitacoraEstacionManualListById: (stationId: any) => `bitacora-estacion-manual/list/${stationId}`,
     bitacoraDetectorHumoById: (id: any) => `bitacora-detector-humo/${id}`,

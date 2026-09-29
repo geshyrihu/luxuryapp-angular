@@ -142,12 +142,6 @@ export class InventarioDetectorHumo {
     this.router.navigate(ROUTES.BITACORAS.DETECTOR_HUMO_BITACORA(item.id));
   }
 
-  onViewPeriodos() {
-    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
-      queryParams: { type: "detector" },
-    });
-  }
-
   downloadTemplate() {
     void this.excelS.exportToExcel(
       [

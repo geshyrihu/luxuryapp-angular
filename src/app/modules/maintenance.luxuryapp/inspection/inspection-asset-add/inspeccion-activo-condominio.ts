@@ -86,7 +86,7 @@ export class InspeccionActivoCondominio implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [activos, reviewsCatalog] = await Promise.all([
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.CondominiumAssets.selectByCustomer(
+        Endpoints.Inspections.equipmentByCustomer(
           this.customerIdS.customerId(),
         ),
       ),
@@ -186,12 +186,10 @@ export class InspeccionActivoCondominio implements OnInit {
     const formVal = this.form.getRawValue();
     const data = {
       inspectionId: formVal.inspectionId,
-      condominiumAssetId: formVal.condominiumAssetId,
-      position: formVal.position,
-      inspectionReviews: formVal.inspectionReviews.map((review: any) => ({
-        inspectionReviewsCatalogId:
-          review.value || review.inspectionReviewsCatalogId,
-      })),
+      equipmentId: formVal.condominiumAssetId,
+      inspectionReviews: formVal.inspectionReviews.map(
+        (review: any) => review.value || review.inspectionReviewsCatalogId,
+      ),
     };
 
     this.apiResponseS
@@ -201,4 +199,3 @@ export class InspeccionActivoCondominio implements OnInit {
       });
   }
 }
-

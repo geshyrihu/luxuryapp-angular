@@ -73,6 +73,18 @@ export const inspectionRoutes: Routes = [
       breadcrumb: "Resultado",
     },
   },
+  {
+    path: "qr/:code",
+    loadComponent: () =>
+      import("@maintenance.luxuryapp/inspection/inspection-qr-entry").then(
+        (m) => m.InspectionQrEntry,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Inspección por QR",
+      breadcrumb: "Inspección por QR",
+    },
+  },
 ];
 
 

@@ -187,6 +187,13 @@
     overflow: visible;
   }
 
+  /* _sidebar.scss oculta body * al imprimir y solo habilita #print-section.
+     Estos reportes usan .print-task-report en ambas vistas de tareas. */
+  .print-task-report,
+  .print-task-report * {
+    visibility: visible !important;
+  }
+
   /* ---- Header ---- */
   .print-report-header {
     display: flex;

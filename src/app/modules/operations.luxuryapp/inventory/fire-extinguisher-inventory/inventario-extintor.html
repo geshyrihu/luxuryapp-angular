@@ -35,12 +35,6 @@
           (clicked)="onBulkExpiration()"
           [iconClass]="'material-symbols-light:calendar-today'"
         />
-        <iw-button-item
-          (clicked)="onViewPeriodos()"
-          lxTooltip="Periodos"
-          tooltipPosition="top"
-          tooltip="Configurar periodos de inspección"
-        />
       </div>
       <app-table-caption
         [title]="'Inventario de Extintores'"
@@ -128,13 +122,6 @@
     >
       <app-icon icon="material-symbols-light:event" slot="start" />
       Actualizar vencimiento
-    </button>
-    <button
-      class="btn btn-rounded btn-text-primary btn-sm"
-      (click)="onViewPeriodos()"
-    >
-      <app-icon icon="material-symbols-light:schedule" slot="start" />
-      Periodos de Inspección
     </button>
   </div>
 

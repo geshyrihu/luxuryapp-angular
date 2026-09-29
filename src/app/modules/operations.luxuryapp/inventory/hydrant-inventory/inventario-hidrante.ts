@@ -123,12 +123,6 @@ export class InventarioHidrante {
     this.router.navigate(ROUTES.BITACORAS.HIDRANTE_BITACORA(item.id));
   }
 
-  onViewPeriodos() {
-    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
-      queryParams: { type: "hidrante" },
-    });
-  }
-
   downloadTemplate() {
     void this.excelS.exportToExcel(
       [
@@ -200,4 +194,3 @@ export class InventarioHidrante {
       });
   }
 }
-

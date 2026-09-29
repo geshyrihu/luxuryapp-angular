@@ -16,6 +16,14 @@
   </ion-tab-button>
 
   <ion-tab-button
+    (click)="onNav('if')"
+    [selected]="activeId() === 'if'"
+  >
+    <ion-icon name="bar-chart-outline"></ion-icon>
+    <ion-label>Psto</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button
     (click)="onNav('perfil')"
     [selected]="activeId() === 'perfil'"
   >

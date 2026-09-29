@@ -82,7 +82,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [activos, reviewsCatalog] = await Promise.all([
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.CondominiumAssets.selectByCustomer(
+        Endpoints.Inspections.equipmentByCustomer(
           this.customerIdS.customerId(),
         ),
       ),
@@ -107,17 +107,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
     );
 
     if (resp) {
-      let condominiumAssetId = null;
-      if (
-        resp.condominiumAssetId !== null &&
-        resp.condominiumAssetId !== undefined
-      ) {
-        condominiumAssetId =
-          typeof resp.condominiumAssetId === "object" &&
-          resp.condominiumAssetId !== null
-            ? resp.condominiumAssetId.value
-            : resp.condominiumAssetId;
-      }
+      const condominiumAssetId = resp.equipmentId;
 
       const selectedAsset = condominiumAssetId
         ? this.cb_activos().find((item) => item.value === condominiumAssetId)
@@ -229,7 +219,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
     const payload = {
       id: formVal.id,
       inspectionId: formVal.inspectionId,
-      condominiumAssetId: formVal.condominiumAssetId,
+      equipmentId: formVal.condominiumAssetId,
       position: formVal.position,
       inspectionReviews: formVal.inspectionReviews.map((review: any) => ({
         value: review.value,
@@ -247,4 +237,3 @@ export class InspeccionActivoCondominioEditar implements OnInit {
       });
   }
 }
-

@@ -33,18 +33,23 @@
         />
       </div>
       <div class="committee-contact__body">
+        @if (person.firstName || person.lastName) {
         <h4 class="committee-contact__name">
           {{ person.firstName }} {{ person.lastName }}
         </h4>
+        }
         @if (person.roleName) {
         <span class="committee-contact__role">{{ person.roleName }}</span>
         }
         @if (person.isOnShift !== null) {
         <div class="committee-contact__shift">
+          <!-- TODO: Revisar la regla de negocio que determina el isOnShift desde el backend antes de reactivarlo. -->
+          <!-- 
           <app-realtime-indicator
             [status]="person.isOnShift ? 'live' : 'paused'"
             [label]="person.isOnShift ? 'En turno' : 'Fuera de turno'"
           />
+          -->
         </div>
         }
       </div>

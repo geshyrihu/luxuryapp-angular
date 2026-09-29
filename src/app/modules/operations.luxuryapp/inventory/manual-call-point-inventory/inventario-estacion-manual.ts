@@ -142,12 +142,6 @@ export class InventarioEstacionManual {
     this.router.navigate(ROUTES.BITACORAS.ESTACION_MANUAL_BITACORA(item.id));
   }
 
-  onViewPeriodos() {
-    this.router.navigate(ROUTES.BITACORAS.PERIODOS_INSPECCION, {
-      queryParams: { type: "estacion" },
-    });
-  }
-
   downloadTemplate() {
     void this.excelS.exportToExcel(
       [

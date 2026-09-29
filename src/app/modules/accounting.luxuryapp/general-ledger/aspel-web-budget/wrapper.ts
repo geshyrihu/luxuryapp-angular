@@ -4,6 +4,7 @@ import {
   inject,
   signal,
   viewChild,
+  Input
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
@@ -40,6 +41,8 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   providers: [PresupuestoWebAspelService, PresupuestoAspelExcelService],
 })
 export class PresupuestoWebAspelWrapper {
+  @Input() isClientView = false;
+
   activeTabValue = signal("presupuesto");
   budgetTabs = [
     { id: "presupuesto", label: "Presupuesto" },
