@@ -12,18 +12,17 @@
   } @if (!loading() && data(); as reporte) {
   <div class="rf-card pt-4 d-none d-md-block">
     <div class="rf-wrap">
-      <table class="rf-table rf-table--with-account">
+      <table class="rf-table rf-table--with-account p-datatable-sm">
         <thead>
           <tr>
-            <th>CUENTA</th>
-            <th>DESCRIPCIÓN</th>
-            <th class="th-col-green">PSPTO MENSUAL</th>
+            <th class="th-col-dark">CUENTA</th>
+            <th class="th-col-green text-center" style="width: 6rem;">PRE-MEN</th>
             @for (col of reporte.columnas; track col) {
-            <th>{{ col }}</th>
+            <th class="th-col-dark text-center" style="width: 6rem;">{{ col }}</th>
             }
-            <th class="th-col-orange">{{ acumLabel() }}</th>
-            <th class="th-col-green">PSPTO ANUAL</th>
-            <th class="th-col-red">PSPTO RESTANTE</th>
+            <th class="th-col-dark">{{ acumLabel() }}</th>
+            <th class="th-col-green">PRE-TOTAL</th>
+            <th class="th-col-red">RESTANTE</th>
           </tr>
         </thead>
 
@@ -31,22 +30,28 @@
           @for (fila of reporte.filas; track trackByCuenta($index, fila)) { @if
           (!isFilaVacia(fila)) {
           <tr [ngClass]="rowClass(fila)">
-            <td class="rf-td-cuenta">
-              @if (fila.nivel === 2 || fila.nivel === 3) {
-              <span
-                class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
-                (click)="showPurchaseHistory(fila)"
-                title="Ver Historial de Compras"
-              >
-                {{ fila.numeroCuenta }} 🛒
-              </span>
-              } @else { {{ fila.numeroCuenta }} }
-            </td>
             <td
-              [ngClass]="descClass(fila)"
+              class="rf-td-descripcion--item"
               [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null"
             >
-              {{ fila.descripcion }}
+              @if (fila.nivel !== 1 && fila.nivel !== 4) {
+              <div class="rf-td-cuenta text-xs text-body-secondary mb-1">
+                @if (fila.nivel === 2 || fila.nivel === 3) {
+                <span
+                  class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  (click)="showPurchaseHistory(fila)"
+                  title="Ver Historial de Compras"
+                >
+                  {{ fila.numeroCuenta }} 🛒
+                </span>
+                } @else {
+                  {{ fila.numeroCuenta }}
+                }
+              </div>
+              }
+              <div [ngClass]="fila.nivel === 1 || fila.nivel === 4 ? 'rf-td-descripcion' : 'fw-bold text-sm text-uppercase'">
+                {{ fila.descripcion }}
+              </div>
             </td>
             <td
               [ngClass]="numClass(fila)"
@@ -55,8 +60,18 @@
               {{ fila.pstoMensual | accountingNumber }}
             </td>
             @for (val of fila.montosEjercidos; track trackByIndex($index)) {
-            <td [ngClass]="numClass(fila)" [class.rf-neg]="val < 0">
-              {{ val | accountingNumber }}
+            <td class="p-1">
+              <div class="d-flex flex-column align-items-end justify-content-center h-full gap-1">
+                <span class="text-body-secondary text-xs">
+                  {{ fila.pstoMensual > 0 ? (fila.pstoMensual | accountingNumber) : '-' }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="val > fila.pstoMensual && fila.pstoMensual > 0"
+                >
+                  {{ val !== 0 ? (val | accountingNumber) : '-' }}
+                </span>
+              </div>
             </td>
             }
             <td
@@ -81,7 +96,6 @@
           } }
 
           <tr class="rf-row-result g-4">
-            <td class="rf-td-cuenta"></td>
             <td class="rf-td-descripcion">
               {{ reporte.granTotal.descripcion }}
             </td>
@@ -91,10 +105,19 @@
             >
               {{ reporte.granTotal.pstoMensual | accountingNumber }}
             </td>
-            @for (val of reporte.granTotal.montosEjercidos; track
-            trackByIndex($index)) {
-            <td class="rf-td-number--total" [class.rf-neg]="val < 0">
-              {{ val | accountingNumber }}
+            @for (val of reporte.granTotal.montosEjercidos; track trackByIndex($index)) {
+            <td class="p-1">
+              <div class="d-flex flex-column align-items-end justify-content-center h-full gap-1">
+                <span class="text-body-secondary text-xs">
+                  {{ reporte.granTotal.pstoMensual > 0 ? (reporte.granTotal.pstoMensual | accountingNumber) : '-' }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="val > reporte.granTotal.pstoMensual && reporte.granTotal.pstoMensual > 0"
+                >
+                  {{ val !== 0 ? (val | accountingNumber) : '-' }}
+                </span>
+              </div>
             </td>
             }
             <td

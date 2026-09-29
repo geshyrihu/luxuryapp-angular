@@ -40,9 +40,9 @@ export class WebButtonLabelSendEmail extends BaseButton {
   );
   override severity = input<any>("info");
 
-  protected confirmSend(): void {
+  protected async confirmSend(): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.confirmMessage())) {
+    if (await confirmAction(this.confirmMessage())) {
       this.confirmed.emit();
     }
   }

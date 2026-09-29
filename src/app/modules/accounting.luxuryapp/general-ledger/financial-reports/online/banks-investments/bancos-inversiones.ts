@@ -16,11 +16,12 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 @Component({
   selector: "app-bancos-inversiones",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, AppTable, DataViewMobile],
+  imports: [LxSkeleton, AppIcon, CommonModule, AppTable, DataViewMobile, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })

@@ -22,7 +22,7 @@
         <span class="rf-td-cuenta">{{ total.numeroCuenta }}</span>
       </div>
       <div class="row g-4">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="d-flex flex-column gap-1">
             <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Total a Cobrar</span
@@ -32,7 +32,7 @@
             >
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="d-flex flex-column gap-1">
             <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Total Cobrado</span
@@ -42,7 +42,17 @@
             >
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="d-flex flex-column gap-1">
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
+              >Total Pagado</span
+            >
+            <span class="text-orange-500 fw-bold text-2xl"
+              >{{ total.ejecutadoAnual | accountingNumber}}</span
+            >
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
           <div class="d-flex flex-column gap-1">
             <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Saldo Restante</span
@@ -84,6 +94,12 @@
               <span class="text-body-secondary fw-medium">Total Cobrado</span>
               <span class="text-green-600 fw-bold"
                 >{{ proyecto.totalCobrado | accountingNumber}}</span
+              >
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-body-secondary fw-medium">Total Pagado</span>
+              <span class="text-orange-500 fw-bold"
+                >{{ proyecto.ejecutadoAnual | accountingNumber}}</span
               >
             </div>
             <div
@@ -168,9 +184,9 @@
 
         @if (reporte.totalGeneral; as total) {
         <ng-template #footer>
-          <tr class="rf-row-result g-4">
-            <td class="rf-td-descripcion">TOTAL GENERAL</td>
-            <td class="rf-td-number--total text-green-400">
+          <tr class="bg-body-secondary text-body border-top border-2 border-primary">
+            <td class="rf-td-descripcion fw-bold">TOTAL GENERAL</td>
+            <td class="rf-td-number--total text-green-600 fw-bold">
               {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual |
               number:'1.0-0') : '0' }}
             </td>
@@ -179,10 +195,7 @@
               <div
                 class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
               >
-                <span
-                  class="rf-td-cuenta text-xs"
-                  
-                >
+                <span class="text-body-secondary text-xs">
                   {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
                   }}
                 </span>
@@ -195,14 +208,14 @@
               </div>
             </td>
             }
-            <td class="rf-td-number--total">
+            <td class="rf-td-number--total fw-bold">
               {{ total.ejecutadoAnual > 0 ? (total.ejecutadoAnual |
               number:'1.0-0') : '0' }}
             </td>
-            <td class="rf-td-number--total">
+            <td class="rf-td-number--total fw-bold">
               {{ (total.porcentajeAvance / 100) | percent:'1.0-0' }}
             </td>
-            <td class="rf-td-number--total">
+            <td class="rf-td-number--total fw-bold text-primary">
               {{ total.presupuestoAnual | number:'1.0-0' }}
             </td>
           </tr>

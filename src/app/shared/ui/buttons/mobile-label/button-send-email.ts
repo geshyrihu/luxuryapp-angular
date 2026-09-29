@@ -35,9 +35,9 @@ export class MobileButtonLabelSendEmail extends MobileButtonBase {
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
 
-  protected confirmSend(): void {
+  protected async confirmSend(): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.confirmMessage())) {
+    if (await confirmAction(this.confirmMessage())) {
       this.confirmed.emit();
     }
   }

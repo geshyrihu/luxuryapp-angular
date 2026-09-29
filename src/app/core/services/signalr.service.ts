@@ -53,6 +53,10 @@ export class SignalRService {
   public budgetProposalItemUpdate$ =
     this.budgetProposalItemUpdateSource.asObservable();
 
+  private budgetProposalItemDeleteSource = new Subject<string>();
+  public budgetProposalItemDelete$ =
+    this.budgetProposalItemDeleteSource.asObservable();
+
   private projectedExpenseUpdateSource = new Subject<any>();
   public projectedExpenseUpdate$ =
     this.projectedExpenseUpdateSource.asObservable();
@@ -284,6 +288,19 @@ export class SignalRService {
           itemDTO,
         );
         this.budgetProposalItemUpdateSource.next(itemDTO);
+      },
+    );
+
+    this.hubConnection.on(
+      "ReceiveBudgetProposalItemDelete",
+      (itemId: string) => {
+        this.consoleLogger.custom(
+          "REFRESH",
+          "red",
+          "[SignalR] Delete de Item recibido:",
+          itemId,
+        );
+        this.budgetProposalItemDeleteSource.next(itemId);
       },
     );
 

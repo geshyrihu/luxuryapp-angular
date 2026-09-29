@@ -1,4 +1,3 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,13 +6,14 @@ import {
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { BaseButton } from "../base/base-button";
 import { confirmAction } from "../shared/confirm";
 
 @Component({
   selector: "iw-button-send-email",
 
-   imports: [AppIcon, LxTooltipDirective],
+  imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
@@ -39,9 +39,9 @@ export class WebButtonIconSendEmail extends BaseButton {
   );
   override severity = input<any>("info");
 
-  protected confirmSend(): void {
+  protected async confirmSend(): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.confirmMessage())) {
+    if (await confirmAction(this.confirmMessage())) {
       this.confirmed.emit();
     }
   }

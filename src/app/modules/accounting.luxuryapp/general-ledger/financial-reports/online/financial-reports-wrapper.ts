@@ -6,30 +6,30 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CobranzaOnlineStoreService } from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import type { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CobranzaOnlineStoreService } from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
+import { PresupuestoContabilidad } from "./accounting-budget/presupuesto-contabilidad";
 import { AiAgentContabilidadComponent } from "./ai-agent-contabilidad/ai-agent-contabilidad";
 import { AiAgentExplicadorComponent } from "./ai-agent-explicador/ai-agent-explicador";
 import { AiAgentComponent } from "./ai-agent/ai-agent";
-import { AnalisisCobranza } from "./collection-analysis/analisis-cobranza";
+import { ProyectosAprobadosComponent } from "./approved-projects/proyectos-aprobados";
 import { BancosInversionesComponent } from "./banks-investments/bancos-inversiones";
-import { CedulaExtraordinaria } from "./extraordinary-statement/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./budget-statement/cedula-presupuestal";
+import { FlujoEfectivo } from "./cash-flow/flujo-efectivo";
+import { AnalisisCobranza } from "./collection-analysis/analisis-cobranza";
+import { CedulaExtraordinaria } from "./extraordinary-statement/cedula-extraordinaria";
 import { EstadoPosicionFinanciera } from "./financial-position-statement/estado-posicion-financiera";
+import { ReporteFinanciero } from "./financial-report/reporte-financiero";
 import { EstadoResultadosV2 } from "./income-statement-v2/estado-resultados-v2";
 import { EstadoResultados } from "./income-statement/estado-resultados";
-import { FlujoEfectivo } from "./cash-flow/flujo-efectivo";
 import { FondoReservaComponent } from "./reserve-fund/fondo-reserva";
-import { PresupuestoContabilidad } from "./accounting-budget/presupuesto-contabilidad";
-import { ProyectosAprobadosComponent } from "./approved-projects/proyectos-aprobados";
-import { ReporteFinanciero } from "./financial-report/reporte-financiero";
 import { FinancialReportFilterStore } from "./state/financial-report-filter.store.service";
 
 const REPORT_META = [
@@ -133,7 +133,7 @@ export default class FinancialReportsWrapper {
     { id: "4", label: "P vs R" },
     { id: "5", label: "R. Financiero" },
     { id: "6", label: "Flujo Efectivo" },
-    { id: "7", label: "Dashboard Cobranza" },
+    { id: "7", label: "Cobranza" },
     { id: "8", label: "Presupuesto" },
     { id: "9", label: "Bancos e Inv." },
     { id: "10", label: "Fondo Reserva" },
@@ -187,5 +187,3 @@ export default class FinancialReportsWrapper {
     this.reportIndex.set(Number(tab.id));
   }
 }
-
-

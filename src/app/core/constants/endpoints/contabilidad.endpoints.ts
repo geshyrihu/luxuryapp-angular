@@ -329,7 +329,10 @@ export const EndpointsContabilidad = {
     byCustomerId: (customerId: string) => `budget-account-rules/${customerId}`,
   },
   BudgetProposalItems: {
-    delete: (itemId: string) => `budget-proposal/item/${itemId}`,
+    delete: (itemId: string, excludedConnectionId?: string) => {
+      const url = `budget-proposal/item/${itemId}`;
+      return excludedConnectionId ? `${url}?excludedConnectionId=${excludedConnectionId}` : url;
+    },
   },
   ContabilidadMinuta: {
     pendingList: (applicationUserId: string, status: number | null) =>

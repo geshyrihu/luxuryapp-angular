@@ -12,17 +12,17 @@
   } @if (!loading() && data(); as reporte) {
   <div class="rf-card d-none d-md-block">
     <div class="rf-wrap">
-      <table class="rf-table">
+      <table class="rf-table p-datatable-sm">
         <thead>
           <tr>
-            <th>DESCRIPCIÓN</th>
-            <th class="th-col-green">PSPTO MENSUAL</th>
+            <th class="th-col-dark">DESCRIPCIÓN</th>
+            <th class="th-col-green text-center" style="width: 6rem;">PRE-MEN</th>
             @for (col of reporte.columnas; track col) {
-            <th>{{ col }}</th>
+            <th class="th-col-dark text-center" style="width: 6rem;">{{ col }}</th>
             }
-            <th class="th-col-orange">{{ acumLabel() }}</th>
-            <th class="th-col-green">PSPTO ANUAL</th>
-            <th class="th-col-red">PSPTO RESTANTE</th>
+            <th class="th-col-dark">{{ acumLabel() }}</th>
+            <th class="th-col-green">PRE-TOTAL</th>
+            <th class="th-col-red">RESTANTE</th>
           </tr>
         </thead>
 
@@ -31,18 +31,20 @@
           (!isFilaVacia(fila)) {
           <tr [ngClass]="rowClass(fila)">
             <td
-              [ngClass]="descClass(fila)"
+              class="rf-td-descripcion--item"
               [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null"
             >
-              @if (fila.nivel === 2 || fila.nivel === 3) {
-              <span
-                class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
-                (click)="showPurchaseHistory(fila)"
-                title="Ver Historial de Compras"
-              >
-                {{ fila.descripcion }} 🛒
-              </span>
-              } @else { {{ fila.descripcion }} }
+              <div [ngClass]="fila.nivel === 1 || fila.nivel === 4 ? 'rf-td-descripcion' : 'fw-bold text-sm text-uppercase'">
+                @if (fila.nivel === 2 || fila.nivel === 3) {
+                <span
+                  class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  (click)="showPurchaseHistory(fila)"
+                  title="Ver Historial de Compras"
+                >
+                  {{ fila.descripcion }} 🛒
+                </span>
+                } @else { {{ fila.descripcion }} }
+              </div>
             </td>
             <td
               [ngClass]="numClass(fila)"
@@ -51,8 +53,18 @@
               {{ fila.pstoMensual | accountingNumber }}
             </td>
             @for (val of fila.montosEjercidos; track trackByIndex($index)) {
-            <td [ngClass]="numClass(fila)" [class.rf-neg]="val < 0">
-              {{ val | accountingNumber }}
+            <td class="p-1">
+              <div class="d-flex flex-column align-items-end justify-content-center h-full gap-1">
+                <span class="text-body-secondary text-xs">
+                  {{ fila.pstoMensual > 0 ? (fila.pstoMensual | accountingNumber) : '-' }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="val > fila.pstoMensual && fila.pstoMensual > 0"
+                >
+                  {{ val !== 0 ? (val | accountingNumber) : '-' }}
+                </span>
+              </div>
             </td>
             }
             <td
@@ -86,10 +98,19 @@
             >
               {{ reporte.granTotal.pstoMensual | accountingNumber }}
             </td>
-            @for (val of reporte.granTotal.montosEjercidos; track
-            trackByIndex($index)) {
-            <td class="rf-td-number--total" [class.rf-neg]="val < 0">
-              {{ val | accountingNumber }}
+            @for (val of reporte.granTotal.montosEjercidos; track trackByIndex($index)) {
+            <td class="p-1">
+              <div class="d-flex flex-column align-items-end justify-content-center h-full gap-1">
+                <span class="text-body-secondary text-xs">
+                  {{ reporte.granTotal.pstoMensual > 0 ? (reporte.granTotal.pstoMensual | accountingNumber) : '-' }}
+                </span>
+                <span
+                  class="text-sm fw-bold"
+                  [class.rf-neg]="val > reporte.granTotal.pstoMensual && reporte.granTotal.pstoMensual > 0"
+                >
+                  {{ val !== 0 ? (val | accountingNumber) : '-' }}
+                </span>
+              </div>
             </td>
             }
             <td

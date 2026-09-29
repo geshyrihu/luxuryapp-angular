@@ -225,6 +225,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /** Control de vista: normal, nivel1 (Mayor), nivel2 */
   viewMode = signal<"normal" | "level1" | "level2">("normal");
+  
+  /** Control de filtro de partidas (todas, finalizadas, pendientes) */
+  completionFilter = signal<"all" | "finalized" | "pending">("all");
 
   // Variables para Auditoría IA y Forecast Eliminadas (Manejadas por dialogs)
   inflationRate: number = 5;
@@ -416,6 +419,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       .subscribe((payload: any) => {
         this.handleProjectedExpenseUpdate(payload);
       });
+
+    this.signalRService.budgetProposalItemDelete$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((itemId: string) => {
+        this.handleBudgetProposalItemDelete(itemId);
+        this.customToastService.showInfo(
+          "Cuenta eliminada",
+          "Una partida fue eliminada por otro usuario",
+        );
+      });
   }
 
   /**
@@ -580,23 +593,22 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param updatedItem La partida actualizada recibida desde el servidor.
    */
   handleBudgetProposalItemUpdate(updatedItem: BudgetProposalItemDTO): void {
-    this.allProposalItems.update((items) => {
-      const index = items.findIndex((item) => item.id === updatedItem.id);
-      if (index !== -1) {
-        const newItems = [...items];
-        newItems[index] = updatedItem;
-        return newItems;
-      }
-      return items;
-    });
+    // Usamos patchItemInState para no sobreescribir la info enriquecida de Aspel con 0s, 
+    // lo cual pasaría si el endpoint de backend regresó un DTO sin Aspel (ej. FinalizeItem)
+    this.patchItemInState(updatedItem);
+    this.recalculateTotals();
+  }
 
-    const originalIndex = this.originalProposalItems.findIndex(
-      (item) => item.id === updatedItem.id,
+  /**
+   * Maneja la eliminación de una partida recibida por SignalR.
+   */
+  handleBudgetProposalItemDelete(itemId: string): void {
+    this.allProposalItems.update((items) =>
+      items.filter((i) => i.id !== itemId),
     );
-    if (originalIndex !== -1) {
-      this.originalProposalItems[originalIndex] = updatedItem;
-    }
-
+    this.originalProposalItems = this.originalProposalItems.filter(
+      (i) => i.id !== itemId,
+    );
     this.applyFilters();
     this.recalculateTotals();
   }
@@ -767,6 +779,18 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     return result;
   }
 
+  toggleCompletionFilter(mode: "all" | "finalized" | "pending"): void {
+    if (this.completionFilter() === mode) {
+      this.completionFilter.set("all");
+    } else {
+      this.completionFilter.set(mode);
+      if (mode !== "all") {
+        this.viewMode.set("normal");
+      }
+    }
+    this.applyFilters();
+  }
+
   /**
    * Filtra la lista maestra (`allProposalItems`) según el estado de los toggles `showExtraordinarios`, `showProyectos`,
    * y el modo de vista (normal, level1, level2).
@@ -786,6 +810,13 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       filteredData = filteredData.filter((p) => p.nivelCuenta === 2 && p.esFilaAgrupadora);
     } else if (mode === "normal") {
       filteredData = filteredData.filter((p) => !p.esFilaAgrupadora);
+    }
+
+    const completion = this.completionFilter();
+    if (completion === "finalized") {
+      filteredData = filteredData.filter((p) => p.esFilaAgrupadora || p.isFinalized);
+    } else if (completion === "pending") {
+      filteredData = filteredData.filter((p) => p.esFilaAgrupadora || !p.isFinalized);
     }
 
     if (!this.showExtraordinarios) {
@@ -1646,7 +1677,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(Endpoints.BudgetProposalItems.delete(item.id))
+          .onDelete(Endpoints.BudgetProposalItems.delete(item.id, this.signalRService.connectionId()))
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.
@@ -1708,11 +1739,27 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * Aplica una partida actualizada al estado local (lista maestra y copia original).
    */
   private patchItemInState(updated: BudgetProposalItemDTO): void {
+    const applySafeUpdate = (existing: BudgetProposalItemDTO) => {
+      // The backend finalize/edit endpoints do not enrich the response with Aspel data (gastoEnero, etc)
+      // or budget calculation data to keep the response fast. We must carefully only overwrite 
+      // fields that belong to the core database entity, preserving the loaded Aspel/enriched data.
+      return {
+        ...existing,
+        isFinalized: updated.isFinalized,
+        finalizedByUserName: updated.finalizedByUserName,
+        finalizedAt: updated.finalizedAt,
+        // Update proposed amount just in case this is called from a save-amount operation
+        proposedAmount: updated.proposedAmount ?? existing.proposedAmount,
+        comment: updated.comment !== undefined ? updated.comment : existing.comment,
+        providerName: updated.providerName !== undefined ? updated.providerName : existing.providerName,
+      };
+    };
+
     this.allProposalItems.update((items) => {
       const index = items.findIndex((i) => i.id === updated.id);
       if (index === -1) return items;
       const newItems = [...items];
-      newItems[index] = { ...newItems[index], ...updated };
+      newItems[index] = applySafeUpdate(newItems[index]);
       return newItems;
     });
 
@@ -1720,10 +1767,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       (i) => i.id === updated.id,
     );
     if (originalIndex !== -1) {
-      this.originalProposalItems[originalIndex] = {
-        ...this.originalProposalItems[originalIndex],
-        ...updated,
-      };
+      this.originalProposalItems[originalIndex] = applySafeUpdate(this.originalProposalItems[originalIndex]);
     }
 
     this.applyFilters();
