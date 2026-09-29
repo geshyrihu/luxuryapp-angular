@@ -2,13 +2,14 @@ import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalo
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
-import { confirmAction } from "../shared/confirm";
+import { SwalService } from "@core/services/swal.service";
 
 @Component({
   selector: "il-button-confirm",
@@ -35,6 +36,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class WebButtonLabelConfirm extends BaseButton {
+  private readonly swalService = inject(SwalService);
   protected readonly IconCatalog = AppIconCatalog;
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
@@ -46,9 +48,15 @@ export class WebButtonLabelConfirm extends BaseButton {
 
   protected async handleConfirm(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (await confirmAction(this.swalText())) {
+    if (await this.swalService.confirm({
+      title: "Confirmación",
+      text: this.swalText(),
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    })) {
       this.confirmed.emit();
     }
   }
 }
-

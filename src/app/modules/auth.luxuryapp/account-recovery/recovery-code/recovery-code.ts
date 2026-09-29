@@ -21,7 +21,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import {
   IValidateRecoveryCodeResponse,
 } from "./interfaces/validate-recovery-code.interface";
@@ -128,13 +128,13 @@ export class RecoveryCode {
     this.submitting.set(true);
     this.errorMessage.set("");
 
-    Swal.fire({
+    SwalService.show({
       title: "Procesando...",
       text: "Verificando tu código...",
       icon: "info",
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
+        SwalService.openLoadingIndicator();
       },
     });
 
@@ -154,7 +154,7 @@ export class RecoveryCode {
           return throwError(() => new Error(msg));
         }),
         finalize(() => {
-          Swal.close();
+          SwalService.closeDialog();
           this.submitting.set(false);
         }),
       )
@@ -221,4 +221,3 @@ export class RecoveryCode {
     }, 1000);
   }
 }
-

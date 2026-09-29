@@ -19,7 +19,7 @@ import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-hum
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;
@@ -180,7 +180,7 @@ export class HiringDocumentValidation implements OnInit {
   async onDeleteFile(document: CandidateHiringDocumentListItemDto | null) {
     if (!document || this.deletingId() || document.isValidated) return;
 
-    const { isConfirmed } = await Swal.fire({
+    const { isConfirmed } = await SwalService.show({
       title: "Eliminar archivo",
       text: `¿Seguro que deseas eliminar el archivo de "${document.documentTypeName}"? El documento quedará pendiente de carga.`,
       icon: "warning",
@@ -232,7 +232,7 @@ export class HiringDocumentValidation implements OnInit {
   async onReject(document: CandidateHiringDocumentListItemDto | null) {
     if (!document || this.rejectingId() || this.validatingId()) return;
 
-    const { value: notes } = await Swal.fire({
+    const { value: notes } = await SwalService.show({
       title: "Rechazar documento",
       text: document.documentTypeName,
       input: "textarea",
@@ -269,4 +269,3 @@ export class HiringDocumentValidation implements OnInit {
     }
   }
 }
-

@@ -38,7 +38,7 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { OwnerForm } from "../owner/owner-form";
 import { PropiedadesForm } from "./propiedades-form";
 
@@ -159,15 +159,15 @@ export class PropiedadesList {
 
     const allowedExtensions = /(\.xlsx|\.xls)$/i;
     if (!allowedExtensions.exec(file.name)) {
-      Swal.fire(
+      SwalService.notify(
+        "error",
         "Tipo de archivo no permitido",
         "Por favor, selecciona un archivo de Excel (.xlsx o .xls).",
-        "error",
       );
       return;
     }
 
-    Swal.fire({
+    SwalService.show({
       title: "Confirmar Importación",
       text: "Asegórate de que el archivo utiliza el formato de la plantilla descargada. óDeseas continuar?",
       icon: "info",

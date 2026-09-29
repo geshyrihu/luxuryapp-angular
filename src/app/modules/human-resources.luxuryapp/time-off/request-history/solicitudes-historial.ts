@@ -30,7 +30,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../leave-calendar/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../leave-calendar/modal-vacacion-detalle";
@@ -168,7 +168,7 @@ export class SolicitudesHistorial implements OnInit {
   }
 
   async onCancel(item: IHistorialSolicitud): Promise<void> {
-    const { value: reason } = await Swal.fire({
+    const { value: reason } = await SwalService.show({
       title: "Cancelar Solicitud",
       input: "textarea",
       inputLabel: `Motivo de cancelación para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
@@ -202,10 +202,10 @@ export class SolicitudesHistorial implements OnInit {
     requestPromise
       .then((success) => {
         if (success) {
-          Swal.fire(
+          SwalService.notify(
+            "success",
             "Cancelado",
             `La solicitud de ${item.solicitud} ha sido cancelada.`,
-            "success",
           );
           this.onSearch();
         }
@@ -358,4 +358,3 @@ export class SolicitudesHistorial implements OnInit {
     }
   }
 }
-

@@ -51,7 +51,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppTable } from "@ui/web/table/table";
 import { Subscription } from "rxjs";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import ProjectedExpensesList from "../aspel-mirror/projected-expenses-list";
 import { PurchaseHistory } from "../aspel-web-budget/purchase-history";
 import { AccountModalAdd } from "./account-modal-add";
@@ -1666,7 +1666,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param item La partida a eliminar.
    */
   deleteItem(item: BudgetProposalItemDTO): void {
-    Swal.fire({
+    SwalService.show({
       title: "Confirmar",
       text: "óEsté seguro de eliminar esta cuenta?",
       icon: "warning",
@@ -1693,7 +1693,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
                 return p;
               });
 
-              Swal.fire({
+              SwalService.show({
                 title: "Eliminado",
                 text: "El item ha sido eliminado correctamente",
                 icon: "success",

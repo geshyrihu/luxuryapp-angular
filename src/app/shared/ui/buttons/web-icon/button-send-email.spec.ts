@@ -31,8 +31,7 @@ describe('WebButtonIconSendEmail', () => {
     const confirmed = vi.fn();
     component.confirmed.subscribe(confirmed);
 
-    fixture.nativeElement.querySelector('button').click();
-    await Promise.resolve();
+    await (component as any).confirmSend();
 
     expect(confirmed).not.toHaveBeenCalled();
   });
@@ -42,8 +41,7 @@ describe('WebButtonIconSendEmail', () => {
     const confirmed = vi.fn();
     component.confirmed.subscribe(confirmed);
 
-    fixture.nativeElement.querySelector('button').click();
-    await Promise.resolve();
+    await (component as any).confirmSend();
 
     expect(confirmed).toHaveBeenCalledOnce();
   });

@@ -27,7 +27,7 @@ import {
   AppReorderableRowHandle,
   AppTable,
 } from "@ui/web/table/table";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;
@@ -259,7 +259,7 @@ export class EmployeeDocumentList implements OnInit {
     )
       return;
 
-    const { isConfirmed } = await Swal.fire({
+    const { isConfirmed } = await SwalService.show({
       title: "Eliminar documento",
       text:
         "Estas seguro de eliminar el archivo de " +
@@ -314,7 +314,7 @@ export class EmployeeDocumentList implements OnInit {
   async onReject(document: CandidateHiringDocumentListItemDto | null) {
     if (!document || this.rejectingId() || this.validatingId()) return;
 
-    const { value: notes } = await Swal.fire({
+    const { value: notes } = await SwalService.show({
       title: "Rechazar documento",
       text: document.documentTypeName,
       input: "textarea",

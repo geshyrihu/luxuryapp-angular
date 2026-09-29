@@ -32,7 +32,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 import { VacanteDetailModal } from "./vacante-detail-modal";
 import { VacanteJobDescriptionModal } from "./vacante-job-description-modal";
@@ -180,7 +180,7 @@ export class VacantesList implements OnInit {
       );
     if (!impact) return;
 
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       title: "Eliminar vacante",
       html: `Se eliminaré permanentemente la vacante y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">

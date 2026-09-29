@@ -6,6 +6,7 @@ export interface ComiteVigilancia {
   departamento: string;
   celular: string;
   email: string;
+  userName?: string | null;
   posicionComite: string;
 }
 

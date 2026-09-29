@@ -33,7 +33,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskProgram } from "../task-program";
@@ -231,7 +231,7 @@ export class TaskView implements OnInit {
   }
 
   onProgress(id: string) {
-    Swal.fire({
+    SwalService.show({
       title: "Confirmar",
       text: "Se colocaré el ticket en proceso",
       icon: "warning",
@@ -241,7 +241,7 @@ export class TaskView implements OnInit {
       confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
-      if (responseData.value) {
+      if (responseData.isConfirmed) {
         this.apiResponseS
           .onGetItem(
             Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId),

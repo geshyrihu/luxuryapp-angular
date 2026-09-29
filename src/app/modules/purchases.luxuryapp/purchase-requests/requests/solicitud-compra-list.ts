@@ -44,7 +44,7 @@ import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -309,7 +309,7 @@ export class SolicitudCompraList {
   }
 
   onAuthorizationDetail(item: any) {
-    Swal.fire({
+    SwalService.show({
       title: `Autorización ${item.folio}`,
       text: [
         `Autorizada por: ${item.autorizadaPorDisplay || "Sin registro"}`,
@@ -322,7 +322,7 @@ export class SolicitudCompraList {
   }
 
   onDesauthorize(item: any) {
-    Swal.fire({
+    SwalService.show({
       title: "Desautorizar solicitud",
       text: `La solicitud ${item.folio} volverá a estado pendiente.`,
       icon: "warning",
@@ -376,7 +376,7 @@ export class SolicitudCompraList {
   }
 
   onUnlinkPurchaseOrder(ordenCompraId: string) {
-    Swal.fire({
+    SwalService.show({
       title: "Confirmar",
       text: "óEstá seguro de que desea desvincular esta orden de compra?",
       icon: "warning",
@@ -399,5 +399,4 @@ export class SolicitudCompraList {
     });
   }
 }
-
 

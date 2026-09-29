@@ -28,7 +28,6 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "@ui/web/table/table";
-import Swal from "sweetalert2";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
@@ -419,12 +418,12 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         const motivo = textarea?.value?.trim() ?? "";
 
         if (!autorizadaPor) {
-          Swal.showValidationMessage("Selecciona quien toma la decision.");
+          SwalService.showValidationMessage("Selecciona quien toma la decision.");
           return null;
         }
 
         if (!motivo) {
-          Swal.showValidationMessage(
+          SwalService.showValidationMessage(
             "Debes indicar el motivo de no autorizacion.",
           );
           return null;

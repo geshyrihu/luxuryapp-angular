@@ -17,7 +17,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateDetail } from "./candidate-detail";
 import { CandidateForm } from "./candidate-form";
@@ -94,7 +94,7 @@ export class CandidateList implements OnInit {
     );
     if (!impact) return;
 
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       title: "Eliminar candidato",
       html: `Se eliminaré permanentemente el candidato y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">
@@ -170,7 +170,6 @@ export class CandidateList implements OnInit {
     );
   }
 }
-
 
 
 

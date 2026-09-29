@@ -28,7 +28,6 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
-import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
@@ -487,7 +486,7 @@ export class UnifiedPendingDashboard {
       );
 
       // 3. Mostrar resultado
-      Swal.fire({
+      SwalService.show({
         title: "📄 Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
@@ -515,7 +514,14 @@ export class UnifiedPendingDashboard {
 
     this.apiResponseS
       .onPost(Endpoints.Dashboard.sendExecutiveReport(customerId), {})
-      .then(() => {
+      .then((result) => {
+        if (!result) {
+          this.swalService.error(
+            "Error de Envío",
+            "No se pudo enviar el reporte. Intenta nuevamente.",
+          );
+          return;
+        }
         this.swalService.success(
           "Reporte Enviado",
           "El reporte ejecutivo semanal ha sido enviado a los administradores y gerentes.",
@@ -536,7 +542,7 @@ export class UnifiedPendingDashboard {
 
   onVisionResult(analysis: string) {
     // En el dashboard solo mostramos el resultado
-    Swal.fire({
+    SwalService.show({
       title: "🔍 Diagnóstico Visual",
       text: analysis,
       icon: "info",

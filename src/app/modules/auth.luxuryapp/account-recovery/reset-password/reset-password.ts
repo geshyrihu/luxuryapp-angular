@@ -23,7 +23,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 interface IResetPasswordForm {
   newPassword: FormControl<string>;
@@ -240,13 +240,13 @@ export class ResetPassword implements OnInit, OnDestroy {
     this.submitting.set(true);
     this.errorMessage.set("");
 
-    Swal.fire({
+    SwalService.show({
       title: "Procesando...",
       text: "Actualizando tu contraseña...",
       icon: "info",
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
+        SwalService.openLoadingIndicator();
       },
     });
 
@@ -266,13 +266,13 @@ export class ResetPassword implements OnInit, OnDestroy {
           return throwError(() => new Error(msg));
         }),
         finalize(() => {
-          Swal.close();
+          SwalService.closeDialog();
           this.submitting.set(false);
         }),
       )
       .subscribe({
         next: () => {
-          Swal.fire({
+          SwalService.show({
             icon: "success",
             title: "Éxito",
             text: "Tu contraseña ha sido actualizada. Ahora puedes iniciar sesión.",

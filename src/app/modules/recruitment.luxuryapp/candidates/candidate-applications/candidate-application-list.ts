@@ -16,7 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { candidateProcessStageLabel } from "../../recruitment-shared/candidate-stage-labels";
 import { CandidateApplicationForm } from "./candidate-application-form";
 import { CandidateApplicationListDesktop } from "./desktop/candidate-application-list-desktop";
@@ -109,7 +109,7 @@ export class CandidateApplicationList implements OnInit {
   }
 
   async onCompleteHiring(id: string) {
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       title: "Finalizar contratación",
       text: "Esta acción marcará el proceso como Contratado. El alta del empleado debe estar previamente en proceso.",
       icon: SweetAlertIcon.Question,
@@ -127,5 +127,4 @@ export class CandidateApplicationList implements OnInit {
     if (response) this.onLoadData();
   }
 }
-
 

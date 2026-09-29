@@ -26,7 +26,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { CandidateRecruitmentAgendaItem } from "./candidates/candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
@@ -160,7 +160,7 @@ export class RecruitmentAgendaList implements OnInit {
   async onCancelInterview(item: CandidateRecruitmentAgendaItem): Promise<void> {
     if (!this.canCancelInterview(item)) return;
 
-    const { value: comment } = await Swal.fire({
+    const { value: comment } = await SwalService.show({
       title: "Cancelar entrevista",
       text: `Se cancelara la entrevista de ${item.candidateName} para la vacante ${item.vacancyFolio}. Se notificara a las partes involucradas.`,
       icon: SweetAlertIcon.Warning,
@@ -193,5 +193,4 @@ export class RecruitmentAgendaList implements OnInit {
     return "";
   }
 }
-
 

@@ -1,13 +1,13 @@
 import { inject, Injectable } from "@angular/core";
 import { AlertController } from "@ionic/angular";
-import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import { PlatformService } from "@core/services/platform.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 @Injectable({ providedIn: "root" })
 export class ConfirmService {
   private readonly platform = inject(PlatformService);
   private readonly alertCtrl = inject(AlertController);
+  private readonly swalService = inject(SwalService);
 
   async confirm(
     message: string,
@@ -19,17 +19,15 @@ export class ConfirmService {
   }
 
   private async confirmWeb(message: string, header: string): Promise<boolean> {
-    const result = await Swal.fire({
+    return this.swalService.confirm({
       title: header,
       text: message,
-      icon: SweetAlertIcon.Question,
+      icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si, eliminar",
       cancelButtonText: "Cancelar",
       reverseButtons: true,
-      customClass: { container: "my-swal-container" },
     });
-    return result.isConfirmed;
   }
 
   private confirmMobile(message: string, header: string): Promise<boolean> {
@@ -55,4 +53,3 @@ export class ConfirmService {
     });
   }
 }
-

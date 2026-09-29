@@ -69,7 +69,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { PrintService } from "@core/services/print.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
@@ -557,7 +557,7 @@ export class TaskList implements OnInit {
   }
 
   onProgress(id: string) {
-    Swal.fire({
+    SwalService.show({
       title: "Confirmar",
       text: "Se colocará el ticket en proceso",
       icon: "warning",
@@ -567,7 +567,7 @@ export class TaskList implements OnInit {
       confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
-      if (responseData.value) {
+      if (responseData.isConfirmed) {
         this.apiS
           .onGetItem(
             Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId),

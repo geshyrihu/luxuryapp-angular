@@ -16,7 +16,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { CandidateApplicationForm } from "../candidates/candidate-applications/candidate-application-form";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import {
   CandidateProcessVacancyDetail,
   CandidateProcessVacancyItem,
@@ -117,7 +117,7 @@ export class VacanteCandidatesModal implements OnInit {
   async cancelCandidate(item: CandidateProcessVacancyItem): Promise<void> {
     if (!this.canManage()) return;
 
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       title: "Cancelar proceso",
       text: `Indica por qué se cancela el proceso de ${item.candidateName}.`,
       input: "textarea",

@@ -29,7 +29,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";
@@ -118,7 +118,7 @@ export class TicketLegalLista implements OnInit {
       options[c.value] = c.label;
     });
 
-    const { value: newCustomerId } = await Swal.fire({
+    const { value: newCustomerId } = await SwalService.show({
       title: "Reasignar Cliente",
       text: "Se corregirá el cliente asignado a este ticket.",
       input: "select",
@@ -318,4 +318,3 @@ export class TicketLegalLista implements OnInit {
     );
   }
 }
-

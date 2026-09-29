@@ -9,7 +9,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 
 @Component({
@@ -79,7 +79,7 @@ export class EmployeeOnboardingChecklist implements OnInit {
   }
 
   async onEditNotes(task: EmployeeOnboardingChecklistItemDTO): Promise<void> {
-    const { value: notes } = await Swal.fire({
+    const { value: notes } = await SwalService.show({
       title: `Notas de "${task.optionName}"`,
       input: "textarea",
       inputLabel: "Observaciones de la tarea:",
@@ -109,4 +109,3 @@ export class EmployeeOnboardingChecklist implements OnInit {
     }
   }
 }
-

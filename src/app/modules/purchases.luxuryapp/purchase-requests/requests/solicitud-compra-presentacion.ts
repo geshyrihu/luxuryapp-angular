@@ -21,7 +21,6 @@ import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppIcon as AppIconCatalog } from "@ui/shared/app-icon/app-icon.catalog";
-import Swal from "sweetalert2";
 
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -830,12 +829,12 @@ export class SolicitudCompraPresentacion {
         const motivo = textarea?.value?.trim() ?? "";
 
         if (!selectedAutorizadaPor) {
-          Swal.showValidationMessage("Selecciona quien toma la decision.");
+          SwalService.showValidationMessage("Selecciona quien toma la decision.");
           return null;
         }
 
         if (!motivo) {
-          Swal.showValidationMessage(
+          SwalService.showValidationMessage(
             "Debes indicar el motivo de no autorizacion.",
           );
           return null;

@@ -34,7 +34,6 @@ import {
   sparkles,
   ticketOutline,
 } from "ionicons/icons";
-import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 @Component({
@@ -304,7 +303,7 @@ export class UnifiedPendingDashboardMobile {
       );
 
       // 3. Mostrar resultado
-      Swal.fire({
+      SwalService.show({
         title: "✨ Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",

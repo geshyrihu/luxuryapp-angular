@@ -46,7 +46,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { CandidateCvUpload } from "../../recruitment-shared/candidate-cv-upload";
 import { CandidatePhotoUpload } from "../../recruitment-shared/candidate-photo-upload";
 import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
@@ -343,7 +343,7 @@ export class CandidateForm implements OnInit {
       case DuplicateMatchType.Employee:
       case DuplicateMatchType.Candidate:
         this.duplicateBlockSave.set(true);
-        Swal.fire({
+        SwalService.show({
           icon: "warning",
           title: "Registro duplicado",
           text: data.message,
@@ -366,7 +366,7 @@ export class CandidateForm implements OnInit {
       return;
     }
 
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       icon: "question",
       title: "Usuario encontrado",
       text: "Hemos encontrado un usuario registrado con este correo. ¿Deseas autocompletar el formulario con sus datos?",
@@ -586,6 +586,5 @@ export class CandidateForm implements OnInit {
     }
   }
 }
-
 
 

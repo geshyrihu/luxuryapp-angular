@@ -24,7 +24,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 
 interface IRecoverPasswordForm {
   email: FormControl<string>;
@@ -80,13 +80,13 @@ export class RecoverPassword implements OnInit, OnDestroy {
     this.errorMessage.set("");
     this.successMessage.set("");
 
-    Swal.fire({
+    SwalService.show({
       title: "Procesando...",
       text: "Por favor, espera.",
       icon: "info",
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
+        SwalService.openLoadingIndicator();
       },
     });
 
@@ -105,7 +105,7 @@ export class RecoverPassword implements OnInit, OnDestroy {
           return throwError(() => new Error(msg));
         }),
         finalize(() => {
-          Swal.close();
+          SwalService.closeDialog();
           this.submitting.set(false);
         }),
       )

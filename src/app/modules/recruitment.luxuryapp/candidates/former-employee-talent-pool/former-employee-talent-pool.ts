@@ -28,7 +28,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateDetail } from "../candidate-core/candidate-detail";
 
@@ -163,7 +163,7 @@ export class FormerEmployeeTalentPool implements OnInit {
   }
 
   async onPostulate(item: FormerEmployeeTalentPoolItem): Promise<void> {
-    const confirmation = await Swal.fire({
+    const confirmation = await SwalService.show({
       title: "Postular a vacante",
       text: `¿Deseas postular a ${item.fullName} para reingreso? Se creará o reutilizará su ficha de candidato con la información de su expediente anterior.`,
       icon: SweetAlertIcon.Question,
@@ -217,6 +217,5 @@ export class FormerEmployeeTalentPool implements OnInit {
     return result.candidateId;
   }
 }
-
 
 

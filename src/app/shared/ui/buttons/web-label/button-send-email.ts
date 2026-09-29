@@ -2,13 +2,14 @@ import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalo
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
-import { confirmAction } from "../shared/confirm";
+import { SwalService } from "@core/services/swal.service";
 
 @Component({
   selector: "il-button-send-email",
@@ -31,6 +32,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class WebButtonLabelSendEmail extends BaseButton {
+  private readonly swalService = inject(SwalService);
   protected readonly IconCatalog = AppIconCatalog;
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
@@ -42,7 +44,14 @@ export class WebButtonLabelSendEmail extends BaseButton {
 
   protected async confirmSend(): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (await confirmAction(this.confirmMessage())) {
+    if (await this.swalService.confirm({
+      title: "Confirmación",
+      text: this.confirmMessage(),
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    })) {
       this.confirmed.emit();
     }
   }

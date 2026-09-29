@@ -19,7 +19,7 @@ import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
-import Swal from "sweetalert2";
+import { SwalService } from "@core/services/swal.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { AuthService } from "@core/auth/services/auth.service";
@@ -221,7 +221,7 @@ export class SolicitudAltaList implements OnInit {
     const sendButtonText = item.isDocumentationSent
       ? "Confirmar Reenvío"
       : "Confirmar Envío";
-    const result = await Swal.fire({
+    const result = await SwalService.show({
       title: "Expediente de alta",
       text: "Puedes enviarlo por correo o revisar antes la previsualización del PDF unificado.",
       icon: "question",
@@ -303,7 +303,6 @@ export class SolicitudAltaList implements OnInit {
     return item.status === "Cancelado";
   }
 }
-
 
 
 

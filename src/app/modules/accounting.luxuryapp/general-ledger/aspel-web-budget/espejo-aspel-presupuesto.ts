@@ -26,7 +26,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
-import Swal from "sweetalert2";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
@@ -490,7 +489,7 @@ export class PresupuestoAspelEjercicioFiscal {
       text: "El asistente esta revisando los numeros. Esto puede tardar unos segundos.",
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
+        SwalService.openLoadingIndicator();
       },
     });
 

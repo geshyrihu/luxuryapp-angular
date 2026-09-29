@@ -1,1 +1,2 @@
-export { confirmAction } from "./confirm";export { openPdf } from "./pdf";export type { TrackingEvent } from "./tracking";
+export { openPdf } from "./pdf";
+export type { TrackingEvent } from "./tracking";
