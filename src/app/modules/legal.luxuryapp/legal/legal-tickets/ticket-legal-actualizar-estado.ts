@@ -26,19 +26,40 @@ export class TicketLegalActualizarEstado implements OnInit {
   statusControl = new FormControl<number>(0);
   id = this.config.data.id;
 
-  readonly statusOptions = [
-    { label: "Pendiente", value: 0 },
-    { label: "En Proceso", value: 1 },
-    { label: "Concluido", value: 2 },
-    { label: "Cancelado", value: 4 },
-  ];
+  statusOptions: { label: string; value: number }[] = [];
 
   ngOnInit() {
     this.apiResponseS
       .onGetItem(Endpoints.Tasks.getStatus(this.id))
       .then((result: any) => {
-        this.statusControl.setValue(result);
+        const currentStatus = Number(result);
+        this.statusControl.setValue(currentStatus);
+        this.statusOptions = this.getAllowedStatusOptions(currentStatus);
       });
+  }
+
+  private getAllowedStatusOptions(currentStatus: number) {
+    // Must match TaskAppService.IsValidStatusTransition and GanttStatus.
+    const allowedTransitions: Record<number, number[]> = {
+      0: [0, 1, 2, 4],
+      1: [1, 2, 4],
+      2: [2, 3],
+      3: [3, 1, 4],
+      4: [4],
+      5: [5],
+    };
+    const statusLabels: Record<number, string> = {
+      0: "No Iniciada",
+      1: "En Proceso",
+      2: "Concluido",
+      3: "Reabierta",
+      4: "Cancelada",
+      5: "En Espera",
+    };
+
+    return (allowedTransitions[currentStatus] ?? [currentStatus])
+      .filter((status) => statusLabels[status] !== undefined)
+      .map((status) => ({ label: statusLabels[status], value: status }));
   }
 
   onSubmit() {
@@ -56,4 +77,3 @@ export class TicketLegalActualizarEstado implements OnInit {
       });
   }
 }
-
