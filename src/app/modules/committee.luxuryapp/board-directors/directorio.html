@@ -18,7 +18,8 @@
   <div class="committee-directory">
     @for (person of items(); track $index) {
     <article
-      class="committee-contact committee-contact--clickable"
+      class="committee-contact"
+      [class.committee-contact--clickable]="!person.isLocation"
       (click)="openContact(person)"
     >
       <div class="committee-contact__avatar">
@@ -35,12 +36,38 @@
       <div class="committee-contact__body">
         @if (person.firstName || person.lastName) {
         <h4 class="committee-contact__name">
-          {{ person.firstName }} {{ person.lastName }}
+          {{ person.firstName }} @if (!person.isLocation) { {{ person.lastName }} }
         </h4>
         }
-        @if (person.roleName) {
+        @if (person.roleName && !person.isLocation) {
         <span class="committee-contact__role">{{ person.roleName }}</span>
         }
+        
+        @if (person.isLocation) {
+        <div class="committee-contact__location-info">
+          @if (person.phoneNumber) {
+          <div class="committee-contact__info-line">
+            <app-icon icon="material-symbols-light:call" /> {{ person.phoneNumber }}
+          </div>
+          }
+          @if (person.phoneTwo) {
+          <div class="committee-contact__info-line">
+            <app-icon icon="material-symbols-light:call" /> {{ person.phoneTwo }}
+          </div>
+          }
+          @if (person.extensionOne) {
+          <div class="committee-contact__info-line">
+            <app-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionOne }}
+          </div>
+          }
+          @if (person.extensionTwo) {
+          <div class="committee-contact__info-line">
+            <app-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionTwo }}
+          </div>
+          }
+        </div>
+        }
+
         @if (person.isOnShift !== null) {
         <div class="committee-contact__shift">
           <!-- TODO: Revisar la regla de negocio que determina el isOnShift desde el backend antes de reactivarlo. -->
@@ -53,7 +80,9 @@
         </div>
         }
       </div>
+      @if (!person.isLocation) {
       <app-icon icon="material-symbols-light:chevron-right" class="committee-contact__chevron" />
+      }
     </article>
     }
   </div>

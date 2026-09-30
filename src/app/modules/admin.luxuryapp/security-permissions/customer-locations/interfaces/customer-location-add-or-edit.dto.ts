@@ -5,8 +5,10 @@ export interface CustomerLocationAddOrEditDto {
   customerId: string;
   name: string;
   locationType: CustomerLocationType;
-  phoneOne: string;
+  phoneOne?: string;
   phoneTwo?: string;
+  extensionOne?: string;
+  extensionTwo?: string;
   contactName?: string;
   notes?: string;
   sortOrder?: number;

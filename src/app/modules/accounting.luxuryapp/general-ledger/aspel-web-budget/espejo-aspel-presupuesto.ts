@@ -1,3 +1,4 @@
+import { IonItem, IonLabel } from "@ionic/angular";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -49,6 +50,8 @@ import { PurchaseHistory } from "./purchase-history";
 @Component({
   selector: "app-presupuesto-aspel-ejercicio-fiscal",
   imports: [
+    IonItem,
+    IonLabel,
     CommonModule,
     FormsModule,
     AppTable,
@@ -149,6 +152,7 @@ export class PresupuestoAspelEjercicioFiscal {
     return aggregated.filter((cuenta) => cuenta.nivel_Cuenta === level);
   });
 
+  cuentasMobile = computed(() => this.cuentas().filter((c) => !c.esFilaAgrupadora));
   globalFilterFields = signal<string[]>([]);
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

@@ -56,8 +56,8 @@ Contenedor principal de la vista de presupuesto.
         <!-- =========================
             BODY: Filas de datos
             ========================= -->
-        @if (!sharedS.errorMensaje(); as cuenta) {
         <ng-template #body let-cuenta>
+        @if (!sharedS.errorMensaje()) {
           <tr
             [class.fila-nivel-1]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 1 && cuenta.esFilaAgrupadora"
             [class.fila-nivel-2-agrupadora]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 2 && cuenta.esFilaAgrupadora"
@@ -199,14 +199,14 @@ Contenedor principal de la vista de presupuesto.
             </td>
             }
           </tr>
-        </ng-template>
         }
+        </ng-template>
 
         <!-- =========================
             FOOTER: Totales
             ========================= -->
-        @if (!sharedS.errorMensaje()) {
         <ng-template #footer>
+        @if (!sharedS.errorMensaje()) {
           @if (cuentas() && cuentas().length > 0) {
           <tr>
             <td pFrozenColumn class="th-width-250 text-end fw-bold">
@@ -293,21 +293,21 @@ Contenedor principal de la vista de presupuesto.
             </td>
           </tr>
           }
-        </ng-template>
         }
+        </ng-template>
         <!-- =========================
             EMPTY MESSAGE: Sin datos
             ========================= -->
-        @if (!sharedS.errorMensaje()) {
         <ng-template #emptymessage>
+        @if (!sharedS.errorMensaje()) {
           <tr>
             <td [attr.colspan]="8 + months.length">
               No se encontraron cuentas para mostrar para el periodo
               seleccionado.
             </td>
           </tr>
-        </ng-template>
         }
+        </ng-template>
       </app-table>
     </div>
   </div>
@@ -318,60 +318,44 @@ Contenedor principal de la vista de presupuesto.
   <div class="d-flex d-md-none flex-column flex-fill min-h-0">
     <div class="rf-card p-3 flex-fill d-flex flex-column min-h-0">
       <app-data-view-mobile
-        [data]="cuentas()"
+        [data]="cuentasMobile()"
         [globalFilterFields]="globalFilterFields()"
         [showAdd]="false"
         [loading]="loading"
       >
         <ng-template #listItemTemplate let-cuenta>
-          <div
-            class="w-full d-flex flex-column"
-            (click)="showPurchaseHistory(cuenta)"
-          >
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <span class="text-sm fw-bold text-body"
-                >{{ cuenta.codigo_Cuenta }}</span
-              >
-              @if (cuenta.esFilaAgrupadora) {
-              <lx-tag value="Agrupadora" severity="info" class="text-xs px-2" />
-              }
-            </div>
-
-            <div class="text-sm text-body-secondary mb-2">
-              {{ cuenta.descripcion_Cuenta }}
-            </div>
-
-            <div class="row text-xs bg-body-tertiary p-2 rounded g-4">
-              <div class="col-6 d-flex flex-column mb-1">
-                <span class="fw-bold text-green-700">Presupuesto</span>
-                <span
-                  >{{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) |
-                  number:'1.0-0' }}</span
-                >
+          <ion-item button detail="true" (click)="showPurchaseHistory(cuenta)" class="w-100">
+            <ion-label class="ion-text-wrap w-100">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-sm fw-bold text-body">{{ cuenta.codigo_Cuenta }}</span>
+                @if (cuenta.esFilaAgrupadora) {
+                <lx-tag value="Agrupadora" severity="info" class="text-xs px-2" />
+                }
               </div>
-              <div class="col-6 d-flex flex-column mb-1">
-                <span class="fw-bold text-blue-700">Gasto</span>
-                <span
-                  >{{ getSumaGastoMesesVisiblesCuenta(cuenta) | number:'1.0-0'
-                  }}</span
-                >
+              
+              <div class="text-sm text-body-secondary mb-2" style="white-space: normal;">
+                {{ cuenta.descripcion_Cuenta }}
               </div>
-              <div
-                class="col-12 border-top-1 border pt-1 mt-1 d-flex justify-content-between align-items-center"
-              >
-                <span class="fw-bold">Restante:</span>
-                @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
-                getSumaGastoMesesVisiblesCuenta(cuenta);
-                <span
-                  [class.text-red-700]="restante < 0"
-                  [class.text-green-700]="restante >= 0"
-                  class="fw-bold"
-                >
-                  {{ restante | number:'1.0-0' }}
-                </span>
+              
+              <div class="row text-xs bg-body-tertiary p-2 rounded g-4 mt-2 w-100 m-0">
+                <div class="col-6 d-flex flex-column mb-1 p-0 pe-2">
+                  <span class="fw-bold text-green-700">Presupuesto</span>
+                  <span>{{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) | number:"1.0-0" }}</span>
+                </div>
+                <div class="col-6 d-flex flex-column mb-1 p-0 ps-2">
+                  <span class="fw-bold text-blue-700">Gasto</span>
+                  <span>{{ getSumaGastoMesesVisiblesCuenta(cuenta) | number:"1.0-0" }}</span>
+                </div>
+                <div class="col-12 border-top-1 border pt-1 mt-1 d-flex justify-content-between align-items-center p-0">
+                  <span class="fw-bold">Restante:</span>
+                  @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) - getSumaGastoMesesVisiblesCuenta(cuenta);
+                  <span [class.text-red-700]="restante < 0" [class.text-green-700]="restante >= 0" class="fw-bold">
+                    {{ restante | number:"1.0-0" }}
+                  </span>
+                </div>
               </div>
-            </div>
-          </div>
+            </ion-label>
+          </ion-item>
         </ng-template>
       </app-data-view-mobile>
     </div>

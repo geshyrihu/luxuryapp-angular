@@ -70,6 +70,8 @@ export class CommitteeDirectorio implements OnInit {
 
   /** Abre el detalle de contacto (teléfono, correo, horario). */
   openContact(person: CommitteeDirectorioDTO): void {
+    if (person.isLocation) return;
+    
     this.dialogS.openDialogCustom(DirectorioContactDetail, {
       title: `${person.firstName ?? ""} ${person.lastName ?? ""}`.trim(),
       size: DialogSize.md,

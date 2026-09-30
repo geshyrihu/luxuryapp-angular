@@ -1,4 +1,4 @@
-<div class="d-flex flex-column gap-4">
+�<div class="d-flex flex-column gap-4">
   @if (loading()) {
   <lx-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
@@ -182,8 +182,8 @@
           </tr>
         </ng-template>
 
-        @if (reporte.totalGeneral; as total) {
         <ng-template #footer>
+          @if (reporte.totalGeneral; as total) {
           <tr class="bg-body-secondary text-body border-top border-2 border-primary">
             <td class="rf-td-descripcion fw-bold">TOTAL GENERAL</td>
             <td class="rf-td-number--total text-green-600 fw-bold">
@@ -219,8 +219,8 @@
               {{ total.presupuestoAnual | number:'1.0-0' }}
             </td>
           </tr>
-        </ng-template>
         }
+        </ng-template>
 
         <ng-template #emptymessage>
           <tr>
@@ -243,3 +243,4 @@
   </div>
   }
 </div>
+

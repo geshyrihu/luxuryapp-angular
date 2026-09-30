@@ -24,17 +24,16 @@ export class DirectorioContactDetail {
 
   readonly person = this.config.data?.person as CommitteeDirectorioDTO;
 
-  /** Solo dígitos del teléfono, para tel:/wa.me. */
-  readonly digits = (this.person?.phoneNumber ?? "").replace(/\D/g, "");
-
-  call(): void {
-    if (this.digits) window.location.href = "tel:" + this.digits;
+  call(phone: string): void {
+    const digits = phone.replace(/\D/g, "");
+    if (digits) window.location.href = "tel:" + digits;
   }
 
-  whatsapp(): void {
-    if (!this.digits) return;
+  whatsapp(phone: string): void {
+    const digits = phone.replace(/\D/g, "");
+    if (!digits) return;
     // MX: si es un móvil de 10 dígitos, anteponemos el código de país 52.
-    const num = this.digits.length === 10 ? "52" + this.digits : this.digits;
+    const num = digits.length === 10 ? "52" + digits : digits;
     window.open("https://wa.me/" + num, "_blank", "noopener");
   }
 

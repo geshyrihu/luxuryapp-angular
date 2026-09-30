@@ -110,6 +110,10 @@ export class App implements OnInit {
     if (permission === "default" && !dismissed) {
       // Esperar 5 segundos antes de mostrar el toast (menos intrusivo)
       setTimeout(() => {
+        // Evitar pedir notificaciones en modo comit\u00E9
+        if (this.router.url.startsWith("/committee")) {
+          return;
+        }
         this.showNotificationPrompt();
       }, 5000);
     } else if (permission === "granted") {

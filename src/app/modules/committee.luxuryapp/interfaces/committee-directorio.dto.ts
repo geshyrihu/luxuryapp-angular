@@ -10,6 +10,10 @@ export interface CommitteeDirectorioDTO {
   lastName: string | null;
   roleName: string | null;
   phoneNumber: string | null;
+  phoneTwo: string | null;
+  extensionOne: string | null;
+  extensionTwo: string | null;
+  isLocation: boolean;
   email: string | null;
   sortOrder: number;
   groupName: string | null;

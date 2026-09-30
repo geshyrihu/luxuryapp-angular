@@ -20,6 +20,7 @@ import { AiAgentContabilidadComponent } from "./ai-agent-contabilidad/ai-agent-c
 import { AiAgentExplicadorComponent } from "./ai-agent-explicador/ai-agent-explicador";
 import { AiAgentComponent } from "./ai-agent/ai-agent";
 import { ProyectosAprobadosComponent } from "./approved-projects/proyectos-aprobados";
+import { ResultadosExtraordinarios } from "./extraordinary-results/resultados-extraordinarios";
 import { BancosInversionesComponent } from "./banks-investments/bancos-inversiones";
 import { CedulaPresupuestal } from "./budget-statement/cedula-presupuestal";
 import { FlujoEfectivo } from "./cash-flow/flujo-efectivo";
@@ -85,7 +86,12 @@ const REPORT_META = [
   {
     title: "Proyectos Aprobados",
     description:
-      "Seguimiento de presupuesto y ejecución de proyectos aprobados.",
+      "Seguimiento de presupuesto y ejecucin de proyectos aprobados.",
+  },
+  {
+    title: "Resultados Extraordinarios",
+    description:
+      "Resultados exclusivos de cuotas extraordinarias y mejoras o proyectos.",
   },
 ] as const;
 
@@ -109,6 +115,7 @@ const REPORT_META = [
     BancosInversionesComponent,
     FondoReservaComponent,
     ProyectosAprobadosComponent,
+    ResultadosExtraordinarios,
     AiAgentComponent,
     AiAgentContabilidadComponent,
     AiAgentExplicadorComponent,
@@ -127,17 +134,18 @@ export default class FinancialReportsWrapper {
 
   reportTabs = signal<TabItem[]>([
     { id: "0", label: "EPF" },
-    { id: "1", label: "E. Resultados" },
+    // { id: "1", label: "E. Resultados" },
     { id: "2", label: "E. Resultados V2" },
     { id: "3", label: "C. Extraordinaria" },
     { id: "4", label: "P vs R" },
     { id: "5", label: "R. Financiero" },
     { id: "6", label: "Flujo Efectivo" },
     { id: "7", label: "Cobranza" },
-    { id: "8", label: "Presupuesto" },
-    { id: "9", label: "Bancos e Inv." },
-    { id: "10", label: "Fondo Reserva" },
-    { id: "11", label: "Proyectos" },
+    // { id: "8", label: "Presupuesto" },
+    // { id: "9", label: "Bancos e Inv." },
+    // { id: "10", label: "Fondo Reserva" },
+    // { id: "11", label: "Proyectos" },
+    { id: "12", label: "R. Extraordinarios V2" },
   ]);
 
   readonly activeReportTitle = computed(

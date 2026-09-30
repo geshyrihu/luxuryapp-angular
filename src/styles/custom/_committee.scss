@@ -1338,3 +1338,19 @@
   }
 }
 
+
+.committee-contact__location-info {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.committee-contact__info-line {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--ds-font-size-help);
+  color: var(--ds-text-secondary);
+  app-icon { font-size: 1.15rem; }
+}

@@ -78,6 +78,7 @@
                   size="small"
                   (clicked)="refreshReports()"
                 />
+                <!--
                 <il-button
                   [iconClass]="isPreparing() ? 'material-symbols-light:progress-activity pi-spinner' : 'material-symbols-light:picture-as-pdf'"
                   [label]="isPreparing() ? 'Generando...' : 'PDF'"
@@ -120,6 +121,7 @@
                   [disabled]="!clienteUrl()"
                   (clicked)="openClienteView()"
                 />
+                -->
               </div>
             </div>
           </div>
@@ -141,9 +143,11 @@
         <div tab="0" class="p-3 pt-4">
           <app-estado-posicion-financiera />
         </div>
+        <!--
         <div tab="1" class="p-3 pt-4">
           <app-estado-resultados />
         </div>
+        -->
         <div tab="2" class="p-3 pt-4">
           <app-estado-resultados-v2 />
         </div>
@@ -162,6 +166,7 @@
         <div tab="7" class="p-3 pt-4">
           <app-analisis-cobranza />
         </div>
+        <!--
         <div tab="8" class="p-3 pt-4">
           <app-presupuesto-contabilidad />
         </div>
@@ -171,8 +176,14 @@
         <div tab="10" class="p-3 pt-4">
           <app-fondo-reserva />
         </div>
+        -->
+        <!--
         <div tab="11" class="p-3 pt-4">
           <app-proyectos-aprobados />
+        </div>
+        -->
+        <div tab="12" class="p-3 pt-4">
+          <app-resultados-extraordinarios />
         </div>
       </lx-tabs>
     </div>

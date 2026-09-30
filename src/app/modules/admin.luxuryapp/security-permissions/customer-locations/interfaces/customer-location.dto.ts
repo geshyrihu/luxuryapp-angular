@@ -7,6 +7,8 @@ export interface CustomerLocationDto {
   locationType: CustomerLocationType;
   phoneOne: string;
   phoneTwo: string;
+  extensionOne: string;
+  extensionTwo: string;
   contactName: string;
   notes: string;
   sortOrder: number;

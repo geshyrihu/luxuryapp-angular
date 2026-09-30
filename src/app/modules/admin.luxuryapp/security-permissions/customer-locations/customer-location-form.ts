@@ -67,12 +67,17 @@ export class CustomerLocationForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    phoneOne: new FormControl<string>("", {
-      nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(15)],
+    phoneOne: new FormControl<string | null>(null, {
+      validators: [Validators.maxLength(15)],
     }),
     phoneTwo: new FormControl<string | null>(null, {
       validators: [Validators.maxLength(15)],
+    }),
+    extensionOne: new FormControl<string | null>(null, {
+      validators: [Validators.maxLength(10)],
+    }),
+    extensionTwo: new FormControl<string | null>(null, {
+      validators: [Validators.maxLength(10)],
     }),
     contactName: new FormControl<string | null>(null, {
       validators: [Validators.maxLength(100)],
@@ -113,8 +118,6 @@ export class CustomerLocationForm implements OnInit {
 
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
 
     const payload = this.form.getRawValue() as CustomerLocationAddOrEditDto;
     const endpoint = !this.id

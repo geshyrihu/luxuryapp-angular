@@ -40,7 +40,6 @@
             [control]="form.controls.phoneOne"
             label="Tél. 1"
             placeholder="teléfono"
-            [required]="true"
             customMask="(00) 0000-0000"
           />
         </div>
@@ -51,6 +50,22 @@
             label="Tél. 2"
             placeholder="teléfono"
             customMask="(00) 0000-0000"
+          />
+        </div>
+
+        <div class="field col-12 col-md-6">
+          <custom-input-text-signal
+            [control]="form.controls.extensionOne"
+            label="Extensión 1"
+            placeholder="Ej: 4005"
+          />
+        </div>
+
+        <div class="field col-12 col-md-6">
+          <custom-input-text-signal
+            [control]="form.controls.extensionTwo"
+            label="Extensión 2"
+            placeholder="Ej: 4002"
           />
         </div>
 

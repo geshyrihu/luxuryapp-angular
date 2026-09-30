@@ -64,7 +64,7 @@ type EstadoResultadosRow =
     };
 
 @Component({
-  selector: "app-estado-resultados-v2",
+  selector: "app-resultados-extraordinarios",
   imports: [
     AppIcon,
     FormsModule,
@@ -74,9 +74,9 @@ type EstadoResultadosRow =
     AccountingNumberPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./estado-resultados-v2.html",
+  templateUrl: "./resultados-extraordinarios.html",
 })
-export class EstadoResultadosV2 {
+export class ResultadosExtraordinarios {
   private apiS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   public filterS = inject(FinancialReportFilterStore);
@@ -111,27 +111,9 @@ export class EstadoResultadosV2 {
       const destino = esIngreso ? ingRows : gasRows;
 
       for (const mayor of clas.cuentasMayor ?? []) {
-        if (
-          mayor.numeroCuenta === "400-000-000" ||
-          mayor.numeroCuenta === "600-000-000" ||
-          mayor.numeroCuenta === "402-000-000" ||
-          mayor.numeroCuenta === "606-000-000"
-        ) {
+        if (mayor.numeroCuenta !== "402-000-000" && mayor.numeroCuenta !== "606-000-000") {
           continue;
         }
-
-        if (esIngreso && mayor.numeroCuenta === "401-000-000") {
-          const groupRow = this.createRow("group", mayor, wr, mes);
-          destino.push(groupRow);
-
-          for (const child of this.flatten401Children(mayor, wr, mes)) {
-            destino.push(child);
-            totIng = this.addTotals(totIng, child);
-          }
-
-          continue;
-        }
-
         const row = this.createRow("item", mayor, wr, mes);
         if (!this.hasVisibleValues(row)) {
           continue;
@@ -144,22 +126,22 @@ export class EstadoResultadosV2 {
       }
     }
 
-    result.push({ tipo: "header", descripcion: "INGRESOS" });
+    result.push({ tipo: "header", descripcion: "INGRESOS EXTRAORDINARIOS" });
     result.push(...ingRows);
     result.push({
       tipo: "total-ingresos",
-      descripcion: "TOTAL DE INGRESOS",
+      descripcion: "TOTAL DE INGRESOS EXTRAORDINARIOS",
       mes1: totIng[0],
       mes2: totIng[1],
       mes3: totIng[2],
       acum: totIng[3],
     });
 
-    result.push({ tipo: "header", descripcion: "GASTOS GENERALES" });
+    result.push({ tipo: "header", descripcion: "GASTOS EXTRAORDINARIOS" });
     result.push(...gasRows);
     result.push({
       tipo: "total-gastos",
-      descripcion: "TOTAL DE GASTOS GENERALES",
+      descripcion: "TOTAL DE GASTOS EXTRAORDINARIOS",
       mes1: totGas[0],
       mes2: totGas[1],
       mes3: totGas[2],
@@ -203,37 +185,11 @@ export class EstadoResultadosV2 {
 
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set("Estado de Resultados V2");
+      this.filterS.currentReportName.set("Resultados Extraordinarios");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
 
     this.loading.set(false);
-  }
-
-  private flatten401Children(
-    mayor: ICuentaMayorDto,
-    wr: (i: number) => number,
-    mes: number,
-  ): EstadoResultadosRow[] {
-    const rows: EstadoResultadosRow[] = [];
-
-    for (const sub of mayor.subcuentas ?? []) {
-      if (sub.cuentasDetalle?.length) {
-        for (const det of sub.cuentasDetalle) {
-          const row = this.createRow("item", det, wr, mes);
-          if (this.hasVisibleValues(row)) {
-            rows.push(row);
-          }
-        }
-      } else {
-        const row = this.createRow("item", sub, wr, mes);
-        if (this.hasVisibleValues(row)) {
-          rows.push(row);
-        }
-      }
-    }
-
-    return rows;
   }
 
   private createRow(

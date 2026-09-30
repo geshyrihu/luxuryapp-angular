@@ -13,9 +13,9 @@
       />
     </div>
     <h3 class="committee-contact-detail__name">
-      {{ person.firstName }} {{ person.lastName }}
+      {{ person.firstName }} @if (!person.isLocation) { {{ person.lastName }} }
     </h3>
-    @if (person.roleName) {
+    @if (person.roleName && !person.isLocation) {
     <span class="committee-contact__role">{{ person.roleName }}</span>
     }
     @if (person.isOnShift !== null) {
@@ -28,29 +28,73 @@
     }
   </div>
 
-  <!-- Teléfono -->
+  <!-- Teléfono 1 -->
   @if (person.phoneNumber) {
   <lx-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:call" /> Teléfono
+        <app-icon icon="material-symbols-light:call" /> Teléfono 1
       </span>
       <span class="committee-contact-detail__value">{{ person.phoneNumber }}</span>
+      @if (!person.isLocation) {
       <div class="committee-contact-detail__actions">
         <ili-button
           label="Llamar"
           iconClass="material-symbols-light:call"
           expand="block"
-          (clicked)="call()"
+          (clicked)="call(person.phoneNumber)"
         />
         <ili-button
           label="WhatsApp"
           iconClass="material-symbols-light:chat"
           color="success"
           expand="block"
-          (clicked)="whatsapp()"
+          (clicked)="whatsapp(person.phoneNumber)"
         />
       </div>
+      }
+    </div>
+  </lx-card>
+  }
+
+  <!-- Teléfono 2 -->
+  @if (person.phoneTwo) {
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="material-symbols-light:call" /> Teléfono 2
+      </span>
+      <span class="committee-contact-detail__value">{{ person.phoneTwo }}</span>
+      @if (!person.isLocation) {
+      <div class="committee-contact-detail__actions">
+        <ili-button label="Llamar" iconClass="material-symbols-light:call" expand="block" (clicked)="call(person.phoneTwo)" />
+        <ili-button label="WhatsApp" iconClass="material-symbols-light:chat" color="success" expand="block" (clicked)="whatsapp(person.phoneTwo)" />
+      </div>
+      }
+    </div>
+  </lx-card>
+  }
+
+  <!-- Extensión 1 -->
+  @if (person.extensionOne) {
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="material-symbols-light:deskphone" /> Extensión 1
+      </span>
+      <span class="committee-contact-detail__value">{{ person.extensionOne }}</span>
+    </div>
+  </lx-card>
+  }
+
+  <!-- Extensión 2 -->
+  @if (person.extensionTwo) {
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="material-symbols-light:deskphone" /> Extensión 2
+      </span>
+      <span class="committee-contact-detail__value">{{ person.extensionTwo }}</span>
     </div>
   </lx-card>
   }
@@ -76,6 +120,7 @@
   }
 
   <!-- Horario -->
+  @if (!person.isLocation) {
   <lx-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
@@ -95,4 +140,5 @@
       }
     </div>
   </lx-card>
+  }
 </div>
