@@ -12,7 +12,7 @@
 
 ## 📋 Resumen Ejecutivo
 
-El directorio `appsweb/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 3 archivos raíz** (2 SCSS + `mypreset.ts`) que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
+# [REMOVED] El directorio `appsweb/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 3 archivos raíz** (2 SCSS + `mypreset.ts`) que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
 
 > ✅ **Criterio de Éxito:** Al finalizar la lectura, entenderás qué archivo modificar según el tipo de cambio visual que necesites, y las reglas de cascada que garantizan consistencia.
 
@@ -25,11 +25,11 @@ El directorio `appsweb/angular/src/styles/` contiene **todos los estilos globale
 ```mermaid
 flowchart TD
     A["angular.json"] --> B["ds-entry.scss<br/>(Design System - @use)"]
-    A --> C["primeng-overrides.css<br/>(Capa @layer primeng-brand)"]
+# [REMOVED]     A --> C["primeng-overrides.css<br/>(Capa @layer primeng-brand)"]
     A --> D["styles.scss<br/>(Global legacy - @import)"]
 
     B --> E["core/<br/>(Tokens compartidos: colors, spacing, etc.)"]
-    B --> F["web/<br/>(🖥️ PrimeNG overrides + clases DS: .btn, .card, prime-*)"]
+# [REMOVED]     B --> F["web/<br/>(🖥️ PrimeNG overrides + clases DS: .btn, .card, prime-*)"]
 
     D --> Hm["mobile/<br/>(📱 Ionic: ionic-rn-theme, ili-buttons, header-mobile)"]
     D --> Hb["base/<br/>(global, dark-mode)"]
@@ -38,10 +38,10 @@ flowchart TD
 
     E --> J["core/_colors.scss<br/>⚠️ ÚNICA fuente de hex/rgba"]
     J --> K["theme/_variables.scss<br/>Expone --primary-*, --secondary-*, --ds-*, --ds-m-* (móvil)"]
-    K --> L["mypreset.ts<br/>PrimeNG preset - solo var(--*)"]
-    L --> M["🧩 PrimeNG Components"]
+# [REMOVED]     K --> L["mypreset.ts<br/>PrimeNG preset - solo var(--*)"]
+# [REMOVED]     L --> M["🧩 PrimeNG Components"]
 
-    C -.->|"@layer primeng-brand<br/>gana sobre preset Lara"| F
+# [REMOVED]     C -.->|"@layer primeng-brand<br/>gana sobre preset Lara"| F
 ```
 
 ### Tipos de Carga
@@ -49,16 +49,16 @@ flowchart TD
 | Mecanismo | Archivo | Propósito |
 |-----------|---------|-----------|
 | `angular.json` (build) | `ds-entry.scss` | Design System — `@use` (SCSS moderno) |
-| `angular.json` (build) | `primeng-overrides.css` | Overrides de marca PrimeNG — `@layer` CSS |
+# [REMOVED] | `angular.json` (build) | `primeng-overrides.css` | Overrides de marca PrimeNG — `@layer` CSS |
 | `angular.json` (build) | `styles.scss` | Estilos globales legacy — `@import` |
-| `@use` desde DS | `core/`, `web/` | Tokens compartidos + overrides PrimeNG/clases DS |
+# [REMOVED] | `@use` desde DS | `core/`, `web/` | Tokens compartidos + overrides PrimeNG/clases DS |
 | `@import` desde styles | `base/`, `mobile/`, `shared/`, `custom/` | App-wide, Ionic, cross-cutting, legacy |
 
 > [!NOTE]
 > **Reorg por capas (04-jul-26):** los estilos se separaron en `core/` (tokens
-> compartidos), `web/` (PrimeNG), `mobile/` (Ionic), `base/` (app-wide) y `shared/`
+# [REMOVED] > compartidos), `web/` (PrimeNG), `mobile/` (Ionic), `base/` (app-wide) y `shared/`
 > (cross-cutting). Regla: `web/` no referencia Ionic y `mobile/` no referencia
-> PrimeNG; ambos consumen los tokens de `core/`. `prime-overrides/` y `components/`
+# [REMOVED] > PrimeNG; ambos consumen los tokens de `core/`. `prime-overrides/` y `components/`
 > se fusionaron en `web/`.
 
 ---
@@ -70,21 +70,21 @@ flowchart TD
 | Archivo | Líneas | Rol |
 |---------|--------|-----|
 | [`ds-entry.scss`](#ds-entryscss) | 43 | 🚀 Punto de entrada del Design System (DS). Usa `@use`. No incluye reset ni tipografía global. |
-| [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para PrimeNG v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |
+# [REMOVED] | [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para PrimeNG v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |
 | [`styles.scss`](#stylesscss) | ~107 | 📜 Hoja maestra legacy. Usa `@import`. Incluye reset, Ionic CSS, componentes custom y animaciones. |
-| [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset PrimeNG** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |
+# [REMOVED] | [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset PrimeNG** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |
 
 ---
 
 ## 🅿️ `mypreset.ts`
 
-`src/styles/theme/mypreset.ts` exporta **`LuxuryPreset`** (preset activo de PrimeNG, basado en **Aura**, inyectado en `app.config.ts` dentro de `@layer primeng/primevue`). La escala `colorScheme.dark.surface` referencia **`var(--surface-dark-0..950)`** (T14), que es la escala navy DS con orientación Aura definida en `core/_colors.scss`. (*Nota: existe también `src/app/mypreset.ts`, preset alternativo basado en Lara, que NO es el activo.*)
+# [REMOVED] `src/styles/theme/mypreset.ts` exporta **`LuxuryPreset`** (preset activo de PrimeNG, basado en **Aura**, inyectado en `app.config.ts` dentro de `@layer primeng/primevue`). La escala `colorScheme.dark.surface` referencia **`var(--surface-dark-0..950)`** (T14), que es la escala navy DS con orientación Aura definida en `core/_colors.scss`. (*Nota: existe también `src/app/mypreset.ts`, preset alternativo basado en Lara, que NO es el activo.*)
 
 ```mermaid
 flowchart LR
     A["core/_colors.scss"] -->|"#{c.$primary-*}, #{c.$surface-dark-*}"| B["theme/_variables.scss"]
     B -->|"--primary-*, --secondary-*,<br/>--surface-dark-*, --success-500"| C["src/styles/theme/mypreset.ts"]
-    C -->|"var(--primary-*), var(--surface-dark-*)"| D["🧩 PrimeNG"]
+# [REMOVED]     C -->|"var(--primary-*), var(--surface-dark-*)"| D["🧩 PrimeNG"]
 ```
 
 | Token en mypreset.ts | Fuente en _variables.scss | Fuente última en _colors.scss |
@@ -104,7 +104,7 @@ flowchart LR
 |------------|----------|-----|
 | [`core/`](#-core) | 8 | 🎯 Tokens fundamentales del DS (colores, spacing, borders, shadows, typography, functions, mixins) |
 | [`components/`](#-components) | 7 | 🧩 Componentes puros del DS (buttons, inputs, forms, cards, tables, alerts, dropdowns) |
-| [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente PrimeNG (button, input, card, dialog, table, dropdown, tag, message, tokens) |
+# [REMOVED] | [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente PrimeNG (button, input, card, dialog, table, dropdown, tag, message, tokens) |
 | [`theme/`](#-theme) | 9 | 🌓 Estilos de tema (variables, global, dark-mode, sidebar, auth, toast, header-mobile, ionic, cdk) |
 | [`custom/`](#-custom) | 7 | 📦 Estilos legacy y específicos (avatars, list, custom-table, financial-tables, print, utilities) |
 
@@ -112,7 +112,7 @@ flowchart LR
 
 ## 🚀 `ds-entry.scss`
 
-Punto de entrada del **Design System**. Se carga primero en `angular.json` para que los tokens DS y overrides de PrimeNG tengan prioridad de cascada sobre los estilos legacy.
+# [REMOVED] Punto de entrada del **Design System**. Se carga primero en `angular.json` para que los tokens DS y overrides de PrimeNG tengan prioridad de cascada sobre los estilos legacy.
 
 ```scss
 // 1. Core tokens and helpers.
@@ -123,7 +123,7 @@ Punto de entrada del **Design System**. Se carga primero en `angular.json` para 
 @use "core/shadows";
 @use "core/mixins";
 
-// 2. PrimeNG overrides.
+# [REMOVED] // 2. PrimeNG overrides.
 @use "prime-overrides/prime-tokens";
 @use "prime-overrides/prime-input";
 @use "prime-overrides/prime-button";
@@ -148,17 +148,17 @@ Punto de entrada del **Design System**. Se carga primero en `angular.json` para 
 
 ---
 
-## 🅿️ `primeng-overrides.css`
+# [REMOVED] ## 🅿️ `primeng-overrides.css`
 
-Archivo CSS plano que centraliza los overrides visuales de PrimeNG en una **capa CSS** (`@layer primeng-brand`). El orden global de capas se declara en `styles.scss` (§ Capas CSS, RN-DS-012):
+# [REMOVED] Archivo CSS plano que centraliza los overrides visuales de PrimeNG en una **capa CSS** (`@layer primeng-brand`). El orden global de capas se declara en `styles.scss` (§ Capas CSS, RN-DS-012):
 
 ```
-@layer reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
+# [REMOVED] @layer reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
 ```
 
-- El preset de PrimeNG se inyecta en runtime dentro de `@layer primeng`/`@layer primevue`.
-- Los overrides efectivos de PrimeNG viven en `web/_prime-*.scss` (vía `ds-entry.scss`) y son **unlayered**, por lo que ganan sobre el preset.
-- `primeng-overrides.css` no está referenciado por `angular.json` (huérfano; pendiente de decidir carga o retiro).
+# [REMOVED] - El preset de PrimeNG se inyecta en runtime dentro de `@layer primeng`/`@layer primevue`.
+# [REMOVED] - Los overrides efectivos de PrimeNG viven en `web/_prime-*.scss` (vía `ds-entry.scss`) y son **unlayered**, por lo que ganan sobre el preset.
+# [REMOVED] - `primeng-overrides.css` no está referenciado por `angular.json` (huérfano; pendiente de decidir carga o retiro).
 - `_dark-mode.scss` y `base/_global.scss` quedan **unlayered** intencionalmente (ganan sobre cualquier capa sin `!important`).
 
 ### Componentes overrideados
@@ -215,7 +215,7 @@ Fuente única de verdad para **colores, tipografía, espaciado, bordes, sombras,
 
 ## 🧩 `components/` — Componentes del DS
 
-Clases **puras en CSS** (sin depender de PrimeNG) que forman el catálogo de componentes del Design System.
+# [REMOVED] Clases **puras en CSS** (sin depender de PrimeNG) que forman el catálogo de componentes del Design System.
 
 | Archivo | Clase principal | Variantes |
 |---------|----------------|-----------|
@@ -229,13 +229,13 @@ Clases **puras en CSS** (sin depender de PrimeNG) que forman el catálogo de com
 
 ---
 
-## 🅿️ `prime-overrides/` — Overrides por Componente PrimeNG
+# [REMOVED] ## 🅿️ `prime-overrides/` — Overrides por Componente PrimeNG
 
-Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tokens CSS** (`--p-*`) y selectores con especificidad controlada (`body .p-component`).
+# [REMOVED] Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tokens CSS** (`--p-*`) y selectores con especificidad controlada (`body .p-component`).
 
 | Archivo | Componente | Estrategia |
 |---------|-----------|------------|
-| `_prime-tokens.scss` | Bridge global | Mapea `--p-*` → `--ds-*` para primary, surface, text, borders, focus, overlay. Clases compatibilidad PrimeNG v16. |
+# [REMOVED] | `_prime-tokens.scss` | Bridge global | Mapea `--p-*` → `--ds-*` para primary, surface, text, borders, focus, overlay. Clases compatibilidad PrimeNG v16. |
 | `_prime-button.scss` | `p-button` | Tokens `--p-button-*` + selector `body .p-button` para padding, border-radius, variants (secondary, danger, success, outlined, text), tamaños sm/lg, rounded icon-only. |
 | `_prime-input.scss` | `p-inputtext`, `p-textarea`, `p-inputnumber`, `p-password`, `p-datepicker` | Tokens border-width/radius, altura 40px, disabled state (italic + opacity). |
 | `_prime-card.scss` | `p-card` | Border-radius, background, border, shadow. |
@@ -253,10 +253,10 @@ Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tok
 |---------|--------|-----------|
 | `_variables.scss` | ~518 | ⚙️ **Generador de CSS Custom Properties.** Exporta `--primary-50..950`, `--secondary-50..950`, `--surface-dark-0..950`, `--help-*`, `--contrast-*`, `--ds-*`, `--ion-*`, `--success-400/500`, `--warning-400/500`, `--danger-400/500`, `--info-400/500`, z-index, shadows, radii, fonts. **Dark mode** (`body.theme-dark`). Todos los valores referencian `#{c.$*}` desde `core/_colors.scss`. |
 | `_global.scss` | 205 | 🌐 Estilos base: control de scroll móvil, skip-link (WCAG), focus visible, layout Ionic (`ion-app`, `#main-content`), z-index de overlays, estados de badges, validación de formularios. |
-| `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, PrimeNG v16 compat, CDK drag, formularios, tabs, accordion, datatable, dropdowns, calendar, chips, tooltips. Neon glow en cards. |
-| `_sidebar.scss` | 364 | 📋 Sidebar: PrimeNG PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |
+# [REMOVED] | `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, PrimeNG v16 compat, CDK drag, formularios, tabs, accordion, datatable, dropdowns, calendar, chips, tooltips. Neon glow en cards. |
+# [REMOVED] | `_sidebar.scss` | 364 | 📋 Sidebar: PrimeNG PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |
 | `_auth.scss` | 47 | 🔐 **Glassmorphism** para pantallas de autenticación. Móvil: transparente; Desktop: `backdrop-filter: blur(16px)`. |
-| `_toast.scss` | 152 | 🔔 Toast PrimeNG (web) e Ionic toast (mobile). Borde lateral grueso 8px, colores vibrantes, sombra fuerte. |
+# [REMOVED] | `_toast.scss` | 152 | 🔔 Toast PrimeNG (web) e Ionic toast (mobile). Borde lateral grueso 8px, colores vibrantes, sombra fuerte. |
 | `_header-mobile.scss` | 121 | 📱 Perfil y selector de cliente en cabecera móvil: dropdown animado, customer data con imagen y nombre truncado. |
 | `_ionic-rn-theme.scss` | 374 | 📱 **Tema Ionic iOS-mode** alineado a Material Design 3 via `--ds-*` tokens. Cubre: `ion-content`, header, list, item, card, button, input, searchbar, segment, chip, badge, refresher, spinner + dark mode. |
 | `_cdk-overrides.scss` | 22 | 📦 Overrides de Angular CDK Drag & Drop: preview con sombra, placeholder oculto, animación de transición. |
@@ -282,7 +282,7 @@ Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tok
 flowchart TD
     A["¿Qué necesitas cambiar?"]
     A --> B["Token de diseño<br/>(color, espacio, shadow, font)"]
-    A --> C["Componente PrimeNG<br/>(p-button, p-table, etc.)"]
+# [REMOVED]     A --> C["Componente PrimeNG<br/>(p-button, p-table, etc.)"]
     A --> D["Componente custom<br/>(.btn, .card, .input)"]
     A --> E["Estilo de tema<br/>(dark mode, layout, auth)"]
     A --> F["Estilo legacy/específico<br/>(impresión, tablas financieras)"]
@@ -312,7 +312,7 @@ flowchart TD
 >
 > ### 🌊 Reglas de Cascada
 > 1. **DS gana sobre legacy:** `ds-entry.scss` se carga antes que `styles.scss`
-> 2. **Orden de capas** declarado en `styles.scss`: `reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides` (RN-DS-012)
+# [REMOVED] > 2. **Orden de capas** declarado en `styles.scss`: `reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides` (RN-DS-012)
 > 3. **Unlayered gana sobre `@layer`** (usado en `_dark-mode.scss` y en `web/_prime-*.scss`)
 > 4. **`!important` prohibido** en overrides de marca; el único bloque global permitido es `prefers-reduced-motion` en `styles.scss` §11 (documentado); permitido en `_dark-mode.scss` (unlayered) y legacy
 >
@@ -329,16 +329,16 @@ flowchart TD
 
 | Qué salió mal | Por qué | Qué decir al usuario |
 |---------------|---------|---------------------|
-| Cambié un color en `_colors.scss` pero no se refleja en PrimeNG | `mypreset.ts` tiene aún valores hardcodeados que no referencian `var(--*)` | Revisa `mypreset.ts` y reemplaza el hex/rgba por la variable CSS correspondiente |
-| El cambio no se ve reflejado | El estilo está siendo sobrescrito por otro archivo con mayor prioridad | Verifica si tu cambio está en el archivo correcto según el flujo de decisión. Si es un token, usa `core/`. Si es un override PrimeNG, usa `prime-overrides/`. |
-| Un componente PrimeNG se ve distinto a lo esperado | El override está en `primeng-overrides.css` (capa) pero otro estilo unlayered lo sobrescribe | Mueve el override a un archivo unlayered o aumenta especificidad. |
+# [REMOVED] | Cambié un color en `_colors.scss` pero no se refleja en PrimeNG | `mypreset.ts` tiene aún valores hardcodeados que no referencian `var(--*)` | Revisa `mypreset.ts` y reemplaza el hex/rgba por la variable CSS correspondiente |
+# [REMOVED] | El cambio no se ve reflejado | El estilo está siendo sobrescrito por otro archivo con mayor prioridad | Verifica si tu cambio está en el archivo correcto según el flujo de decisión. Si es un token, usa `core/`. Si es un override PrimeNG, usa `prime-overrides/`. |
+# [REMOVED] | Un componente PrimeNG se ve distinto a lo esperado | El override está en `primeng-overrides.css` (capa) pero otro estilo unlayered lo sobrescribe | Mueve el override a un archivo unlayered o aumenta especificidad. |
 | Dark mode no aplica a un componente | El componente tiene `background` hardcodeado que no está cubierto en `_dark-mode.scss` | Agrega el selector en `_dark-mode.scss` usando `--ds-*` tokens. |
 | `color-mix()` no funciona en el navegador | Navegador antiguo sin soporte CSS Color Level 4 | `color-mix()` está soportado desde Chrome 111+, Firefox 113+, Safari 16.2+ (2023). |
 | Error de compilación SCSS | Uso de `@import` dentro de un archivo que usa `@use` | No mezclar `@import` y `@use` en el mismo archivo. Migrar a `@use`. |
 
 ---
 
-> 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → PrimeNG. **Un solo archivo.** Para cambios de componente que no son de color, usa `components/` (custom) o `prime-overrides/` (PrimeNG).
+# [REMOVED] > 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → PrimeNG. **Un solo archivo.** Para cambios de componente que no son de color, usa `components/` (custom) o `prime-overrides/` (PrimeNG).
 
 ---
 
