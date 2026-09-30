@@ -28,6 +28,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
+import { NgxMaskDirective } from "ngx-mask";
 
 import {
   BudgetProposalDTO,
@@ -108,6 +109,7 @@ import {
     LxTooltipDirective,
     AppTable,
     MultipleSegmentedControl,
+    NgxMaskDirective,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
@@ -1146,9 +1148,13 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       String(item.proposedAmount).replace(/,/g, ""),
     );
 
-    // Evita llamadas al API si el valor no ha cambiado.
-    if (originalItem && originalItem.proposedAmount === currentProposedAmount) {
-      return;
+    // Evita llamadas al API si el valor no ha cambiado o ya se est enviando.
+    if (originalItem) {
+      if (originalItem.proposedAmount === currentProposedAmount) {
+        return;
+      }
+      // Actualizacin optimista para evitar dobles llamadas (blur + click casi simultneos)
+      originalItem.proposedAmount = currentProposedAmount;
     }
 
     this.loading.set(true);
@@ -1160,7 +1166,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       .onPut<BudgetProposalItemDTO>(
         Endpoints.BudgetingProposal.updateItem(item.id),
         updateDTO,
-        false,
+        true,
         false,
       )
       .then((response) => {
@@ -1750,6 +1756,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         finalizedAt: updated.finalizedAt,
         // Update proposed amount just in case this is called from a save-amount operation
         proposedAmount: updated.proposedAmount ?? existing.proposedAmount,
+        difference: updated.difference ?? existing.difference,
+        percentageIncrease: updated.percentageIncrease ?? existing.percentageIncrease,
         comment: updated.comment !== undefined ? updated.comment : existing.comment,
         providerName: updated.providerName !== undefined ? updated.providerName : existing.providerName,
       };

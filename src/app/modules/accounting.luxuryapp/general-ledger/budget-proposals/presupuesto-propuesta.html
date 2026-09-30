@@ -790,21 +790,30 @@
           {{ (item.currentAmount * 12) | number: "1.0-0" }}
         </td>
         <td pFrozenColumn alignFrozen="right" class="table-col-100px">
-          <custom-input-number-signal
-            (blur)="updateProposalItem(item)"
-            (keydown.enter)="updateProposalItem(item)"
-            (ngModelChange)="onProposedAmountChange(item)"
-            [(ngModel)]="item.proposedAmount"
-            [ngModelOptions]="{ standalone: true }"
-            [disabled]="
-              currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora
-            "
-            [horizontal]="false"
-            customClass="text-right"
-            [minFractionDigits]="0"
-            [maxFractionDigits]="0"
-            size="small"
-          />
+          <div class="input-group input-group-sm w-100">
+            <input
+              type="text"
+              class="form-control text-end"
+              mask="separator.0"
+              thousandSeparator=","
+              [(ngModel)]="item.proposedAmount"
+              [ngModelOptions]="{ standalone: true }"
+              (blur)="updateProposalItem(item)"
+              (keydown.enter)="updateProposalItem(item)"
+              (ngModelChange)="onProposedAmountChange(item)"
+              [disabled]="currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora"
+              style="min-width: 80px;"
+            />
+            <button
+              class="btn btn-outline-secondary d-flex align-items-center justify-content-center px-2"
+              type="button"
+              (click)="updateProposalItem(item)"
+              [disabled]="currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora"
+              title="Guardar cambio"
+            >
+              <app-icon icon="material-symbols-light:save-outline" class="text-lg" />
+            </button>
+          </div>
         </td>
         <td
           [hidden]="!showFiscalYearAnnualColumn()"
