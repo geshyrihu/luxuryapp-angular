@@ -5,7 +5,6 @@ Componente reutilizable de overlay con indicador de progreso para operaciones de
 ## Propósito
 
 Mostrar feedback visual claro al usuario durante operaciones CRUD (creación, actualización) que requieran
-procesamiento de archivos, validaciones o envíos al servidor. Funciona en web (PrimeNG) y mobile (Ionic).
 
 ## Uso
 
@@ -87,7 +86,6 @@ shared/ui/
 │   ├── processing-overlay.spec.ts
 │   └── README.md (Este archivo)
 ├── web/processing-overlay/
-│   ├── processing-overlay.ts (Versión PrimeNG/web)
 │   └── processing-overlay.spec.ts
 └── mobile/processing-overlay/
     ├── processing-overlay.ts (Versión Ionic/mobile)

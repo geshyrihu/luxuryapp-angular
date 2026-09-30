@@ -80,7 +80,6 @@ clearSession() {
   SignalR.stop()
   currentUserSession = null
   customerIdS.clearCustomerData()
-  limpia overlays PrimeNG (p-dialog-mask, p-drawer-mask)
   router.navigate(ROUTES.AUTH.LOGIN)
 }
 ```
@@ -128,7 +127,6 @@ Generadas desde `documentTypeRoutesConfig` (legal.luxuryapp):
 
 ### 2. CommitteeCobranzaWrapper (`cobranza/`)
 **Selector responsive** entre:
-- **Web** (`CommitteeCobranzaWeb`): Tabla PrimeNG completa (≥1024px)
 - **Mobile** (`CommitteeCobranzaMobile`): Cards compactas (<1024px)
 
 **Servicio base**: `CommitteeCobranzaBaseService`
@@ -173,7 +171,6 @@ Generadas desde `documentTypeRoutesConfig` (legal.luxuryapp):
 **Detalle**: `BibliotecaConsejoDirectivoDetalle` (componente compartido) recibe `documentType` por route data
 
 ### 6. Reuniones Mensuales (`board-directors-monthly-meetings/`)
-**Tabla PrimeNG** con:
 - Vista PDF (minutas, grabaciones)
 - Filtro global + paginación
 - **Endpoint**: `GET committee/board-directors/monthly-meetings/{customerId}`
@@ -186,7 +183,6 @@ Generadas desde `documentTypeRoutesConfig` (legal.luxuryapp):
   - Detalle: `GET committee/board-directors/meeting-minutes-detail/{id}`
 
 ### 8. Informes Financieros (`board-directors-financial-reports/`)
-**Tabla PrimeNG** idéntica a reuniones mensuales
 - **Endpoint**: `GET committee/board-directors/financial-reports/{customerId}`
 
 ### 9. Póliza Seguro Edificio (`poliza-seguro-edificio/`)

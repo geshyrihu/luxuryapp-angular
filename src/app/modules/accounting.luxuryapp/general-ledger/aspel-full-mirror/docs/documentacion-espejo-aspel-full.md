@@ -162,7 +162,6 @@ sequenceDiagram
 
 - **Ubicación**: `client/angular/src/app/modules/accounting.luxuryapp/general-ledger/espejo-aspel-full/espejo-aspel-full.ts`
 - **Propósito**: Componente principal standalone para visualización del espejo
-- **Tecnologías**: Signals, Angular 22 OnPush, PrimeNG p-table, virtual scrolling
 
 #### Características Clave:
 
@@ -300,7 +299,6 @@ private static bool EsNivel2(string numCta) {
 </div>
 ```
 
-### 2. Tabla de Datos (PrimeNG)
 
 ```typescript
 <p-table
@@ -367,7 +365,6 @@ getNivelesDisponibles(codigo: string): number[] {
 
 ## 🔧 Configuraciones y Adaptaciones
 
-### PrimeNG Standalone Compatibility
 
 ```html
 <!-- CORRECTO (convención del repositorio) -->
@@ -498,7 +495,6 @@ loadAnalysis(): void {
 ✅ **Navegación interactiva** por flujos, endpoints, componentes
 ✅ **Búsqueda en tiempo real** con signals
 ✅ **Table análisis jerárquico** con 12 meses de datos
-✅ **Responsive** y moderno con Angular 22 + PrimeNG
 ✅ **Extensible** para cualquier módulo LuxuryApp
 
 ---

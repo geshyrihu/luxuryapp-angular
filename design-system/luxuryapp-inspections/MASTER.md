@@ -25,7 +25,6 @@
 - Gallery/lightbox: `ng-gallery` on web; Ionic preview on mobile.
 - Dialogs: `DialogHandlerService` over `NgbModal` on web and `ion-modal` on
   mobile.
-- PrimeNG is not an application dependency.
 
 ---
 

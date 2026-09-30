@@ -208,6 +208,7 @@ export const EndpointsMantenimiento = {
     delete: (id: string | number) => `inspection-reviews-catalog/${id}`,
     getAll: "inspection-reviews-catalog",
     getById: (id: string) => `inspection-reviews-catalog/${id}`,
+    selectItems: "inspection-review-catalogs",
     update: (id: string) => `inspection-reviews-catalog/${id}`,
   },
   RecepcionPipasAgua: {

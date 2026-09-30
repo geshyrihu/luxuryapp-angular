@@ -252,7 +252,6 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 - [x] `audit:ui` de fronteras en `npm run lint`.
 - [x] Estilos por capas (`src/styles`).
 - [x] Overhaul móvil de botones + action-sheet nativo.
-- [x] Web desacoplada de PrimeNG: Bootstrap/native/shared UI.
 - [x] Dialogs web sobre `NgbModal`; dialogs mobile sobre `ion-modal`.
 - [x] Editor, rating, charts, carousel y gallery usan integraciones actuales
   documentadas en `design-system/luxuryapp-inspections/MASTER.md`.

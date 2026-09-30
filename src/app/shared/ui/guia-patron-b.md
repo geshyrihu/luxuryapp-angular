@@ -11,7 +11,6 @@ Esta guía rápida sirve como referencia para evitar las malas prácticas bloque
 ```html
 <!-- PROHIBIDO:
  1. Usar style="..." o [style]
- 2. Importar PrimeNG directamente (p-table) en la vista final
  3. Ignorar la plataforma móvil -->
 <div style="padding: 20px; background-color: var(--ds-bg-surface);">
   <p-table [value]="data">...</p-table>

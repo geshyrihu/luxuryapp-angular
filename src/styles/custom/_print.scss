@@ -157,9 +157,9 @@
 
   /* Reset de host y componentes contenedor para permitir paginacion */
   app-task-list, app-my-assigned-tasks-list, app-manuals-and-processes-detail {
-    display: block;
-    height: auto;
-    overflow: visible;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   /* Ocultar elementos de pantalla cuando se imprime */
@@ -192,6 +192,14 @@
   .print-task-report,
   .print-task-report * {
     visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+    color: black !important;
+  }
+  
+  .print-task-report {
+    background: white !important;
   }
 
   /* ---- Header ---- */
@@ -383,38 +391,48 @@
   /* 1. Ocultar chrome del layout de la app */
   .layout-header,
   .layout-sidebar {
-    display: none;
+    display: none !important;
   }
 
   /* 2. Quitar restricciones de los wrappers de contenido */
   #pageWrapper {
-    display: block;
-    padding: 0;
-    margin: 0;
-    height: auto;
-    overflow: visible;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
   }
 
   .main-content-wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-    height: auto;
-    max-height: none;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    animation: none !important;
   }
 
+  .main-content-scroll,
   #main-content-scroll {
-    overflow: visible;
-    height: auto;
-    max-height: none;
-    padding: 0;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    animation: none !important;
   }
 
   /* El div.w-full.min-h-full.pb-8 que envuelve el router-outlet */
+  .main-content-scroll > div,
   #main-content-scroll > div {
-    padding: 0;
-    min-height: auto;
+    padding: 0 !important;
+    min-height: auto !important;
+    opacity: 1 !important;
+    animation: none !important;
   }
 
   /* 3. Ocultar controles del reporte, overlay de preparacion */

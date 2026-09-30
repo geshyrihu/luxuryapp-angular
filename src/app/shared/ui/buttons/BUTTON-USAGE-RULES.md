@@ -42,7 +42,6 @@ Y dentro de `<app-data-view-mobile>` (contexto móvil), las acciones van dentro 
 
 | Action menu | Selector | Motor | Usar en |
 |---|---|---|---|
-| Web | `<app-action-menu>` | `p-popover` (PrimeNG) | Tablas / vistas desktop |
 | Móvil | `<ili-action-menu>` | bottom-sheet nativo | Solo dentro de `<app-data-view-mobile>` |
 
 ## Matriz final

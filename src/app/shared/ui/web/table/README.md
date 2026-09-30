@@ -1,10 +1,8 @@
 # AppTable Component - Guia Completa de Funcionamiento e Implementacion
 
 > **Estado verificado:** 2026-09-18. Esta guia describe `table.ts` actual,
-> no todo el API de PrimeNG. Las capacidades no listadas como implementadas no
 > deben asumirse por compatibilidad de nombres.
 
-El componente `AppTable` (`app-table`) es una solución robusta, ultraligera y altamente optimizada desarrollada como un reemplazo directo y personalizado para el componente `Table` de PrimeNG (`p-table`). 
 
 Diseñado con el motor moderno de **Angular Signals** (`input`, `computed`, `model`, `linkedSignal`), este componente elimina la necesidad de depender de librerías externas pesadas mientras mantiene compatibilidad casi total con los nombres de APIs, inputs, outputs y selectores existentes en el proyecto. Esto permite una transición transparente durante los procesos de refactorización y migración.
 
@@ -34,7 +32,6 @@ Diseñado con el motor moderno de **Angular Signals** (`input`, `computed`, `mod
 
 ## ⚡ Características Clave
 
-- **Cero Dependencias Externas:** No requiere PrimeNG ni librerías CSS pesadas. Funciona sobre Bootstrap y CSS nativo.
 - **Rendimiento Reactivo Extremo:** Utiliza Angular Signals y estrategia `ChangeDetectionStrategy.OnPush` para evitar ejecuciones innecesarias del ciclo de detección de cambios.
 - **Arquitectura de Plantillas Declarativa:** Soporta múltiples slots dinámicos mediante `@if` y `@for` nativos de Angular, logrando un código limpio y legible.
 - **Drag & Drop Integrado:** Soporte nativo para reordenación de filas y columnas arrastrando elementos en la interfaz de usuario.
@@ -118,7 +115,6 @@ El archivo `table.ts` expone un ecosistema de directivas y micro-componentes que
 | `reorderableColumns` | `boolean` | `false` | Permite reordenar columnas arrastrando las cabeceras `<th>`. |
 
 `reorderableRows` forma parte del contrato para aceptar bindings migrados desde
-PrimeNG y funciona como gate real del drag. El drag requiere ademas
 `[pReorderableRow]` en cada `<tr>`, `pReorderableRowHandle` en un descendiente y
 los imports standalone de ambas directivas.
 

@@ -10,16 +10,30 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { AppCard } from "@ui/web/card/card";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { InspeccionActivoCondominio } from "../inspection-asset-add/inspeccion-activo-condominio";
+import { InspeccionActivoCondominioEditar } from "../inspection-asset-edit/inspeccion-activo-condominio-editar";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionEdit } from "../models/inspection.model";
 
 @Component({
   selector: "app-inspection-detalle",
 
-  imports: [CommonModule, RouterModule, AppCard],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AppCard,
+    WebButtonIcon,
+    WebButtonLabelEdit,
+    WebButtonLabelDelete,
+    ActionMenu,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-4">
@@ -120,6 +134,62 @@ import { InspectionEdit } from "../models/inspection.model";
               </div>
             }
           </div>
+         </app-card>
+
+        <app-card class="mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-xl fw-bold m-0">Equipos y criterios de revisión</h2>
+            <iw-button
+              iconClass="material-symbols-light:add-circle"
+              label="Agregar Equipo"
+              lxTooltip="Agregar equipo al recorrido"
+              (clicked)="onAddEquipment()"
+            />
+          </div>
+
+          @if (equipmentItems().length > 0) {
+            @for (item of equipmentItems(); track item.inspectionCondominiumAssetId) {
+              <div class="card mb-4 p-4 border-outline">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <h3 class="text-lg fw-bold m-0">{{ item.name | uppercase }}</h3>
+                  <app-action-menu>
+                    <ng-container actions>
+                      <il-button-edit
+                        label="Editar"
+                        (clicked)="onEditEquipment(item)"
+                      />
+                      <il-button-delete
+                        label="Eliminar"
+                        (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId)"
+                      />
+                    </ng-container>
+                  </app-action-menu>
+                </div>
+
+                @if (item.reviews && item.reviews.length > 0) {
+                  <div class="d-flex flex-column gap-3">
+                    @for (review of item.reviews; track review.id) {
+                      <div class="d-flex justify-content-between align-items-start gap-3 p-3 bg-surface rounded-md border-1 border-outline">
+                        <p class="text-body-sm m-0 flex-grow-1">{{ review.description }}</p>
+                        <il-button-delete
+                          label="Eliminar"
+                          (confirmed)="onDeleteReview(review.id, item.inspectionCondominiumAssetId)"
+                        />
+                      </div>
+                    }
+                  </div>
+                } @else {
+                  <p class="text-body-sm text-body-secondary m-0">
+                    Sin criterios de revisión registrados
+                  </p>
+                }
+              </div>
+            }
+          } @else {
+            <p class="text-body-secondary m-0">
+              No hay equipos configurados en este recorrido.
+            </p>
+          }
         </app-card>
       }
     </div>
@@ -134,6 +204,7 @@ export class InspectionDetailComponent implements OnInit {
   inspection = signal<InspectionEdit | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
+  equipmentItems = signal<any[]>([]);
 
   weekdayNames = [
     "Domingo",
@@ -150,6 +221,7 @@ export class InspectionDetailComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((params) => {
         this.loadInspection(params["id"]);
+        this.loadEquipment(params["id"]);
       });
   }
 
@@ -172,6 +244,20 @@ export class InspectionDetailComponent implements OnInit {
       })
       .finally(() => {
         this.loading.set(false);
+      });
+  }
+
+  private loadEquipment(inspectionId: string): void {
+    this.apiResponseS
+      .onGetItem<any>(
+        Endpoints.InspectionCondominiumAssets.listByInspection(inspectionId),
+      )
+      .then((result) => {
+        this.equipmentItems.set(result?.amenities ?? result ?? []);
+      })
+      .catch((err) => {
+        console.error("Error loading inspection equipment:", err);
+        this.equipmentItems.set([]);
       });
   }
 
@@ -204,6 +290,78 @@ export class InspectionDetailComponent implements OnInit {
     }
   }
 
+  onAddEquipment(): void {
+    const inspectionId = this.inspection()?.id;
+    if (!inspectionId) return;
+
+    this.dialogHandlerS
+      .openDialog(
+        InspeccionActivoCondominio,
+        { inspectionId },
+        "Agregar Equipo",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result) => {
+        if (result) this.loadEquipment(inspectionId);
+      });
+  }
+
+  onEditEquipment(item: any): void {
+    const inspectionId = this.inspection()?.id;
+    if (!inspectionId) return;
+
+    this.dialogHandlerS
+      .openDialog(
+        InspeccionActivoCondominioEditar,
+        {
+          inspectionId,
+          inspectionCondominiumAssetId: item.inspectionCondominiumAssetId,
+        },
+        "Editar equipo",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result) => {
+        if (result) this.loadEquipment(inspectionId);
+      });
+  }
+
+  onDeleteArea(assetId: string): void {
+    this.apiResponseS
+      .onDelete(Endpoints.InspectionCondominiumAssets.deleteArea(assetId))
+      .then((result) => {
+        if (result) {
+          this.equipmentItems.update((items) =>
+            items.filter(
+              (item) => item.inspectionCondominiumAssetId !== assetId,
+            ),
+          );
+        }
+      });
+  }
+
+  onDeleteReview(reviewId: string, assetId: string): void {
+    this.apiResponseS
+      .onDelete(
+        Endpoints.InspectionCondominiumAssets.deleteReview(reviewId),
+      )
+      .then((result) => {
+        if (result) {
+          this.equipmentItems.update((items) =>
+            items.map((item) =>
+              item.inspectionCondominiumAssetId === assetId
+                ? {
+                    ...item,
+                    reviews: item.reviews.filter(
+                      (review: any) => review.id !== reviewId,
+                    ),
+                  }
+                : item,
+            ),
+          );
+        }
+      });
+  }
+
   formatFrequency(frequency: string): string {
     const frequencies: { [key: string]: string } = {
       daily: "Diaria",
@@ -221,4 +379,3 @@ export class InspectionDetailComponent implements OnInit {
     return days.map((day) => this.weekdayNames[day % 7]);
   }
 }
-

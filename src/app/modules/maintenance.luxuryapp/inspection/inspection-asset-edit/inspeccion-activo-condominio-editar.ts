@@ -81,13 +81,13 @@ export class InspeccionActivoCondominioEditar implements OnInit {
 
   async onLoadSelectItems(): Promise<void> {
     const [activos, reviewsCatalog] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+      this.apiResponseS.onGetItem<SelectItemDto[]>(
         Endpoints.Inspections.equipmentByCustomer(
           this.customerIdS.customerId(),
         ),
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.InspectionReviewCatalog.getAll,
+        Endpoints.InspectionReviewCatalog.selectItems,
       ),
     ]);
 

@@ -23,7 +23,6 @@ No se asumió ninguna API, token, archivo ni versión. Todo hallazgo se verific�
 | Tipografía / spacing / sombras / radios | `src/styles/core/_typography.scss`, `_spacing.scss`, `_shadows.scss`, `_borders.scss`, `_fonts.scss` | Escalas |
 | Dark mode | `src/styles/base/_dark-mode.scss` | Overrides unlayered |
 | Entrada SCSS | `src/styles/styles.scss`, `src/styles/ds-entry.scss` | Orden de capas y cascada |
-| Puente Bootstrap / PrimeNG | `src/styles/web/_bootstrap-tokens.scss`, `web/_prime-tokens.scss` | Migración |
 | Reglas del repo | `conventions/ui/*`, `conventions/styles/*` | Gobernanza de UI/tokens |
 | Verificación ejecutada | `scripts/audit-contrast.mjs`, `scripts/audit-ds-tokens.mjs`, `scripts/audit-design-system.mjs` | Auditorías automatizadas del proyecto |
 
@@ -39,7 +38,6 @@ No se asumió ninguna API, token, archivo ni versión. Todo hallazgo se verific�
 
 El sistema tiene una base sólida: paleta semántica completa (50–950), tokens CTI, arquitectura de capas CSS, dark mode real con `color-mix()`, contraste auditado en CI y 452 componentes compartidos. Es un sistema *maduro*, no un starter.
 
-El problema central de FASE 1 **no es visual: es de gobernanza y veracidad documental**. Conviven cuatro documentos que se contradicen entre sí (`DESIGN.md`, `MASTER.md`, `estandar-hoja-estilos.md`, `design-tokens-rule.md`) y **la implementación real contradice a `MASTER.md` en color primario, tipografía y radios**. Además, el prompt de auditoría asume un stack (PrimeNG 22 / Ionic 8) que **no corresponde** al proyecto real (sin PrimeNG, Ionic 9, Bootstrap 5.3.8), lo que invalida secciones enteras del análisis solicitado.
 
 Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**. Entre los más graves: badges de estado que incumplen WCAG AA (blanco sobre dorado = **2.23:1**, blanco sobre verde = **3.52:1**) y tokens con nombre semántico falso (`--ds-luxury-gold` es cian).
 
@@ -61,7 +59,6 @@ Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**
 | Form factor / formularios | 7 | Patrón adaptive sólido |
 | Responsive web | 6 | Breakpoints bien; sin container queries; faltan utilidades reales |
 | Responsive móvil | 7 | Ionic 9 + safe-areas parciales; falta `viewport-fit=cover` |
-| Cobertura PrimeNG | N/A | PrimeNG no es dependencia → sección inaplicable |
 | Accesibilidad avanzada | 6 | Focus/reduced-motion sí; falta evidencia WCAG 2.2 completa |
 | Gobernanza | 4 | Documentos contradictorios; CI de tokens rojo |
 | Developer Experience | 7 | Storybook, Vitest, Playwright, axe, Compodoc, audits |
@@ -76,7 +73,6 @@ Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**
 | # | Cat. | Hallazgo | Severidad | Esfuerzo | Recomendación | Referencia |
 | --- | --- | --- | :---: | :---: | --- | --- |
 | C-01 | Gobernanza | `MASTER.md` contradice a `DESIGN.md` y `core/_colors.scss`: primario `#1B365D` vs `#003152`; tipografía Inter/Hanken Grotesk vs Figtree; radios 4/8/12/16 vs 3px | 🔴 Crítico | S | Marcar `MASTER.md` como obsoleto o regenerarlo desde `DESIGN.md` + `_colors.scss`; un solo documento rector | `MASTER.md:41,64,124-129`, `DESIGN.md:5,53,124-130`, `core/_colors.scss:32` |
-| C-02 | Stack | El prompt asume PrimeNG 22 + Ionic 8; la realidad es **sin PrimeNG**, Ionic 9.0.3, Bootstrap 5.3.8 | 🔴 Crítico | S | Corregir el prompt/guía de diseño; secciones 4.1 y 7 (cobertura PrimeNG) son inaplicables | `package.json:44-108`; `ds-entry.scss:23-45`; `MASTER.md:28` |
 | C-03 | A11y color | `.bg-status-pending` blanco sobre `#D4A74A` = **2.23:1**; `.bg-status-success` blanco sobre `#1E9B6D` = **3.52:1** → falla WCAG AA 1.4.3 | 🔴 Crítico | S | Usar `--ds-warning-text`/`--ds-accent-text-*` o fondo claro + texto oscuro | `base/_global.scss:170-203`; `theme/_variables.scss:378-390` |
 | A-01 | Tokens | `--ds-luxury-gold` apunta a `$tertiary-400` (cian `#72B3EF`), no a oro. Nombre semántico falso | 🟠 Alto | S | Re-apuntar a `$warning-400/500` o renombrar `--ds-luxury-cyan` | `theme/_variables.scss:402-405,798-805` |
 | A-02 | Tokens | Sombras definidas dos veces: `core/_shadows.scss` (3px focus, escala xs–2xl) y `theme/_variables.scss:560-573` redefine `--ds-shadow-xs..2xl` y focus a 2px | 🟠 Alto | S | Definir una sola vez; `theme` solo consume | `core/_shadows.scss:34-50`; `theme/_variables.scss:560-573` |
@@ -84,7 +80,6 @@ Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**
 | A-04 | Responsive móvil | `<meta viewport>` sin `viewport-fit=cover` → contenido bajo notch/home indicator | 🟠 Alto | S | Añadir `viewport-fit=cover` | `index.html:11` |
 | A-05 | Calidad/CI | `audit:ds-tokens` **falla**: 7 violaciones en alcance (`mobile/image/image.ts:21,38`, `web/_ng-select-overrides.scss:37,41,45`, `web/_bootstrap-tokens.scss:41,42`) | 🟠 Alto | S | Tokenizar o `// ds-ignore` justificado | salida de `scripts/audit-ds-tokens.mjs` |
 | A-06 | Deuda | 282 colores hardcodeados en 34 archivos de `src/app/modules/**` | 🟠 Alto | L | Ticket dedicado; codemod de tokens | salida de `audit-ds-tokens.mjs` |
-| M-01 | Doc | `estandar-hoja-estilos.md` describe carpetas inexistentes (`prime-overrides/`, `components/`, `primeng-overrides.css`, `mypreset.ts`) | 🟡 Medio | M | Re-escribir a la estructura real (`web/`, sin preset) | `estandar-hoja-estilos.md:27-45,106-108,151-179` |
 | M-02 | Doc | `_fonts.scss` self-hosted Figtree, pero el estándar dice "Google Fonts" | 🟡 Medio | S | Corregir doc | `_fonts.scss:9-19` vs `estandar-hoja-estilos.md:193` |
 | M-03 | Tipografía | `--ds-type-*` (clamp) no coincide con la escala de `DESIGN.md` (Display LG 48px → máx 40px; Headline MD 24px → 16px) | 🟡 Medio | L | Re-anclaje con fuente real (FASE 3 T11 ya reconocido) | `theme/_variables.scss:491-513` vs `DESIGN.md:55-121` |
 | M-04 | Doc | DESIGN.md declara "8px grid" y "every spacing… 8px" pero la escala real es base 4px con múltiplos 4/12/20 | 🟡 Medio | S | Alinear narrativa y tokens; o declarar base 4px | `DESIGN.md:133,162`; `core/_spacing.scss:9-33` |
@@ -92,7 +87,6 @@ Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**
 | M-06 | Responsive | Sin container queries; layout responsive por clases `hidden md:block` y PrimeFlex | 🟡 Medio | M | Adoptar `@container` en componentes adaptativos | `MASTER.md:664-674` |
 | M-07 | A11y color | `--ds-shadow-focus` base usa `rgba(0,5,14,.35)` casi negro, poco visible sobre superficies oscuras | 🟡 Medio | S | Usar acento claro en dark (ya existe override, unificar) | `core/_shadows.scss:29` |
 | M-08 | Color | No hay gamut amplio (OKLCH / Display-P3); todo es sRGB hex | 🟡 Medio | M | Añadir `@supports (color: oklch(…))` para brand/gradientes | `core/_colors.scss` (global) |
-| B-01 | Doc | `_typography.scss` encabezado dice "Angular 21 + PrimeNG 21" (stale) | 🔵 Bajo | S | Actualizar encabezados | `_typography.scss:3` |
 | B-02 | Tokens | `theme-color: #0b3164` hardcodeado en `index.html` | 🔵 Bajo | S | Exponer token y referenciar | `index.html:45` |
 | B-03 | Contraste | `--ds-text-tertiary` `#9AACBB` sobre blanco = **2.34:1**; `MASTER.md` afirma 5.4:1 (falso) | 🔵 Bajo | S | Reservar para no-texto/decorativo; corregir doc | `theme/_variables.scss:455`; `MASTER.md:440` |
 | B-04 | Motion | Dos escalas: `--ds-motion-duration-*` (150/250/350) y `--ds-transition-duration:200ms`; falta `instant`/`slower` | 🔵 Bajo | S | Consolidar nomenclatura del prompt (instant/fast/normal/slow/slower) | `theme/_variables.scss:160-166`; `styles.scss:27-32` |
@@ -103,17 +97,13 @@ Se detectaron **3 hallazgos críticos**, **6 altos**, **8 medios** y **5 bajos**
 ## 3. Hallazgo estructural: el stack asumido no es el real (CRÍTICO)
 
 El prompt declara como objetivo implementable:
-`Angular 22 + PrimeNG 22 (Preset theming, Unstyled mode) + PrimeFlex 4 + Ionic 8`.
 
 La realidad verificada:
 
 - **Angular 22.1.6** ✅ coincide.
-- **PrimeNG: ausente.** No aparece en `dependencies` ni `devDependencies`. `MASTER.md:28` lo declara explícitamente: *"PrimeNG is not an application dependency."*
 - Persisten, sin embargo, **artefactos de compatibilidad**: `--p-*` en `web/_prime-tokens.scss`, overrides `web/_prime-{button,input,card,dialog,table,dropdown,tag,message}.scss`, y `base/_dark-mode.scss` cubriendo `.p-datatable`, `.p-dropdown`, `.p-datepicker`, etc. Es **deuda de migración**, no una integración viva.
 - **Ionic 9.0.3** (no 8); **Capacitor CLI 8.5.2**; **Bootstrap 5.3.8** (migración activa documentada en `web/_bootstrap-tokens.scss`).
-- **No existe `mypreset.ts`** (buscado en todo `src/styles`): la sección 4.1 del prompt ("Preset system… `providePrimeNG`") y la sección 7 ("Cobertura 80+ componentes PrimeNG") son **inaplicables**.
 
-**Implicación:** todas las recomendaciones "stack-aware" de PrimeNG 22 quedan fuera de FASE 1. La arquitectura de componentes real es **`shared/ui/{adaptive,web,mobile}`** con 452 archivos TypeScript (no spec) y wrappers propios. Este es el inventario que debe auditarse, no el catálogo PrimeNG.
 
 ---
 
@@ -219,7 +209,6 @@ Punto fuerte. Escala navy propia `$surface-dark-0..950` (no negro puro — cumpl
 
 ### 6.2 Theming multi-brand / multi-theme
 
-- **Sí:** `@layer ionic, reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides` (`styles.scss:19`), `body.theme-dark`, tokens CSS runtime.
 - **No:** no hay capa `@layer brand` separada, ni `data-theme="luxury-dark"` (solo clase `theme-dark`), ni multi-brand, ni View Transitions API, ni scroll-driven animations. El prompt §3.3 y §4.5 quedan **parcialmente cumplidos**.
 - **FOUC / SSR:** no hay SSR/hydration/Universal en el proyecto (`package.json` no lo evidencia). La estrategia anti-FOUC del prompt §4.5 no aplica.
 
@@ -233,14 +222,11 @@ Iconify (`iconify-icon`) + `<app-icon>`; sin font-icons legacy (Bootstrap Icons 
 
 ### 6.5 Form factor
 
-Patrón adaptive maduro: `shared/ui/inputs/adaptive/*` (24 inputs) con implementaciones `web/` y `mobile/`. Estados de validación vía clases Angular (`ng-invalid.ng-touched`) mapeados a tokens en `web/_inputs.scss`. **Supera** el enfoque PrimeNG `p-float-label` del prompt.
 
 ---
 
 ## 7. Análisis técnico de implementación
 
-### 7.1 PrimeNG 22 — **inaplicable**
-Ver §3. No hay preset, no hay `providePrimeNG`, no hay Unstyled mode. Los `--p-*` son puente de compatibilidad. **Recomendación:** eliminar progresivamente `web/_prime-*.scss` y `.p-*` de `_dark-mode.scss` (deuda con costo de mantenimiento) o documentar formalmente que son legacy de solo lectura.
 
 ### 7.2 Ionic 9 + Angular 22
 
@@ -289,20 +275,17 @@ Storybook 10 + addon-a11y + Chromatic, Vitest 5, Playwright + `@axe-core/playwri
 
 ---
 
-## 10. Cobertura de componentes (no PrimeNG)
 
 El inventario real es la librería propia `shared/ui`:
 
 | Capa | Componentes (dirs) | Notas |
 | --- | :---: | --- |
 | `shared/ui/adaptive` | ~100 | Patrón adaptativo web/mobile (button, card, data-view, table, inputs select, etc.) |
-| `shared/ui/web` | ~150 | Implementaciones desktop + wrappers legacy `primeng-*` |
 | `shared/ui/mobile` | ~100 | Implementaciones Ionic |
 | `shared/ui/inputs/{adaptive,web,mobile}` | ~70 | Inputs especializados (currency, date, phone, mask, otp…) |
 | `shared/ui/buttons`, `shared/ui/shared` | ~30 | Botones y compuestos de negocio (kpi-card, gauge, approval-workflow) |
 | **Total** | **452 archivos TS** | Excluyendo `.spec.ts` |
 
-**Hallazgo:** existe una gran cantidad de wrappers `primeng-*` en `shared/ui/web/` que probablemente quedaron huérfanos tras retirar PrimeNG. **Recomendación:** inventario de wrappers sin consumidores (dead code) — esfuerzo M, impacto en mantenibilidad y bundle.
 
 ---
 
@@ -401,12 +384,10 @@ El inventario real es la librería propia `shared/ui`:
 - Paleta y dark mode de calidad enterprise, con tokens CTI y auditorías automatizadas.
 - 452 componentes compartidos con patrón adaptive web/mobile.
 - DX sobresaliente (Storybook, Vitest, Playwright, axe, 11 auditorías propias).
-- Correcciones de ingeniería bien documentadas (layers Ionic/PrimeNG, excepciones RN-DS).
 
 **Oportunidades**
 - Consolidar una **única fuente de verdad** y regenerar la documentación derivada.
 - Añadir `@container`, View Transitions y gamut P3 cuando el producto lo justifique.
-- Tokenizar/eliminar deuda `--p-*` y wrappers `primeng-*` huérfanos.
 - Cerrar los gaps WCAG 2.2 (2.4.11/2.4.12/2.5.7/3.3.7/3.3.8) con evidencia.
 
 **Debilidades**
@@ -417,7 +398,6 @@ El inventario real es la librería propia `shared/ui`:
 
 **Amenazas**
 - Deriva (drift) acelerada si agentes consumen `MASTER.md` en vez de `DESIGN.md` + código.
-- Deuda de migración PrimeNG→Bootstrap que puede quedar congelada indefinidamente.
 - Sobrecrecimiento del bundle (4.2MB) y de estilos por componente (20KB).
 
 ---
@@ -428,14 +408,12 @@ El inventario real es la librería propia `shared/ui`:
 | --- | --- | --- | :---: | --- |
 | P0 | Corregir contraste de `.bg-status-pending` y `.bg-status-success` (usar `--ds-warning-text` / fondos claros) | Alto | S | Código |
 | P0 | Declarar `DESIGN.md` + `core/_colors.scss` como única fuente; marcar `MASTER.md` obsoleto y corregir `design-tokens-rule.md` | Alto | S | Gobernanza |
-| P0 | Corregir el prompt de auditoría: stack real (sin PrimeNG, Ionic 9, Bootstrap 5.3.8) | Alto | S | Gobernanza |
 | P1 | Ampliar `audit-contrast.mjs` para auditar pares reales de componentes (badges, botones, alerts) | Alto | M | CI |
 | P1 | Poner `audit:ds-tokens` en verde (7 violaciones) | Alto | S | CI |
 | P1 | Añadir `viewport-fit=cover` a `<meta viewport>` | Alto | S | Código |
 | P1 | Unificar sombras/focus en una sola definición; crear `--ds-focus-ring` canónico | Alto | S | Tokens |
 | P1 | Corregir `--ds-luxury-gold` (semántica falsa) | Medio | S | Tokens |
 | P2 | Re-anclar `--ds-type-*` a la escala `DESIGN.md` (FASE 3 T11) | Alto | L | Tipografía |
-| P2 | Auditar/dead-code de wrappers `primeng-*` y overrides `--p-*` | Medio | M | Arquitectura |
 | P2 | Inventariar y tokenizar 282 hardcodes de `modules/**` | Medio | L | Deuda |
 | P2 | Añadir `@container` a componentes adaptativos clave | Medio | M | Responsive |
 | P3 | Añadir OKLCH/Display-P3 para brand y gradientes | Bajo | M | Color |
@@ -449,7 +427,6 @@ El inventario real es la librería propia `shared/ui`:
 1. **Remediación P0/P1** con tickets y verificación en CI (contraste, tokens, viewport).
 2. **Unificación documental:** un solo documento rector generado; deprecación formal de `MASTER.md`.
 3. **Ampliación de la matriz de contraste** a todos los pares de estado reales y simulación de daltonismo.
-4. **Auditoría de componentes reales** (452) con matriz de estados/variantes del prompt §7.2/7.3, aplicada al inventario propio en lugar de a PrimeNG.
 5. **Motion avanzado, iconografía, charts, i18n/RTL, multi-brand** — una vez estabilizada la base.
 6. **Presupuestos de performance** reales (tokens < 5KB, componente < 2KB) y `@defer` en charts/editores/mapas.
 
@@ -460,7 +437,6 @@ El inventario real es la librería propia `shared/ui`:
 | Ítem solicitado por el prompt | Estado |
 | --- | --- |
 | Documento único "Luxury Design System & Guide" | No existe como tal; hay 4 documentos parcialmente contradictorios |
-| PrimeNG 22 (preset, unstyled, cobertura 80+) | No aplica: PrimeNG no es dependencia |
 | Ionic 8 | No aplica: la versión real es Ionic 9.0.3 |
 | Dominios `luxury-app.com` / `luxurybuildingapp.com` | No verificados en el repo; no evidenciado que el DS deba divergir por dominio |
 | Colores OKLCH / Display-P3 | No implementados |

@@ -10,7 +10,9 @@
       <div class="bg-body-tertiary p-2 d-flex flex-column flex-md-row gap-2">
         <div class="d-flex align-items-center gap-2 flex-fill min-w-0">
           <div class="d-flex flex-column gap-1 min-w-0">
-            <small class="text-primary fw-bold text-uppercase d-none d-md-block">
+            <small
+              class="text-primary fw-bold text-uppercase d-none d-md-block"
+            >
               LuxuryApp | Contabilidad Online
             </small>
             <h1 class="text-primary text-xl md:text-4xl line-height-2 m-0">
@@ -78,7 +80,7 @@
                   size="small"
                   (clicked)="refreshReports()"
                 />
-                <!--
+
                 <il-button
                   [iconClass]="isPreparing() ? 'material-symbols-light:progress-activity pi-spinner' : 'material-symbols-light:picture-as-pdf'"
                   [label]="isPreparing() ? 'Generando...' : 'PDF'"
@@ -121,7 +123,6 @@
                   [disabled]="!clienteUrl()"
                   (clicked)="openClienteView()"
                 />
-                -->
               </div>
             </div>
           </div>
@@ -133,7 +134,7 @@
 
     <div
       class="bg-body rounded-xl border-1 border shadow-sm overflow-x-auto"
-      style="scrollbar-width: thin;"
+      style="scrollbar-width: thin"
     >
       <lx-tabs
         [tabs]="reportTabs()"

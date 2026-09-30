@@ -1,8 +1,6 @@
-# 🔍 Auditoría Comparativa: `AppTable` vs PrimeNG v22 `p-table`
 
 ## 📌 Resumen Ejecutivo
 
-La implementación actual de `AppTable` cubre aproximadamente el **35–40%** de las capacidades del `p-table` de PrimeNG v22. Tiene una base sólida (signals, OnPush, drag&drop, frozen columns, lazy), pero presenta **defectos funcionales críticos en filtros lazy**, y carece de módulos completos que en PrimeNG son estándar (edición inline, filtros por columna, row expansion, virtual scroll, export, persistencia de estado, keyboard nav).
 
 A continuación el reporte puntual para el agente de código.
 
@@ -12,17 +10,14 @@ A continuación el reporte puntual para el agente de código.
 
 | #   | Problema                                                                     | Gravedad   | Detalle                                                                                                                                                                                                                                                                                      |
 | --- | ---------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **`filterGlobal` NO emite `onLazyLoad` en modo lazy**                        | 🔴 Crítico | El README dice explícitamente: _"Lazy: no filtra localmente y no emite `onLazyLoad`"_. Esto rompe el contrato de tabla server-side. En PrimeNG, filtrar en modo lazy dispara `onLazyLoad` con el `globalFilter` actualizado. **Debe corregirse**: emitir `onLazyLoad` al cambiar el término. |
 | 2   | **`mode` de `filterGlobal` es ignorado**                                     | 🟠 Alto    | El parámetro `mode` ("contains", "startsWith", etc.) se recibe pero no cambia la estrategia. Siempre usa `includes`. Debe implementarse al menos `startsWith` y `equals`.                                                                                                                    |
 | 3   | **`onLazyLoad` no se emite en el init**                                      | 🟠 Alto    | Si el README dice _"no se emite por cambios de inputs, para evitar loops"_, hay que garantizar que sí se emite **una vez** en `afterNextRender`/`afterViewInit` con los valores iniciales (`initialSortField`, `rows`, etc.), si no el consumidor lazy nunca carga la primera página.        |
-| 4   | **Reordenamiento de filas con paginación local usa índices de `pagedValue`** | 🟡 Medio   | PrimeNG usa índices globales. Esto limita la utilidad del feature. Debe documentarse claramente o calcularse el índice global.                                                                                                                                                               |
 | 5   | **`selection` como `model<unknown[]>` pierde tipado**                        | 🟡 Medio   | Debería ser genérico `model<T[]>` para aprovechar TypeScript.                                                                                                                                                                                                                                |
 | 6   | **Frozen column `right` no documentado con cálculo de `right` offset**       | 🟡 Medio   | El `afterRenderEffect` calcula `left` acumulativo, pero no se describe el cálculo simétrico para `alignFrozen="right"` (debe acumular desde el final usando `right`).                                                                                                                        |
 | 7   | **`groupRowsBy` solo detecta cambios entre filas contiguas**                 | 🟢 Bajo    | Correcto como diseño, pero debe exigir que el consumidor ordene los datos por el campo de agrupación antes de pasarlos. Documentar.                                                                                                                                                          |
 
 ---
 
-## 📊 Tabla Comparativa de Funcionalidades (PrimeNG v22 vs AppTable)
 
 ### ✅ Implementado (parcial o total)
 
@@ -39,7 +34,6 @@ A continuación el reporte puntual para el agente de código.
 
 ### ❌ Faltantes Críticos (P0 — deben implementarse para paridad mínima)
 
-| Feature PrimeNG                                                             | Estado AppTable    | Impacto                                           |
 | --------------------------------------------------------------------------- | ------------------ | ------------------------------------------------- |
 | **Filtros por columna** (`p-columnFilter`)                                  | ❌ No existe       | Muy alto. Es el feature más usado tras el global. |
 | **Match modes** (startsWith, endsWith, equals, in, between, lt/gt, dateIs…) | ❌ Solo `contains` | Alto. Rompe búsqueda precisa.                     |
@@ -115,18 +109,15 @@ Para refinar este análisis, necesito que el agente me confirme/envíe:
 
 1. **Código fuente de `table.ts`** completo (el README describe la API, pero no veo implementación real de `sortedValue`, `filteredValue`, `pagedValue` ni los `afterRenderEffect`).
 2. **Lista de componentes/directivas que ya existen** en el workspace (¿hay `app-column-filter`, `app-editable-column`, etc. en otros archivos?).
-3. **Casos de uso reales en la app**: ¿qué features de PrimeNG se usan hoy en los templates existentes? (para priorizar por uso real, no por spec).
 4. **¿Hay un `AppPaginator` separado** o está embebido en `AppTable`?
 5. **Estrategia de testing**: ¿hay tests unitarios de `AppTable`? ¿qué cobertura?
 6. **¿Se usa `@angular/cdk`** en el proyecto? (relevante para virtual scroll y drag&drop robusto).
 7. **Versión exacta de Angular** (el README menciona signals modernos, asumo 18+, pero confirmar).
-8. **Lista de selectores legacy de PrimeNG** que aún están en templates (para saber qué API surface es urgente replicar).
 
 ---
 
 ## 🧭 Recomendación Final al Agente
 
-> **No intentes replicar PrimeNG feature por feature.** PrimeNG tiene 10+ años de desarrollo. En su lugar:
 >
 > 1. **Primero corrige los 5 bugs críticos** (especialmente el filtro lazy roto).
 > 2. **Luego implementa solo los features que tus templates legacy realmente usan** (revisando el codebase).

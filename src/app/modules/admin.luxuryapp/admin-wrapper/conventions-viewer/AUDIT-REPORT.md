@@ -102,7 +102,6 @@ A partir de la edición del `CONVENTIONS.md` con la nota de sincronización obli
 |---------|--------|--------|
 | §1 Stack y Arquitectura | 4 | ✅ |
 | §2 Reglas Frontend (Angular 22) | 9 | ✅ |
-| §3 UX/UI — PrimeNG e Ionic | 2 | ✅ |
 | §4 Acceso a API (Frontend) | 2 | ✅ |
 | §5 Componentes UI | 1 | ✅ |
 | §6 Convención de Wrappers | 1 | ✅ |
@@ -159,7 +158,6 @@ A partir de la edición del `CONVENTIONS.md` con la nota de sincronización obli
 ### §5 — Componentes UI
 | Regla | Estado |
 |-------|--------|
-| No importar PrimeNG/Ionic directamente | ✅ Ninguna importación directa |
 
 ### §3 — Theming con CSS Variables
 | Regla | Estado |

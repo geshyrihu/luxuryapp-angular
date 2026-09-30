@@ -2,6 +2,15 @@ import { Routes } from "@angular/router";
 import { authGuard } from "@core/auth/guards/auth.guard";
 export const inspectionRoutes: Routes = [
   {
+    path: "",
+    loadComponent: () =>
+      import("@maintenance.luxuryapp/inspection/inspection-master-dashboard/inspection-master-dashboard").then(
+        (m) => m.InspectionMasterDashboard,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inspecciones", breadcrumb: "Inspecciones" },
+  },
+  {
     path: "catalog",
     loadComponent: () =>
       import("@maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones").then(

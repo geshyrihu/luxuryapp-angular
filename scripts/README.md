@@ -74,7 +74,6 @@ Ejecuta TODOS los scripts (emoji, encoding, css, ui, apps, design, tokens).
 
 1. **Strict TypeScript** — `strict: true` en tsconfig.json, cero `any`
 2. **OnPush Strategy** — `ChangeDetectionStrategy.OnPush` en componentes
-3. **Catálogo UI** — Cero imports directos de primeng/@ionic
 4. **Wrappers** — Sufijo `-wrapper`, no prefijo `wrapper-`
 5. **Mobile Components** — Cada listado CRUD tiene versión móvil
 6. **Naming Convention** — Archivos sin sufijo "Component"

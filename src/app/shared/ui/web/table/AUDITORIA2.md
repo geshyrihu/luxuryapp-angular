@@ -6,7 +6,6 @@
 **Documentacion base:** `README.md` en esta carpeta  
 **Auditorias origen:**
 
-- `docs/SharedLuxuryApp/DesignSystem/20260916-auditoria-shared-primeng-analisis.md`
 - `docs/SharedLuxuryApp/DesignSystem/20260918-auditoria-shared-apptable-complemento.md`
 - `docs/migration-template/03-inventario-componentes.md`
 - `docs/migration-template/04-bitacora-cambios.md`
@@ -83,11 +82,9 @@ Suponiendo que el plan llego a produccion y fallo, causas probables:
 
 1. Se valido compilacion pero no drag real.
 2. Se arreglo `AppTable` y se rompio un consumidor que dependia de mutacion
-   implicita de PrimeNG.
 3. Se persistieron indices de pagina como indices globales.
 4. Un segundo handler `drop` consumo el mismo evento.
 5. Vite quedo bloqueado por otro `ng build` y la prueba uso bundle viejo.
-6. Se declaro paridad con PrimeNG sin auditar features no implementadas.
 
 Mitigacion: pruebas runtime obligatorias, contrato explicito, logs completos,
 inventario de consumidores y cierre por fases.
@@ -97,10 +94,8 @@ inventario de consumidores y cierre por fases.
 El plan remedia primero el circuito de reordenamiento de filas porque es el
 problema urgente y de mayor impacto funcional. Despues estabiliza el contrato
 transversal y audita consumidores de columnas congeladas, columnas movibles,
-lazy loading y seleccion. Finalmente ordena el backlog de paridad PrimeNG por
 uso real, sin implementar capacidades especulativas.
 
-No se retirara PrimeNG ni se agregaran dependencias como parte de este plan.
 
 ## 2. Objetivo
 
@@ -145,7 +140,6 @@ Cada capacidad debe tener:
 - context menu;
 - seleccion global server-side;
 - rediseño visual general de tablas;
-- retiro final de paquetes PrimeNG.
 
 Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
@@ -156,7 +150,6 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 - No cambiar endpoints ni DTOs sin analisis de impacto.
 - No cambiar el comportamiento mobile para resolver desktop.
 - No asumir que `reorderableRows` por si solo activa handles.
-- No declarar soporte equivalente a PrimeNG sin prueba del flujo.
 - Shared UI requiere analisis de impacto antes de cada cambio.
 - Todo build debe guardarse completo, sin `tail`, para no ocultar errores.
 - Las modificaciones manuales deben hacerse con `apply_patch`.
@@ -216,7 +209,6 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
   `AppReorderableRowHandle` en cada standalone component.
 - [ ] Verificar binding `(onRowReorder)` en cada consumidor.
 - [ ] Clasificar handlers: persistencia, solo visual o pendiente.
-- [ ] Verificar que todos usan indices y no asumen mutacion PrimeNG.
 - [ ] Probar al menos un consumidor de cada modulo que tenga reorder.
 - [ ] Registrar tabla de consumidores, endpoint, estado y evidencia.
 
@@ -301,7 +293,6 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ### Tareas
 
-- [ ] Revisar inputs heredados de PrimeNG que pueden quedar ignorados con
   `strictTemplates: false`.
 - [ ] Decidir compatibilidad o retiro documentado por cada input residual.
 - [ ] Evaluar reemplazo de `value: input<any[]>([])` por contrato generico o
@@ -342,7 +333,6 @@ bitacora propia. No incluirlas en Fase 1 como trabajo oportunista.
 
 - [ ] `AppTable` mantiene `ChangeDetectionStrategy.OnPush`.
 - [ ] Signals no se reemplazan por estado mutable sin razon documentada.
-- [ ] No se agregan dependencias PrimeNG nuevas.
 - [ ] No se rompe el contrato de templates nombrados.
 - [ ] Cambios shared tienen analisis de impacto.
 
@@ -374,7 +364,6 @@ git diff --check
 | Riesgo | Impacto | Mitigacion |
 |---|---|---|
 | Cache Vite bloqueada por procesos concurrentes | No se puede validar runtime | Detener builds/serve duplicados, limpiar solo `.angular/cache`, levantar un solo servidor |
-| Consumidor mantiene supuesto PrimeNG | Orden vuelve al estado anterior | Auditar todos los handlers y aplicar splice con indices |
 | Indices parciales en lazy | Orden incorrecto en backend | Definir contrato global antes de permitir reorder lazy |
 | `drop` de otro flujo interfiere | Reorder no dispara o persiste datos equivocados | MIME/type guards y pruebas de eventos |
 | Manipulacion DOM de columnas pierde sincronizacion | Header/body desalineados | Prueba con varias filas, scroll, frozen y rerender |
@@ -432,7 +421,6 @@ El plan se considera cerrado cuando:
 - el orden visual y el orden persistido coinciden despues de recarga;
 - todos los consumidores reorder estan auditados;
 - columnas/frozen/lazy/seleccion tienen estado runtime documentado;
-- las limitaciones de PrimeNG no implementadas estan explicitamente marcadas;
 - no existen claims de paridad sin evidencia;
 - builds y auditorias pasan sin procesos concurrentes ni errores ocultos;
 - README, inventario y bitacora reflejan el estado final.

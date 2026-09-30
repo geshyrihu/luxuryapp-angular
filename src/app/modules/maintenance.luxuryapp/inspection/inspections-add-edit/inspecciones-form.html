@@ -17,14 +17,14 @@
       <!-- Campo Nombre -->
       <custom-input-text-signal
         [control]="form.controls.name"
-        label="Nombre de la Inspección *"
+        label="Nombre de la Inspección"
         placeholder="Nombre de la Inspección"
         aria-required="true"
       />
 
       <custom-input-select-signal
         [control]="form.controls.departament"
-        label="Departamento *"
+        label="Departamento"
         [data]="cb_departament()"
         [filter]="true"
       />
@@ -33,7 +33,7 @@
       <custom-input-select-signal
         id="frequency"
         [control]="form.controls.frequency"
-        label="Frecuencia *"
+        label="Frecuencia"
         [data]="frequencyOptions"
         optionLabel="label"
         optionValue="value"
@@ -79,7 +79,7 @@
       <custom-input-select-signal
         id="isActive"
         [control]="form.controls.isActive"
-        label="Activa *"
+        label="Activa"
         [data]="activeStatusOptions"
         optionLabel="label"
         optionValue="value"

@@ -469,15 +469,10 @@ DTOs embebidos dentro de archivos de interfaz:
 
 Online tiene 1 caso análogo (`Services/CobranzaOnlineTypes.cs`, 4 records — tipos internos, no DTOs de transporte).
 
-#### 🔴 C4 — Online: PrimeNG directo fuera de la excepción `p-table`
 
 | Archivo                                                       | Import prohibido        |
 | ------------------------------------------------------------- | ----------------------- |
-| `cobranza-date-picker-modal.ts:3`                             | `primeng/dynamicdialog` |
-| `morosidad/cobranza-online-morosidad-detail-modal.ts:10`      | `primeng/dynamicdialog` |
-| `detalle-condominos/cobranza-online-detalle-condominos.ts:18` | `primeng/selectbutton`  |
 
-Nativa: **cero** imports directos de PrimeNG. Punto a su favor.
 
 #### 🔴 C5 — Ambos: tokens CSS (Regla Crítica 8)
 
@@ -504,7 +499,6 @@ Consecuencia operativa: todo cambio de contrato de Online es un cambio en shared
 | Carpeta `interfaces/`, nunca `models/`   |     ✅ + sufijo `.dto.ts`      |                                🟡 carpeta OK, 7 archivos `.model.ts`                                 |
 | Iconos vía `app-icon` (§6.1)             |          ✅ 120 usos           |                                              ✅ 26 usos                                              |
 | SELECTs centralizados (Regla Crítica 6)  |  ✅ usa `enum-select.service`  |                                        ✅ sin SELECTs locales                                        |
-| PrimeNG solo `p-table` (§5.5)            |               ✅               |                                            🔴 3 archivos                                             |
 | Carpetas no previstas                    |  🟡 avaladas por su doc §5.10  |                                   🔴 `helpers/`, `state/` sin aval                                   |
 | Archivos ajenos en `src/`                |           ✅ limpio            | 🔴 `check.ps1`, `image.png`, `*.bak.html`, 2 `.md` sueltos, y `5. AVIVIA 58, COB 25.xlsx` en backend |
 | Validadores backend                      |           ❌ ninguno           |                                              ❌ ninguno                                              |
@@ -558,7 +552,6 @@ Consecuencia operativa: todo cambio de contrato de Online es un cambio en shared
 |  #  | Acción                                                                                |  Módulo   |
 | :-: | ------------------------------------------------------------------------------------- | :-------: |
 | 4.1 | Extraer los 16 DTOs embebidos en archivos de interfaz                                 | 🟦 Nativa |
-| 4.2 | Sustituir imports directos de PrimeNG por el catálogo `shared/ui`                     | 🟩 Online |
 | 4.3 | Migrar hex y `style=""` a tokens `var(--ds-*)`                                        |   Ambos   |
 | 4.4 | Eliminar `check.ps1`, `image.png`, `*.bak.html` y el `.xlsx` del árbol de código      | 🟩 Online |
 | 4.5 | Crear `README.md` rector en el backend de Nativa                                      | 🟦 Nativa |
@@ -588,7 +581,6 @@ Los cuatro problemas de fondo no son de volumen de código, son de **cierre**:
 
 Sobre las **entidades maestras**, el hallazgo es estructural y conviene no perderlo de vista: **ninguno de los dos módulos es dueño de la tabla de propiedades, de propietarios ni de habitantes.** Viven en `OperationsLuxuryApp` con interfaz en `resident.luxuryapp`. Cobranza Nativa aporta un cuarto modelo —`PropertyMember`— que es el único lugar donde existe el concepto de **responsable financiero ante el ledger**; Cobranza Online no participa de ninguna de las cuatro, porque su unidad de análisis es la cuenta contable Aspel, no la propiedad.
 
-**Cobranza Online es más pequeño, más maduro en gobernanza y menos ambicioso**, lo cual es coherente con su naturaleza de capa de lectura. Sus debilidades son de convención (PrimeNG directo, contratos en shared, basura en el árbol), no de integridad financiera — porque no maneja integridad financiera.
 
 **Los dos módulos son complementarios, no redundantes.** Las capacidades de reporte de Online — torres, reporte financiero por rango, inspección con histórico, gráficas — **no existen en Nativa**; el ciclo transaccional de Nativa no existe en Online. La convergencia natural sería que Nativa alimente los reportes de Online cuando un condominio deje Aspel. Hoy ese puente es únicamente `ChargeTemplate`.
 
