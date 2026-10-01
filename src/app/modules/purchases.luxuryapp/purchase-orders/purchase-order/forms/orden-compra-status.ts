@@ -19,6 +19,10 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  PurchaseOrderInvoice,
+  PurchaseOrderStatus,
+} from "../purchase-order.types";
 export interface IOrdenCompraStatusForm {
   id: FormControl<string | null>;
   ordenCompraId: FormControl<string | null>;
@@ -52,7 +56,7 @@ export class OrdenCompraStatus implements OnInit {
   submitting = signal(false);
 
   ordenCompraId: string = "";
-  ordenCompraStatus: any;
+  ordenCompraStatus: PurchaseOrderStatus | null = null;
 
   // El formulario se define como una propiedad
   form: FormGroup<IOrdenCompraStatusForm> =
@@ -82,23 +86,35 @@ export class OrdenCompraStatus implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.OrdenCompraStatus.byOrdenCompra(this.ordenCompraId))
-      .then((result: any) => {
+      .onGetItem<PurchaseOrderStatus>(
+        Endpoints.OrdenCompraStatus.byOrdenCompra(this.ordenCompraId),
+      )
+      .then((result) => {
+        if (!result) return;
         this.ordenCompraStatus = result;
         // Rellenamos el formulario con todos los datos, incluyendo factura y folioFiscal
-        this.form.patchValue(result);
+        this.form.patchValue({
+          id: result.id,
+          ordenCompraId: result.ordenCompraId,
+          sePago: result.sePago,
+          seRecibio: result.seRecibio,
+          recibidoPor: result.recibidoPor,
+          factura: result.factura,
+          folioFiscal: result.folioFiscal,
+          fechaFactura: result.fechaFactura,
+        });
       });
   }
 
-  onPdfFileChange(event: any) {
-    const file = event.target.files[0];
+  onPdfFileChange(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.form.patchValue({ pdfFile: file });
     }
   }
 
-  onXmlFileChange(event: any) {
-    const file = event.target.files[0];
+  onXmlFileChange(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.form.patchValue({ xmlFile: file });
     }
@@ -112,13 +128,23 @@ export class OrdenCompraStatus implements OnInit {
 
     // Update only status fields (booleans)
     this.apiResponseS
-      .onPut(
+      .onPut<PurchaseOrderStatus>(
         Endpoints.OrdenCompraStatus.update(this.ordenCompraStatus.id),
         formData,
       )
-      .then((result: any) => {
+      .then((result) => {
+        if (!result) return;
         this.ordenCompraStatus = result;
-        this.form.patchValue(result);
+        this.form.patchValue({
+          id: result.id,
+          ordenCompraId: result.ordenCompraId,
+          sePago: result.sePago,
+          seRecibio: result.seRecibio,
+          recibidoPor: result.recibidoPor,
+          factura: result.factura,
+          folioFiscal: result.folioFiscal,
+          fechaFactura: result.fechaFactura,
+        });
         this.submitting.set(false);
         this.ref.close(true);
       })
@@ -140,11 +166,12 @@ export class OrdenCompraStatus implements OnInit {
     if (xml) formData.append("xmlFile", xml);
 
     this.apiResponseS
-      .onPost(
+      .onPost<PurchaseOrderInvoice>(
         Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId),
         formData,
       )
-      .then((result: any) => {
+      .then((result) => {
+        if (!result || !this.ordenCompraStatus) return;
         // Result should be the new Invoice object.
         // We need to refresh the list.
         // Simplest is to reload data or append to list.
@@ -168,17 +195,23 @@ export class OrdenCompraStatus implements OnInit {
       .then((result: boolean) => {
         if (result) {
           this.ordenCompraStatus.facturas =
-            this.ordenCompraStatus.facturas.filter((x: any) => x.id !== id);
+            this.ordenCompraStatus.facturas.filter((x) => x.id !== id);
         }
       });
   }
 
-  private createFormData(DTO: any): FormData {
+  private createFormData(DTO: {
+    sePago?: boolean | null;
+    seRecibio?: boolean | null;
+    recibidoPor?: string | null;
+    pdfFile?: File | null;
+    xmlFile?: File | null;
+  }): FormData {
     const formData = new FormData();
     // Aóadimos solo los campos que el backend espera para el [FromForm]
-    formData.append("sePago", DTO.sePago);
-    formData.append("seRecibio", DTO.seRecibio);
-    formData.append("recibidoPor", DTO.recibidoPor);
+    formData.append("sePago", String(DTO.sePago ?? false));
+    formData.append("seRecibio", String(DTO.seRecibio ?? false));
+    formData.append("recibidoPor", DTO.recibidoPor ?? "");
 
     // Solo adjuntamos los archivos si han sido seleccionados
     if (DTO.pdfFile) {

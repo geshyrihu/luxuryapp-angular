@@ -2,7 +2,7 @@
 
 /**
  * Mapa que asocia el DisplayName del estado de un ticket con
- * la severidad (color) del componente p-tag de PrimeNG.
+ * la severidad (color) del componente p-tag de Bootstrap.
  */
 export const TICKET_STATUS_SEVERITY: Record<string, string> = {
   Abierto: 'danger',

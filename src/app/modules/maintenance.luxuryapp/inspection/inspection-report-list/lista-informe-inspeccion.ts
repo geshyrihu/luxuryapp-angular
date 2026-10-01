@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppImage,
     LxTooltipDirective,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-informe-inspeccion.html",
 })
 export class ListaInformeInspeccion implements OnInit {

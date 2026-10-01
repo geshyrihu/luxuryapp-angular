@@ -246,7 +246,7 @@ export class VacacionesSaldo implements OnInit {
   }
 
   /**
-   * ??? Retorna la severidad de PrimeNG para el estado de una solicitud.
+   * ??? Retorna la severidad de Bootstrap para el estado de una solicitud.
    * Delega al helper `statusSeverityFn` para mantener consistencia en toda la app.
    *
    * | Estado      | Severidad  | Color     |

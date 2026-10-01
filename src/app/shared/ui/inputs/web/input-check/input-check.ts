@@ -12,7 +12,7 @@ import {
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
- * ☑️ WEB INPUT CHECK (PrimeNG) — interno del delegador `custom-input-check-signal`.
+ * ☑️ WEB INPUT CHECK (Bootstrap) — interno del delegador `custom-input-check-signal`.
  */
 @Component({
   selector: "web-input-check",

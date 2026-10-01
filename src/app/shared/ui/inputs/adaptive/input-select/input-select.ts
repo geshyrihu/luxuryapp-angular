@@ -17,7 +17,7 @@ import { WebInputSelect } from "../../web/input-select/input-select";
 
 /**
  * 🔀 INPUT SELECT — adaptativo. `<custom-input-select-signal>` →
- * web `<web-input-select>` (PrimeNG) o móvil `<ion-input-select>` (Ionic).
+ * web `<web-input-select>` (Bootstrap) o móvil `<ion-input-select>` (Ionic).
  */
 @Component({
   selector: "custom-input-select-signal",

@@ -27,11 +27,16 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import {
+  PurchaseOrderFundingPeriodGroup,
+  PurchaseOrderPaymentFormData,
+  PurchaseOrderProviderData,
+} from "../purchase-order.types";
 
 // ... (Interface IOrdenCompraDatosPagoForm remains the same)
 export interface IOrdenCompraDatosPagoForm {
   id: FormControl<string | null>;
-  ordenCompraId: FormControl<number | null>;
+  ordenCompraId: FormControl<string | null>;
   formaDePagoId: FormControl<number | null>;
   metodoDePagoId: FormControl<number | null>;
   providerId: FormControl<number | null>;
@@ -75,13 +80,13 @@ export class OrdenCompraDatosPago implements OnInit {
   cb_payment_method = signal<SelectItemDto[]>([]);
   cb_usoCfdi = signal<SelectItemDto[]>([]);
   cb_tipoGasto = signal<SelectItemDto[]>([]);
-  fundingPeriodsByMonth = signal<any[]>([]);
+  fundingPeriodsByMonth = signal<PurchaseOrderFundingPeriodGroup[]>([]);
   cb_fundingYear = signal<SelectItemDto[]>([]);
 
   form: FormGroup<IOrdenCompraDatosPagoForm> =
     this.formB.group<IOrdenCompraDatosPagoForm>({
       id: new FormControl(""),
-      ordenCompraId: new FormControl(0),
+      ordenCompraId: new FormControl(""),
       formaDePagoId: new FormControl(0),
       metodoDePagoId: new FormControl(0),
       providerId: new FormControl(0, Validators.required),
@@ -115,7 +120,7 @@ export class OrdenCompraDatosPago implements OnInit {
     });
 
     this.apiResponseS
-      .onGetItem<any>(
+      .onGetItem<PurchaseOrderProviderData>(
         Endpoints.Providers.getByIdAndCustomer(
           item.value,
           this.customerIdS.customerId(),
@@ -169,10 +174,10 @@ export class OrdenCompraDatosPago implements OnInit {
     this.processFundingPeriods((fundingPeriods as SelectItemDto[]) || []);
     this.cb_fundingYear.set(this.generateYearOptions());
 
-    const result: any = await this.apiResponseS.onGetItem(
+    const result = await this.apiResponseS.onGetItem<PurchaseOrderPaymentFormData>(
       Endpoints.PurchaseOrderPaymentData.getById(this.ordenCompraDatosPagoId),
     );
-    this.form.patchValue(result);
+    if (result) this.form.patchValue(result);
   }
 
   // Nuevo método para generar opciones de Año
@@ -186,7 +191,7 @@ export class OrdenCompraDatosPago implements OnInit {
   }
 
   processFundingPeriods(periods: SelectItemDto[]) {
-    const months: any = {};
+    const months: Record<string, PurchaseOrderFundingPeriodGroup> = {};
     periods.forEach((period) => {
       if (period && period.label) {
         const monthName = period.label.split(" ")[2];
@@ -242,4 +247,3 @@ export class OrdenCompraDatosPago implements OnInit {
       .catch(() => this.submitting.set(false)); // Asegurarse de quitar el submitting en caso de error
   }
 }
-

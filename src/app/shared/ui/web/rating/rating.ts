@@ -8,7 +8,7 @@ import { BarRatingModule } from "ngx-bar-rating";
 
 /**
  * AppRating — Wrapper sobre p-rating con etiqueta, tooltips y modo readonly.
- * PrimeNG 21 p-rating inputs válidos: readonly, stars, iconOnClass, iconOffClass, autofocus.
+ * Bootstrap 21 p-rating inputs válidos: readonly, stars, iconOnClass, iconOffClass, autofocus.
  * Disabled y cancel se manejan a nivel wrapper con CSS + botón externo.
  */
 @Component({
@@ -30,7 +30,7 @@ import { BarRatingModule } from "ngx-bar-rating";
           (rateChange)="setValue($event)"
         />
 
-        <!-- Boton limpiar — reemplaza la propiedad cancel eliminada en PrimeNG 17+ -->
+        <!-- Boton limpiar — reemplaza la propiedad cancel eliminada en Bootstrap 17+ -->
         @if (allowCancel() && value() && !readonly() && !disabled()) {
           <button
             class="app-rating-clear"

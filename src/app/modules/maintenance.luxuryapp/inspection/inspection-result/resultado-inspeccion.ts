@@ -1,15 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  OnInit,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
+import { filter, from, map, switchMap } from "rxjs";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { InspectionResultDTO } from "../models/inspection.model";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -18,41 +14,37 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [AppIcon, WebButtonIcon, LxTooltipDirective],
 })
-export class ResultadoInspeccion implements OnInit {
+export class ResultadoInspeccion {
   apiResponseS = inject(ApiResponseService);
   activatedRoute = inject(ActivatedRoute);
   inspeccionPdfS = inject(InspeccionPdfService);
 
-  data: any = null;
-  id: string = "";
+  private readonly params$ = this.activatedRoute.params;
 
-  private paramsSignal = toSignal(this.activatedRoute.params);
+  readonly id = toSignal(
+    this.params$.pipe(map((params) => params["id"] as string)),
+    { initialValue: "" },
+  );
 
-  constructor() {
-    effect(() => {
-      const params = this.paramsSignal();
-      if (params) {
-        this.id = params["id"];
-        this.onLoadData(this.id);
-      }
-    });
-  }
-
-  ngOnInit(): void {}
-
-  onLoadData(inspectionResultId: string): void {
-    this.apiResponseS
-      .onGetList(Endpoints.InspectionResults.report(inspectionResultId))
-      .then((result: any) => {
-        this.data = result;
-      });
-  }
+  readonly data = toSignal(
+    this.params$.pipe(
+      map((params) => params["id"] as string),
+      filter((id) => !!id),
+      switchMap((id) =>
+        from(
+          this.apiResponseS.onGetList<InspectionResultDTO>(
+            Endpoints.InspectionResults.report(id),
+          ),
+        ),
+      ),
+    ),
+    { initialValue: null },
+  );
 
   onExportPDF(): void {
-    this.inspeccionPdfS.generarReporte(this.data, `Inspeccion_${this.id}`);
+    this.inspeccionPdfS.generarReporte(this.data(), `Inspeccion_${this.id()}`);
   }
 }
-

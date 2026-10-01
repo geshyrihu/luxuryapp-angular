@@ -5,7 +5,7 @@ import { AppBadge } from "@ui/web/badge/badge";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Badge. Renderiza `app-badge` (PrimeNG) o
+ * Wrapper multiplataforma de Badge. Renderiza `app-badge` (Bootstrap) o
  * `ili-badge` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-badge [value]="..." />`.
  */

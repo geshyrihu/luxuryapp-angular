@@ -91,7 +91,7 @@ export class ListProvider implements OnInit {
   page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
-  // Opciones de paginación y filtro global para PrimeNG
+  // Opciones de paginación y filtro global para Bootstrap
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   mobileGlobalFilterFields = ["mobileSearchBlob"];
   mobileData = computed(() =>

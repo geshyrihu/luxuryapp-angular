@@ -1,5 +1,5 @@
 /**
- * Convierte un estado de solicitud (como string) a la severidad de PrimeNG.
+ * Convierte un estado de solicitud (como string) a la severidad de Bootstrap.
  * @param status El estado como string (ej. "Aprobada", "Pendiente", etc.)
  * @returns La severidad: 'success' | 'danger' | 'info' | 'warn'
  */

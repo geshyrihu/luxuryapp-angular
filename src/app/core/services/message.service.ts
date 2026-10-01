@@ -23,8 +23,8 @@ interface ActiveToast extends AppToastMessage {
 }
 
 /**
- * MessageService — reemplazo propio del `MessageService` de PrimeNG
- * (`primeng/api`). [Fase 3 migración Bootstrap, 2026-09-13] Mismo
+ * MessageService — reemplazo propio del `MessageService` de Bootstrap
+ * (`Bootstrap/api`). [Fase 3 migración Bootstrap, 2026-09-13] Mismo
  * nombre y misma forma de `.add()`/`.clear()` para que los consumidores
  * existentes no cambien. Soporta el caso simple
  * (`{severity, summary, detail, life}`) y el avanzado con botones

@@ -173,7 +173,12 @@ export const EndpointsMantenimiento = {
     equipmentByCustomer: (customerId: string) => `inspection/equipment/${customerId}`,
     delete: (id: string | number) => `inspection/${id}`,
     getById: (id: string) => `inspection/${id}`,
-    listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
+    listByCustomer: (
+      customerId: string,
+      page: number = 1,
+      recordsNumber: number = 30,
+    ) =>
+      `inspection/list/${customerId}?page=${page}&recordsNumber=${recordsNumber}`,
     update: (id: string) => `inspection/${id}`,
   },
   InspectionResults: {

@@ -32,12 +32,12 @@ import { PlatformService } from "@core/services/platform.service";
         (selectionChange)="selectionChange.emit($event)"
       />
     } @else {
-      <!-- Web uses PrimeNG p-table directly in feature components -->
+      <!-- Web uses Bootstrap p-table directly in feature components -->
       <p
         class="lx-table-web-fallback"
         style="color: var(--ds-text-secondary); font-size: 0.875rem; padding: 1rem;"
       >
-        Usa &lt;p-table&gt; de PrimeNG directamente en web.
+        Usa &lt;p-table&gt; de Bootstrap directamente en web.
       </p>
     }
   `,

@@ -38,6 +38,8 @@ import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/gener
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
+import { StatusOrdenCompra } from "@core/enums/status-orden-compra.enum";
+import { PurchaseOrderListItem } from "./purchase-order.types";
 
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
@@ -193,9 +195,11 @@ export class OrdenCompraList {
   customerIdS = inject(CustomerIdService);
   pdfGenerationService = inject(PdfGenerationService);
 
-  data = signal<any[]>([]);
+  data = signal<PurchaseOrderListItem[]>([]);
   loading = signal(true);
-  statusCompra = signal<number>(this.ordenCompraService.getStatusCompras());
+  statusCompra = signal<StatusOrdenCompra>(
+    this.ordenCompraService.getStatusCompras() as StatusOrdenCompra,
+  );
   tipoGasto = signal<number>(TipoGasto.Fijo);
 
   customTitle = computed(() => {
@@ -241,8 +245,8 @@ export class OrdenCompraList {
 
     this.apiResponseS
       .onGetList(url)
-      .then((result: any) => {
-        this.data.set(result);
+      .then((result: PurchaseOrderListItem[] | null) => {
+        this.data.set(result ?? []);
       })
       .finally(() => {
         this.loading.set(false);
@@ -287,7 +291,7 @@ export class OrdenCompraList {
       });
   }
 
-  onAddOrEdit(id: any) {
+  onAddOrEdit(id: string) {
     this.router.navigate(ROUTES.COMPRAS.ORDEN_COMPRA(id));
   }
 
@@ -308,7 +312,7 @@ export class OrdenCompraList {
     this.tipoGasto.set(tipo);
   }
 
-  onSelectStatus(status: number): void {
+  onSelectStatus(status: StatusOrdenCompra): void {
     this.statusCompra.set(status);
     this.ordenCompraService.setStatusCompras(status);
   }
@@ -321,5 +325,4 @@ export class OrdenCompraList {
     this.pdfGenerationService.generateSolicitudPagoPdf(ordenCompraId);
   }
 }
-
 

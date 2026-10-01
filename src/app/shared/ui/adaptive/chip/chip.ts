@@ -5,7 +5,7 @@ import { AppChip } from "@ui/web/chip/chip";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Chip. Renderiza `app-chip` (PrimeNG) o `ili-chip`
+ * Wrapper multiplataforma de Chip. Renderiza `app-chip` (Bootstrap) o `ili-chip`
  * (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-chip label="..." />`.
  */

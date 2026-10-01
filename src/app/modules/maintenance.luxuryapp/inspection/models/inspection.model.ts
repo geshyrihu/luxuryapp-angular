@@ -57,6 +57,37 @@ export interface InspectionAddOrEdit {
 }
 
 /**
+ * Imagen de evidencia dentro de un resultado de inspección
+ * Corresponde a: ReportImageDTO (backend)
+ */
+export interface InspectionResultImageDTO {
+  photoPath: string;
+}
+
+/**
+ * Resultado individual de una inspección
+ * Corresponde a: ReportResultItemDTO (backend)
+ */
+export interface InspectionResultItemDTO {
+  state: boolean;
+  observations: string;
+  inspectionDescription: string;
+  images: InspectionResultImageDTO[];
+}
+
+/**
+ * Reporte completo de una ejecución de inspección
+ * Corresponde a: CustomerInspectionReportDTO (backend)
+ */
+export interface InspectionResultDTO {
+  name: string;
+  departament: string;
+  frequency: string;
+  user: string;
+  results: InspectionResultItemDTO[];
+}
+
+/**
  * Response genérico del API
  */
 export interface ApiResponse<T> {

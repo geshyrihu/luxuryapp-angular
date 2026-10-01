@@ -1,15 +1,18 @@
-<div class="card">
+<div class="card card--elevated">
   <div class="card-body">
     <!-- Error Display -->
     @if (loadError()) {
     <div
-      class="p-4 mb-4 bg-surface rounded-md border-1 border-danger-600 text-danger-600"
+      class="p-3 mb-4 bg-danger-light text-danger border border-danger rounded d-flex align-items-center gap-2"
       role="alert"
       aria-live="polite"
       aria-atomic="true"
     >
-      <strong class="text-body-md">Error:</strong>
-      <p class="text-body-sm m-0 mt-2">{{ loadError() }}</p>
+      <app-icon icon="material-symbols-light:error" class="text-xl" />
+      <div>
+        <strong class="d-block">Error:</strong>
+        <p class="m-0 text-sm">{{ loadError() }}</p>
+      </div>
     </div>
     }
 
@@ -18,15 +21,19 @@
       <custom-input-text-signal
         [control]="form.controls.name"
         label="Nombre de la Inspección"
-        placeholder="Nombre de la Inspección"
+        placeholder="Ingrese el nombre"
         aria-required="true"
+        [horizontal]="true"
       />
 
+      <!-- Selector de Departamento -->
       <custom-input-select-signal
         [control]="form.controls.departament"
         label="Departamento"
+        placeholder="Seleccione departamento"
         [data]="cb_departament()"
         [filter]="true"
+        [horizontal]="true"
       />
 
       <!-- Selector de Frecuencia -->
@@ -45,11 +52,11 @@
 
       <!-- Opciones de Frecuencia -->
       @if (selectedFrequency() === 'weekly') {
-      <fieldset class="row align-items-start mb-3 g-4">
-        <legend class="col-12 col-md-3 fw-medium mb-2 mb-md-0"
-          >Días de la semana *</legend
-        >
-        <div class="col-12 col-md-9 d-flex flex-wrap gap-2 gap-md-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-12 col-md-3">
+          <label class="fw-medium m-0">Días de la semana *</label>
+        </div>
+        <div class="col-12 col-md-9 d-flex flex-wrap gap-3">
           @for (day of weekDays; track day.value) {
           <custom-input-check-signal
             [control]="getDayControl(day.key)"
@@ -57,29 +64,25 @@
           />
           }
         </div>
-      </fieldset>
-      } @if (selectedFrequency() === 'monthly') {
-      <div class="row mb-3 align-items-center g-4">
-        <label for="dayOfMonth" class="col-12 col-md-3 fw-medium"
-          >Día del Mes</label
-        >
-        <div class="col-12 col-md-9">
-          <custom-input-number-signal
-            [control]="form.controls.dayOfMonth"
-            placeholder="Ingrese el día (1-31)"
-            [min]="1"
-            [max]="31"
-            [horizontal]="false"
-          />
-        </div>
       </div>
+      } 
+      
+      @if (selectedFrequency() === 'monthly') {
+      <custom-input-number-signal
+        [control]="form.controls.dayOfMonth"
+        label="Día del Mes"
+        placeholder="Ingrese el día (1-31)"
+        [min]="1"
+        [max]="31"
+        [horizontal]="true"
+      />
       }
 
       <!-- Selector de Activo -->
       <custom-input-select-signal
         id="isActive"
         [control]="form.controls.isActive"
-        label="Activa"
+        label="Estado de la Inspección"
         [data]="activeStatusOptions"
         optionLabel="label"
         optionValue="value"
@@ -87,11 +90,13 @@
         [filter]="true"
       />
 
-      <il-button-save
-        [propertyId]="id"
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-      />
+      <div class="d-flex justify-content-end mt-2 border-top pt-3">
+        <il-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
     </form>
   </div>
 </div>

@@ -9,6 +9,7 @@
 //
 // ⚠️  No declares colores nuevos aquí — agrégalos primero en
 //     core/_colors.scss como variable SCSS, luego expónela con #{...}
+@use "sass:color";
 @use "../core/colors" as c;
 @use "../core/spacing" as s;
 // ===================================================================
@@ -171,7 +172,7 @@
   /** Primary — alineado con --ds-primary **/
   --ion-color-primary: #{c.$primary-700};
   --ion-color-primary-rgb:
-    #{red(c.$primary-700)}, #{green(c.$primary-700)}, #{blue(c.$primary-700)};
+    #{color.channel(c.$primary-700, "red", $space: rgb)}, #{color.channel(c.$primary-700, "green", $space: rgb)}, #{color.channel(c.$primary-700, "blue", $space: rgb)};
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #{c.$primary-800};
@@ -180,77 +181,69 @@
   /** Success **/
   --ion-color-success: #{c.$color-success-brand};
   --ion-color-success-rgb:
-    #{red(c.$color-success-brand)}, #{green(c.$color-success-brand)},
-    #{blue(c.$color-success-brand)};
+    #{color.channel(c.$color-success-brand, "red", $space: rgb)}, #{color.channel(c.$color-success-brand, "green", $space: rgb)}, #{color.channel(c.$color-success-brand, "blue", $space: rgb)};
   --ion-color-success-contrast: #{c.$color-success-bg};
   --ion-color-success-contrast-rgb:
-    #{red(c.$color-success-bg)}, #{green(c.$color-success-bg)},
-    #{blue(c.$color-success-bg)};
-  --ion-color-success-shade: #{darken(c.$color-success-brand, 10%)};
-  --ion-color-success-tint: #{lighten(c.$color-success-brand, 10%)};
+    #{color.channel(c.$color-success-bg, "red", $space: rgb)}, #{color.channel(c.$color-success-bg, "green", $space: rgb)}, #{color.channel(c.$color-success-bg, "blue", $space: rgb)};
+  --ion-color-success-shade: #{color.adjust(c.$color-success-brand, $lightness: -10%)};
+  --ion-color-success-tint: #{color.adjust(c.$color-success-brand, $lightness: 10%)};
 
   /** Warning **/
   --ion-color-warning: #{c.$color-warning-brand};
   --ion-color-warning-rgb:
-    #{red(c.$color-warning-brand)}, #{green(c.$color-warning-brand)},
-    #{blue(c.$color-warning-brand)};
+    #{color.channel(c.$color-warning-brand, "red", $space: rgb)}, #{color.channel(c.$color-warning-brand, "green", $space: rgb)}, #{color.channel(c.$color-warning-brand, "blue", $space: rgb)};
   --ion-color-warning-contrast: #{c.$color-warning-bg};
   --ion-color-warning-contrast-rgb:
-    #{red(c.$color-warning-bg)}, #{green(c.$color-warning-bg)},
-    #{blue(c.$color-warning-bg)};
-  --ion-color-warning-shade: #{darken(c.$color-warning-brand, 10%)};
-  --ion-color-warning-tint: #{lighten(c.$color-warning-brand, 10%)};
+    #{color.channel(c.$color-warning-bg, "red", $space: rgb)}, #{color.channel(c.$color-warning-bg, "green", $space: rgb)}, #{color.channel(c.$color-warning-bg, "blue", $space: rgb)};
+  --ion-color-warning-shade: #{color.adjust(c.$color-warning-brand, $lightness: -10%)};
+  --ion-color-warning-tint: #{color.adjust(c.$color-warning-brand, $lightness: 10%)};
 
   /** Danger **/
   --ion-color-danger: #{c.$color-danger-brand};
   --ion-color-danger-rgb:
-    #{red(c.$color-danger-brand)}, #{green(c.$color-danger-brand)},
-    #{blue(c.$color-danger-brand)};
+    #{color.channel(c.$color-danger-brand, "red", $space: rgb)}, #{color.channel(c.$color-danger-brand, "green", $space: rgb)}, #{color.channel(c.$color-danger-brand, "blue", $space: rgb)};
   --ion-color-danger-contrast: #{c.$color-danger-bg};
   --ion-color-danger-contrast-rgb:
-    #{red(c.$color-danger-bg)}, #{green(c.$color-danger-bg)},
-    #{blue(c.$color-danger-bg)};
-  --ion-color-danger-shade: #{darken(c.$color-danger-brand, 10%)};
-  --ion-color-danger-tint: #{lighten(c.$color-danger-brand, 10%)};
+    #{color.channel(c.$color-danger-bg, "red", $space: rgb)}, #{color.channel(c.$color-danger-bg, "green", $space: rgb)}, #{color.channel(c.$color-danger-bg, "blue", $space: rgb)};
+  --ion-color-danger-shade: #{color.adjust(c.$color-danger-brand, $lightness: -10%)};
+  --ion-color-danger-tint: #{color.adjust(c.$color-danger-brand, $lightness: 10%)};
 
   /** UI Colors **/
   --ion-color-light: #{c.$primary-100};
   --ion-color-light-rgb:
-    #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+    #{color.channel(c.$primary-100, "red", $space: rgb)}, #{color.channel(c.$primary-100, "green", $space: rgb)}, #{color.channel(c.$primary-100, "blue", $space: rgb)};
   --ion-color-light-contrast: #{c.$primary-900};
   --ion-color-light-contrast-rgb:
-    #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
+    #{color.channel(c.$primary-900, "red", $space: rgb)}, #{color.channel(c.$primary-900, "green", $space: rgb)}, #{color.channel(c.$primary-900, "blue", $space: rgb)};
 
   --ion-color-medium: #{c.$primary-400};
   --ion-color-medium-rgb:
-    #{red(c.$primary-400)}, #{green(c.$primary-400)}, #{blue(c.$primary-400)};
+    #{color.channel(c.$primary-400, "red", $space: rgb)}, #{color.channel(c.$primary-400, "green", $space: rgb)}, #{color.channel(c.$primary-400, "blue", $space: rgb)};
   --ion-color-medium-contrast: #{c.$primary-950};
   --ion-color-medium-contrast-rgb:
-    #{red(c.$primary-950)}, #{green(c.$primary-950)}, #{blue(c.$primary-950)};
+    #{color.channel(c.$primary-950, "red", $space: rgb)}, #{color.channel(c.$primary-950, "green", $space: rgb)}, #{color.channel(c.$primary-950, "blue", $space: rgb)};
 
   --ion-color-dark: #{c.$primary-800};
   --ion-color-dark-rgb:
-    #{red(c.$primary-800)}, #{green(c.$primary-800)}, #{blue(c.$primary-800)};
+    #{color.channel(c.$primary-800, "red", $space: rgb)}, #{color.channel(c.$primary-800, "green", $space: rgb)}, #{color.channel(c.$primary-800, "blue", $space: rgb)};
   --ion-color-dark-contrast: #{c.$primary-50};
   --ion-color-dark-contrast-rgb:
-    #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
+    #{color.channel(c.$primary-50, "red", $space: rgb)}, #{color.channel(c.$primary-50, "green", $space: rgb)}, #{color.channel(c.$primary-50, "blue", $space: rgb)};
 
   /** Secondary — neutro/gris, alineado con btn-secondary **/
   --ion-color-secondary: #{c.$secondary-400};
   --ion-color-secondary-rgb:
-    #{red(c.$secondary-400)}, #{green(c.$secondary-400)},
-    #{blue(c.$secondary-400)};
+    #{color.channel(c.$secondary-400, "red", $space: rgb)}, #{color.channel(c.$secondary-400, "green", $space: rgb)}, #{color.channel(c.$secondary-400, "blue", $space: rgb)};
   --ion-color-secondary-contrast: #{c.$secondary-900};
   --ion-color-secondary-contrast-rgb:
-    #{red(c.$secondary-900)}, #{green(c.$secondary-900)},
-    #{blue(c.$secondary-900)};
+    #{color.channel(c.$secondary-900, "red", $space: rgb)}, #{color.channel(c.$secondary-900, "green", $space: rgb)}, #{color.channel(c.$secondary-900, "blue", $space: rgb)};
   --ion-color-secondary-shade: #{c.$secondary-500};
   --ion-color-secondary-tint: #{c.$secondary-300};
 
   /** Info (Cyan) **/
   --ion-color-info: #{c.$info-600};
   --ion-color-info-rgb:
-    #{red(c.$info-600)}, #{green(c.$info-600)}, #{blue(c.$info-600)};
+    #{color.channel(c.$info-600, "red", $space: rgb)}, #{color.channel(c.$info-600, "green", $space: rgb)}, #{color.channel(c.$info-600, "blue", $space: rgb)};
   --ion-color-info-contrast: #ffffff;
   --ion-color-info-contrast-rgb: 255, 255, 255;
   --ion-color-info-shade: #{c.$info-700};
@@ -259,7 +252,7 @@
   /** Help (alias Info en este DS) **/
   --ion-color-help: #{c.$help-600};
   --ion-color-help-rgb:
-    #{red(c.$help-600)}, #{green(c.$help-600)}, #{blue(c.$help-600)};
+    #{color.channel(c.$help-600, "red", $space: rgb)}, #{color.channel(c.$help-600, "green", $space: rgb)}, #{color.channel(c.$help-600, "blue", $space: rgb)};
   --ion-color-help-contrast: #ffffff;
   --ion-color-help-contrast-rgb: 255, 255, 255;
   --ion-color-help-shade: #{c.$help-700};
@@ -268,7 +261,7 @@
   /** Contrast (Navy oscuro) **/
   --ion-color-contrast: #{c.$contrast-500};
   --ion-color-contrast-rgb:
-    #{red(c.$contrast-500)}, #{green(c.$contrast-500)}, #{blue(c.$contrast-500)};
+    #{color.channel(c.$contrast-500, "red", $space: rgb)}, #{color.channel(c.$contrast-500, "green", $space: rgb)}, #{color.channel(c.$contrast-500, "blue", $space: rgb)};
   --ion-color-contrast-contrast: #ffffff;
   --ion-color-contrast-contrast-rgb: 255, 255, 255;
   --ion-color-contrast-shade: #{c.$contrast-900};
@@ -444,8 +437,7 @@
   --ds-bg-overlay: rgba(0, 0, 0, 0.5);
   --ds-bg-auth-panel: #{c.$color-auth-panel-bg};
   --ds-bg-auth-panel-rgb:
-    #{red(c.$color-auth-panel-bg)}, #{green(c.$color-auth-panel-bg)},
-    #{blue(c.$color-auth-panel-bg)};
+    #{color.channel(c.$color-auth-panel-bg, "red", $space: rgb)}, #{color.channel(c.$color-auth-panel-bg, "green", $space: rgb)}, #{color.channel(c.$color-auth-panel-bg, "blue", $space: rgb)};
 
   // Texto — DESIGN.md on-surface roles
   --ds-text-primary: var(--ds-on-surface);
@@ -627,28 +619,28 @@ body.theme-dark {
   /** Primary dark — alineado con --ds-primary dark (#primary-200) **/
   --ion-color-primary: #{c.$primary-200};
   --ion-color-primary-rgb:
-    #{red(c.$primary-200)}, #{green(c.$primary-200)}, #{blue(c.$primary-200)};
+    #{color.channel(c.$primary-200, "red", $space: rgb)}, #{color.channel(c.$primary-200, "green", $space: rgb)}, #{color.channel(c.$primary-200, "blue", $space: rgb)};
   --ion-color-primary-contrast: #{c.$primary-950};
   --ion-color-primary-contrast-rgb:
-    #{red(c.$primary-950)}, #{green(c.$primary-950)}, #{blue(c.$primary-950)};
+    #{color.channel(c.$primary-950, "red", $space: rgb)}, #{color.channel(c.$primary-950, "green", $space: rgb)}, #{color.channel(c.$primary-950, "blue", $space: rgb)};
   --ion-color-primary-shade: #{c.$primary-300};
   --ion-color-primary-tint: #{c.$primary-100};
 
   /** Light (invertido) **/
   --ion-color-light: #{c.$primary-800};
   --ion-color-light-rgb:
-    #{red(c.$primary-800)}, #{green(c.$primary-800)}, #{blue(c.$primary-800)};
+    #{color.channel(c.$primary-800, "red", $space: rgb)}, #{color.channel(c.$primary-800, "green", $space: rgb)}, #{color.channel(c.$primary-800, "blue", $space: rgb)};
   --ion-color-light-contrast: #{c.$primary-100};
   --ion-color-light-contrast-rgb:
-    #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+    #{color.channel(c.$primary-100, "red", $space: rgb)}, #{color.channel(c.$primary-100, "green", $space: rgb)}, #{color.channel(c.$primary-100, "blue", $space: rgb)};
 
   /** Dark (invertido) **/
   --ion-color-dark: #{c.$primary-100};
   --ion-color-dark-rgb:
-    #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+    #{color.channel(c.$primary-100, "red", $space: rgb)}, #{color.channel(c.$primary-100, "green", $space: rgb)}, #{color.channel(c.$primary-100, "blue", $space: rgb)};
   --ion-color-dark-contrast: #{c.$primary-900};
   --ion-color-dark-contrast-rgb:
-    #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
+    #{color.channel(c.$primary-900, "red", $space: rgb)}, #{color.channel(c.$primary-900, "green", $space: rgb)}, #{color.channel(c.$primary-900, "blue", $space: rgb)};
 
   /** Toolbar & Item backgrounds **/
   --ion-toolbar-background: #{c.$primary-950};

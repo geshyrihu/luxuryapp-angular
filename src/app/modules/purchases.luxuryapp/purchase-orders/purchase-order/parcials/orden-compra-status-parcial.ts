@@ -7,6 +7,7 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PurchaseOrderView } from "../purchase-order.types";
 
 @Component({
   selector: "app-orden-compra-status-parcial",
@@ -15,7 +16,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [ AppIcon, WebButtonIcon, LxTag],
 })
 export class OrdenCompraStatusParcial {
-  ordenCompra = input<any>();
+  ordenCompra = input<PurchaseOrderView>();
   mostrarTabla = input<boolean>();
   ordenCompraPresupuestoUtilizado = input<boolean>();
   bloqueada = input<boolean>();

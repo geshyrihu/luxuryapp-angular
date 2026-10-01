@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
   OnDestroy,
@@ -37,10 +38,11 @@ interface NewInspectionImage {
     NgbTooltipModule,
     AppIcon,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })
 export class MisInspeccionesAgregarImagenes implements OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   formB = inject(FormBuilder);
@@ -69,6 +71,7 @@ export class MisInspeccionesAgregarImagenes implements OnDestroy {
       )
       .then((result: any) => {
         this.existingImages = result;
+        this.cdr.markForCheck();
       });
   }
 
@@ -95,6 +98,7 @@ export class MisInspeccionesAgregarImagenes implements OnDestroy {
         );
       }
     }
+    this.cdr.markForCheck();
   }
 
   onSaveImages(): void {
@@ -138,6 +142,7 @@ export class MisInspeccionesAgregarImagenes implements OnDestroy {
         this.existingImages = this.existingImages.filter(
           (img) => img.id !== imageId,
         );
+        this.cdr.markForCheck();
       });
   }
 }

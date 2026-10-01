@@ -30,7 +30,7 @@ interface IReviewForm {
 @Component({
   selector: "app-inspeccion-activo-condominio-editar",
   templateUrl: "./inspeccion-activo-condominio-editar.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,

@@ -14,7 +14,7 @@ interface InspectionQrResolve {
 @Component({
   selector: "app-inspection-qr-entry",
   templateUrl: "./inspection-qr-entry.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
 })
 export class InspectionQrEntry implements OnInit {

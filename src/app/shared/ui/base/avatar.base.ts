@@ -6,7 +6,7 @@ export type AvatarSize = "normal" | "large" | "xlarge";
 
 /**
  * Base compartida de Avatar (imagen, iniciales o icono).
- *  - web:     `app-avatar`  (PrimeNG p-avatar)
+ *  - web:     `app-avatar`  (Bootstrap p-avatar)
  *  - mobile:  `ili-avatar`  (Ionic ion-avatar)
  *  - wrapper: `lx-avatar`   (auto runtime)
  *

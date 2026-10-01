@@ -9,7 +9,7 @@ import { INSPECTION_MODULES } from "./inspection-modules";
 @Component({
   selector: "app-inspection-master-dashboard",
   imports: [AppIcon, LxCard, MobileListItem],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./inspection-master-dashboard.html",
 })
 export class InspectionMasterDashboard {

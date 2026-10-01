@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-// PrimeNG Modules
+// Bootstrap Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import {
@@ -103,6 +103,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import {
+  PurchaseOrderBudgetAccountsResponse,
+  PurchaseOrderCreateResult,
+  PurchaseOrderFundingData,
+  PurchaseOrderFundingPeriodGroup,
+  PurchaseOrderProductDraft,
+} from "../purchase-order.types";
 
 @Component({
   selector: "app-create-orden-compra-wizard",
@@ -149,12 +156,12 @@ export class CreateOrdenCompraWizard implements OnInit {
   fundingId: string | null = null;
   initialTipoGasto: number | null = null; // New helper variable
 
-  itemsSignal = signal<any[]>([]);
+  itemsSignal = signal<PurchaseOrderProductDraft[]>([]);
   cb_providers = signal<SelectItemDto[]>([]);
   cb_measurement_units = signal<SelectItemDto[]>([]);
   cb_richProducts = signal<SelectItemDto[]>([]);
   filteredRichProducts = signal<SelectItemDto[]>([]);
-  selectedProductForAutocomplete: any;
+  selectedProductForAutocomplete: SelectItemDto<string> & { image?: string };
 
   // Budget Account signals
   cb_accounts = signal<AccountBudgetSelectItem[]>([]);
@@ -164,14 +171,16 @@ export class CreateOrdenCompraWizard implements OnInit {
   cb_fiscalYear = signal<SelectItemDto[]>([]);
 
   // Funding signals
-  fundingPeriodsByMonth = signal<any[]>([]);
+  fundingPeriodsByMonth = signal<PurchaseOrderFundingPeriodGroup[]>([]);
   cb_fundingYear = signal<SelectItemDto[]>([]);
 
   // Invoices state
   // Invoices state
   uploadedFiles = signal<File[]>([]);
 
-  selectedProductControl = new FormControl<any>(null);
+  selectedProductControl = new FormControl<
+    (SelectItemDto<string> & { image?: string }) | null
+  >(null);
   providerControl = new FormControl<SelectItemDto | null>(
     null,
     Validators.required,
@@ -237,7 +246,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       // If a fundingId is passed, fetch its details to pre-fill the form
       if (this.fundingId) {
         this.apiResponseS
-          .onGetItem<any>(`funding/${this.fundingId}`)
+           .onGetItem<PurchaseOrderFundingData>(`funding/${this.fundingId}`)
           .then((fundingData) => {
             if (fundingData) {
               this.step1Form.patchValue({
@@ -272,7 +281,7 @@ export class CreateOrdenCompraWizard implements OnInit {
   }
 
   processFundingPeriods(periods: SelectItemDto[]) {
-    const months: any = {};
+    const months: Record<string, PurchaseOrderFundingPeriodGroup> = {};
     periods.forEach((period) => {
       const monthName = period.label.split(" ")[2];
       if (!months[monthName]) {
@@ -318,17 +327,16 @@ export class CreateOrdenCompraWizard implements OnInit {
     const customerId: string = this.customerIdS.customerId();
     if (customerId && fiscalYear) {
       this.apiResponseS
-        .onGetList<any>(
+        .onGetList<PurchaseOrderBudgetAccountsResponse>(
           Endpoints.Presupuestos.toPurchaseOrder(
             customerId,
             EMPTY_GUID,
             fiscalYear,
           ),
         )
-        .then((result: any) => {
-          const accounts: AccountBudgetSelectItem[] = (
-            result?.accounts || []
-          ).map((acc: any) => ({
+        .then((result) => {
+          const accounts: AccountBudgetSelectItem[] = (result?.accounts ?? []).map(
+            (acc) => ({
             value: acc.accountNumber,
             label: `${acc.accountNumber} | ${acc.accountName}`,
             accountNumber: acc.accountNumber,
@@ -338,7 +346,8 @@ export class CreateOrdenCompraWizard implements OnInit {
             budgetMonth: acc.budgetMonth,
             pendingPayments: acc.pendingPayments,
             hasAvailableBudget: acc.hasAvailableBudget,
-          }));
+            }),
+          );
           this.cb_accounts.set(accounts);
         });
     }
@@ -349,7 +358,10 @@ export class CreateOrdenCompraWizard implements OnInit {
     this.loadAccounts(newYear);
   }
 
-  openItemDetailModal(productData: any, index?: number): void {
+  openItemDetailModal(
+    productData: Partial<PurchaseOrderProductDraft>,
+    index?: number,
+  ): void {
     const data = {
       product: {
         ...productData,
@@ -368,14 +380,15 @@ export class CreateOrdenCompraWizard implements OnInit {
         productData.productoId ? "Editar Artículo" : "Añadir Artículo",
         this.dialogHandlerS.sizeMd,
       )
-      .then((result: any) => {
+      .then((result) => {
         if (result) {
+          const product = result as unknown as PurchaseOrderProductDraft;
           if (index !== undefined && index > -1) {
             const items = [...this.itemsSignal()];
-            items[index] = result;
+            items[index] = product;
             this.itemsSignal.set(items);
           } else {
-            this.itemsSignal.update((items) => [...items, result]);
+            this.itemsSignal.update((items) => [...items, product]);
           }
         }
       });
@@ -385,7 +398,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     selectedProduct: (SelectItemDto & { image?: string }) | null,
   ): void {
     // (propagar) emite el item ya desempaquetado ({value, label, image}),
-    // no el evento crudo de PrimeNG.
+    // no el evento crudo de Bootstrap.
     if (!selectedProduct) return;
     const existingItem = this.itemsSignal().find(
       (item) => item.productoId === selectedProduct.value,
@@ -410,7 +423,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     });
   }
 
-  editItem(item: any, index: number): void {
+  editItem(item: PurchaseOrderProductDraft, index: number): void {
     this.openItemDetailModal(item, index);
   }
 
@@ -429,7 +442,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     );
   }
 
-  onModalTarjetaProducto(productoId: any): void {
+  onModalTarjetaProducto(productoId: string | null): void {
     this.dialogHandlerS.openDialog(
       TarjetaProducto,
       { productoId },
@@ -471,7 +484,7 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   // `descuento`, `ivaAplicado` y las retenciones son PORCENTAJES (0-100),
   // igual que en OrdenCompraDetalle.SubTotal/Total del backend — no montos.
-  calculateItemSubtotal(item: any): number {
+  calculateItemSubtotal(item: PurchaseOrderProductDraft): number {
     const quantity = Number(item.quantity) || 0;
     const unitPrice = Number(item.unitPrice) || 0;
     const descuentoMonto =
@@ -479,7 +492,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     return quantity * unitPrice - descuentoMonto;
   }
 
-  calculateItemTotal(item: any): number {
+  calculateItemTotal(item: PurchaseOrderProductDraft): number {
     const subtotal = this.calculateItemSubtotal(item);
     const iva = subtotal * ((Number(item.ivaAplicado) || 0) / 100);
     const retencionIva =
@@ -533,8 +546,8 @@ export class CreateOrdenCompraWizard implements OnInit {
   }
 
   // Invoice Methods
-  onFilesSelect(event: any): void {
-    // PrimeNG sends { files: File[] }
+  onFilesSelect(event: { files: File[] }): void {
+    // Bootstrap sends { files: File[] }
     // We append new files to our signal list
     const newFiles: File[] = event.files;
     this.uploadedFiles.update((current) => {
@@ -549,7 +562,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     });
   }
 
-  onFileRemove(event: any): void {
+  onFileRemove(event: { file: File }): void {
     const fileToRemove = event.file;
     this.uploadedFiles.update((files) =>
       files.filter((f) => f.name !== fileToRemove.name),
@@ -585,7 +598,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     );
   }
 
-  getMeasurementUnitLabel(unitId: any): string {
+  getMeasurementUnitLabel(unitId: string | null): string {
     return (
       this.cb_measurement_units().find((u) => u.value === unitId)?.label ||
       "N/A"
@@ -700,8 +713,11 @@ export class CreateOrdenCompraWizard implements OnInit {
     };
 
     this.apiResponseS
-      .onPost(Endpoints.PurchaseOrders.progressiveCreate, finalPayload)
-      .then(async (result: any) => {
+      .onPost<PurchaseOrderCreateResult>(
+        Endpoints.PurchaseOrders.progressiveCreate,
+        finalPayload,
+      )
+      .then(async (result) => {
         if (result && result.id) {
           const ordenCompraId = result.id;
 
@@ -768,5 +784,3 @@ export class CreateOrdenCompraWizard implements OnInit {
       });
   }
 }
-
-

@@ -3,7 +3,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 /**
  * Base compartida de Chip (API + lógica de remoción/click).
- *  - web:     `app-chip`  (PrimeNG p-chip)
+ *  - web:     `app-chip`  (Bootstrap p-chip)
  *  - mobile:  `ili-chip`  (Ionic ion-chip)
  *  - wrapper: `lx-chip`   (auto runtime)
  *

@@ -3,7 +3,7 @@ import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 /**
- * Overlay de procesamiento para web (PrimeNG).
+ * Overlay de procesamiento para web (Bootstrap).
  * Muestra un fondo oscuro con spinner y barra de progreso.
  * Usado en formularios durante operaciones CRUD.
  */

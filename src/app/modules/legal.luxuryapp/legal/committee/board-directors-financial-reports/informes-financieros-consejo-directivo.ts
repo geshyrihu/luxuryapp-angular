@@ -30,7 +30,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
   dataSignal = signal<any[]>([]);
   loading = signal(true);
 
-  // Opciones de la tabla PrimeNG, replicando la estructura de Bancos
+  // Opciones de la tabla Bootstrap, replicando la estructura de Bancos
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 

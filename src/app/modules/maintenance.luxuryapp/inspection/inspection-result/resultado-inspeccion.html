@@ -1,7 +1,7 @@
 <div class="p-4 p-md-5">
   <div class="d-flex justify-content-between align-items-center mb-6">
     <h4 class="text-headline-md text-on-surface m-0">Reporte de Inspección</h4>
-    @if (data) {
+    @if (data()) {
     <iw-button
       label="Descargar PDF"
       severity="danger"
@@ -12,33 +12,33 @@
     }
   </div>
 
-  @if (!data) {
+  @if (!data()) {
   <div class="d-flex justify-content-center align-items-center p-5">
     <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
   </div>
-  } @if (data) {
+  } @if (data(); as result) {
   <div class="d-flex flex-column gap-5">
     <!-- Información General -->
     <div class="card p-4 p-md-5">
-      <h5 class="text-title-lg text-primary m-0 mb-4">{{ data.name }}</h5>
+      <h5 class="text-title-lg text-primary m-0 mb-4">{{ result.name }}</h5>
       <div class="row gap-3 g-4">
         <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
-          <p class="text-body-md text-on-surface m-0">{{ data.departament }}</p>
+          <p class="text-body-md text-on-surface m-0">{{ result.departament }}</p>
         </div>
         <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Frecuencia</p>
-          <p class="text-body-md text-on-surface m-0">{{ data.frequency }}</p>
+          <p class="text-body-md text-on-surface m-0">{{ result.frequency }}</p>
         </div>
         <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Realizado por</p>
-          <p class="text-body-md text-on-surface m-0">{{ data.user }}</p>
+          <p class="text-body-md text-on-surface m-0">{{ result.user }}</p>
         </div>
       </div>
     </div>
 
     <!-- Resultados de Inspección -->
-    @for (item of data.results; track item) {
+    @for (item of result.results; track item) {
     <div class="card p-4 p-md-5 border-outline">
       <div class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
         <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>

@@ -180,7 +180,7 @@ export class HeaderEmployeedesktop implements OnInit {
 
         // Home item
         items.push({
-          icon: "material-symbols-light:home", // PrimeNG icon class
+          icon: "material-symbols-light:home", // Bootstrap icon class
           routerLink: "/dashboard",
         });
 

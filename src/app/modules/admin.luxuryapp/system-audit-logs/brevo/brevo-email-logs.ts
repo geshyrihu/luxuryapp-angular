@@ -120,7 +120,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Devuelve la severidad del Tag de PrimeNG según el evento de Brevo.
+   * Devuelve la severidad del Tag de Bootstrap según el evento de Brevo.
    */
   severidadEvento(
     evento: string,

@@ -6,7 +6,7 @@ import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ConfirmDialog. Renderiza `app-confirm-dialog`
- * (PrimeNG) o `ili-confirm-dialog` (Ionic) según `PlatformService.isMobile()`.
+ * (Bootstrap) o `ili-confirm-dialog` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-confirm-dialog [(visible)]="..." />`.
  */
 @Component({

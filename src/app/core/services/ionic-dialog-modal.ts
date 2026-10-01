@@ -32,7 +32,7 @@ import { Subject } from "rxjs";
  * `config.data` y llamando `ref.close(value)`.
  *
  * Al vivir en el sistema de overlays de Ionic, los `ion-select` del form abren
- * su action-sheet POR ENCIMA del modal (sin el bug de z-index del diálogo PrimeNG).
+ * su action-sheet POR ENCIMA del modal (sin el bug de z-index del diálogo Bootstrap).
  */
 @Component({
   selector: "lx-ionic-dialog-modal",

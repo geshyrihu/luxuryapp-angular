@@ -82,7 +82,7 @@ interface Equipo {
     recurrence: string;
     nameProvider: string;
   }[];
-  // ? Propiedad requerida por PrimeNG para row expansion
+  // ? Propiedad requerida por Bootstrap para row expansion
   expanded?: boolean;
 }
 

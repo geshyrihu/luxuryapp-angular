@@ -5,7 +5,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Spinner. Renderiza `app-spinner` (PrimeNG) o
+ * Wrapper multiplataforma de Spinner. Renderiza `app-spinner` (Bootstrap) o
  * `ili-spinner` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-spinner />`.
  */

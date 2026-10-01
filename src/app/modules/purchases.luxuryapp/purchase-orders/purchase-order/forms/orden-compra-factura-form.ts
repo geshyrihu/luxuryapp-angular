@@ -25,6 +25,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PurchaseOrderInvoice } from "../purchase-order.types";
 export interface IOrdenCompraFacturaForm {
   pdfFile: FormControl<File | null>;
   xmlFile: FormControl<File | null>;
@@ -64,7 +65,7 @@ export class OrdenCompraFacturaForm implements OnInit {
   editingInvoiceId: string | null = null;
 
   ordenCompraId: string = "";
-  facturas: WritableSignal<any[]> = signal([]);
+  facturas: WritableSignal<PurchaseOrderInvoice[]> = signal([]);
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
@@ -85,7 +86,7 @@ export class OrdenCompraFacturaForm implements OnInit {
     }
   }
 
-  toggleType(invoice: any) {
+  toggleType(invoice: PurchaseOrderInvoice) {
     const newType = invoice.tipoComprobante === "E" ? "I" : "E";
     this.apiResponseS
       .onPatch(Endpoints.OrdenCompraStatus.updateInvoiceType(invoice.id), {
@@ -110,7 +111,7 @@ export class OrdenCompraFacturaForm implements OnInit {
     }
   }
 
-  onEditInvoice(invoice: any) {
+  onEditInvoice(invoice: PurchaseOrderInvoice) {
     this.isEditing.set(true);
     this.editingInvoiceId = invoice.id;
     this.form.patchValue({
@@ -146,11 +147,12 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPut(
+      .onPut<PurchaseOrderInvoice>(
         Endpoints.OrdenCompraStatus.updateInvoice(this.editingInvoiceId),
         formData,
       )
-      .then((result: any) => {
+      .then((result) => {
+        if (!result) return;
         this.facturas.update((values) => {
           const index = values.findIndex((x) => x.id === this.editingInvoiceId);
           if (index !== -1) {
@@ -180,11 +182,12 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPost(
+      .onPost<PurchaseOrderInvoice>(
         Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId),
         formData,
       )
-      .then((result: any) => {
+      .then((result) => {
+        if (!result) return;
         this.facturas.update((values) => [...values, result]);
 
         // Reset inputs

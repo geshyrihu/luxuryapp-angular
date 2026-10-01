@@ -233,7 +233,7 @@ export class VacacionesAdminAuditoria implements OnInit {
     });
   }
 
-  /** Retorna la severidad del tag de PrimeNG para el estado de la solicitud. */
+  /** Retorna la severidad del tag de Bootstrap para el estado de la solicitud. */
   onGetSeverity(status: string) {
     return statusSeverityFn(status);
   }

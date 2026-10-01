@@ -23,6 +23,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { PurchaseOrderDetailLine } from "./purchase-order.types";
 export interface IOrdenCompraDetalleForm {
   id: FormControl<string | null>;
   ordenCompraId: FormControl<string | null>;
@@ -60,7 +61,7 @@ export class OrdenCompraEditDetalle implements OnInit {
 
   id: string = "";
 
-  cb_unidadMedida: any[] = [];
+  cb_unidadMedida: SelectItemDto[] = [];
   form: FormGroup<IOrdenCompraDetalleForm> =
     this.formB.group<IOrdenCompraDetalleForm>({
       id: new FormControl({ value: this.config.data.id, disabled: true }),
@@ -84,17 +85,17 @@ export class OrdenCompraEditDetalle implements OnInit {
   onSelectItem() {
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
-      .then((response: any) => {
-        this.cb_unidadMedida = response;
+      .then((response) => {
+        this.cb_unidadMedida = response ?? [];
         this.cdr.detectChanges(); // Call detectChanges after updating the data
       });
   }
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.PurchaseOrderDetails.getById(this.id))
-      .then((result: any) => {
-        this.form.patchValue(result);
+      .onGetItem<PurchaseOrderDetailLine>(Endpoints.PurchaseOrderDetails.getById(this.id))
+      .then((result) => {
+        if (result) this.form.patchValue(result);
         this.cdr.detectChanges(); // Call detectChanges after patching the form
       });
   }
@@ -110,4 +111,3 @@ export class OrdenCompraEditDetalle implements OnInit {
       });
   }
 }
-

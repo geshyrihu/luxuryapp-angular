@@ -168,7 +168,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Lista de años disponibles para la selección del Año fiscal. */
   availableYears: SelectItemDto<number>[] = [];
 
-  /** Campos utilizados por el filtro global de la tabla PrimeNG. */
+  /** Campos utilizados por el filtro global de la tabla Bootstrap. */
   globalFilterFields: string[] = ["accountNumber", "accountName"];
 
   /** Signal que almacena el objeto principal de la propuesta de presupuesto. */

@@ -14,7 +14,7 @@ import { WebInputNumber } from "../../web/input-number/input-number";
 
 /**
  * 🔀 INPUT NUMBER — adaptativo. `<custom-input-number-signal>` →
- * web `<web-input-number>` (PrimeNG) o móvil `<ion-input-number>` (Ionic).
+ * web `<web-input-number>` (Bootstrap) o móvil `<ion-input-number>` (Ionic).
  */
 @Component({
   selector: "custom-input-number-signal",

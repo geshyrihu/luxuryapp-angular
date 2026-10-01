@@ -1,4 +1,4 @@
-// 💻 WEB INPUTS - Componentes PrimeNG para web/tablet/desktop
+// 💻 WEB INPUTS - Componentes Bootstrap para web/tablet/desktop
 // Importa desde aquí en páginas Angular web
 
 export { CustomInputAutoMultiple } from "./custom-input-autocomplete-multiple-signal";

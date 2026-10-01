@@ -7,7 +7,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
  * 🔄 ION INPUT TOGGLE - Mobile (Ionic)
  * -------------------------------------------------------------------------
  * Interruptor On/Off con estilo nativo iOS/Android.
- * Equivalente al custom-input-switch-signal de PrimeNG.
+ * Equivalente al custom-input-switch-signal de Bootstrap.
  */
 @Component({
   selector: "ion-input-toggle",

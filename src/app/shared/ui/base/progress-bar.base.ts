@@ -12,7 +12,7 @@ export type ProgressBarColor =
 
 /**
  * Base compartida de ProgressBar.
- *  - web:     `app-progress-bar`  (PrimeNG p-progressbar, value 0..100)
+ *  - web:     `app-progress-bar`  (Bootstrap p-progressbar, value 0..100)
  *  - mobile:  `ili-progress-bar`  (Ionic ion-progress-bar, value 0..1)
  *  - wrapper: `lx-progress-bar`   (auto runtime)
  *
@@ -41,7 +41,7 @@ export abstract class ProgressBarBase {
 
   /**
    * Decimales del valor mostrado. Cero por defecto: un progreso no se lee con
-   * decimales, y sin redondear PrimeNG imprime el float completo
+   * decimales, y sin redondear Bootstrap imprime el float completo
    * (p. ej. "34.23010942123478%").
    */
   decimals = input<number>(0);

@@ -201,7 +201,7 @@ export class TaskForm implements OnInit, OnDestroy {
         );
         if (exactMatch) ticketGroupId = String(exactMatch.value);
 
-        // Actualizar el valor en el siguiente ciclo (setTimeout) para dar tiempo a que PrimeNG renderice las opciones
+        // Actualizar el valor en el siguiente ciclo (setTimeout) para dar tiempo a que Bootstrap renderice las opciones
         this.form.patchValue({ ticketGroupId });
 
         const isLegal = this.workGroupLegalMap.get(ticketGroupId) ?? false;

@@ -269,7 +269,7 @@ export class TokensTypography {
       label: "UI Base",
       token: "--ds-font-family-base",
       css: "'Outfit', '-apple-system', 'BlinkMacSystemFont', sans-serif",
-      uso: "Pantallas Angular, PrimeNG, Ionic y todas las vistas operativas del ERP.",
+      uso: "Pantallas Angular, Bootstrap, Ionic y todas las vistas operativas del ERP.",
     },
     {
       label: "Monoespaciada",

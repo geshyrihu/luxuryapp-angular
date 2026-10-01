@@ -17,7 +17,7 @@ import { WebInputText } from "../../web/input-text/input-text";
  * -------------------------------------------------------------------------
  * Punto de entrada que usan los formularios: `<custom-input-text-signal>`.
  * Según `PlatformService.isMobile()` (viewport, reactivo) renderiza:
- *   - web:    <web-input-text>  (PrimeNG)
+ *   - web:    <web-input-text>  (Bootstrap)
  *   - móvil:  <ion-input-text>  (Ionic)
  * La API (control, label, placeholder, required, …) es la misma en ambas por
  * `BaseInputSignal`. Única capa que cruza la frontera web/móvil (como los `lx-*`).

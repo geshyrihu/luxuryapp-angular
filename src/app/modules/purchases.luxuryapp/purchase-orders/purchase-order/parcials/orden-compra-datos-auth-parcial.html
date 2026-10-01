@@ -1,5 +1,5 @@
 @if(!bloqueada()) { @if (ordenCompra().ordenCompraAuth.statusOrdenCompra ===
-'Pendiente') {
+purchaseOrderAuthorizationStatus.Pendiente) {
 <lx-message severity="warn" class="w-full mt-1"><div class="d-flex align-items-center justify-content-between w-full gap-3">
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:schedule'" />
@@ -22,7 +22,7 @@
     </div>
     }
   </div></lx-message>
-} @if (ordenCompra().ordenCompraAuth.statusOrdenCompra === 'Autorizado') {
+} @if (ordenCompra().ordenCompraAuth.statusOrdenCompra === purchaseOrderAuthorizationStatus.Autorizado) {
 <lx-message severity="success" class="w-full mt-1"><div class="d-flex align-items-center justify-content-between w-full gap-3">
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:check-circle'" />
@@ -44,8 +44,8 @@
     />
     }
   </div></lx-message>
-} @if ( ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente' &&
-ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
+} @if ( ordenCompra().ordenCompraAuth.statusOrdenCompra !== purchaseOrderAuthorizationStatus.Pendiente &&
+ordenCompra().ordenCompraAuth.statusOrdenCompra !== purchaseOrderAuthorizationStatus.Autorizado ) {
 <lx-message severity="info" class="w-full mt-1"><div class="d-flex align-items-center gap-2">
     <app-icon [icon]="'material-symbols-light:info'" />
     <div class="d-flex flex-column">
@@ -64,7 +64,7 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
       <span class="fw-semibold"
         >{{ ordenCompra().ordenCompraAuth.statusOrdenCompra }}</span
       >
-      @if (ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente') {
+       @if (ordenCompra().ordenCompraAuth.statusOrdenCompra !== purchaseOrderAuthorizationStatus.Pendiente) {
       <span class="text-sm"
         >{{ ordenCompra().ordenCompraAuth.revisadoPorResidente }}</span
       >

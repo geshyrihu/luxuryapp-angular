@@ -20,12 +20,12 @@ import { PlatformService } from "@core/services/platform.service";
         (pageChange)="pageChange.emit($event)"
       />
     } @else {
-      <!-- Web uses PrimeNG p-paginator integrated in p-table -->
+      <!-- Web uses Bootstrap p-paginator integrated in p-table -->
       <p
         class="lx-paginator-web-fallback"
         style="color: var(--ds-text-secondary); font-size: 0.8125rem; padding: 0.5rem; text-align: center;"
       >
-        Usa PrimeNG p-paginator integrado en p-table.
+        Usa Bootstrap p-paginator integrado en p-table.
       </p>
     }
   `,

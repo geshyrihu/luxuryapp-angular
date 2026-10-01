@@ -18,7 +18,7 @@ import {
  * AppCarousel — wrapper sobre NgbCarousel. [Fase 3 migración Bootstrap,
  * 2026-09-13] Reemplaza `p-carousel`. Limitación conocida: NgbCarousel
  * muestra un solo slide activo a la vez — `numVisible`/`numScroll` > 1
- * (varios ítems simultáneos, como el carrusel de tarjetas de PrimeNG) no
+ * (varios ítems simultáneos, como el carrusel de tarjetas de Bootstrap) no
  * tiene efecto visual aquí. Se conservan en `CarouselBase` por
  * compatibilidad de API; el único consumidor real usa `numVisible=1`.
  */

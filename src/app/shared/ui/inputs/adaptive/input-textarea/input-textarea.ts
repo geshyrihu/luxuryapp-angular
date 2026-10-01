@@ -13,7 +13,7 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
 
 /**
  * 🔀 INPUT TEXTAREA — adaptativo. `<custom-input-textarea-signal>` →
- * web `<web-input-textarea>` (PrimeNG) o móvil `<ion-input-textarea>` (Ionic).
+ * web `<web-input-textarea>` (Bootstrap) o móvil `<ion-input-textarea>` (Ionic).
  */
 @Component({
   selector: "custom-input-textarea-signal",

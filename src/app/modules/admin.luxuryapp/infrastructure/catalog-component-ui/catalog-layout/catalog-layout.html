@@ -21,8 +21,8 @@
 
     <div class="catalog-header__end">
       <iw-button
-        [icon]="isDarkMode() ? 'material-symbols-light:sunny' : 'material-symbols-light:nightlight'"
-        [severity]="isDarkMode() ? 'warn' : 'secondary'"
+        [icon]="themeService.isDarkMode() ? 'material-symbols-light:sunny' : 'material-symbols-light:nightlight'"
+        [severity]="themeService.isDarkMode() ? 'warn' : 'secondary'"
         (clicked)="toggleTheme()"
         [rounded]="true"
         variant="text"

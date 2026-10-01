@@ -106,7 +106,7 @@ export class DialogHandlerService {
 
   /**
    * En móvil abre el formulario en un `ion-modal` nativo (vía `ModalController`)
-   * en lugar del diálogo PrimeNG. El wrapper `IonicDialogModal` inyecta stubs de
+   * en lugar del diálogo Bootstrap. El wrapper `IonicDialogModal` inyecta stubs de
    * `DynamicDialogConfig`/`DynamicDialogRef`, así que los forms no cambian.
    * Resuelve con el resultado que el form pase a `ref.close(value)`.
    */

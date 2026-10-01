@@ -46,6 +46,12 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./purchase-order-budget/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
+import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
+import {
+  PurchaseOrderDetailLine,
+  PurchaseOrderValidationResult,
+  PurchaseOrderView,
+} from "./purchase-order.types";
 
 @Component({
   selector: "app-orden-compra",
@@ -91,15 +97,16 @@ export class OrdenCompra implements OnInit {
   //----------------------------------------------------------------
   // REFACTOR: El estado del componente ahora se gestiona con WritableSignal.
   ordenCompraId: WritableSignal<string> = signal("");
-  ordenCompra: WritableSignal<any> = signal(null);
-  purchaseOrderBudget: WritableSignal<any[]> = signal([]);
-  ordenCompraDetalle: WritableSignal<any[]> = signal([]);
+  ordenCompra: WritableSignal<PurchaseOrderView | null> = signal(null);
+  purchaseOrderBudget: WritableSignal<PurchaseOrderView["purchaseOrderBudget"]> =
+    signal([]);
+  ordenCompraDetalle: WritableSignal<PurchaseOrderDetailLine[]> = signal([]);
   solicitudCompraId: WritableSignal<string> = signal("");
   loading = signal(false);
 
   // Validation Signals
   isValidating = signal(false);
-  validationResult = signal<any | null>(null);
+  validationResult = signal<PurchaseOrderValidationResult | null>(null);
 
   // REFACTOR: Propiedades que no se usan o se pueden derivar. Se comentan para posible eliminación.
   // esNumeroNegativo: boolean = false; // Derivado de `ordenCompraService.totalPorCubrir() < 0`, no usado en template.
@@ -116,7 +123,8 @@ export class OrdenCompra implements OnInit {
   /** Indica si la OC esté autorizada. */
   isAuthorized: Signal<boolean> = computed(
     () =>
-      this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra === "Autorizado",
+      this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra ===
+      PurchaseOrderAuthorizationStatus.Autorizado,
   );
 
   /** Indica si la OC ha sido revisada por el residente. */
@@ -182,14 +190,13 @@ export class OrdenCompra implements OnInit {
       retencionIvaTotal += itemRetencionIva;
       retencionIsrTotal += itemRetencionIsr;
     }
-    const total = subTotal + ivaTotal - retencionIvaTotal - retencionIsrTotal;
-
     return {
       subtotal: subTotal,
       iva: ivaTotal,
       retencionIva: retencionIvaTotal,
       retencionIsr: retencionIsrTotal,
-      total: total,
+      // Final total comes from backend through OrdenCompraService.
+      total: this.ordenCompraService.totalOrdenCompra(),
     };
   });
 
@@ -205,7 +212,7 @@ export class OrdenCompra implements OnInit {
     if (!ocId) return;
 
     this.loading.set(true);
-    const result = await this.apiResponseS.onGetItem<any>(
+    const result = await this.apiResponseS.onGetItem<PurchaseOrderView>(
       Endpoints.PurchaseOrders.getById(ocId),
     );
 
@@ -237,7 +244,7 @@ export class OrdenCompra implements OnInit {
 
   autorizarCompra(): void {
     this.apiResponseS
-      .onGetList(
+      .onGetList<PurchaseOrderView>(
         Endpoints.PurchaseOrders.authorize(
           this.ordenCompraId(),
           this.authS.applicationUserId,
@@ -251,7 +258,9 @@ export class OrdenCompra implements OnInit {
 
   deautorizarCompra(): void {
     this.apiResponseS
-      .onGetList(Endpoints.PurchaseOrders.unauthorize(this.ordenCompraId()))
+      .onGetList<PurchaseOrderView>(
+        Endpoints.PurchaseOrders.unauthorize(this.ordenCompraId()),
+      )
       .then((result) => {
         this.ordenCompra.set(result);
         this.onLoadData();
@@ -280,14 +289,14 @@ export class OrdenCompra implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDeleteProduct(id: any): void {
+  onDeleteProduct(id: string): void {
     this.apiResponseS
       .onDelete(Endpoints.PurchaseOrderDetails.delete(id))
       .then(() => this.onLoadData());
   }
 
   // ... (Resto de métodos onModal..., onDelete..., etc. se mantienen similares, siempre llamando a onLoadData() al final)
-  onModalEditarPresupuestoUtilizado(id: any) {
+  onModalEditarPresupuestoUtilizado(id: string) {
     this.dialogHandlerS
       .openDialog(
         OrdenCompraEditPresupustoUtilizado,
@@ -297,7 +306,7 @@ export class OrdenCompra implements OnInit {
       )
       .then(() => this.onLoadData());
   }
-  onModalEditarDetalle(item: any) {
+  onModalEditarDetalle(item: PurchaseOrderDetailLine) {
     this.dialogHandlerS
       .openDialog(
         OrdenCompraEditDetalle,
@@ -350,7 +359,7 @@ export class OrdenCompra implements OnInit {
       )
       .then(() => this.onLoadData());
   }
-  onDeleteOrdenCompraPresupuesto(id: any): void {
+  onDeleteOrdenCompraPresupuesto(id: string): void {
     this.apiResponseS
       .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());
@@ -401,8 +410,9 @@ export class OrdenCompra implements OnInit {
     const urlApi = Endpoints.PurchaseOrders.validateInvoice(ordenCompraId);
 
     this.apiResponseS
-      .onPost<ValidationResultDTO>(urlApi, {})
-      .then((result: any) => {
+      .onPost<PurchaseOrderValidationResult>(urlApi, {})
+      .then((result) => {
+        if (!result) return;
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(
@@ -457,12 +467,3 @@ export class OrdenCompra implements OnInit {
       });
   }
 }
-
-export interface ValidationResultDTO {
-  isValid: boolean;
-  message: string;
-  invoiceTotal?: number;
-  purchaseOrderTotal?: number;
-}
-
-

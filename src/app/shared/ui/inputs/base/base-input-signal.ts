@@ -22,9 +22,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
 
 /**
- * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)
+ * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/Bootstrap)
  * -------------------------------------------------------------------------
- * Componente base para inputs reactivos PrimeNG.
+ * Componente base para inputs reactivos Bootstrap.
  * Layout con label, field-content y errores de validación.
  * Para inputs Ionic usar: BaseIonicInput
  */

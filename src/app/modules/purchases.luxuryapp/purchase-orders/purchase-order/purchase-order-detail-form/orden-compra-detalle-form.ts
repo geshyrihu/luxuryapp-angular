@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-// PrimeNG Modules
+// Bootstrap Modules
 // Project components & services
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
@@ -21,6 +21,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { PurchaseOrderProductDraft } from "../purchase-order.types";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;
   productName: FormControl<string | null>;
@@ -52,48 +53,48 @@ export class OrdenCompraDetalleForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private apiResponseS = inject(ApiResponseService);
   form: FormGroup<IOrdenCompraDetalleCompForm>;
-  productData: any;
+  productData: Partial<PurchaseOrderProductDraft>;
   cb_measurement_units: SelectItemDto[] = [];
 
   ngOnInit(): void {
-    this.productData = this.config.data.product;
-    this.cb_measurement_units = this.config.data.measurementUnits;
+    this.productData = this.config.data.product as Partial<PurchaseOrderProductDraft>;
+    this.cb_measurement_units = this.config.data.measurementUnits as SelectItemDto[];
 
     this.form = this.fb.group<IOrdenCompraDetalleCompForm>({
       productoId: new FormControl(
-        this.productData.productoId,
+        this.productData.productoId ?? null,
         Validators.required,
       ),
       productName: new FormControl(
-        this.productData.productName,
+        this.productData.productName ?? "",
         Validators.required,
       ),
       unidadMedidaId: new FormControl(
-        this.productData.unidadMedidaId || null,
+        this.productData.unidadMedidaId ?? null,
         Validators.required,
       ),
-      quantity: new FormControl(this.productData.quantity || 1, [
+      quantity: new FormControl(this.productData.quantity ?? 1, [
         Validators.required,
         Validators.min(1),
       ]),
-      unitPrice: new FormControl(this.productData.unitPrice || 0, [
+      unitPrice: new FormControl(this.productData.unitPrice ?? 0, [
         Validators.required,
         Validators.min(0.01),
       ]),
-      descuento: new FormControl(this.productData.descuento || 0, [
+      descuento: new FormControl(this.productData.descuento ?? 0, [
         Validators.min(0),
         Validators.max(100),
       ]),
-      ivaAplicado: new FormControl(this.productData.ivaAplicado || 0, [
+      ivaAplicado: new FormControl(this.productData.ivaAplicado ?? 0, [
         Validators.min(0),
         Validators.max(100),
       ]),
       retencionIVAPorcentaje: new FormControl(
-        this.productData.retencionIVAPorcentaje || 0,
+        this.productData.retencionIVAPorcentaje ?? 0,
         [Validators.min(0), Validators.max(100)],
       ),
       retencionISRPorcentaje: new FormControl(
-        this.productData.retencionISRPorcentaje || 0,
+        this.productData.retencionISRPorcentaje ?? 0,
         [Validators.min(0), Validators.max(100)],
       ),
     });
@@ -112,4 +113,3 @@ export class OrdenCompraDetalleForm implements OnInit {
     this.ref.close();
   }
 }
-

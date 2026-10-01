@@ -2393,7 +2393,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "✅ **Responsive** y moderno con Angular 22 + PrimeNG"
+      "preview": "✅ **Responsive** y moderno con Angular 22 + Bootstrap"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
@@ -6696,7 +6696,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §3 UX/UI — PrimeNG e Ionic | 2 | ✅ |"
+      "preview": "| §3 UX/UI — Bootstrap e Ionic | 2 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -7015,7 +7015,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| No importar PrimeNG/Ionic directamente | ✅ Ninguna importación directa |"
+      "preview": "| No importar Bootstrap/Ionic directamente | ✅ Ninguna importación directa |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -10201,7 +10201,7 @@
       "symbols": [
         "🔴"
       ],
-      "preview": "#### 🔴 C4 — Online: PrimeNG directo fuera de la excepción `p-table`"
+      "preview": "#### 🔴 C4 — Online: Bootstrap directo fuera de la excepción `p-table`"
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
@@ -10315,7 +10315,7 @@
         "✅",
         "🔴"
       ],
-      "preview": "| PrimeNG solo `p-table` (§5.5)            |               ✅               |                                            🔴 3 archivos                                             |"
+      "preview": "| Bootstrap solo `p-table` (§5.5)            |               ✅               |                                            🔴 3 archivos                                             |"
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
@@ -10550,7 +10550,7 @@
       "symbols": [
         "🟩"
       ],
-      "preview": "| 4.2 | Sustituir imports directos de PrimeNG por el catálogo `shared/ui`                     | 🟩 Online |"
+      "preview": "| 4.2 | Sustituir imports directos de Bootstrap por el catálogo `shared/ui`                     | 🟩 Online |"
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
@@ -18343,7 +18343,7 @@
       "symbols": [
         "→"
       ],
-      "preview": "*  - web:     `app-empty-state`  (PrimeNG)      → components/web/empty-state"
+      "preview": "*  - web:     `app-empty-state`  (Bootstrap)      → components/web/empty-state"
     },
     {
       "file": "src/app/shared/ui/base/empty-state.base.ts",
@@ -18612,7 +18612,7 @@
       "symbols": [
         "🧱"
       ],
-      "preview": "* 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)"
+      "preview": "* 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/Bootstrap)"
     },
     {
       "file": "src/app/shared/ui/inputs/base/base-ionic-input.ts",
@@ -18889,7 +18889,7 @@
       "symbols": [
         "↔"
       ],
-      "preview": "// El input de fecha ahora es ADAPTATIVO (web PrimeNG ↔ Ionic según plataforma)."
+      "preview": "// El input de fecha ahora es ADAPTATIVO (web Bootstrap ↔ Ionic según plataforma)."
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-date-time-signal.ts",
@@ -19067,7 +19067,7 @@
       "symbols": [
         "↔"
       ],
-      "preview": "// El input de password ahora es ADAPTATIVO (web PrimeNG ↔ Ionic según plataforma)."
+      "preview": "// El input de password ahora es ADAPTATIVO (web Bootstrap ↔ Ionic según plataforma)."
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-select-signal.ts",
@@ -19156,7 +19156,7 @@
       "symbols": [
         "↔"
       ],
-      "preview": "// El input de texto ahora es ADAPTATIVO (web PrimeNG ↔ Ionic según plataforma)."
+      "preview": "// El input de texto ahora es ADAPTATIVO (web Bootstrap ↔ Ionic según plataforma)."
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-textarea-signal.ts",
@@ -19201,7 +19201,7 @@
       "symbols": [
         "💻"
       ],
-      "preview": "// 💻 WEB INPUTS - Componentes PrimeNG para web/tablet/desktop"
+      "preview": "// 💻 WEB INPUTS - Componentes Bootstrap para web/tablet/desktop"
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-check/input-check.ts",
@@ -19212,7 +19212,7 @@
       "symbols": [
         "☑"
       ],
-      "preview": "* ☑️ WEB INPUT CHECK (PrimeNG) — interno del delegador `custom-input-check-signal`."
+      "preview": "* ☑️ WEB INPUT CHECK (Bootstrap) — interno del delegador `custom-input-check-signal`."
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-number/input-number.ts",
@@ -19223,7 +19223,7 @@
       "symbols": [
         "🔢"
       ],
-      "preview": "* 🔢 WEB INPUT NUMBER (PrimeNG) — interno del delegador `custom-input-number-signal`."
+      "preview": "* 🔢 WEB INPUT NUMBER (Bootstrap) — interno del delegador `custom-input-number-signal`."
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-select/input-select.ts",
@@ -19234,7 +19234,7 @@
       "symbols": [
         "🔽"
       ],
-      "preview": "* 🔽 WEB INPUT SELECT (PrimeNG) — interno del delegador `custom-input-select-signal`."
+      "preview": "* 🔽 WEB INPUT SELECT (Bootstrap) — interno del delegador `custom-input-select-signal`."
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-text/input-text.ts",
@@ -19245,7 +19245,7 @@
       "symbols": [
         "✍"
       ],
-      "preview": "* ✍️ WEB INPUT TEXT (PrimeNG)"
+      "preview": "* ✍️ WEB INPUT TEXT (Bootstrap)"
     },
     {
       "file": "src/app/shared/ui/inputs/web/input-textarea/input-textarea.ts",
@@ -19256,7 +19256,7 @@
       "symbols": [
         "📄"
       ],
-      "preview": "* 📄 WEB INPUT TEXTAREA (PrimeNG) — interno del delegador `custom-input-textarea-signal`."
+      "preview": "* 📄 WEB INPUT TEXTAREA (Bootstrap) — interno del delegador `custom-input-textarea-signal`."
     },
     {
       "file": "src/app/shared/ui/mobile/action-menu-mobile/action-menu-mobile.ts",
@@ -19852,7 +19852,7 @@
       "symbols": [
         "🔍"
       ],
-      "preview": "# 🔍 Auditoría Comparativa: `AppTable` vs PrimeNG v22 `p-table`"
+      "preview": "# 🔍 Auditoría Comparativa: `AppTable` vs Bootstrap v22 `p-table`"
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
@@ -19918,7 +19918,7 @@
       "symbols": [
         "🟡"
       ],
-      "preview": "| 4   | **Reordenamiento de filas con paginación local usa índices de `pagedValue`** | 🟡 Medio   | PrimeNG usa índices globales. Esto limita la utilidad del feature. Debe document"
+      "preview": "| 4   | **Reordenamiento de filas con paginación local usa índices de `pagedValue`** | 🟡 Medio   | Bootstrap usa índices globales. Esto limita la utilidad del feature. Debe document"
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
@@ -19962,7 +19962,7 @@
       "symbols": [
         "📊"
       ],
-      "preview": "## 📊 Tabla Comparativa de Funcionalidades (PrimeNG v22 vs AppTable)"
+      "preview": "## 📊 Tabla Comparativa de Funcionalidades (Bootstrap v22 vs AppTable)"
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
@@ -21196,7 +21196,7 @@
       "symbols": [
         "🖥"
       ],
-      "preview": "B --> F[\"web/<br/>(🖥️ PrimeNG overrides + clases DS: .btn, .card, prime-*)\"]"
+      "preview": "B --> F[\"web/<br/>(🖥️ Bootstrap overrides + clases DS: .btn, .card, prime-*)\"]"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21229,7 +21229,7 @@
       "symbols": [
         "🧩"
       ],
-      "preview": "L --> M[\"🧩 PrimeNG Components\"]"
+      "preview": "L --> M[\"🧩 Bootstrap Components\"]"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21262,7 +21262,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "| [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para PrimeNG v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |"
+      "preview": "| [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para Bootstrap v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21284,7 +21284,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "| [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset PrimeNG** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |"
+      "preview": "| [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset Bootstrap** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21306,7 +21306,7 @@
       "symbols": [
         "🧩"
       ],
-      "preview": "C -->|\"var(--primary-*), var(--surface-dark-*)\"| D[\"🧩 PrimeNG\"]"
+      "preview": "C -->|\"var(--primary-*), var(--surface-dark-*)\"| D[\"🧩 Bootstrap\"]"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21350,7 +21350,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "| [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente PrimeNG (button, input, card, dialog, table, dropdown, tag, message, tokens) |"
+      "preview": "| [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente Bootstrap (button, input, card, dialog, table, dropdown, tag, message, tokens) |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21592,7 +21592,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "## 🅿️ `prime-overrides/` — Overrides por Componente PrimeNG"
+      "preview": "## 🅿️ `prime-overrides/` — Overrides por Componente Bootstrap"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21603,7 +21603,7 @@
       "symbols": [
         "→"
       ],
-      "preview": "| `_prime-tokens.scss` | Bridge global | Mapea `--p-*` → `--ds-*` para primary, surface, text, borders, focus, overlay. Clases compatibilidad PrimeNG v16. |"
+      "preview": "| `_prime-tokens.scss` | Bridge global | Mapea `--p-*` → `--ds-*` para primary, surface, text, borders, focus, overlay. Clases compatibilidad Bootstrap v16. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21647,7 +21647,7 @@
       "symbols": [
         "🌙"
       ],
-      "preview": "| `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, PrimeNG v16 compat, CDK drag, formularios, tabs, accordion, datatable, "
+      "preview": "| `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, Bootstrap v16 compat, CDK drag, formularios, tabs, accordion, datatable, "
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21658,7 +21658,7 @@
       "symbols": [
         "📋"
       ],
-      "preview": "| `_sidebar.scss` | 364 | 📋 Sidebar: PrimeNG PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |"
+      "preview": "| `_sidebar.scss` | 364 | 📋 Sidebar: Bootstrap PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21680,7 +21680,7 @@
       "symbols": [
         "🔔"
       ],
-      "preview": "| `_toast.scss` | 152 | 🔔 Toast PrimeNG (web) e Ionic toast (mobile). Borde lateral grueso 8px, colores vibrantes, sombra fuerte. |"
+      "preview": "| `_toast.scss` | 152 | 🔔 Toast Bootstrap (web) e Ionic toast (mobile). Borde lateral grueso 8px, colores vibrantes, sombra fuerte. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21879,7 +21879,7 @@
         "💡",
         "→"
       ],
-      "preview": "> 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → PrimeNG. **Un solo archivo.** Para cambios d"
+      "preview": "> 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → Bootstrap. **Un solo archivo.** Para cambios d"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",

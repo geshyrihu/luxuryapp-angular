@@ -3,7 +3,7 @@ import { Injectable, signal } from "@angular/core";
 /**
  * 📏 TABLE SCROLL HEIGHT SERVICE
  * -------------------------------------------------------------------------
- * Servicio global para calcular dinámicamente la altura de scroll de tablas PrimeNG.
+ * Servicio global para calcular dinámicamente la altura de scroll de tablas Bootstrap.
  * Calcula el espacio disponible restando los elementos fijos del viewport.
  *
  * Uso:

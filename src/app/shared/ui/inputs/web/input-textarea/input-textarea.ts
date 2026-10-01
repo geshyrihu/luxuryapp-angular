@@ -9,7 +9,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
- * 📄 WEB INPUT TEXTAREA (PrimeNG) — interno del delegador `custom-input-textarea-signal`.
+ * 📄 WEB INPUT TEXTAREA (Bootstrap) — interno del delegador `custom-input-textarea-signal`.
  */
 @Component({
   selector: "web-input-textarea",

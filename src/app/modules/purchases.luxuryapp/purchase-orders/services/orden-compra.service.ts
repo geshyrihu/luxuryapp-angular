@@ -11,6 +11,10 @@ import {
 import { Subject } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  PurchaseOrderBudgetTotal,
+  PurchaseOrderDetailTotal,
+} from "../purchase-order/purchase-order.types";
 
 @Injectable({
   providedIn: "root",
@@ -52,23 +56,27 @@ export class OrdenCompraService implements OnDestroy {
     this.totalPorCubrir.set(0);
 
     // Usamos el ApiRequestService que ya maneja async/await y loaders.
-    const detalleResult: any = await this.apiResponseS.onGetList(
+    const detalleResult = await this.apiResponseS.onGetList<
+      PurchaseOrderDetailTotal[]
+    >(
       Endpoints.PurchaseOrderDetails.getAllTotal(ordenCompraId),
     );
     if (detalleResult) {
       const nuevoTotalOC = detalleResult.reduce(
-        (acc: number, n: any) => acc + n.total,
+        (acc: number, n: PurchaseOrderDetailTotal) => acc + n.total,
         0,
       );
       this.totalOrdenCompra.set(nuevoTotalOC);
     }
 
-    const presupuestoResult: any = await this.apiResponseS.onGetList(
+    const presupuestoResult = await this.apiResponseS.onGetList<
+      PurchaseOrderBudgetTotal[]
+    >(
       Endpoints.PurchaseOrderBudgets.getAllForOrdenCompraTotal(ordenCompraId),
     );
     if (presupuestoResult) {
       const nuevoTotalCubierto = presupuestoResult.reduce(
-        (acc: number, n: any) => acc + n.amount,
+        (acc: number, n: PurchaseOrderBudgetTotal) => acc + n.amount,
         0,
       );
       this.totalCubierto.set(nuevoTotalCubierto);
@@ -94,4 +102,3 @@ export class OrdenCompraService implements OnDestroy {
     this.destroy$.complete();
   }
 }
-

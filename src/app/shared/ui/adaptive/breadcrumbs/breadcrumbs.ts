@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Breadcrumbs. Renderiza `app-breadcrumbs` (PrimeNG)
+ * Wrapper multiplataforma de Breadcrumbs. Renderiza `app-breadcrumbs` (Bootstrap)
  * o `ili-breadcrumbs` (scroll horizontal nativo) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-breadcrumbs [items]="..." />`.
  */

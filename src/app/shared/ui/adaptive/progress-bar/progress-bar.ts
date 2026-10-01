@@ -5,7 +5,7 @@ import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de ProgressBar. Renderiza `app-progress-bar` (PrimeNG)
+ * Wrapper multiplataforma de ProgressBar. Renderiza `app-progress-bar` (Bootstrap)
  * o `ili-progress-bar` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-progress-bar [value]="..." />`.
  */

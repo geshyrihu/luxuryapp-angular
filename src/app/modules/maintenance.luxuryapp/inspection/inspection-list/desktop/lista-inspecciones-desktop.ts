@@ -19,7 +19,9 @@ import {
   AppSorticon,
   AppTable,
 } from "@ui/web/table/table";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
+import { AppCard } from "@ui/web/card/card";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   rowsPerPageOptions,
@@ -49,10 +51,12 @@ type InspectionTableRow = InspectionSummary & {
     AppSorticon,
     TableEmptyMessage,
     TableFooter,
-    WebButtonIcon,
+    WebButtonLabel,
+    WebButtonIconDelete,
     WebButtonIconEdit,
     WebButtonIconItem,
-    WebButtonIconDelete,
+    AppToolbar,
+    AppCard,
   ],
 })
 export class ListaInspeccionesDesktop {

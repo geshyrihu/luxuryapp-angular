@@ -20,6 +20,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PurchaseOrderInvoice, PurchaseOrderValidationResult } from "../purchase-order.types";
 @Component({
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",
@@ -35,14 +36,14 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   ],
 })
 export class OrdenCompraFacturasParcial {
-  facturas = input.required<any[]>();
-  ordenCompraId = input.required<number>();
+  facturas = input.required<PurchaseOrderInvoice[]>();
+  ordenCompraId = input.required<string>();
   apiResponseS = inject(ApiResponseService);
   customToastService = inject(CustomToastService);
   dialogHandlerS = inject(DialogHandlerService);
 
   isValidating = signal(false);
-  validationResult = signal<any | null>(null);
+  validationResult = signal<PurchaseOrderValidationResult | null>(null);
 
   descargarArchivo(url: string): void {
     const link = document.createElement("a");
@@ -71,8 +72,9 @@ export class OrdenCompraFacturasParcial {
     );
 
     this.apiResponseS
-      .onPost<any>(urlApi, {})
-      .then((result: any) => {
+      .onPost<PurchaseOrderValidationResult>(urlApi, {})
+      .then((result) => {
+        if (!result) return;
         this.validationResult.set(result);
         if (result.isValid) {
           this.customToastService.showSuccess(

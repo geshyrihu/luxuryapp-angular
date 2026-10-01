@@ -1,6 +1,6 @@
 import { globalFilterFields, tableRows, rowsPerPageOptions, tableDefaultRows } from './table-options';
 
-describe('tablePrimengOption helpers', () => {
+describe('tableBootstrapOption helpers', () => {
   it('globalFilterFields should exist', () => {
     expect(globalFilterFields).toBeDefined();
   });

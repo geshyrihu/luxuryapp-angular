@@ -77,7 +77,7 @@ export class WarehouseList implements OnInit {
   dataSignal = signal<any[]>([]);
   loading = signal(false); // ? Added loading state
 
-  // Opciones de la tabla PrimeNG
+  // Opciones de la tabla Bootstrap
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   isAdmin = this.aspRoleService.hasAny([

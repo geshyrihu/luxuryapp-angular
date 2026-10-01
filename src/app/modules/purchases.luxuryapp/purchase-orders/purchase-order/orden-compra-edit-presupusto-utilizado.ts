@@ -18,6 +18,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PurchaseOrderBudget } from "./purchase-order.types";
 export interface IOrdenCompraPresupuestoForm {
   id: FormControl<string | null>;
   amount: FormControl<number | null>;
@@ -63,9 +64,9 @@ export class OrdenCompraEditPresupustoUtilizado implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.PurchaseOrderBudgets.getById(this.id))
-      .then((result: any) => {
-        this.form.patchValue(result);
+      .onGetItem<PurchaseOrderBudget>(Endpoints.PurchaseOrderBudgets.getById(this.id))
+      .then((result) => {
+        if (result) this.form.patchValue(result);
       });
   }
   onSubmit() {

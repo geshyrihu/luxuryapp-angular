@@ -11,7 +11,7 @@ import { BaseInputSignal } from "./base-input-signal";
  * ControlValueAccessor y validaciones, pero sobreescribe el template
  * para usar el layout nativo de Ionic: IonItem / IonLabel / IonNote.
  *
- * Para inputs web/desktop PrimeNG usar: BaseInputSignal (web/)
+ * Para inputs web/desktop Bootstrap usar: BaseInputSignal (web/)
  *
  * Uso:
  * @Component({

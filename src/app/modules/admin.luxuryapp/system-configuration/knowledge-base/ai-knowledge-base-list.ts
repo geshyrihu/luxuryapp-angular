@@ -66,7 +66,7 @@ export class AiKnowledgeBaseList implements OnInit {
 
   dataSignal = signal<AiKnowledgeBaseDto[]>([]);
 
-  // PrimeNG Table Options
+  // Bootstrap Table Options
   loading = signal(true);
   readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();

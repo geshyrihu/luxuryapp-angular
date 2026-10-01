@@ -13,7 +13,7 @@ export type BadgeSizeToken = "small" | "normal" | "large";
 
 /**
  * Base compartida de Badge (contador/etiqueta breve).
- *  - web:     `app-badge`  (PrimeNG p-badge)
+ *  - web:     `app-badge`  (Bootstrap p-badge)
  *  - mobile:  `ili-badge`  (Ionic ion-badge)
  *  - wrapper: `lx-badge`   (auto runtime)
  */

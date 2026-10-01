@@ -55,19 +55,20 @@ import { CardBase } from "@ui/base/card.base";
         display: block;
         background: var(--ds-bg-surface);
         border: 1px solid var(--ds-border);
-        border-radius: var(--ds-radius-lg);
+        border-radius: var(--ds-radius-card, 3px);
         overflow: hidden;
         transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
       }
       .app-card-elevated {
-        box-shadow: var(--ds-shadow-2);
+        box-shadow: var(--ds-shadow-sm);
+        border-color: transparent;
       }
       .app-card-elevated:hover {
-        box-shadow: var(--ds-shadow-3);
+        box-shadow: var(--ds-shadow-md);
         transform: translateY(-2px);
       }
       .app-card-header {
-        padding: 1rem 1rem 0;
+        padding: 1.25rem 1.5rem 0;
       }
       .app-card-title {
         font-size: 1rem;
@@ -82,13 +83,19 @@ import { CardBase } from "@ui/base/card.base";
         line-height: 1.4;
       }
       .app-card-body {
-        padding: 1rem;
+        padding: 1.25rem 1.5rem;
+        flex: 1;
       }
       .app-card-body-unpadded {
         padding: 0;
       }
       .app-card-footer-tpl {
-        margin-top: 1rem;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid var(--ds-border);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
       }
     `,
   ],

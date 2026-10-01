@@ -2,7 +2,7 @@ import { Directive, input, model, output, computed } from "@angular/core";
 
 /**
  * Base compartida de Rating (API + lógica de etiqueta/valor).
- *  - web:     `app-rating`  (PrimeNG p-rating)
+ *  - web:     `app-rating`  (Bootstrap p-rating)
  *  - mobile:  `ili-rating`  (estrellas táctiles con app-icon)
  *  - wrapper: `lx-rating`   (auto runtime)
  */

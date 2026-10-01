@@ -94,10 +94,10 @@ export class ProductModalAdd implements OnInit, OnDestroy {
 
   formArray = new FormArray<FormGroup<IAddProductRow>>([]);
 
-  // --- Configuración de la Tabla PrimeNG ---
+  // --- Configuración de la Tabla Bootstrap ---
   /** Opciones para el número de filas por página. */
   public rowsPerPageOptions: number[] = rowsPerPageOptions();
-  /** Número de filas por defecto para la tabla PrimeNG. */
+  /** Número de filas por defecto para la tabla Bootstrap. */
   public tableRows: number = tableRows();
   /** Posición inicial de la paginación (óndice del primer registro). */
   public first: number = 0; // Se actualiza basado en el estado del servicio de paginación
@@ -109,7 +109,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   totalRecordsSignal = this.store.totalRecords;
   /** Estado de carga de los datos. */
   loading = this.store.loading;
-  /** Campos utilizados para el filtro global de la tabla PrimeNG. */
+  /** Campos utilizados para el filtro global de la tabla Bootstrap. */
   public globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (data.length === 0) return [];
@@ -176,12 +176,12 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   }
 
   /**
-   * Maneja el evento de carga perezosa (paginación, ordenamiento) de la tabla PrimeNG.
+   * Maneja el evento de carga perezosa (paginación, ordenamiento) de la tabla Bootstrap.
    * Delega la lígica al servicio de paginación.
    * @param event El evento de carga perezosa emitido por p-table.
    */
   public loadDataLazy(event: any): void {
-    this.first = event.first; // Actualizar 'first' para la sincronización de la vista de PrimeNG
+    this.first = event.first; // Actualizar 'first' para la sincronización de la vista de Bootstrap
     this.store.onLazyLoad(event);
   }
 

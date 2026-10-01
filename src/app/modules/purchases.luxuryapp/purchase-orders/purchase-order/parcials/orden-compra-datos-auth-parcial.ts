@@ -11,6 +11,8 @@ import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/service
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
+import { PurchaseOrderView } from "../purchase-order.types";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
@@ -19,8 +21,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);
-  ordenCompra = input.required<any>();
+  ordenCompra = input.required<PurchaseOrderView>();
   bloqueada = input<boolean>();
+  readonly purchaseOrderAuthorizationStatus = PurchaseOrderAuthorizationStatus;
 
   autorizarCompra = output<void>();
   deautorizarCompra = output<void>();
@@ -32,7 +35,7 @@ export class OrdenCompraDatosAuthParcial {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     const isDevolucion = this.ordenCompra()?.isDevolucion;
 
-    if (status === "Autorizado") {
+    if (status === PurchaseOrderAuthorizationStatus.Autorizado) {
       return {
         disabled: true,
         reason: "already_authorized",
@@ -63,25 +66,10 @@ export class OrdenCompraDatosAuthParcial {
   public isAuthorizationDisabled: Signal<boolean> = computed(
     () => this.authorizationStatus().disabled,
   );
-  // // REFACTOR: Se crea una `computed signal` para la lígica del botín de autorizar.
-  // // Esto resuelve el bucle infinito porque solo se recalcula cuando uno de los
-  // // signals de los que depende (`totalOrdenCompra` o `totalPorCubrir`) cambia su valor.
-  // public isAuthorizationDisabled: Signal<boolean> = computed(() => {
-  //   const status = this.ordenCompra?.ordenCompraAuth?.statusOrdenCompra;
-  //   const totalOC = this.ordenCompraService.totalOrdenCompra();
-  //   const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
-
-  //   // El botón se deshabilita si:
-  //   // 1. Ya esté 'Autorizado'.
-  //   // 2. El total de la orden de compra es cero o menos (no hay nada que pagar).
-  //   // 3. Queda un monto por cubrir del presupuesto.
-  //   return status === "Autorizado" || totalOC <= 0 || totalPorCubrir > 0;
-  // });
-
   public canRevoke: Signal<boolean> = computed(() => {
     const status = this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra;
     const sePago = this.ordenCompra()?.ordenCompraStatus?.sePago;
-    return !sePago && status === "Autorizado";
+    return !sePago && status === PurchaseOrderAuthorizationStatus.Autorizado;
   });
 
   onAutorizarCompra() {

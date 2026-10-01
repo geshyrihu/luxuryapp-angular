@@ -28,7 +28,7 @@ export class MinutasReunionesConsejoDirectivo implements OnInit {
   dataSignal = signal<any[]>([]);
   loading = signal(true);
   getIconForFile = getIconForFileHelper;
-  // Opciones de la tabla PrimeNG
+  // Opciones de la tabla Bootstrap
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {

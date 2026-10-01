@@ -1,68 +1,72 @@
 <!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
 <div class="d-none d-md-block fadein">
-  <div class="mb-6">
+  <div class="mb-5">
     <div class="d-flex align-items-center gap-3 mb-2">
-      <div
-        class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
-      >
-        <app-icon icon="material-symbols-light:fact-check" />
+      <div class="bg-primary text-white p-2 rounded d-flex align-items-center justify-content-center shadow-sm">
+        <app-icon icon="material-symbols-light:fact-check" class="text-2xl" />
       </div>
       <div>
-        <h1 class="ds-heading text-3xl fw-bold text-body m-0">Inspecciones</h1>
-        <p class="ds-text-secondary text-base m-0">
+        <h1 class="text-3xl fw-bold text-body m-0">Inspecciones</h1>
+        <p class="text-secondary text-base m-0 mt-1">
           Panel central de gestión de recorridos e inspecciones
         </p>
       </div>
     </div>
   </div>
 
-  <div class="card p-3 mb-5">
-    <div class="d-flex align-items-start gap-3">
-      <app-icon icon="material-symbols-light:info" class="text-primary-600 text-xl" />
-      <div>
-        <h2 class="text-lg fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
-        <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-          Un Recorrido es una inspección periódica de un grupo de equipos o áreas. El Administrador lo crea en el Catálogo definiendo frecuencia y equipos; el sistema genera automáticamente las inspecciones pendientes cada día. El responsable asignado las ve en 'Mis Recorridos' y las ejecuta ahí mismo. Si encuentra un hallazgo crítico, se notifica automáticamente al Jefe de Mantenimiento.
-        </p>
+  <lx-card [elevated]="true" class="mb-5">
+    <ng-template #content>
+      <div class="d-flex align-items-start gap-3">
+        <div class="bg-info-light text-info p-2 rounded d-flex">
+          <app-icon icon="material-symbols-light:info" class="text-xl" />
+        </div>
+        <div>
+          <h2 class="text-lg fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
+          <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+            Un Recorrido es una inspección periódica de un grupo de equipos o áreas. El Administrador lo crea en el Catálogo definiendo frecuencia y equipos; el sistema genera automáticamente las inspecciones pendientes cada día. El responsable asignado las ve en 'Mis Recorridos' y las ejecuta ahí mismo. Si encuentra un hallazgo crítico, se notifica automáticamente al Jefe de Mantenimiento.
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </ng-template>
+  </lx-card>
 
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <app-icon [icon]="group.icon" />
-    <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
+    <app-icon [icon]="group.icon" class="text-secondary" />
+    <h2 class="text-lg fw-bold text-body m-0 text-uppercase tracking-wider text-sm text-secondary">
       {{ group.label }}
     </h2>
-    <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
+    <div class="flex-grow-1 border-bottom ms-3"></div>
   </div>
 
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
-    <div class="col-12 col-sm-6 col-md-3">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <lx-card
-        class="card card--interactive card--elevated h-full"
+        class="card--interactive h-100"
         (click)="navigateTo(module.route)"
       >
-        <div class="d-flex flex-column gap-3">
-          <div class="d-flex align-items-center justify-content-between">
-            <div
-              class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
-              [style.backgroundColor]="module.bgColor"
-            >
-              <app-icon [icon]="module.icon" [style.color]="module.color" />
+        <ng-template #content>
+          <div class="d-flex flex-column gap-3 h-100">
+            <div class="d-flex align-items-center justify-content-between">
+              <div
+                class="d-flex align-items-center justify-content-center rounded p-2 flex-shrink-0"
+                [style.backgroundColor]="module.bgColor"
+              >
+                <app-icon [icon]="module.icon" [style.color]="module.color" class="text-xl" />
+              </div>
+              <app-icon icon="material-symbols-light:north-east" class="text-secondary" />
             </div>
-            <app-icon icon="material-symbols-light:north-east" class="text-body-secondary" />
+            <div class="flex-grow-1">
+              <h3 class="m-0 fw-bold text-body line-height-2 text-base">
+                {{ module.title }}
+              </h3>
+              <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                {{ module.description }}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
-              {{ module.title }}
-            </h3>
-            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-              {{ module.description }}
-            </p>
-          </div>
-        </div>
+        </ng-template>
       </lx-card>
     </div>
     }

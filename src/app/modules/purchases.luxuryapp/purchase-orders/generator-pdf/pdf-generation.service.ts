@@ -6,6 +6,65 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 
+interface PurchaseOrderPdfPaymentData {
+  nameCheck: string;
+  bank: string;
+  cuentaClave: string;
+  providerName: string;
+  providerRfc: string;
+  metodoDePago: string;
+  formaDePago: string;
+  providerAdreess?: string;
+  providerPhoneOne?: string;
+  usoCFDI?: string;
+}
+
+interface PurchaseOrderPdfLine {
+  cantidad: number;
+  precio: number;
+  descuento: number;
+  ivaAplicado: number;
+  retencionIVAPorcentaje: number;
+  retencionISRPorcentaje: number;
+  unidadMedida?: string;
+  unitOfMeasure?: string;
+  productName: string;
+}
+
+interface PurchaseOrderPaymentRequestData {
+  folio: string;
+  subtotal: number;
+  iva: number;
+  retencionIva: number;
+  retencionIsr: number;
+  fechaSolicitud: string;
+  equipoOInstalacion: string;
+  justificacionGasto: string;
+  fullName?: string;
+  solicitanteNombreCompleto?: string;
+  solicitante?: string;
+  ordenCompraDatosPago: PurchaseOrderPdfPaymentData;
+  ordenCompraStatus?: { factura?: string };
+  ordenCompraPresupuesto: Array<{
+    numeroCuenta: string;
+    cuenta: string;
+    dineroUsado: number;
+  }>;
+  firmantes?: Array<{ nombre?: string; rol?: string }>;
+}
+
+interface PurchaseOrderPdfData {
+  folio: string;
+  fechaSolicitud: string;
+  customer: string;
+  customerAdreess: string;
+  phone: string;
+  rfc: string;
+  observaciones?: string;
+  ordenCompraDatosPago: PurchaseOrderPdfPaymentData;
+  ordenCompraDetalle: PurchaseOrderPdfLine[];
+}
+
 @Injectable({
   providedIn: "root",
 })
@@ -22,17 +81,17 @@ export class PdfGenerationService {
       "Espere un momento por favor...",
     );
 
-    const orderRequest = this.apiResponseS.onGetItem(
+    const orderRequest = this.apiResponseS.onGetItem<PurchaseOrderPaymentRequestData>(
       Endpoints.PurchaseOrders.solicitudPago(ordenCompraId),
       false,
     );
-    const customerRequest = this.apiResponseS.onGetItem(
+    const customerRequest = this.apiResponseS.onGetItem<unknown>(
       Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId()),
       false,
     );
 
     Promise.all([orderRequest, customerRequest])
-      .then(async ([orderData, customerData]: [any, any]) => {
+      .then(async ([orderData, customerData]) => {
         if (orderData) {
           const html = await this.buildPaymentRequestHtmlContent(
             orderData,
@@ -62,8 +121,11 @@ export class PdfGenerationService {
       "Espere un momento por favor...",
     );
     this.apiResponseS
-      .onGetItem(Endpoints.PurchaseOrders.pdf(ordenCompraId), false)
-      .then(async (result: any) => {
+      .onGetItem<PurchaseOrderPdfData>(
+        Endpoints.PurchaseOrders.pdf(ordenCompraId),
+        false,
+      )
+      .then(async (result) => {
         if (result) {
           const html = await this.buildOrdenCompraHtmlContent(result);
           this.htmlPrintS.printHtml(html, `OC-${result.folio}`);
@@ -132,7 +194,7 @@ export class PdfGenerationService {
     );
   }
 
-  private getSolicitanteDisplayName(model: any): string {
+  private getSolicitanteDisplayName(model: PurchaseOrderPaymentRequestData): string {
     return (
       model.solicitanteNombreCompleto ||
       model.fullName ||
@@ -142,8 +204,8 @@ export class PdfGenerationService {
   }
 
   private async buildPaymentRequestHtmlContent(
-    orderData: any,
-    customerData: any,
+    orderData: PurchaseOrderPaymentRequestData,
+    customerData: unknown,
   ): Promise<string> {
     const model = orderData;
     const datosPago = model.ordenCompraDatosPago;
@@ -158,7 +220,7 @@ export class PdfGenerationService {
     const total = this.formatCurrency(correctTotal);
 
     let budgetRowsHtml = "";
-    model.ordenCompraPresupuesto.forEach((item: any) => {
+    model.ordenCompraPresupuesto.forEach((item) => {
       budgetRowsHtml += `
         <tr>
           <td>${this.htmlPrintS.esc(item.numeroCuenta)} | ${this.htmlPrintS.esc(item.cuenta)}</td>
@@ -171,7 +233,7 @@ export class PdfGenerationService {
     let signaturesHtml = "";
     if (model.firmantes && model.firmantes.length > 0) {
       signaturesHtml += `<div class="signatures-grid">`;
-      model.firmantes.forEach((firmante: any) => {
+      model.firmantes.forEach((firmante) => {
         signaturesHtml += `
           <div class="signature-box">
             <div class="signature-line"></div>
@@ -327,7 +389,7 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 
-  private async buildOrdenCompraHtmlContent(data: any): Promise<string> {
+  private async buildOrdenCompraHtmlContent(data: PurchaseOrderPdfData): Promise<string> {
     let subTotal = 0;
     let ivaTotal = 0;
     let retencionIvaTotal = 0;
@@ -345,7 +407,7 @@ ${this.htmlPrintS.getStandardCss()}
       subTotal + ivaTotal - retencionIvaTotal - retencionIsrTotal;
 
     let productRowsHtml = "";
-    data.ordenCompraDetalle.forEach((item: any) => {
+    data.ordenCompraDetalle.forEach((item) => {
       const importe = item.cantidad * item.precio * (1 - item.descuento / 100);
       productRowsHtml += `
         <tr>
@@ -489,4 +551,3 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
-

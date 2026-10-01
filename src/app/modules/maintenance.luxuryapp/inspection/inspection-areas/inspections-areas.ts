@@ -4,7 +4,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-inspections-areas",
   imports: [AppIcon],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="card p-4 m-3">
       <div class="d-flex align-items-center gap-3">

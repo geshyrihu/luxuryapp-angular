@@ -15,7 +15,7 @@ export const CONFIRM_TYPE_CONFIG: Record<
 
 /**
  * Base compartida de ConfirmDialog (API + lógica de tipo).
- *  - web:     `app-confirm-dialog` (PrimeNG p-dialog)
+ *  - web:     `app-confirm-dialog` (Bootstrap p-dialog)
  *  - mobile:  `ili-confirm-dialog` (overlay Ionic)
  *  - wrapper: `lx-confirm-dialog`  (auto runtime)
  */

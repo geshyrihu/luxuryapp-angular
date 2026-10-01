@@ -68,7 +68,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
       </h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
         Colores de uso directo en componentes: botones, badges, alertas y
-        estados de negocio. Son la capa que PrimeNG y los custom components
+        estados de negocio. Son la capa que Bootstrap y los custom components
         consumen via <code>--ds-*</code>.
       </p>
 

@@ -460,7 +460,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             buttons-icon-label <code class="ms-2 text-base">il-button-*</code>
           </h3>
           <small class="text-color-secondary"
-            >Icon + Label é Web (PrimeNG)</small
+            >Icon + Label é Web (Bootstrap)</small
           >
         </div>
 
@@ -626,7 +626,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           <h3 class="m-0">
             buttons-icon-web <code class="ms-2 text-base">iw-button-*</code>
           </h3>
-          <small class="text-color-secondary">Solo icono é Web (PrimeNG)</small>
+          <small class="text-color-secondary">Solo icono é Web (Bootstrap)</small>
         </div>
 
         <div class="card mb-4"><div class="card-header">Paleta completa de colores</div>

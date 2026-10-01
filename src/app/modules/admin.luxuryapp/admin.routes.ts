@@ -564,7 +564,7 @@ export const adminRoutes: Routes = [
       { path: "components", redirectTo: "web/accordion" },
       { path: "web", redirectTo: "web/accordion" },
       { path: "mobile", redirectTo: "mobile/buttons" },
-      { path: "core", redirectTo: "core/actionmenu" },
+      { path: "core", redirectTo: "core/datagrid" },
       { path: "charts", redirectTo: "charts/bar" },
       { path: "patterns-layouts", redirectTo: "patterns/loginreference" },
       { path: "patterns", redirectTo: "patterns/loginreference" },

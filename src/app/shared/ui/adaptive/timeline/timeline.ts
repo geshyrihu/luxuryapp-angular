@@ -5,7 +5,7 @@ import { Timeline } from "@ui/web/timeline/timeline";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Timeline. Renderiza `app-timeline` (PrimeNG) o
+ * Wrapper multiplataforma de Timeline. Renderiza `app-timeline` (Bootstrap) o
  * `ili-timeline` (timeline vertical nativo) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-timeline [events]="..." />`.
  */

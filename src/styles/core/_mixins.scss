@@ -5,6 +5,7 @@
 // ============================================================
 
 @use 'sass:map';
+@use 'sass:color';
 @use 'variables' as v;
 
 // ── RESPONSIVE ────────────────────────────────────────────────
@@ -183,7 +184,7 @@
 
 // ── VARIANTE DE COLOR ─────────────────────────────────────────
 // Genera estilos de color para un componente dado un token semántico
-@mixin color-variant($name, $bg, $text, $border: $bg, $bg-hover: darken($bg, 8%), $border-hover: darken($border, 8%)) {
+@mixin color-variant($name, $bg, $text, $border: $bg, $bg-hover: color.adjust($bg, $lightness: -8%), $border-hover: color.adjust($border, $lightness: -8%)) {
   &--#{$name} {
     background-color: $bg;
     color: $text;

@@ -38,7 +38,7 @@ interface IReviewForm {
 @Component({
   selector: "app-inspeccion-activo-condominio",
   templateUrl: "./inspeccion-activo-condominio.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     FormsModule,

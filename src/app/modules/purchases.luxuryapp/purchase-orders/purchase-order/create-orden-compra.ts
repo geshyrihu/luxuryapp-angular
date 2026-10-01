@@ -57,7 +57,7 @@ export class CreateOrdenCompra implements OnInit {
   providerControl = new FormControl(null, Validators.required);
 
   solicitudCompraId: string = "";
-  solicitudCompra: any;
+  solicitudCompra: Record<string, unknown> | null = null;
   ordenCompraId: string = "";
   posicionCotizacion: number = 0;
 
@@ -100,17 +100,18 @@ export class CreateOrdenCompra implements OnInit {
   }
 
   async onLoadSelectItemProvider(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetSelectItem<
+    const result = await this.apiResponseS.onGetSelectItem<
       SelectItemDto[]
     >(Endpoints.SelectItems.providers(this.customerIdS.customerId()));
-    this.cb_providers.set(result as SelectItemDto[]);
+    this.cb_providers.set(result ?? []);
   }
 
   async onLoadSolicitudCompra(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(
+    const result = await this.apiResponseS.onGetItem<Record<string, string>>(
       Endpoints.PurchaseRequests.getById(this.solicitudCompraId),
     );
 
+    if (!result) return;
     this.solicitudCompra = result;
 
     this.form.patchValue({
@@ -153,4 +154,3 @@ export class CreateOrdenCompra implements OnInit {
     }
   }
 }
-

@@ -5,7 +5,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PlatformService } from "@core/services/platform.service";
 
 /**
- * Wrapper multiplataforma de Avatar. Renderiza `app-avatar` (PrimeNG) o
+ * Wrapper multiplataforma de Avatar. Renderiza `app-avatar` (Bootstrap) o
  * `ili-avatar` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lx-avatar [image]="..." shape="circle" />`.
  */

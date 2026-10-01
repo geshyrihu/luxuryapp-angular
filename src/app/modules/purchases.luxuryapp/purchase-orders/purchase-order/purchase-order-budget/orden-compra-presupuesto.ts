@@ -35,6 +35,10 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import {
+  PurchaseOrderBudgetAccount,
+  PurchaseOrderBudgetAccountsResponse,
+} from "../purchase-order.types";
 
 @Component({
   selector: "app-orden-compra-presupuesto",
@@ -75,7 +79,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   // 2. ESTADO DEL COMPONENTE
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<PurchaseOrderBudgetAccountRow[]>([]);
   // Anio en curso (lo vamos a usar para filtrar info del presupuesto).
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
@@ -90,7 +94,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   loading = signal(true);
   submitting = signal(false);
 
-  // Opciones de la tabla de PrimeNG
+  // Opciones de la tabla de Bootstrap
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
@@ -123,9 +127,9 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       this.intYearControl.value,
     );
 
-    const result: any = await this.apiResponseS.onGetList(urlApi);
+    const result = await this.apiResponseS.onGetList<PurchaseOrderBudgetAccountsResponse>(urlApi);
     if (result) {
-      const accounts = result.accounts.map((acc: any) => ({
+      const accounts = result.accounts.map((acc): PurchaseOrderBudgetAccountRow => ({
         ...acc,
         dineroUsadoControl: new FormControl<number | null>(
           acc.dineroUsado || null,
@@ -138,7 +142,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   // Guardar una partida presupuestal ??
-  async onSubmit(item: any) {
+  async onSubmit(item: PurchaseOrderBudgetAccountRow) {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
 
     // Validaciones express ??
@@ -195,7 +199,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   // Determinar si un input de monto esté habilitado ??
-  isInputDisabled(item: any): boolean {
+  isInputDisabled(item: PurchaseOrderBudgetAccountRow): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
@@ -216,7 +220,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   // Determinar si el botón de guardar esté habilitado ??
-  isSaveDisabled(item: any): boolean {
+  isSaveDisabled(item: PurchaseOrderBudgetAccountRow): boolean {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
@@ -259,4 +263,8 @@ export interface PurchaseOrderBudget {
   accountNumber: string;
   accountName: string;
   amount: number;
+}
+
+interface PurchaseOrderBudgetAccountRow extends PurchaseOrderBudgetAccount {
+  dineroUsadoControl: FormControl<number | null>;
 }

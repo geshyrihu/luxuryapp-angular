@@ -12,7 +12,7 @@ export type EmptyStateSeverity =
 /**
  * Base compartida de EmptyState. Contiene la API pública (inputs/outputs) que
  * comparten las tres piezas del patrón multiplataforma:
- *  - web:     `app-empty-state`  (PrimeNG)      → components/web/empty-state
+ *  - web:     `app-empty-state`  (Bootstrap)      → components/web/empty-state
  *  - mobile:  `ili-empty-state`  (Ionic)        → components/mobile/empty-state
  *  - wrapper: `lx-empty-state`   (auto runtime) → components/shared/empty-state
  */

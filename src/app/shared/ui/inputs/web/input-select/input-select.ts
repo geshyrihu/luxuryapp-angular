@@ -18,7 +18,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
- * 🔽 WEB INPUT SELECT (PrimeNG) — interno del delegador `custom-input-select-signal`.
+ * 🔽 WEB INPUT SELECT (Bootstrap) — interno del delegador `custom-input-select-signal`.
  */
 @Component({
   selector: "web-input-select",

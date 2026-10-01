@@ -177,7 +177,7 @@
       "id": "CORE-04",
       "name": "Custom Input (27 variantes)",
       "selectorAdaptive": "custom-input-*-signal",
-      "selectorWeb": "custom-input-*-signal (PrimeNG-based)",
+      "selectorWeb": "custom-input-*-signal (Bootstrap-based)",
       "selectorMobile": "custom-input-*-signal (Ionic-based)",
       "criticality": "critical",
       "platforms": [
@@ -246,7 +246,7 @@
         "time-range"
       ],
       "antiPatterns": [
-        "Usar inputs raw de PrimeNG/Ionic",
+        "Usar inputs raw de Bootstrap/Ionic",
         "Template Forms en lugar de Reactive Forms",
         "Sin validación"
       ],
@@ -477,7 +477,7 @@
       "id": "CORE-09",
       "name": "Card",
       "selectorAdaptive": "lx-card",
-      "selectorWeb": "app-card (PrimeNG-styled)",
+      "selectorWeb": "app-card (Bootstrap-styled)",
       "selectorMobile": "ili-card (Ionic-styled)",
       "criticality": "medium",
       "platforms": [
@@ -826,13 +826,13 @@
       "id": "CORE-16",
       "name": "Action Menu (Web)",
       "selectorAdaptive": "app-action-menu",
-      "selectorWeb": "app-action-menu (PrimeNG)",
+      "selectorWeb": "app-action-menu (Bootstrap)",
       "selectorMobile": "N/A",
       "criticality": "high",
       "platforms": [
         "web"
       ],
-      "description": "Menú de opciones (más vertical) para filas de tabla en desktop. Usa PrimeNG p-menu internamente.",
+      "description": "Menú de opciones (más vertical) para filas de tabla en desktop. Usa un menú basado en Bootstrap internamente.",
       "useCases": [
         "Acciones por fila en p-table",
         "Menús contextuales",
@@ -973,7 +973,7 @@
       "id": "CORE-19",
       "name": "Sidebar",
       "selectorAdaptive": "lx-sidebar",
-      "selectorWeb": "app-sidebar (PrimeNG)",
+      "selectorWeb": "app-sidebar (Bootstrap)",
       "selectorMobile": "N/A",
       "criticality": "medium",
       "platforms": [

@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     AppTable,
     AppIcon,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-lista.html",
 })
 export class MisInspeccionesLista {

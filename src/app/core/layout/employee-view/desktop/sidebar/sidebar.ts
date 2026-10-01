@@ -358,9 +358,9 @@ export class Sidebar {
               routerLink: [...this.catalogBase, "core", "notificationcenter"],
             },
             {
-              label: "PrimeNg Custom Caption",
+              label: "Bootstrap Custom Caption",
               icon: "material-symbols-light:table",
-              routerLink: [...this.catalogBase, "core", "primengcustomcaption"],
+              routerLink: [...this.catalogBase, "core", "Bootstrapcustomcaption"],
             },
             {
               label: "Status Badge",
@@ -645,6 +645,18 @@ export class Sidebar {
                   ],
                 },
                 {
+                  label: "Filtros + Tabla",
+                  routerLink: [...this.catalogBase, "patterns", "filterstable"],
+                },
+                {
+                  label: "KPIs + Gráfico",
+                  routerLink: [...this.catalogBase, "patterns", "kpichart"],
+                },
+                {
+                  label: "Detalle + Timeline",
+                  routerLink: [...this.catalogBase, "patterns", "detailtimeline"],
+                },
+                {
                   label: "Login Reference",
                   routerLink: [
                     ...this.catalogBase,
@@ -813,22 +825,22 @@ export class Sidebar {
 
   private transformMenuItems(items: (MenuItem | SubMenuItem)[]): MenuItem[] {
     return items.map((item) => {
-      const primeNGItem: MenuItem = {
+      const BootstrapItem: MenuItem = {
         label: item.label,
         routerLink: item.routerLink,
         expanded: (item as MenuItem).active,
       };
 
       if ((item as MenuItem).icon) {
-        primeNGItem.icon = (item as MenuItem).icon;
+        BootstrapItem.icon = (item as MenuItem).icon;
       }
 
       if ((item as MenuItem).items && (item as MenuItem).items!.length > 0) {
-        primeNGItem.items = this.transformMenuItems(
+        BootstrapItem.items = this.transformMenuItems(
           (item as MenuItem).items as (MenuItem | SubMenuItem)[],
         );
       }
-      return primeNGItem;
+      return BootstrapItem;
     });
   }
 

@@ -7,6 +7,7 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PurchaseOrderPaymentData } from "../purchase-order.types";
 @Component({
   selector: "app-orden-compra-datos-pago-parcial",
   templateUrl: "./orden-compra-datos-pago-parcial.html",
@@ -14,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   imports: [ AppIcon, WebButtonIcon, LxTag],
 })
 export class OrdenCompraDatosPagoParcial {
-  ordenCompra = input<any>();
+  ordenCompra = input<PurchaseOrderPaymentData>();
   bloqueada = input<boolean>();
   modalOrdenCompra = output<void>();
   onModalOrdenCompraDatosPago() {

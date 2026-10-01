@@ -58,7 +58,7 @@ export class ThemeService {
       html.classList.add("theme-light");
       body.classList.add("theme-light");
     }
-    // PrimeNG aplica el colorScheme correcto vía darkModeSelector: ".theme-dark"
+    // Bootstrap aplica el colorScheme correcto vía darkModeSelector: ".theme-dark"
     // definido en app.config.ts. No se requiere updatePreset() en runtime.
   }
 

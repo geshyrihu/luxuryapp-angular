@@ -16,12 +16,20 @@ import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
+import { AppCard } from "@ui/web/card/card";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
+
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",
   datatablehybrid: "Data Table Hybrid",
   loginreference: "Login Reference",
   navigationreference: "Navigation Reference",
-  navhub: "Navigation Hub Page (Esténdar)",
+  navhub: "Navigation Hub Page (Estándar)",
+  filterstable: "Encabezado + Filtros + Tabla",
+  kpichart: "KPIs + Gráfico",
+  detailtimeline: "Detalle + Timeline",
 };
 
 @Component({
@@ -29,12 +37,16 @@ const PATTERNS_LABELS: Record<string, string> = {
   imports: [
     FormsModule,
     WebButtonLabel,
+    WebButtonIcon,
     AppDivider,
     CustomInputTextSignal,
     AppTable,
     Tabs,
     AppIcon,
     StatusBadge,
+    AppCard,
+    ChartWrapper,
+    AppToolbar,
   ],
   template: `
     <section class="fadein">
@@ -42,6 +54,164 @@ const PATTERNS_LABELS: Record<string, string> = {
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
       </div>
       @switch (item()) {
+        @case ("filterstable") {
+          <!-- Receta: Encabezado + Filtros + Tabla -->
+          <div class="d-flex flex-column gap-3">
+            <app-toolbar>
+              <ng-template #start>
+                <div class="d-flex align-items-center gap-2">
+                  <h3 class="m-0 font-bold">Órdenes de Compra</h3>
+                  <app-status-badge [status]="EStatus.Aprobado" />
+                </div>
+              </ng-template>
+              <ng-template #end>
+                <il-button label="Nueva Orden" iconClass="material-symbols-light:add" />
+              </ng-template>
+            </app-toolbar>
+
+            <app-card>
+              <ng-template #content>
+                <div class="row g-3">
+                  <div class="col-12 col-md-4">
+                    <custom-input-text-signal [(ngModel)]="mockFilter" placeholder="Buscar por folio..." />
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <custom-input-text-signal [(ngModel)]="mockFilter" placeholder="Filtrar fecha" />
+                  </div>
+                  <div class="col-12 col-md-5 d-flex gap-2 justify-content-end align-items-end">
+                    <il-button variant="outlined" label="Limpiar" severity="secondary" />
+                    <il-button label="Buscar" iconClass="material-symbols-light:search" />
+                  </div>
+                </div>
+              </ng-template>
+            </app-card>
+
+            <app-card>
+              <ng-template #content>
+                <app-table [value]="mockTableData" class="w-100">
+                  <ng-template #header>
+                    <tr>
+                      <th>Folio</th>
+                      <th>Fecha</th>
+                      <th>Total</th>
+                      <th>Estado</th>
+                      <th class="text-end">Acciones</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template #body let-row>
+                    <tr>
+                      <td class="font-bold">{{ row.folio }}</td>
+                      <td>{{ row.fecha }}</td>
+                      <td>{{ row.total }}</td>
+                      <td><app-status-badge [status]="EStatus.Aprobado" /></td>
+                      <td class="text-end">
+                        <iw-button-icon icon="material-symbols-light:visibility" variant="text" />
+                      </td>
+                    </tr>
+                  </ng-template>
+                </app-table>
+              </ng-template>
+            </app-card>
+          </div>
+        }
+        @case ("kpichart") {
+          <!-- Receta: KPIs + Gráfico -->
+          <div class="row g-4">
+            <!-- KPIs -->
+            <div class="col-12 col-md-4 d-flex flex-column gap-3">
+              <app-card class="flex-grow-1" [elevated]="true">
+                <ng-template #content>
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <p class="text-secondary m-0 text-sm">Ingresos Totales</p>
+                      <h3 class="m-0 mt-2 text-2xl font-bold">$125,000</h3>
+                    </div>
+                    <div class="bg-success-light text-success p-2 rounded">
+                      <app-icon icon="material-symbols-light:trending-up" class="text-xl" />
+                    </div>
+                  </div>
+                  <p class="text-xs text-secondary mt-3 m-0">+14% respecto al mes anterior</p>
+                </ng-template>
+              </app-card>
+              <app-card class="flex-grow-1" [elevated]="true">
+                <ng-template #content>
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <p class="text-secondary m-0 text-sm">Órdenes Activas</p>
+                      <h3 class="m-0 mt-2 text-2xl font-bold">42</h3>
+                    </div>
+                    <div class="bg-primary-light text-primary p-2 rounded">
+                      <app-icon icon="material-symbols-light:shopping-cart" class="text-xl" />
+                    </div>
+                  </div>
+                  <p class="text-xs text-secondary mt-3 m-0">5 requieren atención</p>
+                </ng-template>
+              </app-card>
+            </div>
+            <!-- Gráfico -->
+            <div class="col-12 col-md-8">
+              <app-card class="h-100" [elevated]="true">
+                <ng-template #content>
+                  <app-chart-wrapper type="bar" [data]="mockChartData" height="300px" title="Ingresos Mensuales" />
+                </ng-template>
+              </app-card>
+            </div>
+          </div>
+        }
+        @case ("detailtimeline") {
+          <!-- Receta: Detalle + Timeline -->
+          <div class="row g-4">
+            <div class="col-12 col-md-8">
+              <app-card header="Detalles del Ticket #4502" [elevated]="true">
+                <ng-template #content>
+                  <p class="text-secondary">El aire acondicionado de la sala de juntas principal no está enfriando. Se requiere revisión urgente antes de la reunión de consejo.</p>
+                  <app-divider />
+                  <div class="row">
+                    <div class="col-6 mb-3">
+                      <span class="text-sm text-secondary d-block">Reportado por</span>
+                      <strong class="text-primary">Juan Pérez</strong>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <span class="text-sm text-secondary d-block">Ubicación</span>
+                      <strong>Sala de Juntas A</strong>
+                    </div>
+                  </div>
+                </ng-template>
+              </app-card>
+            </div>
+            <div class="col-12 col-md-4">
+              <app-card header="Historial" [elevated]="true">
+                <ng-template #content>
+                  <div class="timeline-simple">
+                    <div class="d-flex gap-3 mb-3">
+                      <div class="d-flex flex-column align-items-center">
+                        <div class="rounded-full bg-primary text-white p-1 d-flex">
+                          <app-icon icon="material-symbols-light:check" class="text-sm" />
+                        </div>
+                        <div class="flex-grow-1 border-start border-2 border-primary mt-1 mb-1" style="min-height: 20px;"></div>
+                      </div>
+                      <div>
+                        <p class="m-0 text-sm font-bold">Ticket Asignado</p>
+                        <p class="m-0 text-xs text-secondary">Ayer 14:30</p>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-3">
+                      <div class="d-flex flex-column align-items-center">
+                        <div class="rounded-full bg-surface border border-2 border-secondary text-secondary p-1 d-flex">
+                          <app-icon icon="material-symbols-light:pending" class="text-sm" />
+                        </div>
+                      </div>
+                      <div>
+                        <p class="m-0 text-sm font-bold">En Revisión</p>
+                        <p class="m-0 text-xs text-secondary">Hoy 09:00</p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </app-card>
+            </div>
+          </div>
+        }
         @case ("complexcard") {
           <div class="card">
             <div class="card-header">
@@ -323,6 +493,22 @@ export class CatalogPatternsItem {
   EStatus = EStatus;
   email = "";
   password = "";
+
+  // Data mocks for new patterns
+  mockFilter = "";
+  mockTableData = [
+    { folio: "OC-10495", fecha: "2026-09-30", total: "$12,450.00" },
+    { folio: "OC-10496", fecha: "2026-09-30", total: "$3,200.00" },
+    { folio: "OC-10497", fecha: "2026-09-29", total: "$45,900.00" },
+  ];
+  mockChartData = {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
+    datasets: [{
+      label: "Ingresos",
+      data: [65000, 59000, 80000, 81000, 56000, 125000],
+      backgroundColor: "var(--ds-primary)"
+    }]
+  };
 
   // --- Navigation Hub Page demo data ---------------------------
   readonly navHubModel = `interface DashboardCard {

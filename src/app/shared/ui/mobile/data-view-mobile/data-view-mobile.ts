@@ -93,7 +93,7 @@ export class DataViewMobile implements OnInit {
   loading = input<boolean>(false);
   showAdd = input<boolean>(true);
   globalFilterFields = input<string[]>([]);
-  dt = input<any | undefined>(undefined); // Duck typing a PrimeNG Table
+  dt = input<any | undefined>(undefined); // Duck typing a Bootstrap Table
   viewchildBreadcrumb = input<boolean>(true);
 
   // Tracking & Grouping
@@ -204,7 +204,7 @@ export class DataViewMobile implements OnInit {
       try {
         table.filterGlobal(val, "contains");
       } catch (error) {
-        console.error("Error al filtrar con PrimeNG:", error);
+        console.error("Error al filtrar con Bootstrap:", error);
       }
     }
   }

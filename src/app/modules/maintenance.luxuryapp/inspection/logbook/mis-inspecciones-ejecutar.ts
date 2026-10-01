@@ -53,7 +53,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     TableCaption,
     TableFooter,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-ejecutar.html",
 })
 export class MisInspeccionesEjecutar implements OnInit {

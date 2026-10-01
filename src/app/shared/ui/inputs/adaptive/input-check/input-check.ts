@@ -13,7 +13,7 @@ import { WebInputCheck } from "../../web/input-check/input-check";
 
 /**
  * 🔀 INPUT CHECK — adaptativo. `<custom-input-check-signal>` →
- * web `<web-input-check>` (PrimeNG) o móvil `<ion-input-checkbox>` (Ionic).
+ * web `<web-input-check>` (Bootstrap) o móvil `<ion-input-checkbox>` (Ionic).
  */
 @Component({
   selector: "custom-input-check-signal",

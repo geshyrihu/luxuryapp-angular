@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   signal,
   ViewEncapsulation,
 } from "@angular/core";
@@ -9,6 +10,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ThemeService } from "@core/services/theme.service";
 
 @Component({
   selector: "app-catalog-layout",
@@ -25,22 +27,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogLayout {
-  isDarkMode = signal<boolean>(
-    document.documentElement.classList.contains("theme-dark"),
-  );
+  readonly themeService = inject(ThemeService);
+
   mobilePreview = signal<boolean>(false);
   sidebarOpen = signal<boolean>(false);
 
   toggleTheme(): void {
-    const newTheme = !this.isDarkMode();
-    this.isDarkMode.set(newTheme);
-    document.body.classList.toggle("theme-dark", newTheme);
-    document.body.setAttribute("data-theme", newTheme ? "dark" : "light");
-    document.documentElement.classList.toggle("theme-dark", newTheme);
-    document.documentElement.setAttribute(
-      "data-theme",
-      newTheme ? "dark" : "light",
-    );
+    this.themeService.toggleTheme();
   }
 }
 

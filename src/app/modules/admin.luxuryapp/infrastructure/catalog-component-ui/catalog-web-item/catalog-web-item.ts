@@ -13,6 +13,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { FullCalendarModule } from "@fullcalendar/angular";
@@ -57,6 +58,11 @@ import {
   CustomInputSelectSignal,
   CustomInputTextAreaSignal,
   CustomInputTextSignal,
+  CustomInputSelectBool,
+  CustomInputSwitch,
+  CustomInputDecimal,
+  CustomInputPassword,
+  CustomInputTime
 } from "@ui/inputs/web";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import { AppPopover } from "@ui/web/popover/popover";
@@ -165,6 +171,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputMultiselectSignal,
     CustomInputCheckSignal,
     CustomInputTextAreaSignal,
+    CustomInputSelectBool,
+    CustomInputSwitch,
+    CustomInputDecimal,
+    CustomInputPassword,
+    CustomInputTime,
 
     Accordion,
     AccordionPanel,
@@ -226,7 +237,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
         <div class="d-flex align-items-center gap-2">
           <p class="text-secondary m-0">
-            Componente PrimeNG: <strong>{{ item() }}</strong>
+            Componente Bootstrap: <strong>{{ item() }}</strong>
           </p>
           <span class="badge-mode">Split Web + Mobile</span>
         </div>
@@ -967,7 +978,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <p class="text-sm text-secondary mb-4 m-0">
-                    Wrappers sobre PrimeNG con deteccion automatica de
+                    Wrappers sobre Bootstrap con deteccion automatica de
                     plataforma (web/mobile), validacion integrada y layout
                     horizontal/vertical.
                   </p>
@@ -1033,7 +1044,48 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       label="Notas"
                       placeholder="Escribe aqui..."
                     />
+                    
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                      <il-button 
+                        label="Restablecer" 
+                        severity="secondary" 
+                        variant="outlined" 
+                        (clicked)="customInputsForm.reset()" 
+                      />
+                      <il-button 
+                        label="Simular Errores" 
+                        iconClass="material-symbols-light:error"
+                        (clicked)="customInputsForm.markAllAsTouched()" 
+                      />
+                    </div>
                   </form>
+                </div>
+              </div>
+              <div class="card mt-3">
+                <div class="card-header">
+                  <h3 class="card-title">Selects / Multiselects Estados</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <custom-input-select-signal
+                        [control]="customInputsForm.controls['area_disabled']"
+                        [data]="inputSelectOptions"
+                        label="Área (Deshabilitado)"
+                        [disabled]="true"
+                        [horizontal]="false"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <custom-input-multiselect-signal
+                        [control]="customInputsForm.controls['roles_disabled']"
+                        [data]="inputSelectOptions"
+                        label="Roles (Deshabilitado)"
+                        [disabled]="true"
+                        [horizontal]="false"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="card">
@@ -1099,12 +1151,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">
-                      Estados de sincronizacion - p-tag severity
+                      Estados de sincronizacion - app-tag severity
                     </h3>
                   </div>
                   <div class="card-body">
                     <p class="catalog-helper-text text-sm m-0 mb-3">
-                      Usar <code>p-tag [severity]</code> con la funcion
+                      Usar <code>app-tag [severity]</code> con la funcion
                       <code>getStatusSeverity()</code>
                       en lugar de clases de color hardcodeadas.
                     </p>
@@ -1144,7 +1196,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <div class="card-body">
                     <p class="catalog-helper-text text-sm m-0 mb-3">
                       Debajo del calendario:
-                      <code>p-table class="custom-table "</code>
+                      <code>app-table class="custom-table "</code>
                       con paginacion, busqueda y botones de accion DS.
                     </p>
                     <app-table
@@ -1358,17 +1410,19 @@ export class CatalogWebItem {
 
   // Custom inputs form
   readonly customInputsForm: FormGroup = this.fb.group({
-    nombre: ["Juan Garcia"],
-    password: [""],
-    cantidad: [5],
-    monto: [12500],
+    nombre: ["", [Validators.required, Validators.minLength(3)]],
+    password: ["", Validators.required],
+    cantidad: [5, [Validators.required, Validators.min(10)]],
+    monto: [null, Validators.required],
     decimal: [3.14],
-    fecha: [null],
+    fecha: [null, Validators.required],
     hora: [null],
-    area: [null],
+    area: [null, Validators.required],
+    area_disabled: [2],
+    roles_disabled: [[1, 3]],
     activo: [null],
-    roles: [[]],
-    terminos: [false],
+    roles: [[], Validators.required],
+    terminos: [false, Validators.requiredTrue],
     notificaciones: [true],
     notas: [""],
   });

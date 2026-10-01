@@ -75,6 +75,12 @@
   --rf-section-bg: #334155;
   --rf-on-dark: #ffffff;
 
+  // ── Filas jerárquicas (presupuesto-web-aspel / presupuesto-propuesta) ──
+  // Nivel 1: banda oscura de sección; Nivel 2: banda clara agrupadora.
+  --rf-level-1-bg: #475569;
+  --rf-level-2-bg: #e2e8f0;
+  --rf-level-2-ink: #1e293b;
+
   // ── Estado de selección de mes ──
   --rf-selected-bg: #15803d;
   --rf-deselected-bg: #94a3b8;
@@ -309,7 +315,7 @@
 
 // ── FILAS JERÁRQUICAS — presupuesto-web-aspel / presupuesto-propuesta ──
 .fila-nivel-1 > td {
-  background-color: #475569 !important;
+  background-color: var(--rf-level-1-bg) !important;
   color: var(--rf-on-dark) !important;
   font-weight: 700;
   height: 2.25rem !important;
@@ -319,8 +325,8 @@
 }
 
 .fila-nivel-2-agrupadora > td {
-  background-color: #e2e8f0 !important;
-  color: #1e293b !important;
+  background-color: var(--rf-level-2-bg) !important;
+  color: var(--rf-level-2-ink) !important;
   font-weight: 600;
   height: 2.25rem !important;
   max-height: 2.25rem !important;

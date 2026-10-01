@@ -11,6 +11,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -84,17 +85,21 @@ export class ListaInspecciones {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(
-        Endpoints.Inspections.listByCustomer(this.customerIdS.customerId()),
+      .onGetList<PagedResultDto<InspectionListItem>>(
+        Endpoints.Inspections.listByCustomer(
+          this.customerIdS.customerId(),
+          1,
+          200,
+        ),
       )
-      .then((result: any) => {
-        this.inspeccionesOriginalesSignal.set(result);
+      .then((result) => {
+        const data = result?.items ?? [];
+        this.inspeccionesOriginalesSignal.set(data);
 
-        const data: any[] = result;
         // Extraer áreas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
-          areas.map((area: string) => ({
+          areas.map((area) => ({
             label: area,
             value: area,
           })),

@@ -13,7 +13,7 @@ import {
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
- * ✍️ WEB INPUT TEXT (PrimeNG)
+ * ✍️ WEB INPUT TEXT (Bootstrap)
  * -------------------------------------------------------------------------
  * Implementación de escritorio del input de texto (pInputText). Es interno:
  * se consume desde el delegador adaptativo `custom-input-text-signal`
