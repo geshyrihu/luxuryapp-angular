@@ -6,17 +6,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,37 +16,13 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionListItem } from "../models/inspection.model";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileButtonLabel } from "@ui/buttons";
+import { ListaInspeccionesDesktop } from "./desktop/lista-inspecciones-desktop";
+import { ListaInspeccionesMobile } from "./mobile/lista-inspecciones-mobile";
 
 @Component({
   selector: "app-lista-inspecciones",
-  imports: [
-    WebButtonIcon,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    FormsModule,
-    CustomInputSelectSignal,
-    WebButtonLabelItem,
-    MobileButtonLabel,
-    ActionMenu,
-    AppIcon,
-    RouterModule,
-    LxTooltipDirective,
-    DataViewMobile,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
-  ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [RouterModule, ListaInspeccionesDesktop, ListaInspeccionesMobile],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-inspecciones.html",
   styleUrls: ["./lista-inspecciones.scss"],
 })
@@ -65,6 +32,7 @@ export class ListaInspecciones {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
+  platformS = inject(PlatformService);
 
   areasResponsablesSignal = signal<SelectItemDto[]>([]);
   inspeccionesOriginalesSignal = signal<InspectionListItem[]>([]);

@@ -1,164 +1,29 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="d-none d-md-block p-4">
-  <div class="d-flex justify-content-between align-items-center mb-6">
-    <h4 class="text-headline-md m-0">Listado de Inspecciones</h4>
-    <iw-button
-      iconClass="material-symbols-light:add-circle"
-      label="Nuevo Recorrido"
-      size="sm"
-      lxTooltip="Nuevo Recorrido"
-      (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
-    />
-  </div>
-
-  <!-- Filtros en una línea compacta -->
-  <div class="d-flex gap-3 mb-4 align-items-end">
-    <div class="flex-grow-1">
-      <custom-input-select-signal
-        [ngModel]="selectedAreaSignal()"
-        (ngModelChange)="selectedAreaSignal.set($event)"
-        [data]="areasResponsablesSignal()"
-        label="Área"
-        placeholder="Todas las áreas"
-        [horizontal]="true"
-        [filter]="true"
-      />
-    </div>
-
-    <div class="flex-grow-1">
-      <custom-input-select-signal
-        [ngModel]="selectedRecurrenceSignal()"
-        (ngModelChange)="selectedRecurrenceSignal.set($event)"
-        [data]="[
-          { label: 'Diario', value: 'daily' },
-          { label: 'Semanal', value: 'weekly' },
-          { label: 'Mensual', value: 'monthly' }
-        ]"
-        label="Frecuencia"
-        placeholder="Todas las Recurrencias"
-        [horizontal]="true"
-        [filter]="true"
-      />
-    </div>
-
-    <iw-button
-      iconClass="material-symbols-light:menu-book-outline"
-      label="Reportes"
-      size="sm"
-      severity="secondary"
-      lxTooltip="Ver reportes de inspección"
-      (clicked)="navigateToReportes()"
-    />
-  </div>
-
-  @if (inspeccionesFiltradasSignal().length) {
-  <div class="mt-1">
-    @for (group of inspeccionesFiltradasSignal(); track group) {
-    <div>
-      <div class="group-header">
-        <strong class="text-title-md"> {{ group.departament ?? 'Sin Clasificar' }} </strong>
-      </div>
-      @for (item of group.inspecciones; track item) {
-      <div
-        class="list-item"
-      >
-        <div class="d-flex align-items-center">
-          <div>
-            <div class="text-body-md fw-medium text-on-surface">{{ item.name }}</div>
-            <small class="text-body-sm text-on-surface-secondary"
-              >{{ item.frequency ?? 'N/A' }}</small
-            >
-          </div>
-        </div>
-        <div class="d-flex align-items-center">
-          <app-action-menu>
-            <ng-container actions>
-              <il-button-edit
-                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-                label="Editar"
-              />
-              <il-button-item
-                iconClass="material-symbols-light:search"
-                label="Detalles"
-                (clicked)="navigateToDetalles(item.id)"
-              />
-              <il-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
-              />
-            </ng-container>
-          </app-action-menu>
-        </div>
-      </div>
-      }
-    </div>
-    }
-  </div>
-  } @else {
-  <div class="d-flex flex-column align-items-center text-center gap-3 py-5">
-    <app-icon icon="material-symbols-light:route" class="text-5xl text-body-secondary" />
-    <p class="m-0 text-body-secondary">No hay inspecciones disponibles.</p>
-  </div>
-  }
-</div>
-
-<!-- 📱 INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  class="d-md-none"
-  [isGrouped]="true"
-  [groupedData]="groupedData()"
-  (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
->
-  <div customFilters class="d-flex flex-column gap-3 p-4">
-    <custom-input-select-signal
-      [ngModel]="selectedAreaSignal()"
-      (ngModelChange)="selectedAreaSignal.set($event)"
-      [data]="areasResponsablesSignal()"
-      label="Área"
-      placeholder="Todas las áreas"
-      [horizontal]="false"
-      [filter]="true"
-    />
-    <custom-input-select-signal
-      [ngModel]="selectedRecurrenceSignal()"
-      (ngModelChange)="selectedRecurrenceSignal.set($event)"
-      [data]="[
-        { label: 'Diario', value: 'daily' },
-        { label: 'Semanal', value: 'weekly' },
-        { label: 'Mensual', value: 'monthly' }
-      ]"
-      label="Frecuencia"
-      placeholder="Todas las Recurrencias"
-      [horizontal]="false"
-      [filter]="true"
-    />
-    <ili-button
-      iconClass="material-symbols-light:menu-book-outline"
-      label="Reportes"
-      (clicked)="navigateToReportes()"
-    />
-  </div>
-
-  <ng-template #listItemTemplate let-item>
-    <div
-      class="list-item-mobile"
-    >
-      <span class="flex-fill">
-        <div class="text-body-md fw-medium text-on-surface">{{ item.name }}</div>
-        <span class="text-body-sm text-on-surface-secondary">{{ item.frequency ?? 'N/A' }}</span>
-      </span>
-      <ili-action-menu end>
-        <ili-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          label="Editar"
-        />
-        <ili-button-item
-          icon="search"
-          label="Detalles"
-          (clicked)="navigateToDetalles(item.id)"
-        />
-        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-      </ili-action-menu>
-    </div>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-lista-inspecciones-mobile
+    [groupedData]="groupedData()"
+    [areasResponsables]="areasResponsablesSignal()"
+    [selectedArea]="selectedAreaSignal()"
+    [selectedRecurrence]="selectedRecurrenceSignal()"
+    (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+    (edit)="onModalForm($event)"
+    (detalles)="navigateToDetalles($event)"
+    (delete)="onDelete($event)"
+    (reportes)="navigateToReportes()"
+    (filterAreaChange)="selectedAreaSignal.set($event)"
+    (filterRecurrenceChange)="selectedRecurrenceSignal.set($event)"
+  />
+} @else {
+  <app-lista-inspecciones-desktop
+    [data]="inspeccionesFiltradasSignal()"
+    [areasResponsables]="areasResponsablesSignal()"
+    [selectedArea]="selectedAreaSignal()"
+    [selectedRecurrence]="selectedRecurrenceSignal()"
+    (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
+    (edit)="onModalForm($event)"
+    (detalles)="navigateToDetalles($event)"
+    (delete)="onDelete($event)"
+    (reportes)="navigateToReportes()"
+    (filterAreaChange)="selectedAreaSignal.set($event)"
+    (filterRecurrenceChange)="selectedRecurrenceSignal.set($event)"
+  />
+}

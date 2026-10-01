@@ -1,0 +1,122 @@
+<app-table
+  #dt
+  [globalFilterFields]="globalFilterFields"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [value]="rows()"
+  groupRowsBy="departament"
+  class="custom-table card"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+>
+  <ng-template #caption>
+    <div class="d-flex gap-3 mb-3 align-items-end flex-wrap">
+      <div class="flex-grow-1">
+        <custom-input-select-signal
+          [ngModel]="selectedArea()"
+          (ngModelChange)="filterAreaChange.emit($event)"
+          [data]="areasResponsables()"
+          label="Área"
+          placeholder="Todas las áreas"
+          [horizontal]="true"
+          [filter]="true"
+        />
+      </div>
+      <div class="flex-grow-1">
+        <custom-input-select-signal
+          [ngModel]="selectedRecurrence()"
+          (ngModelChange)="filterRecurrenceChange.emit($event)"
+          [data]="[
+            { label: 'Diario', value: 'daily' },
+            { label: 'Semanal', value: 'weekly' },
+            { label: 'Mensual', value: 'monthly' }
+          ]"
+          label="Frecuencia"
+          placeholder="Todas las Recurrencias"
+          [horizontal]="true"
+          [filter]="true"
+        />
+      </div>
+      <div class="d-flex gap-2">
+        <iw-button
+          iconClass="material-symbols-light:add-circle"
+          label="Nuevo Recorrido"
+          size="sm"
+          lxTooltip="Nuevo Recorrido"
+          (clicked)="add.emit()"
+        />
+        <iw-button
+          iconClass="material-symbols-light:menu-book-outline"
+          label="Reportes"
+          size="sm"
+          severity="secondary"
+          lxTooltip="Ver reportes de inspección"
+          (clicked)="reportes.emit()"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="name">
+        Nombre
+        <app-sorticon field="name" />
+      </th>
+      <th appSortableColumn="frequency">
+        Frecuencia
+        <app-sorticon field="frequency" />
+      </th>
+      <th class="no-print">Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #groupheader let-item>
+    <tr>
+      <td colspan="3" class="bg-body-tertiary p-2">
+        <span class="fw-bold ms-2 text-primary">{{ item.departament }}</span>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.frequency }}</td>
+      <td class="no-print">
+        <div class="d-flex gap-1">
+          <iw-button-edit
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Editar ' + item.name"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-item
+            size="sm"
+            class="btn--circle"
+            icon="search"
+            [attr.aria-label]="'Ver detalles de ' + item.name"
+            (clicked)="detalles.emit(item.id)"
+          />
+          <iw-button-delete
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Eliminar ' + item.name"
+            (confirmed)="delete.emit(item.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <app-table-empty-message [colspan]="3" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <app-table-footer [data]="rows()" />
+  </ng-template>
+</app-table>
