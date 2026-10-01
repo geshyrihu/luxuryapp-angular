@@ -2,10 +2,10 @@
 // Reference: design-system/luxuryapp-inspections/MASTER.md
 
 :host {
-  --group-bg: var(--primary-100, #E8EEF6);
-  --group-text: var(--primary-700, #1B365D);
+  --group-bg: var(--primary-100);
+  --group-text: var(--primary-700);
   --list-item-border: var(--outline, #E2E8F0);
-  --list-item-hover: var(--primary-50, #F8F9FC);
+  --list-item-hover: var(--primary-50);
 }
 
 // Group header (department section) — MASTER.md § 262-269
@@ -19,7 +19,7 @@
   transition: background-color 150ms ease;
 
   &:hover {
-    background: var(--primary-200, #D8E1EC);
+    background: var(--primary-200);
   }
 }
 
@@ -68,10 +68,10 @@
 // Dark mode support — MASTER.md § 545-566
 @media (prefers-color-scheme: dark) {
   :host {
-    --group-bg: var(--primary-900, #0D1829);
-    --group-text: var(--primary-100, #E8EEF6);
+    --group-bg: var(--primary-900);
+    --group-text: var(--primary-100);
     --list-item-border: var(--outline-dark, #2D3E52);
-    --list-item-hover: var(--primary-800, #1A2E48);
+    --list-item-hover: var(--primary-800);
   }
 
   .group-header {

@@ -16,6 +16,7 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -46,6 +47,7 @@ import { MobileButtonLabel } from "@ui/buttons";
     WebButtonLabelItem,
     MobileButtonLabel,
     ActionMenu,
+    AppIcon,
     RouterModule,
     LxTooltipDirective,
     DataViewMobile,
@@ -154,4 +156,3 @@ export class ListaInspecciones {
       });
   }
 }
-
