@@ -193,8 +193,6 @@ export class AppTableHeaderCheckbox {
 
 /**
  * Evento de cambio para tablas server-side (`[lazy]="true"`).
- * Mantiene los nombres de `TableLazyLoadEvent` de PrimeNG para que los
- * consumidores migrados no necesiten cambiar sus handlers.
  */
 export interface AppTableLazyEvent {
   first: number;
