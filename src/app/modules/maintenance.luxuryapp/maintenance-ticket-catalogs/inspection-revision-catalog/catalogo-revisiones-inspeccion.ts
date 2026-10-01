@@ -25,6 +25,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CatalogoRevisionesInspeccionForm } from "./catalogo-revisiones-inspeccion-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -59,6 +60,7 @@ export class CatalogoRevisionesInspeccion {
   tableScrollHeightS = inject(TableScrollHeightService);
   // Declaración e inicialización de variables
   dataSignal = signal<any>(null);
+  cb_departament = signal<SelectItemDto[]>([]);
 
   /*
   /PRIME NG TABLE OPTIONS
@@ -75,6 +77,7 @@ export class CatalogoRevisionesInspeccion {
 
   ngOnInit(): void {
     this.onLoadData();
+    this.onLoadDepartament();
   }
 
   onLoadData() {
@@ -84,6 +87,21 @@ export class CatalogoRevisionesInspeccion {
         // Actualizamos el valor del signal con los datos recibidos
         this.dataSignal.set(result);
       });
+  }
+
+  onLoadDepartament() {
+    this.apiResponseS
+      .onGetEnumSelectItem(Endpoints.EnumSelectItems.departament)
+      .then((result: any) => {
+        this.cb_departament.set(result);
+      });
+  }
+
+  getDepartamentLabel(value: number): string {
+    return (
+      this.cb_departament().find((x) => x.value === value)?.label ??
+      "Sin departamento"
+    );
   }
 
   // Funcion para eliminar un banco y refres

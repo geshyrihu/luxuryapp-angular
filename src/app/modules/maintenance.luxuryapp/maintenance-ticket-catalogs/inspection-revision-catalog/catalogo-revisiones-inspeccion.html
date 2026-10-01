@@ -25,6 +25,11 @@
         DESCRIPCIÓN
         <app-sorticon field="description" />
       </th>
+      <th appSortableColumn="departament">
+        DEPARTAMENTO
+        <app-sorticon field="departament" />
+      </th>
+      <th>CATEGORÍA</th>
 
       <th class="no-print"></th>
     </tr>
@@ -32,6 +37,8 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.description }}</td>
+      <td>{{ getDepartamentLabel(item.departament) }}</td>
+      <td>{{ item.equipoClasificacion?.descripcion ?? "—" }}</td>
 
       <!-- Opciones -->
       <td class="no-print">
@@ -46,7 +53,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <app-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
     <app-table-footer [data]="dataSignal()" />
@@ -74,6 +81,10 @@
       </div>
 
       <h2 class="font-normal m-0">{{ item.description }}</h2>
+      <p class="text-body-secondary m-0">
+        {{ getDepartamentLabel(item.departament) }} ·
+        {{ item.equipoClasificacion?.descripcion ?? "Sin categoría" }}
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

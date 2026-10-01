@@ -13,6 +13,19 @@
         label="DESCRIPCIÓN"
         placeholder="DESCRIPCIÓN"
       />
+      <custom-input-select-signal
+        [control]="form.controls.departament"
+        label="Departamento"
+        placeholder="Seleccione departamento"
+        [data]="cb_departament()"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.equipoClasificacionId"
+        label="Categoría"
+        placeholder="Seleccione categoría"
+        [data]="cb_equipoClasificacion()"
+        [filter]="true"
+      />
 
       <il-button-save
         [propertyId]="id"
