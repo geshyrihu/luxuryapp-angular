@@ -13,7 +13,7 @@
     </div>
     }
 
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <form class="d-flex flex-column gap-3" autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- Campo Nombre -->
       <custom-input-text-signal
         [control]="form.controls.name"

@@ -1,4 +1,4 @@
-<div class="p-4 p-md-5">
+<div class="d-none d-md-block p-4 p-md-5">
   <!-- Botones para cargar imágenes -->
   <div class="d-flex gap-3 mb-6 flex-wrap">
     <!-- Botón cámara -->
@@ -104,5 +104,43 @@
       (clicked)="onSaveImages()"
       [disabled]="newImages.length === 0"
     />
+  </div>
+</div>
+
+<div class="d-block d-md-none p-3">
+  <div class="d-flex flex-column gap-2 mb-4">
+    <iw-button iconClass="material-symbols-light:photo-camera" label="Tomar foto" severity="secondary" (clicked)="cameraInputMobile.click()" />
+    <input #cameraInputMobile type="file" class="d-none" (change)="onFileSelected($event)" accept="image/*,.heic,.heif" capture="environment" />
+    <iw-button iconClass="material-symbols-light:photo-library" label="Galería" severity="secondary" (clicked)="galleryInputMobile.click()" />
+    <input #galleryInputMobile type="file" class="d-none" (change)="onFileSelected($event)" accept="image/*,.heic,.heif" multiple />
+  </div>
+  @if (newImages.length > 0) {
+  <div class="mb-4">
+    <h6 class="text-title-md m-0 mb-3 text-on-surface">Nuevas imágenes ({{ newImages.length }})</h6>
+    <div class="row row-cols-2 g-3">
+      @for (image of newImages; track image; let i = $index) {
+      <div class="col position-relative">
+        <img [src]="image.url ? image.url : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto nueva" />
+        <iw-button iconClass="material-symbols-light:delete-outline" severity="danger" size="sm" variant="text" customClass="position-absolute top-0 end-0" (clicked)="removeNewImage(i)" lxTooltip="Eliminar" tooltipPosition="top" />
+      </div>
+      }
+    </div>
+  </div>
+  }
+  @if (existingImages.length > 0) {
+  <div class="mb-4">
+    <h6 class="text-title-md m-0 mb-3 text-on-surface">Imágenes almacenadas ({{ existingImages.length }})</h6>
+    <div class="row row-cols-2 g-3">
+      @for (image of existingImages; track image) {
+      <div class="col position-relative">
+        <img [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto almacenada" />
+        <iw-button iconClass="material-symbols-light:cancel-outline" severity="danger" size="sm" variant="text" customClass="position-absolute top-0 end-0" (clicked)="deleteExistingImage(image.id)" lxTooltip="Eliminar" tooltipPosition="top" />
+      </div>
+      }
+    </div>
+  </div>
+  }
+  <div class="d-flex justify-content-center pt-3 border-top-1 border-outline">
+    <il-button label="Guardar imágenes" iconClass="material-symbols-light:save" (clicked)="onSaveImages()" [disabled]="newImages.length === 0" />
   </div>
 </div>

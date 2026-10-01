@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <form class="d-flex flex-column gap-3" autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-autocomplete-signal
         (propagar)="saveCondominiumAsset($event)"
         [control]="form.controls.condominiumAssetName"
