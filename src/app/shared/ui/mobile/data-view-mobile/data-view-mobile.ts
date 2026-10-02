@@ -24,7 +24,6 @@ import {
 import {
   IonButton,
   IonButtons,
-  IonContent,
   IonHeader,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
@@ -35,8 +34,6 @@ import {
   IonSearchbar,
   IonTitle,
   IonToolbar,
-  IonRefresher,
-  IonRefresherContent,
 } from "@ionic/angular";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
@@ -77,9 +74,6 @@ export interface IMobileBreadcrumbItem {
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonContent,
-    IonRefresher,
-    IonRefresherContent,
     AppIcon,
     MobileEmptyState,
   ],

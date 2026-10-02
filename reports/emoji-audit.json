@@ -21262,7 +21262,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "| [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para Bootstrap v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |"
+      "preview": "| [`bootstrap-overrides.css`](#bootstrap-overridescss) | ~319 | 🅿️ Overrides de marca para Bootstrap v21 dentro de `@layer bootstrap-brand`. Sin `!important` ni `::ng-deep`. |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -21405,7 +21405,7 @@
       "symbols": [
         "🅿"
       ],
-      "preview": "## 🅿️ `primeng-overrides.css`"
+      "preview": "## 🅿️ `bootstrap-overrides.css`"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
