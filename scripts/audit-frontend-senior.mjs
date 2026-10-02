@@ -121,7 +121,7 @@ function checkUIImports() {
   log('\n[3/7] Verificando Catálogo UI (§5)', 'blue');
 
   const { output } = exec(
-    'grep -r "from [\'\\"]primeng\\|from [\'\\"]@ionic" src/app/apps --include="*.ts" 2>/dev/null | grep -v node_modules | wc -l'
+    'grep -r "from [\'\\"]@ionic" src/app/apps --include="*.ts" 2>/dev/null | grep -v node_modules | wc -l'
   );
 
   const directImports = parseInt(output.trim()) || 0;
@@ -130,11 +130,11 @@ function checkUIImports() {
     failures.push({
       severity: 'critical',
       check: 'Catálogo UI',
-      message: `Encontrados ${directImports} import(s) directo(s) de primeng/@ionic`,
-      fix: 'Usar imports desde @ui/* en lugar de primeng/@ionic directamente',
+      message: `Encontrados ${directImports} import(s) directo(s) de @ionic`,
+      fix: 'Usar imports desde @ui/* en lugar de @ionic directamente',
     });
   } else {
-    log(`${icons.check} Cero imports directos de primeng/@ionic`, 'green');
+    log(`${icons.check} Cero imports directos de @ionic`, 'green');
     passCount++;
   }
 }

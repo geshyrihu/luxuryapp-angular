@@ -183,7 +183,7 @@ if (pi.length > 0) {
     `   💡 Usa <app-icon> o <ili-icon> con un valor del catálogo. Si el icono va dentro`,
   );
   console.error(
-    `      de un componente PrimeNG, pásalo por <ng-template #icon>:`,
+    `      de un componente del catálogo, pásalo por <ng-template #icon>:`,
   );
   console.error(
     `      su input \`icon\` espera una clase CSS y no entiende Iconify.`,

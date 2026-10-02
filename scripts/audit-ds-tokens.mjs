@@ -233,7 +233,7 @@ async function runAudit() {
             );
             console.error(`   > ${line.trim()}`);
             console.error(
-              `   💡 Recomendación: Usa var(--ds-*) o una variable de PrimeNG.`,
+              `   💡 Recomendación: Usa var(--ds-*) o un token del catálogo.`,
             );
             totalErrors++;
           } else {

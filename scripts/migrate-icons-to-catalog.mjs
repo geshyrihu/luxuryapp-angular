@@ -81,7 +81,7 @@ const isCommentLine = (line) => /^\s*(\/\/|\*|<!--|\/\*)/.test(line);
 
 function transform(line, fieldTok) {
   if (isCommentLine(line)) return line;
-  // p-button / pButton: bugs aparte (PrimeNG no renderiza Iconify). Fase 3.
+  // p-button / pButton: bugs aparte (no renderiza Iconify). Fase 3.
   if (/\bp-button\b|\bpButton\b/.test(line)) return line;
   // contextos de clase CSS: no son binding de icono.
   if (/\[class\]|\bclass="/.test(line)) return line;

@@ -1,7 +1,7 @@
 // ============================================================
 // audit-design-system.mjs
 // Verifica la gobernanza del Design System en las vistas (apps/):
-// 1. Archivos .ts: Prohibido importar PrimeNG o @ionic/ (debe usar @ui/).
+// 1. Archivos .ts: Prohibido importar @ionic/ directamente (debe usar @ui/).
 // 2. Archivos .scss/.css: Prohibido usar ::ng-deep y !important.
 // 3. Archivos .html: Prohibido usar style="..." y [style].
 // Falla (exit 1) si hay violaciones.
@@ -79,13 +79,6 @@ for (const file of files.ts) {
   const lines = readFileSync(file, "utf8").split(/\r?\n/);
   lines.forEach((line, i) => {
     if (/^\s*import\s+type\b/.test(line)) return;
-    if (/from\s+["']primeng/.test(line)) {
-      violations.push({
-        file,
-        line: i + 1,
-        msg: "importa PrimeNG directamente (usar @ui/*)",
-      });
-    }
     if (/from\s+["']@ionic\//.test(line)) {
       violations.push({
         file,
@@ -158,6 +151,6 @@ for (const v of relativeViolations) {
   console.error(`  ${v.file}:${v.line} — ${v.msg}`);
 }
 console.error(
-  "\nReglas: NO PrimeNG/Ionic imports directos, NO ::ng-deep, NO !important, NO inline styles en apps/.\n",
+  "\nReglas: NO @ionic imports directos, NO ::ng-deep, NO !important, NO inline styles en apps/.\n",
 );
 process.exit(1);

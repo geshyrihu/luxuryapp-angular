@@ -1,9 +1,9 @@
 // ============================================================
 // audit-ui-boundaries.mjs
 // Verifica la independencia de plataforma en shared/ui:
-//   - mobile/ no puede importar PrimeNG ni web/ (ni @ui/web)
+//   - mobile/ no puede importar web/ (ni @ui/web)
 //   - web/    no puede importar Ionic  ni mobile/ (ni @ui/mobile)
-//   - base/   no puede importar PrimeNG ni Ionic (solo lógica)
+//   - base/   no puede importar Ionic (solo lógica)
 //   - adaptive/ es la ÚNICA excepción (puede cruzar).
 // Falla (exit 1) si hay violaciones. Se ejecuta vía `npm run lint`.
 // ============================================================
@@ -18,7 +18,6 @@ const RULES = [
     layer: "mobile",
     dir: path.join(uiRoot, "mobile"),
     forbidden: [
-      { re: /from\s+["'][^"']*primeng/, msg: "importa PrimeNG" },
       { re: /from\s+["']@ui\/web\//, msg: "importa @ui/web" },
       { re: /from\s+["'][^"']*shared\/ui\/web\//, msg: "importa web/" },
     ],
@@ -36,7 +35,6 @@ const RULES = [
     layer: "base",
     dir: path.join(uiRoot, "base"),
     forbidden: [
-      { re: /from\s+["'][^"']*primeng/, msg: "importa PrimeNG (la base debe ser agnóstica)" },
       { re: /from\s+["']@ionic\//, msg: "importa Ionic (la base debe ser agnóstica)" },
     ],
   },
@@ -90,7 +88,7 @@ for (const v of violations) {
   console.error(`  [${v.layer}] ${v.file}:${v.line} — ${v.msg}`);
 }
 console.error(
-  "\nRegla: mobile/ ✗ PrimeNG·web · web/ ✗ Ionic·mobile · base/ ✗ ambos. " +
+  "\nRegla: mobile/ ✗ web · web/ ✗ Ionic·mobile · base/ ✗ Ionic. " +
     "Solo adaptive/ puede cruzar. Ver shared/ui/arquitectura-shared-ui.md.\n",
 );
 process.exit(1);

@@ -58,7 +58,7 @@ filesToScan.forEach((file) => {
 // 3. Compare and output missing
 const missing = [];
 allSelectors.forEach((selector) => {
-  // PrimeNG wrappers like custom-input-* might be used, check exact match
+  // Wrappers like custom-input-* might be used, check exact match
   if (
     !usedSelectors.has(selector) &&
     !usedSelectors.has(selector.toLowerCase())
