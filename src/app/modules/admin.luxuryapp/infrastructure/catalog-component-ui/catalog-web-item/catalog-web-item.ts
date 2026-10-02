@@ -1294,7 +1294,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         height: 500px;
       }
       .badge-mode {
-        background: #6366f1;
+        background: #6366f1; // ds-ignore — acento de etiqueta "Split Web + Mobile" exclusivo del catálogo
         color: white;
         padding: 0.15rem 0.5rem;
         border-radius: 4px;
@@ -1320,7 +1320,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         max-width: 340px;
       }
       .phone-card {
-        background: #1a1a2e;
+        background: var(--ds-bg-terminal);
         border-radius: 40px;
         padding: 12px 8px;
         box-shadow:
@@ -1331,7 +1331,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
       .phone-dynamic-island {
         width: 110px;
         height: 26px;
-        background: #0d0d1a;
+        background: var(--ds-bg-inverse);
         border-radius: 20px;
         margin: 0 auto 10px;
       }
@@ -1353,7 +1353,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
       .phone-home-bar {
         width: 120px;
         height: 4px;
-        background: rgba(255, 255, 255, 0.25);
+        background: var(--ds-on-dark-subtle);
         border-radius: 2px;
         margin: 8px auto 2px;
       }

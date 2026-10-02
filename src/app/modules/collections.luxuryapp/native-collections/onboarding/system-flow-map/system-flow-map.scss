@@ -15,6 +15,16 @@
   --flow-amber-ink: #9a5a00;
   --flow-violet: #ece8ff;
   --flow-violet-ink: #5a3cb5;
+  --flow-on-navy: #f5fbff;
+  --flow-on-navy-82: rgba(245, 251, 255, 0.82);
+  --flow-on-navy-2: #eff7ff;
+  --flow-on-navy-2-82: rgba(239, 247, 255, 0.82);
+  --flow-veil-12: rgba(255, 255, 255, 0.12);
+  --flow-veil-09: rgba(255, 255, 255, 0.09);
+  --flow-veil-80: rgba(255, 255, 255, 0.8);
+  --flow-slate-1: #5273a1;
+  --flow-slate-2: #5b78a3;
+  --flow-slate-3: #60779b;
   background:
     radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 24rem),
     linear-gradient(180deg, #fcfdff 0%, #f3f6fb 100%);
@@ -36,7 +46,7 @@
 .hero-panel {
   background: linear-gradient(135deg, #0f2749 0%, #183862 50%, #275181 100%);
   border-radius: 28px;
-  color: #f5fbff;
+  color: var(--flow-on-navy);
   padding: 1.5rem;
   display: grid;
   gap: 1.5rem;
@@ -48,7 +58,7 @@
   display: inline-flex;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--flow-veil-12);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -64,7 +74,7 @@
 .hero-copy p {
   margin: 0;
   max-width: 44rem;
-  color: rgba(245, 251, 255, 0.82);
+  color: var(--flow-on-navy-82);
   line-height: 1.7;
 }
 
@@ -82,7 +92,7 @@
   gap: 0.55rem;
   padding: 0.85rem 1rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.09);
+  background: var(--flow-veil-09);
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-weight: 600;
 }
@@ -110,7 +120,7 @@
   gap: 0.6rem;
   padding: 0.8rem 1rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--flow-veil-80);
   border: 1px solid var(--flow-line);
   box-shadow: 0 8px 20px rgba(17, 34, 59, 0.05);
 }
@@ -137,7 +147,7 @@
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: #5273a1;
+  color: var(--flow-slate-1);
 }
 
 .lane-header h2 {
@@ -232,7 +242,7 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #5b78a3;
+  color: var(--flow-slate-2);
   margin-bottom: 0.35rem;
 }
 
@@ -250,12 +260,12 @@
 
 .engine-node--core {
   background: linear-gradient(180deg, #162d4f 0%, #21436f 100%);
-  color: #eff7ff;
+  color: var(--flow-on-navy-2);
   border: none;
 }
 
 .engine-node--core p {
-  color: rgba(239, 247, 255, 0.82);
+  color: var(--flow-on-navy-2-82);
 }
 
 .engine-label {
@@ -263,7 +273,7 @@
   margin-bottom: 0.7rem;
   padding: 0.32rem 0.65rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--flow-veil-12);
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -288,7 +298,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.73rem;
-  color: #60779b;
+  color: var(--flow-slate-3);
 }
 
 .decision-arrow {
@@ -298,7 +308,7 @@
 
 .decision-arrow app-icon {
   font-size: 1.6rem;
-  color: #5b78a3;
+  color: var(--flow-slate-2);
 }
 
 .tone-sky .flow-card__icon,

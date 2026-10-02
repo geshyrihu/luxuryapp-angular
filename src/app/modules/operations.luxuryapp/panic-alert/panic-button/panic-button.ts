@@ -146,8 +146,8 @@ const COUNTDOWN_SECONDS = 5;
       height: 36px;
       border-radius: 50%;
       background: conic-gradient(
-        #dc2626 var(--progress, 0%),
-        rgba(220, 38, 38, 0.15) var(--progress, 0%)
+        var(--ds-danger) var(--progress, 0%),
+        color-mix(in srgb, var(--ds-danger) 15%, transparent) var(--progress, 0%)
       );
       display: flex;
       align-items: center;
@@ -157,32 +157,32 @@ const COUNTDOWN_SECONDS = 5;
 
     .panic-btn--hold .panic-btn__ring {
       background: conic-gradient(
-        #dc2626 var(--progress, 0%),
-        rgba(220, 38, 38, 0.3) var(--progress, 0%)
+        var(--ds-danger) var(--progress, 0%),
+        color-mix(in srgb, var(--ds-danger) 30%, transparent) var(--progress, 0%)
       );
-      box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--ds-danger) 40%, transparent);
     }
 
     .panic-btn--sending .panic-btn__ring {
-      background: rgba(220, 38, 38, 0.2);
+      background: color-mix(in srgb, var(--ds-danger) 20%, transparent);
       animation: pulse 1s infinite;
     }
 
     .panic-btn__icon {
       font-size: 20px;
-      color: #dc2626;
+      color: var(--ds-danger);
       z-index: 1;
     }
 
     .panic-btn--sending .panic-btn__icon {
-      color: #991b1b;
+      color: var(--ds-danger-hover);
       animation: pulse 1s infinite;
     }
 
     .panic-btn__label {
       font-size: 11px;
       font-weight: 600;
-      color: #dc2626;
+      color: var(--ds-danger);
       white-space: nowrap;
     }
 
@@ -217,23 +217,23 @@ const COUNTDOWN_SECONDS = 5;
     }
 
     .panic-countdown-dialog::backdrop {
-      background: rgba(0, 0, 0, 0.75);
+      background: var(--ds-bg-overlay);
     }
 
     .panic-countdown {
       background: var(--ds-bg-card, #fff);
-      border: 3px solid #dc2626;
+      border: 3px solid var(--ds-danger);
       border-radius: 16px;
       padding: 32px 24px;
       max-width: 340px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(220, 38, 38, 0.4);
+      box-shadow: 0 8px 32px color-mix(in srgb, var(--ds-danger) 40%, transparent);
     }
 
     .panic-countdown__icon {
       font-size: 48px;
-      color: #dc2626;
+      color: var(--ds-danger);
       animation: pulse 1s infinite;
     }
 
@@ -246,7 +246,7 @@ const COUNTDOWN_SECONDS = 5;
     .panic-countdown__seconds {
       font-size: 56px;
       font-weight: 800;
-      color: #dc2626;
+      color: var(--ds-danger);
       line-height: 1;
       margin: 8px 0 20px;
     }

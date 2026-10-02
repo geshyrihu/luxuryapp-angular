@@ -99,7 +99,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
     .panic-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: var(--ds-bg-overlay);
       z-index: 10000;
       display: flex;
       align-items: center;
@@ -113,7 +113,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
       padding: 24px;
       max-width: 400px;
       width: 100%;
-      box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
+      box-shadow: 0 8px 32px color-mix(in srgb, var(--ds-danger) 30%, transparent);
       animation: slideIn 0.3s ease-out;
     }
 
@@ -123,19 +123,19 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
       gap: 12px;
       margin-bottom: 16px;
       padding-bottom: 12px;
-      border-bottom: 2px solid #dc2626;
+      border-bottom: 2px solid var(--ds-danger);
     }
 
     .panic-dialog__icon {
       font-size: 32px;
-      color: #dc2626;
+      color: var(--ds-danger);
       animation: pulse 1s infinite;
     }
 
     .panic-dialog__title {
       font-size: 18px;
       font-weight: 700;
-      color: #dc2626;
+      color: var(--ds-danger);
     }
 
     .panic-dialog__body {
@@ -165,7 +165,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #2563eb;
+      color: var(--ds-info);
       font-size: 13px;
       text-decoration: none;
       margin-top: 8px;
@@ -201,12 +201,12 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
     }
 
     .panic-dialog__btn--attend {
-      background: #dc2626;
+      background: var(--ds-danger-strong);
       color: white;
     }
 
     .panic-dialog__btn--attend:hover:not(:disabled) {
-      background: #b91c1c;
+      background: var(--ds-danger-strong-hover);
     }
 
     .panic-dialog__btn--close {

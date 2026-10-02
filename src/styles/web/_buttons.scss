@@ -141,13 +141,15 @@
 // Danger — Acciones destructivas (eliminar, cancelar)
 .btn-danger {
   @extend .btn;
-  background-color: var(--ds-danger);
+  // --ds-danger-strong (no --ds-danger): el fill base #d34b4b da 4.31:1 con
+  // texto blanco (< AA 4.5:1). strong = #a63939 → 6.43:1. Medido 2026-09-30.
+  background-color: var(--ds-danger-strong);
   color: var(--ds-primary-text);
-  border-color: var(--ds-danger);
+  border-color: var(--ds-danger-strong);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-danger-hover);
-    border-color: var(--ds-danger-hover);
+    background-color: var(--ds-danger-strong-hover);
+    border-color: var(--ds-danger-strong-hover);
   }
 
   &.is-loading::after {

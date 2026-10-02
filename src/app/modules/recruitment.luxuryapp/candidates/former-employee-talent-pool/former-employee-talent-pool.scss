@@ -94,13 +94,13 @@
 }
 
 .status-pill.ready {
-  color: #047857;
-  background: #d1fae5;
+  color: var(--ds-accent-text-success);
+  background: var(--ds-success-light);
 }
 
 .status-pill.pending {
-  color: #92400e;
-  background: #fef3c7;
+  color: var(--ds-accent-text-warning);
+  background: var(--ds-warning-light);
 }
 
 @media (max-width: 768px) {

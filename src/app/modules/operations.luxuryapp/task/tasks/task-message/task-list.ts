@@ -125,12 +125,12 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         opacity: 0.55;
       }
       :host ::ng-deep tr.task-link-target > td {
-        background-color: rgba(147, 51, 234, 0.1) !important;
-        outline: 2px dashed rgba(147, 51, 234, 0.55);
+        background-color: color-mix(in srgb, var(--ds-ai) 10%, transparent) !important;
+        outline: 2px dashed color-mix(in srgb, var(--ds-ai) 55%, transparent);
         outline-offset: -2px;
       }
       :host ::ng-deep tr.task-chain-member > td:nth-child(2) {
-        border-left: 3px solid rgba(147, 51, 234, 0.45);
+        border-left: 3px solid color-mix(in srgb, var(--ds-ai) 45%, transparent);
       }
       :host ::ng-deep .task-evidence-thumb {
         display: block;

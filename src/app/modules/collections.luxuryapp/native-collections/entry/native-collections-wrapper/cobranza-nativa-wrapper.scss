@@ -2,6 +2,28 @@
   display: block;
 }
 
+/* ─── CAPA DE TOKENS CON ALCANCE — Cobranza Nativa (RN-DS-041) ───
+   Tarjetas de entrada con tema navy (recorrido) y ámbar (configuración).
+   Paleta propia del módulo; registrada en COLOR_SOURCE_ALLOWLIST
+   (scope root-block). Invariante al tema por diseño de la tarjeta. */
+:root {
+  --cn-veil-12: rgba(255, 255, 255, 0.12);
+  --cn-amber-veil: rgba(146, 64, 14, 0.09);
+  --cn-blue-veil: rgba(29, 78, 216, 0.1);
+  --cn-flow-ink: #f4f9ff;
+  --cn-flow-ink-78: rgba(244, 249, 255, 0.78);
+  --cn-config-ink: #5f3a07;
+  --cn-config-ink-78: rgba(95, 58, 7, 0.78);
+  --cn-blue: #1d4ed8;
+  --cn-icon-ink: #f6fbff;
+  --cn-flow-strong: #10233d;
+  --cn-config-strong: #6d3c08;
+  --cn-muted: #5f7188;
+  --cn-config-muted: #8a6237;
+  --cn-arrow: #244f82;
+  --cn-config-arrow: #9a6122;
+}
+
 .cb-wrapper-tabs {
   display: block;
 }
@@ -89,13 +111,13 @@
 .mobile-flow-entry {
   background:
     linear-gradient(135deg, rgba(15, 39, 73, 0.96), rgba(38, 83, 134, 0.94));
-  color: #f4f9ff;
+  color: var(--cn-flow-ink);
 }
 
 .mobile-config-entry {
   background:
     linear-gradient(135deg, rgba(253, 248, 240, 0.98), rgba(255, 241, 225, 0.98));
-  color: #5f3a07;
+  color: var(--cn-config-ink);
 }
 
 .mobile-flow-entry__icon,
@@ -116,11 +138,11 @@
 }
 
 .mobile-flow-entry__icon {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--cn-veil-12);
 }
 
 .mobile-config-entry__icon {
-  background: rgba(146, 64, 14, 0.09);
+  background: var(--cn-amber-veil);
 }
 
 .mobile-flow-entry__icon app-icon,
@@ -147,12 +169,12 @@
 }
 
 .mobile-flow-entry__copy small {
-  color: rgba(244, 249, 255, 0.78);
+  color: var(--cn-flow-ink-78);
   line-height: 1.45;
 }
 
 .mobile-config-entry__copy small {
-  color: rgba(95, 58, 7, 0.78);
+  color: var(--cn-config-ink-78);
   line-height: 1.45;
 }
 
@@ -186,8 +208,8 @@
   margin-bottom: 0.7rem;
   padding: 0.28rem 0.65rem;
   border-radius: 999px;
-  background: rgba(29, 78, 216, 0.1);
-  color: #1d4ed8;
+  background: var(--cn-blue-veil);
+  color: var(--cn-blue);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -205,7 +227,7 @@
   width: 3.25rem;
   height: 3.25rem;
   border-radius: 1rem;
-  color: #f6fbff;
+  color: var(--cn-icon-ink);
   box-shadow: 0 12px 24px rgba(21, 52, 92, 0.18);
 }
 
@@ -225,30 +247,30 @@
 }
 
 .desktop-flow-entry__copy strong {
-  color: #10233d;
+  color: var(--cn-flow-strong);
   font-size: 1rem;
 }
 
 .desktop-config-entry .desktop-flow-entry__copy strong {
-  color: #6d3c08;
+  color: var(--cn-config-strong);
 }
 
 .desktop-flow-entry__copy span {
-  color: #5f7188;
+  color: var(--cn-muted);
   line-height: 1.5;
 }
 
 .desktop-config-entry .desktop-flow-entry__copy span {
-  color: #8a6237;
+  color: var(--cn-config-muted);
 }
 
 .desktop-flow-entry__arrow {
   margin-left: auto;
-  color: #244f82;
+  color: var(--cn-arrow);
 }
 
 .desktop-config-entry .desktop-flow-entry__arrow {
-  color: #9a6122;
+  color: var(--cn-config-arrow);
 }
 
 .group-description {

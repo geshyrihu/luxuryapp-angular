@@ -43,7 +43,7 @@
 .area-card-icon {
   width: 48px; height: 48px; border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-size: 1.25rem; color: #fff;
+  flex-shrink: 0; font-size: 1.25rem; color: var(--web-white);
   transition: transform 0.35s ease;
 }
 

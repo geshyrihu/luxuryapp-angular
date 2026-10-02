@@ -32,7 +32,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                   <!-- Mockup visual -->
                   <div
                     class="relative"
-                    style="height:160px; background:#f8fafc"
+                    style="height:160px; background:var(--ds-bg-page)"
                   >
                     <ng-container *ngTemplateOutlet="layout.template" />
                   </div>
@@ -76,11 +76,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
           ></div>
           <div
             class="flex-grow-1 border-round"
-            style="background:#e2e8f0"
+            style="background:var(--ds-surface-container-high)"
           ></div>
           <div
             class="border-round"
-            style="height:12px;background:#cbd5e1"
+            style="height:12px;background:var(--ds-border-strong)"
           ></div>
         </div>
       </ng-template>
@@ -112,7 +112,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                   @for (i of [1, 2, 3, 4]; track i) {
                     <div
                       class="border-round"
-                      style="height:32px;background:#e2e8f0;border:1px solid #cbd5e1"
+                      style="height:32px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                     ></div>
                   }
                 </div>
@@ -140,11 +140,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                     <div class="d-flex gap-2">
                       <div
                         class="flex-grow-1 border-round"
-                        style="height:32px;background:#e2e8f0;border:1px solid #cbd5e1"
+                        style="height:32px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                       ></div>
                       <div
                         class="flex-grow-1 border-round"
-                        style="height:32px;background:#e2e8f0;border:1px solid #cbd5e1"
+                        style="height:32px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                       ></div>
                     </div>
                   }
@@ -174,14 +174,14 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                       @for (j of [1, 2, 3]; track j) {
                         <div
                           class="flex-grow-1 border-round"
-                          style="height:32px;background:#e2e8f0;border:1px solid #cbd5e1"
+                          style="height:32px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                         ></div>
                       }
                     </div>
                   }
                   <div
                     class="border-round"
-                    style="height:52px;background:#e2e8f0;border:1px solid #cbd5e1"
+                    style="height:52px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                   ></div>
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
@@ -208,11 +208,11 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                     <div class="d-flex align-items-center gap-2">
                       <div
                         class="border-round flex-shrink-0"
-                        style="width:80px;height:24px;background:#cbd5e1"
+                        style="width:80px;height:24px;background:var(--ds-border-strong)"
                       ></div>
                       <div
                         class="border-round flex-grow-1"
-                        style="height:28px;background:#e2e8f0;border:1px solid #cbd5e1"
+                        style="height:28px;background:var(--ds-surface-container-high);border:1px solid var(--ds-border-strong)"
                       ></div>
                     </div>
                   }
@@ -237,7 +237,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
           <!-- Mockup visual de dashboard -->
           <div
             class="border-1 border-round overflow-hidden"
-            style="background:#f8fafc"
+            style="background:var(--ds-bg-page)"
           >
             <!-- Header del dashboard -->
             <div
@@ -333,7 +333,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                           </div>
                           <div
                             class="border-round"
-                            style="height:6px;background:#e2e8f0"
+                            style="height:6px;background:var(--ds-surface-container-high)"
                           >
                             <div
                               class="border-round h-full"
@@ -429,7 +429,7 @@ export class CatalogLayouts {
         "Todo el ancho disponible. Sin sidebar de contenido. Para vistas de listado, tablas y dashboards de alto nivel.",
       uso: "Listados maestros, reportes, catálogos con tabla.",
       template: null,
-      mockupColors: { header: "var(--ds-primary)", content: "#e2e8f0" },
+      mockupColors: { header: "var(--ds-primary)", content: "var(--ds-surface-container-high)" },
     },
     {
       id: "sidebar-content",
@@ -451,7 +451,7 @@ export class CatalogLayouts {
         "Lista a la izquierda + detalle/formulario a la derecha. La selección en la lista actualiza el panel de detalle.",
       uso: "Contactos, proveedores, órdenes de trabajo, facturas.",
       template: null,
-      mockupColors: { master: "#bfcfe4", detail: "#f8fafc" },
+      mockupColors: { master: "#bfcfe4", detail: "var(--ds-bg-page)" },
     },
     {
       id: "wizard",
@@ -462,7 +462,7 @@ export class CatalogLayouts {
         "Flujo lineal de N pasos con barra de progreso. Cada paso es una sección del formulario completo.",
       uso: "Alta de usuario, onboarding, flujo de aprobación, solicitud compleja.",
       template: null,
-      mockupColors: { steps: "var(--ds-primary)", content: "#f8fafc" },
+      mockupColors: { steps: "var(--ds-primary)", content: "var(--ds-bg-page)" },
     },
     {
       id: "split",
@@ -473,7 +473,7 @@ export class CatalogLayouts {
         "Dos paneles redimensionables lado a lado. Para comparación o edición con vista previa en tiempo real.",
       uso: "Editor de documentos, comparación de versiones, preview de reportes.",
       template: null,
-      mockupColors: { left: "#dce7f3", right: "#f8fafc" },
+      mockupColors: { left: "#dce7f3", right: "var(--ds-bg-page)" },
     },
   ];
 

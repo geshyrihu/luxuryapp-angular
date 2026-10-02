@@ -2,6 +2,24 @@
    Web Luxury — Design System Partial
    ═══════════════════════════════════════════ */
 
+/* ─── CAPA DE TOKENS CON ALCANCE — Web pública (RN-DS-041) ───
+   El hero es oscuro (foto/gradiente de fondo) y usa velos blancos sobre
+   imagen. Paleta propia del sitio público; vive aquí, registrada en
+   COLOR_SOURCE_ALLOWLIST (scope root-block). No derivar de --ds-*: la capa
+   es invariante al tema por diseño del hero. */
+:root {
+  --web-white: #fff;
+  --web-on-dark-03: rgba(255, 255, 255, 0.03);
+  --web-on-dark-06: rgba(255, 255, 255, 0.06);
+  --web-on-dark-08: rgba(255, 255, 255, 0.08);
+  --web-on-dark-10: rgba(255, 255, 255, 0.1);
+  --web-on-dark-12: rgba(255, 255, 255, 0.12);
+  --web-on-dark-25: rgba(255, 255, 255, 0.25);
+  --web-on-dark-45: rgba(255, 255, 255, 0.45);
+  --web-on-dark-50: rgba(255, 255, 255, 0.5);
+  --web-on-dark-65: rgba(255, 255, 255, 0.65);
+}
+
 /* ─── Scroll Animation ─── */
 .animate-on-scroll {
   opacity: 0; transform: translateY(30px);
@@ -36,7 +54,7 @@
 .hero-compact-bg {
   position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 60% at 30% 40%, var(--web-on-dark-08) 0%, transparent 60%);
 }
 .hero-compact-content {
   position: relative; z-index: 2; max-width: 680px;
@@ -45,32 +63,32 @@
 .hero-compact .shadow-title {
   position: absolute; z-index: 1; pointer-events: none;
   font-size: clamp(2rem, 6vw, 4rem); font-weight: 900;
-  color: rgba(255,255,255,0.03); text-align: center;
+  color: var(--web-on-dark-03); text-align: center;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
   letter-spacing: 0.06em; user-select: none; line-height: 0.9;
 }
 .back-link {
   display: inline-flex; align-items: center; gap: 0.25rem;
-  color: rgba(255,255,255,0.5); text-decoration: none;
+  color: var(--web-on-dark-50); text-decoration: none;
   font-size: var(--ds-font-size-xs); font-weight: 500;
   margin-bottom: 0.75rem; transition: all 0.3s;
-  &:hover { color: #fff; gap: 0.375rem; }
+  &:hover { color: var(--web-white); gap: 0.375rem; }
 }
 .hero-badge {
   display: inline-block; padding: 0.2rem 0.75rem; border-radius: 999px;
   font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.07em; background: rgba(255,255,255,0.1);
-  color: #fff; margin-bottom: 0.5rem; backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.06);
+  letter-spacing: 0.07em; background: var(--web-on-dark-10);
+  color: var(--web-white); margin-bottom: 0.5rem; backdrop-filter: blur(4px);
+  border: 1px solid var(--web-on-dark-06);
 }
 .hero-title {
   font-family: var(--ds-font-family-document);
   font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800;
-  color: #fff; margin: 0 0 0.375rem; letter-spacing: -0.02em; line-height: 1.15;
+  color: var(--web-white); margin: 0 0 0.375rem; letter-spacing: -0.02em; line-height: 1.15;
 }
 .hero-subtitle {
   font-size: var(--ds-font-size-xs); line-height: 1.5;
-  color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto;
+  color: var(--web-on-dark-65); max-width: 480px; margin: 0 auto;
 }
 
 /* ─── Hero — dramatic (full) ─── */
@@ -82,13 +100,13 @@
 .hero-dramatic-bg {
   position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255,255,255,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(255,255,255,0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 20% 40%, var(--web-on-dark-10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, var(--web-on-dark-06) 0%, transparent 50%);
 }
 .hero-dramatic .shadow-title {
   position: absolute; z-index: 1; pointer-events: none;
   font-size: clamp(4rem, 14vw, 11rem); font-weight: 900; line-height: 0.85;
-  color: rgba(255,255,255,0.03); text-align: center;
+  color: var(--web-on-dark-03); text-align: center;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
   letter-spacing: 0.06em; user-select: none;
 }
@@ -105,14 +123,14 @@
 .hero-stat { display: flex; flex-direction: column; align-items: center; padding: 0 1.25rem; }
 .hero-stat-value {
   font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 800;
-  color: #fff; line-height: 1;
+  color: var(--web-white); line-height: 1;
 }
 .hero-stat-label {
   font-size: 0.625rem; font-weight: 500; text-transform: uppercase;
-  letter-spacing: 0.07em; color: rgba(255,255,255,0.45); margin-top: 0.25rem;
+  letter-spacing: 0.07em; color: var(--web-on-dark-45); margin-top: 0.25rem;
 }
 .hero-stat-divider {
-  width: 1px; height: 2rem; background: rgba(255,255,255,0.12);
+  width: 1px; height: 2rem; background: var(--web-on-dark-12);
 }
 
 /* ─── Container ─── */
@@ -149,13 +167,13 @@
   transition: all 0.3s; border: none; cursor: pointer;
 }
 .btn-luxury-primary {
-  background: #fff; color: var(--ds-primary);
+  background: var(--web-white); color: var(--ds-primary);
   &:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 }
 .btn-luxury-outline {
-  background: transparent; color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  &:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+  background: transparent; color: var(--web-white);
+  border: 1.5px solid var(--web-on-dark-25);
+  &:hover { border-color: var(--web-white); background: var(--web-on-dark-08); }
 }
 
 /* ─── Particles ─── */
@@ -163,7 +181,7 @@
   position: absolute; inset: 0; z-index: 0; overflow: hidden;
   span {
     position: absolute; width: 6px; height: 6px;
-    background: rgba(255,255,255,0.10); border-radius: 50%;
+    background: var(--web-on-dark-10); border-radius: 50%;
     animation: float-particle 8s infinite ease-in-out;
   }
 }

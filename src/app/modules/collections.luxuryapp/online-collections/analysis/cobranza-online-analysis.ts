@@ -21,6 +21,7 @@ import {
   DialogSize,
 } from "@core/services/dialog-handler.service";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
+import { ThemeService } from "@core/services/theme.service";
 import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-composicion-reportes-modal";
 
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
@@ -190,7 +191,11 @@ export class CobranzaOnlineAnalysis {
     return value < 0 ? `(${formateado})` : formateado;
   }
 
+  private theme = inject(ThemeService);
+
   private token(key: string, fallback: string): string {
+    // RN-DS-040: dependencia de tema para re-resolver al cambiar.
+    this.theme.themeMode();
     if (typeof document === "undefined") {
       return fallback;
     }

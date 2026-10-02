@@ -13,6 +13,7 @@ import {
 } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ThemeService } from "@core/services/theme.service";
 import { ChargeTemplateForm } from "../../native-collections/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
@@ -170,7 +171,12 @@ export class CobranzaOnlineResumen {
     ];
   });
 
+  private theme = inject(ThemeService);
+
   private token(key: string, fallback: string): string {
+    // RN-DS-040: leer themeMode registra la dependencia de tema, de modo que
+    // los computed que usan este token se re-ejecutan al cambiar de tema.
+    this.theme.themeMode();
     if (typeof document === "undefined") {
       return fallback;
     }

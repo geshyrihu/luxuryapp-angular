@@ -32,6 +32,7 @@ import {
   CobranzaOnlineStoreService,
 } from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ThemeService } from "@core/services/theme.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 @Component({
@@ -118,7 +119,11 @@ export class AnalisisCobranzaClienteComponent {
     return formatNumber(Math.abs(val), "es-MX", "1.0-0");
   };
 
+  private theme = inject(ThemeService);
+
   private token(key: string, fallback: string): string {
+    // RN-DS-040: dependencia de tema para re-resolver al cambiar.
+    this.theme.themeMode();
     if (typeof document === "undefined") {
       return fallback;
     }

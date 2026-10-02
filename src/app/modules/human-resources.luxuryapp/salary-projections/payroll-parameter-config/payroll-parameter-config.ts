@@ -44,7 +44,7 @@ const LIST_URL = "/hr/salary-projections";
       .app-sidepanel-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.35);
+        background: var(--ds-bg-overlay);
         z-index: 1040;
       }
       .app-sidepanel {

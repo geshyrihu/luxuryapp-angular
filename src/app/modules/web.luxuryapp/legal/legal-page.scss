@@ -19,7 +19,7 @@
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 32px rgba(0,0,0,0.06);
-    border-color: #2a4d7c;
+    border-color: var(--sc-color);
   }
 }
 
@@ -52,7 +52,7 @@
 
 .step-circle {
   width: 48px; height: 48px; border-radius: 50%;
-  background: var(--sc-color); color: #fff;
+  background: var(--sc-color); color: var(--web-white);
   font-family: var(--ds-font-family-base);
   font-size: var(--ds-font-size-lg); font-weight: 700;
   display: flex; align-items: center; justify-content: center;

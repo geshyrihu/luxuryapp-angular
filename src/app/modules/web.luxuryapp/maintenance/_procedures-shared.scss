@@ -4,6 +4,72 @@
 
 .procedure-page { font-family: var(--ds-font-family-document); }
 
+/* ═══════════════════════════════════════════
+   CAPA DE TOKENS CON ALCANCE — Procedimientos (RN-DS-041)
+   ═══════════════════════════════════════════
+   Paleta propia del documento de procedimiento (ámbar institucional del
+   área, semáforos de decisión before/after, superficies de grafo). Vive
+   aquí con alcance propio en lugar de core/_colors.scss porque solo la usa
+   este cluster. Registrada en COLOR_SOURCE_ALLOWLIST (scope root-block).
+   No derivar de --ds-*: la capa es invariante al tema por diseño del doc. */
+:root {
+  --proc-surface: #fff;
+  --proc-on-dark: #fff;
+  --proc-on-dark-soft: rgba(255, 255, 255, 0.6);
+  --proc-on-dark-veil: rgba(255, 255, 255, 0.15);
+  --proc-glass-75: rgba(255, 255, 255, 0.75);
+  --proc-glass-70: rgba(255, 255, 255, 0.7);
+  --proc-glass-10: rgba(255, 255, 255, 0.1);
+  --proc-scrim: rgba(0, 0, 0, 0.04);
+
+  --proc-amber-50: #fffbeb;
+  --proc-amber-100: #fef3c7;
+  --proc-amber-100b: #fef9c3;
+  --proc-amber-200: #fde68a;
+  --proc-amber-500: #f59e0b;
+  --proc-amber-600: #d97706;
+  --proc-amber-700: #b45309;
+  --proc-amber-800: #92400e;
+
+  --proc-red-50: #fef2f2;
+  --proc-red-300: #fca5a5;
+  --proc-no: #dc2626;
+  --proc-green-50: #f0fdf4;
+  --proc-green-300: #86efac;
+  --proc-yes: #16a34a;
+
+  --proc-node-process: #3b82f6;
+  --proc-node-process-line: #bfdbfe;
+  --proc-node-decision: #f97316;
+  --proc-node-decision-line: #fed7aa;
+  --proc-link: #94a3b8;
+  --proc-svg-line: #e2e8f0;
+  --proc-svg-muted: #64748b;
+  --proc-graph-bg: #fafafa;
+  --proc-warm-bg: #fff7ed;
+  --proc-warm-ink: #9a3412;
+
+  --proc-good-bg: #dcfce7;
+  --proc-good-ink: #166534;
+  --proc-warn-bg: #fef3c7;
+  --proc-warn-ink: #92400e;
+  --proc-bad-bg: #fee2e2;
+  --proc-bad-ink: #991b1b;
+
+  --proc-action-good-bg: #f0fdf4;
+  --proc-action-good-border: #22c55e;
+  --proc-action-good-ink: #166534;
+  --proc-action-bad-bg: #fef2f2;
+  --proc-action-bad-border: #ef4444;
+  --proc-action-bad-ink: #991b1b;
+
+  --proc-amber-50b: #fefce8;
+  --proc-level-low: #ef4444;
+  --proc-level-mid: #f59e0b;
+  --proc-level-high: #3b82f6;
+  --proc-level-top: #22c55e;
+}
+
 /* ── Slim Header (replaces the old full hero) ── */
 .proc-header {
   display: flex; align-items: center; justify-content: space-between;
@@ -18,20 +84,20 @@
 }
 .back-link {
   display: inline-flex; align-items: center; gap: 0.25rem;
-  color: rgba(255,255,255,0.6); text-decoration: none;
+  color: var(--proc-on-dark-soft); text-decoration: none;
   font-size: 0.6875rem; font-weight: 500; white-space: nowrap;
   transition: color 0.2s;
-  &:hover { color: #fff; }
+  &:hover { color: var(--proc-on-dark); }
 }
 .proc-badge {
   display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
   font-size: 0.5rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.02em; background: rgba(255,255,255,0.15); color: #fff;
+  letter-spacing: 0.02em; background: var(--proc-on-dark-veil); color: var(--proc-on-dark);
   white-space: nowrap;
 }
 .proc-title {
   font-size: clamp(0.85rem, 1.8vw, 1.1rem); font-weight: 700;
-  color: #fff; margin: 0; letter-spacing: -0.01em;
+  color: var(--proc-on-dark); margin: 0; letter-spacing: -0.01em;
   line-height: 1.3;
 }
 
@@ -39,7 +105,7 @@
 .proc-stats-bar {
   display: flex; align-items: center; gap: 0;
   padding: 0.5rem 1.5rem;
-  background: rgba(0,0,0,0.04);
+  background: var(--proc-scrim);
   border-bottom: 1px solid var(--ds-border);
   flex-wrap: wrap;
 }
@@ -124,8 +190,8 @@
   flex-shrink: 0; position: relative; z-index: 1;
   margin-top: 0.125rem;
 }
-.step-node.process .step-dot { background: #3b82f6; border: 2px solid #bfdbfe; }
-.step-node.decision-step .step-dot { background: #f97316; border: 2px solid #fed7aa; }
+.step-node.process .step-dot { background: var(--proc-node-process); border: 2px solid var(--proc-node-process-line); }
+.step-node.decision-step .step-dot { background: var(--proc-node-decision); border: 2px solid var(--proc-node-decision-line); }
 .step-body { flex: 1; min-width: 0; }
 .step-action {
   display: block;
@@ -178,9 +244,9 @@
   font-size: 0.625rem;
   font-weight: 600;
 }
-.status.good { background: #dcfce7; color: #166534; }
-.status.warn { background: #fef3c7; color: #92400e; }
-.status.bad { background: #fee2e2; color: #991b1b; }
+.status.good { background: var(--proc-good-bg); color: var(--proc-good-ink); }
+.status.warn { background: var(--proc-warn-bg); color: var(--proc-warn-ink); }
+.status.bad { background: var(--proc-bad-bg); color: var(--proc-bad-ink); }
 
 .table-note {
   margin-top: 0.5rem;

@@ -297,7 +297,7 @@
   --cobranza-primary-light: #1e293b;
   --cobranza-accent: #22c55e;
   --cobranza-destructive: #ef4444;
-  --cobranza-border: #334155;
+  --cobranza-border: #334155; // ds-ignore — definición de la capa local --cobranza-* (no es uso)
   --cobranza-text: #f8fafc;
   --cobranza-text-secondary: #cbd5e1;
 }

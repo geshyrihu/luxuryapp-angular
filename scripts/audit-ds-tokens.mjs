@@ -51,6 +51,31 @@ const COLOR_SOURCE_ALLOWLIST = [
     scope: "root-block",
     why: "Capa --gl-*: placeholder de campo inválido sin equivalente (ΔE 5.3).",
   },
+  {
+    file: "src/app/modules/web.luxuryapp/maintenance/_procedures-shared.scss",
+    scope: "root-block",
+    why: "Capa --proc-*: paleta propia del documento de procedimiento (RN-DS-041).",
+  },
+  {
+    file: "src/app/modules/web.luxuryapp/_web-luxury.scss",
+    scope: "root-block",
+    why: "Capa --web-*: velos blancos del hero oscuro del sitio público (RN-DS-041).",
+  },
+  {
+    file: "src/app/modules/collections.luxuryapp/native-collections/entry/native-collections-wrapper/cobranza-nativa-wrapper.scss",
+    scope: "root-block",
+    why: "Capa --cn-*: tarjetas de entrada navy/ámbar de Cobranza Nativa (RN-DS-041).",
+  },
+  {
+    file: "src/app/modules/accounting.luxuryapp/mock-aspel/mock-aspel-dashboard.scss",
+    scope: "all",
+    why: "Mock/demo de integración ASPEL con identidad teal propia; NO es UI de producto (fixture).",
+  },
+  {
+    file: "src/app/modules/accounting.luxuryapp/mock-aspel/mock-aspel-poliza-form.scss",
+    scope: "all",
+    why: "Mock/demo de integración ASPEL con identidad teal propia; NO es UI de producto (fixture).",
+  },
 ];
 
 const norm = (f) => f.replace(/\\/g, "/");
@@ -154,8 +179,10 @@ async function runAudit() {
     const content = await fs.readFile(file, "utf-8");
     const isStyles = norm(file).includes("src/styles/");
 
-    // Lugares autorizados a declarar color
-    const allow = isStyles ? allowlistEntry(file) : null;
+    // Lugares autorizados a declarar color (RN-DS-024 / RN-DS-041). Aplica a
+    // cualquier archivo registrado, no solo a src/styles: las capas de tokens
+    // con alcance de módulo viven junto al código que las usa (RN-DS-041).
+    const allow = allowlistEntry(file);
     if (allow && allow.scope === "all") continue;
     const rootRange =
       allow && allow.scope === "root-block" ? rootBlockRange(content) : null;

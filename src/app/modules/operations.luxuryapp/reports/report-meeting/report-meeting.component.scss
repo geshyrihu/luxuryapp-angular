@@ -131,12 +131,12 @@ h3 {
   .print-report-section {
     padding: 0;
     margin: 0;
-    background: #fff;
+    background: var(--ds-bg-surface);
     min-height: auto;
   }
 
   .surface-ground {
-    background: #fff !important;
+    background: var(--ds-bg-surface) !important;
   }
 
   .surface-card {
@@ -201,7 +201,7 @@ h3 {
 
     .p-datatable .p-datatable-thead > tr > th {
       padding: 0.35rem;
-      background-color: #f0f0f0;
+      background-color: var(--ds-bg-sunken);
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -223,7 +223,7 @@ h3 {
 
   /* Maintain colors in print */
   .text-primary {
-    color: #1b3a6b !important;
+    color: var(--ds-primary) !important;
     font-weight: 700 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

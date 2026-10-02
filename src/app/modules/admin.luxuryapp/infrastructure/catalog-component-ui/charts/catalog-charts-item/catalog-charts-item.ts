@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   signal,
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { ThemeService } from "@core/services/theme.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
@@ -105,7 +107,7 @@ const CHARTS_LABELS: Record<string, string> = {
         font-weight: 600;
       }
       .badge-mobile {
-        background: #6366f1;
+        background: #6366f1; // ds-ignore — acento de etiqueta "Mobile" exclusivo del catálogo
         color: white;
         padding: 0.1rem 0.4rem;
         border-radius: 4px;
@@ -129,7 +131,7 @@ const CHARTS_LABELS: Record<string, string> = {
         max-width: 340px;
       }
       .phone-card {
-        background: #1a1a2e;
+        background: var(--ds-bg-terminal);
         border-radius: 40px;
         padding: 12px 8px;
         box-shadow:
@@ -140,7 +142,7 @@ const CHARTS_LABELS: Record<string, string> = {
       .phone-dynamic-island {
         width: 110px;
         height: 26px;
-        background: #0d0d1a;
+        background: var(--ds-bg-inverse);
         border-radius: 20px;
         margin: 0 auto 10px;
       }
@@ -161,7 +163,7 @@ const CHARTS_LABELS: Record<string, string> = {
       .phone-home-bar {
         width: 120px;
         height: 4px;
-        background: rgba(255, 255, 255, 0.25);
+        background: var(--ds-on-dark-subtle);
         border-radius: 2px;
         margin: 8px auto 2px;
       }
@@ -181,26 +183,32 @@ export class CatalogChartsItem {
     this.route.paramMap.subscribe((p) => this.item.set(p.get("item") ?? ""));
   }
 
-  private getStyle = (key: string, fallback: string) =>
-    getComputedStyle(document.body).getPropertyValue(key).trim() || fallback;
+  private theme = inject(ThemeService);
 
-  primaryColor = this.getStyle("--ds-primary", "#00050e");
-  secondaryColor = this.getStyle("--ds-secondary", "#64748b");
-  tertiaryColor = this.getStyle("--ds-tertiary", "#0f766e");
-  warningColor = this.getStyle("--ds-warning", "#c9a74d");
+  private getStyle = (key: string, fallback: string) => {
+    // RN-DS-040: leer themeMode registra la dependencia de tema, de modo que
+    // los computed que resuelven colores se re-ejecutan al cambiar de tema.
+    this.theme.themeMode();
+    return getComputedStyle(document.body).getPropertyValue(key).trim() || fallback;
+  };
 
-  barData = {
+  primaryColor = computed(() => this.getStyle("--ds-primary", "#00050e"));
+  secondaryColor = computed(() => this.getStyle("--ds-secondary", "#64748b"));
+  tertiaryColor = computed(() => this.getStyle("--ds-tertiary", "#0f766e"));
+  warningColor = computed(() => this.getStyle("--ds-warning", "#c9a74d"));
+
+  barData = computed(() => ({
     labels: ["Ene", "Feb", "Mar", "Abr", "May"],
     datasets: [
       {
         label: "Consumo Elóctrico",
         data: [65, 59, 80, 81, 56],
         fill: false,
-        borderColor: this.primaryColor,
+        borderColor: this.primaryColor(),
         tension: 0.4,
       },
     ],
-  };
+  }));
 
   pieData = [
     { name: "Completado", value: 300 },
@@ -208,41 +216,41 @@ export class CatalogChartsItem {
     { name: "Pendiente", value: 100 },
   ];
 
-  lineData = {
+  lineData = computed(() => ({
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
     datasets: [
       {
         label: "Serie A",
         data: [65, 59, 80, 81, 56, 55],
         fill: false,
-        borderColor: this.primaryColor,
+        borderColor: this.primaryColor(),
         tension: 0.4,
       },
       {
         label: "Serie B",
         data: [28, 48, 40, 19, 86, 27],
         fill: false,
-        borderColor: this.secondaryColor,
+        borderColor: this.secondaryColor(),
         tension: 0.4,
       },
     ],
-  };
+  }));
 
-  doughnutData = {
+  doughnutData = computed(() => ({
     labels: ["Mantenimiento", "Operaciones", "Administración"],
     datasets: [
       {
         data: [300, 50, 100],
         backgroundColor: [
-          this.primaryColor,
-          this.tertiaryColor,
-          this.warningColor,
+          this.primaryColor(),
+          this.tertiaryColor(),
+          this.warningColor(),
         ],
       },
     ],
-  };
+  }));
 
-  radarData = {
+  radarData = computed(() => ({
     labels: [
       "Comida",
       "Transporte",
@@ -256,30 +264,32 @@ export class CatalogChartsItem {
       {
         label: "Presupuesto",
         data: [65, 59, 90, 81, 56, 55, 40],
-        borderColor: this.primaryColor,
-        backgroundColor: this.primaryColor + "33",
-        pointBackgroundColor: this.primaryColor,
+        borderColor: this.primaryColor(),
+        backgroundColor: this.primaryColor() + "33",
+        pointBackgroundColor: this.primaryColor(),
       },
     ],
-  };
+  }));
 
-  private textColor = this.getStyle("--ds-text-secondary", "#64748b");
+  private textColor = computed(() =>
+    this.getStyle("--ds-text-secondary", "#64748b"),
+  );
 
-  chartOptions = {
-    plugins: { legend: { labels: { color: this.textColor } } },
+  chartOptions = computed(() => ({
+    plugins: { legend: { labels: { color: this.textColor() } } },
     scales: {
       x: {
-        ticks: { color: this.textColor },
+        ticks: { color: this.textColor() },
         grid: { color: "var(--ds-border)" },
       },
       y: {
-        ticks: { color: this.textColor },
+        ticks: { color: this.textColor() },
         grid: { color: "var(--ds-border)" },
       },
     },
-  };
+  }));
 
-  circularOptions = {
-    plugins: { legend: { labels: { color: this.textColor } } },
-  };
+  circularOptions = computed(() => ({
+    plugins: { legend: { labels: { color: this.textColor() } } },
+  }));
 }

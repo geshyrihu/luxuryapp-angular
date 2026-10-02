@@ -59,7 +59,7 @@
   display: inline-flex; align-items: center; justify-content: center;
   width: 1.5rem; height: 1.5rem; border-radius: 50%;
   font-size: 0.75rem; font-weight: 800;
-  background: var(--s-color); color: #fff; flex-shrink: 0;
+  background: var(--s-color); color: var(--proc-on-dark); flex-shrink: 0;
 }
 .struct-card h3 {
   font-family: var(--ds-font-family-base);

@@ -35,7 +35,7 @@ import type {
   styles: [
     `
       .agenda-hoy-badge {
-        background: rgba(255, 255, 255, 0.2);
+        background: color-mix(in srgb, var(--ds-bg-surface) 20%, transparent);
         color: var(--ds-text-inverse, #edf0ff);
       }
     `,

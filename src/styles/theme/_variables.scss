@@ -380,6 +380,12 @@
   --ds-danger: var(--danger-color);
   --ds-danger-hover: #{c.$danger-700};
   --ds-danger-light: var(--danger-bg);
+  // Fill sólido accesible para botones/CTA destructivos. The brand scale keeps
+  // --ds-danger (#d34b4b, 4.31:1 vs blanco, < AA). Este token sube el relleno a
+  // danger-700 (#a63939, 6.43:1) SOLO donde hay que pintar texto blanco encima,
+  // sin alterar el color de marca base (decisión owner 2026-09-30).
+  --ds-danger-strong: #{c.$danger-700};
+  --ds-danger-strong-hover: #{c.$danger-800};
   --ds-info: #{c.$info-600};
   --ds-info-hover: #{c.$info-700};
   --ds-info-light: #{c.$info-50};
@@ -711,6 +717,10 @@ body.theme-dark {
   --ds-danger: #{c.$danger-300};
   --ds-danger-hover: #{c.$danger-200};
   --ds-danger-light: color-mix(in srgb, #{c.$danger-400}, transparent 88%);
+  // Dark: el fill de botón ya cumple AA (on-error #001829 sobre danger-300 =
+  // 9.16:1). "strong" se mantiene igual que el base para no cambiar la marca.
+  --ds-danger-strong: var(--ds-danger);
+  --ds-danger-strong-hover: var(--ds-danger-hover);
   --ds-info: #{c.$info-300};
   --ds-info-hover: #{c.$info-200};
   --ds-info-light: color-mix(in srgb, #{c.$info-400}, transparent 88%);

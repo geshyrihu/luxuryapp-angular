@@ -240,8 +240,8 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
     }
 
     .panic-card--active {
-      border-color: #dc2626;
-      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+      border-color: var(--ds-danger);
+      box-shadow: 0 2px 8px color-mix(in srgb, var(--ds-danger) 15%, transparent);
     }
 
     .panic-card__header {
@@ -293,7 +293,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      color: #2563eb;
+      color: var(--ds-info);
       font-size: 13px;
       text-decoration: none;
     }
@@ -321,16 +321,16 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
     }
 
     .panic-card__btn--attend {
-      background: #dc2626;
+      background: var(--ds-danger-strong);
       color: white;
     }
     .panic-card__btn--resolve {
-      background: #16a34a;
+      background: var(--ds-success);
       color: white;
     }
     .panic-card__btn--false {
-      background: #d97706;
-      color: white;
+      background: var(--ds-warning);
+      color: var(--ds-warning-text);
     }
     .panic-card__btn--cancel {
       background: var(--ds-bg-secondary, #f3f4f6);
@@ -339,7 +339,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
     .panic-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: var(--ds-bg-overlay);
       z-index: 9000;
       display: flex;
       align-items: center;
@@ -470,13 +470,13 @@ export class PanicAlertList implements OnInit {
   getStatusColor(status: string): string {
     switch (status) {
       case "Atendida":
-        return "#d97706";
+        return "var(--ds-warning)";
       case "Resuelta":
-        return "#16a34a";
+        return "var(--ds-success)";
       case "Falsa Alarma":
-        return "#6b7280";
+        return "var(--ds-text-secondary)";
       default:
-        return "#dc2626";
+        return "var(--ds-danger)";
     }
   }
 }
