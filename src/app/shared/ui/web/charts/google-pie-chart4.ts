@@ -114,7 +114,7 @@ const CALLOUT_GAP = 22;
         height: 100%;
         color: var(--ds-text-primary);
         background: var(--surface-card);
-        border: 1px solid var(--ds-border-default);
+        border: 1px solid var(--ds-border);
         border-radius: var(--ds-radius-lg);
         box-shadow: var(--ds-shadow-1);
         overflow: hidden;
@@ -141,7 +141,7 @@ const CALLOUT_GAP = 22;
       }
       .google-pie-chart4__rule {
         flex: 1;
-        border-top: 1px dashed var(--ds-border-default);
+        border-top: 1px dashed var(--ds-border);
       }
       .google-pie-chart4__body {
         display: grid;

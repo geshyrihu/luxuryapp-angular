@@ -83,13 +83,13 @@ import { ListboxBase } from "@ui/base/listbox.base";
   `,
   styles: [
     `
-      .app-listbox { display: flex; flex-direction: column; border: 1px solid var(--ds-border, #dee2e6); border-radius: var(--ds-radius, 0.375rem); overflow: hidden; }
-      .app-listbox-filter { padding: 0.5rem; border-bottom: 1px solid var(--ds-border, #dee2e6); }
+      .app-listbox { display: flex; flex-direction: column; border: 1px solid var(--ds-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+      .app-listbox-filter { padding: 0.5rem; border-bottom: 1px solid var(--ds-border); }
       .app-listbox-list { overflow-y: auto; }
       .app-listbox-group-header { padding: 0.375rem 0.75rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--ds-text-muted); background: var(--ds-bg-sunken); }
       .app-listbox-item { display: flex; align-items: center; padding: 0.5rem 0.75rem; cursor: pointer; }
       .app-listbox-item:hover { background: var(--ds-bg-sunken); }
-      .app-listbox-item-selected { background: var(--ds-primary-light, #e7f1ff); }
+      .app-listbox-item-selected { background: var(--ds-primary-light); }
       .app-listbox-empty { padding: 0.75rem; color: var(--ds-text-muted); font-size: 0.875rem; text-align: center; }
     `,
   ],

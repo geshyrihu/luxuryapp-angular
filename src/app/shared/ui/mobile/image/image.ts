@@ -104,7 +104,7 @@ import { ImageBase } from "@ui/base/image.base";
       .ili-image-trigger:focus-visible,
       .ili-image-preview:focus-visible,
       .ili-image-preview-close:focus-visible {
-        outline: 2px solid var(--ds-primary-500, var(--ds-primary));
+        outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
     `,

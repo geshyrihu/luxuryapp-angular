@@ -56,14 +56,14 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       .app-steps-index {
         width: 1.75rem; height: 1.75rem; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        border: 2px solid var(--ds-border-strong, #adb5bd);
+        border: 2px solid var(--ds-border-strong);
         color: var(--ds-text-secondary); font-size: 0.8rem; font-weight: 600;
         flex-shrink: 0;
       }
       .app-steps-item-active .app-steps-index { border-color: var(--ds-primary); color: var(--ds-primary); }
       .app-steps-item-done .app-steps-index { border-color: var(--ds-primary); background: var(--ds-primary); color: var(--ds-on-primary); }
       .app-steps-label { font-size: var(--ds-font-size-body); color: var(--ds-text-primary); white-space: nowrap; }
-      .app-steps-connector { flex: 1 1 auto; height: 2px; background: var(--ds-border-strong, #dee2e6); margin: 0 0.5rem; }
+      .app-steps-connector { flex: 1 1 auto; height: 2px; background: var(--ds-border-strong); margin: 0 0.5rem; }
       .app-steps-item-done .app-steps-connector { background: var(--ds-primary); }
     `,
   ],

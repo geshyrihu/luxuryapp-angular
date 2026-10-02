@@ -60,7 +60,7 @@ let nextGalleryId = 0;
       }
 
       .app-image-trigger:focus-visible {
-        outline: 2px solid var(--ds-primary-500, #0d6efd);
+        outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
     `,

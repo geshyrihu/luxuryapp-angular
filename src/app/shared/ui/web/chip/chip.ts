@@ -43,7 +43,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         align-items: center;
         gap: 0.35rem;
         padding: 0.25rem 0.75rem;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         font-size: 0.875rem;
         line-height: 1.4;
         cursor: default;

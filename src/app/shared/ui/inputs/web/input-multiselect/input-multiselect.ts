@@ -66,13 +66,13 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
       :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
       :host ::ng-deep .ng-dropdown-panel { 
-        min-width: var(--ng-select-panel-min-width, 20rem); 
-        max-height: var(--ng-select-panel-max-height, 350px);
+        min-width: 20rem;
+        max-height: 350px;
         border-radius: 0.375rem;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(0, 0, 0, 0.175);
       }
-      :host ::ng-deep .ng-dropdown-panel .scroll-host { max-height: var(--ng-select-panel-max-height, 350px); }
+      :host ::ng-deep .ng-dropdown-panel .scroll-host { max-height: 350px; }
       :host ::ng-deep .ng-select-container { border-radius: 0.375rem; }
       :host ::ng-deep .ng-value-container { gap: 0.25rem; }
       :host ::ng-deep .ng-value-container .ng-input { padding-bottom: 0.25rem; }

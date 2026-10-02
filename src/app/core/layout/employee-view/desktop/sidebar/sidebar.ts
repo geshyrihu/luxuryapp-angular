@@ -310,7 +310,7 @@ export class Sidebar {
                 },
                 {
                   label: "Line Chart",
-                  icon: "material-symbols-light:desktoping",
+                  icon: "material-symbols-light:show-chart",
                   routerLink: [...this.catalogBase, "charts", "line"],
                 },
                 {
@@ -435,7 +435,7 @@ export class Sidebar {
             },
             {
               label: "Stat Card",
-              icon: "material-symbols-light:desktoping",
+              icon: "material-symbols-light:bar-chart",
               routerLink: [...this.catalogBase, "core", "statcard"],
             },
             {

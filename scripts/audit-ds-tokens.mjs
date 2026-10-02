@@ -52,14 +52,9 @@ const COLOR_SOURCE_ALLOWLIST = [
     why: "Capa --gl-*: placeholder de campo inválido sin equivalente (ΔE 5.3).",
   },
   {
-    file: "src/app/modules/web.luxuryapp/maintenance/_procedures-shared.scss",
-    scope: "root-block",
-    why: "Capa --proc-*: paleta propia del documento de procedimiento (RN-DS-041).",
-  },
-  {
-    file: "src/app/modules/web.luxuryapp/_web-luxury.scss",
-    scope: "root-block",
-    why: "Capa --web-*: velos blancos del hero oscuro del sitio público (RN-DS-041).",
+    file: "src/styles/custom/_domain-tokens.scss",
+    scope: "all",
+    why: "Capas de dominio con alcance (--proc-*, --web-*). Definidas globalmente para no repetirse en cada componente (RN-DS-041).",
   },
   {
     file: "src/app/modules/collections.luxuryapp/native-collections/entry/native-collections-wrapper/cobranza-nativa-wrapper.scss",

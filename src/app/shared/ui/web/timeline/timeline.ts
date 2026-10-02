@@ -59,7 +59,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
       .app-timeline { display: flex; flex-direction: column; }
       .app-timeline-row { display: flex; gap: 1rem; }
       .app-timeline-marker-col { display: flex; flex-direction: column; align-items: center; }
-      .app-timeline-connector { flex: 1 1 auto; width: 2px; min-height: 0.75rem; background: var(--ds-border, #dee2e6); margin: 0.25rem 0; }
+      .app-timeline-connector { flex: 1 1 auto; width: 2px; min-height: 0.75rem; background: var(--ds-border); margin: 0.25rem 0; }
       .app-timeline-content-col { flex: 1 1 auto; padding-bottom: 1.5rem; }
       .timeline-marker {
         width: 32px;

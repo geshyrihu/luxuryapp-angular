@@ -28,17 +28,17 @@
 
 // Add button - ensure icon is always visible
 .ion-add-button {
-  --color: var(--ds-color-primary, #3880ff);
+  --color: var(--ds-primary);
   --box-shadow: none;
 
   app-icon {
-    color: var(--ds-color-primary, #3880ff);
+    color: var(--ds-primary);
     font-size: 28px;
   }
 
   &:hover app-icon,
   &:active app-icon {
-    color: var(--ds-color-primary-dark, #2a6edb);
+    color: var(--ds-primary-hover);
     opacity: 0.8;
   }
 }

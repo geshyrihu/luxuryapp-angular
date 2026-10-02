@@ -561,6 +561,18 @@ export const AppIcon = {
   Wrench: "material-symbols-light:build",
   WrenchOutline: "material-symbols-light:build",
   ZipBox: "material-symbols-light:folder-zip",
+  Assignment: "material-symbols-light:assignment",
+  Carpenter: "material-symbols-light:carpenter",
+  Deskphone: "material-symbols-light:deskphone",
+  ExpandMore: "material-symbols-light:expand-more",
+  FitnessCenter: "material-symbols-light:fitness-center",
+  InfoOutline: "material-symbols-light:info-outline",
+  InboxTray: "material-symbols-light:inbox",
+  PauseCircle: "material-symbols-light:pause-circle",
+  RequestQuote: "material-symbols-light:request-quote",
+  ShortText: "material-symbols-light:short-text",
+  Spa: "material-symbols-light:spa",
+  Summarize: "material-symbols-light:summarize",
 } as const;
 
 export type AppIconName = AppIconValues<typeof AppIcon>;

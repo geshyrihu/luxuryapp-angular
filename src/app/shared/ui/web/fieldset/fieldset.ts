@@ -26,7 +26,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     </fieldset>
   `,
   styles: [`
-    .app-fieldset { border: 1px solid var(--ds-border, #dee2e6); border-radius: var(--ds-radius, 0.375rem); padding: 0.75rem 1rem 1rem; margin: 0; }
+    .app-fieldset { border: 1px solid var(--ds-border); border-radius: var(--ds-radius-md); padding: 0.75rem 1rem 1rem; margin: 0; }
     .app-fieldset-legend { display: inline-flex; align-items: center; gap: 0.25rem; width: auto; padding: 0 0.375rem; margin: 0 0 0.5rem -0.375rem; font-size: 0.9rem; font-weight: 600; }
     .app-fieldset-legend-toggleable { cursor: pointer; user-select: none; }
   `],

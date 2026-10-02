@@ -55,7 +55,7 @@ import { CardBase } from "@ui/base/card.base";
         display: block;
         background: var(--ds-bg-surface);
         border: 1px solid var(--ds-border);
-        border-radius: var(--ds-radius-card, 3px);
+        border-radius: var(--ds-radius-card);
         overflow: hidden;
         transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
       }

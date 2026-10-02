@@ -362,7 +362,7 @@ export interface AppTableLazyEvent {
       }
 
       .app-table-reorderable-row.app-table-row-dragover {
-        box-shadow: inset 0 2px 0 var(--ds-primary, #0d6efd);
+        box-shadow: inset 0 2px 0 var(--ds-primary);
       }
 
       .app-table-thead th[draggable="true"] {
@@ -371,7 +371,7 @@ export interface AppTableLazyEvent {
 
       .app-table-frozen-column {
         z-index: 2;
-        background-color: var(--ds-surface, #fff);
+        background-color: var(--ds-surface);
       }
 
       .app-table-thead .app-table-frozen-column {

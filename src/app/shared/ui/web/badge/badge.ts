@@ -39,7 +39,7 @@ import { BadgeBase } from "@ui/base/badge.base";
         color: var(--ds-on-primary);
       }
       .app-badge-info {
-        background: var(--ds-info, var(--ds-primary));
+        background: var(--ds-info);
         color: var(--ds-on-primary);
       }
       .app-badge-neutral {

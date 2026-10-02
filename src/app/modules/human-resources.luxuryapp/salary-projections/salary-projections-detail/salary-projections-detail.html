@@ -17,7 +17,7 @@
         <span class="text-body-secondary text-sm">Calculando…</span>
         }
         @if (isEditable()) {
-        <il-button label="Agregar plaza nueva" iconClass="material-symbols-light:person_add" severity="secondary" variant="outline" size="small" (clicked)="addNewPositionRow()" [disabled]="activeScenario()?.name === 'Escenario Base'" />
+        <il-button label="Agregar plaza nueva" iconClass="material-symbols-light:person-add" severity="secondary" variant="outline" size="small" (clicked)="addNewPositionRow()" [disabled]="activeScenario()?.name === 'Escenario Base'" />
         <il-button label="Guardar propuesta" iconClass="material-symbols-light:save" severity="primary" size="small" (clicked)="saveProjection()" />
         }
       </div>

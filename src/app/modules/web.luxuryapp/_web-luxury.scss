@@ -2,24 +2,6 @@
    Web Luxury — Design System Partial
    ═══════════════════════════════════════════ */
 
-/* ─── CAPA DE TOKENS CON ALCANCE — Web pública (RN-DS-041) ───
-   El hero es oscuro (foto/gradiente de fondo) y usa velos blancos sobre
-   imagen. Paleta propia del sitio público; vive aquí, registrada en
-   COLOR_SOURCE_ALLOWLIST (scope root-block). No derivar de --ds-*: la capa
-   es invariante al tema por diseño del hero. */
-:root {
-  --web-white: #fff;
-  --web-on-dark-03: rgba(255, 255, 255, 0.03);
-  --web-on-dark-06: rgba(255, 255, 255, 0.06);
-  --web-on-dark-08: rgba(255, 255, 255, 0.08);
-  --web-on-dark-10: rgba(255, 255, 255, 0.1);
-  --web-on-dark-12: rgba(255, 255, 255, 0.12);
-  --web-on-dark-25: rgba(255, 255, 255, 0.25);
-  --web-on-dark-45: rgba(255, 255, 255, 0.45);
-  --web-on-dark-50: rgba(255, 255, 255, 0.5);
-  --web-on-dark-65: rgba(255, 255, 255, 0.65);
-}
-
 /* ─── Scroll Animation ─── */
 .animate-on-scroll {
   opacity: 0; transform: translateY(30px);
