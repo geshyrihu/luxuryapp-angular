@@ -116,12 +116,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/file-upload/file-upload.ts"
   },
   {
-    "selector": "lx-icon",
-    "className": "LxIcon",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/icon/icon.ts"
-  },
-  {
     "selector": "lx-image",
     "className": "LxImage",
     "category": "adaptive",
