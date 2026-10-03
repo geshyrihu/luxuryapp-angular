@@ -6,17 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -29,9 +18,26 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { DocumentCatalogDto } from "./interfaces/document-catalog.dto";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "@ui/web/table/table";
 import { DocumentCatalogForm } from "./document-catalog-form";
+import { DocumentCatalogDto } from "./interfaces/document-catalog.dto";
 
 @Component({
   selector: "app-document-catalog-list",
@@ -117,9 +123,8 @@ export class DocumentCatalogList implements OnInit {
     reordered.splice(event.dropIndex, 0, moved);
     this.dataSignal.set(reordered);
     const orderedIds = reordered.map((item) => item.id);
-    this.apiResponseS.onPut(
-      Endpoints.Catalogs.DocumentCatalog.updateOrder,
-      { orderedIds },
-    );
+    this.apiResponseS.onPut(Endpoints.Catalogs.DocumentCatalog.updateOrder, {
+      orderedIds,
+    });
   }
 }

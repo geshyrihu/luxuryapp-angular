@@ -7,13 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -23,8 +16,15 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { VacationRequestMyDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
+import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { VacacionesForm } from "./vacaciones-form";
 
@@ -122,5 +122,3 @@ export class MisVacacionesListado implements OnInit {
     this.router.navigate(ROUTES.RECURSOS_HUMANOS.VACACIONES_DETALLE(id));
   }
 }
-
-

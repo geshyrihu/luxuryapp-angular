@@ -5,11 +5,10 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ContratosVigentesModal } from "../contratos-vigentes-modal/contratos-vigentes-modal";
 import type { ContratosPorVencerResumenDto } from "./contratos-card.model";
@@ -46,7 +45,7 @@ export class ContratosCard implements OnInit {
       ContratosVigentesModal,
       null,
       "Contratos vigentes por cliente",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -69,4 +68,3 @@ export class ContratosCard implements OnInit {
     this.cargando.set(false);
   }
 }
-

@@ -1,7 +1,7 @@
 <div class="row g-4">
   <!-- Download Form Card -->
   <div class="col-12">
-    <lx-card>
+    <lux-card>
       <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
         <div class="row g-4">
           <div class="col-12 col-md-4">
@@ -29,12 +29,12 @@
           ></il-button-save>
         </div>
       </form>
-    </lx-card>
+    </lux-card>
   </div>
 
   <!-- Invoices Table -->
   <div class="col-12">
-    <lx-card>
+    <lux-card>
       <app-table
         #dtInvoices
         [value]="invoices()"
@@ -44,7 +44,7 @@
         [globalFilterFields]="['emisorNombre', 'folio', 'total']"
         [(selection)]="selection"
         dataKey="satCfdiId"
-         [initialSortField]="'tipoGasto'"
+        [initialSortField]="'tipoGasto'"
         groupRowsBy="tipoGasto"
         (onRowReorder)="onRowReorder($event)"
         [scrollable]="true"
@@ -126,13 +126,15 @@
             <td>
               <div
                 class="d-flex align-items-center justify-content-center"
-                 pReorderableRowHandle
+                pReorderableRowHandle
               >
                 <app-icon [icon]="'material-symbols-light:menu'" />
               </div>
             </td>
             <td>
-              <app-table-selection-checkbox [value]="invoice"></app-table-selection-checkbox>
+              <app-table-selection-checkbox
+                [value]="invoice"
+              ></app-table-selection-checkbox>
             </td>
             <td>{{ invoice.fechaEmision | apiDate: 'short' }}</td>
             <td>{{ invoice.emisorNombre }}</td>
@@ -152,6 +154,6 @@
           </tr>
         </ng-template>
       </app-table>
-    </lx-card>
+    </lux-card>
   </div>
 </div>

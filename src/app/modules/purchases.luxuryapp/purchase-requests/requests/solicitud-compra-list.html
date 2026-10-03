@@ -133,7 +133,7 @@
       </td>
 
       <td class="table-col-10">
-        <lx-tag
+        <lux-tag
           [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
           [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
           [rounded]="true"
@@ -141,7 +141,7 @@
       </td>
 
       <td class="table-col-10">
-        <lx-tag
+        <lux-tag
           [value]="getPrioridadLabel(item.prioridad)"
           [severity]="getPrioridadSeverity(item.prioridad)"
           [rounded]="true"
@@ -188,34 +188,39 @@
 
       <td class="table-col-10 text-center">
         @if (isInPresentation(item.id)) {
-        <lx-tag value="En presentación" severity="info" [rounded]="true" size="small" />
+        <lux-tag
+          value="En presentación"
+          severity="info"
+          [rounded]="true"
+          size="small"
+        />
         }
       </td>
 
-       <td class="table-col-10">
-         <div class="d-flex">
-           @if (isAuthorizedView()) {
-           <iw-button
-             iconClass="material-symbols-light:info"
-             (clicked)="onAuthorizationDetail(item)"
-             size="small"
-             severity="info"
-             [rounded]="true"
-             [text]="true"
-             tooltip="Ver detalle de autorización"
-           />
-           <iw-button
-             iconClass="material-symbols-light:undo"
-             (clicked)="onDesauthorize(item)"
-             size="small"
-             severity="warning"
-             [rounded]="true"
-             [text]="true"
-             tooltip="Desautorizar solicitud"
-           />
-           }
-           <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
-           <iw-button-delete (confirmed)="onDelete(item.id)" />
+      <td class="table-col-10">
+        <div class="d-flex">
+          @if (isAuthorizedView()) {
+          <iw-button
+            iconClass="material-symbols-light:info"
+            (clicked)="onAuthorizationDetail(item)"
+            size="small"
+            severity="info"
+            [rounded]="true"
+            [text]="true"
+            tooltip="Ver detalle de autorización"
+          />
+          <iw-button
+            iconClass="material-symbols-light:undo"
+            (clicked)="onDesauthorize(item)"
+            size="small"
+            severity="warning"
+            [rounded]="true"
+            [text]="true"
+            tooltip="Desautorizar solicitud"
+          />
+          }
+          <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
@@ -254,18 +259,23 @@
       <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
       <p>{{ item.fechaSolicitud | apiDate }}</p>
       <div class="d-flex gap-2 mt-1">
-        <lx-tag
+        <lux-tag
           [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
           [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
           [rounded]="true"
         />
-        <lx-tag
+        <lux-tag
           [value]="getPrioridadLabel(item.prioridad)"
           [severity]="getPrioridadSeverity(item.prioridad)"
           [rounded]="true"
         />
         @if (isInPresentation(item.id)) {
-        <lx-tag value="En presentación" severity="info" [rounded]="true" size="small" />
+        <lux-tag
+          value="En presentación"
+          severity="info"
+          [rounded]="true"
+          size="small"
+        />
         }
       </div>
 

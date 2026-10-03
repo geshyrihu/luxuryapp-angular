@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,17 +6,18 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ConfirmPresentationModal } from "@operations.luxuryapp/staff-board/confirm-presentation-modal/confirm-presentation-modal";
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
 } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { ConfirmPresentationModal } from "@operations.luxuryapp/staff-board/confirm-presentation-modal/confirm-presentation-modal";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
 import { VacancyCandidatesTimelineModal } from "./vacancy-candidates-timeline-modal";
@@ -254,7 +254,9 @@ export class EmployeeInterviewerQueue {
       if (result) {
         await this.onLoadData();
         this.toastS.showSuccess(
-          candidate.hasHiringRequest ? "Notificación reenviada" : "Alta reparada",
+          candidate.hasHiringRequest
+            ? "Notificación reenviada"
+            : "Alta reparada",
           candidate.hasHiringRequest
             ? "Se reenvió el correo de solicitud de alta a Reclutamiento."
             : "Se generó la solicitud de alta y se notificó a Reclutamiento.",
@@ -265,5 +267,3 @@ export class EmployeeInterviewerQueue {
     }
   }
 }
-
-

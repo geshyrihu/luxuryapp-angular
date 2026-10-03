@@ -11,23 +11,20 @@ import {
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { LxBadge } from "@ui/adaptive/badge/badge";
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { SortEvent } from "@core/interfaces/sort-event.interface";
+import { LxBadge } from "@ui/adaptive/badge/badge";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
 import {
-  AppTable,
   AppReorderableRow,
   AppReorderableRowHandle,
+  AppTable,
 } from "@ui/web/table/table";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -37,7 +34,6 @@ import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
@@ -45,7 +41,11 @@ import { CreateOrdenCompraWizard } from "@purchases.luxuryapp/purchase-orders/pu
 import { OrdenCompraDatosPago } from "@purchases.luxuryapp/purchase-orders/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { PaymentVoucherModal } from "@purchases.luxuryapp/purchase-orders/purchase-order/payment-voucher-modal/payment-voucher-modal";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-purchase-order-outside-funding/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";
@@ -99,7 +99,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     RouterModule,
     LxSplitButton,
     AppTable,
-
 
     AppReorderableRow,
     AppReorderableRowHandle,
@@ -720,5 +719,3 @@ export class FundingDetail {
       });
   }
 }
-
-

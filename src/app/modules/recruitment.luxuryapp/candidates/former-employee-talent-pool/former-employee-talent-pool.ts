@@ -8,12 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
@@ -25,10 +19,16 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons";
-import { SwalService } from "@core/services/swal.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateDetail } from "../candidate-core/candidate-detail";
 
@@ -217,5 +217,3 @@ export class FormerEmployeeTalentPool implements OnInit {
     return result.candidateId;
   }
 }
-
-

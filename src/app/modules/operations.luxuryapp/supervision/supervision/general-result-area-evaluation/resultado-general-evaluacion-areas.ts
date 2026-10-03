@@ -6,9 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -21,12 +18,21 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-evaluacion-areas-detalle";
 @Component({
   selector: "app-evaluacion-areas",
   templateUrl: "./resultado-general-evaluacion-areas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TableEmptyMessage, AppTable, AppSortableColumn, AppSorticon, TableCaption],
+  imports: [
+    TableEmptyMessage,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    TableCaption,
+  ],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {
   apiResponseS = inject(ApiResponseService);

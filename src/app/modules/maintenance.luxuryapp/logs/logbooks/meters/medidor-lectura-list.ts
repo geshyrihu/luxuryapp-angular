@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -9,18 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { Workbook } from "exceljs";
-import * as FileSaver from "file-saver";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -32,7 +19,20 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { Workbook } from "exceljs";
+import * as FileSaver from "file-saver";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { MedidorLecturaAdminForm } from "./medidor-lectura-admin-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 

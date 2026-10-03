@@ -5,18 +5,18 @@ import {
   inject,
   viewChild,
 } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { TabsBase } from "@ui/base/tabs.base";
 import { MobileTabs } from "@ui/mobile/tabs/tabs";
 import { Tabs } from "@ui/web/tabs/tabs";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
- * `lx-tabs` — capa adaptativa. La navegacion la aporta `app-tabs` (web) o
+ * `lux-tabs` — capa adaptativa. La navegacion la aporta `app-tabs` (web) o
  * `ili-tabs` (mobile) en modo `navOnly`, y los paneles se proyectan UNA sola vez
  * en un contenedor propio para no perder el contenido al alternar de stack.
  */
 @Component({
-  selector: "lx-tabs",
+  selector: "lux-tabs",
 
   imports: [Tabs, MobileTabs],
   template: `
@@ -35,7 +35,7 @@ import { PlatformService } from "@core/services/platform.service";
         [navOnly]="true"
       />
     }
-    <div class="lx-tabs-panels" #panels>
+    <div class="lux-tabs-panels" #panels>
       <ng-content />
     </div>
   `,
@@ -45,7 +45,7 @@ import { PlatformService } from "@core/services/platform.service";
         display: block;
         min-width: 0;
       }
-      .lx-tabs-panels {
+      .lux-tabs-panels {
         display: block;
         min-width: 0;
       }

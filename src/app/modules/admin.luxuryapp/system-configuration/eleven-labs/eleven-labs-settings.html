@@ -1,5 +1,5 @@
 <div class="p-3">
-  <lx-card>
+  <lux-card>
     <ng-template #title>Configuración ElevenLabs</ng-template>
     <ng-template #subtitle>
       Define la voz que usará el Auditor IA en contabilidad y prueba la
@@ -108,44 +108,40 @@
         </div>
 
         <div class="d-flex flex-wrap gap-2 mt-3">
-        <il-button
-          label="Guardar configuración"
-          iconClass="material-symbols-light:save"
-          severity="success"
-          (clicked)="saveSettings()"
-        />
-        <il-button
-          label="Probar audio"
-          iconClass="material-symbols-light:volume-up"
-          severity="info"
-          [loading]="testingAudio()"
-          (clicked)="testAudio()"
-        />
-        <il-button
-          label="Detener audio"
-          iconClass="material-symbols-light:stop"
-          severity="secondary"
-          (clicked)="stopAudio()"
-        />
-        <il-button
-          label="Recargar voces"
-          iconClass="material-symbols-light:refresh"
-          severity="contrast"
-          [loading]="loadingVoices()"
-          (clicked)="loadVoices()"
-        />
+          <il-button
+            label="Guardar configuración"
+            iconClass="material-symbols-light:save"
+            severity="success"
+            (clicked)="saveSettings()"
+          />
+          <il-button
+            label="Probar audio"
+            iconClass="material-symbols-light:volume-up"
+            severity="info"
+            [loading]="testingAudio()"
+            (clicked)="testAudio()"
+          />
+          <il-button
+            label="Detener audio"
+            iconClass="material-symbols-light:stop"
+            severity="secondary"
+            (clicked)="stopAudio()"
+          />
+          <il-button
+            label="Recargar voces"
+            iconClass="material-symbols-light:refresh"
+            severity="contrast"
+            [loading]="loadingVoices()"
+            (clicked)="loadVoices()"
+          />
         </div>
 
         @if (selectedVoicePreview()) {
         <div class="mt-3 text-sm text-body-secondary">
           <strong>Perfil de voz:</strong> {{ selectedVoicePreview() }}
         </div>
-        }
-
-        @if (voicesLoadError()) {
-        <div class="mt-3 text-sm text-orange-600">
-          {{ voicesLoadError() }}
-        </div>
+        } @if (voicesLoadError()) {
+        <div class="mt-3 text-sm text-orange-600">{{ voicesLoadError() }}</div>
         }
       </div>
 
@@ -171,7 +167,8 @@
           </div>
           <div class="mb-3">
             <strong>Próximo corte:</strong>
-            {{ sub.nextBillingDate ? (sub.nextBillingDate | apiDate: "mediumDate") : "N/D" }}
+            {{ sub.nextBillingDate ? (sub.nextBillingDate | apiDate:
+            "mediumDate") : "N/D" }}
           </div>
           <il-button
             label="Actualizar estado"
@@ -202,5 +199,5 @@
         </div>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 </div>

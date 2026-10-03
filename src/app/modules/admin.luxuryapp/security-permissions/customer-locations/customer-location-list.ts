@@ -26,7 +26,6 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
-import { DialogSize } from "../../../../core/enums/dialog-size.enum";
 import { CustomerLocationForm } from "./customer-location-form";
 import {
   CustomerLocationType,
@@ -112,7 +111,7 @@ export class CustomerLocationList implements OnInit {
         CustomerLocationForm,
         { customerId: this.customerId, id: item.id },
         "Editar Ubicación",
-        DialogSize.md,
+        this.dialogHandlerS.sizeMd,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -137,7 +136,7 @@ export class CustomerLocationList implements OnInit {
         CustomerLocationForm,
         { customerId: this.customerId },
         "Nueva Ubicación",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

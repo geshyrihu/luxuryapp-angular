@@ -8,23 +8,23 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import {
-  AspelBudgetDTO,
-  CuentaAspelDetalladaDTO,
-} from "../aspel-web-budget/presupuestos.interfaces";
-import { PurchaseHistory } from "../aspel-web-budget/purchase-history";
+import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 import {
   getBudgetAccounts,
   getBudgetCompanyName,
   normalizeAspelAccounts,
   normalizeAspelBudgetResponse,
 } from "../aspel-web-budget/presupuesto-web-aspel.shared";
+import {
+  AspelBudgetDTO,
+  CuentaAspelDetalladaDTO,
+} from "../aspel-web-budget/presupuestos.interfaces";
+import { PurchaseHistory } from "../aspel-web-budget/purchase-history";
 
 @Component({
   selector: "app-financial-summary",
@@ -82,28 +82,26 @@ export class FinancialSummary {
     this.budgetData = null;
 
     this.apiResponseS
-      .onGetList(
-        Endpoints.Presupuestos.aspelSummary(customerId, this.intYear),
-      )
+      .onGetList(Endpoints.Presupuestos.aspelSummary(customerId, this.intYear))
       .then((response: AspelBudgetDTO) => {
-      const normalizedResponse = normalizeAspelBudgetResponse(response);
-      const cuentas = normalizeAspelAccounts(
-        getBudgetAccounts(normalizedResponse),
-      );
-
-      if (cuentas.length > 0) {
-        this.budgetData = normalizedResponse;
-        this.cuentasSignal.set(cuentas);
-      } else {
-        this.handleError(
-          (normalizedResponse as any)?.strMensaje ||
-            "No se encontraron datos para el resumen financiero.",
+        const normalizedResponse = normalizeAspelBudgetResponse(response);
+        const cuentas = normalizeAspelAccounts(
+          getBudgetAccounts(normalizedResponse),
         );
-        if (getBudgetCompanyName(normalizedResponse)) {
+
+        if (cuentas.length > 0) {
           this.budgetData = normalizedResponse;
+          this.cuentasSignal.set(cuentas);
+        } else {
+          this.handleError(
+            (normalizedResponse as any)?.strMensaje ||
+              "No se encontraron datos para el resumen financiero.",
+          );
+          if (getBudgetCompanyName(normalizedResponse)) {
+            this.budgetData = normalizedResponse;
+          }
         }
-      }
-    });
+      });
   }
 
   private handleError(message: string): void {
@@ -165,24 +163,24 @@ export class FinancialSummary {
         ),
       )
       .then((response: AspelBudgetDTO) => {
-      const normalizedResponse = normalizeAspelBudgetResponse(response);
-      const cuentas = normalizeAspelAccounts(
-        getBudgetAccounts(normalizedResponse),
-      );
-
-      if (cuentas.length > 0) {
-        this.budgetData = normalizedResponse;
-        this.cuentasSignal.set(cuentas);
-      } else {
-        this.handleError(
-          (normalizedResponse as any)?.strMensaje ||
-            "No se encontraron datos de cuentas detalladas o la respuesta no es valida.",
+        const normalizedResponse = normalizeAspelBudgetResponse(response);
+        const cuentas = normalizeAspelAccounts(
+          getBudgetAccounts(normalizedResponse),
         );
-        if (getBudgetCompanyName(normalizedResponse)) {
+
+        if (cuentas.length > 0) {
           this.budgetData = normalizedResponse;
+          this.cuentasSignal.set(cuentas);
+        } else {
+          this.handleError(
+            (normalizedResponse as any)?.strMensaje ||
+              "No se encontraron datos de cuentas detalladas o la respuesta no es valida.",
+          );
+          if (getBudgetCompanyName(normalizedResponse)) {
+            this.budgetData = normalizedResponse;
+          }
         }
-      }
-    });
+      });
   }
 
   getMontoMes(cuenta: CuentaAspelDetalladaDTO, mes: string): number {
@@ -324,4 +322,3 @@ export class FinancialSummary {
     );
   }
 }
-

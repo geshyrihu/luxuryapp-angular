@@ -8,11 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -25,9 +20,14 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -126,5 +126,3 @@ export class PurchaseHistory implements OnInit {
     );
   }
 }
-
-

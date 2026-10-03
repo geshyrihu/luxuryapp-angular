@@ -37,7 +37,9 @@
         Dias
         <app-sorticon field="offsetDaysFromMeeting" />
       </th>
-      <th appSortableColumn="version">Version <app-sorticon field="version" /></th>
+      <th appSortableColumn="version">
+        Version <app-sorticon field="version" />
+      </th>
       <th>Estado</th>
       <th class="no-print"></th>
     </tr>
@@ -58,7 +60,7 @@
       <td>{{ item.offsetDaysFromMeeting }}</td>
       <td>{{ item.version }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="severity(item.isActive)"
           [value]="item.isActive ? 'Activo' : 'Inactivo'"
         />
@@ -92,24 +94,28 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:fact-check" class="text-xl text-primary" />
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:fact-check"
+        class="text-xl text-primary"
+      />
 
-       <ion-label>
-         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
-         <p class="text-xs m-0 mt-1 text-body-secondary">
-           {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
-           }}
-         </p>
-         <p class="text-xs m-0 mt-1 text-body-secondary">
-           Orden {{ item.sortOrder }} | Día {{ item.offsetDaysFromMeeting }} | V{{
-           item.version }}
-         </p>
-         <p class="text-xs m-0 mt-1">
-           <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
-             {{ item.isActive ? "Activo" : "Inactivo" }}
-           </span>
-         </p>
-       </ion-label>
+      <ion-label>
+        <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+          }}
+        </p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          Orden {{ item.sortOrder }} | Día {{ item.offsetDaysFromMeeting }} |
+          V{{ item.version }}
+        </p>
+        <p class="text-xs m-0 mt-1">
+          <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+            {{ item.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </p>
+      </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

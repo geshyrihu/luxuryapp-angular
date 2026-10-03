@@ -1,17 +1,23 @@
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-funding-order-invoices",
-  imports: [
-    WebButtonIconItem,
-    LxTooltipDirective, AppTable],
+  imports: [WebButtonIconItem, LxTooltipDirective, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-order-invoices.html",
 })
@@ -41,4 +47,3 @@ export class FundingOrderInvoices implements OnInit {
     this.ref.close();
   }
 }
-

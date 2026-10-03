@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
 import { MobileInfiniteScroll } from "@ui/mobile/infinite-scroll/infinite-scroll";
 import { InfiniteScroll } from "@ui/web/infinite-scroll/infinite-scroll";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-infinite-scroll",
+  selector: "lux-infinite-scroll",
 
   imports: [InfiniteScroll, MobileInfiniteScroll],
   template: `
@@ -29,4 +29,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxInfiniteScroll extends InfiniteScrollBase {
   protected platform = inject(PlatformService);
 }
-

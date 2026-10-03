@@ -1,5 +1,7 @@
 <style>
-  .custom-w-4px { width: 4px; }
+  .custom-w-4px {
+    width: 4px;
+  }
 </style>
 <app-data-view-mobile
   [data]="data()"
@@ -11,10 +13,13 @@
   (add)="onModalForm($event)"
 >
   <!-- Custom Filters (Tabs) inside the data view -->
-  <div customFilters class="px-2 py-2 overflow-x-auto no-scrollbar border-bottom-1 border">
+  <div
+    customFilters
+    class="px-2 py-2 overflow-x-auto no-scrollbar border-bottom-1 border"
+  >
     <div class="d-flex flex-nowrap align-items-center gap-2 w-max">
       <!-- AI Report Action -->
-      <div 
+      <div
         class="px-3 py-2 rounded-3xl d-flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white flex-shrink-0 text-nowrap"
         (click)="generateDailyReport()"
       >
@@ -23,7 +28,7 @@
       </div>
 
       <!-- 'All' Filter -->
-      <div 
+      <div
         class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors flex-shrink-0 text-nowrap"
         [class.bg-primary]="selectedModule() === null"
         [class.text-white]="selectedModule() === null"
@@ -36,7 +41,7 @@
 
       <!-- Dynamic Module Filters -->
       @for (mod of uniqueModules(); track mod) {
-      <div 
+      <div
         class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors flex-shrink-0 text-nowrap"
         [class.bg-primary]="selectedModule() === mod"
         [class.text-white]="selectedModule() === mod"
@@ -50,12 +55,12 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <div 
+    <div
       class="bg-body p-3 mb-2 mx-3 shadow-sm rounded-xl d-flex align-items-start gap-3 relative overflow-hidden transition-colors cursor-pointer"
       (click)="onNavigate(item)"
     >
       <!-- Left Edge Color Strip -->
-      <div 
+      <div
         class="absolute left-0 top-0 bottom-0 custom-w-4px"
         [class.bg-primary]="getModuleColor(item.module) === 'primary'"
         [class.bg-warning]="getModuleColor(item.module) === 'warning'"
@@ -78,42 +83,54 @@
               [class.text-500]="getModuleColor(item.module) === 'medium'"
               class="text-base"
             ></app-icon>
-            <span class="text-xs fw-medium text-body-secondary">{{ item.formattedDate }}</span>
+            <span class="text-xs fw-medium text-body-secondary"
+              >{{ item.formattedDate }}</span
+            >
           </div>
           @if (item.status) {
-          <lx-tag [severity]="getSeverityColor(item.status)" [value]="item.status"></lx-tag>
+          <lux-tag
+            [severity]="getSeverityColor(item.status)"
+            [value]="item.status"
+          ></lux-tag>
           }
         </div>
 
         <!-- Title -->
-        <h3 class="fw-bold text-body m-0 text-base line-height-2 text-truncate overflow-hidden text-nowrap">
+        <h3
+          class="fw-bold text-body m-0 text-base line-height-2 text-truncate overflow-hidden text-nowrap"
+        >
           {{ item.title }}
         </h3>
 
         <!-- Description -->
-        <p class="text-sm text-body-secondary m-0 line-clamp-2 white-space-normal">
+        <p
+          class="text-sm text-body-secondary m-0 line-clamp-2 white-space-normal"
+        >
           {{ item.description }}
         </p>
 
         <!-- Footer -->
-        <div class="d-flex justify-content-between align-items-center text-xs mt-2 border-top-1 border pt-2">
+        <div
+          class="d-flex justify-content-between align-items-center text-xs mt-2 border-top-1 border pt-2"
+        >
           @if (item.responsible) {
-          <div class="d-flex align-items-center gap-1 text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-2xl">
+          <div
+            class="d-flex align-items-center gap-1 text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-2xl"
+          >
             <app-icon icon="material-symbols-light:account-circle-outline" />
             <span class="fw-medium">{{ item.responsible?.split(' ')[0] }}</span>
           </div>
           } @else {
           <div></div>
-          }
-          
-          @if(item.daysOpen >= 0) {
+          } @if(item.daysOpen >= 0) {
           <div
             class="d-flex align-items-center gap-1 fw-bold"
             [class.text-red-500]="item.daysOpen > 8"
             [class.text-orange-500]="item.daysOpen > 6 && item.daysOpen <= 8"
             [class.text-500]="item.daysOpen <= 6"
           >
-            @if(item.daysOpen > 6) { <app-icon icon="material-symbols-light:error-outline" /> }
+            @if(item.daysOpen > 6) {
+            <app-icon icon="material-symbols-light:error-outline" /> }
             <span>{{ item.daysOpen }} días</span>
           </div>
           }
@@ -122,12 +139,11 @@
 
       <!-- Chevron Right -->
       <div class="d-flex align-items-center h-full ps-2">
-        <app-icon icon="material-symbols-light:chevron-right" class="text-body-secondary text-xl" />
+        <app-icon
+          icon="material-symbols-light:chevron-right"
+          class="text-body-secondary text-xl"
+        />
       </div>
     </div>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-

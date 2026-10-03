@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
 import { MobileProcessingOverlay } from "@ui/mobile/processing-overlay/processing-overlay";
 import { AppProcessingOverlay } from "@ui/web/processing-overlay/processing-overlay";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Overlay adaptativo de procesamiento con indicador de progreso.
@@ -10,7 +10,7 @@ import { PlatformService } from "@core/services/platform.service";
  *
  * Uso:
  * ```html
- * <lx-processing-overlay
+ * <lux-processing-overlay
  *   [isProcessing]="isSubmitting()"
  *   [progress]="uploadProgress()"
  *   message="Guardando ticket..."
@@ -25,7 +25,7 @@ import { PlatformService } from "@core/services/platform.service";
  * - `submessage`: string | null - Mensaje secundario opcional
  */
 @Component({
-  selector: "lx-processing-overlay",
+  selector: "lux-processing-overlay",
   imports: [AppProcessingOverlay, MobileProcessingOverlay],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -49,4 +49,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxProcessingOverlay extends ProcessingOverlayBase {
   protected platform = inject(PlatformService);
 }
-

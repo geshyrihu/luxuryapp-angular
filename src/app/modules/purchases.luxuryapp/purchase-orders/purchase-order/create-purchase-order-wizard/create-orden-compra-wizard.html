@@ -1,9 +1,9 @@
 <div class="wizard-container p-4">
-  <lx-steps
+  <lux-steps
     [model]="items"
     [(activeIndex)]="activeIndex"
     [readonly]="true"
-  ></lx-steps>
+  ></lux-steps>
 
   <div class="wizard-content mt-4">
     <!-- Step 1: General Information -->
@@ -88,19 +88,19 @@
           <div class="row g-4">
             @for (month of fundingPeriodsByMonth(); track month.monthName) {
             <div class="col-12 col-md-6 col-lg-4">
-              <lx-message
+              <lux-message
                 [text]="month.monthName"
                 class="w-full justify-content-start"
                 ><div class="flex-flex-grow-1-1 text-end">
                   @for ( quincena of month.quincenas; track quincena.value ) {
-                  <lx-tag
+                  <lux-tag
                     (click)="selectFundingPeriod(quincena)"
                     [value]="quincena.label.split(' ')[0]"
                     [severity]=" step1Form.get('fundingPeriod')?.value === quincena.value ? 'success' : 'secondary' "
                     class="ms-2 cursor-pointer"
                   />
                   }
-                </div></lx-message
+                </div></lux-message
               >
             </div>
             }
@@ -198,9 +198,7 @@
               </td>
               <td class="text-end">{{ item.quantity | number: "1.2-2" }}</td>
               <td class="text-end">{{ item.unitPrice | currency: "MXN" }}</td>
-              <td class="text-end">
-                {{ item.descuento | number: "1.2-2" }}%
-              </td>
+              <td class="text-end">{{ item.descuento | number: "1.2-2" }}%</td>
               <td class="text-end">
                 {{ item.ivaAplicado | number: "1.2-2" }}%
               </td>
@@ -433,9 +431,7 @@
               <td class="text-end">
                 {{ calculateItemSubtotal(item) | currency: "MXN" }}
               </td>
-              <td class="text-end">
-                {{ item.descuento | number: "1.2-2" }}%
-              </td>
+              <td class="text-end">{{ item.descuento | number: "1.2-2" }}%</td>
               <td class="text-end">
                 {{ item.ivaAplicado | number: "1.2-2" }}%
               </td>

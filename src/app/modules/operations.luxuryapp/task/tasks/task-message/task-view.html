@@ -45,12 +45,13 @@
           </div>
           <div class="text-end">
             <div class="mb-2">
-              <lx-tag
+              <lux-tag
                 [value]="t.priority"
                 [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warn' : 'info'"
               />
             </div>
-            <span class="fw-bold text-body text-uppercase tracking-wider text-sm"
+            <span
+              class="fw-bold text-body text-uppercase tracking-wider text-sm"
               >{{ t.status }}</span
             >
           </div>
@@ -61,14 +62,16 @@
     <div class="p-4 pt-0">
       <!-- Description -->
       <div class="bg-body-tertiary p-3 rounded-lg mb-4">
-        <h6 class="text-body-secondary fw-bold mb-2 text-uppercase text-xs tracking-wider">
+        <h6
+          class="text-body-secondary fw-bold mb-2 text-uppercase text-xs tracking-wider"
+        >
           Descripcion
         </h6>
         <p class="text-body line-height-3 m-0">{{ t.description }}</p>
       </div>
 
       <!-- Images -->
-       <div class="row mb-5 g-4">
+      <div class="row mb-5 g-4">
         <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
@@ -83,35 +86,56 @@
               class="w-full h-15rem object-cover d-block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
               alt="Antes"
             />
-         </div>
-       </div>
+          </div>
+        </div>
 
-       @if (responsibles().length > 0) {
-       <section class="mb-4" aria-labelledby="task-view-responsibles-title">
-         <h3 id="task-view-responsibles-title" class="text-sm fw-bold text-uppercase mb-2">Responsables</h3>
-         <div class="d-flex flex-wrap gap-2">
-           @for (responsible of responsibles(); track responsible.id) {
-           <span class="bg-body-tertiary border rounded px-2 py-1 text-sm">
-             {{ responsible.applicationUser }}{{ responsible.isPrimary ? " (Principal)" : "" }}
-           </span>
-           }
-         </div>
-       </section>
-       }
-
-       @if (additionalImages().length > 0) {
-       <section class="mb-4" aria-labelledby="task-view-additional-images-title">
-         <h3 id="task-view-additional-images-title" class="text-sm fw-bold text-uppercase mb-2">Imágenes adicionales</h3>
-         <div class="d-flex flex-wrap gap-3">
-           @for (image of additionalImages(); track image.id) {
-           <figure class="m-0 border rounded p-2">
-              <img [src]="image.path" [alt]="image.fileName" class="collection-preview rounded" />
-             <figcaption class="text-xs text-body-secondary mt-1 text-truncate" [title]="image.fileName">{{ image.fileName }}</figcaption>
-           </figure>
-           }
-         </div>
-       </section>
-       }
+        @if (responsibles().length > 0) {
+        <section class="mb-4" aria-labelledby="task-view-responsibles-title">
+          <h3
+            id="task-view-responsibles-title"
+            class="text-sm fw-bold text-uppercase mb-2"
+          >
+            Responsables
+          </h3>
+          <div class="d-flex flex-wrap gap-2">
+            @for (responsible of responsibles(); track responsible.id) {
+            <span class="bg-body-tertiary border rounded px-2 py-1 text-sm">
+              {{ responsible.applicationUser }}{{ responsible.isPrimary ? "
+              (Principal)" : "" }}
+            </span>
+            }
+          </div>
+        </section>
+        } @if (additionalImages().length > 0) {
+        <section
+          class="mb-4"
+          aria-labelledby="task-view-additional-images-title"
+        >
+          <h3
+            id="task-view-additional-images-title"
+            class="text-sm fw-bold text-uppercase mb-2"
+          >
+            Imágenes adicionales
+          </h3>
+          <div class="d-flex flex-wrap gap-3">
+            @for (image of additionalImages(); track image.id) {
+            <figure class="m-0 border rounded p-2">
+              <img
+                [src]="image.path"
+                [alt]="image.fileName"
+                class="collection-preview rounded"
+              />
+              <figcaption
+                class="text-xs text-body-secondary mt-1 text-truncate"
+                [title]="image.fileName"
+              >
+                {{ image.fileName }}
+              </figcaption>
+            </figure>
+            }
+          </div>
+        </section>
+        }
         <div class="col-12 col-md-6">
           <div
             class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
@@ -237,37 +261,47 @@
               <span class="fw-bold text-body"
                 >{{ follow.applicationUser }}</span
               >
-              <span class="text-xs text-body-secondary">{{ follow.createdAt }}</span>
+              <span class="text-xs text-body-secondary"
+                >{{ follow.createdAt }}</span
+              >
             </div>
             <p class="m-0 text-body line-height-3">{{ follow.description }}</p>
           </div>
         </li>
         }
       </ul>
-       } @else {
-      <div class="p-4 bg-body-tertiary rounded text-center text-body-secondary italic">
+      } @else {
+      <div
+        class="p-4 bg-body-tertiary rounded text-center text-body-secondary italic"
+      >
         No hay registros de seguimiento.
-       </div>
-       }
-
-       @if (hasEvidence()) {
-       <section class="mt-4" aria-labelledby="task-view-evidence-title">
-         <h3 id="task-view-evidence-title" class="text-xl fw-bold mb-3 border-left-3 border-primary ps-3">Evidencia visual de seguimientos</h3>
-         @for (followUp of followUps(); track followUp.id) {
-         @if ((evidenceImages()[followUp.id] ?? []).length > 0) {
-         <div class="mb-3">
-           <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
-           <div class="d-flex flex-wrap gap-3">
-             @for (image of evidenceImages()[followUp.id]; track image.id) {
-             <img [src]="image.path" [alt]="image.fileName" class="collection-preview rounded border" />
-             }
-           </div>
-         </div>
-         }
-         }
-       </section>
-       }
-     </div>
+      </div>
+      } @if (hasEvidence()) {
+      <section class="mt-4" aria-labelledby="task-view-evidence-title">
+        <h3
+          id="task-view-evidence-title"
+          class="text-xl fw-bold mb-3 border-left-3 border-primary ps-3"
+        >
+          Evidencia visual de seguimientos
+        </h3>
+        @for (followUp of followUps(); track followUp.id) { @if
+        ((evidenceImages()[followUp.id] ?? []).length > 0) {
+        <div class="mb-3">
+          <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
+          <div class="d-flex flex-wrap gap-3">
+            @for (image of evidenceImages()[followUp.id]; track image.id) {
+            <img
+              [src]="image.path"
+              [alt]="image.fileName"
+              class="collection-preview rounded border"
+            />
+            }
+          </div>
+        </div>
+        } }
+      </section>
+      }
+    </div>
   </div>
 </div>
 
@@ -276,20 +310,20 @@
   <div class="m-0 mb-2 border-radius-0 shadow-none border-bottom">
     <div class="pb-2">
       <div class="d-flex justify-content-between mb-1">
-        <lx-tag [value]="t.folio"></lx-tag>
-        <lx-tag
+        <lux-tag [value]="t.folio"></lux-tag>
+        <lux-tag
           [value]="t.priority"
           [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warning' : 'info'"
-        ></lx-tag>
+        ></lux-tag>
       </div>
       <h2 class="text-xl fw-bold my-1 text-dark">{{ t.title }}</h2>
-      <p class="text-sm text-body-secondary m-0 d-flex align-items-center gap-1">
+      <p
+        class="text-sm text-body-secondary m-0 d-flex align-items-center gap-1"
+      >
         <app-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
       </p>
     </div>
-    <div
-      class="border-1 border shadow-sm rounded-xl mt-3 overflow-hidden"
-    >
+    <div class="border-1 border shadow-sm rounded-xl mt-3 overflow-hidden">
       <div
         class="d-flex align-items-center mb-0 p-3 bg-body-tertiary border-bottom-1 border"
       >
@@ -302,7 +336,9 @@
         </div>
         <div class="flex-grow-1">
           <div class="text-sm fw-bold text-body">{{ t.creator }}</div>
-          <div class="text-xs text-body-secondary text-uppercase tracking-wider">
+          <div
+            class="text-xs text-body-secondary text-uppercase tracking-wider"
+          >
             Solicitante
           </div>
         </div>
@@ -313,7 +349,7 @@
     </div>
   </div>
 
-   <div class="px-2 mb-3">
+  <div class="px-2 mb-3">
     <div class="row ion-no-padding g-4">
       <div class="d-flex flex-wrap w-full">
         <div class="col-6 pe-1">
@@ -322,29 +358,50 @@
               class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs fw-bold z-10 op-8"
             >
               Antes
-   </div>
+            </div>
 
-   @if (responsibles().length > 0) {
-   <section class="bg-body mb-3 rounded p-3" aria-labelledby="task-view-mobile-responsibles-title">
-     <h3 id="task-view-mobile-responsibles-title" class="text-xs text-uppercase text-medium">Responsables</h3>
-     <div class="d-flex flex-wrap gap-2 mt-2">
-       @for (responsible of responsibles(); track responsible.id) {
-       <span class="border rounded px-2 py-1 text-sm">{{ responsible.applicationUser }}{{ responsible.isPrimary ? " (Principal)" : "" }}</span>
-       }
-     </div>
-   </section>
-   }
-
-   @if (additionalImages().length > 0) {
-   <section class="bg-body mb-3 rounded p-3" aria-labelledby="task-view-mobile-images-title">
-     <h3 id="task-view-mobile-images-title" class="text-xs text-uppercase text-medium">Imágenes adicionales</h3>
-     <div class="d-flex flex-wrap gap-2 mt-2">
-       @for (image of additionalImages(); track image.id) {
-         <img [src]="image.path" [alt]="image.fileName" class="collection-preview-mobile rounded border" />
-       }
-     </div>
-   </section>
-   }
+            @if (responsibles().length > 0) {
+            <section
+              class="bg-body mb-3 rounded p-3"
+              aria-labelledby="task-view-mobile-responsibles-title"
+            >
+              <h3
+                id="task-view-mobile-responsibles-title"
+                class="text-xs text-uppercase text-medium"
+              >
+                Responsables
+              </h3>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                @for (responsible of responsibles(); track responsible.id) {
+                <span class="border rounded px-2 py-1 text-sm"
+                  >{{ responsible.applicationUser }}{{ responsible.isPrimary ? "
+                  (Principal)" : "" }}</span
+                >
+                }
+              </div>
+            </section>
+            } @if (additionalImages().length > 0) {
+            <section
+              class="bg-body mb-3 rounded p-3"
+              aria-labelledby="task-view-mobile-images-title"
+            >
+              <h3
+                id="task-view-mobile-images-title"
+                class="text-xs text-uppercase text-medium"
+              >
+                Imágenes adicionales
+              </h3>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                @for (image of additionalImages(); track image.id) {
+                <img
+                  [src]="image.path"
+                  [alt]="image.fileName"
+                  class="collection-preview-mobile rounded border"
+                />
+                }
+              </div>
+            </section>
+            }
             <img
               [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
               class="w-full h-full object-cover"
@@ -445,30 +502,33 @@
       </div>
       }
     </div>
-     } @else {
+    } @else {
     <div class="text-center p-4 text-medium bg-light rounded">
       No hay mensajes de seguimiento.
-     </div>
-     }
-
-     @if (hasEvidence()) {
-     <section class="mt-4" aria-labelledby="task-view-mobile-evidence-title">
-       <h3 id="task-view-mobile-evidence-title" class="text-lg fw-bold mb-3">Evidencia visual</h3>
-       @for (followUp of followUps(); track followUp.id) {
-       @if ((evidenceImages()[followUp.id] ?? []).length > 0) {
-       <div class="mb-3">
-         <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
-         <div class="d-flex flex-wrap gap-2">
-           @for (image of evidenceImages()[followUp.id]; track image.id) {
-            <img [src]="image.path" [alt]="image.fileName" class="collection-preview-mobile rounded border" />
-           }
-         </div>
-       </div>
-       }
-       }
-     </section>
-     }
-   </div>
+    </div>
+    } @if (hasEvidence()) {
+    <section class="mt-4" aria-labelledby="task-view-mobile-evidence-title">
+      <h3 id="task-view-mobile-evidence-title" class="text-lg fw-bold mb-3">
+        Evidencia visual
+      </h3>
+      @for (followUp of followUps(); track followUp.id) { @if
+      ((evidenceImages()[followUp.id] ?? []).length > 0) {
+      <div class="mb-3">
+        <p class="text-sm fw-semibold mb-2">{{ followUp.description }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          @for (image of evidenceImages()[followUp.id]; track image.id) {
+          <img
+            [src]="image.path"
+            [alt]="image.fileName"
+            class="collection-preview-mobile rounded border"
+          />
+          }
+        </div>
+      </div>
+      } }
+    </section>
+    }
+  </div>
 
   @if (t.seeEditingOptions) {
   <div

@@ -193,10 +193,8 @@
       </button>
     </footer>
   </section>
-  }
-
-  @if (activeView() === 'ledger') {
-  <lx-card>
+  } @if (activeView() === 'ledger') {
+  <lux-card>
     <div class="ledger-title">
       <div>
         <p class="eyebrow">Libro auxiliar</p>
@@ -274,10 +272,8 @@
         Siguiente
       </button>
     </footer>
-  </lx-card>
-  }
-
-  @if (loadingEstadoCuenta()) {
+  </lux-card>
+  } @if (loadingEstadoCuenta()) {
   <div class="statement-backdrop">
     <section class="statement-panel statement-loading" aria-live="polite">
       Consultando estado de cuenta...
@@ -305,8 +301,7 @@
         <span>
           Real del periodo
           <strong
-            >{{ estadoCuentaPresupuesto()!.realMes | number: "1.2-2"
-            }}</strong
+            >{{ estadoCuentaPresupuesto()!.realMes | number: "1.2-2" }}</strong
           >
         </span>
         <span>
@@ -348,12 +343,12 @@
               <td>{{ line.tipoPoli }} {{ line.numPoliz }}</td>
               <td>{{ line.conceptoPoliza }}</td>
               <td>
-                {{ line.debeHaber === "D" ? (line.montoMov | number: "1.2-2")
-                : "—" }}
+                {{ line.debeHaber === "D" ? (line.montoMov | number: "1.2-2") :
+                "—" }}
               </td>
               <td>
-                {{ line.debeHaber === "H" ? (line.montoMov | number: "1.2-2")
-                : "—" }}
+                {{ line.debeHaber === "H" ? (line.montoMov | number: "1.2-2") :
+                "—" }}
               </td>
             </tr>
             } @empty {

@@ -13,10 +13,18 @@
 <div class="row g-4">
   <div class="col-12 col-md-6">
     @if (ordenCompra(); as oc) {
-    <lx-message [severity]="isLocked() ? 'warn' : 'info'" class="mt-1 p-0 w-full">{{ oc.lockReason }}</lx-message>
+    <lux-message
+      [severity]="isLocked() ? 'warn' : 'info'"
+      class="mt-1 p-0 w-full"
+      >{{ oc.lockReason }}</lux-message
+    >
 
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
-    <lx-message severity="warn" icon="material-symbols-light:warning" class="mt-2 p-0 w-full"><div class="d-flex align-items-center">
+    <lux-message
+      severity="warn"
+      icon="material-symbols-light:warning"
+      class="mt-2 p-0 w-full"
+      ><div class="d-flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
           ({{oc.folioSolicitudCompra}}) pero no está vinculada
@@ -27,8 +35,8 @@
           size="sm"
           variant="text"
           (clicked)="onManageLinks()"
-        />
-      </div></lx-message>
+        /></div
+    ></lux-message>
     } }
   </div>
   <div class="col-12 col-md-6">
@@ -147,10 +155,16 @@
         <tr>
           <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
           <td class="text-center">
-            <lx-tag severity="danger" [value]="item.totalGastosPendientes | number: '1.2-2'" />
+            <lux-tag
+              severity="danger"
+              [value]="item.totalGastosPendientes | number: '1.2-2'"
+            />
           </td>
           <td class="text-center">
-            <lx-tag [severity]="item.presupuestoRestante < item.amount ? 'danger' : 'success'" [value]="item.presupuestoRestante | number: '1.2-2'" />
+            <lux-tag
+              [severity]="item.presupuestoRestante < item.amount ? 'danger' : 'success'"
+              [value]="item.presupuestoRestante | number: '1.2-2'"
+            />
           </td>
           <td>{{ item.amount | number: '1.2-2' }}</td>
           <td>
@@ -175,8 +189,8 @@
   <!-- 6. Panel: Enlaces a Documentos -->
   <div class="d-none d-sm-block col-sm-3"></div>
   <div class="col-12 col-sm-2 text-end">
-    <lx-card [padded]="false">
-<div class="d-flex flex-column">
+    <lux-card [padded]="false">
+      <div class="d-flex flex-column">
         @if (solicitudCompraId() > 0) {
         <il-button-item
           iconClass="material-symbols-light:attach-money"
@@ -203,16 +217,16 @@
         />
         }
       </div>
-</lx-card>
+    </lux-card>
   </div>
 </div>
 } @else {
 <div class="mb-2">
   <div>
-    <lx-message severity="info" class="w-full mt-2">
+    <lux-message severity="info" class="w-full mt-2">
       Esta es una orden de compra por devoluci&oacute;n y no afecta ni consume
       presupuesto.
-    </lx-message>
+    </lux-message>
   </div>
 </div>
 } }
@@ -309,18 +323,14 @@
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
       <td colspan="3" class="text-sm text-end">RETENCIÓNN IVA</td>
-      <td class="text-end">
-        - {{ totals().retencionIva | number: '1.2-2' }}
-      </td>
+      <td class="text-end">- {{ totals().retencionIva | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     } @if (totals().retencionIsr > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
       <td colspan="3" class="text-sm text-end">RETENCIÓNN ISR</td>
-      <td class="text-end">
-        - {{ totals().retencionIsr | number: '1.2-2' }}
-      </td>
+      <td class="text-end">- {{ totals().retencionIsr | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     }

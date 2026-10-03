@@ -1,18 +1,18 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   input,
 } from "@angular/core";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "il-button-view-pdf",
-   imports: [AppIcon, LxTooltipDirective],
+  imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
@@ -24,9 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="handleClick($event)"
     >
-      <app-icon
-        [icon]="resolvedIconClass() || IconCatalog.FilePdf"
-      />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" />
       <span>{{ label() || "Ver archivo" }}</span>
     </button>
   `,
@@ -65,4 +63,3 @@ export class WebButtonLabelViewPdf extends BaseButton {
     );
   }
 }
-

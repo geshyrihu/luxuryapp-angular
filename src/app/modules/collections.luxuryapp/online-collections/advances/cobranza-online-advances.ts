@@ -4,18 +4,15 @@ import {
   computed,
   inject,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
   AppRankedList,
   RankedListItem,
 } from "@ui/shared/ranked-list/ranked-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
-import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
 import { CobranzaOnlineMorosidadDetailModalComponent } from "../delinquency/cobranza-online-morosidad-detail-modal";
+import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
 /**
@@ -32,7 +29,8 @@ import localeMx from "@angular/common/locales/es-MX";
 
 registerLocaleData(localeMx, "es-MX");
 
-const formatMxn = (val: number) => formatNumber(Math.abs(val), "es-MX", "1.0-0");
+const formatMxn = (val: number) =>
+  formatNumber(Math.abs(val), "es-MX", "1.0-0");
 
 @Component({
   selector: "app-cobranza-online-advances",
@@ -43,7 +41,7 @@ const formatMxn = (val: number) => formatNumber(Math.abs(val), "es-MX", "1.0-0")
 export class CobranzaOnlineAdvances {
   private customerIdS = inject(CustomerIdService);
   private store = inject(CobranzaOnlineStoreService);
-  private dialogS = inject(DialogHandlerService);
+  private dialogHandlerS = inject(DialogHandlerService);
 
   readonly loading = this.store.isLoading;
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
@@ -110,7 +108,7 @@ export class CobranzaOnlineAdvances {
     if (!condomino) return;
 
     try {
-      await this.dialogS.openDialog(
+      await this.dialogHandlerS.openDialog(
         CobranzaOnlineMorosidadDetailModalComponent,
         {
           row: {
@@ -123,7 +121,7 @@ export class CobranzaOnlineAdvances {
           year: this.analysis()?.year,
         },
         "Detalle de Saldo a Favor",
-        DialogSize.md,
+        this.dialogHandlerS.sizeMd,
       );
     } catch (error) {
       console.error("Dialog closed", error);
@@ -135,4 +133,3 @@ export class CobranzaOnlineAdvances {
 function toLevel3(accountNumber: string): string {
   return accountNumber.split("-").slice(0, 3).join("-");
 }
-

@@ -12,6 +12,14 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { MisInspeccionesAgregarImagenes } from "@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -22,17 +30,6 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { map } from "rxjs";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MisInspeccionesAgregarImagenes } from "@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -47,7 +44,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabel,
     LxTooltipDirective,
     AppTable,
-
 
     DataViewMobile,
     TableCaption,
@@ -208,5 +204,3 @@ export class MisInspeccionesEjecutar implements OnInit {
       });
   }
 }
-
-

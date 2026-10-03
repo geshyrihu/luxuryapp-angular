@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,10 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -27,6 +22,11 @@ import {
   CandidateWorkExperienceItem,
 } from "@shared/integration/reclutamiento/candidates/candidate/interfaces/candidate.dto";
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { firstValueFrom } from "rxjs";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 /**
  * Detalle completo de un candidato de la cola de entrevistador (info personal,
@@ -136,4 +136,3 @@ export class EmployeeQueueCandidateDetailModal implements OnInit {
     this.ref.close();
   }
 }
-

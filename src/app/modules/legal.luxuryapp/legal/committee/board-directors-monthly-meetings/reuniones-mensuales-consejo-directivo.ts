@@ -1,7 +1,4 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { addIcons } from "ionicons";
-import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "@core/helpers/extension-file";
@@ -13,6 +10,9 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { addIcons } from "ionicons";
+import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
   imports: [AppIcon],
@@ -77,4 +77,3 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     );
   }
 }
-

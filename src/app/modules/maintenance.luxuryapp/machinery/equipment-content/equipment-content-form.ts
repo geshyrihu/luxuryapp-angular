@@ -21,18 +21,18 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
+import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import {
   EquipmentContentFormDialogData,
   EquipmentContentFormGroup,
 } from "./interfaces/equipment-content.interface";
-import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 
 @Component({
   selector: "app-equipment-content-form",

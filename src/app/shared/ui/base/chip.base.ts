@@ -5,7 +5,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
  * Base compartida de Chip (API + lógica de remoción/click).
  *  - web:     `app-chip`  (Bootstrap p-chip)
  *  - mobile:  `ili-chip`  (Ionic ion-chip)
- *  - wrapper: `lx-chip`   (auto runtime)
+ *  - wrapper: `lux-chip`   (auto runtime)
  *
  * El icono se pasa como nombre de `app-icon` (Iconify), no como clase de PrimeIcons
  * ni `ion-icon`, para mantener la consistencia con el resto de la librería.
@@ -39,4 +39,3 @@ export abstract class ChipBase {
     this.chipClick.emit();
   }
 }
-

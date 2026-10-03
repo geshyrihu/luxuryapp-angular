@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { TimelineBase } from "@ui/base/timeline.base";
 import { MobileTimeline } from "@ui/mobile/timeline/timeline";
 import { Timeline } from "@ui/web/timeline/timeline";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Timeline. Renderiza `app-timeline` (Bootstrap) o
  * `ili-timeline` (timeline vertical nativo) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-timeline [events]="..." />`.
+ * Punto de entrada recomendado: `<lux-timeline [events]="..." />`.
  */
 @Component({
-  selector: "lx-timeline",
+  selector: "lux-timeline",
 
   imports: [Timeline, MobileTimeline],
   template: `
@@ -24,4 +24,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxTimeline extends TimelineBase {
   protected platform = inject(PlatformService);
 }
-

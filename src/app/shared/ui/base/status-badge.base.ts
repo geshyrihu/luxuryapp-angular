@@ -39,19 +39,43 @@ export const STATUS_SEVERITY_STYLES: Record<
   string,
   { bg: string; text: string; border: string }
 > = {
-  success: { bg: "var(--ds-success-light)", text: "var(--ds-success)", border: "transparent" },
-  info: { bg: "var(--ds-info-light)", text: "var(--ds-info)", border: "transparent" },
-  warn: { bg: "var(--ds-warning-light)", text: "var(--ds-warning)", border: "transparent" },
-  danger: { bg: "var(--ds-danger-light)", text: "var(--ds-danger)", border: "transparent" },
-  secondary: { bg: "var(--ds-bg-sunken)", text: "var(--ds-text-secondary)", border: "var(--ds-border)" },
-  contrast: { bg: "var(--ds-bg-page)", text: "var(--ds-text-primary)", border: "var(--ds-border-strong)" },
+  success: {
+    bg: "var(--ds-success-light)",
+    text: "var(--ds-success)",
+    border: "transparent",
+  },
+  info: {
+    bg: "var(--ds-info-light)",
+    text: "var(--ds-info)",
+    border: "transparent",
+  },
+  warn: {
+    bg: "var(--ds-warning-light)",
+    text: "var(--ds-warning)",
+    border: "transparent",
+  },
+  danger: {
+    bg: "var(--ds-danger-light)",
+    text: "var(--ds-danger)",
+    border: "transparent",
+  },
+  secondary: {
+    bg: "var(--ds-bg-sunken)",
+    text: "var(--ds-text-secondary)",
+    border: "var(--ds-border)",
+  },
+  contrast: {
+    bg: "var(--ds-bg-page)",
+    text: "var(--ds-text-primary)",
+    border: "var(--ds-border-strong)",
+  },
 };
 
 /**
  * Base compartida de StatusBadge (API + lógica de estatus/severidad).
  *  - web:     `app-status-badge` (span + lxTooltip)
  *  - mobile:  `ili-status-badge` (span sin tooltip; touch no tiene hover)
- *  - wrapper: `lx-status-badge`  (auto runtime)
+ *  - wrapper: `lux-status-badge`  (auto runtime)
  */
 @Directive()
 export abstract class StatusBadgeBase {
@@ -78,17 +102,18 @@ export abstract class StatusBadgeBase {
     [ETypeEmpresa.Gastos]: { text: "GASTOS", severity: "warn" },
   };
 
-  private visibilityConfig: Record<string, { text: string; severity: string }> = {
-    interno: { text: "INTERNO", severity: "secondary" },
-    externo: { text: "EXTERNO", severity: "warn" },
-    público: { text: "PÚBLICO", severity: "success" },
-    publico: { text: "PÚBLICO", severity: "success" },
-    condominios: { text: "CONDOMINIOS", severity: "info" },
-    condómino: { text: "CONDÓMINO", severity: "info" },
-    condomino: { text: "CONDÓMINO", severity: "info" },
-    condóminos: { text: "CONDÓMINOS", severity: "info" },
-    condominos: { text: "CONDÓMINOS", severity: "info" },
-  };
+  private visibilityConfig: Record<string, { text: string; severity: string }> =
+    {
+      interno: { text: "INTERNO", severity: "secondary" },
+      externo: { text: "EXTERNO", severity: "warn" },
+      público: { text: "PÚBLICO", severity: "success" },
+      publico: { text: "PÚBLICO", severity: "success" },
+      condominios: { text: "CONDOMINIOS", severity: "info" },
+      condómino: { text: "CONDÓMINO", severity: "info" },
+      condomino: { text: "CONDÓMINO", severity: "info" },
+      condóminos: { text: "CONDÓMINOS", severity: "info" },
+      condominos: { text: "CONDÓMINOS", severity: "info" },
+    };
 
   getSeverity(): string {
     if (this.isVisibility()) {
@@ -102,7 +127,10 @@ export abstract class StatusBadgeBase {
   }
 
   get styles(): { bg: string; text: string; border: string } {
-    return STATUS_SEVERITY_STYLES[this.getSeverity()] || STATUS_SEVERITY_STYLES.secondary;
+    return (
+      STATUS_SEVERITY_STYLES[this.getSeverity()] ||
+      STATUS_SEVERITY_STYLES.secondary
+    );
   }
 
   getStatusText(): string {

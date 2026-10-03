@@ -1,5 +1,5 @@
 <h4 class="mb-0 text-xl">Calendario General de Mantenimiento</h4>
-<lx-divider />
+<lux-divider />
 
 <!-- Contenido visible solo en pantallas medianas y grandes -->
 <div class="d-none d-md-block">
@@ -12,11 +12,11 @@
         <div class="d-flex align-items-center gap-2">
           <span>{{ item.month }}</span>
           @if (item.items?.length > 0) {
-          <lx-tag
+          <lux-tag
             [value]="item.items.length"
             severity="secondary"
             class="text-xs"
-           />
+          />
           }
         </div>
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
@@ -32,7 +32,7 @@
           <div class="d-flex align-items-start gap-2">
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
             <div class="flex-shrink-0">
-              <lx-menu #menu [model]="menuItems()" [popup]="true"></lx-menu>
+              <lux-menu #menu [model]="menuItems()" [popup]="true"></lux-menu>
               <il-button-item
                 iconClass="material-symbols-light:menu"
                 (clicked)="onSelectItem(evento, menu)"
@@ -49,19 +49,16 @@
                 {{ evento.nombreEquipo }}
               </div>
               @if (evento.task) {
-              <div
-                class="text-body-secondary text-sm mb-2"
-                
-              >
+              <div class="text-body-secondary text-sm mb-2">
                 {{ evento.task }}
               </div>
               } @if (evento.frequency) {
-              <lx-tag
+              <lux-tag
                 [value]="evento.frequency"
                 severity="info"
                 icon="material-symbols-light:schedule"
                 class="text-xs"
-               />
+              />
               }
             </div>
             <app-icon
@@ -71,7 +68,9 @@
           </div>
         </div>
         } @empty {
-        <div class="text-center text-body-secondary text-sm py-3">Sin actividades</div>
+        <div class="text-center text-body-secondary text-sm py-3">
+          Sin actividades
+        </div>
         }
       </div>
     </div>
@@ -90,32 +89,28 @@
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-          
         >
-          <app-icon
-            icon="material-symbols-light:event-available"
-            
-          />
+          <app-icon icon="material-symbols-light:event-available" />
         </div>
-        
-          <h2>{{ item.nombreEquipo }}</h2>
-          <p>{{ item.month }} | {{ item.task }}</p>
-          <p>Frecuencia: {{ item.frequency }}</p>
-        
+
+        <h2>{{ item.nombreEquipo }}</h2>
+        <p>{{ item.month }} | {{ item.task }}</p>
+        <p>Frecuencia: {{ item.frequency }}</p>
+
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
         <ili-action-menu end>
-            <ng-container actions>
-              <ili-button-edit
-                (clicked)="onModalForm(item.id, item.eMonth)"
-                label="Editar"
-              />
-              <ili-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
-              />
-            </ng-container>
-          </ili-action-menu>
-          }
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="onModalForm(item.id, item.eMonth)"
+              label="Editar"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
+        }
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

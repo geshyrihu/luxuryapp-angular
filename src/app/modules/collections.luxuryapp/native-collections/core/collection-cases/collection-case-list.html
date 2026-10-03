@@ -1,8 +1,12 @@
 <div class="card p-0 p-md-4">
-  <lx-card class="card card--elevated mb-3">
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+  <lux-card class="card card--elevated mb-3">
+    <div
+      class="d-flex align-items-center justify-content-between flex-wrap gap-2"
+    >
       <div>
-        <div class="fw-semibold text-sm">Evaluación Automática de Morosidad</div>
+        <div class="fw-semibold text-sm">
+          Evaluación Automática de Morosidad
+        </div>
         <div class="text-xs text-body-secondary mt-1">
           Analiza deudas por antigüedad (30/60/90+ días) y escala a gestoría las
           propiedades que superan el umbral.
@@ -16,7 +20,7 @@
         (clicked)="onEvaluateAndEscalate()"
       />
     </div>
-  </lx-card>
+  </lux-card>
 
   <app-table
     [value]="dataSignal()"
@@ -56,14 +60,14 @@
           {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="agingMeta(item.agingBucket).label"
             [severity]="agingMeta(item.agingBucket).severity"
           />
         </td>
         <td class="text-sm">{{ item.assignedTo || "Sin asignar" }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="statusMeta(item.status).label"
             [severity]="statusMeta(item.status).severity"
           />
@@ -104,12 +108,10 @@
         <div class="flex-fill min-w-0">
           <h3>{{ item.propertyName }}</h3>
           <p>
-            {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }} ·
-            {{ item.agingBucket }}
+            {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }} · {{
+            item.agingBucket }}
           </p>
-          <p>
-            {{ item.status }} · {{ item.activities.length }} actividades
-          </p>
+          <p>{{ item.status }} · {{ item.activities.length }} actividades</p>
         </div>
         <ili-action-menu slot="end">
           <ng-container actions>

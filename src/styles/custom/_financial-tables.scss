@@ -468,7 +468,11 @@
   }
 
   thead th {
-    background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--rf-grad-from) 0%,
+      var(--rf-grad-to) 100%
+    );
     color: var(--rf-on-dark);
     font-weight: 800;
     text-transform: uppercase;
@@ -576,7 +580,11 @@
     }
 
     .app-table-thead > tr > th {
-      background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%) !important;
+      background: linear-gradient(
+        180deg,
+        var(--rf-grad-from) 0%,
+        var(--rf-grad-to) 100%
+      ) !important;
       color: var(--rf-on-dark) !important;
       font-weight: 800;
       text-transform: uppercase;
@@ -844,12 +852,12 @@
 // ── CONTENEDOR DE TABS: evitar overflow horizontal ─────────
 // Los componentes de reporte son custom elements (display: inline por defecto)
 // y aportan min-content que puede superar el viewport en movil.
-.lx-tabs-panels > [tab] {
+.lux-tabs-panels > [tab] {
   min-width: 0;
   max-width: 100%;
 }
 
-.lx-tabs-panels > [tab] > * {
+.lux-tabs-panels > [tab] > * {
   display: block;
   min-width: 0;
   max-width: 100%;
@@ -863,7 +871,11 @@
 }
 
 .rf-panel-title {
-  background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--rf-grad-from) 0%,
+    var(--rf-grad-to) 100%
+  );
   color: var(--rf-on-dark);
   font-weight: 800;
   text-transform: uppercase;
@@ -926,17 +938,19 @@
 // ── ALERTAS FINANCIERAS (Forecast) ────────────────────────
 // Clases de utilidad para resaltar filas completas en base a cálculos
 .fila-deficit > td {
-  background-color: var(--rf-deficit-tint) !important; /* Tinte muy sutil rojo */
+  background-color: var(
+    --rf-deficit-tint
+  ) !important; /* Tinte muy sutil rojo */
 }
 .fila-deficit > td:first-child {
   box-shadow: inset 4px 0 0 0 var(--ds-danger) !important; /* Borde izquierdo indicador */
 }
 
 .fila-alerta-incremento > td {
-  background-color: var(--rf-alerta-tint) !important; /* Tinte muy sutil naranja/amarillo */
+  background-color: var(
+    --rf-alerta-tint
+  ) !important; /* Tinte muy sutil naranja/amarillo */
 }
 .fila-alerta-incremento > td:first-child {
   box-shadow: inset 4px 0 0 0 var(--ds-warning) !important; /* Borde izquierdo indicador */
 }
-
-

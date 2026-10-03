@@ -24,8 +24,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxImage } from "@ui/adaptive/image/image";
+import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -125,7 +125,11 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         opacity: 0.55;
       }
       :host ::ng-deep tr.task-link-target > td {
-        background-color: color-mix(in srgb, var(--ds-ai) 10%, transparent) !important;
+        background-color: color-mix(
+          in srgb,
+          var(--ds-ai) 10%,
+          transparent
+        ) !important;
         outline: 2px dashed color-mix(in srgb, var(--ds-ai) 55%, transparent);
         outline-offset: -2px;
       }

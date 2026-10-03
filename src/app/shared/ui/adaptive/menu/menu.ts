@@ -1,11 +1,11 @@
 import { Component, inject, viewChild } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { MenuBase } from "@ui/base/menu.base";
 import { MobileMenu } from "@ui/mobile/menu/menu";
 import { AppMenu } from "@ui/web/menu/menu";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-menu",
+  selector: "lux-menu",
 
   imports: [AppMenu, MobileMenu],
   template: `
@@ -14,7 +14,11 @@ import { PlatformService } from "@core/services/platform.service";
         ><ng-content
       /></ili-menu>
     } @else {
-      <app-menu #webMenu [model]="model()" [popup]="popup()" [styleClass]="styleClass()"
+      <app-menu
+        #webMenu
+        [model]="model()"
+        [popup]="popup()"
+        [styleClass]="styleClass()"
         ><ng-content
       /></app-menu>
     }

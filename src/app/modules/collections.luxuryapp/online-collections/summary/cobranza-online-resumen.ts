@@ -5,15 +5,12 @@ import {
   computed,
   inject,
 } from "@angular/core";
-import { PieChart } from "@ui/web/charts/pie-chart";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ThemeService } from "@core/services/theme.service";
+import { PieChart } from "@ui/web/charts/pie-chart";
 import { ChargeTemplateForm } from "../../native-collections/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
@@ -26,8 +23,7 @@ import {
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [
-    AccountingNumberPipe,CommonModule, PieChart],
+  imports: [AccountingNumberPipe, CommonModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

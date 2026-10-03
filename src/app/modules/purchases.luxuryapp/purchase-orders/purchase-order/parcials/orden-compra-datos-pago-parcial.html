@@ -3,7 +3,10 @@
     class="d-flex align-items-center justify-content-between px-3 py-2 bg-dark"
   >
     <div class="d-flex align-items-center gap-2">
-      <app-icon [icon]="'material-symbols-light:credit-card'" class="text-white text-sm" />
+      <app-icon
+        [icon]="'material-symbols-light:credit-card'"
+        class="text-white text-sm"
+      />
       <span class="fw-semibold text-sm text-white">DATOS DE PAGO</span>
     </div>
     @if (!bloqueada()) {
@@ -64,7 +67,10 @@
         SE FONDEA
       </div>
       <div class="flex-grow-1">
-        <lx-tag [severity]="ordenCompra().sendToFunding ? 'success' : 'secondary'" [value]="ordenCompra().sendToFunding ? 'Sí' : 'No'" />
+        <lux-tag
+          [severity]="ordenCompra().sendToFunding ? 'success' : 'secondary'"
+          [value]="ordenCompra().sendToFunding ? 'Sí' : 'No'"
+        />
       </div>
     </div>
 

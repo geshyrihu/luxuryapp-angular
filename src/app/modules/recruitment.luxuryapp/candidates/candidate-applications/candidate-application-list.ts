@@ -6,8 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { addIcons } from "ionicons";
-import { appsOutline } from "ionicons/icons";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
@@ -17,6 +15,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
+import { addIcons } from "ionicons";
+import { appsOutline } from "ionicons/icons";
 import { candidateProcessStageLabel } from "../../recruitment-shared/candidate-stage-labels";
 import { CandidateApplicationForm } from "./candidate-application-form";
 import { CandidateApplicationListDesktop } from "./desktop/candidate-application-list-desktop";
@@ -127,4 +127,3 @@ export class CandidateApplicationList implements OnInit {
     if (response) this.onLoadData();
   }
 }
-

@@ -1,5 +1,5 @@
 @if (applicationUser(); as applicationUser) {
-<lx-card>
+<lux-card>
   <div class="row g-4">
     <div class="col-12 col-md-4 d-flex justify-content-center">
       <img [src]="urlImage()" alt="no-img" class="p-2 rounded w-9rem h-auto" />
@@ -8,10 +8,10 @@
       <div class="p-2">
         <div class="d-flex justify-content-between align-items-start">
           <h3 class="h4 mt-0 mb-2">{{ applicationUser.fullName }}</h3>
-          <lx-tag
+          <lux-tag
             [value]="applicationUser.active ? 'Activo' : 'Inactivo'"
             [severity]="applicationUser.active ? 'success' : 'danger'"
-          ></lx-tag>
+          ></lux-tag>
         </div>
         <h5 class="card-title text-body-secondary mt-0 mb-1">
           {{ applicationUser.applicationRole }}
@@ -19,7 +19,7 @@
         <h5 class="card-title text-body-secondary mt-0 mb-2">
           {{ applicationUser.customer }}
         </h5>
-        <lx-divider />
+        <lux-divider />
         <div class="text-body-secondary">
           <p class="mt-2 mb-1">{{ applicationUser.email }}</p>
           <p class="my-1">{{ applicationUser.birth }}</p>
@@ -28,5 +28,5 @@
       </div>
     </div>
   </div>
-</lx-card>
+</lux-card>
 }

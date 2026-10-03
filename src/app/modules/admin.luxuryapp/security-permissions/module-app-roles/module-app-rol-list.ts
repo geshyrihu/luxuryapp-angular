@@ -6,12 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -24,7 +18,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ModuleAppRolDto } from "./interfaces/module-app-rol.dto";
 import { ModuleAppRolUpdate } from "./module-app-rol-update";
 @Component({

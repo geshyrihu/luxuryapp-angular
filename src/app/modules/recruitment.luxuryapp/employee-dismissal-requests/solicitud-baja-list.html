@@ -21,7 +21,9 @@
       <th>PUESTO</th>
       <th>FECHA BAJA</th>
       <th>TIPO BAJA</th>
-      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
+      <th appSortableColumn="status">
+        ESTATUS <app-sorticon field="status" />
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -55,7 +57,7 @@
       <td>{{ item.executionDate }}</td>
       <td>{{ item.tipoBaja }}</td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="requestStatusTagSeverity(item.status)"
         />

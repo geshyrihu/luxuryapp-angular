@@ -1,13 +1,13 @@
 import { Directive, input } from "@angular/core";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 /**
  * Base compartida de Breadcrumbs.
  *  - web:     `app-breadcrumbs` (Bootstrap nativo)
  *  - mobile:  `ili-breadcrumbs` (scroll horizontal nativo con chevrons)
- *  - wrapper: `lx-breadcrumbs`  (auto runtime)
+ *  - wrapper: `lux-breadcrumbs`  (auto runtime)
  * `MenuItem` es el modelo de menú estándar del proyecto.
  */
 @Directive()
@@ -26,4 +26,3 @@ export abstract class BreadcrumbsBase {
     item.command?.({ originalEvent: event, item });
   }
 }
-

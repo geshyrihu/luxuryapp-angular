@@ -16,7 +16,11 @@
 </div>
 
 @if (service.mostrarPara || service.mostrarCo || service.mostrarCco) {
-<form [formGroup]="service.form" (ngSubmit)="service.onAddCorreo()" class="ms-0 mt-1">
+<form
+  [formGroup]="service.form"
+  (ngSubmit)="service.onAddCorreo()"
+  class="ms-0 mt-1"
+>
   <div class="row align-items-center g-4">
     <div class="col-10">
       <ion-input-text
@@ -36,13 +40,21 @@
   </div>
   <div class="mt-1">
     <div>
-      @if (service.form.controls.email.errors && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
+      @if (service.form.controls.email.errors &&
+      (service.form.controls.email.dirty ||
+      service.form.controls.email.touched)) {
       <small class="p-error d-block">
-        @if (service.form.controls.email.errors['required'] && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
+        @if (service.form.controls.email.errors['required'] &&
+        (service.form.controls.email.dirty ||
+        service.form.controls.email.touched)) {
         <span>Correo electronico es requerido</span>
-        }
-        @if (service.form.controls.email.errors['pattern'] && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
-        <span>El correo electrónico debe ser una dirección de correo electrónico válida</span>
+        } @if (service.form.controls.email.errors['pattern'] &&
+        (service.form.controls.email.dirty ||
+        service.form.controls.email.touched)) {
+        <span
+          >El correo electrónico debe ser una dirección de correo electrónico
+          válida</span
+        >
         }
       </small>
       }
@@ -53,9 +65,10 @@
 
 <div class="mt-2">
   <div>
-    @for (item of service.destinatariosAdicionales; track item; let i = $index) {
+    @for (item of service.destinatariosAdicionales; track item; let i = $index)
+    {
     <span class="ms-1 relative inline-block">
-      <lx-tag
+      <lux-tag
         value="{{ item.nivelPrivacidad }}/{{ item.email }}"
         severity="info"
         class="p-2"

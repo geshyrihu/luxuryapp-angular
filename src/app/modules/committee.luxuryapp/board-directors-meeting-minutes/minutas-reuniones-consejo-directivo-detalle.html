@@ -12,7 +12,8 @@
           Minuta de Junta con Mesa Directiva
         </h3>
         <p class="committee-card-panel__subtitle">
-          <app-icon icon="material-symbols-light:calendar-today" /> {{ meeting.date }}
+          <app-icon icon="material-symbols-light:calendar-today" /> {{
+          meeting.date }}
         </p>
       </div>
     </div>
@@ -21,7 +22,10 @@
   <!-- Administración -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="material-symbols-light:badge" class="committee-section__icon" />
+      <app-icon
+        icon="material-symbols-light:badge"
+        class="committee-section__icon"
+      />
       <h4 class="committee-section__title">Administración</h4>
       <span class="committee-section__count"
         >{{ meeting.administracion?.length || 0 }}</span
@@ -36,7 +40,9 @@
             <app-icon icon="material-symbols-light:person" />
           </span>
           <span class="committee-person__info">
-            <span class="committee-person__name">{{ admin.applicationUser }}</span>
+            <span class="committee-person__name"
+              >{{ admin.applicationUser }}</span
+            >
             <span class="committee-person__role">{{ admin.cargo }}</span>
           </span>
         </div>
@@ -51,7 +57,10 @@
   <!-- Comité -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="material-symbols-light:group" class="committee-section__icon" />
+      <app-icon
+        icon="material-symbols-light:group"
+        class="committee-section__icon"
+      />
       <h4 class="committee-section__title">Comité</h4>
       <span class="committee-section__count"
         >{{ meeting.comite?.length || 0 }}</span
@@ -66,7 +75,9 @@
             <app-icon icon="material-symbols-light:group" />
           </span>
           <span class="committee-person__info">
-            <span class="committee-person__name">{{ member.applicationUser }}</span>
+            <span class="committee-person__name"
+              >{{ member.applicationUser }}</span
+            >
             <span class="committee-person__role">{{ member.cargo }}</span>
           </span>
         </div>
@@ -81,7 +92,10 @@
   <!-- Invitados Externos -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="material-symbols-light:person-add" class="committee-section__icon" />
+      <app-icon
+        icon="material-symbols-light:person-add"
+        class="committee-section__icon"
+      />
       <h4 class="committee-section__title">Invitados Externos</h4>
       <span class="committee-section__count"
         >{{ meeting.externos?.length || 0 }}</span
@@ -110,7 +124,10 @@
   <!-- Acuerdos y Asuntos Tratados -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="material-symbols-light:article" class="committee-section__icon" />
+      <app-icon
+        icon="material-symbols-light:article"
+        class="committee-section__icon"
+      />
       <h4 class="committee-section__title">Acuerdos y Asuntos Tratados</h4>
     </div>
     <div class="committee-section__body">
@@ -122,7 +139,7 @@
         <div class="committee-agreement">
           <div class="committee-agreement__head">
             <h6 class="committee-agreement__title">{{ detail.title }}</h6>
-            <lx-tag
+            <lux-tag
               [severity]="getStatusBadgeColor(detail.status)"
               [value]="detail.status"
             />
@@ -130,7 +147,9 @@
           <p class="committee-agreement__desc">{{ detail.requestService }}</p>
           @if (detail.latestFollowUp) {
           <div class="committee-agreement__followup">
-            <p class="committee-agreement__followup-label">Último seguimiento</p>
+            <p class="committee-agreement__followup-label">
+              Último seguimiento
+            </p>
             <p class="committee-agreement__followup-text">
               {{ detail.latestFollowUp.seguimiento }}
             </p>

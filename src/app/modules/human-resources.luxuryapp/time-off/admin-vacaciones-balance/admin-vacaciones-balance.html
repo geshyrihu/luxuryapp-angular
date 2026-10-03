@@ -1,4 +1,4 @@
-<lx-confirm-dialog />
+<lux-confirm-dialog />
 
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <app-table
@@ -65,10 +65,10 @@
         <strong>{{ item.currentSystemBalance }}</strong>
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="getSeverity(item.isDiscrepant)"
           [value]="item.isDiscrepant ? 'Sí' : 'No'"
-        ></lx-tag>
+        ></lux-tag>
       </td>
       <td>
         <iw-button-edit (clicked)="openEditModal(item)" />
@@ -120,10 +120,10 @@
 
       @if (item.isDiscrepant) {
       <div class="mt-1">
-        <lx-tag
+        <lux-tag
           severity="danger"
           value="DISCREPANCIA (BALANCE NEGATIVO)"
-        ></lx-tag>
+        ></lux-tag>
       </div>
       }
 

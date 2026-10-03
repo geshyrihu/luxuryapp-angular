@@ -8,18 +8,15 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 import ModalGenerarNomina from "./generate-payroll-modal/modal-generar-nomina";
@@ -28,8 +25,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 @Component({
   selector: "app-nominas",
@@ -142,4 +139,3 @@ export default class Nominas {
     return estadoValue === 3;
   }
 }
-

@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { TableBase } from "@ui/base/table.base";
 import { MobileTable } from "@ui/mobile/table/table";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-table",
+  selector: "lux-table",
 
   imports: [MobileTable],
   template: `
@@ -34,7 +34,7 @@ import { PlatformService } from "@core/services/platform.service";
     } @else {
       <!-- Web uses Bootstrap p-table directly in feature components -->
       <p
-        class="lx-table-web-fallback"
+        class="lux-table-web-fallback"
         style="color: var(--ds-text-secondary); font-size: 0.875rem; padding: 1rem;"
       >
         Usa &lt;p-table&gt; de Bootstrap directamente en web.
@@ -45,4 +45,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxTable extends TableBase {
   protected platform = inject(PlatformService);
 }
-

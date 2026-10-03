@@ -13,9 +13,7 @@
           <app-icon icon="material-symbols-light:calculate" class="text-2xl" />
         </div>
         <div>
-          <h5 class="m-0 fw-bold text-body">
-            Módulo Contable: Presentaciones
-          </h5>
+          <h5 class="m-0 fw-bold text-body">Módulo Contable: Presentaciones</h5>
           <span class="text-body-secondary text-sm"
             >Carga y gestión de reportes financieros para juntas mensuales</span
           >
@@ -47,7 +45,8 @@
         >
           <div class="d-flex align-items-center gap-5">
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Periodo</span
               >
               <span class="fw-bold text-body text-lg text-uppercase"
@@ -55,19 +54,24 @@
               >
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Fecha de Junta</span
               >
               <div class="d-flex align-items-center gap-2 text-body">
-                <app-icon icon="material-symbols-light:calendar-today" class="text-cyan-500" />
+                <app-icon
+                  icon="material-symbols-light:calendar-today"
+                  class="text-cyan-500"
+                />
                 <span class="fw-medium">{{ item.fechaJunta }}</span>
               </div>
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Estado Archivo</span
               >
-              <lx-tag
+              <lux-tag
                 [value]="item.archivoContable ? 'CARGADO' : 'PENDIENTE'"
                 [severity]="item.archivoContable ? 'success' : 'danger'"
                 class="text-xs"
@@ -94,11 +98,16 @@
                 <div
                   class="p-4 rounded-xl bg-cyan-50 text-cyan-600 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon icon="material-symbols-light:bar-chart" class="text-4xl" />
+                  <app-icon
+                    icon="material-symbols-light:bar-chart"
+                    class="text-4xl"
+                  />
                 </div>
 
                 <div class="flex-grow-1 d-flex flex-column gap-2">
-                  <h6 class="m-0 fw-bold text-body text-uppercase tracking-tight">
+                  <h6
+                    class="m-0 fw-bold text-body text-uppercase tracking-tight"
+                  >
                     Reporte Contable Mensual
                   </h6>
 
@@ -151,13 +160,18 @@
                       customClass="justify-content-start px-3"
                       (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                     />
-                    <span class="text-body-secondary text-sm">Formato PDF permitido</span>
+                    <span class="text-body-secondary text-sm"
+                      >Formato PDF permitido</span
+                    >
                   </div>
                   } @else {
                   <div
                     class="p-3 rounded bg-gray-100 text-center text-body-secondary"
                   >
-                    <app-icon icon="material-symbols-light:lock-outline" class="text-xl mb-1" />
+                    <app-icon
+                      icon="material-symbols-light:lock-outline"
+                      class="text-xl mb-1"
+                    />
                     <p class="m-0 text-sm fw-medium">
                       No se admiten cambios en sesiones finalizadas
                     </p>
@@ -169,7 +183,8 @@
 
             <!-- Side Content: Other Areas Status -->
             <div class="col-12 col-md-5 ps-4 d-flex flex-column gap-3">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Disponibilidad de otras áreas</span
               >
 
@@ -187,7 +202,7 @@
                       >Documento de Portada</span
                     >
                   </div>
-                  <lx-tag
+                  <lux-tag
                     [severity]="item.archivoPortada ? 'success' : 'warning'"
                     [value]="item.archivoPortada ? 'LISTO' : 'PENDIENTE'"
                     class="text-xs"
@@ -199,12 +214,15 @@
                   class="d-flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
                 >
                   <div class="d-flex align-items-center gap-2">
-                    <app-icon icon="material-symbols-light:settings-overscan" class="text-orange-500" />
+                    <app-icon
+                      icon="material-symbols-light:settings-overscan"
+                      class="text-orange-500"
+                    />
                     <span class="text-sm fw-medium text-body"
                       >Reporte de Operaciones</span
                     >
                   </div>
-                  <lx-tag
+                  <lux-tag
                     [severity]="item.archivoJunta ? 'success' : 'warning'"
                     [value]="item.archivoJunta ? 'LISTO' : 'PENDIENTE'"
                     class="text-xs"
@@ -233,7 +251,10 @@
       <div
         class="card p-5 shadow-sm rounded-xl bg-body d-flex flex-column align-items-center justify-content-center text-center gap-3"
       >
-        <app-icon icon="material-symbols-light:timer" class="text-6xl text-body-secondary" />
+        <app-icon
+          icon="material-symbols-light:timer"
+          class="text-6xl text-body-secondary"
+        />
         <div>
           <h6 class="m-0 fw-bold text-body">Sin sesiones pendientes</h6>
           <p class="text-body-secondary">
@@ -259,9 +280,7 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #listItemTemplate let-item>
-      <div
-        class="card p-3 mb-2 border-1 border shadow-sm rounded-xl"
-      >
+      <div class="card p-3 mb-2 border-1 border shadow-sm rounded-xl">
         <!-- Header -->
         <div class="border-bottom-1 border pb-2 mb-2">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -284,7 +303,7 @@
             </div>
             }
           </div>
-          <lx-tag
+          <lux-tag
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             class="text-xs"
@@ -295,7 +314,7 @@
         <div class="row g-4">
           <!-- Portada -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Portada"
               [toggleable]="true"
               [collapsed]="true"
@@ -332,12 +351,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Contable -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Contable"
               [toggleable]="true"
               [collapsed]="true"
@@ -378,12 +397,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Operaciones -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Operaciones"
               [toggleable]="true"
               [collapsed]="true"
@@ -422,12 +441,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Final -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+            <lux-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
               @if ( !item.archivoFinal && aspRoleS.anyOf([
               AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
               item.archivoPortada && item.archivoContable && item.archivoJunta )
@@ -472,7 +491,7 @@
                 Sin archivo o faltan documentos
               </p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
         </div>
       </div>

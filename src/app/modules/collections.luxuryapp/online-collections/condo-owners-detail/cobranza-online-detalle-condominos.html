@@ -164,7 +164,7 @@
         <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
         <td class="text-sm fw-medium">{{ row.condomino }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="row.clasificacion"
             [severity]="getSeverity(row.clasificacion)"
             class="text-xs"
@@ -219,7 +219,7 @@
             {{ item.numeroCuenta }}
           </p>
           <div class="d-flex justify-content-between align-items-center mt-2">
-            <lx-tag
+            <lux-tag
               [value]="item.clasificacion"
               [severity]="getSeverity(item.clasificacion)"
               class="text-xs"

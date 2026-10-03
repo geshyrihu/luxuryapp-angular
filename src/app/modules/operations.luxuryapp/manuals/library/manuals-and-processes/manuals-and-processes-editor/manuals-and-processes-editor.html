@@ -113,7 +113,7 @@
               {{ paso.responsableRoleNombre }}
             </div>
             } @if (paso.tipoNota !== 0) {
-            <lx-tag
+            <lux-tag
               [value]="tipoNotaLabel(paso.tipoNota)"
               [severity]="tipoNotaSeverity(paso.tipoNota)"
               class="text-xs mt-1"
@@ -148,7 +148,10 @@
       <div
         class="d-flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
-        <app-icon [icon]="'material-symbols-light:book'" class="text-6xl text-primary mb-4" />
+        <app-icon
+          [icon]="'material-symbols-light:book'"
+          class="text-6xl text-primary mb-4"
+        />
         <h2 class="text-body fw-bold mb-2">Diseño del Manual</h2>
         <p class="text-body-secondary line-height-3 mb-4">
           Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso
@@ -169,7 +172,10 @@
       <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
         <div class="bg-body-tertiary rounded-xl p-4 border-1 border">
           <div class="d-flex align-items-center gap-3 mb-2">
-            <app-icon [icon]="'material-symbols-light:edit'" class="text-2xl text-primary" />
+            <app-icon
+              [icon]="'material-symbols-light:edit'"
+              class="text-2xl text-primary"
+            />
             <h3 class="m-0 text-body fw-semibold">
               {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
             </h3>
@@ -260,9 +266,7 @@
             </p>
           </div>
           } @else {
-          <div
-            class="bg-body-tertiary rounded p-3 border-1 border mb-2"
-          >
+          <div class="bg-body-tertiary rounded p-3 border-1 border mb-2">
             <div class="d-flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'material-symbols-light:check-circle-outline'"
@@ -289,8 +293,10 @@
           <div class="d-flex align-items-center justify-content-between">
             <h4 class="text-base fw-bold text-body m-0">Imagenes del Paso</h4>
             <div class="d-flex align-items-center gap-2">
-              <span class="text-xs text-body-secondary">o Ctrl+V para pegar</span>
-              <lx-file-upload
+              <span class="text-xs text-body-secondary"
+                >o Ctrl+V para pegar</span
+              >
+              <lux-file-upload
                 accept="image/*"
                 [maxFileSize]="10000000"
                 [multiple]="false"
@@ -303,8 +309,13 @@
           </div>
 
           @if (uploadingImagen()) {
-          <div class="d-flex align-items-center gap-2 text-body-secondary text-sm">
-            <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
+          <div
+            class="d-flex align-items-center gap-2 text-body-secondary text-sm"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:progress-activity'"
+              class="ds-animate-spin"
+            />
             Subiendo...
           </div>
           } @if (selectedPaso()!.imagenes?.length) {
@@ -331,7 +342,9 @@
             }
           </div>
           } @else {
-          <p class="text-sm text-body-secondary m-0">Sin imagenes para este paso.</p>
+          <p class="text-sm text-body-secondary m-0">
+            Sin imagenes para este paso.
+          </p>
           }
         </div>
         }
@@ -393,10 +406,7 @@
               </div>
 
               @if (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
-              <div
-                class="rounded overflow-hidden mt-3"
-                
-              >
+              <div class="rounded overflow-hidden mt-3">
                 <iframe
                   [src]="safeUrl(enlace.urlEnlace)"
                   class="w-full h-full border-0"
@@ -412,7 +422,9 @@
                 ></iframe>
               </div>
               } @else {
-              <p class="text-sm text-body-secondary m-0">URL de video no válida.</p>
+              <p class="text-sm text-body-secondary m-0">
+                URL de video no válida.
+              </p>
               } } @else {
               <div class="d-flex align-items-center gap-2 mt-2">
                 <a
@@ -430,7 +442,6 @@
                 </a>
                 <span
                   class="text-sm text-body-secondary text-truncate overflow-hidden text-nowrap"
-                  
                   >{{ enlace.urlEnlace }}</span
                 >
               </div>
@@ -439,7 +450,9 @@
             }
           </div>
           } @else {
-          <p class="text-sm text-body-secondary m-0">No hay enlaces o videos adjuntos.</p>
+          <p class="text-sm text-body-secondary m-0">
+            No hay enlaces o videos adjuntos.
+          </p>
           }
         </div>
         }
@@ -467,9 +480,7 @@
       </div>
 
       @if (showVersionForm()) {
-      <div
-        class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm"
-      >
+      <div class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm">
         <h4 class="text-base fw-bold text-body m-0 mb-3">Agregar Version</h4>
         <form
           [formGroup]="versionForm"
@@ -486,7 +497,9 @@
               />
             </div>
             <div class="col-12 col-md-4">
-              <label class="fw-bold text-sm text-body d-block mb-2">Fecha</label>
+              <label class="fw-bold text-sm text-body d-block mb-2"
+                >Fecha</label
+              >
               <input
                 type="date"
                 formControlName="fechaCambio"
@@ -523,7 +536,10 @@
       </div>
       } @if (!versiones().length) {
       <div class="text-center text-body-secondary py-5">
-        <app-icon [icon]="'material-symbols-light:history'" class="text-4xl mb-3 d-block" />
+        <app-icon
+          [icon]="'material-symbols-light:history'"
+          class="text-4xl mb-3 d-block"
+        />
         <p class="text-sm m-0">Sin versiones registradas.</p>
       </div>
       } @else {
@@ -543,7 +559,9 @@
               }
             </div>
             @if (v.descripcionCambio) {
-            <p class="text-sm text-body-secondary m-0">{{ v.descripcionCambio }}</p>
+            <p class="text-sm text-body-secondary m-0">
+              {{ v.descripcionCambio }}
+            </p>
             }
           </div>
           <iw-button
@@ -571,9 +589,7 @@
         Archivos Adjuntos (Anexos y Referencias)
       </h3>
 
-      <div
-        class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm"
-      >
+      <div class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm">
         <h4 class="text-base fw-bold text-body m-0 mb-3">Subir Archivo</h4>
         <div class="d-flex flex-column gap-3">
           <div class="d-flex flex-column gap-1">
@@ -588,7 +604,7 @@
             />
           </div>
           <div class="d-flex align-items-center gap-3">
-            <lx-file-upload
+            <lux-file-upload
               accept=".pdf,.doc,.docx,.xls,.xlsx"
               [maxFileSize]="10000000"
               [multiple]="false"
@@ -598,8 +614,13 @@
               [styleClass]="'btn-sm btn-outline'"
             />
             @if (uploadingAdjunto()) {
-            <span class="text-body-secondary text-sm d-flex align-items-center gap-1">
-              <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
+            <span
+              class="text-body-secondary text-sm d-flex align-items-center gap-1"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:progress-activity'"
+                class="ds-animate-spin"
+              />
               Subiendo...
             </span>
             }
@@ -612,7 +633,10 @@
 
       @if (!adjuntos().length) {
       <div class="text-center text-body-secondary py-5">
-        <app-icon [icon]="'material-symbols-light:attach-file'" class="text-4xl mb-3 d-block" />
+        <app-icon
+          [icon]="'material-symbols-light:attach-file'"
+          class="text-4xl mb-3 d-block"
+        />
         <p class="text-sm m-0">Sin archivos adjuntos.</p>
       </div>
       } @else {

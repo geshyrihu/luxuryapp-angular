@@ -58,7 +58,7 @@
         {{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="item.aprobado ? 'success' : 'warn'"
           [value]="item.aprobado ? 'Aprobado' : 'Pendiente'"
         />
@@ -110,7 +110,7 @@
         <span class="fw-bold"
           >{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</span
         >
-        <lx-tag
+        <lux-tag
           [severity]="item.aprobado ? 'success' : 'warn'"
           [value]="item.aprobado ? 'Aprobado' : 'Pendiente'"
         />

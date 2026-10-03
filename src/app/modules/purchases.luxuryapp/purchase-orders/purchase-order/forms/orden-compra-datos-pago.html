@@ -44,15 +44,21 @@
   <div class="row mt-2 mb-4 g-4">
     @for (month of fundingPeriodsByMonth(); track month.monthName) {
     <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-      <div class="bg-body border-1 border rounded p-3 h-full d-flex flex-column">
-        <div class="fw-bold text-body mb-2 border-bottom-1 border pb-2 text-center">{{ month.monthName }}</div>
+      <div
+        class="bg-body border-1 border rounded p-3 h-full d-flex flex-column"
+      >
+        <div
+          class="fw-bold text-body mb-2 border-bottom-1 border pb-2 text-center"
+        >
+          {{ month.monthName }}
+        </div>
         <div class="d-flex gap-2 justify-content-center mt-auto">
           @for (quincena of month.quincenas; track quincena.value) {
-          <lx-tag 
-            (click)="selectFundingPeriod(quincena)" 
-            [value]="quincena.label.split(' ')[0]" 
-            [severity]="form.controls.fundingPeriod.value === quincena.value ? 'success' : 'secondary'" 
-            class="cursor-pointer" 
+          <lux-tag
+            (click)="selectFundingPeriod(quincena)"
+            [value]="quincena.label.split(' ')[0]"
+            [severity]="form.controls.fundingPeriod.value === quincena.value ? 'success' : 'secondary'"
+            class="cursor-pointer"
           />
           }
         </div>

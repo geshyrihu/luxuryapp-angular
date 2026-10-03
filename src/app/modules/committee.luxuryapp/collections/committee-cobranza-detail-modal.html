@@ -57,7 +57,7 @@
 
   @if (loading()) {
   <div class="text-center p-4">
-    <lx-spinner [size]="40" />
+    <lux-spinner [size]="40" />
     <div class="mt-2 text-body-secondary">Cargando desglose...</div>
   </div>
   } @else if (detail(); as data) {
@@ -69,7 +69,7 @@
       <div
         class="p-3 bg-body-tertiary border-bottom-1 border d-flex justify-content-between align-items-center gap-2"
       >
-        <lx-tag
+        <lux-tag
           [value]="item.concepto"
           [severity]="getConceptSeverity(item.concepto)"
         />
@@ -149,7 +149,10 @@
   </div>
   } @else {
   <div class="text-center p-4 text-body-secondary">
-    <app-icon icon="material-symbols-light:warning-outline" class="text-3xl mb-2" />
+    <app-icon
+      icon="material-symbols-light:warning-outline"
+      class="text-3xl mb-2"
+    />
     <div>No se pudo cargar el desglose.</div>
   </div>
   }

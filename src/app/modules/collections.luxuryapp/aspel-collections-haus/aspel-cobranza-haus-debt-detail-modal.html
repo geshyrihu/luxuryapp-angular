@@ -36,7 +36,8 @@
       <div
         class="border-1 border rounded-xl p-3 bg-white h-full d-flex flex-column justify-content-center"
       >
-        <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
+        <span
+          class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Conceptos</span
         >
         <strong class="text-xl">{{ detail()?.totalConceptos }}</strong>
@@ -48,7 +49,8 @@
       <div
         class="border-1 border rounded-xl p-3 bg-white h-full d-flex flex-column justify-content-center"
       >
-        <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
+        <span
+          class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo inicial</span
         >
         <strong class="text-xl"
@@ -61,7 +63,8 @@
       <div
         class="border-1 border rounded-xl p-3 bg-white h-full d-flex flex-column justify-content-center"
       >
-        <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
+        <span
+          class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Cargos</span
         >
         <strong class="text-xl text-orange-600"
@@ -73,7 +76,8 @@
       <div
         class="border-1 border rounded-xl p-3 bg-white h-full d-flex flex-column justify-content-center"
       >
-        <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
+        <span
+          class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Abonos</span
         >
         <strong class="text-xl text-green-600"
@@ -87,7 +91,8 @@
       <div
         class="border-1 border rounded-xl p-3 bg-blue-50 h-full d-flex flex-column justify-content-center"
       >
-        <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
+        <span
+          class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo pendiente</span
         >
         <strong class="text-xl" [ngClass]="getBalanceClass(totalPendiente())">
@@ -111,7 +116,7 @@
         class="p-3 bg-body-tertiary border-bottom-1 border d-flex flex-column gap-2"
       >
         <div class="d-flex justify-content-between align-items-center">
-          <lx-tag
+          <lux-tag
             [value]="item.concepto"
             [severity]="getConceptSeverity(item.concepto)"
           />
@@ -121,7 +126,9 @@
           </strong>
         </div>
         @if (!isCommitteeMode) {
-        <div class="d-flex justify-content-between text-xs text-body-secondary font-mono">
+        <div
+          class="d-flex justify-content-between text-xs text-body-secondary font-mono"
+        >
           <span
             >Inicial: {{ item.saldoInicial | currency: 'MXN':'symbol':'1.0-0'
             }}</span
@@ -144,7 +151,9 @@
           >
             <div class="d-flex flex-column">
               @if (!isCommitteeMode) {
-              <span class="text-body-secondary font-mono text-xs">{{ v.fechaCargo }}</span>
+              <span class="text-body-secondary font-mono text-xs"
+                >{{ v.fechaCargo }}</span
+              >
               }
               <span class="text-body">{{ v.conceptoDetalle }}</span>
             </div>
@@ -220,7 +229,7 @@
               [icon]="expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'"
               class="me-2"
             />
-            <lx-tag
+            <lux-tag
               [value]="item.concepto"
               [severity]="getConceptSeverity(item.concepto)"
             />
@@ -298,7 +307,7 @@
     </ng-template>
   </app-table>
   } } @else {
-  <lx-message
+  <lux-message
     severity="info"
     text="No fue posible obtener el detalle de la deuda para esta propiedad."
   />

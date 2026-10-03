@@ -126,7 +126,11 @@
       @if (!sharedS.errorMensaje()) {
       <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
         @if (activeTabValue() === 'presupuesto') {
-        <div class="d-flex align-items-center gap-1" role="group" aria-label="Vista del presupuesto">
+        <div
+          class="d-flex align-items-center gap-1"
+          role="group"
+          aria-label="Vista del presupuesto"
+        >
           <span class="text-xs fw-semibold text-body text-nowrap">Vista:</span>
           <button
             type="button"
@@ -170,15 +174,15 @@
         />
         @if (!isClientView) {
 
-         <!-- Botón para navegar a la guía del módulo -->
-         <iw-button
-           iconClass="menu-book"
-           label="Guía del Módulo"
-           ngbTooltip="Abrir guía de flujo y componentes del módulo"
-           variant="outline"
-           severity="info"
-           (clicked)="this.openModuleGuide()"
-         />
+        <!-- Botón para navegar a la guía del módulo -->
+        <iw-button
+          iconClass="menu-book"
+          label="Guía del Módulo"
+          ngbTooltip="Abrir guía de flujo y componentes del módulo"
+          variant="outline"
+          severity="info"
+          (clicked)="this.openModuleGuide()"
+        />
 
         <div class="d-flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
@@ -243,7 +247,7 @@
 
     <!-- Mensaje de error -->
     @if (sharedS.errorMensaje()) {
-    <lx-message
+    <lux-message
       severity="error"
       [text]="sharedS.errorMensaje()!"
       class="w-full"
@@ -284,7 +288,7 @@
       />
     </div>
 
-    <lx-tabs
+    <lux-tabs
       [tabs]="budgetTabs"
       [activeId]="activeTabValue()"
       (tabChange)="activeTabValue.set($event.id)"
@@ -300,5 +304,3 @@
     </div>
   </div>
 </div>
-
-

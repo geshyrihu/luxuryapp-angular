@@ -31,7 +31,7 @@
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
     <div class="col-12 col-sm-6 col-md-3">
-      <lx-card
+      <lux-card
         class="card card--interactive card--elevated h-full"
         (click)="navigateTo(module.route)"
       >
@@ -43,7 +43,10 @@
             >
               <app-icon [icon]="module.icon" [style.color]="module.color" />
             </div>
-            <app-icon icon="material-symbols-light:north-east" class="text-body-secondary" />
+            <app-icon
+              icon="material-symbols-light:north-east"
+              class="text-body-secondary"
+            />
           </div>
           <div>
             <h3 class="m-0 fw-bold text-body line-height-2 text-base">
@@ -54,7 +57,7 @@
             </p>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     }
   </div>
@@ -64,9 +67,7 @@
 <!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
 <div class="d-block d-md-none fadein">
   <!-- Header compacto -->
-  <div
-    class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border"
-  >
+  <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >

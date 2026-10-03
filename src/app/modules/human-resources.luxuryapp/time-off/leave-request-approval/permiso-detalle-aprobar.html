@@ -23,7 +23,7 @@
         </p>
         <p>
           <strong>Tipo de día:</strong>
-          <lx-tag
+          <lux-tag
             [value]="requestData().isPartial ? 'Parcial' : 'Día completo'"
             [severity]="requestData().isPartial ? 'warn' : 'info'"
             class="ms-1"
@@ -39,10 +39,10 @@
       <div class="col-12 col-md-6">
         <p>
           <strong>Estado:</strong>
-          <lx-tag
+          <lux-tag
             [value]="requestData().status"
             [severity]="getStatusSeverity(requestData().status)"
-          ></lx-tag>
+          ></lux-tag>
         </p>
         <p>
           <strong>Fecha de Solicitud:</strong>
@@ -60,9 +60,7 @@
             target="_blank"
             class="btn btn-info btn-sm"
           >
-            <span
-              class="material-symbols-light:download"
-            ></span>
+            <span class="material-symbols-light:download"></span>
             <span>Descargar Comprobante</span>
           </a>
         </p>

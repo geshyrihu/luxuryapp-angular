@@ -12,14 +12,12 @@
 
       <!-- Placeholder para el Semáforo General -->
       <div class="d-flex align-items-center">
-        <h5 class="me-3 text-lg fw-semibold">
-          Riesgo General del Condominio:
-        </h5>
-        <lx-tag
+        <h5 class="me-3 text-lg fw-semibold">Riesgo General del Condominio:</h5>
+        <lux-tag
           severity="warning"
           value="Medio (Placeholder)"
           class="text-lg"
-         />
+        />
       </div>
     </div>
   </div>
@@ -27,71 +25,71 @@
   <!-- Acordeón con los Módulos de Auditoría -->
   <div class="card">
     @for (module of auditModules; track module.name) {
-    <lx-accordion
+    <lux-accordion
       class="d-block mb-2"
       [items]="[{ id: module.name, title: module.name, icon: module.icon }]"
     >
-        <div [attr.accordion]="module.name">
-          <app-table [value]="module.items" class="p-datatable-sm">
-            <ng-template #header>
-              <tr>
-                <th class="table-col-40">Documento / Control Requerido</th>
-                <th class="table-col-10">Tipo</th>
-                <th class="table-col-20">Estatus</th>
-                <th class="table-col-20">Observaciones de Riesgo</th>
-                <th class="table-col-10">Evidencia</th>
-              </tr>
-            </ng-template>
-            <ng-template #body let-item>
-              <tr>
-                <td>{{ item.control }}</td>
-                <td>
-                  <lx-tag
-                    [severity]="item.type === 'Obligatorio' ? 'danger' : 'info'"
-                    [value]="item.type"
-                   />
-                </td>
-                <td>
-                  <custom-input-select-button-signal
-                    [options]="statusOptions"
-                    [control]="item.statusControl"
-                    optionLabel="label"
-                    optionValue="value"
-                  >
-                    <ng-template let-option #item>
-                      <i
-                        [class]="option.icon"
-                        [ngClass]="{
+      <div [attr.accordion]="module.name">
+        <app-table [value]="module.items" class="p-datatable-sm">
+          <ng-template #header>
+            <tr>
+              <th class="table-col-40">Documento / Control Requerido</th>
+              <th class="table-col-10">Tipo</th>
+              <th class="table-col-20">Estatus</th>
+              <th class="table-col-20">Observaciones de Riesgo</th>
+              <th class="table-col-10">Evidencia</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-item>
+            <tr>
+              <td>{{ item.control }}</td>
+              <td>
+                <lux-tag
+                  [severity]="item.type === 'Obligatorio' ? 'danger' : 'info'"
+                  [value]="item.type"
+                />
+              </td>
+              <td>
+                <custom-input-select-button-signal
+                  [options]="statusOptions"
+                  [control]="item.statusControl"
+                  optionLabel="label"
+                  optionValue="value"
+                >
+                  <ng-template let-option #item>
+                    <i
+                      [class]="option.icon"
+                      [ngClass]="{
                                 'text-green-600': option.value === 'completo',
                                 'text-yellow-500': option.value === 'parcial',
                                 'text-red-600': option.value === 'no-entregado'
                             }"
-                      ></i>
-                    </ng-template>
-                  </custom-input-select-button-signal>
-                </td>
-                <td>
-                  <custom-input-text-area-signal
-                    [control]="item.observationsControl"
-                    label=""
-                    [rows]="2"
-                    [noMargin]="true"
-                    [onlyInput]="true"
-                  ></custom-input-text-area-signal>
-                </td>
-                <td>
-                  <!-- Placeholder para Carga de Archivos -->
-                  <iw-button
-                    iconClass="material-symbols-light:upload"
-                    variant="text"
-                    size="sm"
-                  />
-                </td>
-              </tr>
-            </ng-template>
-          </app-table>
-        </div>
-    </lx-accordion>
+                    ></i>
+                  </ng-template>
+                </custom-input-select-button-signal>
+              </td>
+              <td>
+                <custom-input-text-area-signal
+                  [control]="item.observationsControl"
+                  label=""
+                  [rows]="2"
+                  [noMargin]="true"
+                  [onlyInput]="true"
+                ></custom-input-text-area-signal>
+              </td>
+              <td>
+                <!-- Placeholder para Carga de Archivos -->
+                <iw-button
+                  iconClass="material-symbols-light:upload"
+                  variant="text"
+                  size="sm"
+                />
+              </td>
+            </tr>
+          </ng-template>
+        </app-table>
+      </div>
+    </lux-accordion>
     }
   </div>
 

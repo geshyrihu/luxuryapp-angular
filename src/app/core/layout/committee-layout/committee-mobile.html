@@ -1,6 +1,14 @@
 <div class="ion-app-shell">
   <ion-app>
-    <div class="ion-page" style="position: relative; height: 100%; display: flex; flex-direction: column;">
+    <div
+      class="ion-page"
+      style="
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      "
+    >
       <ion-header class="ion-no-border committee-mobile-header">
         <ion-toolbar>
           <ion-buttons slot="start">
@@ -26,17 +34,27 @@
       >
         <div
           class="page-body-wrapper"
-          style="height: 100%; display: flex; flex-direction: column;"
+          style="height: 100%; display: flex; flex-direction: column"
           [class.scorlled]="hideScroolNavService.headerFixed == true"
         >
-          <div style="padding: 12px 8px 16px 8px; flex: 1; height: 100%; display: flex; flex-direction: column;">
+          <div
+            style="
+              padding: 12px 8px 16px 8px;
+              flex: 1;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+            "
+          >
             <router-outlet />
           </div>
         </div>
-        <lx-loader />
+        <lux-loader />
       </ion-content>
 
-      <ion-footer class="ion-no-border committee-mobile-footer app-footer-floating">
+      <ion-footer
+        class="ion-no-border committee-mobile-footer app-footer-floating"
+      >
         <app-committee-mobile-nav />
       </ion-footer>
     </div>

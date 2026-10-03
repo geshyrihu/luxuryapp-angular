@@ -150,7 +150,7 @@
             <td>{{ item.startDate | apiDate: "dd/MM/yyyy" }}</td>
             <td>{{ item.endDate | apiDate: "dd/MM/yyyy" }}</td>
             <td>
-              <lx-tag
+              <lux-tag
                 [value]="item.status"
                 [severity]="
                   item.status === 'Aprobada'
@@ -161,7 +161,7 @@
                         ? 'info'
                         : 'warn' // default: Pendiente
                 "
-              ></lx-tag>
+              ></lux-tag>
             </td>
             <td>{{ item.requestDate | apiDate: "dd/MM/yyyy HH:mm" }}</td>
             <td>{{ item.approverName || '—' }}</td>
@@ -216,15 +216,15 @@
 
             <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
             <p class="text-body-secondary text-sm m-0">
-              {{ item.solicitud }} | {{ item.startDate | apiDate: "dd/MM/yy" }} -
-              {{ item.endDate | apiDate: "dd/MM/yy" }}
+              {{ item.solicitud }} | {{ item.startDate | apiDate: "dd/MM/yy" }}
+              - {{ item.endDate | apiDate: "dd/MM/yy" }}
             </p>
             <p class="text-body-secondary text-sm m-0">
               {{ item.daysRequested }}
             </p>
 
             <div end class="d-flex align-items-center">
-              <lx-tag
+              <lux-tag
                 [value]="item.status"
                 [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
                 class="ms-2"

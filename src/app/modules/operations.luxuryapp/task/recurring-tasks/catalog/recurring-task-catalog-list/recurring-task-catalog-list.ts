@@ -5,6 +5,12 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/recurring-task-template-catalog.interface";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -13,16 +19,10 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/recurring-task-template-catalog.interface";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { RecurringTaskCatalogForm } from "../recurring-task-catalog-form/recurring-task-catalog-form";
 
 @Component({
@@ -114,4 +114,3 @@ export class RecurringTaskCatalogList implements OnInit {
     return status === "active" || status === "activo" || status === "true";
   }
 }
-

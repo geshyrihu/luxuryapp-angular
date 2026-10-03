@@ -16,11 +16,11 @@ import {
   IonToolbar,
   ModalController,
 } from "@ionic/angular";
+import { Subject } from "rxjs";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "./dialog-handler.service";
-import { Subject } from "rxjs";
 
 /**
  * 🪟 IONIC DIALOG MODAL — shell móvil para formularios.
@@ -35,7 +35,7 @@ import { Subject } from "rxjs";
  * su action-sheet POR ENCIMA del modal (sin el bug de z-index del diálogo Bootstrap).
  */
 @Component({
-  selector: "lx-ionic-dialog-modal",
+  selector: "lux-ionic-dialog-modal",
 
   imports: [
     NgComponentOutlet,

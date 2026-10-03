@@ -1,5 +1,5 @@
 <div class="card">
-  <lx-toolbar class="mb-4">
+  <lux-toolbar class="mb-4">
     <ng-template #left>
       <h3 class="m-0">Mis Tareas Diarias</h3>
     </ng-template>
@@ -12,7 +12,7 @@
         [noMargin]="true"
       />
     </ng-template>
-  </lx-toolbar>
+  </lux-toolbar>
 
   <!-- Desktop View -->
   <app-table
@@ -101,16 +101,16 @@
             class="text-xl text-primary"
           />
         </div>
-        
-          <h5 class="mb-2">{{ task.title }}</h5>
-          <p class="text-sm text-gray-500">
-            {{ task.scheduledDate | apiDate : "medium" }}
-          </p>
-          <app-status-badge
-            [value]="task.status"
-            [status]="task.statusDescription"
-          />
-        
+
+        <h5 class="mb-2">{{ task.title }}</h5>
+        <p class="text-sm text-gray-500">
+          {{ task.scheduledDate | apiDate : "medium" }}
+        </p>
+        <app-status-badge
+          [value]="task.status"
+          [status]="task.statusDescription"
+        />
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

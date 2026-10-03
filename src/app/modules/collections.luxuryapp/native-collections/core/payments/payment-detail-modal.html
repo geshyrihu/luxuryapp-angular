@@ -1,11 +1,15 @@
 @if (loading()) {
-<div class="p-5 text-center text-body-secondary">Cargando detalle del pago...</div>
+<div class="p-5 text-center text-body-secondary">
+  Cargando detalle del pago...
+</div>
 } @else if (payment()) {
 <div class="p-3 p-md-4 d-flex flex-column gap-4">
   <div class="row g-4">
     <div class="col-12 col-md-4">
-      <lx-card class="card h-full">
-        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">
+      <lux-card class="card h-full">
+        <div
+          class="text-xs text-body-secondary text-uppercase fw-semibold mb-2"
+        >
           Propiedad
         </div>
         <div class="fw-bold text-body">
@@ -14,36 +18,44 @@
         <div class="text-sm text-body-secondary mt-2">
           {{ payment()!.paymentDate | apiDate:'dd/MM/yyyy' }}
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     <div class="col-12 col-md-4">
-      <lx-card class="card h-full">
-        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">Monto</div>
+      <lux-card class="card h-full">
+        <div
+          class="text-xs text-body-secondary text-uppercase fw-semibold mb-2"
+        >
+          Monto
+        </div>
         <div class="text-2xl fw-bold text-green-600">
           {{ payment()!.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </div>
         <div class="text-sm text-body-secondary mt-2">
           {{ getMethodLabel(payment()!.method) }}
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     <div class="col-12 col-md-4">
-      <lx-card class="card h-full">
-        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">Estado</div>
-        <lx-tag
+      <lux-card class="card h-full">
+        <div
+          class="text-xs text-body-secondary text-uppercase fw-semibold mb-2"
+        >
+          Estado
+        </div>
+        <lux-tag
           [value]="getStatusLabel(payment()!)"
           [severity]="getStatusSeverity(payment()!)"
         />
         <div class="text-sm text-body-secondary mt-2">
           Ref: {{ payment()!.reference || "-" }}
         </div>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <lx-card class="card h-full">
+      <lux-card class="card h-full">
         <div class="text-xs text-blue-600 text-uppercase fw-semibold mb-2">
           Aplicado
         </div>
@@ -51,10 +63,10 @@
           {{ payment()!.allocatedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
           }}
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     <div class="col-12 col-md-6">
-      <lx-card class="card h-full">
+      <lux-card class="card h-full">
         <div class="text-xs text-orange-600 text-uppercase fw-semibold mb-2">
           Sin aplicar
         </div>
@@ -62,14 +74,16 @@
           {{ payment()!.unappliedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
           }}
         </div>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
-  <lx-card class="card d-none d-md-block">
+  <lux-card class="card d-none d-md-block">
     <div class="px-1 pb-3">
       <div class="fw-semibold text-body">Asignaciones a cargos</div>
-      <div class="text-sm text-body-secondary">Detalle de cómo se distribuyó el pago.</div>
+      <div class="text-sm text-body-secondary">
+        Detalle de cómo se distribuyó el pago.
+      </div>
     </div>
 
     <app-table [value]="payment()!.allocations || []" class="custom-table">
@@ -126,13 +140,13 @@
         />
       </ng-template>
     </app-table>
-  </lx-card>
+  </lux-card>
 
   <div class="d-block d-md-none">
     @if ((payment()!.allocations || []).length === 0) {
-    <lx-card class="card text-center text-body-secondary">
+    <lux-card class="card text-center text-body-secondary">
       Este pago no ha sido aplicado a cargos todavía.
-    </lx-card>
+    </lux-card>
     } @else { @for (item of payment()!.allocations || []; track
     item.allocationId) {
     <ili-list-item class="mb-2 rounded-xl border-1 border">

@@ -8,13 +8,13 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
-import { LxCard } from "@ui/adaptive/card/card";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
+import { LxCard } from "@ui/adaptive/card/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "employee-reclutamiento",
@@ -104,5 +104,3 @@ export class EmployeeReclutamiento implements OnInit {
       });
   }
 }
-
-

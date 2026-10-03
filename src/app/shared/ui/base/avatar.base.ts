@@ -1,4 +1,4 @@
-import { Directive, input, computed } from "@angular/core";
+import { computed, Directive, input } from "@angular/core";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export type AvatarShape = "circle" | "square";
@@ -8,7 +8,7 @@ export type AvatarSize = "normal" | "large" | "xlarge";
  * Base compartida de Avatar (imagen, iniciales o icono).
  *  - web:     `app-avatar`  (Bootstrap p-avatar)
  *  - mobile:  `ili-avatar`  (Ionic ion-avatar)
- *  - wrapper: `lx-avatar`   (auto runtime)
+ *  - wrapper: `lux-avatar`   (auto runtime)
  *
  * Prioridad de contenido: image > label (iniciales) > icon (`app-icon`).
  */
@@ -26,8 +26,11 @@ export abstract class AvatarBase {
 
   /** Diámetro en px según el token de tamaño (para el móvil). */
   sizePx = computed<number>(() => {
-    const map: Record<AvatarSize, number> = { normal: 32, large: 48, xlarge: 64 };
+    const map: Record<AvatarSize, number> = {
+      normal: 32,
+      large: 48,
+      xlarge: 64,
+    };
     return map[this.size()] ?? 32;
   });
 }
-

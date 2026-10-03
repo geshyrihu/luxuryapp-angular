@@ -7,6 +7,17 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { Medidor } from "@core/interfaces/medidor.interface";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -17,6 +28,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
@@ -32,19 +44,7 @@ import {
   sunny,
   trashOutline,
 } from "ionicons/icons";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { Medidor } from "@core/interfaces/medidor.interface";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 

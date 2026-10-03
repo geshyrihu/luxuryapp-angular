@@ -6,16 +6,18 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { FiltroMinutasArea } from "../area-minutes-filter/filtro-minutas-area";
 @Component({
   selector: "app-minutas-resumen",
@@ -74,10 +76,7 @@ export class MinutasResumen implements OnInit {
   onLoadData(fehcaInicio: string, fechaFinal: string) {
     this.apiResponseS
       .onGetList(
-        Endpoints.ResumenGeneral.minutasGeneralList(
-          fehcaInicio,
-          fechaFinal,
-        ),
+        Endpoints.ResumenGeneral.minutasGeneralList(fehcaInicio, fechaFinal),
       )
       .then((result: any) => {
         this.generalMinutasSignal.set(result);
@@ -85,10 +84,7 @@ export class MinutasResumen implements OnInit {
 
     this.apiResponseS
       .onGetList(
-        Endpoints.ResumenGeneral.minutasGeneralGroup(
-          fehcaInicio,
-          fechaFinal,
-        ),
+        Endpoints.ResumenGeneral.minutasGeneralGroup(fehcaInicio, fechaFinal),
       )
       .then((result: any) => {
         this.generalMinutasGrupoSignal.set(result);

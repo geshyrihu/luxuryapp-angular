@@ -32,17 +32,16 @@
         <td class="fw-bold text-primary">{{ item.articleNumber }}</td>
         <td>{{ item.title }}</td>
         <td class="text-end">
-          @if (item.defaultFineAmount) {
-          {{ item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }}
-          } @else {
+          @if (item.defaultFineAmount) { {{ item.defaultFineAmount | currency:
+          'MXN' : 'symbol' : '1.2-2' }} } @else {
           <span class="text-body-secondary text-xs">-</span>
           }
         </td>
         <td class="text-center">
           @if (item.isActive) {
-          <lx-tag value="Activo" severity="success" />
+          <lux-tag value="Activo" severity="success" />
           } @else {
-          <lx-tag value="Inactivo" severity="secondary" />
+          <lux-tag value="Inactivo" severity="secondary" />
           }
         </td>
         <td class="text-center">
@@ -71,14 +70,17 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon icon="material-symbols-light:description" class="text-blue-600 text-xl" />
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-blue-600 text-xl"
+        />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.articleNumber }} · {{ item.title }}</h3>
         <p>
-          @if (item.defaultFineAmount) { Multa default:
-          {{ item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }}
-          } @else { Sin monto default }
+          @if (item.defaultFineAmount) { Multa default: {{
+          item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }} }
+          @else { Sin monto default }
         </p>
       </div>
       <ili-action-menu slot="end">

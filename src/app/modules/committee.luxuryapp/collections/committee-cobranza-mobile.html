@@ -4,14 +4,17 @@
   @if (baseService.carteraVencida(); as cartera) {
   <ion-card color="primary">
     <ion-card-header>
-      <ion-card-subtitle style="color: rgba(255,255,255,0.8);">Cartera vencida</ion-card-subtitle>
-      <ion-card-title style="font-size: 1.8rem; color: #fff;">
+      <ion-card-subtitle style="color: rgba(255, 255, 255, 0.8)"
+        >Cartera vencida</ion-card-subtitle
+      >
+      <ion-card-title style="font-size: 1.8rem; color: #fff">
         {{ cartera.total | currency: "MXN" : "symbol" : "1.0-0" }}
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content style="color: rgba(255,255,255,0.9);">
+    <ion-card-content style="color: rgba(255, 255, 255, 0.9)">
       <app-icon icon="material-symbols-light:location-city" />
-      {{ cartera.condominosConAdeudo }} de {{ cartera.totalCondominos }} condóminos deben
+      {{ cartera.condominosConAdeudo }} de {{ cartera.totalCondominos }}
+      condóminos deben
     </ion-card-content>
   </ion-card>
   }
@@ -20,16 +23,49 @@
   @if (baseService.avanceCobranza(); as avance) {
   <ion-card>
     <ion-card-content>
-      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
-        <span style="font-size: 14px; color: var(--ion-color-medium);">Cobrado del mes</span>
-        <span style="font-size: 14px; font-weight: bold; color: var(--ion-color-success);">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-bottom: 8px;
+        "
+      >
+        <span style="font-size: 14px; color: var(--ion-color-medium)"
+          >Cobrado del mes</span
+        >
+        <span
+          style="
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--ion-color-success);
+          "
+        >
           {{ avance.cobrado | currency: "MXN" : "symbol" : "1.0-0" }}
         </span>
       </div>
-      <ion-progress-bar [value]="avance.porcentaje" color="success"></ion-progress-bar>
-      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px;">
-        <span style="font-size: 12px; color: var(--ion-color-medium);">Meta del mes</span>
-        <span style="font-size: 12px; font-weight: 500; color: var(--ion-color-dark);">
+      <ion-progress-bar
+        [value]="avance.porcentaje"
+        color="success"
+      ></ion-progress-bar>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-top: 8px;
+        "
+      >
+        <span style="font-size: 12px; color: var(--ion-color-medium)"
+          >Meta del mes</span
+        >
+        <span
+          style="
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ion-color-dark);
+          "
+        >
           {{ avance.meta | currency: "MXN" : "symbol" : "1.0-0" }}
         </span>
       </div>
@@ -40,17 +76,38 @@
   <!-- Cobranza judicial -->
   @if (baseService.cobranzaJudicial(); as judicial) {
   <ion-card>
-    <ion-card-content style="display: flex; align-items: center; gap: 16px;">
-      <app-icon icon="material-symbols-light:gavel" style="font-size: 32px; color: var(--ion-color-danger);" />
-      <div style="flex: 1;">
-        <div style="font-size: 14px; color: var(--ion-color-medium);">En cobranza judicial</div>
-        <div style="font-size: 20px; font-weight: bold; color: var(--ion-color-dark);">{{ judicial.cantidad }}</div>
+    <ion-card-content style="display: flex; align-items: center; gap: 16px">
+      <app-icon
+        icon="material-symbols-light:gavel"
+        style="font-size: 32px; color: var(--ion-color-danger)"
+      />
+      <div style="flex: 1">
+        <div style="font-size: 14px; color: var(--ion-color-medium)">
+          En cobranza judicial
+        </div>
+        <div
+          style="
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--ion-color-dark);
+          "
+        >
+          {{ judicial.cantidad }}
+        </div>
       </div>
-      <div style="text-align: right;">
-        <div style="font-size: 14px; font-weight: bold; color: var(--ion-color-danger);">
+      <div style="text-align: right">
+        <div
+          style="
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--ion-color-danger);
+          "
+        >
           {{ judicial.deuda | currency: "MXN" : "symbol" : "1.0-0" }}
         </div>
-        <div style="font-size: 12px; color: var(--ion-color-medium);">acumulados</div>
+        <div style="font-size: 12px; color: var(--ion-color-medium)">
+          acumulados
+        </div>
       </div>
     </ion-card-content>
   </ion-card>
@@ -66,24 +123,38 @@
     <ion-item button (click)="openDetailModal(item)" detail="true">
       <ion-label class="ion-text-wrap">
         <h2>{{ item.departamento || "Sin nombre" }}</h2>
-        <p style="margin-top: 4px;"><lx-tag [value]="item.clasificacion" [severity]="clasificacionSeverity(item.clasificacion)" /></p>
+        <p style="margin-top: 4px">
+          <lux-tag
+            [value]="item.clasificacion"
+            [severity]="clasificacionSeverity(item.clasificacion)"
+          />
+        </p>
       </ion-label>
-      <ion-note slot="end" color="dark" style="font-weight: bold; font-size: 14px;">
+      <ion-note
+        slot="end"
+        color="dark"
+        style="font-weight: bold; font-size: 14px"
+      >
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
       </ion-note>
     </ion-item>
     }
   </ion-list>
   } @else {
-  <div style="text-align: center; padding: 32px; color: var(--ion-color-medium);">
-    <app-icon icon="material-symbols-light:check-circle-outline" style="font-size: 48px;" />
+  <div
+    style="text-align: center; padding: 32px; color: var(--ion-color-medium)"
+  >
+    <app-icon
+      icon="material-symbols-light:check-circle-outline"
+      style="font-size: 48px"
+    />
     <p>Sin propiedades con deuda.</p>
   </div>
   }
 </div>
 } @else if (!baseService.loading()) {
-<div style="text-align: center; padding: 32px; color: var(--ion-color-medium);">
-  <app-icon icon="material-symbols-light:folder-open" style="font-size: 48px;" />
+<div style="text-align: center; padding: 32px; color: var(--ion-color-medium)">
+  <app-icon icon="material-symbols-light:folder-open" style="font-size: 48px" />
   <p>No hay información de cobranza.</p>
 </div>
 }

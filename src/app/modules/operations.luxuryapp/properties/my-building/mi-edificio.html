@@ -74,21 +74,34 @@
       <div class="row g-4">
         @for (item of group.empleados; track item.email) {
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-          <div class="bg-body p-3 shadow-sm rounded h-full d-flex align-items-center gap-3">
-            <lx-avatar
+          <div
+            class="bg-body p-3 shadow-sm rounded h-full d-flex align-items-center gap-3"
+          >
+            <lux-avatar
               [image]="item.photoEmployee"
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
             />
             <div class="d-flex flex-column min-w-0">
-              <span class="fw-bold text-nowrap overflow-hidden text-truncate">{{ item.nameEmployee }}</span>
-              <span class="text-sm text-body-secondary">{{ item.applicationRoleName }}</span>
+              <span class="fw-bold text-nowrap overflow-hidden text-truncate"
+                >{{ item.nameEmployee }}</span
+              >
+              <span class="text-sm text-body-secondary"
+                >{{ item.applicationRoleName }}</span
+              >
               @if (item.phoneNumber) {
-              <a [href]="'tel:' + item.phoneNumber" class="text-sm no-underline text-body-secondary">{{ item.phoneNumber }}</a>
-              }
-              @if (item.email) {
-              <a [href]="'mailto:' + item.email" class="text-sm no-underline text-body-secondary text-nowrap overflow-hidden text-truncate">{{ item.email }}</a>
+              <a
+                [href]="'tel:' + item.phoneNumber"
+                class="text-sm no-underline text-body-secondary"
+                >{{ item.phoneNumber }}</a
+              >
+              } @if (item.email) {
+              <a
+                [href]="'mailto:' + item.email"
+                class="text-sm no-underline text-body-secondary text-nowrap overflow-hidden text-truncate"
+                >{{ item.email }}</a
+              >
               }
             </div>
           </div>

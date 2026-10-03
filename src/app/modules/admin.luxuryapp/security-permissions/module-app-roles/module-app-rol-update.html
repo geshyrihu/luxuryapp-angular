@@ -9,10 +9,10 @@
 
   @if (loading()) {
   <div class="d-flex justify-content-center my-5">
-    <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
+    <lux-spinner size="40" ariaLabel="Cargando módulos"></lux-spinner>
   </div>
   } @if (!loading() && groupedData().length === 0) {
-  <lx-message severity="warn" text="No se encontraron módulos." />
+  <lux-message severity="warn" text="No se encontraron módulos." />
   }
 
   <!-- Grupos en filas -->
@@ -21,7 +21,9 @@
     <!-- Título del grupo -->
     <div class="d-flex align-items-center gap-2 mb-3 px-1">
       <div class="w-1rem h-1rem rounded bg-primary"></div>
-      <h5 class="m-0 fw-bold text-primary text-uppercase tracking-widest text-sm">
+      <h5
+        class="m-0 fw-bold text-primary text-uppercase tracking-widest text-sm"
+      >
         {{ group.groupTitle }}
       </h5>
       <span class="text-xs text-body-secondary ms-2"
@@ -87,18 +89,22 @@
 
     @if (loading()) {
     <div class="d-flex justify-content-center my-5">
-      <lx-spinner size="40" ariaLabel="Cargando módulos"></lx-spinner>
+      <lux-spinner size="40" ariaLabel="Cargando módulos"></lux-spinner>
     </div>
     } @if (!loading() && groupedData().length === 0) {
-    <lx-message severity="warn" text="No se encontraron módulos." />
+    <lux-message severity="warn" text="No se encontraron módulos." />
     } @for (group of groupedData(); track group.groupTitle) {
     <div class="mb-3">
-      <h3 class="text-sm text-body-secondary fw-bold px-3 text-uppercase m-0 mb-2">
+      <h3
+        class="text-sm text-body-secondary fw-bold px-3 text-uppercase m-0 mb-2"
+      >
         {{ group.groupTitle }}
       </h3>
       <div class="m-0">
         @for (item of group.items; track item.moduleAppId) {
-        <div class="d-flex align-items-center justify-content-between p-3 border-bottom-1 border">
+        <div
+          class="d-flex align-items-center justify-content-between p-3 border-bottom-1 border"
+        >
           <h2
             [class.font-bold]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
             [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"

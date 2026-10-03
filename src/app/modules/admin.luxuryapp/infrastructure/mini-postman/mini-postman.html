@@ -43,7 +43,7 @@
       @if (useBaseUrl()) {
       <span class="text-body-secondary text-xs fst-italic">{{ baseUrl }}</span>
       } @if (url()) {
-      <span class="text-body-secondary text-xs ms-auto truncate" >
+      <span class="text-body-secondary text-xs ms-auto truncate">
         {{ fullUrl() }}
       </span>
       }
@@ -53,125 +53,121 @@
   <!-- Paneles request / response -->
   <div class="d-flex gap-3 flex-fill min-h-0">
     <!-- Panel izquierdo: Request -->
-    <div
-      class="bg-body rounded shadow-sm d-flex flex-column"
-      
-    >
-      <lx-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="d-flex flex-column h-full">
+    <div class="bg-body rounded shadow-sm d-flex flex-column">
+      <lux-tabs
+        [tabs]="reqTabs()"
+        [(activeId)]="activeTabReq"
+        class="d-flex flex-column h-full"
+      >
         <div class="flex-fill overflow-auto">
           @switch (activeTabReq()) {
           <!-- PARAMS -->
           @case ('params') {
-            <div class="d-flex flex-column gap-2 p-2">
-              @for (p of params(); track trackByIndex($index); let i = $index) {
-              <div class="d-flex align-items-center gap-2">
-                <input
-                  type="checkbox"
-                  [ngModel]="p.enabled"
-                  (ngModelChange)="updateParam(i, 'enabled', $event)"
-                />
-                <custom-input-text-signal
-                  [ngModel]="p.key"
-                  (ngModelChange)="updateParam(i, 'key', $event)"
-                  placeholder="Clave"
-                  [onlyInput]="true"
-                  [noMargin]="true"
-                  customClass="flex-1"
-                />
-                <custom-input-text-signal
-                  [ngModel]="p.value"
-                  (ngModelChange)="updateParam(i, 'value', $event)"
-                  placeholder="Valor"
-                  [onlyInput]="true"
-                  [noMargin]="true"
-                  customClass="flex-1"
-                />
-                <iw-button
-                  iconClass="material-symbols-light:close"
-                  severity="danger"
-                  variant="text"
-                  size="small"
-                  (clicked)="removeParam(i)"
-                />
-              </div>
-              }
-              <il-button
-                label="Agregar param"
-                iconClass="material-symbols-light:add"
+          <div class="d-flex flex-column gap-2 p-2">
+            @for (p of params(); track trackByIndex($index); let i = $index) {
+            <div class="d-flex align-items-center gap-2">
+              <input
+                type="checkbox"
+                [ngModel]="p.enabled"
+                (ngModelChange)="updateParam(i, 'enabled', $event)"
+              />
+              <custom-input-text-signal
+                [ngModel]="p.key"
+                (ngModelChange)="updateParam(i, 'key', $event)"
+                placeholder="Clave"
+                [onlyInput]="true"
+                [noMargin]="true"
+                customClass="flex-1"
+              />
+              <custom-input-text-signal
+                [ngModel]="p.value"
+                (ngModelChange)="updateParam(i, 'value', $event)"
+                placeholder="Valor"
+                [onlyInput]="true"
+                [noMargin]="true"
+                customClass="flex-1"
+              />
+              <iw-button
+                iconClass="material-symbols-light:close"
+                severity="danger"
                 variant="text"
                 size="small"
-                (clicked)="addParam()"
+                (clicked)="removeParam(i)"
               />
             </div>
+            }
+            <il-button
+              label="Agregar param"
+              iconClass="material-symbols-light:add"
+              variant="text"
+              size="small"
+              (clicked)="addParam()"
+            />
+          </div>
           }
 
           <!-- HEADERS -->
           @case ('headers') {
-            <div class="d-flex flex-column gap-2 p-2">
-              @for (h of headers(); track trackByIndex($index); let i = $index)
-              {
-              <div class="d-flex align-items-center gap-2">
-                <input
-                  type="checkbox"
-                  [ngModel]="h.enabled"
-                  (ngModelChange)="updateHeader(i, 'enabled', $event)"
-                />
-                <custom-input-text-signal
-                  [ngModel]="h.key"
-                  (ngModelChange)="updateHeader(i, 'key', $event)"
-                  placeholder="Header"
-                  [onlyInput]="true"
-                  [noMargin]="true"
-                  customClass="flex-1"
-                />
-                <custom-input-text-signal
-                  [ngModel]="h.value"
-                  (ngModelChange)="updateHeader(i, 'value', $event)"
-                  placeholder="Valor"
-                  [onlyInput]="true"
-                  [noMargin]="true"
-                  customClass="flex-1"
-                />
-                <iw-button
-                  iconClass="material-symbols-light:close"
-                  severity="danger"
-                  variant="text"
-                  size="small"
-                  (clicked)="removeHeader(i)"
-                />
-              </div>
-              }
-              <il-button
-                label="Agregar header"
-                iconClass="material-symbols-light:add"
+          <div class="d-flex flex-column gap-2 p-2">
+            @for (h of headers(); track trackByIndex($index); let i = $index) {
+            <div class="d-flex align-items-center gap-2">
+              <input
+                type="checkbox"
+                [ngModel]="h.enabled"
+                (ngModelChange)="updateHeader(i, 'enabled', $event)"
+              />
+              <custom-input-text-signal
+                [ngModel]="h.key"
+                (ngModelChange)="updateHeader(i, 'key', $event)"
+                placeholder="Header"
+                [onlyInput]="true"
+                [noMargin]="true"
+                customClass="flex-1"
+              />
+              <custom-input-text-signal
+                [ngModel]="h.value"
+                (ngModelChange)="updateHeader(i, 'value', $event)"
+                placeholder="Valor"
+                [onlyInput]="true"
+                [noMargin]="true"
+                customClass="flex-1"
+              />
+              <iw-button
+                iconClass="material-symbols-light:close"
+                severity="danger"
                 variant="text"
                 size="small"
-                (clicked)="addHeader()"
+                (clicked)="removeHeader(i)"
               />
             </div>
+            }
+            <il-button
+              label="Agregar header"
+              iconClass="material-symbols-light:add"
+              variant="text"
+              size="small"
+              (clicked)="addHeader()"
+            />
+          </div>
           }
 
           <!-- BODY -->
           @case ('body') {
-            <custom-input-textarea-signal
-              [ngModel]="bodyRaw()"
-              (ngModelChange)="bodyRaw.set($event)"
-              placeholder='{ "key": "value" }'
-              [rows]="12"
-              [customClass]="'font-mono text-sm'"
-              [disableResize]="false"
-            ></custom-input-textarea-signal>
-            }
-          }
+          <custom-input-textarea-signal
+            [ngModel]="bodyRaw()"
+            (ngModelChange)="bodyRaw.set($event)"
+            placeholder='{ "key": "value" }'
+            [rows]="12"
+            [customClass]="'font-mono text-sm'"
+            [disableResize]="false"
+          ></custom-input-textarea-signal>
+          } }
         </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
 
     <!-- Panel derecho: Response -->
-    <div
-      class="bg-body rounded shadow-sm d-flex flex-column"
-      
-    >
+    <div class="bg-body rounded shadow-sm d-flex flex-column">
       <!-- Status bar -->
       <div
         class="d-flex align-items-center gap-3 px-3 py-2 border-bottom-1 border"
@@ -200,50 +196,49 @@
         }
       </div>
 
-      <lx-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="d-flex flex-column flex-fill min-h-0">
+      <lux-tabs
+        [tabs]="resTabs"
+        [(activeId)]="activeTabRes"
+        class="d-flex flex-column flex-fill min-h-0"
+      >
         <div class="flex-fill overflow-auto">
           @switch (activeTabRes()) {
           <!-- Body response -->
-          @case ('body-res') {
-            @if (responseError()) {
-            <pre
-              class="m-0 p-3 text-red-600 text-sm overflow-auto h-full font-mono white-space-pre-wrap"
-            >
+          @case ('body-res') { @if (responseError()) {
+          <pre
+            class="m-0 p-3 text-red-600 text-sm overflow-auto h-full font-mono white-space-pre-wrap"
+          >
 {{ responseError() }}</pre>
-            } @else if (prettyResponse()) {
-            <pre
-              class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-body"
-            >
+          } @else if (prettyResponse()) {
+          <pre
+            class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-body"
+          >
 {{ prettyResponse() }}</pre>
-            } @else if (!loading()) {
-            <div
-              class="d-flex align-items-center justify-content-center h-full text-body-secondary text-sm"
-            >
-              Envia una peticion para ver la respuesta
-            </div>
-            }
-          }
+          } @else if (!loading()) {
+          <div
+            class="d-flex align-items-center justify-content-center h-full text-body-secondary text-sm"
+          >
+            Envia una peticion para ver la respuesta
+          </div>
+          } }
 
           <!-- Headers response -->
           @case ('headers-res') {
-            <div class="p-2">
-              @for (entry of responseHeaderEntries(); track entry[0]) {
-              <div
-                class="d-flex gap-2 py-1 border-bottom-1 border text-sm"
+          <div class="p-2">
+            @for (entry of responseHeaderEntries(); track entry[0]) {
+            <div class="d-flex gap-2 py-1 border-bottom-1 border text-sm">
+              <span class="fw-medium text-primary w-12rem flex-shrink-0"
+                >{{ entry[0] }}</span
               >
-                <span class="fw-medium text-primary w-12rem flex-shrink-0"
-                  >{{ entry[0] }}</span
-                >
-                <span class="text-body break-all">{{ entry[1] }}</span>
-              </div>
-              } @empty {
-              <span class="text-body-secondary text-sm">Sin headers</span>
-              }
+              <span class="text-body break-all">{{ entry[1] }}</span>
             </div>
+            } @empty {
+            <span class="text-body-secondary text-sm">Sin headers</span>
             }
-          }
+          </div>
+          } }
         </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
   </div>
 
@@ -261,10 +256,7 @@
         (clicked)="clearHistory()"
       />
     </div>
-    <div
-      class="d-flex flex-column gap-1"
-      
-    >
+    <div class="d-flex flex-column gap-1">
       @for (entry of history(); track entry.timestamp) {
       <div
         class="d-flex align-items-center gap-2 px-2 py-1 rounded cursor-pointer text-sm"

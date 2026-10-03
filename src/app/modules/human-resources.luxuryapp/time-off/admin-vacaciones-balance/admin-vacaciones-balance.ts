@@ -6,31 +6,28 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { MessageService } from "@core/services/message.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MessageService } from "@core/services/message.service";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-admin-view.interface";
 @Component({
   selector: "app-admin-vacaciones-balance",

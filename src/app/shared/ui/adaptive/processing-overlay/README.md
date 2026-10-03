@@ -11,7 +11,7 @@ Mostrar feedback visual claro al usuario durante operaciones CRUD (creación, ac
 ### Básico
 
 ```html
-<lx-processing-overlay
+<lux-processing-overlay
   [isProcessing]="isSubmitting()"
   [progress]="uploadProgress()"
   message="Guardando ticket..."
@@ -21,7 +21,7 @@ Mostrar feedback visual claro al usuario durante operaciones CRUD (creación, ac
 ### Con submensaje
 
 ```html
-<lx-processing-overlay
+<lux-processing-overlay
   [isProcessing]="isSubmitting()"
   [progress]="processingProgress()"
   message="Procesando formulario..."

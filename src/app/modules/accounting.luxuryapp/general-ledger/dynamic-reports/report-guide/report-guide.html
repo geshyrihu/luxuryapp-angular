@@ -1,7 +1,10 @@
 <div class="card p-5">
   <!-- Encabezado Inspiracional -->
   <div class="text-center mb-6">
-    <app-icon [icon]="'material-symbols-light:monitoring'" class="text-6xl text-primary mb-3" />
+    <app-icon
+      [icon]="'material-symbols-light:monitoring'"
+      class="text-6xl text-primary mb-3"
+    />
     <h1 class="text-4xl fw-bold text-primary-900 m-0">
       Dominando los Reportes Dinámicos
     </h1>
@@ -18,12 +21,18 @@
         class="bg-body p-4 rounded shadow-sm h-full border-top-3 border-primary"
       >
         <div class="d-flex align-items-center gap-2 mb-3">
-          <app-icon [icon]="'material-symbols-light:explore'" class="text-2xl text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:explore'"
+            class="text-2xl text-primary"
+          />
           <h2 class="m-0 text-primary-900">Conceptos Clave</h2>
         </div>
         <ul class="list-none p-0 m-0 line-height-4">
           <li class="d-flex align-items-start gap-2 mb-3">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <app-icon
+              [icon]="'material-symbols-light:check-circle'"
+              class="text-green-500 mt-1"
+            />
             <div>
               <strong>Definición vs. Resultado:</strong>
               Tú diseñas el "molde" (la definición) y el sistema lo llena con
@@ -31,7 +40,10 @@
             </div>
           </li>
           <li class="d-flex align-items-start gap-2 mb-3">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <app-icon
+              [icon]="'material-symbols-light:check-circle'"
+              class="text-green-500 mt-1"
+            />
             <div>
               <strong>Filtros Inteligentes:</strong>
               No necesitas elegir cuenta por cuenta. Puedes usar prefijos (ej.
@@ -39,7 +51,10 @@
             </div>
           </li>
           <li class="d-flex align-items-start gap-2">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <app-icon
+              [icon]="'material-symbols-light:check-circle'"
+              class="text-green-500 mt-1"
+            />
             <div>
               <strong>Signos Contables:</strong>
               Usa "Restar" para gastos y "Sumar" para ingresos. El sistema se
@@ -109,9 +124,7 @@
 
     <!-- SECCIÓN 3: EJEMPLOS PRÁCTICOS -->
     <div class="col-12 mb-4">
-      <div
-        class="bg-body p-4 rounded shadow-sm border-top-3 border-green-500"
-      >
+      <div class="bg-body p-4 rounded shadow-sm border-top-3 border-green-500">
         <div class="d-flex align-items-center justify-content-between mb-4">
           <div class="d-flex align-items-center gap-2">
             <app-icon
@@ -120,7 +133,10 @@
             />
             <h2 class="m-0 text-primary-900">Ejemplos de Configuración</h2>
           </div>
-          <lx-tag value="Usa el botón 'Ver Ejemplos' en el constructor" severity="info" />
+          <lux-tag
+            value="Usa el botón 'Ver Ejemplos' en el constructor"
+            severity="info"
+          />
         </div>
 
         <div class="row g-4">
@@ -158,39 +174,37 @@
   </div>
 
   <!-- SECCIÓN AVANZADA / TÉCNICA -->
-  <lx-accordion class="mt-4 d-block" [items]="technicalAccordion">
-      <div accordion="technical">
-        <div class="row text-sm g-4">
-          <div class="col-12 col-md-6">
-            <h5 class="mt-0">Tipos de Renglón</h5>
-            <ul class="ps-3 line-height-3">
-              <li><strong>Account:</strong> Suma saldos Aspel por filtro.</li>
-              <li>
-                <strong>Subtotal:</strong> Suma filas de la misma sección.
-              </li>
-              <li>
-                <strong>Grand Total:</strong> Suma global (cruza secciones).
-              </li>
-              <li>
-                <strong>Formula:</strong>
-                <code>[r1] + [r2] * 0.16</code> (Matemática libre).
-              </li>
-            </ul>
-          </div>
-          <div class="col-12 col-md-6">
-            <h5 class="mt-0">Tipos de Periodo</h5>
-            <ul class="ps-3 line-height-3">
-              <li><strong>Mes:</strong> Valor puntual del mes.</li>
-              <li>
-                <strong>Acumulado:</strong> Desde Enero hasta el mes elegido.
-              </li>
-              <li><strong>Trimestre:</strong> Suma de 3 meses (Q1-Q4).</li>
-              <li><strong>Anual:</strong> Todo el ejercicio (12 meses).</li>
-            </ul>
-          </div>
+  <lux-accordion class="mt-4 d-block" [items]="technicalAccordion">
+    <div accordion="technical">
+      <div class="row text-sm g-4">
+        <div class="col-12 col-md-6">
+          <h5 class="mt-0">Tipos de Renglón</h5>
+          <ul class="ps-3 line-height-3">
+            <li><strong>Account:</strong> Suma saldos Aspel por filtro.</li>
+            <li><strong>Subtotal:</strong> Suma filas de la misma sección.</li>
+            <li>
+              <strong>Grand Total:</strong> Suma global (cruza secciones).
+            </li>
+            <li>
+              <strong>Formula:</strong>
+              <code>[r1] + [r2] * 0.16</code> (Matemática libre).
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6">
+          <h5 class="mt-0">Tipos de Periodo</h5>
+          <ul class="ps-3 line-height-3">
+            <li><strong>Mes:</strong> Valor puntual del mes.</li>
+            <li>
+              <strong>Acumulado:</strong> Desde Enero hasta el mes elegido.
+            </li>
+            <li><strong>Trimestre:</strong> Suma de 3 meses (Q1-Q4).</li>
+            <li><strong>Anual:</strong> Todo el ejercicio (12 meses).</li>
+          </ul>
         </div>
       </div>
-  </lx-accordion>
+    </div>
+  </lux-accordion>
 
   <div class="d-flex justify-content-center mt-5">
     <il-button

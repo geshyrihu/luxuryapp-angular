@@ -2,7 +2,7 @@
   @if (!result) {
   <!-- Upload View -->
   <div class="mb-4">
-    <lx-message
+    <lux-message
       severity="info"
       text="El archivo debe ser formato CSV. Las primeras 4 columnas requeridas son: PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD) y Concepto (Opcional). La plantilla agrega ReferenciaCuenta y ReferenciaPropiedad solo como apoyo visual."
       class="mb-3 w-full"
@@ -96,7 +96,9 @@
     </div>
 
     @if (result.errors && result.errors.length > 0) {
-    <div class="text-start mt-5 bg-body-tertiary p-3 rounded border-1 border-red-200">
+    <div
+      class="text-start mt-5 bg-body-tertiary p-3 rounded border-1 border-red-200"
+    >
       <h4 class="text-red-700 mt-0 mb-2">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"

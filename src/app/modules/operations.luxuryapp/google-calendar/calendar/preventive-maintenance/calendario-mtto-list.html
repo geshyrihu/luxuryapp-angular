@@ -1,26 +1,25 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
-  <lx-tabs
+  <lux-tabs
     [tabs]="tabs"
     [(activeId)]="activeTabValue"
-    class="nav-tabs justify-content-center justify-content-sm-start"
-  >
-    <div tab="tab1">
-      <app-cronograma-anual-mantenimiento (messageEvent)="message($event)" />
-    </div>
-    <div tab="tab2">
-      <app-listado-anual-mantenimiento />
-    </div>
-    <div tab="tab3">
-      <app-general-anual-mantenimiento />
-    </div>
-  </lx-tabs>
+    class="d-block mb-3"
+  />
+  <div class="mt-2">
+    @switch (activeTabValue()) { @case ('tab1') {
+    <app-cronograma-anual-mantenimiento (messageEvent)="message($event)" />
+    } @case ('tab2') {
+    <app-listado-anual-mantenimiento />
+    } @case ('tab3') {
+    <app-general-anual-mantenimiento />
+    } }
+  </div>
 </div>
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="d-block d-md-none">
-  <!-- lx-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
-  <lx-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
+  <!-- lux-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
+  <lux-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
 
   <div class="mt-2">
     @switch (activeTabValue()) { @case ('tab1') {

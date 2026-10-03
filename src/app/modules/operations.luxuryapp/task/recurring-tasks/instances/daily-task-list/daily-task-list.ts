@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,15 +6,16 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppTable } from "@ui/web/table/table";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { AppTable } from "@ui/web/table/table";
+import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
 @Component({
   selector: "app-daily-task-list",

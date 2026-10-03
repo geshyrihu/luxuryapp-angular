@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { SplitButtonBase } from "@ui/base/split-button.base";
 import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
 import { AppSplitButton } from "@ui/web/split-button/split-button";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-split-button",
+  selector: "lux-split-button",
 
   imports: [AppSplitButton, MobileSplitButton],
   template: `
@@ -37,4 +37,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxSplitButton extends SplitButtonBase {
   protected platform = inject(PlatformService);
 }
-

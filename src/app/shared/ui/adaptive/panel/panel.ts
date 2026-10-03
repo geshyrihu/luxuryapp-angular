@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { PanelBase } from "@ui/base/panel.base";
 import { IliPanel } from "@ui/mobile/panel/panel";
 import { AppPanel } from "@ui/web/panel/panel";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-panel",
+  selector: "lux-panel",
 
   imports: [NgTemplateOutlet, AppPanel, IliPanel],
   template: `
@@ -27,4 +27,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxPanel extends PanelBase {
   protected platform = inject(PlatformService);
 }
-

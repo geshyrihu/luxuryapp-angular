@@ -69,17 +69,17 @@
           </div>
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             severity="info"
             [value]="item.requestedDays"
             class="text-base p-2"
           />
         </td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="item.status"
             [severity]="getStatusSeverity(item.status)"
-          ></lx-tag>
+          ></lux-tag>
         </td>
         <td>
           {{ item.approverFullName || "-" }}
@@ -135,14 +135,18 @@
         <p class="text-sm text-body-secondary">
           {{ item.startDate }} é {{ item.endDate }}
         </p>
-        <p class="text-sm text-body-secondary">Días: {{ item.requestedDays }}</p>
+        <p class="text-sm text-body-secondary">
+          Días: {{ item.requestedDays }}
+        </p>
         <p class="text-sm">
-          <lx-tag
+          <lux-tag
             [value]="item.status"
             [severity]="getStatusSeverity(item.status)"
           />
         </p>
-        <p class="text-sm text-body-secondary">{{ item.approverFullName || 'é' }}</p>
+        <p class="text-sm text-body-secondary">
+          {{ item.approverFullName || 'é' }}
+        </p>
 
         <ili-action-menu slot="end">
           <ng-container actions>

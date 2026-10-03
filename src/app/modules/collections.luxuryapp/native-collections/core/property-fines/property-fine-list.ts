@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,24 +6,22 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { EFineStatus } from "../../interfaces/enums";
 import { PropertyFineResponseDTO } from "../../interfaces/property-fine.dto";
 import { IssueFineChargeForm } from "./issue-fine-charge-form";
@@ -173,4 +170,3 @@ export default class PropertyFineList {
     return status !== EFineStatus.Pagada && status !== EFineStatus.Anulada;
   }
 }
-

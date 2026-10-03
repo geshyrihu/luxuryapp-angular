@@ -1,9 +1,9 @@
 <div class="d-flex flex-column gap-4">
   @if (loading()) {
   <div class="d-flex flex-column gap-3">
-    <lx-skeleton width="100%" height="4rem" />
-    <lx-skeleton width="100%" height="15rem" />
-    <lx-skeleton width="100%" height="15rem" />
+    <lux-skeleton width="100%" height="4rem" />
+    <lux-skeleton width="100%" height="15rem" />
+    <lux-skeleton width="100%" height="15rem" />
   </div>
   } @else if (data()) {
   <div class="rf-card pt-4 d-none d-md-block">
@@ -75,9 +75,7 @@
           </ng-template>
           <ng-template #footer>
             <tr class="rf-row-result g-4">
-              <td class="rf-td-descripcion fw-bold text-end">
-                (2) SUBTOTAL
-              </td>
+              <td class="rf-td-descripcion fw-bold text-end">(2) SUBTOTAL</td>
               <td class="text-end rf-td-number--total">
                 {{ data()?.subtotalInversiones | number:'1.0-0' }}
               </td>
@@ -113,20 +111,23 @@
     <div class="rf-mobile-section p-2 text-xs rounded-sm">
       SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
     </div>
-    <app-data-view-mobile
-      [data]="data()?.bancos || []"
-      [showAdd]="false"
-    >
+    <app-data-view-mobile [data]="data()?.bancos || []" [showAdd]="false">
       <ng-template #listItemTemplate let-banco>
-        <div class="p-3 mb-2 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2">
+        <div
+          class="p-3 mb-2 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2"
+        >
           <span class="rf-td-descripcion--item">{{ banco.cuenta }}</span>
-          <span class="rf-td-number">{{ banco.importe | accountingNumber }}</span>
+          <span class="rf-td-number"
+            >{{ banco.importe | accountingNumber }}</span
+          >
         </div>
       </ng-template>
     </app-data-view-mobile>
     <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
       <span class="fw-bold">(1) SUMA</span>
-      <span class="rf-td-number--total">{{ data()?.sumaBancos | accountingNumber }}</span>
+      <span class="rf-td-number--total"
+        >{{ data()?.sumaBancos | accountingNumber }}</span
+      >
     </div>
 
     <div class="rf-mobile-section p-2 text-xs rounded-sm mt-2">
@@ -141,24 +142,36 @@
           <div class="rf-td-cuenta mb-1">{{ inv.cuenta }}</div>
           <div class="d-flex justify-content-between align-items-center gap-2">
             <span class="rf-td-descripcion--item">{{ inv.descripcion }}</span>
-            <span class="rf-td-number">{{ inv.importe | accountingNumber }}</span>
+            <span class="rf-td-number"
+              >{{ inv.importe | accountingNumber }}</span
+            >
           </div>
         </div>
       </ng-template>
     </app-data-view-mobile>
     <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
       <span class="fw-bold">(2) SUBTOTAL</span>
-      <span class="rf-td-number--total">{{ data()?.subtotalInversiones | accountingNumber }}</span>
+      <span class="rf-td-number--total"
+        >{{ data()?.subtotalInversiones | accountingNumber }}</span
+      >
     </div>
     @if (data()?.fondoReserva; as fondoReserva) {
-    <div class="p-3 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2">
-      <span class="rf-td-descripcion--item">{{ fondoReserva.cuenta }} · {{ fondoReserva.descripcion }}</span>
-      <span class="rf-td-number">{{ fondoReserva.importe | accountingNumber }}</span>
+    <div
+      class="p-3 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2"
+    >
+      <span class="rf-td-descripcion--item"
+        >{{ fondoReserva.cuenta }} · {{ fondoReserva.descripcion }}</span
+      >
+      <span class="rf-td-number"
+        >{{ fondoReserva.importe | accountingNumber }}</span
+      >
     </div>
     }
     <div class="rf-mobile-result p-3 rounded d-flex justify-content-between">
       <span class="fw-bold">SUMA</span>
-      <span class="rf-td-number--total">{{ data()?.sumaInversiones | accountingNumber }}</span>
+      <span class="rf-td-number--total"
+        >{{ data()?.sumaInversiones | accountingNumber }}</span
+      >
     </div>
   </div>
   } @else {
@@ -170,7 +183,9 @@
       class="text-5xl mb-4 opacity-50"
     />
     <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
-    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
+    <p class="mt-2 text-body-secondary">
+      Verifique los parámetros seleccionados
+    </p>
   </div>
   }
 </div>

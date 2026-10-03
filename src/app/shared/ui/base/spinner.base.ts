@@ -1,10 +1,10 @@
-import { Directive, input, computed } from "@angular/core";
+import { computed, Directive, input } from "@angular/core";
 
 /**
  * Base compartida de Spinner (indicador de carga circular).
  *  - web:     `app-spinner`  (Bootstrap p-progressspinner)
  *  - mobile:  `ili-spinner`  (Ionic ion-spinner)
- *  - wrapper: `lx-spinner`   (auto runtime)
+ *  - wrapper: `lux-spinner`   (auto runtime)
  */
 @Directive()
 export abstract class SpinnerBase {

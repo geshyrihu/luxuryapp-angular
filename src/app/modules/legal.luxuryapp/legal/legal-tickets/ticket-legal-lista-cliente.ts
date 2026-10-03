@@ -6,14 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxBadge } from "@ui/adaptive/badge/badge";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -23,6 +15,14 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxBadge } from "@ui/adaptive/badge/badge";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalFormCliente } from "./ticket-legal-form-cliente";
 import { TicketLegalSeguimientoCliente } from "./ticket-legal-seguimiento-cliente";

@@ -10,11 +10,6 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxMessage } from "@ui/adaptive/message/message";
-import {
-  LxSectionNav,
-  type LxSectionNavItem,
-} from "@ui/web/section-nav/section-nav";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EmployeeBankDataList } from "@recruitment.luxuryapp/employee-bank-data-records/employee-bank-data-list";
@@ -22,6 +17,11 @@ import { EmployeeBeneficiaryList } from "@recruitment.luxuryapp/employee-benefic
 import { EmployeeClinicalDataList } from "@recruitment.luxuryapp/employee-clinical-data-records/employee-clinical-data-list";
 import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-documents/employee-document-list";
 import { EmployeeEmergencyContactList } from "@recruitment.luxuryapp/employee-emergency-contacts/employee-emergency-contact-list";
+import { LxMessage } from "@ui/adaptive/message/message";
+import {
+  LxSectionNav,
+  type LxSectionNavItem,
+} from "@ui/web/section-nav/section-nav";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
 
@@ -40,7 +40,7 @@ import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
         flex-wrap: wrap;
       }
 
-      .employee-shell-header lx-section-nav {
+      .employee-shell-header lux-section-nav {
         flex: 1 1 720px;
       }
     `,
@@ -150,5 +150,3 @@ export class EmployeeForm implements OnInit {
     this.activeSection = section;
   }
 }
-
-

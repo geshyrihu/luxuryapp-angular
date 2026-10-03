@@ -7,19 +7,17 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -30,14 +28,16 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
@@ -184,5 +184,3 @@ export class SolicitudesClienteList {
     }
   }
 }
-
-

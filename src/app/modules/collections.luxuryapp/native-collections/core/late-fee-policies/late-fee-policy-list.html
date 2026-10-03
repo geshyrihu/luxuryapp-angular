@@ -32,7 +32,7 @@
       <tr>
         <td class="text-center fw-bold text-body">{{ item.graceDays }}</td>
         <td class="fw-medium text-body">
-          <lx-tag
+          <lux-tag
             [value]="lateFeeTypeMeta(item.type).label"
             [severity]="lateFeeTypeMeta(item.type).severity"
           />
@@ -43,7 +43,7 @@
         </td>
         <td class="text-center">
           @if (item.compoundsMonthly) {
-          <lx-tag value="Sí" severity="danger" />
+          <lux-tag value="Sí" severity="danger" />
           } @else {
           <span class="text-xs text-body-secondary">No</span>
           }
@@ -81,7 +81,10 @@
         start
         class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon icon="material-symbols-light:warning-outline" class="text-red-600 text-xl" />
+        <app-icon
+          icon="material-symbols-light:warning-outline"
+          class="text-red-600 text-xl"
+        />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.graceDays }} días de gracia</h3>

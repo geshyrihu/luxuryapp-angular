@@ -5,7 +5,10 @@
     class="d-flex align-items-center justify-content-between px-3 py-2 bg-dark"
   >
     <div class="d-flex align-items-center gap-2">
-      <app-icon [icon]="'material-symbols-light:bar-chart'" class="text-white text-sm" />
+      <app-icon
+        [icon]="'material-symbols-light:bar-chart'"
+        class="text-white text-sm"
+      />
       <span class="fw-semibold text-sm text-white">ESTATUS DE COMPRA</span>
     </div>
     @if (!bloqueada()) {
@@ -27,7 +30,11 @@
         PAGADO
       </div>
       <div class="flex-grow-1">
-        <lx-tag [severity]=" ordenCompra().ordenCompraStatus.sePago ? 'success' : 'secondary' " [icon]=" ordenCompra().ordenCompraStatus.sePago ? 'material-symbols-light:remove' : 'material-symbols-light:remove' " [value]="ordenCompra().ordenCompraStatus.sePago ? 'Pagado' : 'Pendiente'" />
+        <lux-tag
+          [severity]=" ordenCompra().ordenCompraStatus.sePago ? 'success' : 'secondary' "
+          [icon]=" ordenCompra().ordenCompraStatus.sePago ? 'material-symbols-light:remove' : 'material-symbols-light:remove' "
+          [value]="ordenCompra().ordenCompraStatus.sePago ? 'Pagado' : 'Pendiente'"
+        />
       </div>
     </div>
 
@@ -36,7 +43,11 @@
         ENTREGADO
       </div>
       <div class="flex-grow-1">
-        <lx-tag [severity]=" ordenCompra().ordenCompraStatus.seRecibio ? 'success' : 'secondary' " [icon]=" ordenCompra().ordenCompraStatus.seRecibio ? 'material-symbols-light:remove' : 'material-symbols-light:remove' " [value]=" ordenCompra().ordenCompraStatus.seRecibio ? 'Recibido' : 'Pendiente' " />
+        <lux-tag
+          [severity]=" ordenCompra().ordenCompraStatus.seRecibio ? 'success' : 'secondary' "
+          [icon]=" ordenCompra().ordenCompraStatus.seRecibio ? 'material-symbols-light:remove' : 'material-symbols-light:remove' "
+          [value]=" ordenCompra().ordenCompraStatus.seRecibio ? 'Recibido' : 'Pendiente' "
+        />
       </div>
     </div>
 

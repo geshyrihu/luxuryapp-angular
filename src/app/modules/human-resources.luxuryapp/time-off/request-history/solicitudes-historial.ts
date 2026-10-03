@@ -9,12 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -29,8 +23,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SwalService } from "@core/services/swal.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../leave-calendar/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../leave-calendar/modal-vacacion-detalle";

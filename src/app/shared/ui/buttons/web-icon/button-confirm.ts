@@ -1,4 +1,3 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,15 +5,15 @@ import {
   input,
   output,
 } from "@angular/core";
+import { SwalService } from "@core/services/swal.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { BaseButton } from "../base/base-button";
-import { SwalService } from "@core/services/swal.service";
 
 @Component({
   selector: "iw-button-confirm",
-
-   imports: [AppIcon, LxTooltipDirective],
+  imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
@@ -47,14 +46,16 @@ export class WebButtonIconConfirm extends BaseButton {
 
   protected async handleConfirm(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (await this.swalService.confirm({
-      title: "Confirmación",
-      text: this.swalText(),
-      icon: "warning",
-      confirmButtonText: "Aceptar",
-      cancelButtonText: "Cancelar",
-      focusCancel: true,
-    })) {
+    if (
+      await this.swalService.confirm({
+        title: "Confirmación",
+        text: this.swalText(),
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        focusCancel: true,
+      })
+    ) {
       this.confirmed.emit();
     }
   }

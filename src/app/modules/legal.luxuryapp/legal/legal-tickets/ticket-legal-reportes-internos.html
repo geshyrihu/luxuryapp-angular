@@ -23,10 +23,7 @@
   <div class="card mb-4">
     <app-table [value]="kpiRows()" class="custom-table custom-table-fixed">
       <ng-template #caption>
-        <app-table-caption
-          title="Resultado del Periodo"
-          [showAdd]="false"
-        />
+        <app-table-caption title="Resultado del Periodo" [showAdd]="false" />
       </ng-template>
       <ng-template #colgroup>
         <colgroup>
@@ -73,11 +70,7 @@
       <ng-template #header>
         <tr>
           <th colspan="3" class="text-center">
-            <app-icon
-              icon="material-symbols-light:check-circle"
-              
-              class="me-2"
-            />
+            <app-icon icon="material-symbols-light:check-circle" class="me-2" />
             SOLICITUDES ATENDIDAS
           </th>
         </tr>
@@ -118,11 +111,7 @@
       <ng-template #header>
         <tr>
           <th colspan="7" class="text-center">
-            <app-icon
-              icon="material-symbols-light:error"
-              
-              class="me-2"
-            />
+            <app-icon icon="material-symbols-light:error" class="me-2" />
             SOLICITUDES PENDIENTES
           </th>
         </tr>
@@ -140,7 +129,9 @@
         <tr>
           <td class="text-center">{{ rowIndex + 1 }}</td>
           <td class="text-center">{{ ticket.folio }}</td>
-          <td class="text-center">{{ ticket.fecha | apiDate: "dd/MM/yyyy" }}</td>
+          <td class="text-center">
+            {{ ticket.fecha | apiDate: "dd/MM/yyyy" }}
+          </td>
           <td class="text-center">{{ ticket.cliente }}</td>
           <td>{{ ticket.asunto }}<br />{{ ticket.descripcion }}</td>
           <td
@@ -156,7 +147,7 @@
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {
-  <lx-empty-state
+  <lux-empty-state
     icon="material-symbols-light:description"
     title="Sin datos"
     message="No hay información para el periodo seleccionado."
@@ -168,12 +159,7 @@
 <div class="d-block d-md-none">
   @if (reportData()) {
   <div class="card mb-4">
-    <h5
-      class="p-3 m-0 text-center"
-      
-    >
-      RESULTADO
-    </h5>
+    <h5 class="p-3 m-0 text-center">RESULTADO</h5>
     <app-data-view-mobile [data]="[reportData()]" [showAdd]="false">
       <ng-template #listItemTemplate let-d>
         <ili-list-item>
@@ -187,53 +173,45 @@
               class="text-xl text-primary"
             />
           </div>
-          
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span>TICKET INICIAL</span>
-              <lx-tag [value]="d.ticketsAlInicio" severity="info"></lx-tag>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span>TICKET FINAL</span>
-              <lx-tag [value]="d.ticketsAlFinal" severity="info"></lx-tag>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span>SOLICITUDES NUEVAS</span>
-              <lx-tag [value]="d.ticketsEnRango" severity="secondary"></lx-tag>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span>SOLICITUDES ATENDIDAS</span>
-              <lx-tag
-                [value]="d.solicitudesAtendidas"
-                severity="success"
-              ></lx-tag>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span>PENDIENTES DEL PERIODO</span>
-              <lx-tag
-                [value]="d.pendientesSoloDelPeriodo"
-                severity="warn"
-              ></lx-tag>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span>PENDIENTES ACUMULADAS</span>
-              <lx-tag [value]="d.pendientesAlFinal" severity="danger"></lx-tag>
-            </div>
-          
+
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>TICKET INICIAL</span>
+            <lux-tag [value]="d.ticketsAlInicio" severity="info"></lux-tag>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>TICKET FINAL</span>
+            <lux-tag [value]="d.ticketsAlFinal" severity="info"></lux-tag>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>SOLICITUDES NUEVAS</span>
+            <lux-tag [value]="d.ticketsEnRango" severity="secondary"></lux-tag>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>SOLICITUDES ATENDIDAS</span>
+            <lux-tag
+              [value]="d.solicitudesAtendidas"
+              severity="success"
+            ></lux-tag>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>PENDIENTES DEL PERIODO</span>
+            <lux-tag
+              [value]="d.pendientesSoloDelPeriodo"
+              severity="warn"
+            ></lux-tag>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span>PENDIENTES ACUMULADAS</span>
+            <lux-tag [value]="d.pendientesAlFinal" severity="danger"></lux-tag>
+          </div>
         </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>
   } @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <h5
-      class="p-3 m-0 text-center"
-      
-    >
-      <app-icon
-        icon="material-symbols-light:check-circle"
-        
-        class="me-2"
-      />
+    <h5 class="p-3 m-0 text-center">
+      <app-icon icon="material-symbols-light:check-circle" class="me-2" />
       SOLICITUDES ATENDIDAS
     </h5>
     <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
@@ -242,34 +220,22 @@
           <div
             start
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-            
           >
-            <app-icon
-              icon="material-symbols-light:check"
-              
-            />
+            <app-icon icon="material-symbols-light:check" />
           </div>
-          
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="mb-1">#{{ rowIndex + 1 }} — {{ ticket.concepto }}</h6>
-              <lx-tag [value]="ticket.solicitudes" severity="success"></lx-tag>
-            </div>
-          
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-1">#{{ rowIndex + 1 }} — {{ ticket.concepto }}</h6>
+            <lux-tag [value]="ticket.solicitudes" severity="success"></lux-tag>
+          </div>
         </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>
   } @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <h5
-      class="p-3 m-0 text-center"
-      
-    >
-      <app-icon
-        icon="material-symbols-light:warning"
-        
-        class="me-2"
-      />
+    <h5 class="p-3 m-0 text-center">
+      <app-icon icon="material-symbols-light:warning" class="me-2" />
       SOLICITUDES PENDIENTES
     </h5>
     <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
@@ -278,36 +244,32 @@
           <div
             start
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-            
           >
-            <app-icon
-              icon="material-symbols-light:confirmation-number"
-              
-            />
+            <app-icon icon="material-symbols-light:confirmation-number" />
           </div>
-          
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
-              <lx-tag [value]="ticket.dias + ' días'" severity="danger"></lx-tag>
-            </div>
-            <small 
-              >{{ ticket.fecha | apiDate: "dd/MM/yyyy" }} — {{ ticket.cliente
-              }}</small
-            >
-            <p class="mt-2 mb-1">
-              <strong>Asunto:</strong> {{ ticket.asunto }}
-            </p>
-            <p class="text-sm mt-0 mb-2">{{ ticket.descripcion }}</p>
-            <p class="mt-0 mb-1"><strong>Último Seguimiento:</strong></p>
-            <p class="text-sm mt-0 mb-1">{{ ticket.ultimoSeguimiento }}</p>
-          
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
+            <lux-tag
+              [value]="ticket.dias + ' días'"
+              severity="danger"
+            ></lux-tag>
+          </div>
+          <small
+            >{{ ticket.fecha | apiDate: "dd/MM/yyyy" }} — {{ ticket.cliente
+            }}</small
+          >
+          <p class="mt-2 mb-1"><strong>Asunto:</strong> {{ ticket.asunto }}</p>
+          <p class="text-sm mt-0 mb-2">{{ ticket.descripcion }}</p>
+          <p class="mt-0 mb-1"><strong>Último Seguimiento:</strong></p>
+          <p class="text-sm mt-0 mb-1">{{ ticket.ultimoSeguimiento }}</p>
         </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {
-  <lx-empty-state
+  <lux-empty-state
     icon="material-symbols-light:description"
     title="Sin datos"
     message="No hay información para el periodo seleccionado."

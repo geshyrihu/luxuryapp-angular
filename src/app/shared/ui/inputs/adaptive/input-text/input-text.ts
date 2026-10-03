@@ -20,7 +20,7 @@ import { WebInputText } from "../../web/input-text/input-text";
  *   - web:    <web-input-text>  (Bootstrap)
  *   - móvil:  <ion-input-text>  (Ionic)
  * La API (control, label, placeholder, required, …) es la misma en ambas por
- * `BaseInputSignal`. Única capa que cruza la frontera web/móvil (como los `lx-*`).
+ * `BaseInputSignal`. Única capa que cruza la frontera web/móvil (como los `lux-*`).
  */
 @Component({
   selector: "custom-input-text-signal",
@@ -82,4 +82,3 @@ export class InputText extends BaseInputSignal {
   blur = output<void>();
   enter = output<void>();
 }
-

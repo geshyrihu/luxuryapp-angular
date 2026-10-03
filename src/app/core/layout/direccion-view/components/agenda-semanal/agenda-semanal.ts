@@ -6,15 +6,14 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppTag } from "@ui/web/tag/tag";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTag } from "@ui/web/tag/tag";
 import { AgendaMesesModal } from "../agenda-meses-modal/agenda-meses-modal";
 import type {
   AgendaDiaGroup,
@@ -24,13 +23,7 @@ import type {
 @Component({
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
-  imports: [
-    AppTag,
-    LxTooltipDirective,
-    AppIcon,
-    WebButtonLabel,
-    WebButtonIcon,
-  ],
+  imports: [AppTag, LxTooltipDirective, AppIcon, WebButtonLabel, WebButtonIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
@@ -115,7 +108,7 @@ export class AgendaSemanal {
       AgendaMesesModal,
       null,
       "Agenda de eventos proximos",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -159,4 +152,3 @@ export class AgendaSemanal {
     });
   }
 }
-

@@ -9,7 +9,6 @@ import {
   HttpBackend,
   HttpClient,
   provideHttpClient,
-  withFetch,
   withInterceptors,
   withInterceptorsFromDi,
 } from "@angular/common/http";
@@ -30,23 +29,23 @@ import {
   withRouterConfig,
 } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
-import { provideIonicAngular } from "@ionic/angular";
 import { GlobalErrorHandler } from "@core/http/services/global-error-handler.service";
+import { provideIonicAngular } from "@ionic/angular";
 // Importaciones de Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { environment } from "src/environments/environment";
 // Importaciones de Librerías de Terceros
+import { MessageService } from "@core/services/message.service";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
+import { provideCharts, withDefaultRegisterables } from "ng2-charts";
 import { provideMarkdown } from "ngx-markdown";
 import { provideEnvironmentNgxMask } from "ngx-mask";
 import { provideToastr } from "ngx-toastr";
-import { provideCharts, withDefaultRegisterables } from "ng2-charts";
-import { MessageService } from "@core/services/message.service";
 // Importaciones de Archivos del Proyecto
 import { imageFormDataInterceptor } from "@core/http/interceptors/image-form-data.interceptor.fn";
 import { jwtInterceptor } from "@core/http/interceptors/jwt.interceptor.fn";
@@ -80,7 +79,7 @@ export const appConfig: ApplicationConfig = {
         jwtInterceptor,
       ]),
       withInterceptorsFromDi(),
-      withFetch(),
+      // withFetch(),
     ),
     {
       provide: "HttpClientWithoutInterceptors",
@@ -112,13 +111,6 @@ export const appConfig: ApplicationConfig = {
     // --- Configuración Específica de la Aplicación ---
     { provide: LOCALE_ID, useValue: "es-MX" },
     { provide: LocationStrategy, useClass: PathLocationStrategy },
-    // {
-    //   provide: IMAGE_CONFIG,
-    //   useValue: {
-    //     disableImageSizeWarning: true,
-    //     disableImageLazyLoadWarning: true,
-    //   },
-    // },
 
     // --- Servicios Singleton Globales ---
     MessageService,

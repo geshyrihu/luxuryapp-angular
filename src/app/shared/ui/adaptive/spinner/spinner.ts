@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { SpinnerBase } from "@ui/base/spinner.base";
 import { MobileSpinner } from "@ui/mobile/spinner/spinner";
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Spinner. Renderiza `app-spinner` (Bootstrap) o
  * `ili-spinner` (Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-spinner />`.
+ * Punto de entrada recomendado: `<lux-spinner />`.
  */
 @Component({
-  selector: "lx-spinner",
+  selector: "lux-spinner",
 
   imports: [AppSpinner, MobileSpinner],
   template: `
@@ -34,4 +34,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxSpinner extends SpinnerBase {
   protected platform = inject(PlatformService);
 }
-

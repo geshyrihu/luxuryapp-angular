@@ -10,97 +10,91 @@
     </p>
   </div>
 
-  <lx-divider />
+  <lux-divider />
 
   @if (loading()) {
-    <p class="m-0 text-body-secondary">Cargando documentos...</p>
+  <p class="m-0 text-body-secondary">Cargando documentos...</p>
   } @else {
-    <div class="documents-grid">
-      @for (row of documentRows(); track row.option.value) {
-        <section class="document-card">
-          <div class="document-card__header">
-            <div>
-              <p class="m-0 fw-semibold">
-                {{ row.option.label }}
-                @if (row.option.isMandatory) {
-                  <span class="text-red-500"> *</span>
-                }
-              </p>
-              <div class="document-meta pt-2">
-                @if (row.document?.submittedAt) {
-                  <span>
-                    Entregado: {{ row.document?.submittedAt | apiDate: "dd/MM/yyyy HH:mm" }}
-                  </span>
-                } @else {
-                  <span>Pendiente de entrega</span>
-                }
-                @if (row.document?.validatedAt) {
-                  <span>
-                    Validado por {{ row.document?.validatedByUserName || "usuario" }}
-                    el
-                    {{ row.document?.validatedAt | apiDate: "dd/MM/yyyy HH:mm" }}
-                  </span>
-                }
-              </div>
-            </div>
-            <span
-              class="document-status"
-              [class.document-status--validated]="row.document?.isValidated"
-              [class.document-status--pending]="!row.document?.isValidated"
-            >
-              {{ row.document?.isValidated ? "Validado" : "Pendiente" }}
+  <div class="documents-grid">
+    @for (row of documentRows(); track row.option.value) {
+    <section class="document-card">
+      <div class="document-card__header">
+        <div>
+          <p class="m-0 fw-semibold">
+            {{ row.option.label }} @if (row.option.isMandatory) {
+            <span class="text-red-500"> *</span>
+            }
+          </p>
+          <div class="document-meta pt-2">
+            @if (row.document?.submittedAt) {
+            <span>
+              Entregado: {{ row.document?.submittedAt | apiDate: "dd/MM/yyyy
+              HH:mm" }}
             </span>
+            } @else {
+            <span>Pendiente de entrega</span>
+            } @if (row.document?.validatedAt) {
+            <span>
+              Validado por {{ row.document?.validatedByUserName || "usuario" }}
+              el {{ row.document?.validatedAt | apiDate: "dd/MM/yyyy HH:mm" }}
+            </span>
+            }
           </div>
+        </div>
+        <span
+          class="document-status"
+          [class.document-status--validated]="row.document?.isValidated"
+          [class.document-status--pending]="!row.document?.isValidated"
+        >
+          {{ row.document?.isValidated ? "Validado" : "Pendiente" }}
+        </span>
+      </div>
 
-          <div class="pt-3">
-            <app-candidate-cv-upload
-              [label]="'Archivo PDF'"
-              [currentFileLabel]="'Archivo actual'"
-              [replaceLabel]="'Reemplazar archivo'"
-              [viewAriaLabel]="'Ver documento'"
-              [fileName]="row.document?.fileName ?? null"
-              [fileUrl]="row.document?.fileUrl ?? ''"
-              (fileEmitted)="onFileChanged(row.option.value, $event)"
-            />
-          </div>
+      <div class="pt-3">
+        <app-candidate-cv-upload
+          [label]="'Archivo PDF'"
+          [currentFileLabel]="'Archivo actual'"
+          [replaceLabel]="'Reemplazar archivo'"
+          [viewAriaLabel]="'Ver documento'"
+          [fileName]="row.document?.fileName ?? null"
+          [fileUrl]="row.document?.fileUrl ?? ''"
+          (fileEmitted)="onFileChanged(row.option.value, $event)"
+        />
+      </div>
 
-          <div class="document-actions pt-3">
-            <textarea
-              class="document-notes"
-              [value]="validationNotes()[row.document?.id ?? ''] ?? row.document?.validationNotes ?? ''"
-              (input)="onValidationNotesChange(row.document?.id ?? '', $any($event.target).value)"
-              placeholder="Notas de validacion"
-              [disabled]="!row.document"
-            ></textarea>
+      <div class="document-actions pt-3">
+        <textarea
+          class="document-notes"
+          [value]="validationNotes()[row.document?.id ?? ''] ?? row.document?.validationNotes ?? ''"
+          (input)="onValidationNotesChange(row.document?.id ?? '', $any($event.target).value)"
+          placeholder="Notas de validacion"
+          [disabled]="!row.document"
+        ></textarea>
 
-            <div class="document-buttons">
-              <button
-                type="button"
-                class="document-button document-button--primary"
-                [disabled]="!row.pendingFile || isUploading(row.option.value)"
-                (click)="onUploadDocument(row.option.value)"
-              >
-                {{ isUploading(row.option.value) ? "Subiendo..." : "Guardar documento" }}
-              </button>
+        <div class="document-buttons">
+          <button
+            type="button"
+            class="document-button document-button--primary"
+            [disabled]="!row.pendingFile || isUploading(row.option.value)"
+            (click)="onUploadDocument(row.option.value)"
+          >
+            {{ isUploading(row.option.value) ? "Subiendo..." : "Guardar
+            documento" }}
+          </button>
 
-              <button
-                type="button"
-                class="document-button document-button--success"
-                [disabled]="!row.document || row.document.isValidated || isValidating(row.document?.id ?? '')"
-                (click)="onValidateDocument(row.document?.id ?? '')"
-              >
-                {{
-                  isValidating(row.document?.id ?? "")
-                    ? "Validando..."
-                    : row.document?.isValidated
-                      ? "Validado"
-                      : "Validar documento"
-                }}
-              </button>
-            </div>
-          </div>
-        </section>
-      }
-    </div>
+          <button
+            type="button"
+            class="document-button document-button--success"
+            [disabled]="!row.document || row.document.isValidated || isValidating(row.document?.id ?? '')"
+            (click)="onValidateDocument(row.document?.id ?? '')"
+          >
+            {{ isValidating(row.document?.id ?? "") ? "Validando..." :
+            row.document?.isValidated ? "Validado" : "Validar documento" }}
+          </button>
+        </div>
+      </div>
+    </section>
+    }
+  </div>
   }
 </div>

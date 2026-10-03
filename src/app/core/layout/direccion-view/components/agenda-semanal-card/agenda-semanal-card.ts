@@ -6,11 +6,10 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
@@ -49,7 +48,7 @@ export class AgendaSemanalCard implements OnInit {
       AgendaSemanal,
       null,
       "Agenda - Juntas con Comite",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -94,4 +93,3 @@ export class AgendaSemanalCard implements OnInit {
     this.cargando.set(false);
   }
 }
-

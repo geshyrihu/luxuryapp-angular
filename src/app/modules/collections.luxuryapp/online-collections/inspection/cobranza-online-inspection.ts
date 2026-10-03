@@ -9,19 +9,16 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { AppTable } from "@ui/web/table/table";
 
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,

@@ -6,10 +6,27 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
+import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
@@ -23,28 +40,8 @@ import {
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { SolicitudCompraService } from "./services/solicitud-compra.service";
-import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
-import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { SwalService } from "@core/services/swal.service";
+import { SolicitudCompraService } from "./services/solicitud-compra.service";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -199,7 +196,9 @@ export class SolicitudCompraList {
   }
 
   isInPresentation(id: string): boolean {
-    return this.data().some(item => item.id === id && item.selectedForPresentation);
+    return this.data().some(
+      (item) => item.id === id && item.selectedForPresentation,
+    );
   }
 
   async onToggleSelection(id: string, checked: boolean) {
@@ -257,7 +256,9 @@ export class SolicitudCompraList {
   areAllVisibleSelected(): boolean {
     return this.data().length > 0
       ? this.data().every((item) =>
-          this.data().some(d => d.id === item.id && d.selectedForPresentation),
+          this.data().some(
+            (d) => d.id === item.id && d.selectedForPresentation,
+          ),
         )
       : false;
   }
@@ -399,4 +400,3 @@ export class SolicitudCompraList {
     });
   }
 }
-

@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { FileUploadBase } from "@ui/base/file-upload.base";
 import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
 import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de FileUpload. Renderiza `app-file-upload` (web) o
  * `ili-file-upload` (móvil) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-file-upload [multiple]="true" />`.
+ * Punto de entrada recomendado: `<lux-file-upload [multiple]="true" />`.
  */
 @Component({
-  selector: "lx-file-upload",
+  selector: "lux-file-upload",
 
   imports: [AppFileUpload, IliFileUpload],
   template: `
@@ -44,4 +44,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxFileUpload extends FileUploadBase {
   protected platform = inject(PlatformService);
 }
-

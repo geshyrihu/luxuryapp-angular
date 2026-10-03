@@ -13,16 +13,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ProductModalAdd } from "./product-modal-add";
 
 interface IProductSuggestion {

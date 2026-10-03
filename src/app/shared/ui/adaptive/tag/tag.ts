@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { TagBase } from "@ui/base/tag.base";
 import { MobileTag } from "@ui/mobile/tag/tag";
 import { AppTag } from "@ui/web/tag/tag";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-tag",
+  selector: "lux-tag",
 
   imports: [AppTag, MobileTag],
   template: `
@@ -31,4 +31,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxTag extends TagBase {
   protected platform = inject(PlatformService);
 }
-

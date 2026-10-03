@@ -1,5 +1,7 @@
 <div class="p-4 p-md-5 d-flex flex-column gap-5">
-  <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+  <div
+    class="d-flex align-items-center justify-content-between flex-wrap gap-3"
+  >
     <div>
       <h2 class="text-xl fw-bold text-body d-flex align-items-center">
         <app-icon
@@ -27,7 +29,9 @@
   </div>
 
   @if (!metricas()) {
-  <div class="d-flex align-items-center justify-content-center h-12rem text-body-secondary">
+  <div
+    class="d-flex align-items-center justify-content-center h-12rem text-body-secondary"
+  >
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl me-3"
@@ -37,7 +41,7 @@
   } @else {
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--primary p-5 h-full">
+      <lux-card class="card card--elevated card--primary p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
             <app-icon [icon]="'material-symbols-light:percent'" />
@@ -53,7 +57,7 @@
           {{ metricas()!.porcentajeCobrado | number: '1.1-1' }}%
         </div>
 
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.porcentajeCobrado"
           [showValue]="false"
@@ -64,11 +68,11 @@
           de {{ metricas()!.totalFacturado | currency:'MXN':'symbol':'1.0-0' }}
           facturado
         </p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--success p-5 h-full">
+      <lux-card class="card card--elevated card--success p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
             <app-icon [icon]="'material-symbols-light:check-circle'" />
@@ -84,11 +88,11 @@
           ${{ metricas()!.totalCobrado | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">ingresos recibidos</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--warning p-5 h-full">
+      <lux-card class="card card--elevated card--warning p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
             <app-icon [icon]="'material-symbols-light:schedule'" />
@@ -104,11 +108,11 @@
           ${{ metricas()!.totalPendiente | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">por cobrar</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--danger p-5 h-full">
+      <lux-card class="card card--elevated card--danger p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
             <app-icon [icon]="'material-symbols-light:warning'" />
@@ -124,13 +128,13 @@
           ${{ metricas()!.totalVencido | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">deuda vencida</p>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--success p-5 h-full">
+      <lux-card class="card card--elevated card--success p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
             <app-icon [icon]="'material-symbols-light:check-circle'" />
@@ -145,18 +149,18 @@
         <div class="text-3xl font-extrabold text-green-600">
           {{ metricas()!.propiedadesAlCorriente }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesAlCorriente / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="success"
         />
         <p class="text-xs text-body-secondary mt-2">unidades sin deuda</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--warning p-5 h-full">
+      <lux-card class="card card--elevated card--warning p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
             <app-icon [icon]="'material-symbols-light:schedule'" />
@@ -171,18 +175,18 @@
         <div class="text-3xl font-extrabold text-orange-600">
           {{ metricas()!.propiedadesConDeuda }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesConDeuda / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="warning"
         />
         <p class="text-xs text-body-secondary mt-2">con cargos pendientes</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--danger p-5 h-full">
+      <lux-card class="card card--elevated card--danger p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
             <app-icon [icon]="'material-symbols-light:block'" />
@@ -197,18 +201,18 @@
         <div class="text-3xl font-extrabold text-red-600">
           {{ metricas()!.propiedadesMorosas }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesMorosas / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="danger"
         />
         <p class="text-xs text-body-secondary mt-2">deuda vencida grave</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
             <app-icon [icon]="'material-symbols-light:home'" />
@@ -224,7 +228,9 @@
           {{ metricas()!.totalPropiedades }}
         </div>
 
-        <div class="mt-3 h-1rem rounded-3xl overflow-hidden d-flex bg-body-tertiary">
+        <div
+          class="mt-3 h-1rem rounded-3xl overflow-hidden d-flex bg-body-tertiary"
+        >
           @if (metricas()!.totalPropiedades > 0) {
           <div
             class="h-full bg-green-400 transition-all transition-duration-500"
@@ -241,13 +247,13 @@
           }
         </div>
         <p class="text-xs text-body-secondary mt-2">en el condominio</p>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-12 col-lg-6">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:monitoring'"
@@ -295,11 +301,11 @@
             Cobrado
           </span>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-lg-6">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:arrow-downward'"
@@ -309,7 +315,9 @@
         </h3>
 
         @if (metricas()!.topDeudores.length === 0) {
-        <p class="text-center text-body-secondary text-sm py-5">Sin deudores pendientes</p>
+        <p class="text-center text-body-secondary text-sm py-5">
+          Sin deudores pendientes
+        </p>
         } @else {
         <div class="d-flex flex-column gap-3">
           @for (d of metricas()!.topDeudores; track d.propertyId; let i =
@@ -340,7 +348,7 @@
           }
         </div>
         }
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 

@@ -11,10 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WorkPositionHours } from "@operations.luxuryapp/work-positions/work-position-hours";
 import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -347,7 +344,9 @@ export class SalaryProjectionsDetail {
       const result = await this.api.onPost<ISalaryProjectionItemSimulation[]>(
         Endpoints.SalaryProjections.simulate,
         {
-          cutOffDate: projection.targetYear ? `${projection.targetYear}-12-31` : this.todayIso(),
+          cutOffDate: projection.targetYear
+            ? `${projection.targetYear}-12-31`
+            : this.todayIso(),
           items,
         },
         undefined,
@@ -483,7 +482,7 @@ export class SalaryProjectionsDetail {
         CardEmployee,
         { applicationUserId: item.applicationUserId },
         "Colaborador",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       );
     }
   }
@@ -494,7 +493,7 @@ export class SalaryProjectionsDetail {
         WorkPositionHours,
         { id: workPositionId, applicationRoleName: positionTitle },
         positionTitle ? `Horarios - ${positionTitle}` : "Horarios de Trabajo",
-        DialogSize.full,
+        this.dialogHandlerS.sizeFull,
       );
     }
   }

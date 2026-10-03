@@ -29,7 +29,7 @@
     <div class="col-6 col-md-3">
       <div class="text-center">
         <p class="text-xs text-body-secondary m-0">Estado</p>
-        <lx-tag [severity]="getEstadoSeverity(p.estado)" [value]="p.estado" />
+        <lux-tag [severity]="getEstadoSeverity(p.estado)" [value]="p.estado" />
       </div>
     </div>
   </div>
@@ -42,20 +42,17 @@
       >
       <span class="text-sm fw-bold">{{ progreso }}%</span>
     </div>
-    <div
-      class="rounded overflow-hidden"
-      
-    >
-      <div
-        class="rounded bg-primary"
-        [style.width.%]="progreso"
-        
-      ></div>
+    <div class="rounded overflow-hidden">
+      <div class="rounded bg-primary" [style.width.%]="progreso"></div>
     </div>
   </div>
 
   <!-- Historial de pagos -->
-  <app-table [value]="pagos()" [loading]="loading()" class="p-datatable-sm mb-3">
+  <app-table
+    [value]="pagos()"
+    [loading]="loading()"
+    class="p-datatable-sm mb-3"
+  >
     <ng-template #header>
       <tr>
         <th>No.</th>

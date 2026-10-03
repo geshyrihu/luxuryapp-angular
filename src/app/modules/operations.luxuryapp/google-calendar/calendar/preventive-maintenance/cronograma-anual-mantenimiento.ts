@@ -9,14 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { Workbook } from "exceljs";
-import * as FileSaver from "file-saver";
-import { addIcons } from "ionicons";
-import { checkboxOutline, createOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { TooltipPlacement } from "@core/enums/tooltip-placement.enum";
@@ -32,9 +24,17 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
+import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { Workbook } from "exceljs";
+import * as FileSaver from "file-saver";
+import { addIcons } from "ionicons";
+import { checkboxOutline, createOutline } from "ionicons/icons";
 import { CronogramaCompletoStatusDialog } from "./cronograma-completo-status-dialog";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
@@ -465,4 +465,3 @@ ${this.htmlPrintS.getStandardCss()}
     return index;
   }
 }
-

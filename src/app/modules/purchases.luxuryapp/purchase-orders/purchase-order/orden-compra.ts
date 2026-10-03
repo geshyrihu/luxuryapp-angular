@@ -16,25 +16,26 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
-import { AppTable } from "@ui/web/table/table";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTable } from "@ui/web/table/table";
 
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service"; // Import added
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { OrdenCompraDatosAuthParcial } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-auth-parcial";
 import { OrdenCompraDatosCotizacion } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-cotizacion";
 import { OrdenCompraDatosPagoParcial } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-pago-parcial";
 import { OrdenCompraStatusParcial } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-status-parcial";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
 import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
@@ -44,9 +45,8 @@ import { OrdenCompraStatus } from "./forms/orden-compra-status";
 import { OrdenCompraEditDetalle } from "./orden-compra-edit-detalle";
 import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupusto-utilizado";
 import { ModalOrdenCompra } from "./orden-compra-modal";
-import { OrdenCompraPresupuesto } from "./purchase-order-budget/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
-import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
+import { OrdenCompraPresupuesto } from "./purchase-order-budget/orden-compra-presupuesto";
 import {
   PurchaseOrderDetailLine,
   PurchaseOrderValidationResult,
@@ -98,8 +98,9 @@ export class OrdenCompra implements OnInit {
   // REFACTOR: El estado del componente ahora se gestiona con WritableSignal.
   ordenCompraId: WritableSignal<string> = signal("");
   ordenCompra: WritableSignal<PurchaseOrderView | null> = signal(null);
-  purchaseOrderBudget: WritableSignal<PurchaseOrderView["purchaseOrderBudget"]> =
-    signal([]);
+  purchaseOrderBudget: WritableSignal<
+    PurchaseOrderView["purchaseOrderBudget"]
+  > = signal([]);
   ordenCompraDetalle: WritableSignal<PurchaseOrderDetailLine[]> = signal([]);
   solicitudCompraId: WritableSignal<string> = signal("");
   loading = signal(false);

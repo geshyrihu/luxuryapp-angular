@@ -118,18 +118,15 @@ export class DialogHandlerService {
     const modal = await this.modalCtrl.create({
       component: IonicDialogModal,
       componentProps: { formComponent: component, data, title },
-      cssClass: "lx-form-modal",
+      cssClass: "lux-form-modal",
     });
     await modal.present();
     const { data: result } = await modal.onDidDismiss();
     return result as T;
   }
 
-  private getDesktopModalOptions(
-    size: DialogSize,
-    config?: DialogConfig,
-  ) {
-    const isFullscreen = size === DialogSize.full;
+  private getDesktopModalOptions(size: DialogSize, config?: DialogConfig) {
+    const isFullscreen = size === this.sizeFull;
 
     return {
       centered: true,
@@ -138,8 +135,7 @@ export class DialogHandlerService {
       keyboard: config?.closeOnEscape !== false,
       fullscreen: isFullscreen,
       // Bootstrap has no modal-md class; default modal width is Lagos' medium size.
-      modalDialogClass:
-        size === DialogSize.md || isFullscreen ? undefined : size,
+      modalDialogClass: size === this.sizeMd || isFullscreen ? undefined : size,
     };
   }
 

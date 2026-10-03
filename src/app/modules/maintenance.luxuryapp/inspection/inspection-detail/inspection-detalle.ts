@@ -9,17 +9,17 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppTag } from "@ui/web/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppTag } from "@ui/web/tag/tag";
 import { InspeccionActivoCondominio } from "../inspection-asset-add/inspeccion-activo-condominio";
 import { InspeccionActivoCondominioEditar } from "../inspection-asset-edit/inspeccion-activo-condominio-editar";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
@@ -45,16 +45,16 @@ import { InspectionEdit } from "../models/inspection.model";
     <div class="p-4">
       @if (loading()) {
         <div class="d-none d-md-flex flex-column gap-3">
-          <lx-skeleton height="2rem" styleClass="mb-2" />
-          <lx-skeleton height="1.5rem" />
-          <lx-skeleton height="10rem" />
-          <lx-skeleton height="10rem" />
+          <lux-skeleton height="2rem" styleClass="mb-2" />
+          <lux-skeleton height="1.5rem" />
+          <lux-skeleton height="10rem" />
+          <lux-skeleton height="10rem" />
         </div>
         <div class="d-flex d-md-none flex-column gap-3">
-          <lx-skeleton height="2rem" styleClass="mb-2" />
-          <lx-skeleton height="1.5rem" />
-          <lx-skeleton height="10rem" />
-          <lx-skeleton height="10rem" />
+          <lux-skeleton height="2rem" styleClass="mb-2" />
+          <lux-skeleton height="1.5rem" />
+          <lux-skeleton height="10rem" />
+          <lux-skeleton height="10rem" />
         </div>
       } @else if (error()) {
         <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded">
@@ -62,114 +62,214 @@ import { InspectionEdit } from "../models/inspection.model";
         </div>
       } @else if (inspection()) {
         <div class="d-none d-md-block">
-        <lx-card>
-          <div class="d-flex justify-between items-start mb-6">
-            <div>
-              <h1 class="text-3xl fw-bold mb-1">{{ inspection().name }}</h1>
-              <p class="text-sm text-body-secondary m-0 mb-3">Creado el {{ formatDate(inspection().createdAt) }}</p>
-              <div class="d-flex flex-wrap gap-2">
-                <app-tag [value]="formatFrequency(inspection().frequency)" severity="info" icon="material-symbols-light:calendar-month" />
-                <app-tag [value]="inspection().isActive ? 'Activa' : 'Inactiva'" [severity]="inspection().isActive ? 'success' : 'secondary'" icon="material-symbols-light:check-circle" />
-                <app-tag [value]="inspection().departament" severity="secondary" icon="material-symbols-light:apartment" />
-                @if (inspection().frequency === "weekly" && inspection().weeklyDays) {
-                  @for (day of getWeekdayLabels(inspection().weeklyDays); track day) {
-                    <app-tag [value]="day" severity="secondary" icon="material-symbols-light:event-available" />
+          <lux-card>
+            <div class="d-flex justify-between items-start mb-6">
+              <div>
+                <h1 class="text-3xl fw-bold mb-1">{{ inspection().name }}</h1>
+                <p class="text-sm text-body-secondary m-0 mb-3">
+                  Creado el {{ formatDate(inspection().createdAt) }}
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <app-tag
+                    [value]="formatFrequency(inspection().frequency)"
+                    severity="info"
+                    icon="material-symbols-light:calendar-month"
+                  />
+                  <app-tag
+                    [value]="inspection().isActive ? 'Activa' : 'Inactiva'"
+                    [severity]="inspection().isActive ? 'success' : 'secondary'"
+                    icon="material-symbols-light:check-circle"
+                  />
+                  <app-tag
+                    [value]="inspection().departament"
+                    severity="secondary"
+                    icon="material-symbols-light:apartment"
+                  />
+                  @if (
+                    inspection().frequency === "weekly" &&
+                    inspection().weeklyDays
+                  ) {
+                    @for (
+                      day of getWeekdayLabels(inspection().weeklyDays);
+                      track day
+                    ) {
+                      <app-tag
+                        [value]="day"
+                        severity="secondary"
+                        icon="material-symbols-light:event-available"
+                      />
+                    }
+                  } @else if (
+                    inspection().frequency === "monthly" &&
+                    inspection().dayOfMonth
+                  ) {
+                    <app-tag
+                      [value]="'Día ' + inspection().dayOfMonth"
+                      severity="secondary"
+                      icon="material-symbols-light:event-available"
+                    />
                   }
-                } @else if (inspection().frequency === "monthly" && inspection().dayOfMonth) {
-                  <app-tag [value]="'Día ' + inspection().dayOfMonth" severity="secondary" icon="material-symbols-light:event-available" />
-                }
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <il-button-edit (clicked)="onEdit()" label="Editar" />
+                <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
               </div>
             </div>
-            <div class="d-flex gap-2">
-              <il-button-edit (clicked)="onEdit()" label="Editar" />
-              <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
+          </lux-card>
+
+          <lux-card class="mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="text-xl fw-bold m-0">
+                Equipos y criterios de revisión
+              </h2>
+              <il-button
+                iconClass="material-symbols-light:add-circle"
+                label="Agregar Equipo"
+                (clicked)="onAddEquipment()"
+              />
             </div>
-          </div>
 
-        </lx-card>
-
-        <lx-card class="mt-4">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-xl fw-bold m-0">Equipos y criterios de revisión</h2>
-            <il-button
-              iconClass="material-symbols-light:add-circle"
-              label="Agregar Equipo"
-              (clicked)="onAddEquipment()"
-            />
-          </div>
-
-          @if (equipmentItems().length > 0) {
-            @for (item of equipmentItems(); track item.inspectionCondominiumAssetId) {
-              <lx-card class="mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2">
-                      <app-icon icon="material-symbols-light:settings" />
+            @if (equipmentItems().length > 0) {
+              @for (
+                item of equipmentItems();
+                track item.inspectionCondominiumAssetId
+              ) {
+                <lux-card class="mb-4">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-4"
+                  >
+                    <div class="d-flex align-items-center gap-3">
+                      <div
+                        class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
+                      >
+                        <app-icon icon="material-symbols-light:settings" />
+                      </div>
+                      <h3 class="text-lg fw-bold m-0">
+                        {{ item.name | uppercase }}
+                      </h3>
                     </div>
-                    <h3 class="text-lg fw-bold m-0">{{ item.name | uppercase }}</h3>
-                  </div>
-                  <app-tag [value]="(item.reviews?.length ?? 0) + ' criterios'" severity="secondary" />
-                  <app-action-menu>
-                    <ng-container actions>
-                      <il-button-edit
-                        label="Editar"
-                        (clicked)="onEditEquipment(item)"
-                      />
-                      <il-button-delete
-                        label="Eliminar"
-                        (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId)"
-                      />
-                    </ng-container>
-                  </app-action-menu>
-                </div>
-
-                @if (item.reviews && item.reviews.length > 0) {
-                  <div class="d-flex flex-column gap-3">
-                    @for (review of item.reviews; track review.id) {
-                      <div class="d-flex justify-content-between align-items-start gap-3">
-                        <div class="d-flex align-items-start gap-2">
-                          <app-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
-                          <p class="text-body-sm m-0">{{ review.description }}</p>
-                        </div>
+                    <app-tag
+                      [value]="(item.reviews?.length ?? 0) + ' criterios'"
+                      severity="secondary"
+                    />
+                    <app-action-menu>
+                      <ng-container actions>
+                        <il-button-edit
+                          label="Editar"
+                          (clicked)="onEditEquipment(item)"
+                        />
                         <il-button-delete
                           label="Eliminar"
-                          (confirmed)="onDeleteReview(review.id, item.inspectionCondominiumAssetId)"
+                          (confirmed)="
+                            onDeleteArea(item.inspectionCondominiumAssetId)
+                          "
                         />
-                      </div>
-                    }
+                      </ng-container>
+                    </app-action-menu>
                   </div>
-                } @else {
-                  <p class="text-body-sm text-body-secondary m-0">
-                    Sin criterios de revisión registrados
-                  </p>
-                }
-              </lx-card>
+
+                  @if (item.reviews && item.reviews.length > 0) {
+                    <div class="d-flex flex-column gap-3">
+                      @for (review of item.reviews; track review.id) {
+                        <div
+                          class="d-flex justify-content-between align-items-start gap-3"
+                        >
+                          <div class="d-flex align-items-start gap-2">
+                            <app-icon
+                              icon="material-symbols-light:check-circle-outline"
+                              class="text-success-600 flex-shrink-0"
+                            />
+                            <p class="text-body-sm m-0">
+                              {{ review.description }}
+                            </p>
+                          </div>
+                          <il-button-delete
+                            label="Eliminar"
+                            (confirmed)="
+                              onDeleteReview(
+                                review.id,
+                                item.inspectionCondominiumAssetId
+                              )
+                            "
+                          />
+                        </div>
+                      }
+                    </div>
+                  } @else {
+                    <p class="text-body-sm text-body-secondary m-0">
+                      Sin criterios de revisión registrados
+                    </p>
+                  }
+                </lux-card>
+              }
+            } @else {
+              <div
+                class="d-flex flex-column align-items-center text-center gap-3 py-5"
+              >
+                <app-icon
+                  icon="material-symbols-light:construction"
+                  class="text-5xl text-body-secondary"
+                />
+                <p class="text-body-secondary m-0">
+                  No hay equipos configurados en este recorrido.
+                </p>
+                <il-button
+                  label="Agregar el primer equipo"
+                  iconClass="material-symbols-light:add-circle"
+                  (clicked)="onAddEquipment()"
+                />
+              </div>
             }
-          } @else {
-            <div class="d-flex flex-column align-items-center text-center gap-3 py-5">
-              <app-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
-              <p class="text-body-secondary m-0">No hay equipos configurados en este recorrido.</p>
-              <il-button label="Agregar el primer equipo" iconClass="material-symbols-light:add-circle" (clicked)="onAddEquipment()" />
-            </div>
-          }
-        </lx-card>
+          </lux-card>
         </div>
         <div class="d-block d-md-none">
-          <lx-card>
+          <lux-card>
             <div class="d-flex flex-column gap-3">
               <div>
                 <h1 class="text-2xl fw-bold mb-1">{{ inspection().name }}</h1>
-                <p class="text-sm text-body-secondary m-0 mb-3">Creado el {{ formatDate(inspection().createdAt) }}</p>
+                <p class="text-sm text-body-secondary m-0 mb-3">
+                  Creado el {{ formatDate(inspection().createdAt) }}
+                </p>
                 <div class="d-flex flex-wrap gap-2">
-                  <app-tag [value]="formatFrequency(inspection().frequency)" severity="info" icon="material-symbols-light:calendar-month" />
-                  <app-tag [value]="inspection().isActive ? 'Activa' : 'Inactiva'" [severity]="inspection().isActive ? 'success' : 'secondary'" icon="material-symbols-light:check-circle" />
-                  <app-tag [value]="inspection().departament" severity="secondary" icon="material-symbols-light:apartment" />
-                  @if (inspection().frequency === "weekly" && inspection().weeklyDays) {
-                    @for (day of getWeekdayLabels(inspection().weeklyDays); track day) {
-                      <app-tag [value]="day" severity="secondary" icon="material-symbols-light:event-available" />
+                  <app-tag
+                    [value]="formatFrequency(inspection().frequency)"
+                    severity="info"
+                    icon="material-symbols-light:calendar-month"
+                  />
+                  <app-tag
+                    [value]="inspection().isActive ? 'Activa' : 'Inactiva'"
+                    [severity]="inspection().isActive ? 'success' : 'secondary'"
+                    icon="material-symbols-light:check-circle"
+                  />
+                  <app-tag
+                    [value]="inspection().departament"
+                    severity="secondary"
+                    icon="material-symbols-light:apartment"
+                  />
+                  @if (
+                    inspection().frequency === "weekly" &&
+                    inspection().weeklyDays
+                  ) {
+                    @for (
+                      day of getWeekdayLabels(inspection().weeklyDays);
+                      track day
+                    ) {
+                      <app-tag
+                        [value]="day"
+                        severity="secondary"
+                        icon="material-symbols-light:event-available"
+                      />
                     }
-                  } @else if (inspection().frequency === "monthly" && inspection().dayOfMonth) {
-                    <app-tag [value]="'Día ' + inspection().dayOfMonth" severity="secondary" icon="material-symbols-light:event-available" />
+                  } @else if (
+                    inspection().frequency === "monthly" &&
+                    inspection().dayOfMonth
+                  ) {
+                    <app-tag
+                      [value]="'Día ' + inspection().dayOfMonth"
+                      severity="secondary"
+                      icon="material-symbols-light:event-available"
+                    />
                   }
                 </div>
               </div>
@@ -178,57 +278,113 @@ import { InspectionEdit } from "../models/inspection.model";
                 <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
               </div>
             </div>
-          </lx-card>
-          <lx-card class="mt-4">
+          </lux-card>
+          <lux-card class="mt-4">
             <div class="d-flex flex-column gap-3">
               <div class="d-flex flex-column gap-2">
-                <h2 class="text-xl fw-bold m-0">Equipos y criterios de revisión</h2>
-                <il-button iconClass="material-symbols-light:add-circle" label="Agregar Equipo" (clicked)="onAddEquipment()" />
+                <h2 class="text-xl fw-bold m-0">
+                  Equipos y criterios de revisión
+                </h2>
+                <il-button
+                  iconClass="material-symbols-light:add-circle"
+                  label="Agregar Equipo"
+                  (clicked)="onAddEquipment()"
+                />
               </div>
               @if (equipmentItems().length > 0) {
-                @for (item of equipmentItems(); track item.inspectionCondominiumAssetId) {
-                  <lx-card class="mb-3">
-                    <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                @for (
+                  item of equipmentItems();
+                  track item.inspectionCondominiumAssetId
+                ) {
+                  <lux-card class="mb-3">
+                    <div
+                      class="d-flex justify-content-between align-items-start gap-2 mb-3"
+                    >
                       <div class="d-flex align-items-center gap-2">
-                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2">
+                        <div
+                          class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
+                        >
                           <app-icon icon="material-symbols-light:settings" />
                         </div>
-                        <h3 class="text-lg fw-bold m-0 text-break">{{ item.name | uppercase }}</h3>
+                        <h3 class="text-lg fw-bold m-0 text-break">
+                          {{ item.name | uppercase }}
+                        </h3>
                       </div>
-                      <app-tag [value]="(item.reviews?.length ?? 0) + ' criterios'" severity="secondary" />
+                      <app-tag
+                        [value]="(item.reviews?.length ?? 0) + ' criterios'"
+                        severity="secondary"
+                      />
                       <app-action-menu>
                         <ng-container actions>
-                          <il-button-edit label="Editar" (clicked)="onEditEquipment(item)" />
-                          <il-button-delete label="Eliminar" (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId)" />
+                          <il-button-edit
+                            label="Editar"
+                            (clicked)="onEditEquipment(item)"
+                          />
+                          <il-button-delete
+                            label="Eliminar"
+                            (confirmed)="
+                              onDeleteArea(item.inspectionCondominiumAssetId)
+                            "
+                          />
                         </ng-container>
                       </app-action-menu>
                     </div>
                     @if (item.reviews && item.reviews.length > 0) {
                       <div class="d-flex flex-column gap-2">
                         @for (review of item.reviews; track review.id) {
-                          <div class="d-flex justify-content-between align-items-start gap-2">
+                          <div
+                            class="d-flex justify-content-between align-items-start gap-2"
+                          >
                             <div class="d-flex align-items-start gap-2">
-                              <app-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
-                              <p class="text-body-sm m-0 flex-grow-1 text-break">{{ review.description }}</p>
+                              <app-icon
+                                icon="material-symbols-light:check-circle-outline"
+                                class="text-success-600 flex-shrink-0"
+                              />
+                              <p
+                                class="text-body-sm m-0 flex-grow-1 text-break"
+                              >
+                                {{ review.description }}
+                              </p>
                             </div>
-                            <il-button-delete label="Eliminar" (confirmed)="onDeleteReview(review.id, item.inspectionCondominiumAssetId)" />
+                            <il-button-delete
+                              label="Eliminar"
+                              (confirmed)="
+                                onDeleteReview(
+                                  review.id,
+                                  item.inspectionCondominiumAssetId
+                                )
+                              "
+                            />
                           </div>
                         }
                       </div>
                     } @else {
-                      <p class="text-body-sm text-body-secondary m-0">Sin criterios de revisión registrados</p>
+                      <p class="text-body-sm text-body-secondary m-0">
+                        Sin criterios de revisión registrados
+                      </p>
                     }
-                  </lx-card>
+                  </lux-card>
                 }
               } @else {
-                <div class="d-flex flex-column align-items-center text-center gap-3 py-5">
-                  <app-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
-                  <p class="text-body-secondary m-0">No hay equipos configurados en este recorrido.</p>
-                  <il-button label="Agregar el primer equipo" iconClass="material-symbols-light:add-circle" (clicked)="onAddEquipment()" />
+                <div
+                  class="d-flex flex-column align-items-center text-center gap-3 py-5"
+                >
+                  <app-icon
+                    icon="material-symbols-light:construction"
+                    class="text-5xl text-body-secondary"
+                  />
+                  <p class="text-body-secondary m-0">
+                    No hay equipos configurados en este recorrido.
+                  </p>
+                  <il-button
+                    label="Agregar el primer equipo"
+                    iconClass="material-symbols-light:add-circle"
+                    (clicked)="onAddEquipment()"
+                  />
                 </div>
               }
             </div>
-          </lx-card>
+          </lux-card>
         </div>
       }
     </div>
@@ -380,9 +536,7 @@ export class InspectionDetailComponent implements OnInit {
 
   onDeleteReview(reviewId: string, assetId: string): void {
     this.apiResponseS
-      .onDelete(
-        Endpoints.InspectionCondominiumAssets.deleteReview(reviewId),
-      )
+      .onDelete(Endpoints.InspectionCondominiumAssets.deleteReview(reviewId))
       .then((result) => {
         if (result) {
           this.equipmentItems.update((items) =>

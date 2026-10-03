@@ -8,12 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
-import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -30,6 +24,12 @@ import {
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-bitacora-individual",
   templateUrl: "./bitacora-individual.html",
@@ -121,4 +121,3 @@ export class BitacoraIndividual implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-

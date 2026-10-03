@@ -3,13 +3,10 @@
     <header
       class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
-      <div class="bg-primary" ></div>
+      <div class="bg-primary"></div>
       <div class="bg-body-tertiary p-3 d-flex align-items-center gap-3">
         <div class="d-flex flex-column gap-1">
-          <small
-            class="text-primary fw-bold text-uppercase"
-            
-          >
+          <small class="text-primary fw-bold text-uppercase">
             LuxuryApp · Contabilidad
           </small>
           <h1 class="text-primary text-2xl md:text-3xl line-height-2 m-0">
@@ -22,96 +19,100 @@
           }
         </div>
       </div>
-      <div class="bg-yellow-500" ></div>
+      <div class="bg-yellow-500"></div>
     </header>
 
     <div class="bg-body rounded-xl border-1 border shadow-sm">
-      <lx-tabs [tabs]="reportTabs()" [activeId]="tabIndex().toString()" (tabChange)="onTabChange($event)">
+      <lux-tabs
+        [tabs]="reportTabs()"
+        [activeId]="tabIndex().toString()"
+        (tabChange)="onTabChange($event)"
+      >
         <div tab="0" class="p-4 pt-5">
-            <app-epf-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="1" class="p-4 pt-5">
-            <app-estado-resultados-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="2" class="p-4 pt-5">
-            <app-estado-resultados-v2-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="3" class="p-4 pt-5">
-            <app-cedula-extraordinaria-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="4" class="p-4 pt-5">
-            <app-cedula-presupuestal-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="5" class="p-4 pt-5">
-            <app-reporte-financiero-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="6" class="p-4 pt-5">
-            <app-flujo-efectivo-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [month]="mes()"
-            />
-          </div>
-          <div tab="7" class="p-4 pt-5">
-            <app-analisis-cobranza-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="8" class="p-4 pt-5">
-            <app-presupuesto-contabilidad-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="9" class="p-4 pt-5">
-            <app-bancos-inversiones-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="10" class="p-4 pt-5">
-            <app-fondo-reserva-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-          <div tab="11" class="p-4 pt-5">
-            <app-proyectos-aprobados-cliente
-              [customerId]="customerId()"
-              [year]="year()"
-              [mes]="mes()"
-            />
-          </div>
-      </lx-tabs>
+          <app-epf-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="1" class="p-4 pt-5">
+          <app-estado-resultados-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="2" class="p-4 pt-5">
+          <app-estado-resultados-v2-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="3" class="p-4 pt-5">
+          <app-cedula-extraordinaria-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="4" class="p-4 pt-5">
+          <app-cedula-presupuestal-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="5" class="p-4 pt-5">
+          <app-reporte-financiero-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="6" class="p-4 pt-5">
+          <app-flujo-efectivo-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [month]="mes()"
+          />
+        </div>
+        <div tab="7" class="p-4 pt-5">
+          <app-analisis-cobranza-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="8" class="p-4 pt-5">
+          <app-presupuesto-contabilidad-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="9" class="p-4 pt-5">
+          <app-bancos-inversiones-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="10" class="p-4 pt-5">
+          <app-fondo-reserva-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+        <div tab="11" class="p-4 pt-5">
+          <app-proyectos-aprobados-cliente
+            [customerId]="customerId()"
+            [year]="year()"
+            [mes]="mes()"
+          />
+        </div>
+      </lux-tabs>
     </div>
   </div>
 </section>

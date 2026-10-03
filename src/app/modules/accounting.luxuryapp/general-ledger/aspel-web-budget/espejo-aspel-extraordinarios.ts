@@ -9,9 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -21,6 +18,9 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
@@ -136,7 +136,8 @@ export class EspejoAspelExtraordinarios {
           this.globalFilterFields.set(globalFilterFields(cuentas));
         } else {
           this.handleError(
-            (normalizedResponse as any)?.strMensaje || "No se encontraron datos.",
+            (normalizedResponse as any)?.strMensaje ||
+              "No se encontraron datos.",
           );
         }
         this.loading.set(false);

@@ -6,11 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -23,7 +18,12 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServiceOrderForm } from "@operations.luxuryapp/service-orders/service-order/service-order-form";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-service-history-machinery",
@@ -83,5 +83,3 @@ export class ServiceHistoryMachinery implements OnInit {
       });
   }
 }
-
-

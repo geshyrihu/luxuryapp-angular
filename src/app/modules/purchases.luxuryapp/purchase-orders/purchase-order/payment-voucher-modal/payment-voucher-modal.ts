@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,16 +5,20 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTable } from "@ui/web/table/table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,18 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -32,9 +19,24 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FechasFiltro } from "@core/interfaces/fechas-filtro.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
 
 @Component({

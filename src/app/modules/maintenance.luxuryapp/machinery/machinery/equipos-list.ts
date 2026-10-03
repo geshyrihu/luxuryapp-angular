@@ -23,14 +23,14 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { InspectionQrPrintService } from "@maintenance.luxuryapp/inspection/inspection-qr-print.service";
+import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
+import { EquipmentContentsList } from "@maintenance.luxuryapp/machinery/equipment-content/equipment-content-list";
 import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
 import { ActivosDocumentos } from "@maintenance.luxuryapp/machinery/machinery-document/activos-documentos";
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
 import { MantenimientosDialog } from "@maintenance.luxuryapp/machinery/machinery/mantenimientos-dialog";
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
-import { EquipmentContentsList } from "@maintenance.luxuryapp/machinery/equipment-content/equipment-content-list";
 import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/maintenance-planning/maintenance-calendar-master/calendario-maestro-readonly";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
@@ -627,7 +627,10 @@ ${this.htmlPrintS.getStandardCss()}
   onEquipmentContents(equipment: Equipo) {
     this.dialogHandlerS.openDialog(
       EquipmentContentsList,
-      { equipmentId: String(equipment.id), equipmentName: equipment.nameMachinery },
+      {
+        equipmentId: String(equipment.id),
+        equipmentName: equipment.nameMachinery,
+      },
       `Contenidos de ${equipment.nameMachinery}`,
       this.dialogHandlerS.sizeFull,
     );

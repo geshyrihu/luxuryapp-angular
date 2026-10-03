@@ -12,18 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { FileUploadModule } from "@iplab/ngx-file-upload";
-import { NgSelectModule } from "@ng-select/ng-select";
-import { LxDivider } from "@ui/adaptive/divider/divider";
-import { LxEditor } from "@ui/adaptive/editor/editor";
-import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -38,6 +26,18 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
+import { FileUploadModule } from "@iplab/ngx-file-upload";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxEditor } from "@ui/adaptive/editor/editor";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import {
   Customer,
@@ -395,4 +395,3 @@ export class AnnouncementAdminForm implements OnInit {
     });
   }
 }
-

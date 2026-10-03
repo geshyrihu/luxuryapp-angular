@@ -46,7 +46,7 @@
       <td>{{ item.id }}</td>
       <td class="text-center">{{ item.numeroCliente }}</td>
       <td class="text-center">
-        <lx-avatar
+        <lux-avatar
           [image]="item.photoPath"
           alt=""
           shape="square"
@@ -118,7 +118,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item lines="full" detail="false">
       <!-- Logo / avatar del cliente -->
-       <ion-avatar slot="start" class="customer-logo-slot">
+      <ion-avatar slot="start" class="customer-logo-slot">
         @if (item.photoPath) {
         <img
           [src]="item.photoPath"
@@ -128,9 +128,9 @@
         } @else {
         <app-icon icon="material-symbols-light:domain" class="text-xl" />
         }
-       </ion-avatar>
+      </ion-avatar>
 
-       <ion-label class="ion-text-wrap">
+      <ion-label class="ion-text-wrap">
         <p class="fw-semibold m-0 text-body">{{ item.nameCustomer }}</p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
           Estado: {{ getStateLabel(item.state) }}
@@ -138,7 +138,7 @@
         <p class="text-xs m-0 mt-1 text-body-secondary">
           {{ item.phoneOne }}{{ item.phoneTwo ? ' - ' + item.phoneTwo : '' }}
         </p>
-       </ion-label>
+      </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

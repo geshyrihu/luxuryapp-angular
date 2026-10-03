@@ -1,76 +1,72 @@
 @if (loading()) {
-  <div class="detail-loading">
-    <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle del permiso'" />
-  </div>
+<div class="detail-loading">
+  <lux-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle del permiso'" />
+</div>
 } @else if (requestData(); as data) {
-  <section class="detail-modal">
-    <header class="detail-hero">
-      <p class="detail-kicker">Permiso de personal</p>
-      <h2 class="detail-title">{{ displayValue(data.employeeFullName) }}</h2>
-      <p class="detail-subtitle">{{ displayValue(data.requestTypeName) }}</p>
-    </header>
+<section class="detail-modal">
+  <header class="detail-hero">
+    <p class="detail-kicker">Permiso de personal</p>
+    <h2 class="detail-title">{{ displayValue(data.employeeFullName) }}</h2>
+    <p class="detail-subtitle">{{ displayValue(data.requestTypeName) }}</p>
+  </header>
 
-    <div class="detail-grid">
-      <div class="detail-item">
-        <span class="detail-label">Estado</span>
-        <lx-tag
-          [value]="displayStatus(data.status)"
-          [severity]="getStatusSeverity(displayStatus(data.status))"
-          [rounded]="true"
-        />
-      </div>
-
-      <div class="detail-item">
-        <span class="detail-label">Fecha de solicitud</span>
-        <p class="detail-value">{{ displayValue(data.requestDate) }}</p>
-      </div>
-
-      <div class="detail-item">
-        <span class="detail-label">Periodo</span>
-        <p class="detail-value">{{ displayValue(data.period) }}</p>
-      </div>
-
-      <div class="detail-item">
-        <span class="detail-label">Horario</span>
-        <p class="detail-value">{{ displayValue(data.timeRange) }}</p>
-      </div>
-
-      @if (data.approverName) {
-        <div class="detail-item">
-          <span class="detail-label">Aprobado por</span>
-          <p class="detail-value">{{ data.approverName }}</p>
-        </div>
-      }
-
-      @if (data.approvalDate) {
-        <div class="detail-item">
-          <span class="detail-label">Fecha de aprobacion</span>
-          <p class="detail-value">{{ data.approvalDate }}</p>
-        </div>
-      }
-
-      <div class="detail-note">
-        <span class="detail-label">Razon</span>
-        <p class="detail-value">{{ displayValue(data.reason) }}</p>
-      </div>
-
-      @if (data.attachmentUrl) {
-        <div class="detail-note">
-          <span class="detail-label">Comprobante</span>
-          <a
-            class="detail-link"
-            [href]="data.attachmentUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Abrir comprobante
-          </a>
-        </div>
-      }
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span class="detail-label">Estado</span>
+      <lux-tag
+        [value]="displayStatus(data.status)"
+        [severity]="getStatusSeverity(displayStatus(data.status))"
+        [rounded]="true"
+      />
     </div>
-  </section>
-} @else {
-  <div class="detail-empty">
-    No se pudo cargar el detalle del permiso.
+
+    <div class="detail-item">
+      <span class="detail-label">Fecha de solicitud</span>
+      <p class="detail-value">{{ displayValue(data.requestDate) }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Periodo</span>
+      <p class="detail-value">{{ displayValue(data.period) }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Horario</span>
+      <p class="detail-value">{{ displayValue(data.timeRange) }}</p>
+    </div>
+
+    @if (data.approverName) {
+    <div class="detail-item">
+      <span class="detail-label">Aprobado por</span>
+      <p class="detail-value">{{ data.approverName }}</p>
+    </div>
+    } @if (data.approvalDate) {
+    <div class="detail-item">
+      <span class="detail-label">Fecha de aprobacion</span>
+      <p class="detail-value">{{ data.approvalDate }}</p>
+    </div>
+    }
+
+    <div class="detail-note">
+      <span class="detail-label">Razon</span>
+      <p class="detail-value">{{ displayValue(data.reason) }}</p>
+    </div>
+
+    @if (data.attachmentUrl) {
+    <div class="detail-note">
+      <span class="detail-label">Comprobante</span>
+      <a
+        class="detail-link"
+        [href]="data.attachmentUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Abrir comprobante
+      </a>
+    </div>
+    }
   </div>
+</section>
+} @else {
+<div class="detail-empty">No se pudo cargar el detalle del permiso.</div>
 }

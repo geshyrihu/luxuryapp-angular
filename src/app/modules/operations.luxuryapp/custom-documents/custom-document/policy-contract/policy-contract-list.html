@@ -97,7 +97,7 @@
         <!-- Usa las propiedades formateadas -->
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="getTagSeverity(item.tagLabel)"
           fluid
           [value]="item.tagLabel"
@@ -154,12 +154,15 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:edit-note" class="text-xl text-yellow-500" />
+        <app-icon
+          icon="material-symbols-light:edit-note"
+          class="text-xl text-yellow-500"
+        />
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="fw-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
-        <lx-tag
+        <lux-tag
           [severity]="getTagSeverity(item.tagLabel)"
           [value]="item.tagLabel"
           class="text-sm"
@@ -167,8 +170,11 @@
       </div>
       <p class="text-sm text-body m-0 mb-1">{{ item.description }}</p>
       <p class="text-xs text-body-secondary m-0">
-        <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1" /> Inicio: {{
-        item.startDate }}
+        <app-icon
+          [icon]="'material-symbols-light:calendar-today'"
+          class="me-1"
+        />
+        Inicio: {{ item.startDate }}
       </p>
 
       <ili-action-menu end>

@@ -6,9 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -21,10 +18,13 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
-import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-inventory-engine-system",
@@ -134,5 +134,3 @@ export class InventoryEngineSystem {
     this.filteredDataSignal.set([...this.dataSignal()]);
   }
 }
-
-

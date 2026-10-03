@@ -63,7 +63,7 @@ Implicaciones:
 
 ### D5. Impresion desde una sola instancia
 
-La impresion usa los propios paneles de `lx-tabs` (clase `print-all-reports`),
+La impresion usa los propios paneles de `lux-tabs` (clase `print-all-reports`),
 no un bloque duplicado.
 
 Implicaciones:
@@ -105,8 +105,8 @@ Con vista movil:
 - Dashboard Cobranza (cliente)
 
 **Fix base obligatorio**: `LxTabs` proyecta los paneles una sola vez
-(`.lx-tabs-panels`) y `app-tabs`/`ili-tabs` trabajan en `navOnly`. Ademas
-`.lx-tabs-panels > [tab]` y sus hijos llevan `display:block; min-width:0;
+(`.lux-tabs-panels`) y `app-tabs`/`ili-tabs` trabajan en `navOnly`. Ademas
+`.lux-tabs-panels > [tab]` y sus hijos llevan `display:block; min-width:0;
 max-width:100%` para evitar el overflow horizontal que entregaban los custom
 elements en movil.
 

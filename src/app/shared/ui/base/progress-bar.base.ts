@@ -4,17 +4,13 @@ export type ProgressBarMode = "determinate" | "indeterminate";
 
 /** Color semántico de la barra. `auto` lo deduce del valor. */
 export type ProgressBarColor =
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "auto";
+  "primary" | "success" | "warning" | "danger" | "auto";
 
 /**
  * Base compartida de ProgressBar.
  *  - web:     `app-progress-bar`  (Bootstrap p-progressbar, value 0..100)
  *  - mobile:  `ili-progress-bar`  (Ionic ion-progress-bar, value 0..1)
- *  - wrapper: `lx-progress-bar`   (auto runtime)
+ *  - wrapper: `lux-progress-bar`   (auto runtime)
  *
  * API canónica: `value` en porcentaje 0..100.
  */

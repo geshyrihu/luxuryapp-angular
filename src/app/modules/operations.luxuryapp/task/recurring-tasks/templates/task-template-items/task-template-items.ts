@@ -6,22 +6,26 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppReorderableRow, AppReorderableRowHandle } from "@ui/web/table/table";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template-item.interface";
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppTable,
+} from "@ui/web/table/table";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

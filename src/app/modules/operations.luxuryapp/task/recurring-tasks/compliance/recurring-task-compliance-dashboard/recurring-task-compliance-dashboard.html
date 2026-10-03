@@ -4,14 +4,14 @@
   </div>
   <div class="card-body">
     @if (totalGroupsWithoutTemplates() > 0) {
-      <lx-message
-        severity="warn"
-        class="d-block mb-3"
-        [text]="
+    <lux-message
+      severity="warn"
+      class="d-block mb-3"
+      [text]="
           totalGroupsWithoutTemplates() +
           ' grupo(s) sin ninguna obligación recurrente capturada'
         "
-      />
+    />
     }
 
     <app-table
@@ -53,7 +53,7 @@
         <tr>
           <td>{{ group.workGroupName }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="activeTemplateLabel(group)"
               [severity]="activeTemplateSeverity(group)"
             />
@@ -90,20 +90,22 @@
             />
           </div>
 
-          <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+          <div
+            class="d-flex align-items-start justify-content-between gap-2 mb-2"
+          >
             <h5 class="m-0">{{ group.workGroupName }}</h5>
-            <lx-tag
+            <lux-tag
               [value]="activeTemplateLabel(group)"
               [severity]="activeTemplateSeverity(group)"
             />
           </div>
           <p class="text-sm text-body-secondary">
-            Al corriente: {{ group.onTimeCount }} - Vencidas:
-            {{ group.overdueCount }}
+            Al corriente: {{ group.onTimeCount }} - Vencidas: {{
+            group.overdueCount }}
           </p>
           <p class="text-sm text-body-secondary">
-            Incumplimiento: {{ group.breachedCount }} - Arrastre:
-            {{ group.carriedOverCount }}
+            Incumplimiento: {{ group.breachedCount }} - Arrastre: {{
+            group.carriedOverCount }}
           </p>
           <p class="text-sm text-body-secondary">
             Comprobante en críticas: {{ criticalAttachmentPercentage(group) }}

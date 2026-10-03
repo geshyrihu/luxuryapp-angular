@@ -84,7 +84,7 @@
     label="Aplicar a todas las propiedades"
   />
 
-  <lx-card class="card card--elevated mb-4 mt-2">
+  <lux-card class="card card--elevated mb-4 mt-2">
     <custom-input-check-signal
       [control]="form.controls.isRetroactive"
       label="Aplica cobro retroactivo (Opción C: Ajuste Diferencial)"
@@ -100,9 +100,12 @@
       />
     </div>
     }
-  </lx-card>
+  </lux-card>
 
-  <custom-input-check-signal [control]="form.controls.isActive" label="Activo" />
+  <custom-input-check-signal
+    [control]="form.controls.isActive"
+    label="Activo"
+  />
 
   <div class="d-flex justify-content-end mt-4">
     <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />

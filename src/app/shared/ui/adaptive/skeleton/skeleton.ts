@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { SkeletonBase } from "@ui/base/skeleton.base";
 import { MobileSkeleton } from "@ui/mobile/skeleton/skeleton";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-skeleton",
+  selector: "lux-skeleton",
 
   imports: [AppSkeleton, MobileSkeleton],
   template: `
@@ -28,4 +28,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxSkeleton extends SkeletonBase {
   protected platform = inject(PlatformService);
 }
-

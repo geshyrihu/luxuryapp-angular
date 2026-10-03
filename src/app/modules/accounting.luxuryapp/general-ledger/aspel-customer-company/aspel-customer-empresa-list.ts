@@ -6,19 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-} from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { ETypeEmpresa, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -28,7 +15,20 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import {
+  WebButtonLabelDelete,
+  WebButtonLabelEdit,
+} from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { ETypeEmpresa, StatusBadge } from "@ui/web/status-badge/status-badge";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -118,4 +118,3 @@ export class AspelCustomerEmpresaList implements OnInit {
 function getGlobalFilterFields(data: void): any {
   throw new Error("Function not implemented.");
 }
-

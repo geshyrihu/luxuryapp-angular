@@ -52,12 +52,11 @@
       <td>{{ item.fechaInicio | apiDate: "dd/MM/yyyy" }}</td>
       <td>{{ item.fechaFin | apiDate: "dd/MM/yyyy" }}</td>
       <td>
-        {{ item.fechaPago ? (item.fechaPago | apiDate: "dd/MM/yyyy") : "-"
-        }}
+        {{ item.fechaPago ? (item.fechaPago | apiDate: "dd/MM/yyyy") : "-" }}
       </td>
       <td>{{ item.diasHabiles }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
         />
@@ -107,7 +106,7 @@
         apiDate: "dd/MM/yyyy" }}
       </p>
       <div class="d-flex align-items-center gap-2 mt-1">
-        <lx-tag
+        <lux-tag
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
         />

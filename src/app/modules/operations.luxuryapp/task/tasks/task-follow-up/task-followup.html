@@ -41,7 +41,7 @@
 
   <div class="border rounded p-3 bg-body-tertiary">
     <div class="fw-semibold text-sm mb-2">Evidencia del nuevo seguimiento</div>
-    <lx-file-upload
+    <lux-file-upload
       accept="image/*,.heic,.heif"
       [maxFileSize]="10000000"
       [multiple]="true"
@@ -50,7 +50,8 @@
     />
     @if (pendingEvidence().length > 0) {
     <small class="text-body-secondary d-block mt-2">
-      {{ pendingEvidence().length }} imagen(es) seleccionada(s). Se subirán al guardar.
+      {{ pendingEvidence().length }} imagen(es) seleccionada(s). Se subirán al
+      guardar.
     </small>
     }
   </div>
@@ -67,62 +68,72 @@
       <li class="timeline-event">
         <label class="timeline-event-icon" aria-hidden="true"></label>
         <div class="timeline-event-wrapper">
-        <div class="d-flex align-items-center justify-content-between mb-2">
-          <span class="timeline-thumbnail fw-bold text-sm">
-            <app-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
-            {{ follow.applicationUser }}
-          </span>
-          <div class="d-flex align-items-center gap-2">
-            <span class="text-xs text-body-secondary bg-body-tertiary px-2 py-1 rounded">
-              {{ follow.createdAt }}
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="timeline-thumbnail fw-bold text-sm">
+              <app-icon
+                [icon]="'material-symbols-light:person'"
+                class="me-2 text-primary"
+              />
+              {{ follow.applicationUser }}
             </span>
-            @if (isSuperUser()) {
-            <il-button-delete (confirmed)="onDelete(follow.id)" />
-            }
+            <div class="d-flex align-items-center gap-2">
+              <span
+                class="text-xs text-body-secondary bg-body-tertiary px-2 py-1 rounded"
+              >
+                {{ follow.createdAt }}
+              </span>
+              @if (isSuperUser()) {
+              <il-button-delete (confirmed)="onDelete(follow.id)" />
+              }
+            </div>
           </div>
-        </div>
-        <p class="m-0 text-body line-height-3 text-sm">
-          {{ follow.description }}
-        </p>
-        <div class="timeline-evidence">
-          <span class="text-xs fw-semibold text-uppercase">Evidencia</span>
-          <lx-file-upload
-            accept="image/*,.heic,.heif"
-            [maxFileSize]="10000000"
-             [multiple]="true"
-            [chooseLabel]="'Agregar imagen'"
-            (onSelect)="onEvidenceSelect($event, follow.id)"
-          />
-          @if (evidenceFor(follow.id).length > 0) {
-          <div class="d-flex flex-wrap gap-2 mt-2">
-            @for (image of evidenceFor(follow.id); track image.id; let imageIndex = $index) {
-            <div class="border rounded p-1">
-                <img [src]="image.path" [alt]="image.fileName" class="evidence-preview rounded" />
-              <div class="d-flex gap-1 mt-1">
-                <iw-button
-                  icon="material-symbols-light:arrow-upward"
-                  ariaLabel="Mover evidencia arriba"
-                  [disabled]="imageIndex === 0"
-                  (clicked)="moveEvidence(follow.id, imageIndex, -1)"
+          <p class="m-0 text-body line-height-3 text-sm">
+            {{ follow.description }}
+          </p>
+          <div class="timeline-evidence">
+            <span class="text-xs fw-semibold text-uppercase">Evidencia</span>
+            <lux-file-upload
+              accept="image/*,.heic,.heif"
+              [maxFileSize]="10000000"
+              [multiple]="true"
+              [chooseLabel]="'Agregar imagen'"
+              (onSelect)="onEvidenceSelect($event, follow.id)"
+            />
+            @if (evidenceFor(follow.id).length > 0) {
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              @for (image of evidenceFor(follow.id); track image.id; let
+              imageIndex = $index) {
+              <div class="border rounded p-1">
+                <img
+                  [src]="image.path"
+                  [alt]="image.fileName"
+                  class="evidence-preview rounded"
                 />
-                <iw-button
-                  icon="material-symbols-light:arrow-downward"
-                  ariaLabel="Mover evidencia abajo"
-                  [disabled]="imageIndex === evidenceFor(follow.id).length - 1"
-                  (clicked)="moveEvidence(follow.id, imageIndex, 1)"
-                />
-                <iw-button
-                  icon="material-symbols-light:delete-outline"
-                  severity="danger"
-                  ariaLabel="Eliminar evidencia"
-                  (clicked)="deleteEvidence(follow.id, image.id)"
-                />
+                <div class="d-flex gap-1 mt-1">
+                  <iw-button
+                    icon="material-symbols-light:arrow-upward"
+                    ariaLabel="Mover evidencia arriba"
+                    [disabled]="imageIndex === 0"
+                    (clicked)="moveEvidence(follow.id, imageIndex, -1)"
+                  />
+                  <iw-button
+                    icon="material-symbols-light:arrow-downward"
+                    ariaLabel="Mover evidencia abajo"
+                    [disabled]="imageIndex === evidenceFor(follow.id).length - 1"
+                    (clicked)="moveEvidence(follow.id, imageIndex, 1)"
+                  />
+                  <iw-button
+                    icon="material-symbols-light:delete-outline"
+                    severity="danger"
+                    ariaLabel="Eliminar evidencia"
+                    (clicked)="deleteEvidence(follow.id, image.id)"
+                  />
+                </div>
               </div>
+              }
             </div>
             }
           </div>
-          }
-        </div>
         </div>
       </li>
       }
@@ -132,10 +143,15 @@
       class="d-flex flex-column align-items-center justify-content-center p-5 bg-body-tertiary rounded"
     >
       <div class="rounded-circle bg-body-tertiary p-3 mb-3">
-        <app-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-body-secondary" />
+        <app-icon
+          [icon]="'material-symbols-light:forum'"
+          class="text-3xl text-body-secondary"
+        />
       </div>
       <span class="text-body fw-medium">No hay seguimientos registrados</span>
-      <span class="text-body-secondary text-sm mt-1">Sí el primero en agregar uno.</span>
+      <span class="text-body-secondary text-sm mt-1"
+        >Sí el primero en agregar uno.</span
+      >
     </div>
     }
   </div>

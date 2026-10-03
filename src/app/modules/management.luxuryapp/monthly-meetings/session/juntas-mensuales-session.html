@@ -59,13 +59,13 @@
             </td>
             <td>{{ formatBusinessDateTime(item.scheduledAt) }}</td>
             <td>
-              <lx-tag [value]="item.statusDisplayName" severity="info"  />
+              <lux-tag [value]="item.statusDisplayName" severity="info" />
             </td>
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
-  </ng-template>
+          <app-table-empty-message [colspan]="3" />
+        </ng-template>
       </app-table>
 
       @if (!items().length && !loading()) {
@@ -179,7 +179,8 @@
             </p>
             @if (detail.presentation) {
             <small class="text-body-secondary">
-              Junta: {{ detail.presentation.fechaJunta | apiDate: "dd/MM/yyyy" }}
+              Junta: {{ detail.presentation.fechaJunta | apiDate: "dd/MM/yyyy"
+              }}
             </small>
             }
           </div>
@@ -239,4 +240,3 @@
     </div>
   </div>
 </div>
-

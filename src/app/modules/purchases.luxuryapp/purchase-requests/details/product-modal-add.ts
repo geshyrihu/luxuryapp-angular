@@ -15,18 +15,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
@@ -36,6 +27,12 @@ import {
 } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
@@ -254,5 +251,3 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.ref.close(true); // Cerrar con 'true' si quieres emitir un resultado.
   }
 }
-
-

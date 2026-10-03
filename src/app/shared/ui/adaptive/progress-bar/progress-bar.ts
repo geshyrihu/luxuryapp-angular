@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
 import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de ProgressBar. Renderiza `app-progress-bar` (Bootstrap)
  * o `ili-progress-bar` (Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-progress-bar [value]="..." />`.
+ * Punto de entrada recomendado: `<lux-progress-bar [value]="..." />`.
  */
 @Component({
-  selector: "lx-progress-bar",
+  selector: "lux-progress-bar",
 
   imports: [AppProgressBar, MobileProgressBar],
   template: `
@@ -40,4 +40,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxProgressBar extends ProgressBarBase {
   protected platform = inject(PlatformService);
 }
-

@@ -40,7 +40,7 @@
           class="bg-body border-1 border rounded p-3 d-flex flex-column align-items-center justify-content-between hover:bg-body-tertiary transition-colors transition-duration-200 h-full text-center shadow-sm relative"
         >
           <div class="absolute top-0 right-0 p-2 z-1">
-            <lx-checkbox
+            <lux-checkbox
               [checked]="isFileSelected(file)"
               (checkedChange)="toggleFileSelection(file, $event)"
             />
@@ -105,7 +105,11 @@
       </ng-template>
       <ng-template #body let-file>
         <tr>
-          <td><app-table-selection-checkbox [value]="file"></app-table-selection-checkbox></td>
+          <td>
+            <app-table-selection-checkbox
+              [value]="file"
+            ></app-table-selection-checkbox>
+          </td>
           <td>
             @if (file.type === "pdf") {
             <app-icon
@@ -113,7 +117,10 @@
               class="text-red-500 text-xl"
             />
             } @else {
-            <app-icon [icon]="'material-symbols-light:code'" class="text-blue-500 text-xl" />
+            <app-icon
+              [icon]="'material-symbols-light:code'"
+              class="text-blue-500 text-xl"
+            />
             }
           </td>
           <td>{{ file.displayName }}</td>
@@ -140,7 +147,10 @@
     </app-table>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-5">
-      <app-icon [icon]="'material-symbols-light:folder-open'" class="text-6xl text-body-secondary mb-3" />
+      <app-icon
+        [icon]="'material-symbols-light:folder-open'"
+        class="text-6xl text-body-secondary mb-3"
+      />
       <div class="text-body-secondary text-xl fw-medium">
         No se encontraron archivos en este grupo de gasto.
       </div>

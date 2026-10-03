@@ -4,12 +4,12 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
 import { TarjetaProveedor } from "@operations.luxuryapp/providers/provider-card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -38,5 +38,3 @@ export class DatosServicioAddOrEdit implements OnInit {
     );
   }
 }
-
-

@@ -1,127 +1,125 @@
 @if (errorMensaje) {
-  <lx-message severity="error" [text]="errorMensaje" class="mt-3"></lx-message>
+<lux-message severity="error" [text]="errorMensaje" class="mt-3"></lux-message>
 } @else {
-  <div class="card mb-4">
-    <div class="card-header">
-      {{ occupantForm.controls.id.value ? "Editar ocupante" : "Agregar ocupante" }}
-    </div>
-
-    <div class="card-body">
-      <form [formGroup]="occupantForm" (ngSubmit)="onAddOrUpdateOccupant()">
-        <div class="row g-4">
-          <div class="col-12 col-md-6">
-            <custom-input-text-signal
-              [control]="occupantForm.controls.fullName"
-              label="Nombre completo"
-              [horizontal]="false"
-            />
-          </div>
-
-          <div class="col-12 col-md-6">
-            <custom-input-text-signal
-              [control]="occupantForm.controls.email"
-              label="Email"
-              [horizontal]="false"
-            />
-          </div>
-
-          <div class="col-12 col-md-6">
-            <custom-input-text-signal
-              [control]="occupantForm.controls.phoneNumber"
-              label="Teléfono"
-              [horizontal]="false"
-            />
-          </div>
-
-          <div class="col-12 col-md-3 d-flex align-items-center ps-5">
-            <custom-input-check-signal
-              [control]="occupantForm.controls.isOwner"
-              placeholder="Es propietario"
-              [horizontal]="false"
-              noMargin
-            />
-          </div>
-
-          <div class="col-12 col-md-3 d-flex align-items-center ps-5">
-            <custom-input-check-signal
-              [control]="occupantForm.controls.isResident"
-              placeholder="Es residente"
-              [horizontal]="false"
-              noMargin
-            />
-          </div>
-
-          <div class="col-12 text-end">
-            <il-button
-              label="Cancelar"
-              severity="secondary"
-              customClass="mr-2"
-              type="button"
-              (clicked)="resetForm()"
-            />
-            <il-button
-              [label]="occupantForm.controls.id.value ? 'Actualizar' : 'Agregar ocupante'"
-              [disabled]="loading() || occupantForm.invalid"
-              type="submit"
-            />
-          </div>
-        </div>
-      </form>
-    </div>
+<div class="card mb-4">
+  <div class="card-header">
+    {{ occupantForm.controls.id.value ? "Editar ocupante" : "Agregar ocupante"
+    }}
   </div>
 
-  @if (occupants().length > 0) {
-    <h5 class="mb-2">Ocupantes registrados</h5>
+  <div class="card-body">
+    <form [formGroup]="occupantForm" (ngSubmit)="onAddOrUpdateOccupant()">
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <custom-input-text-signal
+            [control]="occupantForm.controls.fullName"
+            label="Nombre completo"
+            [horizontal]="false"
+          />
+        </div>
 
-    <app-table [value]="occupants()" class="custom-table card d-none d-md-block">
-      <ng-template #header>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-          <th>Tipo</th>
-          <th>Activo</th>
-          <th>Acciones</th>
-        </tr>
-      </ng-template>
+        <div class="col-12 col-md-6">
+          <custom-input-text-signal
+            [control]="occupantForm.controls.email"
+            label="Email"
+            [horizontal]="false"
+          />
+        </div>
 
-      <ng-template #body let-occupant>
-        <tr>
-          <td>{{ occupant.fullName }}</td>
-          <td>{{ occupant.email }}</td>
-          <td>{{ occupant.phoneNumber }}</td>
-          <td>
-            @if (occupant.isOwner) {
-              <lx-tag value="Propietario" severity="success" class="me-1" />
-            }
-            @if (occupant.isResident) {
-              <lx-tag value="Residente" severity="info" />
-            }
-            @if (!occupant.isOwner && !occupant.isResident) {
-              <lx-tag value="Otro" severity="secondary" />
-            }
-          </td>
-          <td>
-            @if (occupant.isActive) {
-              <lx-tag value="Sí" severity="success" />
-            } @else {
-              <lx-tag value="No" severity="danger" />
-            }
-          </td>
-          <td>
-            <div class="d-flex gap-1">
-              <iw-button-edit (clicked)="onEditOccupant(occupant)" />
-              <iw-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </app-table>
-  } @else {
-    <lx-message
-      severity="info"
-      text="No hay ocupantes registrados para esta propiedad."
-      class="mt-3"
-    ></lx-message>
-  }
-}
+        <div class="col-12 col-md-6">
+          <custom-input-text-signal
+            [control]="occupantForm.controls.phoneNumber"
+            label="Teléfono"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 col-md-3 d-flex align-items-center ps-5">
+          <custom-input-check-signal
+            [control]="occupantForm.controls.isOwner"
+            placeholder="Es propietario"
+            [horizontal]="false"
+            noMargin
+          />
+        </div>
+
+        <div class="col-12 col-md-3 d-flex align-items-center ps-5">
+          <custom-input-check-signal
+            [control]="occupantForm.controls.isResident"
+            placeholder="Es residente"
+            [horizontal]="false"
+            noMargin
+          />
+        </div>
+
+        <div class="col-12 text-end">
+          <il-button
+            label="Cancelar"
+            severity="secondary"
+            customClass="mr-2"
+            type="button"
+            (clicked)="resetForm()"
+          />
+          <il-button
+            [label]="occupantForm.controls.id.value ? 'Actualizar' : 'Agregar ocupante'"
+            [disabled]="loading() || occupantForm.invalid"
+            type="submit"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+@if (occupants().length > 0) {
+<h5 class="mb-2">Ocupantes registrados</h5>
+
+<app-table [value]="occupants()" class="custom-table card d-none d-md-block">
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Tipo</th>
+      <th>Activo</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-occupant>
+    <tr>
+      <td>{{ occupant.fullName }}</td>
+      <td>{{ occupant.email }}</td>
+      <td>{{ occupant.phoneNumber }}</td>
+      <td>
+        @if (occupant.isOwner) {
+        <lux-tag value="Propietario" severity="success" class="me-1" />
+        } @if (occupant.isResident) {
+        <lux-tag value="Residente" severity="info" />
+        } @if (!occupant.isOwner && !occupant.isResident) {
+        <lux-tag value="Otro" severity="secondary" />
+        }
+      </td>
+      <td>
+        @if (occupant.isActive) {
+        <lux-tag value="Sí" severity="success" />
+        } @else {
+        <lux-tag value="No" severity="danger" />
+        }
+      </td>
+      <td>
+        <div class="d-flex gap-1">
+          <iw-button-edit (clicked)="onEditOccupant(occupant)" />
+          <iw-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</app-table>
+} @else {
+<lux-message
+  severity="info"
+  text="No hay ocupantes registrados para esta propiedad."
+  class="mt-3"
+></lux-message>
+} }

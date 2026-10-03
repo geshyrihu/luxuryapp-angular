@@ -6,11 +6,11 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TicketFilterService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-filter.service";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 
 /**
  * 👤 HEADER CUSTOMER
@@ -25,7 +25,7 @@ import { TicketFilterService } from "@operations.luxuryapp/service-orders/servic
     <div
       class="header-customer d-flex align-items-center justify-content-between"
     >
-      <lx-avatar
+      <lux-avatar
         [image]="
           logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
         "
@@ -95,4 +95,3 @@ export class HeaderCustomer {
     });
   }
 }
-

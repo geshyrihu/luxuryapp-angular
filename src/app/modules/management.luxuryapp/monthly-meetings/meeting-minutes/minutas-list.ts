@@ -18,14 +18,14 @@ import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MeetingDetailForm } from "./meeting-detail-form";
 import { MeetingForm } from "./meeting-form";
@@ -117,7 +117,9 @@ export class MinutasList {
   }
 
   navigateToSeguimiento(): void {
-    this.route.navigate(ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS("operaciones"));
+    this.route.navigate(
+      ROUTES.JUNTAS_COMITE.SEGUIMIENTO_MINUTAS("operaciones"),
+    );
   }
 
   navigateToGestionMinuta(id: string): void {

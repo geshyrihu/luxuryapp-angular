@@ -1,10 +1,10 @@
-import { Directive, input, model, output, computed } from "@angular/core";
+import { computed, Directive, input, model, output } from "@angular/core";
 
 /**
  * Base compartida de Rating (API + lógica de etiqueta/valor).
  *  - web:     `app-rating`  (Bootstrap p-rating)
  *  - mobile:  `ili-rating`  (estrellas táctiles con app-icon)
- *  - wrapper: `lx-rating`   (auto runtime)
+ *  - wrapper: `lux-rating`   (auto runtime)
  */
 @Directive()
 export abstract class RatingBase {
@@ -19,7 +19,14 @@ export abstract class RatingBase {
 
   changed = output<number | undefined>();
 
-  private readonly labels = ["", "Muy malo", "Malo", "Regular", "Bueno", "Excelente"];
+  private readonly labels = [
+    "",
+    "Muy malo",
+    "Malo",
+    "Regular",
+    "Bueno",
+    "Excelente",
+  ];
 
   /** [1..stars] para renderizar estrellas en la versión mobile. */
   starRange = computed(() => {
@@ -29,7 +36,9 @@ export abstract class RatingBase {
   ratingLabel = computed(() => {
     const v = this.value();
     if (!v) return "";
-    return this.stars() === 5 ? (this.labels[v] ?? String(v)) : `${v} / ${this.stars()}`;
+    return this.stars() === 5
+      ? (this.labels[v] ?? String(v))
+      : `${v} / ${this.stars()}`;
   });
 
   setValue(n: number): void {

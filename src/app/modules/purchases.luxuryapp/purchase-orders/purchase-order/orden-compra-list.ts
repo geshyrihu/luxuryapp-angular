@@ -8,11 +8,26 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ROUTES } from "src/app/routing/route-paths";
 
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { StatusOrdenCompra } from "@core/enums/status-orden-compra.enum";
+import { TipoGasto } from "@core/enums/tipo-gasto.enum";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tableRows,
+} from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
+import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
+import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
@@ -22,23 +37,8 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { TipoGasto } from "@core/enums/tipo-gasto.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
-import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
-import { StatusOrdenCompra } from "@core/enums/status-orden-compra.enum";
 import { PurchaseOrderListItem } from "./purchase-order.types";
 
 const tipoGastoTitles: { [key: number]: string } = {
@@ -325,4 +325,3 @@ export class OrdenCompraList {
     this.pdfGenerationService.generateSolicitudPagoPdf(ordenCompraId);
   }
 }
-

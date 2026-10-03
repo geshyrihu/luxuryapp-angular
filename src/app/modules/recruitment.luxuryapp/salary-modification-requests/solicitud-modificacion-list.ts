@@ -9,16 +9,16 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { trendingUpOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import {
@@ -29,8 +29,8 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { ModificacionSalarioForm } from "./modificacion-salario-form";
 
 import { LxTag } from "@ui/adaptive/tag/tag";

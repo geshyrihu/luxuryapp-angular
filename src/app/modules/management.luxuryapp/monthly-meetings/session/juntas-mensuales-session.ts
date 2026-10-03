@@ -9,11 +9,6 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -22,8 +17,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppTable } from "@ui/web/table/table";
+import { ROUTES } from "src/app/routing/route-paths";
 import { JuntaMensualSessionChecklistDialog } from "./junta-mensual-session-checklist-dialog";
 import { JuntaMensualSessionRescheduleForm } from "./junta-mensual-session-reschedule-form";
 
@@ -391,4 +391,3 @@ export class JuntasMensualesSession {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
-

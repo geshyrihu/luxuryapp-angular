@@ -19,11 +19,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { analyticsOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -32,6 +27,11 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { analyticsOutline } from "ionicons/icons";
 import { BudgetAccountRuleDataDTO } from "../../aspel-web-budget/presupuestos.interfaces";
 import { BudgetRuleForm } from "./budget-rule-form";
 
@@ -125,4 +125,3 @@ export class BudgetRuleList implements OnInit {
     return rowCustomerId ? "GLOBAL (Todas las empresas)" : "Solo esta empresa";
   }
 }
-

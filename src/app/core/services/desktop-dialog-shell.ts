@@ -7,22 +7,22 @@ import {
   Type,
 } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { Subject } from "rxjs";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { Subject } from "rxjs";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "./dialog-handler.service";
 
 @Component({
-  selector: "lx-desktop-dialog-shell",
+  selector: "lux-desktop-dialog-shell",
   imports: [NgComponentOutlet, AppIcon],
   template: `
     <div class="modal-header">
       <h5 class="modal-title">{{ title }}</h5>
       <button
         type="button"
-        class="lx-dialog-close"
+        class="lux-dialog-close"
         aria-label="Cerrar"
         (click)="dismiss()"
       >
@@ -39,7 +39,7 @@ import {
   `,
   styles: [
     `
-      .lx-dialog-close {
+      .lux-dialog-close {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -54,7 +54,7 @@ import {
         transition: all 150ms ease;
         margin-left: auto;
       }
-      .lx-dialog-close:hover {
+      .lux-dialog-close:hover {
         background-color: var(--ds-bg-sunken, #f1f3f5);
         color: var(--ds-text-primary, #212529);
       }

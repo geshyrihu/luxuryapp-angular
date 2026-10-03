@@ -33,9 +33,11 @@
         <td>
           <span class="font-mono text-sm text-primary">{{ item.code }}</span>
         </td>
-        <td class="text-body-secondary">{{ item.description || "Sin DESCRIPCIÓN" }}</td>
+        <td class="text-body-secondary">
+          {{ item.description || "Sin DESCRIPCIÓN" }}
+        </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="originMeta(item.isSystem).label"
             [severity]="originMeta(item.isSystem).severity"
           />

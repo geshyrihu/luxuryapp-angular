@@ -6,8 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { addIcons } from "ionicons";
-import { personOutline } from "ionicons/icons";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -18,10 +16,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
+import { addIcons } from "ionicons";
+import { personOutline } from "ionicons/icons";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
+import { CandidateInterviewDetailModal } from "../candidate-interview/candidate-interview-detail-modal";
 import { CandidateDetail } from "./candidate-detail";
 import { CandidateForm } from "./candidate-form";
-import { CandidateInterviewDetailModal } from "../candidate-interview/candidate-interview-detail-modal";
 import { CandidateListDesktop } from "./desktop/candidate-list-desktop";
 import {
   CandidateDeleteImpact,
@@ -170,6 +170,3 @@ export class CandidateList implements OnInit {
     );
   }
 }
-
-
-

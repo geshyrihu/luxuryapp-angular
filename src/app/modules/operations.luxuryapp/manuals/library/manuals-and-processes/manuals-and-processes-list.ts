@@ -8,6 +8,11 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
   WebButtonLabelDelete,
   WebButtonLabelEdit,
@@ -16,14 +21,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { ROUTES } from "src/app/routing/route-paths";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
 import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 
@@ -82,7 +82,11 @@ export class ManualsAndProcessesList implements OnInit {
       color: "#1e40af",
       bgColor: "#dbeafe",
     },
-    Legal: { icon: "material-symbols-light:security", color: "#7c2d12", bgColor: "#ffedd5" },
+    Legal: {
+      icon: "material-symbols-light:security",
+      color: "#7c2d12",
+      bgColor: "#ffedd5",
+    },
     Contabilidad: {
       icon: "material-symbols-light:wallet",
       color: "#0f766e",
@@ -93,18 +97,46 @@ export class ManualsAndProcessesList implements OnInit {
       color: "#92400e",
       bgColor: "#fef3c7",
     },
-    Limpieza: { icon: "material-symbols-light:star", color: "#065f46", bgColor: "#d1fae5" },
-    Operaciones: { icon: "material-symbols-light:settings", color: "#1e3a8a", bgColor: "#e0e7ff" },
+    Limpieza: {
+      icon: "material-symbols-light:star",
+      color: "#065f46",
+      bgColor: "#d1fae5",
+    },
+    Operaciones: {
+      icon: "material-symbols-light:settings",
+      color: "#1e3a8a",
+      bgColor: "#e0e7ff",
+    },
     Jardineria: {
       icon: "material-symbols-light:sunny",
       color: "#15803d",
       bgColor: "#dcfce7",
     },
-    Sistemas: { icon: "material-symbols-light:desktop-windows", color: "#6d28d9", bgColor: "#f5f3ff" },
-    Seguridad: { icon: "material-symbols-light:lock", color: "#dc2626", bgColor: "#fee2e2" },
-    Constructora: { icon: "material-symbols-light:home", color: "#7c3aed", bgColor: "#ede9fe" },
-    Supervision: { icon: "material-symbols-light:visibility", color: "#0891b2", bgColor: "#cffafe" },
-    Direccion: { icon: "material-symbols-light:person", color: "#374151", bgColor: "#f3f4f6" },
+    Sistemas: {
+      icon: "material-symbols-light:desktop-windows",
+      color: "#6d28d9",
+      bgColor: "#f5f3ff",
+    },
+    Seguridad: {
+      icon: "material-symbols-light:lock",
+      color: "#dc2626",
+      bgColor: "#fee2e2",
+    },
+    Constructora: {
+      icon: "material-symbols-light:home",
+      color: "#7c3aed",
+      bgColor: "#ede9fe",
+    },
+    Supervision: {
+      icon: "material-symbols-light:visibility",
+      color: "#0891b2",
+      bgColor: "#cffafe",
+    },
+    Direccion: {
+      icon: "material-symbols-light:person",
+      color: "#374151",
+      bgColor: "#f3f4f6",
+    },
     "Recursos Humanos": {
       icon: "material-symbols-light:group",
       color: "#d97706",
@@ -115,13 +147,21 @@ export class ManualsAndProcessesList implements OnInit {
       color: "#0284c7",
       bgColor: "#e0f2fe",
     },
-    Recepcion: { icon: "material-symbols-light:call", color: "#047857", bgColor: "#d1fae5" },
+    Recepcion: {
+      icon: "material-symbols-light:call",
+      color: "#047857",
+      bgColor: "#d1fae5",
+    },
     Mensajeria: {
       icon: "material-symbols-light:mail",
       color: "#0369a1",
       bgColor: "#e0f2fe",
     },
-    Ludoteca: { icon: "material-symbols-light:favorite", color: "#db2777", bgColor: "#fce7f3" },
+    Ludoteca: {
+      icon: "material-symbols-light:favorite",
+      color: "#db2777",
+      bgColor: "#fce7f3",
+    },
     "N/A": {
       icon: "material-symbols-light:do-not-disturb-on",
       color: "#6b7280",

@@ -19,7 +19,7 @@ interface LogEntry {
  * Se muestra como un overlay flotante en la esquina inferior.
  */
 @Component({
-  selector: "lx-debug-console",
+  selector: "lux-debug-console",
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -95,4 +95,3 @@ export class LxDebugConsole {
     }
   }
 }
-

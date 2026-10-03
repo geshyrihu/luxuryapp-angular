@@ -11,16 +11,19 @@ import {
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppTable } from "@ui/web/table/table";
 
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { PurchaseOrderInvoice, PurchaseOrderValidationResult } from "../purchase-order.types";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import {
+  PurchaseOrderInvoice,
+  PurchaseOrderValidationResult,
+} from "../purchase-order.types";
 @Component({
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",

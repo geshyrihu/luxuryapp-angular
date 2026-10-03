@@ -47,7 +47,9 @@
 
       <ng-template #header>
         <tr>
-          <th appSortableColumn="title">Titulo <app-sorticon field="title" /></th>
+          <th appSortableColumn="title">
+            Titulo <app-sorticon field="title" />
+          </th>
           <th appSortableColumn="subjectTypeName">
             Asunto
             <app-sorticon field="subjectTypeName" />
@@ -81,7 +83,7 @@
           <td>{{ formatBusinessDateTime(item.startAt) }}</td>
           <td class="text-center">{{ item.guestCount }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="getStatusLabel(item)"
               [severity]="getStatusSeverity(item)"
             />
@@ -156,9 +158,7 @@
               class="text-xs fw-bold text-primary text-uppercase tracking-widest"
               >{{ getMonth(item.startAt) }}</span
             >
-            <span
-              class="text-3xl fw-bold text-primary"
-              style="line-height: 1.1"
+            <span class="text-3xl fw-bold text-primary" style="line-height: 1.1"
               >{{ getDay(item.startAt) }}</span
             >
           </div>
@@ -205,7 +205,7 @@
             </div>
 
             <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
-              <lx-tag
+              <lux-tag
                 [value]="getStatusLabel(item)"
                 [severity]="getStatusSeverity(item)"
               />

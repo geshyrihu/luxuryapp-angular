@@ -260,7 +260,7 @@ export class StaffBoardList {
       WorkPositionForm,
       { id: data.id },
       data.title,
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
     );
     if (res) this.onLoadData();
   }
@@ -293,7 +293,7 @@ export class StaffBoardList {
         applicationRoleName: applicationRoleName,
       },
       "DESCRIPCIÓN de puesto: " + applicationRoleName,
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
     );
   }
 
@@ -302,7 +302,7 @@ export class StaffBoardList {
       SolicitudVacanteForm,
       { workPositionId },
       "Solicitar vacante",
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
     );
     await this.onLoadData();
   }
@@ -314,7 +314,7 @@ export class StaffBoardList {
         IncidentFormComponent,
         { employeeId: item.employeeId },
         "Incidencias Administrativas",
-        DialogSize.full,
+        this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -326,7 +326,7 @@ export class StaffBoardList {
       RecoveryGuideModal,
       { employeeName: item.applicationUser || "" },
       "Recuperar Usuario y Contraseña",
-      DialogSize.md,
+      this.dialogHandlerS.sizeMd,
     );
   }
 
@@ -341,7 +341,7 @@ export class StaffBoardList {
         workPositionName: item.applicationRoleName,
       },
       "Checklist de onboarding",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -352,7 +352,7 @@ export class StaffBoardList {
         SolicitudBajaForm,
         { employeeId: item.employeeId },
         "Solicitar Baja",
-        DialogSize.full,
+        this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -366,7 +366,7 @@ export class StaffBoardList {
         SolicitudModificacionSalarioForm,
         { employeeId: item.employeeId },
         "Solicitar Modificación de Salario",
-        DialogSize.full,
+        this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

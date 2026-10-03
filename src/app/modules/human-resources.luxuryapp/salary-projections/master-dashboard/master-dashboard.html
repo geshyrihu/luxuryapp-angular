@@ -28,7 +28,7 @@
   <div class="row g-4">
     @for (option of options; track option.route) {
     <div class="col-12 col-sm-6 col-md-3">
-      <lx-card
+      <lux-card
         class="card card--interactive card--elevated h-full"
         (click)="navigateTo(option.route)"
       >
@@ -54,7 +54,7 @@
             </p>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     }
   </div>
@@ -79,7 +79,9 @@
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
         <app-icon icon="material-symbols-light:payments" />
-        <span class="text-xs fw-bold text-uppercase">Proyección de Sueldos</span>
+        <span class="text-xs fw-bold text-uppercase"
+          >Proyección de Sueldos</span
+        >
       </div>
     </div>
 

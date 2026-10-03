@@ -1,4 +1,4 @@
-<lx-card>
+<lux-card>
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
@@ -50,11 +50,8 @@
                 [disabled]="!id"
                 (click)="manageCandidateApplication()"
               >
-                {{
-                  currentApplicationId()
-                    ? "Editar candidato / entrevista"
-                    : "Agregar candidato / entrevista"
-                }}
+                {{ currentApplicationId() ? "Editar candidato / entrevista" :
+                "Agregar candidato / entrevista" }}
               </button>
               <button
                 type="button"
@@ -76,9 +73,9 @@
 
       <il-button-save
         [propertyId]="id"
-       [disabled]="form.controls.status.invalid"
+        [disabled]="form.controls.status.invalid"
         [submitting]="submitting()"
       />
     </form>
   </div>
-</lx-card>
+</lux-card>

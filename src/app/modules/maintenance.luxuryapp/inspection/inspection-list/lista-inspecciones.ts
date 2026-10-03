@@ -7,13 +7,13 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { PlatformService } from "@core/services/platform.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionListItem } from "../models/inspection.model";

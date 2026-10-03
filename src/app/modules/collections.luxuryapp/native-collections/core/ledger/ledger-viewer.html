@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <lx-card class="card card--elevated mb-3">
+  <lux-card class="card card--elevated mb-3">
     <div class="row formgrid align-items-end g-4">
       <div class="field col-12 col-md-4">
         <custom-input-select-signal
@@ -43,7 +43,7 @@
         />
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 
   <app-table
     [value]="dataSignal()"
@@ -82,7 +82,7 @@
           {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="eventTypeMeta(entry.eventType).label"
             [severity]="eventTypeMeta(entry.eventType).severity"
           />

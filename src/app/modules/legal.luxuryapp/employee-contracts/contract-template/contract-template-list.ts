@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,13 +6,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -22,6 +15,12 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import { ContractTemplateFormComponent } from "./contract-template-form";
 import { ContractTemplateListDTO } from "./interfaces/contract-template.dto";
 
@@ -56,7 +55,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 })
 export class ContractTemplateList implements OnInit {
   apiS = inject(ApiResponseService);
-  dialogS = inject(DialogHandlerService);
+  dialogHandlerS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
 
   items = signal<ContractTemplateListDTO[]>([]);
@@ -81,23 +80,23 @@ export class ContractTemplateList implements OnInit {
   }
 
   onModalForm(data: { id: string; title: string }): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         ContractTemplateFormComponent,
         { item: null },
         data.title,
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }
 
   onEdit(item: ContractTemplateListDTO): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         ContractTemplateFormComponent,
         { item },
         "Editar Machote",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }

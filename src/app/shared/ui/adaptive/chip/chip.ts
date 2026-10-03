@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { ChipBase } from "@ui/base/chip.base";
 import { MobileChip } from "@ui/mobile/chip/chip";
 import { AppChip } from "@ui/web/chip/chip";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Chip. Renderiza `app-chip` (Bootstrap) o `ili-chip`
  * (Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-chip label="..." />`.
+ * Punto de entrada recomendado: `<lux-chip label="..." />`.
  */
 @Component({
-  selector: "lx-chip",
+  selector: "lux-chip",
 
   imports: [AppChip, MobileChip],
   template: `
@@ -44,4 +44,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxChip extends ChipBase {
   protected platform = inject(PlatformService);
 }
-

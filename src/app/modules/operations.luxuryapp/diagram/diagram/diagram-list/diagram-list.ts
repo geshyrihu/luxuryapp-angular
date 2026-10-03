@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,7 +14,13 @@ import {
   DialogHandlerService,
   DialogService,
 } from "@core/services/dialog-handler.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { DiagramForm } from "../diagram-form/diagram-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -136,4 +136,3 @@ export class DiagramList implements OnInit {
     });
   }
 }
-

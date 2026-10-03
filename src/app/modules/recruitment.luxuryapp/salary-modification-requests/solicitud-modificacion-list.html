@@ -21,7 +21,9 @@
       <th>SUELDO ACTUAL</th>
       <th>PUESTO NUEVO</th>
       <th>SUELDO NUEVO</th>
-      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
+      <th appSortableColumn="status">
+        ESTATUS <app-sorticon field="status" />
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -61,7 +63,7 @@
       </td>
       <td class="text-end">{{ item.finalSalary }}</td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="requestStatusTagSeverity(item.status)"
         />
@@ -95,12 +97,17 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon icon="material-symbols-light:trending-up" class="text-xl text-yellow-600" />
+        <app-icon
+          icon="material-symbols-light:trending-up"
+          class="text-xl text-yellow-600"
+        />
       </div>
 
       <h3>{{ item.employee }}</h3>
       <p>{{ item.applicationRoleCurrent }} -> {{ item.applicationRoleNew }}</p>
-      <p>{{ item.currentSalary }} -> {{ item.finalSalary }} - {{ item.status }}</p>
+      <p>
+        {{ item.currentSalary }} -> {{ item.finalSalary }} - {{ item.status }}
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

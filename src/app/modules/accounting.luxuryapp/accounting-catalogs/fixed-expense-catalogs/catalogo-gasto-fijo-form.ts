@@ -19,6 +19,15 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
+import { GastoFijoPresupuesto } from "@accounting.luxuryapp/budget/expense-catalog-budget/gasto-fijo-presupuesto";
+import { GastoFijoDetalleEdit } from "@accounting.luxuryapp/budget/expense-catalog-detail/gasto-fijo-detalle-edit";
+import { GastoFijoServicios } from "@accounting.luxuryapp/budget/expense-catalog-detail/gasto-fijo-servicios";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -28,15 +37,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppTable } from "@ui/web/table/table";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { GastoFijoPresupuesto } from "@accounting.luxuryapp/budget/expense-catalog-budget/gasto-fijo-presupuesto";
-import { GastoFijoDetalleEdit } from "@accounting.luxuryapp/budget/expense-catalog-detail/gasto-fijo-detalle-edit";
-import { GastoFijoServicios } from "@accounting.luxuryapp/budget/expense-catalog-detail/gasto-fijo-servicios";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;
@@ -62,7 +62,6 @@ interface ICatalogoGastoFijoForm {
     CommonModule,
     ReactiveFormsModule,
     AppTable,
-
 
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
@@ -359,5 +358,3 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   productName?: string;
   productoDescription?: string;
 }
-
-

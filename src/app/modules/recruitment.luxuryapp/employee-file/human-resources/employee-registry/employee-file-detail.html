@@ -4,7 +4,7 @@
 >
   <div class="d-flex flex-column flex-sm-row align-items-center gap-4 g-4">
     <div class="flex-shrink-0">
-      <lx-avatar
+      <lux-avatar
         [image]="header()!.photoUrl"
         [label]="header()!.fullName.charAt(0)"
         shape="circle"
@@ -20,16 +20,18 @@
         <h2 class="text-3xl font-black m-0 text-body">
           {{ header()!.fullName }}
         </h2>
-        <lx-tag
+        <lux-tag
           [value]="header()!.isActive ? 'Activo' : 'Inactivo'"
           [severity]="header()!.isActive ? 'success' : 'secondary'"
           [rounded]="true"
-        ></lx-tag>
+        ></lux-tag>
       </div>
       <p class="text-primary fw-bold text-lg m-0 mb-3">
         {{ header()!.puesto }}
         <span class="text-body-secondary font-normal mx-2">|</span>
-        <span class="text-body-secondary fw-semibold">{{ header()!.departamento }}</span>
+        <span class="text-body-secondary fw-semibold"
+          >{{ header()!.departamento }}</span
+        >
       </p>
       <div
         class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2"
@@ -85,7 +87,7 @@
 }
 
 <!-- -- Pestaóas --------------------------------------------------------------- -->
-<lx-tabs
+<lux-tabs
   [tabs]="tabs"
   [(activeId)]="activeTab"
   (tabChange)="onTabChange($event.id)"
@@ -95,7 +97,7 @@
     @if (personalData(); as pd) {
     <div class="d-flex flex-column gap-4 py-3">
       <!-- Identificación -->
-      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+      <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
@@ -111,7 +113,8 @@
         </ng-template>
         <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Nombre Completo</label
             >
             <p class="fw-semibold text-body m-0">
@@ -119,7 +122,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >CURP</label
             >
             <p class="fw-semibold text-body m-0 font-mono text-sm">
@@ -127,7 +131,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >RFC</label
             >
             <p class="fw-semibold text-body m-0 font-mono text-sm">
@@ -135,13 +140,15 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >NSS</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.nss || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Fecha de Nacimiento</label
             >
             <p class="fw-semibold text-body m-0">
@@ -149,35 +156,37 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Gónero</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.sex || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Tipo de Sangre</label
             >
             @if (pd.bloodType) {
-            <lx-tag
+            <lux-tag
               [value]="pd.bloodType"
               severity="danger"
               [rounded]="true"
-            ></lx-tag>
+            ></lux-tag>
             } @else {
             <p class="m-0 text-body-secondary">é</p>
             }
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Nacionalidad</label
             >
-            <p class="fw-semibold text-body m-0">
-              {{ pd.nationality || 'é' }}
-            </p>
+            <p class="fw-semibold text-body m-0">{{ pd.nationality || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Estado Civil</label
             >
             <p class="fw-semibold text-body m-0">
@@ -185,7 +194,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Nivel Educativo</label
             >
             <p class="fw-semibold text-body m-0">
@@ -193,18 +203,20 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Crédito FONACOT</label
             >
-            <lx-tag
+            <lux-tag
               [value]="pd.hasFonacotCredit ? 'Sí' : 'No'"
               [severity]="pd.hasFonacotCredit ? 'success' : 'secondary'"
               [rounded]="true"
-            ></lx-tag>
+            ></lux-tag>
           </div>
           @if (pd.hasFonacotCredit) {
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >No. crédito FONACOT</label
             >
             <p class="fw-semibold text-body m-0 font-mono text-sm">
@@ -212,7 +224,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >FD o % descuento FONACOT</label
             >
             <p class="fw-semibold text-body m-0">
@@ -221,21 +234,21 @@
           </div>
           }
         </div>
-      </lx-card>
+      </lux-card>
 
       <!-- Contacto + Salario -->
       <div class="row row-gap-4 g-4">
         <div class="col-12 col-lg-8">
-          <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
+          <lux-card class="shadow-sm rounded-xl h-full" [elevated]="true">
             <ng-template #header>
               <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
                 <div
                   class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-                  style="background-color: var(--ds-info-container);"
+                  style="background-color: var(--ds-info-container)"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:call'"
-                    style="color: var(--ds-info);"
+                    style="color: var(--ds-info)"
                   />
                 </div>
                 <h4 class="m-0 fw-bold text-body">Contacto</h4>
@@ -243,19 +256,22 @@
             </ng-template>
             <div class="row row-gap-3 g-4">
               <div class="col-12 col-sm-6">
-                <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+                <label
+                  class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
                   >Correo Institucional</label
                 >
                 <p class="fw-semibold text-body m-0">{{ pd.email }}</p>
               </div>
               <div class="col-12 col-sm-6">
-                <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+                <label
+                  class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
                   >Telófono Mívil</label
                 >
                 <p class="fw-semibold text-body m-0">{{ pd.phoneNumber }}</p>
               </div>
               <div class="col-12 col-sm-6">
-                <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+                <label
+                  class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
                   >Telófono Local</label
                 >
                 <p class="fw-semibold text-body m-0">
@@ -263,7 +279,8 @@
                 </p>
               </div>
               <div class="col-12 col-sm-6">
-                <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+                <label
+                  class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
                   >Fecha de Ingreso</label
                 >
                 <p class="fw-semibold text-body m-0">
@@ -271,41 +288,44 @@
                 </p>
               </div>
             </div>
-          </lx-card>
+          </lux-card>
         </div>
         <div class="col-12 col-lg-4">
           <div
             class="rounded-xl shadow-sm p-4 h-full d-flex flex-column justify-content-center gap-2"
-            style="background-color: var(--ds-primary); color: var(--ds-text-inverse);"
+            style="
+              background-color: var(--ds-primary);
+              color: var(--ds-text-inverse);
+            "
           >
-            <div class="d-flex align-items-center gap-2" style="opacity: 0.8;">
+            <div class="d-flex align-items-center gap-2" style="opacity: 0.8">
               <app-icon
                 [icon]="'material-symbols-light:payments'"
                 class="text-lg"
               />
-              <span class="text-xs fw-bold text-uppercase">Salario Mensual</span>
+              <span class="text-xs fw-bold text-uppercase"
+                >Salario Mensual</span
+              >
             </div>
             <p class="text-4xl font-black m-0">
               {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
             </p>
-            <p class="text-xs m-0" style="opacity: 0.6;">
-              Bruto mensual en MXN
-            </p>
+            <p class="text-xs m-0" style="opacity: 0.6">Bruto mensual en MXN</p>
           </div>
         </div>
       </div>
 
       <!-- Dirección -->
-      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+      <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-              style="background-color: var(--ds-warning-container);"
+              style="background-color: var(--ds-warning-container)"
             >
               <app-icon
                 [icon]="'material-symbols-light:location-on'"
-                style="color: var(--ds-warning);"
+                style="color: var(--ds-warning)"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">Dirección de Residencia</h4>
@@ -313,55 +333,63 @@
         </ng-template>
         <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-8 col-lg-6">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Calle</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.street || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-2 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Né Ext</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.number || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-2 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Né Int</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.unitNumber || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Colonia</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.district || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Alcaldía / Municipio</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.townHall || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Ciudad / Estado</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.city || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Paós</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.country || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Código Postal</label
             >
             <p class="fw-semibold text-body m-0">{{ pd.zipCode || 'é' }}</p>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
@@ -407,11 +435,11 @@
           </td>
           <td>{{ item.relation }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="item.contactOfBeneficiary"
               severity="secondary"
               [rounded]="true"
-            ></lx-tag>
+            ></lux-tag>
           </td>
         </tr>
       </ng-template>
@@ -426,7 +454,9 @@
           class="text-4xl text-body-secondary"
         />
       </div>
-      <p class="text-body-secondary m-0">Sin contactos de emergencia registrados.</p>
+      <p class="text-body-secondary m-0">
+        Sin contactos de emergencia registrados.
+      </p>
     </div>
     }
   </div>
@@ -450,9 +480,11 @@
             <div class="d-flex align-items-center gap-2">
               <app-icon
                 [icon]="'material-symbols-light:favorite'"
-                style="color: var(--ds-danger);"
+                style="color: var(--ds-danger)"
               />
-              <span class="fw-medium" style="color: var(--ds-danger);">{{ item.name }}</span>
+              <span class="fw-medium" style="color: var(--ds-danger)"
+                >{{ item.name }}</span
+              >
             </div>
           </td>
           <td class="text-body">{{ item.description }}</td>
@@ -463,15 +495,17 @@
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
-        style="background-color: var(--ds-success-container);"
+        style="background-color: var(--ds-success-container)"
       >
         <app-icon
           [icon]="'material-symbols-light:favorite'"
           class="text-4xl"
-          style="color: var(--ds-success);"
+          style="color: var(--ds-success)"
         />
       </div>
-      <p class="text-body-secondary m-0">Sin condiciones clónicas registradas.</p>
+      <p class="text-body-secondary m-0">
+        Sin condiciones clónicas registradas.
+      </p>
     </div>
     }
   </div>
@@ -553,7 +587,7 @@
   <!-- Tab 6: Contratos -->
   <div tab="5">
     @if (activeContract(); as c) {
-    <lx-card
+    <lux-card
       class="shadow-sm rounded-xl overflow-hidden mt-3"
       [elevated]="true"
     >
@@ -577,16 +611,17 @@
               >
             </div>
           </div>
-          <lx-tag
+          <lux-tag
             [value]="getFirmaLabel(c.contractStatus)"
             [severity]="getFirmaSeverity(c.contractStatus)"
             [rounded]="true"
-          ></lx-tag>
+          ></lux-tag>
         </div>
       </ng-template>
       <div class="row row-gap-3 px-4 pb-4 g-4">
         <div class="col-12 col-sm-6 col-lg-4">
-          <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+          <label
+            class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
             >Fecha Inicio</label
           >
           <span class="text-sm fw-semibold"
@@ -594,7 +629,8 @@
           >
         </div>
         <div class="col-12 col-sm-6 col-lg-4">
-          <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+          <label
+            class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
             >Fecha Fin</label
           >
           <span class="text-sm fw-semibold"
@@ -602,7 +638,8 @@
           >
         </div>
         <div class="col-12 col-sm-6 col-lg-4">
-          <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+          <label
+            class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
             >Salario Pactado</label
           >
           <span class="text-sm fw-semibold text-primary"
@@ -611,7 +648,8 @@
         </div>
         @if (c.signedAt) {
         <div class="col-12 col-sm-6 col-lg-4">
-          <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+          <label
+            class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
             >Firmado por</label
           >
           <span class="text-sm fw-semibold"
@@ -648,7 +686,7 @@
           }
         </div>
       </div>
-    </lx-card>
+    </lux-card>
     } @if (contracts().length > 0) {
     <app-table
       [value]="contracts()"
@@ -668,9 +706,7 @@
       <ng-template #body let-item>
         <tr>
           <td>
-            <span class="fw-bold text-primary"
-              >#{{ item.contractNumber }}</span
-            >
+            <span class="fw-bold text-primary">#{{ item.contractNumber }}</span>
           </td>
           <td>{{ item.contractType }}</td>
           <td>
@@ -694,7 +730,9 @@
           <td class="fw-bold text-primary">
             {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
           </td>
-          <td><small class="text-body-secondary">{{ item.notes || 'é' }}</small></td>
+          <td>
+            <small class="text-body-secondary">{{ item.notes || 'é' }}</small>
+          </td>
           <td class="text-center">
             <div class="d-flex justify-content-center">
               @if (item.pdfUrl) {
@@ -722,7 +760,9 @@
           class="text-4xl text-body-secondary"
         />
       </div>
-      <p class="text-body-secondary m-0">Sin contratos registrados en el sistema.</p>
+      <p class="text-body-secondary m-0">
+        Sin contratos registrados en el sistema.
+      </p>
     </div>
     }
   </div>
@@ -731,7 +771,7 @@
   <div tab="6">
     @if (workPosition(); as wp) {
     <div class="d-flex flex-column gap-4 py-3">
-      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+      <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
@@ -747,7 +787,8 @@
         </ng-template>
         <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Puesto Actual</label
             >
             <p class="font-black text-body m-0 text-xl">
@@ -755,7 +796,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Departamento</label
             >
             <p class="fw-semibold text-body m-0">
@@ -763,21 +805,22 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Jefe Directo</label
             >
-            <p class="fw-semibold text-body m-0">
-              {{ wp.managerName || 'é' }}
-            </p>
+            <p class="fw-semibold text-body m-0">{{ wp.managerName || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Folio Posición</label
             >
             <p class="fw-semibold text-body m-0">#{{ wp.folio || 'é' }}</p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Sueldo de Contratación</label
             >
             <p class="font-black text-primary m-0 text-2xl">
@@ -785,7 +828,8 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Turno Asignado</label
             >
             <p class="fw-semibold text-body m-0">
@@ -793,29 +837,30 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 col-lg-4">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Estado de Ocupación</label
             >
-            <lx-tag
+            <lux-tag
               [value]="wp.state || 'é'"
               severity="info"
               [rounded]="true"
-            ></lx-tag>
+            ></lux-tag>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
 
       <!-- Horarios -->
-      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+      <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-              style="background-color: var(--ds-info-container);"
+              style="background-color: var(--ds-info-container)"
             >
               <app-icon
                 [icon]="'material-symbols-light:calendar-clock'"
-                style="color: var(--ds-info);"
+                style="color: var(--ds-info)"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">Horario Semanal</h4>
@@ -823,7 +868,8 @@
         </ng-template>
         <div class="row row-gap-3 text-center g-4">
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Lunes</label
             >
             @if (wp.lunesEntrada && wp.lunesSalida) {
@@ -835,7 +881,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Martes</label
             >
             @if (wp.martesEntrada && wp.martesSalida) {
@@ -847,7 +894,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Miórcoles</label
             >
             @if (wp.miercolesEntrada && wp.miercolesSalida) {
@@ -859,7 +907,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Jueves</label
             >
             @if (wp.juevesEntrada && wp.juevesSalida) {
@@ -871,7 +920,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Viernes</label
             >
             @if (wp.viernesEntrada && wp.viernesSalida) {
@@ -883,7 +933,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Síbado</label
             >
             @if (wp.sabadoEntrada && wp.sabadoSalida) {
@@ -895,7 +946,8 @@
             }
           </div>
           <div class="col-12 col-sm-6 col-lg">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Domingo</label
             >
             @if (wp.domingoEntrada && wp.domingoSalida) {
@@ -907,18 +959,18 @@
             }
           </div>
         </div>
-      </lx-card>
+      </lux-card>
 
       @if (wp.salaryModifications.length > 0) {
       <div>
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-            style="background-color: var(--ds-warning-container);"
+            style="background-color: var(--ds-warning-container)"
           >
             <app-icon
               [icon]="'material-symbols-light:history'"
-              style="color: var(--ds-warning);"
+              style="color: var(--ds-warning)"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">
@@ -943,7 +995,9 @@
               <td><span class="fw-bold">#{{ item.folio }}</span></td>
               <td>
                 <div class="d-flex align-items-center gap-2 text-sm">
-                  <span class="text-body-secondary">{{ item.puestoAnterior }}</span>
+                  <span class="text-body-secondary"
+                    >{{ item.puestoAnterior }}</span
+                  >
                   <app-icon
                     [icon]="'material-symbols-light:chevron-right'"
                     class="text-primary"
@@ -958,7 +1012,7 @@
                   <span class="text-body-secondary line-through"
                     >{{ item.salarioAnterior | currency:'MXN' }}</span
                   >
-                  <span class="fw-bold" style="color: var(--ds-success);"
+                  <span class="fw-bold" style="color: var(--ds-success)"
                     >{{ item.salarioNuevo | currency:'MXN' }}</span
                   >
                 </div>
@@ -985,7 +1039,9 @@
           class="text-4xl text-body-secondary"
         />
       </div>
-      <p class="text-body-secondary m-0">Sin información de posición laboral activa.</p>
+      <p class="text-body-secondary m-0">
+        Sin información de posición laboral activa.
+      </p>
     </div>
     }
   </div>
@@ -996,19 +1052,16 @@
     <div class="d-flex flex-column gap-5 py-3">
       <!-- Balance -->
       @if (vl.balance) {
-      <lx-card
-        class="shadow-sm rounded-xl overflow-hidden"
-        [elevated]="true"
-      >
+      <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-              style="background-color: var(--ds-warning-container);"
+              style="background-color: var(--ds-warning-container)"
             >
               <app-icon
                 [icon]="'material-symbols-light:calculate'"
-                style="color: var(--ds-warning);"
+                style="color: var(--ds-warning)"
               />
             </div>
             <h4 class="m-0 fw-bold text-body">
@@ -1018,7 +1071,8 @@
         </ng-template>
         <div class="row row-gap-3 g-4">
           <div class="col-6 col-sm-4 col-lg-2 text-center">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Antigóedad</label
             >
             <p class="font-black text-body m-0 text-xl">
@@ -1026,7 +1080,8 @@
             </p>
           </div>
           <div class="col-6 col-sm-4 col-lg-2 text-center">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Total</label
             >
             <p class="font-black text-body m-0 text-xl">
@@ -1034,31 +1089,34 @@
             </p>
           </div>
           <div class="col-6 col-sm-4 col-lg-2 text-center">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Usados</label
             >
-            <p class="font-black m-0 text-xl" style="color: var(--ds-warning);">
+            <p class="font-black m-0 text-xl" style="color: var(--ds-warning)">
               {{ vl.balance.usedDays }}
             </p>
           </div>
           <div class="col-6 col-sm-4 col-lg-2 text-center">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Pendientes</label
             >
-            <p class="font-black m-0 text-xl" style="color: var(--ds-info);">
+            <p class="font-black m-0 text-xl" style="color: var(--ds-info)">
               {{ vl.balance.pendingDays }}
             </p>
           </div>
           <div class="col-6 col-sm-4 col-lg-2 text-center">
-            <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
+            <label
+              class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-1"
               >Disponibles</label
             >
-            <p class="font-black m-0 text-2xl" style="color: var(--ds-success);">
+            <p class="font-black m-0 text-2xl" style="color: var(--ds-success)">
               {{ vl.balance.availableDays }}
             </p>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
       }
 
       <!-- Vacaciones -->
@@ -1066,11 +1124,11 @@
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-            style="background-color: var(--ds-warning-container);"
+            style="background-color: var(--ds-warning-container)"
           >
             <app-icon
               [icon]="'material-symbols-light:sunny'"
-              style="color: var(--ds-warning);"
+              style="color: var(--ds-warning)"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitudes de Vacaciones</h4>
@@ -1103,23 +1161,27 @@
               <td>{{ item.requestDate | apiDate:'dd/MM/yyyy' }}</td>
               <td class="text-center">
                 @if (item.paidVacationBonus) {
-                <lx-tag
+                <lux-tag
                   value="Pagada"
                   severity="success"
                   [rounded]="true"
-                ></lx-tag>
+                ></lux-tag>
                 } @else {
                 <span class="text-body-secondary text-sm">N/A</span>
                 }
               </td>
               <td>
-                <small class="text-body-secondary">{{ item.reason || 'é' }}</small>
+                <small class="text-body-secondary"
+                  >{{ item.reason || 'é' }}</small
+                >
               </td>
             </tr>
           </ng-template>
         </app-table>
         } @else {
-        <p class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0">
+        <p
+          class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
+        >
           No se registran periodos vacacionales solicitados.
         </p>
         }
@@ -1130,11 +1192,11 @@
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-            style="background-color: var(--ds-info-container);"
+            style="background-color: var(--ds-info-container)"
           >
             <app-icon
               [icon]="'material-symbols-light:schedule'"
-              style="color: var(--ds-info);"
+              style="color: var(--ds-info)"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Permisos y Ausencias</h4>
@@ -1177,7 +1239,9 @@
           </ng-template>
         </app-table>
         } @else {
-        <p class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0">
+        <p
+          class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
+        >
           No se registran permisos especiales.
         </p>
         }
@@ -1207,9 +1271,7 @@
         <tr>
           <td>
             <div class="d-flex flex-column">
-              <span class="fw-bold text-body"
-                >{{ item.incidentTypeName }}</span
-              >
+              <span class="fw-bold text-body">{{ item.incidentTypeName }}</span>
               <small class="text-body-secondary">{{ item.category }}</small>
             </div>
           </td>
@@ -1230,7 +1292,7 @@
           <td>
             @if (item.sanction) {
             <div class="d-flex flex-column">
-              <span class="fw-semibold text-sm" style="color: var(--ds-danger);"
+              <span class="fw-semibold text-sm" style="color: var(--ds-danger)"
                 >{{ item.sanction.sanctionTypeName }}</span
               >
               <small class="text-body-secondary"
@@ -1255,7 +1317,9 @@
                 (click)="onDownloadAct(item.administrativeActPdfUrl)"
               />
               } @else {
-              <span class="text-body-secondary text-xs italic">No generada</span>
+              <span class="text-body-secondary text-xs italic"
+                >No generada</span
+              >
               }
             </div>
           </td>
@@ -1266,12 +1330,12 @@
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
-        style="background-color: var(--ds-success-container);"
+        style="background-color: var(--ds-success-container)"
       >
         <app-icon
           [icon]="'material-symbols-light:verified'"
           class="text-4xl"
-          style="color: var(--ds-success);"
+          style="color: var(--ds-success)"
         />
       </div>
       <p class="text-body-secondary m-0">
@@ -1307,13 +1371,16 @@
               >
               <span class="text-sm text-body-secondary"
                 >Evaluador:
-                <strong class="text-body">{{ eval.evaluatorName }}</strong></span
+                <strong class="text-body"
+                  >{{ eval.evaluatorName }}</strong
+                ></span
               >
             </div>
           </div>
           <div class="d-flex align-items-center gap-4 mt-2 mt-sm-0">
             <div class="text-center">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Calificación</span
               >
               <span class="text-3xl font-black text-primary">
@@ -1333,7 +1400,8 @@
         </div>
         @if (eval.finalComments) {
         <div class="p-4 bg-body-tertiary">
-          <label class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-2"
+          <label
+            class="text-xs fw-bold text-body-secondary text-uppercase d-block mb-2"
             >Comentarios del Evaluador</label
           >
           <p
@@ -1372,11 +1440,11 @@
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-            style="background-color: var(--ds-success-container);"
+            style="background-color: var(--ds-success-container)"
           >
             <app-icon
               [icon]="'material-symbols-light:person-add'"
-              style="color: var(--ds-success);"
+              style="color: var(--ds-success)"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitud de Ingreso (Alta)</h4>
@@ -1385,19 +1453,26 @@
         <div class="bg-body shadow-sm rounded-xl p-4">
           <div class="row row-gap-3 g-4">
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Folio</span>
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
+                >Folio</span
+              >
               <span class="fw-bold text-primary text-lg">#{{ r.folio }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Estatus</span>
-              <lx-tag
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
+                >Estatus</span
+              >
+              <lux-tag
                 [value]="r.status"
                 severity="success"
                 [rounded]="true"
-              ></lx-tag>
+              ></lux-tag>
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Tipo Contrato</span
               >
               <span class="fw-medium text-body"
@@ -1405,11 +1480,15 @@
               >
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Fuente</span>
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
+                >Fuente</span
+              >
               <span class="fw-medium text-body">{{ r.fuente }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Solicitado el</span
               >
               <span class="fw-medium"
@@ -1417,7 +1496,8 @@
               >
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Ejecutado el</span
               >
               <span class="fw-medium"
@@ -1441,11 +1521,11 @@
         <div class="d-flex align-items-center gap-3 mb-3">
           <div
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
-            style="background-color: var(--ds-error-container);"
+            style="background-color: var(--ds-error-container)"
           >
             <app-icon
               [icon]="'material-symbols-light:person-remove'"
-              style="color: var(--ds-danger);"
+              style="color: var(--ds-danger)"
             />
           </div>
           <h4 class="m-0 fw-bold text-body">Solicitud de Egreso (Baja)</h4>
@@ -1453,34 +1533,43 @@
         @if (req.dismissalRequest; as d) {
         <div
           class="bg-body shadow-sm rounded-xl border-left-3 p-4"
-          style="border-left-color: var(--ds-danger);"
+          style="border-left-color: var(--ds-danger)"
         >
           <div class="row row-gap-3 g-4">
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Folio</span>
-              <span class="fw-bold text-lg" style="color: var(--ds-danger);">#{{ d.folio }}</span>
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
+                >Folio</span
+              >
+              <span class="fw-bold text-lg" style="color: var(--ds-danger)"
+                >#{{ d.folio }}</span
+              >
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1">Estatus</span>
-              <lx-tag
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
+                >Estatus</span
+              >
+              <lux-tag
                 [value]="d.status"
                 severity="danger"
                 [rounded]="true"
-              ></lx-tag>
+              ></lux-tag>
             </div>
 
             <!-- Firmas -->
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Firma Legal</span
               >
               @if (d.isAuthorizedByLegal) {
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
-                  style="color: var(--ds-success);"
+                  style="color: var(--ds-success)"
                 />
-                <span class="text-sm fw-medium" style="color: var(--ds-success);"
+                <span class="text-sm fw-medium" style="color: var(--ds-success)"
                   >{{ d.legalAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
@@ -1495,16 +1584,17 @@
               }
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Firma Nóminas</span
               >
               @if (d.isAuthorizedByPayroll) {
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:check-circle'"
-                  style="color: var(--ds-success);"
+                  style="color: var(--ds-success)"
                 />
-                <span class="text-sm fw-medium" style="color: var(--ds-success);"
+                <span class="text-sm fw-medium" style="color: var(--ds-success)"
                   >{{ d.payrollAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
@@ -1520,34 +1610,38 @@
             </div>
 
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Motivo de Baja</span
               >
               <span class="fw-medium text-body">{{ d.tipoBaja }}</span>
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Asistencia Legal</span
               >
-              <lx-tag
+              <lux-tag
                 [value]="d.lawyerAssistance ? 'Sí' : 'No'"
                 [severity]="d.lawyerAssistance ? 'warn' : 'secondary'"
                 [rounded]="true"
-              ></lx-tag>
+              ></lux-tag>
             </div>
             <div class="col-12">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >Justificación</span
               >
               <p
                 class="m-0 text-body italic border-left-3 ps-3 line-height-3"
-                style="border-left-color: var(--ds-error-container);"
+                style="border-left-color: var(--ds-error-container)"
               >
                 "{{ d.reasonForLeaving }}"
               </p>
             </div>
             <div class="col-6">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-1"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-1"
                 >último día</span
               >
               <span class="fw-bold text-body"
@@ -1570,7 +1664,8 @@
 
             @if (d.supportFiles.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-2"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-2"
                 >Archivos subidos</span
               >
               <div class="d-flex flex-wrap gap-2">
@@ -1591,7 +1686,8 @@
             </div>
             } @if (d.incidents.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-2"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-2"
                 >Actas vinculadas</span
               >
               <div class="d-flex flex-wrap gap-2">
@@ -1616,7 +1712,8 @@
             </div>
             } @if (d.evaluations.length > 0) {
             <div class="mb-3">
-              <span class="text-xs text-body-secondary text-uppercase d-block mb-2"
+              <span
+                class="text-xs text-body-secondary text-uppercase d-block mb-2"
                 >Evaluaciones vinculadas</span
               >
               <div class="d-flex flex-wrap gap-2">
@@ -1663,4 +1760,4 @@
     />
     }
   </div>
-</lx-tabs>
+</lux-tabs>

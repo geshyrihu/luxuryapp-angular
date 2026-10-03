@@ -52,7 +52,7 @@
           {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="fineStatusLabel(item.status)"
             [severity]="fineStatusSeverity(item.status)"
           />

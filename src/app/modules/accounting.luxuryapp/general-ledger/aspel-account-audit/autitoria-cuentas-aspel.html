@@ -1,29 +1,25 @@
-<div
-  class="bg-body border-bottom-1 border shadow-sm"
-  
->
+<div class="bg-body border-bottom-1 border shadow-sm">
   <div class="d-flex flex-wrap align-items-center gap-3">
-    <div class="d-flex align-items-center gap-2" >
+    <div class="d-flex align-items-center gap-2">
       <div
         class="d-flex align-items-center justify-content-center bg-primary-50 rounded-lg"
-        
       >
-        <app-icon [icon]="'material-symbols-light:account-tree'" class="text-primary-600" />
+        <app-icon
+          [icon]="'material-symbols-light:account-tree'"
+          class="text-primary-600"
+        />
       </div>
       <div>
         <p class="fw-bold text-body m-0 line-height-1">
           Auditoria de Cuentas Aspel
         </p>
-        <p class="text-body-secondary m-0" >
+        <p class="text-body-secondary m-0">
           Catalogo general por cuenta y descripcion, con presencia por customer
         </p>
       </div>
     </div>
 
-    <span
-      class="border-left-1 border"
-      
-    ></span>
+    <span class="border-left-1 border"></span>
 
     <custom-input-select-button-signal
       [options]="empresaOptions"
@@ -33,7 +29,7 @@
       optionValue="value"
     />
 
-    <div class="d-flex align-items-center gap-1" >
+    <div class="d-flex align-items-center gap-1">
       <iw-button
         iconClass="material-symbols-light:chevron-left"
         variant="text"
@@ -41,12 +37,7 @@
         size="small"
         (clicked)="filterS.year.set(filterS.year() - 1)"
       />
-      <span
-        class="fw-bold text-body px-1"
-        
-      >
-        {{ filterS.year() }}
-      </span>
+      <span class="fw-bold text-body px-1"> {{ filterS.year() }} </span>
       <iw-button
         iconClass="material-symbols-light:chevron-right"
         variant="text"
@@ -57,10 +48,7 @@
     </div>
 
     @if (!loading() && rawData()) {
-    <span
-      class="border-left-1 border"
-      
-    ></span>
+    <span class="border-left-1 border"></span>
 
     <il-button
       [label]="soloParciales() ? 'Solo diferencias' : 'Mostrando todo'"
@@ -70,14 +58,14 @@
       (clicked)="soloParciales.set(!soloParciales())"
     />
 
-    <div >
+    <div>
       <custom-search-input-signal
         placeholder="Buscar cuenta o customer..."
         (searchChange)="busquedaCatalogo.set($event)"
       />
     </div>
     } @if (loading()) {
-    <lx-spinner [size]="16" [strokeWidth]="4" />
+    <lux-spinner [size]="16" [strokeWidth]="4" />
     }
   </div>
 </div>
@@ -85,9 +73,7 @@
 @if (!loading() && rawData(); as data) {
 <div class="row mb-4 g-4">
   <div class="col-12 col-md-3">
-    <div
-      class="bg-body border-1 border rounded-xl p-3 h-full"
-    >
+    <div class="bg-body border-1 border rounded-xl p-3 h-full">
       <div class="text-body-secondary text-sm">Customers procesados</div>
       <div class="text-3xl fw-bold text-body mt-2">
         {{ data.totalCustomersProcesados }}
@@ -98,36 +84,36 @@
     </div>
   </div>
   <div class="col-12 col-md-3">
-    <div
-      class="bg-body border-1 border rounded-xl p-3 h-full"
-    >
+    <div class="bg-body border-1 border rounded-xl p-3 h-full">
       <div class="text-body-secondary text-sm">Catalogo general</div>
       <div class="text-3xl fw-bold text-body mt-2">
         {{ data.totalCuentasCatalogoGeneral }}
       </div>
-      <div class="text-xs text-body-secondary mt-2">Union de cuentas entre customers</div>
+      <div class="text-xs text-body-secondary mt-2">
+        Union de cuentas entre customers
+      </div>
     </div>
   </div>
   <div class="col-12 col-md-3">
-    <div
-      class="bg-body border-1 border rounded-xl p-3 h-full"
-    >
+    <div class="bg-body border-1 border rounded-xl p-3 h-full">
       <div class="text-body-secondary text-sm">Compartidas por todos</div>
       <div class="text-3xl fw-bold text-green-600 mt-2">
         {{ data.totalCuentasCompartidas }}
       </div>
-      <div class="text-xs text-body-secondary mt-2">Todos los customers la tienen</div>
+      <div class="text-xs text-body-secondary mt-2">
+        Todos los customers la tienen
+      </div>
     </div>
   </div>
   <div class="col-12 col-md-3">
-    <div
-      class="bg-body border-1 border rounded-xl p-3 h-full"
-    >
+    <div class="bg-body border-1 border rounded-xl p-3 h-full">
       <div class="text-body-secondary text-sm">Parciales</div>
       <div class="text-3xl fw-bold text-orange-600 mt-2">
         {{ data.totalCuentasParciales }}
       </div>
-      <div class="text-xs text-body-secondary mt-2">Faltantes o estructura distinta</div>
+      <div class="text-xs text-body-secondary mt-2">
+        Faltantes o estructura distinta
+      </div>
     </div>
   </div>
 </div>
@@ -135,7 +121,10 @@
 <div class="bg-body border-1 border rounded-xl p-3">
   <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
     <div class="d-flex align-items-center gap-2">
-      <app-icon [icon]="'material-symbols-light:table'" class="text-primary-600" />
+      <app-icon
+        [icon]="'material-symbols-light:table'"
+        class="text-primary-600"
+      />
       <h2 class="text-lg fw-bold text-body m-0">
         Catalogo general comparativo
       </h2>
@@ -158,28 +147,23 @@
           ><app-icon
             [icon]="'material-symbols-light:check'"
             class="me-1"
-            
           />Existe</span
         >
         <span class="me-3"
-          ><app-icon
-            [icon]="'material-symbols-light:close'"
-            class="me-1"
-            
-          />No existe</span
+          ><app-icon [icon]="'material-symbols-light:close'" class="me-1" />No
+          existe</span
         >
         <span
           ><app-icon
             [icon]="'material-symbols-light:warning'"
             class="me-1"
-            
           />Estructura distinta</span
         >
       </div>
     </div>
   </div>
 
-  <div >
+  <div>
     <app-table
       [value]="catalogoGeneral()"
       class="p-datatable-sm p-datatable-gridlines"
@@ -188,31 +172,12 @@
     >
       <ng-template #header>
         <tr>
-          <th
-            class="text-center"
-            
-          >
-            Nivel
-          </th>
-          <th >
-            No. Cuenta
-          </th>
-          <th
-            class="text-center"
-            
-          >
-            Naturaleza
-          </th>
-          <th >
-            Descripcion
-          </th>
+          <th class="text-center">Nivel</th>
+          <th>No. Cuenta</th>
+          <th class="text-center">Naturaleza</th>
+          <th>Descripcion</th>
           @for (customer of customerColumns(); track customer.customerId) {
-          <th
-            class="text-center"
-            
-          >
-            {{ customer.customerShortName }}
-          </th>
+          <th class="text-center">{{ customer.customerShortName }}</th>
           }
         </tr>
       </ng-template>
@@ -254,7 +219,6 @@
               [class]="getPresenceIcon(presencia)"
               [style.color]="getPresenceColor(presencia)"
               [title]="getPresenceTitle(presencia)"
-              
             ></i>
           </td>
           }
@@ -267,7 +231,10 @@
 <div
   class="d-flex flex-column align-items-center justify-content-center py-5 text-body-secondary"
 >
-  <app-icon [icon]="'material-symbols-light:account-tree'" class="text-4xl mb-3" />
+  <app-icon
+    [icon]="'material-symbols-light:account-tree'"
+    class="text-4xl mb-3"
+  />
   <p class="m-0">No fue posible cargar la auditoria de cuentas Aspel.</p>
 </div>
 }

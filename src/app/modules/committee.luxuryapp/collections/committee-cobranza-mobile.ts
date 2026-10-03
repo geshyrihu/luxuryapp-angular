@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TagSeverity } from "@ui/base/tag.base";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
   IonCard,
   IonCardContent,
@@ -15,9 +15,8 @@ import {
   IonNote,
   IonProgressBar,
 } from "@ionic/angular";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { DialogSize } from "@core/enums/dialog-size.enum";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import type { TagSeverity } from "@ui/base/tag.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
@@ -25,7 +24,6 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
 
 @Component({
   selector: "app-committee-cobranza-mobile",
-
   imports: [
     CurrencyPipe,
     CommonModule,
@@ -48,14 +46,14 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
 })
 export class CommitteeCobranzaMobile {
   baseService = inject(CommitteeCobranzaBaseService);
-  private dialogS = inject(DialogHandlerService);
+  private dialogHandlerS = inject(DialogHandlerService);
   private customerIdS = inject(CustomerIdService);
 
   openDetailModal(item: CommitteeMorosoItemDto) {
     const customerId = this.customerIdS.customerId();
-    this.dialogS.openDialogCustom(CommitteeCobranzaDetailModal, {
+    this.dialogHandlerS.openDialogCustom(CommitteeCobranzaDetailModal, {
       title: `Detalle de Movimientos - ${item.departamento}`,
-      size: DialogSize.full,
+      size: this.dialogHandlerS.sizeFull,
       data: {
         row: item,
         customerId: customerId,
@@ -77,4 +75,3 @@ export class CommitteeCobranzaMobile {
     }
   }
 }
-

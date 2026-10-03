@@ -61,10 +61,10 @@
         </div>
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="getStatusSeverity(item.status)"
-        ></lx-tag>
+        ></lux-tag>
       </td>
       <td>
         {{ item.approverName ? item.approverName : "-" }}
@@ -127,8 +127,8 @@
       <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
       <p class="mt-0 mb-0">{{ item.userName }}</p>
       <p class="text-body-secondary font-size-12 mt-0 mb-0">
-        {{ item.startDate | apiDate: "dd/MM/yyyy" }} - {{ item.endDate | apiDate:
-        "dd/MM/yyyy" }}
+        {{ item.startDate | apiDate: "dd/MM/yyyy" }} - {{ item.endDate |
+        apiDate: "dd/MM/yyyy" }}
       </p>
       <p class="text-body-secondary font-size-12 mt-0 mb-0">
         Estado: {{ item.status }}

@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { PaginatorBase } from "@ui/base/paginator.base";
 import { MobilePaginator } from "@ui/mobile/paginator/paginator";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-paginator",
+  selector: "lux-paginator",
 
   imports: [MobilePaginator],
   template: `
@@ -22,7 +22,7 @@ import { PlatformService } from "@core/services/platform.service";
     } @else {
       <!-- Web uses Bootstrap p-paginator integrated in p-table -->
       <p
-        class="lx-paginator-web-fallback"
+        class="lux-paginator-web-fallback"
         style="color: var(--ds-text-secondary); font-size: 0.8125rem; padding: 0.5rem; text-align: center;"
       >
         Usa Bootstrap p-paginator integrado en p-table.
@@ -33,4 +33,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxPaginator extends PaginatorBase {
   protected platform = inject(PlatformService);
 }
-

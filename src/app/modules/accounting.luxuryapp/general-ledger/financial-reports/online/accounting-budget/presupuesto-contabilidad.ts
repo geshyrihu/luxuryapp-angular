@@ -1,3 +1,4 @@
+import { PurchaseHistory } from "@accounting.luxuryapp/general-ledger/aspel-web-budget/purchase-history";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -7,19 +8,18 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { PurchaseHistory } from "@accounting.luxuryapp/general-ledger/aspel-web-budget/purchase-history";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
 } from "@collections.luxuryapp/online-collections/interfaces/presupuesto-contabilidad.model";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 @Component({
   selector: "app-presupuesto-contabilidad",
@@ -138,5 +138,3 @@ export class PresupuestoContabilidad {
     );
   }
 }
-
-

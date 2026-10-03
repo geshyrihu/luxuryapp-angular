@@ -14,15 +14,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -36,19 +27,22 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
+import { SolicitudVacanteForm } from "@operations.luxuryapp/recruitment-requests/vacancy-requests/solicitud-vacante-form";
 import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-description-form";
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
-import { SolicitudVacanteForm } from "@operations.luxuryapp/recruitment-requests/vacancy-requests/solicitud-vacante-form";
+import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import {
   ExcelColumn,
   ExcelExportService,
@@ -56,6 +50,12 @@ import {
 import { CandidateInterviewerQueueService } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { CardEmployee, IEmployee } from "@shared/integration/recursos-humanos";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 // import { WorkPositionHours } from "../../../../shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-hours/work-position-hours";
 
 @Component({
@@ -357,9 +357,7 @@ export class RecruitmentStaffBoard {
 
   onGoToEmployeeFile(item: IWorkPosition): void {
     if (!item.employeeId) return;
-    this.router.navigateByUrl(
-      `/recruitment/employee-files/${item.employeeId}`,
-    );
+    this.router.navigateByUrl(`/recruitment/employee-files/${item.employeeId}`);
   }
 
   async onModalForm(data: { id: string; title: string }): Promise<void> {
@@ -367,7 +365,7 @@ export class RecruitmentStaffBoard {
       WorkPositionForm,
       { id: data.id },
       data.title,
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
     );
     if (res) this.onLoadData();
   }
@@ -390,7 +388,7 @@ export class RecruitmentStaffBoard {
         applicationRoleName: applicationRoleName,
       },
       "DESCRIPCIÓN de puesto: " + applicationRoleName,
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
@@ -399,7 +397,7 @@ export class RecruitmentStaffBoard {
   //     WorkPositionHours,
   //     { id },
   //     "Horarios de trabajo",
-  //     DialogSize.md,
+  //     this.dialogHandlerS.sizeMd,
   //   );
   // }
 
@@ -408,7 +406,7 @@ export class RecruitmentStaffBoard {
       SolicitudVacanteForm,
       { workPositionId },
       "Solicitar vacante",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
     await this.onLoadData();
   }
@@ -484,5 +482,3 @@ export class RecruitmentStaffBoard {
     this.router.navigate(["/directory/employee-interviewer-queue"]);
   }
 }
-
-

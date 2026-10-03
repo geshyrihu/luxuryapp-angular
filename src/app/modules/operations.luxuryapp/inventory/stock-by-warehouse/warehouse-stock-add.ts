@@ -14,10 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -31,6 +27,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;
@@ -42,9 +42,9 @@ interface IWarehouseStockRowForm {
   errorMessage: FormControl<string | null>;
 }
 
+import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 
 @Component({
@@ -236,5 +236,3 @@ export class WarehouseStockAdd implements OnInit {
     }
   }
 }
-
-

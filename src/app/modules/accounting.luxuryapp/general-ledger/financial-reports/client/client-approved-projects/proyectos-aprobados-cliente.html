@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-4">
   @if (loading()) {
-  <lx-skeleton width="100%" height="20rem" />
+  <lux-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
   <div
     class="bg-body rounded-xl border-1 border shadow-sm p-0 p-xl-4 overflow-hidden"
@@ -16,8 +16,10 @@
         class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 border pb-3"
       >
         <span class="fw-bold text-uppercase text-lg line-height-3 text-primary">
-          <app-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
-          total.descripcion }}
+          <app-icon
+            [icon]="'material-symbols-light:monitoring'"
+            class="me-2"
+          />{{ total.descripcion }}
         </span>
         <!-- Numero de cuenta oculto en version cliente -->
       </div>
@@ -67,16 +69,11 @@
     }
 
     <!-- Resumen Cards Individuales -->
-    <p class="fw-bold text-uppercase mb-3 text-sm" >
-      Detalle por Proyecto
-    </p>
+    <p class="fw-bold text-uppercase mb-3 text-sm">Detalle por Proyecto</p>
     <div class="row mb-4 g-4">
       @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
       <div class="col-12 col-md-6 col-xl-4">
-        <div
-          class="rf-card p-4 h-full"
-          
-        >
+        <div class="rf-card p-4 h-full">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-body fw-bold text-uppercase text-sm line-height-3"
               >{{ proyecto.descripcion }}</span
@@ -116,13 +113,10 @@
     </div>
 
     <div class="rf-wrap d-none d-md-block">
-      <app-table
-        [value]="reporte.proyectos"
-        class="rf-table p-datatable-sm"
-      >
+      <app-table [value]="reporte.proyectos" class="rf-table p-datatable-sm">
         <ng-template #header>
           <tr>
-            <th class="th-col-dark" >PROYECTO</th>
+            <th class="th-col-dark">PROYECTO</th>
             <th class="th-col-green">PRE-MEN</th>
 
             @for (mes of mesesNombres; track mes) {
@@ -149,14 +143,11 @@
             </td>
 
             @for (m of proyecto.meses; track m.mes) {
-            <td class="p-1" >
+            <td class="p-1">
               <div
                 class="d-flex flex-column align-items-center justify-content-center h-full gap-1"
               >
-                <span
-                  class="rf-td-cuenta text-xs"
-                  
-                >
+                <span class="rf-td-cuenta text-xs">
                   {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
                   }}
                 </span>
@@ -185,7 +176,9 @@
 
         <ng-template #footer>
           @if (reporte.totalGeneral; as total) {
-          <tr class="bg-body-secondary text-body border-top border-2 border-primary">
+          <tr
+            class="bg-body-secondary text-body border-top border-2 border-primary"
+          >
             <td class="rf-td-descripcion fw-bold">TOTAL GENERAL</td>
             <td class="rf-td-number--total text-green-600 fw-bold">
               {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual |
@@ -220,7 +213,7 @@
               {{ total.presupuestoAnual | number:'1.0-0' }}
             </td>
           </tr>
-        }
+          }
         </ng-template>
 
         <ng-template #emptymessage>
@@ -238,9 +231,14 @@
   <div
     class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
   >
-    <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
+    <app-icon
+      [icon]="'material-symbols-light:table-view'"
+      class="text-5xl mb-4 opacity-50"
+    />
     <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
-    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
+    <p class="mt-2 text-body-secondary">
+      Verifique los parámetros seleccionados
+    </p>
   </div>
   }
 </div>

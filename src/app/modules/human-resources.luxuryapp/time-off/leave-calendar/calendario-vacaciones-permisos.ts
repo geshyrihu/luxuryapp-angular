@@ -6,6 +6,10 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import {
   CalendarOptions,
@@ -16,10 +20,6 @@ import {
 import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { CalendarEventDTO } from "../../interfaces/calendar-event.interface";
 import { PermisoDetalleModal } from "./modal-permiso-detalle";
 import { VacacionDetalleModal } from "./modal-vacacion-detalle";
@@ -394,4 +394,3 @@ export class CalendarioVacacionesPermisos {
     alert(`Clic en evento: ${eventTitle} (ID: ${eventId})`);
   }
 }
-

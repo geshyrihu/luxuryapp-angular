@@ -7,22 +7,21 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CandidateDecision } from "@core/enums/candidate-decision";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ROUTES } from "src/app/routing/route-paths";
 import { candidateDecisionLabel } from "../../recruitment-shared/candidate-decision-labels";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import {
   MappedPTag,
   MappedTagOption,
 } from "../../recruitment-shared/mapped-p-tag";
+import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
 import { CandidateInterviewerQueueService } from "./candidate-interviewer-queue.service";
 import {
   CandidateInterviewerQueueDto,
@@ -238,7 +237,7 @@ export class CandidateInterviewerQueue implements OnInit {
         candidateProcessId: candidate.candidateProcessId ?? undefined,
       },
       `Retroalimentacion - ${candidate.candidateName}`,
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
     if (result) {
       await this.onLoadData();
@@ -351,5 +350,3 @@ export class CandidateInterviewerQueue implements OnInit {
     return haystack.includes(term);
   }
 }
-
-

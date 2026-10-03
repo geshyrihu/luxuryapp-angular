@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { MessageBase } from "@ui/base/message.base";
 import { MobileMessage } from "@ui/mobile/message/message";
 import { AppMessage } from "@ui/web/message/message";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-message",
+  selector: "lux-message",
 
   imports: [NgTemplateOutlet, AppMessage, MobileMessage],
   template: `
@@ -39,4 +39,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxMessage extends MessageBase {
   protected platform = inject(PlatformService);
 }
-

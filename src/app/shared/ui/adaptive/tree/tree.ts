@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { TreeBase } from "@ui/base/tree.base";
 import { MobileTree } from "@ui/mobile/tree/tree";
 import { Tree } from "@ui/web/tree/tree";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-tree",
+  selector: "lux-tree",
 
   imports: [NgTemplateOutlet, Tree, MobileTree],
   template: `
@@ -39,4 +39,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxTree extends TreeBase {
   protected platform = inject(PlatformService);
 }
-

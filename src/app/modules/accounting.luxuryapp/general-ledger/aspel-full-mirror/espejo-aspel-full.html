@@ -14,7 +14,9 @@
         </div>
         <div>
           <p class="fw-bold text-body m-0 line-height-1">Espejo Aspel Full</p>
-          <p class="text-body-secondary m-0">Plan de cuentas con movimientos mensuales</p>
+          <p class="text-body-secondary m-0">
+            Plan de cuentas con movimientos mensuales
+          </p>
         </div>
       </div>
 
@@ -51,12 +53,14 @@
       </div>
 
       @if (loading()) {
-      <lx-spinner [size]="16" [strokeWidth]="4" />
+      <lux-spinner [size]="16" [strokeWidth]="4" />
       } @if (!loading() && rawData()) {
       <span class="border-left-1 border"></span>
 
       <!-- Navegacion rapida -->
-      <span class="text-xs fw-semibold text-body-secondary text-uppercase">Ir a:</span>
+      <span class="text-xs fw-semibold text-body-secondary text-uppercase"
+        >Ir a:</span
+      >
       @for (grupo of grupos(); track grupo.codigo) {
       <il-button
         [label]="grupo.nombre"
@@ -92,15 +96,21 @@
 
       <!-- Leyenda -->
       <div class="d-flex align-items-center gap-3">
-        <span class="d-flex align-items-center gap-1 text-xs text-body-secondary">
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
           <span class="legend-dot legend-dot-cargo"></span>
           C=Cargo
         </span>
-        <span class="d-flex align-items-center gap-1 text-xs text-body-secondary">
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
           <span class="legend-dot legend-dot-abono"></span>
           A=Abono
         </span>
-        <span class="d-flex align-items-center gap-1 text-xs text-body-secondary">
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
           <span class="legend-dot legend-dot-presupuesto"></span>
           P=Presupuesto (solo gastos)
         </span>

@@ -1,6 +1,8 @@
 <div class="vacancy-timeline-modal">
   @if (loading()) {
-  <div class="p-4 text-center text-body-secondary">Cargando línea de tiempo...</div>
+  <div class="p-4 text-center text-body-secondary">
+    Cargando línea de tiempo...
+  </div>
   } @else if (candidateTimelines().length === 0) {
   <div class="card p-4 text-center">
     <div class="fw-semibold text-lg mb-2">Sin candidatos registrados</div>
@@ -10,20 +12,23 @@
   </div>
   } @else {
   <div class="candidate-timeline-grid">
-    @for (candidate of candidateTimelines(); track candidate.candidateProcessId) {
+    @for (candidate of candidateTimelines(); track candidate.candidateProcessId)
+    {
     <section class="candidate-timeline-column card shadow-1 rounded">
       <header class="candidate-timeline-header d-flex align-items-start gap-3">
-        <lx-avatar
+        <lux-avatar
           [image]="candidate.photoUrl"
           shape="circle"
           size="xlarge"
           icon="material-symbols-light:person"
         />
         <div class="d-flex flex-column flex-grow-1">
-          <span class="fw-bold text-lg text-primary">{{ candidate.candidateName }}</span>
+          <span class="fw-bold text-lg text-primary"
+            >{{ candidate.candidateName }}</span
+          >
           <small class="text-body-secondary mt-1">
-            Registro creado:
-            {{ (candidate.createdAt || candidate.registerDate) | apiDate: "mediumDate" }}
+            Registro creado: {{ (candidate.createdAt || candidate.registerDate)
+            | apiDate: "mediumDate" }}
           </small>
         </div>
       </header>
@@ -34,7 +39,8 @@
       </div>
       } @else {
       <ul class="square-timeline candidate-timeline-events">
-        @for (event of candidate.events; track event.createdAt || event.eventDate || $index) {
+        @for (event of candidate.events; track event.createdAt ||
+        event.eventDate || $index) {
         <li class="timeline-event">
           <label
             class="timeline-event-icon"
@@ -42,26 +48,38 @@
             aria-hidden="true"
           ></label>
           <div class="timeline-event-wrapper">
-            <small class="text-body-secondary text-nowrap candidate-timeline-date">
+            <small
+              class="text-body-secondary text-nowrap candidate-timeline-date"
+            >
               {{ (event.createdAt || event.eventDate) | apiDate: "mediumDate" }}
             </small>
             <div class="candidate-timeline-event-card p-3 rounded">
-            <div class="d-flex align-items-center flex-wrap gap-2">
-              <span class="text-sm text-body-secondary">{{ event.fromStageName }}</span>
-              <app-icon icon="material-symbols-light:arrow-right-alt" class="text-body-secondary" />
-              <lx-tag [value]="event.stageName" />
-            </div>
+              <div class="d-flex align-items-center flex-wrap gap-2">
+                <span class="text-sm text-body-secondary"
+                  >{{ event.fromStageName }}</span
+                >
+                <app-icon
+                  icon="material-symbols-light:arrow-right-alt"
+                  class="text-body-secondary"
+                />
+                <lux-tag [value]="event.stageName" />
+              </div>
 
-            @if (event.comment) {
-            <div class="mt-2 p-2 bg-body-tertiary rounded text-sm text-body fst-italic">
-              <app-icon icon="material-symbols-light:chat" class="me-1 align-middle" />
-              {{ event.comment }}
-            </div>
-            }
-
-            @if (event.changedBy) {
-            <small class="text-body-secondary mt-2 d-block">Registrado por {{ event.changedBy }}</small>
-            }
+              @if (event.comment) {
+              <div
+                class="mt-2 p-2 bg-body-tertiary rounded text-sm text-body fst-italic"
+              >
+                <app-icon
+                  icon="material-symbols-light:chat"
+                  class="me-1 align-middle"
+                />
+                {{ event.comment }}
+              </div>
+              } @if (event.changedBy) {
+              <small class="text-body-secondary mt-2 d-block"
+                >Registrado por {{ event.changedBy }}</small
+              >
+              }
             </div>
           </div>
         </li>

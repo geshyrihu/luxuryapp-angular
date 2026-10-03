@@ -8,30 +8,27 @@ import {
   OnInit,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 // import { Subscription } from "rxjs"; // Removed
+import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/budget-proposals/excel-export.service";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PaginationStore } from "@core/services/pagination-store";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { PaginationStore } from "@core/services/pagination-store";
-import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/budget-proposals/excel-export.service";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
 
@@ -244,5 +241,3 @@ export class ProductOutputList implements OnInit, OnDestroy {
     // this.subscriptions.unsubscribe(); // Removed
   }
 }
-
-

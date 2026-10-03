@@ -1,17 +1,16 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import type { TagSeverity } from "@ui/base/tag.base";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { DialogSize } from "@core/enums/dialog-size.enum";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
@@ -38,14 +37,14 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
 })
 export class CommitteeCobranzaWeb {
   baseService = inject(CommitteeCobranzaBaseService);
-  private dialogS = inject(DialogHandlerService);
+  private dialogHandlerS = inject(DialogHandlerService);
   private customerIdS = inject(CustomerIdService);
 
   openDetailModal(item: CommitteeMorosoItemDto) {
     const customerId = this.customerIdS.customerId();
-    this.dialogS.openDialogCustom(CommitteeCobranzaDetailModal, {
+    this.dialogHandlerS.openDialogCustom(CommitteeCobranzaDetailModal, {
       title: `Detalle de Movimientos - ${item.departamento}`,
-      size: DialogSize.md,
+      size: this.dialogHandlerS.sizeMd,
       data: {
         row: item,
         customerId: customerId,

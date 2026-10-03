@@ -7,14 +7,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { SendOperationReport } from "@operations.luxuryapp/task/tasks/send-operation-report/send-operation-report";
-import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
-import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-actions/task-report-actions";
-import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -28,17 +20,25 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SendOperationReport } from "@operations.luxuryapp/task/tasks/send-operation-report/send-operation-report";
+import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
+import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-actions/task-report-actions";
+import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { AppImage } from "@ui/web/image/image";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
+import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
-import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReadList } from "../task-read-list";
 
@@ -226,4 +226,3 @@ export class TaskMessageOperationReport {
       });
   }
 }
-

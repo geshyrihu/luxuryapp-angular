@@ -17,8 +17,7 @@
     </h3>
     @if (person.roleName && !person.isLocation) {
     <span class="committee-contact__role">{{ person.roleName }}</span>
-    }
-    @if (person.isOnShift !== null) {
+    } @if (person.isOnShift !== null) {
     <div class="committee-contact-detail__shift">
       <app-realtime-indicator
         [status]="person.isOnShift ? 'live' : 'paused'"
@@ -30,12 +29,14 @@
 
   <!-- Teléfono 1 -->
   @if (person.phoneNumber) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:call" /> Teléfono 1
       </span>
-      <span class="committee-contact-detail__value">{{ person.phoneNumber }}</span>
+      <span class="committee-contact-detail__value"
+        >{{ person.phoneNumber }}</span
+      >
       @if (!person.isLocation) {
       <div class="committee-contact-detail__actions">
         <ili-button
@@ -54,12 +55,12 @@
       </div>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Teléfono 2 -->
   @if (person.phoneTwo) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:call" /> Teléfono 2
@@ -67,41 +68,56 @@
       <span class="committee-contact-detail__value">{{ person.phoneTwo }}</span>
       @if (!person.isLocation) {
       <div class="committee-contact-detail__actions">
-        <ili-button label="Llamar" iconClass="material-symbols-light:call" expand="block" (clicked)="call(person.phoneTwo)" />
-        <ili-button label="WhatsApp" iconClass="material-symbols-light:chat" color="success" expand="block" (clicked)="whatsapp(person.phoneTwo)" />
+        <ili-button
+          label="Llamar"
+          iconClass="material-symbols-light:call"
+          expand="block"
+          (clicked)="call(person.phoneTwo)"
+        />
+        <ili-button
+          label="WhatsApp"
+          iconClass="material-symbols-light:chat"
+          color="success"
+          expand="block"
+          (clicked)="whatsapp(person.phoneTwo)"
+        />
       </div>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Extensión 1 -->
   @if (person.extensionOne) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:deskphone" /> Extensión 1
       </span>
-      <span class="committee-contact-detail__value">{{ person.extensionOne }}</span>
+      <span class="committee-contact-detail__value"
+        >{{ person.extensionOne }}</span
+      >
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Extensión 2 -->
   @if (person.extensionTwo) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:deskphone" /> Extensión 2
       </span>
-      <span class="committee-contact-detail__value">{{ person.extensionTwo }}</span>
+      <span class="committee-contact-detail__value"
+        >{{ person.extensionTwo }}</span
+      >
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Correo -->
   @if (person.email) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:mail-outline" /> Correo
@@ -116,12 +132,12 @@
         />
       </div>
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Horario -->
   @if (!person.isLocation) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
         <app-icon icon="material-symbols-light:schedule" /> Horario
@@ -131,7 +147,9 @@
         @for (d of person.schedule; track d.day) {
         <div class="committee-schedule__row">
           <span class="committee-schedule__day">{{ d.day }}</span>
-          <span class="committee-schedule__time">{{ d.entry }} – {{ d.exit }}</span>
+          <span class="committee-schedule__time"
+            >{{ d.entry }} – {{ d.exit }}</span
+          >
         </div>
         }
       </div>
@@ -139,6 +157,6 @@
       <span class="committee-schedule__empty">Sin horario registrado.</span>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 </div>

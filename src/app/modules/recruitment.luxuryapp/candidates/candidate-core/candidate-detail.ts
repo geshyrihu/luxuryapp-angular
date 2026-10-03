@@ -7,9 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxDivider } from "@ui/adaptive/divider/divider";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -17,6 +14,9 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateHiringDocumentsModal } from "../candidate-applications/candidate-hiring-documents-modal";
@@ -146,6 +146,3 @@ export class CandidateDetail implements OnInit {
     );
   }
 }
-
-
-

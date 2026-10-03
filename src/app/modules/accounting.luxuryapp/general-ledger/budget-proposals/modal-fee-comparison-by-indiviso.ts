@@ -19,12 +19,12 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxDivider } from "@ui/adaptive/divider/divider";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { AppTable } from "@ui/web/table/table";
 import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";
 @Component({
   selector: "app-fee-comparison-by-indiviso-modal",
@@ -57,7 +57,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -81,7 +81,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -108,7 +108,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Cambio:
@@ -118,11 +118,11 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </div>
             </div>
 
-            <lx-divider class="my-4">
+            <lux-divider class="my-4">
               <h6 class="text-uppercase font-semibold">
                 Detalle por Propiedad
               </h6>
-            </lx-divider>
+            </lux-divider>
 
             <app-table
               [value]="data.propertyIndivisoDetails"
@@ -165,9 +165,9 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
           </div>
         </div>
       } @else if (!loading()) {
-        <lx-message severity="info">
+        <lux-message severity="info">
           No hay datos de comparación disponibles.
-        </lx-message>
+        </lux-message>
       }
     </div>
   `,

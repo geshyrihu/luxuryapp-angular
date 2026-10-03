@@ -1,47 +1,56 @@
 <div class="ion-app-shell">
-<ion-app>
-  <!-- Side Menu -->
-  <ion-menu side="start" menuId="employee-mobile-menu" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menú</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <app-home-menu-mobile (onCloseMenu)="closeMenu()"></app-home-menu-mobile>
-    </ion-content>
-  </ion-menu>
-
-  <!-- Main Content -->
-  <div id="main-content" class="ion-page" style="height: 100%; display: flex; flex-direction: column;">
-    <!-- Header fijo -->
-    <ion-header class="ion-no-border">
-      <app-header-mobile />
-    </ion-header>
-
-    <!-- área de contenido con scroll nativo Ionic -->
-    <ion-content
-      [scrollY]="true"
-      [fullscreen]="true"
-       class="employee-mobile-content flex-flex-grow-1-1 relative"
+  <ion-app>
+    <!-- Side Menu -->
+    <ion-menu
+      side="start"
+      menuId="employee-mobile-menu"
+      contentId="main-content"
     >
-      <div
-        class="page-body-wrapper"
-        [class.scorlled]="hideScroolNavService.headerFixed == true"
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <app-home-menu-mobile
+          (onCloseMenu)="closeMenu()"
+        ></app-home-menu-mobile>
+      </ion-content>
+    </ion-menu>
+
+    <!-- Main Content -->
+    <div
+      id="main-content"
+      class="ion-page"
+      style="height: 100%; display: flex; flex-direction: column"
+    >
+      <!-- Header fijo -->
+      <ion-header class="ion-no-border">
+        <app-header-mobile />
+      </ion-header>
+
+      <!-- área de contenido con scroll nativo Ionic -->
+      <ion-content
+        [scrollY]="true"
+        [fullscreen]="true"
+        class="employee-mobile-content flex-flex-grow-1-1 relative"
       >
-        <div class="pb-8">
-          <!-- pb-8 para dar espacio al footer -->
-          <router-outlet />
+        <div
+          class="page-body-wrapper"
+          [class.scorlled]="hideScroolNavService.headerFixed == true"
+        >
+          <div class="pb-8">
+            <!-- pb-8 para dar espacio al footer -->
+            <router-outlet />
+          </div>
         </div>
-      </div>
-      <lx-loader />
-    </ion-content>
+        <lux-loader />
+      </ion-content>
 
-    <!-- Footer fijo (fuera del scroll) -->
-    <ion-footer class="ion-no-border app-footer-floating">
-      <app-footer-employee-mobile />
-    </ion-footer>
-
-  </div>
-</ion-app>
+      <!-- Footer fijo (fuera del scroll) -->
+      <ion-footer class="ion-no-border app-footer-floating">
+        <app-footer-employee-mobile />
+      </ion-footer>
+    </div>
+  </ion-app>
 </div>

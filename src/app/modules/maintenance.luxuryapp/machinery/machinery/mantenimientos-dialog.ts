@@ -1,19 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
+import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
+import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppTable } from "@ui/web/table/table";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
-import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 
 interface Equipo {
   id: any;
@@ -37,7 +40,6 @@ interface Equipo {
   imports: [
     CommonModule,
     AppTable,
-
 
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
@@ -205,5 +207,3 @@ export class MantenimientosDialog {
       });
   }
 }
-
-

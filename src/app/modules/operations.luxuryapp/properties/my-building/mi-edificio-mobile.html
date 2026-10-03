@@ -9,7 +9,10 @@
         {{ data().cliente.nameCustomer }}
       </h2>
       <p class="text-sm text-body-secondary m-0 d-flex align-items-center mt-1">
-        <app-icon icon="material-symbols-light:location-on-outline" class="me-1" />
+        <app-icon
+          icon="material-symbols-light:location-on-outline"
+          class="me-1"
+        />
         <a
           [href]="data().cliente.googleMpasUbication"
           target="_blank"
@@ -24,11 +27,15 @@
   <div class="border-1 border shadow-sm rounded-xl">
     <div class="row text-center g-4">
       <div class="col-6">
-        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">Torres</p>
+        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">
+          Torres
+        </p>
         <p class="text-lg fw-bold m-0">{{ data().torres }}</p>
       </div>
       <div class="col-6">
-        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">Departamentos</p>
+        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">
+          Departamentos
+        </p>
         <p class="text-lg fw-bold m-0">{{ data().departamentos }}</p>
       </div>
       @if (data().cliente.rfc) {
@@ -54,13 +61,17 @@
 </div>
 
 @for (group of data().empleadosAdministracion; track group.departament) {
-<h3 class="ps-3 mt-4 mb-2 text-lg fw-bold text-body">{{ group.departmentDisplayName }}</h3>
+<h3 class="ps-3 mt-4 mb-2 text-lg fw-bold text-body">
+  {{ group.departmentDisplayName }}
+</h3>
 
 <div class="bg-body mb-3 rounded">
   @for (item of group.empleados; track item.email) {
-  <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
+  <div
+    class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+  >
     <div class="me-3">
-      <lx-avatar
+      <lux-avatar
         [image]="item.photoEmployee"
         icon="material-symbols-light:person"
         shape="circle"
@@ -72,7 +83,10 @@
       <p>{{ item.applicationRoleName }}</p>
       @if (item.phoneNumber) {
       <p class="text-sm text-body-secondary">
-        <app-icon icon="material-symbols-light:call-outline" class="vertical-align-middle me-1" />
+        <app-icon
+          icon="material-symbols-light:call-outline"
+          class="vertical-align-middle me-1"
+        />
         <a
           [href]="'tel:' + item.phoneNumber"
           class="text-body-secondary no-underline"
@@ -81,7 +95,10 @@
       </p>
       } @if (item.email) {
       <p class="text-sm text-body-secondary">
-        <app-icon icon="material-symbols-light:mail-outline" class="vertical-align-middle me-1" />
+        <app-icon
+          icon="material-symbols-light:mail-outline"
+          class="vertical-align-middle me-1"
+        />
         <a
           [href]="'mailto:' + item.email"
           class="text-body-secondary no-underline"
@@ -93,5 +110,4 @@
   </div>
   }
 </div>
-}
-}
+} }

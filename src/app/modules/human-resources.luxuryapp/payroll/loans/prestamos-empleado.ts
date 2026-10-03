@@ -7,19 +7,16 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { PrestamoEmpleadoDTO } from "../interfaces/prestamo-empleado.interface";
 import ModalPrestamoAdd from "./add-loan-modal/modal-prestamo-add";
 import ModalPrestamoDetalle from "./loan-detail-modal/modal-prestamo-detalle";
@@ -139,4 +136,3 @@ export default class PrestamosEmpleado {
     return Math.round((item.pagosRealizados / item.numeroPagos) * 100);
   }
 }
-

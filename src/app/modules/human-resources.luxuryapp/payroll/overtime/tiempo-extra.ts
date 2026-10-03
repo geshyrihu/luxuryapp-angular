@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,23 +7,21 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
 import ModalTiempoExtraAdd from "./add-overtime-modal/modal-tiempo-extra-add";
@@ -171,4 +168,3 @@ export default class TiempoExtra {
       });
   }
 }
-

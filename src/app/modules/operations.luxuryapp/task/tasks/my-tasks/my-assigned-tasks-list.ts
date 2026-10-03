@@ -19,6 +19,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PrintService } from "@core/services/print.service";
+import { SwalService } from "@core/services/swal.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
@@ -33,7 +34,6 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
-import { SwalService } from "@core/services/swal.service";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";

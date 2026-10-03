@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { StepsBase } from "@ui/base/steps.base";
 import { MobileSteps } from "@ui/mobile/steps/steps";
 import { AppSteps } from "@ui/web/steps/steps";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-steps",
+  selector: "lux-steps",
 
   imports: [AppSteps, MobileSteps],
   template: `
@@ -31,4 +31,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxSteps extends StepsBase {
   protected platform = inject(PlatformService);
 }
-

@@ -125,7 +125,8 @@ ion-item {
 }
 
 ion-label {
-  h2, h3 {
+  h2,
+  h3 {
     font-weight: 500;
     color: var(--ds-text-primary);
   }
@@ -284,7 +285,7 @@ ion-refresher {
   --color: var(--ds-primary);
 }
 
-ion-modal.lx-form-modal {
+ion-modal.lux-form-modal {
   .card {
     border: none !important;
     box-shadow: none !important;
@@ -334,8 +335,12 @@ body.theme-dark {
   }
   ion-header ion-toolbar {
     --background: var(--ds-bg-elevated);
-    ion-back-button { --color: var(--ds-primary); }
-    ion-button { --color: var(--ds-primary); }
+    ion-back-button {
+      --color: var(--ds-primary);
+    }
+    ion-button {
+      --color: var(--ds-primary);
+    }
   }
   ion-item {
     --background: var(--ds-bg-surface);
@@ -351,8 +356,13 @@ body.theme-dark {
     --color: var(--ds-text-muted);
   }
   ion-label {
-    h2, h3 { color: var(--ds-text-primary); }
-    p { color: var(--ds-text-muted); }
+    h2,
+    h3 {
+      color: var(--ds-text-primary);
+    }
+    p {
+      color: var(--ds-text-muted);
+    }
   }
   ion-searchbar {
     --background: var(--ds-bg-elevated);

@@ -1,5 +1,5 @@
 <div class="p-4">
-  <lx-card header="Prueba de Modelos de Inteligencia Artificial">
+  <lux-card header="Prueba de Modelos de Inteligencia Artificial">
     <div class="row g-4">
       <div class="col-12 col-md-4" [formGroup]="form">
         <div class="mb-4">
@@ -10,7 +10,8 @@
             [data]="profiles()"
             optionLabel="label"
             optionValue="value"
-            placeholder="Selecciona un perfil">
+            placeholder="Selecciona un perfil"
+          >
           </custom-input-select-signal>
         </div>
 
@@ -20,7 +21,8 @@
             label="Prompt de Prueba"
             formControlName="prompt"
             [rows]="5"
-            placeholder="Escribe tu instrucción aquí...">
+            placeholder="Escribe tu instrucción aquí..."
+          >
           </custom-input-textarea-signal>
         </div>
 
@@ -33,35 +35,43 @@
       </div>
 
       <div class="col-12 col-md-8">
-        <div class="result-container rounded p-3 bg-body-tertiary" >
+        <div class="result-container rounded p-3 bg-body-tertiary">
           <h4 class="mt-0 mb-3">Respuesta del Modelo</h4>
-          
+
           @if (isLoading()) {
-          <div class="d-flex align-items-center gap-2 text-primary">
-            <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin"  />
-            <span>Generando respuesta...</span>
-          </div>
+            <div class="d-flex align-items-center gap-2 text-primary">
+              <app-icon
+                [icon]="'material-symbols-light:progress-activity'"
+                class="ds-animate-spin"
+              />
+              <span>Generando respuesta...</span>
+            </div>
           }
 
           @if (!isLoading() && result()) {
-          <div class="response-content">
-            <div class="mb-2">
-              <span class="fw-bold text-body-secondary">Perfil Respondiente:</span> 
-              <span class="p-badge p-badge-info ms-2">{{ result()?.profile }}</span>
+            <div class="response-content">
+              <div class="mb-2">
+                <span class="fw-bold text-body-secondary"
+                  >Perfil Respondiente:</span
+                >
+                <span class="p-badge p-badge-info ms-2">{{
+                  result()?.profile
+                }}</span>
+              </div>
+              <div class="p-3 bg-body rounded shadow-sm mt-3">
+                {{ result()?.response }}
+              </div>
             </div>
-            <div class="p-3 bg-body rounded shadow-sm mt-3" >
-              {{ result()?.response }}
-            </div>
-          </div>
           }
 
           @if (!isLoading() && !result()) {
-          <div class="text-body-secondary fst-italic text-center mt-5">
-            Selecciona un modelo, escribe un prompt y presiona "Probar Modelo" para ver el resultado aquí.
-          </div>
+            <div class="text-body-secondary fst-italic text-center mt-5">
+              Selecciona un modelo, escribe un prompt y presiona "Probar Modelo"
+              para ver el resultado aquí.
+            </div>
           }
         </div>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 </div>

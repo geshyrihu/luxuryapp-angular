@@ -6,6 +6,16 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { globalFilterFields } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { MenuItem } from "@core/interfaces/menu-item.interface";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMenu } from "@ui/adaptive/menu/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -17,16 +27,6 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { MenuItem } from "@core/interfaces/menu-item.interface";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { globalFilterFields } from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";

@@ -2,17 +2,6 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -27,6 +16,17 @@ import {
 } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
 
 @Component({
@@ -151,4 +151,3 @@ export class BitacoraMantenimiento {
     );
   }
 }
-

@@ -21,7 +21,9 @@
           }
         </div>
 
-        <div class="d-flex flex-column gap-2 flex-md-row align-items-md-end g-4">
+        <div
+          class="d-flex flex-column gap-2 flex-md-row align-items-md-end g-4"
+        >
           <label class="d-flex flex-column gap-1">
             <span class="fw-semibold">Ventana de busqueda (dias)</span>
             <input
@@ -97,19 +99,19 @@
                 {{ item.customerShortName || item.customerName }}
               </div>
               <div class="text-sm text-body-secondary">
-                {{ item.sessionTypeDisplayName }} |
-                {{ item.scheduledAt | apiDate: "dd/MM/yyyy HH:mm" }}
+                {{ item.sessionTypeDisplayName }} | {{ item.scheduledAt |
+                apiDate: "dd/MM/yyyy HH:mm" }}
               </div>
               <div class="d-flex gap-2 flex-wrap mt-2">
-                <lx-tag [value]="item.statusDisplayName" severity="info"  />
-                <lx-tag
+                <lux-tag [value]="item.statusDisplayName" severity="info" />
+                <lux-tag
                   [value]="item.hasPresentationLinked ? 'Presentacion ligada' : 'Sin presentacion'"
                   [severity]="item.hasPresentationLinked ? 'success' : 'warn'"
-                 />
-                <lx-tag
+                />
+                <lux-tag
                   [value]="item.hasMeetingLinked ? 'Minuta ligada' : 'Sin minuta'"
                   [severity]="item.hasMeetingLinked ? 'success' : 'warn'"
-                 />
+                />
               </div>
             </td>
 
@@ -120,10 +122,10 @@
                 {{ presentation.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
-                <lx-tag
+                <lux-tag
                   [value]="presentation.confidence"
                   [severity]="confidenceSeverity(presentation.confidence)"
-                 />
+                />
                 <span class="text-sm">Score {{ presentation.score }}</span>
               </div>
               <ul class="mt-2 ps-3 text-sm text-body-secondary">
@@ -143,10 +145,10 @@
                 {{ meeting.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
-                <lx-tag
+                <lux-tag
                   [value]="meeting.confidence"
                   [severity]="confidenceSeverity(meeting.confidence)"
-                 />
+                />
                 <span class="text-sm">Score {{ meeting.score }}</span>
               </div>
               <ul class="mt-2 ps-3 text-sm text-body-secondary">
@@ -182,7 +184,8 @@
                 </label>
 
                 <iw-button-confirm
-                  lxTooltip="Aplicar sugerencias" tooltipPosition="top"
+                  lxTooltip="Aplicar sugerencias"
+                  tooltipPosition="top"
                   icon="material-symbols-light:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalTitle="Aplicar conciliacion"
@@ -199,10 +202,10 @@
 
       @if (!items().length && !loading()) {
       <p class="m-0 text-body-secondary">
-        No se encontraron sesiones candidatas para conciliacion con los filtros actuales.
+        No se encontraron sesiones candidatas para conciliacion con los filtros
+        actuales.
       </p>
       }
     </div>
   </div>
 </div>
-

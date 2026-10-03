@@ -5,9 +5,7 @@
 >
   <div class="row g-4">
     <div class="col-12">
-      <div
-        class="bg-body-tertiary rounded-xl p-4 mb-4 border-1 border"
-      >
+      <div class="bg-body-tertiary rounded-xl p-4 mb-4 border-1 border">
         <div class="d-flex align-items-center gap-3 mb-2">
           <app-icon
             [icon]="'material-symbols-light:info'"
@@ -206,7 +204,7 @@
           <label class="fw-bold mb-2 d-block text-sm text-body"
             >Visibilidad: Customers</label
           >
-          <lx-listbox
+          <lux-listbox
             [options]="customers()"
             formControlName="customerIds"
             [multiple]="true"
@@ -214,7 +212,6 @@
             [filter]="true"
             optionLabel="label"
             optionValue="value"
-            
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron clientes"
             class="w-full rounded-xl overflow-hidden shadow-sm"
@@ -224,7 +221,7 @@
           <label class="fw-bold mb-2 d-block text-sm text-body"
             >Visibilidad: Roles</label
           >
-          <lx-listbox
+          <lux-listbox
             [options]="roles()"
             formControlName="roleIds"
             [multiple]="true"
@@ -235,7 +232,6 @@
             optionGroupChildren="items"
             optionLabel="label"
             optionValue="value"
-            
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron roles"
             class="w-full rounded-xl overflow-hidden shadow-sm"

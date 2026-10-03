@@ -12,15 +12,10 @@
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary mb-2"
-      
     />
     <p class="text-body fw-medium m-0">Subiendo imágenes...</p>
     } @else {
-    <app-icon
-      [icon]="'material-symbols-light:cloud-upload'"
-      class="mb-2"
-      
-    />
+    <app-icon [icon]="'material-symbols-light:cloud-upload'" class="mb-2" />
     <p class="text-body fw-medium m-0">
       Arrastra imágenes aquí o haz clic para seleccionar
     </p>
@@ -31,7 +26,7 @@
     <input
       #fileInput
       type="file"
-            accept="image/*,.heic,.heif"
+      accept="image/*,.heic,.heif"
       multiple
       (change)="onFileSelect($event)"
       class="d-none"
@@ -42,7 +37,9 @@
   <div class="d-flex align-items-center mb-3">
     <h3 class="m-0 fw-bold text-body">Galería de Imágenes</h3>
     @if (hasImages()) {
-    <span class="ms-2 text-body-secondary text-sm">({{ images().length }})</span>
+    <span class="ms-2 text-body-secondary text-sm"
+      >({{ images().length }})</span
+    >
     }
   </div>
 
@@ -54,7 +51,6 @@
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary"
-      
     />
   </div>
   } @else { @if (hasImages()) {
@@ -64,7 +60,7 @@
       <div
         class="card-image-container relative rounded overflow-hidden shadow-sm hover:shadow transition-all transition-duration-300"
       >
-        <lx-image
+        <lux-image
           [src]="img.pathImag"
           [alt]="'Imagen de cliente'"
           [preview]="true"
@@ -92,7 +88,6 @@
     <app-icon
       [icon]="'material-symbols-light:photo'"
       class="text-body-secondary mb-2"
-      
     />
     <p class="text-body-secondary m-0">No hay imágenes aún</p>
   </div>

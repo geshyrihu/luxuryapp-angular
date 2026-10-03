@@ -1,5 +1,3 @@
-import { ActivatedRoute } from "@angular/router";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,13 +5,8 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
+import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -22,6 +15,12 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
 import { ContractAddendumListDTO } from "./interfaces/contract-addendum.dto";
 
@@ -56,7 +55,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 })
 export class ContractAddendumList implements OnInit {
   apiS = inject(ApiResponseService);
-  dialogS = inject(DialogHandlerService);
+  dialogHandlerS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
   private route = inject(ActivatedRoute);
   employeeId = signal<string | null>(null);
@@ -88,23 +87,23 @@ export class ContractAddendumList implements OnInit {
   }
 
   onModalForm(data: { id: string; title: string }): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         ContractAddendumFormComponent,
         { data: { item: null } },
         data.title,
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }
 
   onEdit(item: ContractAddendumListDTO): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         ContractAddendumFormComponent,
         { data: { item } },
         "Editar Adenda",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }

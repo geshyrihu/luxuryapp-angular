@@ -1,16 +1,16 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { ImageBase } from "@ui/base/image.base";
 import { MobileImage } from "@ui/mobile/image/image";
 import { AppImage } from "@ui/web/image/image";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma de Image. Renderiza `app-image` (web, con preview) o
  * `ili-image` (Ionic ion-img) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-image [src]="..." [preview]="true" />`.
+ * Punto de entrada recomendado: `<lux-image [src]="..." [preview]="true" />`.
  */
 @Component({
-  selector: "lx-image",
+  selector: "lux-image",
 
   imports: [AppImage, MobileImage],
   template: `

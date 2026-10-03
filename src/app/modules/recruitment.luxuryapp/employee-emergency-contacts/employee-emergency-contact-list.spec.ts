@@ -1,6 +1,5 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { vi } from "vitest";
@@ -23,7 +22,7 @@ describe("EmployeeEmergencyContactList", () => {
 
   const mockDialogHandlerS = {
     openDialog: vi.fn().mockResolvedValue(true),
-    sizeLg: DialogSize.lg,
+    sizeLg: this.dialogHandlerS.sizeLg,
   };
 
   beforeEach(() => {
@@ -79,4 +78,3 @@ describe("EmployeeEmergencyContactList", () => {
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();
   });
 });
-

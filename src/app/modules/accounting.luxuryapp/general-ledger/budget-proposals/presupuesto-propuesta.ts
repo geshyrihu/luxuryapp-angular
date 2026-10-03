@@ -37,14 +37,12 @@ import {
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
+import { SwalService } from "@core/services/swal.service";
 import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -52,7 +50,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppTable } from "@ui/web/table/table";
 import { Subscription } from "rxjs";
-import { SwalService } from "@core/services/swal.service";
 import ProjectedExpensesList from "../aspel-mirror/projected-expenses-list";
 import { PurchaseHistory } from "../aspel-web-budget/purchase-history";
 import { AccountModalAdd } from "./account-modal-add";
@@ -187,7 +184,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   );
   /** Total de partidas hoja (cuentas a trabajar). Excluye filas agrupadoras. */
   totalWorkItems = computed(
-    () => this.allProposalItems().filter((item) => !item.esFilaAgrupadora).length,
+    () =>
+      this.allProposalItems().filter((item) => !item.esFilaAgrupadora).length,
   );
   /** Partidas hoja ya marcadas como finalizadas (listas). */
   finalizedWorkItems = computed(
@@ -227,7 +225,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /** Control de vista: normal, nivel1 (Mayor), nivel2 */
   viewMode = signal<"normal" | "level1" | "level2">("normal");
-  
+
   /** Control de filtro de partidas (todas, finalizadas, pendientes) */
   completionFilter = signal<"all" | "finalized" | "pending">("all");
 
@@ -595,7 +593,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param updatedItem La partida actualizada recibida desde el servidor.
    */
   handleBudgetProposalItemUpdate(updatedItem: BudgetProposalItemDTO): void {
-    // Usamos patchItemInState para no sobreescribir la info enriquecida de Aspel con 0s, 
+    // Usamos patchItemInState para no sobreescribir la info enriquecida de Aspel con 0s,
     // lo cual pasaría si el endpoint de backend regresó un DTO sin Aspel (ej. FinalizeItem)
     this.patchItemInState(updatedItem);
     this.recalculateTotals();
@@ -807,18 +805,26 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
     // Aplicar filtro por nivel de cuenta DESPUÉS de calcular totales
     if (mode === "level1") {
-      filteredData = filteredData.filter((p) => p.nivelCuenta === 1 && p.esFilaAgrupadora);
+      filteredData = filteredData.filter(
+        (p) => p.nivelCuenta === 1 && p.esFilaAgrupadora,
+      );
     } else if (mode === "level2") {
-      filteredData = filteredData.filter((p) => p.nivelCuenta === 2 && p.esFilaAgrupadora);
+      filteredData = filteredData.filter(
+        (p) => p.nivelCuenta === 2 && p.esFilaAgrupadora,
+      );
     } else if (mode === "normal") {
       filteredData = filteredData.filter((p) => !p.esFilaAgrupadora);
     }
 
     const completion = this.completionFilter();
     if (completion === "finalized") {
-      filteredData = filteredData.filter((p) => p.esFilaAgrupadora || p.isFinalized);
+      filteredData = filteredData.filter(
+        (p) => p.esFilaAgrupadora || p.isFinalized,
+      );
     } else if (completion === "pending") {
-      filteredData = filteredData.filter((p) => p.esFilaAgrupadora || !p.isFinalized);
+      filteredData = filteredData.filter(
+        (p) => p.esFilaAgrupadora || !p.isFinalized,
+      );
     }
 
     if (!this.showExtraordinarios) {
@@ -1683,7 +1689,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(Endpoints.BudgetProposalItems.delete(item.id, this.signalRService.connectionId()))
+          .onDelete(
+            Endpoints.BudgetProposalItems.delete(
+              item.id,
+              this.signalRService.connectionId(),
+            ),
+          )
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.
@@ -1747,7 +1758,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   private patchItemInState(updated: BudgetProposalItemDTO): void {
     const applySafeUpdate = (existing: BudgetProposalItemDTO) => {
       // The backend finalize/edit endpoints do not enrich the response with Aspel data (gastoEnero, etc)
-      // or budget calculation data to keep the response fast. We must carefully only overwrite 
+      // or budget calculation data to keep the response fast. We must carefully only overwrite
       // fields that belong to the core database entity, preserving the loaded Aspel/enriched data.
       return {
         ...existing,
@@ -1757,9 +1768,14 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         // Update proposed amount just in case this is called from a save-amount operation
         proposedAmount: updated.proposedAmount ?? existing.proposedAmount,
         difference: updated.difference ?? existing.difference,
-        percentageIncrease: updated.percentageIncrease ?? existing.percentageIncrease,
-        comment: updated.comment !== undefined ? updated.comment : existing.comment,
-        providerName: updated.providerName !== undefined ? updated.providerName : existing.providerName,
+        percentageIncrease:
+          updated.percentageIncrease ?? existing.percentageIncrease,
+        comment:
+          updated.comment !== undefined ? updated.comment : existing.comment,
+        providerName:
+          updated.providerName !== undefined
+            ? updated.providerName
+            : existing.providerName,
       };
     };
 
@@ -1775,7 +1791,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       (i) => i.id === updated.id,
     );
     if (originalIndex !== -1) {
-      this.originalProposalItems[originalIndex] = applySafeUpdate(this.originalProposalItems[originalIndex]);
+      this.originalProposalItems[originalIndex] = applySafeUpdate(
+        this.originalProposalItems[originalIndex],
+      );
     }
 
     this.applyFilters();

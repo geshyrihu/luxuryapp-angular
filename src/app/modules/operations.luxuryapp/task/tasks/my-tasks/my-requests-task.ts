@@ -7,13 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabelEdit, WebButtonLabelItem } from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -26,7 +19,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { WebButtonLabelEdit, WebButtonLabelItem } from "@ui/buttons/web-label";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { AppImage } from "@ui/web/image/image";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";

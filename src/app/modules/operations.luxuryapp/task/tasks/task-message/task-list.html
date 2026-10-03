@@ -165,7 +165,7 @@
           (clicked)="helpPopover.toggle($event)"
         />
 
-        <lx-popover #helpPopover styleClass="shadow">
+        <lux-popover #helpPopover styleClass="shadow">
           <div>
             <p
               class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
@@ -260,7 +260,7 @@
               </div>
             </div>
           </div>
-        </lx-popover>
+        </lux-popover>
       </div>
     </div>
   </ng-template>
@@ -447,7 +447,7 @@
         <div class="d-flex align-items-center justify-content-center gap-2">
           @if (item.beforeWork) {
           <figure class="m-0 text-center">
-            <lx-image
+            <lux-image
               [src]="item.beforeWork"
               alt="."
               [preview]="true"
@@ -459,7 +459,7 @@
           </figure>
           } @if (item.afterWork) {
           <figure class="m-0 text-center">
-            <lx-image
+            <lux-image
               [src]="item.afterWork"
               alt="."
               [preview]="true"
@@ -614,20 +614,52 @@
       </div>
 
       <div class="d-flex gap-2 overflow-x-auto w-full hide-scrollbar mt-2">
-        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPendingBoard()">
-          <app-icon icon="material-symbols-light:grid-view-outline" slot="start"></app-icon>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="onPendingBoard()"
+        >
+          <app-icon
+            icon="material-symbols-light:grid-view-outline"
+            slot="start"
+          ></app-icon>
           Tablero
         </ion-button>
-        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewClickedWorkPlan()">
-          <app-icon icon="material-symbols-light:article-outline" slot="start"></app-icon>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="onPreviewClickedWorkPlan()"
+        >
+          <app-icon
+            icon="material-symbols-light:article-outline"
+            slot="start"
+          ></app-icon>
           Plan
         </ion-button>
-        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewWeeklyReport()">
-          <app-icon icon="material-symbols-light:visibility-outline" slot="start"></app-icon>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="onPreviewWeeklyReport()"
+        >
+          <app-icon
+            icon="material-symbols-light:visibility-outline"
+            slot="start"
+          ></app-icon>
           Previa
         </ion-button>
-        <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onSendWeeklyReport()">
-          <app-icon icon="material-symbols-light:send-outline" slot="start"></app-icon>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="onSendWeeklyReport()"
+        >
+          <app-icon
+            icon="material-symbols-light:send-outline"
+            slot="start"
+          ></app-icon>
           Reporte
         </ion-button>
       </div>
@@ -661,7 +693,7 @@
 
           <!-- Derecha: Estado, Días y 3 puntos -->
           <div class="d-flex align-items-center gap-2">
-            <lx-tag
+            <lux-tag
               [severity]="item.status === 'Completed' ? 'success' : item.status === 'InProgress' ? 'info' : item.status === 'Reopened' ? 'warning' : 'secondary'"
               [value]="item.status === 'Completed' ? 'Terminado' : item.status === 'InProgress' ? 'En Proceso' : item.status === 'Reopened' ? 'Reabierto' : 'No Iniciado'"
             />

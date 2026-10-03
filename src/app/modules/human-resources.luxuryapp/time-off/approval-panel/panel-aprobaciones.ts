@@ -6,13 +6,13 @@ import {
 } from "@angular/core";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
-import { GenericApprovalPanel } from "../../shared/generic-approval-panel";
-import { ApprovalConfirmationModal } from "../../shared/modal-approval-confirmation";
-import { ApprovalDetailModal } from "../../shared/modal-approval-detail";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
 } from "../../interfaces/approval.interface";
+import { GenericApprovalPanel } from "../../shared/generic-approval-panel";
+import { ApprovalConfirmationModal } from "../../shared/modal-approval-confirmation";
+import { ApprovalDetailModal } from "../../shared/modal-approval-detail";
 import { MotivoRechazoFormulario } from "../rejection-reason-form/motivo-rechazo-formulario";
 import { ApprovalStateService } from "./approval-state.service";
 @Component({

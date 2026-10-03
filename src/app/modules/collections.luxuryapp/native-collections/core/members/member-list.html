@@ -35,9 +35,14 @@
         <td colspan="8" class="bg-body-tertiary py-2 px-3">
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:apartment'"
+                class="text-primary"
+              />
               <span class="fw-bold text-primary">{{ item.propertyName }}</span>
-              <span class="text-body-secondary text-sm">· Cta: {{ item.accountNumber }}</span>
+              <span class="text-body-secondary text-sm"
+                >· Cta: {{ item.accountNumber }}</span
+              >
             </div>
             <iw-button
               lxTooltip="Nuevo Miembro"
@@ -57,7 +62,7 @@
         <td class="fw-bold">{{ item.userName }}</td>
         <td class="text-sm text-body-secondary">{{ item.email }}</td>
         <td class="text-center">
-          <lx-tag [value]="rolLabel(item.memberRole)" severity="info" />
+          <lux-tag [value]="rolLabel(item.memberRole)" severity="info" />
         </td>
         <td class="text-center">
           @if (item.isFinancialResponsible) {
@@ -70,16 +75,22 @@
         </td>
         <td class="text-center">
           @if (item.receiveNotifications) {
-          <app-icon [icon]="'material-symbols-light:notifications'" class="text-blue-500" />
+          <app-icon
+            [icon]="'material-symbols-light:notifications'"
+            class="text-blue-500"
+          />
           } @else {
-          <app-icon [icon]="'material-symbols-light:notifications-off'" class="text-body-secondary" />
+          <app-icon
+            [icon]="'material-symbols-light:notifications-off'"
+            class="text-body-secondary"
+          />
           }
         </td>
         <td class="text-center text-sm">
           {{ item.startDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="activeStatusMeta(item.isActive).label"
             [severity]="activeStatusMeta(item.isActive).severity"
           />
@@ -139,7 +150,7 @@
       <p>Desde: {{ item.startDate | apiDate:"dd/MM/yyyy" }}</p>
 
       @if (item.isFinancialResponsible) {
-      <lx-tag end value="Responsable" severity="success" />
+      <lux-tag end value="Responsable" severity="success" />
       }
       <ili-action-menu slot="end">
         <ng-container actions>

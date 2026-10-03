@@ -65,7 +65,7 @@
     >
       @for (categoryGroup of categories.controls; track categoryGroup; let i =
       $index) {
-      <lx-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
+      <lux-fieldset [formGroup]="categoryGroup" cdkDrag class="custom-fieldset">
         <ng-template #header>
           <div class="d-flex align-items-center gap-3 px-2 w-full">
             <!-- Drag Handle Categoría -->
@@ -123,7 +123,9 @@
               <app-icon [icon]="'material-symbols-light:more-vert'" />
             </div>
 
-            <span class="text-body-secondary fw-medium w-2rem">{{ j + 1 }}.</span>
+            <span class="text-body-secondary fw-medium w-2rem"
+              >{{ j + 1 }}.</span
+            >
 
             <div class="flex-grow-1">
               <custom-input-text-signal
@@ -145,7 +147,7 @@
           </div>
           }
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
       } @if (categories.controls.length === 0) {
       <div
         class="text-center p-5 border-2 border-dashed border rounded bg-white"

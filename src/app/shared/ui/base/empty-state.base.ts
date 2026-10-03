@@ -2,19 +2,14 @@ import { Directive, input, output } from "@angular/core";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export type EmptyStateSeverity =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "info"
-  | "warn"
-  | "danger";
+  "primary" | "secondary" | "success" | "info" | "warn" | "danger";
 
 /**
  * Base compartida de EmptyState. Contiene la API pública (inputs/outputs) que
  * comparten las tres piezas del patrón multiplataforma:
  *  - web:     `app-empty-state`  (Bootstrap)      → components/web/empty-state
  *  - mobile:  `ili-empty-state`  (Ionic)        → components/mobile/empty-state
- *  - wrapper: `lx-empty-state`   (auto runtime) → components/shared/empty-state
+ *  - wrapper: `lux-empty-state`   (auto runtime) → components/shared/empty-state
  */
 @Directive()
 export abstract class EmptyStateBase {
@@ -29,4 +24,3 @@ export abstract class EmptyStateBase {
 
   action = output<void>();
 }
-

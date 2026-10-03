@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { DividerBase } from "@ui/base/divider.base";
 import { IliDivider } from "@ui/mobile/divider/divider";
 import { AppDivider } from "@ui/web/divider/divider";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-divider",
+  selector: "lux-divider",
 
   imports: [NgTemplateOutlet, AppDivider, IliDivider],
   template: `
@@ -27,4 +27,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxDivider extends DividerBase {
   protected platform = inject(PlatformService);
 }
-

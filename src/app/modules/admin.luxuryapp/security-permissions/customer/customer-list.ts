@@ -6,6 +6,19 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tableRows,
+} from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -16,10 +29,11 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   createOutline,
@@ -27,25 +41,11 @@ import {
   locationOutline,
   trashOutline,
 } from "ionicons/icons";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CustomerLocationList } from "../customer-locations/customer-location-list";
 import { CustomerAddress } from "./customer-address";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
 import { CustomerDto } from "./interfaces/customer.dto";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
@@ -189,40 +189,42 @@ export class CustomerList implements OnInit {
   }
 
   /** Entidades federativas para mostrar en la tabla (espejo de MexicanStateEnum). */
-  stateOptions = computed<SelectItemDto[]>(() => [
-    "Aguascalientes",
-    "Baja California",
-    "Baja California Sur",
-    "Campeche",
-    "Chiapas",
-    "Chihuahua",
-    "Ciudad de México",
-    "Coahuila",
-    "Colima",
-    "Durango",
-    "Estado de México",
-    "Guanajuato",
-    "Guerrero",
-    "Hidalgo",
-    "Jalisco",
-    "Michoacán",
-    "Morelos",
-    "Nayarit",
-    "Nuevo León",
-    "Oaxaca",
-    "Puebla",
-    "Querétaro",
-    "Quintana Roo",
-    "San Luis Potosí",
-    "Sinaloa",
-    "Sonora",
-    "Tabasco",
-    "Tamaulipas",
-    "Tlaxcala",
-    "Veracruz",
-    "Yucatán",
-    "Zacatecas",
-  ].map((label, index) => ({ value: index, label })));
+  stateOptions = computed<SelectItemDto[]>(() =>
+    [
+      "Aguascalientes",
+      "Baja California",
+      "Baja California Sur",
+      "Campeche",
+      "Chiapas",
+      "Chihuahua",
+      "Ciudad de México",
+      "Coahuila",
+      "Colima",
+      "Durango",
+      "Estado de México",
+      "Guanajuato",
+      "Guerrero",
+      "Hidalgo",
+      "Jalisco",
+      "Michoacán",
+      "Morelos",
+      "Nayarit",
+      "Nuevo León",
+      "Oaxaca",
+      "Puebla",
+      "Querétaro",
+      "Quintana Roo",
+      "San Luis Potosí",
+      "Sinaloa",
+      "Sonora",
+      "Tabasco",
+      "Tamaulipas",
+      "Tlaxcala",
+      "Veracruz",
+      "Yucatán",
+      "Zacatecas",
+    ].map((label, index) => ({ value: index, label })),
+  );
 
   /** Obtiene el label del estado para un valor numérico. */
   getStateLabel(stateValue: number): string {
@@ -230,4 +232,3 @@ export class CustomerList implements OnInit {
     return found?.label ?? "Desconocido";
   }
 }
-

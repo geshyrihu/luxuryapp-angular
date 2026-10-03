@@ -1,3 +1,4 @@
+import { FaqsFondeo } from "@accounting.luxuryapp/fundings/funding/faqs-fondeo";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,16 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { calculatorOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -26,9 +17,18 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { FaqsFondeo } from "@accounting.luxuryapp/fundings/funding/faqs-fondeo";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { calculatorOutline } from "ionicons/icons";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-funding-accounting-list",
@@ -105,5 +105,3 @@ export class FundingAccountingList {
     );
   }
 }
-
-

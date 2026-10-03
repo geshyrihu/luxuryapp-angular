@@ -12,7 +12,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -29,13 +29,12 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { Department } from "@core/enums/department.enum";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { IWorkPosition } from "./interfaces/work-position.model";
 import { WorkPositionDetails } from "./work-position-details";
@@ -44,12 +43,12 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   SegmentedControl,
   SegmentItem,
@@ -206,7 +205,7 @@ export class WorkPositionList {
 
     // Normalizado a kebab-case y sincronizado con el backend refactorizado
     const result = await this.apiS.onGetList<IWorkPosition[]>(
-      Endpoints.WorkPositions.listByCustomer(customerId, stateStr)
+      Endpoints.WorkPositions.listByCustomer(customerId, stateStr),
     );
 
     // Normalizar departamentos null a Department.NA para que se agrupen correctamente
@@ -247,7 +246,7 @@ export class WorkPositionList {
         departamentLabel: this.getDepartamentLabel(item.departament),
       },
       "Detalles del puesto: " + item.applicationRoleName,
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
     );
   }
 

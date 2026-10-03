@@ -5,11 +5,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
@@ -19,7 +14,12 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
@@ -75,7 +75,11 @@ export class OrdenesServicioReporteProveedor {
   }
 
   deleteDoc(id: string): void {
-    if (!window.confirm("Se eliminara el documento. Esta acción no se puede deshacer. Continuar?")) {
+    if (
+      !window.confirm(
+        "Se eliminara el documento. Esta acción no se puede deshacer. Continuar?",
+      )
+    ) {
       return;
     }
 

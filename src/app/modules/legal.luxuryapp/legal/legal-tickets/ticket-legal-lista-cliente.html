@@ -51,7 +51,7 @@
             }
           </td>
           <td class="text-center">
-            <lx-tag
+            <lux-tag
               class="p-2 cursor-pointer"
               lxTooltip="Actualizar estatus"
               (click)="onModalUpdateStatus({ id: item.id })"
@@ -123,7 +123,7 @@
             Solicita: {{ item.creator }}
           </p>
           <div class="d-flex justify-content-between align-items-center mt-2">
-            <lx-tag
+            <lux-tag
               (click)="onModalUpdateStatus({ id: item.id })"
               class="p-2 cursor-pointer"
               [severity]="
@@ -161,7 +161,7 @@
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
               >
-                <lx-badge [value]="item.tracking" color="danger" />
+                <lux-badge [value]="item.tracking" color="danger" />
               </ili-button-item>
             </ng-container>
           </ili-action-menu>

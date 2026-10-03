@@ -38,9 +38,9 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       }
     </div>
     @if (!navOnly()) {
-    <div class="ili-tab-panels" #panels>
-      <ng-content />
-    </div>
+      <div class="ili-tab-panels" #panels>
+        <ng-content />
+      </div>
     }
   `,
   styles: [
@@ -109,7 +109,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTabs extends TabsBase {
-  /** Solo navegacion: el consumidor (p. ej. `lx-tabs`) proyecta los paneles. */
+  /** Solo navegacion: el consumidor (p. ej. `lux-tabs`) proyecta los paneles. */
   navOnly = input<boolean>(false);
 
   private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
@@ -131,4 +131,3 @@ export class MobileTabs extends TabsBase {
     });
   }
 }
-

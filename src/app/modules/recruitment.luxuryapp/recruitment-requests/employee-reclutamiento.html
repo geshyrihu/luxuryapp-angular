@@ -1,12 +1,10 @@
-<lx-card>
-<div class="row g-4">
+<lux-card>
+  <div class="row g-4">
     <div class="col-12">
       <ul class="list-none p-0 m-0">
         <!-- Solicitud de alta -->
         @if(solicitudAltaStatus()){
-        <li
-          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
-        >
+        <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
           <app-icon
             [icon]="'material-symbols-light:person-add'"
             class="me-3 text-red-500 text-lg"
@@ -20,7 +18,10 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudALta()"
         >
-          <app-icon [icon]="'material-symbols-light:person-add'" class="me-3 text-lg" />
+          <app-icon
+            [icon]="'material-symbols-light:person-add'"
+            class="me-3 text-lg"
+          />
           <span class="fw-medium">Solicitar Alta</span>
         </li>
         }
@@ -41,20 +42,19 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudBaja()"
         >
-          <app-icon [icon]="'material-symbols-light:person-remove'" class="me-3 text-lg" />
+          <app-icon
+            [icon]="'material-symbols-light:person-remove'"
+            class="me-3 text-lg"
+          />
           <span class="fw-medium">Solicitar Baja</span>
         </li>
         } @if (solicitudBajaStatus()) {
-        <li
-          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
-        >
+        <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
           <app-icon
             [icon]="'material-symbols-light:person-remove'"
             class="me-3 text-red-500 text-lg"
           />
-          <span class="text-red-500 fw-medium"
-            >Solicitar Baja en proceso</span
-          >
+          <span class="text-red-500 fw-medium">Solicitar Baja en proceso</span>
         </li>
         }
         <!-- Solicitud de modificación de salario -->
@@ -63,15 +63,16 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudModificacionSalarion()"
         >
-          <app-icon [icon]="'material-symbols-light:attach-money'" class="me-3 text-lg" />
+          <app-icon
+            [icon]="'material-symbols-light:attach-money'"
+            class="me-3 text-lg"
+          />
           <span class="fw-medium">Solicitar modificación de salario</span>
         </li>
         }
         <!-- Solicitud de modificación de salario en proceso -->
         @if (solicitudModificacionSalarioStatus()) {
-        <li
-          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
-        >
+        <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
           <app-icon
             [icon]="'material-symbols-light:attach-money'"
             class="me-3 text-red-500 text-lg"
@@ -84,4 +85,4 @@
       </ul>
     </div>
   </div>
-</lx-card>
+</lux-card>

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
 import { AppIcon, type AppIconName } from "../../shared/app-icon/app-icon";
 
 export interface LxSectionNavItem {
@@ -9,24 +14,24 @@ export interface LxSectionNavItem {
 }
 
 @Component({
-  selector: "lx-section-nav",
+  selector: "lux-section-nav",
   imports: [AppIcon],
   template: `
-    <nav class="lx-section-nav" [attr.aria-label]="ariaLabel()">
+    <nav class="lux-section-nav" [attr.aria-label]="ariaLabel()">
       @for (item of items(); track item.value) {
-      <button
-        type="button"
-        class="lx-section-nav__button"
-        [class.lx-section-nav__button--active]="activeValue() === item.value"
-        [disabled]="item.disabled"
-        [attr.aria-current]="activeValue() === item.value ? 'page' : null"
-        (click)="select(item)"
-      >
-        @if (item.icon) {
-        <app-icon class="lx-section-nav__icon" [icon]="item.icon" />
-        }
-        <span class="lx-section-nav__label">{{ item.label }}</span>
-      </button>
+        <button
+          type="button"
+          class="lux-section-nav__button"
+          [class.lux-section-nav__button--active]="activeValue() === item.value"
+          [disabled]="item.disabled"
+          [attr.aria-current]="activeValue() === item.value ? 'page' : null"
+          (click)="select(item)"
+        >
+          @if (item.icon) {
+            <app-icon class="lux-section-nav__icon" [icon]="item.icon" />
+          }
+          <span class="lux-section-nav__label">{{ item.label }}</span>
+        </button>
       }
     </nav>
   `,
@@ -37,14 +42,14 @@ export interface LxSectionNavItem {
         width: min(100%, 1080px);
       }
 
-      .lx-section-nav {
+      .lux-section-nav {
         display: flex;
         flex-wrap: wrap;
         gap: 0.7rem;
         width: 100%;
       }
 
-      .lx-section-nav__button {
+      .lux-section-nav__button {
         align-items: center;
         background: var(--ds-surface);
         border: 2px solid var(--ds-border);
@@ -67,29 +72,34 @@ export interface LxSectionNavItem {
         width: 205px;
       }
 
-      .lx-section-nav__button:hover:not(:disabled) {
+      .lux-section-nav__button:hover:not(:disabled) {
         border-color: var(--ds-primary);
         box-shadow: 0 8px 18px rgb(15 23 42 / 0.1);
         transform: translateY(-1px);
       }
 
-      .lx-section-nav__button--active {
-        background: color-mix(in srgb, var(--ds-primary) 10%, var(--ds-surface));
+      .lux-section-nav__button--active {
+        background: color-mix(
+          in srgb,
+          var(--ds-primary) 10%,
+          var(--ds-surface)
+        );
         border-color: var(--ds-primary);
         box-shadow: inset 0 0 0 1px var(--ds-primary);
       }
 
-      .lx-section-nav__button:focus-visible {
-        outline: 3px solid color-mix(in srgb, var(--ds-primary) 30%, transparent);
+      .lux-section-nav__button:focus-visible {
+        outline: 3px solid
+          color-mix(in srgb, var(--ds-primary) 30%, transparent);
         outline-offset: 2px;
       }
 
-      .lx-section-nav__button:disabled {
+      .lux-section-nav__button:disabled {
         cursor: not-allowed;
         opacity: 0.55;
       }
 
-      .lx-section-nav__icon {
+      .lux-section-nav__icon {
         align-items: center;
         display: inline-flex;
         flex: 0 0 auto;
@@ -99,14 +109,14 @@ export interface LxSectionNavItem {
         margin-right: 0.85rem;
       }
 
-      .lx-section-nav__label {
+      .lux-section-nav__label {
         align-items: center;
         display: inline-flex;
         min-height: 1.35rem;
       }
 
       @media (max-width: 640px) {
-        .lx-section-nav__button {
+        .lux-section-nav__button {
           width: 100%;
         }
       }

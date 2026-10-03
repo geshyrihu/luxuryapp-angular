@@ -2,7 +2,9 @@
 <div class="d-none d-md-block fadein">
   <div class="mb-5">
     <div class="d-flex align-items-center gap-3 mb-2">
-      <div class="bg-primary text-white p-2 rounded d-flex align-items-center justify-content-center shadow-sm">
+      <div
+        class="bg-primary text-white p-2 rounded d-flex align-items-center justify-content-center shadow-sm"
+      >
         <app-icon icon="material-symbols-light:fact-check" class="text-2xl" />
       </div>
       <div>
@@ -14,7 +16,7 @@
     </div>
   </div>
 
-  <lx-card [elevated]="true" class="mb-5">
+  <lux-card [elevated]="true" class="mb-5">
     <ng-template #content>
       <div class="d-flex align-items-start gap-3">
         <div class="bg-info-light text-info p-2 rounded d-flex">
@@ -23,17 +25,24 @@
         <div>
           <h2 class="text-lg fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
           <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-            Un Recorrido es una inspección periódica de un grupo de equipos o áreas. El Administrador lo crea en el Catálogo definiendo frecuencia y equipos; el sistema genera automáticamente las inspecciones pendientes cada día. El responsable asignado las ve en 'Mis Recorridos' y las ejecuta ahí mismo. Si encuentra un hallazgo crítico, se notifica automáticamente al Jefe de Mantenimiento.
+            Un Recorrido es una inspección periódica de un grupo de equipos o
+            áreas. El Administrador lo crea en el Catálogo definiendo frecuencia
+            y equipos; el sistema genera automáticamente las inspecciones
+            pendientes cada día. El responsable asignado las ve en 'Mis
+            Recorridos' y las ejecuta ahí mismo. Si encuentra un hallazgo
+            crítico, se notifica automáticamente al Jefe de Mantenimiento.
           </p>
         </div>
       </div>
     </ng-template>
-  </lx-card>
+  </lux-card>
 
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
     <app-icon [icon]="group.icon" class="text-secondary" />
-    <h2 class="text-lg fw-bold text-body m-0 text-uppercase tracking-wider text-sm text-secondary">
+    <h2
+      class="text-lg fw-bold text-body m-0 text-uppercase tracking-wider text-sm text-secondary"
+    >
       {{ group.label }}
     </h2>
     <div class="flex-grow-1 border-bottom ms-3"></div>
@@ -42,7 +51,7 @@
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <lx-card
+      <lux-card
         class="card--interactive h-100"
         (click)="navigateTo(module.route)"
       >
@@ -53,9 +62,16 @@
                 class="d-flex align-items-center justify-content-center rounded p-2 flex-shrink-0"
                 [style.backgroundColor]="module.bgColor"
               >
-                <app-icon [icon]="module.icon" [style.color]="module.color" class="text-xl" />
+                <app-icon
+                  [icon]="module.icon"
+                  [style.color]="module.color"
+                  class="text-xl"
+                />
               </div>
-              <app-icon icon="material-symbols-light:north-east" class="text-secondary" />
+              <app-icon
+                icon="material-symbols-light:north-east"
+                class="text-secondary"
+              />
             </div>
             <div class="flex-grow-1">
               <h3 class="m-0 fw-bold text-body line-height-2 text-base">
@@ -67,7 +83,7 @@
             </div>
           </div>
         </ng-template>
-      </lx-card>
+      </lux-card>
     </div>
     }
   </div>
@@ -77,7 +93,9 @@
 <!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
 <div class="d-block d-md-none fadein">
   <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
-    <div class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0">
+    <div
+      class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+    >
       <app-icon icon="material-symbols-light:fact-check" />
     </div>
     <div>
@@ -92,7 +110,9 @@
       <div>
         <h2 class="text-base fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
         <p class="text-xs text-body-secondary m-0 mt-1 line-height-3">
-          Es una inspección periódica de equipos o áreas. El Administrador lo crea en el Catálogo y el responsable asignado lo ejecuta desde Mis Recorridos. Los hallazgos críticos notifican al Jefe de Mantenimiento.
+          Es una inspección periódica de equipos o áreas. El Administrador lo
+          crea en el Catálogo y el responsable asignado lo ejecuta desde Mis
+          Recorridos. Los hallazgos críticos notifican al Jefe de Mantenimiento.
         </p>
       </div>
     </div>
@@ -117,7 +137,9 @@
         <app-icon [icon]="module.icon" [style.color]="module.color" />
       </div>
       <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
-      <p class="text-xs m-0 mt-1 text-body-secondary">{{ module.description }}</p>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
+        {{ module.description }}
+      </p>
     </ili-list-item>
     }
   </div>

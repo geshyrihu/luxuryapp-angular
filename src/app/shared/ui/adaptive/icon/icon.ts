@@ -1,17 +1,16 @@
-import { Component, inject } from "@angular/core";
-import { input } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
+import { Component, inject, input } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
+import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 /**
  * Wrapper multiplataforma de Icon. Renderiza `app-icon` (iconify) o
  * `ili-icon` (ionicons) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-icon [icon]="AppIcon.Person" />`.
+ * Punto de entrada recomendado: `<lux-icon [icon]="AppIcon.Person" />`.
  */
 @Component({
-  selector: "lx-icon",
+  selector: "lux-icon",
   imports: [AppIcon, AppIconMobile],
   template: `
     @if (platform.isMobile()) {
@@ -26,4 +25,3 @@ export class LxIcon {
   styleClass = input<string>();
   protected platform = inject(PlatformService);
 }
-

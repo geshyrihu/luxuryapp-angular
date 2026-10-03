@@ -72,7 +72,10 @@
       <!-- SECCIÓN 4: BOTÓN DE ENVÍO -->
       <div class="d-flex justify-content-end">
         @if (!id()) {
-        <lx-message severity="info" class="me-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
+        <lux-message severity="info" class="me-2"
+          >Guarda primero para poder agregar Productos y
+          Presupuesto.</lux-message
+        >
         } @if (id()) {
         <il-button
           iconClass="material-symbols-light:attach-money"

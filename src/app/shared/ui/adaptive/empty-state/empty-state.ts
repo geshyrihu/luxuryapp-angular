@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
-import { PlatformService } from "@core/services/platform.service";
 
 /**
  * Wrapper multiplataforma. Renderiza la versión web (`app-empty-state`) o la
  * versión Ionic (`ili-empty-state`) según `PlatformService.isMobile()`.
- * Es el punto de entrada recomendado: `<lx-empty-state ... />`.
+ * Es el punto de entrada recomendado: `<lux-empty-state ... />`.
  */
 @Component({
-  selector: "lx-empty-state",
+  selector: "lux-empty-state",
 
   imports: [EmptyState, MobileEmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -45,4 +45,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxEmptyState extends EmptyStateBase {
   protected platform = inject(PlatformService);
 }
-

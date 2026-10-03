@@ -6,17 +6,17 @@ import {
   OnInit,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import {
@@ -45,13 +45,13 @@ import { ApprovalInfoService } from "./approval-info.service";
   template: `
     @if (loading) {
       <div class="d-flex justify-center items-center p-5">
-        <lx-spinner [strokeWidth]="6" [ariaLabel]="'loading'"></lx-spinner>
+        <lux-spinner [strokeWidth]="6" [ariaLabel]="'loading'"></lux-spinner>
       </div>
     } @else {
       <div class="p-fluid p-3">
         <div class="mb-4 text-center">
           <h4 class="mb-1">{{ request.employeeFullName }}</h4>
-          <lx-tag [value]="request.requestType" [rounded]="true"></lx-tag>
+          <lux-tag [value]="request.requestType" [rounded]="true"></lux-tag>
         </div>
 
         @if (request.requestType === "Permiso") {
@@ -88,7 +88,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               El empleado ha solicitado
-              <lx-tag
+              <lux-tag
                 [value]="leaveHistory?.recentRequests ?? 0"
                 severity="info"
               />
@@ -108,7 +108,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               Días disponibles:
-              <lx-tag
+              <lux-tag
                 [value]="vacationBalance?.availableDays ?? 0"
                 severity="success"
               />
@@ -116,7 +116,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           </div>
         }
 
-        <lx-divider />
+        <lux-divider />
 
         <div class="mt-4">
           <div class="d-flex items-center mb-3">
@@ -142,7 +142,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                         />
                         {{ req.fullName }}
                       </span>
-                      <lx-tag
+                      <lux-tag
                         [value]="
                           (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
@@ -155,7 +155,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <lx-message
+              <lux-message
                 severity="info"
                 text="No hay otras solicitudes de permiso que se solapen en estas fechas."
               />
@@ -175,7 +175,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                         />
                         {{ req.fullName }}
                       </span>
-                      <lx-tag
+                      <lux-tag
                         [value]="
                           (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
@@ -188,7 +188,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <lx-message
+              <lux-message
                 severity="info"
                 text="No hay otras solicitudes de vacaciones que se solapen en estas fechas."
               />
@@ -282,4 +282,3 @@ export class ApprovalConfirmationModal implements OnInit {
     this.ref.close(result);
   }
 }
-

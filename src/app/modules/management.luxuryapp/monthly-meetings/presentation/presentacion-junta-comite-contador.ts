@@ -7,17 +7,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -31,6 +20,17 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import {
+  WebButtonLabelConfirm,
+  WebButtonLabelViewPdf,
+} from "@ui/buttons/web-label";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";

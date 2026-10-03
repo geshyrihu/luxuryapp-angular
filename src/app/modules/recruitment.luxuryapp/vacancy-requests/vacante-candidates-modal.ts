@@ -5,9 +5,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -15,12 +12,15 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { CandidateApplicationForm } from "../candidates/candidate-applications/candidate-application-form";
 import { SwalService } from "@core/services/swal.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CandidateApplicationForm } from "../candidates/candidate-applications/candidate-application-form";
 import {
   CandidateProcessVacancyDetail,
   CandidateProcessVacancyItem,
 } from "../candidates/candidate-recruitment-interviews/candidate-recruitment-interviews.interface";
+import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 
 @Component({
   selector: "app-vacante-candidates-modal",

@@ -15,25 +15,24 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppTable } from "@ui/web/table/table";
 
+import { FundingPurchaseDetail } from "@accounting.luxuryapp/fundings/funding/funding-purchase-detail";
+import { FundingDetailDTO } from "@accounting.luxuryapp/fundings/funding/model/funding-detail-dto";
+import { FundingExcelExportService } from "@accounting.luxuryapp/general-ledger/funding-excel-export.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SignalRService } from "@core/services/signalr.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { SignalRService } from "@core/services/signalr.service";
-import { FundingPurchaseDetail } from "@accounting.luxuryapp/fundings/funding/funding-purchase-detail";
-import { FundingDetailDTO } from "@accounting.luxuryapp/fundings/funding/model/funding-detail-dto";
-import { FundingExcelExportService } from "@accounting.luxuryapp/general-ledger/funding-excel-export.service";
 @Component({
   selector: "app-funding-accounting-detail",
   imports: [
     CommonModule,
     ReactiveFormsModule,
     AppTable,
-
 
     CustomInputCheckSignal,
     UpperCasePipe,
@@ -241,5 +240,3 @@ export class FundingAccountingDetail {
     });
   }
 }
-
-

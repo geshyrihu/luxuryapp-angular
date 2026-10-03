@@ -1,13 +1,12 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button-add",
-
-   imports: [AppIcon, LxTooltipDirective],
+  imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button

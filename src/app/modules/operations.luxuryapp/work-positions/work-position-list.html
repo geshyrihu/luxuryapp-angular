@@ -29,11 +29,7 @@
         class="d-flex flex-column flex-md-row align-items-center justify-content-end gap-3 w-full xl:w-auto g-4"
       >
         <div class="staff-caption-search w-full md:w-auto">
-          <app-table-caption
-            [dt]="dt"
-            [showAdd]="false"
-            [noMargin]="true"
-          />
+          <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
         </div>
 
         <div
@@ -79,7 +75,10 @@
 
   <ng-template #groupheader let-item>
     <tr>
-      <td [attr.colspan]="showSalaryColumn() ? 5 : 4" class="staff-group-header-cell">
+      <td
+        [attr.colspan]="showSalaryColumn() ? 5 : 4"
+        class="staff-group-header-cell"
+      >
         <span class="group-header-label">
           <app-icon [icon]="'material-symbols-light:work'" />
           {{ getDepartamentLabel(item.departament) }}
@@ -94,7 +93,7 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="d-flex align-items-center gap-2">
-          <lx-tag
+          <lux-tag
             severity="warn"
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
@@ -123,9 +122,7 @@
           </div>
           <div class="d-flex justify-content-between">
             <small class="text-body-secondary fw-bold">ACT:</small>
-            <span class="text-xs fw-bold text-primary"
-              >{{ item.sueldo }}</span
-            >
+            <span class="text-xs fw-bold text-primary">{{ item.sueldo }}</span>
           </div>
         </div>
       </td>
@@ -225,7 +222,7 @@
           >{{ item.turno }} · {{ getDepartamentLabel(item.departament) }}</small
         >
         @if (necesitaActualizacion(item)) {
-        <lx-tag
+        <lux-tag
           severity="warn"
           value="Actualizar puesto"
           icon="material-symbols-light:warning"

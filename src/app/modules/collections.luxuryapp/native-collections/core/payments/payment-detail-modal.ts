@@ -1,20 +1,20 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   CobranzaPaymentAllocationDetailDTO,
   CobranzaPaymentResponseDTO,
@@ -148,4 +148,3 @@ export class PaymentDetailModal implements OnInit {
     );
   }
 }
-

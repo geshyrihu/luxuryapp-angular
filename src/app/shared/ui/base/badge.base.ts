@@ -1,4 +1,4 @@
-import { Directive, input, computed } from "@angular/core";
+import { computed, Directive, input } from "@angular/core";
 
 export type BadgeColor =
   | "primary"
@@ -15,7 +15,7 @@ export type BadgeSizeToken = "small" | "normal" | "large";
  * Base compartida de Badge (contador/etiqueta breve).
  *  - web:     `app-badge`  (Bootstrap p-badge)
  *  - mobile:  `ili-badge`  (Ionic ion-badge)
- *  - wrapper: `lx-badge`   (auto runtime)
+ *  - wrapper: `lux-badge`   (auto runtime)
  */
 @Directive()
 export abstract class BadgeBase {

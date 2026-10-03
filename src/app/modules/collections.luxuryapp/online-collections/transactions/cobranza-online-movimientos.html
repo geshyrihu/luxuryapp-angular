@@ -68,12 +68,12 @@
             @if (getCell(row, concept.id); as cell) {
             <div class="d-flex flex-column gap-1 align-items-center">
               @if (cell.cargo > 0) {
-              <lx-tag
+              <lux-tag
                 [value]="'+' + (cell.cargo | accountingNumber)"
                 severity="danger"
               />
               } @if (cell.abono > 0) {
-              <lx-tag
+              <lux-tag
                 [value]="'-' + (cell.abono | accountingNumber)"
                 severity="success"
               />

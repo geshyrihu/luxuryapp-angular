@@ -6,20 +6,13 @@
     {
       "id": "CORE-01",
       "name": "Data View (Tabla/Lista)",
-      "selectorAdaptive": "lx-data-view",
+      "selectorAdaptive": "lux-data-view",
       "selectorWeb": "app-data-view",
       "selectorMobile": "app-data-view-mobile",
       "criticality": "critical",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componente de tabla/lista adaptativo con soporte para paginación lazy, búsqueda y acciones de fila.",
-      "useCases": [
-        "CRUD",
-        "Matrices de datos",
-        "Listados paginados"
-      ],
+      "useCases": ["CRUD", "Matrices de datos", "Listados paginados"],
       "icon": "table",
       "location": {
         "adaptive": "client/angular/src/app/shared/ui/adaptive/data-view/data-view.ts",
@@ -28,17 +21,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "table",
-          "row",
-          "columnheader",
-          "rowheader"
-        ],
-        "keyboardNav": [
-          "Tab",
-          "Arrow Keys (within cell)",
-          "Enter (to select)"
-        ],
+        "ariaRoles": ["table", "row", "columnheader", "rowheader"],
+        "keyboardNav": ["Tab", "Arrow Keys (within cell)", "Enter (to select)"],
         "requirements": [
           "role=\"table\" en contenedor",
           "scope=\"col\" en headers",
@@ -46,9 +30,7 @@
           "aria-busy durante carga"
         ]
       },
-      "variants": [
-        "primary"
-      ],
+      "variants": ["primary"],
       "antiPatterns": [
         "Usar <p-table> en mobile",
         "HttpClient directo en componente",
@@ -65,20 +47,13 @@
     {
       "id": "CORE-02",
       "name": "Accordion",
-      "selectorAdaptive": "lx-accordion",
+      "selectorAdaptive": "lux-accordion",
       "selectorWeb": "app-accordion",
       "selectorMobile": "ili-accordion",
       "criticality": "high",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componente de secciones colapsibles adaptativo. Soporta una o múltiples secciones abiertas.",
-      "useCases": [
-        "FAQs",
-        "Secciones colapsibles",
-        "Contenido expandible"
-      ],
+      "useCases": ["FAQs", "Secciones colapsibles", "Contenido expandible"],
       "icon": "unfold_more",
       "location": {
         "adaptive": "client/angular/src/app/shared/ui/adaptive/accordion/accordion.ts",
@@ -87,10 +62,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "region",
-          "button"
-        ],
+        "ariaRoles": ["region", "button"],
         "keyboardNav": [
           "Enter/Space para expandir/contraer",
           "Arrow Up/Down para navegación"
@@ -101,13 +73,8 @@
           "role=\"button\" en headers"
         ]
       },
-      "variants": [
-        "primary",
-        "secondary"
-      ],
-      "antiPatterns": [
-        "Duplicar <ng-content> en @if/@else branches"
-      ],
+      "variants": ["primary", "secondary"],
+      "antiPatterns": ["Duplicar <ng-content> en @if/@else branches"],
       "auditChecks": 5,
       "references": [
         "CONVENTIONS.md §3",
@@ -121,10 +88,7 @@
       "selectorWeb": "il-button-* (label+icon), iw-button-* (icon-only)",
       "selectorMobile": "ili-button-* (label+icon), ii-button-* (icon-only)",
       "criticality": "critical",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componentes de botones con variantes web e Ionic. Web: botones con label+icono (il-) o solo icono (iw-). Mobile: Ionic buttons (ili-*, ii-*).",
       "useCases": [
         "Acciones primarias y secundarias",
@@ -139,13 +103,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "button"
-        ],
-        "keyboardNav": [
-          "Tab",
-          "Enter/Space para activar"
-        ],
+        "ariaRoles": ["button"],
+        "keyboardNav": ["Tab", "Enter/Space para activar"],
         "requirements": [
           "aria-label en botones solo-icono",
           "Contraste mínimo 3:1 (gráficos)",
@@ -168,10 +127,7 @@
         "Sin aria-label en solo-icono"
       ],
       "auditChecks": 6,
-      "references": [
-        "CONVENTIONS.md §8",
-        "BUTTON-USAGE-RULES.md"
-      ]
+      "references": ["CONVENTIONS.md §8", "BUTTON-USAGE-RULES.md"]
     },
     {
       "id": "CORE-04",
@@ -180,10 +136,7 @@
       "selectorWeb": "custom-input-*-signal (Bootstrap-based)",
       "selectorMobile": "custom-input-*-signal (Ionic-based)",
       "criticality": "critical",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Sistema uniforme de 27 variantes de inputs: text, email, password, number, currency, phone, date, textarea, select, etc. Basado en Signals.",
       "useCases": [
         "Formularios CRUD",
@@ -199,11 +152,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "textbox",
-          "combobox",
-          "listbox"
-        ],
+        "ariaRoles": ["textbox", "combobox", "listbox"],
         "keyboardNav": [
           "Tab",
           "Arrow Keys para opciones",
@@ -251,22 +200,16 @@
         "Sin validación"
       ],
       "auditChecks": 6,
-      "references": [
-        "CONVENTIONS.md §2.6",
-        "CONVENTIONS.md §2.1"
-      ]
+      "references": ["CONVENTIONS.md §2.6", "CONVENTIONS.md §2.1"]
     },
     {
       "id": "CORE-05",
       "name": "Dialog/Modal",
-      "selectorAdaptive": "lx-dialog (via DialogHandlerService)",
+      "selectorAdaptive": "lux-dialog (via DialogHandlerService)",
       "selectorWeb": "app-dialog (p-dialog)",
       "selectorMobile": "ion-modal (Ionic)",
       "criticality": "critical",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componentes modales/dialogs adaptativos. Controlados vía DialogHandlerService centralizado.",
       "useCases": [
         "Modales de confirmación",
@@ -282,9 +225,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "dialog"
-        ],
+        "ariaRoles": ["dialog"],
         "keyboardNav": [
           "Escape para cerrar",
           "Tab (focus trap)",
@@ -298,32 +239,19 @@
           "Overlay fondo aria-hidden=\"true\""
         ]
       },
-      "variants": [
-        "confirm",
-        "alert",
-        "custom"
-      ],
-      "antiPatterns": [
-        "Usar DynamicDialog en mobile",
-        "Sin feedback de carga"
-      ],
+      "variants": ["confirm", "alert", "custom"],
+      "antiPatterns": ["Usar DynamicDialog en mobile", "Sin feedback de carga"],
       "auditChecks": 5,
-      "references": [
-        "CONVENTIONS.md §2.16",
-        "DialogHandlerService spec"
-      ]
+      "references": ["CONVENTIONS.md §2.16", "DialogHandlerService spec"]
     },
     {
       "id": "CORE-06",
       "name": "Select/Dropdown",
-      "selectorAdaptive": "lx-select / lx-cascade-select",
+      "selectorAdaptive": "lux-select / lux-cascade-select",
       "selectorWeb": "app-select (p-dropdown)",
       "selectorMobile": "ili-select (ion-select)",
       "criticality": "high",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Selectores adaptativos simples y en cascada. Soporta búsqueda, filtrado y opciones agrupadas.",
       "useCases": [
         "Selección de categorías",
@@ -339,10 +267,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "listbox",
-          "combobox"
-        ],
+        "ariaRoles": ["listbox", "combobox"],
         "keyboardNav": [
           "Arrow Keys",
           "Enter/Space para seleccionar",
@@ -354,32 +279,22 @@
           "role=\"listbox\" o \"combobox\""
         ]
       },
-      "variants": [
-        "primary",
-        "with-search",
-        "cascading",
-        "multi-select"
-      ],
+      "variants": ["primary", "with-search", "cascading", "multi-select"],
       "antiPatterns": [
         "Usar p-dropdown directo",
         "Sin opciones de búsqueda cuando >10 items"
       ],
       "auditChecks": 4,
-      "references": [
-        "CONVENTIONS.md §2.6"
-      ]
+      "references": ["CONVENTIONS.md §2.6"]
     },
     {
       "id": "CORE-07",
       "name": "Checkbox",
-      "selectorAdaptive": "lx-checkbox",
+      "selectorAdaptive": "lux-checkbox",
       "selectorWeb": "app-checkbox (p-checkbox)",
       "selectorMobile": "ili-checkbox (ion-checkbox)",
       "criticality": "high",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Checkboxes adaptativos para selección múltiple. Soporte para grupos y estados mixtos.",
       "useCases": [
         "Selección múltiple en filtros",
@@ -395,13 +310,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "checkbox"
-        ],
-        "keyboardNav": [
-          "Space para alternar",
-          "Tab para navegar"
-        ],
+        "ariaRoles": ["checkbox"],
+        "keyboardNav": ["Space para alternar", "Tab para navegar"],
         "requirements": [
           "aria-checked (true/false/mixed)",
           "role=\"checkbox\"",
@@ -409,30 +319,19 @@
           "Focus visible"
         ]
       },
-      "variants": [
-        "primary",
-        "secondary",
-        "disabled"
-      ],
-      "antiPatterns": [
-        "Sin <label> asociado"
-      ],
+      "variants": ["primary", "secondary", "disabled"],
+      "antiPatterns": ["Sin <label> asociado"],
       "auditChecks": 3,
-      "references": [
-        "CONVENTIONS.md §2.9"
-      ]
+      "references": ["CONVENTIONS.md §2.9"]
     },
     {
       "id": "CORE-08",
       "name": "Radio Button",
-      "selectorAdaptive": "lx-radio-button",
+      "selectorAdaptive": "lux-radio-button",
       "selectorWeb": "app-radio-button (p-radiobutton)",
       "selectorMobile": "ili-radio-button (ion-radio)",
       "criticality": "high",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Radio buttons adaptativos para selección única. Agrupamiento automático.",
       "useCases": [
         "Selección única de estado",
@@ -447,43 +346,27 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "radio",
-          "radiogroup"
-        ],
-        "keyboardNav": [
-          "Arrow Keys para navegación",
-          "Space para seleccionar"
-        ],
+        "ariaRoles": ["radio", "radiogroup"],
+        "keyboardNav": ["Arrow Keys para navegación", "Space para seleccionar"],
         "requirements": [
           "aria-checked",
           "role=\"radiogroup\" en contenedor",
           "aria-labelledby vinculado"
         ]
       },
-      "variants": [
-        "primary",
-        "secondary"
-      ],
-      "antiPatterns": [
-        "Sin role=\"radiogroup\" en contenedor"
-      ],
+      "variants": ["primary", "secondary"],
+      "antiPatterns": ["Sin role=\"radiogroup\" en contenedor"],
       "auditChecks": 3,
-      "references": [
-        "CONVENTIONS.md §2.9"
-      ]
+      "references": ["CONVENTIONS.md §2.9"]
     },
     {
       "id": "CORE-09",
       "name": "Card",
-      "selectorAdaptive": "lx-card",
+      "selectorAdaptive": "lux-card",
       "selectorWeb": "app-card (Bootstrap-styled)",
       "selectorMobile": "ili-card (Ionic-styled)",
       "criticality": "medium",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Contenedor visual adaptativo para agrupar contenido. Soporta header y footer slots.",
       "useCases": [
         "Tarjetas de producto",
@@ -499,9 +382,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "region"
-        ],
+        "ariaRoles": ["region"],
         "keyboardNav": [
           "Tab para navegación",
           "Focus en elementos interactivos dentro"
@@ -511,28 +392,19 @@
           "Contenido legible en orden visual"
         ]
       },
-      "variants": [
-        "primary",
-        "outlined",
-        "elevated"
-      ],
+      "variants": ["primary", "outlined", "elevated"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-10",
       "name": "Tabs",
-      "selectorAdaptive": "lx-tabs",
+      "selectorAdaptive": "lux-tabs",
       "selectorWeb": "app-tabs (p-tabview)",
       "selectorMobile": "ili-tabs (ion-segment)",
       "criticality": "medium",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Navegación por pestañas adaptativa. Soporta pestañas anidadas y contenido lazy.",
       "useCases": [
         "Navegación por secciones",
@@ -547,11 +419,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "tablist",
-          "tab",
-          "tabpanel"
-        ],
+        "ariaRoles": ["tablist", "tab", "tabpanel"],
         "keyboardNav": [
           "Arrow Keys entre pestañas",
           "Enter/Space para activar",
@@ -564,28 +432,19 @@
           "aria-controls vinculación"
         ]
       },
-      "variants": [
-        "primary",
-        "vertical",
-        "scrollable"
-      ],
+      "variants": ["primary", "vertical", "scrollable"],
       "antiPatterns": [],
       "auditChecks": 4,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-11",
       "name": "Toast/Notificación",
-      "selectorAdaptive": "lx-toast (via ToastService)",
+      "selectorAdaptive": "lux-toast (via ToastService)",
       "selectorWeb": "p-toast",
       "selectorMobile": "ion-toast",
       "criticality": "critical",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Sistema de notificaciones emergentes. Controlado centralmente por ToastService. Soporta múltiples tipos (success, error, warning, info).",
       "useCases": [
         "Confirmación de acciones",
@@ -600,10 +459,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "alert",
-          "status"
-        ],
+        "ariaRoles": ["alert", "status"],
         "keyboardNav": [
           "Tab para cerrar (si clickeable)",
           "Auto-dismiss después de 5s"
@@ -614,32 +470,22 @@
           "Mensajes descriptivos y no solo iconos"
         ]
       },
-      "variants": [
-        "success",
-        "error",
-        "warning",
-        "info"
-      ],
+      "variants": ["success", "error", "warning", "info"],
       "antiPatterns": [
         "Notificaciones sin timeout",
         "Mensajes genéricos sin acción"
       ],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-12",
       "name": "Spinner",
-      "selectorAdaptive": "lx-spinner",
+      "selectorAdaptive": "lux-spinner",
       "selectorWeb": "p-progressSpinner",
       "selectorMobile": "ion-spinner",
       "criticality": "high",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Indicador de carga visual. Spinner adaptativo con mensajes opcionales.",
       "useCases": [
         "Indicar carga de página",
@@ -654,40 +500,27 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "status"
-        ],
-        "keyboardNav": [
-          "No interactivo"
-        ],
+        "ariaRoles": ["status"],
+        "keyboardNav": ["No interactivo"],
         "requirements": [
           "aria-label o aria-busy=\"true\" en contenedor padre",
           "role=\"status\"",
           "Mensaje descriptivo si es larga espera"
         ]
       },
-      "variants": [
-        "primary",
-        "secondary",
-        "small",
-        "large"
-      ],
+      "variants": ["primary", "secondary", "small", "large"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-13",
       "name": "Breadcrumbs",
-      "selectorAdaptive": "lx-breadcrumbs",
+      "selectorAdaptive": "lux-breadcrumbs",
       "selectorWeb": "app-breadcrumbs (p-breadcrumb)",
       "selectorMobile": "N/A (no se usa en mobile)",
       "criticality": "medium",
-      "platforms": [
-        "web"
-      ],
+      "platforms": ["web"],
       "description": "Navegación por migas adaptativa. Solo en desktop. Indica ruta de navegación actual.",
       "useCases": [
         "Navegación secundaria",
@@ -701,13 +534,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "navigation"
-        ],
-        "keyboardNav": [
-          "Tab entre links",
-          "Enter para navegar"
-        ],
+        "ariaRoles": ["navigation"],
+        "keyboardNav": ["Tab entre links", "Enter para navegar"],
         "requirements": [
           "role=\"navigation\"",
           "aria-label=\"Navegación por migas\"",
@@ -715,26 +543,19 @@
           "Separadores visuales (no semánticos)"
         ]
       },
-      "variants": [
-        "primary"
-      ],
+      "variants": ["primary"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-14",
       "name": "Avatar",
-      "selectorAdaptive": "lx-avatar",
+      "selectorAdaptive": "lux-avatar",
       "selectorWeb": "app-avatar (p-avatar)",
       "selectorMobile": "ili-avatar (ion-avatar)",
       "criticality": "medium",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componente de avatar para mostrar imagen de perfil o iniciales de usuario.",
       "useCases": [
         "Identidad de usuario",
@@ -750,40 +571,27 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "img"
-        ],
-        "keyboardNav": [
-          "No interactivo por defecto"
-        ],
+        "ariaRoles": ["img"],
+        "keyboardNav": ["No interactivo por defecto"],
         "requirements": [
           "alt text si es imagen",
           "role=\"img\"",
           "aria-label con nombre si es botón"
         ]
       },
-      "variants": [
-        "circular",
-        "square",
-        "with-badge"
-      ],
+      "variants": ["circular", "square", "with-badge"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-15",
       "name": "Empty State",
-      "selectorAdaptive": "lx-empty-state",
+      "selectorAdaptive": "lux-empty-state",
       "selectorWeb": "app-empty-state",
       "selectorMobile": "ili-empty-state",
       "criticality": "medium",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Componente para mostrar estado vacío con icono, mensaje y acciones opcionales.",
       "useCases": [
         "Tabla sin datos",
@@ -799,28 +607,18 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "region",
-          "status"
-        ],
-        "keyboardNav": [
-          "Tab en botones de acción"
-        ],
+        "ariaRoles": ["region", "status"],
+        "keyboardNav": ["Tab en botones de acción"],
         "requirements": [
           "aria-label describiendo el estado vacío",
           "Mensaje descriptivo",
           "Botones accesibles"
         ]
       },
-      "variants": [
-        "default",
-        "with-action"
-      ],
+      "variants": ["default", "with-action"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-16",
@@ -829,9 +627,7 @@
       "selectorWeb": "app-action-menu (Bootstrap)",
       "selectorMobile": "N/A",
       "criticality": "high",
-      "platforms": [
-        "web"
-      ],
+      "platforms": ["web"],
       "description": "Menú de opciones (más vertical) para filas de tabla en desktop. Usa un menú basado en Bootstrap internamente.",
       "useCases": [
         "Acciones por fila en p-table",
@@ -844,10 +640,7 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "menu",
-          "menuitem"
-        ],
+        "ariaRoles": ["menu", "menuitem"],
         "keyboardNav": [
           "Arrow Keys",
           "Enter/Space para acción",
@@ -860,17 +653,13 @@
           "aria-expanded en trigger"
         ]
       },
-      "variants": [
-        "primary"
-      ],
+      "variants": ["primary"],
       "antiPatterns": [
         "Usar en mobile (usar ili-action-menu)",
         "Sin botones con aria-label dentro"
       ],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §8"
-      ]
+      "references": ["CONVENTIONS.md §8"]
     },
     {
       "id": "CORE-17",
@@ -879,9 +668,7 @@
       "selectorWeb": "N/A",
       "selectorMobile": "ili-action-menu (Ionic)",
       "criticality": "high",
-      "platforms": [
-        "mobile"
-      ],
+      "platforms": ["mobile"],
       "description": "Menú de opciones para filas en mobile. Adaptado a gestos Ionic (swipe, botones flotantes).",
       "useCases": [
         "Acciones en ion-list",
@@ -894,31 +681,21 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "menu",
-          "menuitem"
-        ],
-        "keyboardNav": [
-          "Tab entre opciones",
-          "Enter para ejecutar"
-        ],
+        "ariaRoles": ["menu", "menuitem"],
+        "keyboardNav": ["Tab entre opciones", "Enter para ejecutar"],
         "requirements": [
           "aria-expanded",
           "aria-label en botones",
           "Focus visible"
         ]
       },
-      "variants": [
-        "primary"
-      ],
+      "variants": ["primary"],
       "antiPatterns": [
         "Usar en web (usar app-action-menu)",
         "Menús muy grandes (>5 opciones)"
       ],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §8"
-      ]
+      "references": ["CONVENTIONS.md §8"]
     },
     {
       "id": "CORE-18",
@@ -927,9 +704,7 @@
       "selectorWeb": "N/A",
       "selectorMobile": "ili-bottom-sheet (Ionic ion-modal)",
       "criticality": "medium",
-      "platforms": [
-        "mobile"
-      ],
+      "platforms": ["mobile"],
       "description": "Drawer inferior (bottom sheet) móvil. Patrón nativo iOS/Android para mostrar opciones o contenido.",
       "useCases": [
         "Filtros móviles",
@@ -943,13 +718,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "dialog"
-        ],
-        "keyboardNav": [
-          "Swipe down para cerrar",
-          "Tab entre elementos"
-        ],
+        "ariaRoles": ["dialog"],
+        "keyboardNav": ["Swipe down para cerrar", "Tab entre elementos"],
         "requirements": [
           "role=\"dialog\"",
           "aria-modal=\"true\"",
@@ -957,34 +727,24 @@
           "Botón de cierre accesible"
         ]
       },
-      "variants": [
-        "default"
-      ],
+      "variants": ["default"],
       "antiPatterns": [
         "Usar en web",
         "Bottom sheets muy altos (evitar scroll)"
       ],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §15.6"
-      ]
+      "references": ["CONVENTIONS.md §15.6"]
     },
     {
       "id": "CORE-19",
       "name": "Sidebar",
-      "selectorAdaptive": "lx-sidebar",
+      "selectorAdaptive": "lux-sidebar",
       "selectorWeb": "app-sidebar (Bootstrap)",
       "selectorMobile": "N/A",
       "criticality": "medium",
-      "platforms": [
-        "web"
-      ],
+      "platforms": ["web"],
       "description": "Barra lateral de navegación principal. Solo en desktop. Colapsible y con ícono/label.",
-      "useCases": [
-        "Navegación principal",
-        "Menú lateral",
-        "Acceso a módulos"
-      ],
+      "useCases": ["Navegación principal", "Menú lateral", "Acceso a módulos"],
       "icon": "menu",
       "location": {
         "adaptive": "client/angular/src/app/shared/ui/adaptive/sidebar/sidebar.ts",
@@ -992,13 +752,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "navigation"
-        ],
-        "keyboardNav": [
-          "Tab entre links",
-          "Enter para navegar"
-        ],
+        "ariaRoles": ["navigation"],
+        "keyboardNav": ["Tab entre links", "Enter para navegar"],
         "requirements": [
           "role=\"navigation\"",
           "aria-label=\"Navegación principal\"",
@@ -1006,26 +761,19 @@
           "Indicadores visuales + ARIA"
         ]
       },
-      "variants": [
-        "primary"
-      ],
+      "variants": ["primary"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     },
     {
       "id": "CORE-20",
       "name": "Theme Switcher",
-      "selectorAdaptive": "lx-theme-switcher",
+      "selectorAdaptive": "lux-theme-switcher",
       "selectorWeb": "app-theme-switcher",
       "selectorMobile": "ili-theme-switcher",
       "criticality": "medium",
-      "platforms": [
-        "web",
-        "mobile"
-      ],
+      "platforms": ["web", "mobile"],
       "description": "Toggle de tema (Dark/Light mode). Controla data-theme=\"light|dark\" en :root.",
       "useCases": [
         "Selector dark/light mode",
@@ -1040,12 +788,8 @@
       },
       "accessibility": {
         "wcagLevel": "AA",
-        "ariaRoles": [
-          "switch"
-        ],
-        "keyboardNav": [
-          "Space/Enter para alternar"
-        ],
+        "ariaRoles": ["switch"],
+        "keyboardNav": ["Space/Enter para alternar"],
         "requirements": [
           "role=\"switch\"",
           "aria-checked=\"true|false\"",
@@ -1053,15 +797,10 @@
           "Contraste en ambos temas"
         ]
       },
-      "variants": [
-        "icon-only",
-        "with-label"
-      ],
+      "variants": ["icon-only", "with-label"],
       "antiPatterns": [],
       "auditChecks": 2,
-      "references": [
-        "CONVENTIONS.md §3"
-      ]
+      "references": ["CONVENTIONS.md §3"]
     }
   ]
 }

@@ -43,7 +43,8 @@
         >
           <div class="d-flex align-items-center gap-5">
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Periodo</span
               >
               <span class="fw-bold text-body text-lg text-uppercase"
@@ -51,7 +52,8 @@
               >
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Fecha de Junta</span
               >
               <div class="d-flex align-items-center gap-2 text-body">
@@ -65,11 +67,12 @@
               </div>
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              <span
+                class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Enviado Comité</span
               >
               <div class="d-flex align-items-center gap-2">
-                <lx-tag
+                <lux-tag
                   [value]="item.enviadoComite ? 'Sí' : 'NO'"
                   [severity]="item.enviadoComite ? 'success' : 'warning'"
                   class="text-xs"
@@ -153,7 +156,9 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
                   } @else {
-                  <span class="text-body-secondary italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm"
+                    >Sin carga</span
+                  >
                   }
                 </div>
                 @if (item.archivoPortada && !item.archivoFinal &&
@@ -209,7 +214,9 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                   />
                   } @else {
-                  <span class="text-body-secondary italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm"
+                    >Sin carga</span
+                  >
                   }
                 </div>
                 @if (item.archivoContable && !item.archivoFinal &&
@@ -248,7 +255,9 @@
                       <small class="text-body-secondary fw-medium"
                         >Por: {{ item.applicationUser }}</small
                       >
-                      <small class="text-body-secondary">{{ item.fechaCarga }}</small>
+                      <small class="text-body-secondary"
+                        >{{ item.fechaCarga }}</small
+                      >
                     </div>
                   </div>
                   } @else if (!item.archivoFinal &&
@@ -263,7 +272,9 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
                   } @else {
-                  <span class="text-body-secondary italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm"
+                    >Sin carga</span
+                  >
                   }
                 </div>
                 @if (item.archivoJunta && !item.archivoFinal &&
@@ -406,7 +417,7 @@
             </div>
             }
           </div>
-          <lx-tag
+          <lux-tag
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             class="text-xs"
@@ -417,7 +428,7 @@
         <div class="row g-4">
           <!-- Portada -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Portada"
               [toggleable]="true"
               [collapsed]="true"
@@ -454,12 +465,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Contable -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Contable"
               [toggleable]="true"
               [collapsed]="true"
@@ -500,12 +511,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Operaciones -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset
+            <lux-fieldset
               legend="Operaciones"
               [toggleable]="true"
               [collapsed]="true"
@@ -544,12 +555,12 @@
               } @else {
               <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
 
           <!-- Final -->
           <div class="col-12 col-sm-6">
-            <lx-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+            <lux-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
               @if ( !item.archivoFinal && aspRoleS.anyOf([
               AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
               item.archivoPortada && item.archivoContable && item.archivoJunta )
@@ -594,7 +605,7 @@
                 Sin archivo o faltan documentos
               </p>
               }
-            </lx-fieldset>
+            </lux-fieldset>
           </div>
         </div>
       </div>

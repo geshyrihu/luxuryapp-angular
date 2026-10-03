@@ -34,7 +34,6 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -418,7 +417,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         const motivo = textarea?.value?.trim() ?? "";
 
         if (!autorizadaPor) {
-          SwalService.showValidationMessage("Selecciona quien toma la decision.");
+          SwalService.showValidationMessage(
+            "Selecciona quien toma la decision.",
+          );
           return null;
         }
 
@@ -562,7 +563,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       CuadroComparativoAddBudget,
       { budgetOptions: this.budgetSelectOptionsSignal() },
       "Agregar presupuesto",
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
 
     if (!selectedAccountNumber) return;
@@ -680,7 +681,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   hasEnoughBudgetCoverage() {
     const requiredAmount = this.getCheapestQuotationTotal();
-    return requiredAmount > 0 && this.getTotalBudgetAssigned() >= requiredAmount;
+    return (
+      requiredAmount > 0 && this.getTotalBudgetAssigned() >= requiredAmount
+    );
   }
 
   hasQuotationTotal() {
@@ -692,7 +695,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   }
 
   hasBudgetOverAvailable() {
-    return this.budgetSignal().some((budget) => this.isBudgetOverAvailable(budget));
+    return this.budgetSignal().some((budget) =>
+      this.isBudgetOverAvailable(budget),
+    );
   }
 
   onEvidenceFilesSelected(event: Event) {

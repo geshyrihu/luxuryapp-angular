@@ -9,16 +9,10 @@ import {
   untracked,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 import { Router } from "@angular/router";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -27,12 +21,15 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
@@ -77,7 +74,7 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-busines
     LxTag,
     LxCard,
     LxMessage,
-      WebButtonLabel,
+    WebButtonLabel,
   ],
 })
 export class AspelCobranzaHaus {
@@ -478,7 +475,7 @@ export class AspelCobranzaHaus {
       AspelCobranzaReglasNegocioComponent,
       {},
       "Reglas de Negocio V2",
-      DialogSize.md,
+      this.dialogHandlerS.sizeMd,
     );
   }
 
@@ -946,4 +943,3 @@ export class AspelCobranzaHaus {
       : Endpoints.CobranzaLive.deudasActuales(customerId);
   }
 }
-

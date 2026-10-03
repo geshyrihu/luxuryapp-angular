@@ -40,7 +40,10 @@
             class="text-green-500 text-lg"
           />
           } @else {
-          <app-icon [icon]="'material-symbols-light:cancel'" class="text-red-500 text-lg" />
+          <app-icon
+            [icon]="'material-symbols-light:cancel'"
+            class="text-red-500 text-lg"
+          />
           }
         </td>
         <td>
@@ -56,20 +59,24 @@
         </td>
         <td class="text-center fw-medium">
           <div class="d-flex flex-column align-items-center gap-2">
-            <lx-tag
+            <lux-tag
               [value]="calculationMethodMeta(item.calculationMethod).label"
               [severity]="calculationMethodMeta(item.calculationMethod).severity"
             />
-            <span>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</span>
+            <span
+              >{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</span
+            >
           </div>
         </td>
         <td class="text-center text-sm">
           <div class="d-flex flex-column align-items-center gap-2">
-            <lx-tag
+            <lux-tag
               [value]="recurrenceMeta(item.recurrence).label"
               [severity]="recurrenceMeta(item.recurrence).severity"
             />
-            <span class="text-xs text-body-secondary">Día: {{ item.dayOfMonth }}</span>
+            <span class="text-xs text-body-secondary"
+              >Día: {{ item.dayOfMonth }}</span
+            >
           </div>
         </td>
         <td class="text-center text-xs">
@@ -84,7 +91,7 @@
         </td>
         <td class="text-center">
           @if (item.applyToAllProperties) {
-          <lx-tag value="Todas" severity="secondary" />
+          <lux-tag value="Todas" severity="secondary" />
           } @else {
           <span class="text-xs text-body-secondary">Seleccionadas</span>
           }
@@ -115,7 +122,10 @@
         start
         class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon icon="material-symbols-light:receipt" class="text-purple-600 text-xl" />
+        <app-icon
+          icon="material-symbols-light:receipt"
+          class="text-purple-600 text-xl"
+        />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.name }}</h3>

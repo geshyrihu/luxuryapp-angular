@@ -1,11 +1,11 @@
 import { Component, contentChild, inject, TemplateRef } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { CarouselBase } from "@ui/base/carousel.base";
 import { MobileCarousel } from "@ui/mobile/carousel/carousel";
 import { Carousel } from "@ui/web/carousel/carousel";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-carousel",
+  selector: "lux-carousel",
 
   imports: [Carousel, MobileCarousel],
   template: `
@@ -43,4 +43,3 @@ export class LxCarousel extends CarouselBase {
   /** Plantilla `<ng-template #item let-slide>` proyectada por el consumidor. */
   protected item = contentChild<TemplateRef<unknown>>("item");
 }
-

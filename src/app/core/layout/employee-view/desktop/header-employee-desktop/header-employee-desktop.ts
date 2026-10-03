@@ -24,6 +24,7 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { FeatureAnnouncementService } from "@core/services/feature-announcement.service";
 import { HidescrollnavService } from "@core/services/hidescrollnav.service";
 import { MenuService } from "@core/services/menu.service";
@@ -37,17 +38,13 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { filter, map, startWith } from "rxjs";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { Profiledesktop } from "../profile-desktop/profile-desktop";
 
 import { FormControl } from "@angular/forms";
 import { AiService } from "@core/services/ai.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppMenu } from "@ui/web/menu/menu";
 import * as htmlToImage from "html-to-image";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -382,7 +379,7 @@ export class HeaderEmployeedesktop implements OnInit {
         HeaderEmployeeAiModal,
         { content: this.aiModalContent() },
         "Generador de Comunicados IA",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .finally(() => this.displayAiModal.set(false));
   }

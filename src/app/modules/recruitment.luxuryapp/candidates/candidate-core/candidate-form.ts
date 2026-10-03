@@ -16,6 +16,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateStatus } from "@core/enums/candidate-status";
+import {
+  ApiResponseDto,
+  ApiResponseService,
+} from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { DataConnectorService } from "@core/services/data-connector.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -33,20 +47,6 @@ import {
   filter,
   switchMap,
 } from "rxjs/operators";
-import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateStatus } from "@core/enums/candidate-status";
-import {
-  ApiResponseDto,
-  ApiResponseService,
-} from "@core/http/services/api-response.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DataConnectorService } from "@core/services/data-connector.service";
-import {
-  DialogHandlerService,
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { SwalService } from "@core/services/swal.service";
 import { CandidateCvUpload } from "../../recruitment-shared/candidate-cv-upload";
 import { CandidatePhotoUpload } from "../../recruitment-shared/candidate-photo-upload";
 import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
@@ -586,5 +586,3 @@ export class CandidateForm implements OnInit {
     }
   }
 }
-
-

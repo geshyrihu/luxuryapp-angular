@@ -9,125 +9,134 @@
 
     <div class="org-chart-page__header-actions">
       @if (reassignLoading()) {
-      <lx-tag severity="info" value="Reasignando..." />
+      <lux-tag severity="info" value="Reasignando..." />
       }
     </div>
   </div>
 
-  <lx-tabs [tabs]="tabs()" [activeId]="activeTab()" (activeIdChange)="onActiveTabChange($event)">
-      <div tab="view">
-        @if (loading()) {
-        <div class="org-chart-state">
-          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
-        </div>
-        } @else if (graphModel().nodes.length === 0) {
-        <div class="org-chart-state org-chart-state--empty">
-          <p>No hay roles definidos.</p>
-        </div>
-        } @else {
-        <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
+  <lux-tabs
+    [tabs]="tabs()"
+    [activeId]="activeTab()"
+    (activeIdChange)="onActiveTabChange($event)"
+  >
+    <div tab="view">
+      @if (loading()) {
+      <div class="org-chart-state">
+        <app-icon
+          [icon]="'material-symbols-light:progress-activity'"
+          class="text-primary text-4xl"
+        />
+      </div>
+      } @else if (graphModel().nodes.length === 0) {
+      <div class="org-chart-state org-chart-state--empty">
+        <p>No hay roles definidos.</p>
+      </div>
+      } @else {
+      <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
+      }
+    </div>
+
+    <div tab="edit">
+      @if (editTabDisabled()) {
+      <div class="org-chart-state org-chart-state--empty">
+        <p>Solo SuperUsuario puede editar.</p>
+      </div>
+      } @else if (loading()) {
+      <div class="org-chart-state">
+        <app-icon
+          [icon]="'material-symbols-light:progress-activity'"
+          class="text-primary text-4xl"
+        />
+      </div>
+      } @else {
+      <div class="org-chart-toolbar">
+        <il-button
+          label="Limpiar selección"
+          variant="text"
+          (clicked)="clearSelection()"
+        />
+
+        @if (selectedOrigin()) {
+        <il-button
+          label="Mover a raíz"
+          variant="text"
+          (clicked)="moveSelectedToRoot()"
+        />
+
+        <il-button
+          label="Mover izquierda"
+          variant="text"
+          [disabled]="!canMoveSelectedUp()"
+          (clicked)="reorderSelected(-1)"
+        />
+
+        <il-button
+          label="Mover derecha"
+          variant="text"
+          [disabled]="!canMoveSelectedDown()"
+          (clicked)="reorderSelected(1)"
+        />
+        } @if (selectedOrigin()) {
+        <lux-tag
+          severity="warn"
+          [value]="'Origen: ' + (selectedOrigin()?.roleDisplayName ?? '')"
+        />
         }
       </div>
 
-      <div tab="edit">
-        @if (editTabDisabled()) {
-        <div class="org-chart-state org-chart-state--empty">
-          <p>Solo SuperUsuario puede editar.</p>
-        </div>
-        } @else if (loading()) {
-        <div class="org-chart-state">
-          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
-        </div>
-        } @else {
-        <div class="org-chart-toolbar">
-          <il-button
-            label="Limpiar selección"
-            variant="text"
-            (clicked)="clearSelection()"
-          />
+      <p class="org-chart-help">
+        Arrastra una tarjeta sobre otra para cambiar su rol superior, o suéltala
+        en el borde izquierdo o derecho de una tarjeta para reordenar hermanos.
+        También puedes hacer clic en una tarjeta para seleccionarla como origen
+        y luego clic en otra para reasignarla.
+      </p>
 
-          @if (selectedOrigin()) {
-          <il-button
-            label="Mover a raíz"
-            variant="text"
-            (clicked)="moveSelectedToRoot()"
-          />
+      <p class="org-chart-help org-chart-help--secondary">
+        Cada tarjeta representa un rol y agrupa sus puestos actuales como
+        miembros; los miembros no se mueven individualmente, sólo la relación
+        rol a rol.
+      </p>
 
-          <il-button
-            label="Mover izquierda"
-            variant="text"
-            [disabled]="!canMoveSelectedUp()"
-            (clicked)="reorderSelected(-1)"
-          />
-
-          <il-button
-            label="Mover derecha"
-            variant="text"
-            [disabled]="!canMoveSelectedDown()"
-            (clicked)="reorderSelected(1)"
-          />
-          } @if (selectedOrigin()) {
-          <lx-tag
-            severity="warn"
-            [value]="'Origen: ' + (selectedOrigin()?.roleDisplayName ?? '')"
-          />
-          }
-        </div>
-
-        <p class="org-chart-help">
-          Arrastra una tarjeta sobre otra para cambiar su rol superior, o
-          suéltala en el borde izquierdo o derecho de una tarjeta para
-          reordenar hermanos. También puedes hacer clic en una tarjeta para
-          seleccionarla como origen y luego clic en otra para reasignarla.
-        </p>
-
-        <p class="org-chart-help org-chart-help--secondary">
-          Cada tarjeta representa un rol y agrupa sus puestos actuales como
-          miembros; los miembros no se mueven individualmente, sólo la
-          relación rol a rol.
-        </p>
-
-        @if (editMode() && draggingNode()) {
-        <div class="org-chart-drag-guide" role="status" aria-live="polite">
-          <span class="org-chart-drag-guide__badge">Jerarquía</span>
-          <span>{{ getDragGuideMessage() }}</span>
-        </div>
-        } @if (selectedOriginContext(); as context) {
-        <div class="org-chart-selection-panel">
-          <div class="org-chart-selection-panel__title">
-            Contexto del rol seleccionado
-          </div>
-          <div class="org-chart-selection-panel__body">
-            <span> Superior: {{ context.parent?.roleDisplayName ?? "Nivel raíz" }} </span>
-            <span>
-              Posición: {{ context.index + 1 }} de {{ context.siblings.length }}
-            </span>
-          </div>
-        </div>
-        } @if (editMode()) {
-        <div
-          class="org-chart-root-dropzone"
-          [class.org-chart-root-dropzone--active]="dragHoverRoot()"
-          role="status"
-          aria-live="polite"
-          (dragover)="onRootDragOver($event)"
-          (dragleave)="onRootDragLeave()"
-          (drop)="onRootDrop($event)"
-        >
-          Suelta aquí para mover el rol al nivel raíz
-        </div>
-        }
-
-        @if (graphModel().nodes.length === 0) {
-        <div class="org-chart-state org-chart-state--empty">
-          <p>No hay roles definidos.</p>
-        </div>
-        } @else {
-        <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
-        }
-        }
+      @if (editMode() && draggingNode()) {
+      <div class="org-chart-drag-guide" role="status" aria-live="polite">
+        <span class="org-chart-drag-guide__badge">Jerarquía</span>
+        <span>{{ getDragGuideMessage() }}</span>
       </div>
-  </lx-tabs>
+      } @if (selectedOriginContext(); as context) {
+      <div class="org-chart-selection-panel">
+        <div class="org-chart-selection-panel__title">
+          Contexto del rol seleccionado
+        </div>
+        <div class="org-chart-selection-panel__body">
+          <span>
+            Superior: {{ context.parent?.roleDisplayName ?? "Nivel raíz" }}
+          </span>
+          <span>
+            Posición: {{ context.index + 1 }} de {{ context.siblings.length }}
+          </span>
+        </div>
+      </div>
+      } @if (editMode()) {
+      <div
+        class="org-chart-root-dropzone"
+        [class.org-chart-root-dropzone--active]="dragHoverRoot()"
+        role="status"
+        aria-live="polite"
+        (dragover)="onRootDragOver($event)"
+        (dragleave)="onRootDragLeave()"
+        (drop)="onRootDrop($event)"
+      >
+        Suelta aquí para mover el rol al nivel raíz
+      </div>
+      } @if (graphModel().nodes.length === 0) {
+      <div class="org-chart-state org-chart-state--empty">
+        <p>No hay roles definidos.</p>
+      </div>
+      } @else {
+      <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
+      } }
+    </div>
+  </lux-tabs>
 </div>
 
 <ng-template #graphCanvas>
@@ -297,15 +306,16 @@
   </div>
 </ng-template>
 
-<lx-sidebar
-  [visible]="drawerVisible()" (visibleChange)="drawerVisible.set($event)"
+<lux-sidebar
+  [visible]="drawerVisible()"
+  (visibleChange)="drawerVisible.set($event)"
   position="right"
   header="Miembros del rol"
 >
   @if (selectedNodeForDetails(); as node) {
   <div class="org-detail">
     <div class="org-detail__header">
-      <lx-avatar
+      <lux-avatar
         icon="material-symbols-light:work"
         shape="circle"
         size="large"
@@ -313,9 +323,7 @@
       />
 
       <div>
-        <span class="org-detail__name">
-          {{ node.roleDisplayName }}
-        </span>
+        <span class="org-detail__name"> {{ node.roleDisplayName }} </span>
         <p class="org-detail__role">
           {{ node.departmentName }} · {{ getRosterSummary(node) }}
         </p>
@@ -331,9 +339,13 @@
       @for (member of node.members; track member.workPositionId) {
       <div class="org-detail-member">
         @if (member.hasEmployee && member.employeePhoto) {
-        <lx-avatar [image]="member.employeePhoto" shape="circle" size="normal" />
+        <lux-avatar
+          [image]="member.employeePhoto"
+          shape="circle"
+          size="normal"
+        />
         } @else {
-        <lx-avatar
+        <lux-avatar
           [label]="getMemberInitials(member)"
           shape="circle"
           size="normal"
@@ -349,9 +361,13 @@
             {{ member.folio }} · {{ member.state }}
           </span>
           @if (member.employeeEmail) {
-          <span class="org-detail-member__meta">{{ member.employeeEmail }}</span>
+          <span class="org-detail-member__meta"
+            >{{ member.employeeEmail }}</span
+          >
           } @if (member.employeePhone) {
-          <span class="org-detail-member__meta">{{ member.employeePhone }}</span>
+          <span class="org-detail-member__meta"
+            >{{ member.employeePhone }}</span
+          >
           }
         </div>
       </div>
@@ -361,6 +377,6 @@
     </div>
   </div>
   }
-</lx-sidebar>
+</lux-sidebar>
 
-<lx-toast />
+<lux-toast />

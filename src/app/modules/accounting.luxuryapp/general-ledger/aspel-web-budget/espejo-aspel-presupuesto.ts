@@ -1,4 +1,3 @@
-import { IonItem, IonLabel } from "@ionic/angular";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,11 +10,9 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable, AppFrozenColumn } from "@ui/web/table/table";
+import { IonItem, IonLabel } from "@ionic/angular";
+import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -27,17 +24,20 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { BudgetRuleList } from "../budget-proposals/budget-rule-list/budget-rule-list";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
 } from "../interfaces/presupuesto-shared.models";
-import { BudgetRuleList } from "../budget-proposals/budget-rule-list/budget-rule-list";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {
   ASPEL_MONTHS,
-  getBudgetCompanyName,
   getBudgetAccounts,
+  getBudgetCompanyName,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
   isParentAccount,
@@ -152,7 +152,9 @@ export class PresupuestoAspelEjercicioFiscal {
     return aggregated.filter((cuenta) => cuenta.nivel_Cuenta === level);
   });
 
-  cuentasMobile = computed(() => this.cuentas().filter((c) => !c.esFilaAgrupadora));
+  cuentasMobile = computed(() =>
+    this.cuentas().filter((c) => !c.esFilaAgrupadora),
+  );
   globalFilterFields = signal<string[]>([]);
   tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
@@ -195,7 +197,8 @@ export class PresupuestoAspelEjercicioFiscal {
           this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
         } else {
           this.handleError(
-            (normalizedResponse as any)?.strMensaje || "No se encontraron datos.",
+            (normalizedResponse as any)?.strMensaje ||
+              "No se encontraron datos.",
           );
           if (getBudgetCompanyName(normalizedResponse)) {
             this.sharedS.budgetData.set(normalizedResponse);
@@ -246,7 +249,8 @@ export class PresupuestoAspelEjercicioFiscal {
           this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
         } else {
           this.handleError(
-            (normalizedResponse as any)?.strMensaje || "No se encontraron datos.",
+            (normalizedResponse as any)?.strMensaje ||
+              "No se encontraron datos.",
           );
           if (getBudgetCompanyName(normalizedResponse)) {
             this.sharedS.budgetData.set(normalizedResponse);

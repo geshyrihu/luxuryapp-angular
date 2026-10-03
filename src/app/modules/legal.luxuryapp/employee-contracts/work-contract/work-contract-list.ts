@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,22 +6,22 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import {
   EmployeeWorkContractListDTO,
   EmployeeWorkContractTerminateDTO,
@@ -33,13 +32,13 @@ import { WorkContractFormComponent } from "./work-contract-form";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-work-contract-list",
@@ -67,7 +66,7 @@ export class WorkContractList implements OnInit {
   private route = inject(ActivatedRoute);
 
   apiS = inject(ApiResponseService);
-  dialogS = inject(DialogHandlerService);
+  dialogHandlerS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
   customerIdS = inject(CustomerIdService);
   confirmS = inject(ConfirmService);
@@ -118,38 +117,45 @@ export class WorkContractList implements OnInit {
     const prefilledItem = this.employeeId()
       ? { employeeId: this.employeeId() }
       : null;
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         WorkContractFormComponent,
-        { data: { item: prefilledItem, employeeId: this.employeeId() ?? undefined } },
+        {
+          data: {
+            item: prefilledItem,
+            employeeId: this.employeeId() ?? undefined,
+          },
+        },
         data.title,
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }
 
   onEdit(item: EmployeeWorkContractListDTO): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         WorkContractFormComponent,
         { data: { item } },
         "Editar Contrato",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }
 
   onViewDetail(item: EmployeeWorkContractListDTO): void {
-    this.dialogS.openDialog(
+    this.dialogHandlerS.openDialog(
       WorkContractDetailComponent,
       { data: { id: item.id } },
       `Contrato ${item.contractNumber}`,
-      DialogSize.lg,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
   async onDelete(id: string): Promise<void> {
-    const ok = await this.confirmS.confirm("¿Está seguro de eliminar este contrato?");
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este contrato?",
+    );
     if (!ok) return;
     this.apiS
       .onDelete(Endpoints.HR.EmployeeWorkContract.delete(id))
@@ -157,7 +163,9 @@ export class WorkContractList implements OnInit {
   }
 
   onTerminate(item: EmployeeWorkContractListDTO): void {
-    const terminationReason = window.prompt("Escriba el motivo de la terminación:");
+    const terminationReason = window.prompt(
+      "Escriba el motivo de la terminación:",
+    );
     if (!terminationReason?.trim()) return;
 
     const dto: EmployeeWorkContractTerminateDTO = {

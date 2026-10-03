@@ -1,7 +1,10 @@
 <div class="p-3 p-md-4 max-w-5xl mx-auto d-flex flex-column gap-5">
   <section class="text-center">
     <div class="avatar avatar--xl avatar--square mx-auto mb-3">
-      <app-icon [icon]="'material-symbols-light:account-tree'" class="text-2xl" />
+      <app-icon
+        [icon]="'material-symbols-light:account-tree'"
+        class="text-2xl"
+      />
     </div>
     <h1 class="text-2xl fw-bold text-body mb-2">
       Como Funciona el Sistema de Cobranza
@@ -13,17 +16,22 @@
   </section>
 
   <section>
-    <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center">
+    <div
+      class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center"
+    >
       Flujo de operacion
     </div>
 
     <div class="d-flex flex-column gap-4">
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">1</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:group'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:group'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Configurar propiedades y responsables
               </span>
@@ -31,140 +39,175 @@
             <p class="text-sm text-body-secondary line-height-3 m-0">
               Cada unidad del condominio (depto, casa, local) tiene uno o mas
               miembros vinculados. El sistema identifica a
-              <strong>un unico responsable financiero activo</strong> por propiedad:
-              la persona a quien se emiten los cargos. Si el responsable cambia
-              (ej. nuevo inquilino), el anterior se da de baja automaticamente.
+              <strong>un unico responsable financiero activo</strong> por
+              propiedad: la persona a quien se emiten los cargos. Si el
+              responsable cambia (ej. nuevo inquilino), el anterior se da de
+              baja automaticamente.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Miembros de Propiedad" severity="info" />
-              <lx-tag value="Rol: Administrador" severity="secondary" />
+              <lux-tag value="Modulo: Miembros de Propiedad" severity="info" />
+              <lux-tag value="Rol: Administrador" severity="secondary" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">2</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:note-alt'" class="text-primary" />
-              <span class="fw-semibold text-body">Crear plantillas de cargos</span>
+              <app-icon
+                [icon]="'material-symbols-light:note-alt'"
+                class="text-primary"
+              />
+              <span class="fw-semibold text-body"
+                >Crear plantillas de cargos</span
+              >
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
-              Antes de que el sistema genere cargos mensuales, hay que definir las
-              <strong>plantillas</strong>: tipo de cargo, monto fijo o calculo por
-              <em>indiviso</em> y si esta activa.
+              Antes de que el sistema genere cargos mensuales, hay que definir
+              las
+              <strong>plantillas</strong>: tipo de cargo, monto fijo o calculo
+              por <em>indiviso</em> y si esta activa.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Plantillas de Cargos" severity="success" />
-              <lx-tag value="Rol: Administrador" severity="secondary" />
+              <lux-tag
+                value="Modulo: Plantillas de Cargos"
+                severity="success"
+              />
+              <lux-tag value="Rol: Administrador" severity="secondary" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">3</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:play-circle'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:play-circle'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Generacion automatica de cargos (job mensual)
               </span>
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
               El primer dia de cada mes a las 06:00 AM, el sistema genera
-              automaticamente los cargos para todas las propiedades activas con base
-              en las plantillas. Tambien se pueden generar manualmente desde
-              Servicios Automatizados seleccionando mes y año.
+              automaticamente los cargos para todas las propiedades activas con
+              base en las plantillas. Tambien se pueden generar manualmente
+              desde Servicios Automatizados seleccionando mes y año.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Cargos / Servicios Automatizados" severity="info" />
-              <lx-tag value="Sistema (CRON)" severity="contrast" />
+              <lux-tag
+                value="Modulo: Cargos / Servicios Automatizados"
+                severity="info"
+              />
+              <lux-tag value="Sistema (CRON)" severity="contrast" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">4</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:credit-card'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:credit-card'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Registrar pagos y aplicarlos
               </span>
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
               Cuando un residente paga, se registra el pago en el sistema. La
-              logica FIFO asigna el pago al cargo mas antiguo pendiente. Si sobra
-              saldo queda en la bolsa de pagos no aplicados para conciliacion
-              posterior. Los pagos generan entradas inmutables en el ledger.
+              logica FIFO asigna el pago al cargo mas antiguo pendiente. Si
+              sobra saldo queda en la bolsa de pagos no aplicados para
+              conciliacion posterior. Los pagos generan entradas inmutables en
+              el ledger.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Registrar Pagos" severity="info" />
-              <lx-tag value="Finanzas / Administrador" severity="success" />
+              <lux-tag value="Modulo: Registrar Pagos" severity="info" />
+              <lux-tag value="Finanzas / Administrador" severity="success" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">5</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:percent'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:percent'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Calculo de recargos por mora (job diario)
               </span>
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
-              Cada dia a las 03:00 AM, el sistema detecta cargos vencidos despues
-              de los dias de gracia configurados en la politica de mora. Aplica el
-              recargo correspondiente y genera un nuevo cargo de tipo Recargo Mora.
+              Cada dia a las 03:00 AM, el sistema detecta cargos vencidos
+              despues de los dias de gracia configurados en la politica de mora.
+              Aplica el recargo correspondiente y genera un nuevo cargo de tipo
+              Recargo Mora.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Politicas de Mora / Servicios Automatizados" severity="warn" />
-              <lx-tag value="Sistema (CRON)" severity="contrast" />
+              <lux-tag
+                value="Modulo: Politicas de Mora / Servicios Automatizados"
+                severity="warn"
+              />
+              <lux-tag value="Sistema (CRON)" severity="contrast" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">6</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:work'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:work'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Escalada a cobranza legal (job semanal)
               </span>
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
-              Cada lunes a las 07:00 AM, el sistema analiza la antiguedad de deuda.
-              Las propiedades que superan 90 dias se escalan automaticamente a un
-              caso de cobranza con seguimiento operativo.
+              Cada lunes a las 07:00 AM, el sistema analiza la antiguedad de
+              deuda. Las propiedades que superan 90 dias se escalan
+              automaticamente a un caso de cobranza con seguimiento operativo.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Casos de Cobranza" severity="danger" />
-              <lx-tag value="Sistema (CRON)" severity="contrast" />
+              <lux-tag value="Modulo: Casos de Cobranza" severity="danger" />
+              <lux-tag value="Sistema (CRON)" severity="contrast" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">7</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
-              <span class="fw-semibold text-body">Cierre de periodo contable</span>
+              <app-icon
+                [icon]="'material-symbols-light:lock'"
+                class="text-primary"
+              />
+              <span class="fw-semibold text-body"
+                >Cierre de periodo contable</span
+              >
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
               Al final de cada mes, el administrador cierra el periodo contable.
@@ -172,79 +215,101 @@
               correccion, entra el patron maker-checker.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Cierres de Periodo / Aprobaciones" severity="warn" />
-              <lx-tag value="Administrador / Finanzas" severity="secondary" />
+              <lux-tag
+                value="Modulo: Cierres de Periodo / Aprobaciones"
+                severity="warn"
+              />
+              <lux-tag value="Administrador / Finanzas" severity="secondary" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="d-flex gap-3">
         <div class="avatar avatar--md">8</div>
-        <lx-card class="card card--elevated flex-fill">
+        <lux-card class="card card--elevated flex-fill">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:shield'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:shield'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body">
                 Auditoria y verificacion de integridad
               </span>
             </div>
             <p class="text-sm text-body-secondary line-height-3 m-0">
-              En cualquier momento, el superusuario puede consultar la bitacora de
-              auditoria y el ledger financiero para validar que los saldos
+              En cualquier momento, el superusuario puede consultar la bitacora
+              de auditoria y el ledger financiero para validar que los saldos
               operacionales coincidan con la suma de eventos.
             </p>
             <div class="d-flex flex-wrap gap-2">
-              <lx-tag value="Modulo: Ledger / Auditoria Financiera" severity="contrast" />
-              <lx-tag value="Superusuario / Finanzas" severity="secondary" />
+              <lux-tag
+                value="Modulo: Ledger / Auditoria Financiera"
+                severity="contrast"
+              />
+              <lux-tag value="Superusuario / Finanzas" severity="secondary" />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center">
+    <div
+      class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center"
+    >
       Arquitectura del sistema
     </div>
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <lx-card class="card card--elevated h-full">
+        <lux-card class="card card--elevated h-full">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:format-list-bulleted'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body text-sm">
                 Ledger financiero inmutable
               </span>
             </div>
             <p class="text-xs text-body-secondary line-height-3 m-0">
               Cada operacion que cambia dinero genera una entrada de ledger que
-              nunca se modifica ni elimina. Los errores se corrigen con entradas de
-              reverso.
+              nunca se modifica ni elimina. Los errores se corrigen con entradas
+              de reverso.
             </p>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
       <div class="col-12 col-md-6">
-        <lx-card class="card card--elevated h-full">
+        <lux-card class="card card--elevated h-full">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:check-box'" class="text-primary" />
-              <span class="fw-semibold text-body text-sm">Patron Maker-Checker</span>
+              <app-icon
+                [icon]="'material-symbols-light:check-box'"
+                class="text-primary"
+              />
+              <span class="fw-semibold text-body text-sm"
+                >Patron Maker-Checker</span
+              >
             </div>
             <p class="text-xs text-body-secondary line-height-3 m-0">
               Las operaciones sensibles requieren que una segunda persona las
               apruebe. El que solicita no puede aprobar.
             </p>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
       <div class="col-12 col-md-6">
-        <lx-card class="card card--elevated h-full">
+        <lux-card class="card card--elevated h-full">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:apartment'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body text-sm">
                 Multi-condominio (multi-tenant)
               </span>
@@ -254,64 +319,78 @@
               manejar multiples condominios sin mezclar informacion.
             </p>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
       <div class="col-12 col-md-6">
-        <lx-card class="card card--elevated h-full">
+        <lux-card class="card card--elevated h-full">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:dns'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:dns'"
+                class="text-primary"
+              />
               <span class="fw-semibold text-body text-sm">
                 Automatizacion via jobs
               </span>
             </div>
             <p class="text-xs text-body-secondary line-height-3 m-0">
-              Los procesos repetitivos corren en jobs programados y tambien pueden
-              ejecutarse manualmente desde Servicios Automatizados.
+              Los procesos repetitivos corren en jobs programados y tambien
+              pueden ejecutarse manualmente desde Servicios Automatizados.
             </p>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center">
+    <div
+      class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center"
+    >
       Seguridad y controles
     </div>
-    <lx-card class="card card--elevated">
+    <lux-card class="card card--elevated">
       <div class="row g-4">
         <div class="col-12 col-md-4">
           <div class="d-flex gap-2">
-            <app-icon [icon]="'material-symbols-light:lock'" class="text-primary mt-1 flex-shrink-0" />
+            <app-icon
+              [icon]="'material-symbols-light:lock'"
+              class="text-primary mt-1 flex-shrink-0"
+            />
             <div>
               <div class="text-sm fw-semibold text-body mb-1">
                 Periodos cerrados = inmutables
               </div>
               <div class="text-xs text-body-secondary line-height-3">
-                Una vez que un mes se cierra contablemente, ningun movimiento puede
-                crearse en ese periodo sin aprobacion expresa.
+                Una vez que un mes se cierra contablemente, ningun movimiento
+                puede crearse en ese periodo sin aprobacion expresa.
               </div>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div class="d-flex gap-2">
-            <app-icon [icon]="'material-symbols-light:visibility-outline'" class="text-primary mt-1 flex-shrink-0" />
+            <app-icon
+              [icon]="'material-symbols-light:visibility-outline'"
+              class="text-primary mt-1 flex-shrink-0"
+            />
             <div>
               <div class="text-sm fw-semibold text-body mb-1">
                 Bitacora de auditoria
               </div>
               <div class="text-xs text-body-secondary line-height-3">
-                Todas las acciones de negocio quedan registradas con usuario, fecha
-                y resultado. Accesible solo para Superusuario y Finanzas.
+                Todas las acciones de negocio quedan registradas con usuario,
+                fecha y resultado. Accesible solo para Superusuario y Finanzas.
               </div>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div class="d-flex gap-2">
-            <app-icon [icon]="'material-symbols-light:manage-accounts'" class="text-primary mt-1 flex-shrink-0" />
+            <app-icon
+              [icon]="'material-symbols-light:manage-accounts'"
+              class="text-primary mt-1 flex-shrink-0"
+            />
             <div>
               <div class="text-sm fw-semibold text-body mb-1">
                 Responsable financiero unico
@@ -324,11 +403,13 @@
           </div>
         </div>
       </div>
-    </lx-card>
+    </lux-card>
   </section>
 
   <section>
-    <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center">
+    <div
+      class="text-xs fw-semibold text-body-secondary text-uppercase mb-4 text-center"
+    >
       Proximas funcionalidades
     </div>
     <div class="d-flex flex-column gap-3">
@@ -344,21 +425,27 @@
       </div>
 
       <div class="alert-warning alert--left-bar">
-        <app-icon [icon]="'material-symbols-light:receipt'" class="alert__icon" />
+        <app-icon
+          [icon]="'material-symbols-light:receipt'"
+          class="alert__icon"
+        />
         <div class="alert__body">
           <span class="alert__title">Facturacion CFDI real (SAT)</span>
-          Las facturas hoy funcionan en simulacion. La integracion real con el SAT
-          via <strong>SW Sapien</strong> se activara en la siguiente fase.
+          Las facturas hoy funcionan en simulacion. La integracion real con el
+          SAT via <strong>SW Sapien</strong> se activara en la siguiente fase.
         </div>
       </div>
 
       <div class="alert-warning alert--left-bar">
-        <app-icon [icon]="'material-symbols-light:mail-outline'" class="alert__icon" />
+        <app-icon
+          [icon]="'material-symbols-light:mail-outline'"
+          class="alert__icon"
+        />
         <div class="alert__body">
           <span class="alert__title">Notificaciones automaticas</span>
-          El motor de notificaciones ya existe en backend y enviara recordatorios
-          de pago, avisos de mora y estados de cuenta cuando se configure el
-          proveedor de mensajeria.
+          El motor de notificaciones ya existe en backend y enviara
+          recordatorios de pago, avisos de mora y estados de cuenta cuando se
+          configure el proveedor de mensajeria.
         </div>
       </div>
     </div>

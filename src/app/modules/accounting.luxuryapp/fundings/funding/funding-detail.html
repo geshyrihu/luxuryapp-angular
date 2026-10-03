@@ -88,7 +88,7 @@
 
       <!-- Creation & Tools -->
       <div class="d-flex gap-1 align-items-center">
-        <lx-split-button
+        <lux-split-button
           label="Crear OC"
           (onClick)="openCreateOrdenCompraWizard()"
           [model]="createOrderItems"
@@ -96,7 +96,7 @@
           severity="primary"
           styleClass="btn-sm"
           [disabled]="!canEdit()"
-        ></lx-split-button>
+        ></lux-split-button>
 
         <!-- Tools Group -->
         <div class="d-none d-md-flex gap-1 bg-bg-body-tertiary rounded p-1">
@@ -227,14 +227,14 @@
   </div>
 
   @if (isVerified() && !isAuthorized() && !isConfirmed()) {
-  <lx-message severity="warn" class="mt-2 w-full"
+  <lux-message severity="warn" class="mt-2 w-full"
     >Fondeo verificado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la verificacion.</lx-message
+    habilitar cambios, revierte la verificacion.</lux-message
   >
   } @if (isAuthorized() && !isConfirmed()) {
-  <lx-message severity="warn" class="mt-2 w-full"
+  <lux-message severity="warn" class="mt-2 w-full"
     >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la autorizacion primero.</lx-message
+    habilitar cambios, revierte la autorizacion primero.</lux-message
   >
   } @if (isConfirmed()) {
   <div
@@ -271,7 +271,7 @@
         <span class="fw-bold text-body text-lg"
           >{{grupo.tipoGasto | uppercase}}</span
         >
-        <lx-badge
+        <lux-badge
           [value]="grupo.ordenes.length"
           color="secondary"
           class="fw-bold"
@@ -386,14 +386,14 @@
               <!-- Invoice Tags -->
               <div class="d-flex flex-wrap gap-1 align-items-center">
                 @if (orden.listadoFacturas?.length > 1) {
-                <lx-tag
+                <lux-tag
                   severity="warning"
                   [value]="orden.listadoFacturas.length + ' Docs'"
                   class="cursor-pointer transition-duration-200 text-xs px-2 py-0 rounded-md"
                   (click)="showInvoices(orden)"
                 />
                 } @else if (orden.pdfFile || orden.factura) {
-                <lx-tag
+                <lux-tag
                   severity="secondary"
                   value="PDF"
                   icon="material-symbols-light:picture-as-pdf"
@@ -401,7 +401,7 @@
                   (click)="viewPdf(orden.pdfFile,'Factura')"
                 />
                 } @if (orden.comprobantesPago?.length > 0) {
-                <lx-tag
+                <lux-tag
                   severity="success"
                   value="Pago"
                   icon="material-symbols-light:check"
@@ -525,7 +525,7 @@
         <span class="fw-bold text-orange-800 text-base"
           >ÓRDENES FUERA DE PROCESO DE FONDEO</span
         >
-        <lx-badge
+        <lux-badge
           [value]="ordenesFueraProceso().length"
           color="warning"
           class="fw-bold"
@@ -599,7 +599,7 @@
     }
   </div>
 
-  <lx-modal
+  <lux-modal
     header="Generando Solicitudes"
     [(visible)]="isDownloading"
     [closable]="false"
@@ -607,11 +607,11 @@
     <div
       class="d-flex flex-column align-items-center justify-content-center p-4"
     >
-      <lx-progress-bar [value]="downloadProgress()" class="mb-3" />
+      <lux-progress-bar [value]="downloadProgress()" class="mb-3" />
       <span class="text-body fw-medium">{{ downloadStatusText() }}</span>
       <span class="text-body-secondary text-sm mt-2"
         >Por favor no cierre esta ventana.</span
       >
     </div>
-  </lx-modal>
+  </lux-modal>
 </div>

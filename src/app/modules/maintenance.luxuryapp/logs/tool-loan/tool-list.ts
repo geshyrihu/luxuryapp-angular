@@ -7,11 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
@@ -22,19 +17,24 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ToolForm } from "./tool-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 @Component({
@@ -70,7 +70,7 @@ export class ToolList {
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
   // Enum para usar en la plantilla
-  ñales
+  ñales;
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -256,4 +256,3 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
-

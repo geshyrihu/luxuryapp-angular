@@ -4,7 +4,7 @@ import { Directive, input } from "@angular/core";
  * Base compartida de Image (display de imagen con preview opcional).
  *  - web:     `app-image`  (ng-gallery lightbox/preview)
  *  - mobile:  `ili-image`  (Ionic ion-img, lazy-load nativo)
- *  - wrapper: `lx-image`   (auto runtime)
+ *  - wrapper: `lux-image`   (auto runtime)
  */
 @Directive()
 export abstract class ImageBase {

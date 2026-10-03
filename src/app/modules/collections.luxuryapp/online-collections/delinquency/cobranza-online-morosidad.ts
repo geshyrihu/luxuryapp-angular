@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
-import { AppRankedList, RankedListItem } from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  AppRankedList,
+  RankedListItem,
+} from "@ui/shared/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import { CobranzaOnlineMorosidadDetailModalComponent } from "./cobranza-online-morosidad-detail-modal";
@@ -30,7 +35,7 @@ import { CobranzaOnlineMorosidadDetailModalComponent } from "./cobranza-online-m
 export class CobranzaOnlineMorosidad {
   private customerIdS = inject(CustomerIdService);
   private store = inject(CobranzaOnlineStoreService);
-  private dialogS = inject(DialogHandlerService);
+  private dialogHandlerS = inject(DialogHandlerService);
 
   readonly loading = this.store.isLoading;
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
@@ -84,7 +89,7 @@ export class CobranzaOnlineMorosidad {
     if (!condomino) return;
 
     try {
-      await this.dialogS.openDialog(
+      await this.dialogHandlerS.openDialog(
         CobranzaOnlineMorosidadDetailModalComponent,
         {
           // El modal espera la forma de `dashboardData.departments`: se adapta aquí
@@ -100,7 +105,7 @@ export class CobranzaOnlineMorosidad {
           year: this.analysis()?.year,
         },
         "Detalle de Morosidad",
-        DialogSize.md,
+        this.dialogHandlerS.sizeMd,
       );
     } catch (error) {
       console.error("Dialog closed", error);
@@ -116,4 +121,3 @@ export class CobranzaOnlineMorosidad {
 function toLevel3(accountNumber: string): string {
   return accountNumber.split("-").slice(0, 3).join("-");
 }
-

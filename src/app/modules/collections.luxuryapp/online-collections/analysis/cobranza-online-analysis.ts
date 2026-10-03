@@ -9,19 +9,16 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ThemeService } from "@core/services/theme.service";
 import {
   AppBreakdownList,
   type BreakdownItem,
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
-import { ThemeService } from "@core/services/theme.service";
 import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-composicion-reportes-modal";
 
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
@@ -45,15 +42,15 @@ export class CobranzaOnlineAnalysis {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
   private store = inject(CobranzaOnlineStoreService);
-  private dialogS = inject(DialogHandlerService);
+  private dialogHandlerS = inject(DialogHandlerService);
 
   async onOpenComposicionReportes() {
     try {
-      await this.dialogS.openDialog(
+      await this.dialogHandlerS.openDialog(
         CobranzaOnlineComposicionReportesModal,
         {},
         "Cómo se compone cada reporte",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       );
     } catch (error) {
       console.error("Error opening composition dialog", error);
@@ -136,9 +133,15 @@ export class CobranzaOnlineAnalysis {
         color: "var(--ds-success)",
         description: (() => {
           const parts = [`Mtto ${this.moneda(d.cobradoMttoMes)}`];
-          if (d.cobradoExtraordinariaMes) parts.push(`extraordinaria ${this.moneda(d.cobradoExtraordinariaMes)}`);
-          if (d.cobradoRestaurantMes) parts.push(`restaurante ${this.moneda(d.cobradoRestaurantMes)}`);
-          return parts.length > 1 ? parts.join(' - ') : "Abonos aplicados en el mes";
+          if (d.cobradoExtraordinariaMes)
+            parts.push(
+              `extraordinaria ${this.moneda(d.cobradoExtraordinariaMes)}`,
+            );
+          if (d.cobradoRestaurantMes)
+            parts.push(`restaurante ${this.moneda(d.cobradoRestaurantMes)}`);
+          return parts.length > 1
+            ? parts.join(" - ")
+            : "Abonos aplicados en el mes";
         })(),
       },
       {
@@ -163,7 +166,8 @@ export class CobranzaOnlineAnalysis {
         label: "Cobranza judicial",
         value: d.totalJudicial,
         color: "var(--ds-danger)",
-        description: "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria o restaurante",
+        description:
+          "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria o restaurante",
       },
       {
         label: "Morosos",

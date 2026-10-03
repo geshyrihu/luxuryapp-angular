@@ -1,12 +1,8 @@
 @if (model) {
-<lx-card>
-<!-- Cabecera -->
+<lux-card>
+  <!-- Cabecera -->
   <div class="d-flex align-items-center gap-3 p-3 mb-4 bg-blue-50 rounded">
-    <img
-      [src]="urlLogo"
-      alt="logo"
-      
-    />
+    <img [src]="urlLogo" alt="logo" />
     <div>
       <div class="fw-bold text-lg text-body">{{ model.nameProvider }}</div>
       <div class="text-body-secondary text-sm">{{ model.nameComercial }}</div>
@@ -16,7 +12,7 @@
   <div class="row g-4">
     <!-- General -->
     <div class="col-12 col-md-4">
-      <lx-fieldset legend="General" class="mb-3 h-full">
+      <lux-fieldset legend="General" class="mb-3 h-full">
         <div class="d-flex flex-column gap-2">
           <div class="d-flex justify-content-between">
             <span class="text-body-secondary text-sm">Nombre Comercial</span>
@@ -26,9 +22,7 @@
           </div>
           <div class="d-flex justify-content-between">
             <span class="text-body-secondary text-sm">Direccion</span>
-            <span class="fw-medium text-sm text-end" 
-              >{{ model.address }}</span
-            >
+            <span class="fw-medium text-sm text-end">{{ model.address }}</span>
           </div>
           <div class="d-flex justify-content-between">
             <span class="text-body-secondary text-sm">Telefonos</span>
@@ -51,27 +45,29 @@
             <span class="text-body-secondary text-sm">Alcances</span>
             <div class="d-flex gap-1">
               @if (model.sales) {
-              <lx-tag value="Ventas" severity="success" />
+              <lux-tag value="Ventas" severity="success" />
               } @if (model.repair) {
-              <lx-tag value="Reparaciones" severity="success" />
+              <lux-tag value="Reparaciones" severity="success" />
               }
             </div>
           </div>
           }
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Contactos -->
     <div class="col-12 col-md-4">
-      <lx-fieldset legend="Contactos" class="mb-3 h-full">
+      <lux-fieldset legend="Contactos" class="mb-3 h-full">
         <div class="d-flex flex-column gap-3">
           @if (model.contactOne) {
           <div>
             <div class="text-body-secondary text-xs mb-1">Contacto 1</div>
             <div class="fw-medium text-sm">{{ model.contactOne }}</div>
             @if (model.positionOne) {
-            <div class="text-body-secondary text-xs">{{ model.positionOne }}</div>
+            <div class="text-body-secondary text-xs">
+              {{ model.positionOne }}
+            </div>
             } @if (model.cellPhoneOne) {
             <div class="text-sm">{{ model.cellPhoneOne }}</div>
             } @if (model.emailOne) {
@@ -79,12 +75,14 @@
             }
           </div>
           } @if (model.contactTwo) {
-          <lx-divider class="my-2" />
+          <lux-divider class="my-2" />
           <div>
             <div class="text-body-secondary text-xs mb-1">Contacto 2</div>
             <div class="fw-medium text-sm">{{ model.contactTwo }}</div>
             @if (model.positionTwo) {
-            <div class="text-body-secondary text-xs">{{ model.positionTwo }}</div>
+            <div class="text-body-secondary text-xs">
+              {{ model.positionTwo }}
+            </div>
             } @if (model.cellPhoneTwo) {
             <div class="text-sm">{{ model.cellPhoneTwo }}</div>
             } @if (model.emailTwo) {
@@ -93,12 +91,12 @@
           </div>
           }
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Datos Bancarios -->
     <div class="col-12 col-md-4">
-      <lx-fieldset legend="Datos Bancarios" class="mb-3 h-full">
+      <lux-fieldset legend="Datos Bancarios" class="mb-3 h-full">
         <div class="d-flex flex-column gap-2">
           <div class="d-flex justify-content-between">
             <span class="text-body-secondary text-sm">Beneficiario</span>
@@ -119,8 +117,8 @@
             <span class="fw-medium text-sm">{{ model.interbankCode }}</span>
           </div>
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
   </div>
-</lx-card>
+</lux-card>
 }

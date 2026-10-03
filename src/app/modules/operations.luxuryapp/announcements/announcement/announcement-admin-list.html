@@ -93,7 +93,7 @@
       <td>{{ item.folio }}</td>
       <td>{{ item.title }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="item.announcementType"
           [severity]="
             item.announcementType === 'Urgente'
@@ -107,7 +107,7 @@
         />
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="
             item.status === 'Publicado'
@@ -206,7 +206,7 @@
 
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h2 class="fw-bold m-0 text-base">{{ item.title }}</h2>
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="
               item.status === 'Publicado'
@@ -230,7 +230,7 @@
         <app-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
         Cliente: {{ item.customerName }}
       </p>
-      <lx-tag
+      <lux-tag
         [value]="item.announcementType"
         class="mt-2 d-block"
         [severity]="

@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { MenubarBase } from "@ui/base/menubar.base";
 import { MobileMenubar } from "@ui/mobile/menubar/menubar";
 import { Menubar } from "@ui/web/menubar/menubar";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-menubar",
+  selector: "lux-menubar",
 
   imports: [Menubar, MobileMenubar],
   template: `
@@ -27,4 +27,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxMenubar extends MenubarBase {
   protected platform = inject(PlatformService);
 }
-

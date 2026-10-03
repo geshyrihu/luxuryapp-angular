@@ -8,15 +8,19 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ROUTES } from "src/app/routing/route-paths";
+import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
+import {
+  MappedPTag,
+  MappedTagOption,
+} from "../../recruitment-shared/mapped-p-tag";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
@@ -24,11 +28,6 @@ import {
 } from "../candidate-recruitment-interviews/candidate-recruitment-interviews.interface";
 import { CandidateRecruitmentInterviewsService } from "../candidate-recruitment-interviews/candidate-recruitment-interviews.service";
 import { CandidateRecruitmentScheduleModal } from "../candidate-recruitment-interviews/candidate-recruitment-schedule-modal";
-import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
-import {
-  MappedPTag,
-  MappedTagOption,
-} from "../../recruitment-shared/mapped-p-tag";
 
 type VacancyView = CandidateRecruitmentInterviewBoard & {
   activeCandidates: CandidateRecruitmentInterviewBoardItem[];
@@ -205,7 +204,7 @@ export class CandidateWorkPositionCandidates implements OnInit {
         requestPositionId: vacancy.requestPositionId,
       },
       this.modalTitle(action, candidate),
-      DialogSize.md,
+      this.dialogHandlerS.sizeMd,
     );
 
     if (result) {
@@ -243,6 +242,3 @@ export class CandidateWorkPositionCandidates implements OnInit {
     }
   }
 }
-
-
-

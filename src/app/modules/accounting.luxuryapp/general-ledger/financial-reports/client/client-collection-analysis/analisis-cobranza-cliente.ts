@@ -9,31 +9,28 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CobranzaOnlineComposicionReportesModal } from "@collections.luxuryapp/online-collections/analysis/cobranza-online-composicion-reportes-modal";
+import {
+  COBRANZA_ONLINE_STORE_AUTOLOAD,
+  CobranzaOnlineStoreService,
+} from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ThemeService } from "@core/services/theme.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import {
   AppBreakdownList,
   type BreakdownItem,
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppRankedList } from "@ui/shared/ranked-list/ranked-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import {
-  DialogHandlerService,
-  DialogSize,
-} from "@core/services/dialog-handler.service";
-import { CobranzaOnlineComposicionReportesModal } from "@collections.luxuryapp/online-collections/analysis/cobranza-online-composicion-reportes-modal";
-import {
-  COBRANZA_ONLINE_STORE_AUTOLOAD,
-  CobranzaOnlineStoreService,
-} from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { ThemeService } from "@core/services/theme.service";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-analisis-cobranza-cliente",
@@ -66,7 +63,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 })
 export class AnalisisCobranzaClienteComponent {
   private readonly store = inject(CobranzaOnlineStoreService);
-  private readonly dialogS = inject(DialogHandlerService);
+  private readonly dialogHandlerS = inject(DialogHandlerService);
 
   readonly customerId = input.required<string>();
   readonly year = input.required<number>();
@@ -104,11 +101,11 @@ export class AnalisisCobranzaClienteComponent {
 
   async onOpenComposicionReportes() {
     try {
-      await this.dialogS.openDialog(
+      await this.dialogHandlerS.openDialog(
         CobranzaOnlineComposicionReportesModal,
         {},
         "Cómo se compone cada reporte",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       );
     } catch (error) {
       console.error("Error opening composition dialog", error);
@@ -550,5 +547,3 @@ export class AnalisisCobranzaClienteComponent {
     return name.replace(/^\d+-\d+-\d+(-\d+)?\s*-?\s*/, "");
   }
 }
-
-

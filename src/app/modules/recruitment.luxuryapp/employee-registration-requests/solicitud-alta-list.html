@@ -5,7 +5,8 @@
       <strong>PENDIENTE:</strong> Falta completar datos exprés.
     </div>
     <div class="col-12 col-md-3">
-      <strong>PROCESO:</strong> Ya se creó el empleado, falta llenar su Expediente y Concluir.
+      <strong>PROCESO:</strong> Ya se creó el empleado, falta llenar su
+      Expediente y Concluir.
     </div>
     <div class="col-12 col-md-3">
       <strong>CONCLUIDO:</strong> Alta finalizada exitosamente.
@@ -42,7 +43,9 @@
       <th>CLIENTE</th>
       <th>NOMBRE</th>
       <th>PUESTO</th>
-      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
+      <th appSortableColumn="status">
+        ESTATUS <app-sorticon field="status" />
+      </th>
       <th class="text-center">ENVÍO</th>
       <th class="text-center">DOC.</th>
       <th></th>
@@ -75,7 +78,7 @@
         {{ item.profession || item.applicationRole }}
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="requestStatusTagSeverity(item.status)"
         />
@@ -83,14 +86,14 @@
       <td class="text-center">
         <div class="d-flex justify-content-center">
           @if (item.isDocumentationSent) {
-          <lx-tag
+          <lux-tag
             value="Enviado a RRHH"
             severity="success"
             icon="material-symbols-light:mark-email-read"
             [tooltip]="documentationSentTooltip(item)"
           />
           } @else {
-          <lx-tag
+          <lux-tag
             value="No enviado"
             severity="warning"
             icon="material-symbols-light:send"
@@ -133,7 +136,14 @@
             variant="outline"
             (clicked)="onGoToEmployeeFile(item)"
           />
-          <il-button-confirm label="Concluir Alta" iconClass="material-symbols-light:check" severity="success" variant="solid" swalText="¿Estás seguro de concluir el alta del empleado administrativamente?" (confirmed)="onConcludeHiring(item.id)" />
+          <il-button-confirm
+            label="Concluir Alta"
+            iconClass="material-symbols-light:check"
+            severity="success"
+            variant="solid"
+            swalText="¿Estás seguro de concluir el alta del empleado administrativamente?"
+            (confirmed)="onConcludeHiring(item.id)"
+          />
           <il-button
             label="Abortar Alta"
             iconClass="material-symbols-light:cancel"
@@ -218,7 +228,13 @@
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
           />
-          <ili-button-confirm (confirmed)="onConcludeHiring(item.id)" swalText="¿Estás seguro de concluir el alta del empleado administrativamente?" label="Concluir Alta" iconClass="material-symbols-light:check" color="success" />
+          <ili-button-confirm
+            (confirmed)="onConcludeHiring(item.id)"
+            swalText="¿Estás seguro de concluir el alta del empleado administrativamente?"
+            label="Concluir Alta"
+            iconClass="material-symbols-light:check"
+            color="success"
+          />
           <ili-button
             (clicked)="onAbortHiring(item)"
             label="Abortar Alta"

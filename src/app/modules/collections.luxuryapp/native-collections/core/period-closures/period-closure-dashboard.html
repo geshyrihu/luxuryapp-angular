@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <lx-card class="card card--elevated mb-4">
+  <lux-card class="card card--elevated mb-4">
     <div class="p-3 bg-body-tertiary rounded border-1 border">
       <div class="fw-semibold mb-3 d-flex align-items-center gap-2">
         <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
@@ -48,14 +48,17 @@
           />
           } @else {
           <div class="d-flex align-items-center h-3rem gap-2">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-600" />
-            <lx-tag value="Período ya cerrado" severity="success" />
+            <app-icon
+              [icon]="'material-symbols-light:check-circle'"
+              class="text-green-600"
+            />
+            <lux-tag value="Período ya cerrado" severity="success" />
           </div>
           }
         </div>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 
   <app-table
     [value]="dataSignal()"
@@ -93,12 +96,22 @@
         <td class="text-center">{{ monthName(item.month) }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <lx-tag value="Cerrado" severity="danger" icon="material-symbols-light:lock" />
+          <lux-tag
+            value="Cerrado"
+            severity="danger"
+            icon="material-symbols-light:lock"
+          />
           } @else {
-          <lx-tag value="Abierto" severity="success" icon="material-symbols-light:lock-open" />
+          <lux-tag
+            value="Abierto"
+            severity="success"
+            icon="material-symbols-light:lock-open"
+          />
           }
         </td>
-        <td class="text-center text-sm">{{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
+        <td class="text-center text-sm">
+          {{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}
+        </td>
         <td class="text-sm">{{ item.closedBy }}</td>
         <td class="text-sm text-body-secondary">{{ item.closureNotes }}</td>
         <td class="text-center">
@@ -119,7 +132,9 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="7" class="text-center p-4 text-body-secondary">No hay períodos registrados.</td>
+        <td colspan="7" class="text-center p-4 text-body-secondary">
+          No hay períodos registrados.
+        </td>
       </tr>
     </ng-template>
   </app-table>
@@ -143,7 +158,10 @@
         </div>
         <div class="flex-fill min-w-0">
           <h3>{{ monthName(item.month) }} {{ item.year }}</h3>
-          <p>{{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por ' + item.closedBy : '' }}</p>
+          <p>
+            {{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por
+            ' + item.closedBy : '' }}
+          </p>
           @if (item.closedAt) {
           <p>{{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}</p>
           }

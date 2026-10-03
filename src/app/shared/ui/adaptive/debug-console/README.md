@@ -21,7 +21,7 @@ export class AppComponent {
 
   // En el template:
   // @if (debugConsole.showConsole()) {
-  //   <lx-debug-console [logs]="debugConsole.logs()" />
+  //   <lux-debug-console [logs]="debugConsole.logs()" />
   // }
 }
 ```
@@ -30,7 +30,7 @@ export class AppComponent {
 
 ```html
 @if (debugConsole.showConsole()) {
-  <lx-debug-console [logs]="debugConsole.logs()" />
+<lux-debug-console [logs]="debugConsole.logs()" />
 }
 
 <!-- O agregalo a la raíz para que siempre esté disponible -->
@@ -39,7 +39,7 @@ export class AppComponent {
 </main>
 
 @if (debugConsole.showConsole()) {
-  <lx-debug-console [logs]="debugConsole.logs()" />
+<lux-debug-console [logs]="debugConsole.logs()" />
 }
 ```
 
@@ -76,17 +76,20 @@ ngOnInit() {
 ## Ejemplo Real: Diagnosticar Error de Imagen en iPhone
 
 ### Paso 1: Activar en iPhone
+
 ```javascript
-localStorage.setItem('DEBUG_MODE', 'true');
+localStorage.setItem("DEBUG_MODE", "true");
 location.reload();
 ```
 
 ### Paso 2: Intentar subir foto
+
 - Abre el formulario de tickets
 - Selecciona foto de la galería
 - Observa los logs en pantalla
 
 ### Paso 3: Busca logs con `[IMAGE_PROCESS]` o `[COMPRESS]`
+
 ```
 [10:15:45] [LOG] [IMAGE_PROCESS] Iniciando compresión: 6.70MB → 5.00MB
 [10:15:46] [LOG] [COMPRESS] Dimensiones originales: 5600x3200px
@@ -94,6 +97,7 @@ location.reload();
 ```
 
 ### Paso 4: Reporta el error
+
 Toma screenshot de los logs o cópialo y envíalo.
 
 ## API
@@ -104,16 +108,16 @@ Toma screenshot de los logs o cópialo y envíalo.
 debugConsole.log("Mi mensaje");
 debugConsole.error("Error:", error);
 debugConsole.warn("Advertencia");
-debugConsole.showConsole.set(true);  // Mostrar consola
-debugConsole.toggleConsole();        // Toggle show/hide
-debugConsole.clearLogs();            // Limpiar logs
+debugConsole.showConsole.set(true); // Mostrar consola
+debugConsole.toggleConsole(); // Toggle show/hide
+debugConsole.clearLogs(); // Limpiar logs
 ```
 
 ### Propiedades
 
 ```typescript
-debugConsole.logs()        // Signal<LogEntry[]> - Array de logs
-debugConsole.showConsole() // Signal<boolean> - Mostrar/ocultar
+debugConsole.logs(); // Signal<LogEntry[]> - Array de logs
+debugConsole.showConsole(); // Signal<boolean> - Mostrar/ocultar
 ```
 
 ## Notas de Desarrollo
@@ -140,6 +144,7 @@ shared/ui/
 ## Solución Alternativa: Sentry
 
 Para producción a largo plazo, considera usar **Sentry.io**:
+
 - Captura errores automáticamente
 - Funciona en iOS/Android/web
 - Dashboard web para análisis

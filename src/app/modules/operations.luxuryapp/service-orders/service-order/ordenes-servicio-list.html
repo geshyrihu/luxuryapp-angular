@@ -10,7 +10,9 @@
   groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
-    <div class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3">
+    <div
+      class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3"
+    >
       <custom-input-text-signal
         [control]="fechaControl"
         type="month"
@@ -139,7 +141,7 @@
       <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
       <td>
         <div class="cursor-pointer font-center">
-          <lx-tag
+          <lux-tag
             [value]="item.typeMaintanceFilter"
             class="ms-auto"
             (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
@@ -153,12 +155,12 @@
       </td>
       <td>{{ item.isInternalExecution ? "Personal interno" : (item.provider || "Sin proveedor asignado") }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="getStatusLabel(item.status)"
           [severity]="getBadgeSeverity(item.status)"
         />
         @if (item.isSuspended) {
-        <lx-tag
+        <lux-tag
           value="Detenida"
           severity="warning"
           [lxTooltip]="item.suspensionReason || 'Suspendida'"
@@ -167,14 +169,14 @@
         }
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           (click)="onModalFotos(item.id)"
           [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderImg.length"
         />
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           (click)="onModalRpeorteProveedor(item.id)"
           [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderDocument.length"
@@ -272,7 +274,9 @@
         <div class="p-2" slot="content">
           <!-- Filtro de Fecha -->
           <div class="d-flex align-items-center mb-3">
-            <span class="fw-bold me-2">{{ filtroEquiposValue | titlecase }}</span>
+            <span class="fw-bold me-2"
+              >{{ filtroEquiposValue | titlecase }}</span
+            >
             <custom-input-text-signal
               [control]="fechaControl"
               name="fecha"
@@ -286,22 +290,42 @@
           <!-- Filtro de Equipos -->
           <div class="d-flex flex-wrap gap-2 mb-3">
             @for (item of filtroEquipos; track item) {
-              <ion-button size="small" [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'" (click)="onReloadOrdenes(item.id, item.nombre)">
-                <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
-                {{ item.nombre | titlecase }}
-              </ion-button>
+            <ion-button
+              size="small"
+              [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'"
+              (click)="onReloadOrdenes(item.id, item.nombre)"
+            >
+              <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+              {{ item.nombre | titlecase }}
+            </ion-button>
             }
           </div>
 
           <!-- Botones de Reporte -->
           <div class="d-flex flex-column gap-2">
-            <ion-button expand="block" fill="outline" (click)="onNavigateToReport()">Reporte de órdenes</ion-button>
-            <ion-button expand="block" fill="outline" (click)="onNavigateToReportTabla()">Reporte por categoría</ion-button>
-            <ion-button expand="block" fill="outline" (click)="onNavigateToReportPorEquipo()">Reporte por equipo</ion-button>
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="onNavigateToReport()"
+              >Reporte de órdenes</ion-button
+            >
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="onNavigateToReportTabla()"
+              >Reporte por categoría</ion-button
+            >
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="onNavigateToReportPorEquipo()"
+              >Reporte por equipo</ion-button
+            >
           </div>
-          
+
           <div class="text-end text-sm text-body-secondary mt-2">
-            Servicios Totales: <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong>
+            Servicios Totales:
+            <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong>
           </div>
         </div>
       </ion-accordion>
@@ -311,15 +335,30 @@
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <ion-item>
-      <ion-avatar slot="start" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
-        <app-icon icon="material-symbols-light:build" class="text-xl text-yellow-500"></app-icon>
+      <ion-avatar
+        slot="start"
+        style="
+          background: var(--ion-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <app-icon
+          icon="material-symbols-light:build"
+          class="text-xl text-yellow-500"
+        ></app-icon>
       </ion-avatar>
       <ion-label>
-        <h2 class="ion-text-wrap fw-bold m-0">{{ item.machineryId }} - {{ item.machinery }}</h2>
-        <p class="ion-text-wrap text-sm text-body-secondary mb-1">Folio: {{ item.folio || "Sin folio" }}</p>
-        
+        <h2 class="ion-text-wrap fw-bold m-0">
+          {{ item.machineryId }} - {{ item.machinery }}
+        </h2>
+        <p class="ion-text-wrap text-sm text-body-secondary mb-1">
+          Folio: {{ item.folio || "Sin folio" }}
+        </p>
+
         <div class="d-flex flex-wrap gap-1 mb-1">
-          <lx-tag
+          <lux-tag
             [value]="item.typeMaintanceFilter"
             [severity]="
               item.typeMaintanceFilter == 'Preventivo' ? 'success' :
@@ -327,20 +366,25 @@
               item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
             "
           />
-          <span class="text-xs text-body-secondary align-self-center">({{ item.isInternalExecution ? "Personal interno" : (item.provider || "Sin proveedor asignado") }})</span>
+          <span class="text-xs text-body-secondary align-self-center">
+            ({{ item.isInternalExecution ? "Personal interno" : (item.provider || "Sin proveedor asignado") }})
+          </span>
         </div>
-        
+
         <div class="d-flex flex-wrap gap-1">
-          <lx-tag [value]="getStatusLabel(item.status)" [severity]="getBadgeSeverity(item.status)" />
+          <lux-tag
+            [value]="getStatusLabel(item.status)"
+            [severity]="getBadgeSeverity(item.status)"
+          />
           @if (item.isSuspended) {
-            <lx-tag value="Detenida" severity="warning" />
+          <lux-tag value="Detenida" severity="warning" />
           }
-          <lx-tag
+          <lux-tag
             (click)="onModalFotos(item.id)"
             [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderImg.length + ' Fotos'"
           />
-          <lx-tag
+          <lux-tag
             (click)="onModalRpeorteProveedor(item.id)"
             [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderDocument.length + ' Reportes'"
@@ -350,16 +394,44 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item iconName="print-outline" label="Imprimir soporte" [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]" />
-          <ili-button-item iconName="image-outline" label="Cargar imagen" (clicked)="onModalFormUploadImg(item.id)" />
-          <ili-button-item iconName="ellipsis-horizontal-outline" label="Cargar documentos" (clicked)="onModalFormUploadDoc(item.id)" variant="outline" />
-          <ili-button-item iconName="chatbubbles-outline" label="Seguimiento" (clicked)="onModalSeguimiento(item.id)" />
+          <ili-button-item
+            iconName="print-outline"
+            label="Imprimir soporte"
+            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+          />
+          <ili-button-item
+            iconName="image-outline"
+            label="Cargar imagen"
+            (clicked)="onModalFormUploadImg(item.id)"
+          />
+          <ili-button-item
+            iconName="ellipsis-horizontal-outline"
+            label="Cargar documentos"
+            (clicked)="onModalFormUploadDoc(item.id)"
+            variant="outline"
+          />
+          <ili-button-item
+            iconName="chatbubbles-outline"
+            label="Seguimiento"
+            (clicked)="onModalSeguimiento(item.id)"
+          />
           @if (item.isSuspended) {
-            <ili-button-item iconName="play-circle-outline" label="Reanudar" (clicked)="onResume(item.id)" />
+          <ili-button-item
+            iconName="play-circle-outline"
+            label="Reanudar"
+            (clicked)="onResume(item.id)"
+          />
           } @else {
-            <ili-button-item iconName="pause-circle-outline" label="Suspender" (clicked)="onModalSuspension(item)" />
+          <ili-button-item
+            iconName="pause-circle-outline"
+            label="Suspender"
+            (clicked)="onModalSuspension(item)"
+          />
           }
-          <ili-button-edit (clicked)="onEdit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })" label="Editar" />
+          <ili-button-edit
+            (clicked)="onEdit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })"
+            label="Editar"
+          />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>

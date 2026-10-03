@@ -4,14 +4,18 @@ import {
   computed,
   input,
 } from "@angular/core";
-import { LxTimeline } from "@ui/adaptive/timeline/timeline";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
+import { LxTimeline } from "@ui/adaptive/timeline/timeline";
 import { CandidateStageHistoryItem } from "../candidates/candidate-applications/interfaces/candidate-application";
 import { CANDIDATE_PROCESS_STAGE_LABELS } from "./candidate-stage-labels";
 
 @Component({
   selector: "app-candidate-stage-timeline",
-  template: `<lx-timeline [events]="events()" align="left" layout="vertical" />`,
+  template: `<lux-timeline
+    [events]="events()"
+    align="left"
+    layout="vertical"
+  />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LxTimeline],
 })
@@ -31,7 +35,9 @@ export class CandidateStageTimeline {
       })),
   );
 
-  private stageLabel(stage: CandidateProcessStage | string | undefined): string {
+  private stageLabel(
+    stage: CandidateProcessStage | string | undefined,
+  ): string {
     if (!stage) return "Inicio";
 
     if (typeof stage === "number") {
@@ -46,5 +52,3 @@ export class CandidateStageTimeline {
     return new Date(iso).toLocaleString();
   }
 }
-
-

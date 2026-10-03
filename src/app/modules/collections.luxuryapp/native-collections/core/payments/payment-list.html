@@ -10,7 +10,9 @@
     #dt
   >
     <ng-template #caption>
-      <div class="d-flex align-items-end justify-content-between flex-wrap mb-4">
+      <div
+        class="d-flex align-items-end justify-content-between flex-wrap mb-4"
+      >
         <app-table-caption
           title="Cobranza y Recepción de Pagos (Motor Nativo)"
           (add)="onModalForm()"
@@ -69,7 +71,7 @@
           </span>
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="paymentStatusMeta(item).label"
             [severity]="paymentStatusMeta(item).severity"
           />

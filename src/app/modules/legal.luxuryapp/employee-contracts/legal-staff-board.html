@@ -1,5 +1,7 @@
 <div class="legal-staff-board">
-  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3 mb-3 g-4">
+  <div
+    class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3 mb-3 g-4"
+  >
     <div>
       <h2 class="m-0 text-xl fw-semibold">Empleados Activos y Contratos</h2>
       <p class="text-body-secondary m-0 text-sm">
@@ -42,13 +44,9 @@
         <td>
           <div class="d-flex align-items-center gap-2">
             @if (item.photoUrl) {
-            <lx-avatar
-              [image]="item.photoUrl"
-              shape="circle"
-              size="large"
-            />
+            <lux-avatar [image]="item.photoUrl" shape="circle" size="large" />
             } @else {
-            <lx-avatar
+            <lux-avatar
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
@@ -57,7 +55,9 @@
             <div class="d-flex flex-column">
               <span class="fw-semibold">{{ item.fullName }}</span>
               @if (item.workPositionName) {
-              <small class="text-body-secondary">{{ item.workPositionName }}</small>
+              <small class="text-body-secondary"
+                >{{ item.workPositionName }}</small
+              >
               }
             </div>
           </div>
@@ -65,14 +65,14 @@
 
         <td class="text-center">
           @if (item.hasActiveContract) {
-          <lx-tag
+          <lux-tag
             severity="success"
             value="Contrato Activo"
             icon="material-symbols-light:check-circle"
             rounded
           />
           } @else {
-          <lx-tag
+          <lux-tag
             severity="secondary"
             value="Sin Contrato Activo"
             icon="material-symbols-light:help-outline"

@@ -6,8 +6,18 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { addIcons } from "ionicons";
 import {
@@ -23,17 +33,13 @@ import {
   syncOutline,
   timeOutline,
 } from "ionicons/icons";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogConfig,
-} from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { SwalService } from "@core/services/swal.service";
+import {
+  TaskAdditionalImage,
+  TaskFollowUpEvidenceImage,
+  TaskFollowUpItem,
+  TaskResponsible,
+} from "../shared/interfaces/task-refactor.interface";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskProgram } from "../task-program";
@@ -41,12 +47,6 @@ import { TaskReopen } from "../task-reopen";
 import { TaskChecklistPanel } from "./task-checklist-panel/task-checklist-panel";
 import { TaskForm } from "./task-form";
 import { TaskJustificationPanel } from "./task-justification-panel/task-justification-panel";
-import {
-  TaskAdditionalImage,
-  TaskFollowUpEvidenceImage,
-  TaskFollowUpItem,
-  TaskResponsible,
-} from "../shared/interfaces/task-refactor.interface";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",
@@ -163,7 +163,9 @@ export class TaskView implements OnInit {
   }
 
   hasEvidence(): boolean {
-    return Object.values(this.evidenceImages()).some((images) => images.length > 0);
+    return Object.values(this.evidenceImages()).some(
+      (images) => images.length > 0,
+    );
   }
   onModalForm(data: any) {
     this.dialogHandlerS

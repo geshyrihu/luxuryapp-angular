@@ -1,8 +1,10 @@
 <div class="d-flex flex-column gap-4">
-  <lx-card class="shadow-sm" [elevated]="true">
+  <lux-card class="shadow-sm" [elevated]="true">
     <ng-template #header>
       <div class="d-flex flex-column p-4 border-bottom-1 border">
-        <div class="text-xs text-uppercase fw-bold tracking-wider text-body-secondary">
+        <div
+          class="text-xs text-uppercase fw-bold tracking-wider text-body-secondary"
+        >
           Mantenimiento de Base de Datos
         </div>
         <h4 class="m-0 text-body">Scripts de mantenimiento</h4>
@@ -31,7 +33,7 @@
 
     <div class="row g-4">
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillMeetingFolios()"
@@ -50,29 +52,36 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRecalculateElevatorFolios()"
         >
           <div class="d-flex align-items-start gap-3">
-            <div class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-blue-50 text-2xl">EL</div>
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-blue-50 text-2xl"
+            >
+              EL
+            </div>
             <div class="d-flex flex-column gap-1">
-              <div class="fw-bold text-body">Recalcular folios de elevadores</div>
+              <div class="fw-bold text-body">
+                Recalcular folios de elevadores
+              </div>
               <div class="text-xs text-body-secondary line-height-2">
-                Corrige folios de llamados de emergencia y cambios de refacciones con formato RFC-NNNN.
+                Corrige folios de llamados de emergencia y cambios de
+                refacciones con formato RFC-NNNN.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillServiceOrderFolios()"
@@ -92,11 +101,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRepairServiceOrderFolios()"
@@ -112,33 +121,41 @@
                 Reparar folios de Órdenes de Servicio
               </div>
               <div class="text-xs text-body-secondary line-height-2">
-                Conserva un folio por grupo duplicado y reasigna los demás. No modifica IDs ni relaciones.
+                Conserva un folio por grupo duplicado y reasigna los demás. No
+                modifica IDs ni relaciones.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRepairPurchaseOrderFolios()"
         >
           <div class="d-flex align-items-start gap-3">
-            <div class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-orange-50 text-2xl">OC</div>
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-orange-50 text-2xl"
+            >
+              OC
+            </div>
             <div class="d-flex flex-column gap-1">
-              <div class="fw-bold text-body">Reparar folios de Órdenes de Compra</div>
+              <div class="fw-bold text-body">
+                Reparar folios de Órdenes de Compra
+              </div>
               <div class="text-xs text-body-secondary line-height-2">
-                Conserva un folio por grupo duplicado y reasigna los demás. No modifica IDs ni relaciones.
+                Conserva un folio por grupo duplicado y reasigna los demás. No
+                modifica IDs ni relaciones.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateCoiAspel()"
@@ -156,47 +173,59 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRepairPurchaseRequestFolios()"
         >
           <div class="d-flex align-items-start gap-3">
-            <div class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-red-50 text-2xl">SC</div>
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-red-50 text-2xl"
+            >
+              SC
+            </div>
             <div class="d-flex flex-column gap-1">
-              <div class="fw-bold text-body">Reparar folios de Solicitudes de Compra</div>
+              <div class="fw-bold text-body">
+                Reparar folios de Solicitudes de Compra
+              </div>
               <div class="text-xs text-body-secondary line-height-2">
-                Conserva un folio por grupo duplicado y reasigna los demas. No modifica IDs ni relaciones.
+                Conserva un folio por grupo duplicado y reasigna los demas. No
+                modifica IDs ni relaciones.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedLegacyWorkPositionSchedules()"
         >
           <div class="d-flex align-items-start gap-3">
-            <div class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-teal-50 text-2xl">WH</div>
+            <div
+              class="d-flex h-3rem w-3rem flex-shrink-0 align-items-center justify-content-center rounded-xl bg-teal-50 text-2xl"
+            >
+              WH
+            </div>
             <div class="d-flex flex-column gap-1">
               <div class="fw-bold text-body">Recuperar horarios históricos</div>
               <div class="text-xs text-body-secondary line-height-2">
-                Carga los horarios del CSV por WorkPosition y repite la semana disponible en las cuatro semanas del ciclo.
+                Carga los horarios del CSV por WorkPosition y repite la semana
+                disponible en las cuatro semanas del ciclo.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runCapitalizeUserNames()"
@@ -217,11 +246,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runImportAsambleaChecklistCatalog()"
@@ -242,11 +271,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runReseedNativeChargeTypeCatalogs()"
@@ -267,11 +296,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillHistoricalMeetingTimes()"
@@ -293,11 +322,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillAgendaEventsFromMeetings()"
@@ -318,11 +347,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runResyncGoogleCalendarEventTimes()"
@@ -344,11 +373,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateUserActivitiesToLogsDb()"
@@ -369,11 +398,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedRecruitmentSources()"
@@ -394,11 +423,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRecalculateWorkPositionFolios()"
@@ -419,11 +448,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedDocumentCatalogs()"
@@ -444,11 +473,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedServiceOrderSuspensionReasons()"
@@ -464,15 +493,16 @@
                 Sembrar motivos de suspensión de OS
               </div>
               <div class="text-xs text-body-secondary line-height-2">
-                Crea los motivos base (Falta de presupuesto, refacciones, etc.) por cliente activo si no existen.
+                Crea los motivos base (Falta de presupuesto, refacciones, etc.)
+                por cliente activo si no existen.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateFireProtectionAssets()"
@@ -494,11 +524,11 @@
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <lx-card
+        <lux-card
           class="cursor-pointer h-full d-block"
           class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedFederalLaborLawParameters()"
@@ -510,16 +540,15 @@
               LF
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="fw-bold text-body">
-                Sembrar Parámetros de la LFT
-              </div>
+              <div class="fw-bold text-body">Sembrar Parámetros de la LFT</div>
               <div class="text-xs text-body-secondary line-height-2">
-                Inyecta las métricas actuales de Ley Federal de Trabajo (Aguinaldo 15 días, Primas 25%) para 2025, 2026 y 2027.
+                Inyecta las métricas actuales de Ley Federal de Trabajo
+                (Aguinaldo 15 días, Primas 25%) para 2025, 2026 y 2027.
               </div>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 </div>

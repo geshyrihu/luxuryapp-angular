@@ -6,15 +6,15 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { MeetingEmailDispatch } from "@core/interfaces/meeting-email-dispatch.interface";
+import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import {
   AreaDetailsTable,
   DetailEvent,
@@ -25,7 +25,13 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [WebButtonLabel, AppIcon, RouterModule, AreaDetailsTable, ApiDatePipe],
+  imports: [
+    WebButtonLabel,
+    AppIcon,
+    RouterModule,
+    AreaDetailsTable,
+    ApiDatePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
   styleUrl: "./meeting-management.scss",

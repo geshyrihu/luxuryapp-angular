@@ -1,10 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <lx-card>
+  <lux-card>
     <div class="card-body mt-2">
       @if (!selectedTemplate) {
 
-      <lx-message severity="info"
-        >Seleccione un empleado y una plantilla para comenzar.</lx-message
+      <lux-message severity="info"
+        >Seleccione un empleado y una plantilla para comenzar.</lux-message
       >
       <!-- Fila para los selectores de Empleado y Plantilla -->
       <div class="row mb-4 g-4">
@@ -32,7 +32,7 @@
           />
         </div>
       </div>
-      <lx-divider />
+      <lux-divider />
 
       }
 
@@ -42,11 +42,11 @@
       -->
       @if (selectedTemplate) {
       <div class="mb-4">
-        <lx-message severity="secondary">
+        <lux-message severity="secondary">
           <span class="text-xl fw-bold">
             {{ evaluatedEmployeeName }} | {{ selectedTemplate.name }}</span
           >
-        </lx-message>
+        </lux-message>
 
         <!--
           Contenedor para el FormArray de respuestas.
@@ -102,5 +102,5 @@
     @if (selectedTemplate) {
     <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     }
-  </lx-card>
+  </lux-card>
 </form>

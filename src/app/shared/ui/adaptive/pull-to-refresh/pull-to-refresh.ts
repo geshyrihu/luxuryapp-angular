@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
 import { MobilePullToRefresh } from "@ui/mobile/pull-to-refresh/pull-to-refresh";
 import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-pull-to-refresh",
+  selector: "lux-pull-to-refresh",
 
   imports: [NgTemplateOutlet, PullToRefresh, MobilePullToRefresh],
   template: `
@@ -27,4 +27,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxPullToRefresh extends PullToRefreshBase {
   protected platform = inject(PlatformService);
 }
-

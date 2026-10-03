@@ -4,9 +4,7 @@
   <div class="d-flex flex-wrap align-items-end">
     <!-- Filtro por email -->
     <div class="d-flex flex-column gap-1">
-      <label class="text-sm fw-medium text-body-secondary"
-        >Destinatario</label
-      >
+      <label class="text-sm fw-medium text-body-secondary">Destinatario</label>
       <custom-input-text-signal
         [(ngModel)]="filtroEmail"
         [ngModelOptions]="{ standalone: true }"
@@ -76,7 +74,9 @@
 >
   <ng-template #header>
     <tr>
-      <th appSortableColumn="email">Destinatario <app-sorticon field="email" /></th>
+      <th appSortableColumn="email">
+        Destinatario <app-sorticon field="email" />
+      </th>
       <th>Asunto</th>
       <th>Estado</th>
       <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
@@ -104,7 +104,7 @@
 
       <!-- Estado / Evento -->
       <td>
-        <lx-tag
+        <lux-tag
           [value]="etiquetaEvento(log.event)"
           [severity]="severidadEvento(log.event)"
         />
@@ -150,12 +150,12 @@
   <ng-template #loadingbody>
     @for (i of [1, 2, 3, 4, 5]; track i) {
     <tr>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton width="90px" /></td>
-      <td><lx-skeleton width="120px" /></td>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton width="60px" /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton width="90px" /></td>
+      <td><lux-skeleton width="120px" /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton width="60px" /></td>
     </tr>
     }
   </ng-template>

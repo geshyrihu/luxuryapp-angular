@@ -24,26 +24,26 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppTable,
-  AppSortableColumn,
-  AppSorticon,
-  AppTableCheckbox,
-} from "@ui/web/table/table";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   BulkUpdateTipoGastoDto,
   SatCfdiDto,
   SatDownloadRequestDto,
   SatFundingDetailDto,
 } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+  AppTableCheckbox,
+} from "@ui/web/table/table";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 
 @Component({
@@ -198,5 +198,3 @@ export class SatFundingDetailComponent implements OnInit {
       });
   }
 }
-
-

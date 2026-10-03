@@ -7,18 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { EmptyState } from "@ui/web/empty-state/empty-state";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { addIcons } from "ionicons";
-import {
-  chatbubblesOutline,
-  lockClosedOutline,
-  lockOpenOutline,
-  mailOutline,
-  peopleOutline,
-} from "ionicons/icons";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -34,6 +22,18 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupParticipant } from "@operations.luxuryapp/task/tasks/participants/task-group-participant";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { addIcons } from "ionicons";
+import {
+  chatbubblesOutline,
+  lockClosedOutline,
+  lockOpenOutline,
+  mailOutline,
+  peopleOutline,
+} from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
@@ -52,8 +52,8 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 @Component({
   selector: "app-task-group-list",
@@ -244,5 +244,3 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
-
-

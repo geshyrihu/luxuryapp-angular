@@ -7,17 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import * as ExcelJS from "exceljs";
-import { saveAs } from "file-saver";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
@@ -28,8 +17,19 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SwalService } from "@core/services/swal.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import * as ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";

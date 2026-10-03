@@ -1,9 +1,10 @@
-<div
-  class="card p-4 shadow-sm rounded-2xl border-1 border bg-body-tertiary"
->
+<div class="card p-4 shadow-sm rounded-2xl border-1 border bg-body-tertiary">
   @if (loading) {
   <div class="text-center">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
+    <app-icon
+      [icon]="'material-symbols-light:progress-activity'"
+      class="text-4xl"
+    />
     <p>Cargando detalle...</p>
   </div>
   } @else if (data) {
@@ -20,10 +21,10 @@
   <div class="row mb-2 g-4">
     <div class="col-4 fw-bold">Estado</div>
     <div class="col-8">
-      <lx-tag
+      <lux-tag
         [value]="data.status"
         [severity]="getStatusSeverity(data.status)"
-      ></lx-tag>
+      ></lux-tag>
     </div>
   </div>
 

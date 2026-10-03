@@ -540,7 +540,6 @@
     <ng-template #body let-item>
       @if (item.esFilaAgrupadora) {
       <tr
-
         [class.fila-nivel-1]="viewMode() === 'normal' && item.nivelCuenta === 1 && item.esFilaAgrupadora"
         [class.fila-nivel-2-agrupadora]="viewMode() === 'normal' && item.nivelCuenta === 2 && item.esFilaAgrupadora"
         [class.fila-vista-agregada]="viewMode() !== 'normal'"
@@ -571,7 +570,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ getAverageMonthlyExpense(item) | number: "1.0-0" }}
         </td>
@@ -580,7 +578,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ item.currentAmount | number: "1.0-0" }}
         </td>
@@ -589,7 +586,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ item.currentAmount * 12 | number: "1.0-0" }}
         </td>
@@ -597,7 +593,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ item.proposedAmount | number: "1.0-0" }}
         </td>
@@ -606,7 +601,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ item.proposedAmount * 12 | number: "1.0-0" }}
         </td>
@@ -614,7 +608,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ getItemDifference(item) | number: "1.0-0" }}
         </td>
@@ -622,7 +615,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="text-end numeric-column fw-semibold"
-
         >
           {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
         </td>
@@ -673,9 +665,8 @@
                 (click)="deleteItem(item)"
                 lxTooltip="Eliminar cuenta"
                 >🗑️</span
-              >}
-
-              @if (currentProposal()?.status === 'Borrador' || item.isFinalized) {
+              >} @if (currentProposal()?.status === 'Borrador' ||
+              item.isFinalized) {
               <span
                 class="pointer me-1 text-xs px-1 rounded border border-solid"
                 [class.text-green-700]="item.isFinalized"
@@ -713,14 +704,14 @@
             >
               <!-- Indicadores visuales de Auditoría -->
               @if (isDeficit(item)) {
-              <lx-tag
+              <lux-tag
                 value="Déficit"
                 severity="danger"
                 class="text-xs ms-1"
                 lxTooltip="Déficit: Propuesta menor al gasto promedio"
               />
               } @if (isHighIncrease(item)) {
-              <lx-tag
+              <lux-tag
                 value="Incremento"
                 severity="warn"
                 class="text-xs ms-1"
@@ -753,11 +744,10 @@
             [class.text-red-700]="gastoExcedePresupuesto(item, month)"
             [class.bg-red-50]="gastoExcedePresupuesto(item, month)"
           >
-            @if(gastoExcedePresupuesto(item, month)) { 
-              {{ getGastoDelMes(item, month) | number: "1.0-0" }} 
-            } @else if (getGastoDelMes(item, month) > 0) {
-              {{ getGastoDelMes(item, month) | number: "1.0-0" }} 
-            } @else { - }
+            @if(gastoExcedePresupuesto(item, month)) { {{ getGastoDelMes(item,
+            month) | number: "1.0-0" }} } @else if (getGastoDelMes(item, month)
+            > 0) { {{ getGastoDelMes(item, month) | number: "1.0-0" }} } @else {
+            - }
           </span>
         </td>
         }
@@ -802,7 +792,7 @@
               (keydown.enter)="updateProposalItem(item)"
               (ngModelChange)="onProposedAmountChange(item)"
               [disabled]="currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora"
-              style="min-width: 80px;"
+              style="min-width: 80px"
             />
             <button
               class="btn btn-outline-secondary d-flex align-items-center justify-content-center px-2"
@@ -811,7 +801,10 @@
               [disabled]="currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora"
               title="Guardar cambio"
             >
-              <app-icon icon="material-symbols-light:save-outline" class="text-lg" />
+              <app-icon
+                icon="material-symbols-light:save-outline"
+                class="text-lg"
+              />
             </button>
           </div>
         </td>
@@ -1025,7 +1018,7 @@
 -->
 
 <!-- Dialogo para Alertas > 5% -->
-<lx-modal
+<lux-modal
   [visible]="showHighIncreaseModal()"
   (visibleChange)="showHighIncreaseModal.set($event)"
 >
@@ -1071,4 +1064,4 @@
       </ng-template>
     </app-table>
   </div>
-</lx-modal>
+</lux-modal>

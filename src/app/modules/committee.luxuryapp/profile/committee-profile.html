@@ -1,6 +1,6 @@
 <div class="committee-profile-page">
   <!-- Foto de perfil -->
-  <lx-card>
+  <lux-card>
     <div class="committee-avatar">
       <div class="committee-avatar__ring">
         <img
@@ -28,18 +28,21 @@
       <input
         #fileInput
         type="file"
-      accept="image/*,.heic,.heif"
+        accept="image/*,.heic,.heif"
         hidden
         (change)="onFileSelected($event)"
       />
     </div>
-  </lx-card>
+  </lux-card>
 
   <!-- Cambiar contraseña -->
-  <lx-card>
+  <lux-card>
     <div class="committee-form">
       <div class="committee-form__header">
-        <app-icon icon="material-symbols-light:lock" class="committee-form__icon" />
+        <app-icon
+          icon="material-symbols-light:lock"
+          class="committee-form__icon"
+        />
         <span class="committee-form__title">Cambiar contraseña</span>
       </div>
 
@@ -67,5 +70,5 @@
         (clicked)="updatePassword()"
       />
     </div>
-  </lx-card>
+  </lux-card>
 </div>

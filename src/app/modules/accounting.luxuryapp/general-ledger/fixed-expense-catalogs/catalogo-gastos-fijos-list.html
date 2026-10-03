@@ -98,30 +98,30 @@
     <!-- Indicador de estado del fondeo para el mes seleccionado -->
     @if (selectedMonthName() && selectedFundingStatus()) { @if
     (selectedFundingStatus()!.firstQNA?.isVerified) {
-    <lx-message severity="warn" class="mb-1"
+    <lux-message severity="warn" class="mb-1"
       >1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se
-      pueden generar órdenes de compra.</lx-message
+      pueden generar órdenes de compra.</lux-message
     >
     } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
-    <lx-message severity="success" class="mb-1"
-      >1ra Quincena de {{ selectedMonthName() }} esté confirmada.</lx-message
+    <lux-message severity="success" class="mb-1"
+      >1ra Quincena de {{ selectedMonthName() }} esté confirmada.</lux-message
     >
     } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
-    <lx-message severity="info" class="mb-1"
-      >1ra Quincena de {{ selectedMonthName() }} esté autorizada.</lx-message
+    <lux-message severity="info" class="mb-1"
+      >1ra Quincena de {{ selectedMonthName() }} esté autorizada.</lux-message
     >
     } @if (selectedFundingStatus()!.secondQNA?.isVerified) {
-    <lx-message severity="warn" class="mb-1"
+    <lux-message severity="warn" class="mb-1"
       >2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se
-      pueden generar órdenes de compra.</lx-message
+      pueden generar órdenes de compra.</lux-message
     >
     } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
-    <lx-message severity="success" class="mb-1"
-      >2da Quincena de {{ selectedMonthName() }} esté confirmada.</lx-message
+    <lux-message severity="success" class="mb-1"
+      >2da Quincena de {{ selectedMonthName() }} esté confirmada.</lux-message
     >
     } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
-    <lx-message severity="info" class="mb-1"
-      >2da Quincena de {{ selectedMonthName() }} esté autorizada.</lx-message
+    <lux-message severity="info" class="mb-1"
+      >2da Quincena de {{ selectedMonthName() }} esté autorizada.</lux-message
     >
     } }
 
@@ -168,9 +168,7 @@
           class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
           >3</span
         >
-        <span class="text-sm fw-medium fw-bold"
-          >Presionar botón Generar</span
-        >
+        <span class="text-sm fw-medium fw-bold">Presionar botón Generar</span>
       </div>
     </div>
   </ng-template>
@@ -178,7 +176,7 @@
     <tr>
       <th class="table-col-10">
         <div class="d-flex align-items-center justify-content-center">
-          <lx-checkbox
+          <lux-checkbox
             [checked]="isAllSelected()"
             (checkedChange)="toggleSelectAll($event)"
           />
@@ -215,7 +213,7 @@
   <ng-template #body let-item>
     <tr>
       <td class="text-center">
-        <lx-checkbox
+        <lux-checkbox
           [checked]="item.crearOrdenCompra"
           (checkedChange)="onItemCheckChange(item, $event)"
         />
@@ -269,7 +267,7 @@
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <div class="d-flex d-md-none flex-column h-screen overflow-hidden">
   <div class="px-2 pt-2 flex-none">
-    <lx-accordion
+    <lux-accordion
       [items]="genAccordionItems"
       [(expandedIds)]="genExpanded"
       class="mb-2 d-block"
@@ -288,7 +286,7 @@
         ></ion-input-select>
 
         <p class="mb-1 text-sm fw-bold ms-1">Mes de Fondeo</p>
-        <lx-tabs
+        <lux-tabs
           [tabs]="monthTabs()"
           [activeId]="selectedMonthName() ?? ''"
           (tabChange)="selectMonth($event.id)"
@@ -319,7 +317,7 @@
           </div>
         </div>
       </div>
-    </lx-accordion>
+    </lux-accordion>
 
     <!-- Quick Selection Actions -->
     <div class="d-flex justify-content-between mb-2">

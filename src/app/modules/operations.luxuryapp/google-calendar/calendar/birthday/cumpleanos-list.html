@@ -35,7 +35,7 @@
           <p class="m-0 text-body-secondary">{{ item.applicationRole }}</p>
 
           <div class="mt-3 d-flex justify-content-end gap-2">
-            <lx-tag [value]="item.date" severity="info"  />
+            <lux-tag [value]="item.date" severity="info" />
           </div>
         </div>
       </div>
@@ -73,7 +73,9 @@
   @if (dataSignal().length > 0) {
   <div class="bg-body mb-3 rounded">
     @for (item of dataSignal(); track item) {
-    <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
+    <div
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+    >
       <div class="me-3">
         <img [src]="item.photo || 'assets/images/default-avatar.png'" />
       </div>
@@ -83,9 +85,7 @@
           {{ item.applicationRole }}
         </p>
       </span>
-      <span class="text-sm fw-bold">
-        {{ item.date }}
-      </span>
+      <span class="text-sm fw-bold"> {{ item.date }} </span>
     </div>
     }
   </div>
@@ -94,10 +94,12 @@
   <div
     class="d-flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
   >
-    <app-icon [icon]="'material-symbols-light:redeem'" class="text-6xl mb-3 text-body-secondary" />
+    <app-icon
+      [icon]="'material-symbols-light:redeem'"
+      class="text-6xl mb-3 text-body-secondary"
+    />
     <h3 class="text-lg m-0 text-body-secondary">Sin cumpleAños</h3>
     <p class="text-sm m-0">No hay celebraciones este mes.</p>
   </div>
   }
 </div>
-

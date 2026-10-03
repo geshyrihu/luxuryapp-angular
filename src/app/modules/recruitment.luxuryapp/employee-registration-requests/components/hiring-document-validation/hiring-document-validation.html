@@ -7,105 +7,101 @@
     </p>
   </div>
 
-  <lx-divider />
+  <lux-divider />
 
   @if (isLoading()) {
-    <p class="m-0 text-body-secondary">Cargando documentos...</p>
+  <p class="m-0 text-body-secondary">Cargando documentos...</p>
   } @else {
-    <div class="row mt-3 g-4">
-      @for (row of documentRows(); track row.option.value) {
-        <div class="col-12 col-md-3">
-          <lx-fieldset
-            [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
-            [toggleable]="true"
-            [collapsed]="false"
-            class="mb-2"
-          >
-            @if (row.option.isMandatory) {
-              <lx-tag
-                value="Obligatorio"
-                severity="danger"
-                class="text-xs mb-2"
-              />
-            }
-            @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
-              <div class="d-flex flex-column gap-2">
-                <p class="text-body-secondary text-sm italic m-0">Sin archivo cargado</p>
-                <input
-                  type="file"
-                  #fileInput
-                  hidden
-                  accept="application/pdf,.pdf"
-                  (change)="onUpload(row, $event)"
-                />
-                <il-button
-                  label="Subir archivo"
-                  iconClass="material-symbols-light:upload-file"
-                  [disabled]="uploadingId() !== null"
-                  [loading]="uploadingId() === row.option.value"
-                  (clicked)="fileInput.click()"
-                />
-              </div>
-            } @else {
-              <div class="document-card">
-                <div class="document-card__row">
-                  <div class="d-flex align-items-center gap-2 document-card__pdf">
-                    <il-button-view-pdf
-                      [url]="row.document?.fileUrl"
-                      [fileName]="row.option.label"
-                    />
-                    @if (!row.document?.isValidated) {
-                      <iw-button
-                        iconClass="material-symbols-light:delete"
-                        severity="danger"
-                        [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"
-                        [loading]="deletingId() === row.document?.id"
-                        (clicked)="onDeleteFile(row.document)"
-                      />
-                    }
-                  </div>
-                  <lx-tag
-                    [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
-                    [severity]="row.document?.isValidated ? 'success' : 'warning'"
-                    class="text-xs"
-                  />
-                </div>
-
-                @if (!row.document?.isValidated) {
-                  <div class="d-flex gap-2 align-items-center">
-                    <il-button-confirm
-                      label="Validar documento"
-                      variant="solid"
-                      severity="success"
-                      swalText="¿Seguro que deseas validar este documento?"
-                      [disabled]="validatingId() !== null || rejectingId() !== null"
-                      [loading]="validatingId() === row.document?.id"
-                      (confirmed)="onValidate(row.document)"
-                    />
-                    <iw-button
-                      iconClass="material-symbols-light:cancel"
-                      severity="danger"
-                      [disabled]="validatingId() !== null || rejectingId() !== null"
-                      [loading]="rejectingId() === row.document?.id"
-                      (clicked)="onReject(row.document)"
-                    />
-                  </div>
-
-                  @if (row.document?.validationNotes) {
-                    <p class="text-sm text-red-500 m-0">
-                      Motivo del rechazo: {{ row.document?.validationNotes }}
-                    </p>
-                  }
-                } @else {
-                  <p class="text-body-secondary text-sm m-0">
-                    Validado por {{ row.document?.validatedByUserName || "—" }}
-                  </p>
-                }
-              </div>
-            }
-          </lx-fieldset>
+  <div class="row mt-3 g-4">
+    @for (row of documentRows(); track row.option.value) {
+    <div class="col-12 col-md-3">
+      <lux-fieldset
+        [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
+        [toggleable]="true"
+        [collapsed]="false"
+        class="mb-2"
+      >
+        @if (row.option.isMandatory) {
+        <lux-tag value="Obligatorio" severity="danger" class="text-xs mb-2" />
+        } @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
+        <div class="d-flex flex-column gap-2">
+          <p class="text-body-secondary text-sm italic m-0">
+            Sin archivo cargado
+          </p>
+          <input
+            type="file"
+            #fileInput
+            hidden
+            accept="application/pdf,.pdf"
+            (change)="onUpload(row, $event)"
+          />
+          <il-button
+            label="Subir archivo"
+            iconClass="material-symbols-light:upload-file"
+            [disabled]="uploadingId() !== null"
+            [loading]="uploadingId() === row.option.value"
+            (clicked)="fileInput.click()"
+          />
         </div>
-      }
+        } @else {
+        <div class="document-card">
+          <div class="document-card__row">
+            <div class="d-flex align-items-center gap-2 document-card__pdf">
+              <il-button-view-pdf
+                [url]="row.document?.fileUrl"
+                [fileName]="row.option.label"
+              />
+              @if (!row.document?.isValidated) {
+              <iw-button
+                iconClass="material-symbols-light:delete"
+                severity="danger"
+                [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"
+                [loading]="deletingId() === row.document?.id"
+                (clicked)="onDeleteFile(row.document)"
+              />
+              }
+            </div>
+            <lux-tag
+              [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
+              [severity]="row.document?.isValidated ? 'success' : 'warning'"
+              class="text-xs"
+            />
+          </div>
+
+          @if (!row.document?.isValidated) {
+          <div class="d-flex gap-2 align-items-center">
+            <il-button-confirm
+              label="Validar documento"
+              variant="solid"
+              severity="success"
+              swalText="¿Seguro que deseas validar este documento?"
+              [disabled]="validatingId() !== null || rejectingId() !== null"
+              [loading]="validatingId() === row.document?.id"
+              (confirmed)="onValidate(row.document)"
+            />
+            <iw-button
+              iconClass="material-symbols-light:cancel"
+              severity="danger"
+              [disabled]="validatingId() !== null || rejectingId() !== null"
+              [loading]="rejectingId() === row.document?.id"
+              (clicked)="onReject(row.document)"
+            />
+          </div>
+
+          @if (row.document?.validationNotes) {
+          <p class="text-sm text-red-500 m-0">
+            Motivo del rechazo: {{ row.document?.validationNotes }}
+          </p>
+          } } @else {
+          <p class="text-body-secondary text-sm m-0">
+            Validado por {{ row.document?.validatedByUserName || "—" }}
+          </p>
+          }
+        </div>
+        }
+      </lux-fieldset>
     </div>
+    }
+  </div>
   }
 </div>

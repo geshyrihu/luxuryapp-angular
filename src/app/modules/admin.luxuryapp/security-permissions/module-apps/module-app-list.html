@@ -41,19 +41,19 @@
           <app-sorticon field="nameModule" />
         </th>
         <th appSortableColumn="label">
-           Etiqueta
+          Etiqueta
           <app-sorticon field="label" />
         </th>
         <th appSortableColumn="icon">
-           Icono
+          Icono
           <app-sorticon field="icon" />
         </th>
         <th appSortableColumn="routerLink">
-           Enlace de ruta
+          Enlace de ruta
           <app-sorticon field="routerLink" />
         </th>
         <th appSortableColumn="viewMobil">
-           Módulo móvil
+          Módulo móvil
           <app-sorticon field="viewMobil" />
         </th>
         <th appSortableColumn="rolLevel">
@@ -71,7 +71,7 @@
         <td>{{ item.icon }}</td>
         <td>{{ item.routerLink }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="item.viewMobil ? 'Sí' : 'No'"
             [severity]="item.viewMobil ? 'success' : 'danger'"
             class="p-2"
@@ -113,7 +113,7 @@
         slot="start"
         icon="material-symbols-light:devices-other"
         [color]="item.viewMobil ? 'success' : 'medium'"
-        style="font-size: 24px; margin-right: 16px;"
+        style="font-size: 24px; margin-right: 16px"
       />
       <ion-label>
         <h2 class="ion-text-wrap">{{ item.nameModule }}</h2>

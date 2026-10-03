@@ -1,12 +1,12 @@
 import { Component, forwardRef, inject } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { PlatformService } from "@core/services/platform.service";
 import { EditorBase } from "@ui/base/editor.base";
 import { MobileEditor } from "@ui/mobile/editor/editor";
 import { AppEditor } from "@ui/web/editor/editor";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-editor",
+  selector: "lux-editor",
 
   imports: [FormsModule, AppEditor, MobileEditor],
   template: `
@@ -45,4 +45,3 @@ export class LxEditor extends EditorBase {
     this.onTouch();
   }
 }
-

@@ -83,12 +83,17 @@
   </div>
 
   <!-- Main Dashboard Layout -->
-  <div cdkDropListGroup class="flex-fill d-flex overflow-hidden bg-bg-body-tertiary">
+  <div
+    cdkDropListGroup
+    class="flex-fill d-flex overflow-hidden bg-bg-body-tertiary"
+  >
     <!-- PANEL IZQUIERDO: Catálogo de Cuentas -->
     <div
       class="w-20rem bg-body-tertiary border-right-1 border-primary-100 d-flex flex-column shadow-sm z-2"
     >
-      <div class="p-3 border-bottom-1 border-bg-body-tertiary bg-bg-body-tertiary">
+      <div
+        class="p-3 border-bottom-1 border-bg-body-tertiary bg-bg-body-tertiary"
+      >
         <h4 class="m-0 text-primary-900 d-flex align-items-center gap-2">
           Catálogo Aspel
         </h4>
@@ -171,7 +176,9 @@
         <div
           class="bg-body-tertiary border-1 border-bg-body-tertiary rounded-lg px-3 py-2 d-flex flex-wrap align-items-center gap-2"
         >
-          <span class="text-xs fw-bold text-body-secondary">COLUMNAS ACTIVAS:</span>
+          <span class="text-xs fw-bold text-body-secondary"
+            >COLUMNAS ACTIVAS:</span
+          >
           @for (col of columns(); track col.id) {
           <span
             class="d-inline-flex align-items-center px-2 py-1 rounded bg-primary-100 text-primary-900 text-xs fw-medium"
@@ -287,7 +294,7 @@
 
                   <!-- Badge de Tipo -->
                   <div class="w-3rem d-flex justify-content-center">
-                    <lx-tag
+                    <lux-tag
                       [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
                       [severity]="row.rowType === 'account' ? 'info' : 'help'"
                       class="text-xs fw-bold"
@@ -336,7 +343,7 @@
                       class="d-flex flex-wrap gap-1 max-h-4rem overflow-y-auto"
                     >
                       @for (code of row.accountNumbers; track code) {
-                      <lx-chip
+                      <lux-chip
                         [label]="code"
                         icon="material-symbols-light:check"
                         color="primary"
@@ -424,7 +431,7 @@
                     </span>
                   </div>
 
-                  <lx-tag
+                  <lux-tag
                     [value]="row.rowId"
                     severity="secondary"
                     class="text-xs opacity-60 font-mono flex-shrink-0"
@@ -493,12 +500,12 @@
               <td class="p-2 fw-bold text-xs text-primary text-uppercase">
                 {{ sec.title || 'SECCION' }}
               </td>
-              <td class="p-2 text-end text-xs text-primary fw-bold">
-                MONTO
-              </td>
+              <td class="p-2 text-end text-xs text-primary fw-bold">MONTO</td>
             </tr>
             @for (row of sec.rows; track row.rowId) {
-            <tr class="hover:bg-bg-body-tertiary border-bottom-1 border-bg-body-tertiary">
+            <tr
+              class="hover:bg-bg-body-tertiary border-bottom-1 border-bg-body-tertiary"
+            >
               <td class="p-2 text-xs text-body">
                 {{ row.label || '(Sin nombre)' }}
               </td>
@@ -512,9 +519,7 @@
             </tr>
             } }
           </tbody>
-          <tfoot
-            class="bg-bg-dark text-white sticky bottom-0 fw-bold shadow"
-          >
+          <tfoot class="bg-bg-dark text-white sticky bottom-0 fw-bold shadow">
             <tr>
               <td class="p-3 text-uppercase">Total Reporte</td>
               <td class="p-3 text-end font-mono text-lg">
@@ -589,9 +594,7 @@
               <th class="p-2 text-start text-xs text-primary fw-bold">
                 CONCEPTO
               </th>
-              <th class="p-2 text-end text-xs text-primary fw-bold">
-                ACTUAL
-              </th>
+              <th class="p-2 text-end text-xs text-primary fw-bold">ACTUAL</th>
               <th class="p-2 text-end text-xs text-primary fw-bold">
                 {{ isBudgetPreview() ? 'PRESUPUESTO' : 'REFERENCIA' }}
               </th>
@@ -647,7 +650,7 @@
 </div>
 
 <!-- Popover de Configuración Avanzada -->
-<lx-popover #opConfig>
+<lux-popover #opConfig>
   <div class="p-3 d-flex flex-column gap-3 w-20rem">
     <h5 class="m-0 border-bottom-1 border-bg-body-tertiary pb-2">
       Propiedades del Reporte
@@ -689,10 +692,10 @@
       ></custom-input-check-signal>
     </div>
   </div>
-</lx-popover>
+</lux-popover>
 
 <!-- DIALOGO: Ejemplos -->
-<lx-modal
+<lux-modal
   header="Aplicar Plantilla Predefinida"
   [(visible)]="showExamples"
   class="premium-dialog"
@@ -726,7 +729,7 @@
       </div>
     </div>
   </div>
-</lx-modal>
+</lux-modal>
 
 <style>
   .bg-dots {

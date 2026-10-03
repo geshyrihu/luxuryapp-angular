@@ -72,7 +72,10 @@
       <!-- SECCIÓN 4: BOTÓN DE ENVÍO -->
       <div class="d-flex justify-content-end">
         @if (!id()) {
-        <lx-message severity="info" class="me-2">Guarda primero para poder agregar Productos y Presupuesto.</lx-message>
+        <lux-message severity="info" class="me-2"
+          >Guarda primero para poder agregar Productos y
+          Presupuesto.</lux-message
+        >
         } @if (id()) {
         <il-button
           iconClass="material-symbols-light:attach-money"
@@ -131,20 +134,13 @@
           <td class="text-end">
             {{ item.precio | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
+          <td class="text-end">{{ item.descuento }}%</td>
+          <td class="text-end">{{ item.ivaAplicado }}%</td>
+          <td class="text-end">{{ item.retencionIVAPorcentaje }}%</td>
+          <td class="text-end">{{ item.retencionISRPorcentaje }}%</td>
           <td class="text-end">
-            {{ item.descuento }}%
-          </td>
-          <td class="text-end">
-            {{ item.ivaAplicado }}%
-          </td>
-          <td class="text-end">
-            {{ item.retencionIVAPorcentaje }}%
-          </td>
-          <td class="text-end">
-            {{ item.retencionISRPorcentaje }}%
-          </td>
-          <td class="text-end">
-            {{ calcularSubtotal(item) | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
+            {{ calcularSubtotal(item) | currency: "MXN" : "symbol" : "1.2-2" :
+            "es-MX" }}
           </td>
           <td>
             <div class="d-flex justify-content-center">

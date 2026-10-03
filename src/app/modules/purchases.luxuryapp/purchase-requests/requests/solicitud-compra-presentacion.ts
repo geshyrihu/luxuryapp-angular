@@ -17,12 +17,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { TagSeverity } from "@ui/base/tag.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { AppImage } from "@ui/web/image/image";
-import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppIcon as AppIconCatalog } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppImage } from "@ui/web/image/image";
+import { AppTable } from "@ui/web/table/table";
 
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
@@ -94,8 +93,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         padding: 0.25rem;
         box-shadow: var(--ds-shadow-sm);
       }
-
-
 
       .presentation-slide {
         width: 100%;
@@ -387,7 +384,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
       .provider-footer-row:first-child td {
         border-top: 1px solid var(--surface-border);
       }
-
     `,
   ],
 })
@@ -573,11 +569,15 @@ export class SolicitudCompraPresentacion {
       numero: index + 1,
       descripcion: solicitud.equipoOInstalacion,
       area: solicitud.solicita || "Sin área",
-      justificacion: solicitud.justificacionGasto || "Sin justificación registrada",
+      justificacion:
+        solicitud.justificacionGasto || "Sin justificación registrada",
       costoTotalConIva: solicitud.cheapestTotal || 0,
       partidaPresupuestalDescripcion:
         budgets.length > 0
-          ? budgets.map((budget: any) => budget.accountName).filter(Boolean).join(", ") || "Sin descripción"
+          ? budgets
+              .map((budget: any) => budget.accountName)
+              .filter(Boolean)
+              .join(", ") || "Sin descripción"
           : "Sin descripción",
       partidaPresupuestal:
         budgets.length > 0
@@ -701,7 +701,7 @@ export class SolicitudCompraPresentacion {
       ProductDetailModalComponent,
       { solicitud },
       `Detalle de productos - ${solicitud?.equipoOInstalacion || ""}`,
-      DialogSize.full,
+      this.dialogHandlerS.sizeFull,
       true,
     );
   }
@@ -829,7 +829,9 @@ export class SolicitudCompraPresentacion {
         const motivo = textarea?.value?.trim() ?? "";
 
         if (!selectedAutorizadaPor) {
-          SwalService.showValidationMessage("Selecciona quien toma la decision.");
+          SwalService.showValidationMessage(
+            "Selecciona quien toma la decision.",
+          );
           return null;
         }
 

@@ -37,7 +37,7 @@
       [paginator]="true"
       [loading]="loading()"
       [globalFilterFields]="['title', 'requestService']"
-       class="resumen-minuta-table p-datatable-sm p-datatable-gridlines font-sm border-0"
+      class="resumen-minuta-table p-datatable-sm p-datatable-gridlines font-sm border-0"
       size="small"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -56,7 +56,10 @@
           class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-bg-body-tertiary border-bottom-1 border g-4"
         >
           <div class="d-flex align-items-center gap-2">
-            <app-icon [icon]="'material-symbols-light:fact-check'" class="text-primary text-xl" />
+            <app-icon
+              [icon]="'material-symbols-light:fact-check'"
+              class="text-primary text-xl"
+            />
             <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
           </div>
           <app-table-caption [showAdd]="false" [dt]="dt" />
@@ -73,7 +76,10 @@
           </th>
           <th class="py-3">
             <div class="d-flex align-items-center">
-              <app-icon [icon]="'material-symbols-light:history'" class="me-2" />
+              <app-icon
+                [icon]="'material-symbols-light:history'"
+                class="me-2"
+              />
               Último Seguimiento
             </div>
           </th>
@@ -91,15 +97,15 @@
           class="transition-all hover:bg-bg-body-tertiary border-bottom-1 border"
         >
           <!-- Columna: Requerimiento -->
-           <td class="vertical-align-top py-4 ps-4">
+          <td class="vertical-align-top py-4 ps-4">
             <div class="d-flex flex-column gap-2">
               <span
-                 class="resumen-minuta-title fw-bold text-body line-height-2 tracking-tight"
+                class="resumen-minuta-title fw-bold text-body line-height-2 tracking-tight"
               >
                 {{ item.title | uppercase }}
               </span>
               <div
-                 class="resumen-minuta-request-service text-body-secondary text-sm line-height-3"
+                class="resumen-minuta-request-service text-body-secondary text-sm line-height-3"
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -110,7 +116,7 @@
             @if (item.meetingDetailsFollowUps &&
             item.meetingDetailsFollowUps.length > 0) {
             <div
-               class="resumen-minuta-followup d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
+              class="resumen-minuta-followup d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
             >
               <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-2">
@@ -125,7 +131,7 @@
                 </div>
               </div>
               <div
-                 class="resumen-minuta-followup-text text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
+                class="resumen-minuta-followup-text text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
                 [lxTooltip]="item.meetingDetailsFollowUps[0].seguimiento"
                 tooltipPosition="top"
               >
@@ -136,7 +142,10 @@
             <div
               class="d-flex align-items-center justify-content-center gap-2 text-body-secondary italic py-3 opacity-60"
             >
-              <app-icon [icon]="'material-symbols-light:forum-outline'" class="text-xl" />
+              <app-icon
+                [icon]="'material-symbols-light:forum-outline'"
+                class="text-xl"
+              />
               <span class="text-sm">Sin seguimiento registrado</span>
             </div>
             }
@@ -145,13 +154,12 @@
           <!-- Columna: Estatus -->
           <td class="text-center vertical-align-top py-4 pe-4">
             <div class="d-flex flex-column align-items-center gap-3">
-              <lx-tag
+              <lux-tag
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
-                 class="resumen-minuta-status-tag px-3 py-1 fw-bold shadow-sm"
+                class="resumen-minuta-status-tag px-3 py-1 fw-bold shadow-sm"
               />
-
             </div>
           </td>
         </tr>
@@ -197,7 +205,9 @@
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
-        <p class="text-xs m-0 text-body-secondary">{{ getSeverityText(item.status) }}</p>
+        <p class="text-xs m-0 text-body-secondary">
+          {{ getSeverityText(item.status) }}
+        </p>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

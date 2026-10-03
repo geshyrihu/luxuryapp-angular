@@ -15,29 +15,26 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { AppAvatar } from "@ui/web/avatar/avatar";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { AppAvatar } from "@ui/web/avatar/avatar";
 
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AuthService } from "@core/auth/services/auth.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 
 interface IOrdenCompraDetalleRowForm {
   productoId: FormControl<string | null>;
@@ -307,5 +304,3 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     this.ref.close(true);
   }
 }
-
-

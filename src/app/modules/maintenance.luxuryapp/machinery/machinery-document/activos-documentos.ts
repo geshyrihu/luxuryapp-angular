@@ -6,10 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -23,6 +19,10 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-activos-documentos",
@@ -83,4 +83,3 @@ export class ActivosDocumentos implements OnInit {
       });
   }
 }
-

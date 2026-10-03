@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject, viewChild } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { PopoverBase } from "@ui/base/popover.base";
 import { MobilePopover } from "@ui/mobile/popover/popover";
 import { AppPopover } from "@ui/web/popover/popover";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-popover",
+  selector: "lux-popover",
 
   imports: [NgTemplateOutlet, AppPopover, MobilePopover],
   template: `
@@ -54,4 +54,3 @@ export class LxPopover extends PopoverBase {
     this.inner()?.hide();
   }
 }
-

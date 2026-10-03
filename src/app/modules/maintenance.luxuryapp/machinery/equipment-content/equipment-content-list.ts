@@ -1,19 +1,32 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { EndpointsMantenimiento } from "@core/constants/endpoints/mantenimiento.endpoints";
-import { globalFilterFields, rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService, DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "@core/services/dialog-handler.service";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { EquipmentContentForm } from "./equipment-content-form";
 import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import { EquipmentContentsDialogData } from "./interfaces/equipment-content.interface";
@@ -90,7 +103,11 @@ export class EquipmentContentsList implements OnInit {
   async onEdit(item: EquipmentContentDto): Promise<void> {
     const result = await this.dialogHandlerS.openDialog(
       EquipmentContentForm,
-      { id: item.id, equipmentId: this.equipmentId, title: `Editar ${item.name}` },
+      {
+        id: item.id,
+        equipmentId: this.equipmentId,
+        title: `Editar ${item.name}`,
+      },
       "Editar contenido",
       this.dialogHandlerS.sizeLg,
     );

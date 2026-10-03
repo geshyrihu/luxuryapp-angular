@@ -23,7 +23,9 @@
       </th>
       <th>SUELDO</th>
       <th>DIAS</th>
-      <th appSortableColumn="status">ESTATUS <app-sorticon field="status" /></th>
+      <th appSortableColumn="status">
+        ESTATUS <app-sorticon field="status" />
+      </th>
       <th>CANDIDATO</th>
       <th></th>
     </tr>
@@ -54,7 +56,7 @@
       </td>
       <td class="text-center">{{ item.daysPassed }}</td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="requestStatusTagSeverity(item.status)"
         />
@@ -76,7 +78,7 @@
             iconClass="material-symbols-light:info"
             lxTooltip="Detalle del puesto"
             tooltipPosition="top"
-           (clicked)="onModalDetail(item.workPositionId)"
+            (clicked)="onModalDetail(item.workPositionId)"
           />
           <iw-button-item
             iconClass="material-symbols-light:description"
@@ -86,14 +88,14 @@
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
           @if (isSuperUser()) {
-            <iw-button-item
-              iconClass="material-symbols-light:delete"
-              severity="danger"
-              lxTooltip="Eliminar definitivamente"
-              tooltipPosition="top"
-              [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
-              (clicked)="onDeletePermanente(item.id)"
-            />
+          <iw-button-item
+            iconClass="material-symbols-light:delete"
+            severity="danger"
+            lxTooltip="Eliminar definitivamente"
+            tooltipPosition="top"
+            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+            (clicked)="onDeletePermanente(item.id)"
+          />
           }
         </div>
       </td>
@@ -118,7 +120,10 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon icon="material-symbols-light:work-outline" class="text-xl text-green-600" />
+        <app-icon
+          icon="material-symbols-light:work-outline"
+          class="text-xl text-green-600"
+        />
       </div>
 
       <h3>{{ item.applicationRoleName }}</h3>
@@ -131,7 +136,7 @@
             (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
             label="Editar"
           />
-           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
           <ili-button-item
             (clicked)="onModalDetail(item.workPositionId)"
             label="Detalle del puesto"
@@ -143,13 +148,13 @@
             iconClass="material-symbols-light:description"
           />
           @if (isSuperUser()) {
-            <ili-button-item
-              (clicked)="onDeletePermanente(item.id)"
-              label="Eliminar definitivamente"
-              color="danger"
-              iconClass="material-symbols-light:delete"
-              [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
-            />
+          <ili-button-item
+            (clicked)="onDeletePermanente(item.id)"
+            label="Eliminar definitivamente"
+            color="danger"
+            iconClass="material-symbols-light:delete"
+            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+          />
           }
         </ng-container>
       </ili-action-menu>

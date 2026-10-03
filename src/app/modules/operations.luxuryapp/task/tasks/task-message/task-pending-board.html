@@ -1,10 +1,10 @@
 <section class="bg-body-tertiary min-h-screen p-3 p-md-4">
   @if (loading()) {
-  <div
-    class="d-flex align-items-center justify-content-center py-5"
-    
-  >
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
+  <div class="d-flex align-items-center justify-content-center py-5">
+    <app-icon
+      [icon]="'material-symbols-light:progress-activity'"
+      class="text-primary text-4xl"
+    />
   </div>
   } @else {
   <div class="w-full xl:w-10 mx-auto d-flex flex-column gap-4">
@@ -12,7 +12,7 @@
     <header
       class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
-      <div class="bg-yellow-500" ></div>
+      <div class="bg-yellow-500"></div>
 
       <div class="p-4 p-md-5">
         <div class="mb-3">
@@ -24,10 +24,7 @@
           />
         </div>
 
-        <p
-          class="text-xs fw-bold text-body-secondary m-0 mb-2"
-          
-        >
+        <p class="text-xs fw-bold text-body-secondary m-0 mb-2">
           TABLERO DE PENDIENTES
         </p>
         <h1 class="text-primary text-4xl line-height-2 m-0 mb-3">
@@ -45,7 +42,9 @@
             <div
               class="d-inline-flex align-items-center gap-2 text-body-secondary"
             >
-              <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
+              <app-icon
+                [icon]="'material-symbols-light:format-list-bulleted'"
+              />
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
             <div
@@ -67,15 +66,13 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500" ></div>
+      <div class="bg-yellow-500"></div>
     </header>
 
     <!-- Grupos por area -->
     @if (groupedTasks().length) { @for (group of groupedTasks(); track
     group.title; let i = $index) {
-    <article
-      class="bg-body rounded-xl border-1 border p-4 shadow-sm"
-    >
+    <article class="bg-body rounded-xl border-1 border p-4 shadow-sm">
       <!-- Encabezado del area -->
       <div
         class="d-flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
@@ -83,7 +80,6 @@
         <div class="d-flex align-items-center gap-3">
           <span
             class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0"
-            
           >
             {{ formatIndex(i + 1) }}
           </span>
@@ -95,10 +91,10 @@
             </p>
           </div>
         </div>
-        <lx-tag
+        <lux-tag
           [value]="group.tasks.length + ' tarea(s)'"
           severity="secondary"
-         />
+        />
       </div>
 
       <!-- Tareas del area -->
@@ -112,7 +108,6 @@
             <div class="d-flex align-items-start gap-3">
               <div
                 class="w-2rem h-2rem rounded-circle text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0 text-xs"
-                
               >
                 {{ formatIndex(ti + 1) }}
               </div>
@@ -122,18 +117,23 @@
                   <span class="text-xs fw-bold text-body-secondary"
                     >{{ task.folio }}</span
                   >
-                  <lx-tag
+                  <lux-tag
                     [value]="statusLabel(task.status)"
                     [severity]="statusSeverity(task.status)"
-                   />
+                  />
                   @if (task.assignee) {
                   <span class="text-xs text-body-secondary"
-                    ><app-icon [icon]="'material-symbols-light:person'" class="me-1" />{{
-                    task.assignee }}</span
+                    ><app-icon
+                      [icon]="'material-symbols-light:person'"
+                      class="me-1"
+                    />{{ task.assignee }}</span
                   >
                   } @if (task.scheduledAt) {
                   <span class="text-xs text-body-secondary"
-                    ><app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1"></app-icon
+                    ><app-icon
+                      [icon]="'material-symbols-light:calendar-today'"
+                      class="me-1"
+                    ></app-icon
                     >{{ task.scheduledAt }}</span
                   >
                   }
@@ -163,9 +163,7 @@
       </div>
     </article>
     } } @else {
-    <div
-      class="bg-body rounded-xl border-1 border p-5 shadow-sm text-center"
-    >
+    <div class="bg-body rounded-xl border-1 border p-5 shadow-sm text-center">
       <app-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-4xl text-body-secondary mb-3 d-block"

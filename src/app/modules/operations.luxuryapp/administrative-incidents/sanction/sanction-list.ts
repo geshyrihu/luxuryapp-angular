@@ -1,26 +1,24 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import { SanctionListDTO } from "./interfaces/sanction.dto";
 import { SanctionFormComponent } from "./sanction-form";
 
@@ -30,6 +28,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { DialogHandlerService } from "../../../../core/services/dialog-handler.service";
 
 @Component({
   selector: "app-sanction-list",
@@ -52,7 +51,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 })
 export class SanctionList {
   apiS = inject(ApiResponseService);
-  dialogS = inject(DialogHandlerService);
+  dialogHandlerS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
 
   items = signal<SanctionListDTO[]>([]);
@@ -78,23 +77,23 @@ export class SanctionList {
   }
 
   onCreate(incidentId: string): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         SanctionFormComponent,
         { data: { incidentId } },
         "Nueva Sanción",
-        DialogSize.lg,
+        this.dialogHandlerS.sizeLg,
       )
       .then(() => this.onLoadData());
   }
 
   onChangeStatus(item: SanctionListDTO): void {
-    this.dialogS
+    this.dialogHandlerS
       .openDialog(
         SanctionFormComponent,
         { data: { id: item.id, changeStatus: true } },
         "Cambiar Estado de Sanción",
-        DialogSize.sm,
+        this.dialogHandlerS.sizeMd,
       )
       .then(() => this.onLoadData());
   }

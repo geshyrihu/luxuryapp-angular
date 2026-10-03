@@ -7,21 +7,20 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
-import { DialogSize } from "@core/enums/dialog-size.enum";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
-import { CandidateInterviewDetailModal } from "../candidate-interview/candidate-interview-detail-modal";
 import { RecruitmentAgendaList } from "../../recruitment-agenda-list";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import {
   MappedPTag,
   MappedTagOption,
 } from "../../recruitment-shared/mapped-p-tag";
+import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
+import { CandidateInterviewDetailModal } from "../candidate-interview/candidate-interview-detail-modal";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
@@ -193,7 +192,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
         requestPositionId: vacancy.requestPositionId,
       },
       this.modalTitle(action, candidate),
-      DialogSize.md,
+      this.dialogHandlerS.sizeMd,
     );
     if (result) {
       await this.onLoadData();
@@ -284,8 +283,3 @@ export class CandidateRecruitmentInterviews implements OnInit {
     return haystack.includes(term);
   }
 }
-
-
-
-
-

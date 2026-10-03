@@ -5,7 +5,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -20,6 +19,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppTable } from "@ui/web/table/table";
 import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 @Component({
   selector: "app-gastos-mantenimiento",
@@ -93,4 +93,3 @@ export class GastosMantenimiento {
       });
   }
 }
-

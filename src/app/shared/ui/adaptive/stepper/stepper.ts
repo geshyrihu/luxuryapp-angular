@@ -1,11 +1,11 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { StepperBase } from "@ui/base/stepper.base";
 import { MobileStepper } from "@ui/mobile/stepper/stepper";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-stepper",
+  selector: "lux-stepper",
 
   imports: [NgTemplateOutlet, MobileStepper],
   template: `
@@ -29,7 +29,8 @@ import { PlatformService } from "@core/services/platform.service";
         [finishLabel]="finishLabel()"
         [(activeStep)]="activeStep"
         (finish)="finish.emit()"
-      ><ng-container [ngTemplateOutlet]="projected" /></ili-stepper>
+        ><ng-container [ngTemplateOutlet]="projected"
+      /></ili-stepper>
     }
   `,
 })

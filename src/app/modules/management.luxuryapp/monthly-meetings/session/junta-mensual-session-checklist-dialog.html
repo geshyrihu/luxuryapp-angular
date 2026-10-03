@@ -1,7 +1,8 @@
 <div class="d-flex flex-column gap-3">
   <div>
     <p class="m-0 text-body-secondary">
-      Checklist operativo generado para la asamblea. Cada cambio se guarda por item.
+      Checklist operativo generado para la asamblea. Cada cambio se guarda por
+      item.
     </p>
     @if (sessionDetail(); as detail) {
     <div class="mt-3 border-1 border rounded p-3 bg-blue-50">
@@ -10,20 +11,17 @@
         Fecha base de asamblea: {{ formatAssemblyDate() }}
       </div>
       <div class="text-sm text-blue-900 mt-1">
-        El campo <strong>Vence</strong> se calcula como fecha de la asamblea
-        mas el desplazamiento definido en cada item del checklist.
+        El campo <strong>Vence</strong> se calcula como fecha de la asamblea mas
+        el desplazamiento definido en cada item del checklist.
       </div>
       @if (detail.assembly) {
       <div class="text-sm text-blue-900 mt-2">
         Paletas:
-        <strong>
-          {{ detail.assembly.requiresPaddles ? "Si" : "No" }}
-        </strong>
-        @if (detail.assembly.requiresPaddles && detail.assembly.paddlesQuantity) {
+        <strong> {{ detail.assembly.requiresPaddles ? "Si" : "No" }} </strong>
+        @if (detail.assembly.requiresPaddles && detail.assembly.paddlesQuantity)
+        {
         <span>({{ detail.assembly.paddlesQuantity }})</span>
-        }
-        |
-        Audio y video:
+        } | Audio y video:
         <strong>
           {{ detail.assembly.requiresAudioVisual ? "Si" : "No" }}
         </strong>
@@ -32,18 +30,15 @@
       <div class="text-sm text-blue-900 mt-1">
         Audio/video: {{ detail.assembly.audioVisualNotes }}
       </div>
-      }
-      @if (detail.assembly.operationalNotes) {
+      } @if (detail.assembly.operationalNotes) {
       <div class="text-sm text-blue-900 mt-1">
         Operativo: {{ detail.assembly.operationalNotes }}
       </div>
-      }
-      @if (detail.assembly.specialInstructions) {
+      } @if (detail.assembly.specialInstructions) {
       <div class="text-sm text-blue-900 mt-1">
         Especiales: {{ detail.assembly.specialInstructions }}
       </div>
-      }
-      }
+      } }
     </div>
     }
   </div>
@@ -71,7 +66,9 @@
             <div class="fw-semibold">{{ item.title }}</div>
             <small class="text-body-secondary">{{ item.category }}</small>
             @if (item.description) {
-            <div class="mt-1 text-sm text-body-secondary">{{ item.description }}</div>
+            <div class="mt-1 text-sm text-body-secondary">
+              {{ item.description }}
+            </div>
             }
           </td>
           <td>
@@ -84,10 +81,10 @@
           </td>
           <td>
             <div class="d-flex flex-column gap-2">
-              <lx-tag
+              <lux-tag
                 [value]="item.statusDisplayName"
                 [severity]="getSeverity(item.status)"
-               />
+              />
               <custom-input-select-signal
                 [data]="statusOptions"
                 optionLabel="label"
@@ -108,7 +105,8 @@
             <iw-button
               type="button"
               iconClass="material-symbols-light:save"
-              lxTooltip="Guardar" tooltipPosition="top"
+              lxTooltip="Guardar"
+              tooltipPosition="top"
               (clicked)="onSaveRow(item)"
             />
           </td>

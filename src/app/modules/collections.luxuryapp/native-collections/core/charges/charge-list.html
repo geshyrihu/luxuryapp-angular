@@ -59,7 +59,9 @@
         <td class="text-xs">
           <div class="d-flex flex-column">
             <span>{{ item.chargeTypeName || "Sin tipo" }}</span>
-            <span class="text-body-secondary">{{ item.chargeTypeAccountNumber }}</span>
+            <span class="text-body-secondary"
+              >{{ item.chargeTypeAccountNumber }}</span
+            >
           </div>
         </td>
         <td class="text-end fw-medium text-red-600">
@@ -78,7 +80,7 @@
           }
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="statusMeta(item.status).label"
             [severity]="statusMeta(item.status).severity"
           />

@@ -1,18 +1,21 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxEditor } from "@ui/adaptive/editor/editor";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
+import { LxEditor } from "@ui/adaptive/editor/editor";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-service-order",
@@ -52,8 +55,9 @@ export class ServiceOrder implements OnInit {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.MaintenanceCalendars.listServiceByMachinery(this.idMachinery);
+    const urlApi = Endpoints.MaintenanceCalendars.listServiceByMachinery(
+      this.idMachinery,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.maintenanceCalendars = result.map((item: any) => ({
         ...item,
@@ -87,5 +91,3 @@ export class ServiceOrder implements OnInit {
       });
   }
 }
-
-

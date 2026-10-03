@@ -40,7 +40,7 @@
           />
         </td>
         <td>
-          <lx-avatar
+          <lux-avatar
             [image]="item.photoPath"
             alt=""
             shape="square"
@@ -104,16 +104,16 @@
     @for(item of data(); track item.employeeId) {
     <div>
       <ili-list-item>
-         <ion-avatar slot="start">
-           <img [src]="item.photoPath" alt="Avatar" />
-         </ion-avatar>
+        <ion-avatar slot="start">
+          <img [src]="item.photoPath" alt="Avatar" />
+        </ion-avatar>
 
-         <ion-label>
-           <h2>{{ item.fullName }}</h2>
-           <p class="text-xs text-medium">
-             {{ item.historial.length }} registro(s) y
-           </p>
-         </ion-label>
+        <ion-label>
+          <h2>{{ item.fullName }}</h2>
+          <p class="text-xs text-medium">
+            {{ item.historial.length }} registro(s) y
+          </p>
+        </ion-label>
       </ili-list-item>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {
@@ -122,10 +122,8 @@
           <div
             class="d-flex justify-content-between align-items-center bg-body p-2 rounded shadow-sm"
           >
-            <span class="fw-medium text-sm"
-              >{{ registro.fechaRegistro }}</span
-            >
-            <lx-badge
+            <span class="fw-medium text-sm">{{ registro.fechaRegistro }}</span>
+            <lux-badge
               [color]="registro.evento === 'Ingreso' ? 'success' : 'danger'"
               [value]="registro.evento"
             />

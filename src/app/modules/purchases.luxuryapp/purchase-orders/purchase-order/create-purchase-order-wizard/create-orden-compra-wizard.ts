@@ -17,12 +17,12 @@ import {
 } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 // Bootstrap Modules
-import { AppAvatar } from "@ui/web/avatar/avatar";
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service"; // Added DynamicDialogConfig
+import { AppAvatar } from "@ui/web/avatar/avatar";
 // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
@@ -32,10 +32,6 @@ import { AppTable } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -45,6 +41,10 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service"; // Added
 import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { OrdenCompraDetalleForm } from "../purchase-order-detail-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
@@ -100,9 +100,9 @@ interface IStep3Form {
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { FileUpload } from "@ui/web/file-upload/file-upload";
 import {
   PurchaseOrderBudgetAccountsResponse,
   PurchaseOrderCreateResult,
@@ -246,7 +246,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       // If a fundingId is passed, fetch its details to pre-fill the form
       if (this.fundingId) {
         this.apiResponseS
-           .onGetItem<PurchaseOrderFundingData>(`funding/${this.fundingId}`)
+          .onGetItem<PurchaseOrderFundingData>(`funding/${this.fundingId}`)
           .then((fundingData) => {
             if (fundingData) {
               this.step1Form.patchValue({
@@ -335,8 +335,9 @@ export class CreateOrdenCompraWizard implements OnInit {
           ),
         )
         .then((result) => {
-          const accounts: AccountBudgetSelectItem[] = (result?.accounts ?? []).map(
-            (acc) => ({
+          const accounts: AccountBudgetSelectItem[] = (
+            result?.accounts ?? []
+          ).map((acc) => ({
             value: acc.accountNumber,
             label: `${acc.accountNumber} | ${acc.accountName}`,
             accountNumber: acc.accountNumber,
@@ -346,8 +347,7 @@ export class CreateOrdenCompraWizard implements OnInit {
             budgetMonth: acc.budgetMonth,
             pendingPayments: acc.pendingPayments,
             hasAvailableBudget: acc.hasAvailableBudget,
-            }),
-          );
+          }));
           this.cb_accounts.set(accounts);
         });
     }

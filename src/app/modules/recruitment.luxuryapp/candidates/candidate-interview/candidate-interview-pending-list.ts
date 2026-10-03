@@ -7,8 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, RouterLink } from "@angular/router";
-import { addIcons } from "ionicons";
-import { chatbubblesOutline } from "ionicons/icons";
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
@@ -16,6 +14,8 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { addIcons } from "ionicons";
+import { chatbubblesOutline } from "ionicons/icons";
 import { CandidateApplicationListItem } from "../candidate-applications/interfaces/candidate-application";
 import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
 import { CandidateInterviewPendingDesktop } from "./desktop/candidate-interview-pending-desktop";
@@ -107,4 +107,3 @@ export class CandidateInterviewPendingList implements OnInit {
       });
   }
 }
-

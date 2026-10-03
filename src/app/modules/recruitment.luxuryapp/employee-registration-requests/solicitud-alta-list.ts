@@ -10,17 +10,17 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
-import { SwalService } from "@core/services/swal.service";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -33,14 +33,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { EStatus } from "@ui/base/status-badge.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { EStatus } from "@ui/base/status-badge.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";
 import { CandidateDetail } from "../candidates/candidate-core/candidate-detail";
@@ -79,7 +79,8 @@ interface SolicitudAltaListItem {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
-    MobileButtonLabel, MobileButtonLabelConfirm,
+    MobileButtonLabel,
+    MobileButtonLabelConfirm,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
@@ -87,7 +88,8 @@ interface SolicitudAltaListItem {
     TableFooter,
     DataViewMobile,
     LxTag,
-    WebButtonLabel, WebButtonLabelConfirm,
+    WebButtonLabel,
+    WebButtonLabelConfirm,
     MobileListItem,
     AppIcon,
   ],
@@ -296,14 +298,14 @@ export class SolicitudAltaList implements OnInit {
   }
 
   canOpenCompletedFile(item: SolicitudAltaListItem): boolean {
-    return item.status === "Concluido" && !!item.employeeId && !!item.applicationUserId;
+    return (
+      item.status === "Concluido" &&
+      !!item.employeeId &&
+      !!item.applicationUserId
+    );
   }
 
   isCancelled(item: SolicitudAltaListItem): boolean {
     return item.status === "Cancelado";
   }
 }
-
-
-
-

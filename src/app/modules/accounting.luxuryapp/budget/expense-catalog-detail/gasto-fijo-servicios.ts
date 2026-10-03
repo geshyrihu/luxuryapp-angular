@@ -9,16 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { DynamicDialogConfig, DynamicDialogRef, DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -28,6 +18,20 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppTable } from "@ui/web/table/table";
 import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
 
 @Component({
@@ -72,9 +76,7 @@ export class GastoFijoServicios implements OnInit {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.measurementUnits,
-      )
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_unidadMedida = response;
         this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -155,4 +157,3 @@ export class GastoFijoServicios implements OnInit {
       });
   }
 }
-

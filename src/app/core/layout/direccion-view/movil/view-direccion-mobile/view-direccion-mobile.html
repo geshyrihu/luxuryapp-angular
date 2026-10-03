@@ -6,13 +6,17 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content [scrollY]="true" [fullscreen]="true" class="flex-flex-grow-1-1 relative">
+    <ion-content
+      [scrollY]="true"
+      [fullscreen]="true"
+      class="flex-flex-grow-1-1 relative"
+    >
       <div class="page-body-wrapper">
         <div class="pb-8">
           <router-outlet />
         </div>
       </div>
-      <lx-loader />
+      <lux-loader />
     </ion-content>
   </div>
 </ion-app>

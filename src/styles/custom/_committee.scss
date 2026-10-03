@@ -284,7 +284,7 @@
     position: relative;
     overflow: hidden;
     height: 100%; // Ocupa los 110px de la tarjeta en móvil
-    
+
     // Fallback navy cuando la imagen no existe o aún no carga
     background: linear-gradient(
       135deg,
@@ -950,8 +950,8 @@
   flex-direction: column;
   gap: 0.6rem;
 
-  // Cards del catálogo (lx-card => ion-card en mobile): sin margen extra
-  lx-card {
+  // Cards del catálogo (lux-card => ion-card en mobile): sin margen extra
+  lux-card {
     display: block;
   }
   ion-card {
@@ -1338,7 +1338,6 @@
   }
 }
 
-
 .committee-contact__location-info {
   margin-top: 0.5rem;
   display: flex;
@@ -1352,5 +1351,7 @@
   gap: 0.35rem;
   font-size: var(--ds-font-size-help);
   color: var(--ds-text-secondary);
-  app-icon { font-size: 1.15rem; }
+  app-icon {
+    font-size: 1.15rem;
+  }
 }

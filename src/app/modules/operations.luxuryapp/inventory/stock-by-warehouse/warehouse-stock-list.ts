@@ -7,14 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -32,6 +24,14 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ProductOutputForm } from "@operations.luxuryapp/inventory/product-exit/product-output-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
@@ -232,5 +232,3 @@ export class WarehouseStockList {
     );
   }
 }
-
-

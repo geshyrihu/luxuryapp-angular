@@ -29,8 +29,10 @@
           </div>
 
           <!-- Parte Derecha: Filtros adicionales -->
-          <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-            <div >
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
+          >
+            <div>
               <iw-button-active-desactive
                 [state]="state"
                 (stateChange)="onSelectActive($event)"
@@ -55,25 +57,23 @@
         >
           <td>
             <div class="d-flex align-items-center">
-              <lx-avatar
+              <lux-avatar
                 [image]="item.photoPath"
                 [alt]="item.nameCustomer"
                 size="normal"
                 shape="circle"
                 class="me-2"
               />
-              <span class="m-0 fw-medium text-sm"
-                >{{ item.nameCustomer }}</span
-              >
+              <span class="m-0 fw-medium text-sm">{{ item.nameCustomer }}</span>
             </div>
           </td>
           <td class="text-xs">{{ item.numeroCliente }}</td>
           <td class="text-xs">{{ item.register }}</td>
           <td>
             @if (item.isAssigned) {
-            <lx-tag severity="success" value="Activo"></lx-tag>
+            <lux-tag severity="success" value="Activo"></lux-tag>
             } @else {
-            <lx-tag severity="danger" value="Inactivo"></lx-tag>
+            <lux-tag severity="danger" value="Inactivo"></lux-tag>
             }
           </td>
           <td class="text-end">
@@ -117,7 +117,7 @@
       class="ion-no-padding"
       detail="true"
     >
-       <ion-avatar slot="start" class="mobile-avatar-slot">
+      <ion-avatar slot="start" class="mobile-avatar-slot">
         @if (customer.photoPath) {
         <img
           [src]="customer.photoPath"
@@ -125,25 +125,20 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon
-          icon="material-symbols-light:domain"
-          
-        />
+        <app-icon icon="material-symbols-light:domain" />
         }
-       </ion-avatar>
-       <ion-label class="ion-text-wrap">
-         <p class="fw-semibold m-0 text-body">
-          {{ customer.nameCustomer }}
-        </p>
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <p class="fw-semibold m-0 text-body">{{ customer.nameCustomer }}</p>
         <p class="text-xs m-0 mt-1 text-body-secondary">
           #{{ customer.numeroCliente }}
         </p>
-       </ion-label>
+      </ion-label>
       <div slot="end" class="d-flex align-items-center me-2">
         @if (customer.isAssigned) {
-        <lx-tag severity="success" value="Asignado"></lx-tag>
+        <lux-tag severity="success" value="Asignado"></lux-tag>
         } @else {
-        <lx-tag severity="danger" value="No Asignado"></lx-tag>
+        <lux-tag severity="danger" value="No Asignado"></lux-tag>
         }
       </div>
     </ili-list-item>

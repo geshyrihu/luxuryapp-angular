@@ -23,6 +23,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -38,7 +39,6 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
-import { SwalService } from "@core/services/swal.service";
 import { OwnerForm } from "../owner/owner-form";
 import { PropiedadesForm } from "./propiedades-form";
 

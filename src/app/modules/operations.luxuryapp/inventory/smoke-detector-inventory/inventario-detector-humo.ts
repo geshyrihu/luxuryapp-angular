@@ -9,20 +9,6 @@ import {
 import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import {
-  cloudOutline,
-  downloadOutline,
-  listOutline,
-  qrCodeOutline,
-  timeOutline,
-} from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -34,11 +20,25 @@ import { InventarioDetectorHumoDto } from "@core/interfaces/inventario-detector-
 import { AccountingCatalogExcelService } from "@core/services/accounting-catalog-excel.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppImage } from "@ui/web/image/image";
+import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import {
+  cloudOutline,
+  downloadOutline,
+  listOutline,
+  qrCodeOutline,
+  timeOutline,
+} from "ionicons/icons";
+import { ROUTES } from "src/app/routing/route-paths";
 import { InventarioDetectorHumoForm } from "./inventario-detector-humo-form";
-import { InventarioDetectorHumoQrService } from "./inventario-detector-humo-qr.service";
 import { InventarioDetectorHumoPdfService } from "./inventario-detector-humo-pdf.service";
+import { InventarioDetectorHumoQrService } from "./inventario-detector-humo-qr.service";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";

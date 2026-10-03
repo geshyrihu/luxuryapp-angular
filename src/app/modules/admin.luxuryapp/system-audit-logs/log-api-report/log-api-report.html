@@ -1,5 +1,5 @@
 <!-- Panel de Filtros -->
-<lx-card>
+<lux-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="d-none d-md-block mt-3">
     <app-table
@@ -30,7 +30,9 @@
               [noMargin]="true"
             />
           </div>
-          <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
+          >
             <div>
               <custom-input-select-signal
                 [data]="levelOptions"
@@ -110,10 +112,10 @@
           </td>
           <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="item.level"
               [severity]="getLevelSeverity(item.level)"
-            ></lx-tag>
+            ></lux-tag>
           </td>
           <td>{{ item.userName || 'N/A' }}</td>
           <td class="max-w-400 text-wrap">{{ item.message }}</td>
@@ -123,12 +125,13 @@
           <td></td>
           <td colspan="4" class="bg-body-tertiary p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
+              <app-icon
+                [icon]="'material-symbols-light:info'"
+                class="text-primary"
+              />
               <strong class="text-sm">Propiedades:</strong>
             </div>
-            <pre
-              class="text-xs bg-body p-3 rounded overflow-auto max-h-200"
-            >
+            <pre class="text-xs bg-body p-3 rounded overflow-auto max-h-200">
 {{ item.properties }}</pre>
           </td>
         </tr>
@@ -139,7 +142,10 @@
           <td></td>
           <td colspan="4" class="bg-red-50 p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
+              <app-icon
+                [icon]="'material-symbols-light:warning'"
+                class="text-red-600"
+              />
               <strong class="text-sm text-red-600">Excepción:</strong>
             </div>
             <pre
@@ -164,52 +170,60 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-         <ili-list-item>
-           <lx-tag slot="start"
-             [value]="item.level.charAt(0).toUpperCase()"
-             [severity]="getLevelSeverity(item.level)"
-           ></lx-tag>
-           <ion-label>
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
-            <p class="text-medium text-body-secondary m-0 text-sm">
-              <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
-              {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
+        <ili-list-item>
+          <lux-tag
+            slot="start"
+            [value]="item.level.charAt(0).toUpperCase()"
+            [severity]="getLevelSeverity(item.level)"
+          ></lux-tag>
+          <ion-label>
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
+              <p class="text-medium text-body-secondary m-0 text-sm">
+                <app-icon
+                  [icon]="'material-symbols-light:schedule'"
+                  class="me-1 text-xs"
+                />
+                {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
+              </p>
+            </div>
+
+            @if (item.userName) {
+            <p class="text-sm text-body-secondary m-0 mb-1">
+              <app-icon
+                [icon]="'material-symbols-light:person'"
+                class="me-1 text-xs"
+              />
+              {{ item.userName }}
             </p>
-          </div>
+            }
 
-          @if (item.userName) {
-          <p class="text-sm text-body-secondary m-0 mb-1">
-            <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-xs" /> {{
-            item.userName }}
-          </p>
-          }
+            <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
 
-          <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
-
-          @if (item.properties) {
-          <div class="mb-2">
-            <span class="text-xs d-flex align-items-center gap-1 mb-1">
-              <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
-            </span>
-            <pre class="text-xs bg-light p-2 border-radius overflow-auto">
+            @if (item.properties) {
+            <div class="mb-2">
+              <span class="text-xs d-flex align-items-center gap-1 mb-1">
+                <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
+              </span>
+              <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre>
-          </div>
-          } @if (item.exception) {
-          <div>
-            <span
-              class="text-xs text-danger d-flex align-items-center gap-1 mb-1"
-            >
-              <app-icon [icon]="'material-symbols-light:warning'" /> Excepción:
-            </span>
-            <pre
-              class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
-            >
+            </div>
+            } @if (item.exception) {
+            <div>
+              <span
+                class="text-xs text-danger d-flex align-items-center gap-1 mb-1"
+              >
+                <app-icon [icon]="'material-symbols-light:warning'" />
+                Excepción:
+              </span>
+              <pre
+                class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
+              >
 {{ item.exception }}</pre>
-          </div>
-          }
-           </ion-label>
-         </ili-list-item>
+            </div>
+            }
+          </ion-label>
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
 
@@ -224,4 +238,4 @@
     />
     }
   </div>
-</lx-card>
+</lux-card>

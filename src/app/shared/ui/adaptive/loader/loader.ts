@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
 import { LoaderBase } from "@ui/base/loader.base";
 import { MobileLoader } from "@ui/mobile/loader/mobile-loader";
 import { AppLoader } from "@ui/web/loader/loader";
-import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-loader",
+  selector: "lux-loader",
 
   imports: [AppLoader, MobileLoader],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -20,4 +20,3 @@ import { PlatformService } from "@core/services/platform.service";
 export class LxLoader extends LoaderBase {
   protected platform = inject(PlatformService);
 }
-

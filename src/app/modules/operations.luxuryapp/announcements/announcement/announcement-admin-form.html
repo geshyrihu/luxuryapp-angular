@@ -151,20 +151,20 @@
         />
       </div>
       <div class="editor-container">
-        <lx-editor
+        <lux-editor
           formControlName="content"
           class="h-20rem d-block"
           [placeholder]="'Ingrese el contenido del anuncio aquó...'"
-        ></lx-editor>
+        ></lux-editor>
       </div>
     </div>
 
     <!-- Fila inferior: Adjuntos y Destinatarios -->
     <div class="col-12 col-md-4">
       <div class="my-4 d-flex align-items-center gap-2">
-        <lx-divider class="flex-fill" />
+        <lux-divider class="flex-fill" />
         <span class="fw-bold text-primary">Archivos Adjuntos</span>
-        <lx-divider class="flex-fill" />
+        <lux-divider class="flex-fill" />
       </div>
 
       <div class="d-flex flex-column">
@@ -235,16 +235,16 @@
 
     <div class="col-12 col-md-8">
       <div class="my-4 d-flex align-items-center gap-2">
-        <lx-divider class="flex-fill" />
+        <lux-divider class="flex-fill" />
         <span class="fw-bold text-primary">Destinatarios</span>
-        <lx-divider class="flex-fill" />
+        <lux-divider class="flex-fill" />
       </div>
 
       <div class="row g-4">
         <div class="col-12">
           <div class="mb-4">
             <label>Clientes Objetivo</label>
-            <lx-listbox
+            <lux-listbox
               [options]="allCustomers()"
               formControlName="targetedCustomerIds"
               [multiple]="true"
@@ -273,7 +273,7 @@
                   }
                 </div>
               </ng-template>
-            </lx-listbox>
+            </lux-listbox>
             <small class="text-body-secondary d-block mt-2 text-end">
               {{ form.controls.targetedCustomerIds.value.length }} seleccionados
             </small>
@@ -284,7 +284,7 @@
         <div class="col-12">
           <div class="mb-4">
             <label>Roles Objetivo</label>
-            <lx-listbox
+            <lux-listbox
               [options]="allRoles()"
               formControlName="recipientRoleIds"
               [multiple]="true"
@@ -313,7 +313,7 @@
                   }
                 </div>
               </ng-template>
-            </lx-listbox>
+            </lux-listbox>
             <small class="text-body-secondary d-block mt-2 text-end">
               {{ form.controls.recipientRoleIds.value.length }} seleccionados
             </small>

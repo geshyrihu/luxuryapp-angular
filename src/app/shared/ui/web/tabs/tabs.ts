@@ -7,8 +7,8 @@ import {
   input,
   viewChild,
 } from "@angular/core";
-import { TabsBase } from "@ui/base/tabs.base";
 import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
+import { TabsBase } from "@ui/base/tabs.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 
 /**
@@ -17,14 +17,20 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
  * coinciden. Esto evita el `<ng-content [select]>` dinamico (no soportado de forma
  * fiable) y funciona igual que la pata movil `ili-tabs`.
  * Slots: `<div tab="<id>">...</div>` por panel. Si no hay paneles proyectados,
- * `lx-tabs` funciona como selector puro (el feature conmuta con `@switch`).
+ * `lux-tabs` funciona como selector puro (el feature conmuta con `@switch`).
  */
 @Component({
   selector: "app-tabs",
 
   imports: [NgbNavModule, AppIcon],
   template: `
-    <ul ngbNav #nav="ngbNav" [activeId]="activeId()" (activeIdChange)="onValueChange($event)" class="nav nav-tabs">
+    <ul
+      ngbNav
+      #nav="ngbNav"
+      [activeId]="activeId()"
+      (activeIdChange)="onValueChange($event)"
+      class="nav nav-tabs"
+    >
       @for (tab of tabs(); track tab.id) {
         <li [ngbNavItem]="tab.id" [disabled]="tab.disabled ?? false">
           <button ngbNavLink type="button">
@@ -37,9 +43,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       }
     </ul>
     @if (!navOnly()) {
-    <div class="app-tabs-panels" #panels>
-      <ng-content />
-    </div>
+      <div class="app-tabs-panels" #panels>
+        <ng-content />
+      </div>
     }
   `,
   styles: [
@@ -72,7 +78,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class Tabs extends TabsBase {
-  /** Solo navegacion: el consumidor (p. ej. `lx-tabs`) proyecta los paneles. */
+  /** Solo navegacion: el consumidor (p. ej. `lux-tabs`) proyecta los paneles. */
   navOnly = input<boolean>(false);
 
   private panelsRef = viewChild<ElementRef<HTMLElement>>("panels");
@@ -100,4 +106,3 @@ export class Tabs extends TabsBase {
     }
   }
 }
-

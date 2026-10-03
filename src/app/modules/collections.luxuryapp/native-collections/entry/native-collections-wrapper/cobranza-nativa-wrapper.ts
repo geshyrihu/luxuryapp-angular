@@ -8,13 +8,12 @@ import { Router } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
 
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { DialogSize } from "@core/enums/dialog-size.enum";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import BillingConfigModal from "../../configuration/billing-config/billing-config-modal";
 import {
@@ -28,14 +27,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [
-    WebButtonLabel,
-    AppIcon,
-    LxTag,
-    LxCard,
-    LxTabs,
-    MobileListItem,
-  ],
+  imports: [WebButtonLabel, AppIcon, LxTag, LxCard, LxTabs, MobileListItem],
   templateUrl: "./cobranza-nativa-wrapper.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-wrapper.scss"],
@@ -50,13 +42,41 @@ export default class CobranzaNativaWrapper {
   expandedCard = signal<string | null>(null);
 
   readonly wrapperTabs: TabItem[] = [
-    { id: "summary", label: "Resumen", icon: "material-symbols-light:dashboard-outline" },
-    { id: "master", label: "Base Maestra", icon: "material-symbols-light:domain" },
-    { id: "operations", label: "Operacion", icon: "material-symbols-light:payments" },
-    { id: "control", label: "Control", icon: "material-symbols-light:verified" },
-    { id: "extended", label: "Extendida", icon: "material-symbols-light:work-outline" },
-    { id: "automation", label: "Automatizacion", icon: "material-symbols-light:smart-toy-outline" },
-    { id: "onboarding", label: "Onboarding", icon: "material-symbols-light:account-tree" },
+    {
+      id: "summary",
+      label: "Resumen",
+      icon: "material-symbols-light:dashboard-outline",
+    },
+    {
+      id: "master",
+      label: "Base Maestra",
+      icon: "material-symbols-light:domain",
+    },
+    {
+      id: "operations",
+      label: "Operacion",
+      icon: "material-symbols-light:payments",
+    },
+    {
+      id: "control",
+      label: "Control",
+      icon: "material-symbols-light:verified",
+    },
+    {
+      id: "extended",
+      label: "Extendida",
+      icon: "material-symbols-light:work-outline",
+    },
+    {
+      id: "automation",
+      label: "Automatizacion",
+      icon: "material-symbols-light:smart-toy-outline",
+    },
+    {
+      id: "onboarding",
+      label: "Onboarding",
+      icon: "material-symbols-light:account-tree",
+    },
   ];
 
   private readonly groupLabelsByTab: Record<string, string[]> = {
@@ -131,7 +151,7 @@ export default class CobranzaNativaWrapper {
       BillingConfigModal,
       { customerId },
       "Configuracion de Facturacion y Notificaciones",
-      DialogSize.md,
+      this.dialogHandlerS.sizeMd,
     );
   }
 

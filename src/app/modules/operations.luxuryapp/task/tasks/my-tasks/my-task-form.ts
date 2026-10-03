@@ -179,7 +179,7 @@ export class MyTaskForm implements OnInit, OnDestroy {
           this.form.controls.beforeWorkPreview.setValue(
             result.beforeWorkPreview,
           );
-          // Limpiar el form control real para que lx-file-upload no trate de leer la URL como File
+          // Limpiar el form control real para que lux-file-upload no trate de leer la URL como File
           this.form.controls.beforeWork.setValue(null);
         }
 

@@ -20,11 +20,11 @@ ya eliminado). La regla central: **web y móvil son independientes por tipo de
 componente**; solo comparten **lógica** (bases `*.base.ts`). Una capa `adaptive/`
 elige web o móvil en runtime.
 
-| Concepto | Dónde |
-|---|---|
-| Alias de import | `@ui/*` → `src/app/shared/ui/*` (en `tsconfig.json`) |
-| Regla de fronteras | `npm run audit:ui` (`scripts/audit-ui-boundaries.mjs`, dentro de `npm run lint`) |
-| Selección de plataforma | `PlatformService.isMobile()` (viewport, reactivo por `BreakpointObserver`) |
+| Concepto                | Dónde                                                                            |
+| ----------------------- | -------------------------------------------------------------------------------- |
+| Alias de import         | `@ui/*` → `src/app/shared/ui/*` (en `tsconfig.json`)                             |
+| Regla de fronteras      | `npm run audit:ui` (`scripts/audit-ui-boundaries.mjs`, dentro de `npm run lint`) |
+| Selección de plataforma | `PlatformService.isMobile()` (viewport, reactivo por `BreakpointObserver`)       |
 
 > [!IMPORTANT]
 > **web/ nunca importa Ionic** · **mobile/ nunca importa web** · **base/ no
@@ -40,7 +40,7 @@ src/app/shared/ui/
 ├── base/            🧠 lógica compartida (BaseInputSignal, *.base.ts) — sin UI de plataforma
 ├── web/             🖥️ implementaciones Bootstrap/native · selector app-* (interno: web-*)
 ├── mobile/          📱 implementaciones Ionic   · selector ili-*
-├── adaptive/        🔀 delegadores que eligen web/móvil en runtime · selector lx-* (o legacy)
+├── adaptive/        🔀 delegadores que eligen web/móvil en runtime · selector lux-* (o legacy)
 ├── shared/          🔧 agnósticos (app-icon, focus-trap, loader, kpi-card, …) — Angular puro
 ├── buttons/         🔘 sistema de botones (base + web-*/mobile-* + shared helpers)
 └── inputs/          ✍️ sistema de inputs (base + web/ + mobile/ + adaptive/ + bridges)
@@ -52,7 +52,7 @@ graph TD
     UI --> BASE["base/ 🧠 lógica"]
     UI --> WEB["web/ 🖥️ Bootstrap/native (app-*)"]
     UI --> MOB["mobile/ 📱 Ionic (ili-*)"]
-    UI --> ADA["adaptive/ 🔀 runtime (lx-* / legacy)"]
+    UI --> ADA["adaptive/ 🔀 runtime (lux-* / legacy)"]
     UI --> SH["shared/ 🔧 agnósticos"]
     UI --> BTN["buttons/"]
     UI --> INP["inputs/"]
@@ -66,13 +66,13 @@ graph TD
 
 ## 3. 🔤 Convención de selectores
 
-| Capa | Tecnología | Selector | Ejemplo |
-|---|---|---|---|
-| 🖥️ Web | Bootstrap/native/shared | `app-*` | `app-status-badge` |
-| 📱 Móvil | Ionic | `ili-*` | `ili-status-badge` |
-| 🔀 Adaptativo (componentes) | elige runtime | `lx-*` | `lx-status-badge` |
-| 🔧 Agnóstico | Angular puro | `app-icon`, directivas | `app-icon`, `[appFocusTrap]` |
-| ✍️ Inputs (adaptativo) | elige runtime | **legacy conservado** | `custom-input-text-signal` |
+| Capa                        | Tecnología              | Selector               | Ejemplo                      |
+| --------------------------- | ----------------------- | ---------------------- | ---------------------------- |
+| 🖥️ Web                      | Bootstrap/native/shared | `app-*`                | `app-status-badge`           |
+| 📱 Móvil                    | Ionic                   | `ili-*`                | `ili-status-badge`           |
+| 🔀 Adaptativo (componentes) | elige runtime           | `lux-*`                | `lux-status-badge`           |
+| 🔧 Agnóstico                | Angular puro            | `app-icon`, directivas | `app-icon`, `[appFocusTrap]` |
+| ✍️ Inputs (adaptativo)      | elige runtime           | **legacy conservado**  | `custom-input-text-signal`   |
 
 > [!NOTE]
 > Los **inputs** son un caso especial: el delegador adaptativo **conserva el
@@ -80,10 +80,11 @@ graph TD
 > plantillas de formularios. Ver §5.
 
 ### Botones (prefijos)
-| Prefijo | Qué es |
-|---|---|
+
+| Prefijo                                  | Qué es                             |
+| ---------------------------------------- | ---------------------------------- |
 | `app-*` / `il-*` (label) / `iw-*` (icon) | Botones **web** (shared/Bootstrap) |
-| `ili-*` (label) / `ii-*` (icon) | Botones **móviles** (Ionic) |
+| `ili-*` (label) / `ii-*` (icon)          | Botones **móviles** (Ionic)        |
 
 Los botones móviles aceptan `variant` semántico (`primary, secondary, outline,
 text, danger, ghost`) + alias de las variantes web (`outlined, ghost-text, link,
@@ -98,6 +99,7 @@ Objetivo: un formulario renderiza **input shared/Bootstrap en web** y **input Io
 automáticamente, **sin cambiar el HTML del form** ni la lógica del `FormGroup`.
 
 ### 4.1 Anatomía (3 piezas por tipo)
+
 ```
 inputs/
 ├── base/base-input-signal.ts          🧠 CVA + inputs (control, label, required…) compartido
@@ -121,30 +123,34 @@ flowchart TD
 ```
 
 ### 4.2 Por qué el bridge
+
 Los ~360 formularios importan `CustomInput<X>Signal` desde
 `@ui/inputs/web/custom-input-<x>-signal`. Ese archivo pasó a ser un **bridge** de una
 línea que re-exporta el **delegador adaptativo**. Resultado: **cero cambios en los
 forms** (mismo import, mismo selector en el HTML) y todos se vuelven adaptativos.
 
 ### 4.3 El delegador es un CVA
+
 `Input<X>` extiende `BaseInputSignal` (que ya implementa `ControlValueAccessor` con
 `internalControl`) y **registra `NG_VALUE_ACCESSOR`**. Por eso soporta las 3 formas:
 `[control]="ctrl"`, `formControlName="x"` y `[(ngModel)]`. Pasa
 `[control]="control() || internalControl"` al hijo.
 
 ### 4.4 ✅ Estado del rollout
-| Tipo | Adaptativo | Notas |
-|---|---|---|
-| text | ✅ | piloto + rollout |
-| select | ✅ | incluye `data/optionLabel/optionValue/filter/selectionChange` |
-| number | ✅ | |
-| textarea | ✅ | |
-| checkbox | ✅ | `checkChange` |
-| **date** | ⏳ | ⚠️ impedancia string↔Date (web flatpickr vs móvil `type=date`) — hacer con cuidado |
-| **autocomplete, file** | ⏳ | valor/UX complejos |
-| currency, password, multiselect, select-bool, time, search, switch/toggle | ⏳ | mismo patrón, pendientes |
+
+| Tipo                                                                      | Adaptativo | Notas                                                                              |
+| ------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------- |
+| text                                                                      | ✅         | piloto + rollout                                                                   |
+| select                                                                    | ✅         | incluye `data/optionLabel/optionValue/filter/selectionChange`                      |
+| number                                                                    | ✅         |                                                                                    |
+| textarea                                                                  | ✅         |                                                                                    |
+| checkbox                                                                  | ✅         | `checkChange`                                                                      |
+| **date**                                                                  | ⏳         | ⚠️ impedancia string↔Date (web flatpickr vs móvil `type=date`) — hacer con cuidado |
+| **autocomplete, file**                                                    | ⏳         | valor/UX complejos                                                                 |
+| currency, password, multiselect, select-bool, time, search, switch/toggle | ⏳         | mismo patrón, pendientes                                                           |
 
 ### 4.5 🧑‍🍳 Receta: agregar un tipo nuevo (ej. `currency`)
+
 1. **web-impl**: copiar `web/custom-input-currency-signal.ts` a
    `web/input-currency/input-currency.ts`; renombrar clase → `WebInputCurrency`,
    selector → `web-input-currency`; arreglar import de base a `../../base/…`.
@@ -164,6 +170,7 @@ forms** (mismo import, mismo selector en el HTML) y todos se vuelven adaptativos
 ## 5. 📱 Comportamiento y estilos móviles
 
 ### 5.1 Inputs Ionic (outline)
+
 - Todos usan `fill="outline"` + **`mode="md"`** (la app corre en modo iOS, donde el
   outline no se dibuja; `md` lo activa).
 - El estilo lo maneja el **theme global** `src/styles/mobile/_ionic-rn-theme.scss` §9:
@@ -176,6 +183,7 @@ forms** (mismo import, mismo selector en el HTML) y todos se vuelven adaptativos
 > "changed after checked"). El `effect` de `BaseInputSignal` ya deshabilita el control.
 
 ### 5.2 Formularios en móvil = `ion-modal` nativo (Fase 3 ✅)
+
 `DialogHandlerService.openDialog(...)` / `openDialogCustom(...)` ramifican por
 plataforma:
 
@@ -207,6 +215,7 @@ de `openDialog` resuelve con `modal.onDidDismiss().data`.
 > y sus contratos de compatibilidad compartidos por web y mobile.
 
 ### 5.3 Paneles de select en web
+
 Los selects web usan implementaciones shared/Bootstrap. Sus paneles deben respetar
 `--ds-bg-surface`, `--on-surface` y `--ds-border-default`, sin depender de clases
 o estilos específicos de una librería UI retirada.
@@ -227,20 +236,24 @@ o estilos específicos de una librería UI retirada.
 ## 7. 🧑‍💻 Cómo usar (recetas rápidas)
 
 **Usar un input en un form** (no cambia nada vs. antes):
+
 ```ts
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 // imports: [ReactiveFormsModule, CustomInputTextSignal, …]
 ```
+
 ```html
 <custom-input-text-signal [control]="form.controls.code" label="Código" />
 ```
+
 → Se ve shared/Bootstrap en web, Ionic en móvil, automáticamente.
 
 **Usar un componente web/móvil/adaptativo directo:**
+
 ```ts
-import { StatusBadge } from "@ui/web/status-badge/status-badge";        // solo web
+import { StatusBadge } from "@ui/web/status-badge/status-badge"; // solo web
 import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge"; // solo móvil
-import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // adaptativo
+import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge"; // adaptativo
 ```
 
 **Botón móvil:** `<ili-button-save />`, `<ili-button variant="primary" label="…" />`.
@@ -248,34 +261,36 @@ import { LxStatusBadge } from "@ui/adaptive/status-badge/status-badge";   // ada
 ---
 
 ## 8. ✅ Estado y pendientes (checklist para retomar)
+
 - [x] Librería migrada a `shared/ui` (core/components eliminado); alias `@ui/*`.
 - [x] `audit:ui` de fronteras en `npm run lint`.
 - [x] Estilos por capas (`src/styles`).
 - [x] Overhaul móvil de botones + action-sheet nativo.
 - [x] Dialogs web sobre `NgbModal`; dialogs mobile sobre `ion-modal`.
 - [x] Editor, rating, charts, carousel y gallery usan integraciones actuales
-  documentadas en `design-system/luxuryapp-inspections/MASTER.md`.
+      documentadas en `design-system/luxuryapp-inspections/MASTER.md`.
 - [x] Inputs adaptativos: **text, select, number, textarea, checkbox**.
 - [x] Fixes runtime: overlays mobile, warning disabled, crash de variant y
-  NG0100 SoporteOrdenServicio.
+      NG0100 SoporteOrdenServicio.
 - [ ] Inputs adaptativos restantes: currency, password, multiselect, select-bool, time,
-  search, switch/toggle.
+      search, switch/toggle.
 - [ ] **date / autocomplete / file** (valor complejo — pase dedicado).
 - [x] **Fase 3**: forms móviles en `ion-modal` nativo (`IonicDialogModal` + `ModalController`
-  en `DialogHandlerService`), sin tocar los forms. Ver §5.2.
+      en `DialogHandlerService`), sin tocar los forms. Ver §5.2.
 - [ ] Regla ESLint formal de fronteras (hoy es el audit script; el repo no usa ESLint).
 
 ---
 
 ## 9. 🧯 Gotchas / troubleshooting
-| Síntoma | Causa / Fix |
-|---|---|
-| Overlay Ionic (select/picker) detrás del diálogo en móvil | Resuelto: los forms móviles se abren en `ion-modal` mediante `IonicDialogModal`; select y modal comparten overlay Ionic. |
-| Panel de select con contraste incorrecto en web | Revisar tokens shared/Bootstrap: `--ds-bg-surface`, `--on-surface` y `--ds-border-default`. |
-| Input Ionic sin recuadro / texto pegado | Falta `mode="md"` o el theme le mete border manual (ver §5.1). |
-| `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil. |
-| `NG0100 ExpressionChanged…` con datos async | `@if` que voltea al asignar en `.then()`; `cdr.detectChanges()` tras asignar o usar signals. |
-| Front rompe al mover un input a adaptativo | Faltó declarar algún `input()` que el web original tenía; agregarlo al delegador. |
+
+| Síntoma                                                               | Causa / Fix                                                                                                              |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Overlay Ionic (select/picker) detrás del diálogo en móvil             | Resuelto: los forms móviles se abren en `ion-modal` mediante `IonicDialogModal`; select y modal comparten overlay Ionic. |
+| Panel de select con contraste incorrecto en web                       | Revisar tokens shared/Bootstrap: `--ds-bg-surface`, `--on-surface` y `--ds-border-default`.                              |
+| Input Ionic sin recuadro / texto pegado                               | Falta `mode="md"` o el theme le mete border manual (ver §5.1).                                                           |
+| `Cannot read properties of undefined (reading 'fill')` en botón móvil | `variant` fuera del mapa → ya es defensivo; revisar que no sea un `variant` web en botón móvil.                          |
+| `NG0100 ExpressionChanged…` con datos async                           | `@if` que voltea al asignar en `.then()`; `cdr.detectChanges()` tras asignar o usar signals.                             |
+| Front rompe al mover un input a adaptativo                            | Faltó declarar algún `input()` que el web original tenía; agregarlo al delegador.                                        |
 
 ---
 
