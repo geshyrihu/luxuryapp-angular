@@ -112,13 +112,13 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         height: 100%;
         overflow: hidden;
       }
-      :host ::ng-deep app-table-caption > div {
+      :host ::ng-deep .lux-table-caption > div {
         margin-bottom: 0 !important;
       }
-      :host ::ng-deep app-task-status > div {
+      :host ::ng-deep .app-task-status > div {
         margin-bottom: 0 !important;
       }
-      :host ::ng-deep base-input-signal .field {
+      :host ::ng-deep .lux-base-input .field {
         margin-bottom: 0 !important;
       }
       :host ::ng-deep tr.task-link-source > td {

@@ -10,6 +10,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-select-button-signal",
+  host: { class: "lux-input-select-button" },
   imports: [BaseInputSignal, ReactiveFormsModule, AppSelectButton],
   template: `
     <base-input-signal

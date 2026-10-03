@@ -31,14 +31,14 @@ interface IJobDescription {
   imports: [CommonModule, LxTabs, LxTag, AppIcon],
   styles: [`
     :host { display: block; }
-    :host ::ng-deep app-tabs > .nav.nav-tabs {
+    :host ::ng-deep .lux-tabs > .nav.nav-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 0.25rem;
       margin-bottom: 1rem;
       border-bottom: 1px solid var(--ds-border);
     }
-    :host ::ng-deep app-tabs > .nav.nav-tabs .nav-link {
+    :host ::ng-deep .lux-tabs > .nav.nav-tabs .nav-link {
       border: 0;
       border-bottom: 2px solid transparent;
       border-radius: var(--ds-radius-sm, 0.25rem) var(--ds-radius-sm, 0.25rem) 0 0;
@@ -47,8 +47,8 @@ interface IJobDescription {
       font-weight: 600;
       padding: 0.65rem 0.85rem;
     }
-    :host ::ng-deep app-tabs > .nav.nav-tabs .nav-link:hover,
-    :host ::ng-deep app-tabs > .nav.nav-tabs .nav-link.active {
+    :host ::ng-deep .lux-tabs > .nav.nav-tabs .nav-link:hover,
+    :host ::ng-deep .lux-tabs > .nav.nav-tabs .nav-link.active {
       background: var(--ds-bg-sunken);
       border-bottom-color: var(--ds-primary);
       color: var(--ds-primary);

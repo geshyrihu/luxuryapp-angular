@@ -30,6 +30,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
  */
 @Component({
   selector: "base-input-signal",
+  host: { class: "lux-base-input" },
   imports: [
     CommonModule,
     FormsModule,

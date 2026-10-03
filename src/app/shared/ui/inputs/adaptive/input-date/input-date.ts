@@ -13,7 +13,7 @@ import { WebInputDate } from "../../web/input-date/input-date";
 
 @Component({
   selector: "custom-input-date-signal",
-
+  host: { class: "lux-input-date" },
   imports: [WebInputDate, IonInputDate],
   providers: [
     {

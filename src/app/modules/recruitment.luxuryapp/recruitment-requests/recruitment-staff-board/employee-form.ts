@@ -40,7 +40,7 @@ import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
         flex-wrap: wrap;
       }
 
-      .employee-shell-header lx-section-nav {
+      .employee-shell-header .lux-section-nav {
         flex: 1 1 720px;
       }
     `,

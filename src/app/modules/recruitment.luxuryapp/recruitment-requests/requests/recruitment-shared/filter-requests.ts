@@ -54,36 +54,36 @@ import { DataConnectorService } from "@core/services/data-connector.service";
         flex: 0 0 auto;
       }
 
-      :host ::ng-deep base-input-signal .field {
+      :host ::ng-deep .lux-base-input .field {
         margin-bottom: 0;
       }
 
-      :host ::ng-deep custom-search-input-signal,
-      :host ::ng-deep custom-search-input-signal .field {
+      :host ::ng-deep .lux-search-input,
+      :host ::ng-deep .lux-search-input .field {
         display: block;
         margin-bottom: 0;
         width: 100%;
       }
 
-      :host ::ng-deep custom-input-date-signal .field-horizontal,
-      :host ::ng-deep custom-input-select-button-signal .field-horizontal {
+      :host ::ng-deep .lux-input-date .field-horizontal,
+      :host ::ng-deep .lux-input-select-button .field-horizontal {
         align-items: end;
         gap: var(--ds-space-sm);
       }
 
-      :host ::ng-deep custom-input-date-signal .field-content,
-      :host ::ng-deep custom-input-select-button-signal .field-content {
+      :host ::ng-deep .lux-input-date .field-content,
+      :host ::ng-deep .lux-input-select-button .field-content {
         display: flex;
         align-items: center;
       }
 
-      :host ::ng-deep custom-input-select-button-signal .btn-group {
+      :host ::ng-deep .lux-input-select-button .btn-group {
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
       }
 
-      :host ::ng-deep custom-input-select-button-signal .btn {
+      :host ::ng-deep .lux-input-select-button .btn {
         flex: 1 1 auto;
         justify-content: center;
         white-space: nowrap;

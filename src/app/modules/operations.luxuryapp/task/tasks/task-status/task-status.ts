@@ -25,7 +25,7 @@ import { TaskGroupService } from "../task.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
   host: {
-    class: "w-full block",
+    class: "app-task-status w-full block",
   },
 })
 export class TaskStatus implements OnInit {

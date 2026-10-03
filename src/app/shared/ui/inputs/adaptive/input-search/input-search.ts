@@ -11,7 +11,7 @@ import { WebInputSearch } from "../../web/input-search/input-search";
 
 @Component({
   selector: "custom-search-input-signal",
-
+  host: { class: "lux-search-input" },
   imports: [WebInputSearch, IonInputSearch],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
