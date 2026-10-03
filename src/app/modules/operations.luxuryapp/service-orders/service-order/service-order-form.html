@@ -14,6 +14,13 @@
       <div class="row g-4">
         <!-- Primera fila -->
         <div class="col-12 col-md-6">
+          <custom-input-switch-signal
+            [control]="form.controls.isInternalExecution"
+            label="Lo realiza personal interno"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveMachineryId($event)"
             [control]="form.controls.machinery"
@@ -27,7 +34,7 @@
             (propagar)="saveProviderId($event)"
             [control]="form.controls.provider"
             [data]="cb_providers()"
-            label="Proveedor"
+            [label]="form.controls.isInternalExecution.value ? 'Proveedor (no aplica)' : 'Proveedor'"
             placeholder="Escribe para buscar proveedor"
           />
         </div>
@@ -100,9 +107,14 @@
             (propagar)="saveResponsibleUserId($event)"
             [control]="form.controls.employeeResponsable"
             [data]="cb_applicationUser()"
-            label="Supervisado por"
+            label="Supervisado por *"
             placeholder="Escribe para buscar colaborador"
           />
+          @if (form.controls.employeeResponsableId.invalid) {
+            <small class="form-btn-group-error">
+              Selecciona un responsable; este campo es obligatorio para guardar.
+            </small>
+          }
         </div>
 
         <!-- Checkboxes Row 1 -->
@@ -165,10 +177,22 @@
       </div>
 
       <!-- Botón guardar -->
+      @if (form.errors?.['negativePrice']) {
+        <small class="form-btn-group-error">El precio no puede ser negativo.</small>
+      }
+      @if (form.errors?.['executionBeforeRequest']) {
+        <small class="form-btn-group-error">La fecha de ejecución no puede ser anterior a la solicitud.</small>
+      }
+      @if (form.errors?.['concludedWithoutExecution']) {
+        <small class="form-btn-group-error">Una orden concluida requiere fecha de ejecución.</small>
+      }
+      @if (isFinalStatus) {
+        <small class="form-btn-group-error">No se puede modificar una orden en estado final.</small>
+      }
       <div class="d-flex justify-content-end mt-4">
         <il-button-save
           [propertyId]="id()"
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || isFinalStatus"
           [submitting]="submitting()"
         />
       </div>

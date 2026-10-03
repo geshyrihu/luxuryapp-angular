@@ -4,6 +4,7 @@ import {
   inject,
   OnInit,
   signal,
+  DestroyRef,
 } from "@angular/core";
 import {
   AbstractControl,
@@ -29,6 +30,7 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 interface IServiceOrderForm {
   id: FormControl<string | null>;
@@ -50,6 +52,7 @@ interface IServiceOrderForm {
   ocacionoDanos: FormControl<boolean>;
   calidadTrabajos: FormControl<boolean>;
   maintenanceCalendarId: FormControl<number | null>;
+  isInternalExecution: FormControl<boolean>;
 }
 
 @Component({
@@ -75,9 +78,11 @@ export class ServiceOrderForm implements OnInit {
   dateS = inject(DateService);
   customerIdS = inject(CustomerIdService);
   ref = inject(DynamicDialogRef);
+  destroyRef = inject(DestroyRef);
 
   submitting = signal(false);
   id = signal<number>(0);
+  isFinalStatus = false;
 
   // Signals para los catálogos
   cb_machinery = signal<SelectItemDto[]>([]);
@@ -92,7 +97,7 @@ export class ServiceOrderForm implements OnInit {
     machinery: new FormControl<string | null>(null),
     activity: new FormControl("", {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.maxLength(2000)],
     }),
     requestDate: new FormControl("", {
       nonNullable: true,
@@ -102,7 +107,7 @@ export class ServiceOrderForm implements OnInit {
     providerId: new FormControl<number | null>(null),
     provider: new FormControl<string | null>(null),
     // La validación de coherencia se aplica por grupo más abajo.
-    price: new FormControl<number | null>(null, [Validators.required]),
+    price: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
     employeeResponsableId: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -110,7 +115,7 @@ export class ServiceOrderForm implements OnInit {
     employeeResponsable: new FormControl<string | null>(null),
     typeMaintance: new FormControl<number | null>(null, [Validators.required]),
     executionDate: new FormControl("", { nonNullable: true }),
-    observations: new FormControl<string | null>(null),
+    observations: new FormControl<string | null>(null, [Validators.maxLength(4000)]),
     cumplimientoActividades: new FormControl(false, {
       nonNullable: true,
       validators: [Validators.required],
@@ -128,6 +133,7 @@ export class ServiceOrderForm implements OnInit {
       validators: [Validators.required],
     }),
     maintenanceCalendarId: new FormControl<number | null>(null),
+    isInternalExecution: new FormControl(false, { nonNullable: true }),
   });
 
   private static coherenceValidator = (
@@ -158,6 +164,9 @@ export class ServiceOrderForm implements OnInit {
   async ngOnInit(): Promise<void> {
     this.form.setValidators(ServiceOrderForm.coherenceValidator);
     this.form.updateValueAndValidity();
+    this.form.controls.isInternalExecution.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.applyExecutionMode());
 
     this.id.set(this.config.data.id);
 
@@ -192,7 +201,7 @@ export class ServiceOrderForm implements OnInit {
 
   private async loadApplicationUsers(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.usersByCustomer(this.customerIdS.customerId()),
+      Endpoints.SelectItems.employeesByUserId(this.customerIdS.customerId()),
     );
     this.cb_applicationUser.set(data || []);
   }
@@ -222,6 +231,25 @@ export class ServiceOrderForm implements OnInit {
       providerId: item?.value,
       provider: item?.label,
     });
+
+  private applyExecutionMode(): void {
+    const providerId = this.form.controls.providerId;
+    const provider = this.form.controls.provider;
+
+    if (this.form.controls.isInternalExecution.value) {
+      providerId.setValue(null, { emitEvent: false });
+      provider.setValue(null, { emitEvent: false });
+      providerId.disable({ emitEvent: false });
+      provider.disable({ emitEvent: false });
+    } else {
+      providerId.enable({ emitEvent: false });
+      provider.enable({ emitEvent: false });
+    }
+
+    providerId.updateValueAndValidity({ emitEvent: false });
+    provider.updateValueAndValidity({ emitEvent: false });
+    this.form.updateValueAndValidity({ emitEvent: false });
+  }
   public saveResponsibleUserId = (item: SelectItemDto) =>
     this.form.patchValue({
       employeeResponsableId: String(item?.value),
@@ -282,10 +310,16 @@ export class ServiceOrderForm implements OnInit {
       provider: selectedProvider?.label || null,
       employeeResponsableId: String(employeeResponsableId),
       employeeResponsable: selectedEmployee?.label || null,
-    });
+      isInternalExecution: result.isInternalExecution === true,
+    }, { emitEvent: false });
+    this.isFinalStatus = [1, 2, 4].includes(Number(result.status));
+    this.applyExecutionMode();
+    if (this.isFinalStatus) this.form.disable({ emitEvent: false });
   }
 
   async onSubmit() {
+    if (this.isFinalStatus) return;
+
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
@@ -298,7 +332,8 @@ export class ServiceOrderForm implements OnInit {
         activity: formValue.activity,
         requestDate: this.dateS.getDateFormat(formValue.requestDate as any),
         status: formValue.status,
-        providerId: formValue.providerId,
+        providerId: formValue.isInternalExecution ? null : formValue.providerId,
+        isInternalExecution: formValue.isInternalExecution,
         price: formValue.price,
         employeeResponsableId: formValue.employeeResponsableId,
         typeMaintance: formValue.typeMaintance,

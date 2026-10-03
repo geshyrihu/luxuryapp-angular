@@ -4,6 +4,7 @@ import {
   inject,
   OnInit,
   signal,
+  DestroyRef,
 } from "@angular/core";
 import {
   FormBuilder,
@@ -16,6 +17,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -27,6 +29,7 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 interface IMantenimientoPreventivoForm {
   id: FormControl<string | null>;
@@ -36,6 +39,7 @@ interface IMantenimientoPreventivoForm {
   observation: FormControl<string>;
   price: FormControl<number | null>;
   providerId: FormControl<number | string | null>;
+  isInternalExecution: FormControl<boolean>;
   recurrence: FormControl<number | null>;
   typeMaintance: FormControl<number | null>;
   customerId: FormControl<string>;
@@ -56,6 +60,7 @@ interface IMantenimientoPreventivoForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
+    CustomInputSwitch,
     InputAutocomplete,
     WebButtonLabelSave,
   ],
@@ -68,6 +73,7 @@ export class MantenimientoPreventivoForm implements OnInit {
   customerIdS = inject(CustomerIdService);
   ref = inject(DynamicDialogRef);
   enumSelectS = inject(EnumSelectService);
+  destroyRef = inject(DestroyRef);
   cb_machinery = signal<SelectItemDto[]>([]);
   cb_providers = signal<SelectItemDto[]>([]);
   cb_recurrencia = signal<SelectItemDto[]>([]);
@@ -100,6 +106,7 @@ export class MantenimientoPreventivoForm implements OnInit {
       providerId: new FormControl<number | string | null>(null, {
         validators: [Validators.required],
       }),
+      isInternalExecution: new FormControl(false, { nonNullable: true }),
       recurrence: new FormControl<number | null>(null, {
         validators: [Validators.required],
       }),
@@ -128,6 +135,9 @@ export class MantenimientoPreventivoForm implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.idMachinery = this.config.data.idMachinery;
+    this.form.controls.isInternalExecution.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.applyExecutionMode());
 
     await Promise.all([
       this.loadMachineries(),
@@ -201,6 +211,30 @@ export class MantenimientoPreventivoForm implements OnInit {
       providerId: item ? item.value : null,
       providerName: item,
     });
+
+  private applyExecutionMode(): void {
+    const isInternal = this.form.controls.isInternalExecution.value;
+    const providerId = this.form.controls.providerId;
+    const providerName = this.form.controls.providerName;
+
+    if (isInternal) {
+      providerId.setValue(null, { emitEvent: false });
+      providerName.setValue(null, { emitEvent: false });
+      providerId.clearValidators();
+      providerName.clearValidators();
+      providerId.disable({ emitEvent: false });
+      providerName.disable({ emitEvent: false });
+    } else {
+      providerId.enable({ emitEvent: false });
+      providerName.enable({ emitEvent: false });
+      providerId.setValidators([Validators.required]);
+      providerName.setValidators([Validators.required]);
+    }
+
+    providerId.updateValueAndValidity({ emitEvent: false });
+    providerName.updateValueAndValidity({ emitEvent: false });
+    this.form.updateValueAndValidity({ emitEvent: false });
+  }
   public saveAccountingCatalog = (item: SelectItemDto) =>
     this.form.patchValue({
       accountingCatalogId: item ? item.value : null,
@@ -290,6 +324,7 @@ export class MantenimientoPreventivoForm implements OnInit {
       observation,
       month: selectedMonth ? selectedMonth.value : null,
     });
+    this.applyExecutionMode();
   }
 
   onSubmit() {

@@ -85,6 +85,7 @@ describe("MantenimientoPreventivoForm", () => {
     expect(component.form.contains("month")).toBe(true);
     expect(component.form.contains("price")).toBe(true);
     expect(component.form.contains("providerId")).toBe(true);
+    expect(component.form.contains("isInternalExecution")).toBe(true);
     expect(component.form.contains("recurrence")).toBe(true);
     expect(component.form.contains("typeMaintance")).toBe(true);
     expect(component.form.contains("customerId")).toBe(true);
@@ -119,6 +120,25 @@ describe("MantenimientoPreventivoForm", () => {
     component.saveProviderId(item);
     expect(component.form.get("providerId")?.value).toBe(99);
     expect(component.form.get("providerName")?.value).toBe(item);
+  });
+
+  it("requires provider for external maintenance and clears it for internal maintenance", () => {
+    component.form.controls.providerId.setValue(null);
+    component.form.controls.providerName.setValue(null);
+    expect(component.form.controls.providerId.hasError("required")).toBe(true);
+
+    component.form.controls.isInternalExecution.setValue(true);
+
+    expect(component.form.controls.providerId.value).toBeNull();
+    expect(component.form.controls.providerName.value).toBeNull();
+    expect(component.form.controls.providerId.disabled).toBe(true);
+    expect(component.form.controls.providerName.disabled).toBe(true);
+    expect(component.form.controls.providerId.hasError("required")).toBe(false);
+
+    component.form.controls.isInternalExecution.setValue(false);
+
+    expect(component.form.controls.providerId.enabled).toBe(true);
+    expect(component.form.controls.providerId.hasError("required")).toBe(true);
   });
 
   it("saveAccountingCatalog should patch form", () => {
