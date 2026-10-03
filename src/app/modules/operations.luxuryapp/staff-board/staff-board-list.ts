@@ -12,7 +12,6 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { Department } from "@core/enums/department.enum";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import { PositionRequestStatus } from "@core/enums/position-request-status.enum";
 import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -246,7 +245,7 @@ export class StaffBoardList {
       CardEmployee,
       { applicationUserId: userId },
       "Colaborador",
-      DialogSize.sm,
+      this.dialogHandlerS.sizeLg,
     );
   }
 

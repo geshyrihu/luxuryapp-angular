@@ -19,7 +19,6 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { Department } from "@core/enums/department.enum";
-import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions as getRowsPerPageOptions,
@@ -337,7 +336,7 @@ export class RecruitmentStaffBoard {
       CardEmployee,
       { applicationUserId: userId },
       "Colaborador",
-      DialogSize.sm,
+      this.dialogHandlerS.sizeLg,
     );
   }
 
