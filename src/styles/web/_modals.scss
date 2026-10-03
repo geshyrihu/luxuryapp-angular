@@ -1,0 +1,53 @@
+// ============================================================
+// _modals.scss
+// Overrides para NgbModal / Modales globales estilo "Lagos"
+// ============================================================
+
+.modal-content {
+  // Regla general solicitada
+  border-radius: 4px;
+  
+  // Quitar el borde por defecto de Bootstrap (Lagos usa sombras, no bordes duros)
+  border: none;
+  
+  // Sombra elegante tipo Lagos (similar a su $card-box-shadow)
+  box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+  
+  // Fondo base
+  background-color: var(--ds-surface-card, #ffffff);
+
+  .modal-header {
+    // Lagos usa headers muy limpios, usualmente sin borde inferior
+    border-bottom: 1px solid var(--ds-outline, #E2E8F0); 
+    padding: 20px 24px;
+    align-items: center;
+
+    .modal-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--ds-on-surface, #1A2634);
+      margin: 0;
+    }
+
+    .btn-close {
+      // Ajuste para el btn-close nativo de Bootstrap 
+      padding: 1rem;
+      margin: -1rem -1rem -1rem auto;
+      
+      // Quitar outline en focus
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 24px;
+    color: var(--ds-on-surface-secondary, #5A6878);
+  }
+
+  .modal-footer {
+    border-top: 1px solid var(--ds-outline, #E2E8F0);
+    padding: 16px 24px;
+  }
+}
