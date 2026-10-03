@@ -62,7 +62,7 @@ import { ImageBase } from "@ui/base/image.base";
   `,
   styles: [
     `
-      ili-image ion-img::part(image) { object-fit: contain; }
+      ion-img::part(image) { object-fit: contain; }
 
       .ili-image-trigger {
         display: inline-block;

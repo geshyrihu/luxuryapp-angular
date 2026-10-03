@@ -16,11 +16,11 @@ import { BadgeBase } from "@ui/base/badge.base";
   `,
   styles: [
     `
-      ili-badge .ili-badge-small {
+      .ili-badge-small {
         font-size: 0.65rem;
         padding: 2px 5px;
       }
-      ili-badge .ili-badge-large {
+      .ili-badge-large {
         font-size: 0.95rem;
         padding: 5px 9px;
       }

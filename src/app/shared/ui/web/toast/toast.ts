@@ -93,13 +93,13 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
         border: 1px solid color-mix(in srgb, var(--ds-danger) 30%, transparent);
         border-left: 4px solid var(--ds-danger);
       }
-      .app-toast-success app-icon,
+      .app-toast-success .lux-icon,
       .app-toast-success .toast-header strong { color: var(--ds-success); }
-      .app-toast-info app-icon,
+      .app-toast-info .lux-icon,
       .app-toast-info .toast-header strong { color: var(--ds-info); }
-      .app-toast-warn app-icon,
+      .app-toast-warn .lux-icon,
       .app-toast-warn .toast-header strong { color: var(--ds-warning-text); }
-      .app-toast-error app-icon,
+      .app-toast-error .lux-icon,
       .app-toast-error .toast-header strong { color: var(--ds-danger); }
     `,
   ],

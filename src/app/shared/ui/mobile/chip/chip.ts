@@ -40,7 +40,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      ili-chip ion-chip.ili-chip-clickable {
+      ion-chip.ili-chip-clickable {
         cursor: pointer;
       }
       .ili-chip-img {
