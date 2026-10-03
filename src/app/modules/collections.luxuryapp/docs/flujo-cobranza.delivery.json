@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "bafa6cb6-35a4-418e-8d45-0d04bce6dbb9",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\geshyrihu\\.gemini\\antigravity\\brain\\1c135640-43c1-41d8-84bc-c53987b3b1e8\\scratch\\aspel-workflow.json",
+  "output": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+  "specification": {
+    "sha256": "05c9d6c5c6b082ca64d4cbbaba46571f6caade3a9e2d03ac15a0853065a4a33f",
+    "bytes": 2288
+  },
+  "artifact": {
+    "sha256": "9e7ec98c6470c28832d0a2ef104f32e1d91a5983344f0c6bde530066dfa45060",
+    "bytes": 753519
+  }
+}

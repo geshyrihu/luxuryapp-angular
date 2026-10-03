@@ -1,0 +1,2461 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "workflow",
+  "quality": "standard",
+  "startedAt": "2026-10-03T01:52:20.799Z",
+  "specification": {
+    "path": "C:\\Users\\geshyrihu\\.gemini\\antigravity\\brain\\1c135640-43c1-41d8-84bc-c53987b3b1e8\\scratch\\aspel-workflow.json",
+    "sha256": "05c9d6c5c6b082ca64d4cbbaba46571f6caade3a9e2d03ac15a0853065a4a33f",
+    "bytes": 2288
+  },
+  "artifact": {
+    "path": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+    "sha256": "9e7ec98c6470c28832d0a2ef104f32e1d91a5983344f0c6bde530066dfa45060",
+    "bytes": 753519
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "d:\\repos\\luxuryapp-api\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "workflow",
+        "C:\\Users\\geshyrihu\\.gemini\\antigravity\\brain\\1c135640-43c1-41d8-84bc-c53987b3b1e8\\scratch\\aspel-workflow.json",
+        "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "05c9d6c5c6b082ca64d4cbbaba46571f6caade3a9e2d03ac15a0853065a4a33f",
+          "bytes": 2288
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 1,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/viewport-height",
+              "readerFit": null,
+              "viewBoxWidth": 904,
+              "viewBoxHeight": 846,
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "ratio": 1.07,
+              "wideRatio": 1.55,
+              "svgWidthPx": 1346,
+              "svgHeightPx": 1260,
+              "fixedChromePx": 126,
+              "pageHeightPx": 1386,
+              "overflowPx": 486,
+              "detail": "[composition/viewport-height] Preserve every node, relationship, and label. This 904x846 canvas (ratio 1.07) declares no intrinsic-height fit and is below the 1.55 wide ratio, so the desktop Reader can neither narrow it nor accept vertical scroll: it renders 1260px tall at the full 1346px width and the page reaches 1386px before cards against 900px, a certain visual-check failure. Either compact vertical spacing so meta.viewBox height is at most 583 at this width, or spread content sideways so the width is at least 1312 at this height; for architecture, omitting meta.viewBox lets the renderer size the canvas and declare the fit."
+            }
+          ]
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 3261,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "d:\\repos\\luxuryapp-api\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "workflow",
+        "C:\\Users\\geshyrihu\\.gemini\\antigravity\\brain\\1c135640-43c1-41d8-84bc-c53987b3b1e8\\scratch\\aspel-workflow.json",
+        "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "bafa6cb6-35a4-418e-8d45-0d04bce6dbb9",
+        "ok": true,
+        "command": "deliver",
+        "type": "workflow",
+        "input": "C:\\Users\\geshyrihu\\.gemini\\antigravity\\brain\\1c135640-43c1-41d8-84bc-c53987b3b1e8\\scratch\\aspel-workflow.json",
+        "output": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "specification": {
+          "sha256": "05c9d6c5c6b082ca64d4cbbaba46571f6caade3a9e2d03ac15a0853065a4a33f",
+          "bytes": 2288
+        },
+        "artifact": {
+          "sha256": "9e7ec98c6470c28832d0a2ef104f32e1d91a5983344f0c6bde530066dfa45060",
+          "bytes": 753519
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 1,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/viewport-height",
+              "readerFit": null,
+              "viewBoxWidth": 904,
+              "viewBoxHeight": 846,
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "ratio": 1.07,
+              "wideRatio": 1.55,
+              "svgWidthPx": 1346,
+              "svgHeightPx": 1260,
+              "fixedChromePx": 126,
+              "pageHeightPx": 1386,
+              "overflowPx": 486,
+              "detail": "[composition/viewport-height] Preserve every node, relationship, and label. This 904x846 canvas (ratio 1.07) declares no intrinsic-height fit and is below the 1.55 wide ratio, so the desktop Reader can neither narrow it nor accept vertical scroll: it renders 1260px tall at the full 1346px width and the page reaches 1386px before cards against 900px, a certain visual-check failure. Either compact vertical spacing so meta.viewBox height is at most 583 at this width, or spread content sideways so the width is at least 1312 at this height; for architecture, omitting meta.viewBox lets the renderer size the canvas and declare the fit."
+            }
+          ]
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 980,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "d:\\repos\\luxuryapp-api\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "artifact": {
+          "sha256": "9e7ec98c6470c28832d0a2ef104f32e1d91a5983344f0c6bde530066dfa45060",
+          "bytes": 753519
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "standard",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 1
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 75.9,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 1,
+            "minProjectedNodeTextPx": 8,
+            "maxBends": 1,
+            "routesOverSuggestedBends": 0,
+            "maxStretch": 1,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 28,
+            "minInteriorSegmentPx": null,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": []
+          },
+          "leadingSpace": {
+            "measured": false,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "legacy-930",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 930,
+            "actualBudgetPx": 930,
+            "limit": "legacy",
+            "requestedTargetPx": null,
+            "requestedTargetMet": null,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "user"
+            },
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 8,
+            "semanticTextCount": 15
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "composition/viewport-height",
+              "readerFit": null,
+              "viewBoxWidth": 904,
+              "viewBoxHeight": 846,
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "ratio": 1.07,
+              "wideRatio": 1.55,
+              "svgWidthPx": 1346,
+              "svgHeightPx": 1260,
+              "fixedChromePx": 126,
+              "pageHeightPx": 1386,
+              "overflowPx": 486,
+              "detail": "[composition/viewport-height] Preserve every node, relationship, and label. This 904x846 canvas (ratio 1.07) declares no intrinsic-height fit and is below the 1.55 wide ratio, so the desktop Reader can neither narrow it nor accept vertical scroll: it renders 1260px tall at the full 1346px width and the page reaches 1386px before cards against 900px, a certain visual-check failure. Either compact vertical spacing so meta.viewBox height is at most 583 at this width, or spread content sideways so the width is at least 1312 at this height; for architecture, omitting meta.viewBox lets the renderer size the canvas and declare the fit."
+            }
+          ]
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "bafa6cb6-35a4-418e-8d45-0d04bce6dbb9"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 5494,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "d:\\repos\\luxuryapp-api\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "browser-check",
+        "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "bafa6cb6-35a4-418e-8d45-0d04bce6dbb9",
+        "artifact": {
+          "path": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+          "sha256": "9e7ec98c6470c28832d0a2ef104f32e1d91a5983344f0c6bde530066dfa45060",
+          "bytes": 753519
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1440x900 light viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1408,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1260,
+                "cardsPx": 6,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 313,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 229,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 508px too tall (12px body padding + 52px header + 78px diagram chrome + 1260px SVG + 6px cards = 1408px against 900px); the SVG spans the full 1346px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1600x1000 light viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 544px too tall (64px body padding + 60px header + 84px diagram chrome + 1320px SVG + 16px cards = 1544px against 1000px); the SVG spans the full 1410px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1920x1080 light viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 464px too tall (64px body padding + 60px header + 84px diagram chrome + 1320px SVG + 16px cards = 1544px against 1080px); the SVG spans the full 1410px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 2048x1320 light viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 2048,
+                "height": 1320,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1559,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1301,
+                "cardsPx": 32,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 323,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 237,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 239px too tall (64px body padding + 68px header + 94px diagram chrome + 1301px SVG + 32px cards = 1559px against 1320px); the SVG spans the full 1390px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1440x900 dark viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "dark"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1408,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1260,
+                "cardsPx": 6,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 313,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 229,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 508px too tall (12px body padding + 52px header + 78px diagram chrome + 1260px SVG + 6px cards = 1408px against 900px); the SVG spans the full 1346px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 2048x1320 dark viewport.",
+            "subject": {
+              "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+              "viewport": {
+                "width": 2048,
+                "height": 1320,
+                "theme": "dark"
+              }
+            },
+            "evidence": {
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1559,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1301,
+                "cardsPx": 32,
+                "viewBoxHeight": 846
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 323,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 237,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+            },
+            "supportedFixes": [
+              "the page is 239px too tall (64px body padding + 68px header + 94px diagram chrome + 1301px SVG + 32px cards = 1559px against 1320px); the SVG spans the full 1390px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+              "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+              "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+              "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1408,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1260,
+                "cardsPx": 6,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 313,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 229,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1559,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1390,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1301,
+                "cardsPx": 32,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 323,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 237,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "pass",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1408,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1260,
+                "cardsPx": 6,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 313,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 229,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1559,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1390,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1301,
+                "cardsPx": 32,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 323,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 237,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1408,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1260,
+                "cardsPx": 6,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 313,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 140,
+                  "spaceBelowNodesPx": 95
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 313,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 77,
+                  "spaceAboveNodesPx": 229,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1544,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1410,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1320,
+                "cardsPx": 16,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 328,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 147,
+                  "spaceBelowNodesPx": 100
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 328,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 240,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1559,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": null,
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": false,
+              "readerWidth": 1440,
+              "diagramWidth": 1390,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1301,
+                "cardsPx": 32,
+                "viewBoxHeight": 846
+              },
+              "viewBoxWidth": 904,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "user",
+                    "frontend",
+                    "modal"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 323,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "api",
+                    "totals",
+                    "response"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 145,
+                  "spaceBelowNodesPx": 98
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 323,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "query"
+                  ],
+                  "nodeSpanPx": 80,
+                  "spaceAboveNodesPx": 237,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "selecciona dpto",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "user"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "flujo-cobranza.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 1440x900 light viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 1408,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 12,
+          "headerPx": 52,
+          "diagramChromePx": 78,
+          "svgPx": 1260,
+          "cardsPx": 6,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 313,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 140,
+            "spaceBelowNodesPx": 95
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 313,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 140,
+            "spaceBelowNodesPx": 95
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 313,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 229,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 508px too tall (12px body padding + 52px header + 78px diagram chrome + 1260px SVG + 6px cards = 1408px against 900px); the SVG spans the full 1346px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 1600x1000 light viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "innerWidth": 1600,
+        "innerHeight": 1000,
+        "scrollWidth": 1600,
+        "scrollHeight": 1544,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 1320,
+          "cardsPx": 16,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 328,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 147,
+            "spaceBelowNodesPx": 100
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 328,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 147,
+            "spaceBelowNodesPx": 100
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 328,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 240,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 544px too tall (64px body padding + 60px header + 84px diagram chrome + 1320px SVG + 16px cards = 1544px against 1000px); the SVG spans the full 1410px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 1920x1080 light viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "innerWidth": 1920,
+        "innerHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1544,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 1320,
+          "cardsPx": 16,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 328,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 147,
+            "spaceBelowNodesPx": 100
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 328,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 147,
+            "spaceBelowNodesPx": 100
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 328,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 81,
+            "spaceAboveNodesPx": 240,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 464px too tall (64px body padding + 60px header + 84px diagram chrome + 1320px SVG + 16px cards = 1544px against 1080px); the SVG spans the full 1410px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 2048x1320 light viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1559,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 68,
+          "diagramChromePx": 94,
+          "svgPx": 1301,
+          "cardsPx": 32,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 323,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 145,
+            "spaceBelowNodesPx": 98
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 323,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 145,
+            "spaceBelowNodesPx": 98
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 323,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 237,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 239px too tall (64px body padding + 68px header + 94px diagram chrome + 1301px SVG + 32px cards = 1559px against 1320px); the SVG spans the full 1390px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 1440x900 dark viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "dark"
+        }
+      },
+      "evidence": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 1408,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 12,
+          "headerPx": 52,
+          "diagramChromePx": 78,
+          "svgPx": 1260,
+          "cardsPx": 6,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 313,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 140,
+            "spaceBelowNodesPx": 95
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 313,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 140,
+            "spaceBelowNodesPx": 95
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 313,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 77,
+            "spaceAboveNodesPx": 229,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 508px too tall (12px body padding + 52px header + 78px diagram chrome + 1260px SVG + 6px cards = 1408px against 900px); the SVG spans the full 1346px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 2048x1320 dark viewport.",
+      "subject": {
+        "artifact": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "dark"
+        }
+      },
+      "evidence": {
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1559,
+        "overflowX": false,
+        "overflowY": true,
+        "overflowDisposition": "unexpected-overflow",
+        "readerLayout": null,
+        "readerOverflow": null,
+        "readerFit": null,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 68,
+          "diagramChromePx": 94,
+          "svgPx": 1301,
+          "cardsPx": 32,
+          "viewBoxHeight": 846
+        },
+        "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight",
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 323,
+            "nodeCount": 3,
+            "nodeIds": [
+              "user",
+              "frontend",
+              "modal"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 145,
+            "spaceBelowNodesPx": 98
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 323,
+            "nodeCount": 3,
+            "nodeIds": [
+              "api",
+              "totals",
+              "response"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 145,
+            "spaceBelowNodesPx": 98
+          },
+          {
+            "frameId": "lane-2",
+            "heightPx": 323,
+            "nodeCount": 1,
+            "nodeIds": [
+              "query"
+            ],
+            "nodeSpanPx": 80,
+            "spaceAboveNodesPx": 237,
+            "spaceBelowNodesPx": 6
+          }
+        ],
+        "measurement": "CSS pixels; rendered node boxes geometrically contained in each lane frame; spaces include headers and routing, not guaranteed removable space"
+      },
+      "supportedFixes": [
+        "the page is 239px too tall (64px body padding + 68px header + 94px diagram chrome + 1301px SVG + 32px cards = 1559px against 1320px); the SVG spans the full 1390px reader width because its viewBox ratio is below 1.55 and it declares no intrinsic-height fit, so the Reader can neither narrow it nor accept readable vertical scroll: either remove meta.viewBox so the renderer sizes the canvas and declares the fit, or make the viewBox at least 1.55x wider than tall",
+        "run validate workflow <source.json> --layout-json and compare the tallest rendered lane frames with source lanes, col and yOffset; frame IDs are rendered indices, not source lane IDs",
+        "where ownership and explicit geometry permit, distribute stacked steps across logical columns and meaningful lanes before increasing yOffset; preserve nodes, branches, labels and hard pins",
+        "read references/authoring-contract.md#workflow-viewport-repair, then validate and deliver the changed source before rerunning browser-check on the new artifact; this is inspection guidance, not a verified coordinate fix"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.finalize.json",
+    "summaryReceipt": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.finalize-summary.json",
+    "browserCheckReceipt": "D:\\repos\\luxuryapp-api\\appsweb\\angular\\src\\app\\modules\\collections.luxuryapp\\docs\\flujo-cobranza.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-03T01:52:35.803Z",
+  "durationMs": 15003,
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "invalid-local-release"
+  }
+}
