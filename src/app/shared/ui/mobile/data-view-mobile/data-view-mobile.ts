@@ -55,6 +55,7 @@ export interface IMobileBreadcrumbItem {
  */
 @Component({
   selector: "app-data-view-mobile",
+  host: { class: "lux-data-view-mobile" },
   templateUrl: "./data-view-mobile.html",
   styleUrls: ["./data-view-mobile.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -13,8 +13,8 @@ import { SwalService } from "@core/services/swal.service";
 
 @Component({
   selector: "iw-button-send-email",
-
-  imports: [AppIcon, LxTooltipDirective],
+  host: { class: "lux-button-web" },
+   imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button

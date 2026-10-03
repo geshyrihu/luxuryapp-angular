@@ -5,6 +5,7 @@ import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button",
+  host: { class: "lux-button-web" },
    imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

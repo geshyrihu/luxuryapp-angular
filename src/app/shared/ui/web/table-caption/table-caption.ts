@@ -14,6 +14,7 @@ import { GlobalTableFilterService } from "@core/services/global-table-filter.ser
 
 @Component({
   selector: "app-table-caption",
+  host: { class: "lux-table-caption" },
   templateUrl: "./table-caption.html",
   imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,

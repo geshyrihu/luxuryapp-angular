@@ -11,7 +11,7 @@ import { BadgeBase } from "@ui/base/badge.base";
  */
 @Component({
   selector: "app-badge",
-
+  host: { class: "lux-badge" },
   imports: [NgClass],
   template: `
     <span class="badge" [ngClass]="'app-badge-' + color() + ' app-badge-size-' + size()">{{ displayValue() }}</span>

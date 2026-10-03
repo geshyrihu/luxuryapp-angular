@@ -13,7 +13,7 @@ import { TrackingEvent } from "../shared/tracking";
 
 @Component({
   selector: "iw-button-tracking",
-
+  host: { class: "lux-button-web" },
    imports: [AppIcon, AppBadge, LxTooltipDirective],
   template: `
     <button
@@ -43,7 +43,7 @@ import { TrackingEvent } from "../shared/tracking";
         justify-content: center;
       }
 
-      .tracking-badge-anchor app-badge {
+      .tracking-badge-anchor .lux-badge {
         position: absolute;
         top: -0.35rem;
         right: -0.45rem;

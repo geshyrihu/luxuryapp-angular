@@ -5,6 +5,7 @@ import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
   selector: "ili-button",
+  host: { class: "lux-button-mobile" },
 
   imports: [IonButton, IonSpinner, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -35,10 +36,10 @@ import { MobileButtonBase } from "../mobile-button-base";
     `
       /* app-icon (a diferencia de ion-icon) no recibe el margen por defecto de
          ion-button, por eso el icono queda pegado al texto. Lo separamos. */
-      app-icon[slot="start"] {
+      .lux-icon[slot="start"] {
         margin-inline-end: 0.45rem;
       }
-      app-icon[slot="end"] {
+      .lux-icon[slot="end"] {
         margin-inline-start: 0.45rem;
       }
     `,

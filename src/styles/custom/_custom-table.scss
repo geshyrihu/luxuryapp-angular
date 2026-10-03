@@ -113,7 +113,7 @@
        border-color: var(--ds-border);
 
       /* Los iconos de orden heredan el color del encabezado */
-      app-sorticon,
+      .lux-sorticon,
       .app-table-sorticon,
       svg {
         color: currentColor;

@@ -951,7 +951,7 @@
   gap: 0.6rem;
 
   // Cards del catálogo (lx-card => ion-card en mobile): sin margen extra
-  lx-card {
+  .lux-card {
     display: block;
   }
   ion-card {
@@ -1003,7 +1003,7 @@
     gap: 0.5rem;
     margin-top: 0.25rem;
 
-    ili-button {
+    .lux-button-mobile {
       flex: 1 1 0;
       min-width: 0;
     }
@@ -1352,5 +1352,5 @@
   gap: 0.35rem;
   font-size: var(--ds-font-size-help);
   color: var(--ds-text-secondary);
-  app-icon { font-size: 1.15rem; }
+  .lux-icon { font-size: 1.15rem; }
 }

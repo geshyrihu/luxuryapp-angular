@@ -10,7 +10,7 @@ import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 
 @Component({
   selector: "app-icon",
-
+  host: { class: "lux-icon" },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `<iconify-icon [attr.icon]="resolvedIcon()"></iconify-icon>`,
   styles: [

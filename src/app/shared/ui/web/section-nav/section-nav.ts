@@ -10,6 +10,7 @@ export interface LxSectionNavItem {
 
 @Component({
   selector: "lx-section-nav",
+  host: { class: "lux-section-nav" },
   imports: [AppIcon],
   template: `
     <nav class="lx-section-nav" [attr.aria-label]="ariaLabel()">

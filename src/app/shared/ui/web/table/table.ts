@@ -126,6 +126,7 @@ export class AppFrozenColumn {
 
 @Component({
   selector: "app-sorticon",
+  host: { class: "lux-sorticon" },
   imports: [AppIcon],
   template: `
     <span class="app-table-sorticon">

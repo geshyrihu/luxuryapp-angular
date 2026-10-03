@@ -13,7 +13,7 @@ import { SwalService } from "@core/services/swal.service";
 
 @Component({
   selector: "iw-button-confirm",
-
+  host: { class: "lux-button-web" },
    imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

@@ -13,7 +13,7 @@ import { ConfirmService } from "../shared/confirm.service";
 
 @Component({
   selector: "iw-button-delete",
-
+  host: { class: "lux-button-web" },
    imports: [AppIcon, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

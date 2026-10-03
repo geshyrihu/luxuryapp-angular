@@ -319,8 +319,8 @@ app-header-employee-monitor .toolbar-icon-btn {
 
 /* Tamaño unificado de los iconos del header (sidebar toggle, nav y tema).
    app-icon dimensiona su glifo con 1em, así que basta con el font-size. */
-app-header-employee-monitor .toolbar-icon-btn app-icon,
-app-header-employee-monitor iw-button app-icon {
+app-header-employee-monitor .toolbar-icon-btn .lux-icon,
+app-header-employee-monitor .lux-button-web .lux-icon {
   font-size: 1.4rem;
 }
 
@@ -380,7 +380,7 @@ nav.header-breadcrumb {
     text-align: left;
   }
 
-  app-icon {
+  .lux-icon {
     flex: 0 0 auto;
     margin-left: auto;
   }

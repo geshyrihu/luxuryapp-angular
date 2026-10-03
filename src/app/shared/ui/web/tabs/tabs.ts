@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
  */
 @Component({
   selector: "app-tabs",
-
+  host: { class: "lux-tabs" },
   imports: [NgbNavModule, AppIcon],
   template: `
     <ul ngbNav #nav="ngbNav" [activeId]="activeId()" (activeIdChange)="onValueChange($event)" class="nav nav-tabs">

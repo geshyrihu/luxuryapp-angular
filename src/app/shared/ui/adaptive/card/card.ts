@@ -7,7 +7,7 @@ import { PlatformService } from "@core/services/platform.service";
 
 @Component({
   selector: "lx-card",
-
+  host: { class: "lux-card" },
   imports: [NgTemplateOutlet, AppCard, MobileCard],
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
