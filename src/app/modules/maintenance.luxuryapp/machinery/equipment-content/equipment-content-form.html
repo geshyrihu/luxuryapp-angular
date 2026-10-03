@@ -1,0 +1,57 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <custom-input-text-signal
+          [control]="form.controls.name"
+          label="Nombre"
+          placeholder="Ej. Mesa rectangular"
+        />
+      </div>
+      <div class="col-12 col-md-6">
+        <custom-input-select-signal
+          [control]="form.controls.type"
+          [data]="contentTypes()"
+          [filter]="true"
+          label="Tipo"
+        />
+      </div>
+      <div class="col-12 col-md-4">
+        <custom-input-number-signal
+          [control]="form.controls.quantity"
+          label="Cantidad"
+        />
+      </div>
+      <div class="col-12 col-md-8">
+        <custom-input-textarea-signal
+          [control]="form.controls.notes"
+          label="Notas"
+          placeholder="Estado o características"
+          rows="3"
+        />
+      </div>
+      <div class="col-12 col-md-6">
+        <custom-input-img-signal
+          (fileSelected)="onPhotoSelected($event)"
+          [urlImgCurrent]="currentPhoto()"
+          [contentHeight]="'180px'"
+          [contentWidth]="'100%'"
+          label="Imagen (opcional)"
+        />
+        @if (currentPhoto()) {
+          <button
+            type="button"
+            class="btn btn-text-danger btn-sm mt-2"
+            (click)="removeCurrentPhoto()"
+          >
+            Quitar imagen actual
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <il-button-save [disabled]="form.invalid || submitting()" [submitting]="submitting()" />
+    </div>
+  </form>
+</div>

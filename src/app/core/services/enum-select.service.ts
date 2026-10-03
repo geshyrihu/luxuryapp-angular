@@ -170,6 +170,9 @@ export class EnumSelectService {
   inventoryCategory = (d?: boolean) =>
     this.onLoadEnumList("inventory-category", d);
 
+  equipmentContentType = (d?: boolean) =>
+    this.onLoadEnumList("equipment-content-type", d);
+
   state = (d?: boolean) => this.onLoadEnumList("state", d);
 
   typePerson = (d?: boolean) => this.onLoadEnumList("type-person", d);

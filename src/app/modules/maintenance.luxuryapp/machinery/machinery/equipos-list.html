@@ -184,6 +184,15 @@
                 tooltipPosition="top"
                 variant="text"
               />
+              @if (showContents()) {
+                <iw-button-item
+                  (clicked)="onEquipmentContents(item)"
+                  iconClass="material-symbols-light:inventory-2"
+                  lxTooltip="Contenidos"
+                  tooltipPosition="top"
+                  variant="text"
+                />
+              }
               @if (!mostrarPreventivos()) {
               <iw-button-item
                 (clicked)="openMantenimientosDialog(item)"
@@ -314,6 +323,15 @@
               >
                 <app-icon icon="material-symbols-light:article-outline" slot="icon-only" />
               </button>
+              @if (showContents()) {
+                <button
+                  class="btn btn-rounded btn-text-primary btn-sm"
+                  (click)="onEquipmentContents(item)"
+                  aria-label="Administrar contenidos"
+                >
+                  <app-icon icon="material-symbols-light:inventory-2" slot="icon-only" />
+                </button>
+              }
               <button
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="item.expanded = !item.expanded"

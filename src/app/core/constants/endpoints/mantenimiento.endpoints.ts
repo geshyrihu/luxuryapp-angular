@@ -130,6 +130,15 @@ export const EndpointsMantenimiento = {
     uploadDocument: (machineryId: string) =>
       `machineries/subir-documento/${machineryId}`,
   },
+  EquipmentContents: {
+    base: "equipment-contents",
+    byEquipment: (equipmentId: string) =>
+      `equipment-contents/by-equipment/${equipmentId}`,
+    byId: (id: string) => `equipment-contents/${id}`,
+    create: "equipment-contents",
+    update: (id: string) => `equipment-contents/${id}`,
+    delete: (id: string) => `equipment-contents/${id}`,
+  },
   MachineryDocuments: {
     listByMachinery: (machineryId: string) =>
       `machinery-document/list/${machineryId}`,

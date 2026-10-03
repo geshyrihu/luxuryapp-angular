@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-25T02:15:45.912Z",
-  "totalMatches": 2005,
-  "userFacingMatches": 452,
+  "generatedAt": "2026-10-02T22:47:46.299Z",
+  "totalMatches": 1979,
+  "userFacingMatches": 453,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/modules",
-      "count": 1274
+      "count": 1265
     },
     {
       "key": "app/shared",
-      "count": 282
-    },
-    {
-      "key": "src/styles",
-      "count": 148
+      "count": 277
     },
     {
       "key": "app/routing",
+      "count": 136
+    },
+    {
+      "key": "src/styles",
       "count": 136
     },
     {
@@ -40,7 +40,7 @@
   "byUserFacingModule": [
     {
       "key": "app/modules",
-      "count": 347
+      "count": 348
     },
     {
       "key": "app/core",
@@ -62,7 +62,7 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 1101
+      "count": 1079
     },
     {
       "key": "code_string",
@@ -70,7 +70,7 @@
     },
     {
       "key": "template_text",
-      "count": 217
+      "count": 218
     },
     {
       "key": "code_comment",
@@ -78,11 +78,11 @@
     },
     {
       "key": "template_comment",
-      "count": 173
+      "count": 167
     },
     {
       "key": "style_comment",
-      "count": 44
+      "count": 45
     },
     {
       "key": "code_misc",
@@ -404,7 +404,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 116,
+      "line": 120,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -415,7 +415,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 123,
+      "line": 127,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -426,7 +426,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 129,
+      "line": 133,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -437,7 +437,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 135,
+      "line": 139,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -448,7 +448,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 148,
+      "line": 152,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -459,7 +459,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 155,
+      "line": 159,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -470,7 +470,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 163,
+      "line": 167,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -481,7 +481,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 178,
+      "line": 182,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -492,7 +492,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 195,
+      "line": 199,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -503,7 +503,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 210,
+      "line": 214,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -514,7 +514,7 @@
     },
     {
       "file": "src/app/app.ts",
-      "line": 256,
+      "line": 260,
       "category": "code_string",
       "module": "app/root",
       "severity": "medium",
@@ -2243,7 +2243,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 193,
+      "line": 192,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2254,7 +2254,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 226,
+      "line": 225,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2265,7 +2265,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 289,
+      "line": 288,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2276,7 +2276,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 368,
+      "line": 366,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2287,7 +2287,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 409,
+      "line": 406,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2298,7 +2298,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 421,
+      "line": 418,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2309,7 +2309,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 444,
+      "line": 441,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2320,7 +2320,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 494,
+      "line": 491,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2331,7 +2331,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 496,
+      "line": 493,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2342,7 +2342,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 497,
+      "line": 494,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2353,7 +2353,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 498,
+      "line": 495,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2364,7 +2364,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 499,
+      "line": 496,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2375,7 +2375,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 500,
+      "line": 497,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -2386,18 +2386,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 501,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "✅ **Responsive** y moderno con Angular 22 + Bootstrap"
-    },
-    {
-      "file": "src/app/modules/accounting.luxuryapp/general-ledger/aspel-full-mirror/docs/documentacion-espejo-aspel-full.md",
-      "line": 502,
+      "line": 498,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -5932,7 +5921,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.html",
-      "line": 653,
+      "line": 668,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -5943,7 +5932,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.html",
-      "line": 660,
+      "line": 675,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -5954,7 +5943,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.html",
-      "line": 683,
+      "line": 698,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -5965,7 +5954,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.html",
-      "line": 729,
+      "line": 744,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -5987,7 +5976,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.ts",
-      "line": 74,
+      "line": 75,
       "category": "code_comment",
       "module": "app/modules",
       "severity": "low",
@@ -5998,7 +5987,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/presupuesto-propuesta.ts",
-      "line": 245,
+      "line": 250,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -6006,6 +5995,17 @@
         "🤖"
       ],
       "preview": "\"🤖 Reporte de Auditoría Presupuestal\","
+    },
+    {
+      "file": "src/app/modules/accounting.luxuryapp/general-ledger/budget-proposals/qa_gap_analysis_presupuesto_propuesta.md",
+      "line": 11,
+      "category": "docs",
+      "module": "app/modules",
+      "severity": "low",
+      "symbols": [
+        "🗑"
+      ],
+      "preview": "| **BudgetProposalItem (Eliminación)** | **Validación Espejo Incompleta en UI (`canDeleteItem`)**<br>El botón de eliminar (🗑️) podría mostrarse en el frontend pero fallar con erro"
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-report-delivery/reporte-envio-financieros.html",
@@ -6031,7 +6031,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/client/client-accounting-budget/presupuesto-contabilidad-cliente.html",
-      "line": 43,
+      "line": 44,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6042,7 +6042,7 @@
     },
     {
       "file": "src/app/modules/accounting.luxuryapp/general-ledger/financial-reports/online/accounting-budget/presupuesto-contabilidad.html",
-      "line": 41,
+      "line": 45,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -6696,7 +6696,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §3 UX/UI — Bootstrap e Ionic | 2 | ✅ |"
+      "preview": "| §4 Acceso a API (Frontend) | 2 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6707,7 +6707,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §4 Acceso a API (Frontend) | 2 | ✅ |"
+      "preview": "| §5 Componentes UI | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6718,7 +6718,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §5 Componentes UI | 1 | ✅ |"
+      "preview": "| §6 Convención de Wrappers | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6729,7 +6729,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §6 Convención de Wrappers | 1 | ✅ |"
+      "preview": "| §7 Convención de Nombrado | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6740,7 +6740,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §7 Convención de Nombrado | 1 | ✅ |"
+      "preview": "| §8 Botones de Opciones de Menú | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6751,7 +6751,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §8 Botones de Opciones de Menú | 1 | ✅ |"
+      "preview": "| §9 Backend (.NET 10) | 9 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6762,7 +6762,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §9 Backend (.NET 10) | 9 | ✅ |"
+      "preview": "| §10 Codificación y Encoding | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6773,7 +6773,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §10 Codificación y Encoding | 1 | ✅ |"
+      "preview": "| §11 Estándares de Documentación | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6784,7 +6784,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §11 Estándares de Documentación | 1 | ✅ |"
+      "preview": "| §12 Skills y Conocimiento | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6795,7 +6795,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §12 Skills y Conocimiento | 1 | ✅ |"
+      "preview": "| §13 Frontend Móvil (Flutter) | 2 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6806,7 +6806,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §13 Frontend Móvil (Flutter) | 2 | ✅ |"
+      "preview": "| §14 Organización por Apps | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6817,7 +6817,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §14 Organización por Apps | 1 | ✅ |"
+      "preview": "| §15 Diseño Responsive y Mobile | 2 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6828,7 +6828,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §15 Diseño Responsive y Mobile | 2 | ✅ |"
+      "preview": "| §16 Testing Unitario (.NET) | 3 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6839,7 +6839,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §16 Testing Unitario (.NET) | 3 | ✅ |"
+      "preview": "| §17 Git Workflow | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6850,7 +6850,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §17 Git Workflow | 1 | ✅ |"
+      "preview": "| §18 Infraestructura Compartida | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6861,7 +6861,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §18 Infraestructura Compartida | 1 | ✅ |"
+      "preview": "| §19 Auditoría de Módulos | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6872,7 +6872,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §19 Auditoría de Módulos | 1 | ✅ |"
+      "preview": "| §20 Creación de Planes | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6883,7 +6883,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §20 Creación de Planes | 1 | ✅ |"
+      "preview": "| §21 Documentación de Módulos | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6894,7 +6894,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §21 Documentación de Módulos | 1 | ✅ |"
+      "preview": "| §22 Guías Operativas | 1 | ✅ |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
@@ -6905,22 +6905,11 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| §22 Guías Operativas | 1 | ✅ |"
-    },
-    {
-      "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 125,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
       "preview": "| **Total** | **39** | **✅ 22/22** |"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 134,
+      "line": 133,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6931,7 +6920,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 135,
+      "line": 134,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6942,7 +6931,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 136,
+      "line": 135,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6953,7 +6942,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 141,
+      "line": 140,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6964,7 +6953,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 142,
+      "line": 141,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6975,7 +6964,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 147,
+      "line": 146,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6986,7 +6975,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 152,
+      "line": 151,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -6997,7 +6986,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 157,
+      "line": 156,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7008,18 +6997,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 162,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| No importar Bootstrap/Ionic directamente | ✅ Ninguna importación directa |"
-    },
-    {
-      "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 167,
+      "line": 165,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7030,7 +7008,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 175,
+      "line": 173,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7041,7 +7019,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 176,
+      "line": 174,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7052,7 +7030,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 177,
+      "line": 175,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7063,7 +7041,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 178,
+      "line": 176,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7074,7 +7052,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 179,
+      "line": 177,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7085,7 +7063,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 182,
+      "line": 180,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7096,7 +7074,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 183,
+      "line": 181,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7107,7 +7085,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 184,
+      "line": 182,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7118,7 +7096,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 185,
+      "line": 183,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7129,7 +7107,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 186,
+      "line": 184,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7140,7 +7118,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 200,
+      "line": 198,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7151,7 +7129,7 @@
     },
     {
       "file": "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
-      "line": 205,
+      "line": 203,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -7890,6 +7868,17 @@
         "🌱"
       ],
       "preview": "🌱"
+    },
+    {
+      "file": "src/app/modules/admin.luxuryapp/infrastructure/update-data-base/update-data-base.html",
+      "line": 484,
+      "category": "template_text",
+      "module": "app/modules",
+      "severity": "medium",
+      "symbols": [
+        "🔥"
+      ],
+      "preview": "🔥"
     },
     {
       "file": "src/app/modules/admin.luxuryapp/reports/access-history/bitacora-acceso-list.html",
@@ -10194,18 +10183,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 472,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "#### 🔴 C4 — Online: Bootstrap directo fuera de la excepción `p-table`"
-    },
-    {
-      "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 482,
+      "line": 477,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10216,7 +10194,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 484,
+      "line": 479,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10228,7 +10206,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 492,
+      "line": 487,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10239,7 +10217,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 500,
+      "line": 495,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10251,7 +10229,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 502,
+      "line": 497,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10262,7 +10240,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 503,
+      "line": 498,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10273,7 +10251,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 504,
+      "line": 499,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10285,7 +10263,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 505,
+      "line": 500,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10296,7 +10274,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 506,
+      "line": 501,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10307,19 +10285,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 507,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "✅",
-        "🔴"
-      ],
-      "preview": "| Bootstrap solo `p-table` (§5.5)            |               ✅               |                                            🔴 3 archivos                                             |"
-    },
-    {
-      "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 508,
+      "line": 502,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10331,7 +10297,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 509,
+      "line": 503,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10343,7 +10309,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 510,
+      "line": 504,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10354,7 +10320,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 511,
+      "line": 505,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10366,7 +10332,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 512,
+      "line": 506,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10378,7 +10344,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 531,
+      "line": 525,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10389,7 +10355,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 532,
+      "line": 526,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10400,7 +10366,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 533,
+      "line": 527,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10411,7 +10377,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 539,
+      "line": 533,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10422,7 +10388,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 540,
+      "line": 534,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10433,7 +10399,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 541,
+      "line": 535,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10444,7 +10410,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 542,
+      "line": 536,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10455,7 +10421,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 543,
+      "line": 537,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10466,7 +10432,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 549,
+      "line": 543,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10477,7 +10443,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 550,
+      "line": 544,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10488,7 +10454,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 551,
+      "line": 545,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10499,7 +10465,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 552,
+      "line": 546,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10510,7 +10476,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 553,
+      "line": 547,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10521,7 +10487,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 554,
+      "line": 548,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10532,7 +10498,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 560,
+      "line": 554,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10543,18 +10509,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 561,
-      "category": "docs",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "🟩"
-      ],
-      "preview": "| 4.2 | Sustituir imports directos de Bootstrap por el catálogo `shared/ui`                     | 🟩 Online |"
-    },
-    {
-      "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 563,
+      "line": 556,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10565,7 +10520,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 564,
+      "line": 557,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10576,7 +10531,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 565,
+      "line": 558,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10587,7 +10542,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 572,
+      "line": 565,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10598,7 +10553,7 @@
     },
     {
       "file": "src/app/modules/collections.luxuryapp/native-collections/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
-      "line": 573,
+      "line": 566,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10719,7 +10674,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 108,
+      "line": 107,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10730,7 +10685,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 109,
+      "line": 108,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10741,7 +10696,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 110,
+      "line": 109,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10752,7 +10707,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 111,
+      "line": 110,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10763,7 +10718,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 112,
+      "line": 111,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10774,7 +10729,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 113,
+      "line": 112,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10785,7 +10740,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 121,
+      "line": 120,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10796,7 +10751,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 122,
+      "line": 121,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10807,7 +10762,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 123,
+      "line": 122,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10818,7 +10773,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 124,
+      "line": 123,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10829,7 +10784,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 125,
+      "line": 124,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10840,7 +10795,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 126,
+      "line": 125,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10851,7 +10806,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 127,
+      "line": 126,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10862,7 +10817,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 135,
+      "line": 133,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10873,7 +10828,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 156,
+      "line": 154,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10884,7 +10839,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 208,
+      "line": 204,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10895,7 +10850,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 209,
+      "line": 205,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10906,7 +10861,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 270,
+      "line": 266,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -10917,7 +10872,7 @@
     },
     {
       "file": "src/app/modules/committee.luxuryapp/MODULE_CONTEXT.md",
-      "line": 316,
+      "line": 312,
       "category": "docs",
       "module": "app/modules",
       "severity": "low",
@@ -11510,28 +11465,6 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
-      "file": "src/app/modules/maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones.html",
-      "line": 1,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/modules/maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones.html",
-      "line": 102,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
-    },
-    {
       "file": "src/app/modules/maintenance.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar.html",
       "line": 6,
       "category": "template_comment",
@@ -11829,41 +11762,8 @@
       "preview": "<span class=\"text-body-secondary\"> → </span>"
     },
     {
-      "file": "src/app/modules/maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-definitions-list.html",
-      "line": 90,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 MOBILE -->"
-    },
-    {
-      "file": "src/app/modules/maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-execution-history-list.html",
-      "line": 91,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 MOBILE -->"
-    },
-    {
-      "file": "src/app/modules/maintenance.luxuryapp/machinery/equipment-inspections/equipment-inspection-qr-list.html",
-      "line": 77,
-      "category": "template_comment",
-      "module": "app/modules",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 MOBILE -->"
-    },
-    {
       "file": "src/app/modules/maintenance.luxuryapp/machinery/machinery/equipos-list.html",
-      "line": 365,
+      "line": 352,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -11952,7 +11852,7 @@
     },
     {
       "file": "src/app/modules/maintenance.luxuryapp/maintenance-ticket-catalogs/inspection-revision-catalog/catalogo-revisiones-inspeccion.html",
-      "line": 56,
+      "line": 63,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -12249,7 +12149,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard-mobile.ts",
-      "line": 308,
+      "line": 307,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12370,7 +12270,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 279,
+      "line": 278,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12381,7 +12281,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 281,
+      "line": 280,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12392,7 +12292,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 283,
+      "line": 282,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12403,7 +12303,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 285,
+      "line": 284,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12414,7 +12314,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 287,
+      "line": 286,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12425,7 +12325,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 290,
+      "line": 289,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12436,7 +12336,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 292,
+      "line": 291,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12447,7 +12347,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 294,
+      "line": 293,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12458,7 +12358,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 296,
+      "line": 295,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12469,7 +12369,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 298,
+      "line": 297,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12480,7 +12380,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 491,
+      "line": 490,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -12491,7 +12391,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 540,
+      "line": 546,
       "category": "code_string",
       "module": "app/modules",
       "severity": "medium",
@@ -13350,7 +13250,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/service-orders/service-order/ordenes-servicio-list.html",
-      "line": 204,
+      "line": 252,
       "category": "template_comment",
       "module": "app/modules",
       "severity": "low",
@@ -13603,7 +13503,7 @@
     },
     {
       "file": "src/app/modules/operations.luxuryapp/task/tasks/task-message/task-list.html",
-      "line": 870,
+      "line": 849,
       "category": "template_text",
       "module": "app/modules",
       "severity": "medium",
@@ -17569,7 +17469,7 @@
     },
     {
       "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
-      "line": 46,
+      "line": 45,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -17580,7 +17480,7 @@
     },
     {
       "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
-      "line": 47,
+      "line": 46,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -17591,7 +17491,7 @@
     },
     {
       "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
-      "line": 48,
+      "line": 47,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -17602,7 +17502,7 @@
     },
     {
       "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
-      "line": 49,
+      "line": 48,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -17613,7 +17513,7 @@
     },
     {
       "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
-      "line": 50,
+      "line": 49,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18314,7 +18214,7 @@
     },
     {
       "file": "src/app/shared/ui/arquitectura-shared-ui.md",
-      "line": 271,
+      "line": 270,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18325,7 +18225,7 @@
     },
     {
       "file": "src/app/shared/ui/arquitectura-shared-ui.md",
-      "line": 277,
+      "line": 276,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18424,7 +18324,7 @@
     },
     {
       "file": "src/app/shared/ui/buttons/BUTTON-USAGE-RULES.md",
-      "line": 58,
+      "line": 57,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18435,7 +18335,7 @@
     },
     {
       "file": "src/app/shared/ui/buttons/BUTTON-USAGE-RULES.md",
-      "line": 68,
+      "line": 67,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18446,7 +18346,7 @@
     },
     {
       "file": "src/app/shared/ui/buttons/BUTTON-USAGE-RULES.md",
-      "line": 78,
+      "line": 77,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18457,7 +18357,7 @@
     },
     {
       "file": "src/app/shared/ui/buttons/BUTTON-USAGE-RULES.md",
-      "line": 97,
+      "line": 96,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -18523,7 +18423,7 @@
     },
     {
       "file": "src/app/shared/ui/guia-patron-b.md",
-      "line": 21,
+      "line": 20,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19303,19 +19203,8 @@
       "preview": "*  - Iconify legacy:    `icon=\"material-symbols-light:person\"` → extrae nombre"
     },
     {
-      "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.html",
-      "line": 13,
-      "category": "template_comment",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🧭"
-      ],
-      "preview": "<!-- 🧭 Breadcrumb Premium -->"
-    },
-    {
       "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
-      "line": 46,
+      "line": 50,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19326,7 +19215,7 @@
     },
     {
       "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
-      "line": 50,
+      "line": 54,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19337,7 +19226,7 @@
     },
     {
       "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
-      "line": 218,
+      "line": 226,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -19845,18 +19734,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 1,
-      "category": "docs",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🔍"
-      ],
-      "preview": "# 🔍 Auditoría Comparativa: `AppTable` vs Bootstrap v22 `p-table`"
-    },
-    {
-      "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 3,
+      "line": 2,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19867,7 +19745,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 11,
+      "line": 9,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19878,18 +19756,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 15,
-      "category": "docs",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "| 1   | **`filterGlobal` NO emite `onLazyLoad` en modo lazy**                        | 🔴 Crítico | El README dice explícitamente: _\"Lazy: no filtra localmente y no emite `onLazyLo"
-    },
-    {
-      "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 16,
+      "line": 13,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19900,7 +19767,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 17,
+      "line": 14,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19911,18 +19778,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 18,
-      "category": "docs",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "🟡"
-      ],
-      "preview": "| 4   | **Reordenamiento de filas con paginación local usa índices de `pagedValue`** | 🟡 Medio   | Bootstrap usa índices globales. Esto limita la utilidad del feature. Debe document"
-    },
-    {
-      "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 19,
+      "line": 15,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19933,7 +19789,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 20,
+      "line": 16,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19944,7 +19800,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 21,
+      "line": 17,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19955,18 +19811,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 25,
-      "category": "docs",
-      "module": "app/shared",
-      "severity": "low",
-      "symbols": [
-        "📊"
-      ],
-      "preview": "## 📊 Tabla Comparativa de Funcionalidades (Bootstrap v22 vs AppTable)"
-    },
-    {
-      "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 27,
+      "line": 22,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19977,7 +19822,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 40,
+      "line": 35,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19988,7 +19833,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 44,
+      "line": 38,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -19999,7 +19844,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 45,
+      "line": 39,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20010,7 +19855,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 46,
+      "line": 40,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20021,7 +19866,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 47,
+      "line": 41,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20032,7 +19877,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 48,
+      "line": 42,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20043,7 +19888,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 49,
+      "line": 43,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20054,7 +19899,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 50,
+      "line": 44,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20065,7 +19910,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 51,
+      "line": 45,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20076,7 +19921,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 52,
+      "line": 46,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20087,7 +19932,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 53,
+      "line": 47,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20098,7 +19943,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 54,
+      "line": 48,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20109,7 +19954,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 56,
+      "line": 50,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20120,7 +19965,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 72,
+      "line": 66,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20131,7 +19976,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 84,
+      "line": 78,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20142,7 +19987,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 86,
+      "line": 80,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20153,7 +19998,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 88,
+      "line": 82,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20164,7 +20009,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 94,
+      "line": 88,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20175,7 +20020,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 102,
+      "line": 96,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20186,7 +20031,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 112,
+      "line": 106,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20197,7 +20042,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 127,
+      "line": 119,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20208,7 +20053,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA.md",
-      "line": 133,
+      "line": 124,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20221,7 +20066,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA2.md",
-      "line": 58,
+      "line": 57,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20232,7 +20077,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/AUDITORIA2.md",
-      "line": 59,
+      "line": 58,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20243,7 +20088,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 13,
+      "line": 11,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20254,7 +20099,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 35,
+      "line": 33,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20265,7 +20110,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 64,
+      "line": 61,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20276,7 +20121,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 92,
+      "line": 89,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20287,7 +20132,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 157,
+      "line": 153,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20298,7 +20143,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 278,
+      "line": 274,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20309,7 +20154,7 @@
     },
     {
       "file": "src/app/shared/ui/web/table/README.md",
-      "line": 509,
+      "line": 505,
       "category": "docs",
       "module": "app/shared",
       "severity": "low",
@@ -20672,7 +20517,7 @@
     },
     {
       "file": "src/styles/base/_global.scss",
-      "line": 45,
+      "line": 52,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20683,7 +20528,7 @@
     },
     {
       "file": "src/styles/base/_global.scss",
-      "line": 67,
+      "line": 74,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20694,7 +20539,7 @@
     },
     {
       "file": "src/styles/base/_global.scss",
-      "line": 197,
+      "line": 284,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -21011,7 +20856,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 380,
+      "line": 403,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21022,7 +20867,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 548,
+      "line": 571,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21033,7 +20878,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 805,
+      "line": 828,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21044,7 +20889,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1104,
+      "line": 1121,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21055,7 +20900,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1204,
+      "line": 1221,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -21156,7 +21001,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 17,
+      "line": 16,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21167,7 +21012,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 19,
+      "line": 18,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21178,7 +21023,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 23,
+      "line": 22,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21189,18 +21034,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 32,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "B --> F[\"web/<br/>(🖥️ Bootstrap overrides + clases DS: .btn, .card, prime-*)\"]"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 34,
+      "line": 31,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21211,7 +21045,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 39,
+      "line": 36,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21222,18 +21056,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 42,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🧩"
-      ],
-      "preview": "L --> M[\"🧩 Bootstrap Components\"]"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 66,
+      "line": 56,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21244,7 +21067,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 72,
+      "line": 62,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21255,18 +21078,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 73,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🅿"
-      ],
-      "preview": "| [`bootstrap-overrides.css`](#bootstrap-overridescss) | ~319 | 🅿️ Overrides de marca para Bootstrap v21 dentro de `@layer bootstrap-brand`. Sin `!important` ni `::ng-deep`. |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 74,
+      "line": 63,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21277,18 +21089,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 75,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🅿"
-      ],
-      "preview": "| [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset Bootstrap** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 79,
+      "line": 67,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21304,24 +21105,13 @@
       "module": "src/styles",
       "severity": "low",
       "symbols": [
-        "🧩"
-      ],
-      "preview": "C -->|\"var(--primary-*), var(--surface-dark-*)\"| D[\"🧩 Bootstrap\"]"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 101,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
         "📂"
       ],
       "preview": "### 📂 Subdirectorios"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 105,
+      "line": 91,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21332,7 +21122,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 106,
+      "line": 92,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21343,18 +21133,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 107,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🅿"
-      ],
-      "preview": "| [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente Bootstrap (button, input, card, dialog, table, dropdown, tag, message, tokens) |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 108,
+      "line": 93,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21365,7 +21144,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 109,
+      "line": 94,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21376,7 +21155,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 113,
+      "line": 98,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21387,7 +21166,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 147,
+      "line": 130,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21398,18 +21177,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 151,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🅿"
-      ],
-      "preview": "## 🅿️ `bootstrap-overrides.css`"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 179,
+      "line": 156,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21420,7 +21188,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 183,
+      "line": 160,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21431,7 +21199,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 187,
+      "line": 164,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21442,7 +21210,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 188,
+      "line": 165,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21453,7 +21221,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 189,
+      "line": 166,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21464,7 +21232,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 190,
+      "line": 167,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21475,7 +21243,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 191,
+      "line": 168,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21486,7 +21254,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 192,
+      "line": 169,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21497,7 +21265,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 193,
+      "line": 170,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21508,7 +21276,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 194,
+      "line": 171,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21519,7 +21287,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 195,
+      "line": 172,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21530,7 +21298,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 199,
+      "line": 176,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21541,7 +21309,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 208,
+      "line": 185,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21552,7 +21320,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 209,
+      "line": 186,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21563,7 +21331,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 210,
+      "line": 187,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21574,7 +21342,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 216,
+      "line": 193,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21585,29 +21353,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 232,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🅿"
-      ],
-      "preview": "## 🅿️ `prime-overrides/` — Overrides por Componente Bootstrap"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 238,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_prime-tokens.scss` | Bridge global | Mapea `--p-*` → `--ds-*` para primary, surface, text, borders, focus, overlay. Clases compatibilidad Bootstrap v16. |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 250,
+      "line": 223,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21618,7 +21364,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 254,
+      "line": 227,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21629,7 +21375,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 255,
+      "line": 228,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21640,29 +21386,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 256,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🌙"
-      ],
-      "preview": "| `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, Bootstrap v16 compat, CDK drag, formularios, tabs, accordion, datatable, "
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 257,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "| `_sidebar.scss` | 364 | 📋 Sidebar: Bootstrap PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 258,
+      "line": 229,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21673,18 +21397,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 259,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "🔔"
-      ],
-      "preview": "| `_toast.scss` | 152 | 🔔 Toast Bootstrap (web) e Ionic toast (mobile). Borde lateral grueso 8px, colores vibrantes, sombra fuerte. |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 260,
+      "line": 230,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21695,7 +21408,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 261,
+      "line": 231,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21706,7 +21419,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 262,
+      "line": 232,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21717,7 +21430,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 266,
+      "line": 236,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21728,7 +21441,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 270,
+      "line": 240,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21739,7 +21452,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 271,
+      "line": 241,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21750,7 +21463,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 272,
+      "line": 242,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21761,7 +21474,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 273,
+      "line": 243,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21772,7 +21485,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 274,
+      "line": 244,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21783,7 +21496,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 275,
+      "line": 245,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21794,7 +21507,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 279,
+      "line": 249,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21805,7 +21518,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 290,
+      "line": 259,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21816,7 +21529,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 304,
+      "line": 273,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21827,7 +21540,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 307,
+      "line": 276,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21838,7 +21551,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 313,
+      "line": 282,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21849,7 +21562,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 319,
+      "line": 287,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21860,7 +21573,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 328,
+      "line": 296,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21871,19 +21584,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 341,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "💡",
-        "→"
-      ],
-      "preview": "> 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → Bootstrap. **Un solo archivo.** Para cambios d"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 345,
+      "line": 309,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21894,7 +21595,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 347,
+      "line": 311,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21905,7 +21606,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 356,
+      "line": 320,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21916,7 +21617,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 362,
+      "line": 326,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21927,7 +21628,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 366,
+      "line": 330,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21939,7 +21640,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 367,
+      "line": 331,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21951,7 +21652,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 368,
+      "line": 332,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21963,7 +21664,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 369,
+      "line": 333,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21975,7 +21676,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 370,
+      "line": 334,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21987,7 +21688,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 371,
+      "line": 335,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -21999,7 +21700,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 372,
+      "line": 336,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22010,7 +21711,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 373,
+      "line": 337,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22022,7 +21723,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 374,
+      "line": 338,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22033,7 +21734,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 375,
+      "line": 339,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22044,7 +21745,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 376,
+      "line": 340,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22055,7 +21756,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 377,
+      "line": 341,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22066,7 +21767,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 379,
+      "line": 343,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22077,7 +21778,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 391,
+      "line": 355,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -22154,7 +21855,7 @@
     },
     {
       "file": "src/styles/styles.scss",
-      "line": 49,
+      "line": 50,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -22211,7 +21912,18 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 695,
+      "line": 145,
+      "category": "style_comment",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// texto blanco (< AA 4.5:1). strong = #a63939 → 6.43:1. Medido 2026-09-30."
+    },
+    {
+      "file": "src/styles/web/_buttons.scss",
+      "line": 697,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -22222,7 +21934,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 696,
+      "line": 698,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
