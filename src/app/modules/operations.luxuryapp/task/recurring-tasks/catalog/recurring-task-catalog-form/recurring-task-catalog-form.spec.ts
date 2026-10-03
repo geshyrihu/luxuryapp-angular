@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -32,7 +31,7 @@ describe("RecurringTaskCatalogForm", () => {
     apiResponseS.onGetItem.mockResolvedValue(null);
 
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, RecurringTaskCatalogForm],
+      imports: [RecurringTaskCatalogForm],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseS },
         {

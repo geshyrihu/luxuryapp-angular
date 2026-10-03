@@ -3,7 +3,6 @@ vi.mock("@ionic/core", () => ({}));
 vi.mock("@ionic/core/components", () => ({}));
 
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { MessageService } from "@core/services/message.service";
 import { TicketAnalysisService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-analysis.service";
@@ -38,7 +37,7 @@ describe("ImageAnalysisDialogComponent", () => {
     }
 
     TestBed.configureTestingModule({
-      imports: [ImageAnalysisDialogComponent, NoopAnimationsModule],
+      imports: [ImageAnalysisDialogComponent],
       providers: [
         { provide: TicketAnalysisService, useValue: ticketAnalysisS },
         { provide: MessageService, useValue: mockMessageService },

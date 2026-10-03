@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 
@@ -8,7 +7,7 @@ describe("GoogleCalendarDetail", () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [GoogleCalendarDetail, NoopAnimationsModule],
+      imports: [GoogleCalendarDetail],
       providers: [
         {
           provide: DynamicDialogConfig,

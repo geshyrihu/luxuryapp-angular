@@ -1,6 +1,5 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -97,7 +96,7 @@ describe("OrgChart", () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [OrgChart, NoopAnimationsModule],
+      imports: [OrgChart],
       providers: [
         { provide: ApiResponseService, useValue: apiMock },
         {

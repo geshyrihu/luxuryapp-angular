@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
 import {
   ChangeDetectionStrategy,
@@ -45,6 +44,31 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 @Component({
   selector: "app-warehouse-form",
   templateUrl: "./warehouse-form.html",
+  styles: [
+    `
+      .warehouse-user-enter {
+        animation: warehouse-user-enter 200ms ease-out both;
+      }
+
+      @keyframes warehouse-user-enter {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .warehouse-user-enter {
+          animation-duration: 1ms;
+        }
+      }
+    `,
+  ],
   imports: [
     WebButtonIcon,
     CustomInputTextSignal,
@@ -54,14 +78,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  animations: [
-    trigger("dropAnimation", [
-      transition(":enter", [
-        style({ transform: "scale(0.9)", opacity: 0 }),
-        animate("200ms ease-out", style({ transform: "scale(1)", opacity: 1 })),
-      ]),
-    ]),
-  ],
 })
 export class WarehouseForm implements OnInit {
   // Inyección de servicios mediante inject()

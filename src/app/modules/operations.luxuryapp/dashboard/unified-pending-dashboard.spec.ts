@@ -9,7 +9,6 @@ vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
 
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { of, Subject } from "rxjs";
@@ -55,7 +54,7 @@ describe("UnifiedPendingDashboard", () => {
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [UnifiedPendingDashboard, NoopAnimationsModule],
+      imports: [UnifiedPendingDashboard],
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },

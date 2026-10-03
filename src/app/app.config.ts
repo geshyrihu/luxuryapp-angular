@@ -22,7 +22,6 @@ import {
   provideAppInitializer,
   provideZonelessChangeDetection,
 } from "@angular/core";
-import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 
 import {
   provideRouter,
@@ -87,10 +86,6 @@ export const appConfig: ApplicationConfig = {
       useFactory: (backend: HttpBackend) => new HttpClient(backend),
       deps: [HttpBackend],
     },
-    // Elimina provideAnimationsAsync() de tus providers
-    // Migra tus animaciones a CSS + animate.enter/animate.leave
-    // Elimina @angular/animations de tus dependencias (cuando hayas migrado todo)
-    provideAnimationsAsync(),
     // --- Configuración de Librerías de UI y Terceros ---
     provideToastr(),
     provideCharts(withDefaultRegisterables()),
@@ -112,13 +107,6 @@ export const appConfig: ApplicationConfig = {
     // --- Configuración Específica de la Aplicación ---
     { provide: LOCALE_ID, useValue: "es-MX" },
     { provide: LocationStrategy, useClass: PathLocationStrategy },
-    // {
-    //   provide: IMAGE_CONFIG,
-    //   useValue: {
-    //     disableImageSizeWarning: true,
-    //     disableImageLazyLoadWarning: true,
-    //   },
-    // },
 
     // --- Servicios Singleton Globales ---
     MessageService,

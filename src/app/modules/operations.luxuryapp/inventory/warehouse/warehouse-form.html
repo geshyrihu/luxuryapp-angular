@@ -66,7 +66,7 @@
               <div
                 class="bg-body p-2 rounded shadow-sm mb-2 cursor-grab d-flex justify-content-between align-items-center"
                 cdkDrag
-                @dropAnimation
+                animate.enter="warehouse-user-enter"
               >
                 <span>{{ user.label }}</span>
                 <iw-button

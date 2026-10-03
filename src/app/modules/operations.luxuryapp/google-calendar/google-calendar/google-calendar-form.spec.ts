@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { of } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -39,7 +38,7 @@ describe("GoogleCalendarForm", () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [GoogleCalendarForm, NoopAnimationsModule],
+      imports: [GoogleCalendarForm],
       providers: [
         { provide: ApiResponseService, useValue: apiMock },
         {

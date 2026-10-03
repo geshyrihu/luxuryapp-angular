@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -68,7 +67,7 @@ describe("TaskJustificationPanel", () => {
     apiResponseS.onPatch.mockResolvedValue(approvedJustification);
 
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, TaskJustificationPanel],
+      imports: [TaskJustificationPanel],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseS },
         { provide: AuthService, useValue: authS },

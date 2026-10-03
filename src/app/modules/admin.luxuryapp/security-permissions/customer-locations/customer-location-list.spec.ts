@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicDialogRef, DynamicDialogConfig } from '@core/services/dialog-handler.service';
 
 import { CustomerLocationList } from './customer-location-list';
@@ -49,7 +48,6 @@ describe('CustomerLocationList', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
       providers: [
         { provide: DynamicDialogRef, useValue: mockDialogRef },
         { provide: DynamicDialogConfig, useValue: mockDialogConfig },

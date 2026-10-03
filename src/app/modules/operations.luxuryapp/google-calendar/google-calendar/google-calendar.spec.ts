@@ -1,6 +1,5 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogService } from "@core/services/dialog-handler.service";
 import { Subject } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -82,7 +81,7 @@ describe("GoogleCalendar", () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [GoogleCalendar, NoopAnimationsModule],
+      imports: [GoogleCalendar],
       providers: [
         { provide: ApiResponseService, useValue: apiMock },
         {

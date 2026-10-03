@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -93,7 +92,7 @@ describe("TaskChecklistPanel", () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, TaskChecklistPanel],
+      imports: [TaskChecklistPanel],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseS },
         {

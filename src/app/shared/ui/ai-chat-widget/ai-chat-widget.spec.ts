@@ -4,7 +4,6 @@ vi.mock("@ionic/core/components", () => ({}));
 
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthService } from "@core/auth/services/auth.service";
 import { AiChatService } from "@core/services/ai-chat.service";
 import { AiChatWidget } from "./ai-chat-widget";
@@ -30,7 +29,7 @@ describe("AiChatWidget", () => {
     authS = { applicationUserId: "user-1" } as any;
 
     TestBed.configureTestingModule({
-      imports: [AiChatWidget, NoopAnimationsModule],
+      imports: [AiChatWidget],
       providers: [
         { provide: AiChatService, useValue: chatS },
         { provide: AuthService, useValue: authS },

@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicDialogRef, DynamicDialogConfig } from '@core/services/dialog-handler.service';
 
@@ -40,7 +39,7 @@ describe('CustomerLocationForm', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomerLocationForm, NoopAnimationsModule, ReactiveFormsModule],
+      imports: [CustomerLocationForm, ReactiveFormsModule],
       providers: [
         { provide: DynamicDialogRef, useValue: mockDialogRef },
         { provide: DynamicDialogConfig, useValue: mockDialogConfig },
@@ -128,7 +127,7 @@ describe('CustomerLocationForm', () => {
       });
 
       TestBed.configureTestingModule({
-        imports: [CustomerLocationForm, NoopAnimationsModule, ReactiveFormsModule],
+        imports: [CustomerLocationForm, ReactiveFormsModule],
         providers: [
           { provide: DynamicDialogRef, useValue: mockDialogRef },
           { provide: DynamicDialogConfig, useValue: configWithId },
