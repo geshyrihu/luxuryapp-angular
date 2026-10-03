@@ -1,9 +1,9 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
-  <lux-tabs
+  <lx-tabs
     [tabs]="tabs"
     [(activeId)]="activeTabValue"
-    class="d-block mb-3"
+    class="mb-3 d-block"
   />
   <div class="mt-2">
     @switch (activeTabValue()) { @case ('tab1') {
@@ -18,8 +18,8 @@
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="d-block d-md-none">
-  <!-- lux-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
-  <lux-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
+  <!-- lx-tabs como selector segmentado (sin paneles); los paneles se conmutan abajo -->
+  <lx-tabs [tabs]="tabs" [(activeId)]="activeTabValue" class="mb-3" />
 
   <div class="mt-2">
     @switch (activeTabValue()) { @case ('tab1') {
