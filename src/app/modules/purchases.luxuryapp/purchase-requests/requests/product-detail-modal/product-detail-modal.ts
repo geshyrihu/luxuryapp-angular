@@ -10,7 +10,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TagSeverity } from "@ui/base/tag.base";
+import { TagSeverity } from "@ui/core/tag.base";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "../nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
 

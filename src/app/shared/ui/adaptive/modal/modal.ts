@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ModalBase } from "@ui/base/modal.base";
+import { ModalBase } from "@ui/core/modal.base";
 import { MobileModal } from "@ui/mobile/modal/modal";
 import { Dialog } from "@ui/web/dialog/dialog";
 

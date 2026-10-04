@@ -15,8 +15,8 @@ import { ThemeService } from "@core/services/theme.service";
 import {
   AppBreakdownList,
   type BreakdownItem,
-} from "@ui/shared/breakdown-list/breakdown-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+} from "@ui/primitives/breakdown-list/breakdown-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-composicion-reportes-modal";

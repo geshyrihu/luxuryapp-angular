@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { ModalBase } from "@ui/base/modal.base";
+import { ModalBase } from "@ui/core/modal.base";
 
 @Component({
   selector: "app-dialog",

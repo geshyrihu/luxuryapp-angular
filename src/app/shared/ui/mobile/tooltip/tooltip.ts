@@ -1,6 +1,6 @@
 import { NgClass } from "@angular/common";
 import { Component, ViewEncapsulation, signal } from "@angular/core";
-import { TooltipBase } from "@ui/base/tooltip.base";
+import { TooltipBase } from "@ui/core/tooltip.base";
 
 @Component({
   selector: "ili-tooltip",

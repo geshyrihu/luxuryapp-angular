@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { PanelBase } from "@ui/base/panel.base";
+import { PanelBase } from "@ui/core/panel.base";
 import { IliPanel } from "@ui/mobile/panel/panel";
 import { AppPanel } from "@ui/web/panel/panel";
 

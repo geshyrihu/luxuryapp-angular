@@ -36,7 +36,7 @@ import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-re
 import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({

@@ -16,8 +16,8 @@ import {
   IonProgressBar,
 } from "@ionic/angular";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TagSeverity } from "@ui/base/tag.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { TagSeverity } from "@ui/core/tag.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";

@@ -15,7 +15,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonImg } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { cameraOutline, trashOutline } from "ionicons/icons";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../core/base-ionic-input";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 

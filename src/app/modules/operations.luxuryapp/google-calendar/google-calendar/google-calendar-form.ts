@@ -21,7 +21,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
+import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 

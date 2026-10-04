@@ -20,7 +20,7 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AccountingCatalogDTO } from "./interfaces/accounting-catalog.model";
 import { AccountingCatalogWithParent } from "./interfaces/AccountingCatalogWithParent";
 import { GroupedAccountingCatalogDTO } from "./interfaces/grouped-accounting-catalog.model";

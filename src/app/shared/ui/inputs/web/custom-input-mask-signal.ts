@@ -1,7 +1,7 @@
 import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 // 🎭 COMPONENTE DE INPUT CON MÁSCARA
 // Un componente para entradas de texto con formato de máscara.

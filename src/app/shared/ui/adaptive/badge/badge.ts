@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { BadgeBase } from "@ui/base/badge.base";
+import { BadgeBase } from "@ui/core/badge.base";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { AppBadge } from "@ui/web/badge/badge";
 

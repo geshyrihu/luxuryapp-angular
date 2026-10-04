@@ -1,5 +1,5 @@
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export interface AdminModuleCard {
   title: string;

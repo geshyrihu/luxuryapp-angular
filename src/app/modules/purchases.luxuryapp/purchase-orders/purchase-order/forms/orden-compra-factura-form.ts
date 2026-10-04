@@ -35,7 +35,7 @@ export interface IOrdenCompraFacturaForm {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-orden-compra-factura-form",

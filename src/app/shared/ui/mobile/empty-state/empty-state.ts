@@ -4,8 +4,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { EmptyStateBase } from "@ui/base/empty-state.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { EmptyStateBase } from "@ui/core/empty-state.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "ili-empty-state",

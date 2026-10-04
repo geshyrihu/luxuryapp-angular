@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { SkeletonBase } from "@ui/base/skeleton.base";
+import { SkeletonBase } from "@ui/core/skeleton.base";
 import { MobileSkeleton } from "@ui/mobile/skeleton/skeleton";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 

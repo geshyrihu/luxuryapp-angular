@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { FieldsetBase } from "@ui/base/fieldset.base";
+import { FieldsetBase } from "@ui/core/fieldset.base";
 import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
 import { AppFieldset } from "@ui/web/fieldset/fieldset";
 

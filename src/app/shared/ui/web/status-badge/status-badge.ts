@@ -4,15 +4,15 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { StatusBadgeBase } from "@ui/base/status-badge.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { StatusBadgeBase } from "@ui/core/status-badge.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 // Re-export para consumidores existentes que importan desde este módulo.
 export {
   EStatus,
   ETypeEmpresa,
   type StatusClickEvent,
-} from "@ui/base/status-badge.base";
+} from "@ui/core/status-badge.base";
 
 @Component({
   selector: "app-status-badge",

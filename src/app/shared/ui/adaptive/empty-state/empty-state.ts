@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { EmptyStateBase } from "@ui/base/empty-state.base";
+import { EmptyStateBase } from "@ui/core/empty-state.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 

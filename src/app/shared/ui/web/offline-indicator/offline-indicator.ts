@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { OfflineIndicatorBase } from "@ui/core/offline-indicator.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-offline-indicator",

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonSpinner } from "@ionic/angular";
-import { SpinnerBase } from "@ui/base/spinner.base";
+import { SpinnerBase } from "@ui/core/spinner.base";
 
 /**
  * MobileSpinner — Spinner sobre `ion-spinner` (crescent) con tamaño y color.

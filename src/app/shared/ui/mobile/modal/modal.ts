@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/angular";
-import { ModalBase } from "@ui/base/modal.base";
+import { ModalBase } from "@ui/core/modal.base";
 
 @Component({
   selector: "ili-modal",

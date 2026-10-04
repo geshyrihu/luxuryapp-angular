@@ -8,7 +8,7 @@ import {
   OnInit,
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { EditorBase } from "@ui/base/editor.base";
+import { EditorBase } from "@ui/core/editor.base";
 import { Editor, NgxEditorModule } from "ngx-editor";
 
 @Component({

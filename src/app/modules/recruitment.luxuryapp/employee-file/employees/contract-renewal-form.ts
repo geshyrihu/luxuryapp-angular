@@ -26,7 +26,7 @@ import {
 import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/employees/services/contract-renewal.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 
 type StatusSeverity =

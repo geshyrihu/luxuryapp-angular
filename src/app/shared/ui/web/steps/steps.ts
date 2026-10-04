@@ -4,8 +4,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { StepsBase } from "@ui/base/steps.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { StepsBase } from "@ui/core/steps.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-steps",

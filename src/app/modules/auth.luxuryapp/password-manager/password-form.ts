@@ -24,7 +24,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { CredentialFormGroup } from "./interfaces/password-form.interface";
 

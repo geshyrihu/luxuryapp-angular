@@ -16,7 +16,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ContractRenewalService } from "./services/contract-renewal.service";
 import { ContractRenewalEvaluationDTO, ContractRenewalStatus } from "./employee-registry/interfaces/contract-renewal.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ContractRenewalFormComponent } from "./contract-renewal-form";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 

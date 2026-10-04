@@ -22,7 +22,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 // Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {

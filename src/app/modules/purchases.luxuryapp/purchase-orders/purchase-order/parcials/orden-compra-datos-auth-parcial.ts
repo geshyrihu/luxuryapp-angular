@@ -10,7 +10,7 @@ import {
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
 import { PurchaseOrderView } from "../purchase-order.types";
 @Component({

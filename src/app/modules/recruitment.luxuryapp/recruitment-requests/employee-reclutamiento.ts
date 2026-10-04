@@ -15,7 +15,7 @@ import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/di
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
 import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",

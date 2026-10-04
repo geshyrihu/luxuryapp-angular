@@ -12,7 +12,7 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { InterviewerMatrixBoardDto } from "./interfaces/interviewer-matrix-board.dto";
 import { InterviewerMatrixItemDto } from "./interfaces/interviewer-matrix-item.dto";

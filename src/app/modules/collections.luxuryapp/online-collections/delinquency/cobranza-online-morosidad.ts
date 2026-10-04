@@ -9,8 +9,8 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import {
   AppRankedList,
   RankedListItem,
-} from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+} from "@ui/primitives/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import { CobranzaOnlineMorosidadDetailModalComponent } from "./cobranza-online-morosidad-detail-modal";

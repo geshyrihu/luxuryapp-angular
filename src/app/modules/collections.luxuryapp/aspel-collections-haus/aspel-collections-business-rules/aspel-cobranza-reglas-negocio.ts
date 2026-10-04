@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
-import type { AccordionItem } from "@ui/base/accordion.base";
+import type { AccordionItem } from "@ui/core/accordion.base";
 import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-aspel-cobranza-reglas-negocio",

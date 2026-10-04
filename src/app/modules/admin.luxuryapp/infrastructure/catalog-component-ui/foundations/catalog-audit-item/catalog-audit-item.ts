@@ -8,8 +8,8 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveToIconify } from "@shared/utils/icon-mapping";
 
 const AUDIT_LABELS: Record<string, string> = {

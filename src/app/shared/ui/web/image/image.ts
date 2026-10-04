@@ -7,7 +7,7 @@ import {
 import { NgStyle } from "@angular/common";
 import { Gallery, GalleryModule, ImageItem } from "ng-gallery";
 import { Lightbox, LightboxModule } from "ng-gallery/lightbox";
-import { ImageBase } from "@ui/base/image.base";
+import { ImageBase } from "@ui/core/image.base";
 
 let nextGalleryId = 0;
 

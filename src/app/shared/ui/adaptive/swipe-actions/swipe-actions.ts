@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
+import { SwipeActionsBase } from "@ui/core/swipe-actions.base";
 import { MobileSwipeActions } from "@ui/mobile/swipe-actions/swipe-actions";
 import { SwipeActions } from "@ui/web/swipe-actions/swipe-actions";
 

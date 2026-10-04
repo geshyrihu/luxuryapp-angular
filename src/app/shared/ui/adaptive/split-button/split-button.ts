@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { SplitButtonBase } from "@ui/base/split-button.base";
+import { SplitButtonBase } from "@ui/core/split-button.base";
 import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
 import { AppSplitButton } from "@ui/web/split-button/split-button";
 

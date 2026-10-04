@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TimelineBase } from "@ui/base/timeline.base";
+import { TimelineBase } from "@ui/core/timeline.base";
 import { MobileTimeline } from "@ui/mobile/timeline/timeline";
 import { Timeline } from "@ui/web/timeline/timeline";
 

@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { CardBase } from "@ui/base/card.base";
+import { CardBase } from "@ui/core/card.base";
 
 @Component({
   selector: "app-card",

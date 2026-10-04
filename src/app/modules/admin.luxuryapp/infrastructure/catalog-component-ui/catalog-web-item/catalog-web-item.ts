@@ -59,7 +59,7 @@ import {
   CustomInputTextAreaSignal,
   CustomInputTextSignal,
 } from "@ui/inputs/web";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import { AppBadge } from "@ui/web/badge/badge";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";

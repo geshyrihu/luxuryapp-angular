@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { StatusBadgeBase } from "@ui/base/status-badge.base";
+import { StatusBadgeBase } from "@ui/core/status-badge.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

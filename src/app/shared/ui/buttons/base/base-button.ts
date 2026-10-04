@@ -1,6 +1,6 @@
 import { computed, Directive, input, output } from "@angular/core";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
-import type { AppIconName } from "../../shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "../../primitives/app-icon/app-icon.catalog";
 type ButtonSeverity =
   | "primary"
   | "secondary"

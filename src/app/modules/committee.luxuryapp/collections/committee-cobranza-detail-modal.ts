@@ -7,8 +7,8 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TagSeverity } from "@ui/base/tag.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import type { TagSeverity } from "@ui/core/tag.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";

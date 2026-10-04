@@ -8,8 +8,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
-import { TreeBase, TreeNode } from "@ui/base/tree.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TreeBase, TreeNode } from "@ui/core/tree.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-tree",

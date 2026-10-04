@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { SplitButtonBase } from "@ui/base/split-button.base";
+import { SplitButtonBase } from "@ui/core/split-button.base";
 import { IonButton, IonIcon } from "@ionic/angular";
 
 @Component({

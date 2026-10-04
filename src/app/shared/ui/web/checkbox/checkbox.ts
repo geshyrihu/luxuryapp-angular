@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CheckboxBase } from "@ui/base/checkbox.base";
+import { CheckboxBase } from "@ui/core/checkbox.base";
 
 @Component({
   selector: "app-checkbox",

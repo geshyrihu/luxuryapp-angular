@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { DebugConsoleService } from "@core/services/debug-console.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 interface LogEntry {
   level: "log" | "error" | "warn" | "info";

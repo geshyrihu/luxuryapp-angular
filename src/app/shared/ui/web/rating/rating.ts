@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { RatingBase } from "@ui/base/rating.base";
+import { RatingBase } from "@ui/core/rating.base";
 import { BarRatingModule } from "ngx-bar-rating";
 
 /**

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MenubarBase } from "@ui/base/menubar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { MenubarBase } from "@ui/core/menubar.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Component({

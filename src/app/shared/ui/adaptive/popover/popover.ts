@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject, viewChild } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { PopoverBase } from "@ui/base/popover.base";
+import { PopoverBase } from "@ui/core/popover.base";
 import { MobilePopover } from "@ui/mobile/popover/popover";
 import { AppPopover } from "@ui/web/popover/popover";
 

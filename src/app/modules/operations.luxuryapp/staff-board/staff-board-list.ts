@@ -27,11 +27,11 @@ import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-posi
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon, type AppIconName } from "@ui/shared/app-icon/app-icon";
+import { AppIcon, type AppIconName } from "@ui/primitives/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
-} from "@ui/shared/segmented-control/segmented-control";
+} from "@ui/primitives/segmented-control/segmented-control";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";

@@ -6,7 +6,7 @@ import {
   IonCardTitle,
   IonProgressBar,
 } from "@ionic/angular";
-import { TableBase } from "@ui/base/table.base";
+import { TableBase } from "@ui/core/table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 

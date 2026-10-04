@@ -52,7 +52,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 @Component({

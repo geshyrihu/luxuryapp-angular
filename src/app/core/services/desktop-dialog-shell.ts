@@ -7,7 +7,7 @@ import {
   Type,
 } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Subject } from "rxjs";
 import {
   DynamicDialogConfig,

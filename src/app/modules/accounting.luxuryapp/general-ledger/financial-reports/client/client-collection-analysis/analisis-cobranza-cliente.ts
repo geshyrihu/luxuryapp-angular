@@ -21,13 +21,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   AppBreakdownList,
   type BreakdownItem,
-} from "@ui/shared/breakdown-list/breakdown-list";
-import { AppRankedList } from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+} from "@ui/primitives/breakdown-list/breakdown-list";
+import { AppRankedList } from "@ui/primitives/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";

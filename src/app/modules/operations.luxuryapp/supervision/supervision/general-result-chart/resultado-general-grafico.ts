@@ -7,7 +7,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { ResultadoGeneralService } from "@core/services/resultado-general.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-grafico-resultado-general",
   templateUrl: "./resultado-general-grafico.html",

@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ChipBase } from "@ui/base/chip.base";
+import { ChipBase } from "@ui/core/chip.base";
 import { MobileChip } from "@ui/mobile/chip/chip";
 import { AppChip } from "@ui/web/chip/chip";
 

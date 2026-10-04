@@ -10,7 +10,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { TarjetaProveedor } from "@operations.luxuryapp/providers/provider-card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-datos-servicio-addoredit",

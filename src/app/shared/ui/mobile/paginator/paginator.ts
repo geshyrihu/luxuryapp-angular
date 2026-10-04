@@ -4,7 +4,7 @@ import {
   IonSelect,
   IonSelectOption,
 } from "@ionic/angular";
-import { PaginatorBase } from "@ui/base/paginator.base";
+import { PaginatorBase } from "@ui/core/paginator.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

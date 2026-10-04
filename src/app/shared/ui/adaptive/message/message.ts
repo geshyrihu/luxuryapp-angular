@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { MessageBase } from "@ui/base/message.base";
+import { MessageBase } from "@ui/core/message.base";
 import { MobileMessage } from "@ui/mobile/message/message";
 import { AppMessage } from "@ui/web/message/message";
 

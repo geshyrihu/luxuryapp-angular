@@ -23,7 +23,7 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-activos-documentos",
   templateUrl: "./activos-documentos.html",

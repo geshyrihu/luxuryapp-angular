@@ -1,7 +1,7 @@
 import { Component, forwardRef, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonDatetime, IonDatetimeButton, IonModal } from "@ionic/angular";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../core/base-ionic-input";
 
 @Component({
   selector: "ion-input-month",

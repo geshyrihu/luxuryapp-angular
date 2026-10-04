@@ -1,6 +1,6 @@
 import { Component, inject, viewChild } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { MenuBase } from "@ui/base/menu.base";
+import { MenuBase } from "@ui/core/menu.base";
 import { MobileMenu } from "@ui/mobile/menu/menu";
 import { AppMenu } from "@ui/web/menu/menu";
 

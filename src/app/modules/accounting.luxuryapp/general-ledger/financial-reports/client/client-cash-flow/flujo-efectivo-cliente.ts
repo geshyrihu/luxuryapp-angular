@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { IFlujoCajaDto } from "../../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { Endpoints } from "@core/constants/endpoints/endpoints";

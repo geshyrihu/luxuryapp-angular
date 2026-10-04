@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TapToTopBase } from "@ui/base/tap-to-top.base";
+import { TapToTopBase } from "@ui/core/tap-to-top.base";
 import { MobileTapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
 import { ScrollTop } from "@ui/web/tap-to-top/tap-to-top";
 

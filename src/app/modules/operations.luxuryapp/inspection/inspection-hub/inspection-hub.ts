@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxWidgetCard } from "@ui/adaptive/widget-card/widget-card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

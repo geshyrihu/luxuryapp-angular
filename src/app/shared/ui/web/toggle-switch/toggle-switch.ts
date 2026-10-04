@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { ToggleSwitchBase } from "@ui/base/toggle-switch.base";
+import { ToggleSwitchBase } from "@ui/core/toggle-switch.base";
 
 @Component({
   selector: "app-toggle-switch",

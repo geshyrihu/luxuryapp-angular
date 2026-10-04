@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AccordionBase } from "@ui/base/accordion.base";
+import { AccordionBase } from "@ui/core/accordion.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { SpinnerBase } from "@ui/base/spinner.base";
+import { SpinnerBase } from "@ui/core/spinner.base";
 import { MobileSpinner } from "@ui/mobile/spinner/spinner";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 

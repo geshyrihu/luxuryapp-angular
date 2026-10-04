@@ -15,7 +15,7 @@ import { AppPopover } from "@ui/web/popover/popover";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { Tree } from "@ui/web/tree/tree";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 const LABELS: Record<string, string> = { forms: "Forms & Inputs", data: "Data Display", feedback: "Feedback & Status", navigation: "Navigation", overlays: "Overlays & Surfaces" };
 

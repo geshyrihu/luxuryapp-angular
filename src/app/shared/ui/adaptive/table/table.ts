@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TableBase } from "@ui/base/table.base";
+import { TableBase } from "@ui/core/table.base";
 import { MobileTable } from "@ui/mobile/table/table";
 
 @Component({

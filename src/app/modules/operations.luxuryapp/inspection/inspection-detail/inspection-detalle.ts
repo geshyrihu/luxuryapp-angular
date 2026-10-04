@@ -17,7 +17,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppTag } from "@ui/web/tag/tag";
 import { InspeccionActivoCondominio } from "../inspection-asset-add/inspeccion-activo-condominio";

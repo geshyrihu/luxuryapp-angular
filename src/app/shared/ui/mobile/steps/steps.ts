@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { StepsBase } from "@ui/base/steps.base";
+import { StepsBase } from "@ui/core/steps.base";
 import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular";
 
 @Component({

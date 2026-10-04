@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { LoaderBase } from "@ui/base/loader.base";
+import { LoaderBase } from "@ui/core/loader.base";
 import { MobileLoader } from "@ui/mobile/loader/mobile-loader";
 import { AppLoader } from "@ui/web/loader/loader";
 

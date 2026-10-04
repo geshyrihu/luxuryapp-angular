@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ProcessingOverlayBase } from "@ui/core/processing-overlay.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * Overlay de procesamiento para web (Bootstrap).

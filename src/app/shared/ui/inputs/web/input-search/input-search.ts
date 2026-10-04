@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AppIcon } from "../../../shared/app-icon/app-icon";
+import { AppIcon } from "../../../primitives/app-icon/app-icon";
 
 @Component({
   selector: "web-input-search",

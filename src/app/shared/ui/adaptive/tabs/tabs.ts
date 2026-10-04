@@ -6,7 +6,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TabsBase } from "@ui/base/tabs.base";
+import { TabsBase } from "@ui/core/tabs.base";
 import { MobileTabs } from "@ui/mobile/tabs/tabs";
 import { Tabs } from "@ui/web/tabs/tabs";
 

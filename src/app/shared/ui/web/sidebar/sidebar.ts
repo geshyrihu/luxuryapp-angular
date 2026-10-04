@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from "@angular/core";
-import { SidebarBase } from "@ui/base/sidebar.base";
+import { SidebarBase } from "@ui/core/sidebar.base";
 
 @Component({
   selector: "app-sidebar",

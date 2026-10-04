@@ -18,7 +18,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTable } from "@ui/web/table/table";
 import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 @Component({

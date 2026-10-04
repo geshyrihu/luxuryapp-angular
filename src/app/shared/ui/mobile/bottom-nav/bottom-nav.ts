@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { BottomNavBase } from "@ui/base/bottom-nav.base";
+import { BottomNavBase } from "@ui/core/bottom-nav.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
-export type { BottomNavItem } from "@ui/base/bottom-nav.base";
+export type { BottomNavItem } from "@ui/core/bottom-nav.base";
 
 @Component({
   selector: "ili-bottom-nav",

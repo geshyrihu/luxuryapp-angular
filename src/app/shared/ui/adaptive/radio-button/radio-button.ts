@@ -1,6 +1,6 @@
 import { Component, inject, input } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { RadioButtonBase } from "@ui/base/radio-button.base";
+import { RadioButtonBase } from "@ui/core/radio-button.base";
 import { MobileRadioButton } from "@ui/mobile/radio-button/radio-button";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 

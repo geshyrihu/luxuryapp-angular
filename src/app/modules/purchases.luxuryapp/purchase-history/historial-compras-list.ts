@@ -19,7 +19,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import {
   type SegmentItem,
   SegmentedControl,
-} from "@ui/shared/segmented-control/segmented-control";
+} from "@ui/primitives/segmented-control/segmented-control";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
@@ -37,7 +37,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { HistorialComprasItem } from "./interfaces/historial-compras-item.interface";
 
 const TIPO_COMPRA_OPTIONS: SegmentItem[] = [

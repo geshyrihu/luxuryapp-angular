@@ -37,11 +37,11 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { EStatus } from "@ui/base/status-badge.base";
+import { EStatus } from "@ui/core/status-badge.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";
 import { CandidateDetail } from "../candidates/candidate-core/candidate-detail";
 import {

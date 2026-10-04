@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { MenubarBase } from "@ui/base/menubar.base";
+import { MenubarBase } from "@ui/core/menubar.base";
 import { MobileMenubar } from "@ui/mobile/menubar/menubar";
 import { Menubar } from "@ui/web/menubar/menubar";
 

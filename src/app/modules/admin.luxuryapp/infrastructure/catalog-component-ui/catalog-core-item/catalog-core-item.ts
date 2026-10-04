@@ -4,7 +4,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
 import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 const LABELS: Record<string, string> = {
   datagrid: "Data Grid",

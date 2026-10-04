@@ -20,7 +20,7 @@ import { ChangePassword } from "@core/interfaces/change-password.interface";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-profile",

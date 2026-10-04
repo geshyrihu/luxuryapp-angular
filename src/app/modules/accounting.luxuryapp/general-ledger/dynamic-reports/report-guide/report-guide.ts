@@ -3,8 +3,8 @@ import { RouterModule } from "@angular/router";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AccordionItem } from "@ui/base/accordion.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AccordionItem } from "@ui/core/accordion.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 interface RouteEntry {
   path: string;

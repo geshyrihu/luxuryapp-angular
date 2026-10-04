@@ -20,7 +20,7 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
 type ClasificacionOption =

@@ -7,7 +7,7 @@ import {
   viewChild,
   ViewEncapsulation,
 } from "@angular/core";
-import { CarouselBase } from "@ui/base/carousel.base";
+import { CarouselBase } from "@ui/core/carousel.base";
 import {
   CarouselComponent as OwlCarouselComponent,
   CarouselModule,

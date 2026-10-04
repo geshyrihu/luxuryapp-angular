@@ -19,7 +19,7 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * DTO local para representar una solicitud de vacaciones del empleado.

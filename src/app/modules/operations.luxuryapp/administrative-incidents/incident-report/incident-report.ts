@@ -19,7 +19,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { DateService } from "@core/services/date.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   IncidentPendingDTO,
   IncidentStatsDTO,

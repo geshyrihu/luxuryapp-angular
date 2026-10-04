@@ -20,8 +20,8 @@ import { ServiceOrderForm } from "@operations.luxuryapp/service-orders/service-o
 import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-form";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,

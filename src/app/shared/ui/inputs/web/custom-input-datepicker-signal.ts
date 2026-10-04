@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
   selector: "web-custom-input-datepicker-signal",

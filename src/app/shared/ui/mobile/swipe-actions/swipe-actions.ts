@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
+import { SwipeActionsBase } from "@ui/core/swipe-actions.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
-export type { SwipeAction } from "@ui/base/swipe-actions.base";
+export type { SwipeAction } from "@ui/core/swipe-actions.base";
 
 @Component({
   selector: "ili-swipe-actions",

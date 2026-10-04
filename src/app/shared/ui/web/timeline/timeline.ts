@@ -3,10 +3,10 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { TimelineBase } from "@ui/base/timeline.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TimelineBase } from "@ui/core/timeline.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
-export { type TimelineEvent } from "@ui/base/timeline.base";
+export { type TimelineEvent } from "@ui/core/timeline.base";
 
 @Component({
   selector: "app-timeline",

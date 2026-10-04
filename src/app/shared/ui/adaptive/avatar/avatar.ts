@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { AvatarBase } from "@ui/base/avatar.base";
+import { AvatarBase } from "@ui/core/avatar.base";
 import { MobileAvatar } from "@ui/mobile/avatar/avatar";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 

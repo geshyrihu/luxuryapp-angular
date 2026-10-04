@@ -13,7 +13,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { SignalRService } from "@core/services/signalr.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PanicAlertRealTimeDto } from "../interfaces/panic-alert-real-time.dto";
 
 const RECIPIENT_ROLES: ApplicationRole[] = [

@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from "@angular/core";
-import { TagSeverity } from "@ui/base/tag.base";
+import { TagSeverity } from "@ui/core/tag.base";
 import { AppTag } from "@ui/web/tag/tag";
 
 export interface MappedTagOption {

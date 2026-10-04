@@ -5,8 +5,8 @@ import {
   input,
 } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { AppIcon } from "../../shared/app-icon/app-icon";
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({

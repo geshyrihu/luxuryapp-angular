@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
 import { CustomerDto } from "../../../admin.luxuryapp/security-permissions/customer/interfaces/customer.dto";

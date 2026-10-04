@@ -5,7 +5,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { HighlightPipe } from "@shared/pipes/highlight.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-faqs-fondeo",
   imports: [
