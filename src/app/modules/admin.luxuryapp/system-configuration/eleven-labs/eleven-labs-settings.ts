@@ -14,7 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -39,7 +39,7 @@ import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.i
     ApiDatePipe,
     ReactiveFormsModule,
     LxCard,
-    WebButtonLabel,
+    ButtonWeb,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputSwitch,
