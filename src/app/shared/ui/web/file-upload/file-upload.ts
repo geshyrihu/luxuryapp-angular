@@ -9,8 +9,7 @@ import {
   signal,
   ViewEncapsulation,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { PlatformService } from "@core/services/platform.service";
@@ -33,7 +32,7 @@ export interface FileUploadEvent {
 @Component({
   selector: "app-file-upload",
 
-  imports: [WebButtonLabel, WebButtonIcon, AppIcon],
+  imports: [ButtonWeb, AppIcon],
   template: `
     <div class="file-upload-root">
       <!-- Drop Zone -->
@@ -52,7 +51,7 @@ export interface FileUploadEvent {
           (change)="onNativeInput($event)"
           hidden
         />
-        <il-button [label]="chooseLabel()" class="w-100" (clicked)="chooseInput.click()" />
+        <lux-button-web displayMode="both" [label]="chooseLabel()" class="w-100" (clicked)="chooseInput.click()" />
 
         @if (!files().length) {
           <span class="text-sm text-color-secondary"
@@ -65,7 +64,8 @@ export interface FileUploadEvent {
       @if (isMobile() && mobileSource() !== "none") {
         <div class="d-flex gap-2 mt-2">
           @if (mobileSource() === "camera" || mobileSource() === "both") {
-            <il-button
+            <lux-button-web
+              displayMode="both"
               label="Tomar foto"
               severity="secondary"
               icon="material-symbols-light:photo-camera"
@@ -74,7 +74,8 @@ export interface FileUploadEvent {
             />
           }
           @if (mobileSource() === "gallery" || mobileSource() === "both") {
-            <il-button
+            <lux-button-web
+              displayMode="both"
               label="Galería"
               severity="secondary"
               icon="material-symbols-light:photo"
@@ -157,7 +158,8 @@ export interface FileUploadEvent {
                   style="color: var(--ds-danger)"
                 />
               } @else {
-                <iw-button
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:close"
                   [rounded]="true"
                   [text]="true"
