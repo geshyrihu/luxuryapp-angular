@@ -13,9 +13,9 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -59,7 +59,7 @@ interface PasswordTablePageEvent {
     MobileListItem,
     ApiDatePipe,
     AppIcon,
-    WebButtonIcon,
+    ButtonWeb,
     LxTooltipDirective,
   ],
 })
