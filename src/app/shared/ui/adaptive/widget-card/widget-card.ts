@@ -6,8 +6,8 @@ import {
   Output,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { LxCard } from "@ui/adaptive/card/card";
 import { NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
 
