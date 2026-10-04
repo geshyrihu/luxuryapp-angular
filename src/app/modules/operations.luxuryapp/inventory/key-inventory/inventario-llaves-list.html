@@ -1,100 +1,19 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [title]="'Llaves'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-    <iw-button-download
-      lxTooltip="Descargar PDF"
-      tooltipPosition="top"
-      (clicked)="onDownloadPdf()"
-      class="mt-1"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="descripcion">
-        DESCRIPCIÓN <app-sorticon field="descripcion" />
-      </th>
-      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
-      <th appSortableColumn="numeroLlave">
-        Número <app-sorticon field="numeroLlave" />
-      </th>
-      <th appSortableColumn="cantidad">
-        Cantidad <app-sorticon field="cantidad" />
-      </th>
-      <th appSortableColumn="equipoClasificacion">
-        Clasificación <app-sorticon field="equipoClasificacion" />
-      </th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td><span>{{ item.descripcion }}</span></td>
-      <td><span>{{ item.marca }}</span></td>
-      <td><span>{{ item.numeroLlave }}</span></td>
-      <td><span>{{ item.cantidad }}</span></td>
-      <td><span>{{ item.equipoClasificacion }}</span></td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
->
-  <div customFilters>
-    <ili-button-download (clicked)="onDownloadPdf()" />
-  </div>
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        <app-icon
-          icon="material-symbols-light:key-outline"
-          class="text-xl text-yellow-500"
-        />
-      </div>
-
-      <h3>{{ item.descripcion }}</h3>
-      <p>
-        {{ item.marca }} | Né {{ item.numeroLlave }} | Cant: {{ item.cantidad }}
-      </p>
-      <p>{{ item.equipoClasificacion }}</p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-inventario-llaves-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+    (downloadPdf)="onDownloadPdf()"
+  />
+} @else {
+  <app-inventario-llaves-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+    (downloadPdf)="onDownloadPdf()"
+  />
+}

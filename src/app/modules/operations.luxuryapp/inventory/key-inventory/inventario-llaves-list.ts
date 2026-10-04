@@ -17,52 +17,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { InventarioLlavesListDesktop } from "./desktop/inventario-llaves-list-desktop";
 import { InventarioLlaveForm } from "./inventario-llave-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { InventarioLlavesListMobile } from "./mobile/inventario-llaves-list-mobile";
 
 @Component({
   selector: "app-inventario-llaves-list",
   templateUrl: "./inventario-llaves-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelDownload,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [InventarioLlavesListDesktop, InventarioLlavesListMobile],
 })
 export class InventarioLlavesList {
   apiResponseS = inject(ApiResponseService);
@@ -70,13 +34,12 @@ export class InventarioLlavesList {
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   htmlPrintS = inject(HtmlPrintService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<InventarioLlave[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   customerId: string;
 
@@ -127,14 +90,12 @@ export class InventarioLlavesList {
     this.loading.set(true);
 
     try {
-      // Sort by Classification
       const sortedData = [...data].sort((a, b) =>
         (a.equipoClasificacion || "").localeCompare(
           b.equipoClasificacion || "",
         ),
       );
 
-      // Group by Classification
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =

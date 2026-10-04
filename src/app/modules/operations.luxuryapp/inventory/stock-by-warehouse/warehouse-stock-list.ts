@@ -12,76 +12,37 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { ProductOutputForm } from "@operations.luxuryapp/inventory/product-exit/product-output-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
+import { WarehouseStockListDesktop } from "./desktop/warehouse-stock-list-desktop";
+import { WarehouseStockListMobile } from "./mobile/warehouse-stock-list-mobile";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-warehouse-stock-list",
   templateUrl: "./warehouse-stock-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppAvatar,
-    DataViewMobile,
-    MobileActionMenu,
-    MobileButtonLabelDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelItem,
-    MobileListItem,
-    LuxTableCaption,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LxTooltipDirective,
-    WebButtonIconDelete,
-    WebButtonIconEdit,
-    WebButtonIconItem,
-  ],
+  imports: [WarehouseStockListDesktop, WarehouseStockListMobile],
 })
 export class WarehouseStockList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   authS = inject(AuthService);
+  platformS = inject(PlatformService);
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
-  // Seóales
+
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 
@@ -91,8 +52,6 @@ export class WarehouseStockList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   rowGroupMetadata: any = this.customerIdS.customerId;

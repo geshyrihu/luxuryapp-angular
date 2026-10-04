@@ -7,94 +7,41 @@ import {
   OnDestroy,
   OnInit,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-// import { Subscription } from "rxjs"; // Removed
 import { ExcelExportService } from "@accounting.luxuryapp/general-ledger/budget-proposals/excel-export.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
+import { PlatformService } from "@core/services/platform.service";
+import { ProductOutputListDesktop } from "./desktop/product-output-list-desktop";
+import { ProductOutputListMobile } from "./mobile/product-output-list-mobile";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-product-output-list",
   templateUrl: "./product-output-list.html",
-  imports: [
-    WebButtonIcon,
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    TableFooter,
-    CustomInputTextSignal,
-    DataViewMobile,
-
-    ReactiveFormsModule,
-    InputDatepicker,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [ProductOutputListDesktop, ProductOutputListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PaginationStore],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // Inyección de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
+  platformS = inject(PlatformService);
   private store = inject<PaginationStore<any>>(PaginationStore);
   private excelExportS = inject(ExcelExportService);
-  // Enums y referencias
   public AspRole = ApplicationRole;
   public ref: DynamicDialogRef;
 
-  // Estado del componente
-  // Estado del componente
-  // dataSignal = signal<any[]>([]); // Replaced by toSignal below
-
-  // Signals del PaginationStore (mecanismo canónico)
   protected readonly dataSignal = this.store.data;
   protected readonly loading = this.store.loading;
   protected readonly totalRecords = this.store.totalRecords;
@@ -104,16 +51,10 @@ export class ProductOutputList implements OnInit, OnDestroy {
     return data.length > 0 ? Object.keys(data[0]) : [];
   });
 
-  // totalRecords: number = 0; // Replaced by signal
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // Configuración de la tabla
-  // loading = signal(true); // Replaced by toSignal
   tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  // private subscriptions = new Subscription(); // Removed
 
   constructor() {
     effect(() => {
@@ -144,8 +85,6 @@ export class ProductOutputList implements OnInit, OnDestroy {
     this.store.configure(url, { recordsNumber: this.tableRows });
     this.store.load();
   }
-
-  // subscribeToPaginationObservables method removed
 
   loadDataLazy(event: any): void {
     this.store.onLazyLoad(event);
@@ -241,7 +180,5 @@ export class ProductOutputList implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    // this.subscriptions.unsubscribe(); // Removed
-  }
+  ngOnDestroy(): void {}
 }

@@ -17,56 +17,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { RadioComunicacionListDesktop } from "./desktop/radio-comunicacion-list-desktop";
+import { RadioComunicacionListMobile } from "./mobile/radio-comunicacion-list-mobile";
 import { RadioComunicacionForm } from "./radio-comunicacion-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-radio-comunicacion-list",
   templateUrl: "./radio-comunicacion-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelDownload,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    AppImage,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    ApiDatePipe,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [RadioComunicacionListDesktop, RadioComunicacionListMobile],
 })
 export class RadioComunicacionList {
   apiResponseS = inject(ApiResponseService);
@@ -74,13 +34,12 @@ export class RadioComunicacionList {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   htmlPrintS = inject(HtmlPrintService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<RadioComunicacion[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     effect(() => {
@@ -121,7 +80,6 @@ export class RadioComunicacionList {
       });
   }
 
-  // Helper to convert Blob to Base64
   private blobToBase64(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -137,7 +95,6 @@ export class RadioComunicacionList {
     this.loading.set(true);
 
     try {
-      // 1. Prepare data with images
       const dataWithImages = await Promise.all(
         data.map(async (item: any) => {
           let base64Image = null;
@@ -165,12 +122,10 @@ export class RadioComunicacionList {
         }),
       );
 
-      // Sort by brand
       const sortedData = [...dataWithImages].sort((a, b) =>
         (a.marca || "").localeCompare(b.marca || ""),
       );
 
-      // Group by brand
       const groups = sortedData.reduce(
         (acc, item) => {
           const brand = item.marca || "SIN MARCA";

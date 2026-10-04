@@ -10,18 +10,11 @@ import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { InventarioExtintorDto } from "@core/interfaces/inventario-extintor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppImage } from "@ui/web/image/image";
+import { PlatformService } from "@core/services/platform.service";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -32,75 +25,30 @@ import {
   qrCodeOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { InventarioExtintorDesktop } from "./desktop/inventario-extintor-desktop";
 import { InventarioExtintorBulkDateForm } from "./inventario-extintor-bulk-date-form";
 import { InventarioExtintorForm } from "./inventario-extintor-form";
 import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
 import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { InventarioExtintorMobile } from "./mobile/inventario-extintor-mobile";
 
 @Component({
   selector: "app-inventario-extintor",
   templateUrl: "./inventario-extintor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    WebButtonIconDownload,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelDownload,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppIcon,
-    AppImage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [InventarioExtintorDesktop, InventarioExtintorMobile],
 })
 export class InventarioExtintor {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   inventarioExtintorPdfS = inject(InventarioExtintorPdfService);
   inventarioExtintorQrS = inject(InventarioExtintorQrService);
+  platformS = inject(PlatformService);
   router = inject(Router);
 
   dataSignal = signal<InventarioExtintorDto[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     addIcons({

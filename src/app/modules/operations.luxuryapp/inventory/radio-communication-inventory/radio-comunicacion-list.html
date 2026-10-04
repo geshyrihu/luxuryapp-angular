@@ -1,115 +1,19 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-    <iw-button-download
-      lxTooltip="Descargar PDF"
-      tooltipPosition="top"
-      (clicked)="onDownloadPdf()"
-      class="mt-1"
-    />
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="10" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>Né</th>
-      <th appSortableColumn="fotografia">
-        Fotografia <app-sorticon field="fotografia" />
-      </th>
-      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
-      <th appSortableColumn="modelo">Modelo <app-sorticon field="modelo" /></th>
-      <th appSortableColumn="serie">Serie <app-sorticon field="serie" /></th>
-      <th appSortableColumn="bateria">
-        Bateria <app-sorticon field="bateria" />
-      </th>
-      <th appSortableColumn="fechaCompra">
-        Compra <app-sorticon field="fechaCompra" />
-      </th>
-      <th appSortableColumn="responsibleAreaName">
-        Area <app-sorticon field="responsibleAreaName" />
-      </th>
-      <th appSortableColumn="applicationUser">
-        Responsable <app-sorticon field="applicationUser" />
-      </th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-i="rowIndex">
-    <tr>
-      <td>{{ i + 1 }}</td>
-      <td>
-        <app-image
-          [src]="item.fotografia"
-          alt="Image"
-          width="120"
-          height="70"
-          [preview]="true"
-        />
-      </td>
-      <td>{{ item.marca }}</td>
-      <td>{{ item.modelo }}</td>
-      <td>{{ item.serie }}</td>
-      <td>{{ item.bateria }}</td>
-      <td>{{ item.fechaCompra | apiDate:'mediumDate' }}</td>
-      <td>{{ item.departament }}</td>
-      <td>{{ item.applicationUser }}</td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
->
-  <div customFilters>
-    <ili-button-download (clicked)="onDownloadPdf()" />
-  </div>
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        <app-icon
-          icon="material-symbols-light:radio"
-          class="text-xl text-green-500"
-        />
-      </div>
-
-      <h3>{{ item.marca }} é {{ item.modelo }}</h3>
-      <p>Serie: {{ item.serie }} | Bateróa: {{ item.bateria }}</p>
-      <p>{{ item.applicationUser }} é {{ item.departament }}</p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-radio-comunicacion-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+    (downloadPdf)="onDownloadPdf()"
+  />
+} @else {
+  <app-radio-comunicacion-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+    (downloadPdf)="onDownloadPdf()"
+  />
+}

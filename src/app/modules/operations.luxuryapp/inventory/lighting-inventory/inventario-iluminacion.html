@@ -1,99 +1,17 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [title]="'Inventario de Iluminación'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>Ubicación</th>
-      <th>Area</th>
-      <th>Cantidad</th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-i="rowIndex">
-    <tr>
-      <td colspan="4">
-        <div class="p-3 bg-body-tertiary rounded d-flex align-items-center">
-          <app-image
-            [src]="item.luminaria.img"
-            alt="."
-            width="60px"
-            [preview]="true"
-          />
-          <span class="fw-bold text-primary"
-            >{{ item.luminaria.producto }}</span
-          >
-        </div>
-      </td>
-    </tr>
-    @for (itm of item.items; track itm; let index = $index) {
-    <tr>
-      <td>{{ itm.nameMachinery }}</td>
-      <td>{{ itm.area }}</td>
-      <td>{{ itm.cantidad }}</td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(itm.id)" />
-        </div>
-      </td>
-    </tr>
-    }
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="4" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        <app-icon icon="material-symbols-light:lightbulb-outline" />
-      </div>
-
-      <h3>{{ item.luminaria.producto }}</h3>
-    </ili-list-item>
-    @for (itm of item.items; track itm) {
-    <ili-list-item>
-      <h3>{{ itm.nameMachinery }}</h3>
-      <p>{{ itm.area }}</p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(itm.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-    }
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-inventario-iluminacion-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-inventario-iluminacion-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm({ id: $event.id, title: 'Editar' })"
+    (delete)="onDelete($event)"
+  />
+}

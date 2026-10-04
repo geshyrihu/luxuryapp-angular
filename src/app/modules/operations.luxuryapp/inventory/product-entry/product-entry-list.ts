@@ -11,66 +11,32 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ProductEntryListDesktop } from "./desktop/product-entry-list-desktop";
+import { ProductEntryListMobile } from "./mobile/product-entry-list-mobile";
 import { ProductEntryForm } from "./product-entry-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-list-entradas",
   templateUrl: "./product-entry-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [ProductEntryListDesktop, ProductEntryListMobile],
 })
 export class ProductEntryList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
+  platformS = inject(PlatformService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
-  // Seóales
+
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -80,8 +46,6 @@ export class ProductEntryList {
   });
 
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   constructor() {
