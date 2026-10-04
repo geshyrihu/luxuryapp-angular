@@ -6,7 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 @Component({
@@ -16,7 +16,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class BitacoraFiltroFechaForm {

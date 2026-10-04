@@ -5,6 +5,14 @@
     </p>
     <custom-input-date-signal label="Desde" [control]="form.controls.from" [required]="true" />
     <custom-input-date-signal label="Hasta" [control]="form.controls.to" [required]="true" />
-    <il-button-save label="Generar PDF" [submitting]="submitting()" />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Generar PDF"
+      [loading]="submitting()"
+    />
   </form>
 </div>
