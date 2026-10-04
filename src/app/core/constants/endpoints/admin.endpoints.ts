@@ -1,4 +1,4 @@
-﻿export const EndpointsAdmin = {
+export const EndpointsAdmin = {
   UserAccounts: {
     addRoleToUser: (id: string, allowedRoleType?: number | null) =>
       allowedRoleType !== null && allowedRoleType !== undefined
