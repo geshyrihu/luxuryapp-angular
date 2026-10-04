@@ -1,12 +1,12 @@
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-jobs-dashboard",
   templateUrl: "./jobs-dashboard.html",
-  imports: [WebButtonLabel],
+  imports: [ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
