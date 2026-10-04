@@ -11,13 +11,15 @@
     </div>
     <div class="d-flex gap-2">
       @if (canManage()) {
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Agregar candidato"
         iconClass="material-symbols-light:person-add"
         (clicked)="addCandidate()"
       />
       }
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Cerrar"
         iconClass="material-symbols-light:close"
         severity="secondary"
@@ -56,7 +58,8 @@
           </div>
           @if (canManage()) {
           <div class="d-flex gap-2 align-items-start">
-            <il-button
+            <lux-button-web
+              displayMode="both"
               label="Editar"
               iconClass="material-symbols-light:edit"
               severity="secondary"
@@ -64,7 +67,8 @@
               size="small"
               (clicked)="editCandidate(item)"
             />
-            <il-button
+            <lux-button-web
+              displayMode="both"
               label="Cancelar"
               iconClass="material-symbols-light:cancel"
               severity="danger"

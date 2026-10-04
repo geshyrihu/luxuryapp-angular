@@ -14,7 +14,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CandidateApplicationForm } from "../candidates/candidate-applications/candidate-application-form";
 import {
   CandidateProcessVacancyDetail,
@@ -26,7 +26,7 @@ import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge
   selector: "app-vacante-candidates-modal",
   templateUrl: "./vacante-candidates-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, CandidateStageBadge, WebButtonLabel],
+  imports: [ApiDatePipe, CandidateStageBadge, ButtonWeb],
 })
 export class VacanteCandidatesModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
