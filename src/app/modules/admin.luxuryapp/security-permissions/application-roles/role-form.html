@@ -44,6 +44,15 @@
   />
 
   <div class="text-end mt-3">
-    <il-button-save [disabled]="form.invalid" [loading]="submitting()" />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
   </div>
 </form>

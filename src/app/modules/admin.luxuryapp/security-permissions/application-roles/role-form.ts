@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -39,7 +39,7 @@ import { RoleFormGroup } from "./interfaces/role-form.interface";
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class RoleForm implements OnInit {
