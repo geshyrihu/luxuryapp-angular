@@ -21,8 +21,8 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
   AppSorticon,

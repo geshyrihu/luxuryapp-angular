@@ -11,7 +11,7 @@ import { CronogramaAnualPdfStatusService } from "@core/services/cronograma-anual
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,

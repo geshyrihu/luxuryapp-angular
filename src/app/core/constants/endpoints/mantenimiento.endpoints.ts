@@ -190,6 +190,30 @@ export const EndpointsMantenimiento = {
       `inspection/list/${customerId}?page=${page}&recordsNumber=${recordsNumber}`,
     update: (id: string) => `inspection/${id}`,
   },
+  InspectionBaseline: {
+    startInitialBaseline: "inspection-baseline",
+    executions: (customerId: string) =>
+      `inspection-baseline/executions/${customerId}`,
+    coverage: (inspectionExecutionId: string) =>
+      `inspection-baseline/${inspectionExecutionId}/coverage`,
+    addFinding: (snapshotId: string) =>
+      `inspection-baseline/snapshots/${snapshotId}/findings`,
+    setException: (snapshotId: string) =>
+      `inspection-baseline/snapshots/${snapshotId}/exception`,
+  },
+  InspectionApprovals: {
+    get: (inspectionExecutionId: string) =>
+      `inspection-approval/${inspectionExecutionId}`,
+    submit: (inspectionExecutionId: string) =>
+      `inspection-approval/${inspectionExecutionId}/submit`,
+    returnToInspector: (inspectionExecutionId: string) =>
+      `inspection-approval/${inspectionExecutionId}/return`,
+    sign: (inspectionExecutionId: string) =>
+      `inspection-approval/${inspectionExecutionId}/sign`,
+    reopen: (inspectionExecutionId: string) =>
+      `inspection-approval/${inspectionExecutionId}/reopen`,
+    createAnnex: "inspection-approval/annex",
+  },
   InspectionResults: {
     byUserCustomerAndDate: (
       applicationUserId: string,

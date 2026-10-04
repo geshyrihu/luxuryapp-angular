@@ -27,7 +27,7 @@ import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-st
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { AppImage } from "@ui/web/image/image";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,

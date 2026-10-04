@@ -25,8 +25,8 @@ import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/act
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
   AppSorticon,

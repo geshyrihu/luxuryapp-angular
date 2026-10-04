@@ -23,6 +23,18 @@ export const inspectionRoutes: Routes = [
     },
   },
   {
+    path: "approval",
+    loadComponent: () =>
+      import(
+        "@operations.luxuryapp/inspection/inspection-approval/revision-actas-inspeccion"
+      ).then((m) => m.RevisionActasInspeccion),
+    canActivate: [authGuard],
+    data: {
+      title: "Revisión de actas",
+      breadcrumb: "Revisión de actas",
+    },
+  },
+  {
     path: "details/:id",
     loadComponent: () =>
       import("@operations.luxuryapp/inspection/inspection-detail/inspection-detalle").then(
@@ -35,8 +47,7 @@ export const inspectionRoutes: Routes = [
     },
   },
   {
-    path: "inspection-report-list",
-    loadComponent: () =>
+    path: "inspection-report-list",    loadComponent: () =>
       import("@operations.luxuryapp/inspection/inspection-report-list/lista-informe-inspeccion").then(
         (m) => m.ListaInformeInspeccion,
       ),

@@ -20,8 +20,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -30,7 +30,7 @@ import {
 import { IRegistroChecador } from "./interfaces/chekador-empleados.models";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { ChekadorEmpleadosService } from "./chekador-empleados.service";
 @Component({
   selector: "app-chekador-list",

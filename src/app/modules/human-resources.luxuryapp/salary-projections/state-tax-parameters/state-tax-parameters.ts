@@ -12,7 +12,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
   AppSorticon,

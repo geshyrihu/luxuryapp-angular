@@ -13,7 +13,8 @@
   </div>
 
   <div class="d-flex align-items-center gap-1 flex-wrap">
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       icon="material-symbols-light:chevron-left"
       variant="text"
       severity="secondary"
@@ -24,7 +25,8 @@
     <span class="text-sm fw-semibold text-body px-2 text-nowrap">
       {{ rangoLabel() }}
     </span>
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       icon="material-symbols-light:chevron-right"
       variant="text"
       severity="secondary"
@@ -33,7 +35,8 @@
       (clicked)="periodoSiguiente()"
     />
     @if (!esPeriodoActual()) {
-    <il-button
+    <lux-button-web
+      displayMode="both"
       label="Hoy"
       variant="outline"
       size="sm"
@@ -41,7 +44,8 @@
       (clicked)="volverHoy()"
     />
     }
-    <il-button
+    <lux-button-web
+      displayMode="both"
       label="Ver meses"
       icon="material-symbols-light:calendar-add-on"
       variant="text"

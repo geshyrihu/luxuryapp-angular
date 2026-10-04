@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,68 +6,26 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { MessageService } from "@core/services/message.service";
+import { PlatformService } from "@core/services/platform.service";
 import { MeetingSeguimientoEdit } from "@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { addIcons } from "ionicons";
-import { alertCircleOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
+import { MinutaPendientesListDesktop } from "./desktop/minuta-pendientes-list-desktop";
+import { MinutaPendientesListMobile } from "./mobile/minuta-pendientes-list-mobile";
+
 @Component({
   selector: "app-cont-list-minuta-pendientes",
   templateUrl: "./minuta-pendientes-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
-    AppIcon,
-    LxTag,
-    MobileListItem,
-    TableEmptyMessage,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTooltipDirective,
-    CustomInputSelectSignal,
-
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    LuxTableCaption,
-    TableFooter,
-    SanitizeHtmlPipe,
-    DataViewMobile,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-  ],
+  imports: [MinutaPendientesListDesktop, MinutaPendientesListMobile],
 })
 export class ContListMinutaPendientes implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -76,21 +33,16 @@ export class ContListMinutaPendientes implements OnInit {
   authS = inject(AuthService);
   messageS = inject(MessageService);
   htmlPrintS = inject(HtmlPrintService);
-  dataSignal = signal<any[]>([]);
+  platformS = inject(PlatformService);
 
+  dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-  loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  statusFiltroControl = new FormControl<number>(0);
 
-  constructor() {
-    addIcons({ alertCircleOutline });
-  }
+  statusFiltroControl = new FormControl<number>(0);
 
   ngOnInit() {
     this.onLoadData();

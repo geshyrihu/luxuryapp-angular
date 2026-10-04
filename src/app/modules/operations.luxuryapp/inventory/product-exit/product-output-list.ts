@@ -12,7 +12,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -32,7 +32,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
 

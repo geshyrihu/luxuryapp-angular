@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,

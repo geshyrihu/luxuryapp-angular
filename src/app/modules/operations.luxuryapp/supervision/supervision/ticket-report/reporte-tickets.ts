@@ -27,7 +27,7 @@ import {
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",

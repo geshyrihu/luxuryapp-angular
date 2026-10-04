@@ -15,8 +15,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
   AppSorticon,

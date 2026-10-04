@@ -19,7 +19,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   BulkSetInitialBalanceDTO,

@@ -14,14 +14,14 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
 

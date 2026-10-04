@@ -1,0 +1,159 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table custom-table-fixed card"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
+    >
+      <div class="flex-grow-1">
+        <lux-table-caption
+          [title]="'Contabilidad'"
+          [showAdd]="false"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
+        <div>
+          <custom-input-select-signal
+            [data]="[
+              { label: 'Pendientes', value: 0 },
+              { label: 'Concluidos', value: 1 },
+              { label: 'No Autorizados', value: 2 },
+              { label: 'Todos', value: 4 }
+            ]"
+            [control]="statusFiltroControl()"
+            optionLabel="label"
+            optionValue="value"
+            (selectionChange)="filter.emit()"
+            [horizontal]="false"
+            [filter]="true"
+            [noMargin]="true"
+          />
+        </div>
+
+        <div class="flex-shrink-0">
+          <il-button
+            label="Descargar PDF"
+            iconClass="material-symbols-light:download"
+            variant="outline"
+            (clicked)="downloadPdf.emit()"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-8" />
+      <col class="table-col-8" />
+      <col class="table-col-28" />
+      <col class="table-col-40" />
+      <col class="table-col-8" />
+      <col class="table-col-8" />
+    </colgroup>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="code">
+        FOLIO
+        <app-sorticon field="code" />
+      </th>
+      <th appSortableColumn="cliente">
+        CLIENTE
+        <app-sorticon field="cliente" />
+      </th>
+      <th appSortableColumn="fechaSolicitudFiltro">
+        SOLICITUD
+        <app-sorticon field="fechaSolicitudFiltro" />
+      </th>
+      <th appSortableColumn="pendiente">
+        SEGUIMIENTO
+        <app-sorticon field="pendiente" />
+      </th>
+      <th colspan="2" appSortableColumn="status">
+        ESTATUS
+        <app-sorticon field="status" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.cliente }}</td>
+      <td>
+        <div class="h6">
+          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+        </div>
+        <div
+          class="text-justify"
+          [innerHTML]="item.pendiente | sanitizeHtml"
+        ></div>
+      </td>
+      <td>
+        <ul>
+          @if (item.seguimientos.length > 0) {
+          <li>
+            {{ item.seguimientos[0].fecha }}, {{
+            item.seguimientos[0].seguimiento }}
+          </li>
+          }
+        </ul>
+      </td>
+      <td class="text-center">
+        <lux-tag
+          [value]="
+            item.status === 0
+              ? 'Pendiente'
+              : item.status === 1
+                ? 'Completado'
+                : 'Cancelado'
+          "
+          [severity]="
+            item.status === 0
+              ? 'danger'
+              : item.status === 1
+                ? 'success'
+                : 'secondary'
+          "
+        ></lux-tag>
+      </td>
+
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-item
+            iconClass="material-symbols-light:comment"
+            lxTooltip="Seguimientos"
+            tooltipPosition="top"
+            (clicked)="todosSeguimientos.emit(item.id)"
+          />
+          <iw-button-item
+            [iconClass]="'material-symbols-light:add'"
+            lxTooltip="Agregar seguimiento"
+            tooltipPosition="top"
+            (clicked)="agregarSeguimiento.emit({ meetingDetailsId: item.id, idMeetingSeguimiento: 0 })"
+          />
+          <iw-button-edit
+            (clicked)="verDetalle.emit({ id: item.id, title: 'Editar asunto' })"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

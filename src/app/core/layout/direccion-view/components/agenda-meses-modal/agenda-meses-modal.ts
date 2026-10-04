@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTag } from "@ui/web/tag/tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -24,7 +24,7 @@ interface MesGroup {
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, AppTag, LxTooltipDirective, WebButtonLabel],
+  imports: [AppIcon, AppTag, LxTooltipDirective, ButtonWeb],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -101,4 +101,3 @@ export class AgendaMesesModal implements OnInit {
     this.cargando.set(false);
   }
 }
-

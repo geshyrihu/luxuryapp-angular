@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,

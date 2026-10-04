@@ -14,7 +14,7 @@ import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 
 @Component({
   selector: "lux-table-caption",
-  templateUrl: "./table-caption.html",
+  templateUrl: "./lux-table-caption.html",
   imports: [RouterModule, ButtonWeb, CustomSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

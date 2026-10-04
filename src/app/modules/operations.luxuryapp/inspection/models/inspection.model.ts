@@ -11,6 +11,7 @@ export interface InspectionSummary {
   id: string;
   name: string;
   recurrenceUnit: number;
+  recurrenceUnitDisplayName: string;
   recurrenceInterval: number;
   isActive: boolean;
 }
@@ -100,3 +101,103 @@ export interface ApiResponse<T> {
   statusCode?: number;
   errors?: string[];
 }
+
+/**
+ * Fila de listado de ejecuciones de levantamiento/mayor/anexo
+ * Corresponde a: InspectionExecutionListItemDTO (backend)
+ */
+export interface InspectionExecutionListItem {
+  id: string;
+  inspectionName: string;
+  inspectionType: number;
+  inspectionTypeDisplayName: string;
+  folio: string | null;
+  approvalStatus: number;
+  approvalStatusDisplayName: string;
+  isAnnex: boolean;
+  equipmentCount: number;
+  createdAt: string;
+  submittedAt: string | null;
+  approvedAt: string | null;
+}
+
+/**
+ * Evento auditable del ciclo de firma
+ * Corresponde a: InspectionApprovalEventDTO (backend)
+ */
+export interface InspectionApprovalEvent {
+  id: string;
+  action: number;
+  actionDisplayName: string;
+  actorUserId: string;
+  actorRole: string;
+  occurredAt: string;
+  reason: string | null;
+  version: number;
+}
+
+/**
+ * Acta de revisión y firma digital
+ * Corresponde a: InspectionApprovalDTO (backend)
+ */
+export interface InspectionApproval {
+  id: string;
+  inspectionExecutionId: string;
+  folio: string | null;
+  status: number;
+  statusDisplayName: string;
+  version: number;
+  submittedAt: string | null;
+  submittedByUserId: string | null;
+  reviewedAt: string | null;
+  reviewedByUserId: string | null;
+  returnReason: string | null;
+  approvedAt: string | null;
+  approvedByUserId: string | null;
+  approvedByRole: string | null;
+  reopenedAt: string | null;
+  reopenedByUserId: string | null;
+  reopenReason: string | null;
+  isAnnex: boolean;
+  annexOfApprovalId: string | null;
+  annexOfFolio: string | null;
+  events: InspectionApprovalEvent[];
+}
+
+/**
+ * Snapshot de cobertura de un equipo dentro de una ejecución
+ * Corresponde a: InspectionExecutionSnapshotDTO (backend)
+ */
+export interface InspectionExecutionSnapshot {
+  id: string;
+  equipmentId: string;
+  equipmentName: string;
+  inventoryCategory: number;
+  brand: string | null;
+  model: string | null;
+  serialNumber: string | null;
+  localCode: string | null;
+  location: string | null;
+  evaluationState: number;
+  exceptionReason: string | null;
+  condition: number | null;
+  findings: {
+    id: string;
+    criterionDescription: string;
+    severity: number;
+    recommendation: number;
+    technicalNotes: string | null;
+    createdAt: string;
+    imagePaths: string[];
+  }[];
+}
+
+/** Estados del acta (InspectionApprovalStatus backend). */
+export const INSPECTION_APPROVAL_STATUS = {
+  DRAFT: 1,
+  PENDING_REVIEW: 2,
+  RETURNED: 3,
+  APPROVED: 4,
+  REOPENED: 5,
+} as const;
+

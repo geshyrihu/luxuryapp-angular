@@ -34,6 +34,7 @@ import { WebInputDate } from "../../web/input-date/input-date";
         [disabled]="disabled()"
         [required]="requiredInput()"
         [minDate]="minDate()"
+        [size]="size()"
       />
     } @else {
       <web-input-date
@@ -51,6 +52,7 @@ import { WebInputDate } from "../../web/input-date/input-date";
         [disable]="disable()"
         [mode]="mode()"
         [minDate]="minDate()"
+        [size]="size()"
       />
     }
   `,
@@ -61,5 +63,5 @@ export class InputDate extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
   minDate = input<Date | string | null>(null);
+  size = input<"small" | "large" | undefined>(undefined);
 }
-

@@ -10,8 +10,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { AgendaMesesModal } from "../agenda-meses-modal/agenda-meses-modal";
@@ -23,7 +22,7 @@ import type {
 @Component({
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
-  imports: [AppTag, LxTooltipDirective, AppIcon, WebButtonLabel, WebButtonIcon],
+  imports: [AppTag, LxTooltipDirective, AppIcon, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppImage } from "@ui/web/image/image";
@@ -29,7 +28,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CustomInputSelectSignal,
     CustomInputDateSignal,
     AppImage,
-    LxTooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-informe-inspeccion.html",
@@ -52,8 +50,8 @@ export class ListaInformeInspeccion implements OnInit {
     this.onLoadInspectionReport();
   }
 
-  onDateChange(value: any): void {
-    this.onLoadData(this.inspectionResultIdControl.value ?? "", value);
+  onDateChange(value: string | null): void {
+    this.onLoadData(this.inspectionResultIdControl.value ?? "", value ?? "");
   }
 
   onLoadData(inspectionResultId: string, date: string): void {

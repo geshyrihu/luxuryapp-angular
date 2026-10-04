@@ -22,6 +22,14 @@ export const INSPECTION_MODULES: InspectionModuleGroup[] = [
         bgColor: "#ccfbf1",
       },
       {
+        title: "Revisión de Actas",
+        description: "Envío a revisión, firma digital, anexos y cierre de actas.",
+        route: "/inspections/approval",
+        icon: "material-symbols-light:verified",
+        color: "#7c2d12",
+        bgColor: "#ffedd5",
+      },
+      {
         title: "Áreas de Inspección (placeholder)",
         description: "Consulta del catálogo de áreas de inspección.",
         route: "/logbook/inspections-areas",

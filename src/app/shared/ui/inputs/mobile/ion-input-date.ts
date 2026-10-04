@@ -50,6 +50,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
 })
 export class IonInputDate extends BaseIonicInput {
   minDate = input<Date | string | null>(null);
+  size = input<"small" | "large" | undefined>(undefined);
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

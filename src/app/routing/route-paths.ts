@@ -442,6 +442,7 @@ export const ROUTES = {
     CATALOGO: ["/inspections", "catalog"],
     DETALLE: (id: string) => ["/inspections", "details", id],
     LISTA_INFORMES: ["/inspections", "inspection-report-list"],
+    REVISION_ACTAS: ["/inspections", "approval"],
     MIS_INSPECCIONES_LISTA: ["/inspections", "my-inspection-list"],
     MIS_INSPECCIONES_EJECUTAR: ["/inspections", "my-inspection"],
     RESULTADO: (id: string) => ["/inspections", "result", id],

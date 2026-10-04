@@ -5,7 +5,8 @@
   <div class="d-flex align-items-center gap-2">
     <span class="text-sm text-body-secondary">Mostrar:</span>
     @for (opcion of [3, 6, 9, 12]; track opcion) {
-    <il-button
+    <lux-button-web
+      displayMode="both"
       [label]="opcion + ' meses'"
       size="sm"
       [severity]="mesesSeleccionados() === opcion ? 'primary' : 'secondary'"

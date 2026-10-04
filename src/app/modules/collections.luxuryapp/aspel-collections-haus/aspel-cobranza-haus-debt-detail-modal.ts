@@ -19,7 +19,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
 
 @Component({

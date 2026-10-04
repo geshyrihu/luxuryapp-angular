@@ -1,0 +1,316 @@
+<div class="container-fluid p-4">
+  <div
+    class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4"
+  >
+    <div>
+      <h4 class="text-title-lg m-0">Revisión y firma de actas</h4>
+      <p class="text-body-sm text-on-surface-secondary m-0">
+        Levantamientos iniciales, inspecciones mayores y anexos.
+      </p>
+    </div>
+    <div class="d-flex gap-2">
+      <lux-button-web
+        kind="custom"
+        label="Actualizar"
+        icon="material-symbols-light:refresh"
+        tooltip="Recargar el listado de actas"
+        [loading]="busy()"
+        (clicked)="onRefresh()"
+      />
+      <lux-button-web
+        kind="add"
+        label="Iniciar levantamiento"
+        icon="material-symbols-light:add-notes"
+        tooltip="Congelar la cobertura del inventario actual e iniciar un levantamiento"
+        [loading]="busy()"
+        (clicked)="onStartBaseline()"
+      />
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <lux-table
+      [value]="executions()"
+      [size]="'small'"
+      dataKey="id"
+      [scrollable]="true"
+      scrollHeight="24rem"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Folio</th>
+          <th>Tipo</th>
+          <th class="text-center">Equipos</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th class="table-col-10"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr [class.table-row-selected]="item.id === selectedId()">
+          <td>{{ item.folio || "—" }}</td>
+          <td>
+            {{ item.inspectionTypeDisplayName }}
+            @if (item.isAnnex) {
+            <span class="approval-chip approval-chip--annex ms-1">Anexo</span>
+            }
+          </td>
+          <td class="text-center">{{ item.equipmentCount }}</td>
+          <td>
+            <span [class]="statusBadgeClass(item.approvalStatus)">
+              {{ item.approvalStatusDisplayName }}
+            </span>
+          </td>
+          <td>{{ item.createdAt | apiDate : "dd/MM/yyyy" }}</td>
+          <td>
+            <div class="d-flex justify-content-end">
+              <lux-button-web
+                kind="custom"
+                icon="material-symbols-light:fact-check"
+                displayMode="icon"
+                tooltip="Abrir el acta para revisar o firmar"
+                (clicked)="onSelect(item)"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <lux-table-empty-message
+          [colspan]="6"
+          message="No hay levantamientos ni inspecciones mayores para este cliente."
+        />
+      </ng-template>
+    </lux-table>
+  </div>
+
+  @if (selectedExecution(); as selected) {
+  <div class="card p-4">
+    <div
+      class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3"
+    >
+      <div class="d-flex align-items-center gap-3">
+        <app-icon
+          icon="material-symbols-light:verified"
+          class="text-2xl text-primary-700"
+        />
+        <div>
+          <h5 class="text-title-md m-0">
+            {{ approval()?.folio || "Borrador sin folio" }}
+          </h5>
+          <p class="text-body-sm text-on-surface-secondary m-0">
+            {{ selected.inspectionName }} · versión
+            {{ approval()?.version ?? 0 }}
+            @if (approval()?.isAnnex) { · anexo de
+            {{ approval()?.annexOfFolio || "acta original" }} }
+          </p>
+        </div>
+      </div>
+      <span [class]="statusBadgeClass(status())">
+        {{ approval()?.statusDisplayName || "Borrador" }}
+      </span>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="approval-meta">
+          <span class="approval-meta__label">Enviada a revisión</span>
+          <span class="approval-meta__value">
+            @if (approval()?.submittedAt) {
+            {{ approval()?.submittedAt | apiDate : "dd/MM/yyyy HH:mm" }}
+            } @else { — }
+          </span>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="approval-meta">
+          <span class="approval-meta__label">Revisada por</span>
+          <span class="approval-meta__value">
+            @if (approval()?.reviewedAt) {
+            {{ approval()?.reviewedByUserId }} ·
+            {{ approval()?.reviewedAt | apiDate : "dd/MM/yyyy HH:mm" }}
+            } @else { — }
+          </span>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="approval-meta">
+          <span class="approval-meta__label">Firmada por</span>
+          <span class="approval-meta__value">
+            @if (approval()?.approvedAt) {
+            {{ approval()?.approvedByUserId }}
+            ({{ approval()?.approvedByRole }}) ·
+            {{ approval()?.approvedAt | apiDate : "dd/MM/yyyy HH:mm" }}
+            } @else { — }
+          </span>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="approval-meta">
+          <span class="approval-meta__label">Cobertura</span>
+          <span class="approval-meta__value">
+            {{ coverage().length }} equipos
+          </span>
+        </div>
+      </div>
+    </div>
+
+    @if (approval()?.returnReason) {
+    <div class="alert alert-danger py-2 mb-3" role="alert">
+      <strong>Devuelta:</strong> {{ approval()?.returnReason }}
+    </div>
+    } @if (approval()?.reopenReason) {
+    <div class="alert alert-warning py-2 mb-3" role="alert">
+      <strong>Reapertura (v{{ approval()?.version }}):</strong>
+      {{ approval()?.reopenReason }}
+    </div>
+    }
+
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      @if (canSubmit()) {
+      <lux-button-web
+        kind="custom"
+        label="Enviar a revisión"
+        icon="material-symbols-light:send"
+        tooltip="Enviar la captura terminada a revisión administrativa"
+        [loading]="busy()"
+        (clicked)="onSubmit()"
+      />
+      } @if (canReturn()) {
+      <lux-button-web
+        kind="custom"
+        label="Devolver"
+        icon="material-symbols-light:undo"
+        severity="danger"
+        tooltip="Devolver el acta al inspector con observaciones"
+        [disabled]="busy()"
+        (clicked)="reasonMode.set('return')"
+      />
+      } @if (canSign()) {
+      <lux-button-web
+        kind="confirm"
+        label="Firmar y cerrar"
+        icon="material-symbols-light:draw"
+        tooltip="Aprobar, firmar digitalmente y cerrar el acta (inmutable)"
+        [loading]="busy()"
+        (clicked)="onSign()"
+      />
+      } @if (canReopen()) {
+      <lux-button-web
+        kind="custom"
+        label="Reabrir"
+        icon="material-symbols-light:lock-open"
+        severity="warning"
+        tooltip="Reabrir el acta aprobada con motivo auditado"
+        [disabled]="busy()"
+        (clicked)="reasonMode.set('reopen')"
+      />
+      <lux-button-web
+        kind="custom"
+        label="Crear anexo"
+        icon="material-symbols-light:note-add"
+        tooltip="Anexar los equipos incorporados después de la firma"
+        [loading]="busy()"
+        (clicked)="onCreateAnnex()"
+      />
+      }
+    </div>
+
+    @if (reasonMode()) {
+    <div class="mb-4">
+      <label class="form-label text-body-sm" for="approvalReason">
+        {{
+          reasonMode() === "reopen"
+            ? "Motivo de la reapertura (obligatorio)"
+            : "Motivo de la devolución (obligatorio)"
+        }}
+      </label>
+      <textarea
+        id="approvalReason"
+        class="form-control"
+        rows="2"
+        maxlength="500"
+        [value]="reasonText()"
+        (input)="reasonText.set($any($event.target).value)"
+      ></textarea>
+      <div class="d-flex gap-2 mt-2">
+        <lux-button-web
+          kind="save"
+          label="Confirmar"
+          tooltip="Registrar el motivo y aplicar la transición"
+          [disabled]="!reasonText().trim() || busy()"
+          (clicked)="onConfirmReason()"
+        />
+        <lux-button-web
+          kind="custom"
+          label="Cancelar"
+          icon="material-symbols-light:close"
+          tooltip="Cancelar la transición"
+          (clicked)="reasonMode.set(null); reasonText.set('')"
+        />
+      </div>
+    </div>
+    }
+
+    <h6 class="text-title-sm mb-2">Cobertura congelada</h6>
+    <lux-table [value]="coverage()" [size]="'small'" [scrollable]="true" scrollHeight="20rem">
+      <ng-template #header>
+        <tr>
+          <th>Equipo</th>
+          <th>Categoría</th>
+          <th>Ubicación</th>
+          <th>Estado</th>
+          <th class="text-center">Hallazgos</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-snap>
+        <tr>
+          <td>{{ snap.equipmentName }}</td>
+          <td>{{ snap.inventoryCategory }}</td>
+          <td>{{ snap.location || "—" }}</td>
+          <td>
+            {{ evaluationLabel(snap.evaluationState) }}
+            @if (snap.exceptionReason) {
+            <span class="approval-muted d-block">
+              {{ snap.exceptionReason }}
+            </span>
+            }
+          </td>
+          <td class="text-center">{{ snap.findings.length }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <lux-table-empty-message [colspan]="5" message="Sin equipos en la cobertura." />
+      </ng-template>
+    </lux-table>
+
+    @if (approval()?.events?.length) {
+    <h6 class="text-title-sm mb-2 mt-4">Bitácora del acta</h6>
+    <ul class="approval-timeline list-unstyled m-0">
+      @for (event of approval()?.events ?? []; track event.id) {
+      <li class="approval-timeline__item">
+        <app-icon
+          icon="material-symbols-light:history"
+          class="text-lg text-primary-600"
+        />
+        <div>
+          <span class="text-body-sm text-on-surface">
+            {{ event.actionDisplayName }}
+          </span>
+          <span class="approval-muted d-block">
+            {{ event.actorUserId }} ({{ event.actorRole }}) ·
+            {{ event.occurredAt | apiDate : "dd/MM/yyyy HH:mm" }} · v{{ event.version }}
+          </span>
+          @if (event.reason) {
+          <span class="approval-muted d-block">
+            {{ event.reason }}
+          </span>
+          }
+        </div>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+  }
+</div>

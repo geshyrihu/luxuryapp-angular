@@ -24,7 +24,7 @@ import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IExecutiveReportFilters {

@@ -50,6 +50,8 @@ import { BaseInputSignal } from "../../core/base-input-signal";
         [allowInput]="true"
         [parseDate]="parseDate"
         class="form-control w-full"
+        [class.form-control-sm]="size() === 'small'"
+        [class.form-control-lg]="size() === 'large'"
       />
     </base-input-signal>
   `,
@@ -66,6 +68,7 @@ export class WebInputDate extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
   minDate = input<Date | string | null>(null);
+  size = input<"small" | "large" | undefined>(undefined);
   protected readonly spanishLocale = Spanish;
 
   // Parser para permitir tipear dd/mm/yyyy (y seguir aceptando yyyy-mm-dd / Date).

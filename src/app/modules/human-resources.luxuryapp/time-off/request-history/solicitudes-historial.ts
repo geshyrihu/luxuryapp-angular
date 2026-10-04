@@ -29,7 +29,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { firstValueFrom } from "rxjs";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -39,7 +39,7 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../leave-calendar/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../leave-calendar/modal-vacacion-detalle";
 
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 interface LeaveHistoryItemDTO {
   id: string;
   customerName?: string;

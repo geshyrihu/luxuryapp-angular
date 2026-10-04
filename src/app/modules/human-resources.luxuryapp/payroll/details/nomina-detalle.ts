@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -30,7 +30,7 @@ import ModalEditarEmpleadoNomina from "./edit-payroll-employee-modal/modal-edita
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

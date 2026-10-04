@@ -38,7 +38,7 @@ import {
     class: "inline-flex align-items-center justify-content-center",
   },
 })
-export class TableCheckbox {
+export class LuxTableCheckbox {
   checked = input(false);
   disabled = input(false);
   binary = input(true);

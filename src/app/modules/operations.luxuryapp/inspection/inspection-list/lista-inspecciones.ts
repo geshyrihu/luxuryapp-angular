@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -54,7 +54,7 @@ export class ListaInspecciones {
         inspecciones: group.inspecciones.filter((inspeccion: any) => {
           const matchesArea = area === "" || group.areaResponsable === area;
           const matchesRecurrence =
-            recurrence === "" || inspeccion.frequency === recurrence;
+            recurrence === "" || String(inspeccion.recurrenceUnit) === recurrence;
           return matchesArea && matchesRecurrence;
         }),
       }))

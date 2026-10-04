@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -16,7 +16,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -71,7 +71,7 @@ export class ListaInspeccionesDesktop {
   readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
-  readonly globalFilterFields = ["name", "recurrenceUnit", "departament"];
+  readonly globalFilterFields = ["name", "recurrenceUnitDisplayName", "departament"];
 
   readonly rows = computed<InspectionTableRow[]>(() =>
     this.data().flatMap((group) =>

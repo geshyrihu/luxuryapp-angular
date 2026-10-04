@@ -58,8 +58,8 @@ Y dentro de `<app-data-view-mobile>` (contexto móvil), las acciones van dentro 
 ```html
 <td class="no-print">
   <div class="flex gap-1">
-    <iw-button-edit size="sm" styleClass="btn--circle" (clicked)="onEdit(item)" />
-    <iw-button-delete size="sm" styleClass="btn--circle" (confirmed)="onDelete(item.id)" />
+    <iw-button-edit styleClass="btn--circle" (clicked)="onEdit(item)" />
+    <iw-button-delete styleClass="btn--circle" (confirmed)="onDelete(item.id)" />
   </div>
 </td>
 ```

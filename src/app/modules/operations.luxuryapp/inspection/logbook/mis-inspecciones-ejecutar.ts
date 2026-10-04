@@ -27,8 +27,8 @@ import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-swit
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { map } from "rxjs";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

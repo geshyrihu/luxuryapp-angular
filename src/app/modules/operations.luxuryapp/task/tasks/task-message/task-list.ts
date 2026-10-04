@@ -57,7 +57,7 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,
@@ -78,7 +78,7 @@ import {
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
