@@ -1,0 +1,74 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nueva tarea de onboarding' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-3" appSortableColumn="name">
+        NOMBRE
+        <app-sorticon field="name" />
+      </th>
+      <th class="table-col-1" appSortableColumn="diasSla">
+        DÍAS SLA
+        <app-sorticon field="diasSla" />
+      </th>
+      <th class="table-col-4">ROLES</th>
+      <th class="table-col-2" appSortableColumn="isActive">
+        ESTATUS
+        <app-sorticon field="isActive" />
+      </th>
+      <th class="table-col-2">ACCIONES</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="fw-semibold">{{ item.name }}</div>
+        <span class="text-body-secondary">{{ item.description || "—" }}</span>
+      </td>
+      <td>
+        <span class="badge bg-blue-100 text-blue-700">{{ item.diasSla }}</span>
+      </td>
+      <td>{{ formatRoles(item.roles) }}</td>
+      <td>
+        <span
+          [class]="'badge ' + (item.isActive ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600')"
+          >{{ item.isActive ? 'Activo' : 'Inactivo' }}</span
+        >
+      </td>
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar tarea de onboarding' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

@@ -1,98 +1,17 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [title]="'Usos de CFDI'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="codigo">
-        Código
-        <app-sorticon field="codigo" />
-      </th>
-      <th appSortableColumn="descripcion">
-        DESCRIPCIÓN
-        <app-sorticon field="descripcion" />
-      </th>
-
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.codigo }}</td>
-      <td>{{ item.descripcion }}</td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="3" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" detail="false" class="ion-no-padding">
-      <div
-        slot="start"
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:receipt-outline"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <!-- Jerarquóa Visual -->
-      <div class="ion-text-wrap">
-        <p class="fw-semibold m-0 text-body">{{ item.codigo }}</p>
-        <p class="text-xs m-0 mt-1 text-body-secondary">
-          {{ item.descripcion }}
-        </p>
-      </div>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-cfdi-use-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-cfdi-use-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+}

@@ -1,0 +1,35 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nueva Fuente' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:group"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div>
+        <p class="mt-0 mb-0">{{ item.name }}</p>
+        <small [class]="item.isActive ? 'text-green-600' : 'text-500'">
+          {{ item.isActive ? 'Activo' : 'Inactivo' }}
+        </small>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Fuente' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

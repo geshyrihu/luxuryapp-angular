@@ -6,83 +6,36 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { addIcons } from "ionicons";
-import { receiptOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { CfdiUseForm } from "./cfdi-use-form";
+import { CfdiUseListDesktop } from "./desktop/cfdi-use-list-desktop";
 import { CfdiUseDto } from "./interfaces/cfdi-use.dto";
+import { CfdiUseListMobile } from "./mobile/cfdi-use-list-mobile";
+
 @Component({
   selector: "app-cfdi-use-list",
   templateUrl: "./cfdi-use-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileActionMenu,
-  ],
+  imports: [CfdiUseListDesktop, CfdiUseListMobile],
 })
 export class CfdiUseList implements OnInit {
-  authS = inject(AuthService);
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
+
   dataSignal = signal<CfdiUseDto[]>([]);
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
-  loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
-
-  constructor() {
-    addIcons({ receiptOutline });
-  }
 
   ngOnInit(): void {
     this.onLoadData();
   }
+
   onLoadData() {
     this.apiResponseS
       .onGetList<CfdiUseDto[]>(Endpoints.Catalogs.CfdiUses.getAll)

@@ -1,0 +1,36 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:receipt-outline"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <div class="ion-text-wrap">
+        <p class="fw-semibold m-0 text-body">{{ item.codigo }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          {{ item.descripcion }}
+        </p>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
