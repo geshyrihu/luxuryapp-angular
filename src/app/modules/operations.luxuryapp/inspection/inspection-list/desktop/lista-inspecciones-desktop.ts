@@ -69,7 +69,7 @@ export class ListaInspeccionesDesktop {
   readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
-  readonly globalFilterFields = ["name", "frequency", "departament"];
+  readonly globalFilterFields = ["name", "recurrenceUnit", "departament"];
 
   readonly rows = computed<InspectionTableRow[]>(() =>
     this.data().flatMap((group) =>

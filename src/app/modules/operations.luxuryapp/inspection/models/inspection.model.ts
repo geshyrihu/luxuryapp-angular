@@ -10,7 +10,8 @@
 export interface InspectionSummary {
   id: string;
   name: string;
-  frequency: string;  // Normalizado: "daily", "weekly", "monthly"
+  recurrenceUnit: number;
+  recurrenceInterval: number;
   isActive: boolean;
 }
 
@@ -34,7 +35,8 @@ export interface InspectionEdit {
   name: string;
   customerId: string;
   departament: number;  // Valor numérico del enum Departament
-  frequency: 'daily' | 'weekly' | 'monthly';  // Normalizado desde backend
+  recurrenceUnit: number;
+  recurrenceInterval: number;
   weeklyDays?: number[];  // Solo si frequency = "weekly"
   dayOfMonth?: number | null;  // Solo si frequency = "monthly"
   isActive: boolean;
@@ -49,7 +51,8 @@ export interface InspectionAddOrEdit {
   customerId: string;
   departament: number;  // Valor numérico del enum Departament
   name: string;
-  frequency: string;  // FrequencyType enum value
+  recurrenceUnit: number;
+  recurrenceInterval: number;
   weeklyDays?: number[];
   dayOfMonth?: number | null;
   isActive: boolean;

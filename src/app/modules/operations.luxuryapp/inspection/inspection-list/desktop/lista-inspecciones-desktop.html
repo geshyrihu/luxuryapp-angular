@@ -72,9 +72,9 @@
             Nombre
             <app-sorticon field="name" />
           </th>
-          <th appSortableColumn="frequency">
+          <th appSortableColumn="recurrenceUnit">
             Frecuencia
-            <app-sorticon field="frequency" />
+            <app-sorticon field="recurrenceUnit" />
           </th>
           <th class="no-print text-end">Acciones</th>
         </tr>
@@ -91,7 +91,7 @@
       <ng-template #body let-item>
         <tr>
           <td>{{ item.name }}</td>
-          <td>{{ item.frequency }}</td>
+          <td>{{ item.recurrenceUnit }}</td>
           <td class="no-print text-end">
             <div class="d-flex gap-1 justify-content-end">
               <iw-button-edit

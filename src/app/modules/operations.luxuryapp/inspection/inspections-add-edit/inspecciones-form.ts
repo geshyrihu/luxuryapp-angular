@@ -36,7 +36,8 @@ interface IInspeccionsForm {
   departamentId: FormControl<number | null>;
   customerId: FormControl<string | null>;
   departament: FormControl<number | null>;  // Valor numérico del enum
-  frequency: FormControl<string | null>;
+  recurrenceUnit: FormControl<number | null>;
+  recurrenceInterval: FormControl<number | null>;
   isActive: FormControl<boolean | null>;
   dayOfMonth: FormControl<number | null>;
   weeklyDays: FormArray<FormControl<number | null>>;
@@ -69,10 +70,10 @@ export class InspeccionesForm implements OnInit {
   submitting = signal(false);
   cb_departament = signal<SelectItemDto[]>([]);
 
-  frequencyOptions = [
-    { label: "Diaria", value: "daily" },
-    { label: "Semanal", value: "weekly" },
-    { label: "Mensual", value: "monthly" },
+  recurrenceUnitOptions = [
+    { label: "Días", value: 1 },
+    { label: "Semanas", value: 2 },
+    { label: "Meses", value: 3 },
   ];
   activeStatusOptions = [
     { label: "Activa", value: true },
@@ -92,7 +93,8 @@ export class InspeccionesForm implements OnInit {
         Validators.required,
       ),
       departament: new FormControl<number>(0),
-      frequency: new FormControl<string>("", Validators.required),
+      recurrenceUnit: new FormControl<number>(1, Validators.required),
+      recurrenceInterval: new FormControl<number>(1, Validators.required),
       isActive: new FormControl<boolean>(true, Validators.required),
       dayOfMonth: new FormControl<number | null>(null),
       weeklyDays: new FormArray<FormControl<number | null>>([]),
@@ -107,7 +109,7 @@ export class InspeccionesForm implements OnInit {
     return this.form.controls.weeklyDays;
   }
 
-  selectedFrequency = signal<string | null>(null);
+  selectedFrequency = signal<number | null>(null);
 
   weekDays = [
     { label: "Lunes", value: 1, key: "day_1" },
@@ -164,7 +166,8 @@ export class InspeccionesForm implements OnInit {
             name: result.name ?? "",
             customerId: result.customerId ?? "",
             departament: result.departament ?? 0,  // Valor numérico del enum
-            frequency: result.frequency ?? "daily",
+            recurrenceUnit: result.recurrenceUnit ?? 1,
+            recurrenceInterval: result.recurrenceInterval ?? 1,
             isActive: result.isActive ?? true,
             dayOfMonth: result.dayOfMonth ?? null,
           });
@@ -175,7 +178,7 @@ export class InspeccionesForm implements OnInit {
 
           // Sincronizar solo si frequency es "weekly" Y weeklyDays existe y es array
           if (
-            result.frequency === "weekly" &&
+            result.recurrenceUnit === 2 &&
             result.weeklyDays &&
             Array.isArray(result.weeklyDays) &&
             result.weeklyDays.length > 0
@@ -197,14 +200,14 @@ export class InspeccionesForm implements OnInit {
           }
 
           // Sincronizar solo si frequency es "monthly" Y dayOfMonth existe
-          if (result.frequency === "monthly" && result.dayOfMonth) {
+          if (result.recurrenceUnit === 3 && result.dayOfMonth) {
             // dayOfMonth ya fue patchado arriba
             this.weeklyDays.clear();
             this.daysForm.reset({ emitEvent: false });
           }
 
           // Validar y actualizar validadores según frequency
-          this.onValidateFrequency(result.frequency);
+          this.onValidateFrequency(result.recurrenceUnit);
         } catch (error) {
           console.error("Error al cargar inspección:", error);
           this.loadError.set("Error al procesar datos de inspección");
@@ -216,15 +219,15 @@ export class InspeccionesForm implements OnInit {
       });
   }
 
-  onValidateFrequency(frequency: string) {
-    if (frequency !== "weekly") {
+  onValidateFrequency(frequency: number) {
+    if (frequency !== 2) {
       this.weeklyDays.clear();
       this.daysForm.reset({ emitEvent: false });
     }
     this.selectedFrequency.set(frequency);
 
     const dayOfMonthControl = this.form.controls.dayOfMonth;
-    if (frequency === "monthly") {
+    if (frequency === 3) {
       dayOfMonthControl.setValidators([Validators.required]);
     } else {
       dayOfMonthControl.clearValidators();
@@ -233,7 +236,7 @@ export class InspeccionesForm implements OnInit {
     dayOfMonthControl.updateValueAndValidity();
   }
 
-  onFrequencyChange(value: string): void {
+  onFrequencyChange(value: number): void {
     this.onValidateFrequency(value);
     this.form.updateValueAndValidity();
   }
@@ -253,10 +256,10 @@ export class InspeccionesForm implements OnInit {
   }
 
   weeklyDaysValidator(control: AbstractControl): ValidationErrors | null {
-    const frequency = control.get("frequency")?.value;
+    const frequency = control.get("recurrenceUnit")?.value;
     const weeklyDays = control.get("weeklyDays") as FormArray;
 
-    if (frequency === "weekly" && weeklyDays?.length === 0) {
+    if (frequency === 2 && weeklyDays?.length === 0) {
       return { requiredWeeklyDays: true };
     }
     return null;

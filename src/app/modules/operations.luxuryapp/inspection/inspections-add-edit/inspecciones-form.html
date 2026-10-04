@@ -37,9 +37,9 @@
       <!-- Selector de Frecuencia -->
       <custom-input-select-signal
         id="frequency"
-        [control]="form.controls.frequency"
+        [control]="form.controls.recurrenceUnit"
         label="Frecuencia"
-        [data]="frequencyOptions"
+        [data]="recurrenceUnitOptions"
         optionLabel="label"
         optionValue="value"
         (selectionChange)="onFrequencyChange($event.value)"
@@ -49,7 +49,7 @@
       />
 
       <!-- Opciones de Frecuencia -->
-      @if (selectedFrequency() === 'weekly') {
+      @if (selectedFrequency() === 2) {
       <div class="row align-items-center mb-3">
         <div class="col-12 col-md-3">
           <label class="fw-medium m-0">Días de la semana *</label>
@@ -65,7 +65,7 @@
       </div>
       } 
       
-      @if (selectedFrequency() === 'monthly') {
+      @if (selectedFrequency() === 3) {
       <custom-input-number-signal
         [control]="form.controls.dayOfMonth"
         label="Día del Mes"
