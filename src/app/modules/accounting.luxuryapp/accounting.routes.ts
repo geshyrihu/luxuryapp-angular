@@ -6,8 +6,8 @@ export const accountingRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@accounting.luxuryapp/general-ledger/master-dashboard/master-dashboard").then(
-        (m) => m.MasterDashboard,
+      import("@accounting.luxuryapp/general-ledger/accounting-hub/accounting-hub").then(
+        (m) => m.AccountingHub,
       ),
   },
   {

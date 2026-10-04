@@ -1,47 +1,45 @@
-<!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
 <div class="d-none d-md-block fadein">
-  <!-- Encabezado -->
   <div class="mb-6">
     <div class="d-flex align-items-center gap-3 mb-2">
       <div
         class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
       >
-        <lux-icon icon="material-symbols-light:wallet" />
+        <lux-icon icon="material-symbols-light:payments" />
       </div>
       <div>
-        <h1 class="ds-heading text-3xl fw-bold text-body m-0">Contabilidad</h1>
+        <h1 class="ds-heading text-3xl fw-bold text-body m-0">
+          Recursos Humanos
+        </h1>
         <p class="ds-text-secondary text-base m-0">
-          Panel central de gestión contable, cobranza, presupuestos y estados
-          financieros
+          Gestión integral de colaboradores, nómina y prestaciones
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Grupos de módulos -->
-  @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <lux-icon [icon]="group.icon" />
+    <lux-icon icon="material-symbols-light:payments" />
     <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
-      {{ group.label }}
+      Proyección de Sueldos
     </h2>
     <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
   </div>
 
   <div class="row g-4">
-    @for (module of group.cards; track module.route) {
+    @for (option of options; track option.route) {
+<<<<<<< HEAD:src/app/modules/human-resources.luxuryapp/salary-projections/master-dashboard/master-dashboard.html
     <div class="col-12 col-sm-6 col-md-3">
       <lux-card
         class="card card--interactive card--elevated h-full"
-        (click)="navigateTo(module.route)"
+        (click)="navigateTo(option.route)"
       >
         <div class="d-flex flex-column gap-3">
           <div class="d-flex align-items-center justify-content-between">
             <div
               class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
-              [style.backgroundColor]="module.bgColor"
+              [style.backgroundColor]="option.backgroundColor"
             >
-              <lux-icon [icon]="module.icon" [style.color]="module.color" />
+              <lux-icon [icon]="option.icon" [style.color]="option.color" />
             </div>
             <lux-icon
               icon="material-symbols-light:north-east"
@@ -50,64 +48,69 @@
           </div>
           <div>
             <h3 class="m-0 fw-bold text-body line-height-2 text-base">
-              {{ module.title }}
+              {{ option.title }}
             </h3>
             <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-              {{ module.description }}
+              {{ option.description }}
             </p>
           </div>
         </div>
       </lux-card>
+=======
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="option.title"
+        [description]="option.description"
+        [icon]="option.icon"
+        [color]="option.color"
+        [bgColor]="option.backgroundColor"
+        (cardClick)="navigateTo(option.route)"
+      ></lux-widget-card>
+>>>>>>> origin/main:src/app/modules/human-resources.luxuryapp/salary-projections/salary-projections-hub/salary-projections-hub.html
     </div>
     }
   </div>
-  }
 </div>
 
-<!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
 <div class="d-block d-md-none fadein">
-  <!-- Header compacto -->
   <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <lux-icon icon="material-symbols-light:wallet" />
+      <lux-icon icon="material-symbols-light:payments" />
     </div>
     <div>
-      <h2 class="fw-bold m-0 text-body">Contabilidad</h2>
+      <h2 class="fw-bold m-0 text-body">Recursos Humanos</h2>
       <p class="text-xs m-0 text-body-secondary">
-        Gestión contable y financiera
+        Colaboradores, nómina y prestaciones
       </p>
     </div>
   </div>
 
-  <!-- Lista por grupo -->
-  @for (group of getVisibleGroups(); track group.label) {
   <div>
-    <!-- Divisor de grupo -->
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <lux-icon [icon]="group.icon" />
-        <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
+        <lux-icon icon="material-symbols-light:payments" />
+        <span class="text-xs fw-bold text-uppercase"
+          >Proyección de Sueldos</span
+        >
       </div>
     </div>
 
-    @for (module of group.cards; track module.route) {
-    <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
+    @for (option of options; track option.route) {
+    <ili-list-item class="ion-no-padding" (click)="navigateTo(option.route)">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        [style.backgroundColor]="module.bgColor"
+        [style.backgroundColor]="option.backgroundColor"
       >
-        <lux-icon [icon]="module.icon" [style.color]="module.color" />
+        <lux-icon [icon]="option.icon" [style.color]="option.color" />
       </div>
-
-      <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
+      <h3 class="fw-semibold m-0 text-body">{{ option.title }}</h3>
       <p class="text-xs m-0 mt-1 text-body-secondary">
-        {{ module.description }}
+        {{ option.description }}
       </p>
     </ili-list-item>
     }
   </div>
-  }
 </div>

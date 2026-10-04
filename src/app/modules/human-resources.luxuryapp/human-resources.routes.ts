@@ -195,8 +195,8 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "salary-projections",
     loadComponent: () =>
-      import("@human-resources.luxuryapp/salary-projections/master-dashboard/master-dashboard").then(
-        (m) => m.SalaryProjectionsMasterDashboard,
+      import("@human-resources.luxuryapp/salary-projections/salary-projections-hub/salary-projections-hub").then(
+        (m) => m.SalaryProjectionsAccountingHub,
       ),
     canActivate: [authGuard],
     data: {

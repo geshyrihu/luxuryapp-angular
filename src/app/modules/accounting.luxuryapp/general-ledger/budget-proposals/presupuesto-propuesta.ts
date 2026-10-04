@@ -45,7 +45,6 @@ import { SignalRService } from "@core/services/signalr.service";
 import { SwalService } from "@core/services/swal.service";
 import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppTable } from "@ui/web/table/table";
@@ -98,7 +97,6 @@ import {
   imports: [
     AppIcon,
     CommonModule,
-    CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomSearchInput,
     FormsModule,

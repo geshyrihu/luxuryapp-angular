@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LxCard } from "@ui/adaptive/card/card";
+import { LxWidgetCard } from "@ui/adaptive/widget-card/widget-card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 interface SalaryProjectionModuleOption {
@@ -57,12 +57,12 @@ const MODULE_OPTIONS: SalaryProjectionModuleOption[] = [
 ];
 
 @Component({
-  selector: "app-salary-projections-master-dashboard",
-  imports: [AppIcon, LxCard, MobileListItem],
+  selector: "app-salary-projections-hub",
+  imports: [AppIcon, LxWidgetCard, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./master-dashboard.html",
+  templateUrl: "./salary-projections-hub.html",
 })
-export class SalaryProjectionsMasterDashboard {
+export class SalaryProjectionsHub {
   private readonly router = inject(Router);
 
   readonly options = MODULE_OPTIONS;

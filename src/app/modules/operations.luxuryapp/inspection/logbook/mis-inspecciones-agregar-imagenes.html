@@ -44,7 +44,7 @@
     <div class="row grid-cols-3 -cols-4 -cols-5 gap-3 g-4">
       @for (image of newImages; track image; let i = $index) {
       <div class="relative group">
-        <img
+        <img alt="Imagen de evidencia" 
           [src]="image.url ? image.url : 'assets/images/default-avatar.png'"
           class="w-full h-24 object-cover rounded-md border-1 border-outline shadow-1"
           alt="Foto nueva"
@@ -75,7 +75,7 @@
     <div class="row grid-cols-3 -cols-4 -cols-5 gap-3 g-4">
       @for (image of existingImages; track image) {
       <div class="relative group">
-        <img
+        <img alt="Imagen de evidencia" 
           [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'"
           class="w-full h-24 object-cover rounded-md border-1 border-outline shadow-1"
           alt="Foto almacenada"
@@ -120,7 +120,7 @@
     <div class="row row-cols-2 g-3">
       @for (image of newImages; track image; let i = $index) {
       <div class="col position-relative">
-        <img [src]="image.url ? image.url : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto nueva" />
+        <img alt="Imagen de evidencia"  [src]="image.url ? image.url : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto nueva" />
         <iw-button iconClass="material-symbols-light:delete-outline" severity="danger" size="sm" variant="text" customClass="position-absolute top-0 end-0" (clicked)="removeNewImage(i)" lxTooltip="Eliminar" tooltipPosition="top" />
       </div>
       }
@@ -133,7 +133,7 @@
     <div class="row row-cols-2 g-3">
       @for (image of existingImages; track image) {
       <div class="col position-relative">
-        <img [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto almacenada" />
+        <img alt="Imagen de evidencia"  [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'" class="w-100 h-24 object-cover rounded-md border-1 border-outline" alt="Foto almacenada" />
         <iw-button iconClass="material-symbols-light:cancel-outline" severity="danger" size="sm" variant="text" customClass="position-absolute top-0 end-0" (clicked)="deleteExistingImage(image.id)" lxTooltip="Eliminar" tooltipPosition="top" />
       </div>
       }

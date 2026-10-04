@@ -7,15 +7,15 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { of } from "rxjs";
-import { AdminWrapper } from "./admin-wrapper";
+import { AdminHub } from "./admin-wrapper";
 
 describe("SettingsHome", () => {
-  let component: AdminWrapper;
-  let fixture: ComponentFixture<AdminWrapper>;
+  let component: AdminHub;
+  let fixture: ComponentFixture<AdminHub>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminWrapper],
+      imports: [AdminHub],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         {
@@ -41,7 +41,7 @@ describe("SettingsHome", () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AdminWrapper);
+    fixture = TestBed.createComponent(AdminHub);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

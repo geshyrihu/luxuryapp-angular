@@ -1,0 +1,169 @@
+﻿<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="d-none d-md-block fadein">
+  <!-- Inicio Guia para el usuario -->
+  <div class="mb-5">
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <div
+        class="bg-primary text-white p-2 rounded d-flex align-items-center justify-content-center shadow-sm"
+      >
+        <app-icon icon="material-symbols-light:fact-check" class="text-2xl" />
+      </div>
+      <div>
+        <h1 class="text-3xl fw-bold text-body m-0">Inspecciones</h1>
+        <p class="text-secondary text-base m-0 mt-1">
+          Panel central de gestión de recorridos e inspecciones preventivas
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <lux-card [elevated]="true" class="mb-5">
+    <ng-template #content>
+      <!-- Expanded Guide -->
+      <div class="row g-4">
+        <!-- Col 1 -->
+        <div class="col-12 col-md-6 border-end">
+            <div class="d-flex align-items-start gap-3 mb-4">
+                <div class="bg-primary-light text-primary p-2 rounded d-flex">
+                <app-icon icon="material-symbols-light:target" class="text-xl" />
+                </div>
+                <div>
+                <h2 class="text-lg fw-bold text-body m-0">Propósito y Objetivos</h2>
+                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                    Este módulo tiene como finalidad <strong>garantizar la conservación y óptimo funcionamiento</strong> de las instalaciones y equipos.
+                    Busca prevenir fallas críticas, prolongar la vida útil de los activos y mantener los estándares de calidad, mediante rondines programados.
+                </p>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3">
+                <div class="bg-success-light text-success p-2 rounded d-flex">
+                <app-icon icon="material-symbols-light:route" class="text-xl" />
+                </div>
+                <div>
+                <h2 class="text-lg fw-bold text-body m-0">¿Cómo se organiza un Recorrido?</h2>
+                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                    Un <strong>Recorrido</strong> agrupa varios equipos o áreas bajo una ruta lógica. Para organizar uno:
+                    <br>1. <strong>Crea el Recorrido</strong> desde el <em>Catálogo de Recorridos</em> (define nombre y recurrencia).
+                    <br>2. <strong>Asigna Equipos</strong>: En el detalle del recorrido, agrega los equipos físicos a revisar.
+                    <br>3. <strong>Define Responsables</strong>: Asigna a los técnicos que ejecutarán la ruta. El sistema les generará las tareas pendientes automáticamente.
+                </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-12 col-md-6">
+            <div class="d-flex align-items-start gap-3 mb-4">
+                <div class="bg-warning-light text-warning p-2 rounded d-flex">
+                <app-icon icon="material-symbols-light:list-alt" class="text-xl" />
+                </div>
+                <div>
+                <h2 class="text-lg fw-bold text-body m-0">Criterios de Inspección</h2>
+                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                    Cada equipo pertenece a una categoría. El sistema usa el <strong>Catálogo de Revisiones</strong> para autollenar los puntos específicos a revisar por cada equipo (ej. "Revisión de presión"). Esto estandariza la auditoría técnica.
+                </p>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3">
+                <div class="bg-info-light text-info p-2 rounded d-flex">
+                <app-icon icon="material-symbols-light:notifications-active" class="text-xl" />
+                </div>
+                <div>
+                <h2 class="text-lg fw-bold text-body m-0">Ejecución y Seguimiento</h2>
+                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+                    El responsable abrirá <strong>Mis Recorridos</strong> y validará cada criterio. 
+                    Si encuentra una anomalía, registrará un <em>Hallazgo</em> (con evidencia fotográfica). Los hallazgos críticos notifican a las jefaturas para generar tickets correctivos.
+                </p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </ng-template>
+  </lux-card>
+  <!-- Fin Guia para el usuario -->
+
+  @for (group of getVisibleGroups(); track group.label) {
+  <div class="d-flex align-items-center gap-2 mb-4 mt-5">
+    <app-icon [icon]="group.icon" class="text-secondary" />
+    <h2
+      class="text-lg fw-bold text-body m-0 text-uppercase tracking-wider text-sm text-secondary"
+    >
+      {{ group.label }}
+    </h2>
+    <div class="flex-grow-1 border-bottom ms-3"></div>
+  </div>
+
+  <div class="row g-4">
+    @for (module of group.cards; track module.route) {
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="module.title"
+        [description]="module.description"
+        [icon]="module.icon"
+        [color]="module.color"
+        [bgColor]="module.bgColor"
+        (cardClick)="navigateTo(module.route)"
+      ></lux-widget-card>
+    </div>
+    }
+  </div>
+  }
+</div>
+
+<!-- 📲INICIO: Componente adaptado para versión móvil -->
+<div class="d-block d-md-none fadein">
+  <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
+    <div
+      class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+    >
+      <app-icon icon="material-symbols-light:fact-check" />
+    </div>
+    <div>
+      <h2 class="fw-bold m-0 text-body">Inspecciones</h2>
+      <p class="text-xs m-0 text-body-secondary">Gestión de recorridos preventivos</p>
+    </div>
+  </div>
+
+  <div class="card p-3 m-3">
+    <div class="d-flex align-items-start gap-2">
+      <app-icon icon="material-symbols-light:info" class="text-primary-600" />
+      <div>
+        <h2 class="text-base fw-bold text-body m-0">Guía Rápida</h2>
+        <p class="text-xs text-body-secondary m-0 mt-1 line-height-3">
+          <strong>Propósito:</strong> Mantener y conservar equipos previniendo fallas.<br>
+          <strong>Organización:</strong> Un recorrido es una ruta que agrupa equipos. Se le asignan técnicos responsables.<br>
+          <strong>Ejecución:</strong> Desde "Mis Recorridos", el técnico valida los criterios de cada equipo y reporta hallazgos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  @for (group of getVisibleGroups(); track group.label) {
+  <div>
+    <div class="px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <app-icon [icon]="group.icon" />
+        <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
+      </div>
+    </div>
+
+    @for (module of group.cards; track module.route) {
+    <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        [style.backgroundColor]="module.bgColor"
+      >
+        <app-icon [icon]="module.icon" [style.color]="module.color" />
+      </div>
+      <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
+        {{ module.description }}
+      </p>
+    </ili-list-item>
+    }
+  </div>
+  }
+</div>

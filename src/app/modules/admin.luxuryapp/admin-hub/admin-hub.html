@@ -32,6 +32,7 @@
 
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
+<<<<<<< HEAD:src/app/modules/admin.luxuryapp/admin-wrapper/admin-wrapper.html
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <lux-card
         class="card card--interactive card--elevated h-full position-relative overflow-hidden"
@@ -69,6 +70,17 @@
           </div>
         </div>
       </lux-card>
+=======
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="module.title"
+        [description]="module.description"
+        [icon]="module.icon"
+        [color]="module.color"
+        [bgColor]="module.bgColor"
+        (cardClick)="navigateTo(module.route)"
+      ></lux-widget-card>
+>>>>>>> origin/main:src/app/modules/admin.luxuryapp/admin-hub/admin-hub.html
     </div>
     }
   </div>

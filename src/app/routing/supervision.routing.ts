@@ -4,8 +4,8 @@ export const supervisionRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@operations.luxuryapp/supervision/supervision/master-dashboard/master-dashboard").then(
-        (m) => m.SupervisionMasterDashboard,
+      import("@operations.luxuryapp/supervision/supervision/supervision-hub/supervision-hub").then(
+        (m) => m.SupervisionHub,
       ),
     canActivate: [authGuard],
     data: {

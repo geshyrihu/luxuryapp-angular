@@ -2,19 +2,19 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
-import { LxCard } from "@ui/adaptive/card/card";
+import { LxWidgetCard } from "@ui/adaptive/widget-card/widget-card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 
 @Component({
-  selector: "app-master-dashboard",
-  imports: [AppIcon, LxCard, MobileListItem],
+  selector: "app-accounting-hub",
+  imports: [AppIcon, LxWidgetCard, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./master-dashboard.html",
+  templateUrl: "./accounting-hub.html",
 })
-export class MasterDashboard {
+export class AccountingHub {
   private router = inject(Router);
   private aspRoleS = inject(AspRoleService);
 

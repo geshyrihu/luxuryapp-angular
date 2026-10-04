@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -85,7 +85,7 @@ export class CatalogoRevisionesInspeccion {
       .onGetList(Endpoints.InspectionReviewCatalog.getAll)
       .then((result: any) => {
         // Actualizamos el valor del signal con los datos recibidos
-        this.dataSignal.set(result);
+        this.dataSignal.set(result.map((item: any) => ({...item, categoria: item.equipoClasificacion?.descripcion ?? 'Sin categoría'})));
       });
   }
 
@@ -128,3 +128,4 @@ export class CatalogoRevisionesInspeccion {
       });
   }
 }
+

@@ -16,7 +16,7 @@ export const logbookRoutes: Routes = [
   {
     path: "inspections-areas",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-areas/inspections-areas").then(
+      import("@operations.luxuryapp/inspection/inspection-areas/inspections-areas").then(
         (m) => m.InspectionsAreas,
       ),
     canActivate: [authGuard],
@@ -115,7 +115,7 @@ export const logbookRoutes: Routes = [
   {
     path: "my-inspection/:customerInspectionId",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
+      import("@operations.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],
@@ -199,7 +199,7 @@ export const logbookRoutes: Routes = [
   {
     path: "equipment-inspection/:code",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-qr-entry").then(
+      import("@operations.luxuryapp/inspection/inspection-qr-entry").then(
         (m) => m.InspectionQrEntry,
       ),
     canActivate: [authGuard],

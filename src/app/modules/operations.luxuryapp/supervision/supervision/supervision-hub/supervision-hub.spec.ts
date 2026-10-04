@@ -2,29 +2,29 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { vi } from 'vitest';
 import { Router } from '@angular/router';
-import { SupervisionMasterDashboard } from './master-dashboard';
+import { SupervisionAccountingHub } from './master-dashboard';
 
-describe('SupervisionMasterDashboard', () => {
-  let component: SupervisionMasterDashboard;
-  let fixture: ComponentFixture<SupervisionMasterDashboard>;
+describe('SupervisionAccountingHub', () => {
+  let component: SupervisionAccountingHub;
+  let fixture: ComponentFixture<SupervisionAccountingHub>;
   let mockRouter: any;
 
   beforeEach(() => {
     mockRouter = { navigateByUrl: vi.fn() };
 
     TestBed.resetTestingModule();
-    TestBed.overrideComponent(SupervisionMasterDashboard, {
+    TestBed.overrideComponent(SupervisionAccountingHub, {
       set: { template: '<div>Mock</div>', imports: [] },
     });
     TestBed.configureTestingModule({
-      imports: [SupervisionMasterDashboard],
+      imports: [SupervisionAccountingHub],
       providers: [
         { provide: Router, useValue: mockRouter },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(SupervisionMasterDashboard);
+    fixture = TestBed.createComponent(SupervisionAccountingHub);
     component = fixture.componentInstance;
   });
 

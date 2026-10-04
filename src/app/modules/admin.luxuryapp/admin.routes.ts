@@ -6,8 +6,8 @@ export const adminRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@admin.luxuryapp/admin-wrapper/admin-wrapper").then(
-        (m) => m.AdminWrapper,
+      import("@admin.luxuryapp/admin-hub/admin-hub").then(
+        (m) => m.AdminHub,
       ),
     canActivate: [authGuard],
     data: {
@@ -776,7 +776,7 @@ export const adminRoutes: Routes = [
   {
     path: "conventions-guide",
     loadComponent: () =>
-      import("@admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer").then(
+      import("@admin.luxuryapp/admin-hub/conventions-viewer/conventions-viewer").then(
         (m) => m.ConventionsViewer,
       ),
     canActivate: [authGuard],

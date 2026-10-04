@@ -8,6 +8,7 @@
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
+  groupRowsBy="categoria"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table card d-none d-md-block"
@@ -29,16 +30,21 @@
         DEPARTAMENTO
         <lux-sorticon-web field="departament" />
       </th>
-      <th>CATEGORÍA</th>
-
       <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr class="table-group-header bg-light">
+      <td colspan="3" class="fw-bold">
+        <app-icon icon="material-symbols-light:folder-open" class="text-primary me-2 align-middle text-xl" />
+        <span class="align-middle">{{ item.categoria }}</span>
+      </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td>{{ item.description }}</td>
       <td>{{ getDepartamentLabel(item.departament) }}</td>
-      <td>{{ item.equipoClasificacion?.descripcion ?? "—" }}</td>
 
       <!-- Opciones -->
       <td class="no-print">
@@ -53,7 +59,11 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
+<<<<<<< HEAD
     <lux-table-empty-message-web [colspan]="5" />
+=======
+    <app-table-empty-message [colspan]="3" />
+>>>>>>> origin/main
   </ng-template>
   <ng-template #paginatorleft>
     <lux-table-footer-web [data]="dataSignal()" />
@@ -83,7 +93,7 @@
       <h2 class="font-normal m-0">{{ item.description }}</h2>
       <p class="text-body-secondary m-0">
         {{ getDepartamentLabel(item.departament) }} ·
-        {{ item.equipoClasificacion?.descripcion ?? "Sin categoría" }}
+        {{ item.categoria }}
       </p>
 
       <ili-action-menu slot="end">

@@ -8,9 +8,9 @@ import { SUPERVISION_MODULES } from "./supervision-modules";
   selector: "app-supervision-master-dashboard",
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./master-dashboard.html",
+  templateUrl: "./supervision-hub.html",
 })
-export class SupervisionMasterDashboard {
+export class SupervisionHub {
   private router = inject(Router);
 
   getVisibleGroups(): SupervisionModuleGroup[] {

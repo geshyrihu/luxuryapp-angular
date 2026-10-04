@@ -1,4 +1,4 @@
-export const EndpointsAdmin = {
+﻿export const EndpointsAdmin = {
   UserAccounts: {
     addRoleToUser: (id: string, allowedRoleType?: number | null) =>
       allowedRoleType !== null && allowedRoleType !== undefined
@@ -108,6 +108,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/seed-legacy-work-position-schedules",
     migrateUserActivities:
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
+      seedInspectionCriteriaCatalog:
+        "admin/system-maintenance/seed-inspection-criteria-catalog",
     recalculateWorkPositionFolios:
       "admin/system-maintenance/recalculate-work-position-folios",
     backfillMeetingFolios:
@@ -269,3 +271,4 @@ export const EndpointsAdmin = {
     revoke: (secretName: string) => `vault-secrets/${secretName}/revoke`,
   },
 } as const;
+

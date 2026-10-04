@@ -4,8 +4,8 @@ export const inspectionRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-master-dashboard/inspection-master-dashboard").then(
-        (m) => m.InspectionMasterDashboard,
+      import("@operations.luxuryapp/inspection/inspection-hub/inspection-hub").then(
+        (m) => m.InspectionHub,
       ),
     canActivate: [authGuard],
     data: { title: "Inspecciones", breadcrumb: "Inspecciones" },
@@ -13,7 +13,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "catalog",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-list/lista-inspecciones").then(
+      import("@operations.luxuryapp/inspection/inspection-list/lista-inspecciones").then(
         (m) => m.ListaInspecciones,
       ),
     canActivate: [authGuard],
@@ -25,7 +25,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-detail/inspection-detalle").then(
+      import("@operations.luxuryapp/inspection/inspection-detail/inspection-detalle").then(
         (m) => m.InspectionDetailComponent,
       ),
     canActivate: [authGuard],
@@ -37,7 +37,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "inspection-report-list",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-report-list/lista-informe-inspeccion").then(
+      import("@operations.luxuryapp/inspection/inspection-report-list/lista-informe-inspeccion").then(
         (m) => m.ListaInformeInspeccion,
       ),
     canActivate: [authGuard],
@@ -49,7 +49,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection-list",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-lista").then(
+      import("@operations.luxuryapp/inspection/logbook/mis-inspecciones-lista").then(
         (m) => m.MisInspeccionesLista,
       ),
     canActivate: [authGuard],
@@ -61,7 +61,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "my-inspection",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
+      import("@operations.luxuryapp/inspection/logbook/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],
@@ -73,7 +73,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "result/:id",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-result/resultado-inspeccion").then(
+      import("@operations.luxuryapp/inspection/inspection-result/resultado-inspeccion").then(
         (m) => m.ResultadoInspeccion,
       ),
     canActivate: [authGuard],
@@ -85,7 +85,7 @@ export const inspectionRoutes: Routes = [
   {
     path: "qr/:code",
     loadComponent: () =>
-      import("@maintenance.luxuryapp/inspection/inspection-qr-entry").then(
+      import("@operations.luxuryapp/inspection/inspection-qr-entry").then(
         (m) => m.InspectionQrEntry,
       ),
     canActivate: [authGuard],

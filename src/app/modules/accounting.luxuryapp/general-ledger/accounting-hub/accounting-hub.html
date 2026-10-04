@@ -1,0 +1,125 @@
+<!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
+<div class="d-none d-md-block fadein">
+  <!-- Encabezado -->
+  <div class="mb-6">
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <div
+        class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
+      >
+        <lux-icon icon="material-symbols-light:wallet" />
+      </div>
+      <div>
+        <h1 class="ds-heading text-3xl fw-bold text-body m-0">Contabilidad</h1>
+        <p class="ds-text-secondary text-base m-0">
+          Panel central de gestión contable, cobranza, presupuestos y estados
+          financieros
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grupos de módulos -->
+  @for (group of getVisibleGroups(); track group.label) {
+  <div class="d-flex align-items-center gap-2 mb-4 mt-5">
+    <lux-icon [icon]="group.icon" />
+    <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
+      {{ group.label }}
+    </h2>
+    <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
+  </div>
+
+  <div class="row g-4">
+    @for (module of group.cards; track module.route) {
+<<<<<<< HEAD:src/app/modules/accounting.luxuryapp/general-ledger/master-dashboard/master-dashboard.html
+    <div class="col-12 col-sm-6 col-md-3">
+      <lux-card
+        class="card card--interactive card--elevated h-full"
+        (click)="navigateTo(module.route)"
+      >
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <div
+              class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
+              [style.backgroundColor]="module.bgColor"
+            >
+              <lux-icon [icon]="module.icon" [style.color]="module.color" />
+            </div>
+            <lux-icon
+              icon="material-symbols-light:north-east"
+              class="text-body-secondary"
+            />
+          </div>
+          <div>
+            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
+              {{ module.title }}
+            </h3>
+            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+              {{ module.description }}
+            </p>
+          </div>
+        </div>
+      </lux-card>
+=======
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="module.title"
+        [description]="module.description"
+        [icon]="module.icon"
+        [color]="module.color"
+        [bgColor]="module.bgColor"
+        (cardClick)="navigateTo(module.route)"
+      ></lux-widget-card>
+>>>>>>> origin/main:src/app/modules/accounting.luxuryapp/general-ledger/accounting-hub/accounting-hub.html
+    </div>
+    }
+  </div>
+  }
+</div>
+
+<!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
+<div class="d-block d-md-none fadein">
+  <!-- Header compacto -->
+  <div class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border">
+    <div
+      class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+    >
+      <lux-icon icon="material-symbols-light:wallet" />
+    </div>
+    <div>
+      <h2 class="fw-bold m-0 text-body">Contabilidad</h2>
+      <p class="text-xs m-0 text-body-secondary">
+        Gestión contable y financiera
+      </p>
+    </div>
+  </div>
+
+  <!-- Lista por grupo -->
+  @for (group of getVisibleGroups(); track group.label) {
+  <div>
+    <!-- Divisor de grupo -->
+    <div class="px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <lux-icon [icon]="group.icon" />
+        <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
+      </div>
+    </div>
+
+    @for (module of group.cards; track module.route) {
+    <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        [style.backgroundColor]="module.bgColor"
+      >
+        <lux-icon [icon]="module.icon" [style.color]="module.color" />
+      </div>
+
+      <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
+        {{ module.description }}
+      </p>
+    </ili-list-item>
+    }
+  </div>
+  }
+</div>
