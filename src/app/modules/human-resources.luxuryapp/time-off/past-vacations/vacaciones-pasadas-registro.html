@@ -160,7 +160,7 @@
       @if(loadingHistory()){
       <lux-skeleton height="10rem" />
       } @else {
-      <app-table
+      <lux-table-web
         [value]="history()"
         [tableStyle]="{ 'min-width': '50rem' }"
         [scrollable]="true"
@@ -201,7 +201,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
       }
     </div>
     }

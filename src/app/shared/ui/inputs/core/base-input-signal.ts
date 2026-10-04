@@ -64,14 +64,14 @@ import { ValidationErrorsCustomInput } from "../core/validation-errors-custom-in
             <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
               <small class="d-block mt-1 text-500 line-height-2 italic px-1">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:info'"
                   class="pi me-1 text-xs"
                 />
                 {{ description() }}
               </small>
             }
-            <app-validation-errors-custom-input
+            <lux-validation-errors-custom-input
               [control]="control() || internalControl"
               [placeholder]="placeholder() || label()"
             />

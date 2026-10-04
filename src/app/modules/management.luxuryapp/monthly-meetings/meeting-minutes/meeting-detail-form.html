@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   initialSortField="area"
   groupRowsBy="area"
@@ -11,19 +11,19 @@
       <th class="table-col-2 text-sm">#</th>
       <th class="table-col-15 text-sm" appSortableColumn="title">
         Titulo
-        <app-sorticon field="title" />
+        <lux-sorticon-web field="title" />
       </th>
       <th class="table-col-25 text-sm" appSortableColumn="requestService">
         Asunto
-        <app-sorticon field="requestService" />
+        <lux-sorticon-web field="requestService" />
       </th>
       <th class="table-col-7 text-sm" appSortableColumn="status">
         Estatus
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th class="table-col-7 text-sm" appSortableColumn="deliveryDateFiltro">
         Entrega
-        <app-sorticon field="deliveryDateFiltro" />
+        <lux-sorticon-web field="deliveryDateFiltro" />
       </th>
       <th class="table-col-25 text-sm">Seguimiento</th>
     </tr>
@@ -74,4 +74,4 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

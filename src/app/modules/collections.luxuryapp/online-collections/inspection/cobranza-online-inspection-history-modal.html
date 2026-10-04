@@ -87,7 +87,7 @@
   </div>
   }
 
-  <app-table
+  <lux-table-web
     [value]="detail.movements"
     [globalFilterFields]="movementFilterFields()"
     [paginator]="true"
@@ -102,7 +102,7 @@
     #movementTable
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [dt]="movementTable"
         [showAdd]="false"
         label="Histórico anual"
@@ -132,6 +132,6 @@
         <td>{{ formatCurrency(movement.signedAmount) }}</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
   }
 </section>

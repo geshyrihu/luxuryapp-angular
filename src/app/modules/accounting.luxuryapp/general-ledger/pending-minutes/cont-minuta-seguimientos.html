@@ -1,4 +1,4 @@
-<app-table [value]="dataSignal()" class="custom-table card d-none d-md-block">
+<lux-table-web [value]="dataSignal()" class="custom-table card d-none d-md-block">
   <ng-template #header>
     <tr>
       <th ></th>
@@ -28,6 +28,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
-</app-table>
+</lux-table-web>

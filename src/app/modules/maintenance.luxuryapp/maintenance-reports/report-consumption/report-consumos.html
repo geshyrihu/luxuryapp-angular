@@ -11,7 +11,7 @@
             <div class="text-sm fw-semibold text-body mb-2">
               Rango de fechas
             </div>
-            <app-rango-calendario-yyyymmdd
+            <lux-rango-calendario-yyyymmdd-web
               [mostrartextHasta]="false"
               [mostrartextDesde]="false"
             />
@@ -139,7 +139,7 @@
       </div>
 
         <div >
-          <app-multi-axis-chart [data]="data.graficaSemanal" />
+          <lux-multi-axis-chart-web [data]="data.graficaSemanal" />
         </div>
 
     </div>
@@ -194,7 +194,7 @@
         </div>
       </div>
 
-        <app-table
+        <lux-table-web
           [value]="data.medidores"
           [paginator]="true"
           [rows]="10"
@@ -202,7 +202,7 @@
           class="custom-table"
         >
           <ng-template #caption>
-            <app-table-caption
+            <lux-table-caption-web
               title="Detalle por medidor"
               [showAdd]="false"
               [showSearch]="false"
@@ -240,7 +240,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </div>
   </div>
 } @else {

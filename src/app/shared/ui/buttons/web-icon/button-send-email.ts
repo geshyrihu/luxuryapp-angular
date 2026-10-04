@@ -26,7 +26,7 @@ import { SwalService } from "@core/services/swal.service";
       [tooltipDisabled]="!tooltipText()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Email" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.Email" />
     </button>
   `,
 })

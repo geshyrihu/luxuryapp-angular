@@ -3,7 +3,7 @@ import { PullToRefreshBase } from "@ui/core/pull-to-refresh.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-pull-to-refresh",
+  selector: "lux-pull-to-refresh-web",
 
   imports: [AppIcon],
   template: `
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       @if (pulling()) {
         <div class="ptr-indicator" [style.height.px]="pullDistance()">
           <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
-            <app-icon
+            <lux-icon
               [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
             />
           </div>

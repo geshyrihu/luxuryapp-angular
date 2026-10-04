@@ -99,7 +99,7 @@
     <div
       class="d-flex align-items-center justify-content-center gap-3 min-h-6rem text-body-secondary"
     >
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-2xl"
       />
@@ -149,7 +149,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -164,7 +164,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [dt]="dtAccounts"
         [showAdd]="false"
         label="Buscar cuenta"
@@ -175,15 +175,15 @@
       <tr>
         <th appSortableColumn="numCta">
           Cuenta
-          <app-sorticon field="numCta" />
+          <lux-sorticon-web field="numCta" />
         </th>
         <th appSortableColumn="nombre">
           Nombre
-          <app-sorticon field="nombre" />
+          <lux-sorticon-web field="nombre" />
         </th>
         <th appSortableColumn="estatus">
           Estatus
-          <app-sorticon field="estatus" />
+          <lux-sorticon-web field="estatus" />
         </th>
       </tr>
     </ng-template>
@@ -201,14 +201,14 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="accountRows()" />
+      <lux-table-footer-web [data]="accountRows()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1"
         >Criterio de conciliación (Método FIFO)</strong
@@ -279,7 +279,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -294,7 +294,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [dt]="dtEstado"
         [showAdd]="false"
         label="Buscar movimiento"
@@ -305,27 +305,27 @@
       <tr>
         <th appSortableColumn="fecha">
           Fecha
-          <app-sorticon field="fecha" />
+          <lux-sorticon-web field="fecha" />
         </th>
         <th appSortableColumn="tipo">
           Tipo
-          <app-sorticon field="tipo" />
+          <lux-sorticon-web field="tipo" />
         </th>
         <th appSortableColumn="concepto">
           Concepto
-          <app-sorticon field="concepto" />
+          <lux-sorticon-web field="concepto" />
         </th>
         <th appSortableColumn="monto" class="text-end">
           Monto
-          <app-sorticon field="monto" />
+          <lux-sorticon-web field="monto" />
         </th>
         <th appSortableColumn="saldoAnterior" class="text-end">
           Saldo anterior
-          <app-sorticon field="saldoAnterior" />
+          <lux-sorticon-web field="saldoAnterior" />
         </th>
         <th appSortableColumn="saldoPosterior" class="text-end">
           Saldo posterior
-          <app-sorticon field="saldoPosterior" />
+          <lux-sorticon-web field="saldoPosterior" />
         </th>
       </tr>
     </ng-template>
@@ -353,14 +353,14 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="estadoMovimientos()" />
+      <lux-table-footer-web [data]="estadoMovimientos()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1"
         >Criterio de conciliación (Método FIFO)</strong
@@ -479,7 +479,7 @@
         </div>
       </div>
 
-      <app-table
+      <lux-table-web
         [paginator]="true"
         [rows]="tableRows"
         [rowsPerPageOptions]="rowsPerPageOptions"
@@ -553,7 +553,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   </lux-card>
 
@@ -592,7 +592,7 @@
         </div>
       </div>
 
-      <app-table
+      <lux-table-web
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
         [rows]="tableRows"
@@ -607,7 +607,7 @@
         class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
-          <app-table-caption
+          <lux-table-caption-web
             [dt]="dtContra"
             [showAdd]="false"
             label="Buscar contrapartida"
@@ -618,19 +618,19 @@
           <tr>
             <th appSortableColumn="numCtaContra">
               Cuenta contra
-              <app-sorticon field="numCtaContra" />
+              <lux-sorticon-web field="numCtaContra" />
             </th>
             <th appSortableColumn="nombreCuenta">
               Nombre
-              <app-sorticon field="nombreCuenta" />
+              <lux-sorticon-web field="nombreCuenta" />
             </th>
             <th appSortableColumn="totalMonto" class="text-end">
               Monto total
-              <app-sorticon field="totalMonto" />
+              <lux-sorticon-web field="totalMonto" />
             </th>
             <th appSortableColumn="totalMovimientos" class="text-end">
               Movimientos
-              <app-sorticon field="totalMovimientos" />
+              <lux-sorticon-web field="totalMovimientos" />
             </th>
           </tr>
         </ng-template>
@@ -645,14 +645,14 @@
         </ng-template>
 
         <ng-template #paginatorleft>
-          <app-table-footer [data]="contrapartidaRows()" />
+          <lux-table-footer-web [data]="contrapartidaRows()" />
         </ng-template>
-      </app-table> -->
+      </lux-table-web> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1"
         >Cálculo de deuda vigente (Método FIFO)</strong
@@ -717,7 +717,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -732,7 +732,7 @@
     class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [dt]="dtDeudas"
         [showAdd]="false"
         label="Buscar propiedad con deuda"
@@ -743,23 +743,23 @@
       <tr>
         <th appSortableColumn="numCtaBase">
           Cuenta base
-          <app-sorticon field="numCtaBase" />
+          <lux-sorticon-web field="numCtaBase" />
         </th>
         <th appSortableColumn="departamento">
           Departamento
-          <app-sorticon field="departamento" />
+          <lux-sorticon-web field="departamento" />
         </th>
         <th appSortableColumn="tieneDesgloseConceptos">
           Modalidad
-          <app-sorticon field="tieneDesgloseConceptos" />
+          <lux-sorticon-web field="tieneDesgloseConceptos" />
         </th>
         <th appSortableColumn="totalConceptos" class="text-end">
           Conceptos
-          <app-sorticon field="totalConceptos" />
+          <lux-sorticon-web field="totalConceptos" />
         </th>
         <th appSortableColumn="saldoActual" class="text-end">
           Deuda actual
-          <app-sorticon field="saldoActual" />
+          <lux-sorticon-web field="saldoActual" />
         </th>
         <th class="text-center">Detalle</th>
       </tr>
@@ -798,9 +798,9 @@
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="deudaActualRows()" />
+      <lux-table-footer-web [data]="deudaActualRows()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-2">
@@ -844,7 +844,7 @@
         </div>
       </div>
 
-      <app-table
+      <lux-table-web
         [globalFilterFields]="globalFilterFields()"
         [paginator]="true"
         [rows]="tableRows"
@@ -859,7 +859,7 @@
         class="custom-table d-none d-md-block border-1 border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
-          <app-table-caption
+          <lux-table-caption-web
             [dt]="dtPend"
             [showAdd]="false"
             label="Buscar concepto o cuenta"
@@ -870,31 +870,31 @@
           <tr>
             <th appSortableColumn="concepto">
               Concepto
-              <app-sorticon field="concepto" />
+              <lux-sorticon-web field="concepto" />
             </th>
             <th appSortableColumn="numCta">
               Cuenta
-              <app-sorticon field="numCta" />
+              <lux-sorticon-web field="numCta" />
             </th>
             <th appSortableColumn="nombreCuenta">
               Nombre cuenta
-              <app-sorticon field="nombreCuenta" />
+              <lux-sorticon-web field="nombreCuenta" />
             </th>
             <th appSortableColumn="saldoInicial" class="text-end">
               Saldo inicial
-              <app-sorticon field="saldoInicial" />
+              <lux-sorticon-web field="saldoInicial" />
             </th>
             <th appSortableColumn="cargos" class="text-end">
               Cargos
-              <app-sorticon field="cargos" />
+              <lux-sorticon-web field="cargos" />
             </th>
             <th appSortableColumn="abonos" class="text-end">
               Abonos
-              <app-sorticon field="abonos" />
+              <lux-sorticon-web field="abonos" />
             </th>
             <th appSortableColumn="saldoPendiente" class="text-end">
               Saldo pendiente
-              <app-sorticon field="saldoPendiente" />
+              <lux-sorticon-web field="saldoPendiente" />
             </th>
           </tr>
         </ng-template>
@@ -940,9 +940,9 @@
         </ng-template>
 
         <ng-template #paginatorleft>
-          <app-table-footer [data]="pendienteRows()" />
+          <lux-table-footer-web [data]="pendienteRows()" />
         </ng-template>
-      </app-table> -->
+      </lux-table-web> -->
   } @else if (searched()) {
   <lux-message
     severity="info"

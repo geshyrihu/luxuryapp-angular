@@ -21,14 +21,14 @@
       <div>
         <div class="card" class="text-center">
           <div class="card-header">
-            <app-avatar
+            <lux-avatar-web
               [image]="
                 item.photo ? item.photo : 'assets/images/default-avatar.png'
               "
               styleClass="mx-auto mt-3"
               size="xlarge"
               shape="circle"
-            ></app-avatar>
+            ></lux-avatar-web>
           </div>
 
           <h4 class="m-0">{{ item.title }}</h4>
@@ -44,7 +44,7 @@
       <div
         class="col-12 d-flex flex-column align-items-center justify-content-center p-4 text-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:event-busy'"
           class="text-6xl text-gray-400 mb-3"
         />
@@ -94,7 +94,7 @@
   <div
     class="d-flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:redeem'"
       class="text-6xl mb-3 text-body-secondary"
     />

@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
 >
   <ng-template #header>
     <tr>
-      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="folio">FOLIO <lux-sorticon-web field="folio" /></th>
       <th>SOLICITUD</th>
       <th>CLIENTE</th>
       <th>EXCOLABORADOR</th>
@@ -22,7 +22,7 @@
       <th>FECHA BAJA</th>
       <th>TIPO BAJA</th>
       <th appSortableColumn="status">
-        ESTATUS <app-sorticon field="status" />
+        ESTATUS <lux-sorticon-web field="status" />
       </th>
       <th></th>
     </tr>
@@ -71,12 +71,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 }
 
 <app-data-view-mobile
@@ -90,7 +90,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:person-remove"
           class="text-xl text-red-600"
         />

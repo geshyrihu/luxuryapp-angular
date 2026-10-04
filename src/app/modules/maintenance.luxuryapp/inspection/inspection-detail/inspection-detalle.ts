@@ -70,17 +70,17 @@ import { InspectionEdit } from "../models/inspection.model";
                   Creado el {{ formatDate(inspection().createdAt) }}
                 </p>
                 <div class="d-flex flex-wrap gap-2">
-                  <app-tag
+                  <lux-tag-web
                     [value]="formatFrequency(inspection().frequency)"
                     severity="info"
                     icon="material-symbols-light:calendar-month"
                   />
-                  <app-tag
+                  <lux-tag-web
                     [value]="inspection().isActive ? 'Activa' : 'Inactiva'"
                     [severity]="inspection().isActive ? 'success' : 'secondary'"
                     icon="material-symbols-light:check-circle"
                   />
-                  <app-tag
+                  <lux-tag-web
                     [value]="inspection().departament"
                     severity="secondary"
                     icon="material-symbols-light:apartment"
@@ -93,7 +93,7 @@ import { InspectionEdit } from "../models/inspection.model";
                       day of getWeekdayLabels(inspection().weeklyDays);
                       track day
                     ) {
-                      <app-tag
+                      <lux-tag-web
                         [value]="day"
                         severity="secondary"
                         icon="material-symbols-light:event-available"
@@ -103,7 +103,7 @@ import { InspectionEdit } from "../models/inspection.model";
                     inspection().frequency === "monthly" &&
                     inspection().dayOfMonth
                   ) {
-                    <app-tag
+                    <lux-tag-web
                       [value]="'Día ' + inspection().dayOfMonth"
                       severity="secondary"
                       icon="material-symbols-light:event-available"
@@ -143,17 +143,17 @@ import { InspectionEdit } from "../models/inspection.model";
                       <div
                         class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
                       >
-                        <app-icon icon="material-symbols-light:settings" />
+                        <lux-icon icon="material-symbols-light:settings" />
                       </div>
                       <h3 class="text-lg fw-bold m-0">
                         {{ item.name | uppercase }}
                       </h3>
                     </div>
-                    <app-tag
+                    <lux-tag-web
                       [value]="(item.reviews?.length ?? 0) + ' criterios'"
                       severity="secondary"
                     />
-                    <app-action-menu>
+                    <lux-action-menu-web>
                       <ng-container actions>
                         <il-button-edit
                           label="Editar"
@@ -166,7 +166,7 @@ import { InspectionEdit } from "../models/inspection.model";
                           "
                         />
                       </ng-container>
-                    </app-action-menu>
+                    </lux-action-menu-web>
                   </div>
 
                   @if (item.reviews && item.reviews.length > 0) {
@@ -176,7 +176,7 @@ import { InspectionEdit } from "../models/inspection.model";
                           class="d-flex justify-content-between align-items-start gap-3"
                         >
                           <div class="d-flex align-items-start gap-2">
-                            <app-icon
+                            <lux-icon
                               icon="material-symbols-light:check-circle-outline"
                               class="text-success-600 flex-shrink-0"
                             />
@@ -207,7 +207,7 @@ import { InspectionEdit } from "../models/inspection.model";
               <div
                 class="d-flex flex-column align-items-center text-center gap-3 py-5"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:construction"
                   class="text-5xl text-body-secondary"
                 />
@@ -232,17 +232,17 @@ import { InspectionEdit } from "../models/inspection.model";
                   Creado el {{ formatDate(inspection().createdAt) }}
                 </p>
                 <div class="d-flex flex-wrap gap-2">
-                  <app-tag
+                  <lux-tag-web
                     [value]="formatFrequency(inspection().frequency)"
                     severity="info"
                     icon="material-symbols-light:calendar-month"
                   />
-                  <app-tag
+                  <lux-tag-web
                     [value]="inspection().isActive ? 'Activa' : 'Inactiva'"
                     [severity]="inspection().isActive ? 'success' : 'secondary'"
                     icon="material-symbols-light:check-circle"
                   />
-                  <app-tag
+                  <lux-tag-web
                     [value]="inspection().departament"
                     severity="secondary"
                     icon="material-symbols-light:apartment"
@@ -255,7 +255,7 @@ import { InspectionEdit } from "../models/inspection.model";
                       day of getWeekdayLabels(inspection().weeklyDays);
                       track day
                     ) {
-                      <app-tag
+                      <lux-tag-web
                         [value]="day"
                         severity="secondary"
                         icon="material-symbols-light:event-available"
@@ -265,7 +265,7 @@ import { InspectionEdit } from "../models/inspection.model";
                     inspection().frequency === "monthly" &&
                     inspection().dayOfMonth
                   ) {
-                    <app-tag
+                    <lux-tag-web
                       [value]="'Día ' + inspection().dayOfMonth"
                       severity="secondary"
                       icon="material-symbols-light:event-available"
@@ -304,17 +304,17 @@ import { InspectionEdit } from "../models/inspection.model";
                         <div
                           class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
                         >
-                          <app-icon icon="material-symbols-light:settings" />
+                          <lux-icon icon="material-symbols-light:settings" />
                         </div>
                         <h3 class="text-lg fw-bold m-0 text-break">
                           {{ item.name | uppercase }}
                         </h3>
                       </div>
-                      <app-tag
+                      <lux-tag-web
                         [value]="(item.reviews?.length ?? 0) + ' criterios'"
                         severity="secondary"
                       />
-                      <app-action-menu>
+                      <lux-action-menu-web>
                         <ng-container actions>
                           <il-button-edit
                             label="Editar"
@@ -327,7 +327,7 @@ import { InspectionEdit } from "../models/inspection.model";
                             "
                           />
                         </ng-container>
-                      </app-action-menu>
+                      </lux-action-menu-web>
                     </div>
                     @if (item.reviews && item.reviews.length > 0) {
                       <div class="d-flex flex-column gap-2">
@@ -336,7 +336,7 @@ import { InspectionEdit } from "../models/inspection.model";
                             class="d-flex justify-content-between align-items-start gap-2"
                           >
                             <div class="d-flex align-items-start gap-2">
-                              <app-icon
+                              <lux-icon
                                 icon="material-symbols-light:check-circle-outline"
                                 class="text-success-600 flex-shrink-0"
                               />
@@ -369,7 +369,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 <div
                   class="d-flex flex-column align-items-center text-center gap-3 py-5"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:construction"
                     class="text-5xl text-body-secondary"
                   />

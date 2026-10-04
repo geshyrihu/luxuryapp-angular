@@ -4,7 +4,7 @@
       <div class="staff-checklist-modal__header">
         <div class="staff-checklist-modal__identity">
           <div class="staff-checklist-modal__icon">
-            <app-icon icon="material-symbols-light:checklist" />
+            <lux-icon icon="material-symbols-light:checklist" />
           </div>
           <div>
             <p class="staff-checklist-modal__eyebrow m-0">Plantilla interna</p>
@@ -37,7 +37,7 @@
       <p class="m-0 text-body-secondary">Cargando checklist de onboarding...</p>
       } @else if (tasks().length === 0) {
       <div class="staff-checklist-modal__empty">
-        <app-icon icon="material-symbols-light:fact-check" />
+        <lux-icon icon="material-symbols-light:fact-check" />
         <p class="m-0">No hay tareas configuradas para este colaborador.</p>
       </div>
       } @else {
@@ -71,7 +71,7 @@
 
             <label class="staff-checklist-modal__toggle">
               <span>Completado</span>
-              <app-checkbox
+              <lux-checkbox-web
                 [binary]="true"
                 [(checked)]="task.draftCompleted"
                 [disabled]="busyTaskId() === task.id || saving()"

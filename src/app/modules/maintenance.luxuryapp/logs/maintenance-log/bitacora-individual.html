@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,10 +13,10 @@
   <ng-template #caption>
     <div class="row align-items-center g-4">
       <div class="col-12 col-sm-5">
-        <app-rango-calendario-yyyymmdd />
+        <lux-rango-calendario-yyyymmdd-web />
       </div>
       <div class="col-12 col-sm-7">
-        <app-table-caption
+        <lux-table-caption-web
           [title]="nameMachinery"
           [showAdd]="false"
           [dt]="dt"
@@ -44,9 +44,9 @@
     </div>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile
@@ -57,7 +57,7 @@
 >
   <div customFilters>
     <div class="px-2 pb-2">
-      <app-rango-calendario-yyyymmdd />
+      <lux-rango-calendario-yyyymmdd-web />
     </div>
   </div>
   <ng-template #listItemTemplate let-item>

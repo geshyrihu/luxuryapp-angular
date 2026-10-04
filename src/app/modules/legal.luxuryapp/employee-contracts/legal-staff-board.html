@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table-web
     [value]="employees()"
     class="custom-table card"
     rowGroupMode="subheader"
@@ -32,7 +32,7 @@
       <tr pRowGroupHeader>
         <td colspan="3" class="staff-group-header-cell">
           <span class="group-header-label">
-            <app-icon icon="material-symbols-light:work" />
+            <lux-icon icon="material-symbols-light:work" />
             {{ item.department }}
           </span>
         </td>
@@ -110,7 +110,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="3" />
+      <lux-table-empty-message-web [colspan]="3" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>

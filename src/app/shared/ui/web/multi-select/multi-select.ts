@@ -4,7 +4,7 @@ import { MultiSelectBase } from "@ui/core/multi-select.base";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 
 @Component({
-  selector: "app-multi-select",
+  selector: "lux-multi-select-web",
 
   imports: [FormsModule, CustomInputMultiselectSignal],
   template: `

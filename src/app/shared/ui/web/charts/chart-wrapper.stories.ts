@@ -31,26 +31,26 @@ import {
         Alternar tema (actual: {{ theme.themeMode() }})
       </button>
       @if (mode() === "data") {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           [type]="type()"
           [data]="data()"
           [title]="title()"
-        ></app-chart-wrapper>
+        ></lux-chart-wrapper-web>
       } @else if (mode() === "static") {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           [options]="staticOptions"
           [title]="title()"
-        ></app-chart-wrapper>
+        ></lux-chart-wrapper-web>
       } @else if (mode() === "factory") {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           [optionsFactory]="optionsFactory"
           [title]="title()"
-        ></app-chart-wrapper>
+        ></lux-chart-wrapper-web>
       } @else {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           [options]="themedOptions()"
           [title]="title()"
-        ></app-chart-wrapper>
+        ></lux-chart-wrapper-web>
       }
     </div>
   `,

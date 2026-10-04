@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -59,7 +59,7 @@
           Eliminar Todo
         </button>
       </div>
-      <app-table-caption
+      <lux-table-caption-web
         [title]="'Inventario de Detectores de Humo'"
         (add)="onModalForm({ id: '', title: 'Nuevo Detector de Humo' })"
         [dt]="dt"
@@ -70,13 +70,13 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" appSortableColumn="localCode">
-        Código <app-sorticon field="localCode" />
+        Código <lux-sorticon-web field="localCode" />
       </th>
       <th class="table-col-30" appSortableColumn="detectorType">
-        Tipo <app-sorticon field="detectorType" />
+        Tipo <lux-sorticon-web field="detectorType" />
       </th>
       <th class="table-col-35" appSortableColumn="location">
-        Ubicación <app-sorticon field="location" />
+        Ubicación <lux-sorticon-web field="location" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -84,7 +84,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <app-image
+        <lux-image-web
           [src]="item.photo"
           alt="."
           width="100"
@@ -115,12 +115,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message-web [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -132,7 +132,7 @@
       class="btn btn-rounded btn-text-primary btn-sm"
       (click)="onOpenScanner()"
     >
-      <app-icon icon="material-symbols-light:qr-code" slot="start" />
+      <lux-icon icon="material-symbols-light:qr-code" slot="start" />
       Escanear QR
     </button>
     <button
@@ -147,7 +147,7 @@
       class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div slot="start">
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:cloud-outline"
           class="text-xl text-green-500"
         />

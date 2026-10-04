@@ -1,5 +1,5 @@
 <div class="card p-3 p-md-4">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         title="Cuotas Vigentes por Propiedad"
         [showAdd]="false"
         [dt]="dt"
@@ -35,7 +35,7 @@
           class="bg-body-tertiary py-2 px-3"
         >
           <div class="d-flex align-items-center gap-2">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:apartment'"
               class="text-primary"
             />
@@ -92,5 +92,5 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>

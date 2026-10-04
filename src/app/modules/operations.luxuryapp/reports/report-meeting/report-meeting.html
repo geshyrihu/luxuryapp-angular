@@ -47,7 +47,7 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Comité de Vigilancia</span>
           </div>
-          <app-table
+          <lux-table-web
             [value]="data.comite"
             [scrollable]="false"
             class="p-datatable-sm"
@@ -64,7 +64,7 @@
                 <td class="text-sm">{{ item.nombre }}</td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         </div>
         }
 
@@ -74,7 +74,7 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Administración</span>
           </div>
-          <app-table
+          <lux-table-web
             [value]="data.administracion"
             [scrollable]="false"
             class="p-datatable-sm"
@@ -91,7 +91,7 @@
                 <td class="text-sm">{{ item.nombre }}</td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         </div>
         }
 
@@ -101,7 +101,7 @@
           <div class="text-lg md:text-lg fw-bold mb-4 pb-2 border-bottom-1 border">
             <span class="text-primary">Invitados</span>
           </div>
-          <app-table
+          <lux-table-web
             [value]="data.externos"
             [scrollable]="false"
             class="p-datatable-sm"
@@ -116,7 +116,7 @@
                 <td class="text-sm">{{ item.invitado }}</td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         </div>
         }
       </div>
@@ -156,7 +156,7 @@
 </div>
 } @else {
 <div class="d-flex justify-content-center align-items-center min-h-screen">
-  <app-spinner />
+  <lux-spinner-web />
 </div>
 }
 

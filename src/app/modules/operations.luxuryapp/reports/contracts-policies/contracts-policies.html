@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -9,7 +9,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" />
+    <lux-table-caption-web [showAdd]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -17,19 +17,19 @@
       <th>#</th>
       <th appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
       <th appSortableColumn="description">
         DESCRIPCIÓN
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
       <th appSortableColumn="startDateFilter">
         Fecha Contratación
-        <app-sorticon field="startDateFilter" />
+        <lux-sorticon-web field="startDateFilter" />
       </th>
       <th appSortableColumn="endDateFilter">
         Fecha de Término
-        <app-sorticon field="endDateFilter" />
+        <lux-sorticon-web field="endDateFilter" />
       </th>
       <th>Documento</th>
     </tr>
@@ -57,9 +57,9 @@
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

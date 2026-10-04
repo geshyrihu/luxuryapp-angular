@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [title]="'Equipos Calendario Maestro'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -25,11 +25,11 @@
     <tr>
       <th appSortableColumn="nombreEquipo">
         Nombre Equipo
-        <app-sorticon field="nombreEquipo" />
+        <lux-sorticon-web field="nombreEquipo" />
       </th>
       <th appSortableColumn="equipoClasificacion">
         Clasificación
-        <app-sorticon field="equipoClasificacion" />
+        <lux-sorticon-web field="equipoClasificacion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -52,12 +52,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

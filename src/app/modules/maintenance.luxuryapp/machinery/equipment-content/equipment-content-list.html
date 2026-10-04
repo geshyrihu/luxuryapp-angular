@@ -5,7 +5,7 @@
   </div>
 
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -18,7 +18,7 @@
       styleClass="custom-table card hidden md:block"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           [title]="'Contenidos de ' + equipmentName"
           [dt]="dt"
           [showAdd]="canManageContents()"
@@ -29,9 +29,9 @@
       <ng-template #header>
         <tr>
           <th>Imagen</th>
-          <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
-          <th appSortableColumn="typeDisplayName">Tipo <app-sorticon field="typeDisplayName" /></th>
-          <th appSortableColumn="quantity">Cantidad <app-sorticon field="quantity" /></th>
+          <th appSortableColumn="name">Nombre <lux-sorticon-web field="name" /></th>
+          <th appSortableColumn="typeDisplayName">Tipo <lux-sorticon-web field="typeDisplayName" /></th>
+          <th appSortableColumn="quantity">Cantidad <lux-sorticon-web field="quantity" /></th>
           <th>Notas</th>
           <th class="no-print"></th>
         </tr>
@@ -40,7 +40,7 @@
         <tr>
           <td>
             @if (item.photoUrl) {
-              <app-image [src]="item.photoUrl" [alt]="item.name" width="64" [preview]="true" />
+              <lux-image-web [src]="item.photoUrl" [alt]="item.name" width="64" [preview]="true" />
             }
           </td>
           <td>{{ item.name }}</td>
@@ -58,9 +58,9 @@
         </tr>
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer-web [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <div class="d-md-none">
@@ -78,7 +78,7 @@
             @if (item.photoUrl) {
               <img [src]="item.photoUrl" [alt]="item.name" class="rounded object-fit-cover" width="72" height="72" />
             } @else {
-              <app-icon icon="material-symbols-light:inventory-2" />
+              <lux-icon icon="material-symbols-light:inventory-2" />
             }
             <div class="flex-grow-1">
               <h3 class="h6 mb-1">{{ item.name }}</h3>
@@ -89,10 +89,10 @@
           @if (canManageContents()) {
             <div class="d-flex justify-content-end gap-2 mt-2">
               <button type="button" class="btn btn-rounded btn-text-primary btn-sm" (click)="onEdit(item)">
-                <app-icon icon="material-symbols-light:edit-outline" />
+                <lux-icon icon="material-symbols-light:edit-outline" />
               </button>
               <button type="button" class="btn btn-rounded btn-text-danger btn-sm" (click)="onDelete(item.id)">
-                <app-icon icon="material-symbols-light:delete-outline" />
+                <lux-icon icon="material-symbols-light:delete-outline" />
               </button>
             </div>
           }

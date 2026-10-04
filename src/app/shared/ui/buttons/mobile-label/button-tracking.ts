@@ -25,7 +25,7 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon
+      <lux-icon
         [icon]="resolvedIconClass() || IconCatalog.BellOutline"
         slot="start"
       />

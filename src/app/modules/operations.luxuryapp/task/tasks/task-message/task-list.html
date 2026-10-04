@@ -1,5 +1,5 @@
 @if (dataSignal().items) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -27,7 +27,7 @@
         GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
       </h4>
       <div class="d-flex align-items-center gap-2">
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           (search)="onSearch($event)"
           [dt]="dt"
@@ -170,7 +170,7 @@
             <p
               class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary me-1"
               />
@@ -183,7 +183,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-primary"
                   />
@@ -206,7 +206,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-purple-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:link'"
                     class="text-purple-600"
                   />
@@ -233,7 +233,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-orange-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:account-tree'"
                     class="text-orange-600"
                   />
@@ -244,12 +244,12 @@
                   </p>
                   <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:account-tree'"
                       class="text-primary"
                     />
                     tienen subtareas. Las tareas con
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:keyboard-double-arrow-down'"
                       class="text-body-secondary"
                     />
@@ -269,20 +269,20 @@
     <tr>
       <th></th>
       <th appSortableColumn="createdAtFilter">
-        SOLICITUD <app-sorticon field="createdAtFilter" />
+        SOLICITUD <lux-sorticon-web field="createdAtFilter" />
       </th>
       <th appSortableColumn="responsableNombre">
-        RESP. <app-sorticon field="responsableNombre" />
+        RESP. <lux-sorticon-web field="responsableNombre" />
       </th>
       <th appSortableColumn="scheduledAtFilter">
-        FECHAS <app-sorticon field="scheduledAtFilter" />
+        FECHAS <lux-sorticon-web field="scheduledAtFilter" />
       </th>
       <th>EVIDENCIAS</th>
       <th appSortableColumn="daysDifference">
-        DIAS <app-sorticon field="daysDifference" />
+        DIAS <lux-sorticon-web field="daysDifference" />
       </th>
       <th appSortableColumn="isRelevant">
-        REPORTE <app-sorticon field="isRelevant" />
+        REPORTE <lux-sorticon-web field="isRelevant" />
       </th>
       <th>ULTIMO SEGUIMIENTO</th>
       <th class="no-print"></th>
@@ -305,14 +305,14 @@
     >
       <td class="text-center">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:menu'"
             class="cursor-move text-body-secondary"
             pReorderableRowHandle
             lxTooltip="Arrastra para reordenar la tarea"
             tooltipPosition="top"
           />
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:link'"
             class="text-body-secondary cursor-grab"
             draggable="true"
@@ -330,21 +330,21 @@
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:keyboard-double-arrow-down'"
             class="text-body-secondary flex-shrink-0 me-1"
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
           } @if (item.hasSubTasks) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:account-tree'"
             class="text-primary flex-shrink-0 me-1"
             lxTooltip="Tiene subtareas"
             tooltipPosition="top"
           />
           }
-          <app-avatar
+          <lux-avatar-web
             (click)="onCardEmployee(item.creatorId)"
             [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
             alt="Creador"
@@ -372,7 +372,7 @@
                 (click)="onClearDependency(item.id)"
                 lxTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:arrow-forward'"
                   class="text-xs"
                 />
@@ -384,20 +384,20 @@
               class="m-0 fw-semibold text-xs text-body d-flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:schedule'"
                 class="text-orange-600"
                 lxTooltip="Urgente: Más de 15 días sin programar"
               />
               } @if (item.priority === 'High') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:warning'"
                 class="text-red-500 cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
@@ -412,7 +412,7 @@
 
       <td class="text-center">
         @if (item.assigneeId) {
-        <app-avatar
+        <lux-avatar-web
           (click)="onCardEmployee(item.assigneeId)"
           [image]="item.assigneeImg || 'assets/images/default-avatar.jpg'"
           alt="Responsable"
@@ -430,14 +430,14 @@
 
       <td>
         <p class="m-0 text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-body-secondary mt-1">
-          <app-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
+          <lux-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
           item.closedAtDate }}
         </p>
         }
@@ -512,7 +512,7 @@
             class="cursor-pointer d-flex align-items-center gap-1 text-decoration-none"
             lxTooltip="Seguimientos"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:forum'"
               class="text-blue-500"
             />
@@ -520,7 +520,7 @@
               {{ item.ticketMessageFollowUp }}
             </span>
           </a>
-          <app-action-menu>
+          <lux-action-menu-web>
             <ng-container actions>
               <il-button-item
                 iconClass="material-symbols-light:calendar-today"
@@ -554,13 +554,13 @@
               />
               }
             </ng-container>
-          </app-action-menu>
+          </lux-action-menu-web>
         </div>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="17" />
+    <lux-table-empty-message-web [colspan]="17" />
   </ng-template>
 
   <ng-template #paginatorleft>
@@ -568,7 +568,7 @@
       En total hay {{ totalRecords() }} registros.
     </div>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   class="d-block d-md-none"
@@ -620,10 +620,10 @@
           class="flex-shrink-0"
           (click)="onPendingBoard()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:grid-view-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Tablero
         </ion-button>
         <ion-button
@@ -632,10 +632,10 @@
           class="flex-shrink-0"
           (click)="onPreviewClickedWorkPlan()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:article-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Plan
         </ion-button>
         <ion-button
@@ -644,10 +644,10 @@
           class="flex-shrink-0"
           (click)="onPreviewWeeklyReport()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:visibility-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Previa
         </ion-button>
         <ion-button
@@ -656,10 +656,10 @@
           class="flex-shrink-0"
           (click)="onSendWeeklyReport()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:send-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Reporte
         </ion-button>
       </div>
@@ -677,7 +677,7 @@
         >
           <!-- Izquierda: Avatar, Folio y Foro -->
           <div class="d-flex align-items-center gap-2">
-            <app-avatar
+            <lux-avatar-web
               [image]="item.assigneeImg"
               [label]="!item.assigneeImg ? (item.assignee | initialsAbbr) : ''"
               alt="avatar"
@@ -761,7 +761,7 @@
             class="text-purple-500 text-xs cursor-pointer py-1"
             (click)="onClearDependency(item.id)"
           >
-            <app-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
+            <lux-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
             item.dependsOnTaskFolio }}
           </span>
           }
@@ -770,7 +770,7 @@
         <!-- Cuerpo: Título, DESCRIPCIÓN, Imágenes -->
         <h6 class="text-sm fw-semibold m-0 text-wrap text-body">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:schedule'"
             class="text-orange-600 me-1"
           />

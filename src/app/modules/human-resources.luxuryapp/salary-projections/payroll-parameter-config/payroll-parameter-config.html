@@ -18,7 +18,7 @@
 
   <!-- ── Vacaciones federales ─────────────────────────────────────────── -->
   <div class="card p-0">
-    <app-table
+    <lux-table-web
       [value]="federalParameters()"
       [loading]="loading()"
       [paginator]="true"
@@ -30,13 +30,13 @@
       <ng-template #header>
         <tr>
           <th class="table-col-25" appSortableColumn="yearsOfService">
-            AÑOS DE SERVICIO <app-sorticon field="yearsOfService" />
+            AÑOS DE SERVICIO <lux-sorticon-web field="yearsOfService" />
           </th>
           <th class="table-col-15" appSortableColumn="year">
-            AÑO <app-sorticon field="year" />
+            AÑO <lux-sorticon-web field="year" />
           </th>
           <th class="table-col-35" appSortableColumn="vacationDays">
-            DÍAS DE VACACIONES <app-sorticon field="vacationDays" />
+            DÍAS DE VACACIONES <lux-sorticon-web field="vacationDays" />
           </th>
           <th class="table-col-25"></th>
         </tr>
@@ -58,14 +58,14 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message-web [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <!-- ── ISN por estado ──────────────────────────────────────────────── -->
   <div class="card p-0">
-    <app-table
+    <lux-table-web
       [value]="stateTaxParameters()"
       [loading]="loading()"
       [paginator]="true"
@@ -77,13 +77,13 @@
       <ng-template #header>
         <tr>
           <th class="table-col-40" appSortableColumn="state">
-            ESTADO <app-sorticon field="state" />
+            ESTADO <lux-sorticon-web field="state" />
           </th>
           <th class="table-col-15" appSortableColumn="year">
-            AÑO <app-sorticon field="year" />
+            AÑO <lux-sorticon-web field="year" />
           </th>
           <th class="table-col-25" appSortableColumn="employerPayrollTaxPercentage">
-            ISN (%) <app-sorticon field="employerPayrollTaxPercentage" />
+            ISN (%) <lux-sorticon-web field="employerPayrollTaxPercentage" />
           </th>
           <th class="table-col-20"></th>
         </tr>
@@ -105,9 +105,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message-web [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 

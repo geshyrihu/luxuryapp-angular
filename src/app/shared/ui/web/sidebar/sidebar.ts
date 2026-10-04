@@ -6,7 +6,7 @@ import {
 import { SidebarBase } from "@ui/core/sidebar.base";
 
 @Component({
-  selector: "app-sidebar",
+  selector: "lux-sidebar-web",
 
   imports: [NgClass],
   template: `

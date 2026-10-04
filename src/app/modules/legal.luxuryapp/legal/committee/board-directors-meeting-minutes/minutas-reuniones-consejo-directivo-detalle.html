@@ -5,14 +5,14 @@
   <div class="committee-card-panel">
     <div class="committee-card-panel__header">
       <span class="committee-card-panel__icon">
-        <app-icon icon="material-symbols-light:gavel" />
+        <lux-icon icon="material-symbols-light:gavel" />
       </span>
       <div class="committee-card-panel__titles">
         <h3 class="committee-card-panel__title">
           Minuta de Junta con Mesa Directiva
         </h3>
         <p class="committee-card-panel__subtitle">
-          <app-icon icon="material-symbols-light:calendar-today" /> {{
+          <lux-icon icon="material-symbols-light:calendar-today" /> {{
           meeting.date }}
         </p>
       </div>
@@ -22,7 +22,7 @@
   <!-- Administración -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:badge"
         class="committee-section__icon"
       />
@@ -37,7 +37,7 @@
         @for (admin of meeting.administracion; track admin) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="material-symbols-light:person" />
+            <lux-icon icon="material-symbols-light:person" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name"
@@ -57,7 +57,7 @@
   <!-- Comité -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:group"
         class="committee-section__icon"
       />
@@ -72,7 +72,7 @@
         @for (member of meeting.comite; track member) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="material-symbols-light:group" />
+            <lux-icon icon="material-symbols-light:group" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name"
@@ -92,7 +92,7 @@
   <!-- Invitados Externos -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:person-add"
         class="committee-section__icon"
       />
@@ -107,7 +107,7 @@
         @for (guest of meeting.externos; track guest) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="material-symbols-light:person-add" />
+            <lux-icon icon="material-symbols-light:person-add" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name">{{ guest.invitado }}</span>
@@ -124,7 +124,7 @@
   <!-- Acuerdos y Asuntos Tratados -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:article"
         class="committee-section__icon"
       />
@@ -171,7 +171,7 @@
 
   } @else if (!loading() && !data()) {
   <div class="committee-doc-empty">
-    <app-icon
+    <lux-icon
       icon="material-symbols-light:error-outline"
       class="committee-doc-empty__icon"
     />

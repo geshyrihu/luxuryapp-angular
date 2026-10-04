@@ -1,7 +1,7 @@
 <section class="poliza-shell">
   <header>
     <a routerLink=".."
-      ><app-icon icon="material-symbols-light:arrow-back" /> Volver al
+      ><lux-icon icon="material-symbols-light:arrow-back" /> Volver al
       control</a
     >
     <p class="eyebrow">Registro manual</p>
@@ -10,11 +10,11 @@
   </header>
   @if (serverError()) {
   <div class="message error">
-    <app-icon icon="material-symbols-light:error" />{{ serverError() }}
+    <lux-icon icon="material-symbols-light:error" />{{ serverError() }}
   </div>
   } @if (success()) {
   <div class="message success">
-    <app-icon icon="material-symbols-light:check-circle" />{{ success() }}
+    <lux-icon icon="material-symbols-light:check-circle" />{{ success() }}
   </div>
   }
   <form [formGroup]="form" (ngSubmit)="save()">

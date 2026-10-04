@@ -6,7 +6,7 @@
     </p>
   </div>
   
-  <app-accordion [items]="items" [multiple]="true">
+  <lux-accordion-web [items]="items" [multiple]="true">
     
     <!-- 1. Módulos y sus Propósitos -->
     <ng-template accordionPanel="0">
@@ -46,7 +46,7 @@
 
           <!-- Ejemplo Práctico con Tabla -->
           <h5 class="mt-4 mb-2">Ejemplo Práctico</h5>
-          <app-table [value]="[{concepto: 'CUOTA DE MTTO (001)', aspel: '$12,694.00 (Neto)', vista: '$13,694.00 (Bruto)'}, {concepto: 'DESCUENTO (002)', aspel: '-$1,000.00 (Cargo Negativo) o Abono', vista: '$1,000.00 (Beneficio Visible)'}]" styleClass="p-datatable-sm p-datatable-gridlines mb-4">
+          <lux-table-web [value]="[{concepto: 'CUOTA DE MTTO (001)', aspel: '$12,694.00 (Neto)', vista: '$13,694.00 (Bruto)'}, {concepto: 'DESCUENTO (002)', aspel: '-$1,000.00 (Cargo Negativo) o Abono', vista: '$1,000.00 (Beneficio Visible)'}]" styleClass="p-datatable-sm p-datatable-gridlines mb-4">
             <ng-template #header>
               <tr>
                 <th>Concepto / Cuenta</th>
@@ -61,11 +61,11 @@
                 <td>{{row.vista}}</td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
 
           <!-- Casos Atípicos y Errores Humanos -->
           <div class="bg-red-50 text-red-900 p-3 rounded border-1 border-red-200">
-            <strong><app-icon icon="material-symbols-light:warning" class="me-2" />Consecuencia de Error Humano (Descuento Positivo)</strong>
+            <strong><lux-icon icon="material-symbols-light:warning" class="me-2" />Consecuencia de Error Humano (Descuento Positivo)</strong>
             <p class="mt-2 mb-0 line-height-3">
               ¿Qué pasa si el contador captura el descuento en la cuenta <code>002</code> con naturaleza de <strong>Cargo (D)</strong> pero con un monto <strong>positivo</strong> (Ej. +$1,000)?
               <br><br>
@@ -90,7 +90,7 @@
           </ul>
 
           <h5 class="mt-4 mb-2">Ejemplo Práctico de Pago (FIFO)</h5>
-          <app-table [value]="[{mes: 'Enero 2026', cargo: '$5,000', abono: '$5,000 (Suficiente)', estatus: 'Pagado'}, {mes: 'Febrero 2026', cargo: '$5,000', abono: '$3,000 (Abono Parcial)', estatus: 'Saldo Pendiente $2,000'}, {mes: 'Marzo 2026', cargo: '$5,000', abono: '$0', estatus: 'Vencido $5,000'}]" styleClass="p-datatable-sm p-datatable-gridlines">
+          <lux-table-web [value]="[{mes: 'Enero 2026', cargo: '$5,000', abono: '$5,000 (Suficiente)', estatus: 'Pagado'}, {mes: 'Febrero 2026', cargo: '$5,000', abono: '$3,000 (Abono Parcial)', estatus: 'Saldo Pendiente $2,000'}, {mes: 'Marzo 2026', cargo: '$5,000', abono: '$0', estatus: 'Vencido $5,000'}]" styleClass="p-datatable-sm p-datatable-gridlines">
             <ng-template #header>
               <tr>
                 <th>Deuda Vigente</th>
@@ -107,7 +107,7 @@
                 <td><span [ngClass]="{'text-green-600 font-bold': row.estatus === 'Pagado', 'text-red-600 font-bold': row.estatus !== 'Pagado'}">{{row.estatus}}</span></td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         </div>
     </ng-template>
 
@@ -125,7 +125,7 @@
           </ul>
 
           <h5 class="mt-4 mb-2">Ejemplo Práctico (Arrastre de Saldo a Favor)</h5>
-          <app-table [value]="[{evento: 'Corte Enero', monto: '$5,000 (Cargo) / $6,500 (Abono)', calculo: 'Sobran $1,500'}, {evento: 'Corte Febrero', monto: '$5,000 (Nuevo Cargo)', calculo: '$5,000 - $1,500 (Arrastre)'}, {evento: 'Estatus Febrero', monto: 'Total a Pagar', calculo: '$3,500'}]" styleClass="p-datatable-sm p-datatable-gridlines">
+          <lux-table-web [value]="[{evento: 'Corte Enero', monto: '$5,000 (Cargo) / $6,500 (Abono)', calculo: 'Sobran $1,500'}, {evento: 'Corte Febrero', monto: '$5,000 (Nuevo Cargo)', calculo: '$5,000 - $1,500 (Arrastre)'}, {evento: 'Estatus Febrero', monto: 'Total a Pagar', calculo: '$3,500'}]" styleClass="p-datatable-sm p-datatable-gridlines">
             <ng-template #header>
               <tr>
                 <th>Evento Contable</th>
@@ -140,7 +140,7 @@
                 <td class="fw-bold">{{row.calculo}}</td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         </div>
     </ng-template>
     
@@ -159,5 +159,5 @@
         </div>
     </ng-template>
 
-  </app-accordion>
+  </lux-accordion-web>
 </div>

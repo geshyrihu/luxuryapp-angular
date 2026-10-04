@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="SOLICITUDES DE COMPRA" />
 @if (solicitudes()) {
-<app-table
+<lux-table-web
   #dt
   [value]="solicitudes()"
   [scrollable]="true"
@@ -8,7 +8,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="SOLICITUDES DE COMPRA"
       [showAdd]="false"
       [showSearch]="false"
@@ -34,11 +34,11 @@
       <td>{{ item.estatus }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }
 <page-title-report-maintenance title="ÓRDENES DE COMPRA" />
 @if (ordenesCompra()) {
-<app-table
+<lux-table-web
   #dt
   [value]="ordenesCompra()"
   [scrollable]="true"
@@ -46,7 +46,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="ÓRDENES DE COMPRA"
       [showAdd]="false"
       [showSearch]="false"
@@ -74,5 +74,5 @@
       <td>{{ item.entregado }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }

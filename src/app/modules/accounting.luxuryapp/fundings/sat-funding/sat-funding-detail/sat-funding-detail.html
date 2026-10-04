@@ -35,7 +35,7 @@
   <!-- Invoices Table -->
   <div class="col-12">
     <lux-card>
-      <app-table
+      <lux-table-web
         #dtInvoices
         [value]="invoices()"
         [reorderableRows]="true"
@@ -73,7 +73,7 @@
                 [disabled]="!selection || selection.length === 0"
               ></iw-button-confirm>
               <span class="p-input-icon-left ms-auto">
-                <app-icon [icon]="'material-symbols-light:search'" />
+                <lux-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -100,16 +100,16 @@
             <!-- Reorder Handle -->
             <th class="table-col-4rem">Sel.</th>
             <th appSortableColumn="fechaEmision">
-              Fecha <app-sorticon field="fechaEmision" />
+              Fecha <lux-sorticon-web field="fechaEmision" />
             </th>
             <th appSortableColumn="emisorNombre">
-              Emisor <app-sorticon field="emisorNombre" />
+              Emisor <lux-sorticon-web field="emisorNombre" />
             </th>
             <th appSortableColumn="total">
-              Total <app-sorticon field="total" />
+              Total <lux-sorticon-web field="total" />
             </th>
             <th appSortableColumn="bankShortName">
-              Banco <app-sorticon field="bankShortName" />
+              Banco <lux-sorticon-web field="bankShortName" />
             </th>
             <th>Acciones</th>
           </tr>
@@ -128,13 +128,13 @@
                 class="d-flex align-items-center justify-content-center"
                 pReorderableRowHandle
               >
-                <app-icon [icon]="'material-symbols-light:menu'" />
+                <lux-icon [icon]="'material-symbols-light:menu'" />
               </div>
             </td>
             <td>
-              <app-table-selection-checkbox
+              <lux-table-selection-checkbox-web
                 [value]="invoice"
-              ></app-table-selection-checkbox>
+              ></lux-table-selection-checkbox-web>
             </td>
             <td>{{ invoice.fechaEmision | apiDate: 'short' }}</td>
             <td>{{ invoice.emisorNombre }}</td>
@@ -153,7 +153,7 @@
             <td colspan="7">No hay facturas para mostrar.</td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </lux-card>
   </div>
 </div>

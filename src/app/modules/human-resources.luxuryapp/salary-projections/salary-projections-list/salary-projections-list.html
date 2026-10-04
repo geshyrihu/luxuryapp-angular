@@ -1,5 +1,5 @@
 <div class="card p-0">
-  <app-table
+  <lux-table-web
     [value]="rows()"
     [loading]="loading()"
     [paginator]="true"
@@ -34,17 +34,17 @@
     <ng-template #header>
       <tr>
         <th class="table-col-12" appSortableColumn="folio">
-          FOLIO <app-sorticon field="folio" />
+          FOLIO <lux-sorticon-web field="folio" />
         </th>
         <th class="table-col-30" appSortableColumn="name">
-          NOMBRE <app-sorticon field="name" />
+          NOMBRE <lux-sorticon-web field="name" />
         </th>
         <th class="table-col-10">ESCENARIOS</th>
         <th class="table-col-12" appSortableColumn="state">
-          ESTADO <app-sorticon field="state" />
+          ESTADO <lux-sorticon-web field="state" />
         </th>
         <th class="table-col-15" appSortableColumn="createdAt">
-          CREADO EL <app-sorticon field="createdAt" />
+          CREADO EL <lux-sorticon-web field="createdAt" />
         </th>
         <th class="table-col-8"></th>
       </tr>
@@ -85,7 +85,7 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>

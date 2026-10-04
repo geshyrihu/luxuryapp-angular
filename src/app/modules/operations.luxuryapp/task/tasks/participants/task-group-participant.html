@@ -31,7 +31,7 @@
 
 @if (loading_existing_participant()) {
 <div class="d-flex justify-content-center mt-3">
-  <app-spinner />
+  <lux-spinner-web />
 </div>
 } @else if (cb_existing_Participant().length === 0) {
 <lux-message severity="info" text="No hay integrantes."></lux-message>
@@ -45,7 +45,7 @@
   >
     <!-- Lado izquierdo: icono + texto -->
     <div slot="start" class="me-2 d-flex align-items-center">
-      <app-icon
+      <lux-icon
         [icon]="
               item.isAdmin === 'Administrador'
                 ? 'material-symbols-light:person-remove'

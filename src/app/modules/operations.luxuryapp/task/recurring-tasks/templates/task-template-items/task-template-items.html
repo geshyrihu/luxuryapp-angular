@@ -1,7 +1,7 @@
 @if (templateInfo(); as template) {
 
 <!-- Desktop View -->
-<app-table
+<lux-table-web
   #dt
   [value]="items()"
   [rows]="10"
@@ -27,7 +27,7 @@
 
       <!-- Caption a la derecha -->
       <div class="d-flex align-items-center">
-        <app-table-caption (add)="showItemForm()" [dt]="dt" />
+        <lux-table-caption-web (add)="showItemForm()" [dt]="dt" />
       </div>
     </div>
   </ng-template>
@@ -44,7 +44,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:menu'"
           class="icon icon-"
           pReorderableRowHandle
@@ -52,7 +52,7 @@
       </td>
       <td>{{ item.title }}</td>
       <td>
-        <app-status-badge
+        <lux-status-badge-web
           [value]="item.priority"
           [status]="getPriorityDisplay(item.priority).text"
           [severity]="getPriorityDisplay(item.priority).severity"
@@ -71,12 +71,12 @@
     </tr>
   </ng-template>
   <ng-template #summary>
-    <app-table-footer
+    <lux-table-footer-web
       [totalRecords]="items().length"
       [emptyMessage]="'No se encontraron items para esta plantilla.'"
     />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Mobile View -->
 @if (items().length === 0 && !items()) {
@@ -97,14 +97,14 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:description"
           class="text-xl text-primary"
         />
       </div>
       
         <h5 class="mb-2">{{ item.title }}</h5>
-        <app-status-badge
+        <lux-status-badge-web
           [value]="item.priority"
           [status]="getPriorityDisplay(item.priority).text"
           [severity]="getPriorityDisplay(item.priority).severity"

@@ -67,7 +67,7 @@ interface Equipo {
       </div>
 
       @if (equipo.maintenanceCalendar?.length > 0) {
-        <app-table [value]="equipo.maintenanceCalendar" class="custom-table">
+        <lux-table-web [value]="equipo.maintenanceCalendar" class="custom-table">
           <ng-template #header>
             <tr>
               <th class="table-col-5"></th>
@@ -129,9 +129,9 @@ interface Equipo {
             </tr>
           </ng-template>
           <ng-template #emptymessage>
-            <app-table-empty-message [colspan]="13" />
+            <lux-table-empty-message-web [colspan]="13" />
           </ng-template>
-        </app-table>
+        </lux-table-web>
       } @else {
         <div class="text-center text-500 p-4 surface-100 rounded italic">
           Sin servicios de Mantenimiento registrados.

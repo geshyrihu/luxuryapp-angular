@@ -10,7 +10,7 @@
           slot="start"
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:fact-check"
             class="text-xl text-primary"
           />
@@ -34,7 +34,7 @@
     </ng-template>
   </app-data-view-mobile>
 } @else {
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -48,7 +48,7 @@
     class="custom-table"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nueva tarea de onboarding' })"
         [dt]="dt"
       />
@@ -58,16 +58,16 @@
       <tr>
         <th class="table-col-3 text-small" appSortableColumn="name">
           NOMBRE
-          <app-sorticon field="name" />
+          <lux-sorticon-web field="name" />
         </th>
         <th class="table-col-1 text-small" appSortableColumn="diasSla">
           DÍAS SLA
-          <app-sorticon field="diasSla" />
+          <lux-sorticon-web field="diasSla" />
         </th>
         <th class="table-col-4 text-small">ROLES</th>
         <th class="table-col-2 text-small" appSortableColumn="isActive">
           ESTATUS
-          <app-sorticon field="isActive" />
+          <lux-sorticon-web field="isActive" />
         </th>
         <th class="table-col-2 text-small">ACCIONES</th>
       </tr>
@@ -101,11 +101,11 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message-web [colspan]="5" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 }

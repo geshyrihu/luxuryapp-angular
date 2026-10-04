@@ -44,7 +44,7 @@ const CALLOUT_GAP = 22;
 
 /** Google Charts PieChart 3D, estilo pie-chart4 de plantilla Lagos. */
 @Component({
-  selector: "app-google-pie-chart4",
+  selector: "lux-google-pie-chart4-web",
   imports: [Ng2GoogleChartsModule, DecimalPipe],
   template: `
     <section

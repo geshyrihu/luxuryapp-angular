@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { LoaderBase } from "../../core/loader.base";
 
 @Component({
-  selector: "app-loader",
+  selector: "lux-loader-web",
   template: `
     @if (isLoading()) {
       <div class="loader-container">

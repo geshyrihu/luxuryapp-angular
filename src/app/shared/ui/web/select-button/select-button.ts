@@ -9,7 +9,7 @@ import {
 } from "@ui/core/select-button.base";
 
 @Component({
-  selector: "app-select-button",
+  selector: "lux-select-button-web",
   template: `
     <div
       class="btn-group"

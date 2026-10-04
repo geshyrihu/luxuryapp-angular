@@ -7,7 +7,7 @@
         <div
           class="d-flex align-items-center justify-content-center bg-primary-50 rounded-lg"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:table'"
             class="text-primary-600"
           />
@@ -126,7 +126,7 @@
     class="d-flex align-items-center gap-2 mb-3 mt-5"
     [id]="'grupo-' + grupo.codigo"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:bar-chart'"
       class="text-xl text-primary-600"
     />
@@ -158,7 +158,7 @@
 
   <div class="rf-card overflow-hidden">
     <div>
-      <app-table
+      <lux-table-web
         [value]="filasDe(grupo.codigo)"
         class="rf-table p-datatable-sm"
         [scrollable]="true"
@@ -265,14 +265,14 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   </div>
   } } @if (!loading() && !rawData()) {
   <div
     class="rf-card rf-empty d-flex flex-column align-items-center justify-content-center"
   >
-    <app-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
+    <lux-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
     <p class="m-0">
       Selecciona un cliente y ejercicio para cargar el espejo Aspel.
     </p>

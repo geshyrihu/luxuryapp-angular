@@ -3,7 +3,7 @@
  TABLA DE PUESTOS DE TRABAJO
  ═══════════════════════════════════════════════════════════════════
  -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
   [paginator]="true"
@@ -20,7 +20,7 @@
       class="d-flex flex-wrap align-items-end justify-content-between w-full gap-3"
     >
       <div class="flex-grow-1">
-        <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+        <lux-table-caption-web [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
       <div class="d-flex flex-wrap gap-2 align-items-end pb-2">
         <il-button
@@ -72,14 +72,14 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary fw-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
+        <lux-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 fw-bold border-bottom-2 border-bluegray-200 border-left-2"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:person'"
           class="me-2"
         />COLABORADOR ASIGNADO
@@ -89,10 +89,10 @@
     <!-- ⚪ Fila de Títulos de Columna -->
     <tr>
       <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
+        PUESTO <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th class="w-32" appSortableColumn="turno">
-        TURNO <app-sorticon field="turno" />
+        TURNO <lux-sorticon-web field="turno" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
@@ -164,7 +164,7 @@
       <!-- ACCIONES PUESTO ------------------------------------------------ -->
       <td>
         <div class="d-flex align-items-center">
-          <app-action-menu>
+          <lux-action-menu-web>
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
 
@@ -197,7 +197,7 @@
               />
               }
             </ng-container>
-          </app-action-menu>
+          </lux-action-menu-web>
         </div>
       </td>
 
@@ -253,7 +253,7 @@
                 }
               </div>
             </div>
-            <app-action-menu>
+            <lux-action-menu-web>
               <ng-container actions>
                 <il-button-item
                   iconClass="material-symbols-light:manage-accounts"
@@ -279,7 +279,7 @@
                 />
                 }
               </ng-container>
-            </app-action-menu>
+            </lux-action-menu-web>
           </div>
           } @else {
           <div class="vacant-row-inline g-4">
@@ -293,7 +293,7 @@
               class="drop-zone vacant-drop-zone d-flex align-items-center justify-content-between p-2"
             >
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:group'"
                   class="text-body-secondary"
                 />
@@ -340,7 +340,7 @@
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
               >
                 <div class="d-flex align-items-center gap-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />
@@ -361,13 +361,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="positions()" />
+    <lux-table-footer-web [data]="positions()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      POOL DE COLABORADORES SIN PUESTO ASIGNADO
@@ -376,20 +376,20 @@
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="d-flex align-items-center">
-      <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
+      <lux-icon [icon]="'material-symbols-light:group'" class="text-lg" />
       <span class="fw-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-sm"
       />
       }
     </div>
-    <app-icon
+    <lux-icon
       [icon]="poolExpanded() ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
     />
   </div>
@@ -399,7 +399,7 @@
   <p class="text-sm text-body-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:manage-accounts'"
       class="text-xs"
     />
@@ -461,7 +461,7 @@
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
       <div class="d-flex align-items-center mb-1">
-        <app-icon [icon]="'material-symbols-light:work'" />
+        <lux-icon [icon]="'material-symbols-light:work'" />
         <span class="fw-bold">{{ pos.folio }}</span>
       </div>
       <p class="m-0 fw-semibold">{{ pos.applicationRoleName }}</p>
@@ -474,7 +474,7 @@
 
     @if (assignLoading()) {
     <div class="d-flex justify-content-center py-4">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-2xl"
       />
@@ -493,7 +493,7 @@
           >{{ emp.userName }}</span
         >
       </div>
-      <app-icon [icon]="'material-symbols-light:chevron-right'" />
+      <lux-icon [icon]="'material-symbols-light:chevron-right'" />
     </div>
     } }
   </div>
@@ -530,7 +530,7 @@
 
   @if (inactivosLoading()) {
   <div class="d-flex justify-content-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl"
     />
@@ -540,7 +540,7 @@
   <!-- -- Tab: Puestos inactivos -- -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />
@@ -570,7 +570,7 @@
   <!-- -- Tab: Colaboradores inactivos -- -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />

@@ -7,7 +7,7 @@ import {
 import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
-  selector: "app-table-checkbox",
+  selector: "lux-table-checkbox-web",
 
   imports: [FormsModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,

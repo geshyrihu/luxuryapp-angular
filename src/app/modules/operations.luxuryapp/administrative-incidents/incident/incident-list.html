@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -14,7 +14,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Registrar Incidencia' })"
         [showAdd]="!!employeeId()"
         [dt]="dt"
@@ -137,12 +137,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="9" />
+      <lux-table-empty-message-web [colspan]="9" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -156,7 +156,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:error-outline" />
+          <lux-icon icon="material-symbols-light:error-outline" />
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-1">

@@ -1,12 +1,12 @@
 <div class="rf-shell px-3 px-md-4 pb-3 pb-md-4 pt-0">
   <div *ngIf="loading()" class="d-flex flex-column gap-4 p-4">
-    <app-skeleton width="100%" height="300px" borderRadius="12px" />
+    <lux-skeleton-web width="100%" height="300px" borderRadius="12px" />
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
       <div class="col-12 col-md-6">
-        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="row mb-4 g-4">
       @for (kpi of kpis(); track kpi.label) {
       <div class="col-12 col-md-4 col-xl-4">
-        <app-stat-card
+        <lux-stat-card
           orientation="horizontal"
           [label]="kpi.label"
           [value]="kpi.value"
@@ -35,7 +35,7 @@
       <div class="col-12 col-xl-4">
         <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
           <div class="flex-fill">
-            <app-breakdown-list
+            <lux-breakdown-list
               heading="Análisis de Cobranza Mensual"
               [subheading]="analysisData()?.periodo ?? ''"
             [items]="filasAnalisisMensual()"
@@ -59,7 +59,7 @@
 
       <div class="col-12 col-xl-4">
         <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
-          <app-breakdown-list
+          <lux-breakdown-list
             heading="Deuda Condóminos (EF)"
             subheading="Clasificación del saldo final por cuenta al corte consultado."
             [items]="filasDeudaCondominos()"
@@ -75,7 +75,7 @@
               >
             </div>
             }
-          </app-breakdown-list>
+          </lux-breakdown-list>
         </div>
       </div>
 
@@ -85,7 +85,7 @@
           <div class="text-body-secondary mb-3">Distribución de la cartera</div>
           <div class="flex-grow-1 d-flex align-items-center justify-content-center w-full">
             @if (chartData(); as googlePieData) {
-            <app-google-pie-chart4
+            <lux-google-pie-chart4-web
               class="d-block w-full"
               [embedded]="true"
               [data]="googlePieData"
@@ -108,7 +108,7 @@
       <!-- KPIs de cartera vencida -->
       <div class="row mb-4 g-4">
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="Cartera vencida"
             [value]="totalCartera()"
@@ -120,7 +120,7 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="Morosos"
             [value]="totalMorosos()"
@@ -132,7 +132,7 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="Cobranza judicial"
             [value]="totalJudicial()"
@@ -147,7 +147,7 @@
 
       <div class="row g-4">
         <div class="col-12 col-lg-6">
-          <app-ranked-list
+          <lux-ranked-list
             heading="Morosos"
             [items]="morosos()"
             [total]="totalMorosos()"
@@ -158,7 +158,7 @@
           />
         </div>
         <div class="col-12 col-lg-6">
-          <app-ranked-list
+          <lux-ranked-list
             heading="Cobranza judicial"
             [items]="judicial()"
             [total]="totalJudicial()"
@@ -187,29 +187,29 @@
         </div>
       </div>
 
-      <app-table
+      <lux-table-web
         [value]="towers()"
         class="rf-table p-datatable-sm d-none d-md-block"
       >
         <ng-template #header>
           <tr>
             <th appSortableColumn="towerName">
-              Torre <app-sorticon field="towerName" />
+              Torre <lux-sorticon-web field="towerName" />
             </th>
             <th class="text-end" appSortableColumn="departmentCount">
-              Deptos. <app-sorticon field="departmentCount" />
+              Deptos. <lux-sorticon-web field="departmentCount" />
             </th>
             <th class="text-end" appSortableColumn="maintenanceBalance">
-              Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
+              Adeudo Mtto. <lux-sorticon-web field="maintenanceBalance" />
             </th>
             <th class="text-end" appSortableColumn="extraordinaryBalance">
-              Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
+              Adeudo Ext. <lux-sorticon-web field="extraordinaryBalance" />
             </th>
             <th class="text-end" appSortableColumn="finesBalance">
-              Multas <app-sorticon field="finesBalance" />
+              Multas <lux-sorticon-web field="finesBalance" />
             </th>
             <th class="text-end" appSortableColumn="totalBalance">
-              Total Adeudo <app-sorticon field="totalBalance" />
+              Total Adeudo <lux-sorticon-web field="totalBalance" />
             </th>
           </tr>
         </ng-template>
@@ -251,7 +251,7 @@
           </tr>
           }
         </ng-template>
-      </app-table>
+      </lux-table-web>
 
       <div class="d-md-none">
         <app-data-view-mobile [data]="towers()" [showAdd]="false">
@@ -261,7 +261,7 @@
                 start
                 class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
               >
-                <app-icon icon="material-symbols-light:location-city" />
+                <lux-icon icon="material-symbols-light:location-city" />
               </div>
               <div class="flex-fill min-w-0 ion-text-wrap">
                 <p class="fw-semibold m-0 text-body">{{ row.towerName }}</p>
@@ -292,7 +292,7 @@
       </div>
       <div class="row g-4">
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="Total a favor"
             [value]="totalAFavor()"
@@ -304,7 +304,7 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="Anticipo promedio"
             [value]="promedioAFavor()"
@@ -316,7 +316,7 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             label="A favor en mantenimiento"
             [value]="totalMtto()"
@@ -329,7 +329,7 @@
         </div>
       </div>
 
-      <app-ranked-list
+      <lux-ranked-list
             heading="Saldos a favor"
             [items]="anticiposItems()"
             [total]="totalAFavor()"
@@ -367,7 +367,7 @@
         />
       </div>
 
-      <app-table
+      <lux-table-web
         [value]="filteredRows()"
         class="rf-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'min-width': '1000px' }"
@@ -428,7 +428,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   </div>
 </div>

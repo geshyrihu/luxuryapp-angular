@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -11,7 +11,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center">
-      <app-table-caption
+      <lux-table-caption-web
         [title]="'Propiedades'"
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -53,43 +53,43 @@
     <tr>
       <th class="w-5rem" appSortableColumn="accountNumber">
         Cta.
-        <app-sorticon field="accountNumber" />
+        <lux-sorticon-web field="accountNumber" />
       </th>
       <th class="w-6rem" appSortableColumn="tower">
         Torre
-        <app-sorticon field="tower" />
+        <lux-sorticon-web field="tower" />
       </th>
       <th class="w-9rem" appSortableColumn="department">
         Departamento
-        <app-sorticon field="department" />
+        <lux-sorticon-web field="department" />
       </th>
       <th class="w-6rem" appSortableColumn="floor">
         Piso
-        <app-sorticon field="floor" />
+        <lux-sorticon-web field="floor" />
       </th>
       <th class="w-7rem" appSortableColumn="unitNumber">
         No. Int.
-        <app-sorticon field="unitNumber" />
+        <lux-sorticon-web field="unitNumber" />
       </th>
       <th class="w-7rem" appSortableColumn="areaM2">
         área m2
-        <app-sorticon field="areaM2" />
+        <lux-sorticon-web field="areaM2" />
       </th>
       <th class="w-8rem" appSortableColumn="indivisoPercentage">
         Indiviso
-        <app-sorticon field="indivisoPercentage" />
+        <lux-sorticon-web field="indivisoPercentage" />
       </th>
       <th class="w-7rem" appSortableColumn="parkingSlots">
         Cajones
-        <app-sorticon field="parkingSlots" />
+        <lux-sorticon-web field="parkingSlots" />
       </th>
       <th class="w-7rem" appSortableColumn="storageUnit">
         Bodega
-        <app-sorticon field="storageUnit" />
+        <lux-sorticon-web field="storageUnit" />
       </th>
       <th class="w-6rem text-center" appSortableColumn="isDelinquent">
         Moroso
-        <app-sorticon field="isDelinquent" />
+        <lux-sorticon-web field="isDelinquent" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario])) {
@@ -135,12 +135,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message-web [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Vista movil -->
 <app-data-view-mobile
@@ -155,7 +155,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:location-city" />
+        <lux-icon icon="material-symbols-light:location-city" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>

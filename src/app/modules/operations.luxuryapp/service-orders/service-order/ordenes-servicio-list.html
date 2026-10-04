@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -72,7 +72,7 @@
         />
       </div>
       <div class="ms-auto">
-        <app-table-caption
+        <lux-table-caption-web
           [title]="filtroEquiposValue | titlecase"
           (add)="
         onEdit({
@@ -98,31 +98,31 @@
     <tr>
       <th class="table-col-15" appSortableColumn="folio">
         Folio
-        <app-sorticon field="folio" class="no-print" />
+        <lux-sorticon-web field="folio" class="no-print" />
       </th>
       <th class="table-col-15" appSortableColumn="machinery">
         Equipo
-        <app-sorticon field="machinery" class="no-print" />
+        <lux-sorticon-web field="machinery" class="no-print" />
       </th>
       <th class="table-col-10" appSortableColumn="typeMaintance">
         Servicio
-        <app-sorticon field="typeMaintance" class="no-print" />
+        <lux-sorticon-web field="typeMaintance" class="no-print" />
       </th>
       <th class="table-col-15" appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" class="no-print" />
+        <lux-sorticon-web field="provider" class="no-print" />
       </th>
       <th class="table-col-10" appSortableColumn="status">
         Estatus
-        <app-sorticon field="status" class="no-print" />
+        <lux-sorticon-web field="status" class="no-print" />
       </th>
       <th class="table-col-10" appSortableColumn="serviceOrderImg.length">
         Fotos
-        <app-sorticon field="serviceOrderImg.length" class="no-print" />
+        <lux-sorticon-web field="serviceOrderImg.length" class="no-print" />
       </th>
       <th class="table-col-10" appSortableColumn="serviceOrderDocument.length">
         Reporte
-        <app-sorticon field="serviceOrderDocument.length" class="no-print" />
+        <lux-sorticon-web field="serviceOrderDocument.length" class="no-print" />
       </th>
       <th class="table-col-15 no-print"></th>
     </tr>
@@ -247,9 +247,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile
@@ -295,7 +295,7 @@
               [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'"
               (click)="onReloadOrdenes(item.id, item.nombre)"
             >
-              <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+              <lux-icon [icon]="item.icon" slot="start" class="me-1"></lux-icon>
               {{ item.nombre | titlecase }}
             </ion-button>
             }
@@ -344,10 +344,10 @@
           justify-content: center;
         "
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:build"
           class="text-xl text-yellow-500"
-        ></app-icon>
+        ></lux-icon>
       </ion-avatar>
       <ion-label>
         <h2 class="ion-text-wrap fw-bold m-0">

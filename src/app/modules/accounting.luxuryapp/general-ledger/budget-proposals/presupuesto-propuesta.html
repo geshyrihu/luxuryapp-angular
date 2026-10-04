@@ -46,7 +46,7 @@
     - `[style]`: Estilos en línea, como el ancho mínimo para el scroll horizontal.
     - `#dt`: Una referencia a la tabla para poder interactuar con ella desde el código (ej. para el caption).
   -->
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields"
     [value]="proposalItems()"
     [scrollable]="true"
@@ -71,7 +71,7 @@
             (click)="showFeeComparisonModal()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:label-outline"
               class="text-2xl mb-1"
             />
@@ -88,7 +88,7 @@
             (click)="showFeeComparisonByIndivisoModal()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:bar-chart"
               class="text-2xl mb-1"
             />
@@ -106,7 +106,7 @@
             [disabled]="currentProposal()?.status !== 'Borrador'"
             class="btn btn-soft-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:add-circle-outline"
               class="text-2xl mb-1"
             />
@@ -124,7 +124,7 @@
             (click)="auditProposal()"
             class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:smart-toy-outline"
               class="text-2xl mb-1"
             />
@@ -142,7 +142,7 @@
             [disabled]="auditLoading || forecastLoading"
             class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:monitoring"
               class="text-2xl mb-1"
             />
@@ -159,7 +159,7 @@
             (click)="openHighIncreaseModal()"
             class="btn btn-soft-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:warning-outline"
               class="text-2xl mb-1"
             />
@@ -176,7 +176,7 @@
             (click)="exportarResumenExcel()"
             class="btn btn-soft-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:table-view"
               class="text-2xl mb-1"
             />
@@ -192,7 +192,7 @@
             (click)="toggleBaseBudgetMonthlyColumn()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="baseBudgetMonthlyButtonIcon"
               class="text-2xl mb-1"
             />
@@ -208,7 +208,7 @@
             (click)="toggleBaseBudgetAnnualColumn()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="baseBudgetAnnualButtonIcon"
               class="text-2xl mb-1"
             />
@@ -224,7 +224,7 @@
             (click)="toggleFiscalYearAnnualColumn()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="fiscalYearAnnualButtonIcon"
               class="text-2xl mb-1"
             />
@@ -240,7 +240,7 @@
             (click)="toggleshowProjectedExpenses()"
             class="btn btn-soft-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="projectedExpensesButtonIcon"
               class="text-2xl mb-1"
             />
@@ -257,7 +257,7 @@
             (click)="showProjectedExpensesModal()"
             class="btn btn-soft-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:settings-outline"
               class="text-2xl mb-1"
             />
@@ -274,7 +274,7 @@
             (click)="showMaintenanceCalendarModal()"
             class="btn btn-soft-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-2"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:event-outline"
               class="text-2xl mb-1"
             />
@@ -301,7 +301,7 @@
           </div>
 
           <div class="flex-grow-1">
-            <app-multiple-segmented-control
+            <lux-multiple-segmented-control
               [items]="firstTwelveMonthsOptions"
               [value]="selectedMonthsForAvg()"
               (changed)="selectedMonthsForAvg.set($event)"
@@ -361,7 +361,7 @@
           class="d-flex flex-wrap gap-4 align-items-center text-sm text-body"
         >
           <div class="fw-semibold text-body d-flex align-items-center gap-1">
-            <app-icon icon="material-symbols-light:info" />
+            <lux-icon icon="material-symbols-light:info" />
             Guía Rápida:
           </div>
 
@@ -389,7 +389,7 @@
             class="d-flex align-items-center gap-2"
             lxTooltip="Ver historial de compras asociadas a la cuenta"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:shopping-cart-outline"
               class="text-blue-500"
             />
@@ -400,7 +400,7 @@
             class="d-flex align-items-center gap-2"
             lxTooltip="Ver histórico de movimientos contables"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:history"
               class="text-indigo-500"
             />
@@ -411,7 +411,7 @@
             class="d-flex align-items-center gap-2"
             lxTooltip="Ver cotizaciones y documentos soporte"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:folder-outline"
               class="text-orange-500"
             />
@@ -637,7 +637,7 @@
                 class="pointer me-1 text-sm"
                 (click)="showPurchaseHistory(item)"
                 lxTooltip="Historial de compras"
-                ><app-icon
+                ><lux-icon
                   icon="material-symbols-light:shopping-cart-outline"
                   class="text-blue-500"
                 />
@@ -647,7 +647,7 @@
                 class="pointer me-1 text-sm"
                 (click)="showItemHistory(item)"
                 lxTooltip="Historial de partidas"
-                ><app-icon
+                ><lux-icon
                   icon="material-symbols-light:history"
                   class="text-indigo-500"
                 />
@@ -801,7 +801,7 @@
               [disabled]="currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora"
               title="Guardar cambio"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:save-outline"
                 class="text-lg"
               />
@@ -1008,7 +1008,7 @@
         <!-- Aligns with % -->
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 }
 <!--
@@ -1023,7 +1023,7 @@
   (visibleChange)="showHighIncreaseModal.set($event)"
 >
   <div class="p-3">
-    <app-table
+    <lux-table-web
       [value]="highIncreaseItems()"
       [scrollable]="true"
       scrollHeight="60vh"
@@ -1062,6 +1062,6 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </lux-modal>

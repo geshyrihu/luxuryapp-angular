@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -19,7 +19,7 @@
           tooltip="Reporte PDF por rango de fecha"
         />
       </div>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
         [dt]="dt"
       />
@@ -27,7 +27,7 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <lux-sorticon-web field="date" /></th>
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Presión</th>
       <th class="table-col-10">Seguro</th>
@@ -42,7 +42,7 @@
       <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.adequatePressure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.adequatePressure"
@@ -50,7 +50,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.safetyPinOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.safetyPinOk"
@@ -58,7 +58,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.labelsOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.labelsOk"
@@ -66,7 +66,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"
@@ -85,12 +85,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -103,7 +103,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:fire-extinguisher" />
+        <lux-icon icon="material-symbols-light:fire-extinguisher" />
       </div>
 
       <h3>{{ item.date | apiDate:'dd-MMM-yy' }} {{ item.hour }}</h3>

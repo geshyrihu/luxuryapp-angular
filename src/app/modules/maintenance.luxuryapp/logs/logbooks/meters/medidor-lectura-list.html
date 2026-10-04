@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -12,7 +12,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -30,11 +30,11 @@
     <tr>
       <th appSortableColumn="fechaRegistro">
         Fecha de Registro
-        <app-sorticon field="fechaRegistro" />
+        <lux-sorticon-web field="fechaRegistro" />
       </th>
       <th appSortableColumn="lectura">
         Lectura
-        <app-sorticon field="lectura" />
+        <lux-sorticon-web field="lectura" />
       </th>
 
       <th class="table-col-5"></th>
@@ -52,7 +52,7 @@
       <!-- Opciones -->
 
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -63,18 +63,18 @@
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -89,12 +89,12 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:speed" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:speed" class="text-xl text-primary" />
       </div>
 
       <h2 class="fw-bold m-0 text-base">{{ item.lectura }}</h2>
       <p class="text-sm text-body-secondary m-0 mt-1">
-        <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" /> {{
+        <lux-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" /> {{
         item.fechaRegistro | apiDate: "dd-MMM-yyyy" }}
       </p>
 

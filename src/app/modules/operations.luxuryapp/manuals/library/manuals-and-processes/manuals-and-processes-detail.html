@@ -1,7 +1,7 @@
 <section id="manual-content" class="bg-body-tertiary min-h-screen p-3 p-md-4">
   @if (loading()) {
   <div class="d-flex align-items-center justify-content-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-primary text-4xl ds-animate-spin"
     />
@@ -43,7 +43,7 @@
             <div
               class="bg-body-tertiary border-1 border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-body"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:book'"
                 class="text-xs"
               />
@@ -98,49 +98,49 @@
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:account-tree'" />
+            <lux-icon [icon]="'material-symbols-light:account-tree'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:calendar-clock'" />
+            <lux-icon [icon]="'material-symbols-light:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:label'" />
+            <lux-icon [icon]="'material-symbols-light:label'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:verified'" />
+            <lux-icon [icon]="'material-symbols-light:verified'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:web'" />
+            <lux-icon [icon]="'material-symbols-light:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:group'" />
+            <lux-icon [icon]="'material-symbols-light:group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:apartment'" />
+            <lux-icon [icon]="'material-symbols-light:apartment'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
+            <lux-icon [icon]="'material-symbols-light:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
         </div>
@@ -288,12 +288,12 @@
               <div
                 class="bg-body border-1 border rounded-xl overflow-hidden p-2 d-flex justify-content-center"
               >
-                <app-image
+                <lux-image-web
                   [src]="img.url"
                   alt="Imagen de apoyo del paso"
                   [preview]="true"
                   imageClass="block max-w-full h-auto rounded-lg"
-                ></app-image>
+                ></lux-image-web>
               </div>
             </div>
             }
@@ -319,7 +319,7 @@
             </div>
             } } @else {
             <div class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:open-in-new'"
                 class="text-primary"
               />
@@ -344,7 +344,7 @@
       </div>
       } @else {
       <div class="text-center py-5">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:book'"
           class="text-4xl text-body-secondary mb-3"
         />
@@ -381,7 +381,7 @@
               class="bg-body-tertiary rounded-xl border-1 border p-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="d-flex align-items-center gap-3">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:description'"
                   class="text-xl text-primary"
                 />

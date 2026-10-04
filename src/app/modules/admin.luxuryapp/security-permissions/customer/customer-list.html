@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
     <div
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
     >
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
         [noPadding]="true"
@@ -34,7 +34,7 @@
       <th>NO CLIENTE</th>
       <th colspan="2" appSortableColumn="nameCustomer">
         NOMBRE
-        <app-sorticon field="nameCustomer" />
+        <lux-sorticon-web field="nameCustomer" />
       </th>
       <th>ESTADO</th>
       <th>TélefonoS</th>
@@ -90,12 +90,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -126,7 +126,7 @@
           class="customer-logo-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:domain" class="text-xl" />
+        <lux-icon icon="material-symbols-light:domain" class="text-xl" />
         }
       </ion-avatar>
 

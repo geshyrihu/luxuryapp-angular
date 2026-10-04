@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -15,7 +15,7 @@
         </h4>
       </div>
       <div class="col-12 col-sm-3 no-print">
-        <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
+        <lux-mesanio-web (periodoEmit)="onFiltrarPeriodo($event)"></lux-mesanio-web>
       </div>
       <div class="col-12 col-sm-3 no-print">
         <custom-input-text-signal
@@ -85,27 +85,27 @@
     <tr [hidden]="false">
       <th appSortableColumn="numeroCliente" class="table-col-20">
         Cliente
-        <app-sorticon field="numeroCliente" />
+        <lux-sorticon-web field="numeroCliente" />
       </th>
       @if (mostrar) {
       <th appSortableColumn="solicitudesTotal" class="table-col-20">
         Solicitudes
-        <app-sorticon field="solicitudesTotal" />
+        <lux-sorticon-web field="solicitudesTotal" />
       </th>
       } @if (mostrar) {
       <th appSortableColumn="solicitudesAtendidas" class="table-col-20">
         Atendidas
-        <app-sorticon field="solicitudesAtendidas" />
+        <lux-sorticon-web field="solicitudesAtendidas" />
       </th>
       } @if (mostrar) {
       <th appSortableColumn="solicitudesPendientes" class="table-col-20">
         Pendientes
-        <app-sorticon field="solicitudesPendientes" />
+        <lux-sorticon-web field="solicitudesPendientes" />
       </th>
       }
       <th appSortableColumn="porcentajeEjecucionValue" class="table-col-20">
         Cumplimiento
-        <app-sorticon field="porcentajeEjecucionValue" />
+        <lux-sorticon-web field="porcentajeEjecucionValue" />
       </th>
     </tr>
   </ng-template>
@@ -156,5 +156,5 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }

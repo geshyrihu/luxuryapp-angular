@@ -2,7 +2,7 @@
   <div class="card-body">
     <!-- Desktop View -->
     <div class="d-none d-md-block">
-      <app-table
+      <lux-table-web
         #dt
         [value]="data()"
         [loading]="loading()"
@@ -15,7 +15,7 @@
         [scrollHeight]="scrollHeight"
       >
         <ng-template #caption>
-          <app-table-caption
+          <lux-table-caption-web
             [dt]="dt"
             [showAdd]="false"
             [showSearch]="false"
@@ -95,47 +95,47 @@
           <tr>
             <th appSortableColumn="customerName">
               Cliente
-              <app-sorticon field="customerName" />
+              <lux-sorticon-web field="customerName" />
             </th>
             <th appSortableColumn="solicitud">
               Solicitud
-              <app-sorticon field="solicitud" />
+              <lux-sorticon-web field="solicitud" />
             </th>
             <th appSortableColumn="employeeFullName">
               Empleado
-              <app-sorticon field="employeeFullName" />
+              <lux-sorticon-web field="employeeFullName" />
             </th>
             <th appSortableColumn="roleName">
               Puesto
-              <app-sorticon field="roleName" />
+              <lux-sorticon-web field="roleName" />
             </th>
             <th appSortableColumn="daysRequested">
               Días
-              <app-sorticon field="daysRequested" />
+              <lux-sorticon-web field="daysRequested" />
             </th>
             <th appSortableColumn="startDate">
               Inicio
-              <app-sorticon field="startDate" />
+              <lux-sorticon-web field="startDate" />
             </th>
             <th appSortableColumn="endDate">
               Fin
-              <app-sorticon field="endDate" />
+              <lux-sorticon-web field="endDate" />
             </th>
             <th appSortableColumn="status">
               Estatus
-              <app-sorticon field="status" />
+              <lux-sorticon-web field="status" />
             </th>
             <th appSortableColumn="requestDate">
               Fecha Sol.
-              <app-sorticon field="requestDate" />
+              <lux-sorticon-web field="requestDate" />
             </th>
             <th appSortableColumn="approverName">
               Aprobado por
-              <app-sorticon field="approverName" />
+              <lux-sorticon-web field="approverName" />
             </th>
             <th appSortableColumn="approvalDate">
               Fecha Aprobación
-              <app-sorticon field="approvalDate" />
+              <lux-sorticon-web field="approvalDate" />
             </th>
             <th></th>
           </tr>
@@ -189,9 +189,9 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <app-table-empty-message [colspan]="8" />
+          <lux-table-empty-message-web [colspan]="8" />
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
 
     <!-- Mobile View -->
@@ -208,7 +208,7 @@
               class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
               class="w-3rem h-3rem bg-primary-50"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:format-list-bulleted"
                 class="text-xl text-primary"
               />

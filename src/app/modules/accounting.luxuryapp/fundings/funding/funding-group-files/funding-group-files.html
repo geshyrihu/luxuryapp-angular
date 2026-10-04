@@ -10,7 +10,7 @@
       optionValue="value"
     >
       <ng-template let-item #item>
-        <app-icon [icon]="item.icon" />
+        <lux-icon [icon]="item.icon" />
       </ng-template>
     </custom-input-select-button-signal>
 
@@ -52,12 +52,12 @@
           >
             <div class="mb-3">
               @if (file.type === "pdf") {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:picture-as-pdf'"
                 class="text-red-500 text-6xl"
               />
               } @else {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:code'"
                 class="text-blue-500 text-6xl"
               />
@@ -85,7 +85,7 @@
       }
     </div>
     } @else {
-    <app-table
+    <lux-table-web
       [value]="selectedGroupFiles()"
       [selection]="selectedFilesControl.value || []"
       (selectionChange)="selectedFilesControl.setValue($event)"
@@ -95,7 +95,7 @@
       <ng-template #header>
         <tr>
           <th class="table-col-4rem">
-            <app-table-header-checkbox></app-table-header-checkbox>
+            <lux-table-header-checkbox-web></lux-table-header-checkbox-web>
           </th>
           <th class="table-col-4rem">Tipo</th>
           <th>Nombre Archivo</th>
@@ -106,18 +106,18 @@
       <ng-template #body let-file>
         <tr>
           <td>
-            <app-table-selection-checkbox
+            <lux-table-selection-checkbox-web
               [value]="file"
-            ></app-table-selection-checkbox>
+            ></lux-table-selection-checkbox-web>
           </td>
           <td>
             @if (file.type === "pdf") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:picture-as-pdf'"
               class="text-red-500 text-xl"
             />
             } @else {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:code'"
               class="text-blue-500 text-xl"
             />
@@ -144,10 +144,10 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-5">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:folder-open'"
         class="text-6xl text-body-secondary mb-3"
       />

@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nueva Fuente' })"
       [dt]="dt"
     />
@@ -23,12 +23,12 @@
     <tr>
       <th class="table-col-7 text-small" appSortableColumn="name">
         NOMBRE
-        <app-sorticon field="name" />
+        <lux-sorticon-web field="name" />
       </th>
 
       <th class="table-col-3 text-small" appSortableColumn="isActive">
         ESTATUS
-        <app-sorticon field="isActive" />
+        <lux-sorticon-web field="isActive" />
       </th>
 
       <th class="table-col-2 text-small">ACCIONES</th>
@@ -56,13 +56,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -78,7 +78,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:group" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:group" class="text-xl text-primary" />
       </div>
       <div>
         <p class="mt-0 mb-0">{{ item.name }}</p>

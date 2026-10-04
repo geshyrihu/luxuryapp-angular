@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -27,7 +27,7 @@
         />
       </div>
       <div class="col-12 col-sm-9">
-        <app-table-caption
+        <lux-table-caption-web
           [viewNavigateButton]="false"
           (add)="
             onModalForm({
@@ -70,30 +70,30 @@
     <tr>
       <th appSortableColumn="id">
         Id
-        <app-sorticon field="id" />
+        <lux-sorticon-web field="id" />
       </th>
       <th appSortableColumn="nombre">
-        <app-sorticon field="nombre" />
+        <lux-sorticon-web field="nombre" />
       </th>
       <th appSortableColumn="actividad">
         Actividad
-        <app-sorticon field="actividad" />
+        <lux-sorticon-web field="actividad" />
       </th>
       <th appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
       <th appSortableColumn="recurrence">
         Recurrencia
-        <app-sorticon field="recurrence" />
+        <lux-sorticon-web field="recurrence" />
       </th>
       <th appSortableColumn="fechaServicioFiltro">
         Fecha
-        <app-sorticon field="fechaServicioFiltro" />
+        <lux-sorticon-web field="fechaServicioFiltro" />
       </th>
       <th appSortableColumn="precio">
         Costo
-        <app-sorticon field="precio" />
+        <lux-sorticon-web field="precio" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {
@@ -165,12 +165,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -199,7 +199,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:event-outline" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:event-outline" class="text-xl text-primary" />
       </div>
 
       <h2 class="text-base fw-bold mb-1">{{ item.nombre }}</h2>

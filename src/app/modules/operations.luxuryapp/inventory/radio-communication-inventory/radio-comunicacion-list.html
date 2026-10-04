@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -8,7 +8,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -20,29 +20,29 @@
     />
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message-web [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th>Né</th>
       <th appSortableColumn="fotografia">
-        Fotografia <app-sorticon field="fotografia" />
+        Fotografia <lux-sorticon-web field="fotografia" />
       </th>
-      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
-      <th appSortableColumn="modelo">Modelo <app-sorticon field="modelo" /></th>
-      <th appSortableColumn="serie">Serie <app-sorticon field="serie" /></th>
-      <th appSortableColumn="bateria">Bateria <app-sorticon field="bateria" /></th>
+      <th appSortableColumn="marca">Marca <lux-sorticon-web field="marca" /></th>
+      <th appSortableColumn="modelo">Modelo <lux-sorticon-web field="modelo" /></th>
+      <th appSortableColumn="serie">Serie <lux-sorticon-web field="serie" /></th>
+      <th appSortableColumn="bateria">Bateria <lux-sorticon-web field="bateria" /></th>
       <th appSortableColumn="fechaCompra">
-        Compra <app-sorticon field="fechaCompra" />
+        Compra <lux-sorticon-web field="fechaCompra" />
       </th>
       <th appSortableColumn="responsibleAreaName">
-        Area <app-sorticon field="responsibleAreaName" />
+        Area <lux-sorticon-web field="responsibleAreaName" />
       </th>
       <th appSortableColumn="applicationUser">
-        Responsable <app-sorticon field="applicationUser" />
+        Responsable <lux-sorticon-web field="applicationUser" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -51,7 +51,7 @@
     <tr>
       <td>{{ i + 1 }}</td>
       <td>
-        <app-image
+        <lux-image-web
           [src]="item.fotografia"
           alt="Image"
           width="120"
@@ -76,7 +76,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -89,7 +89,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:radio" class="text-xl text-green-500" />
+        <lux-icon icon="material-symbols-light:radio" class="text-xl text-green-500" />
       </div>
 
       <h3>{{ item.marca }} é {{ item.modelo }}</h3>

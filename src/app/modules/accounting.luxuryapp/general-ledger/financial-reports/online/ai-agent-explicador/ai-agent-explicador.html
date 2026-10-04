@@ -5,7 +5,7 @@
   styleClass="w-full lg:w-8 xl:w-7 p-0"
 >
   <div class="d-flex align-items-center gap-2 mb-3">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:forum'"
       class="text-primary text-2xl fw-bold"
     />
@@ -32,7 +32,7 @@
               <div
                 class="d-flex align-items-center justify-content-between gap-2 mb-2"
               >
-                <app-icon
+                <lux-icon
                   [icon]="msg.role === 'user' ? 'material-symbols-light:forum' : 'material-symbols-light:forum'"
                 />
                 @if (msg.role === 'assistant') {
@@ -70,7 +70,7 @@
             <div
               class="p-3 bg-body-tertiary rounded-xl border-1 border-primary d-flex align-items-center gap-2"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:volume-up'"
                 class="text-primary"
               />

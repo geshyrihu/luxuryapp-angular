@@ -7,7 +7,7 @@
       <div
         class="rounded-xl bg-primary shadow d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:schedule'"
           class="text-white text-3xl"
         />
@@ -29,7 +29,7 @@
     class="card"
     class="shadow-sm rounded-xl overflow-hidden p-0 border-0 d-none d-md-block"
   >
-    <app-table
+    <lux-table-web
       #dt
       [value]="dataSignal()"
       [rows]="tableRows"
@@ -56,13 +56,13 @@
           class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-bg-body-tertiary border-bottom-1 border g-4"
         >
           <div class="d-flex align-items-center gap-2">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:fact-check'"
               class="text-primary text-xl"
             />
             <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
           </div>
-          <app-table-caption [showAdd]="false" [dt]="dt" />
+          <lux-table-caption-web [showAdd]="false" [dt]="dt" />
         </div>
       </ng-template>
 
@@ -71,12 +71,12 @@
         <tr class="text-sm text-uppercase text-body bg-bg-body-tertiary">
           <th appSortableColumn="title" class="ps-4 py-3">
             <div class="d-flex align-items-center">
-              Requerimiento <app-sorticon field="title" />
+              Requerimiento <lux-sorticon-web field="title" />
             </div>
           </th>
           <th class="py-3">
             <div class="d-flex align-items-center">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:history'"
                 class="me-2"
               />
@@ -85,7 +85,7 @@
           </th>
           <th appSortableColumn="status" class="text-center pe-4 py-3">
             <div class="d-flex align-items-center justify-content-center">
-              Estatus <app-sorticon field="status" />
+              Estatus <lux-sorticon-web field="status" />
             </div>
           </th>
         </tr>
@@ -120,7 +120,7 @@
             >
               <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-2">
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:event-available'"
                     class="text-primary text-xs"
                   />
@@ -142,7 +142,7 @@
             <div
               class="d-flex align-items-center justify-content-center gap-2 text-body-secondary italic py-3 opacity-60"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:forum-outline'"
                 class="text-xl"
               />
@@ -173,7 +173,7 @@
               <div
                 class="rounded-circle bg-bg-body-tertiary p-5 d-flex align-items-center justify-content-center shadow-sm"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:task-alt'"
                   class="text-7xl text-primary opacity-50"
                 />
@@ -194,10 +194,10 @@
       <!-- FOOTER / PAGINADOR -->
       <ng-template #paginatorleft>
         <div class="d-flex align-items-center gap-3 py-2">
-          <app-table-footer [data]="dataSignal()" />
+          <lux-table-footer-web [data]="dataSignal()" />
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <!-- 📱 MOBILE -->

@@ -11,7 +11,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * AppAvatar — CSS propio. Prioridad image > label > icono (`app-icon`).
  */
 @Component({
-  selector: "app-avatar",
+  selector: "lux-avatar-web",
 
   imports: [AppIcon, NgClass],
   template: `
@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       } @else if (label()) {
         <span class="app-avatar-label">{{ label() }}</span>
       } @else if (icon()) {
-        <app-icon [icon]="icon()" />
+        <lux-icon [icon]="icon()" />
       }
     </div>
   `,

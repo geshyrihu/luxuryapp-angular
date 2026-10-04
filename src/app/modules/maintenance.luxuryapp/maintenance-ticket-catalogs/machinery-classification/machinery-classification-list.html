@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -24,7 +24,7 @@
       <th>#</th>
       <th appSortableColumn="descripcion">
         NOMBRE
-        <app-sorticon field="descripcion" />
+        <lux-sorticon-web field="descripcion" />
       </th>
 
       <th class="table-col-5"></th>
@@ -48,12 +48,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer-web [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -69,7 +69,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:hvac" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:hvac" class="text-xl text-primary" />
       </div>
       <div>
         <h2>{{ item.descripcion }}</h2>

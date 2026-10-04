@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table-web
     class="custom-table d-none d-md-block"
     #dt
     [value]="data()"
@@ -15,18 +15,18 @@
     [scrollHeight]="scrollHeight"
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" title="Listado de Fondeos SAT" />
+      <lux-table-caption-web [dt]="dt" title="Listado de Fondeos SAT" />
     </ng-template>
     <ng-template #header>
       <tr>
         <th appSortableColumn="periodDisplayName">
-          Perñodo <app-sorticon field="periodDisplayName" />
+          Perñodo <lux-sorticon-web field="periodDisplayName" />
         </th>
         <th appSortableColumn="invoiceCount">
-          # Facturas <app-sorticon field="invoiceCount" />
+          # Facturas <lux-sorticon-web field="invoiceCount" />
         </th>
         <th appSortableColumn="totalAmount">
-          Monto Total <app-sorticon field="totalAmount" />
+          Monto Total <lux-sorticon-web field="totalAmount" />
         </th>
         <th class="table-col-10rem"></th>
       </tr>
@@ -49,9 +49,9 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="4" />
+      <lux-table-empty-message-web [colspan]="4" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <app-data-view-mobile
@@ -62,7 +62,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:paid" class="text-xl text-green-500" />
+        <lux-icon icon="material-symbols-light:paid" class="text-xl text-green-500" />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.periodDisplayName }}</h3>

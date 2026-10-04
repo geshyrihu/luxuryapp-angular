@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         title="Bandeja de Aprobaciones"
         [showAdd]="false"
         [dt]="dt"
@@ -63,9 +63,9 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <app-data-view-mobile
@@ -79,7 +79,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:verified-outline"
           class="text-purple-600 text-xl"
         />

@@ -5,7 +5,7 @@
         <div
           class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:fact-check'"
             class="text-primary"
           />
@@ -27,7 +27,7 @@
         <div
           class="d-flex align-items-center gap-3 bg-body-tertiary rounded-lg border-1 border-100 p-3"
         >
-          <app-checkbox
+          <lux-checkbox-web
             [binary]="true"
             [checked]="task.isCompleted"
             (checkedChange)="onToggle(task, $event)"

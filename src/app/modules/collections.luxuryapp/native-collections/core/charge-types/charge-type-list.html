@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         title="Tipos de Cargo"
         (add)="onModalForm()"
         [dt]="dt"
@@ -56,14 +56,14 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message
+      <lux-table-empty-message-web
         [colspan]="5"
         icon="material-symbols-light:category"
         title="Sin tipos de cargo"
         message="Los tipos base aparecerán aquí y desde esta pantalla podrás agregar tipos personalizados."
       />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <app-data-view-mobile
@@ -77,7 +77,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:category"
           class="text-blue-700 text-xl"
         />

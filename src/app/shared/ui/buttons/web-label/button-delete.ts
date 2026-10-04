@@ -26,7 +26,7 @@ import { ConfirmService } from "../shared/confirm.service";
       [tooltipDisabled]="!tooltipText()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
       <span>{{ label() || "Eliminar" }}</span>
     </button>
   `,

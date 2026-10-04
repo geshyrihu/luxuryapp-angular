@@ -10,7 +10,7 @@
   </div>
   } @else {
   <div class="mt-4">
-    <app-table
+    <lux-table-web
       #dt
       [value]="pivotData()"
       dataKey="accountNumber"
@@ -25,7 +25,7 @@
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     >
       <ng-template #caption>
-        <app-table-caption [dt]="dt" [showAdd]="false" />
+        <lux-table-caption-web [dt]="dt" [showAdd]="false" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -35,7 +35,7 @@
             class="bg-bg-body-tertiary border-bottom-1 border"
             appSortableColumn="accountName"
           >
-            Cuenta / Depto <app-sorticon field="accountName" />
+            Cuenta / Depto <lux-sorticon-web field="accountName" />
           </th>
           @for (concept of activeConcepts(); track concept.id) {
           <th
@@ -122,7 +122,7 @@
           en <span class="text-success fw-bold">verde</span> (-)
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
 
     <div class="d-md-none">
       <app-data-view-mobile
@@ -136,7 +136,7 @@
               start
               class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             >
-              <app-icon icon="material-symbols-light:swap-horiz" />
+              <lux-icon icon="material-symbols-light:swap-horiz" />
             </div>
             <div class="flex-fill min-w-0 ion-text-wrap py-2">
               <p class="fw-semibold m-0 text-body">{{ row.accountName }}</p>

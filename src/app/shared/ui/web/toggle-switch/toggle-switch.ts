@@ -6,7 +6,7 @@ import {
 import { ToggleSwitchBase } from "@ui/core/toggle-switch.base";
 
 @Component({
-  selector: "app-toggle-switch",
+  selector: "lux-toggle-switch-web",
   template: `
     <div class="form-check form-switch app-toggle-switch">
       <input

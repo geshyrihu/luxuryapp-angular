@@ -59,7 +59,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
               <div
                 class="card-body d-flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:photo'"
                   class="text-6xl text-primary-400"
                 />

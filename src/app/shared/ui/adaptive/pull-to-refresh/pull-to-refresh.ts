@@ -18,9 +18,9 @@ import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-pull-to-refresh>
     } @else {
-      <app-pull-to-refresh (refresh)="refresh.emit()">
+      <lux-pull-to-refresh-web (refresh)="refresh.emit()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-pull-to-refresh>
+      </lux-pull-to-refresh-web>
     }
   `,
 })

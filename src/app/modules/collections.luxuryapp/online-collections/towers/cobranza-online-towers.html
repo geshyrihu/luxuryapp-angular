@@ -12,26 +12,26 @@
     <div class="text-sm text-body-secondary">Agrupacin de la deuda por cada torre del condominio.</div>
   </div>
   <div class="mb-4">
-    <app-table [value]="towers()" styleClass="p-datatable-sm hidden md:block">
+    <lux-table-web [value]="towers()" styleClass="p-datatable-sm hidden md:block">
       <ng-template #header>
         <tr>
           <th appSortableColumn="towerName">
-            Torre <app-sorticon field="towerName" />
+            Torre <lux-sorticon-web field="towerName" />
           </th>
           <th class="text-end" appSortableColumn="departmentCount">
-            Deptos. <app-sorticon field="departmentCount" />
+            Deptos. <lux-sorticon-web field="departmentCount" />
           </th>
           <th class="text-end" appSortableColumn="maintenanceBalance">
-            Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
+            Adeudo Mtto. <lux-sorticon-web field="maintenanceBalance" />
           </th>
           <th class="text-end" appSortableColumn="extraordinaryBalance">
-            Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
+            Adeudo Ext. <lux-sorticon-web field="extraordinaryBalance" />
           </th>
           <th class="text-end" appSortableColumn="finesBalance">
-            Multas <app-sorticon field="finesBalance" />
+            Multas <lux-sorticon-web field="finesBalance" />
           </th>
           <th class="text-end" appSortableColumn="totalBalance">
-            Total Adeudo <app-sorticon field="totalBalance" />
+            Total Adeudo <lux-sorticon-web field="totalBalance" />
           </th>
         </tr>
       </ng-template>
@@ -73,7 +73,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
 
     <div class="d-md-none">
       <app-data-view-mobile [data]="towers()" [showAdd]="false">
@@ -83,7 +83,7 @@
               start
               class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             >
-              <app-icon icon="material-symbols-light:location-city" />
+              <lux-icon icon="material-symbols-light:location-city" />
             </div>
             <div class="flex-fill min-w-0 ion-text-wrap">
               <p class="fw-semibold m-0 text-body">{{ row.towerName }}</p>

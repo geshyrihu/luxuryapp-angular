@@ -2,14 +2,14 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields"
       [value]="dataSignal()"
       #dt
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
         />
@@ -19,7 +19,7 @@
           <th>Imagen</th>
           <th appSortableColumn="name">
             Nombre
-            <app-sorticon field="name" />
+            <lux-sorticon-web field="name" />
           </th>
           <th>Ubicación</th>
           <th>Volumen</th>
@@ -30,7 +30,7 @@
         <tr>
           <td class="text-center">
             <div class="d-flex">
-              <app-image
+              <lux-image-web
                 [src]="
                   item.pathImage
                     ? item.pathImage
@@ -40,7 +40,7 @@
                 width="50"
                 styleClass="mr-2"
                 [preview]="true"
-              ></app-image>
+              ></lux-image-web>
               @if (!item.pathImage) {
               <img src="assets/images/default-avatar.png" alt="" width="50" />
               }
@@ -73,9 +73,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message-web [colspan]="5" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -94,7 +94,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon icon="material-symbols-light:pool" />
+            <lux-icon icon="material-symbols-light:pool" />
           </div>
 
           <h2 class="fw-bold m-0 text-base">{{ item.name }}</h2>

@@ -7,7 +7,7 @@ import {
 import { PanelBase } from "@ui/core/panel.base";
 
 @Component({
-  selector: "app-panel",
+  selector: "lux-panel-web",
 
   imports: [],
   template: `

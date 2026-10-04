@@ -13,7 +13,7 @@ export interface DashboardWidget {
 }
 
 @Component({
-  selector: "app-dashboard-layout",
+  selector: "lux-dashboard-layout-web",
 
   imports: [],
   template: `

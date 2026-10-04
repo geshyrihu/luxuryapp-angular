@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       (onSort)="onSort()"
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
@@ -17,7 +17,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           [title]="'Inventario'"
           (add)="addProductos({ id: 0, title: 'Agregar Registro' })"
           [dt]="dt"
@@ -36,27 +36,27 @@
         <tr>
           <th appSortableColumn="producto.nombreProducto">
             Producto
-            <app-sorticon field="producto.nombreProducto" />
+            <lux-sorticon-web field="producto.nombreProducto" />
           </th>
           <th appSortableColumn="existencia">
             Existencia
-            <app-sorticon field="existencia" />
+            <lux-sorticon-web field="existencia" />
           </th>
           <th appSortableColumn="unidadDeMedida.descripcion">
             Unidad
-            <app-sorticon field="unidadDeMedida.descripcion" />
+            <lux-sorticon-web field="unidadDeMedida.descripcion" />
           </th>
           <th appSortableColumn="stockMin">
             Stock Min
-            <app-sorticon field="stockMin" />
+            <lux-sorticon-web field="stockMin" />
           </th>
           <th appSortableColumn="stockMax">
             Stock Max
-            <app-sorticon field="stockMax" />
+            <lux-sorticon-web field="stockMax" />
           </th>
           <th appSortableColumn="compraRequerida">
             Compra Sugerida
-            <app-sorticon field="compraRequerida" />
+            <lux-sorticon-web field="compraRequerida" />
           </th>
           @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario ])() ) {
@@ -78,7 +78,7 @@
               (click)="onModalTarjetaProducto(item.productoId)"
               class="pointer"
             >
-              <app-avatar [image]="item.urlImagen" alt="..." size="xlarge" />
+              <lux-avatar-web [image]="item.urlImagen" alt="..." size="xlarge" />
               {{ item.producto }}
             </small>
           </td>
@@ -122,9 +122,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="7" />
+        <lux-table-empty-message-web [colspan]="7" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -138,7 +138,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div slot="start">
-        <app-avatar
+        <lux-avatar-web
           [image]="item.urlImagen"
           [alt]="item.producto"
           size="large"

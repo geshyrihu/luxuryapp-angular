@@ -12,7 +12,7 @@ import { EditorBase } from "@ui/core/editor.base";
 import { Editor, NgxEditorModule } from "ngx-editor";
 
 @Component({
-  selector: "app-editor",
+  selector: "lux-editor-web",
 
   imports: [FormsModule, NgxEditorModule, NgClass],
   template: `

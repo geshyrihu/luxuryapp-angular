@@ -13,7 +13,7 @@ import { ChartJsData, chartJsToCartesianData, chartJsToCartesianOption, dsThemeT
  * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`.
  */
 @Component({
-  selector: "app-custom-bar-chart",
+  selector: "lux-custom-bar-chart-web",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,

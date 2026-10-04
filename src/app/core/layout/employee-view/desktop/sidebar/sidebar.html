@@ -12,12 +12,12 @@
         <!-- Avatar Section (2/12) -->
         <div class="col-4 d-flex align-items-center justify-content-center">
           <div class="relative d-inline-flex">
-            <app-avatar
+            <lux-avatar-web
               [image]="profileImageUrl || 'assets/images/default-avatar.png'"
               size="large"
               shape="square"
               styleClass="rounded-lg border-2 border-transparent shadow"
-            ></app-avatar>
+            ></lux-avatar-web>
             <!-- Online Indicator -->
             <span class="online-indicator"></span>
           </div>
@@ -66,7 +66,7 @@
         ></ng-container>
       </ul>
 
-      <app-divider></app-divider>
+      <lux-divider-web></lux-divider-web>
       }
 
       <!-- Main List: STRICT Custom Classes -->
@@ -78,7 +78,7 @@
 
       } @else {
       <div class="d-flex justify-content-center align-items-center h-full">
-        <app-spinner [size]="80" [strokeWidth]="8" />
+        <lux-spinner-web [size]="80" [strokeWidth]="8" />
       </div>
       }
     </div>
@@ -104,14 +104,14 @@
     >
       <div class="d-flex align-items-center overflow-hidden min-w-0">
         @if(item.icon) {
-        <app-icon [icon]="item.icon" class="me-3 text-xl opacity-80" />
+        <lux-icon [icon]="item.icon" class="me-3 text-xl opacity-80" />
         }
         <span class="text-nowrap overflow-hidden text-truncate">
           {{ item.label }}
         </span>
       </div>
 
-      <app-icon
+      <lux-icon
         [icon]="item.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'"
         class="text-sm opacity-70 ms-2"
       />
@@ -135,7 +135,7 @@
       routerLinkActive="active-link"
     >
       @if(item.icon) {
-      <app-icon [icon]="item.icon" class="me-3 text-xl opacity-80" />
+      <lux-icon [icon]="item.icon" class="me-3 text-xl opacity-80" />
       }
       <span
         class="text-nowrap overflow-hidden text-truncate d-block"

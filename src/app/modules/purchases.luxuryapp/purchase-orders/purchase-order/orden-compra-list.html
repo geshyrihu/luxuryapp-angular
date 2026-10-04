@@ -1,6 +1,6 @@
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -53,7 +53,7 @@
           {{ customTitle() }}
         </h4>
         <div class="w-full sm:w-auto">
-          <app-table-caption
+          <lux-table-caption-web
             (add)="onModalAdd()"
             [dt]="dt"
             [noPadding]="true"
@@ -126,37 +126,37 @@
     <tr>
       <th appSortableColumn="folio">
         IDENTIFICADORES
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th appSortableColumn="fechaSolicitud">
         SEGUIMIENTO
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th appSortableColumn="equipoOInstalacion">
         DESCRIPCIÓN
-        <app-sorticon field="equipoOInstalacion" />
+        <lux-sorticon-web field="equipoOInstalacion" />
       </th>
       <th appSortableColumn="justificacionGasto">
         PARTIDA PRESUPUESTAL
-        <app-sorticon field="justificacionGasto" />
+        <lux-sorticon-web field="justificacionGasto" />
       </th>
       <th appSortableColumn="proveedor">
         Proveedor
-        <app-sorticon field="proveedor" />
+        <lux-sorticon-web field="proveedor" />
       </th>
       <th appSortableColumn="total">
         Total
-        <app-sorticon field="total" />
+        <lux-sorticon-web field="total" />
       </th>
       @if (statusCompra() === 1) {
       <th appSortableColumn="observaciones">
         Observaciones
-        <app-sorticon field="observaciones" />
+        <lux-sorticon-web field="observaciones" />
       </th>
       } @if (this.statusCompra() === 0) {
       <th appSortableColumn="fullName">
         Autoriza
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       }
       <th class="text-center">ACCIONES</th>
@@ -179,7 +179,7 @@
         }
         <br />
         <span class="text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />
@@ -224,7 +224,7 @@
       </td>
       }
       <td class="no-print oc-cell-actions text-center">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-item
               iconClass="material-symbols-light:fullscreen"
@@ -258,17 +258,17 @@
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer-web [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="data()"
@@ -348,7 +348,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:shopping-bag'"
           class="text-xl text-yellow-700"
         />

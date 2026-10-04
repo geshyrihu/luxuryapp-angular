@@ -1,38 +1,38 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
     <tr>
       <th appSortableColumn="executionDate">
         Fecha
-        <app-sorticon field="executionDate" />
+        <lux-sorticon-web field="executionDate" />
       </th>
       <th appSortableColumn="typeMaintance">
         Tipo de mantenimiento
-        <app-sorticon field="typeMaintance" />
+        <lux-sorticon-web field="typeMaintance" />
       </th>
       <th appSortableColumn="recurrence">
         Frecuencia
-        <app-sorticon field="recurrence" />
+        <lux-sorticon-web field="recurrence" />
       </th>
       <th appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
       <th appSortableColumn="price">
         Costo
-        <app-sorticon field="price" />
+        <lux-sorticon-web field="price" />
       </th>
       <th appSortableColumn="employeeResponsable">
         Superviso
-        <app-sorticon field="employeeResponsable" />
+        <lux-sorticon-web field="employeeResponsable" />
       </th>
       <th></th>
     </tr>
@@ -64,6 +64,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
-</app-table>
+</lux-table-web>

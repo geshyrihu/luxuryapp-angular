@@ -1,7 +1,7 @@
 <div>
   <div class="d-none d-md-block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -29,7 +29,7 @@
 
           <!-- DERECHA: Buscador, Agregar e Imprimir -->
           <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-            <app-table-caption
+            <lux-table-caption-web
               (add)="onModalAdd({ id: '', title: 'Agregar' })"
               [dt]="dt"
               [noPadding]="true"
@@ -73,7 +73,7 @@
             <p class="m-0 text-xs text-body-secondary">{{ item.createdAtDate }}</p>
           </td>
           <td class="text-center d-none md:table-cell">
-            <app-avatar
+            <lux-avatar-web
               (click)="onCardEmployee(item.creatorId)"
               [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
               alt="Creador"
@@ -91,7 +91,7 @@
           </td>
           <td class="text-center d-none md:table-cell">
             @if (item.beforeWork) {
-            <app-image
+            <lux-image-web
               [src]="item.beforeWork"
               alt="."
               width="40"
@@ -125,7 +125,7 @@
                 lxTooltip="Seguimientos"
                 tooltipPosition="top"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:forum'"
                   class="text-blue-500"
                 />
@@ -133,7 +133,7 @@
                   >{{ item.ticketMessageFollowUp }}</span
                 >
               </a>
-              <app-action-menu>
+              <lux-action-menu-web>
                 <ng-container actions>
                   @if (item.status !== "Completed") {
                   <il-button-item
@@ -167,15 +167,15 @@
                   />
                   }
                 </ng-container>
-              </app-action-menu>
+              </lux-action-menu-web>
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="19" />
+        <lux-table-empty-message-web [colspan]="19" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
     }
   </div>
 
@@ -192,7 +192,7 @@
       <ng-template #listItemTemplate let-item>
         <ili-list-item alignTop="true" class="w-full">
           <div slot="start">
-            <app-avatar
+            <lux-avatar-web
               [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
               [alt]="item.title"
               size="large"

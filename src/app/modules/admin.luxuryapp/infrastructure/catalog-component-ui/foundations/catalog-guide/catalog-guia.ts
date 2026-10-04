@@ -275,7 +275,7 @@ export class CatalogGuia {
     },
     {
       family: "Acciones contextuales",
-      selector: "app-action-menu",
+      selector: "lux-action-menu-web",
       source: "core/components/action-menu",
       useCase: "Menu de acciones por fila con Bootstrap Popover.",
       preferredFor: "Mas de dos acciones secundarias.",

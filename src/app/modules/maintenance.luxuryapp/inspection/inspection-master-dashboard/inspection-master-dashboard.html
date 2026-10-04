@@ -5,7 +5,7 @@
       <div
         class="bg-primary text-white p-2 rounded d-flex align-items-center justify-content-center shadow-sm"
       >
-        <app-icon icon="material-symbols-light:fact-check" class="text-2xl" />
+        <lux-icon icon="material-symbols-light:fact-check" class="text-2xl" />
       </div>
       <div>
         <h1 class="text-3xl fw-bold text-body m-0">Inspecciones</h1>
@@ -20,7 +20,7 @@
     <ng-template #content>
       <div class="d-flex align-items-start gap-3">
         <div class="bg-info-light text-info p-2 rounded d-flex">
-          <app-icon icon="material-symbols-light:info" class="text-xl" />
+          <lux-icon icon="material-symbols-light:info" class="text-xl" />
         </div>
         <div>
           <h2 class="text-lg fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
@@ -39,7 +39,7 @@
 
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <app-icon [icon]="group.icon" class="text-secondary" />
+    <lux-icon [icon]="group.icon" class="text-secondary" />
     <h2
       class="text-lg fw-bold text-body m-0 text-uppercase tracking-wider text-sm text-secondary"
     >
@@ -62,13 +62,13 @@
                 class="d-flex align-items-center justify-content-center rounded p-2 flex-shrink-0"
                 [style.backgroundColor]="module.bgColor"
               >
-                <app-icon
+                <lux-icon
                   [icon]="module.icon"
                   [style.color]="module.color"
                   class="text-xl"
                 />
               </div>
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:north-east"
                 class="text-secondary"
               />
@@ -96,7 +96,7 @@
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <app-icon icon="material-symbols-light:fact-check" />
+      <lux-icon icon="material-symbols-light:fact-check" />
     </div>
     <div>
       <h2 class="fw-bold m-0 text-body">Inspecciones</h2>
@@ -106,7 +106,7 @@
 
   <div class="card p-3 m-3">
     <div class="d-flex align-items-start gap-2">
-      <app-icon icon="material-symbols-light:info" class="text-primary-600" />
+      <lux-icon icon="material-symbols-light:info" class="text-primary-600" />
       <div>
         <h2 class="text-base fw-bold text-body m-0">¿Qué es un Recorrido?</h2>
         <p class="text-xs text-body-secondary m-0 mt-1 line-height-3">
@@ -122,7 +122,7 @@
   <div>
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <app-icon [icon]="group.icon" />
+        <lux-icon [icon]="group.icon" />
         <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
@@ -134,7 +134,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         [style.backgroundColor]="module.bgColor"
       >
-        <app-icon [icon]="module.icon" [style.color]="module.color" />
+        <lux-icon [icon]="module.icon" [style.color]="module.color" />
       </div>
       <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
       <p class="text-xs m-0 mt-1 text-body-secondary">

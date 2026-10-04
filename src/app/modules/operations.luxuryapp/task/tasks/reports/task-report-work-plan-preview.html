@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -12,7 +12,7 @@
   class="custom-table"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     <div class="row g-4">
       <div class="col-12 col-lg-2">
         <custom-input-text-signal
@@ -47,7 +47,7 @@
         appSortableColumn="responsibleArea"
       >
         SOLICITUD
-        <app-sorticon field="responsibleArea" />
+        <lux-sorticon-web field="responsibleArea" />
       </th>
       <th class="font-size-12">EVIDENCIA</th>
       <th
@@ -56,7 +56,7 @@
         appSortableColumn="responsableNombre"
       >
         ASIGNADO A
-        <app-sorticon field="responsableNombre" />
+        <lux-sorticon-web field="responsableNombre" />
       </th>
       <th
         class="table-col-10"
@@ -64,7 +64,7 @@
         appSortableColumn="scheduledAtFilter"
       >
         PROGRAMADO
-        <app-sorticon field="scheduledAtFilter" />
+        <lux-sorticon-web field="scheduledAtFilter" />
       </th>
       <th
         class="table-col-10"
@@ -72,7 +72,7 @@
         appSortableColumn="daysDifference"
       >
         DIAS
-        <app-sorticon field="daysDifference" />
+        <lux-sorticon-web field="daysDifference" />
       </th>
     </tr>
   </ng-template>
@@ -86,7 +86,7 @@
       <td class="text-center">
         <div class="d-flex justify-content-center align-items-center">
           @if (item.beforeWork) {
-          <app-image
+          <lux-image-web
             [src]="
                   item.beforeWork
                     ? item.beforeWork
@@ -96,7 +96,7 @@
             width="40"
             styleClass="mr-2 border border-danger"
             [preview]="true"
-          ></app-image>
+          ></lux-image-web>
           }
         </div>
       </td>
@@ -124,5 +124,5 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }

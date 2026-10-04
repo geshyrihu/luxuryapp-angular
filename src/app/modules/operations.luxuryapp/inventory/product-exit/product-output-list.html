@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [lazy]="true"
     (onLazyLoad)="loadDataLazy($event)"
@@ -72,27 +72,27 @@
       <tr>
         <th appSortableColumn="fechaSalida">
           Fecha Salida
-          <app-sorticon field="fechaSalida" />
+          <lux-sorticon-web field="fechaSalida" />
         </th>
         <th appSortableColumn="producto">
           Producto
-          <app-sorticon field="producto" />
+          <lux-sorticon-web field="producto" />
         </th>
         <th appSortableColumn="cantidad">
           Cantidad
-          <app-sorticon field="cantidad" />
+          <lux-sorticon-web field="cantidad" />
         </th>
         <th appSortableColumn="unidadMedida">
           Unidad
-          <app-sorticon field="unidadMedida" />
+          <lux-sorticon-web field="unidadMedida" />
         </th>
         <th appSortableColumn="quienUso">
           Recibio
-          <app-sorticon field="quienUso" />
+          <lux-sorticon-web field="quienUso" />
         </th>
         <th appSortableColumn="usoPrducto">
           Uso
-          <app-sorticon field="usoPrducto" />
+          <lux-sorticon-web field="usoPrducto" />
         </th>
         @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
         <th class="table-col-5"></th>
@@ -137,12 +137,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message-web [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
@@ -156,7 +156,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:download" />
+        <lux-icon icon="material-symbols-light:download" />
       </div>
 
       <div class="d-flex flex-column">

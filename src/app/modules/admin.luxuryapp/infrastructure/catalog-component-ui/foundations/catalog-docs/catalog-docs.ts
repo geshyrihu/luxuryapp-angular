@@ -36,7 +36,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     [style.background]="doc.colorToken"
                   >
                     <strong>{{ doc.codigo }}</strong>
-                    <app-tag
+                    <lux-tag-web
                       [value]="doc.confidencialidad"
                       [severity]="doc.severity"
                     ></p-tag>
@@ -72,7 +72,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
                 >
               </div>
-              <app-table [value]="camposNomenclatura" class="p-datatable-sm">
+              <lux-table-web [value]="camposNomenclatura" class="p-datatable-sm">
                 <ng-template #header
                   ><tr>
                     <th>Campo</th>
@@ -87,7 +87,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     <td class="text-xs">{{ row.valores }}</td>
                   </tr></ng-template
                 >
-              </app-table>
+              </lux-table-web>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
               <span class="card-title">Matriz de Acceso por Rol</span>
             </div>
             <div class="card-body">
-              <app-table
+              <lux-table-web
                 [value]="matrizAcceso"
                 [scrollable]="true"
                 scrollHeight="300px"
@@ -118,38 +118,38 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   <tr>
                     <td class="text-xs font-bold">{{ row.documento }}</td>
                     <td>
-                      <app-tag
+                      <lux-tag-web
                         [value]="row.superUsuario"
                         [severity]="getColorAcceso(row.superUsuario)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag-web
                         [value]="row.direccion"
                         [severity]="getColorAcceso(row.direccion)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag-web
                         [value]="row.staff"
                         [severity]="getColorAcceso(row.staff)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag-web
                         [value]="row.condomino"
                         [severity]="getColorAcceso(row.condomino)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag-web
                         [value]="row.proveedor"
                         [severity]="getColorAcceso(row.proveedor)"
                       />
                     </td>
                   </tr>
                 </ng-template>
-              </app-table>
+              </lux-table-web>
             </div>
           </div>
         </div>

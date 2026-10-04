@@ -19,7 +19,7 @@
 />
 } @else {
 <div class="card">
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -38,7 +38,7 @@
       >
         <!-- Parte Izquierda: Título y bósqueda -->
         <div class="flex-grow-1">
-          <app-table-caption
+          <lux-table-caption-web
             (add)="onModalForm('', 'Crear Cuenta')"
             [dt]="dt"
             [noPadding]="true"
@@ -88,19 +88,19 @@
       <tr>
         <th class="table-col-30" appSortableColumn="fullName">
           NOMBRE
-          <app-sorticon field="fullName" />
+          <lux-sorticon-web field="fullName" />
         </th>
         <th class="table-col-25" appSortableColumn="customer">
           CLIENTE
-          <app-sorticon field="customer" />
+          <lux-sorticon-web field="customer" />
         </th>
         <th class="table-col-25" appSortableColumn="userName">
           USUARIO / PUESTO DE TRABAJO
-          <app-sorticon field="userName" />
+          <lux-sorticon-web field="userName" />
         </th>
         <th class="table-col-25" appSortableColumn="email">
           CORREO
-          <app-sorticon field="email" />
+          <lux-sorticon-web field="email" />
         </th>
         <th class="table-col-15">Télefono</th>
         <th class="table-col-5"></th>
@@ -162,11 +162,11 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 } }

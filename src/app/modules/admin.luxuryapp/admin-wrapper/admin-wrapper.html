@@ -6,7 +6,7 @@
       <div
         class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
       >
-        <app-icon icon="material-symbols-light:settings-outline" />
+        <lux-icon icon="material-symbols-light:settings-outline" />
       </div>
       <div>
         <h1 class="ds-heading text-3xl fw-bold text-body m-0">
@@ -23,7 +23,7 @@
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <app-icon [icon]="group.icon" />
+    <lux-icon [icon]="group.icon" />
     <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
       {{ group.label }}
     </h2>
@@ -44,7 +44,7 @@
       >
         <!-- Watermark Decorativo sutil a la derecha -->
         <div class="position-absolute" style="right: -15px; bottom: -20px; opacity: 0.04; transform: rotate(-15deg); pointer-events: none;">
-          <app-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 8rem;" />
+          <lux-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 8rem;" />
         </div>
 
         <!-- Contenedor Horizontal (Flex Row) -->
@@ -55,7 +55,7 @@
             [style.backgroundColor]="module.bgColor"
             style="width: 64px; height: 64px;"
           >
-            <app-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 2.25rem;" />
+            <lux-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 2.25rem;" />
           </div>
           
           <!-- Columna Derecha: Textos -->
@@ -82,7 +82,7 @@
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <app-icon icon="material-symbols-light:settings-outline" />
+      <lux-icon icon="material-symbols-light:settings-outline" />
     </div>
     <div>
       <h2 class="fw-bold m-0 text-body">Administración</h2>
@@ -96,14 +96,14 @@
     <!-- Divisor de grupo -->
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <app-icon [icon]="group.icon" />
+        <lux-icon [icon]="group.icon" />
         <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
 
     @for (module of group.cards; track module.route) {
     <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
-      <app-icon
+      <lux-icon
         slot="start"
         [icon]="module.icon"
         [style.color]="module.color"

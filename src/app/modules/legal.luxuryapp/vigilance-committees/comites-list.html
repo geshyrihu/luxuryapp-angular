@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,29 +13,29 @@
   scrollHeight="750px"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption-web [dt]="dt" [showAdd]="false" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th appSortableColumn="customerName">
         Condominio
-        <app-sorticon field="customerName" />
+        <lux-sorticon-web field="customerName" />
       </th>
       <th appSortableColumn="posicionComite">
         Cargo
-        <app-sorticon field="posicionComite" />
+        <lux-sorticon-web field="posicionComite" />
       </th>
       <th appSortableColumn="fullName">
         Nombre
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       <th appSortableColumn="email">
         Email
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       <th appSortableColumn="phoneNumber">
         Telefono
-        <app-sorticon field="phoneNumber" />
+        <lux-sorticon-web field="phoneNumber" />
       </th>
     </tr>
   </ng-template>
@@ -49,12 +49,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message-web [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="flatData()" />
+    <lux-table-footer-web [data]="flatData()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="flatData()"
@@ -70,7 +70,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-xl text-primary"
         />

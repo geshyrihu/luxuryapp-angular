@@ -8,7 +8,7 @@ import {
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 
 @Component({
-  selector: "app-funnel-chart",
+  selector: "lux-funnel-chart-web",
 
   imports: [ChartWrapper],
   template: `
@@ -16,7 +16,7 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
       @if (title()) {
         <strong class="funnel-title">{{ title() }}</strong>
       }
-      <app-chart-wrapper
+      <lux-chart-wrapper-web
         type="bar"
         [data]="chartData()"
         [options]="chartOptions()"

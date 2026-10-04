@@ -19,7 +19,7 @@ export interface TourStep {
 }
 
 @Component({
-  selector: "app-tour",
+  selector: "lux-tour",
 
   imports: [AppIcon],
   template: `
@@ -33,7 +33,7 @@ export interface TourStep {
       >
         <div class="tour-header">
           @if (currentStep().icon) {
-            <app-icon [icon]="currentStep().icon!" class="tour-step-icon" />
+            <lux-icon [icon]="currentStep().icon!" class="tour-step-icon" />
           }
           <strong class="tour-step-title">{{ currentStep().title }}</strong>
         </div>
@@ -61,7 +61,7 @@ export interface TourStep {
 
             @if (currentIndex() > 0) {
               <button class="tour-btn tour-btn-ghost" (click)="prev()">
-                <app-icon icon="material-symbols-light:chevron-left" />
+                <lux-icon icon="material-symbols-light:chevron-left" />
                 Anterior
               </button>
             }
@@ -73,7 +73,7 @@ export interface TourStep {
             } @else {
               <button class="tour-btn tour-btn-primary" (click)="next()">
                 Siguiente
-                <app-icon icon="material-symbols-light:chevron-right" />
+                <lux-icon icon="material-symbols-light:chevron-right" />
               </button>
             }
           </div>

@@ -2,7 +2,7 @@
 <!-- ??? Pantallas medianas y grandes -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -16,7 +16,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
           [dt]="dt"
         />
@@ -42,7 +42,7 @@
           <td>{{ item.title }}</td>
           <td class="text-center">
             @if (item.description && item.description.length > 0) {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:book'"
               class="icon-xl cursor-pointer"
               (click)="onModalViewDetail({ id: item.id })"
@@ -81,12 +81,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="9" />
+        <lux-table-empty-message-web [colspan]="9" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer-web [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -105,7 +105,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:confirmation-number"
               class="text-xl text-primary"
             />

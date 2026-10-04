@@ -41,7 +41,7 @@
   </form>
 </div>
 
-<app-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+<lux-table-web [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -71,4 +71,4 @@
       <td colspan="5" class="text-center text-body-secondary py-4">Sin visitantes registrados.</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

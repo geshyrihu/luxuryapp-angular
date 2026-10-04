@@ -31,7 +31,7 @@ export interface BreakdownItem {
  * cubren el 100% (por ejemplo, si una clasificación queda fuera del reporte).
  *
  * ```html
- * <app-breakdown-list
+ * <lux-breakdown-list
  *   [items]="filas()"
  *   [total]="cobranzaPerfecta()"
  *   format="currency"
@@ -39,7 +39,7 @@ export interface BreakdownItem {
  * ```
  */
 @Component({
-  selector: "app-breakdown-list",
+  selector: "lux-breakdown-list",
   template: `
     @if (showSummaryBar() && segments().length) {
       <div

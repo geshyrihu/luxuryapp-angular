@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -19,7 +19,7 @@
           tooltip="Reporte PDF por rango de fecha"
         />
       </div>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
         [dt]="dt"
       />
@@ -27,7 +27,7 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <lux-sorticon-web field="date" /></th>
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Sin Obstr.</th>
       <th class="table-col-10">Sin Contam.</th>
@@ -43,7 +43,7 @@
       <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noObstructions ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noObstructions"
@@ -51,7 +51,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noContamination ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noContamination"
@@ -59,7 +59,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"
@@ -67,7 +67,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.ledStatusOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.ledStatusOk"
@@ -75,7 +75,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.mountingSecure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.mountingSecure"
@@ -94,12 +94,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -113,7 +113,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-yellow-100"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:detector-alarm"
           class="text-xl text-yellow-500"
         />

@@ -7,7 +7,7 @@ import {
 import { SkeletonBase } from "@ui/core/skeleton.base";
 
 @Component({
-  selector: "app-skeleton",
+  selector: "lux-skeleton-web",
 
   imports: [NgClass],
   template: `

@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -11,7 +11,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption-web [dt]="dt" [showAdd]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -19,27 +19,27 @@
       <th></th>
       <th appSortableColumn="creationAt">
         Fecha
-        <app-sorticon field="creationAt" />
+        <lux-sorticon-web field="creationAt" />
       </th>
       <th appSortableColumn="description">
         DESCRIPCIÓN
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
       <th appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
       <th appSortableColumn="accountNumber">
         Cuenta
-        <app-sorticon field="accountNumber" />
+        <lux-sorticon-web field="accountNumber" />
       </th>
       <th appSortableColumn="tipoGasto">
         Tipo Gasto
-        <app-sorticon field="tipoGasto" />
+        <lux-sorticon-web field="tipoGasto" />
       </th>
       <th appSortableColumn="amount" class="text-end">
         Monto
-        <app-sorticon field="amount" />
+        <lux-sorticon-web field="amount" />
       </th>
       <th>Factura</th>
     </tr>
@@ -51,7 +51,7 @@
         class="text-center pointer"
         (click)="onShowPurchaseDetails(item.ordenCompraId)"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:edit'"
           class="text-body-secondary"
         />
@@ -93,7 +93,7 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
     <tr>
@@ -108,7 +108,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- NOTA: Se ha eliminado el (add) para que sea una vista de solo lectura. -->
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
@@ -125,7 +125,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:format-list-bulleted"
           class="text-xl text-primary"
         />

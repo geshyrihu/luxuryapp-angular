@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
       [rows]="tableRows"
@@ -22,7 +22,7 @@
             tooltipPosition="top"
             tooltip="Descargar listado de llamadas de emergencia"
           />
-          <app-table-caption
+          <lux-table-caption-web
             (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
             [dt]="dt"
           />
@@ -33,31 +33,31 @@
         <tr>
           <th appSortableColumn="requestDateFilter">
             FECHA
-            <app-sorticon field="requestDateFilter" />
+            <lux-sorticon-web field="requestDateFilter" />
           </th>
           <th appSortableColumn="machinery">
             EQUIPO
-            <app-sorticon field="machinery" />
+            <lux-sorticon-web field="machinery" />
           </th>
           <th appSortableColumn="folio">
             FOLIO
-            <app-sorticon field="folio" />
+            <lux-sorticon-web field="folio" />
           </th>
           <th appSortableColumn="report">
             REPORTE
-            <app-sorticon field="report" />
+            <lux-sorticon-web field="report" />
           </th>
           <th appSortableColumn="request">
             RESPUESTA
-            <app-sorticon field="request" />
+            <lux-sorticon-web field="request" />
           </th>
           <th appSortableColumn="personWhoReports">
             REPORTO
-            <app-sorticon field="personWhoReports" />
+            <lux-sorticon-web field="personWhoReports" />
           </th>
           <th appSortableColumn="technicianWhoAttended">
             ATENDIO
-            <app-sorticon field="technicianWhoAttended" />
+            <lux-sorticon-web field="technicianWhoAttended" />
           </th>
 
           <th class="table-col-5 no-print"></th>
@@ -86,12 +86,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="8" />
+        <lux-table-empty-message-web [colspan]="8" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer-web [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -118,7 +118,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:elevator-outline"
           class="text-xl text-primary"
         />
@@ -128,14 +128,14 @@
         <h2 class="fw-bold m-0 text-base text-wrap">{{ item.machinery }}</h2>
       </div>
       <p class="text-sm text-body-secondary m-0">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:currency-pound'"
           class="me-1 text-xs"
         />
         Folio: {{ item.folio }}
       </p>
       <p class="text-sm text-body-secondary m-0">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:calendar-today'"
           class="me-1 text-xs"
         />

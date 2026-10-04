@@ -16,7 +16,7 @@ export type TriState = true | false | null;
  * Diferente de CustomInputSwitch que solo maneja boolean.
  */
 @Component({
-  selector: "app-tristate-switch",
+  selector: "lux-tristate-switch",
 
   imports: [NgClass],
   template: `

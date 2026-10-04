@@ -6,7 +6,7 @@ import { PieChart } from "@ui/web/charts/pie-chart";
 
   imports: [PieChart],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <app-pie-chart [dataGrafico]="data()"></app-pie-chart> `,
+  template: ` <lux-pie-chart-web [dataGrafico]="data()"></lux-pie-chart-web> `,
 })
 export class ChartPie {
   data = input<any[]>([]);

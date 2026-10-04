@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -6,7 +6,7 @@
   [loading]="loading()"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
       [showSearch]="dataSignal().length > 0"
       [dt]="dt"
@@ -46,10 +46,10 @@
 
   @if (dataSignal().length === 0) {
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
   }
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -63,7 +63,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:medical-services"
           
         />

@@ -13,7 +13,7 @@ import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "@core/services/global-table-filter.service";
 
 @Component({
-  selector: "app-table-caption",
+  selector: "lux-table-caption-web",
   templateUrl: "./table-caption.html",
   imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,

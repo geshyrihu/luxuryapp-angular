@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -10,7 +10,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption-web [dt]="dt" [showAdd]="false" />
 
     <iw-button-item
       (clicked)="onFaqsFondeo()"
@@ -23,7 +23,7 @@
     <tr>
       <th class="table-col-17" appSortableColumn="period">
         Periodo
-        <app-sorticon field="period" />
+        <lux-sorticon-web field="period" />
       </th>
       <th class="table-col-20">Genero</th>
       <th class="table-col-20">Verifico</th>
@@ -80,28 +80,28 @@
       </td>
 
       <td class="no-print">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:arrow-forward'"
           class="icon icon- icon-xl pointer"
           (click)="onDetails(item.id)"
         />
-        <!-- <app-action-menu>
+        <!-- <lux-action-menu-web>
           <ng-container actions>
             <il-button-item
               (clicked)="onDetails(item.id)"
               label="?? Detalles"/>
             </ng-container>
-          </app-action-menu> -->
+          </lux-action-menu-web> -->
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -111,7 +111,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item class="ion-no-padding" (click)="onDetails(item.id)">
       <div start>
-        <app-icon icon="material-symbols-light:calculate" />
+        <lux-icon icon="material-symbols-light:calculate" />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.period }}</h3>

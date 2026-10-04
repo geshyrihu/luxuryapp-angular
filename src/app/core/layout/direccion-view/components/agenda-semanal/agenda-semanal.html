@@ -3,7 +3,7 @@
   class="d-flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
 >
   <div class="d-flex align-items-center gap-2">
-    <app-icon icon="material-symbols-light:calendar-today" class="text-primary text-xl" />
+    <lux-icon icon="material-symbols-light:calendar-today" class="text-primary text-xl" />
     <span class="fw-bold text-lg text-body">Agenda</span>
     @if (totalEventos() > 0) {
     <span class="text-xs bg-body-tertiary text-body-secondary rounded px-2 py-1">
@@ -56,7 +56,7 @@
 <!-- Cargando -->
 @if (cargando()) {
 <div class="d-flex justify-content-center align-items-center py-5">
-  <app-icon
+  <lux-icon
     icon="material-symbols-light:progress-activity"
     class="pi-spin text-primary"
     style="font-size: 1.5rem"
@@ -131,7 +131,7 @@
               >{{ evento.title }}</span
             >
             @if (evento.isRecurring) {
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:refresh"
               class="text-xs text-body-secondary"
               lxTooltip="Recurrente"
@@ -143,7 +143,7 @@
               {{ evento.customerName }}
             </span>
             <span class="text-xs text-body-secondary">{{ evento.subjectTypeName }}</span>
-            <app-tag
+            <lux-tag-web
               [value]="evento.modalityName"
               [severity]="getModalityClass(evento.modalityName)"
             />
@@ -154,11 +154,11 @@
             target="_blank"
             class="text-xs text-primary no-underline d-flex align-items-center gap-1"
           >
-            <app-icon icon="material-symbols-light:videocam" class="me-1" /> Unirse a Meet
+            <lux-icon icon="material-symbols-light:videocam" class="me-1" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
           <span class="text-xs text-body-secondary d-flex align-items-center gap-1">
-            <app-icon icon="material-symbols-light:location-on" /> {{ evento.location }}
+            <lux-icon icon="material-symbols-light:location-on" /> {{ evento.location }}
           </span>
           }
         </div>
@@ -169,7 +169,7 @@
           class="d-flex align-items-center gap-1 flex-none text-body-secondary"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
-          <app-icon icon="material-symbols-light:group" class="text-xs" />
+          <lux-icon icon="material-symbols-light:group" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>
         </div>
         }

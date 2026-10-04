@@ -125,18 +125,18 @@ export class AppFrozenColumn {
 }
 
 @Component({
-  selector: "app-sorticon",
+  selector: "lux-sorticon-web",
   imports: [AppIcon],
   template: `
     <span class="app-table-sorticon">
       @if (table.sortField() === field()) {
         @if (table.sortOrder() === 1) {
-          <app-icon icon="material-symbols-light:arrow-upward" />
+          <lux-icon icon="material-symbols-light:arrow-upward" />
         } @else {
-          <app-icon icon="material-symbols-light:arrow-downward" />
+          <lux-icon icon="material-symbols-light:arrow-downward" />
         }
       } @else {
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:swap-vert"
           class="app-table-sorticon-neutral"
         />
@@ -152,7 +152,7 @@ export class AppSorticon {
 }
 
 @Component({
-  selector: "app-table-selection-checkbox",
+  selector: "lux-table-selection-checkbox-web",
   template: `
     <input
       type="checkbox"
@@ -171,7 +171,7 @@ export class AppTableCheckbox {
 }
 
 @Component({
-  selector: "app-table-header-checkbox",
+  selector: "lux-table-header-checkbox-web",
   template: `
     <input
       type="checkbox"
@@ -203,7 +203,7 @@ export interface AppTableLazyEvent {
 }
 
 @Component({
-  selector: "app-table",
+  selector: "lux-table-web",
   host: { class: "app-table" },
   imports: [NgStyle, NgTemplateOutlet],
   template: `

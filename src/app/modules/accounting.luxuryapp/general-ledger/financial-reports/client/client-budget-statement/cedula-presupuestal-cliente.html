@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="d-flex align-items-center text-body-secondary mb-4 gap-2">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando datos...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -10,7 +10,7 @@
   </p>
   } @if (!loading() && rows().length) {
   <div class="rf-card rf-wrap d-none d-md-block">
-    <app-table
+    <lux-table-web
       [value]="rows()"
       class="rf-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1000px' }"
@@ -127,7 +127,7 @@
         </tr>
         }
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <app-data-view-mobile

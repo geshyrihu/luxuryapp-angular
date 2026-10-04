@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -12,7 +12,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -32,11 +32,11 @@
       <th>Img</th>
       <th appSortableColumn="nameTool">
         Nombre
-        <app-sorticon field="nameTool" />
+        <lux-sorticon-web field="nameTool" />
       </th>
       <th appSortableColumn="category">
         Categoria
-        <app-sorticon field="category" />
+        <lux-sorticon-web field="category" />
       </th>
       @if ( aspRoleS.anyOf([AspRole.JefeMantenimiento, AspRole.SuperUsuario])()
       ) {
@@ -78,12 +78,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="4" />
+    <lux-table-empty-message-web [colspan]="4" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -99,7 +99,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:construction"
           class="text-xl text-yellow-500"
         />

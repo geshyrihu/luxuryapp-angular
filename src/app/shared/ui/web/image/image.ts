@@ -16,7 +16,7 @@ let nextGalleryId = 0;
  * `appendTo` se conserva por contrato; el lightbox monta su overlay en body.
  */
 @Component({
-  selector: "app-image",
+  selector: "lux-image-web",
 
   imports: [NgStyle, GalleryModule, LightboxModule],
   template: `

@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" />
       <span>{{ label() || "Ver archivo" }}</span>
     </button>
   `,

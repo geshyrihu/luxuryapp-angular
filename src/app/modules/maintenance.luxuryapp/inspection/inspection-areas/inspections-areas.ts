@@ -8,7 +8,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   template: `
     <div class="card p-4 m-3">
       <div class="d-flex align-items-center gap-3">
-        <app-icon icon="material-symbols-light:construction" class="text-primary-600 text-2xl" />
+        <lux-icon icon="material-symbols-light:construction" class="text-primary-600 text-2xl" />
         <div>
           <h1 class="text-xl fw-bold text-body m-0">Áreas de Inspección</h1>
           <p class="text-body-secondary m-0 mt-2">

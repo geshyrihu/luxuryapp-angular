@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -16,7 +16,7 @@
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
           [noPadding]="true"
@@ -59,31 +59,31 @@
     <tr>
       <th appSortableColumn="folio">
         Folio
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th appSortableColumn="title">
         Titulo
-        <app-sorticon field="title" />
+        <lux-sorticon-web field="title" />
       </th>
       <th appSortableColumn="announcementType">
         Tipo
-        <app-sorticon field="announcementType" />
+        <lux-sorticon-web field="announcementType" />
       </th>
       <th appSortableColumn="status">
         Estado
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th appSortableColumn="customerName">
         Cliente
-        <app-sorticon field="customerName" />
+        <lux-sorticon-web field="customerName" />
       </th>
       <th appSortableColumn="publishedAt">
         Publicación
-        <app-sorticon field="publishedAt" />
+        <lux-sorticon-web field="publishedAt" />
       </th>
       <th appSortableColumn="expirationDate">
         Expiración
-        <app-sorticon field="expirationDate" />
+        <lux-sorticon-web field="expirationDate" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -151,12 +151,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -198,7 +198,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg bg-primary-50 w-3rem h-3rem"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:campaign"
           class="text-xl text-primary"
         />
@@ -220,14 +220,14 @@
         />
       </div>
       <p class="text-medium text-body-secondary m-0 text-sm mb-1">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:calendar-today'"
           class="me-1"
         />
         Publicado: {{ item.publishedAt | apiDate: "dd/MM/yyyy" }}
       </p>
       <p class="text-medium text-body-secondary m-0 text-sm">
-        <app-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
+        <lux-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
         Cliente: {{ item.customerName }}
       </p>
       <lux-tag

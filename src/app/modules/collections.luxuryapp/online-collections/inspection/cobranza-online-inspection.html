@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table-web
     [value]="rows()"
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -68,7 +68,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" [showAdd]="false" />
+      <lux-table-caption-web [dt]="dt" [showAdd]="false" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -113,9 +113,9 @@
       </tr>
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="rows()" />
+      <lux-table-footer-web [data]="rows()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <div class="mb-4 text-sm text-body-secondary">
     Selecciona una fila o usa
@@ -134,7 +134,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:account-balance" />
+          <lux-icon icon="material-symbols-light:account-balance" />
         </div>
         <div class="flex-fill min-w-0 ion-text-wrap">
           <p class="fw-semibold m-0 text-body">

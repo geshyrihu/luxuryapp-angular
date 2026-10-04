@@ -18,13 +18,13 @@ describe('TableEmptyMessage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render app-empty-state inside a tr>td', () => {
+  it('should render lux-empty-state-web inside a tr>td', () => {
     const el: HTMLElement = fixture.nativeElement;
     const tr = el.querySelector('tr');
     expect(tr).toBeTruthy();
     const td = tr!.querySelector('td');
     expect(td).toBeTruthy();
-    const emptyState = td!.querySelector('app-empty-state');
+    const emptyState = td!.querySelector('lux-empty-state-web');
     expect(emptyState).toBeTruthy();
   });
 

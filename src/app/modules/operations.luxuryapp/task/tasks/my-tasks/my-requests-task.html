@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="p-3">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -16,7 +16,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           (add)="
               onModalAdd({
                 id: '',
@@ -34,29 +34,29 @@
           <th class="table-col-6">FOLIO</th>
           <th class="table-col-8" appSortableColumn="createdAtFilter">
             FECHA SOL.
-            <app-sorticon field="createdAtFilter" />
+            <lux-sorticon-web field="createdAtFilter" />
           </th>
           <th class="table-col-30" appSortableColumn="responsibleArea">
             SOLICITUD
-            <app-sorticon field="responsibleArea" />
+            <lux-sorticon-web field="responsibleArea" />
           </th>
           <th>EVIDENCIA</th>
           <th class="table-col-8" appSortableColumn="priority">
             PRIORIDAD
-            <app-sorticon field="priority" />
+            <lux-sorticon-web field="priority" />
           </th>
           <th class="table-col-10" appSortableColumn="scheduledAtFilter">
             PROGRAMACIÓN
-            <app-sorticon field="scheduledAtFilter" />
+            <lux-sorticon-web field="scheduledAtFilter" />
           </th>
           <th class="table-col-10" appSortableColumn="dateFinishedFiltro">
             FECHA CIERRE
-            <app-sorticon field="dateFinishedFiltro" />
+            <lux-sorticon-web field="dateFinishedFiltro" />
           </th>
           <th>EVIDENCIA</th>
           <th class="table-col-10" appSortableColumn="daysDifference">
             DIAS
-            <app-sorticon field="daysDifference" />
+            <lux-sorticon-web field="daysDifference" />
           </th>
           <th class="table-col-10"></th>
         </tr>
@@ -76,7 +76,7 @@
           <td class="text-center">
             <div class="d-flex justify-content-center align-items-center">
               @if (item.beforeWork) {
-              <app-image
+              <lux-image-web
                 [src]="
                       item.beforeWork
                         ? item.beforeWork
@@ -86,19 +86,19 @@
                 width="40"
                 styleClass="mr-2 border border-danger"
                 [preview]="true"
-              ></app-image>
+              ></lux-image-web>
               }
             </div>
           </td>
           <td class="text-center">
             @if (item.priority === "High") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
             />
             } @if (item.priority === "Low") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
@@ -110,7 +110,7 @@
           <td class="text-center">
             <div class="d-flex justify-content-center align-items-center">
               @if (item.afterWork) {
-              <app-image
+              <lux-image-web
                 [src]="
                       item.afterWork
                         ? item.afterWork
@@ -120,7 +120,7 @@
                 width="40"
                 styleClass="mr-2 border border-success"
                 [preview]="true"
-              ></app-image>
+              ></lux-image-web>
               }
             </div>
           </td>
@@ -131,7 +131,7 @@
           </td>
           <!-- Opciones -->
           <td class="text-center">
-            <app-action-menu>
+            <lux-action-menu-web>
               <ng-container actions>
                 <il-button-edit
                   (clicked)="onModalForm({
@@ -148,11 +148,11 @@
                   (clicked)="onFollowUp(item.id)"
                 />
               </ng-container>
-            </app-action-menu>
+            </lux-action-menu-web>
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -173,7 +173,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:fact-check"
           class="text-xl text-primary"
         />
@@ -203,7 +203,7 @@
         @if (item.beforeWork || item.afterWork) {
         <div class="d-flex align-items-center mt-1">
           @if (item.beforeWork) {
-          <app-image
+          <lux-image-web
             [src]="item.beforeWork"
             alt="Evidencia inicial"
             width="30"
@@ -211,7 +211,7 @@
             styleClass="mr-2 border border-danger"
           />
           } @if (item.afterWork) {
-          <app-image
+          <lux-image-web
             [src]="item.afterWork"
             alt="Evidencia final"
             width="30"

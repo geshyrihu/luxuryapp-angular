@@ -1,7 +1,7 @@
 <div class="row p-2 g-4">
   @if (loading()) {
   <div class="col-12 d-flex justify-content-center">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
   </div>
   } @else { @for (item of data(); track item.id) {
   <div class="col-12 col-md-4 col-lg-3">
@@ -13,13 +13,13 @@
       </div>
 
       <div class="d-flex justify-content-center pb-3 px-3">
-        <app-image
+        <lux-image-web
           [src]="item.img || 'assets/images/default-avatar.png'"
           alt="Vista previa"
           width="100%"
           imageClass="rounded w-full h-15rem object-cover"
           [preview]="true"
-        ></app-image>
+        ></lux-image-web>
       </div>
     </div>
   </div>

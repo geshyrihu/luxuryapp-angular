@@ -4,7 +4,7 @@
   <!-- ================================================================== -->
   <div class="d-none d-md-block">
     @if (data()) {
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -35,7 +35,7 @@
               "
               (click)="onSelectCategory(category.id)"
             >
-              <app-icon [icon]="category.emoji" />
+              <lux-icon [icon]="category.emoji" />
               <span class="fw-medium text-sm">{{ category.name }}</span>
             </div>
             }
@@ -46,7 +46,7 @@
             class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
           >
             <div class="flex-grow-1">
-              <app-table-caption
+              <lux-table-caption-web
                 [title]="title()"
                 (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
                 [dt]="dt"
@@ -108,20 +108,20 @@
           <th class="table-col-5">IMG</th>
           <th class="table-col-20" appSortableColumn="nameMachinery">
             NOMBRE
-            <app-sorticon field="nameMachinery" />
+            <lux-sorticon-web field="nameMachinery" />
           </th>
           <th class="table-col-20" appSortableColumn="equipoClasificacion">
             SISTEMA
-            <app-sorticon field="equipoClasificacion" />
+            <lux-sorticon-web field="equipoClasificacion" />
           </th>
           <th class="table-col-20" appSortableColumn="ubication">
             UBICACIÓN
-            <app-sorticon field="ubication" />
+            <lux-sorticon-web field="ubication" />
           </th>
           @if (mostrarPreventivos()) {
           <th class="table-col-10" appSortableColumn="maintenanceCalendars">
             SERVICIOS
-            <app-sorticon field="maintenanceCalendars" />
+            <lux-sorticon-web field="maintenanceCalendars" />
           </th>
           }
           <th class="table-col-10 no-print"></th>
@@ -132,13 +132,13 @@
       <ng-template #body let-item>
         <tr class="animate__fadeIn">
           <td>
-            <app-image
+            <lux-image-web
               [src]="item.photoPath"
               alt="."
               width="70"
               styleClass="shadow"
               [preview]="true"
-            ></app-image>
+            ></lux-image-web>
           </td>
           <td>{{ item.nameMachinery }}</td>
           <td>{{ item.equipoClasificacion }}</td>
@@ -213,9 +213,9 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer-web [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
     }
   </div>
 
@@ -242,7 +242,7 @@
         class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
       >
         <span class="d-flex align-items-center">
-          <app-icon [icon]="category.emoji" />
+          <lux-icon [icon]="category.emoji" />
           {{ category.name }}
         </span>
       </div>
@@ -289,7 +289,7 @@
               class="mobile-avatar-img"
             />
             } @else {
-            <app-icon icon="material-symbols-light:hvac" />
+            <lux-icon icon="material-symbols-light:hvac" />
             }
           </div>
           <span class="">
@@ -302,7 +302,7 @@
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onDocumentos(item.id)"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:description"
                   slot="icon-only"
                 />
@@ -311,7 +311,7 @@
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onServiceHistory(item.id)"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:schedule"
                   slot="icon-only"
                 />
@@ -320,7 +320,7 @@
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="onBitacoraIndividual(item.id)"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:menu-book-outline"
                   slot="icon-only"
                 />
@@ -329,7 +329,7 @@
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="showModalFichatecnica(item.id)"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:article-outline"
                   slot="icon-only"
                 />
@@ -340,7 +340,7 @@
                 (click)="onEquipmentContents(item)"
                 aria-label="Administrar contenidos"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:inventory-2"
                   slot="icon-only"
                 />
@@ -350,7 +350,7 @@
                 class="btn btn-rounded btn-text-primary btn-sm"
                 (click)="item.expanded = !item.expanded"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:handyman"
                   slot="icon-only"
                 />
@@ -369,7 +369,7 @@
                   class="btn btn-rounded btn-text-primary btn-sm"
                   (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:add-circle-outline"
                     slot="start"
                   />
@@ -419,7 +419,7 @@
                       class="btn btn-rounded btn-text-secondary btn-sm"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
                     >
-                      <app-icon
+                      <lux-icon
                         icon="material-symbols-light:content-copy"
                         slot="icon-only"
                       />
@@ -428,7 +428,7 @@
                       class="btn btn-rounded btn-text-primary btn-sm"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
                     >
-                      <app-icon
+                      <lux-icon
                         icon="material-symbols-light:edit-outline"
                         slot="icon-only"
                       />
@@ -437,7 +437,7 @@
                       class="btn btn-rounded btn-text-danger btn-sm"
                       (click)="onDeleteOrder(service.id)"
                     >
-                      <app-icon
+                      <lux-icon
                         icon="material-symbols-light:delete-outline"
                         slot="icon-only"
                       />
@@ -465,7 +465,7 @@
               class="btn btn-rounded btn-text-primary btn-sm"
               (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:edit-outline"
                 slot="icon-only"
               />
@@ -474,7 +474,7 @@
               class="btn btn-rounded btn-text-danger btn-sm"
               (click)="onDelete(item.id)"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:delete-outline"
                 slot="icon-only"
               />

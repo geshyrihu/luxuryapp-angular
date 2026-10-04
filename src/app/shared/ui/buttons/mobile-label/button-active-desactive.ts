@@ -24,7 +24,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="toggleState()"
     >
-      <app-icon
+      <lux-icon
         [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
         slot="start"
       />

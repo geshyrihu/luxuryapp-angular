@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         title="Políticas de Mora (Motor Nativo)"
         (add)="onModalForm()"
         [dt]="dt"
@@ -67,7 +67,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <app-data-view-mobile
@@ -81,7 +81,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:warning-outline"
           class="text-red-600 text-xl"
         />

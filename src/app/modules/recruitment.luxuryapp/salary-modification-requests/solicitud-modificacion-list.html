@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -22,7 +22,7 @@
       <th>PUESTO NUEVO</th>
       <th>SUELDO NUEVO</th>
       <th appSortableColumn="status">
-        ESTATUS <app-sorticon field="status" />
+        ESTATUS <lux-sorticon-web field="status" />
       </th>
       <th></th>
     </tr>
@@ -79,12 +79,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message-web [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -97,7 +97,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:trending-up"
           class="text-xl text-yellow-600"
         />

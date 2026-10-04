@@ -13,7 +13,7 @@ export interface ComparisonItem {
 }
 
 @Component({
-  selector: "app-comparison-table",
+  selector: "lux-comparison-table-web",
 
   imports: [AppIcon],
   template: `
@@ -45,7 +45,7 @@ export interface ComparisonItem {
                   [class.comparison-col-highlight]="col === highlightColumn()"
                 >
                   @if (col === highlightColumn() && showCheckmark()) {
-                    <app-icon
+                    <lux-icon
                       icon="material-symbols-light:check-circle"
                       style="color:var(--ds-success)"
                       style="font-size: 1.1rem"

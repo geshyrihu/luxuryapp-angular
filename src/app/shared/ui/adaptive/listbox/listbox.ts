@@ -31,7 +31,7 @@ import { AppListbox } from "@ui/web/listbox/listbox";
         ><ng-content
       /></ili-listbox>
     } @else {
-      <app-listbox
+      <lux-listbox-web
         [value]="value()"
         (valueChange)="onValueChange($event)"
         [options]="options()"
@@ -49,7 +49,7 @@ import { AppListbox } from "@ui/web/listbox/listbox";
         [metaKeySelection]="metaKeySelection()"
         [styleClass]="styleClass()"
         ><ng-content
-      /></app-listbox>
+      /></lux-listbox-web>
     }
   `,
   providers: [

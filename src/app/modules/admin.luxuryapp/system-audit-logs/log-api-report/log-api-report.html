@@ -2,7 +2,7 @@
 <lux-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="d-none d-md-block mt-3">
-    <app-table
+    <lux-table-web
       #dt
       [value]="data()"
       [loading]="loading()"
@@ -22,7 +22,7 @@
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
         >
           <div class="flex-grow-1">
-            <app-table-caption
+            <lux-table-caption-web
               [dt]="dt"
               (search)="onSearch($event)"
               [showAdd]="false"
@@ -85,15 +85,15 @@
           <th></th>
           <th appSortableColumn="timestamp">
             Fecha y Hora
-            <app-sorticon field="timestamp" />
+            <lux-sorticon-web field="timestamp" />
           </th>
           <th appSortableColumn="level">
             Nivel
-            <app-sorticon field="level" />
+            <lux-sorticon-web field="level" />
           </th>
           <th appSortableColumn="userName">
             Usuario
-            <app-sorticon field="userName" />
+            <lux-sorticon-web field="userName" />
           </th>
           <th>Mensaje</th>
         </tr>
@@ -125,7 +125,7 @@
           <td></td>
           <td colspan="4" class="bg-body-tertiary p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary"
               />
@@ -142,7 +142,7 @@
           <td></td>
           <td colspan="4" class="bg-red-50 p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:warning'"
                 class="text-red-600"
               />
@@ -156,9 +156,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message-web [colspan]="5" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <!-- VISTA MóVIL -->
@@ -180,7 +180,7 @@
             <div class="d-flex justify-content-between align-items-center mb-1">
               <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
               <p class="text-medium text-body-secondary m-0 text-sm">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="me-1 text-xs"
                 />
@@ -190,7 +190,7 @@
 
             @if (item.userName) {
             <p class="text-sm text-body-secondary m-0 mb-1">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:person'"
                 class="me-1 text-xs"
               />
@@ -203,7 +203,7 @@
             @if (item.properties) {
             <div class="mb-2">
               <span class="text-xs d-flex align-items-center gap-1 mb-1">
-                <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
+                <lux-icon [icon]="'material-symbols-light:info'" /> Propiedades:
               </span>
               <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre>
@@ -213,7 +213,7 @@
               <span
                 class="text-xs text-danger d-flex align-items-center gap-1 mb-1"
               >
-                <app-icon [icon]="'material-symbols-light:warning'" />
+                <lux-icon [icon]="'material-symbols-light:warning'" />
                 Excepción:
               </span>
               <pre

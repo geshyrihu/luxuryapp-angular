@@ -25,7 +25,7 @@ import { Sidebar } from "@ui/web/sidebar/sidebar";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-sidebar>
     } @else {
-      <app-sidebar
+      <lux-sidebar-web
         [(visible)]="visible"
         [position]="position()"
         [closable]="closable()"
@@ -34,7 +34,7 @@ import { Sidebar } from "@ui/web/sidebar/sidebar";
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-sidebar>
+      </lux-sidebar-web>
     }
   `,
 })

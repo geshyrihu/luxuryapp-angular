@@ -4,7 +4,7 @@
   Vista responsive: tabla Bootstrap en escritorio, data-view-mobile en móvil.
   ═══════════════════════════════════════════════════════════════════
 -->
-<app-table
+<lux-table-web
   #dt
   [value]="filteredData()"
   [globalFilterFields]="globalFilterFields()"
@@ -19,7 +19,7 @@
     <div
       class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 mb-3 w-full g-4"
     >
-      <app-segmented-control
+      <lux-segmented-control
         [items]="departmentFilterItems()"
         [(value)]="selectedDepartment"
         ariaLabel="Filtrar por departamento"
@@ -29,7 +29,7 @@
         class="d-flex flex-column flex-md-row align-items-center justify-content-end gap-3 w-full xl:w-auto g-4"
       >
         <div class="staff-caption-search w-full md:w-auto">
-          <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+          <lux-table-caption-web [dt]="dt" [showAdd]="false" [noMargin]="true" />
         </div>
 
         <div
@@ -60,10 +60,10 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
+        PUESTO <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th class="w-32" appSortableColumn="turno">
-        TURNO <app-sorticon field="turno" />
+        TURNO <lux-sorticon-web field="turno" />
       </th>
       @if (showSalaryColumn()) {
       <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
@@ -80,7 +80,7 @@
         class="staff-group-header-cell"
       >
         <span class="group-header-label">
-          <app-icon [icon]="'material-symbols-light:work'" />
+          <lux-icon [icon]="'material-symbols-light:work'" />
           {{ getDepartamentLabel(item.departament) }}
         </span>
       </td>
@@ -146,7 +146,7 @@
         @if (!isVacant(item)) {
         <div class="d-flex align-items-center gap-2">
           @if (item.applicationUserPhoto) {
-          <app-avatar
+          <lux-avatar-web
             [image]="item.applicationUserPhoto"
             shape="circle"
             size="large"
@@ -155,7 +155,7 @@
             lxTooltip="Ver tarjeta"
           />
           } @else {
-          <app-avatar
+          <lux-avatar-web
             icon="material-symbols-light:person"
             shape="circle"
             size="large"
@@ -185,9 +185,9 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="showSalaryColumn() ? 5 : 4" />
+    <lux-table-empty-message-web [colspan]="showSalaryColumn() ? 5 : 4" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      VISTA MÓVIL
@@ -202,13 +202,13 @@
     <ili-list-item>
       <div start>
         @if (!isVacant(item) && item.applicationUserPhoto) {
-        <app-avatar
+        <lux-avatar-web
           [image]="item.applicationUserPhoto"
           shape="circle"
           size="large"
         />
         } @else {
-        <app-avatar
+        <lux-avatar-web
           icon="material-symbols-light:person"
           shape="circle"
           size="large"

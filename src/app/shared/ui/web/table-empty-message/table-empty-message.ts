@@ -3,7 +3,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
-  selector: "app-table-empty-message",
+  selector: "lux-table-empty-message-web",
 
   imports: [EmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -17,7 +17,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
   template: `
     <tr>
       <td [attr.colspan]="colspan()" style="text-align: center">
-        <app-empty-state
+        <lux-empty-state-web
           [icon]="icon()"
           [iconColor]="iconColor()"
           [title]="title()"

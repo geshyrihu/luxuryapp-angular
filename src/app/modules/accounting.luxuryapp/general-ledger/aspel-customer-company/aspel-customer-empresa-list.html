@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
   scrollHeight="750px"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
       [dt]="dt"
     />
@@ -22,13 +22,13 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="customerName">
-        Cliente <app-sorticon field="customerName" />
+        Cliente <lux-sorticon-web field="customerName" />
       </th>
       <th appSortableColumn="empresa">
-        Empresa <app-sorticon field="empresa" />
+        Empresa <lux-sorticon-web field="empresa" />
       </th>
       <th appSortableColumn="customerIdAspelId">
-        ID Aspel <app-sorticon field="customerIdAspelId" />
+        ID Aspel <lux-sorticon-web field="customerIdAspelId" />
       </th>
       <th class="table-col-10">Opciones</th>
     </tr>
@@ -37,7 +37,7 @@
     <tr>
       <td>{{ item.customerName }}</td>
       <td>
-        <app-status-badge
+        <lux-status-badge-web
           [status]="item.empresa"
           [isEmpresa]="true"
           [clickable]="false"
@@ -53,12 +53,12 @@
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="4" />
+    <lux-table-empty-message-web [colspan]="4" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -74,12 +74,12 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:domain" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:domain" class="text-xl text-primary" />
       </div>
       <div class="flex-fill min-w-0">
         <h2>{{ item.customerName }}</h2>
         <div class="d-flex align-items-center gap-2 mt-1">
-          <app-status-badge
+          <lux-status-badge-web
             [status]="item.empresa"
             [isEmpresa]="true"
             [clickable]="false"

@@ -1,12 +1,12 @@
 <page-title-report-maintenance title="ENTRADA INSUMOS" />
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="ENTRADA INSUMOS"
       [showAdd]="false"
       [showSearch]="false"
@@ -32,4 +32,4 @@
     </tr>
     }
   </ng-template>
-</app-table>
+</lux-table-web>

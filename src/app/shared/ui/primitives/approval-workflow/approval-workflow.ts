@@ -19,7 +19,7 @@ export interface ApprovalNode {
 }
 
 @Component({
-  selector: "app-approval-workflow",
+  selector: "lux-approval-workflow",
 
   imports: [AppIcon, NgClass],
   template: `
@@ -28,7 +28,7 @@ export interface ApprovalNode {
         <div class="approval-node" [ngClass]="'approval-' + node.status">
           <div class="approval-node-marker">
             <div class="approval-dot" [ngClass]="'approval-dot-' + node.status">
-              <app-icon [icon]="statusIcon(node.status)" class="text-xs" />
+              <lux-icon [icon]="statusIcon(node.status)" class="text-xs" />
             </div>
             @if (i < nodes().length - 1) {
               <div

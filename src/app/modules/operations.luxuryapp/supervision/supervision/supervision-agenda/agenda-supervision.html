@@ -1,7 +1,7 @@
 <div class="h6">DEPTO : {{ depto }}</div>
 <div class="h6">NOMBRE : {{ nombre }}</div>
 <div class="h6">SEMANA : {{ semana }}</div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="30"
@@ -20,7 +20,7 @@
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption-web
           class="ocultar"
           [title]="'Bitacora Supervisión'"
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -31,7 +31,7 @@
       </div>
       <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
         <div>
-          <app-rango-calendario-yyyymmdd />
+          <lux-rango-calendario-yyyymmdd-web />
         </div>
         <div class="flex-shrink-0">
           <iw-button
@@ -51,35 +51,35 @@
     <tr>
       <th [width]="'15%'" class="ocultar center" appSortableColumn="name.label">
         SUPERVISOR
-        <app-sorticon field="name.label" />
+        <lux-sorticon-web field="name.label" />
       </th>
       <th [width]="'7%'" appSortableColumn="fechaSolicitud">
         SOLICITUD
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th [width]="'9%'" appSortableColumn="numeroCliente">
         CLIENTE
-        <app-sorticon field="numeroCliente" />
+        <lux-sorticon-web field="numeroCliente" />
       </th>
       <th [width]="'20%'" appSortableColumn="problema">
         PROBLEMA/TEMA
-        <app-sorticon field="problema" />
+        <lux-sorticon-web field="problema" />
       </th>
       <th [width]="'20%'" appSortableColumn="solucion">
         SOLUCION/SEGUIMIENTO
-        <app-sorticon field="solucion" />
+        <lux-sorticon-web field="solucion" />
       </th>
       <th [width]="'9%'" appSortableColumn="fechaConclusion">
         CONCLUSION
-        <app-sorticon field="fechaConclusion" />
+        <lux-sorticon-web field="fechaConclusion" />
       </th>
       <th appSortableColumn="duracion">
         DIAS
-        <app-sorticon field="duracion" />
+        <lux-sorticon-web field="duracion" />
       </th>
       <th appSortableColumn="estatus">
         ESTATUS
-        <app-sorticon field="estatus" />
+        <lux-sorticon-web field="estatus" />
       </th>
       <th class="ocultar"></th>
     </tr>
@@ -111,7 +111,7 @@
         ></i>
       </td>
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             @if (applicationUserId == item.applicationUserId ||
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
@@ -126,24 +126,24 @@
 
             }
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
     <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
       <div>
-        <app-rango-calendario-yyyymmdd />
+        <lux-rango-calendario-yyyymmdd-web />
       </div>
       <div class="flex-shrink-0">
         <iw-button

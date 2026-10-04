@@ -15,7 +15,7 @@ export {
 } from "@ui/core/status-badge.base";
 
 @Component({
-  selector: "app-status-badge",
+  selector: "lux-status-badge-web",
   imports: [LxTooltipDirective, AppIcon],
   template: `
     <span
@@ -28,7 +28,7 @@ export {
       (click)="onStatusClick()"
     >
       @if (showIcon()) {
-        <app-icon [icon]="getIcon()" class="status-badge-icon" />
+        <lux-icon [icon]="getIcon()" class="status-badge-icon" />
       }
       {{ getStatusText() }}
     </span>

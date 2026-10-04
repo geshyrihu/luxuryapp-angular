@@ -19,7 +19,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       (click)="onClick($event)"
     >
       @if (iconClass()) {
-        <app-icon [icon]="resolvedIconClass()" slot="start" />
+        <lux-icon [icon]="resolvedIconClass()" slot="start" />
       }
       {{ label() || "Accion" }}
     </ion-button>

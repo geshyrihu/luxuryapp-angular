@@ -12,7 +12,7 @@ import { TreeBase, TreeNode } from "@ui/core/tree.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-tree",
+  selector: "lux-tree-web",
 
   imports: [NgTemplateOutlet, AppIcon],
   template: `
@@ -34,7 +34,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
             <div class="app-tree-node-row">
               @if (node.children?.length) {
                 <button type="button" class="app-tree-toggle" (click)="toggleExpand(node)">
-                  <app-icon
+                  <lux-icon
                     [icon]="
                       isExpanded(node)
                         ? 'material-symbols-light:keyboard-arrow-down'
@@ -66,7 +66,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
                     [ngTemplateOutletContext]="{ $implicit: node }"
                   />
                 } @else {
-                  @if (node.icon) { <app-icon [icon]="node.icon" /> }
+                  @if (node.icon) { <lux-icon [icon]="node.icon" /> }
                   <span>{{ node.label }}</span>
                 }
               </div>

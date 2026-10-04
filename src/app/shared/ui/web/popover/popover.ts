@@ -20,7 +20,7 @@ import { PopoverBase } from "@ui/core/popover.base";
  * mecanismo que AppMenu (ver su comentario).
  */
 @Component({
-  selector: "app-popover",
+  selector: "lux-popover-web",
   imports: [NgClass],
   template: `
     <span #trigger class="app-popover-trigger" (click)="toggle()">

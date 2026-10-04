@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -45,7 +45,7 @@
           (change)="onImportExcel($event)"
         />
       </div>
-      <app-table-caption
+      <lux-table-caption-web
         [title]="'Inventario de Hidrantes'"
         (add)="onModalForm({ id: '', title: 'Nuevo Hidrante' })"
         [dt]="dt"
@@ -56,16 +56,16 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" appSortableColumn="localCode">
-        Código <app-sorticon field="localCode" />
+        Código <lux-sorticon-web field="localCode" />
       </th>
       <th class="table-col-25" appSortableColumn="hydrantType">
-        Tipo <app-sorticon field="hydrantType" />
+        Tipo <lux-sorticon-web field="hydrantType" />
       </th>
       <th class="table-col-15" appSortableColumn="cabinetNumber">
-        Gabinete <app-sorticon field="cabinetNumber" />
+        Gabinete <lux-sorticon-web field="cabinetNumber" />
       </th>
       <th class="table-col-25" appSortableColumn="location">
-        Ubicación <app-sorticon field="location" />
+        Ubicación <lux-sorticon-web field="location" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -73,7 +73,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <app-image
+        <lux-image-web
           [src]="item.photo"
           alt="."
           width="100"
@@ -105,12 +105,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -122,7 +122,7 @@
       class="btn btn-rounded btn-text-primary btn-sm"
       (click)="onOpenScanner()"
     >
-      <app-icon icon="material-symbols-light:qr-code" slot="start" />
+      <lux-icon icon="material-symbols-light:qr-code" slot="start" />
       Escanear QR
     </button>
   </div>
@@ -131,7 +131,7 @@
       class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div slot="start">
-        <app-icon icon="material-symbols-light:water" />
+        <lux-icon icon="material-symbols-light:water" />
       </div>
       <span class="">
         <h3>

@@ -9,7 +9,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
-  selector: "app-kpi-card",
+  selector: "lux-kpi-card",
 
   imports: [AppIcon],
   template: `
@@ -20,7 +20,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     >
       <div class="kpi-header">
         @if (icon()) {
-          <app-icon
+          <lux-icon
             [icon]="icon()"
             class="kpi-icon"
             [style.color]="iconColor()"
@@ -43,7 +43,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
               [class.kpi-trend-up]="trend()! > 0"
               [class.kpi-trend-down]="trend()! < 0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="trend()! >= 0 ? 'material-symbols-light:trending-up' : 'material-symbols-light:trending-down'"
                 class="text-sm"
               />

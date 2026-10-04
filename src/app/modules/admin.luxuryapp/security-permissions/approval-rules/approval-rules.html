@@ -71,7 +71,7 @@
   </div>
   } @else {
   <div class="table-container">
-    <app-table
+    <lux-table-web
       [value]="targetRoles()"
       class="custom-table"
       [scrollable]="true"
@@ -105,7 +105,7 @@
               optionValue="value"
             >
               <ng-template #item let-item>
-                <app-icon [icon]="item.icon" class="me-2" />
+                <lux-icon [icon]="item.icon" class="me-2" />
                 <span>{{ item.label }}</span>
               </ng-template>
             </custom-input-select-button-signal>
@@ -113,7 +113,7 @@
           }
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   }
 </lux-card>

@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -10,7 +10,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
     />
   </ng-template>
@@ -19,21 +19,21 @@
     <tr>
       <th class="table-col-15" appSortableColumn="nameCustomer">
         Cliente
-        <app-sorticon field="nameCustomer" />
+        <lux-sorticon-web field="nameCustomer" />
       </th>
       <th colspan="2" class="table-col-30" appSortableColumn="nameComercial">
         Proveedor
-        <app-sorticon field="nameComercial" />
+        <lux-sorticon-web field="nameComercial" />
       </th>
 
       <th class="table-col-20" appSortableColumn="fullName">
         Nombre
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
 
       <th appSortableColumn="applicationRoleName">
         Puesto
-        <app-sorticon field="applicationRoleName" />
+        <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -42,7 +42,7 @@
     <tr>
       <td>{{ item.nameCustomer }}</td>
       <td>
-        <app-avatar
+        <lux-avatar-web
           [image]="item.pathPhoto"
           alt="noImg"
           shape="square"
@@ -80,9 +80,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message-web [colspan]="5" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -92,7 +92,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:person-outline" class="text-xl text-green-500" />
+        <lux-icon icon="material-symbols-light:person-outline" class="text-xl text-green-500" />
       </div>
 
       <h3>{{ item.fullName }}</h3>

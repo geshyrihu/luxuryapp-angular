@@ -12,7 +12,7 @@
     />
   </div>
 
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -27,7 +27,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     </ng-template>
 
     <ng-template #header>
@@ -81,13 +81,13 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message-web [colspan]="7" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
@@ -97,7 +97,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:folder-shared"
             class="text-xl text-primary"
           />

@@ -8,7 +8,7 @@
     @if (item.items && item.items.length > 0) {
     <ion-accordion [value]="item.label">
       <ion-item slot="header" lines="full">
-        <app-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
+        <lux-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
         <ion-label class="fw-medium">{{ item.label }}</ion-label>
       </ion-item>
 
@@ -22,7 +22,7 @@
             button
             class="text-sm"
           >
-            <app-icon icon="material-symbols-light:circle" slot="start" class="text-body-secondary text-xs" />
+            <lux-icon icon="material-symbols-light:circle" slot="start" class="text-body-secondary text-xs" />
             <ion-label>{{ subItem.label }}</ion-label>
           </ion-item>
           }
@@ -42,7 +42,7 @@
         button
         class="rounded-xl"
       >
-        <app-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
+        <lux-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
         <ion-label class="fw-medium">{{ item.label }}</ion-label>
       </ion-item>
     </div>

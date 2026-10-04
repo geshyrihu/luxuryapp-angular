@@ -28,7 +28,7 @@ import { Tabs } from "@ui/web/tabs/tabs";
         [navOnly]="true"
       />
     } @else {
-      <app-tabs
+      <lux-tabs-web
         [tabs]="tabs()"
         [(activeId)]="activeId"
         (tabChange)="tabChange.emit($event)"

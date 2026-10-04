@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3 fadein">
   <!-- 1. Encabezado y Acciones -->
-  <app-toolbar>
+  <lux-toolbar-web>
     <ng-template #start>
       <h2 class="m-0 text-xl font-bold">Listado de Recorridos</h2>
     </ng-template>
@@ -23,10 +23,10 @@
         />
       </div>
     </ng-template>
-  </app-toolbar>
+  </lux-toolbar-web>
 
   <!-- 2. Tarjeta de Filtros -->
-  <app-card [elevated]="true">
+  <lux-card-web [elevated]="true">
     <ng-template #content>
       <div class="row g-3">
         <div class="col-12 col-md-6">
@@ -57,12 +57,12 @@
         </div>
       </div>
     </ng-template>
-  </app-card>
+  </lux-card-web>
 
   <!-- 3. Tarjeta de Datos (Tabla) -->
-  <app-card [elevated]="true" [padded]="false">
+  <lux-card-web [elevated]="true" [padded]="false">
     <ng-template #content>
-      <app-table
+      <lux-table-web
         #dt
         [globalFilterFields]="globalFilterFields"
         [paginator]="true"
@@ -80,11 +80,11 @@
           <tr>
             <th appSortableColumn="name">
               Nombre
-              <app-sorticon field="name" />
+              <lux-sorticon-web field="name" />
             </th>
             <th appSortableColumn="frequency">
               Frecuencia
-              <app-sorticon field="frequency" />
+              <lux-sorticon-web field="frequency" />
             </th>
             <th class="no-print text-end">Acciones</th>
           </tr>
@@ -130,7 +130,7 @@
         <ng-template #emptymessage>
           <app-custom-table-emptymessage />
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </ng-template>
-  </app-card>
+  </lux-card-web>
 </div>

@@ -11,7 +11,7 @@
 </div>
 
 <!-- Tabla escritorio -->
-<app-table
+<lux-table-web
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -27,7 +27,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between flex-wrap gap-2">
-      <app-table-caption [dt]="dt" (add)="openAdd()" />
+      <lux-table-caption-web [dt]="dt" (add)="openAdd()" />
       <div class="d-flex gap-2">
         <il-button
           label="Sync Vacaciones"
@@ -51,12 +51,12 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="nombreEmpleado">
-        Empleado <app-sorticon field="nombreEmpleado" />
+        Empleado <lux-sorticon-web field="nombreEmpleado" />
       </th>
       <th appSortableColumn="tipoIncidenciaDisplay">
-        Tipo <app-sorticon field="tipoIncidenciaDisplay" />
+        Tipo <lux-sorticon-web field="tipoIncidenciaDisplay" />
       </th>
-      <th appSortableColumn="fecha">Fecha <app-sorticon field="fecha" /></th>
+      <th appSortableColumn="fecha">Fecha <lux-sorticon-web field="fecha" /></th>
       <th class="text-end">Dias</th>
       <th class="text-end">Minutos</th>
       <th class="text-end">Descuento ($)</th>
@@ -91,9 +91,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Vista movil -->
 <app-data-view-mobile
@@ -108,7 +108,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:attach-money" />
+        <lux-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>

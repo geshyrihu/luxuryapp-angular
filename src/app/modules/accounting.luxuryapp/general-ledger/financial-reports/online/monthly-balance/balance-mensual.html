@@ -35,7 +35,7 @@
   <div
     class="rf-card p-4 d-flex align-items-center text-body-secondary mb-4 gap-2"
   >
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando datos en Aspel...</span>
   </div>
   }
@@ -51,7 +51,7 @@
   <!-- Tabla -->
   @if (rows().length) {
   <div class="rf-card rf-wrap pt-4 d-none d-md-block">
-    <app-table
+    <lux-table-web
       [value]="rows()"
       class="rf-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1200px' }"
@@ -115,7 +115,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <app-data-view-mobile

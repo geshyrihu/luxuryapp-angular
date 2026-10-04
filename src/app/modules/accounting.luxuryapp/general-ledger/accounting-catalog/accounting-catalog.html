@@ -1,7 +1,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       #dt
       [value]="flattenedDataSignal()"
       [globalFilterFields]="globalFilterFields()"
@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <div class="d-flex justify-content-between">
-          <app-table-caption [showAdd]="false" [dt]="dt" />
+          <lux-table-caption-web [showAdd]="false" [dt]="dt" />
           <il-button
             iconClass="material-symbols-light:download"
             label="Exportar"
@@ -32,11 +32,11 @@
         <tr>
           <th appSortableColumn="codigoCuenta" class="table-col-150px">
             Código
-            <app-sorticon field="codigoCuenta" />
+            <lux-sorticon-web field="codigoCuenta" />
           </th>
           <th appSortableColumn="descripcionCuenta">
             DESCRIPCIÓN
-            <app-sorticon field="descripcionCuenta" />
+            <lux-sorticon-web field="descripcionCuenta" />
           </th>
         </tr>
       </ng-template>
@@ -63,16 +63,16 @@
       <ng-template #emptymessage>
         <tr>
           <td colspan="2" class="text-center py-4">
-            <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
+            <lux-icon [icon]="'material-symbols-light:info'" class="me-2" />
             No hay cuentas para mostrar.
           </td>
         </tr>
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="flattenedDataSignal()" />
+        <lux-table-footer-web [data]="flattenedDataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -91,7 +91,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:format-list-bulleted"
               class="text-xl text-primary"
             />

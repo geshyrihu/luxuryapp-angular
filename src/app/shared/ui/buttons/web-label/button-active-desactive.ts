@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="toggleState()"
     >
-      <app-icon
+      <lux-icon
         [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
       />
       <span>{{ state() ? inactivasLabel() : activasLabel() }}</span>

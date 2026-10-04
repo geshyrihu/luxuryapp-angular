@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [dt]="dt"
       [showAdd]="false"
       aria-label="Bandeja de entrevistas pendientes"
@@ -23,20 +23,20 @@
     <tr>
       <th appSortableColumn="candidateName">
         Candidato
-        <app-sorticon field="candidateName" />
+        <lux-sorticon-web field="candidateName" />
       </th>
       <th appSortableColumn="positionName">
         Vacante
-        <app-sorticon field="positionName" />
+        <lux-sorticon-web field="positionName" />
       </th>
       <th>Cliente</th>
       <th appSortableColumn="currentStage">
         Etapa
-        <app-sorticon field="currentStage" />
+        <lux-sorticon-web field="currentStage" />
       </th>
       <th appSortableColumn="assignedInterviewerName">
         Entrevistador
-        <app-sorticon field="assignedInterviewerName" />
+        <lux-sorticon-web field="assignedInterviewerName" />
       </th>
       <th>CV</th>
       <th class="no-print"></th>
@@ -73,9 +73,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer-web [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table-web>

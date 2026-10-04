@@ -22,7 +22,7 @@
     <div
       class="border-2 border-dashed border-300 rounded p-5 text-center bg-body-tertiary d-flex flex-column align-items-center"
     >
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:cloud-upload'"
         class="text-5xl text-body-secondary mb-3"
       />
@@ -59,13 +59,13 @@
   <!-- Result View -->
   <div class="text-center py-4">
     @if (result.failedCount === 0) {
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:check-circle'"
       class="text-green-500 text-6xl mb-3"
     />
     <h2 class="text-green-700 m-0">¡Importación Exitosa!</h2>
     } @else {
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:warning'"
       class="text-orange-500 text-6xl mb-3"
     />
@@ -100,7 +100,7 @@
       class="text-start mt-5 bg-body-tertiary p-3 rounded border-1 border-red-200"
     >
       <h4 class="text-red-700 mt-0 mb-2">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="me-2"
         />Detalle de errores

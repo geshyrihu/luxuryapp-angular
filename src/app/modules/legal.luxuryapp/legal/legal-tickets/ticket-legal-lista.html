@@ -1,5 +1,5 @@
 <!-- ??? Pantallas medianas y grandes -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between gap-2">
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
         [dt]="dt"
       />
@@ -59,17 +59,17 @@
       <th class="table-col-8">FOLIO</th>
       <th class="table-col-12" appSortableColumn="requestDate">
         FECHA SOLICITUD
-        <app-sorticon field="requestDate" />
+        <lux-sorticon-web field="requestDate" />
       </th>
       <th class="table-col-8" appSortableColumn="customer">
         CLIENTE
-        <app-sorticon field="customer" />
+        <lux-sorticon-web field="customer" />
       </th>
       <th class="table-col-30">ASUNTO</th>
       <th class="table-col-12">RESPONSABLE</th>
       <th class="table-col-10" appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th class="table-col-10">FECHA CONCLUSIÓN</th>
       <th class="table-col-3">DÍAS</th>
@@ -89,7 +89,7 @@
             class="p-link text-primary ms-2"
             lxTooltip="Corregir Cliente"
           >
-            <app-icon icon="material-symbols-light:edit-square" />
+            <lux-icon icon="material-symbols-light:edit-square" />
           </button>
         </div>
       </td>
@@ -99,7 +99,7 @@
         <small>{{ item.description }}</small>
       </td>
       <td>
-        <app-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
+        <lux-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
         item.assignee }}
       </td>
       <td class="text-center">
@@ -140,12 +140,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message-web [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- ?? Versión móvil -->
 <app-data-view-mobile
@@ -161,7 +161,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:confirmation-number"
           class="text-xl text-primary"
         />

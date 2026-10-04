@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-end flex-wrap">
-      <app-table-caption
+      <lux-table-caption-web
         (add)="showModalAddEmployee()"
         [dt]="dt"
         [rolAuth]="
@@ -31,15 +31,15 @@
       <th class="table-col-5">Né</th>
       <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <app-sorticon field="workPositionFolio" />
+        <lux-sorticon-web field="workPositionFolio" />
       </th>
       <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <app-sorticon field="userName" />
+        <lux-sorticon-web field="userName" />
       </th>
 
       <th
@@ -48,11 +48,11 @@
         class="no-print"
       >
         Télefono
-        <app-sorticon field="celularPersonal" />
+        <lux-sorticon-web field="celularPersonal" />
       </th>
       <th class="table-col-30" appSortableColumn="email">
         EMAIL
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, AspRole.Reclutamiento ]) ) {
@@ -138,12 +138,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -163,7 +163,7 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:badge-outline" />
+        <lux-icon icon="material-symbols-light:badge-outline" />
         }
       </div>
 

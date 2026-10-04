@@ -1,6 +1,6 @@
 @if (isSuperUsuario()) {
 
-<app-table
+<lux-table-web
   #dt
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
@@ -14,7 +14,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [showAdd]="true"
       [dt]="dt"
       label="Nueva configuracion"
@@ -26,31 +26,31 @@
     <tr>
       <th appSortableColumn="name">
         Nombre
-        <app-sorticon field="name" />
+        <lux-sorticon-web field="name" />
       </th>
       <th appSortableColumn="destinationType">
         Destino
-        <app-sorticon field="destinationType" />
+        <lux-sorticon-web field="destinationType" />
       </th>
       <th appSortableColumn="cronExpression">
         Programacion
-        <app-sorticon field="cronExpression" />
+        <lux-sorticon-web field="cronExpression" />
       </th>
       <th appSortableColumn="retentionDays">
         Retencion
-        <app-sorticon field="retentionDays" />
+        <lux-sorticon-web field="retentionDays" />
       </th>
       <th appSortableColumn="lastRunAt">
         Ultimo respaldo
-        <app-sorticon field="lastRunAt" />
+        <lux-sorticon-web field="lastRunAt" />
       </th>
       <th appSortableColumn="lastRunStatus">
         Estado
-        <app-sorticon field="lastRunStatus" />
+        <lux-sorticon-web field="lastRunStatus" />
       </th>
       <th appSortableColumn="isActive">
         Activo
-        <app-sorticon field="isActive" />
+        <lux-sorticon-web field="isActive" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -107,13 +107,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -123,7 +123,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
+       <lux-icon slot="start" icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
 
        <ion-label>
          <p class="mt-0 mb-0 fw-semibold">{{ item.name }}</p>

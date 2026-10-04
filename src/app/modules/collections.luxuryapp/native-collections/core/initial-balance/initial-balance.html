@@ -23,7 +23,7 @@
 
   @if (loading()) {
   <div class="d-flex justify-content-center p-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl text-primary"
     />
@@ -51,7 +51,7 @@
   </div>
   }
 
-  <app-table
+  <lux-table-web
     [value]="rows()"
     [globalFilterFields]="['propertyFullName', 'accountNumber']"
     class="custom-table card d-none d-md-block"
@@ -61,7 +61,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     </ng-template>
 
     <ng-template #header>
@@ -71,7 +71,7 @@
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
           <div class="d-flex align-items-center gap-1">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:edit'"
               class="text-xs text-body-secondary"
             />
@@ -112,7 +112,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [data]="rows()"
@@ -125,7 +125,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-yellow-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:wallet"
             class="text-yellow-600 text-xl"
           />

@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -9,30 +9,30 @@
     class="p-datatable-striped"
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     </ng-template>
     <ng-template #header>
       <tr>
         <th class="table-col-2 text-sm">#</th>
         <th class="table-col-7 text-sm" appSortableColumn="customer">
           Cliente
-          <app-sorticon field="customer" />
+          <lux-sorticon-web field="customer" />
         </th>
         <th class="table-col-13 text-sm" appSortableColumn="title">
           Titulo
-          <app-sorticon field="title" />
+          <lux-sorticon-web field="title" />
         </th>
         <th class="table-col-20 text-sm" appSortableColumn="requestService">
           Asunto
-          <app-sorticon field="requestService" />
+          <lux-sorticon-web field="requestService" />
         </th>
         <th class="table-col-7 text-sm" appSortableColumn="status">
           Estatus
-          <app-sorticon field="status" />
+          <lux-sorticon-web field="status" />
         </th>
         <th class="table-col-7 text-sm" appSortableColumn="deliveryDate">
           Entrega
-          <app-sorticon field="deliveryDate" />
+          <lux-sorticon-web field="deliveryDate" />
         </th>
         <th class="table-col-30 text-sm">Seguimiento</th>
       </tr>
@@ -70,7 +70,7 @@
         <td colspan="6">Sin registros.</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <!-- 📱 MOBILE -->

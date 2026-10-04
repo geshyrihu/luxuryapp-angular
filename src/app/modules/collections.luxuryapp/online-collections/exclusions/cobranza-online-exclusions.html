@@ -38,7 +38,7 @@
   </div>
   }
 
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -53,21 +53,21 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" />
+      <lux-table-caption-web [dt]="dt" />
     </ng-template>
     <ng-template #header>
       <tr>
         <th appSortableColumn="accountNumber">
           Cuenta
-          <app-sorticon field="accountNumber" />
+          <lux-sorticon-web field="accountNumber" />
         </th>
         <th appSortableColumn="accountName">
           Nombre
-          <app-sorticon field="accountName" />
+          <lux-sorticon-web field="accountName" />
         </th>
         <th appSortableColumn="accountLevel">
           Nivel
-          <app-sorticon field="accountLevel" />
+          <lux-sorticon-web field="accountLevel" />
         </th>
         <th>Match Property</th>
         <th>Razón visible</th>
@@ -100,12 +100,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="visibleRows()" />
+      <lux-table-footer-web [data]="visibleRows()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [data]="visibleRows()"
@@ -118,7 +118,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:account-balance" />
+          <lux-icon icon="material-symbols-light:account-balance" />
         </div>
         <div class="flex-fill min-w-0 ion-text-wrap">
           <p class="fw-semibold m-0 text-body">{{ item.accountNumber }}</p>

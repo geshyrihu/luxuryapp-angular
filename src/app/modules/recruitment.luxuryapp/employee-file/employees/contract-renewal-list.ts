@@ -42,7 +42,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
     <div class="contract-renewal-list">
       <div class="list-header">
         <h2 class="list-title">
-          <app-icon name="file-clock" class="title-icon" />
+          <lux-icon name="file-clock" class="title-icon" />
           Bandeja de Renovaciones
         </h2>
         <div class="header-actions">
@@ -59,14 +59,14 @@ import { DialogSize } from "@core/services/dialog-handler.service";
       <!-- Alert banner if there are pending renewals -->
       @if (pendingCount() > 0) {
         <div class="alert-banner">
-          <app-icon name="alert-circle" class="alert-icon" />
+          <lux-icon name="alert-circle" class="alert-icon" />
           <span>
             <strong>{{ pendingCount() }}</strong> renovaciones pendientes de decisión
           </span>
         </div>
       }
 
-      <app-table
+      <lux-table-web
         [value]="renewalService.renewals()"
         [loading]="renewalService.isLoading()"
         [paginator]="true"
@@ -96,23 +96,23 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           <tr>
             <th appSortableColumn="employeeName">
               Empleado
-              <app-sorticon field="employeeName" />
+              <lux-sorticon-web field="employeeName" />
             </th>
             <th appSortableColumn="positionName">
               Puesto
-              <app-sorticon field="positionName" />
+              <lux-sorticon-web field="positionName" />
             </th>
             <th appSortableColumn="contractEndDate">
               Fecha Vencimiento
-              <app-sorticon field="contractEndDate" />
+              <lux-sorticon-web field="contractEndDate" />
             </th>
             <th appSortableColumn="status">
               Estatus Evaluación
-              <app-sorticon field="status" />
+              <lux-sorticon-web field="status" />
             </th>
             <th appSortableColumn="decisionDate">
               Fecha Decisión
-              <app-sorticon field="decisionDate" />
+              <lux-sorticon-web field="decisionDate" />
             </th>
             <th style="width: 8rem">Acciones</th>
           </tr>
@@ -122,13 +122,13 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           <tr>
             <td>
               <div class="employee-cell">
-                <app-icon name="user" class="cell-icon" />
+                <lux-icon name="user" class="cell-icon" />
                 <span>{{ renewal.employeeName }}</span>
               </div>
             </td>
             <td>
               <div class="position-cell">
-                <app-icon name="briefcase" class="cell-icon" />
+                <lux-icon name="briefcase" class="cell-icon" />
                 <span>{{ renewal.positionName }}</span>
               </div>
             </td>
@@ -138,7 +138,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
               </span>
             </td>
             <td>
-              <app-tag
+              <lux-tag-web
                 [value]="getStatusLabel(renewal.status)"
                 [severity]="getStatusSeverity(renewal.status)"
               />
@@ -167,7 +167,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           <tr>
             <td colspan="6" class="text-center py-4">
               <div class="empty-state">
-                <app-icon name="file-check" class="empty-icon" />
+                <lux-icon name="file-check" class="empty-icon" />
                 <p>No hay renovaciones registradas</p>
               </div>
             </td>
@@ -191,7 +191,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   `,
   styles: `

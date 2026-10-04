@@ -40,7 +40,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [value]="requests()"
       [paginator]="true"
@@ -55,7 +55,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
       #dt
     >
       <ng-template #caption>
-        <app-table-caption [showAdd]="false" [dt]="dt" />
+        <lux-table-caption-web [showAdd]="false" [dt]="dt" />
       </ng-template>
 
       <ng-template #header>
@@ -63,7 +63,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
           @for (col of columns(); track col.field) {
             <th [appSortableColumn]="col.field">
               {{ col.header }}
-              <app-sorticon [field]="col.field" />
+              <lux-sorticon-web [field]="col.field" />
             </th>
           }
           <th class="text-center">Acciones</th>
@@ -123,9 +123,9 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="requests()" />
+        <lux-table-footer-web [data]="requests()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   `,
 })
 export class GenericApprovalPanel {

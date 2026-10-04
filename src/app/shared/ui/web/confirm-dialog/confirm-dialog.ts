@@ -6,7 +6,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 export type { ConfirmType } from "@ui/core/confirm-dialog.base";
 
 @Component({
-  selector: "app-confirm-dialog",
+  selector: "lux-confirm-dialog-web",
   imports: [WebButtonLabel, AppIcon],
   template: `
     <div
@@ -22,7 +22,7 @@ export type { ConfirmType } from "@ui/core/confirm-dialog.base";
           <div class="modal-header"><h5 class="modal-title">{{ title() }}</h5></div>
           <div class="modal-body">
             <div class="d-flex flex-column align-items-center text-center gap-3 py-3">
-              <app-icon [icon]="config().icon" class="text-4xl" [style.color]="config().color" />
+              <lux-icon [icon]="config().icon" class="text-4xl" [style.color]="config().color" />
               <p class="m-0 text-color-secondary line-height-3">{{ message() }}</p>
             </div>
           </div>

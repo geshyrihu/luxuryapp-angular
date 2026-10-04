@@ -80,7 +80,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="d-flex items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:history'"
                 class="text-xl"
               />
@@ -100,7 +100,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="d-flex items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:sunny'"
                 class="text-xl"
               />
@@ -120,7 +120,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
         <div class="mt-4">
           <div class="d-flex items-center mb-3">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:group'"
               class="text-xl text-orange-500"
             />
@@ -136,7 +136,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingLeaveRequests; track req.id) {
                     <li class="d-flex items-center justify-between p-2">
                       <span>
-                        <app-icon
+                        <lux-icon
                           [icon]="'material-symbols-light:person'"
                           class="me-2 text-gray-600"
                         />
@@ -169,7 +169,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingVacationRequests; track req.id) {
                     <li class="d-flex items-center justify-between p-2">
                       <span>
-                        <app-icon
+                        <lux-icon
                           [icon]="'material-symbols-light:person'"
                           class="me-2 text-gray-600"
                         />

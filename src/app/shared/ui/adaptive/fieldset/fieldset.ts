@@ -18,13 +18,13 @@ import { AppFieldset } from "@ui/web/fieldset/fieldset";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-fieldset>
     } @else {
-      <app-fieldset
+      <lux-fieldset-web
         [legend]="legend()"
         [toggleable]="toggleable()"
         [collapsed]="collapsed()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-fieldset>
+      </lux-fieldset-web>
     }
   `,
 })

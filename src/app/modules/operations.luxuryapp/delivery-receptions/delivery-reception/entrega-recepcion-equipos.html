@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   initialSortField="clasificacion"
   groupRowsBy="clasificacion"
@@ -6,7 +6,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between">
-      <app-report-header></app-report-header>
+      <lux-report-header-web></lux-report-header-web>
       <h5 class="m-0 h5">Inventario Equipos</h5>
     </div>
   </ng-template>
@@ -16,15 +16,15 @@
       <th class="table-col-14 text-sm">Foto</th>
       <th class="table-col-15 text-sm" appSortableColumn="nombre">
         Nombre
-        <app-sorticon field="nombre" />
+        <lux-sorticon-web field="nombre" />
       </th>
       <th class="table-col-15 text-sm" appSortableColumn="sistema">
         Sistema
-        <app-sorticon field="sistema" />
+        <lux-sorticon-web field="sistema" />
       </th>
       <th class="table-col-15 text-sm" appSortableColumn="ubicacion">
         Ubicación
-        <app-sorticon field="ubicacion" />
+        <lux-sorticon-web field="ubicacion" />
       </th>
       <th class="table-col-10 text-sm">Check</th>
       <th class="table-col-45 text-sm">Observaciones</th>
@@ -73,4 +73,4 @@
       <td class="text-sm">{{ item.observations | striptags }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

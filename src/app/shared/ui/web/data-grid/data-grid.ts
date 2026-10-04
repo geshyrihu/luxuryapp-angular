@@ -33,7 +33,7 @@ export interface DataGridColumn {
 }
 
 @Component({
-  selector: "app-data-grid",
+  selector: "lux-data-grid-web",
   imports: [
     AppTable,
     AppSorticon,
@@ -75,7 +75,7 @@ export interface DataGridColumn {
         </div>
       }
 
-      <app-table
+      <lux-table-web
         #dt
         [value]="data()"
         [dataKey]="dataKey()"
@@ -96,7 +96,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <th style="width: 3rem">
-                <app-table-header-checkbox />
+                <lux-table-header-checkbox-web />
               </th>
             }
             @for (col of columns(); track col.field) {
@@ -108,11 +108,11 @@ export interface DataGridColumn {
               >
                 <div class="d-flex align-items-center gap-1">
                   @if (col.icon) {
-                    <app-icon [icon]="col.icon" class="text-sm" />
+                    <lux-icon [icon]="col.icon" class="text-sm" />
                   }
                   {{ col.header }}
                   @if (col.sortable) {
-                    <app-sorticon [field]="col.field" />
+                    <lux-sorticon-web [field]="col.field" />
                   }
                 </div>
                 @if (col.filterable) {
@@ -136,7 +136,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
-                <app-table-selection-checkbox [value]="row" />
+                <lux-table-selection-checkbox-web [value]="row" />
               </td>
             }
             @for (col of columns(); track col.field) {
@@ -167,7 +167,7 @@ export interface DataGridColumn {
                   @if (col.type === "currency") {
                     {{ formatCurrency(row[col.field]) }}
                   } @else if (col.type === "boolean") {
-                    <app-icon
+                    <lux-icon
                       [icon]="
                         row[col.field] ? 'material-symbols-light:check-circle' : 'material-symbols-light:cancel'
                       "
@@ -214,13 +214,13 @@ export interface DataGridColumn {
           <tr>
             <td [attr.colspan]="columns().length + (showActions() ? 1 : 0) + (selectionMode() === 'multiple' ? 1 : 0)">
               <div class="p-4 text-center text-color-secondary">
-                <app-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
+                <lux-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
                 <p class="text-sm m-0">{{ emptyMessage() }}</p>
               </div>
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   `,
   styles: [

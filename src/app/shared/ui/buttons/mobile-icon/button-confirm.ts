@@ -25,7 +25,7 @@ import { SwalService } from "@core/services/swal.service";
       [class]="styleClass()"
       (click)="handleConfirm($event)"
     >
-      <app-icon
+      <lux-icon
         [icon]="resolvedIconClass() || IconCatalog.CheckCircleOutline"
         slot="icon-only"
       />

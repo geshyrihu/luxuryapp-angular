@@ -1,6 +1,6 @@
 <div class="committee-detail">
   <div class="committee-sticky-bar">
-    <app-segmented-control
+    <lux-segmented-control
       [items]="segments"
       [(value)]="view"
       ariaLabel="Tipo de directorio"
@@ -23,7 +23,7 @@
       (click)="openContact(person)"
     >
       <div class="committee-contact__avatar">
-        <app-image-fallback
+        <lux-image-fallback-web
           [src]="person.photoPath || ''"
           [alt]="person.firstName"
           width="56px"
@@ -47,22 +47,22 @@
         <div class="committee-contact__location-info">
           @if (person.phoneNumber) {
           <div class="committee-contact__info-line">
-            <app-icon icon="material-symbols-light:call" /> {{ person.phoneNumber }}
+            <lux-icon icon="material-symbols-light:call" /> {{ person.phoneNumber }}
           </div>
           }
           @if (person.phoneTwo) {
           <div class="committee-contact__info-line">
-            <app-icon icon="material-symbols-light:call" /> {{ person.phoneTwo }}
+            <lux-icon icon="material-symbols-light:call" /> {{ person.phoneTwo }}
           </div>
           }
           @if (person.extensionOne) {
           <div class="committee-contact__info-line">
-            <app-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionOne }}
+            <lux-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionOne }}
           </div>
           }
           @if (person.extensionTwo) {
           <div class="committee-contact__info-line">
-            <app-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionTwo }}
+            <lux-icon icon="material-symbols-light:deskphone" /> Ext: {{ person.extensionTwo }}
           </div>
           }
         </div>
@@ -72,7 +72,7 @@
         <div class="committee-contact__shift">
           <!-- TODO: Revisar la regla de negocio que determina el isOnShift desde el backend antes de reactivarlo. -->
           <!-- 
-          <app-realtime-indicator
+          <lux-realtime-indicator
             [status]="person.isOnShift ? 'live' : 'paused'"
             [label]="person.isOnShift ? 'En turno' : 'Fuera de turno'"
           />
@@ -81,7 +81,7 @@
         }
       </div>
       @if (!person.isLocation) {
-      <app-icon icon="material-symbols-light:chevron-right" class="committee-contact__chevron" />
+      <lux-icon icon="material-symbols-light:chevron-right" class="committee-contact__chevron" />
       }
     </article>
     }

@@ -9,7 +9,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 export { type TimelineEvent } from "@ui/core/timeline.base";
 
 @Component({
-  selector: "app-timeline",
+  selector: "lux-timeline-web",
 
   imports: [AppIcon],
   template: `
@@ -22,7 +22,7 @@ export { type TimelineEvent } from "@ui/core/timeline.base";
               [style.background]="event.color || 'var(--ds-primary)'"
             >
               @if (event.icon) {
-                <app-icon [icon]="event.icon" class="text-sm text-white" />
+                <lux-icon [icon]="event.icon" class="text-sm text-white" />
               }
             </div>
             @if (!last) {

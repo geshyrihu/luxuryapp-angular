@@ -115,7 +115,7 @@
             [title]="candidate.candidateName"
             (click)="openCandidateDetail(candidate)"
           >
-            <app-avatar [image]="candidate.photoUrl" [label]="!candidate.photoUrl ? (i + 1).toString() : undefined" shape="circle" styleClass="w-full h-full text-sm font-semibold" [style.background-color]="candidate.agendaStatusCode === 'overdue' || candidate.agendaStatusCode === 'feedback' || candidate.agendaStatusCode === 'pending' ? 'transparent' : 'var(--primary-color)'" [style.color]="'var(--surface-a)'"></app-avatar>
+            <lux-avatar-web [image]="candidate.photoUrl" [label]="!candidate.photoUrl ? (i + 1).toString() : undefined" shape="circle" styleClass="w-full h-full text-sm font-semibold" [style.background-color]="candidate.agendaStatusCode === 'overdue' || candidate.agendaStatusCode === 'feedback' || candidate.agendaStatusCode === 'pending' ? 'transparent' : 'var(--primary-color)'" [style.color]="'var(--surface-a)'"></lux-avatar-web>
           </button>
         </div>
         }

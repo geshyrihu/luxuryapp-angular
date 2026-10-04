@@ -29,7 +29,7 @@ const DOCS_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("documenttypes") {
-          <app-table [value]="tiposDocumento" class="p-datatable-sm">
+          <lux-table-web [value]="tiposDocumento" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Tipo</th>
@@ -42,17 +42,17 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ doc.tipo }}</td>
                 <td>{{ doc.codigo }}</td>
                 <td>
-                  <app-tag
+                  <lux-tag-web
                     [value]="doc.confidencialidad"
                     [severity]="doc.severity"
                   />
                 </td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table-web>
         }
         @case ("nomenclature") {
-          <app-table [value]="camposNomenclatura" class="p-datatable-sm">
+          <lux-table-web [value]="camposNomenclatura" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Campo</th>
@@ -67,10 +67,10 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.valores }}</td>
               </tr></ng-template
             >
-          </app-table>
+          </lux-table-web>
         }
         @case ("accessmatrix") {
-          <app-table [value]="matrizAcceso" class="p-datatable-sm">
+          <lux-table-web [value]="matrizAcceso" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Documento</th>
@@ -83,7 +83,7 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.superUsuario }}</td>
               </tr></ng-template
             >
-          </app-table>
+          </lux-table-web>
         }
       }
     </section>

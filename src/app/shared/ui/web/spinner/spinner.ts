@@ -11,7 +11,7 @@ import { SpinnerBase } from "@ui/core/spinner.base";
  * tamaño y color semántico.
  */
 @Component({
-  selector: "app-spinner",
+  selector: "lux-spinner-web",
 
   imports: [],
   template: `

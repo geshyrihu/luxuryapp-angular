@@ -11,7 +11,7 @@
     <!-- 1. Avance de la cobranza del mes -->
     @if (baseService.avanceCobranza(); as avance) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cobrado del mes"
         [value]="avance.cobrado"
@@ -24,7 +24,7 @@
         "
       />
       <div class="px-3 pb-3 -mt-2">
-        <app-progress-bar
+        <lux-progress-bar-web
           [value]="avance.porcentaje * 100"
           [showValue]="true"
           color="auto"
@@ -36,7 +36,7 @@
     <!-- 2. Cartera vencida -->
     @if (baseService.carteraVencida(); as cartera) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cartera vencida"
         [value]="cartera.total"
@@ -57,7 +57,7 @@
     <!-- 3. Cobranza judicial -->
     @if (baseService.cobranzaJudicial(); as judicial) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="En cobranza judicial"
         [value]="judicial.cantidad"
@@ -73,7 +73,7 @@
     }
   </div>
 
-  <app-table
+  <lux-table-web
     [value]="baseService.morososData()?.propiedades ?? []"
     [loading]="baseService.loading()"
     dataKey="numCtaBase"
@@ -89,28 +89,28 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" [showAdd]="false" label="Morosos" />
+      <lux-table-caption-web [dt]="dt" [showAdd]="false" label="Morosos" />
     </ng-template>
 
     <ng-template #header>
       <tr>
         <th appSortableColumn="departamento">
-          Propiedad <app-sorticon field="departamento" />
+          Propiedad <lux-sorticon-web field="departamento" />
         </th>
         <th appSortableColumn="clasificacion">
-          Situación <app-sorticon field="clasificacion" />
+          Situación <lux-sorticon-web field="clasificacion" />
         </th>
         <th appSortableColumn="saldoMantenimiento" class="text-end">
-          Mtto. <app-sorticon field="saldoMantenimiento" />
+          Mtto. <lux-sorticon-web field="saldoMantenimiento" />
         </th>
         <th appSortableColumn="saldoExtraordinario" class="text-end">
-          Extra. <app-sorticon field="saldoExtraordinario" />
+          Extra. <lux-sorticon-web field="saldoExtraordinario" />
         </th>
         <th appSortableColumn="saldoMultas" class="text-end">
-          Multas <app-sorticon field="saldoMultas" />
+          Multas <lux-sorticon-web field="saldoMultas" />
         </th>
         <th appSortableColumn="saldoPendiente" class="text-end">
-          Deuda Total <app-sorticon field="saldoPendiente" />
+          Deuda Total <lux-sorticon-web field="saldoPendiente" />
         </th>
         <th style="width: 3rem"></th>
       </tr>
@@ -152,10 +152,10 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message
+      <lux-table-empty-message-web
         title="Sin morosos"
         message="No se encontraron propiedades con deuda."
       />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </section>

@@ -17,7 +17,7 @@ import { InfiniteScroll } from "@ui/web/infinite-scroll/infinite-scroll";
         (loadMore)="loadMore.emit()"
       />
     } @else {
-      <app-infinite-scroll
+      <lux-infinite-scroll-web
         [loading]="loading()"
         [threshold]="threshold()"
         [disabled]="disabled()"

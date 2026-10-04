@@ -10,7 +10,7 @@
   </lux-file-upload>
   } @case ('analyzing') {
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-4xl text-primary"
     />
@@ -18,7 +18,7 @@
   </div>
   } @case ('creating') {
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-4xl text-primary"
     />
@@ -30,7 +30,7 @@
     Revisa la información y selecciona las órdenes de compra que deseas crear.
   </p>
 
-  <app-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
+  <lux-table-web [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
     <ng-template #header>
       <tr>
         <th class="table-col-3rem">
@@ -121,7 +121,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <div class="d-flex justify-content-end mt-4">
     <il-button

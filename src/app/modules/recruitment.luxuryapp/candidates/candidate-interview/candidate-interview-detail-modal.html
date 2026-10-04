@@ -69,7 +69,7 @@
   @if (interviewData()?.timeline?.length) {
   <div class="card p-3 mb-3">
     <div class="fw-semibold mb-3">Seguimiento</div>
-    <app-table
+    <lux-table-web
       [value]="interviewData()?.timeline"
       [paginator]="false"
       [scrollable]="true"
@@ -92,7 +92,7 @@
           <td>{{ item.comment }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   }
 </div>

@@ -23,7 +23,7 @@ import { Carousel } from "@ui/web/carousel/carousel";
         (onPage)="onPage.emit($event)"
       />
     } @else {
-      <app-carousel
+      <lux-carousel-web
         [value]="value()"
         [autoplayInterval]="autoplayInterval()"
         [numVisible]="numVisible()"

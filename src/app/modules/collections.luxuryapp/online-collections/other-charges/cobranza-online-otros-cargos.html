@@ -20,7 +20,7 @@
     } @else {
 
     <!-- Tabla desktop -->
-    <app-table
+    <lux-table-web
       #dt
       [value]="otrosCargos()"
       [globalFilterFields]="['conceptName']"
@@ -39,7 +39,7 @@
         <div
           class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 w-full g-4"
         >
-          <app-table-caption
+          <lux-table-caption-web
             [dt]="dt"
             [showAdd]="false"
             [showSearch]="true"
@@ -100,19 +100,19 @@
         <tr>
           <th appSortableColumn="conceptName">
             CONCEPTO
-            <app-sorticon field="conceptName" />
+            <lux-sorticon-web field="conceptName" />
           </th>
           <th appSortableColumn="total" class="text-end">
             CARGOS DEL MES
-            <app-sorticon field="total" />
+            <lux-sorticon-web field="total" />
           </th>
           <th appSortableColumn="collected" class="text-end">
             ABONADO
-            <app-sorticon field="collected" />
+            <lux-sorticon-web field="collected" />
           </th>
           <th appSortableColumn="pending" class="text-end">
             POR COBRAR
-            <app-sorticon field="pending" />
+            <lux-sorticon-web field="pending" />
           </th>
         </tr>
       </ng-template>
@@ -137,7 +137,7 @@
       </ng-template>
 
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="4" />
+        <lux-table-empty-message-web [colspan]="4" />
       </ng-template>
 
       <ng-template #paginatorleft>
@@ -164,7 +164,7 @@
           >
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
 
     <!-- Mobile -->
     <app-data-view-mobile

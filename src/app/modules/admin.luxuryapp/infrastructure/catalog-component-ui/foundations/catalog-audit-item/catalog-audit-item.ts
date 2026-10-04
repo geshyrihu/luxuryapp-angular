@@ -32,7 +32,7 @@ const AUDIT_LABELS: Record<string, string> = {
               <div class="col-12 col-lg-4">
                 <div class="border-round-xl border-1 p-4 h-full">
                   <div class="d-flex align-items-center gap-2 mb-3">
-                    <app-icon [icon]="iconifyIcon(b.icono)" class="text-xl" />
+                    <lux-icon [icon]="iconifyIcon(b.icono)" class="text-xl" />
                     <strong>{{ b.titulo }}</strong>
                   </div>
                   <p class="m-0 text-color-secondary text-sm">
@@ -52,7 +52,7 @@ const AUDIT_LABELS: Record<string, string> = {
                   [class.bg-green-50]="item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <app-checkbox
+                  <lux-checkbox-web
                     [checked]="item.aprobado"
                     (checkedChange)="toggleChecklistItem(item.numero)"
                   />

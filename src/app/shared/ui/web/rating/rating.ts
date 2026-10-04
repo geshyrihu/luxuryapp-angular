@@ -12,7 +12,7 @@ import { BarRatingModule } from "ngx-bar-rating";
  * Disabled y cancel se manejan a nivel wrapper con CSS + botón externo.
  */
 @Component({
-  selector: "app-rating",
+  selector: "lux-rating-web",
 
   imports: [BarRatingModule],
   template: `

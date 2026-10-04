@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation, computed } from 
 import { PaginatorBase } from "@ui/core/paginator.base";
 
 @Component({
-  selector: "app-paginator",
+  selector: "lux-paginator-web",
   template: `
     <nav class="app-paginator" aria-label="Paginación">
       <ul class="pagination pagination-sm mb-0 flex-wrap align-items-center gap-2">

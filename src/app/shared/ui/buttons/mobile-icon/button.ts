@@ -20,7 +20,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.GestureTap" slot="icon-only" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.GestureTap" slot="icon-only" />
     </ion-button>
   `,
 })

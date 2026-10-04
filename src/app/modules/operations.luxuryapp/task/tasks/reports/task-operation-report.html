@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -15,7 +15,7 @@
   <ng-template #caption>
     <div class="row align-items-center g-4">
       <div class="col-12 col-lg-6">
-        <app-table-caption
+        <lux-table-caption-web
           title="Reporte Semanal"
           (add)="
               onModalForm({
@@ -53,7 +53,7 @@
         appSortableColumn="responsibleArea"
       >
         SOLICITUD
-        <app-sorticon field="responsibleArea" />
+        <lux-sorticon-web field="responsibleArea" />
       </th>
       <th class="font-size-12">EVIDENCIA</th>
       <th
@@ -62,7 +62,7 @@
         appSortableColumn="dateFinishedFiltro"
       >
         CIERRE
-        <app-sorticon field="dateFinishedFiltro" />
+        <lux-sorticon-web field="dateFinishedFiltro" />
       </th>
       <th class="font-size-12">Evidencia</th>
       <th
@@ -71,7 +71,7 @@
         appSortableColumn="isRelevant"
       >
         Reporte Semanal
-        <app-sorticon field="isRelevant" />
+        <lux-sorticon-web field="isRelevant" />
       </th>
       <th></th>
     </tr>
@@ -96,7 +96,7 @@
       <td class="text-center">
         <div class="d-flex justify-content-center align-items-center">
           @if (item.beforeWork) {
-          <app-image
+          <lux-image-web
             [src]="
                   item.beforeWork
                     ? item.beforeWork
@@ -106,7 +106,7 @@
             width="40"
             styleClass="mr-2 border-1 surface-border"
             [preview]="true"
-          ></app-image>
+          ></lux-image-web>
           }
         </div>
       </td>
@@ -115,7 +115,7 @@
       <td>
         <div class="d-flex justify-content-center align-items-center">
           @if (item.afterWork) {
-          <app-image
+          <lux-image-web
             [src]="
                   item.afterWork
                     ? item.afterWork
@@ -125,7 +125,7 @@
             width="40"
             styleClass="mr-2 border-1 surface-border"
             [preview]="true"
-          ></app-image>
+          ></lux-image-web>
           }
         </div>
       </td>
@@ -149,7 +149,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">

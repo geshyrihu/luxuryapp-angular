@@ -26,9 +26,9 @@ import { TrackingEvent } from "../shared/tracking";
       (click)="onTrackingClick($event)"
     >
       <span class="tracking-badge-anchor">
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.Alert" />
+        <lux-icon [icon]="resolvedIconClass() || IconCatalog.Alert" />
         @if (badgeCount()) {
-          <app-badge [value]="badgeCount()!" color="danger" size="small" />
+          <lux-badge-web [value]="badgeCount()!" color="danger" size="small" />
         }
       </span>
     </button>

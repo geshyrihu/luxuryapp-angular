@@ -27,7 +27,7 @@ import { AppRating } from "@ui/web/rating/rating";
         (changed)="changed.emit($event)"
       />
     } @else {
-      <app-rating
+      <lux-rating-web
         [(value)]="value"
         [label]="label()"
         [hint]="hint()"

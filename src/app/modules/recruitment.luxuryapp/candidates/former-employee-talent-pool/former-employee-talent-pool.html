@@ -1,5 +1,5 @@
 
-  <app-table
+  <lux-table-web
     #dt
     class="custom-table card"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
@@ -18,7 +18,7 @@
       <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4">
         <!-- Parte Izquierda: Búsqueda -->
         <div class="flex-grow-1">
-          <app-table-caption
+          <lux-table-caption-web
             [dt]="dt"
             [showAdd]="false"
             [noPadding]="true"
@@ -51,20 +51,20 @@
       <tr>
         <th appSortableColumn="fullName">
           Ex-empleado
-          <app-sorticon field="fullName" />
+          <lux-sorticon-web field="fullName" />
         </th>
         <th appSortableColumn="customerName">
           Cliente
-          <app-sorticon field="customerName" />
+          <lux-sorticon-web field="customerName" />
         </th>
         <th appSortableColumn="workPositionName">
           Puesto anterior
-          <app-sorticon field="workPositionName" />
+          <lux-sorticon-web field="workPositionName" />
         </th>
         <th>Contacto</th>
         <th appSortableColumn="dateAdmission">
           Ingreso
-          <app-sorticon field="dateAdmission" />
+          <lux-sorticon-web field="dateAdmission" />
         </th>
         <th class="text-center">Candidato</th>
         <th class="text-center">Acciones</th>
@@ -124,10 +124,10 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message-web [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 

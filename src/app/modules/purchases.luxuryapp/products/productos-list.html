@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [title]="'Productos'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -23,23 +23,23 @@
     <tr>
       <th appSortableColumn="nombreProducto">
         Imagen
-        <app-sorticon field="nombreProducto" />
+        <lux-sorticon-web field="nombreProducto" />
       </th>
       <th appSortableColumn="nombreProducto">
         Nombre
-        <app-sorticon field="nombreProducto" />
+        <lux-sorticon-web field="nombreProducto" />
       </th>
       <th appSortableColumn="category">
         Categoria
-        <app-sorticon field="category" />
+        <lux-sorticon-web field="category" />
       </th>
       <th appSortableColumn="marca">
         Marca
-        <app-sorticon field="marca" />
+        <lux-sorticon-web field="marca" />
       </th>
       <th appSortableColumn="modelo">
         Modelo
-        <app-sorticon field="modelo" />
+        <lux-sorticon-web field="modelo" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.JefeMantenimiento,
       AspRole.SuperUsuario, AspRole.Administrador, ]) ) {
@@ -85,12 +85,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="filteredDataSignal()" />
+    <lux-table-footer-web [data]="filteredDataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -108,7 +108,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:package" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:package" class="text-xl text-primary" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>

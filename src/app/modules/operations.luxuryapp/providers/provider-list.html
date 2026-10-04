@@ -3,7 +3,7 @@
 <div
   class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4 g-4"
 >
-  <app-segmented-control
+  <lux-segmented-control
     [items]="serviceTypes"
     [value]="selectedServiceTypeControl.value"
     (changed)="onServiceTypeChange($event)"
@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:badge'"
           class="cursor-pointer text-primary text-xl"
           lxTooltip="Ver Ficha Técnica"
@@ -125,12 +125,12 @@
       <!-- Contacto -->
       <div class="d-flex flex-column gap-1 text-sm mt-2">
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneOne }}</span>
         </div>
         @if (item.phoneTwo) {
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneTwo }}</span>
         </div>
         }
@@ -221,7 +221,7 @@
 }
 
 <!-- Paginación (modo servidor) -->
-<app-paginator
+<lux-paginator-web
   [page]="page - 1"
   [rows]="rows"
   [totalRecords]="totalRecords"
@@ -240,7 +240,7 @@
         start
         class="w-3rem h-3rem rounded-lg bg-green-50 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:store-outline"
           class="text-green-600 text-xl"
         />

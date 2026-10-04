@@ -62,7 +62,7 @@
           <div class="d-flex flex-column gap-3 h-full">
             <div class="d-flex flex-column gap-2">
               <label class="text-sm fw-semibold">Estado de pago</label>
-              <app-segmented-control
+              <lux-segmented-control
                 ariaLabel="Filtro por estado de pago"
                 [items]="estadoPagoOptions"
                 [value]="selectedEstadoPago()"
@@ -72,7 +72,7 @@
 
             <div class="d-flex flex-column gap-2">
               <label class="text-sm fw-semibold">Tipo de compra</label>
-              <app-segmented-control
+              <lux-segmented-control
                 ariaLabel="Filtro por tipo de compra"
                 [items]="tipoCompraOptions"
                 [value]="selectedTipoCompra()"
@@ -88,7 +88,7 @@
               <label class="text-sm fw-semibold"
                 >Estado de autorizacion</label
               >
-              <app-segmented-control
+              <lux-segmented-control
                 ariaLabel="Filtro por estado de autorizacion"
                 [items]="estadoAutorizacionOptions"
                 [value]="selectedEstadoAutorizacion()"
@@ -98,7 +98,7 @@
 
             <div class="d-flex flex-column gap-2">
               <label class="text-sm fw-semibold">Tipo de orden</label>
-              <app-segmented-control
+              <lux-segmented-control
                 ariaLabel="Filtro por tipo de orden"
                 [items]="tipoOrdenOptions"
                 [value]="selectedTipoOrden()"
@@ -113,7 +113,7 @@
 </section>
 
 <section class="card p-3 p-md-4 d-none d-md-block">
-  <app-table
+  <lux-table-web
     #dt
     [globalFilterFields]="globalFilterFields()"
     [loading]="loading()"
@@ -126,7 +126,7 @@
     class="custom-table"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [title]="'Compras pagadas'"
         [showAdd]="false"
         [dt]="dt"
@@ -138,31 +138,31 @@
         <th class="table-col-3">No</th>
         <th class="table-col-6" appSortableColumn="fechaSolicitud">
           Fecha
-          <app-sorticon field="fechaSolicitud" />
+          <lux-sorticon-web field="fechaSolicitud" />
         </th>
         <th class="table-col-6" appSortableColumn="folio">
           Folio
-          <app-sorticon field="folio" />
+          <lux-sorticon-web field="folio" />
         </th>
         <th class="table-col-8" appSortableColumn="tipoOrdenLabel">
           Tipo de orden
-          <app-sorticon field="tipoOrdenLabel" />
+          <lux-sorticon-web field="tipoOrdenLabel" />
         </th>
         <th class="table-col-6" appSortableColumn="factura">
           Factura
-          <app-sorticon field="factura" />
+          <lux-sorticon-web field="factura" />
         </th>
         <th class="table-col-20" appSortableColumn="proveedor">
           Proveedor
-          <app-sorticon field="proveedor" />
+          <lux-sorticon-web field="proveedor" />
         </th>
         <th class="table-col-25" appSortableColumn="justificacionGasto">
           Justificacion
-          <app-sorticon field="justificacionGasto" />
+          <lux-sorticon-web field="justificacionGasto" />
         </th>
         <th class="table-col-10" appSortableColumn="total">
           Total
-          <app-sorticon field="total" />
+          <lux-sorticon-web field="total" />
         </th>
         <th class="table-col-5">Ver</th>
       </tr>
@@ -187,13 +187,13 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="9" />
+      <lux-table-empty-message-web [colspan]="9" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </section>
 
 <app-data-view-mobile
@@ -204,7 +204,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:check-circle-outline"
           class="text-xl text-green-500"
         />

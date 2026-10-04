@@ -2,7 +2,7 @@
   <lux-card class="card card--elevated mb-4">
     <div class="p-3 bg-body-tertiary rounded border-1 border">
       <div class="fw-semibold mb-3 d-flex align-items-center gap-2">
-        <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
+        <lux-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
         <span>Cerrar Período Contable</span>
       </div>
 
@@ -48,7 +48,7 @@
           />
           } @else {
           <div class="d-flex align-items-center h-3rem gap-2">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:check-circle'"
               class="text-green-600"
             />
@@ -60,7 +60,7 @@
     </div>
   </lux-card>
 
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -71,7 +71,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         title="Historial de Cierres de Período"
         [showAdd]="false"
         [dt]="dt"
@@ -137,7 +137,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [data]="dataSignal()"
@@ -151,7 +151,7 @@
           class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
           [class]="item.isClosed ? 'bg-red-100' : 'bg-green-100'"
         >
-          <app-icon
+          <lux-icon
             [icon]="item.isClosed ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
             [class]="item.isClosed ? 'text-red-600 text-xl' : 'text-green-600 text-xl'"
           />

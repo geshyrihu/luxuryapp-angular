@@ -3,7 +3,7 @@
   <div
     class="rf-card p-4 d-flex align-items-center text-body-secondary mb-4 gap-2"
   >
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Calculando flujo de caja...</span>
   </div>
   } @if (!loading() && !grupos().length) {
@@ -12,7 +12,7 @@
   </div>
   } @if (grupos().length) {
   <div class="rf-card d-none d-md-block">
-    <app-table [value]="grupos()" class="rf-table p-datatable-sm">
+    <lux-table-web [value]="grupos()" class="rf-table p-datatable-sm">
       <ng-template #header>
         <tr>
           <th class="table-col-50px"></th>
@@ -69,7 +69,7 @@
         </tr>
         }
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <div class="d-md-none d-flex flex-column gap-3">

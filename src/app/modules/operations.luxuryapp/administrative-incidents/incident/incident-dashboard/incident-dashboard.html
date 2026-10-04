@@ -33,7 +33,7 @@
 
   @if (loading()) {
   <div class="d-flex justify-content-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-4xl text-primary"
     />
@@ -90,7 +90,7 @@
       <div class="card p-4">
         <h3 class="text-lg fw-semibold mb-4">Incidencias por Mes</h3>
         @if (barChartData()) {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           type="bar"
           [data]="barChartData()"
           [options]="barChartOptions()"
@@ -107,7 +107,7 @@
       <div class="card p-4">
         <h3 class="text-lg fw-semibold mb-4">Distribución por Tipo</h3>
         @if (pieChartData()) {
-        <app-chart-wrapper
+        <lux-chart-wrapper-web
           type="pie"
           [data]="pieChartData()"
           [options]="pieChartOptions()"
@@ -125,7 +125,7 @@
     <h3 class="text-lg fw-semibold mb-4">
       Top Empleados con Mís Incidencias
     </h3>
-    <app-table
+    <lux-table-web
       [value]="dashboard()!.topEmployees"
       [paginator]="true"
       [rows]="10"
@@ -152,7 +152,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <!-- Distribución por Severidad -->

@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tableRows"
@@ -19,7 +19,7 @@
     >
       <!-- LADO IZQUIERDO: Buscador y Título (Toma el espacio libre) -->
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption-web
           [dt]="dt"
           [showAdd]="false"
           [noPadding]="true"
@@ -65,20 +65,20 @@
     <tr>
       <th appSortableColumn="areaResponsable">
         AREA
-        <app-sorticon field="areaResponsable" />
+        <lux-sorticon-web field="areaResponsable" />
       </th>
       <th appSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <app-sorticon field="fechaSolicitudFiltro" />
+        <lux-sorticon-web field="fechaSolicitudFiltro" />
       </th>
       <th appSortableColumn="pendiente" class="table-col-pendiente">
         PENDIENTE
-        <app-sorticon field="pendiente" />
+        <lux-sorticon-web field="pendiente" />
       </th>
       <th class="table-col-seguimiento">SEGUIMIENTO</th>
       <th class="text-center" appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -127,7 +127,7 @@
         />
       </td>
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-item
               label="Ver todos los seguimientos"
@@ -150,18 +150,18 @@
               "
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Mobile View -->
 <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
@@ -205,7 +205,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:timeline"
           class="text-xl text-primary"
         />

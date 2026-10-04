@@ -18,7 +18,7 @@ export interface MappedTagOption {
 
   imports: [AppTag],
   template: `
-    <app-tag
+    <lux-tag-web
       [value]="resolvedLabel()"
       [severity]="resolvedSeverity()"
       [rounded]="rounded()"

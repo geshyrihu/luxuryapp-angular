@@ -13,7 +13,7 @@ import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     <div class="card h-100" style="background-color: var(--ds-bg-surface); border: 1px solid var(--ds-border); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-sm);">
       <div class="card-body">
         <h5 class="card-title d-flex align-items-center mb-3" style="color: var(--ds-text-primary);">
-          <app-icon [icon]="getIcon()" class="me-2"></app-icon>
+          <lux-icon [icon]="getIcon()" class="me-2"></lux-icon>
           {{ item().category }}
         </h5>
         

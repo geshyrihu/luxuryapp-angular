@@ -8,7 +8,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * Usado en formularios durante operaciones CRUD.
  */
 @Component({
-  selector: "app-processing-overlay",
+  selector: "lux-processing-overlay-web",
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         >
           <!-- Spinner -->
           <div class="animate-spin mb-4 inline-block">
-            <app-icon icon="material-symbols-light:progress-activity" class="text-3xl text-primary-500" />
+            <lux-icon icon="material-symbols-light:progress-activity" class="text-3xl text-primary-500" />
           </div>
 
           <!-- Mensaje principal -->

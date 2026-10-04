@@ -1,5 +1,5 @@
 <lux-card>
-  <app-table
+  <lux-table-web
     [value]="facturas()"
     [tableStyle]="{'min-width': '50rem'}"
     class="p-datatable-sm"
@@ -32,7 +32,7 @@
         <td>{{ invoice.fechaFactura }}</td>
         <td>
           @if(invoice.pdfFile) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:picture-as-pdf'"
             class="text-red-500 text-xl"
           />
@@ -40,7 +40,7 @@
         </td>
         <td>
           @if(invoice.xmlFile) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:description'"
             class="text-blue-500 text-xl"
           />
@@ -55,9 +55,9 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message-web [colspan]="7" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <div class="row mt-4 bg-body-tertiary p-3 rounded g-4">
     <div class="col-12 fw-bold mb-2">
@@ -84,7 +84,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 d-block mt-1"
-        ><app-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
+        ><lux-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
         actual conservado. Subir nuevo para reemplazar.</small
       >
       }
@@ -98,7 +98,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 d-block mt-1"
-        ><app-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
+        ><lux-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
         actual conservado. Subir nuevo para reemplazar.</small
       >
       }

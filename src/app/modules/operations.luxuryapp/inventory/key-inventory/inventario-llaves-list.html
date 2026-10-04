@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -8,7 +8,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [title]="'Llaves'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -23,17 +23,17 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="descripcion">
-        DESCRIPCIÓN <app-sorticon field="descripcion" />
+        DESCRIPCIÓN <lux-sorticon-web field="descripcion" />
       </th>
-      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
+      <th appSortableColumn="marca">Marca <lux-sorticon-web field="marca" /></th>
       <th appSortableColumn="numeroLlave">
-        Número <app-sorticon field="numeroLlave" />
+        Número <lux-sorticon-web field="numeroLlave" />
       </th>
       <th appSortableColumn="cantidad">
-        Cantidad <app-sorticon field="cantidad" />
+        Cantidad <lux-sorticon-web field="cantidad" />
       </th>
       <th appSortableColumn="equipoClasificacion">
-        Clasificación <app-sorticon field="equipoClasificacion" />
+        Clasificación <lux-sorticon-web field="equipoClasificacion" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -56,12 +56,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -74,7 +74,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:key-outline"
           class="text-xl text-yellow-500"
         />

@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
   [paginator]="true"
@@ -15,7 +15,7 @@
   scrollHeight="750px"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -25,23 +25,23 @@
     <tr>
       <th appSortableColumn="posicionComite">
         Posición
-        <app-sorticon field="posicionComite" />
+        <lux-sorticon-web field="posicionComite" />
       </th>
       <th appSortableColumn="nameProperty">
         Nombre
-        <app-sorticon field="nameProperty" />
+        <lux-sorticon-web field="nameProperty" />
       </th>
       <th appSortableColumn="departamento">
         Departamento
-        <app-sorticon field="departamento" />
+        <lux-sorticon-web field="departamento" />
       </th>
       <th appSortableColumn="email">
         Correo
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       <th appSortableColumn="userName">
         Usuario
-        <app-sorticon field="userName" />
+        <lux-sorticon-web field="userName" />
       </th>
       <th>Celular</th>
       <th class="no-print">Opciones</th>
@@ -83,12 +83,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -103,7 +103,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-xl text-primary"
         />

@@ -18,7 +18,7 @@
 </div>
 
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -33,18 +33,18 @@
 >
   <ng-template #header>
     <tr>
-      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="folio">FOLIO <lux-sorticon-web field="folio" /></th>
       <th appSortableColumn="folioVacante">
-        VAC <app-sorticon field="folioVacante" />
+        VAC <lux-sorticon-web field="folioVacante" />
       </th>
       <th appSortableColumn="requestDateFilter">
-        SOLICITUD <app-sorticon field="requestDateFilter" />
+        SOLICITUD <lux-sorticon-web field="requestDateFilter" />
       </th>
       <th>CLIENTE</th>
       <th>NOMBRE</th>
       <th>PUESTO</th>
       <th appSortableColumn="status">
-        ESTATUS <app-sorticon field="status" />
+        ESTATUS <lux-sorticon-web field="status" />
       </th>
       <th class="text-center">ENVÍO</th>
       <th class="text-center">DOC.</th>
@@ -171,12 +171,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message-web [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 }
 
 <app-data-view-mobile
@@ -190,7 +190,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:person-add-outline"
           class="text-xl text-green-600"
         />

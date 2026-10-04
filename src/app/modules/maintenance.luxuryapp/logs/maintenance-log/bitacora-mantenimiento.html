@@ -1,14 +1,14 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption (add)="onModalFormBiacora(0)" [dt]="dt" />
+    <lux-table-caption-web (add)="onModalFormBiacora(0)" [dt]="dt" />
     <br />
     <div class="w-full sm:w-30rem">
-      <app-rango-calendario-yyyymmdd
+      <lux-rango-calendario-yyyymmdd-web
         [mostrartextDesde]="false"
         [mostrartextHasta]="false"
       />
@@ -53,9 +53,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="1" />
+    <lux-table-empty-message-web [colspan]="1" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile
@@ -67,7 +67,7 @@
 >
   <div customFilters>
     <div class="px-2 pb-2">
-      <app-rango-calendario-yyyymmdd
+      <lux-rango-calendario-yyyymmdd-web
         [mostrartextDesde]="false"
         [mostrartextHasta]="false"
       />

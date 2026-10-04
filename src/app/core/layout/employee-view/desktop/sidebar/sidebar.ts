@@ -25,7 +25,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 
 @Component({
-  selector: "app-sidebar",
+  selector: "lux-sidebar-web",
   imports: [
     CommonModule,
     RouterModule,

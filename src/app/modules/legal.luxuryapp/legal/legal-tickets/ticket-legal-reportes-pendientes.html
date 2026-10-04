@@ -7,7 +7,7 @@ unassignedData().length > 0) {
 <div class="d-none d-md-block">
   @if (dataExternal().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table-web
       #dtExternal
       [value]="dataExternal()"
       [scrollable]="true"
@@ -15,7 +15,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           title="Pendientes Externos"
           [showAdd]="false"
           [dt]="dtExternal"
@@ -53,11 +53,11 @@ unassignedData().length > 0) {
           En total hay {{ dataExternal().length }} pendientes externos.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   } @if (dataInternal().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table-web
       #dtInternal
       [value]="dataInternal()"
       [scrollable]="true"
@@ -65,7 +65,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           title="Pendientes Internos"
           [showAdd]="false"
           [dt]="dtInternal"
@@ -103,11 +103,11 @@ unassignedData().length > 0) {
           En total hay {{ dataInternal().length }} pendientes internos.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   } @if (unassignedData().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table-web
       #dtUnassigned
       [value]="unassignedData()"
       [scrollable]="true"
@@ -115,7 +115,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption-web
           title="Pendientes sin Asignar"
           [showAdd]="false"
           [dt]="dtUnassigned"
@@ -153,7 +153,7 @@ unassignedData().length > 0) {
           En total hay {{ unassignedData().length }} pendientes sin asignar.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   }
 </div>
@@ -171,7 +171,7 @@ unassignedData().length > 0) {
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:confirmation-number"
               class="text-xl text-primary"
             />
@@ -219,7 +219,7 @@ unassignedData().length > 0) {
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:confirmation-number"
               class="text-xl text-primary"
             />
@@ -267,7 +267,7 @@ unassignedData().length > 0) {
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-yellow-100"
           >
-            <app-icon icon="material-symbols-light:confirmation-number" />
+            <lux-icon icon="material-symbols-light:confirmation-number" />
           </div>
 
           <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>

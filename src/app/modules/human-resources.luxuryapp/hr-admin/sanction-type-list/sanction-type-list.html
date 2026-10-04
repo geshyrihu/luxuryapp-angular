@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     #dt
     [value]="items()"
     [globalFilterFields]="globalFilterFields"
@@ -14,25 +14,25 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Sanción' })"
         [dt]="dt"
       />
     </ng-template>
     <ng-template #header>
       <tr>
-        <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
+        <th appSortableColumn="name">Nombre <lux-sorticon-web field="name" /></th>
         <th appSortableColumn="severityLevel">
-          Severidad <app-sorticon field="severityLevel" />
+          Severidad <lux-sorticon-web field="severityLevel" />
         </th>
         <th appSortableColumn="isTermination" class="text-center">
-          Es Terminación <app-sorticon field="isTermination" />
+          Es Terminación <lux-sorticon-web field="isTermination" />
         </th>
         <th appSortableColumn="requiresHRApproval" class="text-center">
-          Requiere RH <app-sorticon field="requiresHRApproval" />
+          Requiere RH <lux-sorticon-web field="requiresHRApproval" />
         </th>
         <th appSortableColumn="isActive" class="text-center">
-          Activo <app-sorticon field="isActive" />
+          Activo <lux-sorticon-web field="isActive" />
         </th>
         <th class="no-print">Acciones</th>
       </tr>
@@ -73,12 +73,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="items()" />
+      <lux-table-footer-web [data]="items()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <!--📲INICIO: Componente adaptado para versión móvil -->
   <app-data-view-mobile
@@ -93,7 +93,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:gavel" />
+          <lux-icon icon="material-symbols-light:gavel" />
         </div>
 
         <h2 class="text-base fw-semibold">{{ item.name }}</h2>

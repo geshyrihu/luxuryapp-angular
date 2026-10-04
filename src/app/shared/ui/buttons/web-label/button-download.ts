@@ -19,7 +19,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Download" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.Download" />
       <span>{{ label() || "Descargar" }}</span>
     </button>
   `,

@@ -53,12 +53,12 @@
 <!-- Galeria por tipo -->
 @if (loading()) {
 <div class="d-flex justify-content-center my-4">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
+  <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
 </div>
 } @else if (evidencias().length === 0) {
 <div class="d-flex justify-content-center align-items-center py-5 text-body-secondary">
   <div class="text-center">
-    <app-icon [icon]="'material-symbols-light:description'" class="text-4xl mb-2" />
+    <lux-icon [icon]="'material-symbols-light:description'" class="text-4xl mb-2" />
     <p>Sin evidencias cargadas para esta nomina.</p>
   </div>
 </div>
@@ -74,7 +74,7 @@
       [style.background]="getCardColor(ev.tipoEvidencia)"
     >
       <div class="d-flex flex-column align-items-center gap-2">
-        <app-icon
+        <lux-icon
           [icon]="ev.contentType === 'application/pdf' ? 'material-symbols-light:photo' : ev.contentType?.startsWith('image') ? 'material-symbols-light:photo' : 'material-symbols-light:description'"
           class="text-3xl"
         />

@@ -18,7 +18,7 @@
   No hay historial de cambios para esta partida.
 </div>
 } @else {
-<app-table [value]="history()" class="p-datatable-sm">
+<lux-table-web [value]="history()" class="p-datatable-sm">
   <ng-template #header>
     <tr>
       <th>Fecha</th>
@@ -37,7 +37,7 @@
       <td>{{ record.justification }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }
 
 

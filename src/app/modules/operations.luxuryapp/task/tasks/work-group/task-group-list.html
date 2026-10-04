@@ -32,7 +32,7 @@
   </div>
 
   @if (filteredData().length === 0) {
-  <app-empty-state
+  <lux-empty-state-web
     icon="material-symbols-light:database-off-outline"
     title="Sin registros"
     message="No hay grupos de trabajo que coincidan con la búsqueda."
@@ -61,7 +61,7 @@
               <lux-tag value="Legal" severity="warn" />
               }
             </div>
-            <app-status-badge
+            <lux-status-badge-web
               class="inline-block mt-2"
               [status]="item.visibility"
               [isVisibility]="true"
@@ -84,7 +84,7 @@
             >
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:move-to-inbox"
               class="text-body-secondary"
             />
@@ -166,7 +166,7 @@
               {{ item.nameGroup }}
             </h3>
             <p class="m-0 mt-1">
-              <app-status-badge
+              <lux-status-badge-web
                 [status]="item.visibility"
                 [isVisibility]="true"
                 [clickable]="false"
@@ -183,7 +183,7 @@
             <span class="fw-semibold text-sm">
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:forum-outline"
               class="text-base"
             />

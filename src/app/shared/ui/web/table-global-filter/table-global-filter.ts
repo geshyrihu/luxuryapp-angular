@@ -10,13 +10,13 @@ import { AppIcon } from "../../primitives/app-icon/app-icon";
  * Se conecta a una p-table para filtrar en todos los campos configurados.
  */
 @Component({
-  selector: "app-table-global-filter",
+  selector: "lux-table-global-filter-web",
   imports: [FormsModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="input-group input-group-sm">
       <span class="input-group-text">
-        <app-icon icon="material-symbols-light:search" />
+        <lux-icon icon="material-symbols-light:search" />
       </span>
       <input
         type="text"

@@ -27,7 +27,7 @@ import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
         (onSelect)="onSelect.emit($event)"
       ></ili-file-upload>
     } @else {
-      <app-file-upload
+      <lux-file-upload-web
         [chooseLabel]="chooseLabel()"
         [accept]="accept()"
         [maxFileSize]="maxFileSize()"
@@ -37,7 +37,7 @@ import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
         (filesChange)="filesChange.emit($event)"
         (upload)="upload.emit($event)"
         (onSelect)="onSelect.emit($event)"
-      ></app-file-upload>
+      ></lux-file-upload-web>
     }
   `,
 })

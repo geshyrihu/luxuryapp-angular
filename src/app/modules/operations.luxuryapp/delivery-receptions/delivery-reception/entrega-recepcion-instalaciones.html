@@ -1,6 +1,6 @@
-<app-report-header></app-report-header>
+<lux-report-header-web></lux-report-header-web>
 
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   initialSortField="clasificacion"
   groupRowsBy="clasificacion"
@@ -17,11 +17,11 @@
       <th class="table-col-14 text-sm">Foto</th>
       <th class="table-col-15 text-sm" appSortableColumn="nombre">
         Nombre
-        <app-sorticon field="nombre" />
+        <lux-sorticon-web field="nombre" />
       </th>
       <th class="table-col-15 text-sm" appSortableColumn="sistema">
         Sistema
-        <app-sorticon field="sistema" />
+        <lux-sorticon-web field="sistema" />
       </th>
       <th class="table-col-15 text-sm">Ubicación</th>
       <th class="table-col-10 text-sm">Check</th>
@@ -62,4 +62,4 @@
       <td class="text-sm">{{ item.observations | striptags }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

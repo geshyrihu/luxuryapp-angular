@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,29 +14,29 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th appSortableColumn="fechaSolicitud">
         FECHA DE SOLICITUD
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th appSortableColumn="folio">
         FOLIO
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th appSortableColumn="tipoSolicitud">
         SOLICITUD
-        <app-sorticon field="tipoSolicitud" />
+        <lux-sorticon-web field="tipoSolicitud" />
       </th>
       <th appSortableColumn="nombreEmpleado">
         NOMBRE
-        <app-sorticon field="nombreEmpleado" />
+        <lux-sorticon-web field="nombreEmpleado" />
       </th>
       <th appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th></th>
     </tr>
@@ -109,12 +109,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -127,7 +127,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-xl text-purple-600"
         />

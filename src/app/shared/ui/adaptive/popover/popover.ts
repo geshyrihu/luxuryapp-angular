@@ -25,7 +25,7 @@ import { AppPopover } from "@ui/web/popover/popover";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-popover>
     } @else {
-      <app-popover
+      <lux-popover-web
         #inner
         [styleClass]="styleClass()"
         [appendTo]="appendTo()"
@@ -34,7 +34,7 @@ import { AppPopover } from "@ui/web/popover/popover";
         [focusOnShow]="focusOnShow()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-popover>
+      </lux-popover-web>
     }
   `,
 })

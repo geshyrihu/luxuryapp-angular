@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   #dt
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -12,26 +12,26 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
     <tr>
       <th appSortableColumn="applicationUser">
         Usuario
-        <app-sorticon field="applicationUser" />
+        <lux-sorticon-web field="applicationUser" />
       </th>
       <th appSortableColumn="email">
         Email
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       <th appSortableColumn="smtp">
         Smtp
-        <app-sorticon field="smtp" />
+        <lux-sorticon-web field="smtp" />
       </th>
       <th appSortableColumn="port">
         Port
-        <app-sorticon field="port" />
+        <lux-sorticon-web field="port" />
       </th>
 
       <th class="table-col-5"></th>
@@ -59,12 +59,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message-web [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -75,7 +75,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:mail-outline" class="text-xl text-primary" />
+       <lux-icon slot="start" icon="material-symbols-light:mail-outline" class="text-xl text-primary" />
        <ion-label>
          <p class="mt-0 mb-0">{{ item.email }}</p>
          <p class="text-body-secondary font-size-12 mt-0 mb-0">

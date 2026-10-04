@@ -6,7 +6,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Component({
-  selector: "app-breadcrumbs",
+  selector: "lux-breadcrumbs-web",
 
   imports: [RouterLink, AppIcon, NgClass],
   template: `
@@ -16,7 +16,7 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
           <li class="breadcrumb-item">
             <a [routerLink]="h.routerLink" [attr.aria-label]="h.label || 'Inicio'" (click)="onClick(h, $event)">
               @if (h.icon) {
-                <app-icon [icon]="iconName(h.icon)" />
+                <lux-icon [icon]="iconName(h.icon)" />
               }
               @if (h.label) {
                 <span>{{ h.label }}</span>
@@ -33,7 +33,7 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
             @if (item.routerLink || item.command) {
               <a [routerLink]="item.routerLink" [attr.aria-label]="item.label || 'Inicio'" (click)="onClick(item, $event)">
                 @if (item.icon) {
-                  <app-icon [icon]="iconName(item.icon)" />
+                  <lux-icon [icon]="iconName(item.icon)" />
                 }
                 @if (item.label) {
                   <span>{{ item.label }}</span>
@@ -41,7 +41,7 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
               </a>
             } @else {
               @if (item.icon) {
-                <app-icon [icon]="iconName(item.icon)" />
+                <lux-icon [icon]="iconName(item.icon)" />
               }
               @if (item.label) {
                 <span>{{ item.label }}</span>

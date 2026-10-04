@@ -117,7 +117,7 @@ interface IResetPasswordForm {
                   <div
                     class="d-flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
                   >
-                    <app-icon
+                    <lux-icon
                       icon="material-symbols-light:error-outline"
                       class="text-xl me-3"
                     />

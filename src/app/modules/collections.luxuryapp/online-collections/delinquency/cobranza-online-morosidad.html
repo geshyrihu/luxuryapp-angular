@@ -15,7 +15,7 @@
   <!-- KPIs de cartera vencida -->
   <div class="row g-4">
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cartera vencida"
         [value]="totalCartera()"
@@ -27,7 +27,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Morosos"
         [value]="totalMorosos()"
@@ -39,7 +39,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cobranza judicial"
         [value]="totalJudicial()"
@@ -55,7 +55,7 @@
   <!-- Dos listados: morosos y judicial, cada uno con su total -->
   <div class="row g-4">
     <div class="col-12 col-lg-6">
-      <app-ranked-list
+      <lux-ranked-list
             heading="Morosos"
             [items]="morosos()"
             [total]="totalMorosos()"
@@ -67,7 +67,7 @@
       />
     </div>
     <div class="col-12 col-lg-6">
-      <app-ranked-list
+      <lux-ranked-list
             heading="Cobranza judicial"
             [items]="judicial()"
             [total]="totalJudicial()"

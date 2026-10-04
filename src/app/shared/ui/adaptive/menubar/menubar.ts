@@ -16,7 +16,7 @@ import { Menubar } from "@ui/web/menubar/menubar";
         [(activeItem)]="activeItem"
       />
     } @else {
-      <app-menubar
+      <lux-menubar-web
         [items]="items()"
         [orientation]="orientation()"
         [(activeItem)]="activeItem"

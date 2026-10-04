@@ -15,7 +15,7 @@
   </lux-toolbar>
 
   <!-- Desktop View -->
-  <app-table
+  <lux-table-web
     #dt
     [value]="data()"
     [loading]="loading()"
@@ -45,7 +45,7 @@
         <td>{{ task.title }}</td>
         <td>{{ task.priorityDescription }}</td>
         <td>
-          <app-status-badge
+          <lux-status-badge-web
             [value]="task.status"
             [status]="task.statusDescription"
           />
@@ -78,9 +78,9 @@
       />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message-web [colspan]="5" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <!-- Mobile View -->
   <app-data-view-mobile
@@ -96,7 +96,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:repeat"
             class="text-xl text-primary"
           />
@@ -106,7 +106,7 @@
         <p class="text-sm text-gray-500">
           {{ task.scheduledDate | apiDate : "medium" }}
         </p>
-        <app-status-badge
+        <lux-status-badge-web
           [value]="task.status"
           [status]="task.statusDescription"
         />

@@ -1,7 +1,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="p-3">
-    <app-table
+    <lux-table-web
       [value]="dataSignal()"
       class="custom-table"
       [paginator]="true"
@@ -20,7 +20,7 @@
         >
           <!-- Parte Izquierda: Título y bósqueda -->
           <div class="flex-grow-1">
-            <app-table-caption
+            <lux-table-caption-web
               [showAdd]="false"
               [dt]="dt"
               [noPadding]="true"
@@ -77,17 +77,17 @@
             }
           </td>
           <td class="text-end">
-            <app-icon [icon]="'material-symbols-light:chevron-right'" />
+            <lux-icon [icon]="'material-symbols-light:chevron-right'" />
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message-web [colspan]="5" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer-web [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -125,7 +125,7 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:domain" />
+        <lux-icon icon="material-symbols-light:domain" />
         }
       </ion-avatar>
       <ion-label class="ion-text-wrap">

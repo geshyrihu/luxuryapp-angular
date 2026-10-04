@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -28,7 +28,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="btn btn-outline-secondary btn-sm no-underline"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:format-list-bulleted'"
               class="me-1"
             />
@@ -39,7 +39,7 @@
             routerLinkActive="btn-primary"
             class="btn btn-outline-secondary btn-sm no-underline"
           >
-            <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
+            <lux-icon [icon]="'material-symbols-light:table'" class="me-1" />
             Reporte
           </a>
           <a
@@ -47,7 +47,7 @@
             routerLinkActive="btn-primary"
             class="btn btn-outline-secondary btn-sm no-underline"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:bar-chart'"
               class="me-1"
             />
@@ -58,7 +58,7 @@
 
       <!-- DERECHA: Buscador y Agregar -->
       <div class="flex-shrink-0">
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
           [dt]="dt"
           [noPadding]="true"
@@ -71,12 +71,12 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="horaLlegada">
-        Llegada <app-sorticon field="horaLlegada" />
+        Llegada <lux-sorticon-web field="horaLlegada" />
       </th>
       <th>Termino</th>
-      <th appSortableColumn="empresa">Empresa <app-sorticon field="empresa" /></th>
+      <th appSortableColumn="empresa">Empresa <lux-sorticon-web field="empresa" /></th>
       <th appSortableColumn="placasCamion">
-        Placas <app-sorticon field="placasCamion" />
+        Placas <lux-sorticon-web field="placasCamion" />
       </th>
       <th class="text-end">Cap.(L)</th>
       <th class="text-center">Cisterna antes / despues</th>
@@ -152,63 +152,63 @@
       <td colspan="13" class="p-2">
         <div class="d-flex flex-wrap gap-1">
           @if (item.fotoPipaLlenaUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoPipaLlenaUrl"
             alt="Pipa llena"
             width="40"
             [preview]="true"
           />
           } @if (item.fotoPipaVaciaUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoPipaVaciaUrl"
             alt="Pipa vacia"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoPlacasUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoPlacasUrl"
             alt="Placas"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoIneChoferUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoIneChoferUrl"
             alt="INE chofer"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoMedidorAntesUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoMedidorAntesUrl"
             alt="Medidor antes"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoMedidorDespuesUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoMedidorDespuesUrl"
             alt="Medidor despues"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoNivelAntesUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoNivelAntesUrl"
             alt="Nivel antes"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoNivelDespuesUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoNivelDespuesUrl"
             alt="Nivel despues"
             width="40"
             [preview]="true"
           />
           2 } @if (item.fotoNotaUrl) {
-          <app-image
+          <lux-image-web
             [src]="item.fotoNotaUrl"
             alt="Nota"
             width="40"
@@ -220,13 +220,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="13" />
+    <lux-table-empty-message-web [colspan]="13" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -241,7 +241,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="me-1"
         />
@@ -252,7 +252,7 @@
         routerLinkActive="btn-primary"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
+        <lux-icon [icon]="'material-symbols-light:table'" class="me-1" />
         Reporte
       </a>
       <a
@@ -260,7 +260,7 @@
         routerLinkActive="btn-primary"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
+        <lux-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
         Analisis
       </a>
     </div>
@@ -268,7 +268,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:water" />
+        <lux-icon icon="material-symbols-light:water" />
       </div>
 
       <h3 class="fw-bold">{{ item.placasCamion }}</h3>

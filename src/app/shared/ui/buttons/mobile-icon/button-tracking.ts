@@ -24,7 +24,7 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="icon-only" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="icon-only" />
       @if (badgeCount() && badgeCount()! > 0) {
         <ion-badge color="danger" slot="end">
           {{ badgeCount()! > 99 ? "99+" : badgeCount() }}

@@ -7,7 +7,7 @@ import {
 import { CardBase } from "@ui/core/card.base";
 
 @Component({
-  selector: "app-card",
+  selector: "lux-card-web",
 
   imports: [NgTemplateOutlet],
   template: `

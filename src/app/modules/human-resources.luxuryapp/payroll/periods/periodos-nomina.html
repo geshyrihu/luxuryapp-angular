@@ -11,7 +11,7 @@
 </div>
 
 <!-- Tabla escritorio -->
-<app-table
+<lux-table-web
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -26,19 +26,19 @@
   class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" (add)="openAdd()" />
+    <lux-table-caption-web [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th appSortableColumn="quincenaDisplay">
-        Quincena <app-sorticon field="quincenaDisplay" />
+        Quincena <lux-sorticon-web field="quincenaDisplay" />
       </th>
-      <th appSortableColumn="anio">Año <app-sorticon field="anio" /></th>
+      <th appSortableColumn="anio">Año <lux-sorticon-web field="anio" /></th>
       <th>Inicio</th>
       <th>Fin</th>
       <th>Pago</th>
       <th appSortableColumn="diasHabiles">
-        Dias Habiles <app-sorticon field="diasHabiles" />
+        Dias Habiles <lux-sorticon-web field="diasHabiles" />
       </th>
       <th>Estado</th>
       <th>Nominas</th>
@@ -78,9 +78,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Vista movil -->
 <app-data-view-mobile
@@ -95,7 +95,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:attach-money" />
+        <lux-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">

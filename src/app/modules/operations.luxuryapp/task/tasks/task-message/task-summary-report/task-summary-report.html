@@ -1,6 +1,6 @@
 @if (loading()) {
 <div class="d-flex justify-content-center p-4">
-  <app-spinner [size]="44" [strokeWidth]="4" />
+  <lux-spinner-web [size]="44" [strokeWidth]="4" />
 </div>
 } @else {
 <div id="task-summary-report" class="d-flex flex-column gap-3">
@@ -43,7 +43,7 @@
     >
     @if (truncated()) {
     <span class="text-orange-600 fw-semibold no-print">
-      <app-icon icon="material-symbols-light:warning" /> Hay más tareas de las
+      <lux-icon icon="material-symbols-light:warning" /> Hay más tareas de las
       que se pudieron cargar; acota el rango de fechas.
     </span>
     }

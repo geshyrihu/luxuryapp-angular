@@ -416,7 +416,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Web)</label
             >
-            <app-select-button
+            <lux-select-button-web
               [options]="webSizeCtrl"
               [value]="webSize()"
               (valueChange)="webSize.set($event)"
@@ -426,14 +426,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Ionic)</label
             >
-            <app-select-button
+            <lux-select-button-web
               [options]="ionicSizeCtrl"
               [value]="ionicSize()"
               (valueChange)="ionicSize.set($event)"
             />
           </div>
           <div class="d-flex align-items-center gap-2">
-            <app-toggle-switch
+            <lux-toggle-switch-web
               [checked]="isDisabled()"
               (checkedChange)="isDisabled.set($event)"
               inputId="btn-dis"
@@ -441,7 +441,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label for="btn-dis" class="font-semibold text-sm">Disabled</label>
           </div>
           <div class="d-flex align-items-center gap-2">
-            <app-toggle-switch
+            <lux-toggle-switch-web
               [checked]="isLoading()"
               (checkedChange)="isLoading.set($event)"
               inputId="btn-load"
@@ -492,7 +492,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <app-table [value]="ilSemantic" dataKey="id">
+        <lux-table-web [value]="ilSemantic" dataKey="id">
           <ng-template #caption>
             Semóntica por defecto
             <small class="text-color-secondary ms-2"
@@ -615,7 +615,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></app-table>
+            </tr></ng-template></lux-table-web>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -657,7 +657,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <app-table [value]="iwSemantic" dataKey="id">
+        <lux-table-web [value]="iwSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
           <ng-template #header><tr>
               <th style="width:100px">Vista previa</th>
@@ -770,7 +770,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></app-table>
+            </tr></ng-template></lux-table-web>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -812,7 +812,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <app-table [value]="iiSemantic" dataKey="id">
+        <lux-table-web [value]="iiSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
           <ng-template #header><tr>
               <th style="width:100px">Vista previa</th>
@@ -914,7 +914,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></app-table>
+            </tr></ng-template></lux-table-web>
       </div>
 
       <!-- --------------------------------------------------------------
@@ -957,7 +957,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <app-table [value]="iliSemantic" dataKey="id">
+        <lux-table-web [value]="iliSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
           <ng-template #header><tr>
               <th style="width:160px">Vista previa</th>
@@ -1066,7 +1066,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                   /&gt;</code
                 >
               </td>
-            </tr></ng-template></app-table>
+            </tr></ng-template></lux-table-web>
       </div>
     </section>
   `,

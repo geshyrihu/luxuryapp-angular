@@ -1,12 +1,12 @@
 @if (store.isLoading()) {
   <div class="d-flex flex-column gap-4 p-4">
-    <app-skeleton width="100%" height="300px" borderRadius="12px" />
+    <lux-skeleton-web width="100%" height="300px" borderRadius="12px" />
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
       <div class="col-12 col-md-6">
-        <app-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="row g-4">
       @for (kpi of kpis(); track kpi.label) {
         <div class="col-12 col-md-4 col-xl-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             [label]="kpi.label"
             [value]="kpi.value"

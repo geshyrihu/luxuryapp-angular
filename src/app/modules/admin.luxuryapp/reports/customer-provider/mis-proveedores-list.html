@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -6,7 +6,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -16,11 +16,11 @@
     <tr>
       <th colspan="2" appSortableColumn="nameComercial">
         Proveedor
-        <app-sorticon field="nameComercial" />
+        <lux-sorticon-web field="nameComercial" />
       </th>
       <th appSortableColumn="service">
         Servicio
-        <app-sorticon field="service" />
+        <lux-sorticon-web field="service" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -43,7 +43,7 @@
       <td>{{ item.service }}</td>
       <!-- Opciones -->
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -54,15 +54,15 @@
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
-</app-table>
+</lux-table-web>
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -70,7 +70,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item lines="full" detail="false">
-      <app-icon
+      <lux-icon
         slot="start"
         icon="material-symbols-light:store-outline"
         class="text-xl text-green-500"

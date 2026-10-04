@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   #dt
   [value]="resumenGastos()"
   [scrollable]="true"
@@ -24,7 +24,7 @@
       <td>{{ item.total }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <table class="table custom-table table-striped">
   <thead>
@@ -54,7 +54,7 @@
             @for (items of subCuenta.items; track items) {
             <tr>
               <td class="table-col-10 pointer">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:ads-click'"
                   class="icon icon-"
                   (click)="onModalItem(items)"

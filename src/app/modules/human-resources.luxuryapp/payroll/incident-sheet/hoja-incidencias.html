@@ -56,7 +56,7 @@
 <!-- Loading -->
 @if (loading()) {
 <div class="d-flex justify-content-center align-items-center">
-  <app-icon
+  <lux-icon
     [icon]="'material-symbols-light:progress-activity'"
     class="text-4xl text-primary"
   />
@@ -68,7 +68,7 @@
 <div
   class="d-flex flex-column align-items-center justify-content-center gap-2 text-body-secondary"
 >
-  <app-icon [icon]="'material-symbols-light:event-busy'" class="text-5xl" />
+  <lux-icon [icon]="'material-symbols-light:event-busy'" class="text-5xl" />
   <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
   <span class="text-sm"
     >Crea un periodo desde <strong>Periodos de Nómina</strong> para

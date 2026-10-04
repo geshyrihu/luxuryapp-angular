@@ -124,7 +124,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </h6>
             </lux-divider>
 
-            <app-table
+            <lux-table-web
               [value]="data.propertyIndivisoDetails"
               [tableStyle]="{ 'min-width': '40rem' }"
             >
@@ -161,7 +161,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   </td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table-web>
           </div>
         </div>
       } @else if (!loading()) {

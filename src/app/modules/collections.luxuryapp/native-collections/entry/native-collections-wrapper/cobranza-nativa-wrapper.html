@@ -4,7 +4,7 @@
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <app-icon icon="material-symbols-light:wallet" />
+      <lux-icon icon="material-symbols-light:wallet" />
     </div>
     <div>
       <h2 class="fw-bold m-0 text-body">Cobranza Nativa</h2>
@@ -25,7 +25,7 @@
           <span class="text-xl fw-bold text-body">{{ metric.value }}</span>
         </div>
         <span [class]="metricIconClass(metric.tone)">
-          <app-icon [icon]="metric.icon" class="text-2xl" />
+          <lux-icon [icon]="metric.icon" class="text-2xl" />
         </span>
       </div>
     </lux-card>
@@ -43,7 +43,7 @@
       (click)="navigateTo('/cobranza-nativa/flow-map')"
     >
       <span class="mobile-flow-entry__icon">
-        <app-icon [icon]="'material-symbols-light:route'" />
+        <lux-icon [icon]="'material-symbols-light:route'" />
       </span>
       <span class="mobile-flow-entry__copy">
         <strong>Ver mapa visual del flujo</strong>
@@ -51,7 +51,7 @@
           >Explica properties, cargos, pagos, ledger, PDF y controles.</small
         >
       </span>
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:arrow-forward'"
         class="mobile-flow-entry__arrow"
       />
@@ -73,7 +73,7 @@
   <div>
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <app-icon icon="material-symbols-light:dashboard-outline" />
+        <lux-icon icon="material-symbols-light:dashboard-outline" />
         <span class="text-xs fw-bold text-uppercase">Resumen Operativo</span>
       </div>
     </div>
@@ -85,7 +85,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         [style.backgroundColor]="card.bgColor"
       >
-        <app-icon [icon]="card.icon" [style.color]="getCardColor(card)" />
+        <lux-icon [icon]="card.icon" [style.color]="getCardColor(card)" />
       </div>
 
       <p class="fw-semibold m-0 text-body">{{ card.title }}</p>
@@ -97,7 +97,7 @@
   <div>
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <app-icon [icon]="group.icon" />
+        <lux-icon [icon]="group.icon" />
         <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
@@ -109,7 +109,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         [style.backgroundColor]="card.bgColor"
       >
-        <app-icon [icon]="card.icon" [style.color]="getCardColor(card)" />
+        <lux-icon [icon]="card.icon" [style.color]="getCardColor(card)" />
       </div>
 
       <p class="fw-semibold m-0 text-body">{{ card.title }}</p>
@@ -128,7 +128,7 @@
         <div
           class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
         >
-          <app-icon icon="material-symbols-light:wallet" />
+          <lux-icon icon="material-symbols-light:wallet" />
         </div>
         <div>
           <h1 class="ds-heading text-3xl fw-bold text-body m-0">
@@ -165,7 +165,7 @@
               <span class="text-2xl fw-bold text-body">{{ metric.value }}</span>
             </div>
             <span [class]="metricIconClass(metric.tone)">
-              <app-icon [icon]="metric.icon" class="text-2xl" />
+              <lux-icon [icon]="metric.icon" class="text-2xl" />
             </span>
           </div>
         </lux-card>
@@ -193,7 +193,7 @@
         />
         <div class="desktop-flow-entry__body">
           <div class="desktop-flow-entry__icon">
-            <app-icon [icon]="'material-symbols-light:route'" />
+            <lux-icon [icon]="'material-symbols-light:route'" />
           </div>
           <div class="desktop-flow-entry__copy">
             <strong>Mapa visual del flujo completo</strong>
@@ -203,7 +203,7 @@
               auditoria.
             </span>
           </div>
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:arrow-forward'"
             class="desktop-flow-entry__arrow"
           />
@@ -224,7 +224,7 @@
                 class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
                 [style.backgroundColor]="card.bgColor"
               >
-                <app-icon
+                <lux-icon
                   [icon]="card.icon"
                   [style.color]="getCardColor(card)"
                 />
@@ -233,7 +233,7 @@
                 @if (card.pending) {
                 <lux-tag value="Pendiente" severity="warn" class="text-xs" />
                 }
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:north-east"
                   class="text-body-secondary"
                 />
@@ -270,7 +270,7 @@
             <div
               class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:format-list-bulleted'"
                 class="text-xs me-2 text-primary"
               />Acciones
@@ -284,7 +284,7 @@
             <div
               class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:dns'"
                 class="text-xs me-2 text-primary"
               />Endpoints API
@@ -313,7 +313,7 @@
               <div
                 class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:label'"
                   class="text-xs me-2 text-primary"
                 />Estados
@@ -331,7 +331,7 @@
             } @if (card.notes) {
             <div class="cb-card-note mt-3 pt-3 border-top-1">
               <div class="text-xs line-height-3 text-body">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:info'"
                   class="me-1 text-primary"
                 />
@@ -347,7 +347,7 @@
     </div>
     } @else { @for (group of visibleGroups(); track group.label) {
     <div class="d-flex align-items-center gap-2 mb-2 mt-5">
-      <app-icon [icon]="group.icon" />
+      <lux-icon [icon]="group.icon" />
       <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
         {{ group.label }}
       </h2>
@@ -371,7 +371,7 @@
                 class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
                 [style.backgroundColor]="card.bgColor"
               >
-                <app-icon
+                <lux-icon
                   [icon]="card.icon"
                   [style.color]="getCardColor(card)"
                 />
@@ -380,7 +380,7 @@
                 @if (card.pending) {
                 <lux-tag value="Pendiente" severity="warn" class="text-xs" />
                 }
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:north-east"
                   class="text-body-secondary"
                 />
@@ -417,7 +417,7 @@
             <div
               class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:format-list-bulleted'"
                 class="text-xs me-2 text-primary"
               />Acciones
@@ -431,7 +431,7 @@
             <div
               class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:dns'"
                 class="text-xs me-2 text-primary"
               />Endpoints API
@@ -460,7 +460,7 @@
               <div
                 class="text-xs fw-semibold text-body text-uppercase mb-2 d-flex align-items-center"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:label'"
                   class="text-xs me-2 text-primary"
                 />Estados
@@ -478,7 +478,7 @@
             } @if (card.notes) {
             <div class="cb-card-note mt-3 pt-3 border-top-1">
               <div class="text-xs line-height-3 text-body">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:info'"
                   class="me-1 text-primary"
                 />

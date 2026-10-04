@@ -6,7 +6,7 @@
   </div>
   } @else if (!rows().length) {
   <div class="bg-body p-5 rounded shadow-sm text-center">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:search'"
       class="text-4xl text-body-secondary mb-3"
     />
@@ -19,7 +19,7 @@
   </div>
   } @else {
   <!-- Tabla de Escritorio -->
-  <app-table
+  <lux-table-web
     [value]="rows()"
     class="rf-table d-none d-md-block p-datatable-sm pt-4"
     [tableStyle]="{ 'min-width': '800px' }"
@@ -105,7 +105,7 @@
       </tr>
       }
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <!-- Vista Móvil Sincronizada -->
   <app-data-view-mobile

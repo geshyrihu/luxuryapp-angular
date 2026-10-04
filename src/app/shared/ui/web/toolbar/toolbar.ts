@@ -7,7 +7,7 @@ import {
 import { ToolbarBase } from "@ui/core/toolbar.base";
 
 @Component({
-  selector: "app-toolbar",
+  selector: "lux-toolbar-web",
 
   imports: [NgTemplateOutlet, NgClass],
   template: `

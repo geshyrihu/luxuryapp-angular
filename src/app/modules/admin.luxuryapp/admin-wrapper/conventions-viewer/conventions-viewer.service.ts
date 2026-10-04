@@ -445,12 +445,12 @@ import { TagModule } from 'Bootstrap/tag';`,
       examples: {
         angular: {
           code: `<!-- OK: valor declarado en el catalogo -->
-<app-icon icon="material-symbols-light:add" />
+<lux-icon icon="material-symbols-light:add" />
 
 <!-- OK: dentro de Bootstrap va por plantilla, sin el input icon -->
 <p-button label="Agregar">
   <ng-template #icon>
-    <app-icon icon="material-symbols-light:add" />
+    <lux-icon icon="material-symbols-light:add" />
   </ng-template>
 </p-button>
 
@@ -459,10 +459,10 @@ import { TagModule } from 'Bootstrap/tag';`,
 
 <!-- NO: paquetes retirados -->
 <i class="pi pi-plus"></i>
-<app-icon icon="mdi:plus" />
+<lux-icon icon="mdi:plus" />
 
 <!-- NO: nombre inventado, se renderiza vacio y nadie se entera -->
-<app-icon icon="material-symbols-light:file-pdf-box" />`,
+<lux-icon icon="material-symbols-light:file-pdf-box" />`,
           description:
             'Alta de icono nuevo: verificar contra el set real de Iconify ANTES de usarlo, dar de alta el concepto en el catalogo, y usarlo desde ahi. Validar con npm run audit:icon-names.',
         },

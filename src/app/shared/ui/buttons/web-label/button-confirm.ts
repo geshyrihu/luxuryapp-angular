@@ -29,7 +29,7 @@ import { SwalService } from "@core/services/swal.service";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else {
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.CheckCircleOutline" />
+        <lux-icon [icon]="resolvedIconClass() || IconCatalog.CheckCircleOutline" />
       }
       <span>{{ label() || "Confirmar" }}</span>
     </button>

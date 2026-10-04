@@ -88,7 +88,7 @@
 
   <div class="row mt-2 g-4">
     <div class="col-12">
-      <app-table
+      <lux-table-web
         [value]="data()"
         [globalFilterFields]="['sistema', 'nameMachinery']"
         #dt
@@ -100,7 +100,7 @@
         <ng-template #caption>
           <div class="row mt-1 g-4">
             <div class="col-12">
-              <app-table-caption [dt]="dt" [showAdd]="false" [showSearch]="true" />
+              <lux-table-caption-web [dt]="dt" [showAdd]="false" [showSearch]="true" />
             </div>
           </div>
         </ng-template>
@@ -109,7 +109,7 @@
           <tr>
             <th class="table-col-40" appSortableColumn="nameMachinery">
               DESCRIPCIÓN
-              <app-sorticon field="nameMachinery" />
+              <lux-sorticon-web field="nameMachinery" />
             </th>
             @for (mes of meses; track mes) {
             <th class="table-col-5">{{ mes }}</th>
@@ -141,7 +141,7 @@
             }
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   </div>
 </ng-container>

@@ -38,7 +38,7 @@ import { AppTag } from "@ui/web/tag/tag";
               </div>
             </div>
             <div class="d-flex flex-column align-items-end gap-1 flex-shrink-0">
-              <app-tag [value]="h.size" severity="secondary" />
+              <lux-tag-web [value]="h.size" severity="secondary" />
               <code class="text-xs">{{ h.token }}</code>
             </div>
           </div>
@@ -55,7 +55,7 @@ import { AppTag } from "@ui/web/tag/tag";
         Tokens de tamaño de texto para cada contexto operativo. Un solo uso por
         nivel evita jerarquías rotas.
       </p>
-      <app-table [value]="erpScale" class="p-datatable-sm">
+      <lux-table-web [value]="erpScale" class="p-datatable-sm">
         <ng-template #header>
           <tr>
             <th>Uso</th>
@@ -73,7 +73,7 @@ import { AppTag } from "@ui/web/tag/tag";
             <td>
               <code class="text-xs">{{ item.token }}</code>
             </td>
-            <td><app-tag [value]="item.size" severity="secondary" /></td>
+            <td><lux-tag-web [value]="item.size" severity="secondary" /></td>
             <td>
               <span
                 [style.font-size]="item.size"
@@ -85,7 +85,7 @@ import { AppTag } from "@ui/web/tag/tag";
             <td class="text-sm text-color-secondary">{{ item.usage }}</td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
 
     <!-- -- Familias Tipogróficas ------------------------------------ -->

@@ -10,7 +10,7 @@
     <div class="p-4 mb-5">
       <!-- Bloque de Bancos -->
       <div class="mb-5">
-        <app-table
+        <lux-table-web
           [value]="data()?.bancos || []"
           class="rf-table p-datatable-sm"
           [tableStyle]="{'max-width': '700px'}"
@@ -42,12 +42,12 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </div>
 
       <!-- Bloque de Inversiones -->
       <div>
-        <app-table
+        <lux-table-web
           [value]="data()?.inversionesOrdinarias || []"
           class="rf-table p-datatable-sm"
           [tableStyle]="{'max-width': '900px'}"
@@ -95,7 +95,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </div>
     </div>
   </div>
@@ -160,7 +160,7 @@
   <div
     class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:table-view'"
       class="text-5xl mb-4 opacity-50"
     />

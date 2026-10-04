@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
   dzfxcvcv
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <app-table-caption (add)="onCreate()" [dt]="dt" />
+      <lux-table-caption-web (add)="onCreate()" [dt]="dt" />
       <il-button
         (clicked)="onDownloadAll()"
         label="Descargar Todas"
@@ -26,27 +26,27 @@
     <tr>
       <th appSortableColumn="employeeName">
         Empleado
-        <app-sorticon field="employeeName" />
+        <lux-sorticon-web field="employeeName" />
       </th>
       <th appSortableColumn="departament">
         Departamento
-        <app-sorticon field="departament" />
+        <lux-sorticon-web field="departament" />
       </th>
       <th appSortableColumn="evaluationDate">
         Fecha
-        <app-sorticon field="evaluationDate" />
+        <lux-sorticon-web field="evaluationDate" />
       </th>
       <th appSortableColumn="evaluationTemplate">
         Evaluación
-        <app-sorticon field="evaluationTemplate" />
+        <lux-sorticon-web field="evaluationTemplate" />
       </th>
       <th appSortableColumn="evaluatorName">
         Evaluador
-        <app-sorticon field="evaluatorName" />
+        <lux-sorticon-web field="evaluatorName" />
       </th>
       <th appSortableColumn="finalScore">
         Resultado
-        <app-sorticon field="finalScore" />
+        <lux-sorticon-web field="finalScore" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -82,12 +82,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -103,7 +103,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:task-alt"
           class="text-xl text-primary"
         />

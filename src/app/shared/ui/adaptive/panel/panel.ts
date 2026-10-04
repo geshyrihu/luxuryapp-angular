@@ -18,9 +18,9 @@ import { AppPanel } from "@ui/web/panel/panel";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-panel>
     } @else {
-      <app-panel [header]="header()">
+      <lux-panel-web [header]="header()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-panel>
+      </lux-panel-web>
     }
   `,
 })

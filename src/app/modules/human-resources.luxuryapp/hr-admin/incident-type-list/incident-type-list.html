@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     #dt
     [value]="items()"
     [globalFilterFields]="globalFilterFields"
@@ -14,22 +14,22 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
         [dt]="dt"
       />
     </ng-template>
     <ng-template #header>
       <tr>
-        <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
+        <th appSortableColumn="name">Nombre <lux-sorticon-web field="name" /></th>
         <th appSortableColumn="category">
-          Categoróa <app-sorticon field="category" />
+          Categoróa <lux-sorticon-web field="category" />
         </th>
         <th appSortableColumn="defaultSeverity">
-          Severidad por Defecto <app-sorticon field="defaultSeverity" />
+          Severidad por Defecto <lux-sorticon-web field="defaultSeverity" />
         </th>
         <th appSortableColumn="isActive" class="text-center">
-          Activo <app-sorticon field="isActive" />
+          Activo <lux-sorticon-web field="isActive" />
         </th>
         <th class="no-print">Acciones</th>
       </tr>
@@ -57,12 +57,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message-web [colspan]="5" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="items()" />
+      <lux-table-footer-web [data]="items()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <!--📲INICIO: Componente adaptado para versión móvil -->
   <app-data-view-mobile
@@ -77,7 +77,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:error-outline" />
+          <lux-icon icon="material-symbols-light:error-outline" />
         </div>
 
         <h2 class="text-base fw-semibold">{{ item.name }}</h2>

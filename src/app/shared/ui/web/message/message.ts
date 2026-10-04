@@ -7,7 +7,7 @@ import { MessageBase } from "@ui/core/message.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-message",
+  selector: "lux-message-web",
 
   imports: [AppIcon],
   template: `
@@ -17,7 +17,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       [style.color]="colors().text"
       [style.border-color]="colors().border"
     >
-      <app-icon [icon]="displayIcon()" class="app-message-icon" />
+      <lux-icon [icon]="displayIcon()" class="app-message-icon" />
       <div class="app-message-content">
         @if (text()) {
           {{ text() }}
@@ -33,7 +33,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           (click)="onClose()"
           aria-label="Cerrar"
         >
-          <app-icon icon="material-symbols-light:close" />
+          <lux-icon icon="material-symbols-light:close" />
         </button>
       }
     </div>

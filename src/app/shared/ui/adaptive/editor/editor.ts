@@ -19,13 +19,13 @@ import { AppEditor } from "@ui/web/editor/editor";
         [styleClass]="styleClass()"
       ></ili-editor>
     } @else {
-      <app-editor
+      <lux-editor-web
         [ngModel]="_value"
         (ngModelChange)="onInnerChange($event)"
         [style]="style()"
         [placeholder]="placeholder()"
         [styleClass]="styleClass()"
-      ></app-editor>
+      ></lux-editor-web>
     }
   `,
   providers: [

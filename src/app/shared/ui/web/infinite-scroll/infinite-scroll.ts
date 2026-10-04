@@ -11,14 +11,14 @@ import { InfiniteScrollBase } from "@ui/core/infinite-scroll.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-infinite-scroll",
+  selector: "lux-infinite-scroll-web",
 
   imports: [AppIcon],
   template: `
     <div #sentinel class="infinite-scroll-sentinel">
       @if (loading()) {
         <div class="infinite-scroll-loader">
-          <app-icon icon="material-symbols-light:progress-activity" class="infinite-scroll-spinner" />
+          <lux-icon icon="material-symbols-light:progress-activity" class="infinite-scroll-spinner" />
           <span>Cargando más registros...</span>
         </div>
       }

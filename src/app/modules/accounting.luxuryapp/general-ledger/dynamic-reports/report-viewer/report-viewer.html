@@ -63,7 +63,7 @@
   @if (advertencias().length > 0) {
   <div class="mb-3">
     @for (w of advertencias(); track w) {
-    <app-message severity="warn" class="mb-1 text-sm">{{ w }}</app-message>
+    <lux-message-web severity="warn" class="mb-1 text-sm">{{ w }}</lux-message-web>
     }
   </div>
   }

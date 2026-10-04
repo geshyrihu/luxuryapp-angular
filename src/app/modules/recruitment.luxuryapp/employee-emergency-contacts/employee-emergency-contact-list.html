@@ -1,11 +1,11 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="
         onModalForm({
           id: '',
@@ -62,10 +62,10 @@
 
   @if (dataEmergencyContact().length === 0) {
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
   }
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataEmergencyContact()"
@@ -75,7 +75,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:call-outline" class="text-xl text-red-500" />
+        <lux-icon icon="material-symbols-light:call-outline" class="text-xl text-red-500" />
       </div>
 
       <h3>{{ item.nameContact }}</h3>
@@ -99,14 +99,14 @@
 
 <hr />
 
-<app-table
+<lux-table-web
   #dt
   [value]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="
         onModalForm({
           id: '',
@@ -168,7 +168,7 @@
     </tr>
   </ng-template>
   }
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataBeneficiary()"
@@ -178,7 +178,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:group-outline" />
+        <lux-icon icon="material-symbols-light:group-outline" />
       </div>
 
       <h3>{{ item.nameContact }}</h3>

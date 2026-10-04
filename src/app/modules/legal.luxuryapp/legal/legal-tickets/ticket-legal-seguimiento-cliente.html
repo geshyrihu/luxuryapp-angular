@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12">
         @if (loading()) {
         <div class="d-flex justify-content-center align-items-center p-4">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:progress-activity'"
             class="text-primary m-1"
             aria-label="Cargando..."
@@ -34,7 +34,7 @@
         </ul>
         } @else {
         <div class="text-center p-5 rounded-sm bg-body-tertiary">
-          <app-icon [icon]="'material-symbols-light:info'" class="text-3xl text-body-secondary" />
+          <lux-icon [icon]="'material-symbols-light:info'" class="text-3xl text-body-secondary" />
           <p class="mt-2 text-lg fw-medium text-body-secondary">Sin Seguimiento</p>
           <p class="text-sm text-body-secondary">
             Aún no hay registros de seguimiento para este ticket.

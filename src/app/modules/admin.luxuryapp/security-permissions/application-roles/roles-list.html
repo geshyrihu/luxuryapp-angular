@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   [scrollable]="true"
@@ -12,7 +12,7 @@
   sortMode="single"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="Roles de Aplicación"
       (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
       [dt]="dt"
@@ -21,17 +21,17 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="sortOrder">
-        Orden <app-sorticon field="sortOrder" />
+        Orden <lux-sorticon-web field="sortOrder" />
       </th>
-      <th appSortableColumn="name">Nombre Interno <app-sorticon field="name" /></th>
+      <th appSortableColumn="name">Nombre Interno <lux-sorticon-web field="name" /></th>
       <th appSortableColumn="displayName">
-        Nombre para mostrar <app-sorticon field="displayName" />
+        Nombre para mostrar <lux-sorticon-web field="displayName" />
       </th>
-      <th appSortableColumn="code">Código <app-sorticon field="code" /></th>
+      <th appSortableColumn="code">Código <lux-sorticon-web field="code" /></th>
       <th appSortableColumn="departament">
-        Departamento <app-sorticon field="departament" />
+        Departamento <lux-sorticon-web field="departament" />
       </th>
-      <th appSortableColumn="isActive">Activo <app-sorticon field="isActive" /></th>
+      <th appSortableColumn="isActive">Activo <lux-sorticon-web field="isActive" /></th>
       <th>Acciones</th>
     </tr>
   </ng-template>
@@ -80,9 +80,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -93,7 +93,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
        <ion-avatar slot="start" class="ion-margin-end" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
-         <app-icon icon="material-symbols-light:shield-person" style="font-size: 24px; color: var(--ion-color-primary);" />
+         <lux-icon icon="material-symbols-light:shield-person" style="font-size: 24px; color: var(--ion-color-primary);" />
        </ion-avatar>
        <ion-label>
          <h2 class="ion-text-wrap d-flex align-items-center gap-2">

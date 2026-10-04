@@ -11,7 +11,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
  * Ideal para reportes mensuales.
  */
 @Component({
-  selector: "app-calendar-range",
+  selector: "lux-calendar-range-web",
   templateUrl: "./calendar-range.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, LxTooltipDirective],

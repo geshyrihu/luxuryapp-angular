@@ -9,7 +9,7 @@
         <div
           class="d-flex align-items-center justify-content-center bg-blue-50 rounded-xl flex-shrink-0"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:book'"
             class="text-3xl text-blue-600"
           />
@@ -42,7 +42,7 @@
   <!-- Loading -->
   @if (loading()) {
   <div class="d-flex justify-content-center align-items-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl text-body-secondary ds-animate-spin"
     />
@@ -52,7 +52,7 @@
   <!-- Sin datos -->
   @else if (!groupedData().length) {
   <div class="text-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:book'"
       class="text-5xl text-body-secondary mb-3 d-block"
     />
@@ -80,7 +80,7 @@
             class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
             [style.backgroundColor]="group.config.bgColor"
           >
-            <app-icon
+            <lux-icon
               [icon]="group.config.icon"
               class="text-lg"
               [style.color]="group.config.color"
@@ -211,7 +211,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:menu-book"
             class="text-xl text-primary"
           />

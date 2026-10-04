@@ -71,7 +71,7 @@
   </div>
 
   <div class="card p-0">
-    <app-table
+    <lux-table-web
       [value]="tableRows()"
       [loading]="loading()"
       [paginator]="false"
@@ -270,9 +270,9 @@
       </ng-template>
 
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="18" />
+        <lux-table-empty-message-web [colspan]="18" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 } @else {

@@ -12,7 +12,7 @@
   ============================================================================
 -->
 @if (budgetExecutions() && budgetExecutions()!.length > 0) {
-<app-table
+<lux-table-web
   [value]="budgetExecutions()!"
   class="card custom-table"
   [tableStyle]="{ 'min-width': '50rem' }"
@@ -20,16 +20,16 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="executionMonthName">
-        Mes <app-sorticon field="executionMonthName" />
+        Mes <lux-sorticon-web field="executionMonthName" />
       </th>
       <th appSortableColumn="concept">
-        Concepto <app-sorticon field="concept" />
+        Concepto <lux-sorticon-web field="concept" />
       </th>
       <th appSortableColumn="budgetedAmount">
-        Monto <app-sorticon field="budgetedAmount" />
+        Monto <lux-sorticon-web field="budgetedAmount" />
       </th>
       <th appSortableColumn="providerName">
-        Proveedor <app-sorticon field="providerName" />
+        Proveedor <lux-sorticon-web field="providerName" />
       </th>
     </tr>
   </ng-template>
@@ -49,10 +49,10 @@
       }}
     </div>
   </ng-template>
-</app-table>
+</lux-table-web>
 } @else {
 <div class="d-flex flex-column align-items-center justify-content-center py-5">
-  <app-icon
+  <lux-icon
     [icon]="'material-symbols-light:info'"
     class="text-4xl text-body-secondary mb-2"
   />

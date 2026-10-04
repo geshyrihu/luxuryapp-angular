@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
@@ -11,7 +11,7 @@
   <ng-template #caption>
     <div class="row col-12 g-4">
       <div class="col-10">
-        <app-table-caption
+        <lux-table-caption-web
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
         />
@@ -33,30 +33,30 @@
       <th class="table-col-20" appSortableColumn="description">
         <!-- Cambiado a Description -->
         Servicio
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
       <th class="table-col-20" appSortableColumn="provider">
         <!-- Cambiado a Provider -->
         Proveedor
-        <app-sorticon field="Provider" />
+        <lux-sorticon-web field="Provider" />
       </th>
       <th appSortableColumn="startDateFilter">
         Inicio
-        <app-sorticon field="startDateFilter" />
+        <lux-sorticon-web field="startDateFilter" />
       </th>
       <th appSortableColumn="endDateFilter">
         término
-        <app-sorticon field="endDateFilter" />
+        <lux-sorticon-web field="endDateFilter" />
       </th>
       <th appSortableColumn="tagLabel">
         <!-- Cambiado a tagLabel -->
         Estado
-        <app-sorticon field="tagLabel" />
+        <lux-sorticon-web field="tagLabel" />
       </th>
       <th appSortableColumn="validity">
         <!-- Cambiado a validity -->
         Vigencia
-        <app-sorticon field="validity" />
+        <lux-sorticon-web field="validity" />
       </th>
       <th>Documento</th>
       <th></th>
@@ -137,9 +137,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [groupedData]="groupedData"
@@ -154,7 +154,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:edit-note"
           class="text-xl text-yellow-500"
         />
@@ -170,7 +170,7 @@
       </div>
       <p class="text-sm text-body m-0 mb-1">{{ item.description }}</p>
       <p class="text-xs text-body-secondary m-0">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:calendar-today'"
           class="me-1"
         />

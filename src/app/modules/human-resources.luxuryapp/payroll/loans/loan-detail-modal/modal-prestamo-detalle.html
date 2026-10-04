@@ -48,7 +48,7 @@
   </div>
 
   <!-- Historial de pagos -->
-  <app-table
+  <lux-table-web
     [value]="pagos()"
     [loading]="loading()"
     class="p-datatable-sm mb-3"
@@ -74,7 +74,7 @@
         <td colspan="3">Sin pagos registrados aun.</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <!-- Acciones de decision (solo si esta Pendiente) -->
   @if (p.estadoValue === 0) {

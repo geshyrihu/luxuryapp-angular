@@ -19,7 +19,7 @@ import { TicketFilterService } from "../../../../modules/operations.luxuryapp/se
  * Muestra el logo del cliente automáticamente.
  */
 @Component({
-  selector: "app-report-header",
+  selector: "lux-report-header-web",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

@@ -1,7 +1,7 @@
 <!-- REFACTOR: El template ha sido actualizado para leer el valor del total directamente
 del signal en `ordenCompraService.totalPorCubrir()`. -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -24,7 +24,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
         />
       </div>
       <div class="col-12 col-md-7">
-        <app-table-caption
+        <lux-table-caption-web
           [title]="'Presupuesto para Orden de Compra'"
           [showAdd]="false"
           [dt]="dt"
@@ -51,14 +51,14 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
     <tr>
       <th class="table-col-20" appSortableColumn="accountNumber">
         Cuenta
-        <app-sorticon field="accountNumber" />
+        <lux-sorticon-web field="accountNumber" />
       </th>
       <th class="table-col-13">Pres. Mensual</th>
       <th class="table-col-13">Gastado</th>
       <th class="table-col-13">Provisionado</th>
       <th class="table-col-13" appSortableColumn="availableBudget">
         Disponible
-        <app-sorticon field="availableBudget" />
+        <lux-sorticon-web field="availableBudget" />
       </th>
       <th class="table-col-13">Gasto</th>
       <th class="table-col-15"></th>
@@ -66,7 +66,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #body let-item>
     <tr>
@@ -128,13 +128,13 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
           tooltipPosition="top"
         />
         } @if (submitting()) {
-        <app-spinner [size]="32" [strokeWidth]="8" />
+        <lux-spinner-web [size]="32" [strokeWidth]="8" />
         }
       </td>
     </tr>
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>

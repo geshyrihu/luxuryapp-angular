@@ -24,7 +24,7 @@ import { AppMessage } from "@ui/web/message/message";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-message>
     } @else {
-      <app-message
+      <lux-message-web
         [text]="text()"
         [severity]="severity()"
         [closable]="closable()"
@@ -32,7 +32,7 @@ import { AppMessage } from "@ui/web/message/message";
         (close)="close.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-message>
+      </lux-message-web>
     }
   `,
 })

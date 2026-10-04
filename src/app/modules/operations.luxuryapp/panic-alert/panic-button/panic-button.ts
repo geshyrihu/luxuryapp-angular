@@ -82,7 +82,7 @@ const COUNTDOWN_SECONDS = 5;
         title="Mantón presionado para activar alerta de pónico"
       >
         <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
-          <app-icon icon="material-symbols-light:error" class="panic-btn__icon" />
+          <lux-icon icon="material-symbols-light:error" class="panic-btn__icon" />
         </div>
         @if (isSending()) {
           <span class="panic-btn__label">Enviando...</span>
@@ -99,7 +99,7 @@ const COUNTDOWN_SECONDS = 5;
           (cancel)="onCancelCountdown()"
         >
           <div class="panic-countdown">
-            <app-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
+            <lux-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
             <p class="panic-countdown__title">Enviando alerta de pónico en</p>
             <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
             <button

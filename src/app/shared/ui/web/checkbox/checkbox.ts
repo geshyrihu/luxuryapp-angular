@@ -7,7 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { CheckboxBase } from "@ui/core/checkbox.base";
 
 @Component({
-  selector: "app-checkbox",
+  selector: "lux-checkbox-web",
 
   imports: [FormsModule],
   template: `

@@ -26,7 +26,7 @@
   </div>
 
   <div class="card p-0">
-    <app-table
+    <lux-table-web
       [value]="rows()"
       [loading]="loading()"
       [paginator]="true"
@@ -35,11 +35,11 @@
       <ng-template #header>
         <tr>
           <th appSortableColumn="yearsOfService">
-            AÑOS DE SERVICIO <app-sorticon field="yearsOfService" />
+            AÑOS DE SERVICIO <lux-sorticon-web field="yearsOfService" />
           </th>
-          <th appSortableColumn="year">AÑO <app-sorticon field="year" /></th>
+          <th appSortableColumn="year">AÑO <lux-sorticon-web field="year" /></th>
           <th appSortableColumn="vacationDays">
-            DÍAS DE VACACIONES <app-sorticon field="vacationDays" />
+            DÍAS DE VACACIONES <lux-sorticon-web field="vacationDays" />
           </th>
           <th></th>
         </tr>
@@ -72,8 +72,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage
-        ><app-table-empty-message [colspan]="4"
+        ><lux-table-empty-message-web [colspan]="4"
       /></ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>

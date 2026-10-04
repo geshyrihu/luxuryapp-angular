@@ -19,7 +19,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Download" slot="start" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.Download" slot="start" />
       {{ label() || "Descargar" }}
     </ion-button>
   `,

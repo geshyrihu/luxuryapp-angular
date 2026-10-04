@@ -8,7 +8,7 @@ import { DividerBase } from "@ui/core/divider.base";
 
 @Component({
   imports: [NgTemplateOutlet],
-  selector: "app-divider",
+  selector: "lux-divider-web",
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->

@@ -30,7 +30,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
           Layout <strong>{{ label }}</strong> é consulta la sección completa de
           Layouts para ver todas las variantes con ejemplos visuales.
         </p>
-        <app-divider />
+        <lux-divider-web />
         <div class="d-flex gap-2">
           <il-button
             label="Ver todos los Layouts"

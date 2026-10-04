@@ -54,7 +54,7 @@
 
   @if (loading()) {
   <div class="d-flex align-items-center text-body-secondary mb-4 gap-2">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando catálogo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -69,7 +69,7 @@
     class="bg-body-tertiary p-4 rounded mb-4 border-left-4 border-orange-500"
   >
     <div class="d-flex align-items-center mb-3">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:warning'"
         class="text-orange-500 text-xl"
       />
@@ -105,7 +105,7 @@
   } @else {
   <div class="bg-body-tertiary p-3 rounded mb-4 border-left-4 border-green-500">
     <div class="d-flex align-items-center gap-2">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
@@ -118,7 +118,7 @@
   }
 
   <!-- Tabla jerórquica -->
-  <app-table
+  <lux-table-web
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
     class="custom-table p-datatable-gridlines d-none d-md-block"
@@ -196,7 +196,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <div class="d-md-none d-flex flex-column gap-2">
     @for (account of flatData(); track account.numeroCuenta) { @if

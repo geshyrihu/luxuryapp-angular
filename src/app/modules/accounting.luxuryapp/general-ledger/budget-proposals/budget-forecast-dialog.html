@@ -13,7 +13,7 @@
 -->
 @if (loading()) {
 <div class="d-flex align-items-center justify-content-center p-4">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl me-3" />
+  <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl me-3" />
   <div class="text-lg">
     Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses
     seleccionados y calculando inflación ({{inflationRate()}}%)...
@@ -26,7 +26,7 @@
     que desea aplicar.
   </p>
 
-  <app-table
+  <lux-table-web
     [value]="forecastData()"
     [(selection)]="selectedForecastItems"
     dataKey="accountNumber"
@@ -37,27 +37,27 @@
     <ng-template #header>
       <tr>
         <th class="table-col-4rem">
-          <app-table-header-checkbox></app-table-header-checkbox>
+          <lux-table-header-checkbox-web></lux-table-header-checkbox-web>
         </th>
         <th appSortableColumn="accountNumber">
-          Cuenta <app-sorticon field="accountNumber" />
+          Cuenta <lux-sorticon-web field="accountNumber" />
         </th>
         <th appSortableColumn="currentAmount" class="text-end">
-          Psto Mensual Actual <app-sorticon field="currentAmount" />
+          Psto Mensual Actual <lux-sorticon-web field="currentAmount" />
         </th>
         <th appSortableColumn="averageExpense" class="text-end">
           Gasto Promedio ({{selectedMonthsForAvg().length}}m)
-          <app-sorticon field="averageExpense" />
+          <lux-sorticon-web field="averageExpense" />
         </th>
         <th appSortableColumn="suggestedAmount" class="text-end">
-          Sugerido Mensual <app-sorticon field="suggestedAmount" />
+          Sugerido Mensual <lux-sorticon-web field="suggestedAmount" />
         </th>
         <th>Razonamiento IA</th>
       </tr>
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td><app-table-selection-checkbox [value]="item"></app-table-selection-checkbox></td>
+        <td><lux-table-selection-checkbox-web [value]="item"></lux-table-selection-checkbox-web></td>
         <td>
           <div class="fw-bold">{{item.accountNumber}}</div>
           <div class="text-sm text-body-secondary">{{item.accountName}}</div>
@@ -74,7 +74,7 @@
         <td class="text-sm fst-italic text-body-secondary">{{ item.reasoning }}</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <div class="d-flex justify-content-between align-items-center w-full mt-4">

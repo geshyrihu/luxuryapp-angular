@@ -1,7 +1,7 @@
 @if (mensajeError) {
 <p class="p-error text-start italic text-sm">Seleccione producto y unidad</p>
 } @if (dataSignal()) {
-  <app-table
+  <lux-table-web
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
   [globalFilterFields]="globalFilterFields()"
@@ -41,7 +41,7 @@
       <th>Imagen</th>
       <th appSortableColumn="producto">
         DESCRIPCIÓN
-        <app-sorticon field="producto" />
+        <lux-sorticon-web field="producto" />
       </th>
       <th>
         Cantidad
@@ -58,7 +58,7 @@
           class="table-col-10 pointer"
           (click)="onModalTarjetaProducto(rowItem.productoId)"
         >
-          <app-avatar
+          <lux-avatar-web
             [image]="rowItem.urlImagen"
             alt=""
             styleClass="mr-2"
@@ -105,7 +105,7 @@
     }
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-  </app-table>
+  </lux-table-web>
 }

@@ -18,7 +18,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon
+      <lux-icon
         [icon]="
           propertyId()
             ? IconCatalog.FileSign

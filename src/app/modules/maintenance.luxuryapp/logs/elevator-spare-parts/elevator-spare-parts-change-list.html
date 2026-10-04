@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
       [rows]="tableRows"
@@ -22,7 +22,7 @@
             tooltipPosition="top"
             tooltip="Descargar listado de cambios de refacciones"
           />
-          <app-table-caption
+          <lux-table-caption-web
             (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
             [dt]="dt"
           />
@@ -33,36 +33,36 @@
         <tr>
           <th appSortableColumn="folio">
             FOLIO
-            <app-sorticon field="folio" />
+            <lux-sorticon-web field="folio" />
           </th>
           <th appSortableColumn="changeDate">
             FECHA
-            <app-sorticon field="changeDate" />
+            <lux-sorticon-web field="changeDate" />
           </th>
           <th appSortableColumn="machinery">
             EQUIPO
-            <app-sorticon field="machinery" />
+            <lux-sorticon-web field="machinery" />
           </th>
           <th appSortableColumn="failure">
             FALLA
-            <app-sorticon field="failure" />
+            <lux-sorticon-web field="failure" />
           </th>
 
           <th appSortableColumn="partName">
             NOMBRE DE PIEZA
-            <app-sorticon field="partName" />
+            <lux-sorticon-web field="partName" />
           </th>
           <th appSortableColumn="partKey">
             CLAVE DE PIEZA
-            <app-sorticon field="partKey" />
+            <lux-sorticon-web field="partKey" />
           </th>
           <th appSortableColumn="price">
             COSTO
-            <app-sorticon field="price" />
+            <lux-sorticon-web field="price" />
           </th>
           <th appSortableColumn="supervised">
             SUPERVISO
-            <app-sorticon field="supervised" />
+            <lux-sorticon-web field="supervised" />
           </th>
           <th class="table-col-5 no-print"></th>
         </tr>
@@ -91,12 +91,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="9" />
+        <lux-table-empty-message-web [colspan]="9" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer-web [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -124,7 +124,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:elevator-outline"
               class="text-xl text-primary"
             />
@@ -137,21 +137,21 @@
             >
           </div>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:currency-pound'"
               class="me-1 text-xs"
             />
             Folio: {{ item.folio }}
           </p>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:calendar-today'"
               class="me-1 text-xs"
             />
             {{ item.changeDate }}
           </p>
           <p class="text-sm text-body-secondary m-0">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:settings'"
               class="me-1 text-xs"
             />

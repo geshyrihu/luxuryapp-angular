@@ -5,7 +5,7 @@
         <!-- Solicitud de alta -->
         @if(solicitudAltaStatus()){
         <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:person-add'"
             class="me-3 text-red-500 text-lg"
           />
@@ -18,7 +18,7 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudALta()"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:person-add'"
             class="me-3 text-lg"
           />
@@ -42,7 +42,7 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudBaja()"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:person-remove'"
             class="me-3 text-lg"
           />
@@ -50,7 +50,7 @@
         </li>
         } @if (solicitudBajaStatus()) {
         <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:person-remove'"
             class="me-3 text-red-500 text-lg"
           />
@@ -63,7 +63,7 @@
           class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudModificacionSalarion()"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:attach-money'"
             class="me-3 text-lg"
           />
@@ -73,7 +73,7 @@
         <!-- Solicitud de modificación de salario en proceso -->
         @if (solicitudModificacionSalarioStatus()) {
         <li class="d-flex align-items-center p-3 mb-2 border-1 border rounded">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:attach-money'"
             class="me-3 text-red-500 text-lg"
           />

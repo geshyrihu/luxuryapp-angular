@@ -42,7 +42,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.border-green-200]="bloque.titulo === 'Buena practica'"
                 >
                   <div class="d-flex align-items-center gap-2 mb-3">
-                    <app-icon
+                    <lux-icon
                       [icon]="iconifyIcon(bloque.icono)"
                       class="text-xl"
                     />
@@ -101,10 +101,10 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.border-red-200]="!item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <app-checkbox
+                  <lux-checkbox-web
                     [checked]="item.aprobado"
                     (checkedChange)="toggleChecklistItem(item.numero)"
-                  ></app-checkbox>
+                  ></lux-checkbox-web>
                   <p class="m-0 text-sm line-height-2">
                     <strong>{{ item.numero }}.</strong> {{ item.descripcion }}
                   </p>

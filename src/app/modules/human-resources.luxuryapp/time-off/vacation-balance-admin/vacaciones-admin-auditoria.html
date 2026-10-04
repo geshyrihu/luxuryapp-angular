@@ -2,7 +2,7 @@
   <lux-card>
     <ng-template #header>
       <div class="p-4 d-flex align-items-center">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:search'"
           class="text-2xl text-primary"
         />
@@ -35,7 +35,7 @@
           />
           @if (loadingEmployees()) {
           <small class="text-body-secondary mt-1">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:progress-activity'"
               class="me-1"
             />Cargando empleados...
@@ -67,7 +67,7 @@
       <div
         class="d-flex flex-column align-items-center justify-content-center text-center bg-body-tertiary rounded-lg p-5 min-h-15rem"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:group'"
           class="text-4xl text-body-secondary mb-3"
         />
@@ -177,7 +177,7 @@
               class="h-full p-4 rounded-xl shadow-sm bg-body d-flex flex-column justify-content-between"
             >
               <div>
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:event-note'"
                   class="text-3xl mb-3 text-primary"
                 />
@@ -196,7 +196,7 @@
               class="h-full p-4 rounded-xl shadow-sm bg-body d-flex flex-column justify-content-between"
             >
               <div>
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:event-busy'"
                   class="text-3xl mb-3 text-red-500"
                 />
@@ -229,7 +229,7 @@
               class="h-full p-4 rounded-xl shadow-sm bg-body d-flex flex-column justify-content-between"
             >
               <div>
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:calendar-today'"
                   class="text-3xl mb-3 text-yellow-500"
                 />
@@ -262,7 +262,7 @@
               class="h-full p-4 rounded-xl shadow-sm bg-body d-flex flex-column justify-content-between"
             >
               <div>
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:event-available'"
                   class="text-3xl mb-3 text-green-500"
                 />
@@ -297,11 +297,11 @@
         <div
           class="bg-body-tertiary rounded-lg p-4 text-center text-body-secondary"
         >
-          <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:info'" class="me-2" />
           No hay solicitudes en este periodo de aniversario.
         </div>
         } @else {
-        <app-table
+        <lux-table-web
           [value]="requests()"
           [paginator]="true"
           [rows]="10"
@@ -352,7 +352,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
         }
       </div>
       }
@@ -362,7 +362,7 @@
       <div
         class="bg-body-tertiary rounded-lg p-4 text-center text-body-secondary mt-3"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:error'"
           class="me-2 text-yellow-500"
         />

@@ -1,7 +1,7 @@
 <!-- ──────────────────────────────────────────────────────────────
      TABLA DESKTOP (oculta en móvil)
 ────────────────────────────────────────────────────────────── -->
-<app-table
+<lux-table-web
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -20,7 +20,7 @@
     >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption-web
           [dt]="dt"
           [rolAuth]="false"
           [noPadding]="true"
@@ -89,20 +89,20 @@
     <tr>
       <th class="table-col-5">Nº</th>
       <th class="table-col-20" appSortableColumn="nombreEmpleado">
-        EMPLEADO <app-sorticon field="nombreEmpleado" />
+        EMPLEADO <lux-sorticon-web field="nombreEmpleado" />
       </th>
       <th class="table-col-10" appSortableColumn="tipo">
-        TIPO <app-sorticon field="tipo" />
+        TIPO <lux-sorticon-web field="tipo" />
       </th>
       <th class="table-col-15" appSortableColumn="fechaHora">
-        FECHA / HORA <app-sorticon field="fechaHora" />
+        FECHA / HORA <lux-sorticon-web field="fechaHora" />
       </th>
       <th class="table-col-10">FOTO</th>
       <th class="table-col-10" appSortableColumn="distanciaMetros">
-        DISTANCIA (m) <app-sorticon field="distanciaMetros" />
+        DISTANCIA (m) <lux-sorticon-web field="distanciaMetros" />
       </th>
       <th class="table-col-15" appSortableColumn="ipAddress">
-        IP <app-sorticon field="ipAddress" />
+        IP <lux-sorticon-web field="ipAddress" />
       </th>
       <th class="table-col-10">ANOMALÍA</th>
       <th class="table-col-10">ESTADO</th>
@@ -202,12 +202,12 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message-web [colspan]="10" />
   </ng-template>
   <ng-template #footer>
-    <app-table-footer [dt]="dt" />
+    <lux-table-footer-web [dt]="dt" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- ──────────────────────────────────────────────────────────────
      VISTA MÓVIL

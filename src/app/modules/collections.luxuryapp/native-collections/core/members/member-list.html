@@ -1,5 +1,5 @@
 <div class="card p-3 p-md-4">
-  <app-table
+  <lux-table-web
     [value]="dataSignal()"
     rowGroupMode="subheader"
     groupRowsBy="propertyId"
@@ -14,7 +14,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     </ng-template>
 
     <ng-template #header>
@@ -35,7 +35,7 @@
         <td colspan="8" class="bg-body-tertiary py-2 px-3">
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:apartment'"
                 class="text-primary"
               />
@@ -66,7 +66,7 @@
         </td>
         <td class="text-center">
           @if (item.isFinancialResponsible) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:check-circle'"
             class="text-green-600 text-xl"
             title="Responsable financiero"
@@ -75,12 +75,12 @@
         </td>
         <td class="text-center">
           @if (item.receiveNotifications) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:notifications'"
             class="text-blue-500"
           />
           } @else {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:notifications-off'"
             class="text-body-secondary"
           />
@@ -122,9 +122,9 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message-web [colspan]="8" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <app-data-view-mobile
@@ -138,7 +138,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-indigo-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-indigo-600 text-xl"
         />

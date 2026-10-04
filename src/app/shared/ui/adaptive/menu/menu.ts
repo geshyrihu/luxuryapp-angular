@@ -14,13 +14,13 @@ import { AppMenu } from "@ui/web/menu/menu";
         ><ng-content
       /></ili-menu>
     } @else {
-      <app-menu
+      <lux-menu-web
         #webMenu
         [model]="model()"
         [popup]="popup()"
         [styleClass]="styleClass()"
         ><ng-content
-      /></app-menu>
+      /></lux-menu-web>
     }
   `,
 })

@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     [value]="items()"
     class="custom-table card d-none d-md-block"
     [scrollable]="true"
@@ -11,7 +11,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [showAdd]="!!employeeId()"
         (add)="onModalForm({ id: '', title: 'Nueva Adenda' })"
         [dt]="dt"
@@ -69,12 +69,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [data]="items()" />
+      <lux-table-footer-web [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message-web [colspan]="7" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -89,7 +89,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-yellow-100"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:edit-note"
             class="text-xl text-yellow-500"
           />

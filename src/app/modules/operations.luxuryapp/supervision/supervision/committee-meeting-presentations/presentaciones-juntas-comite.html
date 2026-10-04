@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -9,7 +9,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
     <br />
     <div class="w-full sm:w-1/3 mt-3">
       <custom-input-text-signal
@@ -25,15 +25,15 @@
       <th class="table-col-2">#</th>
       <th class="table-col-10" appSortableColumn="numeroCliente">
         Cliente
-        <app-sorticon field="numeroCliente" />
+        <lux-sorticon-web field="numeroCliente" />
       </th>
       <th class="table-col-8" appSortableColumn="fechaCorrespondienteFiltro">
         Periodo
-        <app-sorticon field="fechaCorrespondienteFiltro" />
+        <lux-sorticon-web field="fechaCorrespondienteFiltro" />
       </th>
       <th class="table-col-12" appSortableColumn="fechaCorrespondienteFiltro">
         Fecha Junta
-        <app-sorticon field="fechaCorrespondienteFiltro" />
+        <lux-sorticon-web field="fechaCorrespondienteFiltro" />
       </th>
       <th class="table-col-19">Portada</th>
       <th class="table-col-19">Contable</th>
@@ -42,7 +42,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
   <ng-template #body let-i="rowIndex" let-item>
     <tr>
@@ -120,7 +120,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -135,7 +135,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:co-present" class="text-xl text-primary" />
+        <lux-icon icon="material-symbols-light:co-present" class="text-xl text-primary" />
       </div>
 
       <!-- Cliente -->

@@ -6,7 +6,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
  * Pie de página simple para mostrar el conteo total de registros.
  */
 @Component({
-  selector: "app-table-footer",
+  selector: "lux-table-footer-web",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

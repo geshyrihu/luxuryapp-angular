@@ -46,7 +46,7 @@ import { BaseButton } from "../base/base-button";
       (click)="emitClick($event)"
       [style.opacity]="submitting() ? 0.9 : 1"
     >
-      <app-icon
+      <lux-icon
         [icon]="
           submitting()
             ? IconCatalog.Loading

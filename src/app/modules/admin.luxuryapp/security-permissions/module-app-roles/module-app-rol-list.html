@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table-web
   #dt1
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -18,14 +18,14 @@
   [sortOrder]="1"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt1" />
+    <lux-table-caption-web [dt]="dt1" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th class="table-col-70">Rol</th>
       <th class="table-col-20 text-center" appSortableColumn="modules">
         Módulos asignados
-        <app-sorticon field="modules" />
+        <lux-sorticon-web field="modules" />
       </th>
       <th class="table-col-10"></th>
     </tr>
@@ -34,7 +34,7 @@
     <tr>
       <td colspan="3" class="bg-blue-50">
         <div class="d-flex align-items-center py-2 px-3">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:bookmark'"
             class="me-2 text-blue-500"
           />
@@ -55,14 +55,14 @@
         <lux-tag [value]="item.modules + ' Módulos'" severity="info"></lux-tag>
       </td>
       <td class="text-end">
-        <app-icon [icon]="'material-symbols-light:chevron-right'" />
+        <lux-icon [icon]="'material-symbols-light:chevron-right'" />
       </td>
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 INICIO: Vista para móviles -->
 <app-data-view-mobile
@@ -85,7 +85,7 @@
           justify-content: center;
         "
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:view-module"
           style="font-size: 24px; color: var(--ion-color-primary)"
         />

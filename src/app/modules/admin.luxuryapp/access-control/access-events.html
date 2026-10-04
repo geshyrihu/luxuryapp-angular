@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<app-table [value]="dataSignal()" [paginator]="true" [rows]="15" class="custom-table card">
+<lux-table-web [value]="dataSignal()" [paginator]="true" [rows]="15" class="custom-table card">
   <ng-template #header>
     <tr>
       <th>Fecha/Hora</th>
@@ -38,4 +38,4 @@
       <td colspan="7" class="text-center text-body-secondary py-4">Sin eventos registrados.</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

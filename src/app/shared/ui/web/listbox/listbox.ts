@@ -12,7 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { ListboxBase } from "@ui/core/listbox.base";
 
 @Component({
-  selector: "app-listbox",
+  selector: "lux-listbox-web",
 
   imports: [FormsModule, NgStyle, NgTemplateOutlet, NgClass],
   template: `

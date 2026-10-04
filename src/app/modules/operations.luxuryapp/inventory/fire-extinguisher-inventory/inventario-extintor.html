@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -36,7 +36,7 @@
           [iconClass]="'material-symbols-light:calendar-today'"
         />
       </div>
-      <app-table-caption
+      <lux-table-caption-web
         [title]="'Inventario de Extintores'"
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -47,16 +47,16 @@
     <tr>
       <th class="table-col-5">Foto</th>
       <th class="table-col-15" appSortableColumn="localCode">
-        Código <app-sorticon field="localCode" />
+        Código <lux-sorticon-web field="localCode" />
       </th>
       <th class="table-col-25" appSortableColumn="extinguisherType">
-        Extintor <app-sorticon field="extinguisherType" />
+        Extintor <lux-sorticon-web field="extinguisherType" />
       </th>
       <th class="table-col-25" appSortableColumn="location">
-        Ubicación <app-sorticon field="location" />
+        Ubicación <lux-sorticon-web field="location" />
       </th>
       <th class="table-col-15" appSortableColumn="expirationDate">
-        Vencimiento <app-sorticon field="expirationDate" />
+        Vencimiento <lux-sorticon-web field="expirationDate" />
       </th>
       <th class="table-col-5"></th>
     </tr>
@@ -64,7 +64,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <app-image
+        <lux-image-web
           [src]="item.photo"
           alt="."
           width="100"
@@ -96,12 +96,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -113,14 +113,14 @@
       class="btn btn-rounded btn-text-primary btn-sm"
       (click)="onOpenScanner()"
     >
-      <app-icon icon="material-symbols-light:qr-code" slot="start" />
+      <lux-icon icon="material-symbols-light:qr-code" slot="start" />
       Escanear QR
     </button>
     <button
       class="btn btn-rounded btn-text-primary btn-sm"
       (click)="onBulkExpiration()"
     >
-      <app-icon icon="material-symbols-light:event" slot="start" />
+      <lux-icon icon="material-symbols-light:event" slot="start" />
       Actualizar vencimiento
     </button>
   </div>
@@ -130,7 +130,7 @@
       class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div slot="start">
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:local-fire-department"
           class="text-xl text-red-500"
         />

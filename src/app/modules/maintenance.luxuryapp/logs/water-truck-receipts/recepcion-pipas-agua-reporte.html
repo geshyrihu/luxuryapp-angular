@@ -170,7 +170,7 @@
 </div>
 
 <!-- Tabla del periodo -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -182,7 +182,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [title]="'Detalle del periodo'"
       [dt]="dt"
       [showAdd]="false"
@@ -190,19 +190,19 @@
       <ng-template #extraButtons>
         <iw-button-download (clicked)="exportExcel()" />
       </ng-template>
-    </app-table-caption>
+    </lux-table-caption-web>
   </ng-template>
 
   <ng-template #header>
     <tr>
       <th appSortableColumn="empresa" style="min-width: 120px">
-        Empresa <app-sorticon field="empresa" />
+        Empresa <lux-sorticon-web field="empresa" />
       </th>
       <th appSortableColumn="placasCamion" style="min-width: 110px">
-        Placas / Cap. <app-sorticon field="placasCamion" />
+        Placas / Cap. <lux-sorticon-web field="placasCamion" />
       </th>
       <th appSortableColumn="horaLlegada" style="min-width: 140px">
-        Llegada / Termino <app-sorticon field="horaLlegada" />
+        Llegada / Termino <lux-sorticon-web field="horaLlegada" />
       </th>
       <th class="text-center" style="min-width: 140px">
         Cisterna (ant → des / dif)
@@ -275,12 +275,12 @@
       <td>
         @if (item.colaboradorMtto) {
         <small class="d-block"
-          ><app-icon [icon]="'material-symbols-light:build'" class="me-1 text-body-secondary" />{{
+          ><lux-icon [icon]="'material-symbols-light:build'" class="me-1 text-body-secondary" />{{
           item.colaboradorMtto }}</small
         >
         } @if (item.guardiaSeguridad) {
         <small class="text-body-secondary"
-          ><app-icon [icon]="'material-symbols-light:shield'" class="me-1" />{{
+          ><lux-icon [icon]="'material-symbols-light:shield'" class="me-1" />{{
           item.guardiaSeguridad }}</small
         >
         }
@@ -289,9 +289,9 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table-web>

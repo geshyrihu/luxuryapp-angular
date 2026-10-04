@@ -12,10 +12,10 @@ import type { ChartJsData } from "@ui/web/charts/chart-adapters";
  * Chart.js is current engine; Lagos chart families map to these native types.
  */
 @Component({
-  selector: "app-ds-chart",
+  selector: "lux-ds-chart",
   imports: [ChartWrapper],
   template: `
-    <app-chart-wrapper
+    <lux-chart-wrapper-web
       [type]="type()"
       [data]="data()"
       [options]="options()"

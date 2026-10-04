@@ -10,7 +10,7 @@
   }
 </div>
 
-<app-table
+<lux-table-web
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -25,14 +25,14 @@
   class="card d-none d-md-block custom-table"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" (add)="openAdd()" />
+    <lux-table-caption-web [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th appSortableColumn="nombreEmpleado">
-        Empleado <app-sorticon field="nombreEmpleado" />
+        Empleado <lux-sorticon-web field="nombreEmpleado" />
       </th>
-      <th appSortableColumn="fecha">Fecha <app-sorticon field="fecha" /></th>
+      <th appSortableColumn="fecha">Fecha <lux-sorticon-web field="fecha" /></th>
       <th class="text-end">Hrs Simples</th>
       <th class="text-end">Hrs Dobles</th>
       <th class="text-end">Importe Simples</th>
@@ -81,9 +81,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- Vista movil -->
 <app-data-view-mobile
@@ -98,7 +98,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:attach-money" />
+        <lux-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>

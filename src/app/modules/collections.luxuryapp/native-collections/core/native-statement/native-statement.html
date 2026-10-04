@@ -134,7 +134,7 @@
           </div>
         </div>
 
-        <app-table
+        <lux-table-web
           [value]="statement()!.ledger"
           class="p-datatable-sm p-datatable-striped"
         >
@@ -182,7 +182,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </lux-card>
 
       <div class="d-block d-md-none d-flex flex-column gap-1">
@@ -191,7 +191,7 @@
             <div
               class="w-2rem h-2rem rounded-circle bg-dark text-white d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:home'"
                 class="text-sm"
               />
@@ -271,7 +271,7 @@
         </lux-card>
         } @if (statement()!.ledger.length === 0) {
         <lux-card class="card text-center text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:move-to-inbox'"
             class="text-4xl mb-2 d-block"
           />
@@ -282,7 +282,7 @@
     </div>
     } @else { @if (!loading()) {
     <lux-card class="card card--elevated text-center mt-5">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:receipt'"
         class="text-6xl text-body-secondary mb-4"
       />

@@ -139,18 +139,18 @@
               <ng-template let-product #item>
                 <div class="d-flex flex-wrap p-1 align-items-center w-full">
                   @if (product.image) {
-                  <app-avatar
+                  <lux-avatar-web
                     [src]="product.image"
                     [alt]=""
                     styleClass="mr-2"
                     size="large"
                   />
                   } @else {
-                  <app-avatar
+                  <lux-avatar-web
                     icon="material-symbols-light:package"
                     size="xlarge"
                     shape="square"
-                  ></app-avatar>
+                  ></lux-avatar-web>
                   }
                   <div class="flex-fill d-flex flex-column">
                     <span class="fw-bold">{{ product.label }}</span>
@@ -170,7 +170,7 @@
 
       @if (itemsSignal().length > 0) {
       <div class="mt-4">
-        <app-table [value]="itemsSignal()" class="p-datatable-sm">
+        <lux-table-web [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -233,7 +233,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </div>
       }
     </div>
@@ -275,7 +275,7 @@
 
       <div class="mt-4" formArrayName="budgets">
         @if (budgetsFormArray.length > 0) {
-        <app-table [value]="budgetsFormArray.controls" class="p-datatable-sm">
+        <lux-table-web [value]="budgetsFormArray.controls" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th class="table-col-35">Nómero de Cuenta</th>
@@ -310,7 +310,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
         } @else {
         <div class="text-center p-4 border-1 border rounded bg-body-tertiary">
           <p class="m-0 text-bg-dark text-white">
@@ -332,7 +332,7 @@
       </p>
 
       <div class="mt-4">
-        <app-file-upload
+        <lux-file-upload-web
           #fileUpload
           name="invoices[]"
           [multiple]="true"
@@ -359,7 +359,7 @@
             <div
               class="d-flex align-items-center justify-content-center flex-column py-5"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:cloud-upload'"
                 class="border-2 rounded-circle p-5 text-8xl text-body-secondary border-400"
               />
@@ -367,7 +367,7 @@
             </div>
             }
           </ng-template>
-        </app-file-upload>
+        </lux-file-upload-web>
       </div>
     </div>
     }
@@ -405,7 +405,7 @@
         <hr />
 
         <h5>Artóculos</h5>
-        <app-table [value]="itemsSignal()" class="p-datatable-sm">
+        <lux-table-web [value]="itemsSignal()" class="p-datatable-sm">
           <ng-template #header>
             <tr>
               <th>Producto</th>
@@ -446,12 +446,12 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
 
         <hr />
 
         <h5>Cuentas de Presupuesto</h5>
-        <app-table
+        <lux-table-web
           [value]="step3Form.getRawValue().budgets"
           class="p-datatable-sm"
         >
@@ -469,7 +469,7 @@
               <td class="text-end">{{ item.amount | number: "1.2-2" }}</td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
 
         @if (uploadedFiles().length > 0) {
         <hr />
@@ -477,7 +477,7 @@
         <ul>
           @for (file of uploadedFiles(); track $index) {
           <li>
-            <app-icon
+            <lux-icon
               [icon]="getActionIcon(file.name)"
               [ngClass]="getActionIconClass(file.name)"
               class="me-2"

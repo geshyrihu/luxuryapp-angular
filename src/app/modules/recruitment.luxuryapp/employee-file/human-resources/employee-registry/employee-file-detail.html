@@ -39,7 +39,7 @@
         <div
           class="d-flex align-items-center gap-2 bg-body-tertiary rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:badge'"
             class="text-primary"
           />
@@ -51,7 +51,7 @@
         <div
           class="d-flex align-items-center gap-2 bg-body-tertiary rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:mail-outline'"
             class="text-primary"
           />
@@ -60,7 +60,7 @@
         <div
           class="d-flex align-items-center gap-2 bg-body-tertiary rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:call'"
             class="text-primary"
           />
@@ -70,7 +70,7 @@
         <div
           class="d-flex align-items-center gap-2 bg-body-tertiary rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="text-primary"
           />
@@ -103,7 +103,7 @@
             <div
               class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:badge'"
                 class="text-primary"
               />
@@ -246,7 +246,7 @@
                   class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
                   style="background-color: var(--ds-info-container)"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:call'"
                     style="color: var(--ds-info)"
                   />
@@ -299,7 +299,7 @@
             "
           >
             <div class="d-flex align-items-center gap-2" style="opacity: 0.8">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:payments'"
                 class="text-lg"
               />
@@ -323,7 +323,7 @@
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
               style="background-color: var(--ds-warning-container)"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:location-on'"
                 style="color: var(--ds-warning)"
               />
@@ -396,7 +396,7 @@
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:person-remove'"
           class="text-4xl text-body-secondary"
         />
@@ -409,7 +409,7 @@
   <!-- Tab 2: Contacto de emergencia -->
   <div tab="1">
     @if (emergencyContacts().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="emergencyContacts()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -426,7 +426,7 @@
           <td class="fw-medium">{{ item.nameContact }}</td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:call'"
                 class="text-primary"
               />
@@ -443,13 +443,13 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:call'"
           class="text-4xl text-body-secondary"
         />
@@ -464,7 +464,7 @@
   <!-- Tab 3: Datos clónicos -->
   <div tab="2">
     @if (clinicalData().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="clinicalData()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -478,7 +478,7 @@
         <tr>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:favorite'"
                 style="color: var(--ds-danger)"
               />
@@ -490,14 +490,14 @@
           <td class="text-body">{{ item.description }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
         style="background-color: var(--ds-success-container)"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:favorite'"
           class="text-4xl"
           style="color: var(--ds-success)"
@@ -513,7 +513,7 @@
   <!-- Tab 4: Datos bancarios -->
   <div tab="3">
     @if (bankData().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="bankData()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -531,13 +531,13 @@
           <td><code class="text-sm fw-medium">{{ item.bankKey }}</code></td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:credit-card'"
           class="text-4xl text-body-secondary"
         />
@@ -550,7 +550,7 @@
   <!-- Tab 5: Beneficiarios -->
   <div tab="4">
     @if (beneficiaries().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="beneficiaries()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -568,13 +568,13 @@
           <td>{{ item.relation }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:person-add'"
           class="text-4xl text-body-secondary"
         />
@@ -599,7 +599,7 @@
             <div
               class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:description'"
                 class="text-primary"
               />
@@ -688,7 +688,7 @@
       </div>
     </lux-card>
     } @if (contracts().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="contracts()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -717,7 +717,7 @@
           <td>
             <div class="d-flex align-items-center gap-2 text-sm">
               <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:arrow-forward'"
                 class="text-xs text-body-secondary"
               />
@@ -749,13 +749,13 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:description'"
           class="text-4xl text-body-secondary"
         />
@@ -777,7 +777,7 @@
             <div
               class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:work'"
                 class="text-primary"
               />
@@ -858,7 +858,7 @@
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
               style="background-color: var(--ds-info-container)"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:calendar-clock'"
                 style="color: var(--ds-info)"
               />
@@ -968,7 +968,7 @@
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
             style="background-color: var(--ds-warning-container)"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:history'"
               style="color: var(--ds-warning)"
             />
@@ -977,7 +977,7 @@
             Historial de Modificaciones Salariales
           </h4>
         </div>
-        <app-table
+        <lux-table-web
           [value]="wp.salaryModifications"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -998,7 +998,7 @@
                   <span class="text-body-secondary"
                     >{{ item.puestoAnterior }}</span
                   >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:chevron-right'"
                     class="text-primary"
                   />
@@ -1025,7 +1025,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
       </div>
       }
     </div>
@@ -1034,7 +1034,7 @@
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:work'"
           class="text-4xl text-body-secondary"
         />
@@ -1059,7 +1059,7 @@
               class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
               style="background-color: var(--ds-warning-container)"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:calculate'"
                 style="color: var(--ds-warning)"
               />
@@ -1126,7 +1126,7 @@
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
             style="background-color: var(--ds-warning-container)"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:sunny'"
               style="color: var(--ds-warning)"
             />
@@ -1134,7 +1134,7 @@
           <h4 class="m-0 fw-bold text-body">Solicitudes de Vacaciones</h4>
         </div>
         @if (vl.vacations.length > 0) {
-        <app-table
+        <lux-table-web
           [value]="vl.vacations"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -1177,7 +1177,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
         } @else {
         <p
           class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
@@ -1194,7 +1194,7 @@
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
             style="background-color: var(--ds-info-container)"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:schedule'"
               style="color: var(--ds-info)"
             />
@@ -1202,7 +1202,7 @@
           <h4 class="m-0 fw-bold text-body">Permisos y Ausencias</h4>
         </div>
         @if (vl.leaves.length > 0) {
-        <app-table
+        <lux-table-web
           [value]="vl.leaves"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -1237,7 +1237,7 @@
               <td>{{ item.requestDate | apiDate:'dd/MM/yyyy' }}</td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table-web>
         } @else {
         <p
           class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
@@ -1253,7 +1253,7 @@
   <!-- Tab 8: Incidencias -->
   <div tab="8">
     @if (incidents().length > 0) {
-    <app-table
+    <lux-table-web
       [value]="incidents()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -1325,14 +1325,14 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
         class="w-5rem h-5rem rounded-circle d-flex align-items-center justify-content-center"
         style="background-color: var(--ds-success-container)"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:verified'"
           class="text-4xl"
           style="color: var(--ds-success)"
@@ -1360,7 +1360,7 @@
             <div
               class="w-3rem h-3rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:bar-chart'"
                 class="text-primary text-xl"
               />
@@ -1419,7 +1419,7 @@
       <div
         class="w-5rem h-5rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:monitoring'"
           class="text-4xl text-body-secondary"
         />
@@ -1442,7 +1442,7 @@
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
             style="background-color: var(--ds-success-container)"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:person-add'"
               style="color: var(--ds-success)"
             />
@@ -1523,7 +1523,7 @@
             class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0"
             style="background-color: var(--ds-error-container)"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:person-remove'"
               style="color: var(--ds-danger)"
             />
@@ -1565,7 +1565,7 @@
               >
               @if (d.isAuthorizedByLegal) {
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:check-circle'"
                   style="color: var(--ds-success)"
                 />
@@ -1575,7 +1575,7 @@
               </div>
               } @else {
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-body-secondary"
                 />
@@ -1590,7 +1590,7 @@
               >
               @if (d.isAuthorizedByPayroll) {
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:check-circle'"
                   style="color: var(--ds-success)"
                 />
@@ -1600,7 +1600,7 @@
               </div>
               } @else {
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-body-secondary"
                 />
@@ -1655,7 +1655,7 @@
           d.evaluations.length > 0) {
           <div class="mt-4 pt-3 border-top-1 border-200">
             <div class="d-flex align-items-center gap-2 mb-3">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:folder-open'"
                 class="text-primary"
               />
@@ -1675,7 +1675,7 @@
                   target="_blank"
                   class="btn btn-outline-secondary btn-sm no-underline"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:picture-as-pdf'"
                     class="me-2"
                   />
@@ -1702,7 +1702,7 @@
                     [href]="acta.administrativeActPdfUrl"
                     target="_blank"
                     class="ms-2 text-primary fw-bold"
-                    ><app-icon [icon]="'material-symbols-light:download'" />
+                    ><lux-icon [icon]="'material-symbols-light:download'" />
                     PDF</a
                   >
                   }

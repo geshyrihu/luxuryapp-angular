@@ -9,7 +9,7 @@ import type { AppIconName } from "../../primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 
 @Component({
-  selector: "app-icon",
+  selector: "lux-icon",
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `<iconify-icon [attr.icon]="resolvedIcon()"></iconify-icon>`,

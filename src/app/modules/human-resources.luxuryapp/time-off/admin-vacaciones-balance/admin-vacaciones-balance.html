@@ -1,7 +1,7 @@
 <lux-confirm-dialog />
 
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   #dt
   [value]="dataSignal()"
   [loading]="loading()"
@@ -17,7 +17,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <app-table-caption [dt]="dt" [showAddButton]="false" />
+      <lux-table-caption-web [dt]="dt" [showAddButton]="false" />
       <il-button
         label="Recalcular Balances"
         iconClass="material-symbols-light:sync"
@@ -29,13 +29,13 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="fullName">
-        Empleado <app-sorticon field="fullName" />
+        Empleado <lux-sorticon-web field="fullName" />
       </th>
       <th appSortableColumn="hireDate">
-        Contratación <app-sorticon field="hireDate" />
+        Contratación <lux-sorticon-web field="hireDate" />
       </th>
       <th appSortableColumn="seniorityYears">
-        Antigóedad <app-sorticon field="seniorityYears" />
+        Antigóedad <lux-sorticon-web field="seniorityYears" />
       </th>
       <th>Días por Antigóedad</th>
       <th>Días Tomados</th>
@@ -43,7 +43,7 @@
       <th>Adelanto Permitido</th>
       <th>Adelanto Disponible</th>
       <th appSortableColumn="currentSystemBalance">
-        Balance Sistema <app-sorticon field="currentSystemBalance" />
+        Balance Sistema <lux-sorticon-web field="currentSystemBalance" />
       </th>
       <th>Discrepancia</th>
       <th>Acciones</th>
@@ -76,9 +76,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message-web [colspan]="11" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -94,7 +94,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:format-list-bulleted"
           class="text-xl text-primary"
         />

@@ -50,7 +50,7 @@
     <span class="fw-medium">Días de suspensión: </span>{{ daysFormatted() }}
   </div>
 
-  <app-table [value]="days()" class="p-datatable-sm">
+  <lux-table-web [value]="days()" class="p-datatable-sm">
     <ng-template #header>
       <tr>
         <th>Fecha</th>
@@ -68,8 +68,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
-  </app-table>
+  </lux-table-web>
   }
 </div>

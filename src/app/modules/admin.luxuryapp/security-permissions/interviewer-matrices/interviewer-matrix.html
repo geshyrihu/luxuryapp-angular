@@ -23,7 +23,7 @@
         <div class="matrix-toolbar__summary">
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:rule-settings-outline" />
+              <lux-icon icon="material-symbols-light:rule-settings-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Reglas activas</span>
@@ -35,7 +35,7 @@
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:work-outline" />
+              <lux-icon icon="material-symbols-light:work-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Puestos evaluados</span>
@@ -47,7 +47,7 @@
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:group-outline" />
+              <lux-icon icon="material-symbols-light:group-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Entrevistadores</span>
@@ -73,15 +73,15 @@
         </div>
 
         <div class="matrix-helper__legend">
-          <app-tag
+          <lux-tag-web
             value="Asignado"
             icon="material-symbols-light:check-circle"
           />
-          <app-tag
+          <lux-tag-web
             value="Disponible"
             icon="material-symbols-light:add-circle-outline"
           />
-          <app-tag
+          <lux-tag-web
             value="Click para alternar"
             icon="material-symbols-light:touch-app"
           />
@@ -114,7 +114,7 @@
         </div>
 
         @if (activeRulesCount() === 0) {
-        <app-tag
+        <lux-tag-web
           value="Sin reglas aun"
           icon="material-symbols-light:auto-awesome-motion"
         />
@@ -182,12 +182,12 @@
                 <span class="matrix-cell__spinner"></span>
                 } @else if (getCellState(toRoleValue(interviewerRole.value),
                 toRoleValue(workRole.value)) === 'active') {
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:check-small"
                   class="matrix-cell__check"
                 />
                 } @else {
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:add"
                   class="matrix-cell__plus"
                 />

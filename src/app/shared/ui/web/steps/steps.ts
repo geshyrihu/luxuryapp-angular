@@ -8,7 +8,7 @@ import { StepsBase } from "@ui/core/steps.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-steps",
+  selector: "lux-steps-web",
 
   imports: [AppIcon, NgClass],
   template: `
@@ -29,7 +29,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           >
             <span class="app-steps-index">
               @if (i < activeIndex()) {
-                <app-icon icon="material-symbols-light:check" />
+                <lux-icon icon="material-symbols-light:check" />
               } @else {
                 {{ i + 1 }}
               }

@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -7,7 +7,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [showSearch]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -17,7 +17,7 @@
       </th>
       <th rowspan="2" appSortableColumn="fechaFiltro">
         <p class="fw-light">Fecha</p>
-        <app-sorticon field="fechaFiltro" />
+        <lux-sorticon-web field="fechaFiltro" />
       </th>
       <th colspan="3">
         <div
@@ -73,7 +73,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message-web [colspan]="11" />
   </ng-template>
   <ng-template #body let-rowIndex="rowIndex" let-item>
     <tr>
@@ -152,4 +152,4 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

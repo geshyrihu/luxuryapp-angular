@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <!-- Desktop View -->
-    <app-table
+    <lux-table-web
       #dt
       [value]="data()"
       [rows]="10"
@@ -19,7 +19,7 @@
         <div
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
         >
-          <app-table-caption
+          <lux-table-caption-web
             (add)="showForm()"
             [dt]="dt"
             [noPadding]="true"
@@ -66,9 +66,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="4" />
+        <lux-table-empty-message-web [colspan]="4" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
     <!-- Mobile View -->
     <app-data-view-mobile
       [data]="data()"
@@ -92,7 +92,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:description"
               class="text-xl text-primary"
             />

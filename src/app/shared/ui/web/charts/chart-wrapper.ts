@@ -27,7 +27,7 @@ export type ChartType =
  * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`.
  */
 @Component({
-  selector: "app-chart-wrapper",
+  selector: "lux-chart-wrapper-web",
 
   imports: [BaseChartDirective],
   template: `

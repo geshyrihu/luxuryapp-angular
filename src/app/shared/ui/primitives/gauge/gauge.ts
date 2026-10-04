@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-gauge",
+  selector: "lux-gauge",
 
   imports: [],
   template: `

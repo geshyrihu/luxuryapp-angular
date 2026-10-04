@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -15,7 +15,7 @@
     <ng-template #caption>
       <div class="d-flex align-items-center">
         <div class="flex-flex-grow-1-1">
-          <app-table-caption
+          <lux-table-caption-web
             (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
             [dt]="dt"
           />
@@ -34,19 +34,19 @@
       <tr>
         <th appSortableColumn="requestDate">
           Fecha Solicitud
-          <app-sorticon field="requestDate" />
+          <lux-sorticon-web field="requestDate" />
         </th>
         <th appSortableColumn="startDate">
           Periodo
-          <app-sorticon field="startDate" />
+          <lux-sorticon-web field="startDate" />
         </th>
         <th appSortableColumn="requestedDays">
           Días Solicitados
-          <app-sorticon field="requestedDays" />
+          <lux-sorticon-web field="requestedDays" />
         </th>
         <th appSortableColumn="status">
           Estado
-          <app-sorticon field="status" />
+          <lux-sorticon-web field="status" />
         </th>
         <th>Aprobación</th>
         <th class="no-print"></th>
@@ -110,12 +110,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -128,7 +128,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:beach-access" />
+          <lux-icon icon="material-symbols-light:beach-access" />
         </div>
 
         <h2 class="fw-bold">{{ item.requestDate }}</h2>

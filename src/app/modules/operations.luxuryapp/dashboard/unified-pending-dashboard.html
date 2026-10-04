@@ -1,6 +1,6 @@
 <div class="d-flex flex-column mb-4">
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table-web
       #dt
       [value]="data()"
       [rows]="tableRows"
@@ -39,7 +39,7 @@
                   [class.bg-primary-50]="selectedModule() === null"
                   (click)="onModuleFilterChange(null)"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:grid-view'"
                     class="text-primary"
                   />
@@ -72,7 +72,7 @@
               <div class="flex-flex-grow-1-1"></div>
 
               <!-- Action Icons Group -->
-              <app-action-icons-group>
+              <lux-action-icons-group>
                 <iw-button
                   iconClass="material-symbols-light:photo-camera"
                   severity="secondary"
@@ -97,17 +97,17 @@
                   (clicked)="sendExecutiveReport()"
                 />
                 }
-              </app-action-icons-group>
+              </lux-action-icons-group>
 
               <!-- Search -->
-              <app-table-caption [showAdd]="false" [dt]="dt" />
+              <lux-table-caption-web [showAdd]="false" [dt]="dt" />
             </div>
 
             <!-- Contextual Legend (Small) -->
             <div
               class="d-flex align-items-center text-xs text-body-secondary px-1"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary"
               />
@@ -133,26 +133,26 @@
           class="text-sm text-uppercase text-body-secondary bg-bg-body-tertiary"
         >
           <th appSortableColumn="module" class="text-nowrap ps-3 table-col-8">
-            Módulo <app-sorticon field="module" />
+            Módulo <lux-sorticon-web field="module" />
           </th>
           <th
             appSortableColumn="date"
             class="text-nowrap text-center table-col-10"
           >
-            Fecha <app-sorticon field="date" />
+            Fecha <lux-sorticon-web field="date" />
           </th>
           <th appSortableColumn="title" class="table-col-32">
-            Actividad / Asunto <app-sorticon field="title" />
+            Actividad / Asunto <lux-sorticon-web field="title" />
           </th>
           <th appSortableColumn="responsible" class="table-col-15">
-            Responsable <app-sorticon field="responsible" />
+            Responsable <lux-sorticon-web field="responsible" />
           </th>
           <th class="table-col-20">último Seguimiento</th>
           <th appSortableColumn="status" class="text-center table-col-10">
-            Estatus <app-sorticon field="status" />
+            Estatus <lux-sorticon-web field="status" />
           </th>
           <th appSortableColumn="daysOpen" class="text-center pe-3 table-col-5">
-            Días <app-sorticon field="daysOpen" />
+            Días <lux-sorticon-web field="daysOpen" />
           </th>
         </tr>
       </ng-template>
@@ -181,7 +181,7 @@
               >
               <span
                 class="text-body-secondary text-xs d-flex align-items-center gap-1"
-                ><app-icon
+                ><lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-xs"
                 />
@@ -207,12 +207,12 @@
           <!-- Responsible -->
           <td class="vertical-align-middle">
             <div class="d-flex align-items-center">
-              <app-avatar
+              <lux-avatar-web
                 label="{{item.responsible.charAt(0)}}"
                 [styleClass]="'mr-1 ' + (isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700')"
                 size="normal"
                 shape="circle"
-              ></app-avatar>
+              ></lux-avatar-web>
               <div class="d-flex flex-column">
                 <span class="text-body fw-medium text-sm"
                   >{{ item.responsible }}</span
@@ -226,7 +226,7 @@
           <td class="vertical-align-middle">
             @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
             <div class="d-flex align-items-start p-2 bg-body-tertiary rounded">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:comment'"
                 class="text-primary mt-1"
               />
@@ -282,7 +282,7 @@
               <div
                 class="rounded-circle bg-bg-body-tertiary p-4 d-flex align-items-center justify-content-center"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:check'"
                   class="text-4xl text-body-secondary"
                 />
@@ -299,9 +299,9 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer-web [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 
   <!-- 📱 MOBILE -->
@@ -316,7 +316,7 @@
           [class.bg-primary-50]="selectedModule() === null"
           (click)="onModuleFilterChange(null)"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:grid-view'"
             class="text-primary"
           />
@@ -356,7 +356,7 @@
     </ng-template>
   </app-data-view-mobile>
 
-  <app-image-analysis-dialog
+  <lux-image-analysis-dialog
     (resultAccepted)="onVisionResult($event)"
-  ></app-image-analysis-dialog>
+  ></lux-image-analysis-dialog>
 </div>

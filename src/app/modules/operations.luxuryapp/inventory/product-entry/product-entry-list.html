@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -14,33 +14,33 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption [showAdd]="false" [dt]="dt" />
+        <lux-table-caption-web [showAdd]="false" [dt]="dt" />
       </ng-template>
       <ng-template #header>
         <tr>
           <th appSortableColumn="fechaEntrada">
             Fecha Entrada
-            <app-sorticon field="fechaEntrada" />
+            <lux-sorticon-web field="fechaEntrada" />
           </th>
           <th appSortableColumn="nombreProducto">
             Producto
-            <app-sorticon field="nombreProducto" />
+            <lux-sorticon-web field="nombreProducto" />
           </th>
           <th appSortableColumn="cantidad">
             cantidad
-            <app-sorticon field="cantidad" />
+            <lux-sorticon-web field="cantidad" />
           </th>
           <th appSortableColumn="unidadMedida">
             Unidad
-            <app-sorticon field="unidadMedida" />
+            <lux-sorticon-web field="unidadMedida" />
           </th>
           <th appSortableColumn="provider">
             Proveedor
-            <app-sorticon field="provider" />
+            <lux-sorticon-web field="provider" />
           </th>
           <th appSortableColumn="numeroFactura">
             Factura
-            <app-sorticon field="numeroFactura" />
+            <lux-sorticon-web field="numeroFactura" />
           </th>
           @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <th class="table-col-5"></th>
@@ -74,12 +74,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="7" />
+        <lux-table-empty-message-web [colspan]="7" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer-web [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -94,7 +94,7 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:upload" />
+        <lux-icon icon="material-symbols-light:upload" />
       </div>
 
       <div class="d-flex flex-column">

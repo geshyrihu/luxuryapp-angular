@@ -26,7 +26,7 @@ import { AppImage } from "@ui/web/image/image";
         [styleClass]="styleClass()"
       />
     } @else {
-      <app-image
+      <lux-image-web
         [src]="src()"
         [alt]="alt()"
         [preview]="preview()"

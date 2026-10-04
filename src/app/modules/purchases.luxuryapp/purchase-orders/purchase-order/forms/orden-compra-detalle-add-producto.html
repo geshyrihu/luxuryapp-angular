@@ -1,7 +1,7 @@
 @if (mensajeError) {
 <lux-message severity="error">Seleccione producto y unidad</lux-message>
 } @if (dataSignal()) {
-<app-table
+<lux-table-web
   (onLazyLoad)="loadDataLazy($event)"
   [globalFilterFields]="globalFilterFields()"
   [lazy]="true"
@@ -16,7 +16,7 @@
   class="custom-table"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [dt]="dt"
       [showAdd]="false"
       (search)="applyFilter($event)"
@@ -27,17 +27,17 @@
       <th>Imagen</th>
       <th appSortableColumn="producto">
         DESCRIPCIÓN
-        <app-sorticon field="producto" />
+        <lux-sorticon-web field="producto" />
       </th>
       <th appSortableColumn="category">
         Categoría
-        <app-sorticon field="category" />
+        <lux-sorticon-web field="category" />
       </th>
       <th>Cantidad</th>
       <th>Unidad</th>
       <th appSortableColumn="precio">
         Precio
-        <app-sorticon field="precio" />
+        <lux-sorticon-web field="precio" />
       </th>
       <th>Descuento</th>
       <th>IVA (%)</th>
@@ -53,7 +53,7 @@
           class="table-col-10 pointer"
           (click)="onModalTarjetaProducto(row.value.productoId)"
         >
-          <app-avatar
+          <lux-avatar-web
             [image]="row.value.urlImagen
                       ? row.value.urlImagen
                       : 'assets/images/default-avatar.png'"
@@ -148,7 +148,7 @@
     </ng-container>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="formArray.getRawValue()" />
+    <lux-table-footer-web [data]="formArray.getRawValue()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 }

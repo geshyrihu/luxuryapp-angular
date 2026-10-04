@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="toggleState()"
     >
-      <app-icon [icon]="state() ? IconCatalog.Lock : IconCatalog.LockOpen" />
+      <lux-icon [icon]="state() ? IconCatalog.Lock : IconCatalog.LockOpen" />
     </button>
   `,
 })

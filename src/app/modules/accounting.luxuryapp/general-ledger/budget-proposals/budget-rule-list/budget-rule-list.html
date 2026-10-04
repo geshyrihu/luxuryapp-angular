@@ -11,7 +11,7 @@
   Por favor, NO rompan el código.
   ============================================================================
 -->
-<app-table
+<lux-table-web
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   class="p-datatable-sm p-datatable-gridlines d-none d-md-block"
@@ -21,7 +21,7 @@
   #dt
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nueva Regla' })"
       [dt]="dt"
     />
@@ -71,7 +71,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -84,7 +84,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:analytics"
           class="text-blue-600 text-xl"
         />

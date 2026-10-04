@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
   [value]="dataSignal()"
   #dt
@@ -8,7 +8,7 @@
   <ng-template #caption>
     <div class="row g-4">
       <div class="col-12">
-        <app-table-caption
+        <lux-table-caption-web
           [title]="'DIRECTORIO DE PERSONAL EXTERNO'"
           (add)="
             onModalForm({
@@ -27,24 +27,24 @@
       <th class="table-col-5">Né</th>
       <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <app-sorticon field="workPositionFolio" />
+        <lux-sorticon-web field="workPositionFolio" />
       </th>
       <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <app-sorticon field="userName" />
+        <lux-sorticon-web field="userName" />
       </th>
 
       <th class="table-col-30 no-print">
         Télefono
-        <app-sorticon field="personalCellPhone" />
+        <lux-sorticon-web field="personalCellPhone" />
       </th>
       <th class="table-col-30" appSortableColumn="personalEmail">
         Email
-        <app-sorticon field="personalEmail" />
+        <lux-sorticon-web field="personalEmail" />
       </th>
 
       <th class="table-col-5"></th>
@@ -54,7 +54,7 @@
     <tr>
       <td class="no-print">{{ rowIndex + 1 }}</td>
       <td class="text-center">
-        <app-avatar
+        <lux-avatar-web
           [image]="item.photoPath"
           alt=""
           styleClass="mr-2"
@@ -89,12 +89,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message-web [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -110,7 +110,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:badge-outline"
           class="text-xl text-primary"
         />

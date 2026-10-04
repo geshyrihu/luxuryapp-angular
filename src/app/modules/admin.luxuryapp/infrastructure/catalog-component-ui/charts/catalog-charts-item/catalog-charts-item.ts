@@ -44,7 +44,7 @@ const CHARTS_LABELS: Record<string, string> = {
                 <app-chart-pie [data]="pieData" />
               }
               @case ("line") {
-                <app-chart-wrapper
+                <lux-chart-wrapper-web
                   type="line"
                   [data]="lineData"
                   [options]="chartOptions"
@@ -52,7 +52,7 @@ const CHARTS_LABELS: Record<string, string> = {
                 />
               }
               @case ("doughnut") {
-                <app-chart-wrapper
+                <lux-chart-wrapper-web
                   type="doughnut"
                   [data]="doughnutData"
                   [options]="circularOptions"
@@ -60,7 +60,7 @@ const CHARTS_LABELS: Record<string, string> = {
                 />
               }
               @case ("radar") {
-                <app-chart-wrapper
+                <lux-chart-wrapper-web
                   type="radar"
                   [data]="radarData"
                   [options]="circularOptions"
@@ -77,7 +77,7 @@ const CHARTS_LABELS: Record<string, string> = {
               <div
                 class="d-flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:timeline"
                   class="text-4xl text-gray-400"
                 />

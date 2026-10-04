@@ -1,4 +1,4 @@
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between w-full">
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
         [rolAuth]="
@@ -35,33 +35,33 @@
     <tr>
       <th class="table-col-10" appSortableColumn="property">
         Propiedad
-        <app-sorticon field="property" />
+        <lux-sorticon-web field="property" />
       </th>
       <th class="table-col-10" appSortableColumn="habitant">
         Habitante
-        <app-sorticon field="habitant" />
+        <lux-sorticon-web field="habitant" />
       </th>
       <th class="table-col-10" appSortableColumn="fullName">
         Nombre
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
 
       <th class="table-col-10" appSortableColumn="fixedPhone">
         Télefono fijo
-        <app-sorticon field="fixedPhone" />
+        <lux-sorticon-web field="fixedPhone" />
       </th>
       <th class="table-col-10" appSortableColumn="extencion">
         Extensión
-        <app-sorticon field="extencion" />
+        <lux-sorticon-web field="extencion" />
       </th>
       <th class="table-col-10">Télefono</th>
       <th class="table-col-10" appSortableColumn="email">
         Email
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       <th class="table-col-10" appSortableColumn="enviarMails" class="no-print">
         Enviar Info
-        <app-sorticon field="enviarMails" />
+        <lux-sorticon-web field="enviarMails" />
       </th>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {
@@ -80,15 +80,15 @@
       <td>{{ item.email }}</td>
       <td class="no-print">
         @if (item.enviarMails) {
-        <app-icon [icon]="'material-symbols-light:check'" class="text-success icon icon-" />
+        <lux-icon [icon]="'material-symbols-light:check'" class="text-success icon icon-" />
         } @if (!item.enviarMails) {
-        <app-icon [icon]="'material-symbols-light:close'" class="text-danger icon icon-" />
+        <lux-icon [icon]="'material-symbols-light:close'" class="text-danger icon icon-" />
         }
       </td>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario, ]) ) {
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -99,18 +99,18 @@
               label="Eliminar"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       }
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message-web [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -119,7 +119,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:home-outline" />
+        <lux-icon icon="material-symbols-light:home-outline" />
       </div>
 
       <h3>{{ item.habitant }}</h3>

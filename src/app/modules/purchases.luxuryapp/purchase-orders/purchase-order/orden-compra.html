@@ -2,7 +2,7 @@
 <div
   class="fixed top-0 left-0 w-full h-full d-flex flex-column align-items-center justify-content-center bg-body opacity-80 z-50"
 >
-  <app-spinner [size]="64" [strokeWidth]="4" />
+  <lux-spinner-web [size]="64" [strokeWidth]="4" />
   <span class="mt-2 text-primary fw-bold">Cargando Orden de Compra...</span>
 </div>
 }
@@ -120,7 +120,7 @@
   <!-- 5. Tabla: Presupuesto Utilizado -->
   @if (purchaseOrderBudget()) {
   <div class="col-12 col-sm-7">
-    <app-table
+    <lux-table-web
       [value]="purchaseOrderBudget()"
       class="custom-table card d-none d-md-block"
     >
@@ -180,9 +180,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="16" />
+        <lux-table-empty-message-web [colspan]="16" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   }
 
@@ -234,7 +234,7 @@
 <!-- ================================================================== -->
 <!-- SECCIÓN DE DETALLE DE PRODUCTOS                                    -->
 <!-- ================================================================== -->
-<app-table
+<lux-table-web
   [value]="ordenCompraDetalle()"
   class="custom-table card d-none d-md-block"
   dataKey="id"
@@ -252,7 +252,7 @@
             class="pointer ms-1 text-primary fw-bold"
           >
             AGREGAR
-            <app-icon [icon]="'material-symbols-light:add'" class="icon ms-1" />
+            <lux-icon [icon]="'material-symbols-light:add'" class="icon ms-1" />
           </span>
           }
         </div>
@@ -341,4 +341,4 @@
       <td class="no-border"></td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>

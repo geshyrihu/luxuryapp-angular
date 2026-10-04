@@ -1,6 +1,6 @@
 @if (cargando()) {
 <div class="d-flex align-items-center gap-2 py-3">
-  <app-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
+  <lux-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
   <span class="text-sm text-body-secondary">Cargando agenda...</span>
 </div>
 } @else {
@@ -26,7 +26,7 @@
 <!-- Proximos eventos -->
 @if (proximosEventos().length === 0) {
 <div class="d-flex align-items-center gap-2 py-2 text-body-secondary">
-  <app-icon icon="material-symbols-light:event-busy" />
+  <lux-icon icon="material-symbols-light:event-busy" />
   <span class="text-sm">Sin eventos proximos</span>
 </div>
 } @else {

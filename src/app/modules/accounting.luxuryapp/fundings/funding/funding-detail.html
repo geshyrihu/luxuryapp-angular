@@ -12,7 +12,7 @@
         </h1>
         <span
           class="text-sm text-body-secondary fw-medium d-flex align-items-center gap-1"
-          ><app-icon [icon]="'material-symbols-light:calendar-today'" /> {{
+          ><lux-icon [icon]="'material-symbols-light:calendar-today'" /> {{
           periodo() }}</span
         >
       </div>
@@ -118,7 +118,7 @@
               class="btn btn-secondary btn-sm"
               lxTooltip="Catálogo de Gastos Fijos — generar OC automáticas"
               tooltipPosition="bottom"
-              ><app-icon [icon]="'material-symbols-light:format-list-bulleted'"
+              ><lux-icon [icon]="'material-symbols-light:format-list-bulleted'"
             /></a>
             } @if (dataSignal().length > 0) {
             <iw-button
@@ -155,13 +155,13 @@
   >
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isVerified()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
       <span class="text-green-700 fw-medium">Verificado</span>
       } @else {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
@@ -170,19 +170,19 @@
       >
       }
     </div>
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:chevron-right'"
       class="text-body-secondary text-xs"
     />
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isAuthorized()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
       <span class="text-green-700 fw-medium">Autorizado</span>
       } @else if (isVerified()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
@@ -190,26 +190,26 @@
         >Pendiente — debe autorizarse</span
       >
       } @else {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:lock'"
         class="text-body-secondary"
       />
       <span class="text-body-secondary">Autorizar (requiere verificacion)</span>
       }
     </div>
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:chevron-right'"
       class="text-body-secondary text-xs"
     />
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isConfirmed()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
       <span class="text-green-700 fw-medium">Confirmado por Contabilidad</span>
       } @else if (isAuthorized()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
@@ -217,7 +217,7 @@
         >Pendiente — debe confirmar Contabilidad</span
       >
       } @else {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:lock'"
         class="text-body-secondary"
       />
@@ -240,7 +240,7 @@
   <div
     class="w-full bg-green-50 border-green-200 border-1 rounded p-3 mt-2 d-flex align-items-center gap-2 text-green-700"
   >
-    <app-icon [icon]="'material-symbols-light:verified'" class="text-xl" />
+    <lux-icon [icon]="'material-symbols-light:verified'" class="text-xl" />
     <span class="fw-bold"
       >Este fondeo ha sido procesado por contabilidad. No se pueden realizar
       cambios.</span
@@ -251,7 +251,7 @@
     class="d-flex flex-column align-items-center justify-content-center p-5 border-1 border rounded-xl bg-bg-body-tertiary text-center shadow-sm"
   >
     <div class="bg-bg-body-tertiary rounded-circle p-3 mb-3">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:folder-open'"
         class="text-4xl text-body-secondary"
       />
@@ -293,7 +293,7 @@
       </div>
     </div>
 
-    <app-table
+    <lux-table-web
       [value]="grupo.ordenes"
       class="p-datatable-sm p-datatable-gridlines font-sm border-0"
       [scrollable]="true"
@@ -349,7 +349,7 @@
           <td
             class="text-center p-1 text-body-secondary relative bg-bg-body-tertiary"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:more-vert'"
               class="text-body-secondary absolute left-0 top-50 mt--2 ms-1 cursor-move d-none d-md-block"
               pReorderableRowHandle
@@ -444,19 +444,19 @@
             <div class="d-flex justify-content-center align-items-center gap-3">
               <!-- XML Validation -->
               @if (orden.validationStatus === true) {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:check-circle'"
                 class="text-green-500 text-lg"
                 lxTooltip="{{ orden.validationMessage }}"
               />
               } @else if (orden.validationStatus === false) {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:cancel'"
                 class="text-red-500 text-lg"
                 lxTooltip="{{ orden.validationMessage }}"
               />
               } @else {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:circle'"
                 class="text-body-secondary text-lg"
                 lxTooltip="Sin validar"
@@ -506,7 +506,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
   }
 
@@ -518,7 +518,7 @@
       class="d-flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200"
     >
       <div class="d-flex align-items-center gap-2">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:bolt'"
           class="text-orange-500"
         />
@@ -547,11 +547,11 @@
     <div
       class="d-flex align-items-center gap-2 p-3 text-body-secondary text-sm"
     >
-      <app-icon [icon]="'material-symbols-light:info'" />
+      <lux-icon [icon]="'material-symbols-light:info'" />
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
-    <app-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
+    <lux-table-web [value]="ordenesFueraProceso()" class="p-datatable-sm">
       <ng-template #header>
         <tr>
           <th>Proveedor</th>
@@ -595,7 +595,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table-web>
     }
   </div>
 

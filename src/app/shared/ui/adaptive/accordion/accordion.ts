@@ -21,13 +21,13 @@ import { Accordion } from "@ui/web/accordion/accordion";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-accordion>
     } @else {
-      <app-accordion
+      <lux-accordion-web
         [items]="items()"
         [multiple]="multiple()"
         [(expandedIds)]="expandedIds"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-accordion>
+      </lux-accordion-web>
     }
   `,
 })

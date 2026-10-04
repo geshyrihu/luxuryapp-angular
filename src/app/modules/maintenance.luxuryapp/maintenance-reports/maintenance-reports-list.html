@@ -21,14 +21,14 @@
   </div>
 </div>
 
-<app-table
+<lux-table-web
   [value]="menu()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       [title]="'REPORTES'"
       [showAdd]="false"
       [showSearch]="false"
@@ -48,15 +48,15 @@
       <td class="text-center">
         <a [routerLink]="[item.route]">
           ver
-          <app-icon [icon]="'material-symbols-light:back-hand'" />
+          <lux-icon [icon]="'material-symbols-light:back-hand'" />
         </a>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="2" />
+    <lux-table-empty-message-web [colspan]="2" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <app-data-view-mobile
   [data]="menu()"
@@ -69,7 +69,7 @@
         start
         
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:description"
           class="text-xl text-yellow-500"
         />

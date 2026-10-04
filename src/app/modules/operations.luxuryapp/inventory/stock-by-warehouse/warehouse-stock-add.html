@@ -1,5 +1,5 @@
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
   [paginator]="true"
@@ -15,29 +15,29 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th appSortableColumn="value.nombreProducto" class="table-col-35">
         Producto
-        <app-sorticon field="value.nombreProducto" />
+        <lux-sorticon-web field="value.nombreProducto" />
       </th>
       <th appSortableColumn="value.existencia">
         Existencia
-        <app-sorticon field="value.existencia" />
+        <lux-sorticon-web field="value.existencia" />
       </th>
       <th appSortableColumn="value.unidadDeMedidaId">
         Unidad
-        <app-sorticon field="value.unidadDeMedidaId" />
+        <lux-sorticon-web field="value.unidadDeMedidaId" />
       </th>
       <th appSortableColumn="value.stockMax">
         Stok Max
-        <app-sorticon field="value.stockMax" />
+        <lux-sorticon-web field="value.stockMax" />
       </th>
       <th appSortableColumn="value.stockMin">
         Stok Min
-        <app-sorticon field="value.stockMin" />
+        <lux-sorticon-web field="value.stockMin" />
       </th>
       <th class="table-col-5">Agregar</th>
     </tr>
@@ -113,6 +113,6 @@
     </ng-container>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="formArray.getRawValue()" />
+    <lux-table-footer-web [data]="formArray.getRawValue()" />
   </ng-template>
-</app-table>
+</lux-table-web>

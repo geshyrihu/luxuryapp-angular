@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="TICKETS" />
 @if (dataSignal()) {
-<app-table
+<lux-table-web
   #dt
   [value]="dataSignal()"
   [scrollable]="true"
@@ -8,7 +8,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="TICKETS POR ÁREA"
       [showAdd]="false"
       [showSearch]="false"
@@ -52,10 +52,10 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }
 <br />
-<app-table
+<lux-table-web
   #dt
   [value]="dataResponsable()"
   [scrollable]="true"
@@ -72,7 +72,7 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="ASIGNACIÓN DE TICKETS"
       [showAdd]="false"
       [showSearch]="false"
@@ -94,9 +94,9 @@
     </tr>
     }
   </ng-template>
-</app-table>
+</lux-table-web>
 @if (dataCargaTicket()) {
-<app-table
+<lux-table-web
   [value]="dataCargaTicket()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -104,7 +104,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       title="TICKETS SOLICITADOS"
       [showAdd]="false"
       [showSearch]="false"
@@ -114,19 +114,19 @@
     <tr>
       <th appSortableColumn="empleado" class="table-col-20">
         COLABORADOR
-        <app-sorticon field="empleado" />
+        <lux-sorticon-web field="empleado" />
       </th>
       <th appSortableColumn="solicitudes" class="table-col-20">
         SOLICITUDES
-        <app-sorticon field="solicitudes" />
+        <lux-sorticon-web field="solicitudes" />
       </th>
       <th appSortableColumn="atendidas" class="table-col-20">
         ATENDIDAS
-        <app-sorticon field="atendidas" />
+        <lux-sorticon-web field="atendidas" />
       </th>
       <th appSortableColumn="pendientes" class="table-col-20">
         PENDIENTES
-        <app-sorticon field="pendientes" />
+        <lux-sorticon-web field="pendientes" />
       </th>
     </tr>
   </ng-template>
@@ -134,7 +134,7 @@
     <tr [hidden]="false">
       <td>
         <div>
-          <app-avatar
+          <lux-avatar-web
             [image]="item.image"
             alt=""
             shape="square"
@@ -175,5 +175,5 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }

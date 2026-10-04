@@ -9,12 +9,12 @@
     ngbDropdownToggle
   >
     <span class="notifications-badge-anchor">
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:notifications-outline"
         class="notifications-bell-icon"
       />
       @if (messageInNotRead() > 0) {
-      <app-badge [value]="messageInNotRead()" color="danger" size="small" />
+      <lux-badge-web [value]="messageInNotRead()" color="danger" size="small" />
       }
     </span>
   </button>
@@ -41,7 +41,7 @@
           [class.bg-body-tertiary]="!notification.isRead"
         >
           <div class="d-flex align-items-start gap-2">
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:notifications-outline"
               class="text-lg text-primary mt-1"
             />
@@ -56,7 +56,7 @@
         </a>
       } @empty {
         <div class="text-center p-4">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:move-to-inbox"
             class="text-4xl text-body-secondary mb-2"
           />

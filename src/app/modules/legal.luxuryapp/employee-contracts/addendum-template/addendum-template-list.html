@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     [value]="items()"
     class="custom-table card d-none d-md-block"
     [scrollable]="true"
@@ -11,7 +11,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Machote de Adenda' })"
         [dt]="dt"
       />
@@ -50,12 +50,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [data]="items()" />
+      <lux-table-footer-web [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message-web [colspan]="6" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -69,7 +69,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:note-add"
             
           />

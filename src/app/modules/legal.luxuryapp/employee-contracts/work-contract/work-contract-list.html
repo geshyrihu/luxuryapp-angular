@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table-web
     #dt
     [value]="items()"
     class="custom-table d-none d-md-block"
@@ -11,7 +11,7 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         [showAdd]="!!employeeId()"
         title="Contratos Laborales"
         (add)="onModalForm({ id: '', title: 'Nuevo Contrato Laboral' })"
@@ -70,12 +70,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [totalRecords]="items().length" />
+      <lux-table-footer-web [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message-web [colspan]="8" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -90,7 +90,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:edit-note"
             class="text-xl text-primary"
           />

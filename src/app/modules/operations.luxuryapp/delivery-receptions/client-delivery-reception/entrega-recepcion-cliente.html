@@ -12,7 +12,7 @@ cb_departamento; track item) {
 }
 <hr />
 }
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [value]="data()"
   #dt
@@ -20,7 +20,7 @@ cb_departamento; track item) {
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [showAdd]="false"
       [dt]="dt"
@@ -57,12 +57,12 @@ cb_departamento; track item) {
           [class.bg-success]="item.estatus === 1"
         >
           @if (item.estatus === 0) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:close'"
             class="icon icon-"
           />
           } @if (item.estatus === 1) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:check'"
             class="icon icon-"
           />
@@ -94,7 +94,7 @@ cb_departamento; track item) {
         <small>{{ item.fechaSupervision }}</small>
       </td>
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <il-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -119,14 +119,14 @@ cb_departamento; track item) {
             />
             }
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message-web [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

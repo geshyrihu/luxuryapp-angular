@@ -252,7 +252,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Accordion - p-accordion</h3>
                 </div>
                 <div class="card-body">
-                  <app-accordion
+                  <lux-accordion-web
                     [items]="[
                       { id: '0', title: 'Sección 1' },
                       { id: '1', title: 'Sección 2' },
@@ -263,7 +263,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <ng-template accordionPanel="0"><p class="m-0">Contenido de la primera sección.</p></ng-template>
                     <ng-template accordionPanel="1"><p class="m-0">Contenido de la segunda sección.</p></ng-template>
                     <ng-template accordionPanel="2"><p class="m-0">Contenido de la tercera sección.</p></ng-template>
-                  </app-accordion>
+                  </lux-accordion-web>
                 </div>
               </div>
             }
@@ -274,12 +274,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap gap-3 align-items-center">
-                    <app-badge value="3" color="danger" />
-                    <app-badge value="12" color="warning" />
-                    <app-badge value="5" color="info" />
-                    <app-badge value="8" color="success" />
-                    <app-badge color="danger" />
-                    <app-badge color="warning" />
+                    <lux-badge-web value="3" color="danger" />
+                    <lux-badge-web value="12" color="warning" />
+                    <lux-badge-web value="5" color="info" />
+                    <lux-badge-web value="8" color="success" />
+                    <lux-badge-web color="danger" />
+                    <lux-badge-web color="warning" />
                   </div>
                 </div>
               </div>
@@ -290,7 +290,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Breadcrumb - p-breadcrumb</h3>
                 </div>
                 <div class="card-body">
-                  <app-breadcrumbs
+                  <lux-breadcrumbs-web
                     [items]="[
                       { label: 'Inicio' },
                       { label: 'Sistema' },
@@ -318,7 +318,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <il-button label="Help" severity="help" />
                     <il-button label="Contrast" severity="contrast" />
                   </div>
-                  <app-divider />
+                  <lux-divider-web />
                   <div class="d-flex flex-wrap gap-2">
                     <il-button label="Small" size="sm" />
                     <il-button label="Normal" />
@@ -395,21 +395,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <!-- Ejemplo visual -->
                     <div class="d-flex align-items-center gap-3 mb-4">
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:menu" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:menu" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:notifications" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:notifications" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:search" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:search" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn" disabled>
-                        <app-icon icon="material-symbols-light:settings" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:settings" class="text-xl" />
                       </button>
                     </div>
 
                     <!-- Codigo de referencia -->
-                    <app-divider />
+                    <lux-divider-web />
                     <p class="text-sm font-bold mb-2">Estructura</p>
                     <pre
                       class="text-xs surface-ground p-3 border-round m-0"
@@ -423,7 +423,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       style="overflow-x:auto"
                     ><code>{{ iconBtnScss }}</code></pre>
 
-                    <app-divider />
+                    <lux-divider-web />
                     <p class="text-sm font-bold mb-2">Regla de uso</p>
                     <div class="row">
                       <div class="col-12 col-md-4">
@@ -518,13 +518,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="d-flex flex-column gap-3">
                     <div class="d-flex align-items-center gap-2">
-                      <app-checkbox inputId="chk1" label="Opcion 1" />
+                      <lux-checkbox-web inputId="chk1" label="Opcion 1" />
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                      <app-checkbox inputId="chk2" label="Opcion 2" />
+                      <lux-checkbox-web inputId="chk2" label="Opcion 2" />
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                      <app-checkbox inputId="chk3" label="Opcion 3" />
+                      <lux-checkbox-web inputId="chk3" label="Opcion 3" />
                     </div>
                   </div>
                 </div>
@@ -576,9 +576,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <p>Contenido superior</p>
-                   <app-divider />
+                   <lux-divider-web />
                   <p>Contenido inferior</p>
-                   <app-divider><b>Izquierda</b></app-divider>
+                   <lux-divider-web><b>Izquierda</b></lux-divider-web>
                   <p>Texto con divider alineado.</p>
                 </div>
               </div>
@@ -639,12 +639,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-column gap-2">
-                    <app-message severity="info" text="Mensaje informativo" />
-                    <app-message severity="success" text="Operacion exitosa" />
-                    <app-message severity="warn" text="Advertencia" />
-                    <app-message severity="danger" text="Error critico" />
-                    <app-message severity="secondary" text="Mensaje secundario" />
-                    <app-message severity="secondary" text="Contraste" />
+                    <lux-message-web severity="info" text="Mensaje informativo" />
+                    <lux-message-web severity="success" text="Operacion exitosa" />
+                    <lux-message-web severity="warn" text="Advertencia" />
+                    <lux-message-web severity="danger" text="Error critico" />
+                    <lux-message-web severity="secondary" text="Mensaje secundario" />
+                    <lux-message-web severity="secondary" text="Contraste" />
                   </div>
                 </div>
               </div>
@@ -672,13 +672,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Popover - p-popover</h3>
                 </div>
                 <div class="card-body">
-                  <app-popover>
+                  <lux-popover-web>
                     <il-button appPopoverTrigger label="Abrir Popover" />
                     <div class="p-3">
                       Contenido del popover. Ideal para menus contextuales
                       rapidos.
                     </div>
-                  </app-popover>
+                  </lux-popover-web>
                 </div>
               </div>
             }
@@ -688,9 +688,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">ProgressBar - p-progressbar</h3>
                 </div>
                 <div class="card-body">
-                  <app-progress-bar [value]="75" />
+                  <lux-progress-bar-web [value]="75" />
                   <p class="mt-3">
-                    <app-progress-bar [value]="50" [showValue]="false" />
+                    <lux-progress-bar-web [value]="50" [showValue]="false" />
                   </p>
                 </div>
               </div>
@@ -704,8 +704,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex gap-3">
-                    <app-spinner [strokeWidth]="4" />
-                    <app-spinner [strokeWidth]="8" />
+                    <lux-spinner-web [strokeWidth]="4" />
+                    <lux-spinner-web [strokeWidth]="8" />
                   </div>
                 </div>
               </div>
@@ -718,21 +718,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="d-flex flex-column gap-2">
                     <div class="d-flex align-items-center gap-2">
-                      <app-radio-button
+                      <lux-radio-button-web
                         value="1"
                         [control]="radioControl"
                         inputId="radio1"
                       /><label for="radio1">Opcion 1</label>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                      <app-radio-button
+                      <lux-radio-button-web
                         value="2"
                         [control]="radioControl"
                         inputId="radio2"
                       /><label for="radio2">Opcion 2</label>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                      <app-radio-button
+                      <lux-radio-button-web
                         value="3"
                         [control]="radioControl"
                         inputId="radio3"
@@ -765,7 +765,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">SelectButton - p-selectbutton</h3>
                 </div>
                 <div class="card-body">
-                  <app-select-button
+                  <lux-select-button-web
                     [options]="selectOptions"
                     [(value)]="selectBtnVal"
                   />
@@ -779,18 +779,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-column gap-2">
-                    <app-skeleton width="100%" height="1rem" />
-                    <app-skeleton width="75%" height="1rem" />
-                    <app-skeleton width="50%" height="1rem" />
+                    <lux-skeleton-web width="100%" height="1rem" />
+                    <lux-skeleton-web width="75%" height="1rem" />
+                    <lux-skeleton-web width="50%" height="1rem" />
                     <div class="d-flex gap-2 mt-2">
-                      <app-skeleton
+                      <lux-skeleton-web
                         width="3rem"
                         height="3rem"
                         borderRadius="50%"
                       />
                       <div class="d-flex flex-column gap-2 flex-grow-1">
-                        <app-skeleton width="100%" height="0.75rem" />
-                        <app-skeleton width="60%" height="0.75rem" />
+                        <lux-skeleton-web width="100%" height="0.75rem" />
+                        <lux-skeleton-web width="60%" height="0.75rem" />
                       </div>
                     </div>
                   </div>
@@ -803,7 +803,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Table - p-table</h3>
                 </div>
                 <div class="card-body">
-                  <app-table [value]="tableData" class="p-datatable-sm">
+                  <lux-table-web [value]="tableData" class="p-datatable-sm">
                     <ng-template #header
                       ><tr>
                         <th>Nombre</th>
@@ -814,13 +814,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <ng-template #body let-row>
                       <tr>
                         <td>{{ row.name }}</td>
-                        <td><app-tag [value]="row.status" severity="info" /></td>
+                        <td><lux-tag-web [value]="row.status" severity="info" /></td>
                         <td>
                           <il-button icon="material-symbols-light:visibility" />
                         </td>
                       </tr>
                     </ng-template>
-                  </app-table>
+                  </lux-table-web>
                 </div>
               </div>
             }
@@ -830,7 +830,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Tabs - p-tabs</h3>
                 </div>
                 <div class="card-body">
-                  <app-tabs
+                  <lux-tabs-web
                     [tabs]="[
                       { id: '0', label: 'General' },
                       { id: '1', label: 'Detalle' },
@@ -841,7 +841,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <div tab="0"><p class="m-0">Contenido General.</p></div>
                     <div tab="1"><p class="m-0">Contenido de Detalle.</p></div>
                     <div tab="2"><p class="m-0">Documentos adjuntos.</p></div>
-                  </app-tabs>
+                  </lux-tabs-web>
                 </div>
               </div>
             }
@@ -852,12 +852,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap gap-2">
-                    <app-tag value="Success" severity="success" />
-                    <app-tag value="Info" severity="info" />
-                    <app-tag value="Warning" severity="warn" />
-                    <app-tag value="Danger" severity="danger" />
-                    <app-tag value="Secondary" severity="secondary" />
-                    <app-tag
+                    <lux-tag-web value="Success" severity="success" />
+                    <lux-tag-web value="Info" severity="info" />
+                    <lux-tag-web value="Warning" severity="warn" />
+                    <lux-tag-web value="Danger" severity="danger" />
+                    <lux-tag-web value="Secondary" severity="secondary" />
+                    <lux-tag-web
                       value="Contrast"
                       severity="contrast"
                       [rounded]="true"
@@ -891,7 +891,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Toast - p-toast</h3>
                 </div>
                 <div class="card-body">
-                  <app-message
+                  <lux-message-web
                     severity="info"
                     text="Las notificaciones Toast se muestran globalmente mediante MessageService. Inyecta MessageService y llama a add() con severity, summary y detail."
                   />
@@ -905,7 +905,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
-                    <app-toggle-switch [(checked)]="toggleVal" />
+                    <lux-toggle-switch-web [(checked)]="toggleVal" />
                     <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
                   </div>
                 </div>
@@ -934,7 +934,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         />
                       </div>
                   </ng-template>
-                  <app-toolbar
+                  <lux-toolbar-web
                     [leftTemplate]="toolbarLeft"
                     [rightTemplate]="toolbarRight"
                   />
@@ -1162,22 +1162,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     </p>
                     <div class="d-flex flex-wrap gap-3">
                       <div class="d-flex align-items-center gap-2">
-                        <app-tag
+                        <lux-tag-web
                           value="Sincronizado con Google"
                           severity="success"
                         />
                         <span class="catalog-helper-text text-sm">success</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <app-tag value="Solo local (historico)" severity="info" />
+                        <lux-tag-web value="Solo local (historico)" severity="info" />
                         <span class="catalog-helper-text text-sm">info</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <app-tag value="Solo local" severity="warn" />
+                        <lux-tag-web value="Solo local" severity="warn" />
                         <span class="catalog-helper-text text-sm">warn</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <app-tag
+                        <lux-tag-web
                           value="Pendiente de sincronizar"
                           severity="secondary"
                         />
@@ -1199,7 +1199,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       <code>app-table class="custom-table "</code>
                       con paginacion, busqueda y botones de accion DS.
                     </p>
-                    <app-table
+                    <lux-table-web
                       [value]="calendarTableDemo"
                       class="custom-table "
                       [rows]="4"
@@ -1220,14 +1220,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           <td>{{ item.start }}</td>
                           <td class="text-center">{{ item.guests }}</td>
                           <td>
-                            <app-tag
+                            <lux-tag-web
                               [value]="item.statusLabel"
                               [severity]="item.severity"
                             />
                           </td>
                         </tr>
                       </ng-template>
-                    </app-table>
+                    </lux-table-web>
                   </div>
                 </div>
               </div>
@@ -1381,7 +1381,7 @@ export class CatalogWebItem {
 
   // Icon button demo
   readonly iconBtnHtml = `<button type="button" class="ds-icon-btn" (click)="accion()">
-  <app-icon icon="material-symbols-light:menu" class="text-xl" />
+  <lux-icon icon="material-symbols-light:menu" class="text-xl" />
 </button>`;
 
   readonly iconBtnScss = `.mi-clase-boton {

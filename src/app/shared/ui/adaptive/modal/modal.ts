@@ -24,14 +24,14 @@ import { Dialog } from "@ui/web/dialog/dialog";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-modal>
     } @else {
-      <app-dialog
+      <lux-dialog-web
         [(visible)]="visible"
         [header]="header()"
         [closable]="closable()"
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-dialog>
+      </lux-dialog-web>
     }
   `,
 })

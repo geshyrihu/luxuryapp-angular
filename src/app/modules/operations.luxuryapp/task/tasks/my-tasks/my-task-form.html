@@ -41,9 +41,9 @@
       label="DESCRIPCIÓN"
       placeholder="DESCRIPCIÓN"
     />
-    <app-image-analysis-dialog
+    <lux-image-analysis-dialog
       (resultAccepted)="onVisionResult($event)"
-    ></app-image-analysis-dialog>
+    ></lux-image-analysis-dialog>
     <custom-input-select-signal
       [control]="form.controls.priority"
       label="Prioridad"
@@ -54,7 +54,7 @@
     <div class="row mt-2 g-4">
       <div class="col-12 mb-2">
         <small class="text-body-secondary italic">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:photo-camera'"
             class="me-1"
           />

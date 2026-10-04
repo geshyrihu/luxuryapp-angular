@@ -73,7 +73,7 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="col-12 col-md-4">
                 <div class="card h-full">
                   <div class="d-flex align-items-center gap-3">
-                    <app-icon [icon]="m.icon" class="text-primary text-3xl" />
+                    <lux-icon [icon]="m.icon" class="text-primary text-3xl" />
                     <div>
                       <div class="text-2xl font-bold">{{ m.value }}</div>
                       <div class="font-semibold">{{ m.label }}</div>
@@ -93,7 +93,7 @@ const GUIA_LABELS: Record<string, string> = {
                   class="card h-full border-top-3 border-primary surface-card"
                 >
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <app-icon [icon]="s.icon" class="text-primary text-2xl" />
+                    <lux-icon [icon]="s.icon" class="text-primary text-2xl" />
                     <strong class="text-xl">{{ s.title }}</strong>
                   </div>
                   <p class="text-color-secondary line-height-3 mb-3">
@@ -110,7 +110,7 @@ const GUIA_LABELS: Record<string, string> = {
           </div>
 
           <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
-          <app-message
+          <lux-message-web
             severity="success"
             text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
             class="mb-4 d-block"
@@ -123,11 +123,11 @@ const GUIA_LABELS: Record<string, string> = {
                   class="card"
                 >
                   <div class="d-flex align-items-start gap-3">
-                    <app-icon [icon]="p.icon" class="text-primary text-2xl" />
+                    <lux-icon [icon]="p.icon" class="text-primary text-2xl" />
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
-                        <app-tag [value]="p.severity" [severity]="p.severity" />
+                        <lux-tag-web [value]="p.severity" [severity]="p.severity" />
                       </div>
                       <p class="m-0 line-height-3 text-color-secondary">
                         {{ p.summary }}
@@ -144,13 +144,13 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("colorvalidation") {
-          <app-message
+          <lux-message-web
             severity="info"
             class="mb-4 d-block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
           />
           <div class="card">
-            <app-table [value]="colorAssessment" class="p-datatable-sm">
+            <lux-table-web [value]="colorAssessment" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
                   <th>Rol</th>
@@ -168,7 +168,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <code>{{ item.current }}</code>
                   </td>
                   <td>
-                    <app-tag
+                    <lux-tag-web
                       [value]="item.verdict"
                       [severity]="item.severity"
                     />
@@ -176,18 +176,18 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.recommendation }}</td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table-web>
           </div>
         }
 
         @case ("componentcatalog") {
-          <app-message
+          <lux-message-web
             severity="info"
             text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
             class="mb-3 d-block"
           />
           <div class="card">
-            <app-table
+            <lux-table-web
               [value]="componentCatalog"
               [paginator]="true"
               [rows]="8"
@@ -221,14 +221,14 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.preferredFor }}</td>
                   <td>{{ item.avoidWhen }}</td>
                   <td>
-                    <app-tag
+                    <lux-tag-web
                       [value]="item.status"
                       [severity]="getCatalogSeverity(item.status)"
                     />
                   </td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table-web>
           </div>
         }
 
@@ -238,11 +238,11 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="col-12 col-md-6 col-xl-3">
                 <div [class]="'card ' + r.cardClass">
                   <div class="d-flex align-items-start gap-3">
-                    <app-icon [icon]="r.iconClass" />
+                    <lux-icon [icon]="r.iconClass" />
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>
-                        <app-tag [value]="r.variant" [severity]="r.severity" />
+                        <lux-tag-web [value]="r.variant" [severity]="r.severity" />
                       </div>
                       <p class="m-0 text-color-secondary line-height-3">
                         {{ r.usage }}
@@ -358,7 +358,7 @@ const GUIA_LABELS: Record<string, string> = {
               <div
                 class="field col-12 col-md-4 d-flex align-items-center gap-3"
               >
-                <app-checkbox [(checked)]="accepted" inputId="accepted" />
+                <lux-checkbox-web [(checked)]="accepted" inputId="accepted" />
                 <label for="accepted" class="font-normal"
                   >Confirmacion requerida</label
                 >
@@ -369,14 +369,14 @@ const GUIA_LABELS: Record<string, string> = {
                 <label>Prioridad</label>
                 <div class="d-flex gap-3">
                   <div class="d-flex align-items-center gap-1">
-                    <app-radio-button
+                    <lux-radio-button-web
                       value="baja"
                       [control]="priorityControl"
                       inputId="pbaja"
                     /><label for="pbaja" class="font-normal">Baja</label>
                   </div>
                   <div class="d-flex align-items-center gap-1">
-                    <app-radio-button
+                    <lux-radio-button-web
                       value="media"
                       [control]="priorityControl"
                       inputId="pmedia"
@@ -397,7 +397,7 @@ const GUIA_LABELS: Record<string, string> = {
               />
             </div>
           </div>
-          <app-message
+          <lux-message-web
             severity="warn"
             text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
             class="d-block"
@@ -652,7 +652,7 @@ export class CatalogGuiaItem {
     },
     {
       family: "Acciones contextuales",
-      selector: "app-action-menu",
+      selector: "lux-action-menu-web",
       source: "cor./action-menu",
       useCase: "Menu de acciones por fila con Bootstrap Popover.",
       preferredFor: "Mas de dos acciones secundarias.",

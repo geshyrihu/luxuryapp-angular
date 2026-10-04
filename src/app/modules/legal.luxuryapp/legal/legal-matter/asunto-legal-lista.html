@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table-web
       #dt
       [value]="dataSignal()"
       [globalFilterFields]="globalFilterFields()"
@@ -19,7 +19,7 @@
       <ng-template #caption>
         <div class="row align-items-center g-4">
           <div class="col-12 col-md-10">
-            <app-table-caption
+            <lux-table-caption-web
               (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
               [dt]="dt"
               label="Agregar asunto"
@@ -76,7 +76,7 @@
           <td>{{ legalMatter.isInternal ? "Interno" : "Externo" }}</td>
           <!-- Opciones -->
           <td class="no-print">
-            <app-action-menu>
+            <lux-action-menu-web>
               <ng-container actions>
                 <il-button-edit
                   (clicked)="
@@ -91,16 +91,16 @@
                   []="true"
                 />
               </ng-container>
-            </app-action-menu>
+            </lux-action-menu-web>
           </td>
           <!-- Opciones -->
         </tr>
         }
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="4" />
+        <lux-table-empty-message-web [colspan]="4" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>
 
@@ -125,7 +125,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:balance"
           class="text-xl text-primary"
         />

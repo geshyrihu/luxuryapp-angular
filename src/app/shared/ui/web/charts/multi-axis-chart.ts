@@ -14,7 +14,7 @@ import { ChartJsData, chartJsToCartesianData, chartJsToCartesianOption, dsThemeT
  * (usa `yAxisID: "y1"` en un dataset para el eje derecho).
  */
 @Component({
-  selector: "app-multi-axis-chart",
+  selector: "lux-multi-axis-chart-web",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,

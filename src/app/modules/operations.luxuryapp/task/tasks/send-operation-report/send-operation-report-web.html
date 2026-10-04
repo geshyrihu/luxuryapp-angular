@@ -113,7 +113,7 @@
       <span
         class="absolute top-0 right-0 -mt-2 -me-2 p-badge p-badge-success p-badge-rounded"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:close'"
           class="cursor-pointer"
           tooltip="Descartar correo"
@@ -128,7 +128,7 @@
 
 <hr />
 
-<app-table
+<lux-table-web
   [globalFilterFields]="service.globalFilterFields()"
   [scrollable]="true"
   [showCurrentPageReport]="true"
@@ -140,38 +140,38 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption-web [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
       <th class="table-col-15" appSortableColumn="select">
         <p class="text-base">
           Seleccionar
-          <app-sorticon field="select" />
+          <lux-sorticon-web field="select" />
         </p>
       </th>
       <th class="table-col-15" appSortableColumn="departamento">
         <p class="text-base">
           Departamento
-          <app-sorticon field="departamento" />
+          <lux-sorticon-web field="departamento" />
         </p>
       </th>
       <th class="table-col-30" appSortableColumn="label">
         <p class="text-base">
           Nombre
-          <app-sorticon field="label" />
+          <lux-sorticon-web field="label" />
         </p>
       </th>
       <th class="table-col-30" appSortableColumn="email">
         <p class="text-base">
           Correo
-          <app-sorticon field="email" />
+          <lux-sorticon-web field="email" />
         </p>
       </th>
       <th class="table-col-10" appSortableColumn="figuraLegal">
         <p class="text-base">
           Nombre
-          <app-sorticon field="figuraLegal" />
+          <lux-sorticon-web field="figuraLegal" />
         </p>
       </th>
     </tr>
@@ -192,6 +192,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message-web [colspan]="5" />
   </ng-template>
-</app-table>
+</lux-table-web>

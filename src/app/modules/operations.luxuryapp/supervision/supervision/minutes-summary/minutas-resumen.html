@@ -1,5 +1,5 @@
 @if (generalMinutasGrupoView()) {
-<app-table
+<lux-table-web
   [value]="generalMinutasGrupoSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-12 col-sm-5 text-start no-print">
-        <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
+        <lux-mesanio-web (periodoEmit)="onFiltrarPeriodo($event)"></lux-mesanio-web>
       </div>
     </div>
   </ng-template>
@@ -22,7 +22,7 @@
       <th rowspan="2" class="table-col-5">#</th>
       <th rowspan="2" class="table-col-16" appSortableColumn="numeroCliente">
         CLIENTE
-        <app-sorticon field="numeroCliente" />
+        <lux-sorticon-web field="numeroCliente" />
       </th>
       <th colspan="3">
         <p class="p-2 w-full rounded text-white bg-contable">CONTABLE</p>
@@ -195,5 +195,5 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table-web>
 }

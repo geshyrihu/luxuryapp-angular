@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
-  <app-table
+  <lux-table-web
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -16,7 +16,7 @@
     groupRowsBy="pathParent"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption-web
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
@@ -38,27 +38,27 @@
         <!-- <th >Index</th> -->
         <th appSortableColumn="nameModule">
           Nombre
-          <app-sorticon field="nameModule" />
+          <lux-sorticon-web field="nameModule" />
         </th>
         <th appSortableColumn="label">
           Etiqueta
-          <app-sorticon field="label" />
+          <lux-sorticon-web field="label" />
         </th>
         <th appSortableColumn="icon">
           Icono
-          <app-sorticon field="icon" />
+          <lux-sorticon-web field="icon" />
         </th>
         <th appSortableColumn="routerLink">
           Enlace de ruta
-          <app-sorticon field="routerLink" />
+          <lux-sorticon-web field="routerLink" />
         </th>
         <th appSortableColumn="viewMobil">
           Módulo móvil
-          <app-sorticon field="viewMobil" />
+          <lux-sorticon-web field="viewMobil" />
         </th>
         <th appSortableColumn="rolLevel">
           Nivel
-          <app-sorticon field="rolLevel" />
+          <lux-sorticon-web field="rolLevel" />
         </th>
 
         <th class="no-print"></th>
@@ -92,12 +92,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message-web [colspan]="8" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer-web [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table-web>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
@@ -109,7 +109,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <app-icon
+      <lux-icon
         slot="start"
         icon="material-symbols-light:devices-other"
         [color]="item.viewMobil ? 'success' : 'medium'"

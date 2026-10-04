@@ -19,7 +19,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
   template: `
     <div class="panic-list-page">
       <h2 class="panic-list-page__title">
-        <app-icon icon="material-symbols-light:error" class="text-red-600 me-2" />
+        <lux-icon icon="material-symbols-light:error" class="text-red-600 me-2" />
         Alertas de Pánico
       </h2>
 
@@ -35,7 +35,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
             @for (alert of activeAlerts(); track alert.id) {
               <div class="panic-card panic-card--active">
                 <div class="panic-card__header">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:error"
                     class="panic-card__status-icon panic-card__status-icon--active"
                   />
@@ -58,7 +58,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     target="_blank"
                     rel="noopener"
                   >
-                    <app-icon icon="material-symbols-light:location-on" class="text-sm" />
+                    <lux-icon icon="material-symbols-light:location-on" class="text-sm" />
                     Ver ubicación
                   </a>
                 }
@@ -68,7 +68,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     class="panic-card__btn panic-card__btn--attend"
                     (click)="onAttend(alert)"
                   >
-                    <app-icon icon="material-symbols-light:schedule" />
+                    <lux-icon icon="material-symbols-light:schedule" />
                     Atender
                   </button>
                   <button
@@ -76,7 +76,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     class="panic-card__btn panic-card__btn--resolve"
                     (click)="openResolve(alert)"
                   >
-                    <app-icon icon="material-symbols-light:calendar-clock" />
+                    <lux-icon icon="material-symbols-light:calendar-clock" />
                     Resolver
                   </button>
                 </div>
@@ -96,7 +96,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
             @for (alert of historyAlerts(); track alert.id) {
               <div class="panic-card">
                 <div class="panic-card__header">
-                  <app-icon
+                  <lux-icon
                     [icon]="getStatusIcon(alert.status)"
                     class="panic-card__status-icon"
                     [style.color]="getStatusColor(alert.status)"
@@ -138,7 +138,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                       class="panic-card__btn panic-card__btn--resolve"
                       (click)="openResolve(alert)"
                     >
-                      <app-icon icon="material-symbols-light:calendar-clock" />
+                      <lux-icon icon="material-symbols-light:calendar-clock" />
                       Resolver
                     </button>
                   </div>
@@ -160,7 +160,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                 class="panic-card__btn panic-card__btn--resolve"
                 (click)="onResolve('Resolved')"
               >
-                <app-icon icon="material-symbols-light:schedule" />
+                <lux-icon icon="material-symbols-light:schedule" />
                 Resuelta
               </button>
               <button
@@ -168,7 +168,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                 class="panic-card__btn panic-card__btn--false"
                 (click)="onResolve('FalseAlarm')"
               >
-                <app-icon icon="material-symbols-light:close" />
+                <lux-icon icon="material-symbols-light:close" />
                 Falsa Alarma
               </button>
             </div>

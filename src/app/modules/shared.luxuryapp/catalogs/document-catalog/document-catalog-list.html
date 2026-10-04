@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -17,7 +17,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Documento' })"
       [dt]="dt"
     />
@@ -28,22 +28,22 @@
       <th class="table-col-3rem"></th>
       <th class="table-col-4 text-small" appSortableColumn="name">
         NOMBRE
-        <app-sorticon field="name" />
+        <lux-sorticon-web field="name" />
       </th>
 
       <th class="table-col-3 text-small" appSortableColumn="description">
         DESCRIPCIÓN
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
 
       <th class="table-col-1 text-small" appSortableColumn="isMandatory">
         OBLIGATORIO
-        <app-sorticon field="isMandatory" />
+        <lux-sorticon-web field="isMandatory" />
       </th>
 
       <th class="table-col-2 text-small" appSortableColumn="isActive">
         ESTATUS
-        <app-sorticon field="isActive" />
+        <lux-sorticon-web field="isActive" />
       </th>
 
       <th class="table-col-2 text-small">ACCIONES</th>
@@ -52,7 +52,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:menu'"
           pReorderableRowHandle
           class="cursor-move"
@@ -87,13 +87,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message-web [colspan]="6" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -109,7 +109,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:description"
           class="text-xl text-primary"
         />

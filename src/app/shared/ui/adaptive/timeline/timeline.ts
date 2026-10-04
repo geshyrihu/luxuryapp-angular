@@ -17,7 +17,7 @@ import { Timeline } from "@ui/web/timeline/timeline";
     @if (platform.isMobile()) {
       <ili-timeline [events]="events()" [align]="align()" [layout]="layout()" />
     } @else {
-      <app-timeline [events]="events()" [align]="align()" [layout]="layout()" />
+      <lux-timeline-web [events]="events()" [align]="align()" [layout]="layout()" />
     }
   `,
 })

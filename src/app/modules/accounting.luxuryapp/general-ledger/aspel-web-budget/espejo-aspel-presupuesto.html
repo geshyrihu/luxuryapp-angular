@@ -7,7 +7,7 @@ Contenedor principal de la vista de presupuesto.
        ========================= -->
   <div class="d-none d-md-flex flex-md-column budget-desktop-table">
     <div class="rf-card p-3 flex-fill min-h-0">
-      <app-table
+      <lux-table-web
         [globalFilterFields]="globalFilterFields()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -315,7 +315,7 @@ Contenedor principal de la vista de presupuesto.
           </tr>
           }
         </ng-template>
-      </app-table>
+      </lux-table-web>
     </div>
   </div>
 
