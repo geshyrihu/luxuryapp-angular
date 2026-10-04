@@ -36,9 +36,14 @@
     [data]="cb_customer()"
     [filter]="true"
   />
-  <il-button-save
-    [propertyId]="applicationUserId"
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="applicationUserId ? 'Actualizar' : 'Guardar'"
     [disabled]="form.invalid"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>

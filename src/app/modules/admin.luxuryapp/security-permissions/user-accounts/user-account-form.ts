@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -32,7 +32,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
     CustomInputTextSignal,
     InputMask,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class UserAccountForm implements OnInit {
