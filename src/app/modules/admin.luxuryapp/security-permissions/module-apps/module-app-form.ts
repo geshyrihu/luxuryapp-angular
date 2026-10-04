@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -33,7 +33,7 @@ import { ModuleAppGetDto } from "./interfaces/module-app-get.dto";
     CustomInputTextSignal,
     CustomInputCheckSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     RouterModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
