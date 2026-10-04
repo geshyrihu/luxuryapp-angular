@@ -26,27 +26,27 @@
   <ng-template #header>
     <tr>
       <th class="table-col-3rem"></th>
-      <th class="table-col-4 text-small" appSortableColumn="name">
+      <th class="table-col-4" appSortableColumn="name">
         NOMBRE
         <app-sorticon field="name" />
       </th>
 
-      <th class="table-col-3 text-small" appSortableColumn="description">
+      <th class="table-col-3" appSortableColumn="description">
         DESCRIPCIÓN
         <app-sorticon field="description" />
       </th>
 
-      <th class="table-col-1 text-small" appSortableColumn="isMandatory">
+      <th class="table-col-1" appSortableColumn="isMandatory">
         OBLIGATORIO
         <app-sorticon field="isMandatory" />
       </th>
 
-      <th class="table-col-2 text-small" appSortableColumn="isActive">
+      <th class="table-col-2" appSortableColumn="isActive">
         ESTATUS
         <app-sorticon field="isActive" />
       </th>
 
-      <th class="table-col-2 text-small">ACCIONES</th>
+      <th class="table-col-2">ACCIONES</th>
     </tr>
   </ng-template>
   <ng-template #body let-item let-rowIndex="rowIndex">

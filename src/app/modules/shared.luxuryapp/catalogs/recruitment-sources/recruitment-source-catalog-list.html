@@ -21,17 +21,17 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-7 text-small" appSortableColumn="name">
+      <th class="table-col-7" appSortableColumn="name">
         NOMBRE
         <app-sorticon field="name" />
       </th>
 
-      <th class="table-col-3 text-small" appSortableColumn="isActive">
+      <th class="table-col-3" appSortableColumn="isActive">
         ESTATUS
         <app-sorticon field="isActive" />
       </th>
 
-      <th class="table-col-2 text-small">ACCIONES</th>
+      <th class="table-col-2">ACCIONES</th>
     </tr>
   </ng-template>
   <ng-template #body let-item>

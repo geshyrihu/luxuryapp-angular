@@ -22,16 +22,16 @@
 
   <ng-template #header>
     <tr>
-      <th class="text-small" appSortableColumn="codigo">
+      <th appSortableColumn="codigo">
         Código
         <app-sorticon field="codigo" />
       </th>
-      <th class="text-small" appSortableColumn="descripcion">
+      <th appSortableColumn="descripcion">
         DESCRIPCIÓN
         <app-sorticon field="descripcion" />
       </th>
 
-      <th class="table-col-5 text-small"></th>
+      <th class="table-col-5"></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
