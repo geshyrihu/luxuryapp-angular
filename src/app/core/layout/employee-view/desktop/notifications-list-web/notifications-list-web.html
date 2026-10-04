@@ -16,14 +16,16 @@
             (confirmed)="deleteSelected()"
           />
           }
-          <iw-button
+          <lux-button-web
+            displayMode="icon"
             icon="material-symbols-light:fact-check"
             variant="text"
             [severity]="selectionMode() ? 'primary' : 'secondary'"
             lxTooltip="Seleccionar"
             (clicked)="toggleSelectionMode()"
           />
-          <iw-button
+          <lux-button-web
+            displayMode="icon"
             icon="material-symbols-light:refresh"
             variant="text"
             severity="secondary"

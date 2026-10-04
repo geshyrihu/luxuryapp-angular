@@ -9,7 +9,8 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { WebButtonIcon, WebButtonIconDelete } from "@ui/buttons/web-icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -26,7 +27,7 @@ import { AppBadge } from "@ui/web/badge/badge";
   imports: [
     AppBadge,
     AppIcon,
-    WebButtonIcon,
+    ButtonWeb,
     WebButtonIconDelete,
     LxCheckbox,
     LxTooltipDirective,
@@ -135,4 +136,3 @@ export class NotificationsListWeb implements OnInit {
       });
   }
 }
-
