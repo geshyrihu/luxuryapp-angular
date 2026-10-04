@@ -4,14 +4,14 @@ import { Subscription } from "rxjs";
 import { debounceTime, filter } from "rxjs/operators";
 import { ConnectivityService } from "../../services/connectivity.service";
 import { RedirectService } from "../../services/redirect.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-offline",
   templateUrl: "./offline.html",
   styleUrls: ["./offline.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WebButtonLabel],
+  imports: [ButtonWeb],
 })
 export class Offline implements OnInit, OnDestroy {
   private router = inject(Router);

@@ -27,7 +27,8 @@
       Parece que has perdido tu conexión. Por favor, revísala y vuelve a
       intentarlo.
     </p>
-    <il-button
+    <lux-button-web
+      displayMode="both"
       (clicked)="retry()"
       [label]="!isRetrying ? 'Reintentar' : 'Verificando...'"
       size="large"

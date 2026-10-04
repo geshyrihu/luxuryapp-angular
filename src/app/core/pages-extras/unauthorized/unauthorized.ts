@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppDivider } from "@ui/web/divider/divider";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-unauthorized",
-  imports: [AppDivider, AppIcon, WebButtonLabel],
+   imports: [AppDivider, AppIcon, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./unauthorized.html",
 })
@@ -21,4 +21,3 @@ export class Unauthorized {
     this.router.navigate(ROUTES.AUTH.LOGIN);
   }
 }
-
