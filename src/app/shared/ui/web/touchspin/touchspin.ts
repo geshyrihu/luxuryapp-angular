@@ -1,7 +1,7 @@
 import { Component, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 
 /**
  * 🔢 TOUCHSPIN
@@ -11,11 +11,12 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
  */
 @Component({
   selector: "app-touchspin",
-  imports: [ReactiveFormsModule, LxTooltipDirective, WebButtonLabel],
+  imports: [ReactiveFormsModule, LxTooltipDirective, ButtonWeb],
   template: `
     <div class="input-group" style="width: auto">
       <span class="input-group-text surface-card p-0">
-        <il-button
+        <lux-button-web
+          displayMode="both"
           label="➖"
           (clicked)="decrement()"
           [disabled]="disabled() || isMin()"
@@ -38,7 +39,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
       />
 
       <span class="input-group-text surface-card p-0">
-        <il-button
+        <lux-button-web
+          displayMode="both"
           label="➕"
           (clicked)="increment()"
           [disabled]="disabled() || isMax()"
