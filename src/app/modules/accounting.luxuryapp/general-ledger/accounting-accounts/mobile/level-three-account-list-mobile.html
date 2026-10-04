@@ -1,0 +1,26 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <div class="d-flex align-items-center justify-content-between w-full">
+      <div>
+        <p class="mt-0 mb-0">{{ item.numeroCuenta }}</p>
+        <p class="text-body-secondary font-size-12 mt-0 mb-0">
+          {{ item.descripcion }}
+        </p>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

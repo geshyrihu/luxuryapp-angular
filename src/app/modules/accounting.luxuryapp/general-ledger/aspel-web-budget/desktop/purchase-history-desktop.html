@@ -1,0 +1,110 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th></th>
+      <th appSortableColumn="creationAt">
+        Fecha
+        <app-sorticon field="creationAt" />
+      </th>
+      <th appSortableColumn="description">
+        DESCRIPCIÓN
+        <app-sorticon field="description" />
+      </th>
+      <th appSortableColumn="provider">
+        Proveedor
+        <app-sorticon field="provider" />
+      </th>
+      <th appSortableColumn="accountNumber">
+        Cuenta
+        <app-sorticon field="accountNumber" />
+      </th>
+      <th appSortableColumn="tipoGasto">
+        Tipo Gasto
+        <app-sorticon field="tipoGasto" />
+      </th>
+      <th appSortableColumn="amount" class="text-end">
+        Monto
+        <app-sorticon field="amount" />
+      </th>
+      <th>Factura</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td
+        class="text-center pointer"
+        (click)="showDetails.emit(item.ordenCompraId)"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:edit'"
+          class="text-body-secondary"
+        />
+      </td>
+      <td>{{ item.creationAt }}</td>
+      <td>
+        <div class="d-flex flex-column gap-1">
+          <span>{{ item.description }}</span>
+          @if (item.notasEspeciales) {
+          <span class="text-body-secondary">{{ item.notasEspeciales }}</span>
+          }
+        </div>
+      </td>
+      <td>{{ item.provider }}</td>
+      <td>
+        <div class="d-flex flex-column">
+          <span class="fw-bold">{{ item.accountNumber }}</span>
+          <span class="text-body-secondary">{{ item.accountName }}</span>
+        </div>
+      </td>
+      <td>{{ item.tipoGasto }}</td>
+      <td class="text-end fw-bold">{{ item.amount | currency: 'MXN' }}</td>
+      <td class="text-center">
+        @if (item.invoices && item.invoices.length > 0) {
+        <div class="d-flex flex-wrap gap-1 justify-content-center">
+          @for (inv of item.invoices; track inv.pdfFile) {
+          <iw-button
+            iconClass="material-symbols-light:picture-as-pdf"
+            variant="text"
+            size="sm"
+            (clicked)="viewPdf.emit({ url: inv.pdfFile, fileName: inv.factura || item.provider })"
+            [lxTooltip]="inv.factura || 'Ver factura'"
+          />
+          }
+        </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7" class="text-center p-4">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <tr>
+      <td colspan="6" class="text-end fw-bold p-3 pb-0">Total</td>
+      <td class="fw-bold p-3 pb-0 text-end">
+        {{ sumaTotal() | number: '1.2-2' }}
+      </td>
+    </tr>
+  </ng-template>
+</lux-table>

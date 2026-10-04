@@ -1,0 +1,72 @@
+<div class="card">
+  <lux-table
+    #dt
+    [value]="data()"
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    rowGroupMode="subheader"
+    groupRowsBy="cuentaPadre"
+    sortField="cuentaPadre"
+    sortMode="single"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <div class="d-flex justify-content-between">
+        <lux-table-caption [showAdd]="false" [dt]="dt" />
+        <il-button
+          iconClass="material-symbols-light:download"
+          label="Exportar"
+          (clicked)="export.emit()"
+          severity="success"
+        />
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th appSortableColumn="codigoCuenta" class="table-col-150px">
+          Código
+          <app-sorticon field="codigoCuenta" />
+        </th>
+        <th appSortableColumn="descripcionCuenta">
+          DESCRIPCIÓN
+          <app-sorticon field="descripcionCuenta" />
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #groupheader let-group>
+      <tr class="p-rowgroup-header">
+        <td colspan="2">
+          <div class="d-flex align-items-center">
+            <span class="fw-bold text-lg"> 📂 {{ group.cuentaPadre }} </span>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="font-mono">{{ item.codigoCuenta }}</td>
+        <td>{{ item.descripcionCuenta }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="2" class="text-center py-4">
+          <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
+          No hay cuentas para mostrar.
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <lux-table-footer [data]="data()" />
+    </ng-template>
+  </lux-table>
+</div>

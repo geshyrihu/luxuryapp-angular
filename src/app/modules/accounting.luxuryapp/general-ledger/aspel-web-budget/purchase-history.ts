@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,72 +6,38 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PurchaseHistoryDesktop } from "./desktop/purchase-history-desktop";
+import { PurchaseHistoryMobile } from "./mobile/purchase-history-mobile";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    AppIcon,
-    CommonModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileListItem,
-  ],
+  imports: [PurchaseHistoryDesktop, PurchaseHistoryMobile],
 })
 export class PurchaseHistory implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
-  formB = inject(FormBuilder);
   ordenCompraService = inject(OrdenCompraService);
+  platformS = inject(PlatformService);
+
   dataSignal = signal<PurchaseHistoryDTO[]>([]);
-
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  sumaTotal = computed(() => {
-    return this.dataSignal().reduce((acc, item) => acc + (item.amount || 0), 0);
-  });
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

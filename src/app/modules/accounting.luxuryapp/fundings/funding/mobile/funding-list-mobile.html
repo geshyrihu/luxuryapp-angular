@@ -1,0 +1,39 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item class="ion-no-padding" (click)="details.emit(item.id)">
+      <div
+        start
+        class="w-2rem h-2rem rounded bg-green-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:wallet'"
+          class="text-green-600 text-xl"
+        />
+      </div>
+      <div class="flex-fill min-w-0 ms-2">
+        <h3 class="fw-bold text-body mb-1">{{ item.period | uppercase }}</h3>
+        <div class="d-flex flex-wrap gap-1">
+          <lux-tag
+            value="Realizó"
+            [severity]="item.verifiedByName ? 'success' : 'secondary'"
+            [rounded]="true"
+          />
+          <lux-tag
+            value="Autorizó"
+            [severity]="item.authorizedByName ? 'success' : 'secondary'"
+            [rounded]="true"
+          />
+          <lux-tag
+            value="Contab."
+            [severity]="item.confirmedByName ? 'success' : 'secondary'"
+            [rounded]="true"
+          />
+        </div>
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

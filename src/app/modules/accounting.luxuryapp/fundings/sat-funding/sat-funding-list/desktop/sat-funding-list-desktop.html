@@ -1,0 +1,55 @@
+<div class="card p-0 p-md-4">
+  <lux-table
+    class="custom-table"
+    #dt
+    [value]="data()"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['periodDisplayName', 'year']"
+    [tableStyle]="{'min-width': '75rem'}"
+    [(selection)]="selection"
+    dataKey="id"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [showCurrentPageReport]="true"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+  >
+    <ng-template #caption>
+      <lux-table-caption [dt]="dt" title="Listado de Fondeos SAT" />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th appSortableColumn="periodDisplayName">
+          Perñodo <app-sorticon field="periodDisplayName" />
+        </th>
+        <th appSortableColumn="invoiceCount">
+          # Facturas <app-sorticon field="invoiceCount" />
+        </th>
+        <th appSortableColumn="totalAmount">
+          Monto Total <app-sorticon field="totalAmount" />
+        </th>
+        <th class="table-col-10rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.periodDisplayName }}</td>
+        <td>{{ item.invoiceCount }}</td>
+        <td>{{ item.totalAmount | number:'1.2-2' }}</td>
+        <td>
+          <div class="d-flex justify-content-end">
+            <iw-button
+              (click)="details.emit(item.id)"
+              lxTooltip="Ver Detalle"
+              tooltipPosition="top"
+              iconClass="material-symbols-light:arrow-forward"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="4" />
+    </ng-template>
+  </lux-table>
+</div>

@@ -7,82 +7,38 @@ import {
   signal,
 } from "@angular/core";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  DialogHandlerService,
-  DynamicDialogRef,
-} from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
+import { LevelThreeAccountListDesktop } from "./desktop/level-three-account-list-desktop";
 import { LevelThreeAccountForm } from "./level-three-account-form";
-
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { LevelThreeAccountListMobile } from "./mobile/level-three-account-list-mobile";
 
 @Component({
   selector: "app-level-three-account-list",
   templateUrl: "./level-three-account-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconActiveDesactive,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelActiveDesactive,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    ActionMenu,
-  ],
+  imports: [LevelThreeAccountListDesktop, LevelThreeAccountListMobile],
 })
 export class LevelThreeAccountList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
-  dataSignal = signal<any[]>([]);
-  public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
 
+  dataSignal = signal<any[]>([]);
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-  loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef;
+
+  readonly isSuperUsuario = this.aspRoleS.roleSignal(
+    ApplicationRole.SuperUsuario,
+  );
 
   state: boolean = true;
 
@@ -112,13 +68,7 @@ export class LevelThreeAccountList implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(
-        LevelThreeAccountForm,
-
-        data,
-        data.title,
-        this.dialogHandlerS.sizeXl,
-      )
+      .openDialog(LevelThreeAccountForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData(this.state);
       });

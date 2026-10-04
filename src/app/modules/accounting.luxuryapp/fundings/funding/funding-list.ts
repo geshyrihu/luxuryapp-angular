@@ -1,5 +1,4 @@
 import { FaqsFondeo } from "@accounting.luxuryapp/fundings/funding/faqs-fondeo";
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,71 +10,38 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { addIcons } from "ionicons";
-import { walletOutline } from "ionicons/icons";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { FundingListDesktop } from "./desktop/funding-list-desktop";
 import { FundingForm } from "./funding-form";
+import { FundingListMobile } from "./mobile/funding-list-mobile";
+
 @Component({
   selector: "app-funding-list",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    CommonModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    WebButtonLabel,
-    TableEmptyMessage,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-  ],
+  imports: [FundingListDesktop, FundingListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-list.html",
 })
 export class FundingList {
-  apiResponseS = inject(ApiResponseService);
+  private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private router = inject(Router);
+  platformS = inject(PlatformService);
+
   fechaInicio: Date | string | null = null;
   fechaFin: Date | string | null = null;
 
-  loading = signal(true);
   dataSignal = signal<any[]>([]);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const current = this.dataSignal();
     return current.length > 0 ? globalFilterFields(current) : [];
   });
 
   constructor() {
-    addIcons({ walletOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

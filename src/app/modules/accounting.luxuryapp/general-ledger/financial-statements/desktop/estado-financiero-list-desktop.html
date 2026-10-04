@@ -1,0 +1,154 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [rows]="tableRows"
+  [paginator]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="card custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>
+        <div class="d-flex align-items-center">
+          <lux-tag value="1" severity="info" class="me-2"></lux-tag>
+          <span class="fw-semibold">PERIODO</span>
+        </div>
+      </th>
+      <th>
+        <div class="d-flex align-items-center">
+          <lux-tag value="2" severity="info" class="me-2"></lux-tag>
+          <span class="fw-semibold">ARCHIVO</span>
+        </div>
+      </th>
+      <th>
+        <div class="d-flex align-items-center">
+          <lux-tag value="3" severity="info" class="me-2"></lux-tag>
+          <span class="fw-semibold">AUTORIZACIÓN</span>
+        </div>
+      </th>
+      <th>
+        <div class="d-flex align-items-center">
+          <lux-tag value="4" severity="info" class="me-2"></lux-tag>
+          <span class="fw-semibold">ENVÍO</span>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="fw-semibold">{{ item.periodoExistente }}</div>
+      </td>
+      <td>
+        @if (item.nameFileEstadoFinanciero === null) {
+        <iw-button
+          lxTooltip="Cargar Informe"
+          tooltipPosition="top"
+          iconClass="material-symbols-light:upload"
+          [loading]="isProcessingUpload(item.id)"
+          (clicked)="upload.emit({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
+          [fluid]="true"
+        />
+        } @else {
+        <div class="d-flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="fw-bold">{{ item.personWhoCharge }}</div>
+            <div class="text-xs text-body-secondary">{{ item.uploadDate }}</div>
+          </div>
+          <iw-button
+            iconClass="material-symbols-light:download"
+            variant="text"
+            severity="secondary"
+            ngbTooltip="Descargar"
+            (clicked)="viewPdf.emit({ url: item.nameFileEstadoFinanciero, fileName: 'Informe Financiero' })"
+          />
+          @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
+          <iw-button
+            iconClass="material-symbols-light:replay"
+            variant="text"
+            severity="warn"
+            ngbTooltip="Actualizar Informe"
+            [loading]="isProcessingUpload(item.id)"
+            (clicked)="upload.emit({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
+          />
+          }
+        </div>
+        }
+      </td>
+      <td>
+        @if (item.nameFileEstadoFinanciero !== null) { @if
+        (item.personWhoAuthorized === "") {
+        <iw-button
+          lxTooltip="Autorizar"
+          tooltipPosition="top"
+          iconClass="material-symbols-light:check-box"
+          severity="success"
+          [loading]="isProcessingAuthorize(item.id)"
+          (clicked)="authorize.emit(item.id)"
+          [fluid]="true"
+        />
+        } @else {
+        <div class="d-flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="fw-bold">{{ item.personWhoAuthorized }}</div>
+            <div class="text-xs text-body-secondary">
+              {{ item.authorizationDate }}
+            </div>
+          </div>
+          @if (item.personWhoSend === "") {
+          <iw-button
+            iconClass="material-symbols-light:replay"
+            variant="text"
+            severity="warn"
+            ngbTooltip="Deshacer autorización"
+            [loading]="isProcessingDesauthorize(item.id)"
+            (clicked)="desauthorize.emit(item.id)"
+          />
+          }
+        </div>
+        } }
+      </td>
+      <td class="no-print">
+        @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
+        !== "" ) { @if (item.personWhoSend === "") {
+        <iw-button-confirm
+          icon="material-symbols-light:send"
+          lxTooltip="ENVIAR PDF"
+          tooltipPosition="top"
+          customClass="btn-primary w-full mb-2"
+          swalTitle="óEnviar estados financieros?"
+          swalText="El informe financiero (PDF) seré enviado."
+          swalConfirmButtonText="Sí, enviar"
+          swalIcon="warning"
+          (confirmed)="send.emit({
+                  id: item.id,
+                  title: 'ENVIAR A CONDOMINOS',
+                })"
+          [disabled]="isProcessingSend(item.id)"
+        />
+
+        } @else {
+        <div class="d-flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="fw-bold">{{ item.personWhoSend }}</div>
+            <div class="text-xs text-body-secondary">{{ item.sendDate }}</div>
+          </div>
+        </div>
+        } }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

@@ -51,6 +51,9 @@ describe("FundingList", () => {
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
+    TestBed.overrideComponent(FundingList, {
+      set: { template: "<div></div>", imports: [] },
+    });
     await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(FundingList);

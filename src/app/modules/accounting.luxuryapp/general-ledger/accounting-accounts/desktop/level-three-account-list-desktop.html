@@ -1,0 +1,68 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  class="custom-table"
+>
+  <ng-template #caption>
+    <div class="row g-4">
+      <div class="col-10">
+        <lux-table-caption
+          [title]="'Catalogo de cuentas'"
+          (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [rolAuth]="isSuperUsuario()"
+        />
+      </div>
+      <div class="col-2">
+        <iw-button-active-desactive
+          [state]="state()"
+          (stateChange)="stateChange.emit($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header let-columns>
+    <tr>
+      <th>Id</th>
+      <th class="table-col-30" appSortableColumn="numeroCuenta">
+        CUENTA
+        <app-sorticon field="numeroCuenta" />
+      </th>
+      <th appSortableColumn="descripcion">
+        DESCRIPCIÓN DE LA CUENTA
+        <app-sorticon field="descripcion" />
+      </th>
+      @if (isSuperUsuario()) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-columns="columns">
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.numeroCuenta }}</td>
+      <td>{{ item.descripcion }}</td>
+      @if (isSuperUsuario()) {
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

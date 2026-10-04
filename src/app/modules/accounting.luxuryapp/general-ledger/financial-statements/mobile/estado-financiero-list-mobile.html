@@ -1,0 +1,153 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+  [viewchildBreadcrumb]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:monitoring"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div class="flex-fill min-w-0">
+        <div class="d-flex justify-content-between mb-1">
+          <h2 class="fw-bold m-0">{{ item.periodoExistente }}</h2>
+          <lux-tag value="1" severity="info" class="text-xs"></lux-tag>
+        </div>
+
+        <!-- Status Indicators Stack -->
+        <div class="d-flex flex-column mt-2">
+          <!-- Archivo -->
+          <div class="d-flex align-items-center">
+            <lux-tag value="2" severity="info" class="text-xs"></lux-tag>
+            <div class="d-flex flex-column">
+              <span class="text-sm fw-semibold">
+                {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
+                : "Pendiente" }}
+              </span>
+              @if (item.nameFileEstadoFinanciero) {
+              <small class="text-body-secondary">
+                {{ item.personWhoCharge }}
+              </small>
+              }
+            </div>
+          </div>
+          <!-- Autorización -->
+          <div class="d-flex align-items-center">
+            <lux-tag value="3" severity="info" class="text-xs"></lux-tag>
+            <div class="d-flex flex-column">
+              <span class="text-sm fw-semibold">
+                {{ item.personWhoAuthorized ? "Autorizado: " +
+                item.authorizationDate : "Pendiente" }}
+              </span>
+              @if (item.personWhoAuthorized) {
+              <small class="text-body-secondary">
+                {{ item.personWhoAuthorized }}
+              </small>
+              }
+            </div>
+          </div>
+          <!-- ENVÍO -->
+          <div class="d-flex align-items-center">
+            <lux-tag value="4" severity="info" class="text-xs"></lux-tag>
+            <div class="d-flex flex-column">
+              <span class="text-sm fw-semibold">
+                {{ item.personWhoSend ? "Enviado: " + item.sendDate :
+                "Pendiente" }}
+              </span>
+              @if (item.personWhoSend) {
+              <small class="text-body-secondary">
+                {{ item.personWhoSend }}
+              </small>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <!-- 1. Cargar Informe (Si no hay archivo) -->
+          @if (!item.nameFileEstadoFinanciero) {
+          <ili-button-item
+            iconName="cloud-upload-outline"
+            label="Cargar Informe"
+            (clicked)="
+              upload.emit({
+                id: item.id,
+                title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
+              })
+            "
+          />
+          }
+
+          <!-- 2. Acciones si hay archivo -->
+          @if (item.nameFileEstadoFinanciero) {
+          <!-- Descargar -->
+          <ili-button-item
+            iconName="cloud-upload-outline"
+            label="Descargar PDF"
+            (clicked)="
+                viewPdf.emit({ url: item.nameFileEstadoFinanciero, fileName: 'Informe Financiero' })
+              "
+          />
+          <!-- Actualizar (Si no autorizado ni enviado) -->
+          @if (!item.personWhoAuthorized && !item.personWhoSend) {
+          <ili-button-item
+            iconName="sync-outline"
+            label="Actualizar Archivo"
+            (clicked)="
+                upload.emit({
+                  id: item.id,
+                  title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
+                })
+              "
+          />
+          }
+          <!-- Autorizar (Si no autorizado) -->
+          @if (!item.personWhoAuthorized) {
+          <ili-button-item
+            iconName="checkmark-outline"
+            label="Autorizar"
+            (clicked)="authorize.emit(item.id)"
+          />
+          }
+          <!-- Deshacer Autorización (Si autorizado y no enviado) -->
+          @if (item.personWhoAuthorized && !item.personWhoSend) {
+          <ili-button-item
+            iconName="arrow-back-outline"
+            label="Deshacer Autorización"
+            (clicked)="desauthorize.emit(item.id)"
+          />
+          }
+          <!-- Enviar (Si autorizado y no enviado) -->
+          @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
+          !item.personWhoSend) {
+          <ili-button-confirm
+            icon="material-symbols-light:send"
+            label="ENVIAR"
+            customClass="btn-text-primary w-full text-start"
+            swalTitle="óEnviar estados financieros?"
+            swalText="El informe financiero sera enviado."
+            swalConfirmButtonText="Sí, enviar"
+            swalIcon="warning"
+            (confirmed)="
+                send.emit({
+                  id: item.id,
+                  title: 'ENVIAR A CONDOMINOS'
+                })
+              "
+            [disabled]="isProcessingSend(item.id)"
+          />
+          } }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

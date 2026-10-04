@@ -9,69 +9,31 @@ import {
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { EstadoFinancieroListDesktop } from "./desktop/estado-financiero-list-desktop";
+import { EstadoFinancieroListMobile } from "./mobile/estado-financiero-list-mobile";
 
 @Component({
   selector: "app-estado-financiero-list",
   templateUrl: "./estado-financiero-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    LxTag,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconConfirm,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelConfirm,
-    TableEmptyMessage,
-    AppTable,
-
-    NgbTooltipModule,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [EstadoFinancieroListDesktop, EstadoFinancieroListMobile],
 })
 export class EstadoFinancieroList {
   private authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
+  platformS = inject(PlatformService);
+
   dataSignal = signal<any[]>([]);
-
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acción
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -93,7 +55,6 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // Función para verificar si un botón esté procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -110,7 +71,6 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -205,7 +165,7 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // autoMaximize = true
+      true,
     );
   }
 }

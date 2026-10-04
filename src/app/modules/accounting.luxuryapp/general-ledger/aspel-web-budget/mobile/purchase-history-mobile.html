@@ -1,0 +1,47 @@
+<app-data-view-mobile
+  [showAdd]="false"
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:format-list-bulleted"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.description }}</h2>
+      @if (item.notasEspeciales) {
+      <p class="text-sm text-body-secondary m-0">{{ item.notasEspeciales }}</p>
+      }
+      <p class="text-medium text-body-secondary m-0">{{ item.provider }}</p>
+      <p class="text-sm text-body-secondary mt-1">
+        {{ item.accountNumber }} ó {{ item.creationAt }}
+      </p>
+
+      <div end class="d-flex flex-column align-items-end">
+        <span class="text-lg fw-semibold text-primary">
+          {{ item.amount | currency : "MXN" }}
+        </span>
+        @if (item.invoices && item.invoices.length > 0) {
+        <div class="d-flex flex-wrap gap-1 mt-1">
+          @for (inv of item.invoices; track inv.pdfFile) {
+          <iw-button
+            iconClass="material-symbols-light:picture-as-pdf"
+            variant="text"
+            size="sm"
+            (clicked)="viewPdf.emit({ url: inv.pdfFile, fileName: inv.factura || item.provider })"
+            [lxTooltip]="inv.factura || 'Ver factura'"
+          />
+          }
+        </div>
+        }
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

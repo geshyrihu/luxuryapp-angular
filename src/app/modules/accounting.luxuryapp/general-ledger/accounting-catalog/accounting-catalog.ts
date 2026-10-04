@@ -8,79 +8,40 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { AccountingCatalogDTO } from "./interfaces/accounting-catalog.model";
+import { PlatformService } from "@core/services/platform.service";
+import { AccountingCatalogDesktop } from "./desktop/accounting-catalog-desktop";
 import { AccountingCatalogWithParent } from "./interfaces/AccountingCatalogWithParent";
 import { GroupedAccountingCatalogDTO } from "./interfaces/grouped-accounting-catalog.model";
+import { AccountingCatalogMobile } from "./mobile/accounting-catalog-mobile";
 
 @Component({
   selector: "app-accounting-catalog",
   templateUrl: "./accounting-catalog.html",
-  imports: [
-    WebButtonLabel,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [AccountingCatalogDesktop, AccountingCatalogMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AccountingCatalog {
-  // Servicios
   customerIdService = inject(CustomerIdService);
   dialogHandlerService = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
-  // excelService = inject(AccountingCatalogExcelService); // Inject the service
+  platformS = inject(PlatformService);
 
-  // Seóales
   groupedDataSignal = signal<GroupedAccountingCatalogDTO[]>([]);
-  // ? flattenedData con DESCRIPCIÓN del padre é listo para agrupar en p-table
   flattenedDataSignal = computed<AccountingCatalogWithParent[]>(() => {
     return this.groupedDataSignal()
       .flatMap((group) =>
         group.childAccounts.map((child) => ({
           ...child,
-          cuentaPadre: group.cuentaPadre, // ej: "601-001-000"
-          // cuentaPadreDescripcion:
-          //   group.descripcionCuentaPadre || "[Sin DESCRIPCIÓN]",
+          cuentaPadre: group.cuentaPadre,
         })),
       )
       .sort((a, b) => (a.cuentaPadre || "").localeCompare(b.cuentaPadre || ""));
   });
 
-  // ? Datos agrupados para mobile (clave = "código é DESCRIPCIÓN")
-  mobileGroupedData = computed<{ [key: string]: AccountingCatalogDTO[] }>(
-    () => {
-      const result: { [key: string]: AccountingCatalogDTO[] } = {};
-      for (const group of this.groupedDataSignal()) {
-        const key = `${group.cuentaPadre}  || "[Sin DESCRIPCIÓN]"}`;
-        result[key] = group.childAccounts;
-      }
-      return result;
-    },
-  );
-
   currentYear = signal(2026);
   loading = signal(true);
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
 
   globalFilterFields = computed(() => [
     "codigoCuenta",
@@ -129,19 +90,6 @@ export class AccountingCatalog {
   }
 
   exportData() {
-    /*
-    const dataToExport = this.flattenedDataSignal();
-    const columns = [
-      { header: "Cuenta Padre", key: "cuentaPadre", width: 25 },
-      { header: "Código", key: "codigoCuenta", width: 25 },
-      { header: "DESCRIPCIÓN", key: "descripcionCuenta", width: 50 }
-    ];
-    this.excelService.exportToExcel(
-      dataToExport,
-      columns,
-      "Catálogo Contable",
-      `${this.customerIdService.nombreCorto()}-${this.currentYear()}`
-    );
-    */
+    // Export pendiente (servicio deshabilitado).
   }
 }
