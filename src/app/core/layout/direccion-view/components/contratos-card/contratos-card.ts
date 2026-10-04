@@ -8,7 +8,7 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ContratosVigentesModal } from "../contratos-vigentes-modal/contratos-vigentes-modal";
 import type { ContratosPorVencerResumenDto } from "./contratos-card.model";
@@ -16,7 +16,7 @@ import type { ContratosPorVencerResumenDto } from "./contratos-card.model";
 @Component({
   selector: "app-contratos-card",
   templateUrl: "./contratos-card.html",
-  imports: [AppIcon, WebButtonLabel],
+  imports: [AppIcon, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
