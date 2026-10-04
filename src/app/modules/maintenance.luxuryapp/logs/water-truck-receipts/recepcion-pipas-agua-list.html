@@ -95,45 +95,44 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small>{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</small>
+        <span>{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</span>
       </td>
       <td>
         @if (item.horaTermino) {
-        <small>{{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</small>
+        <span>{{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</span>
         } @else {
         <span class="badge badge-warning text-xs">En curso</span>
         }
       </td>
-      <td><small>{{ item.empresa }}</small></td>
-      <td><small class="fw-semibold">{{ item.placasCamion }}</small></td>
+      <td><span>{{ item.empresa }}</span></td>
+      <td><span class="fw-semibold">{{ item.placasCamion }}</span></td>
       <td class="text-end">
-        <small>{{ item.capacidadPipa | number: '1.0-0' }}</small>
+        <span>{{ item.capacidadPipa | number: '1.0-0' }}</span>
       </td>
       <td class="text-center">
-        <small class="d-flex justify-content-center align-items-center gap-1">
+        <span class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.nivelCisternaAntes | number: '1.0-0' }}%</span>
           <span class="text-body-secondary">?</span>
           <span>{{ item.nivelCisternaDespues | number: '1.0-0' }}%</span>
-        </small>
+        </span>
       </td>
       <td class="text-center">
-        <small class="d-flex justify-content-center align-items-center gap-1">
+        <span class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.lecturaMedidorInicial | number: '1.0-0' }}</span>
           <span class="text-body-secondary">?</span>
           <span>{{ item.lecturaMedidorFinal | number: '1.0-0' }}</span>
-        </small>
+        </span>
       </td>
       <td class="text-end">
-        <small
+        <span
           >{{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
-          '1.0-0' }}</small
-        >
+          '1.0-0' }}</span>
       </td>
       <td class="text-end">
-        <small>{{ item.costoMetroCubico | number: '1.2-2' }}</small>
+        <span>{{ item.costoMetroCubico | number: '1.2-2' }}</span>
       </td>
-      <td><small>{{ item.colaboradorMtto }}</small></td>
-      <td><small>{{ item.guardiaSeguridad }}</small></td>
+      <td><span>{{ item.colaboradorMtto }}</span></td>
+      <td><span>{{ item.guardiaSeguridad }}</span></td>
 
       <td>
         <div class="d-flex">

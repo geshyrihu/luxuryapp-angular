@@ -48,7 +48,7 @@ cb_departamento; track item) {
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr>
       <td>
-        <small> {{ item.folioId }} </small>
+        <span> {{ item.folioId }} </span>
       </td>
       <td class="text-center">
         <span
@@ -70,10 +70,10 @@ cb_departamento; track item) {
         </span>
       </td>
       <td>
-        <small> {{ item.descripcion }} </small>
+        <span> {{ item.descripcion }} </span>
       </td>
       <td>
-        <small> {{ item.observaciones }} </small>
+        <span> {{ item.observaciones }} </span>
       </td>
       <td>
         <div class="d-flex justify-content-center">
@@ -86,12 +86,12 @@ cb_departamento; track item) {
         </div>
       </td>
       <td>
-        <small class="truncate">{{ item.cargo }}</small>
-        <small>{{ item.fechaCarga }}</small>
+        <span class="truncate">{{ item.cargo }}</span>
+        <span>{{ item.fechaCarga }}</span>
       </td>
       <td>
-        <small class="truncate">{{ item.superviso }}</small>
-        <small>{{ item.fechaSupervision }}</small>
+        <span class="truncate">{{ item.superviso }}</span>
+        <span>{{ item.fechaSupervision }}</span>
       </td>
       <td class="no-print">
         <app-action-menu>

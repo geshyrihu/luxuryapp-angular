@@ -46,15 +46,15 @@
   </ng-template>
   <ng-template #body let-detalle let-rowIndex="rowIndex">
     <tr>
-      <td class="text-sm">{{ rowIndex + 1 }}</td>
-      <td class="text-sm">{{ detalle.title }}</td>
-      <td class="text-sm">
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ detalle.title }}</td>
+      <td>
         <p
           class="me-2 text-justify"
           [innerHTML]="detalle.requestService | sanitizeHtml"
         ></p>
       </td>
-      <td class="text-sm text-center">
+      <td class="text-center">
         <span
           class="badge p-2"
           [class.badge-danger]="detalle.status == 0"
@@ -64,8 +64,8 @@
           {{ detalle.status }}</span
         >
       </td>
-      <td class="text-sm">{{ detalle.deliveryDate }}</td>
-      <td class="text-sm">
+      <td>{{ detalle.deliveryDate }}</td>
+      <td>
         <ol>
           @for (item of detalle.seguimiento; track item) {
           <li>{{ item.fecha }}, {{ item.seguimiento }}</li>

@@ -105,7 +105,7 @@
                 {{ item.title | uppercase }}
               </span>
               <div
-                class="resumen-minuta-request-service text-body-secondary text-sm line-height-3"
+                class="resumen-minuta-request-service text-body-secondary line-height-3"
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -131,7 +131,7 @@
                 </div>
               </div>
               <div
-                class="resumen-minuta-followup-text text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
+                class="resumen-minuta-followup-text text-body line-height-2 italic relative ps-3 border-left-2 border-primary-200"
                 [lxTooltip]="item.meetingDetailsFollowUps[0].seguimiento"
                 tooltipPosition="top"
               >
@@ -146,7 +146,7 @@
                 [icon]="'material-symbols-light:forum-outline'"
                 class="text-xl"
               />
-              <span class="text-sm">Sin seguimiento registrado</span>
+              <span >Sin seguimiento registrado</span>
             </div>
             }
           </td>

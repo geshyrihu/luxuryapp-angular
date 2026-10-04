@@ -67,7 +67,7 @@
         </td>
         <td>
           <div class="fw-bold">{{item.accountNumber}}</div>
-          <div class="text-sm text-body-secondary">{{item.accountName}}</div>
+          <div class="text-body-secondary">{{item.accountName}}</div>
         </td>
         <td class="text-end">
           {{ item.currentAmount | currency:'$':'symbol':'1.0-0' }}
@@ -78,7 +78,7 @@
         <td class="text-end text-green-600 fw-bold bg-green-50">
           {{ item.suggestedAmount | currency:'$':'symbol':'1.0-0' }}
         </td>
-        <td class="text-sm fst-italic text-body-secondary">
+        <td class="fst-italic text-body-secondary">
           {{ item.reasoning }}
         </td>
       </tr>

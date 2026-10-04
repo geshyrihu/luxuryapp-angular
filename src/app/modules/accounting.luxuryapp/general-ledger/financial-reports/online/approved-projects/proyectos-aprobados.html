@@ -135,7 +135,7 @@
           <tr class="rf-row-concepto g-4">
             <td class="rf-td-descripcion--item">
               <div class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</div>
-              <div class="fw-bold text-sm text-uppercase">
+              <div class="fw-bold text-uppercase">
                 {{ proyecto.descripcion }}
               </div>
             </td>
@@ -155,7 +155,7 @@
                   }}
                 </span>
                 <span
-                  class="text-sm fw-bold"
+                  class="fw-bold"
                   [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
                 >
                   {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
@@ -197,7 +197,7 @@
                   }}
                 </span>
                 <span
-                  class="text-sm fw-bold"
+                  class="fw-bold"
                   [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
                 >
                   {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}

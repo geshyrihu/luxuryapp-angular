@@ -40,7 +40,7 @@
               class="text-primary"
             />
             <span class="fw-bold text-primary">{{ row.propertyName }}</span>
-            <span class="text-body-secondary text-sm"
+            <span class="text-body-secondary"
               >· Cta: {{ row.accountNumber }}</span
             >
             @if (row.indivisoPercentage) {
@@ -56,7 +56,7 @@
     <ng-template #body let-row let-rowIndex="rowIndex">
       <tr>
         <td pFrozenColumn>
-          <div class="fw-medium text-sm">{{ row.templateName }}</div>
+          <div class="fw-medium">{{ row.templateName }}</div>
           <div class="text-xs text-body-secondary">
             {{ row.chargeTypeName || "Tipo sin clasificar" }}
           </div>
@@ -67,11 +67,11 @@
             [severity]="methodSeverity(row.calculationMethod)"
           />
         </td>
-        <td class="text-end text-sm fw-bold">
+        <td class="text-end fw-bold">
           {{ row.baseAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
         @for (col of periodColumns(); track col.key) {
-        <td class="text-end text-sm">
+        <td class="text-end">
           @if (periodsMap()[rowIndex][col.key] !== undefined) { {{
           periodsMap()[rowIndex][col.key] |
           currency:'MXN':'symbol-narrow':'1.2-2' }} } @else {

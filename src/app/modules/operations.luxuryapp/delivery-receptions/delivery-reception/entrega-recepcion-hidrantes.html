@@ -33,20 +33,20 @@
   </ng-template>
   <ng-template #groupfooter let-customer>
     <tr class="p-rowgroup-footer">
-      <td class="text-sm" colspan="7">
+      <td colspan="7">
         <div>Total: {{ calcularEquiposTotal(customer.clasificacion) }}</div>
       </td>
     </tr>
   </ng-template>
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr class="page-break">
-      <td class="text-sm">{{ rowIndex + 1 }}</td>
-      <td class="text-sm">
+      <td>{{ rowIndex + 1 }}</td>
+      <td>
         <img [src]="item.photo" alt="img" width="100" class="shadow" />
       </td>
-      <td class="text-sm">{{ item.eExtintor }}</td>
-      <td class="text-sm">{{ item.ubicacion }}</td>
-      <td class="text-sm text-center">
+      <td>{{ item.eExtintor }}</td>
+      <td>{{ item.ubicacion }}</td>
+      <td class="text-center">
         <custom-input-check-signal
           [ngModel]="false"
           [disabled]="true"
@@ -54,7 +54,7 @@
           noMargin
         />
       </td>
-      <td class="text-sm"></td>
+      <td></td>
     </tr>
   </ng-template>
 </lux-table>

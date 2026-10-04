@@ -140,6 +140,16 @@
        ya traiga alineación escrita a mano sigue mandando sobre esta regla. */
     .lux-table-thead > tr > th {
       text-align: center;
+      vertical-align: middle;
+    }
+
+    /* Alto de fila +50% (2026-10-04): la tabla se veía muy compacta.
+       El padding vertical base (0.25rem) se elevó a 0.7rem en encabezado y
+       cuerpo, ≈ +50% del alto de fila. */
+    .lux-table-thead > tr > th,
+    .lux-table-tbody > tr > td {
+      padding-top: 0.7rem;
+      padding-bottom: 0.7rem;
     }
 
     .lux-table-tbody > tr > td {

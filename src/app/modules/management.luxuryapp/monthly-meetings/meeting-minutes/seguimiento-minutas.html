@@ -94,13 +94,13 @@
       </td>
       <td class="table-col-pendiente table-col-description">
         <div
-          class="text-justify text-body-secondary text-sm line-height-3"
+          class="text-justify text-body-secondary line-height-3"
           [innerHTML]="item.pendiente | sanitizeHtml"
         ></div>
       </td>
       <td class="table-col-seguimiento table-col-description">
         @if (item.seguimientos.length > 0) {
-        <div class="text-sm text-body">
+        <div class="text-body">
           <span class="fw-bold text-primary"
             >{{ item.seguimientos[0].fecha }}</span
           >: {{ item.seguimientos[0].seguimiento }}

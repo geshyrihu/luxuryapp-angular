@@ -124,7 +124,7 @@
       </td>
       <td>
         <div class="fw-medium">{{ item.vacancyFolio }}</div>
-        <small class="text-body-secondary">{{ item.positionName }}</small>
+        <span class="text-body-secondary">{{ item.positionName }}</span>
       </td>
       <td>{{ item.customerName }}</td>
       <td>
@@ -147,9 +147,9 @@
       </td>
       <td>
         <div>{{ item.daysInStage }}</div>
-        <small class="text-body-secondary">
+        <span class="text-body-secondary">
           <app-candidate-stage-badge [stage]="item.currentStage" />
-        </small>
+        </span>
       </td>
       <td>
         <span class="fw-medium">{{ item.pendingAction }}</span>

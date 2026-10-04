@@ -40,7 +40,7 @@
                 class="text-primary"
               />
               <span class="fw-bold text-primary">{{ item.propertyName }}</span>
-              <span class="text-body-secondary text-sm"
+              <span class="text-body-secondary"
                 >· Cta: {{ item.accountNumber }}</span
               >
             </div>
@@ -60,7 +60,7 @@
     <ng-template #body let-item>
       <tr [class.opacity-50]="!item.isActive">
         <td class="fw-bold">{{ item.userName }}</td>
-        <td class="text-sm text-body-secondary">{{ item.email }}</td>
+        <td class="text-body-secondary">{{ item.email }}</td>
         <td class="text-center">
           <lux-tag [value]="rolLabel(item.memberRole)" severity="info" />
         </td>
@@ -86,7 +86,7 @@
           />
           }
         </td>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ item.startDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">

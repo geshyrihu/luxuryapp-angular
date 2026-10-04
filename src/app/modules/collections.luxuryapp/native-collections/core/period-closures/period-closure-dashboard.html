@@ -109,11 +109,11 @@
           />
           }
         </td>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
-        <td class="text-sm">{{ item.closedBy }}</td>
-        <td class="text-sm text-body-secondary">{{ item.closureNotes }}</td>
+        <td>{{ item.closedBy }}</td>
+        <td class="text-body-secondary">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
           <iw-button

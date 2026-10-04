@@ -64,9 +64,9 @@
         <tr>
           <td>
             <div class="fw-semibold">{{ item.title }}</div>
-            <small class="text-body-secondary">{{ item.category }}</small>
+            <span class="text-body-secondary">{{ item.category }}</span>
             @if (item.description) {
-            <div class="mt-1 text-sm text-body-secondary">
+            <div class="mt-1 text-body-secondary">
               {{ item.description }}
             </div>
             }
@@ -74,9 +74,9 @@
           <td>
             <div>{{ item.dueDate | apiDate: "dd/MM/yyyy" }}</div>
             @if (item.completedAt) {
-            <small class="text-body-secondary">
+            <span class="text-body-secondary">
               Completado: {{ item.completedAt | apiDate: "dd/MM/yyyy HH:mm" }}
-            </small>
+            </span>
             }
           </td>
           <td>

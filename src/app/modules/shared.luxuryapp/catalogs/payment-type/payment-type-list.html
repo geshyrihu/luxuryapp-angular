@@ -30,19 +30,17 @@
         DESCRIPCIÓN
         <app-sorticon field="descripcion" />
       </th>
-
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td>
-        <small>{{ item.codigo }}</small>
+        <span>{{ item.codigo }}</span>
       </td>
       <td>
-        <small>{{ item.descripcion }}</small>
+        <span>{{ item.descripcion }}</span>
       </td>
-
       <td class="no-print">
         <div class="d-flex">
           <iw-button-edit

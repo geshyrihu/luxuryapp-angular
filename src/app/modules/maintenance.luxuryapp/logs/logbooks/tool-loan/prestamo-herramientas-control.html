@@ -52,19 +52,19 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small> {{ item.fechaSalida | apiDate: "medium" }} </small>
+        <span> {{ item.fechaSalida | apiDate: "medium" }} </span>
       </td>
       <td>
-        <small> {{ item.tool }} </small>
+        <span> {{ item.tool }} </span>
       </td>
       <td>
-        <small> {{ item.applicationUser }} </small>
+        <span> {{ item.applicationUser }} </span>
       </td>
       <td>
-        <small> {{ item.fechaRegreso | apiDate: "medium" }} </small>
+        <span> {{ item.fechaRegreso | apiDate: "medium" }} </span>
       </td>
       <td>
-        <small> {{ item.observaciones }} </small>
+        <span> {{ item.observaciones }} </span>
       </td>
       <!-- Opciones -->
       @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento,

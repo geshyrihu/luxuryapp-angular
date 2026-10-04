@@ -84,7 +84,7 @@
     <ng-template #body let-row>
       <tr>
         <td class="fw-medium">{{ row.propertyFullName }}</td>
-        <td class="text-sm text-body-secondary">{{ row.accountNumber }}</td>
+        <td class="text-body-secondary">{{ row.accountNumber }}</td>
         <td class="text-center">
           @if (row.dirty && (row.amount ?? 0) > 0) {
           <lux-tag value="Por guardar" severity="info" />

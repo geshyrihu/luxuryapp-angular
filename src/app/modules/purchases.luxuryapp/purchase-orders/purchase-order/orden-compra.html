@@ -279,18 +279,18 @@
       <td class="text-end">{{ item.precio | number: '1.2-2' }}</td>
       <td class="text-end">{{ item.descuento | number: '1.2-2' }}%</td>
       <td class="text-end">
-        <small class="text-body-secondary">({{ item.ivaAplicado }} %)</small>
+        <span class="text-body-secondary">({{ item.ivaAplicado }} %)</span>
         {{ item.iva | number: '1.2-2' }}
       </td>
       <td class="text-end">
-        <small class="text-body-secondary"
-          >({{ item.retencionIVAPorcentaje }} %)</small
+        <span class="text-body-secondary"
+          >({{ item.retencionIVAPorcentaje }} %)</span
         >
         {{ item.retencionIVACalculada | number: '1.2-2' }}
       </td>
       <td class="text-end">
-        <small class="text-body-secondary"
-          >({{ item.retencionISRPorcentaje }} %)</small
+        <span class="text-body-secondary"
+          >({{ item.retencionISRPorcentaje }} %)</span
         >
         {{ item.retencionISRCalculada | number: '1.2-2' }}
       </td>
@@ -308,35 +308,35 @@
   <ng-template #footer>
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">SUBTOTAL</td>
+      <td colspan="3" class="text-end">SUBTOTAL</td>
       <td class="text-end">{{ totals().subtotal | number: '1.2-2' }}</td>
       <td class="no-border"></td>
       <!-- ? Mantiene el spacer vertical para "Botones" -->
     </tr>
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">IVA</td>
+      <td colspan="3" class="text-end">IVA</td>
       <td class="text-end">{{ totals().iva | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     @if (totals().retencionIva > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">RETENCIÓNN IVA</td>
+      <td colspan="3" class="text-end">RETENCIÓNN IVA</td>
       <td class="text-end">- {{ totals().retencionIva | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     } @if (totals().retencionIsr > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">RETENCIÓNN ISR</td>
+      <td colspan="3" class="text-end">RETENCIÓNN ISR</td>
       <td class="text-end">- {{ totals().retencionIsr | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     }
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-end">TOTAL</td>
+      <td colspan="3" class="text-end">TOTAL</td>
       <td class="text-end">{{ totals().total | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>

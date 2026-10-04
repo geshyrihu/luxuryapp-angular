@@ -527,8 +527,8 @@
       <ng-template #body let-item>
         <tr>
           <td class="fw-bold text-primary">{{ item.bankName }}</td>
-          <td><code class="text-sm">{{ item.bankAccount }}</code></td>
-          <td><code class="text-sm fw-medium">{{ item.bankKey }}</code></td>
+          <td><code>{{ item.bankAccount }}</code></td>
+          <td><code class="fw-medium">{{ item.bankKey }}</code></td>
         </tr>
       </ng-template>
     </lux-table>
@@ -715,7 +715,7 @@
             >
           </td>
           <td>
-            <div class="d-flex align-items-center gap-2 text-sm">
+            <div class="d-flex align-items-center gap-2">
               <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
               <app-icon
                 [icon]="'material-symbols-light:arrow-forward'"
@@ -731,7 +731,7 @@
             {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
           </td>
           <td>
-            <small class="text-body-secondary">{{ item.notes || 'é' }}</small>
+            <span class="text-body-secondary">{{ item.notes || 'é' }}</span>
           </td>
           <td class="text-center">
             <div class="d-flex justify-content-center">
@@ -994,7 +994,7 @@
             <tr>
               <td><span class="fw-bold">#{{ item.folio }}</span></td>
               <td>
-                <div class="d-flex align-items-center gap-2 text-sm">
+                <div class="d-flex align-items-center gap-2">
                   <span class="text-body-secondary"
                     >{{ item.puestoAnterior }}</span
                   >
@@ -1008,7 +1008,7 @@
                 </div>
               </td>
               <td>
-                <div class="d-flex flex-column text-sm">
+                <div class="d-flex flex-column">
                   <span class="text-body-secondary line-through"
                     >{{ item.salarioAnterior | currency:'MXN' }}</span
                   >
@@ -1167,12 +1167,12 @@
                   [rounded]="true"
                 ></lux-tag>
                 } @else {
-                <span class="text-body-secondary text-sm">N/A</span>
+                <span class="text-body-secondary">N/A</span>
                 }
               </td>
               <td>
-                <small class="text-body-secondary"
-                  >{{ item.reason || 'é' }}</small
+                <span class="text-body-secondary"
+                  >{{ item.reason || 'é' }}</span
                 >
               </td>
             </tr>
@@ -1272,7 +1272,7 @@
           <td>
             <div class="d-flex flex-column">
               <span class="fw-bold text-body">{{ item.incidentTypeName }}</span>
-              <small class="text-body-secondary">{{ item.category }}</small>
+              <span class="text-body-secondary">{{ item.category }}</span>
             </div>
           </td>
           <td>
@@ -1286,22 +1286,22 @@
               >{{ item.investigationStatus }}</span
             >
           </td>
-          <td class="fw-medium text-sm">
+          <td class="fw-medium">
             {{ item.incidentDateTime | apiDate:'dd/MM/yyyy HH:mm' }}
           </td>
           <td>
             @if (item.sanction) {
             <div class="d-flex flex-column">
-              <span class="fw-semibold text-sm" style="color: var(--ds-danger)"
+              <span class="fw-semibold" style="color: var(--ds-danger)"
                 >{{ item.sanction.sanctionTypeName }}</span
               >
-              <small class="text-body-secondary"
+              <span class="text-body-secondary"
                 >Desde: {{ item.sanction.effectiveStartDate |
-                apiDate:'dd/MM/yyyy' }}</small
+                apiDate:'dd/MM/yyyy' }}</span
               >
             </div>
             } @else {
-            <span class="text-body-secondary text-sm italic">Sin sanción</span>
+            <span class="text-body-secondary italic">Sin sanción</span>
             }
           </td>
           <td class="text-center">

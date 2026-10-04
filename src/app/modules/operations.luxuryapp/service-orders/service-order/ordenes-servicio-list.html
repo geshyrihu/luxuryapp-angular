@@ -129,14 +129,14 @@
   </ng-template>
   <ng-template #groupheader let-item>
     <tr>
-      <td colspan="8" class="fw-bold text-sm bg-body-tertiary px-3 py-2">
+      <td colspan="8" class="fw-bold bg-body-tertiary px-3 py-2">
         {{ item.equipoClasificacion || 'Sin Categoróa' }}
       </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td><small>{{ item.folio || "Sin folio" }}</small></td>
+      <td><span>{{ item.folio || "Sin folio" }}</span></td>
       <!-- {{ item.machineryId }} | -->
       <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
       <td>

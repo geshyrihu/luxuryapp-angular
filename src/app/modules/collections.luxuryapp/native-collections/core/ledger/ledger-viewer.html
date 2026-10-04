@@ -78,7 +78,7 @@
 
     <ng-template #body let-entry>
       <tr>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
@@ -87,15 +87,15 @@
             [severity]="eventTypeMeta(entry.eventType).severity"
           />
         </td>
-        <td class="text-sm">{{ entry.description }}</td>
-        <td class="text-end text-sm">
+        <td>{{ entry.description }}</td>
+        <td class="text-end">
           @if (entry.debitAmount > 0) {
           <span class="text-red-700">
             {{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </span>
           }
         </td>
-        <td class="text-end text-sm">
+        <td class="text-end">
           @if (entry.creditAmount > 0) {
           <span class="text-green-700">
             {{ entry.creditAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}

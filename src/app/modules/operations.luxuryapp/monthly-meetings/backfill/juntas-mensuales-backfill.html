@@ -95,10 +95,10 @@
           <tr>
             <td class="align-top">
               <div class="fw-semibold">{{ item.sessionTitle }}</div>
-              <div class="text-sm text-body-secondary">
+              <div class="text-body-secondary">
                 {{ item.customerShortName || item.customerName }}
               </div>
-              <div class="text-sm text-body-secondary">
+              <div class="text-body-secondary">
                 {{ item.sessionTypeDisplayName }} | {{ item.scheduledAt |
                 apiDate: "dd/MM/yyyy HH:mm" }}
               </div>
@@ -118,7 +118,7 @@
             <td class="align-top">
               @if (item.suggestedPresentation; as presentation) {
               <div class="fw-semibold">{{ presentation.title }}</div>
-              <div class="text-sm text-body-secondary">
+              <div class="text-body-secondary">
                 {{ presentation.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
@@ -126,9 +126,9 @@
                   [value]="presentation.confidence"
                   [severity]="confidenceSeverity(presentation.confidence)"
                 />
-                <span class="text-sm">Score {{ presentation.score }}</span>
+                <span >Score {{ presentation.score }}</span>
               </div>
-              <ul class="mt-2 ps-3 text-sm text-body-secondary">
+              <ul class="mt-2 ps-3 text-body-secondary">
                 @for (reason of presentation.reasons; track reason) {
                 <li>{{ reason }}</li>
                 }
@@ -141,7 +141,7 @@
             <td class="align-top">
               @if (item.suggestedMeeting; as meeting) {
               <div class="fw-semibold">{{ meeting.title }}</div>
-              <div class="text-sm text-body-secondary">
+              <div class="text-body-secondary">
                 {{ meeting.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
@@ -149,9 +149,9 @@
                   [value]="meeting.confidence"
                   [severity]="confidenceSeverity(meeting.confidence)"
                 />
-                <span class="text-sm">Score {{ meeting.score }}</span>
+                <span >Score {{ meeting.score }}</span>
               </div>
-              <ul class="mt-2 ps-3 text-sm text-body-secondary">
+              <ul class="mt-2 ps-3 text-body-secondary">
                 @for (reason of meeting.reasons; track reason) {
                 <li>{{ reason }}</li>
                 }

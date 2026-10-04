@@ -54,7 +54,7 @@
         </td>
         <td class="fw-bold text-body">{{ item.propertyFullName || "N/A" }}</td>
         <td class="text-xs">{{ paymentMethodLabel(item.method) }}</td>
-        <td class="text-body-secondary text-sm">{{ item.reference || "-" }}</td>
+        <td class="text-body-secondary">{{ item.reference || "-" }}</td>
         <td class="text-end fw-medium text-green-600">
           {{ item.amount | number: "1.2-2" }}
         </td>

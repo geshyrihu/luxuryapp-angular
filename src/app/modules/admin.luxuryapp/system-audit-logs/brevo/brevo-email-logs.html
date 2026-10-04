@@ -112,20 +112,20 @@
 
       <!-- Fecha -->
       <td>
-        <span class="text-sm">
+        <span >
           {{ log.date ? (log.date | apiDate: 'dd/MM/yyyy HH:mm') : '—' }}
         </span>
       </td>
 
       <!-- Remitente -->
       <td>
-        <span class="text-sm text-body-secondary">{{ log.from || '—' }}</span>
+        <span class="text-body-secondary">{{ log.from || '—' }}</span>
       </td>
 
       <!-- ID Plantilla -->
       <td>
         @if (log.templateId) {
-        <span class="font-mono text-sm">#{{ log.templateId }}</span>
+        <span class="font-mono">#{{ log.templateId }}</span>
         } @else {
         <span class="text-body-secondary">—</span>
         }

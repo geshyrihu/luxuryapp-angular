@@ -362,7 +362,7 @@
           <!-- Concept / Account -->
           <td class="p-2">
             <div class="d-flex flex-column">
-              <span class="fw-bold text-body text-sm mb-1 line-height-2"
+              <span class="fw-bold text-body mb-1 line-height-2"
                 >{{ orden.justificacionGasto | uppercase }}</span
               >
               <span
@@ -379,7 +379,7 @@
           <!-- Provider / Invoices -->
           <td class="p-2">
             <div class="d-flex flex-column gap-1">
-              <span class="fw-medium text-body text-sm"
+              <span class="fw-medium text-body"
                 >{{ orden.nameProvider | uppercase }}</span
               >
 
@@ -563,9 +563,9 @@
       </ng-template>
       <ng-template #body let-orden>
         <tr>
-          <td class="text-sm fw-medium">{{ orden.nameProvider }}</td>
-          <td class="text-sm">{{ orden.justificacionGasto }}</td>
-          <td class="text-sm text-end">{{ orden.total | number: "1.2-2" }}</td>
+          <td class="fw-medium">{{ orden.nameProvider }}</td>
+          <td>{{ orden.justificacionGasto }}</td>
+          <td class="text-end">{{ orden.total | number: "1.2-2" }}</td>
           <td class="text-center">
             <custom-input-check-signal
               [control]="orden.ordenCompraPagadaControl"

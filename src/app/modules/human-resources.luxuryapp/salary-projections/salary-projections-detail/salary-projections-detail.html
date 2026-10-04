@@ -177,33 +177,33 @@
             />
             } @else { {{ item.netMonthlySalary ?? 0 | number: "1.2-2" }} }
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.vacationPremium ?? 0 | number: "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.holidayPremium ?? 0 | number: "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.sundayPremium ?? 0 | number: "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.christmasBonus ?? 0 | number: "1.2-2" }}
           </td>
           <td class="text-end fw-semibold text-primary">
             {{ simulationOf(item.id)?.monthlyPerceptions ?? 0 | number: "1.2-2"
             }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.rcvEmployerFee ?? 0 | number: "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.infonavitEmployerFee ?? 0 | number:
             "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.imssEmployerFee ?? 0 | number: "1.2-2" }}
           </td>
-          <td class="text-end text-sm">
+          <td class="text-end">
             {{ simulationOf(item.id)?.employerPayrollTax ?? 0 | number: "1.2-2"
             }}
           </td>
@@ -235,31 +235,31 @@
           <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.netMonthlySalary | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.vacationPremium | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.holidayPremium | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.sundayPremium | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.christmasBonus | number: "1.2-2" }}
           </td>
           <td class="text-end fw-bold text-primary">
             {{ scenarioTotals()[sid]?.monthlyPerceptions | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.rcvEmployerFee | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.infonavitEmployerFee | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.imssEmployerFee | number: "1.2-2" }}
           </td>
-          <td class="text-end fw-bold text-sm">
+          <td class="text-end fw-bold">
             {{ scenarioTotals()[sid]?.employerPayrollTax | number: "1.2-2" }}
           </td>
           <td class="text-end fw-bold text-success">

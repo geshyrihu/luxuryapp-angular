@@ -59,13 +59,13 @@
 
     <ng-template #body let-pay>
       <tr>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ pay.paymentDate | apiDate:'dd/MM/yyyy' }}
         </td>
         <td class="text-end fw-bold text-orange-700">
           {{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
-        <td class="text-sm text-body-secondary">
+        <td class="text-body-secondary">
           {{ pay.reference || 'Sin referencia' }}
         </td>
         <td class="text-center">

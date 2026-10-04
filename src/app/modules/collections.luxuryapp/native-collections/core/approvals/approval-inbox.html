@@ -36,9 +36,9 @@
             [severity]="operationSeverity(item.operationType)"
           />
         </td>
-        <td class="text-sm">{{ item.summary }}</td>
-        <td class="text-sm fw-medium">{{ item.requestedBy }}</td>
-        <td class="text-center text-sm">
+        <td>{{ item.summary }}</td>
+        <td class="fw-medium">{{ item.requestedBy }}</td>
+        <td class="text-center">
           {{ item.requestedAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">

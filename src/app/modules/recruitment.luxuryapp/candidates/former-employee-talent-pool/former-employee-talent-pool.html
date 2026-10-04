@@ -76,16 +76,16 @@
     <tr>
       <td>
         <div class="fw-semibold">{{ item.fullName }}</div>
-        <small class="text-body-secondary">{{ item.applicationUserId }}</small>
+        <span class="text-body-secondary">{{ item.applicationUserId }}</span>
       </td>
       <td>{{ item.customerName || "Sin cliente" }}</td>
       <td>
         <div>{{ item.workPositionName || "Sin puesto" }}</div>
-        <small class="text-body-secondary">{{ item.workPositionFolio }}</small>
+        <span class="text-body-secondary">{{ item.workPositionFolio }}</span>
       </td>
       <td>
         <div>{{ item.email }}</div>
-        <small class="text-body-secondary">{{ item.phoneNumber }}</small>
+        <span class="text-body-secondary">{{ item.phoneNumber }}</span>
       </td>
       <td>{{ item.dateAdmission | apiDate }}</td>
       <td class="text-center">

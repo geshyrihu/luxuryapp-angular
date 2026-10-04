@@ -50,7 +50,7 @@
     <ng-template #body let-r>
       <tr>
         <td class="fw-semibold">{{ r.name }}</td>
-        <td class="text-body-secondary text-sm">{{ r.description }}</td>
+        <td class="text-body-secondary">{{ r.description }}</td>
         <td><lux-tag [value]="r.visualizationType" severity="info" /></td>
         <td>{{ r.dataSource }}</td>
         <td>{{ r.createdAt | apiDate: 'dd/MM/yyyy' }}</td>
@@ -132,7 +132,7 @@
     <ng-template #body let-r>
       <tr>
         <td class="fw-semibold">{{ r.name }}</td>
-        <td class="text-body-secondary text-sm">{{ r.description }}</td>
+        <td class="text-body-secondary">{{ r.description }}</td>
         <td>
           <lux-tag [value]="r.visualizationType" severity="success" />
         </td>

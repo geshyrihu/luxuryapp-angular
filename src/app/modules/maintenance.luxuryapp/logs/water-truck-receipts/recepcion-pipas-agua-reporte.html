@@ -213,73 +213,73 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small>{{ item.empresa }}</small>
+        <span>{{ item.empresa }}</span>
       </td>
       <td>
         <strong class="d-block">{{ item.placasCamion }}</strong>
-        <small class="text-body-secondary"
-          >{{ item.capacidadPipa | number: '1.0-0' }} L</small
+        <span class="text-body-secondary"
+          >{{ item.capacidadPipa | number: '1.0-0' }} L</span
         >
       </td>
       <td>
-        <small class="d-block"
-          >{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</small
+        <span class="d-block"
+          >{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</span
         >
         @if (item.horaTermino) {
-        <small class="text-body-secondary"
-          >→ {{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</small
+        <span class="text-body-secondary"
+          >→ {{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</span
         >
         } @else {
         <span class="badge badge-warning text-xs">En curso</span>
         }
       </td>
       <td class="text-center">
-        <small class="d-block">
+        <span class="d-block">
           {{ item.nivelCisternaAntes | number: '1.0-0' }}%
           <span class="text-body-secondary"> → </span>
           {{ item.nivelCisternaDespues | number: '1.0-0' }}%
-        </small>
-        <small
+        </span>
+        <span
           class="fw-semibold"
           [class.text-green-600]="(item.nivelCisternaDespues - item.nivelCisternaAntes) > 0"
           [class.text-red-500]="(item.nivelCisternaDespues - item.nivelCisternaAntes) <= 0"
         >
           ({{ (item.nivelCisternaDespues - item.nivelCisternaAntes) | number:
           '1.0-0' }}%)
-        </small>
+        </span>
       </td>
       <td class="text-center">
-        <small>
+        <span>
           {{ item.lecturaMedidorInicial | number: '1.0-0' }}
           <span class="text-body-secondary"> → </span>
           {{ item.lecturaMedidorFinal | number: '1.0-0' }}
-        </small>
+        </span>
       </td>
       <td class="text-end fw-semibold">
         {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
         '1.0-0' }}
       </td>
       <td class="text-end">
-        <small class="d-block text-body-secondary"
-          >{{ item.costoMetroCubico | number: '1.2-2' }}</small
+        <span class="d-block text-body-secondary"
+          >{{ item.costoMetroCubico | number: '1.2-2' }}</span
         >
-        <small class="fw-semibold">
+        <span class="fw-semibold">
           ${{ (item.costoMetroCubico * (item.lecturaMedidorFinal -
           item.lecturaMedidorInicial)) | number: '1.2-2' }}
-        </small>
+        </span>
       </td>
       <td>
         @if (item.colaboradorMtto) {
-        <small class="d-block"
+        <span class="d-block"
           ><app-icon
             [icon]="'material-symbols-light:build'"
             class="me-1 text-body-secondary"
-          />{{ item.colaboradorMtto }}</small
+          />{{ item.colaboradorMtto }}</span
         >
         } @if (item.guardiaSeguridad) {
-        <small class="text-body-secondary"
+        <span class="text-body-secondary"
           ><app-icon [icon]="'material-symbols-light:shield'" class="me-1" />{{
-          item.guardiaSeguridad }}</small
+          item.guardiaSeguridad }}</span
         >
         }
       </td>

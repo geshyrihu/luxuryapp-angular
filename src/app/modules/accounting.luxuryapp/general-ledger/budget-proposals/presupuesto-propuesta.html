@@ -634,7 +634,7 @@
           <div class="d-flex justify-content-between w-full">
             <div>
               <span
-                class="pointer me-1 text-sm"
+                class="pointer me-1"
                 (click)="showPurchaseHistory(item)"
                 lxTooltip="Historial de compras"
                 ><app-icon
@@ -644,7 +644,7 @@
                 |</span
               >
               <span
-                class="pointer me-1 text-sm"
+                class="pointer me-1"
                 (click)="showItemHistory(item)"
                 lxTooltip="Historial de partidas"
                 ><app-icon
@@ -654,7 +654,7 @@
                 |</span
               >
               <span
-                class="pointer me-1 text-sm"
+                class="pointer me-1"
                 (click)="showSupportDialog(item)"
                 lxTooltip="Documentos de soporte"
                 >📄 |</span
@@ -690,9 +690,9 @@
               >
               }
 
-              <small class="font-small-gray text-xs numeric-column"
+              <span class="font-small-gray text-xs numeric-column"
                 >{{ item.accountNumber }}
-              </small>
+              </span>
 
               <div class="text-body mt-1 fw-semibold">
                 {{ item.accountName }}

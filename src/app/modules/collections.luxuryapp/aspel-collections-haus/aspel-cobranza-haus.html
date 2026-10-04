@@ -191,7 +191,7 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono"
+          <code class="px-2 py-1 rounded bg-body-tertiary font-mono"
             >{{ item.numCta }}</code
           >
         </td>
@@ -509,7 +509,7 @@
               />
             </td>
             <td>
-              <code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono"
+              <code class="px-2 py-1 rounded bg-body-tertiary font-mono"
                 >{{ item.numCta }}</code
               >
             </td>
@@ -534,19 +534,18 @@
             <td>
               <div class="d-flex flex-column gap-1">
                 @if (!item.vencidos.length) {
-                <span class="text-body-secondary text-sm"
+                <span class="text-body-secondary"
                   >Sin vencidos abiertos</span
                 >
                 } @for (vencido of item.vencidos; track $index) {
-                <div class="d-flex align-items-center flex-wrap gap-2 text-sm">
+                <div class="d-flex align-items-center flex-wrap gap-2">
                   <strong>{{ vencido.fechaCargo }}</strong>
                   <span
                     >{{ vencido.saldoPendiente | currency: "MXN" : "symbol" :
                     "1.2-2" }}</span
                   >
-                  <small class="text-body-secondary"
-                    >{{ vencido.conceptoDetalle }}</small
-                  >
+                  <span class="text-body-secondary"
+                    >{{ vencido.conceptoDetalle }}</span>
                 </div>
                 }
               </div>
@@ -637,7 +636,7 @@
 
         <ng-template #body let-item>
           <tr>
-            <td><code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono">{{ item.numCtaContra }}</code></td>
+            <td><code class="px-2 py-1 rounded bg-body-tertiary font-mono">{{ item.numCtaContra }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
             <td class="text-end font-mono">{{ item.totalMonto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
             <td class="text-end font-mono">{{ item.totalMovimientos }}</td>
@@ -768,7 +767,7 @@
     <ng-template #body let-item>
       <tr class="cursor-pointer" (click)="openDebtDetail(item)">
         <td>
-          <code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono"
+          <code class="px-2 py-1 rounded bg-body-tertiary font-mono"
             >{{ item.numCtaBase }}</code
           >
         </td>
@@ -904,7 +903,7 @@
             <td>
               <lux-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
-            <td><code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono">{{ item.numCta }}</code></td>
+            <td><code class="px-2 py-1 rounded bg-body-tertiary font-mono">{{ item.numCta }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
             <td class="text-end font-mono">{{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</td>
             <td class="text-end font-mono text-orange-600">{{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}</td>

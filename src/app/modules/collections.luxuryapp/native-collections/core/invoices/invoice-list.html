@@ -70,15 +70,15 @@
     <ng-template #body let-inv>
       <tr>
         <td class="text-xs font-mono">{{ inv.uuid }}</td>
-        <td class="text-sm">{{ inv.serie || "—" }}</td>
-        <td class="text-sm">{{ inv.folio || "—" }}</td>
+        <td>{{ inv.serie || "—" }}</td>
+        <td>{{ inv.folio || "—" }}</td>
         <td class="text-center">
           <lux-tag
             [value]="statusMeta(inv.status).label"
             [severity]="statusMeta(inv.status).severity"
           />
         </td>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ inv.timbreAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">

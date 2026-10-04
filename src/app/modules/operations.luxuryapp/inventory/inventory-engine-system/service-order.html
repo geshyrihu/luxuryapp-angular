@@ -37,18 +37,18 @@
         <lux-editor [formControl]="item.activityControl"></lux-editor>
       </td>
       <td>
-        <small>{{ item.recurrence }} </small>
+        <span>{{ item.recurrence }} </span>
       </td>
       <td>
-        <small>{{ item.month }} </small>
+        <span>{{ item.month }} </span>
       </td>
       <td>
         //TODO: REVISAR
-        <small>{{ item.day }} </small>
-        <!-- <small>{{ item.day | eDay }} </small> -->
+        <span>{{ item.day }} </span>
+        <!-- <span>{{ item.day | eDay }} </span> -->
       </td>
       <td>
-        <small>{{ item.price | currency: "MXN" }} </small>
+        <span>{{ item.price | currency: "MXN" }} </span>
       </td>
       <td>
         <div class="d-flex justify-content-center">

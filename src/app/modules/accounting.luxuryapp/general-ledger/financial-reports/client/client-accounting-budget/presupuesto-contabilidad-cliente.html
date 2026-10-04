@@ -34,7 +34,7 @@
               class="rf-td-descripcion--item"
               [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null"
             >
-              <div [ngClass]="fila.nivel === 1 || fila.nivel === 4 ? 'rf-td-descripcion' : 'fw-bold text-sm text-uppercase'">
+              <div [ngClass]="fila.nivel === 1 || fila.nivel === 4 ? 'rf-td-descripcion' : 'fw-bold text-uppercase'">
                 @if (fila.nivel === 2 || fila.nivel === 3) {
                 <span
                   class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -59,7 +59,7 @@
                   {{ fila.pstoMensual > 0 ? (fila.pstoMensual | accountingNumber) : '-' }}
                 </span>
                 <span
-                  class="text-sm fw-bold"
+                  class="fw-bold"
                   [class.rf-neg]="val > fila.pstoMensual && fila.pstoMensual > 0"
                 >
                   {{ val !== 0 ? (val | accountingNumber) : '-' }}
@@ -105,7 +105,7 @@
                   {{ reporte.granTotal.pstoMensual > 0 ? (reporte.granTotal.pstoMensual | accountingNumber) : '-' }}
                 </span>
                 <span
-                  class="text-sm fw-bold"
+                  class="fw-bold"
                   [class.rf-neg]="val > reporte.granTotal.pstoMensual && reporte.granTotal.pstoMensual > 0"
                 >
                   {{ val !== 0 ? (val | accountingNumber) : '-' }}

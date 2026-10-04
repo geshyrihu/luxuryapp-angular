@@ -61,7 +61,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ item.description }}</span>
           @if (item.notasEspeciales) {
-          <small class="text-body-secondary">{{ item.notasEspeciales }}</small>
+          <span class="text-body-secondary">{{ item.notasEspeciales }}</span>
           }
         </div>
       </td>
@@ -69,7 +69,7 @@
       <td>
         <div class="d-flex flex-column">
           <span class="fw-bold">{{ item.accountNumber }}</span>
-          <small class="text-body-secondary">{{ item.accountName }}</small>
+          <span class="text-body-secondary">{{ item.accountName }}</span>
         </div>
       </td>
       <td>{{ item.tipoGasto }}</td>

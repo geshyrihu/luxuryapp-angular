@@ -18,9 +18,9 @@
       [ngModel]="selectedRecurrence()"
       (ngModelChange)="filterRecurrenceChange.emit($event)"
       [data]="[
-        { label: 'Diario', value: 'daily' },
-        { label: 'Semanal', value: 'weekly' },
-        { label: 'Mensual', value: 'monthly' }
+        { label: 'Diario', value: '1' },
+        { label: 'Semanal', value: '2' },
+        { label: 'Mensual', value: '3' }
       ]"
       label="Frecuencia"
       placeholder="Todas las Recurrencias"
@@ -52,7 +52,7 @@
     <div class="list-item-mobile">
       <span class="flex-fill">
         <div class="text-body-md fw-medium text-on-surface">{{ item.name }}</div>
-        <span class="text-body-sm text-on-surface-secondary">{{ item.recurrenceUnit ?? 'N/A' }}</span>
+        <span class="text-body-sm text-on-surface-secondary">{{ item.recurrenceUnitDisplayName ?? 'N/A' }}</span>
       </span>
       <ili-action-menu end>
         <ili-button-edit

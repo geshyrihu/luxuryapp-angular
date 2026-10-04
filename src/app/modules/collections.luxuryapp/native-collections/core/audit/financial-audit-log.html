@@ -72,14 +72,14 @@
 
     <ng-template #body let-log>
       <tr>
-        <td class="text-center text-sm">
+        <td class="text-center">
           {{ log.occurredAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-xs fw-medium text-body-secondary">
           {{ log.operationType }}
         </td>
-        <td class="text-sm">{{ log.summary }}</td>
-        <td class="text-sm">{{ log.actor }}</td>
+        <td>{{ log.summary }}</td>
+        <td>{{ log.actor }}</td>
         <td class="text-center">
           <lux-tag
             [value]="successMeta(log.isSuccess).label"
