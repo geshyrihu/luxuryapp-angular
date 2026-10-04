@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { AuthService } from "@core/auth/services/auth.service";
 import { ProfielService } from "@core/auth/services/profiel-service";
@@ -22,7 +22,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, LxCard, InputImg, WebButtonLabel],
+  imports: [AppIcon, LxCard, InputImg, ButtonWeb],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -94,4 +94,3 @@ export class UpdateUserPhotoComponent implements OnInit {
       });
   }
 }
-

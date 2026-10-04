@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppIcon,
     ReactiveFormsModule,
     LxCard,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputPassword,
   ],
 })
@@ -107,4 +107,3 @@ export class UpdatePasswordComponent implements OnInit {
     return pass1 !== pass2 && this.updatePassword ? true : false;
   }
 }
-
