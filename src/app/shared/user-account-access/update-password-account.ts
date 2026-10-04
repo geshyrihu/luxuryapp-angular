@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { UpdatePasswordDto } from "@core/interfaces/user-info.interface";
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxMessage, WebButtonLabel, AppIcon],
+  imports: [LxMessage, ButtonWeb, AppIcon],
 })
 export class UpdatePasswordAccount implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -103,4 +103,3 @@ export class UpdatePasswordAccount implements OnInit {
       });
   }
 }
-

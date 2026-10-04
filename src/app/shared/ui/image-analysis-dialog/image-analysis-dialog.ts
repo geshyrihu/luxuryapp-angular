@@ -8,12 +8,12 @@ import { FormsModule } from "@angular/forms";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { MessageService } from "@core/services/message.service";
 import { TicketAnalysisService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-analysis.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-image-analysis-dialog",
-  imports: [FormsModule, WebButtonLabel, AppIcon],
+  imports: [FormsModule, ButtonWeb, AppIcon],
   template: `
     <div
       class="modal fade"
@@ -52,7 +52,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
                   (change)="onFileSelect($event)"
                   hidden
                 />
-                <il-button
+                <lux-button-web
+                  displayMode="both"
                   label="Seleccionar Foto"
                   (clicked)="chooseInput.click()"
                 />
@@ -80,7 +81,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
                     }
 
                     @if (!loading) {
-                      <il-button
+                      <lux-button-web
+                        displayMode="both"
                         label="Analizar Ahora"
                         icon="material-symbols-light:bolt"
                         (clicked)="analyze()"
@@ -110,13 +112,15 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
                 ></textarea>
 
                 <div class="d-flex justify-content-end gap-2 mt-3">
-                  <il-button
+                  <lux-button-web
+                    displayMode="both"
                     label="Cerrar"
                     severity="secondary"
                     variant="outline"
                     (clicked)="visible = false"
                   />
-                  <il-button
+                  <lux-button-web
+                    displayMode="both"
                     label="Copiar y Usar"
                     icon="material-symbols-light:content-copy"
                     (clicked)="useResult()"
