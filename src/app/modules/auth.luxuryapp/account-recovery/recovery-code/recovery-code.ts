@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { catchError, finalize, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -44,7 +44,7 @@ interface ICodeForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabel,
+    ButtonWeb,
     RouterModule,
     AppIcon,
   ],
