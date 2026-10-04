@@ -6,7 +6,7 @@
       <div
         class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
       >
-        <lux-icon icon="material-symbols-light:settings-outline" />
+        <app-icon icon="material-symbols-light:settings-outline" />
       </div>
       <div>
         <h1 class="ds-heading text-3xl fw-bold text-body m-0">
@@ -23,7 +23,7 @@
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <lux-icon [icon]="group.icon" />
+    <app-icon [icon]="group.icon" />
     <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
       {{ group.label }}
     </h2>
@@ -32,45 +32,6 @@
 
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
-<<<<<<< HEAD:src/app/modules/admin.luxuryapp/admin-wrapper/admin-wrapper.html
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-      <lux-card
-        class="card card--interactive card--elevated h-full position-relative overflow-hidden"
-        (click)="navigateTo(module.route)"
-        [ngbPopover]="module.description"
-        popoverTitle="Info del módulo"
-        triggers="mouseenter:mouseleave"
-        placement="top"
-        container="body"
-      >
-        <!-- Watermark Decorativo sutil a la derecha -->
-        <div class="position-absolute" style="right: -15px; bottom: -20px; opacity: 0.04; transform: rotate(-15deg); pointer-events: none;">
-          <lux-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 8rem;" />
-        </div>
-
-        <!-- Contenedor Horizontal (Flex Row) -->
-        <div class="d-flex align-items-center p-3 gap-3 h-100 z-1 position-relative">
-          <!-- Columna Izquierda: Icono Enorme -->
-          <div
-            class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
-            [style.backgroundColor]="module.bgColor"
-            style="width: 64px; height: 64px;"
-          >
-            <lux-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 2.25rem;" />
-          </div>
-          
-          <!-- Columna Derecha: Textos -->
-          <div class="flex-grow-1">
-            <h3 class="m-0 fw-bold text-body text-base line-height-2">
-              {{ module.title }}
-            </h3>
-            <span class="text-xs fw-semibold mt-1 d-inline-block" [style.color]="module.color">
-              Acceder &rarr;
-            </span>
-          </div>
-        </div>
-      </lux-card>
-=======
     <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
       <lux-widget-card
         [title]="module.title"
@@ -80,7 +41,6 @@
         [bgColor]="module.bgColor"
         (cardClick)="navigateTo(module.route)"
       ></lux-widget-card>
->>>>>>> origin/main:src/app/modules/admin.luxuryapp/admin-hub/admin-hub.html
     </div>
     }
   </div>
@@ -94,7 +54,7 @@
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <lux-icon icon="material-symbols-light:settings-outline" />
+      <app-icon icon="material-symbols-light:settings-outline" />
     </div>
     <div>
       <h2 class="fw-bold m-0 text-body">Administración</h2>
@@ -108,14 +68,14 @@
     <!-- Divisor de grupo -->
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <lux-icon [icon]="group.icon" />
+        <app-icon [icon]="group.icon" />
         <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
 
     @for (module of group.cards; track module.route) {
     <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
-      <lux-icon
+      <app-icon
         slot="start"
         [icon]="module.icon"
         [style.color]="module.color"

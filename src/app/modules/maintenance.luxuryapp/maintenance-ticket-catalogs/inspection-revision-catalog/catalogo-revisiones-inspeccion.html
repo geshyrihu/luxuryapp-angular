@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table-web
+<app-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -15,7 +15,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <lux-table-caption-web
+    <app-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -24,11 +24,11 @@
     <tr>
       <th appSortableColumn="description">
         DESCRIPCIÓN
-        <lux-sorticon-web field="description" />
+        <app-sorticon field="description" />
       </th>
       <th appSortableColumn="departament">
         DEPARTAMENTO
-        <lux-sorticon-web field="departament" />
+        <app-sorticon field="departament" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -59,16 +59,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-<<<<<<< HEAD
-    <lux-table-empty-message-web [colspan]="5" />
-=======
     <app-table-empty-message [colspan]="3" />
->>>>>>> origin/main
   </ng-template>
   <ng-template #paginatorleft>
-    <lux-table-footer-web [data]="dataSignal()" />
+    <app-table-footer [data]="dataSignal()" />
   </ng-template>
-</lux-table-web>
+</app-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -84,7 +80,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <lux-icon
+        <app-icon
           icon="material-symbols-light:manage-search"
           class="text-xl text-primary"
         />
