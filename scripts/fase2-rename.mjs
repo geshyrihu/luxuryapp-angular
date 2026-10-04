@@ -69,9 +69,33 @@ function collectAppSelectors(dir, stripDirSuffix) {
   return map;
 }
 
+function collectExistingTargets(dir, stripDirSuffix) {
+  const map = new Map();
+  for (const f of walk(dir)) {
+    if (!f.endsWith(".ts") || f.endsWith(".spec.ts")) continue;
+    const content = readFileSync(f, "utf8");
+    const re = stripDirSuffix
+      ? /selector:\s*["'](lux-[a-z0-9-]+-web)["']/g
+      : /selector:\s*["'](lux-[a-z0-9-]+)["']/g;
+    for (const m of content.matchAll(re)) {
+      const target = m[1];
+      const base = stripDirSuffix ? target.slice(0, -4) : target;
+      map.set(`app-${base.slice(4)}`, target);
+    }
+  }
+  return map;
+}
+
 const webMap = collectAppSelectors(WEB, true);
 const nonWebMap = new Map();
 for (const d of NONWEB_DIRS) for (const [k, v] of collectAppSelectors(d, false)) nonWebMap.set(k, v);
+// Merge-state recovery: main may already contain renamed selectors while some
+// reorganized templates still use old app-* tags. Recover mapping from target
+// selectors so those references are repaired too.
+for (const [k, v] of collectExistingTargets(WEB, true)) if (!webMap.has(k)) webMap.set(k, v);
+for (const d of NONWEB_DIRS) {
+  for (const [k, v] of collectExistingTargets(d, false)) if (!nonWebMap.has(k)) nonWebMap.set(k, v);
+}
 
 // --- 2) detectar colisiones y solapamientos ---
 const all = new Map();
@@ -90,7 +114,10 @@ for (const f of walk(UI)) {
   const content = readFileSync(f, "utf8");
   for (const m of content.matchAll(/selector:\s*["'](lux-[a-z0-9-]+)["']/g)) existing.add(m[1]);
 }
-for (const [nu, old] of all) if (existing.has(nu)) collisions.push(`${nu} ya existe (para ${old})`);
+const renamedTargets = new Set([...webMap.values(), ...nonWebMap.values()]);
+for (const [nu, old] of all) {
+  if (existing.has(nu) && !renamedTargets.has(nu)) collisions.push(`${nu} ya existe (para ${old})`);
+}
 // colision con adaptive/icon lux-icon
 if (all.has("lux-icon") && all.get("lux-icon") === "app-icon") {
   // se resuelve borrando el wrapper muerto adaptive/icon

@@ -52,7 +52,7 @@
   </div>
 
   <div class="card p-0">
-    <app-table
+    <lux-table-web
       #dt
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
@@ -70,11 +70,11 @@
         <tr>
           <th appSortableColumn="name">
             Nombre
-            <app-sorticon field="name" />
+            <lux-sorticon-web field="name" />
           </th>
           <th appSortableColumn="frequency">
             Frecuencia
-            <app-sorticon field="frequency" />
+            <lux-sorticon-web field="frequency" />
           </th>
           <th class="no-print text-end">Acciones</th>
         </tr>
@@ -118,8 +118,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message-web [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table-web>
   </div>
 </div>

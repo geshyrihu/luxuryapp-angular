@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table-web
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -15,7 +15,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption-web
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -24,11 +24,11 @@
     <tr>
       <th appSortableColumn="description">
         DESCRIPCIÓN
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
       <th appSortableColumn="departament">
         DEPARTAMENTO
-        <app-sorticon field="departament" />
+        <lux-sorticon-web field="departament" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -36,7 +36,7 @@
   <ng-template #groupheader let-item>
     <tr class="table-group-header bg-light">
       <td colspan="3" class="fw-bold">
-        <app-icon icon="material-symbols-light:folder-open" class="text-primary me-2 align-middle text-xl" />
+        <lux-icon icon="material-symbols-light:folder-open" class="text-primary me-2 align-middle text-xl" />
         <span class="align-middle">{{ item.categoria }}</span>
       </td>
     </tr>
@@ -59,12 +59,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message-web [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer-web [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table-web>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -80,7 +80,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:manage-search"
           class="text-xl text-primary"
         />

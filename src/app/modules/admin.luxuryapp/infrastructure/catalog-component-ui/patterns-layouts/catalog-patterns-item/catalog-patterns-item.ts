@@ -55,11 +55,11 @@ const PATTERNS_LABELS: Record<string, string> = {
         @case ("filterstable") {
           <!-- Receta: Encabezado + Filtros + Tabla -->
           <div class="d-flex flex-column gap-3">
-            <app-toolbar>
+            <lux-toolbar-web>
               <ng-template #start>
                 <div class="d-flex align-items-center gap-2">
                   <h3 class="m-0 font-bold">Órdenes de Compra</h3>
-                  <app-status-badge [status]="EStatus.Aprobado" />
+                  <lux-status-badge-web [status]="EStatus.Aprobado" />
                 </div>
               </ng-template>
               <ng-template #end>
@@ -68,9 +68,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                   iconClass="material-symbols-light:add"
                 />
               </ng-template>
-            </app-toolbar>
+            </lux-toolbar-web>
 
-            <app-card>
+            <lux-card-web>
               <ng-template #content>
                 <div class="row g-3">
                   <div class="col-12 col-md-4">
@@ -100,11 +100,11 @@ const PATTERNS_LABELS: Record<string, string> = {
                   </div>
                 </div>
               </ng-template>
-            </app-card>
+            </lux-card-web>
 
-            <app-card>
+            <lux-card-web>
               <ng-template #content>
-                <app-table [value]="mockTableData" class="w-100">
+                <lux-table-web [value]="mockTableData" class="w-100">
                   <ng-template #header>
                     <tr>
                       <th>Folio</th>
@@ -119,7 +119,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <td class="font-bold">{{ row.folio }}</td>
                       <td>{{ row.fecha }}</td>
                       <td>{{ row.total }}</td>
-                      <td><app-status-badge [status]="EStatus.Aprobado" /></td>
+                      <td><lux-status-badge-web [status]="EStatus.Aprobado" /></td>
                       <td class="text-end">
                         <iw-button-icon
                           icon="material-symbols-light:visibility"
@@ -128,9 +128,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                       </td>
                     </tr>
                   </ng-template>
-                </app-table>
+                </lux-table-web>
               </ng-template>
-            </app-card>
+            </lux-card-web>
           </div>
         }
         @case ("kpichart") {
@@ -138,7 +138,7 @@ const PATTERNS_LABELS: Record<string, string> = {
           <div class="row g-4">
             <!-- KPIs -->
             <div class="col-12 col-md-4 d-flex flex-column gap-3">
-              <app-card class="flex-grow-1" [elevated]="true">
+              <lux-card-web class="flex-grow-1" [elevated]="true">
                 <ng-template #content>
                   <div class="d-flex justify-content-between align-items-start">
                     <div>
@@ -146,7 +146,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">$125,000</h3>
                     </div>
                     <div class="bg-success-light text-success p-2 rounded">
-                      <app-icon
+                      <lux-icon
                         icon="material-symbols-light:trending-up"
                         class="text-xl"
                       />
@@ -156,8 +156,8 @@ const PATTERNS_LABELS: Record<string, string> = {
                     +14% respecto al mes anterior
                   </p>
                 </ng-template>
-              </app-card>
-              <app-card class="flex-grow-1" [elevated]="true">
+              </lux-card-web>
+              <lux-card-web class="flex-grow-1" [elevated]="true">
                 <ng-template #content>
                   <div class="d-flex justify-content-between align-items-start">
                     <div>
@@ -165,7 +165,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">42</h3>
                     </div>
                     <div class="bg-primary-light text-primary p-2 rounded">
-                      <app-icon
+                      <lux-icon
                         icon="material-symbols-light:shopping-cart"
                         class="text-xl"
                       />
@@ -175,20 +175,20 @@ const PATTERNS_LABELS: Record<string, string> = {
                     5 requieren atención
                   </p>
                 </ng-template>
-              </app-card>
+              </lux-card-web>
             </div>
             <!-- Gráfico -->
             <div class="col-12 col-md-8">
-              <app-card class="h-100" [elevated]="true">
+              <lux-card-web class="h-100" [elevated]="true">
                 <ng-template #content>
-                  <app-chart-wrapper
+                  <lux-chart-wrapper-web
                     type="bar"
                     [data]="mockChartData"
                     height="300px"
                     title="Ingresos Mensuales"
                   />
                 </ng-template>
-              </app-card>
+              </lux-card-web>
             </div>
           </div>
         }
@@ -196,14 +196,14 @@ const PATTERNS_LABELS: Record<string, string> = {
           <!-- Receta: Detalle + Timeline -->
           <div class="row g-4">
             <div class="col-12 col-md-8">
-              <app-card header="Detalles del Ticket #4502" [elevated]="true">
+              <lux-card-web header="Detalles del Ticket #4502" [elevated]="true">
                 <ng-template #content>
                   <p class="text-secondary">
                     El aire acondicionado de la sala de juntas principal no está
                     enfriando. Se requiere revisión urgente antes de la reunión
                     de consejo.
                   </p>
-                  <app-divider />
+                  <lux-divider-web />
                   <div class="row">
                     <div class="col-6 mb-3">
                       <span class="text-sm text-secondary d-block"
@@ -219,10 +219,10 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </ng-template>
-              </app-card>
+              </lux-card-web>
             </div>
             <div class="col-12 col-md-4">
-              <app-card header="Historial" [elevated]="true">
+              <lux-card-web header="Historial" [elevated]="true">
                 <ng-template #content>
                   <div class="timeline-simple">
                     <div class="d-flex gap-3 mb-3">
@@ -230,7 +230,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                         <div
                           class="rounded-full bg-primary text-white p-1 d-flex"
                         >
-                          <app-icon
+                          <lux-icon
                             icon="material-symbols-light:check"
                             class="text-sm"
                           />
@@ -250,7 +250,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                         <div
                           class="rounded-full bg-surface border border-2 border-secondary text-secondary p-1 d-flex"
                         >
-                          <app-icon
+                          <lux-icon
                             icon="material-symbols-light:pending"
                             class="text-sm"
                           />
@@ -263,7 +263,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </ng-template>
-              </app-card>
+              </lux-card-web>
             </div>
           </div>
         }
@@ -278,13 +278,13 @@ const PATTERNS_LABELS: Record<string, string> = {
               >
                 <h3 class="m-0">Medidor Elóctrico A1</h3>
                 <div class="d-flex align-items-center gap-2 mb-3 mt-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:flash-on"
                     class="text-xl text-primary"
                   />
                   <span class="text-xl font-bold">120 kWh</span>
                 </div>
-                <app-status-badge [status]="EStatus.Concluido" />
+                <lux-status-badge-web [status]="EStatus.Concluido" />
               </div>
             </div>
           </div>
@@ -295,7 +295,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="card-title">Data Table Hybrid</h3>
             </div>
             <div class="card-body">
-              <app-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
+              <lux-table-web [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
                 <ng-template #header
                   ><tr>
                     <th>Elemento</th>
@@ -305,9 +305,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <ng-template #body let-item
                   ><tr>
                     <td>{{ item.name }}</td>
-                    <td><app-status-badge [status]="EStatus.Proceso" /></td></tr
+                    <td><lux-status-badge-web [status]="EStatus.Proceso" /></td></tr
                 ></ng-template>
-              </app-table>
+              </lux-table-web>
             </div>
           </div>
         }
@@ -348,7 +348,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="card-title">Navegación de Referencia</h3>
             </div>
             <div class="card-body">
-              <app-tabs
+              <lux-tabs-web
                 [tabs]="[
                   { id: '0', label: 'Dashboard' },
                   { id: '1', label: 'Reportes' },
@@ -357,7 +357,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               >
                 <div tab="0"><p>Contenido Dashboard.</p></div>
                 <div tab="1"><p>Reportes.</p></div>
-              </app-tabs>
+              </lux-tabs-web>
             </div>
           </div>
         }
@@ -378,7 +378,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 grupos de navegación en cards visuales uniformes para web y
                 lista agrupada para mobile.
               </p>
-              <app-divider />
+              <lux-divider-web />
 
               <!-- 1. Modelo de datos requerido -->
               <h3 class="text-base font-bold mb-2">
@@ -412,13 +412,13 @@ const PATTERNS_LABELS: Record<string, string> = {
                           style="width:44px;height:44px;"
                           [style.backgroundColor]="card.bgColor"
                         >
-                          <app-icon
+                          <lux-icon
                             [icon]="card.icon"
                             style="font-size:1.35rem;"
                             [style.color]="card.color"
                           />
                         </div>
-                        <app-icon
+                        <lux-icon
                           icon="material-symbols-light:north-east"
                           class="text-400 text-lg"
                         />
@@ -522,7 +522,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                   <div
                     class="surface-ground border-round px-3 py-1 text-xs d-flex align-items-center gap-2"
                   >
-                    <app-icon [icon]="impl.icon" class="text-primary" />
+                    <lux-icon [icon]="impl.icon" class="text-primary" />
                     <span class="font-medium">{{ impl.label }}</span>
                     <code class="text-color-secondary">{{ impl.route }}</code>
                   </div>
