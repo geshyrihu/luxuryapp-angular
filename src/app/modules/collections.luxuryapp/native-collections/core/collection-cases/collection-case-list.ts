@@ -101,7 +101,7 @@ export default class CollectionCaseList {
           m.default,
           { item },
           "Expediente de Cobranza",
-          this.dialogHandlerS.sizeLg,
+          this.dialogHandlerS.sizeXl,
         )
         .then((refreshed: boolean) => {
           if (refreshed) this.onLoadData(this.customerIdS.customerId()!);

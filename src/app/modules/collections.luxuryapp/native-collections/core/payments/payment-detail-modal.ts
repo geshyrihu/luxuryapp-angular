@@ -144,7 +144,7 @@ export class PaymentDetailModal implements OnInit {
         customerId: this.payment()?.customerId,
       },
       "Cargo Relacionado",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

@@ -104,7 +104,7 @@ export class MyRequestsTask implements OnInit {
         TaskFollowup,
         { id: id },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.status);
@@ -117,7 +117,7 @@ export class MyRequestsTask implements OnInit {
         TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -132,7 +132,7 @@ export class MyRequestsTask implements OnInit {
         TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

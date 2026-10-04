@@ -48,7 +48,7 @@ export class AgendaSemanalCard implements OnInit {
       AgendaSemanal,
       null,
       "Agenda - Juntas con Comite",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -85,7 +85,7 @@ export class ContractTemplateList implements OnInit {
         ContractTemplateFormComponent,
         { item: null },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -96,7 +96,7 @@ export class ContractTemplateList implements OnInit {
         ContractTemplateFormComponent,
         { item },
         "Editar Machote",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }

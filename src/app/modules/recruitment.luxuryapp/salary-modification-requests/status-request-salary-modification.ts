@@ -83,7 +83,7 @@ export class StatusRequestSalaryModification implements OnInit {
         applicationUserId,
       },
       "Tarjeta de colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -96,7 +96,7 @@ export class StatusRequestSalaryModification implements OnInit {
           id: data.id,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

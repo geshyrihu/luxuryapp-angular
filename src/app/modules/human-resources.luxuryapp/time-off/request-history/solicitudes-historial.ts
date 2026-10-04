@@ -344,7 +344,7 @@ export class SolicitudesHistorial implements OnInit {
         PermisoDetalleModal,
         { id: item.id },
         "Detalle de Permiso",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
     }
 
@@ -353,7 +353,7 @@ export class SolicitudesHistorial implements OnInit {
         VacacionDetalleModal,
         { id: item.id },
         "Detalle de Vacaciones",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
     }
   }

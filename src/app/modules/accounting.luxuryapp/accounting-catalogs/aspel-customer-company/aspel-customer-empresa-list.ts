@@ -86,7 +86,7 @@ export class AspelCustomerEmpresaList implements OnInit {
         AspelCustomerEmpresaForm,
         { ...data, customerId: this.customerId() },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

@@ -173,7 +173,7 @@ export class TaskView implements OnInit {
         TaskForm,
         { id: data.id, ticketGroupId: this.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();
@@ -186,7 +186,7 @@ export class TaskView implements OnInit {
         TaskFollowup,
         { id: id },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -199,7 +199,7 @@ export class TaskView implements OnInit {
         TaskProgram,
         { id: id, ticketGroupId: this.ticketGroupId },
         "Programar actividad",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -212,7 +212,7 @@ export class TaskView implements OnInit {
         TaskClose,
         { id: id },
         "Cerrar ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -225,7 +225,7 @@ export class TaskView implements OnInit {
         TaskReopen,
         { id: id },
         "Re abrir ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();

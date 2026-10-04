@@ -379,7 +379,7 @@ export class HeaderEmployeedesktop implements OnInit {
         HeaderEmployeeAiModal,
         { content: this.aiModalContent() },
         "Generador de Comunicados IA",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .finally(() => this.displayAiModal.set(false));
   }

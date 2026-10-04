@@ -216,7 +216,7 @@ export class VacantesList implements OnInit {
         VacanteForm,
         { id: data.id },
         "Editar vacante",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -237,7 +237,7 @@ export class VacantesList implements OnInit {
       VacanteJobDescriptionModal,
       { workPositionId },
       "Descripción del puesto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -263,7 +263,7 @@ export class VacantesList implements OnInit {
         vacancyStatus: item?.status,
       },
       "Candidatos de la vacante",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (result) this.onLoadData();

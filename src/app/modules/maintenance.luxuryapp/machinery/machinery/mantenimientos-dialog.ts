@@ -175,7 +175,7 @@ export class MantenimientosDialog {
         MantenimientoPreventivoForm,
         { id: order.id, task: "copy", idMachinery: order.machineryId },
         "Duplicar Actividad",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) {

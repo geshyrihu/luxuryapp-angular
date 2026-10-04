@@ -92,7 +92,7 @@ export class ContractAddendumList implements OnInit {
         ContractAddendumFormComponent,
         { data: { item: null } },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -103,7 +103,7 @@ export class ContractAddendumList implements OnInit {
         ContractAddendumFormComponent,
         { data: { item } },
         "Editar Adenda",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }

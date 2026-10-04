@@ -99,7 +99,7 @@ export class CandidateApplicationList implements OnInit {
         CandidateApplicationForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

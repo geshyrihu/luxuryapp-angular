@@ -352,7 +352,7 @@ export class CobranzaOnlineResumen {
       CobranzaOnlineClasificacionDetail,
       data,
       `Detalle: ${row.clasificacion} (${departamentos.length} deptos.)`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

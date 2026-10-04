@@ -438,7 +438,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       ProductosForm,
       { id: 0 },
       "Registrar nuevo Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -447,7 +447,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       TarjetaProducto,
       { productoId },
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

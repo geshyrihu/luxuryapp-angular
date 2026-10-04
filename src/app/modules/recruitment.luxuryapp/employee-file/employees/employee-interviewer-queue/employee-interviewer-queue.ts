@@ -165,7 +165,7 @@ export class EmployeeInterviewerQueue {
           pendingAction: candidate.pendingAction,
         },
         candidate.candidateName,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }

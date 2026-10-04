@@ -273,7 +273,7 @@ export class CandidateForm implements OnInit {
       CandidateApplicationForm,
       { candidateId: found.id },
       "Asignar candidato a entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

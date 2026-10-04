@@ -91,7 +91,7 @@ export class CatalogoDescripcionList implements OnInit {
         CatalogoDescripcionForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

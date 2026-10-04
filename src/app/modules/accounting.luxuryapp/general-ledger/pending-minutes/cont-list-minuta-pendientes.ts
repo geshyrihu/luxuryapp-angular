@@ -118,7 +118,7 @@ export class ContListMinutaPendientes implements OnInit {
           idMeetingSeguimiento,
         },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -133,7 +133,7 @@ export class ContListMinutaPendientes implements OnInit {
           idItem,
         },
         "Seguimientos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -146,7 +146,7 @@ export class ContListMinutaPendientes implements OnInit {
         MinutaDetalleForm,
         data,
         data.header,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

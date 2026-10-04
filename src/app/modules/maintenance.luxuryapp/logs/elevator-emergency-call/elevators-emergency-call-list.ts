@@ -116,7 +116,7 @@ export class ElevatorsEmergencyCallList {
           customerId: this.customerIdS.customerId(),
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -110,7 +110,7 @@ export class HidranteBitacoraList implements OnInit {
       BitacoraFiltroFechaForm,
       {},
       "Reporte PDF de Bitácora Hidrantes",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result)
       await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
@@ -122,7 +122,7 @@ export class HidranteBitacoraList implements OnInit {
         HidranteChecklist,
         { id: data.id, hydrantId: this.hydrantId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

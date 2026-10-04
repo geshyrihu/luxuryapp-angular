@@ -103,7 +103,7 @@ export class TaskTemplateItems implements OnInit {
         TaskTemplateItemForm,
         { templateId: this.templateId, item },
         item ? "Editar Item" : "Nuevo Item",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.loadItems();

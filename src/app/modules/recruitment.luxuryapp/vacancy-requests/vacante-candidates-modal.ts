@@ -92,7 +92,7 @@ export class VacanteCandidatesModal implements OnInit {
         ].map((item) => item.candidateId),
       },
       "Agregar candidato y entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (result) await this.loadData();
@@ -108,7 +108,7 @@ export class VacanteCandidatesModal implements OnInit {
         lockRequestPosition: true,
       },
       "Editar candidato y entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (result) await this.loadData();

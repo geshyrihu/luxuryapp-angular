@@ -237,7 +237,7 @@ export class ListProvider implements OnInit {
       TarjetaProveedor,
       data,
       data.title,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -247,7 +247,7 @@ export class ListProvider implements OnInit {
       ProviderUse,
       data,
       data.title,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -269,7 +269,7 @@ export class ListProvider implements OnInit {
           providerId: data.providerId,
         },
         "Calificar a " + data.nameProvider,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.applyFilter();

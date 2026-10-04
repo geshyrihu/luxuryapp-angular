@@ -640,7 +640,7 @@ export class TaskForm implements OnInit, OnDestroy {
       TaskFollowup,
       { id: this.id },
       "Seguimiento de Ticket",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

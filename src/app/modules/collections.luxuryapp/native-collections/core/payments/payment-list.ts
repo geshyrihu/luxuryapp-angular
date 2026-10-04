@@ -146,7 +146,7 @@ export default class PaymentList {
     };
 
     this.dialogHandlerS
-      .openDialog(PaymentForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(PaymentForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((res: boolean) => {
         if (res) this.onLoadData();
       });
@@ -184,7 +184,7 @@ export default class PaymentList {
         summary: `Pago de ${item.propertyFullName} por $${item.amount.toFixed(2)}. Esta acción revertirá los cargos aplicados.`,
       },
       "Cancelar pago",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (!reason) return;
 

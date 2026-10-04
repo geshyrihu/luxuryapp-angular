@@ -184,7 +184,7 @@ export class VacanteForm implements OnInit {
       applicationId
         ? "Editar candidato y entrevista"
         : "Agregar candidato y entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (!result) return;

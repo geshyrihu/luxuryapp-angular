@@ -104,7 +104,7 @@ export default class NominaDetalle {
         ModalEditarEmpleadoNomina,
         { item, nominaId: this.nominaId() },
         `Editar - ${item.nombreCompleto}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadData(this.nominaId());

@@ -145,7 +145,7 @@ export class CustomerDataCompanyList implements OnInit {
         CustomerDataCompanyForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -123,7 +123,7 @@ export class EstadoFinancieroList {
         AddFileEstadoFinanciero,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

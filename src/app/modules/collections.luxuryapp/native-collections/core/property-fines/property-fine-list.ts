@@ -98,7 +98,7 @@ export default class PropertyFineList {
         PropertyFineForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res: boolean) => {
         if (res) this.onLoadData();

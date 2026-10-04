@@ -95,7 +95,7 @@ export class EquipmentContentsList implements OnInit {
       EquipmentContentForm,
       { id: null, equipmentId: this.equipmentId, title: "Nuevo contenido" },
       "Nuevo contenido",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result) await this.loadData();
   }
@@ -109,7 +109,7 @@ export class EquipmentContentsList implements OnInit {
         title: `Editar ${item.name}`,
       },
       "Editar contenido",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result) await this.loadData();
   }

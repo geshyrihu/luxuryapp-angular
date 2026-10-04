@@ -112,7 +112,7 @@ export class DetectorHumoBitacoraList implements OnInit {
       BitacoraFiltroFechaForm,
       {},
       "Reporte PDF de Bitácora Detectores de Humo",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result)
       await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
@@ -124,7 +124,7 @@ export class DetectorHumoBitacoraList implements OnInit {
         DetectorHumoChecklist,
         { id: data.id, detectorId: this.detectorId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

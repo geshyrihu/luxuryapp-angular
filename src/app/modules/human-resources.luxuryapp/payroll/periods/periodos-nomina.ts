@@ -140,7 +140,7 @@ export default class PeriodosNomina {
         ModalDiasNoHabiles,
         { periodoId: item.id },
         `Dias No Habiles - ${item.quincenaDisplay}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {});
   }

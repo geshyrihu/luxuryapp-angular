@@ -90,7 +90,7 @@ export default class ApprovalInbox {
           m.default,
           { item },
           "Revisar Solicitud",
-          this.dialogHandlerS.sizeLg,
+          this.dialogHandlerS.sizeXl,
         )
         .then((res: boolean) => {
           if (res) this.onLoadData();

@@ -98,7 +98,7 @@ export class BankList {
   // 2. Método centralizado para abrir el modal
   onModalForm(data: { id: string; title: string }) {
     this.dialogHandlerS
-      .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         // 3. Recargar si se guardó correctamente
         if (result) {

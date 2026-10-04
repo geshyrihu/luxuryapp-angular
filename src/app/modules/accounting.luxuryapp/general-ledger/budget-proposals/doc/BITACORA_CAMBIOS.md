@@ -273,7 +273,7 @@ Si el usuario intenta editar a $1,000,001, debe mostrar error:
            ComponenteDialog,
            { data: this.selectedItem },
            "Título Modal",
-           this.dialogHandlerS.sizeLg
+           this.dialogHandlerS.sizeXl
        );
    }
 ````

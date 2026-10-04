@@ -561,7 +561,7 @@ ${this.htmlPrintS.getStandardCss()}
           idMachinery: data.machineryId,
         },
         data.header,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => this.reloadDataAfterDialog(result));
   }

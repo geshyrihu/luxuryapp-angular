@@ -1573,7 +1573,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         accountName: item.accountName,
       },
       `Historial de cambios de ${item.accountName}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -1589,7 +1589,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         accountName: item.accountName,
       },
       `Soportes de ${item.accountName}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -1609,7 +1609,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           proposalId: currentProposal.id,
         },
         "AñadirCuentas",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((selectedAccountNumbers: string[]) => {
         if (selectedAccountNumbers && selectedAccountNumbers.length > 0) {
@@ -1627,7 +1627,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       BudgetExecutionDetailsModal,
       { month: month, accountNumber: accountNumber },
       "Detalles de Ejecución Presupuestaria",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -1812,7 +1812,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         proposalId: proposal.id,
       },
       "CUOTAS DE MANTENIMIENTO FIJA",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -1829,7 +1829,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         proposalId: proposal.id,
       },
       "COMPARACIÓN DE CUOTAS DE MANTENIMIENTO (POR INDIVISO)",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -1876,7 +1876,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   showProjectedExpensesModal() {
     this.dialogHandlerS
-      .openDialog(ProjectedExpensesList, {}, "", this.dialogHandlerS.sizeLg)
+      .openDialog(ProjectedExpensesList, {}, "", this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();
@@ -1885,7 +1885,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
   showMaintenanceCalendarModal() {
     this.dialogHandlerS
-      .openDialog(EquiposList, {}, "", this.dialogHandlerS.sizeLg, true)
+      .openDialog(EquiposList, {}, "", this.dialogHandlerS.sizeXl, true)
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();

@@ -95,7 +95,7 @@ export class MachineryClassificationList implements OnInit {
         MachineryClassificationForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

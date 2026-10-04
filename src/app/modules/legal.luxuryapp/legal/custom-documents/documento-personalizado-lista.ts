@@ -118,7 +118,7 @@ export class DocumentoPersonalizadoLista implements OnInit {
         DocumentoPersonalizadoForm,
         { id: data.id, documentType: this.documentType },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -145,7 +145,7 @@ export class TaskMessageOperationReport {
         TaskForm,
         { id: data.id, ticketGroupId: this.ticketGroupId },
         "Agregar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -164,7 +164,7 @@ export class TaskMessageOperationReport {
         TaskReadList,
         { id: id },
         "Vistas",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -177,7 +177,7 @@ export class TaskMessageOperationReport {
         TaskClose,
         { id: id },
         "Cerrar ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -198,7 +198,7 @@ export class TaskMessageOperationReport {
         TaskFollowup,
         { id: id },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

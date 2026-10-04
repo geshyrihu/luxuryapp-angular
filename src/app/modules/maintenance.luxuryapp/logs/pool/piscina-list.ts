@@ -106,7 +106,7 @@ export class PiscinaList {
   }
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(PiscinaForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(PiscinaForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

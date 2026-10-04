@@ -287,7 +287,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       ProductosForm,
       { id: 0 },
       "Registrar nuevo Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -296,7 +296,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId },
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -101,7 +101,7 @@ export class MeetingManagement implements OnInit {
           areaResponsable: data.areaResponsable,
         },
         data.header,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadDetails();
@@ -117,7 +117,7 @@ export class MeetingManagement implements OnInit {
           idMeetingSeguimiento: event.idMeetingSeguimiento,
         },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadDetails();

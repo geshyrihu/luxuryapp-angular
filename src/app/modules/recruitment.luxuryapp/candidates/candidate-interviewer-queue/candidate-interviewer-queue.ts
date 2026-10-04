@@ -237,7 +237,7 @@ export class CandidateInterviewerQueue implements OnInit {
         candidateProcessId: candidate.candidateProcessId ?? undefined,
       },
       `Retroalimentacion - ${candidate.candidateName}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result) {
       await this.onLoadData();

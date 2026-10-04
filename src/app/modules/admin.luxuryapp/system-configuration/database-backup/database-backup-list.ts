@@ -97,7 +97,7 @@ export class DatabaseBackupList {
         DatabaseBackupForm,
         {},
         "Nueva configuracion de respaldo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -110,7 +110,7 @@ export class DatabaseBackupList {
         DatabaseBackupForm,
         { id: item.id },
         "Editar configuracion de respaldo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

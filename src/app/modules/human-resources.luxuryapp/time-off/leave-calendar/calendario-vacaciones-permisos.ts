@@ -376,7 +376,7 @@ export class CalendarioVacacionesPermisos {
         VacacionDetalleModal,
         { id: eventId },
         `Detalle de Vacaciones: ${eventTitle}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
       return;
     }
@@ -386,7 +386,7 @@ export class CalendarioVacacionesPermisos {
         PermisoDetalleModal,
         { id: eventId },
         `Detalle de Permiso: ${eventTitle}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
       return;
     }

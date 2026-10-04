@@ -97,7 +97,7 @@ export default class MemberList {
     };
     import("./member-form").then((m) => {
       this.dialogHandlerS
-        .openDialog(m.default, data, data.title, this.dialogHandlerS.sizeLg)
+        .openDialog(m.default, data, data.title, this.dialogHandlerS.sizeXl)
         .then((res: boolean) => {
           if (res) this.onLoadData();
         });

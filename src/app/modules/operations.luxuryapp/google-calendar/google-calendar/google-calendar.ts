@@ -489,7 +489,7 @@ export class GoogleCalendar {
         JuntaMensualSessionChecklistDialog,
         { sessionId },
         "Checklist de asamblea",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();

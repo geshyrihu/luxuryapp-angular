@@ -81,7 +81,7 @@ export class TicketLegalListaCliente implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(TicketLegalFormCliente, data, "", this.dialogHandlerS.sizeLg)
+      .openDialog(TicketLegalFormCliente, data, "", this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();
@@ -95,7 +95,7 @@ export class TicketLegalListaCliente implements OnInit {
         TicketLegalActualizarEstado,
         data,
         "",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -109,7 +109,7 @@ export class TicketLegalListaCliente implements OnInit {
       TicketLegalSeguimientoCliente,
       data,
       "",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -118,7 +118,7 @@ export class TicketLegalListaCliente implements OnInit {
       TicketLegalSeguimientoSolicitudDetalle,
       data,
       "Detalle",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

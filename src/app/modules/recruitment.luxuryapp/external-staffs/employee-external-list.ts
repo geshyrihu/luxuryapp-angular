@@ -108,7 +108,7 @@ export class EmployeeExternalList {
         EmployeeExternalForm,
         { userId: data.userId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -121,7 +121,7 @@ export class EmployeeExternalList {
         EmployeeExternalAppUser,
         { applicationUserId },
         "Usuario de Aplicación",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -151,7 +151,7 @@ export class EmployeeExternalList {
         applicationUserId,
       },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

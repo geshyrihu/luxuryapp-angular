@@ -120,7 +120,7 @@ export class ProductEntryList {
           nombreProducto: data.nombreProducto,
         },
         "Entrada de Productos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

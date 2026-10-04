@@ -245,7 +245,7 @@ export class StaffBoardList {
       CardEmployee,
       { applicationUserId: userId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -340,7 +340,7 @@ export class StaffBoardList {
         workPositionName: item.applicationRoleName,
       },
       "Checklist de onboarding",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -125,7 +125,7 @@ export class ComiteVigilanciaList {
           nameProperty: data.nameProperty,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -85,7 +85,7 @@ export default class RegulationArticleList {
         RegulationArticleForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res: boolean) => {
         if (res) this.onLoadData();

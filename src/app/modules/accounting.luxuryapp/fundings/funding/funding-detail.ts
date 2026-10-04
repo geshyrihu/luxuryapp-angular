@@ -209,7 +209,7 @@ export class FundingDetail {
         FundingOrderInvoices,
         { invoices: orden.listadoFacturas },
         "Facturas de la Orden",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
     } else if (orden.pdfFile) {
       this.viewPdf(orden.pdfFile, "Factura");
@@ -402,7 +402,7 @@ export class FundingDetail {
         OrdenCompraDatosPago,
         data,
         "Editar Datos de Pago",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData(this.customerIdS.customerId()));
   }
@@ -436,7 +436,7 @@ export class FundingDetail {
         CreateOrdenCompraFueraFondeo,
         { fundingId: this.id },
         "OC fuera de proceso de fondeo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
@@ -621,7 +621,7 @@ export class FundingDetail {
   //       mode: "reconciliation",
   //     },
   //     "Conciliación SAT",
-  //     this.dialogHandlerS.sizeLg,
+  //     this.dialogHandlerS.sizeXl,
   //   );
   // }
 
@@ -635,7 +635,7 @@ export class FundingDetail {
   //       mode: "xml",
   //     },
   //     "Descarga Masiva XML",
-  //     this.dialogHandlerS.sizeLg,
+  //     this.dialogHandlerS.sizeXl,
   //   );
   // }
 
@@ -709,7 +709,7 @@ export class FundingDetail {
         FundingUploadInvoicesModal,
         { fundingId: this.id },
         "Crear órdenes de Compra desde Facturas",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
         true,
       )
       .then((result: boolean) => {

@@ -108,7 +108,7 @@ export class MisVacacionesListado implements OnInit {
 
   onModalForm(data: { id: string; title: string }) {
     this.dialogHandlerS
-      .openDialog(VacacionesForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(VacacionesForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();

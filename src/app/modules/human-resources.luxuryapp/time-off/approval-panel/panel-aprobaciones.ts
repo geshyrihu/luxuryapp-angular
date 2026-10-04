@@ -46,7 +46,7 @@ export class PanelAprobaciones implements OnInit {
       ApprovalDetailModal,
       { request },
       `Detalle de Solicitud (${request.requestType})`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -56,7 +56,7 @@ export class PanelAprobaciones implements OnInit {
         ApprovalConfirmationModal,
         { request },
         "Confirmar Aprobación",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result?.approved) {
@@ -71,7 +71,7 @@ export class PanelAprobaciones implements OnInit {
         MotivoRechazoFormulario,
         {},
         `Motivo del Rechazo (${request.requestType})`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((reason: string) => {
         if (reason) {

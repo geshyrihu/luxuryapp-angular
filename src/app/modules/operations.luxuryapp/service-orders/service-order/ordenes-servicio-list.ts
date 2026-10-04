@@ -274,7 +274,7 @@ export class OrdenesServicio {
           id,
         },
         "Reportes de proveedor",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -286,7 +286,7 @@ export class OrdenesServicio {
       AyudaOrdenesServicio,
       {},
       "Ayuda: Seguimiento y Suspensión",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
       true,
     );
   }
@@ -297,7 +297,7 @@ export class OrdenesServicio {
         SeguimientoOrdenServicio,
         { id },
         "Seguimiento de la orden",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -314,7 +314,7 @@ export class OrdenesServicio {
           suspensionNotes: data.suspensionNotes,
         },
         "Suspender orden de servicio",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

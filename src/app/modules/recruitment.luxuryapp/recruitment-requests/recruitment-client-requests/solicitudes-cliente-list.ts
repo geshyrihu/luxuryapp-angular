@@ -117,7 +117,7 @@ export class SolicitudesClienteList {
           id: data.id,
         },
         "Editar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -132,7 +132,7 @@ export class SolicitudesClienteList {
           id: data.id,
         },
         "Editar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -147,7 +147,7 @@ export class SolicitudesClienteList {
           id: data.id,
         },
         "Editar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -162,7 +162,7 @@ export class SolicitudesClienteList {
           id: data.id,
         },
         "Editar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

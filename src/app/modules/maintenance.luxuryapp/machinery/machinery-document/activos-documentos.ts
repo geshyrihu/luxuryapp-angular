@@ -76,7 +76,7 @@ export class ActivosDocumentos implements OnInit {
           pathUrl: Endpoints.Machineries.uploadDocumentBase,
         },
         "Cargar Documentos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

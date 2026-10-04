@@ -352,7 +352,7 @@ export class SolicitudCompraList {
         PurchaseLinkManager,
         {},
         "Gestión de Vónculos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadData();

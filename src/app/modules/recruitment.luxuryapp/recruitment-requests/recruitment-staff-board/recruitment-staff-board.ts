@@ -177,7 +177,7 @@ export class RecruitmentStaffBoard {
           requestPositionId: position.positionRequest?.id ?? null,
         },
         `Registrar Empleado — ${position.folio}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -336,7 +336,7 @@ export class RecruitmentStaffBoard {
       CardEmployee,
       { applicationUserId: userId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -387,7 +387,7 @@ export class RecruitmentStaffBoard {
         applicationRoleName: applicationRoleName,
       },
       "DESCRIPCIÓN de puesto: " + applicationRoleName,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -405,7 +405,7 @@ export class RecruitmentStaffBoard {
       SolicitudVacanteForm,
       { workPositionId },
       "Solicitar vacante",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     await this.onLoadData();
   }

@@ -127,7 +127,7 @@ export class WorkContractList implements OnInit {
           },
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -138,7 +138,7 @@ export class WorkContractList implements OnInit {
         WorkContractFormComponent,
         { data: { item } },
         "Editar Contrato",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -148,7 +148,7 @@ export class WorkContractList implements OnInit {
       WorkContractDetailComponent,
       { data: { id: item.id } },
       `Contrato ${item.contractNumber}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

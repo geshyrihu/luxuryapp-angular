@@ -131,7 +131,7 @@ export class AdminVacacionesBalance {
           currentSystemBalance: employeeData.currentSystemBalance,
         },
         "Actualizar Saldo Manualmente",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

@@ -91,7 +91,7 @@ export class CandidateDetail implements OnInit {
           allowCreateCandidate: false,
         },
         "Asignar vacante e iniciar entrevista",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((created: boolean) => {
         if (created) this.loadApplications(this.config.data?.id);
@@ -112,7 +112,7 @@ export class CandidateDetail implements OnInit {
           candidateLastName: this.detail()?.lastName,
         },
         "Procesar alta",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.loadApplications(this.config.data?.id);
@@ -130,7 +130,7 @@ export class CandidateDetail implements OnInit {
         positionName: app.positionName,
       },
       "Documentacion de contratacion",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -114,7 +114,7 @@ export class LegalPendientesMinuta implements OnInit {
           idMeetingSeguimiento,
         },
         "Agregar Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -130,7 +130,7 @@ export class LegalPendientesMinuta implements OnInit {
           areaResponsable: data.areaResponsable,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -155,7 +155,7 @@ export class LegalPendientesMinuta implements OnInit {
         idItem,
       },
       "Seguimientos",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
   onFiltrarData(valorFiltro: number) {

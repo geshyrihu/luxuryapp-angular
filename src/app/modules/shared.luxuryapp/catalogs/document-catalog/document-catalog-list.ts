@@ -109,7 +109,7 @@ export class DocumentCatalogList implements OnInit {
         DocumentCatalogForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

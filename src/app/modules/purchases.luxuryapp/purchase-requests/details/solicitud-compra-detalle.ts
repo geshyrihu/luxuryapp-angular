@@ -50,7 +50,7 @@ export class SolicitudCompraDetalle {
           id: data.id,
         },
         "Editar Producto",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onUpdateData();

@@ -112,7 +112,7 @@ export class ExtintorBitacoraList implements OnInit {
       BitacoraFiltroFechaForm,
       {},
       "Reporte PDF de Bitácora Extintores",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
     if (result)
       await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
@@ -124,7 +124,7 @@ export class ExtintorBitacoraList implements OnInit {
         ExtintorChecklist,
         { id: data.id, extinguisherId: this.extinguisherId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

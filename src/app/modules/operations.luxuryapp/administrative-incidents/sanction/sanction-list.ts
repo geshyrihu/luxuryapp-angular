@@ -82,7 +82,7 @@ export class SanctionList {
         SanctionFormComponent,
         { data: { incidentId } },
         "Nueva Sanción",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }

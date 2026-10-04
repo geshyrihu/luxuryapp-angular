@@ -119,7 +119,7 @@ export class PropiedadesList {
   }
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(PropiedadesForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(PropiedadesForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -136,7 +136,7 @@ export class PropiedadesList {
           title: `Agregar ocupante a ${property.fullName}`,
         },
         `Agregar ocupante a ${property.fullName}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

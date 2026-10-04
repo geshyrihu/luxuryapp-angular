@@ -215,7 +215,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
           idInventarioProducto: data.idInventarioProducto,
         },
         "Salida de Productos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.store.refresh();
@@ -228,7 +228,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
         ProductReturn,
         item,
         "Devolver Producto",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

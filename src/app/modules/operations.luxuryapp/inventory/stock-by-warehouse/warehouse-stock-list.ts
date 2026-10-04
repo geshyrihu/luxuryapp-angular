@@ -162,7 +162,7 @@ export class WarehouseStockList {
           idProducto: data.idProducto,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -196,7 +196,7 @@ export class WarehouseStockList {
           nombreProducto: data.nombreProducto,
         },
         "Entrada de Productos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -214,7 +214,7 @@ export class WarehouseStockList {
           almacenId: data.almacenId,
         },
         "Salida de Productos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -228,7 +228,7 @@ export class WarehouseStockList {
         productoId: productoId,
       },
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

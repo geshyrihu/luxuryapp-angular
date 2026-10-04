@@ -125,7 +125,7 @@ export class CandidateInterviewResponse implements OnInit {
             interviewData?.candidateProcessId ?? this.candidateProcessId(),
         },
         "Retroalimentación de entrevista",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

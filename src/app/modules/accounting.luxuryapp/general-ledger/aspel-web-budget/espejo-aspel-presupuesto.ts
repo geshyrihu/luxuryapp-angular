@@ -86,7 +86,7 @@ export class PresupuestoAspelEjercicioFiscal {
         BudgetRuleList,
         { customerId },
         "Gestion de Reglas de Presupuesto",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.cargarPresupuesto(customerId);

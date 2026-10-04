@@ -106,7 +106,7 @@ export class BitacoraIndividual implements OnInit {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

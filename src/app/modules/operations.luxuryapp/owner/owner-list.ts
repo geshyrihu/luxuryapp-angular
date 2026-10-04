@@ -112,7 +112,7 @@ export class OwnerList {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(OwnerForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(OwnerForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

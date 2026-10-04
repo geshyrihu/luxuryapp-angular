@@ -240,7 +240,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId }, // Datos a pasar al modal TarjetaProductoComponent
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg, // TamAño del diálogo
+      this.dialogHandlerS.sizeXl, // TamAño del diálogo
     );
   }
 

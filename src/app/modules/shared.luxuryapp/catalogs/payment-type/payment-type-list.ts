@@ -94,7 +94,7 @@ export class PaymentTypeList implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(PaymentTypeForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(PaymentTypeForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

@@ -102,7 +102,7 @@ export class AsambleaChecklistTemplateList implements OnInit {
         AsambleaChecklistTemplateForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

@@ -131,7 +131,7 @@ export class WarehouseList implements OnInit {
         WarehouseForm,
         data,
         data.title, // El titulo se pasa en el objeto 'data'.
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         // Si el dialogo se cerro con un resultado exitoso, recargamos los datos.

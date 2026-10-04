@@ -98,7 +98,7 @@ export class CandidateInterviewPendingList implements OnInit {
           candidateProcessId: target.candidateProcessId ?? undefined,
         },
         "Retroalimentacion de entrevista",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

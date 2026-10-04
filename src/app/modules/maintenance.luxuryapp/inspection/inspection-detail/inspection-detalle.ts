@@ -464,7 +464,7 @@ export class InspectionDetailComponent implements OnInit {
         InspeccionesForm,
         { id: this.inspection()?.id, title: "Editar Inspección" },
         "Editar Inspección",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) {
@@ -494,7 +494,7 @@ export class InspectionDetailComponent implements OnInit {
         InspeccionActivoCondominio,
         { inspectionId },
         "Agregar Equipo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.loadEquipment(inspectionId);
@@ -513,7 +513,7 @@ export class InspectionDetailComponent implements OnInit {
           inspectionCondominiumAssetId: item.inspectionCondominiumAssetId,
         },
         "Editar equipo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.loadEquipment(inspectionId);

@@ -148,7 +148,7 @@ export class MinutaDetalleForm implements OnInit {
       MeetingSeguimientoEdit,
       { idMeetingSeguimiento: 0, meetingDetailsId: this.id() },
       "Seguimiento de Minuta",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

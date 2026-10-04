@@ -102,7 +102,7 @@ export class RecurringTaskCatalogList implements OnInit {
         RecurringTaskCatalogForm,
         { template },
         template ? "Editar Plantilla Recurrente" : "Nueva Plantilla Recurrente",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) void this.onLoadData();

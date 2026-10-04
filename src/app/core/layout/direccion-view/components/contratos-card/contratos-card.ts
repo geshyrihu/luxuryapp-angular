@@ -45,7 +45,7 @@ export class ContratosCard implements OnInit {
       ContratosVigentesModal,
       null,
       "Contratos vigentes por cliente",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

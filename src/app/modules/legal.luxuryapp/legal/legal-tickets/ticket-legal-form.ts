@@ -174,7 +174,7 @@ export class TicketLegalForm implements OnInit {
       TicketLegalSeguimiento,
       { ticketId: this.id },
       "Seguimiento Ticket Legal",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -119,7 +119,7 @@ export class WarehouseStockAdd implements OnInit {
         productoId: productoId,
       },
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

@@ -127,7 +127,7 @@ export class PiscinaBitacoraList implements OnInit {
           piscinaId: this.piscinaId,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

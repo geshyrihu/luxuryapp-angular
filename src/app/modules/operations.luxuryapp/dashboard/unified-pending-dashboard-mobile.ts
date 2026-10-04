@@ -194,7 +194,7 @@ export class UnifiedPendingDashboardMobile {
         TicketLegalForm,
         { id: item.id },
         "Ticket Legal",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -207,7 +207,7 @@ export class UnifiedPendingDashboardMobile {
         PolicyContractForm,
         { id: item.id },
         "Póliza / Contrato",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -225,7 +225,7 @@ export class UnifiedPendingDashboardMobile {
           ticketGroupId: item.metadata["ticketGroupId"],
         },
         item.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -238,7 +238,7 @@ export class UnifiedPendingDashboardMobile {
         ServiceOrderForm,
         { id: item.id },
         "Orden de Servicio",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -261,7 +261,7 @@ export class UnifiedPendingDashboardMobile {
           areaResponsable: Number(item.metadata["areaResponsable"]),
         },
         "Detalle de Minuta",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());

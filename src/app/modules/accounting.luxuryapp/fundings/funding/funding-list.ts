@@ -102,7 +102,7 @@ export class FundingList {
 
   onModalCreate(): void {
     this.dialogHandlerS
-      .openDialog(FundingForm, {}, "Crear Fondeo", this.dialogHandlerS.sizeLg)
+      .openDialog(FundingForm, {}, "Crear Fondeo", this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -110,7 +110,7 @@ export class FundingList {
 
   onModalForm(data: any): void {
     this.dialogHandlerS
-      .openDialog(FundingForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(FundingForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -121,7 +121,7 @@ export class FundingList {
       FaqsFondeo,
       {},
       "",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

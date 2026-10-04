@@ -137,7 +137,7 @@ export class CustomerList implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(CustomerForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(CustomerForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -149,7 +149,7 @@ export class CustomerList implements OnInit {
         CustomerImages,
         { customerId },
         "Actualizar Imagenes",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -162,7 +162,7 @@ export class CustomerList implements OnInit {
         CustomerAddress,
         { customerId },
         "Actualizar Direccion",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -175,7 +175,7 @@ export class CustomerList implements OnInit {
         CustomerLocationList,
         { customerId },
         `Ubicaciones - ${customerName || customerId}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

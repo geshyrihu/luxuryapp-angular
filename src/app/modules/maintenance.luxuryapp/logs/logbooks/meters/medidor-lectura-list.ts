@@ -157,7 +157,7 @@ export class MedidorLecturaList implements OnInit {
           medidorId: this.medidorId,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -173,7 +173,7 @@ export class MedidorLecturaList implements OnInit {
           id: 0,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

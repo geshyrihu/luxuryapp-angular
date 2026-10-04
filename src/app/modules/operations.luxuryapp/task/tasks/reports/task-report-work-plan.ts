@@ -144,7 +144,7 @@ export class TaskReportWorkPlan implements OnInit {
         TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         "Agregar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -157,7 +157,7 @@ export class TaskReportWorkPlan implements OnInit {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

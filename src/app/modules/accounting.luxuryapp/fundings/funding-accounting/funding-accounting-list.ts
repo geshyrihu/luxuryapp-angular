@@ -101,7 +101,7 @@ export class FundingAccountingList {
       FaqsFondeo,
       {},
       "",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

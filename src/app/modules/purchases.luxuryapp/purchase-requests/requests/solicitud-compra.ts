@@ -268,7 +268,7 @@ export class SolicitudCompra implements OnInit {
         ProductAdd,
         { solicitudCompraId: solicitudId, id: data.id },
         "Agregar",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -348,7 +348,7 @@ export class SolicitudCompra implements OnInit {
         PurchaseLinkManager,
         {},
         "Gestión de Vónculos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) {

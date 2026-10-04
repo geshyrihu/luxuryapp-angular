@@ -105,7 +105,7 @@ export class AnalisisCobranzaClienteComponent {
         CobranzaOnlineComposicionReportesModal,
         {},
         "Cómo se compone cada reporte",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
     } catch (error) {
       console.error("Error opening composition dialog", error);

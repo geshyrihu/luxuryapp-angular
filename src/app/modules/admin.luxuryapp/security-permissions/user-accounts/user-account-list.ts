@@ -171,7 +171,7 @@ export class UserAccountList implements OnInit {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
   onModalForm(applicationUserId: string, title: string) {
@@ -180,7 +180,7 @@ export class UserAccountList implements OnInit {
         UserAccountForm,
         { applicationUserId },
         title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: any) => {
         if (result)

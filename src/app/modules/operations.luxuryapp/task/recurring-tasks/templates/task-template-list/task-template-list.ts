@@ -121,7 +121,7 @@ export class TaskTemplateList implements OnInit {
         TaskTemplateForm,
         { template },
         template ? "Editar Plantilla" : "Nueva Plantilla",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

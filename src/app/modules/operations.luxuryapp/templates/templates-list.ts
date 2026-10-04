@@ -136,7 +136,7 @@ export class TemplatesList implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(TemplatesForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(TemplatesForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

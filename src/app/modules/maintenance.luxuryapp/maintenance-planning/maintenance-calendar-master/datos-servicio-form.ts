@@ -34,7 +34,7 @@ export class DatosServicioAddOrEdit implements OnInit {
       TarjetaProveedor,
       { providerId: id },
       "Datos de proveedor",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

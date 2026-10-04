@@ -73,7 +73,7 @@ export class ContMinutaSeguimientos implements OnInit {
           idMeetingSeguimiento,
         },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

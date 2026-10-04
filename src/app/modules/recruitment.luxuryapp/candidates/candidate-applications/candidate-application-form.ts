@@ -346,7 +346,7 @@ export class CandidateApplicationForm implements OnInit {
         title: "Actualizar candidato",
       },
       "Actualizar candidato",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (!result || typeof result === "boolean") {

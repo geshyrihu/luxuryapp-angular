@@ -118,7 +118,7 @@ export class ToolList {
         ToolForm,
         { id: data.id },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

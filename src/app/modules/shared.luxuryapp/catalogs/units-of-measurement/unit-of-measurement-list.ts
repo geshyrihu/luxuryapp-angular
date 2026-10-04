@@ -99,7 +99,7 @@ export class UnitOfMeasurementList implements OnInit {
         UnitOfMeasurementForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

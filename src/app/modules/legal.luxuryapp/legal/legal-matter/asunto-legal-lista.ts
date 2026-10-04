@@ -102,7 +102,7 @@ export class AsuntoLegalLista {
   // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(AsuntoLegalForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(AsuntoLegalForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -113,7 +113,7 @@ export class AsuntoLegalLista {
         CategoriaAsuntoLegalForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -83,7 +83,7 @@ export class AddendumTemplateList implements OnInit {
         AddendumTemplateFormComponent,
         { data: { item: null } },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -94,7 +94,7 @@ export class AddendumTemplateList implements OnInit {
         AddendumTemplateFormComponent,
         { data: { item } },
         "Editar Machote de Adenda",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }

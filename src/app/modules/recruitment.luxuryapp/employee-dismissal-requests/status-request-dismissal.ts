@@ -86,7 +86,7 @@ export class StatusRequestDismissal implements OnInit {
           applicationUserId,
         },
         "Tarjeta de Colaborador",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -102,7 +102,7 @@ export class StatusRequestDismissal implements OnInit {
           id: data.id,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -139,7 +139,7 @@ export class StatusRequestDismissal implements OnInit {
           id: data.id,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

@@ -109,7 +109,7 @@ export class DiagramList implements OnInit {
         DiagramForm,
         data,
         data.id ? "Editar Propiedades" : "Nuevo Diagrama",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

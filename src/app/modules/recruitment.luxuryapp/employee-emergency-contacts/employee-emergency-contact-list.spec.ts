@@ -22,7 +22,7 @@ describe("EmployeeEmergencyContactList", () => {
 
   const mockDialogHandlerS = {
     openDialog: vi.fn().mockResolvedValue(true),
-    sizeLg: this.dialogHandlerS.sizeLg,
+    sizeLg: this.dialogHandlerS.sizeXl,
   };
 
   beforeEach(() => {

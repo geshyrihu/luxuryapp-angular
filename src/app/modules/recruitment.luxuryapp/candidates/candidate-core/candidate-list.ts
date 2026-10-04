@@ -146,7 +146,7 @@ export class CandidateList implements OnInit {
         allowCreateCandidate: false,
       },
       "Asignar vacante e iniciar entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     this.onLoadData();
@@ -157,7 +157,7 @@ export class CandidateList implements OnInit {
       CandidateDetail,
       { id },
       "Detalle del candidato",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -166,7 +166,7 @@ export class CandidateList implements OnInit {
       CandidateInterviewDetailModal,
       { candidateProcessId },
       "Detalle de entrevista",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

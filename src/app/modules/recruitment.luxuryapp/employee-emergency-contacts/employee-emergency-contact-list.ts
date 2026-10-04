@@ -118,7 +118,7 @@ export class EmployeeEmergencyContactList implements OnInit {
           employeeId: this.employeeId(),
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

@@ -181,7 +181,7 @@ export class MyAssignedTasksList {
         MyTaskProgram,
         { id: id },
         "Programar actividad",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.status);
@@ -193,7 +193,7 @@ export class MyAssignedTasksList {
         TaskClose,
         { id: id },
         "Cerrar ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.status);
@@ -205,7 +205,7 @@ export class MyAssignedTasksList {
         count: number;
         lastFollowUp: string | null;
         lastFollowUpDate: string | null;
-      }>(TaskFollowup, { id: id }, "Seguimiento", this.dialogHandlerS.sizeLg)
+      }>(TaskFollowup, { id: id }, "Seguimiento", this.dialogHandlerS.sizeXl)
       .then((result) => {
         if (result && result.count >= 0) {
           this.dataSignal.update((items) =>
@@ -230,7 +230,7 @@ export class MyAssignedTasksList {
         TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -245,7 +245,7 @@ export class MyAssignedTasksList {
         TaskForm,
         { id: data.id, ticketGroupId: data.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {
@@ -259,7 +259,7 @@ export class MyAssignedTasksList {
         TaskReopen,
         { id: id },
         "Re abrir ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.status);
@@ -270,7 +270,7 @@ export class MyAssignedTasksList {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

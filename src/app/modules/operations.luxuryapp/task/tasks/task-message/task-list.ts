@@ -474,7 +474,7 @@ export class TaskList implements OnInit {
         mode: "before-after",
       },
       "Fotos Antes / Después",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -495,7 +495,7 @@ export class TaskList implements OnInit {
       TaskPhotosViewer,
       { taskId: item.id, mode: "additional" },
       "Imágenes adicionales",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -505,7 +505,7 @@ export class TaskList implements OnInit {
         TaskForm,
         { id: data.id, ticketGroupId: this.ticketGroupId },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();
@@ -517,7 +517,7 @@ export class TaskList implements OnInit {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -527,7 +527,7 @@ export class TaskList implements OnInit {
         TaskProgram,
         { id: id, ticketGroupId: this.ticketGroupId },
         "Programar actividad",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -540,7 +540,7 @@ export class TaskList implements OnInit {
         TaskReopen,
         { id: id },
         "Re abrir ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -553,7 +553,7 @@ export class TaskList implements OnInit {
         TaskReadList,
         { id: id },
         "Vistas",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -595,7 +595,7 @@ export class TaskList implements OnInit {
         TaskClose,
         { id: id },
         "Cerrar ticket",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((responseData: boolean) => {
         if (responseData) this.onLoadData();
@@ -617,7 +617,7 @@ export class TaskList implements OnInit {
         count: number;
         lastFollowUp: string | null;
         lastFollowUpDate: string | null;
-      }>(TaskFollowup, { id: id }, "Seguimiento", this.dialogHandlerS.sizeLg)
+      }>(TaskFollowup, { id: id }, "Seguimiento", this.dialogHandlerS.sizeXl)
       .then((result) => {
         if (result && result.count >= 0) {
           this.dataSignal.update((currentData) => ({

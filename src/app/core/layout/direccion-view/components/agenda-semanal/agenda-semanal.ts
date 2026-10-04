@@ -108,7 +108,7 @@ export class AgendaSemanal {
       AgendaMesesModal,
       null,
       "Agenda de eventos proximos",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

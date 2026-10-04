@@ -442,7 +442,7 @@ export class AspelCobranzaHaus {
         fechaFin: currentDate,
       },
       `Detalle deuda · ${row.numCtaBase}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
   canDownloadAccountDocuments(): boolean {

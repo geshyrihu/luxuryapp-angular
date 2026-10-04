@@ -120,7 +120,7 @@ export class MedidoresList {
 
   modalAddEdit(data: any) {
     this.dialogHandlerS
-      .openDialog(MedidorForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(MedidorForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -135,7 +135,7 @@ export class MedidoresList {
           id: 0,
         },
         "Medidor",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

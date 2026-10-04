@@ -357,7 +357,7 @@ export class UnifiedPendingDashboard {
               workPositionId: item.metadata?.["workPositionId"] || 0,
             },
             "Editar Vacante",
-            this.dialogHandlerS.sizeLg,
+            this.dialogHandlerS.sizeXl,
           )
           .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
@@ -369,7 +369,7 @@ export class UnifiedPendingDashboard {
             ModificacionSalarioForm,
             { id: item.id },
             "Modificación Salarial",
-            this.dialogHandlerS.sizeLg,
+            this.dialogHandlerS.sizeXl,
           )
           .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
@@ -388,7 +388,7 @@ export class UnifiedPendingDashboard {
         TicketLegalForm,
         { id: item.id },
         "Ticket Legal",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -406,7 +406,7 @@ export class UnifiedPendingDashboard {
           ticketGroupId: item.metadata["ticketGroupId"],
         },
         item.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -419,7 +419,7 @@ export class UnifiedPendingDashboard {
         ServiceOrderForm,
         { id: item.id },
         "Orden de Servicio", // Title could be dynamic
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());
@@ -443,7 +443,7 @@ export class UnifiedPendingDashboard {
           areaResponsable: Number(item.metadata["areaResponsable"]),
         },
         "Detalle de Minuta",
-        this.dialogHandlerS.sizeLg, // Or customized size
+        this.dialogHandlerS.sizeXl, // Or customized size
       )
       .then((res) => {
         if (res) this.loadData(this.customerIdS.customerId());

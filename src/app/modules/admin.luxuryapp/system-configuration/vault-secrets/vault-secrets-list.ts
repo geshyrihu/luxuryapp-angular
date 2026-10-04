@@ -97,7 +97,7 @@ export class VaultSecretsList {
         VaultSecretForm,
         {},
         "Nuevo Secreto",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -110,7 +110,7 @@ export class VaultSecretsList {
         VaultSecretForm,
         { secretName: item.secretName, secretType: item.secretType },
         "Editar Secreto",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

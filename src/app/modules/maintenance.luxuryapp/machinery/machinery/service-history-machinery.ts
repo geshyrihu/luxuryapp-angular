@@ -76,7 +76,7 @@ export class ServiceHistoryMachinery implements OnInit {
           providerId: data.providerId,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

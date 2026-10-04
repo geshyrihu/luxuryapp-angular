@@ -165,7 +165,7 @@ export class SolicitudAltaList implements OnInit {
           isDraftCompletion: true,
         },
         "Completar Solicitud de Alta",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -272,7 +272,7 @@ export class SolicitudAltaList implements OnInit {
       CandidateDetail,
       { id: data.candidateId },
       "Datos del candidato",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

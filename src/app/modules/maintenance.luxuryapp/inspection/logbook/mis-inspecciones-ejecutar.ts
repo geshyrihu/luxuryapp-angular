@@ -197,7 +197,7 @@ export class MisInspeccionesEjecutar implements OnInit {
         MisInspeccionesAgregarImagenes,
         { inspectionResultId },
         "Agregar imígenes",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData(this.customerInspectionId!);

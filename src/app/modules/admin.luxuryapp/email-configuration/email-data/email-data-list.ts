@@ -82,7 +82,7 @@ export class EmailDataList {
   }
   onModalForm(data: Partial<EmailDataFormDto & { title: string }>) {
     this.dialogHandlerS
-      .openDialog(EmailDataForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(EmailDataForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

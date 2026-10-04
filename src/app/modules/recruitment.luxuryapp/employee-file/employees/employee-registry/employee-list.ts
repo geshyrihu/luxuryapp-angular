@@ -154,7 +154,7 @@ export class EmployeeList {
         EmployeeProviderForm,
         { typePerson: 0 },
         "Registrar Empleado.",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();
@@ -166,7 +166,7 @@ export class EmployeeList {
       CardEmployee,
       { applicationUserId },
       "Colaborador",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

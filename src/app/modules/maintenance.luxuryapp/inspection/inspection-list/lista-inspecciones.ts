@@ -122,7 +122,7 @@ export class ListaInspecciones {
         InspeccionesForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

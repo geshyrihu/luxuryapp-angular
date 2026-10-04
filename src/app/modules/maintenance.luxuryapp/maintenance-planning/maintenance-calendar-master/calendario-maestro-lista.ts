@@ -123,7 +123,7 @@ export class CalendarioMaestroLista implements OnInit {
       DatosServicioAddOrEdit,
       data,
       "Información de servicio",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 

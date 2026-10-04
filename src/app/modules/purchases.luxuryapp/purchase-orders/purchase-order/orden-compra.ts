@@ -303,7 +303,7 @@ export class OrdenCompra implements OnInit {
         OrdenCompraEditPresupustoUtilizado,
         { id },
         "Actualizar presupuesto utilizado",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -313,7 +313,7 @@ export class OrdenCompra implements OnInit {
         OrdenCompraEditDetalle,
         { id: item.id },
         item.productName,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -323,7 +323,7 @@ export class OrdenCompra implements OnInit {
         ModalOrdenCompra,
         { ordenCompra: this.ordenCompra() },
         "Actualizar información",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -333,7 +333,7 @@ export class OrdenCompra implements OnInit {
         OrdenCompraDatosPago,
         { ordenCompra: this.ordenCompra() },
         "Actualizar Datos de pago",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -343,7 +343,7 @@ export class OrdenCompra implements OnInit {
         OrdenCompraStatus,
         { ordenCompraId: this.ordenCompraId() },
         "Autorizar Status de Orden de compra",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -356,7 +356,7 @@ export class OrdenCompra implements OnInit {
           ordenCompraAuthId: this.ordenCompra().ordenCompraAuth.id,
         },
         "Denegar Orden de Compra",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => this.onLoadData());
   }
@@ -448,7 +448,7 @@ export class OrdenCompra implements OnInit {
           facturas: this.ordenCompra().facturas,
         },
         "Administrar Facturas",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();
@@ -461,7 +461,7 @@ export class OrdenCompra implements OnInit {
         PurchaseLinkManager,
         {},
         "Gestión de Vónculos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadData();

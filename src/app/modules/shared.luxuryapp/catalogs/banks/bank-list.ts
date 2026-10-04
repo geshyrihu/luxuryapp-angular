@@ -67,7 +67,7 @@ export class BankList implements OnInit {
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) {
           this.onLoadData();

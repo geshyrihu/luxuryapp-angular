@@ -129,8 +129,9 @@ export class DialogHandlerService {
     const isFullscreen = size === this.sizeFull;
 
     return {
+      animation: true,
       centered: true,
-      scrollable: true,
+      scrollable: config?.scrollable ?? false,
       backdrop: config?.dismissableMask === false ? ("static" as const) : true,
       keyboard: config?.closeOnEscape !== false,
       fullscreen: isFullscreen,
@@ -142,6 +143,7 @@ export class DialogHandlerService {
   readonly sizeSm: DialogSize = DialogSize.sm;
   readonly sizeMd: DialogSize = DialogSize.md;
   readonly sizeLg: DialogSize = DialogSize.lg;
+  readonly sizeXl: DialogSize = DialogSize.xl;
   readonly sizeFull: DialogSize = DialogSize.full;
 }
 
@@ -160,6 +162,7 @@ export interface DialogConfig {
   dismissableMask?: boolean;
   width?: string;
   height?: string;
+  scrollable?: boolean;
   breakpoints?: { [key: string]: string };
   position?:
     | "center"

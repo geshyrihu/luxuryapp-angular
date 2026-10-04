@@ -158,7 +158,7 @@ export class FormerEmployeeTalentPool implements OnInit {
       CandidateDetail,
       { id: candidateId },
       "Detalle del candidato",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -185,7 +185,7 @@ export class FormerEmployeeTalentPool implements OnInit {
         allowCreateCandidate: false,
       },
       `Postular a vacante - ${item.fullName}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     await this.onLoadData();

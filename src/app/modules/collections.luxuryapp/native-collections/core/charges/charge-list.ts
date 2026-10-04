@@ -141,7 +141,7 @@ export default class ChargeList {
     };
 
     this.dialogHandlerS
-      .openDialog(ChargeForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(ChargeForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((res: boolean) => {
         if (res) this.onLoadData();
       });
@@ -170,7 +170,7 @@ export default class ChargeList {
         BulkImportModal,
         data,
         "Importar Saldos Iniciales",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res: boolean) => {
         if (res) this.onLoadData();

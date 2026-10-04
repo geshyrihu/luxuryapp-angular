@@ -316,7 +316,7 @@ export class JuntasMensualesSession {
         JuntaMensualSessionChecklistDialog,
         { sessionId: detail.id },
         "Checklist de asamblea",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) {

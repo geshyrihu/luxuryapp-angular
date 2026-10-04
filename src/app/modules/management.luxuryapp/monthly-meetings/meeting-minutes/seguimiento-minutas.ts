@@ -111,7 +111,7 @@ export class SeguimientoMinuta {
           idMeetingSeguimiento,
         },
         "Seguimiento",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.statusFiltro);
@@ -127,7 +127,7 @@ export class SeguimientoMinuta {
           areaResponsable: data.areaResponsable,
         },
         data.title,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.statusFiltro);
@@ -150,7 +150,7 @@ export class SeguimientoMinuta {
           idItem,
         },
         "Seguimientos",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.statusFiltro);

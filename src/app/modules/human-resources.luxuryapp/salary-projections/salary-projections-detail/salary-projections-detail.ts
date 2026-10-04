@@ -482,7 +482,7 @@ export class SalaryProjectionsDetail {
         CardEmployee,
         { applicationUserId: item.applicationUserId },
         "Colaborador",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       );
     }
   }

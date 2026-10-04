@@ -270,7 +270,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         CuadroComparativoAddProveedor,
         { solicitudCompraId: this.solicitudCompraId },
         "Selecciona un proveedor",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();
@@ -563,7 +563,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       CuadroComparativoAddBudget,
       { budgetOptions: this.budgetSelectOptionsSignal() },
       "Agregar presupuesto",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
 
     if (!selectedAccountNumber) return;

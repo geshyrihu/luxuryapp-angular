@@ -168,7 +168,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
       CandidateInterviewDetailModal,
       { candidateProcessId },
       `Historial - ${candidate.candidateName}`,
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -215,7 +215,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
           toStage: CandidateProcessStage.AltaEnProceso,
         },
         `Alta de Candidato - ${candidate.candidateName}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((res) => {
         if (res) this.onLoadData();

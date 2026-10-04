@@ -125,7 +125,7 @@ export class EmployeeQueueCandidateDetailModal implements OnInit {
           candidateProcessId: this.candidateProcessId,
         },
         `Responder entrevista — ${this.detail()?.fullName ?? ""}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.ref.close(true);

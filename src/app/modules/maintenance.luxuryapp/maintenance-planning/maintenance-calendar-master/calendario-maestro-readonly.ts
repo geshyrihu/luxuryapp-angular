@@ -38,7 +38,7 @@ export class CalendarioMaestroReadonly implements OnInit {
       DatosServicioAddOrEdit,
       evento,
       "Informacion de servicio",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 }

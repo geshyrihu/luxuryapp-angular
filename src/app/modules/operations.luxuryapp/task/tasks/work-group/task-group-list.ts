@@ -166,7 +166,7 @@ export class TaskGroupList {
   }
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(TaskGroupForm, data, data.title, this.dialogHandlerS.sizeLg)
+      .openDialog(TaskGroupForm, data, data.title, this.dialogHandlerS.sizeXl)
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
@@ -178,7 +178,7 @@ export class TaskGroupList {
         TaskGroupParticipant,
         data,
         "Integrantes del grupo",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then(() => {
         this.onLoadData();

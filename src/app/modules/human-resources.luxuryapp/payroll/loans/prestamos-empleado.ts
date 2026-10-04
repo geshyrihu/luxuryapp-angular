@@ -106,7 +106,7 @@ export default class PrestamosEmpleado {
         ModalPrestamoDetalle,
         { item },
         `Prestamo - ${item.nombreEmpleado}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId());

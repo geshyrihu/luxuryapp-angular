@@ -265,7 +265,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
         posicionCotizacion: this.posicionCotizacion,
       },
       "Crear Orden de compra",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
