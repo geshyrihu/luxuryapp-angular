@@ -25,7 +25,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppTable } from "@ui/web/table/table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
@@ -44,7 +44,7 @@ import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto"
     MobileButtonLabelDelete,
     TableEmptyMessage,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     ApiDatePipe,
     MobileListItem,

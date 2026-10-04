@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -11,7 +11,7 @@
   >
     <ng-template #caption>
       <div class="d-flex justify-content-between align-items-end mb-4">
-        <app-table-caption
+        <lux-table-caption
           title="Emisión de Cargos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
@@ -105,9 +105,9 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message [colspan]="8" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <app-data-view-mobile

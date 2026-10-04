@@ -1,7 +1,7 @@
 <!-- ──────────────────────────────────────────────────────────────
      TABLA DESKTOP (oculta en móvil)
 ────────────────────────────────────────────────────────────── -->
-<app-table
+<lux-table
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -20,7 +20,7 @@
     >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption
           [dt]="dt"
           [rolAuth]="false"
           [noPadding]="true"
@@ -202,12 +202,12 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message [colspan]="10" />
   </ng-template>
   <ng-template #footer>
-    <app-table-footer [dt]="dt" />
+    <lux-table-footer [dt]="dt" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- ──────────────────────────────────────────────────────────────
      VISTA MÓVIL

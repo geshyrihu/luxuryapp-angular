@@ -26,11 +26,14 @@
   </div>
   } @else if (witnesses().length === 0) {
   <div class="text-center p-4 text-body-secondary bg-body-tertiary rounded">
-    <app-icon [icon]="'material-symbols-light:person'" class="text-3xl text-body-secondary" />
+    <app-icon
+      [icon]="'material-symbols-light:person'"
+      class="text-3xl text-body-secondary"
+    />
     <p class="mt-2 m-0">No hay testigos registrados</p>
   </div>
   } @else {
-  <app-table
+  <lux-table
     [value]="witnesses()"
     class="custom-table"
     [scrollable]="true"
@@ -71,8 +74,8 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message [colspan]="5" />
     </ng-template>
-  </app-table>
+  </lux-table>
   }
 </div>

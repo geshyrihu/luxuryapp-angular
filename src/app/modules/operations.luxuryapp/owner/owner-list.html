@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between w-full">
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
         [rolAuth]="
@@ -80,9 +80,15 @@
       <td>{{ item.email }}</td>
       <td class="no-print">
         @if (item.enviarMails) {
-        <app-icon [icon]="'material-symbols-light:check'" class="text-success icon icon-" />
+        <app-icon
+          [icon]="'material-symbols-light:check'"
+          class="text-success icon icon-"
+        />
         } @if (!item.enviarMails) {
-        <app-icon [icon]="'material-symbols-light:close'" class="text-danger icon icon-" />
+        <app-icon
+          [icon]="'material-symbols-light:close'"
+          class="text-danger icon icon-"
+        />
         }
       </td>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
@@ -105,12 +111,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"

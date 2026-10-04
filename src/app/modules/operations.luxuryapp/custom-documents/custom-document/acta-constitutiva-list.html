@@ -2,18 +2,14 @@
   <!-- Vista de escritorio -->
 
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields"
       [value]="dataSignal()"
       #dt
       class="custom-table card d-none d-md-block"
     >
       <ng-template #caption>
-        <app-table-caption
-          [showAdd]="false"
-          [showSearch]="false"
-          [dt]="dt"
-        />
+        <lux-table-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -43,12 +39,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="4" />
+        <lux-table-empty-message [colspan]="4" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 
@@ -75,11 +71,17 @@
           <h2 class="fw-bold m-0 text-base text-wrap">{{ item.name }}</h2>
         </div>
         <p class="text-sm text-body-secondary m-0">
-          <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:currency-pound'"
+            class="me-1 text-xs"
+          />
           Folio: {{ item.folio }}
         </p>
         <p class="text-sm text-body-secondary m-0">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="me-1 text-xs"
+          />
           Fecha: {{ item.createAt }}
         </p>
 

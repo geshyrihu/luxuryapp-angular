@@ -7,9 +7,9 @@
   </p></lux-message
 >
 } @if (presupuestoAgregados().length > 0) {
-<app-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
+<lux-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       [title]="'Partidas agregadas'"
       [showAdd]="false"
       [showSearch]="false"
@@ -36,9 +36,9 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 } @if (dataSignal()) {
-<app-table
+<lux-table
   #dt
   class="custom-table card d-none d-md-block"
   [value]="dataSignal()"
@@ -52,7 +52,7 @@
   <ng-template #caption>
     <div class="row col-12 g-4">
       <div class="col-12 col-md-10">
-        <app-table-caption
+        <lux-table-caption
           [title]="'Cedula Presupuestal'"
           [showAdd]="false"
           [dt]="dt"
@@ -112,7 +112,7 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 }

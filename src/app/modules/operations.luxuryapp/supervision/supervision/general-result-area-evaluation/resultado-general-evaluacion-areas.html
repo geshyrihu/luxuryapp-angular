@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   #dt
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -7,7 +7,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
+    <lux-table-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -34,9 +34,7 @@
         </div>
       </th>
       <th colspan="3">
-        <div
-          class="text-center fw-bold text-white rounded p-2 w-full bg-legal"
-        >
+        <div class="text-center fw-bold text-white rounded p-2 w-full bg-legal">
           Legal
         </div>
       </th>
@@ -73,7 +71,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message [colspan]="11" />
   </ng-template>
   <ng-template #body let-rowIndex="rowIndex" let-item>
     <tr>
@@ -152,4 +150,4 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>

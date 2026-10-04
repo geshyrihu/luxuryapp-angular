@@ -29,7 +29,7 @@
     class="card"
     class="shadow-sm rounded-xl overflow-hidden p-0 border-0 d-none d-md-block"
   >
-    <app-table
+    <lux-table
       #dt
       [value]="dataSignal()"
       [rows]="tableRows"
@@ -62,7 +62,7 @@
             />
             <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
           </div>
-          <app-table-caption [showAdd]="false" [dt]="dt" />
+          <lux-table-caption [showAdd]="false" [dt]="dt" />
         </div>
       </ng-template>
 
@@ -194,10 +194,10 @@
       <!-- FOOTER / PAGINADOR -->
       <ng-template #paginatorleft>
         <div class="d-flex align-items-center gap-3 py-2">
-          <app-table-footer [data]="dataSignal()" />
+          <lux-table-footer [data]="dataSignal()" />
         </div>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!-- 📱 MOBILE -->

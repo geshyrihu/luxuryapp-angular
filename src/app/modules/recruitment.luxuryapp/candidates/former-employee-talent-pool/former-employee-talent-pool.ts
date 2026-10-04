@@ -25,7 +25,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -66,7 +66,7 @@ interface FormerEmployeeCandidateResult {
     ApiDatePipe,
     CommonModule,
     CustomInputSelectSignal,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     ReactiveFormsModule,

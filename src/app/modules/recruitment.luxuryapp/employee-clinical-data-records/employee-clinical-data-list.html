@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -6,7 +6,7 @@
   [loading]="loading()"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
       [showSearch]="dataSignal().length > 0"
       [dt]="dt"
@@ -29,16 +29,19 @@
       <td>{{ item.description }}</td>
       <td class="no-print">
         <div class="d-flex justify-content-center">
-          @if (!isReadOnly()) { <iw-button
+          @if (!isReadOnly()) {
+          <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
-          /> }
-          @if (!isReadOnly()) { <iw-button-confirm
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"
-          /> }
+          />
+          }
         </div>
       </td>
     </tr>
@@ -46,33 +49,31 @@
 
   @if (dataSignal().length === 0) {
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message [colspan]="3" />
   </ng-template>
   }
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
- [showAdd]="!isReadOnly()">
+  [showAdd]="!isReadOnly()"
+>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="material-symbols-light:medical-services"
-          
-        />
+        <app-icon icon="material-symbols-light:medical-services" />
       </div>
-      
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
-      
-      @if (!isReadOnly()) { <ili-action-menu slot="end">
+
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
@@ -80,7 +81,8 @@
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </ili-action-menu> }
+      </ili-action-menu>
+      }
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

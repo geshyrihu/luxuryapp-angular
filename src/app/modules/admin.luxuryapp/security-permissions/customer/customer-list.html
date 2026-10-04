@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
     <div
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
     >
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
         [noPadding]="true"
@@ -90,12 +90,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile

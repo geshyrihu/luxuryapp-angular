@@ -16,7 +16,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
@@ -47,7 +47,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
   ],

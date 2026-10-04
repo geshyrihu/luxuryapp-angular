@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [value]="dataSignal()"
   class="custom-table card"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
           REPORTE DE ENVÍO DE ESTADOS FINANCIEROS A CONDÓMINOS AÑO {{
           selectedYear }}
         </h3>
-        <p class="m-0 text-muted" >
+        <p class="m-0 text-muted">
           💡 Regla: El informe del mes anterior debe enviarse a más tardar el
           día 10 de cada mes.
         </p>
@@ -37,7 +37,7 @@
     <tr>
       <th class="table-col-20">CLIENTE</th>
       @for (month of monthNames; track $index) {
-      <th class="text-center" >{{ month }}</th>
+      <th class="text-center">{{ month }}</th>
       }
     </tr>
   </ng-template>
@@ -55,9 +55,7 @@
             tooltipPosition="top"
             class="text-success"
           />
-          <span  class="text-success mt-1">
-            {{ mes.fecha }}
-          </span>
+          <span class="text-success mt-1"> {{ mes.fecha }} </span>
         </div>
         } @else {
         <app-icon
@@ -72,6 +70,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="13" />
+    <lux-table-empty-message [colspan]="13" />
   </ng-template>
-</app-table>
+</lux-table>

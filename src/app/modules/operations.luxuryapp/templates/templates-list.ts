@@ -35,7 +35,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -67,7 +67,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppSorticon,
     NgbDropdownModule,
     NgbTooltipModule,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     ActionMenu,
     DataViewMobile,

@@ -9,19 +9,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -31,6 +18,22 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-gasto-fijo-servicios",
@@ -50,7 +53,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     CustomInputSelectSignal,
     WebButtonLabelItem,
     WebButtonLabelDelete,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -78,9 +81,7 @@ export class GastoFijoServicios implements OnInit {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.measurementUnits,
-      )
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_unidadMedida = response;
         this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -147,4 +148,3 @@ export class GastoFijoServicios implements OnInit {
       });
   }
 }
-

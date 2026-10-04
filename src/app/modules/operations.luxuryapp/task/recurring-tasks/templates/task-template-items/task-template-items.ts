@@ -19,7 +19,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import {
   AppReorderableRow,
@@ -42,7 +42,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     StatusBadge,
     AppTable,

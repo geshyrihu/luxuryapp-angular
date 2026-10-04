@@ -8,15 +8,6 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -27,7 +18,16 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-presentaciones-juntas-comite",
@@ -41,7 +41,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppSortableColumn,
     AppSorticon,
     NgbTooltipModule,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     WebButtonLabelViewPdf,
     CustomInputTextSignal,
@@ -86,4 +86,3 @@ export class PresentacionesJuntasComite implements OnInit {
   //   this.route.navigate(["documento/view-documento"]);
   // }
 }
-

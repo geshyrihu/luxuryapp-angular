@@ -21,7 +21,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
 
@@ -46,7 +46,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     TableEmptyMessage,
     CommonModule,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
 
     DataViewMobile,
   ],

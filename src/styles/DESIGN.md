@@ -38,9 +38,9 @@ colors:
   error-container: "#FDE8E8"
   on-error-container: "#8A1F1F"
 
-  warning: "#FFB300"
-  warning-container: "#FFF3C4"
-  on-warning-container: "#5D2E00"
+  warning: "#BD8F16"
+  warning-container: "#FAF2D7"
+  on-warning-container: "#382706"
 
   info: "#4A90E2"
   info-container: "#E8EEF6"

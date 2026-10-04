@@ -1,7 +1,7 @@
 <div class="d-flex flex-column h-full">
   <h3 class="mt-0">Comprobantes de Pago</h3>
 
-  <app-table [value]="comprobantes()" class="p-datatable-sm mb-3">
+  <lux-table [value]="comprobantes()" class="p-datatable-sm mb-3">
     <ng-template #header>
       <tr>
         <th>Archivo</th>
@@ -29,9 +29,9 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
-  </ng-template>
-  </app-table>
+      <lux-table-empty-message [colspan]="3" />
+    </ng-template>
+  </lux-table>
 
   <div class="mb-4">
     <label class="d-block mb-2 fw-bold">Subir Nuevo Comprobante</label>

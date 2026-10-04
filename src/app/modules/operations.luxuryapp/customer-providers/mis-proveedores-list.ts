@@ -22,7 +22,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
@@ -40,7 +40,7 @@ import { CustomerProviderForm } from "./customer-provider-form";
     AppSortableColumn,
     AppSorticon,
     AppAvatar,
-    TableCaption,
+    LuxTableCaption,
     ActionMenu,
     DataViewMobile,
     WebButtonLabelEdit,

@@ -13,7 +13,10 @@
 -->
 @if (loading()) {
 <div class="d-flex align-items-center justify-content-center p-4">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl me-3" />
+  <app-icon
+    [icon]="'material-symbols-light:progress-activity'"
+    class="text-4xl me-3"
+  />
   <div class="text-lg">
     Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses
     seleccionados y calculando inflación ({{inflationRate()}}%)...
@@ -26,7 +29,7 @@
     que desea aplicar.
   </p>
 
-  <app-table
+  <lux-table
     [value]="forecastData()"
     [(selection)]="selectedForecastItems"
     dataKey="accountNumber"
@@ -37,7 +40,7 @@
     <ng-template #header>
       <tr>
         <th class="table-col-4rem">
-          <app-table-header-checkbox></app-table-header-checkbox>
+          <lux-table-header-checkbox></lux-table-header-checkbox>
         </th>
         <th appSortableColumn="accountNumber">
           Cuenta <app-sorticon field="accountNumber" />
@@ -57,7 +60,11 @@
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td><app-table-selection-checkbox [value]="item"></app-table-selection-checkbox></td>
+        <td>
+          <lux-table-selection-checkbox
+            [value]="item"
+          ></lux-table-selection-checkbox>
+        </td>
         <td>
           <div class="fw-bold">{{item.accountNumber}}</div>
           <div class="text-sm text-body-secondary">{{item.accountName}}</div>
@@ -71,10 +78,12 @@
         <td class="text-end text-green-600 fw-bold bg-green-50">
           {{ item.suggestedAmount | currency:'$':'symbol':'1.0-0' }}
         </td>
-        <td class="text-sm fst-italic text-body-secondary">{{ item.reasoning }}</td>
+        <td class="text-sm fst-italic text-body-secondary">
+          {{ item.reasoning }}
+        </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <div class="d-flex justify-content-between align-items-center w-full mt-4">

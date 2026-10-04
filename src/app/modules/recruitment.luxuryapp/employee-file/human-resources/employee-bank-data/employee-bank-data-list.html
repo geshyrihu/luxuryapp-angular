@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     #dt
     [value]="dataSignal()"
     [rows]="tableRows"
@@ -13,7 +13,7 @@
     groupRowsBy="employeeName"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
         [dt]="dt"
       />
@@ -54,13 +54,13 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="4" />
+      <lux-table-empty-message [colspan]="4" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <!-- Mobile View -->
   <app-data-view-mobile
@@ -80,12 +80,12 @@
             class="text-xl text-primary"
           />
         </div>
-        
-          <h2 class="fw-bold">{{ item.employeeName }}</h2>
-          <p class="text-sm text-body-secondary">
-            ?? {{ item.bankName }} | {{ item.bankAccount }}
-          </p>
-        
+
+        <h2 class="fw-bold">{{ item.employeeName }}</h2>
+        <p class="text-sm text-body-secondary">
+          ?? {{ item.bankName }} | {{ item.bankAccount }}
+        </p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

@@ -7,12 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -20,10 +14,16 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { EAreaMinutasDetallesPipe } from "@shared/pipes/area-minuta-detalles.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-filtro-minutas-area",
   templateUrl: "./filtro-minutas-area.html",
@@ -35,7 +35,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     EAreaMinutasDetallesPipe,
     SanitizeHtmlPipe,
@@ -90,4 +90,3 @@ export class FiltroMinutasArea implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-

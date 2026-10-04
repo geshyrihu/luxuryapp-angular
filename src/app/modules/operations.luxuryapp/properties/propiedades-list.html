@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -11,7 +11,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center">
-      <app-table-caption
+      <lux-table-caption
         [title]="'Propiedades'"
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -135,12 +135,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

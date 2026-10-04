@@ -1,7 +1,5 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -20,6 +18,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { firstValueFrom } from "rxjs";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -41,9 +41,9 @@ import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
@@ -53,7 +53,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     IonInputCheckbox,
     IonInputSelect,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     WebButtonIconEdit,
     WebButtonIconDelete,
@@ -181,23 +181,16 @@ export class CatalogoGastosFijosList {
   // Computed signal to determine if all items are selected
   isAllSelected = computed(() => {
     const data = this.dataSignal() || [];
-    return (
-      data.length > 0 &&
-      data.every((item) => item.crearOrdenCompra)
-    );
+    return data.length > 0 && data.every((item) => item.crearOrdenCompra);
   });
 
   isFirstQuincenaSelected = computed(() => {
     const data = this.dataSignal() || [];
-    return data.some(
-      (item) => item.quincena === 0 && item.crearOrdenCompra,
-    );
+    return data.some((item) => item.quincena === 0 && item.crearOrdenCompra);
   });
   isSecondQuincenaSelected = computed(() => {
     const data = this.dataSignal() || [];
-    return data.some(
-      (item) => item.quincena === 1 && item.crearOrdenCompra,
-    );
+    return data.some((item) => item.quincena === 1 && item.crearOrdenCompra);
   });
 
   constructor() {
@@ -276,9 +269,7 @@ export class CatalogoGastosFijosList {
 
   updateSelectedItems(): void {
     const data = this.dataSignal() || [];
-    this.selectedItems.set(
-      data.filter((item) => item.crearOrdenCompra),
-    );
+    this.selectedItems.set(data.filter((item) => item.crearOrdenCompra));
   }
 
   onItemCheckChange(item: any, isChecked: boolean) {
@@ -454,4 +445,3 @@ export class CatalogoGastosFijosList {
     });
   }
 }
-

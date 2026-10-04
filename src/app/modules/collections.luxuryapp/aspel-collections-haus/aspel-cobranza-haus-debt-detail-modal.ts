@@ -7,16 +7,19 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 
 import { AppTable } from "@ui/web/table/table";
 
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
 
 @Component({
@@ -27,7 +30,7 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
     CommonModule,
     AppTable,
     WebButtonLabel,
-    TableCaption,
+    LuxTableCaption,
     CurrencyPipe,
     NgClass,
     LxTag,
@@ -115,15 +118,21 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
 
     this.loading.set(true);
     try {
-      const response = await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-        Endpoints.CobranzaLive.detalleCobranzaRango(this.customerId, this.row.numCtaBase)
-      );
+      const response =
+        await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
+          Endpoints.CobranzaLive.detalleCobranzaRango(
+            this.customerId,
+            this.row.numCtaBase,
+          ),
+        );
       if (response) {
         const normalized = this.normalizeResponse(response);
         if (this.isCommitteeMode) {
-          normalized.conceptos = normalized.conceptos.filter(c => c.saldoFinal > 0);
-          normalized.conceptos.forEach(c => {
-            c.vencidos = c.vencidos.filter(v => v.saldoPendiente > 0);
+          normalized.conceptos = normalized.conceptos.filter(
+            (c) => c.saldoFinal > 0,
+          );
+          normalized.conceptos.forEach((c) => {
+            c.vencidos = c.vencidos.filter((v) => v.saldoPendiente > 0);
           });
           normalized.totalConceptos = normalized.conceptos.length;
         }
@@ -142,10 +151,12 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
       departamento: response.departamento ?? "",
       fechaInicio: response.fechaInicio ?? response.fecha_inicio ?? "",
       fechaFin: response.fechaFin ?? response.fecha_fin ?? "",
-      saldoInicialTotal: response.saldoInicialTotal ?? response.saldo_inicial_total ?? 0,
+      saldoInicialTotal:
+        response.saldoInicialTotal ?? response.saldo_inicial_total ?? 0,
       totalCargos: response.totalCargos ?? response.total_cargos ?? 0,
       totalAbonos: response.totalAbonos ?? response.total_abonos ?? 0,
-      saldoFinalTotal: response.saldoFinalTotal ?? response.saldo_final_total ?? 0,
+      saldoFinalTotal:
+        response.saldoFinalTotal ?? response.saldo_final_total ?? 0,
       totalAdelantos: response.totalAdelantos ?? response.total_adelantos ?? 0,
       totalConceptos: response.totalConceptos ?? response.total_conceptos ?? 0,
       conceptos: (response.conceptos ?? []).map((item) => ({
@@ -158,11 +169,11 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
         saldoFinal: item.saldoFinal ?? item.saldo_final ?? 0,
         totalVencido: item.totalVencido ?? item.total_vencido ?? 0,
         adelanto: item.adelanto ?? 0,
-        vencidos: (item.vencidos ?? []).map(v => ({
+        vencidos: (item.vencidos ?? []).map((v) => ({
           fechaCargo: v.fechaCargo ?? v.fecha_cargo ?? "",
           conceptoDetalle: v.conceptoDetalle ?? v.concepto_detalle ?? "",
-          saldoPendiente: v.saldoPendiente ?? v.saldo_pendiente ?? 0
-        }))
+          saldoPendiente: v.saldoPendiente ?? v.saldo_pendiente ?? 0,
+        })),
       })),
     };
   }
@@ -174,4 +185,3 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     return year ? `${year}-01-01` : undefined;
   }
 }
-

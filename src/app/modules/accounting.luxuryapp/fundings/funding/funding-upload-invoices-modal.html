@@ -30,7 +30,7 @@
     Revisa la información y selecciona las órdenes de compra que deseas crear.
   </p>
 
-  <app-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
+  <lux-table [value]="analysisResult()" class="p-datatable-sm" dataKey="tempId">
     <ng-template #header>
       <tr>
         <th class="table-col-3rem">
@@ -121,7 +121,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <div class="d-flex justify-content-end mt-4">
     <il-button

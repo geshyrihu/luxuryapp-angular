@@ -6,19 +6,16 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { CandidateApplicationListItem } from "../../candidate-applications/interfaces/candidate-application";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
+import { CandidateApplicationListItem } from "../../candidate-applications/interfaces/candidate-application";
 import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 
 @Component({
@@ -26,7 +23,7 @@ import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interv
   templateUrl: "./candidate-interview-pending-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
@@ -50,5 +47,3 @@ export class CandidateInterviewPendingDesktop {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 }
-
-

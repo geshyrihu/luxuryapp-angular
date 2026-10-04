@@ -24,8 +24,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   host: {
     role: "button",
     tabindex: "0",
-    class: "app-table-sortable-column",
-    "[class.app-table-sorted]": "isActive()",
+    class: "lux-table-sortable-column",
+    "[class.lux-table-sorted]": "isActive()",
     "(click)": "onActivate()",
     "(keydown.enter)": "onActivate()",
   },
@@ -45,7 +45,7 @@ export class AppSortableColumn {
 @Directive({
   selector: "[pReorderableRowHandle]",
   host: {
-    class: "app-table-row-handle",
+    class: "lux-table-row-handle",
     draggable: "true",
   },
 })
@@ -54,8 +54,8 @@ export class AppReorderableRowHandle {}
 @Directive({
   selector: "[pReorderableRow]",
   host: {
-    class: "app-table-reorderable-row",
-    "[class.app-table-row-dragover]": "isDragOver()",
+    class: "lux-table-reorderable-row",
+    "[class.lux-table-row-dragover]": "isDragOver()",
     "(dragstart)": "onDragStart($event)",
     "(dragover)": "onDragOver($event)",
     "(dragleave)": "onDragLeave()",
@@ -74,7 +74,9 @@ export class AppReorderableRow {
       event.preventDefault();
       return;
     }
-    const handle = this.host.nativeElement.querySelector(".app-table-row-handle");
+    const handle = this.host.nativeElement.querySelector(
+      ".lux-table-row-handle",
+    );
     if (
       !handle ||
       !(event.target === handle || handle.contains(event.target as Node))
@@ -116,7 +118,7 @@ export class AppReorderableRow {
 @Directive({
   selector: "[pFrozenColumn]",
   host: {
-    class: "app-table-frozen-column",
+    class: "lux-table-frozen-column",
     "[attr.data-frozen-align]": "alignFrozen()",
   },
 })
@@ -128,7 +130,7 @@ export class AppFrozenColumn {
   selector: "app-sorticon",
   imports: [AppIcon],
   template: `
-    <span class="app-table-sorticon">
+    <span class="lux-table-sorticon">
       @if (table.sortField() === field()) {
         @if (table.sortOrder() === 1) {
           <app-icon icon="material-symbols-light:arrow-upward" />
@@ -138,7 +140,7 @@ export class AppFrozenColumn {
       } @else {
         <app-icon
           icon="material-symbols-light:swap-vert"
-          class="app-table-sorticon-neutral"
+          class="lux-table-sorticon-neutral"
         />
       }
     </span>
@@ -152,7 +154,7 @@ export class AppSorticon {
 }
 
 @Component({
-  selector: "app-table-selection-checkbox",
+  selector: "lux-table-selection-checkbox",
   template: `
     <input
       type="checkbox"
@@ -171,7 +173,7 @@ export class AppTableCheckbox {
 }
 
 @Component({
-  selector: "app-table-header-checkbox",
+  selector: "lux-table-header-checkbox",
   template: `
     <input
       type="checkbox"
@@ -203,34 +205,34 @@ export interface AppTableLazyEvent {
 }
 
 @Component({
-  selector: "app-table",
-  host: { class: "app-table" },
+  selector: "lux-table",
+  host: { class: "lux-table" },
   imports: [NgStyle, NgTemplateOutlet],
   template: `
     @if (captionTpl(); as caption) {
-      <div class="app-table-caption">
+      <div class="lux-table-caption">
         <ng-container [ngTemplateOutlet]="caption" />
       </div>
     }
     <div
-      class="app-table-scroll"
+      class="lux-table-scroll"
       [style.max-height]="scrollable() ? scrollHeight() : null"
     >
       <table
-        class="app-table-table table"
-        [class.app-table-sm]="size() === 'small'"
+        class="lux-table-table table"
+        [class.lux-table-sm]="size() === 'small'"
         [ngStyle]="tableStyle()"
       >
         <ng-container [ngTemplateOutlet]="colgroupTpl() ?? null" />
         <thead
-          class="app-table-thead"
+          class="lux-table-thead"
           (dragstart)="onColDragStart($event)"
           (dragover)="onColDragOver($event)"
           (drop)="onColDrop($event)"
         >
           <ng-container [ngTemplateOutlet]="headerTpl() ?? null" />
         </thead>
-        <tbody class="app-table-tbody">
+        <tbody class="lux-table-tbody">
           @if (pagedValue().length === 0) {
             <ng-container [ngTemplateOutlet]="emptymessageTpl() ?? null" />
           } @else {
@@ -259,29 +261,26 @@ export interface AppTableLazyEvent {
           }
         </tbody>
         @if (footerTpl(); as footer) {
-          <tfoot class="app-table-tfoot">
+          <tfoot class="lux-table-tfoot">
             <ng-container [ngTemplateOutlet]="footer" />
           </tfoot>
         }
       </table>
     </div>
     @if (paginator()) {
-      <div class="app-table-paginator">
+      <div class="lux-table-paginator">
         @if (paginatorleftTpl(); as footer) {
-          <div class="app-table-paginator-left">
+          <div class="lux-table-paginator-left">
             <ng-container [ngTemplateOutlet]="footer" />
           </div>
         }
         @if (showCurrentPageReport()) {
-          <span class="app-table-page-report">{{ pageReport() }}</span>
+          <span class="lux-table-page-report">{{ pageReport() }}</span>
         }
-        <div class="app-table-paginator-controls">
+        <div class="lux-table-paginator-controls">
           <nav aria-label="Páginas de tabla">
             <ul class="pagination pagination-primary pagin-border-primary mb-0">
-              <li
-                class="page-item"
-                [class.disabled]="currentPageIndex() === 0"
-              >
+              <li class="page-item" [class.disabled]="currentPageIndex() === 0">
                 <button
                   type="button"
                   class="page-link"
@@ -295,7 +294,9 @@ export interface AppTableLazyEvent {
                 <li
                   class="page-item"
                   [class.active]="page === currentPageIndex()"
-                  [attr.aria-current]="page === currentPageIndex() ? 'page' : null"
+                  [attr.aria-current]="
+                    page === currentPageIndex() ? 'page' : null
+                  "
                 >
                   <button
                     type="button"
@@ -323,7 +324,7 @@ export interface AppTableLazyEvent {
             </ul>
           </nav>
           <select
-            class="app-table-rows-select form-select form-select-sm"
+            class="lux-table-rows-select form-select form-select-sm"
             style="width: auto"
             [value]="effectiveRows()"
             (change)="changeRows(+$any($event.target).value)"
@@ -344,37 +345,37 @@ export interface AppTableLazyEvent {
         min-height: 0;
       }
 
-      .app-table-sorticon {
+      .lux-table-sorticon {
         display: inline-block;
         min-width: 1em;
       }
 
-      .app-table-sorticon-neutral {
+      .lux-table-sorticon-neutral {
         opacity: 0.4;
       }
 
-      .app-table-scroll {
+      .lux-table-scroll {
         overflow: auto;
       }
 
-      .app-table-row-handle {
+      .lux-table-row-handle {
         cursor: grab;
       }
 
-      .app-table-reorderable-row.app-table-row-dragover {
+      .lux-table-reorderable-row.lux-table-row-dragover {
         box-shadow: inset 0 2px 0 var(--ds-primary);
       }
 
-      .app-table-thead th[draggable="true"] {
+      .lux-table-thead th[draggable="true"] {
         cursor: grab;
       }
 
-      .app-table-frozen-column {
+      .lux-table-frozen-column {
         z-index: 2;
         background-color: var(--ds-surface);
       }
 
-      .app-table-thead .app-table-frozen-column {
+      .lux-table-thead .lux-table-frozen-column {
         z-index: 3;
       }
     `,
@@ -451,31 +452,58 @@ export class AppTable {
     });
   }
 
-  protected captionTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("caption", {
+  protected captionTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("caption", {
     read: TemplateRef,
   });
-  protected colgroupTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("colgroup", {
+  protected colgroupTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("colgroup", {
     read: TemplateRef,
   });
-  protected headerTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("header", {
+  protected headerTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("header", {
     read: TemplateRef,
   });
-  protected bodyTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("body", {
+  protected bodyTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>(
+    "body",
+    {
+      read: TemplateRef,
+    },
+  );
+  protected emptymessageTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("emptymessage", {
     read: TemplateRef,
   });
-  protected emptymessageTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("emptymessage", {
+  protected paginatorleftTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("paginatorleft", {
     read: TemplateRef,
   });
-  protected paginatorleftTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("paginatorleft", {
+  protected groupheaderTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("groupheader", {
     read: TemplateRef,
   });
-  protected groupheaderTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("groupheader", {
+  protected groupfooterTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("groupfooter", {
     read: TemplateRef,
   });
-  protected groupfooterTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("groupfooter", {
-    read: TemplateRef,
-  });
-  protected footerTpl = contentChild<TemplateRef<unknown>, TemplateRef<unknown>>("footer", {
+  protected footerTpl = contentChild<
+    TemplateRef<unknown>,
+    TemplateRef<unknown>
+  >("footer", {
     read: TemplateRef,
   });
 
@@ -488,7 +516,9 @@ export class AppTable {
 
     return values.filter((item) =>
       this.globalFilterFields().some((field) =>
-        String(item?.[field] ?? "").toLowerCase().includes(term),
+        String(item?.[field] ?? "")
+          .toLowerCase()
+          .includes(term),
       ),
     );
   });
@@ -587,7 +617,9 @@ export class AppTable {
 
   protected onColDragStart(event: DragEvent): void {
     if (!this.reorderableColumns()) return;
-    const th = (event.target as HTMLElement)?.closest("th") as HTMLElement | null;
+    const th = (event.target as HTMLElement)?.closest(
+      "th",
+    ) as HTMLElement | null;
     if (!th?.dataset["appTableCol"]) return;
     this.dragColKey.set(th.dataset["appTableCol"]);
     event.dataTransfer?.setData("text/plain", th.dataset["appTableCol"]);
@@ -601,10 +633,13 @@ export class AppTable {
   protected onColDrop(event: DragEvent): void {
     if (!this.reorderableColumns()) return;
     const dragKey = this.dragColKey();
-    const targetTh = (event.target as HTMLElement)?.closest("th") as HTMLElement | null;
+    const targetTh = (event.target as HTMLElement)?.closest(
+      "th",
+    ) as HTMLElement | null;
     const dropKey = targetTh?.dataset["appTableCol"];
     this.dragColKey.set(null);
-    if (!dragKey || !dropKey || dragKey === dropKey || !targetTh?.parentElement) return;
+    if (!dragKey || !dropKey || dragKey === dropKey || !targetTh?.parentElement)
+      return;
 
     event.preventDefault();
     const current = Array.from(targetTh.parentElement.children).map(
@@ -618,7 +653,9 @@ export class AppTable {
   }
 
   private applyColumnOrder(): void {
-    const theadRow = this.hostRef.nativeElement.querySelector(".app-table-thead tr");
+    const theadRow = this.hostRef.nativeElement.querySelector(
+      ".lux-table-thead tr",
+    );
     if (!theadRow) return;
 
     const headerCells = Array.from(theadRow.children) as HTMLElement[];
@@ -627,10 +664,13 @@ export class AppTable {
       th.draggable = true;
     });
 
-    const order = this.columnOrder() ?? headerCells.map((th) => th.dataset["appTableCol"]!);
+    const order =
+      this.columnOrder() ?? headerCells.map((th) => th.dataset["appTableCol"]!);
     this.reorderRowChildren(theadRow as HTMLElement, order);
 
-    const bodyRows = this.hostRef.nativeElement.querySelectorAll(".app-table-tbody tr");
+    const bodyRows = this.hostRef.nativeElement.querySelectorAll(
+      ".lux-table-tbody tr",
+    );
     bodyRows.forEach((tr) => {
       const cells = Array.from(tr.children) as HTMLElement[];
       cells.forEach((td, i) => {
@@ -642,7 +682,10 @@ export class AppTable {
 
   private reorderRowChildren(row: HTMLElement, order: string[]): void {
     const byKey = new Map(
-      Array.from(row.children).map((el) => [(el as HTMLElement).dataset["appTableCol"], el]),
+      Array.from(row.children).map((el) => [
+        (el as HTMLElement).dataset["appTableCol"],
+        el,
+      ]),
     );
     for (const key of order) {
       const el = byKey.get(key);
@@ -652,7 +695,7 @@ export class AppTable {
 
   private applyFrozenColumns(): void {
     const rows = this.hostRef.nativeElement.querySelectorAll(
-      ".app-table-thead tr, .app-table-tbody tr",
+      ".lux-table-thead tr, .lux-table-tbody tr",
     ) as NodeListOf<HTMLElement>;
     rows.forEach((row) => {
       const cells = Array.from(row.children) as HTMLElement[];
@@ -660,7 +703,7 @@ export class AppTable {
       let leftOffset = 0;
       for (const cell of cells) {
         if (
-          !cell.classList.contains("app-table-frozen-column") ||
+          !cell.classList.contains("lux-table-frozen-column") ||
           cell.dataset["frozenAlign"] === "right"
         ) {
           continue;
@@ -674,7 +717,7 @@ export class AppTable {
       for (let i = cells.length - 1; i >= 0; i--) {
         const cell = cells[i];
         if (
-          !cell.classList.contains("app-table-frozen-column") ||
+          !cell.classList.contains("lux-table-frozen-column") ||
           cell.dataset["frozenAlign"] !== "right"
         ) {
           continue;
@@ -732,10 +775,13 @@ export class AppTable {
 
   public toggleAllSelection(): void {
     const rows = this.pagedValue();
-    const allSelected = rows.length > 0 && rows.every((row) => this.isSelected(row));
+    const allSelected =
+      rows.length > 0 && rows.every((row) => this.isSelected(row));
     if (allSelected) {
       const rowIds = new Set(rows.map((row) => this.identity(row)));
-      this.selection.set(this.selection().filter((row) => !rowIds.has(this.identity(row))));
+      this.selection.set(
+        this.selection().filter((row) => !rowIds.has(this.identity(row))),
+      );
     } else {
       const current = this.selection();
       const currentIds = new Set(current.map((row) => this.identity(row)));

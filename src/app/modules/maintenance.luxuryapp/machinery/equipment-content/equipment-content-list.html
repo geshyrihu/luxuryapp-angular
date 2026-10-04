@@ -5,7 +5,7 @@
   </div>
 
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -18,7 +18,7 @@
       styleClass="custom-table card hidden md:block"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           [title]="'Contenidos de ' + equipmentName"
           [dt]="dt"
           [showAdd]="canManageContents()"
@@ -30,8 +30,12 @@
         <tr>
           <th>Imagen</th>
           <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
-          <th appSortableColumn="typeDisplayName">Tipo <app-sorticon field="typeDisplayName" /></th>
-          <th appSortableColumn="quantity">Cantidad <app-sorticon field="quantity" /></th>
+          <th appSortableColumn="typeDisplayName">
+            Tipo <app-sorticon field="typeDisplayName" />
+          </th>
+          <th appSortableColumn="quantity">
+            Cantidad <app-sorticon field="quantity" />
+          </th>
           <th>Notas</th>
           <th class="no-print"></th>
         </tr>
@@ -40,7 +44,12 @@
         <tr>
           <td>
             @if (item.photoUrl) {
-              <app-image [src]="item.photoUrl" [alt]="item.name" width="64" [preview]="true" />
+            <app-image
+              [src]="item.photoUrl"
+              [alt]="item.name"
+              width="64"
+              [preview]="true"
+            />
             }
           </td>
           <td>{{ item.name }}</td>
@@ -49,18 +58,18 @@
           <td>{{ item.notes }}</td>
           <td class="no-print">
             @if (canManageContents()) {
-              <div class="d-flex gap-1">
-                <iw-button-edit (clicked)="onEdit(item)" />
-                <iw-button-delete (confirmed)="onDelete(item.id)" />
-              </div>
+            <div class="d-flex gap-1">
+              <iw-button-edit (clicked)="onEdit(item)" />
+              <iw-button-delete (confirmed)="onDelete(item.id)" />
+            </div>
             }
           </td>
         </tr>
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <div class="d-md-none">
@@ -76,25 +85,43 @@
         <article class="bg-body p-3 mb-2 shadow-sm rounded">
           <div class="d-flex gap-3 align-items-start">
             @if (item.photoUrl) {
-              <img [src]="item.photoUrl" [alt]="item.name" class="rounded object-fit-cover" width="72" height="72" />
+            <img
+              [src]="item.photoUrl"
+              [alt]="item.name"
+              class="rounded object-fit-cover"
+              width="72"
+              height="72"
+            />
             } @else {
-              <app-icon icon="material-symbols-light:inventory-2" />
+            <app-icon icon="material-symbols-light:inventory-2" />
             }
             <div class="flex-grow-1">
               <h3 class="h6 mb-1">{{ item.name }}</h3>
-              <div class="text-body-secondary">{{ item.typeDisplayName }} · {{ item.quantity }}</div>
-              @if (item.notes) { <p class="small mb-0 mt-1">{{ item.notes }}</p> }
+              <div class="text-body-secondary">
+                {{ item.typeDisplayName }} · {{ item.quantity }}
+              </div>
+              @if (item.notes) {
+              <p class="small mb-0 mt-1">{{ item.notes }}</p>
+              }
             </div>
           </div>
           @if (canManageContents()) {
-            <div class="d-flex justify-content-end gap-2 mt-2">
-              <button type="button" class="btn btn-rounded btn-text-primary btn-sm" (click)="onEdit(item)">
-                <app-icon icon="material-symbols-light:edit-outline" />
-              </button>
-              <button type="button" class="btn btn-rounded btn-text-danger btn-sm" (click)="onDelete(item.id)">
-                <app-icon icon="material-symbols-light:delete-outline" />
-              </button>
-            </div>
+          <div class="d-flex justify-content-end gap-2 mt-2">
+            <button
+              type="button"
+              class="btn btn-rounded btn-text-primary btn-sm"
+              (click)="onEdit(item)"
+            >
+              <app-icon icon="material-symbols-light:edit-outline" />
+            </button>
+            <button
+              type="button"
+              class="btn btn-rounded btn-text-danger btn-sm"
+              (click)="onDelete(item.id)"
+            >
+              <app-icon icon="material-symbols-light:delete-outline" />
+            </button>
+          </div>
           }
         </article>
       </ng-template>
@@ -102,6 +129,8 @@
   </div>
 
   @if (!loading() && data().length === 0) {
-    <div class="text-center text-body-secondary py-4">Este activo todavía no tiene contenidos.</div>
+  <div class="text-center text-body-secondary py-4">
+    Este activo todavía no tiene contenidos.
+  </div>
   }
 </div>

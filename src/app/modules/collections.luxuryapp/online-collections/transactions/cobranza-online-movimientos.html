@@ -10,7 +10,7 @@
   </div>
   } @else {
   <div class="mt-4">
-    <app-table
+    <lux-table
       #dt
       [value]="pivotData()"
       dataKey="accountNumber"
@@ -25,7 +25,7 @@
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     >
       <ng-template #caption>
-        <app-table-caption [dt]="dt" [showAdd]="false" />
+        <lux-table-caption [dt]="dt" [showAdd]="false" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -122,7 +122,7 @@
           en <span class="text-success fw-bold">verde</span> (-)
         </div>
       </ng-template>
-    </app-table>
+    </lux-table>
 
     <div class="d-md-none">
       <app-data-view-mobile

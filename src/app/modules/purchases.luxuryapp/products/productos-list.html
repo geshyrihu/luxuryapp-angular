@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       [title]="'Productos'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -85,12 +85,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="filteredDataSignal()" />
+    <lux-table-footer [data]="filteredDataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -108,7 +108,10 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:package" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:package"
+          class="text-xl text-primary"
+        />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>

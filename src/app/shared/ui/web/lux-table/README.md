@@ -3,30 +3,30 @@
 > **Estado verificado:** 2026-09-18. Esta guia describe `table.ts` actual,
 > deben asumirse por compatibilidad de nombres.
 
-
 Diseñado con el motor moderno de **Angular Signals** (`input`, `computed`, `model`, `linkedSignal`), este componente elimina la necesidad de depender de librerías externas pesadas mientras mantiene compatibilidad casi total con los nombres de APIs, inputs, outputs y selectores existentes en el proyecto. Esto permite una transición transparente durante los procesos de refactorización y migración.
 
 ---
 
 ## 🗺️ Índice de Contenidos
+
 1. [Características Clave](#-características-clave)
 2. [Estructura del Archivo y Directivas Coadyuvantes](#-estructura-del-archivo-y-directivas-coadyuvantes)
 3. [API del Componente Principal (`AppTable`)](#-api-del-componente-principal-apptable)
-    - [Inputs (Señales de Entrada)](#inputs-señales-de-entrada)
-    - [Outputs (Eventos de Salida)](#outputs-eventos-de-salida)
-    - [Plantillas Soportadas (ContentChildren)](#plantillas-soportadas-contentchildren)
+   - [Inputs (Señales de Entrada)](#inputs-señales-de-entrada)
+   - [Outputs (Eventos de Salida)](#outputs-eventos-de-salida)
+   - [Plantillas Soportadas (ContentChildren)](#plantillas-soportadas-contentchildren)
 4. [Funcionalidades en Detalle (Under the Hood)](#-funcionalidades-en-detalle-under-the-hood)
-    - [Ordenación (Client-side vs Server-side)](#ordenación-client-side-vs-server-side)
-    - [Paginación Inteligente](#paginación-inteligente)
-    - [Selección Unificada (Checkboxes)](#selección-unificada-checkboxes)
-    - [Reordenación por Arrastre (Drag & Drop)](#reordenación-por-arrastre-drag--drop)
-    - [Columnas Congeladas (Sticky Columns)](#columnas-congeladas-sticky-columns)
+   - [Ordenación (Client-side vs Server-side)](#ordenación-client-side-vs-server-side)
+   - [Paginación Inteligente](#paginación-inteligente)
+   - [Selección Unificada (Checkboxes)](#selección-unificada-checkboxes)
+   - [Reordenación por Arrastre (Drag & Drop)](#reordenación-por-arrastre-drag--drop)
+   - [Columnas Congeladas (Sticky Columns)](#columnas-congeladas-sticky-columns)
 5. [Ejemplos de Uso Práctico](#-ejemplos-de-uso-práctico)
-    - [Caso 1: Tabla Básica con Filtro Global, Ordenación y Paginación (Cliente)](#caso-1-tabla-básica-con-filtro-global-ordenación-y-paginación-cliente)
-    - [Caso 2: Tabla Server-Side (Lazy Loading)](#caso-2-tabla-server-side-lazy-loading)
-    - [Caso 3: Tabla con Selección y Checkboxes](#caso-3-tabla-con-selección-y-checkboxes)
-    - [Caso 4: Reordenación de Filas y Columnas](#caso-4-reordenación-de-filas-y-columnas)
-    - [Caso 5: Agrupamiento de Filas (Row Grouping)](#caso-5-agrupamiento-de-filas-row-grouping)
+   - [Caso 1: Tabla Básica con Filtro Global, Ordenación y Paginación (Cliente)](#caso-1-tabla-básica-con-filtro-global-ordenación-y-paginación-cliente)
+   - [Caso 2: Tabla Server-Side (Lazy Loading)](#caso-2-tabla-server-side-lazy-loading)
+   - [Caso 3: Tabla con Selección y Checkboxes](#caso-3-tabla-con-selección-y-checkboxes)
+   - [Caso 4: Reordenación de Filas y Columnas](#caso-4-reordenación-de-filas-y-columnas)
+   - [Caso 5: Agrupamiento de Filas (Row Grouping)](#caso-5-agrupamiento-de-filas-row-grouping)
 
 ---
 
@@ -63,26 +63,31 @@ value()
 El archivo `table.ts` expone un ecosistema de directivas y micro-componentes que colaboran de manera transparente:
 
 ### 1. `AppSortableColumn` (Directiva `[appSortableColumn]`)
-* **Selector:** `[appSortableColumn]`
-* **Uso:** Se aplica en cabeceras `<th>` para habilitar la ordenación al hacer clic o presionar Enter.
-* **Comportamiento:** Añade automáticamente atributos de accesibilidad (`role="button"`, `tabindex="0"`) y la clase activa `.app-table-sorted` cuando la columna es el criterio de ordenación actual.
+
+- **Selector:** `[appSortableColumn]`
+- **Uso:** Se aplica en cabeceras `<th>` para habilitar la ordenación al hacer clic o presionar Enter.
+- **Comportamiento:** Añade automáticamente atributos de accesibilidad (`role="button"`, `tabindex="0"`) y la clase activa `.lux-table-sorted` cuando la columna es el criterio de ordenación actual.
 
 ### 2. `AppReorderableRow` y `AppReorderableRowHandle`
-* **Directiva de Fila (`[pReorderableRow]`):** Convierte una fila `<tr>` en un elemento arrastrable (`draggable="true"`). Aplica estilos visuales de arrastre (`.app-table-row-dragover`).
-* **Directiva de Manija (`[pReorderableRowHandle]`):** Identifica el ícono o zona específica de la fila desde donde se permite iniciar el arrastre, protegiendo interacciones con botones u otros controles de la fila.
+
+- **Directiva de Fila (`[pReorderableRow]`):** Convierte una fila `<tr>` en un elemento arrastrable (`draggable="true"`). Aplica estilos visuales de arrastre (`.lux-table-row-dragover`).
+- **Directiva de Manija (`[pReorderableRowHandle]`):** Identifica el ícono o zona específica de la fila desde donde se permite iniciar el arrastre, protegiendo interacciones con botones u otros controles de la fila.
 
 ### 3. `AppFrozenColumn` (Directiva `[pFrozenColumn]`)
-* **Selector:** `[pFrozenColumn]`
-* **Uso:** Convierte celdas (`<th>` o `<td>`) en columnas fijas/congeladas.
-* **Propiedades:** `alignFrozen = input<"left" | "right">("left")` define si se congela al extremo izquierdo o derecho.
+
+- **Selector:** `[pFrozenColumn]`
+- **Uso:** Convierte celdas (`<th>` o `<td>`) en columnas fijas/congeladas.
+- **Propiedades:** `alignFrozen = input<"left" | "right">("left")` define si se congela al extremo izquierdo o derecho.
 
 ### 4. `AppSorticon` (Componente `app-sorticon`)
-* **Selector:** `app-sorticon`
-* **Uso:** Renderiza un ícono de estado de ordenación (neutral, ascendente o descendente) sincronizado automáticamente con el estado actual de la tabla.
+
+- **Selector:** `app-sorticon`
+- **Uso:** Renderiza un ícono de estado de ordenación (neutral, ascendente o descendente) sincronizado automáticamente con el estado actual de la tabla.
 
 ### 5. `AppTableCheckbox` y `AppTableHeaderCheckbox`
-* **Checkbox de Fila (`p-tablecheckbox`):** Renderiza un checkbox nativo de Bootstrap vinculado al estado de selección del elemento actual.
-* **Checkbox de Cabecera (`p-tableheadercheckbox`):** Renderiza un checkbox para seleccionar/deseleccionar todas las filas actualmente visibles en la página.
+
+- **Checkbox de Fila (`p-tablecheckbox`):** Renderiza un checkbox nativo de Bootstrap vinculado al estado de selección del elemento actual.
+- **Checkbox de Cabecera (`p-tableheadercheckbox`):** Renderiza un checkbox para seleccionar/deseleccionar todas las filas actualmente visibles en la página.
 
 ---
 
@@ -90,29 +95,29 @@ El archivo `table.ts` expone un ecosistema de directivas y micro-componentes que
 
 ### Inputs (Señales de Entrada)
 
-| Input | Tipo | Valor por Defecto | Descripción |
-|---|---|---|---|
-| `value` | `any[]` | `[]` | Colección de datos a renderizar en la tabla. |
-| `loading` | `boolean` | `false` | Activa estados visuales de carga (si es requerido). |
-| `lazy` | `boolean` | `false` | Indica si los datos se paginan, ordenan y filtran en el servidor. |
-| `paginator` | `boolean` | `false` | Habilita o deshabilita la barra de paginación. |
-| `rows` | `number` | `30` | Número inicial de filas por página. |
-| `rowsPerPageOptions` | `number[]` | `[30, 50, 75, 100, 150, 200]` | Opciones del combo de tamaño de página en el paginador. |
-| `totalRecords` | `number` | `0` | Total de registros en la base de datos (requerido si `lazy` es `true`). |
-| `showCurrentPageReport` | `boolean` | `false` | Muestra un texto con el resumen de la página actual. |
-| `currentPageReportTemplate` | `string` | `"Mostrando {first} a..."` | Plantilla de texto para el reporte de páginas. |
-| `globalFilterFields` | `string[]` | `[]` | Campos de los objetos fila en los que se buscará el término de filtrado global (cliente). |
-| `scrollable` | `boolean` | `false` | Habilita scroll vertical si el contenido excede el alto máximo. |
-| `scrollHeight` | `string` | `undefined` | Alto máximo del contenedor scrollable (ej: `"400px"`). |
-| `tableStyle` | `Record<string, string>` | `undefined` | Estilos CSS en formato clave-valor para aplicar a la etiqueta `<table>`. |
-| `size` | `"small" \| undefined` | `undefined` | Si es `"small"`, aplica la clase compacta `.table-sm`. |
-| `initialSortField` | `string` | `undefined` | Campo inicial por el cual ordenar los datos. |
-| `initialSortOrder` | `1 \| -1` | `1` | Dirección inicial de la ordenación (`1` ascendente, `-1` descendente). |
-| `groupRowsBy` | `string` | `undefined` | Campo clave para habilitar la agrupación de filas. |
-| `dataKey` | `string` | `undefined` | Propiedad única del registro usada para identificar y comparar selecciones. |
-| `selection` | `model<unknown[]>` | `[]` | **Two-way binding (Signal Model)** para almacenar los registros seleccionados. |
-| `reorderableRows` | `boolean` | `false` | Permite reordenar filas mediante Drag & Drop. |
-| `reorderableColumns` | `boolean` | `false` | Permite reordenar columnas arrastrando las cabeceras `<th>`. |
+| Input                       | Tipo                     | Valor por Defecto             | Descripción                                                                               |
+| --------------------------- | ------------------------ | ----------------------------- | ----------------------------------------------------------------------------------------- |
+| `value`                     | `any[]`                  | `[]`                          | Colección de datos a renderizar en la tabla.                                              |
+| `loading`                   | `boolean`                | `false`                       | Activa estados visuales de carga (si es requerido).                                       |
+| `lazy`                      | `boolean`                | `false`                       | Indica si los datos se paginan, ordenan y filtran en el servidor.                         |
+| `paginator`                 | `boolean`                | `false`                       | Habilita o deshabilita la barra de paginación.                                            |
+| `rows`                      | `number`                 | `30`                          | Número inicial de filas por página.                                                       |
+| `rowsPerPageOptions`        | `number[]`               | `[30, 50, 75, 100, 150, 200]` | Opciones del combo de tamaño de página en el paginador.                                   |
+| `totalRecords`              | `number`                 | `0`                           | Total de registros en la base de datos (requerido si `lazy` es `true`).                   |
+| `showCurrentPageReport`     | `boolean`                | `false`                       | Muestra un texto con el resumen de la página actual.                                      |
+| `currentPageReportTemplate` | `string`                 | `"Mostrando {first} a..."`    | Plantilla de texto para el reporte de páginas.                                            |
+| `globalFilterFields`        | `string[]`               | `[]`                          | Campos de los objetos fila en los que se buscará el término de filtrado global (cliente). |
+| `scrollable`                | `boolean`                | `false`                       | Habilita scroll vertical si el contenido excede el alto máximo.                           |
+| `scrollHeight`              | `string`                 | `undefined`                   | Alto máximo del contenedor scrollable (ej: `"400px"`).                                    |
+| `tableStyle`                | `Record<string, string>` | `undefined`                   | Estilos CSS en formato clave-valor para aplicar a la etiqueta `<table>`.                  |
+| `size`                      | `"small" \| undefined`   | `undefined`                   | Si es `"small"`, aplica la clase compacta `.table-sm`.                                    |
+| `initialSortField`          | `string`                 | `undefined`                   | Campo inicial por el cual ordenar los datos.                                              |
+| `initialSortOrder`          | `1 \| -1`                | `1`                           | Dirección inicial de la ordenación (`1` ascendente, `-1` descendente).                    |
+| `groupRowsBy`               | `string`                 | `undefined`                   | Campo clave para habilitar la agrupación de filas.                                        |
+| `dataKey`                   | `string`                 | `undefined`                   | Propiedad única del registro usada para identificar y comparar selecciones.               |
+| `selection`                 | `model<unknown[]>`       | `[]`                          | **Two-way binding (Signal Model)** para almacenar los registros seleccionados.            |
+| `reorderableRows`           | `boolean`                | `false`                       | Permite reordenar filas mediante Drag & Drop.                                             |
+| `reorderableColumns`        | `boolean`                | `false`                       | Permite reordenar columnas arrastrando las cabeceras `<th>`.                              |
 
 `reorderableRows` forma parte del contrato para aceptar bindings migrados desde
 `[pReorderableRow]` en cada `<tr>`, `pReorderableRowHandle` en un descendiente y
@@ -155,6 +160,7 @@ El componente detecta automáticamente las plantillas declaradas con `#` dentro 
 ### Ordenación (Client-side vs Server-side)
 
 La propiedad `sortedValue` es una señal computada (`computed`) que gestiona el ordenamiento de los datos de forma inteligente:
+
 - Si **`lazy === true`**: La tabla omite el procesamiento de ordenación local y emite el evento `onLazyLoad` para que el servidor resuelva los datos correspondientes.
 - Si **`lazy === false`**: La tabla procesa el ordenamiento de forma local basándose en el tipo de dato y respeta la agrupación si se definió `groupRowsBy`.
 
@@ -162,6 +168,7 @@ La propiedad `sortedValue` es una señal computada (`computed`) que gestiona el 
 
 `AppTable` calcula dinámicamente los botones del paginador ofreciendo un máximo de 5 botones de páginas consecutivas alrededor de la página actual.
 La navegación utiliza transiciones seguras mediante índices calculados por señales:
+
 - `pageCount` determina dinámicamente cuántas páginas existen.
 - `pageReport` interpola los valores `{first}`, `{last}` y `{totalRecords}` dinámicamente según los elementos visibles y el conteo de registros total.
 
@@ -173,13 +180,13 @@ Para comparar registros robustamente (especialmente al trabajar con paginación)
 
 ### Reordenación por Arrastre (Drag & Drop)
 
-- **Columnas (`reorderableColumns`):** Al activarse, cada `<th>` en el `thead` recibe el atributo `draggable="true"`. A través de un `afterRenderEffect` y de la asignación del atributo de datos `data-app-table-col`, el componente reordena físicamente los nodos hijos (`Element.appendChild`) del `thead` y del `tbody` cada vez que el orden de columnas cambia, sin necesidad de destruir y volver a pintar el componente.
+- **Columnas (`reorderableColumns`):** Al activarse, cada `<th>` en el `thead` recibe el atributo `draggable="true"`. A través de un `afterRenderEffect` y de la asignación del atributo de datos `data-lux-table-col`, el componente reordena físicamente los nodos hijos (`Element.appendChild`) del `thead` y del `tbody` cada vez que el orden de columnas cambia, sin necesidad de destruir y volver a pintar el componente.
 - **Filas (`reorderableRows`):** Cuando arrastras una fila (usando obligatoriamente un elemento con `[pReorderableRowHandle]`), se dispara la reordenación local modificando la señal `reorderedValue` y emitiendo el evento `onRowReorder` con los índices correspondientes.
 
 #### Markup completo para reorder de filas
 
 ```html
-<app-table
+<lux-table
   [value]="items()"
   [reorderableRows]="true"
   (onRowReorder)="onRowReorder($event)"
@@ -187,19 +194,16 @@ Para comparar registros robustamente (especialmente al trabajar con paginación)
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <app-icon
-          icon="material-symbols-light:menu"
-          pReorderableRowHandle
-        />
+        <app-icon icon="material-symbols-light:menu" pReorderableRowHandle />
       </td>
       <td>{{ item.name }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 ```
 
 ```typescript
-imports: [AppTable, AppReorderableRow, AppReorderableRowHandle]
+imports: [AppTable, AppReorderableRow, AppReorderableRowHandle];
 ```
 
 El flujo es `dragstart` en la fila, validacion del descendiente handle,
@@ -231,13 +235,14 @@ acciones, iconos y controles dentro de tablas con layout automático.
 ### Columnas Congeladas (Sticky Columns)
 
 El soporte de columnas congeladas (`[pFrozenColumn]`) se resuelve mediante CSS Sticky dinámico.
-Un `afterRenderEffect` recorre las filas del `thead` y `tbody`, localiza los elementos con la clase `.app-table-frozen-column`, y calcula acumulativamente el desplazamiento en pixeles en base al ancho físico de las columnas anteriores (`offsetWidth`):
+Un `afterRenderEffect` recorre las filas del `thead` y `tbody`, localiza los elementos con la clase `.lux-table-frozen-column`, y calcula acumulativamente el desplazamiento en pixeles en base al ancho físico de las columnas anteriores (`offsetWidth`):
 
 ```typescript
 cell.style.position = "sticky";
 cell.style.left = `${leftOffset}px`;
 leftOffset += cell.offsetWidth;
 ```
+
 Esto permite tener múltiples columnas congeladas contiguas del lado izquierdo o derecho sin solapamiento de contenido.
 
 ### Filtro global
@@ -280,31 +285,36 @@ Para tablas donde el volumen de datos es moderado y el filtrado/paginado se real
 ```html
 <!-- Componente TypeScript o HTML de cabecera -->
 <div class="card">
-  <app-table 
-    [value]="usuarios" 
-    [paginator]="true" 
+  <lux-table
+    [value]="usuarios"
+    [paginator]="true"
     [rows]="10"
     [globalFilterFields]="['nombre', 'email', 'puesto']"
-    #dt>
-    
+    #dt
+  >
     <!-- Template para la cabecera/caption -->
     <ng-template #caption>
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="m-0">Gestión de Usuarios</h5>
-        <input 
-          type="text" 
-          class="form-control form-control-sm w-25" 
-          placeholder="Buscar..." 
-          (input)="dt.filterGlobal($any($event.target).value, 'contains')">
+        <input
+          type="text"
+          class="form-control form-control-sm w-25"
+          placeholder="Buscar..."
+          (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+        />
       </div>
     </ng-template>
 
     <!-- Columnas de Cabecera -->
     <ng-template #header>
       <tr>
-        <th appSortableColumn="nombre">Nombre <app-sorticon field="nombre" /></th>
+        <th appSortableColumn="nombre">
+          Nombre <app-sorticon field="nombre" />
+        </th>
         <th appSortableColumn="email">Email <app-sorticon field="email" /></th>
-        <th appSortableColumn="puesto">Puesto <app-sorticon field="puesto" /></th>
+        <th appSortableColumn="puesto">
+          Puesto <app-sorticon field="puesto" />
+        </th>
       </tr>
     </ng-template>
 
@@ -320,10 +330,12 @@ Para tablas donde el volumen de datos es moderado y el filtrado/paginado se real
     <!-- Mensaje vacío opcional -->
     <ng-template #emptymessage>
       <tr>
-        <td colspan="3" class="text-center p-4">No se encontraron usuarios disponibles.</td>
+        <td colspan="3" class="text-center p-4">
+          No se encontraron usuarios disponibles.
+        </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 ```
 
@@ -334,19 +346,21 @@ Para tablas donde el volumen de datos es moderado y el filtrado/paginado se real
 Ideal para millones de registros donde la base de datos procesa las peticiones:
 
 ```html
-<app-table 
-  [value]="items" 
-  [lazy]="true" 
-  [paginator]="true" 
-  [rows]="30" 
+<lux-table
+  [value]="items"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="30"
   [totalRecords]="totalItems"
   [loading]="isLoading"
-  (onLazyLoad)="cargarDatosServer($event)">
-  
+  (onLazyLoad)="cargarDatosServer($event)"
+>
   <ng-template #header>
     <tr>
       <th appSortableColumn="codigo">Código <app-sorticon field="codigo" /></th>
-      <th appSortableColumn="descripcion">Descripción <app-sorticon field="descripcion" /></th>
+      <th appSortableColumn="descripcion">
+        Descripción <app-sorticon field="descripcion" />
+      </th>
       <th>Acciones</th>
     </tr>
   </ng-template>
@@ -357,9 +371,9 @@ Ideal para millones de registros donde la base de datos procesa las peticiones:
       <td>{{ item.descripcion }}</td>
       <td>
         <button class="btn btn-sm btn-icon"><i class="fa fa-edit"></i></button>
-      </td>
-    </ng-template>
-</app-table>
+      </td></tr
+  ></ng-template>
+</lux-table>
 ```
 
 ```typescript
@@ -382,17 +396,19 @@ cargarDatosServer(event: AppTableLazyEvent) {
 Habilita selección múltiple interactiva vinculada a un modelo bidireccional.
 
 ```html
-<app-table 
-  [value]="productos" 
-  dataKey="id" 
-  [(selection)]="productosSeleccionados">
-  
+<lux-table
+  [value]="productos"
+  dataKey="id"
+  [(selection)]="productosSeleccionados"
+>
   <ng-template #header>
     <tr>
       <th style="width: 4rem">
         <p-tableheadercheckbox />
       </th>
-      <th appSortableColumn="nombre">Producto <app-sorticon field="nombre" /></th>
+      <th appSortableColumn="nombre">
+        Producto <app-sorticon field="nombre" />
+      </th>
       <th>Precio</th>
     </tr>
   </ng-template>
@@ -406,7 +422,7 @@ Habilita selección múltiple interactiva vinculada a un modelo bidireccional.
       <td>{{ prod.precio | currency }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 
 <div class="mt-3">
   <strong>Items Seleccionados:</strong> {{ productosSeleccionados.length }}
@@ -420,24 +436,27 @@ Habilita selección múltiple interactiva vinculada a un modelo bidireccional.
 Habilita arrastrar filas y reordenar las columnas en caliente.
 
 ```html
-<app-table 
-  [value]="tareas" 
-  [reorderableRows]="true" 
+<lux-table
+  [value]="tareas"
+  [reorderableRows]="true"
   [reorderableColumns]="true"
-  (onRowReorder)="ordenarTareas($event)">
-  
+  (onRowReorder)="ordenarTareas($event)"
+>
   <ng-template #header>
     <tr>
-      <th style="width: 3rem"></th> <!-- Columna vacía para la manija de arrastre -->
-      <th appSortableColumn="titulo" data-app-table-col="col-titulo">Título</th>
-      <th appSortableColumn="prioridad" data-app-table-col="col-prioridad">Prioridad</th>
+      <th style="width: 3rem"></th>
+      <!-- Columna vacía para la manija de arrastre -->
+      <th appSortableColumn="titulo" data-lux-table-col="col-titulo">Título</th>
+      <th appSortableColumn="prioridad" data-lux-table-col="col-prioridad">
+        Prioridad
+      </th>
     </tr>
   </ng-template>
 
   <ng-template #body let-tarea let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <span pReorderableRowHandle class="app-table-row-handle">
+        <span pReorderableRowHandle class="lux-table-row-handle">
           <app-icon icon="material-symbols-light:drag-handle" />
         </span>
       </td>
@@ -449,7 +468,7 @@ Habilita arrastrar filas y reordenar las columnas en caliente.
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 ```
 
 ---
@@ -459,10 +478,7 @@ Habilita arrastrar filas y reordenar las columnas en caliente.
 Permite colapsar visualmente los registros agrupados por un campo común:
 
 ```html
-<app-table 
-  [value]="empleados" 
-  groupRowsBy="departamento">
-  
+<lux-table [value]="empleados" groupRowsBy="departamento">
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -497,7 +513,7 @@ Permite colapsar visualmente los registros agrupados por un campo común:
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 ```
 
 ---
@@ -507,32 +523,32 @@ Permite colapsar visualmente los registros agrupados por un campo común:
 El componente provee las siguientes variables de personalización que se acoplan con el diseño de LuxuryApp:
 
 ```css
-.app-table {
+.lux-table {
   /* Contenedor del scroll de la tabla */
   --bs-table-bg: var(--ds-bg-surface);
   --bs-table-color: var(--ds-text);
 }
 
 /* Modificadores de ordenación */
-.app-table-sortable-column {
+.lux-table-sortable-column {
   cursor: pointer;
   user-select: none;
 }
 
-.app-table-sortable-column:hover {
+.lux-table-sortable-column:hover {
   background-color: var(--ds-bg-hover, #f8f9fa);
 }
 
-.app-table-sorted {
+.lux-table-sorted {
   font-weight: bold;
   color: var(--ds-primary, #0d6efd);
 }
 
 /* Manija de arrastre */
-.app-table-row-handle {
+.lux-table-row-handle {
   cursor: grab;
 }
-.app-table-row-handle:active {
+.lux-table-row-handle:active {
   cursor: grabbing;
 }
 ```

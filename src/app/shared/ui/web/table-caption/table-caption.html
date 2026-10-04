@@ -10,7 +10,15 @@
     </div>
     } @if (showAdd() && rolAuth()) {
     <div class="flex-shrink-0">
-      <il-button-add customClass="btn-sm" (clicked)="onAdd($event)" />
+      <lux-button-web
+        kind="add"
+        displayMode="both"
+        variant="soft"
+        severity="info"
+        customClass="btn-sm"
+        [label]="label()"
+        (clicked)="onAdd($event)"
+      />
     </div>
     }
   </div>
@@ -28,7 +36,15 @@
     <!-- Botón de agregar -->
     @if (showAdd() && rolAuth()) {
     <div class="flex-shrink-0">
-      <il-button-add customClass="btn-sm" (clicked)="onAdd($event)" />
+      <lux-button-web
+        kind="add"
+        displayMode="both"
+        variant="soft"
+        severity="info"
+        customClass="btn-sm"
+        [label]="label()"
+        (clicked)="onAdd($event)"
+      />
     </div>
     }
   </div>

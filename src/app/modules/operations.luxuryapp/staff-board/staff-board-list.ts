@@ -32,7 +32,7 @@ import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/primitives/segmented-control/segmented-control";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
@@ -69,7 +69,7 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     AppSorticon,
     LxAvatar,
     LxTag,
-    TableCaption,
+    LuxTableCaption,
     WebButtonLabel,
     AppIcon,
     SegmentedControl,

@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,11 +6,9 @@ import {
   Input,
   Output,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import { LxCard } from "@ui/adaptive/card/card";
 import { NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
+import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon, AppIconName } from "../../primitives/app-icon/app-icon";
 
 @Component({
   selector: "lux-widget-card",
@@ -22,10 +21,10 @@ export class LxWidgetCard {
   @Input({ required: true }) title!: string;
   @Input() description?: string;
   @Input({ required: true }) icon!: AppIconName | string;
-  
+
   /** Color principal del texto o iconos (ej. '#003152') */
   @Input() color: string = "var(--ds-primary)";
-  
+
   /** Color de fondo del contenedor del icono (ej. 'rgba(0, 49, 82, 0.05)') */
   @Input() bgColor: string = "var(--ds-surface-variant)";
 

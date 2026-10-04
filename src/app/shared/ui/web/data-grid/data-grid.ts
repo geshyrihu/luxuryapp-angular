@@ -7,12 +7,12 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
-  AppTable,
   AppSorticon,
+  AppTable,
   AppTableCheckbox,
   AppTableHeaderCheckbox,
 } from "@ui/web/table/table";
@@ -75,7 +75,7 @@ export interface DataGridColumn {
         </div>
       }
 
-      <app-table
+      <lux-table
         #dt
         [value]="data()"
         [dataKey]="dataKey()"
@@ -96,7 +96,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <th style="width: 3rem">
-                <app-table-header-checkbox />
+                <lux-table-header-checkbox />
               </th>
             }
             @for (col of columns(); track col.field) {
@@ -136,7 +136,7 @@ export interface DataGridColumn {
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
-                <app-table-selection-checkbox [value]="row" />
+                <lux-table-selection-checkbox [value]="row" />
               </td>
             }
             @for (col of columns(); track col.field) {
@@ -169,7 +169,9 @@ export interface DataGridColumn {
                   } @else if (col.type === "boolean") {
                     <app-icon
                       [icon]="
-                        row[col.field] ? 'material-symbols-light:check-circle' : 'material-symbols-light:cancel'
+                        row[col.field]
+                          ? 'material-symbols-light:check-circle'
+                          : 'material-symbols-light:cancel'
                       "
                       [style.color]="
                         row[col.field]
@@ -212,15 +214,24 @@ export interface DataGridColumn {
 
         <ng-template #emptymessage>
           <tr>
-            <td [attr.colspan]="columns().length + (showActions() ? 1 : 0) + (selectionMode() === 'multiple' ? 1 : 0)">
+            <td
+              [attr.colspan]="
+                columns().length +
+                (showActions() ? 1 : 0) +
+                (selectionMode() === 'multiple' ? 1 : 0)
+              "
+            >
               <div class="p-4 text-center text-color-secondary">
-                <app-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
+                <app-icon
+                  icon="material-symbols-light:table-view"
+                  class="text-2xl mb-2"
+                />
                 <p class="text-sm m-0">{{ emptyMessage() }}</p>
               </div>
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
   `,
   styles: [

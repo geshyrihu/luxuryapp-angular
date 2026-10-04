@@ -1,133 +1,129 @@
+<lux-table
+  #dt
+  class="custom-table card"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [value]="dataSignal()"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4"
+    >
+      <!-- Parte Izquierda: Búsqueda -->
+      <div class="flex-grow-1">
+        <lux-table-caption
+          [dt]="dt"
+          [showAdd]="false"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
 
-  <app-table
-    #dt
-    class="custom-table card"
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    [globalFilterFields]="globalFilterFields()"
-    [loading]="loading()"
-    [paginator]="true"
-    [rows]="tableRows"
-    [rowsPerPageOptions]="rowsPerPageOptions"
-    [scrollable]="true"
-    [scrollHeight]="scrollHeight()"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [value]="dataSignal()"
-  >
-    <ng-template #caption>
-      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4">
-        <!-- Parte Izquierda: Búsqueda -->
-        <div class="flex-grow-1">
-          <app-table-caption
-            [dt]="dt"
-            [showAdd]="false"
-            [noPadding]="true"
-            [noMargin]="true"
+      <!-- Parte Derecha: Filtros adicionales -->
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
+        <custom-input-select-signal
+          class="customer-filter"
+          label="Cliente"
+          [control]="customerControl"
+          [data]="customers()"
+          [filter]="true"
+          [noMargin]="true"
+          (selectionChange)="onCustomerChange()"
+        />
+        <div>
+          <il-button-active-desactive
+            [state]="employeeState()"
+            (stateChange)="onSelectActive($event)"
           />
-        </div>
-
-        <!-- Parte Derecha: Filtros adicionales -->
-        <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-          <custom-input-select-signal
-            class="customer-filter"
-            label="Cliente"
-            [control]="customerControl"
-            [data]="customers()"
-            [filter]="true"
-            [noMargin]="true"
-            (selectionChange)="onCustomerChange()"
-          />
-          <div>
-            <il-button-active-desactive
-              [state]="employeeState()"
-              (stateChange)="onSelectActive($event)"
-            />
-          </div>
         </div>
       </div>
-    </ng-template>
+    </div>
+  </ng-template>
 
-    <ng-template #header>
-      <tr>
-        <th appSortableColumn="fullName">
-          Ex-empleado
-          <app-sorticon field="fullName" />
-        </th>
-        <th appSortableColumn="customerName">
-          Cliente
-          <app-sorticon field="customerName" />
-        </th>
-        <th appSortableColumn="workPositionName">
-          Puesto anterior
-          <app-sorticon field="workPositionName" />
-        </th>
-        <th>Contacto</th>
-        <th appSortableColumn="dateAdmission">
-          Ingreso
-          <app-sorticon field="dateAdmission" />
-        </th>
-        <th class="text-center">Candidato</th>
-        <th class="text-center">Acciones</th>
-      </tr>
-    </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="fullName">
+        Ex-empleado
+        <app-sorticon field="fullName" />
+      </th>
+      <th appSortableColumn="customerName">
+        Cliente
+        <app-sorticon field="customerName" />
+      </th>
+      <th appSortableColumn="workPositionName">
+        Puesto anterior
+        <app-sorticon field="workPositionName" />
+      </th>
+      <th>Contacto</th>
+      <th appSortableColumn="dateAdmission">
+        Ingreso
+        <app-sorticon field="dateAdmission" />
+      </th>
+      <th class="text-center">Candidato</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+  </ng-template>
 
-    <ng-template #body let-item>
-      <tr>
-        <td>
-          <div class="fw-semibold">{{ item.fullName }}</div>
-          <small class="text-body-secondary"
-            >{{ item.applicationUserId }}</small
-          >
-        </td>
-        <td>{{ item.customerName || "Sin cliente" }}</td>
-        <td>
-          <div>{{ item.workPositionName || "Sin puesto" }}</div>
-          <small class="text-body-secondary"
-            >{{ item.workPositionFolio }}</small
-          >
-        </td>
-        <td>
-          <div>{{ item.email }}</div>
-          <small class="text-body-secondary">{{ item.phoneNumber }}</small>
-        </td>
-        <td>{{ item.dateAdmission | apiDate }}</td>
-        <td class="text-center">
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="fw-semibold">{{ item.fullName }}</div>
+        <small class="text-body-secondary">{{ item.applicationUserId }}</small>
+      </td>
+      <td>{{ item.customerName || "Sin cliente" }}</td>
+      <td>
+        <div>{{ item.workPositionName || "Sin puesto" }}</div>
+        <small class="text-body-secondary">{{ item.workPositionFolio }}</small>
+      </td>
+      <td>
+        <div>{{ item.email }}</div>
+        <small class="text-body-secondary">{{ item.phoneNumber }}</small>
+      </td>
+      <td>{{ item.dateAdmission | apiDate }}</td>
+      <td class="text-center">
+        @if (item.hasCandidate) {
+        <span class="status-pill ready">Ya existe</span>
+        } @else {
+        <span class="status-pill pending">Pendiente</span>
+        }
+      </td>
+      <td>
+        <div class="d-flex gap-1 justify-content-center">
           @if (item.hasCandidate) {
-          <span class="status-pill ready">Ya existe</span>
-          } @else {
-          <span class="status-pill pending">Pendiente</span>
+          <il-button
+            label="Ver candidato"
+            iconClass="material-symbols-light:person-search"
+            severity="secondary"
+            variant="outline"
+            size="sm"
+            (clicked)="onViewCandidate(item)"
+          />
           }
-        </td>
-        <td>
-          <div class="d-flex gap-1 justify-content-center">
-            @if (item.hasCandidate) {
-            <il-button
-              label="Ver candidato"
-              iconClass="material-symbols-light:person-search"
-              severity="secondary"
-              variant="outline"
-              size="sm"
-              (clicked)="onViewCandidate(item)"
-            />
-            }
-            <il-button
-              label="Postular a vacante"
-              iconClass="material-symbols-light:person-add"
-              severity="success"
-              variant="solid"
-              size="sm"
-              (clicked)="onPostulate(item)"
-            />
-          </div>
-        </td>
-      </tr>
-    </ng-template>
+          <il-button
+            label="Postular a vacante"
+            iconClass="material-symbols-light:person-add"
+            severity="success"
+            variant="solid"
+            size="sm"
+            (clicked)="onPostulate(item)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
 
-    <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
-    </ng-template>
-    <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
-    </ng-template>
-  </app-table>
-
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="7" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="dataSignal()" />
+  </ng-template>
+</lux-table>

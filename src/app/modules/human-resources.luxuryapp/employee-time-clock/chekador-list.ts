@@ -7,15 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxImage } from "@ui/adaptive/image/image";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -23,11 +14,20 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { IRegistroChecador } from './interfaces/chekador-empleados.models';
+import { LxImage } from "@ui/adaptive/image/image";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { IRegistroChecador } from "./interfaces/chekador-empleados.models";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { ChekadorEmpleadosService } from './chekador-empleados.service';
+import { ChekadorEmpleadosService } from "./chekador-empleados.service";
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",
@@ -44,7 +44,7 @@ import { ChekadorEmpleadosService } from './chekador-empleados.service';
     CustomInputCheckSignal,
     IonInputCheckbox,
     FormsModule,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
   ],
@@ -128,4 +128,3 @@ export class ChekadorList {
     return "warn";
   }
 }
-

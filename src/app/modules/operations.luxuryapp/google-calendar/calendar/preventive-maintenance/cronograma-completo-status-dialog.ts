@@ -11,8 +11,8 @@ import { CronogramaAnualPdfStatusService } from "@core/services/cronograma-anual
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus";
 
 @Component({
@@ -27,7 +27,7 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
     AppSortableColumn,
 
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     WebButtonLabel,
   ],
   providers: [CronogramaAnualPdfStatusService, HtmlPrintService],
@@ -240,4 +240,3 @@ ${this.htmlPrintS.getStandardCss()}
     );
   }
 }
-

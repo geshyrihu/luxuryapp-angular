@@ -11,7 +11,7 @@
 </div>
 
 <!-- Tabla escritorio -->
-<app-table
+<lux-table
   #dt
   [value]="data()"
   [loading]="loading()"
@@ -27,7 +27,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between flex-wrap gap-2">
-      <app-table-caption [dt]="dt" (add)="openAdd()" />
+      <lux-table-caption [dt]="dt" (add)="openAdd()" />
       <div class="d-flex gap-2">
         <il-button
           label="Sync Vacaciones"
@@ -91,9 +91,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

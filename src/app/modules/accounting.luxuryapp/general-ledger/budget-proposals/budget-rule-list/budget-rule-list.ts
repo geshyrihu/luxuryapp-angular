@@ -28,7 +28,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
@@ -53,7 +53,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     MobileListItem,
     AppIcon,

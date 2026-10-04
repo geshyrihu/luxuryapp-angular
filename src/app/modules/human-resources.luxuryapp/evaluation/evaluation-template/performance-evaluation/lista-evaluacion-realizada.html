@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -14,7 +14,7 @@
   dzfxcvcv
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <app-table-caption (add)="onCreate()" [dt]="dt" />
+      <lux-table-caption (add)="onCreate()" [dt]="dt" />
       <il-button
         (clicked)="onDownloadAll()"
         label="Descargar Todas"
@@ -82,12 +82,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -110,7 +110,9 @@
       </div>
 
       <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
-      <p class="text-medium text-body-secondary m-0">{{ item.evaluationTemplate }}</p>
+      <p class="text-medium text-body-secondary m-0">
+        {{ item.evaluationTemplate }}
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

@@ -1,18 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 
-import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
@@ -22,6 +16,15 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -42,7 +45,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputNumberSignal,
     LxSpinner,
     WebButtonLabelDelete,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     LxMessage,
   ],
@@ -82,10 +85,11 @@ export class GastoFijoPresupuesto implements OnInit {
   }
 
   onLoadPresupuesto() {
-    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
-      this.customerIdS.customerId(),
-      this.intYear,
-    );
+    const urlApi =
+      Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
+        this.customerIdS.customerId(),
+        this.intYear,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -108,10 +112,9 @@ export class GastoFijoPresupuesto implements OnInit {
   }
 
   onLoadPresupuestoAgregados() {
-    const urlApi =
-      Endpoints.CatalogoGastosFijosPresupuesto.purchaseOrderBudget(
-        this.catalogoGastosFijosId,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.purchaseOrderBudget(
+      this.catalogoGastosFijosId,
+    );
 
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.presupuestoAgregados.set(result);
@@ -136,13 +139,13 @@ export class GastoFijoPresupuesto implements OnInit {
   }
 
   onLoadCedulas() {
-    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
-      this.customerIdS.customerId(),
-      this.intYear,
-    );
+    const urlApi =
+      Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
+        this.customerIdS.customerId(),
+        this.intYear,
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
 }
-

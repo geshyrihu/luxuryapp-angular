@@ -1,11 +1,11 @@
 .resumen-minuta-table {
   font-size: 1.05rem;
 
-  .app-table-table {
+  .lux-table-table {
     line-height: 1.45;
   }
 
-  .app-table-thead th {
+  .lux-table-thead th {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     font-size: 1.3rem;
@@ -13,7 +13,7 @@
     letter-spacing: 0.02em;
   }
 
-  .app-table-tbody td {
+  .lux-table-tbody td {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
   }
@@ -31,11 +31,11 @@
     font-size: 1rem;
   }
 
-  .app-table-scroll {
+  .lux-table-scroll {
     overflow-x: hidden;
   }
 
-  .app-table-table {
+  .lux-table-table {
     width: 100%;
     min-width: 0;
     table-layout: fixed;

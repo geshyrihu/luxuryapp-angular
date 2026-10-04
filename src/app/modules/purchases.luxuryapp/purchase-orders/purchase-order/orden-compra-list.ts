@@ -34,7 +34,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { CreateOrdenCompra } from "./create-orden-compra";
@@ -77,7 +77,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   templateUrl: "./orden-compra-list.html",
   styles: [
     `
-      :host ::ng-deep .orden-compra-table .app-table-table {
+      :host ::ng-deep .orden-compra-table .lux-table-table {
         table-layout: fixed;
         width: 100%;
       }
@@ -118,7 +118,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       :host
         ::ng-deep
         .orden-compra-table
-        .app-table-tbody
+        .lux-table-tbody
         > tr
         > td.oc-cell-wrap {
         white-space: normal;
@@ -129,13 +129,13 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       :host
         ::ng-deep
         .orden-compra-table
-        .app-table-tbody
+        .lux-table-tbody
         > tr
         > td.oc-cell-total,
       :host
         ::ng-deep
         .orden-compra-table
-        .app-table-thead
+        .lux-table-thead
         > tr
         > th:nth-child(6) {
         text-align: right;
@@ -172,7 +172,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
     AppSorticon,
     WebButtonLabel,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     WebButtonLabelEdit,
     WebButtonLabelDelete,

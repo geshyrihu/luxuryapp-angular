@@ -1,14 +1,14 @@
 /* ==========================================================================
-   CUSTOM TABLE — Wrapper/overlay para app-table con scroll vertical
+   CUSTOM TABLE — Wrapper/overlay para lux-table con scroll vertical
    Extraído de styles.scss (Phase 3 — Design System integration)
 
    Uso:
-     Case 1 — wrapper:      <div class="custom-table"><app-table>...</app-table></div>
-     Case 2 — class:        <app-table class="custom-table ">
+     Case 1 — wrapper:      <div class="custom-table"><lux-table>...</lux-table></div>
+     Case 2 — class:        <lux-table class="custom-table ">
    ========================================================================== */
 
 .custom-table {
-  /* Case 1: Used as a wrapper <div class="custom-table"><app-table>... */
+  /* Case 1: Used as a wrapper <div class="custom-table"><lux-table>... */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -63,32 +63,32 @@
     }
   }
 
-  /* Case 2: Used on the app-table host */
-  &.app-table,
-  .app-table {
+  /* Case 2: Used on the lux-table host */
+  &.lux-table,
+  .lux-table {
     display: flex;
     flex-direction: column;
     flex: 1;
     height: 100%;
     min-height: 0;
 
-    .app-table-caption,
-    .app-table-thead,
-    .app-table-tfoot,
-    .app-table-paginator {
+    .lux-table-caption,
+    .lux-table-thead,
+    .lux-table-tfoot,
+    .lux-table-paginator {
       flex-shrink: 0;
     }
 
-    .app-table-scroll {
+    .lux-table-scroll {
       flex-grow: 1;
       /* height: auto !important; <-- REMOVED: Breaks [scrollHeight] */
       display: flex;
       flex-direction: column;
-      /* app-table owns scroll behavior */
+      /* lux-table owns scroll behavior */
       min-height: 0;
     }
 
-    .app-table-table,
+    .lux-table-table,
     table {
       width: 100%;
       min-width: 760px;
@@ -103,28 +103,28 @@
        alinea con `_financial-tables.scss`, que ya usaba encabezado oscuro.
 
        Gana por especificidad, no por !important: este selector aporta 3 clases
-       (.custom-table + .app-table + .app-table-thead) frente a las 2 de
-       `body .app-table …`. Ambas hojas van fuera de capa.
+       (.custom-table + .lux-table + .lux-table-thead) frente a las 2 de
+       `body .lux-table …`. Ambas hojas van fuera de capa.
 
        Los tokens giran solos con el tema: en oscuro `--ds-primary` pasa a
        $primary-200 y `--ds-primary-text` a $primary-900, así que el encabezado
        se invierte a azul claro con texto oscuro sin regla aparte. */
-       .app-table-thead > tr > th {
-       border-color: var(--ds-border);
+    .lux-table-thead > tr > th {
+      border-color: var(--ds-border);
 
       /* Los iconos de orden heredan el color del encabezado */
       app-sorticon,
-      .app-table-sorticon,
+      .lux-table-sorticon,
       svg {
         color: currentColor;
         fill: currentColor;
       }
     }
 
-      .app-table-thead > tr > th.app-table-sortable-column:hover {
-        background-color: var(--primary-700);
-        color: var(--ds-on-primary);
-     }
+    .lux-table-thead > tr > th.lux-table-sortable-column:hover {
+      background-color: var(--primary-700);
+      color: var(--ds-on-primary);
+    }
 
     /* Encabezado centrado (2026-08-12).
        SOLO el encabezado (`<ng-template #header>` → <th>). El cuerpo
@@ -138,11 +138,11 @@
        Las utilidades de alineación (`.text-left`, `.text-center`,
        `.text-right`) se declaran con `!important`, así que cualquier <th> que
        ya traiga alineación escrita a mano sigue mandando sobre esta regla. */
-    .app-table-thead > tr > th {
+    .lux-table-thead > tr > th {
       text-align: center;
     }
 
-    .app-table-tbody > tr > td {
+    .lux-table-tbody > tr > td {
       &.table-col-icon {
         width: 3rem !important;
       }
@@ -171,8 +171,8 @@
         }
       }
 
-      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150,
-        160, 260, 320
+      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140,
+        150, 160, 260, 320
       {
         &.table-col-#{$px}px {
           width: #{$px}px !important;
@@ -180,67 +180,67 @@
       }
     }
 
-    .app-table-tbody > tr.row-status-completed > td:first-child {
+    .lux-table-tbody > tr.row-status-completed > td:first-child {
       border-left: 5px solid var(--task-completed) !important;
     }
-    .app-table-tbody > tr.row-status-in-progress > td:first-child {
+    .lux-table-tbody > tr.row-status-in-progress > td:first-child {
       border-left: 5px solid var(--task-in-progress) !important;
     }
-    .app-table-tbody > tr.row-status-reopened > td:first-child {
+    .lux-table-tbody > tr.row-status-reopened > td:first-child {
       border-left: 5px solid var(--task-reopened) !important;
     }
-    .app-table-tbody > tr.row-status-not-started > td:first-child {
+    .lux-table-tbody > tr.row-status-not-started > td:first-child {
       border-left: 5px solid var(--task-not-started) !important;
     }
 
-    .app-table-thead > tr > th.th-selected {
+    .lux-table-thead > tr > th.th-selected {
       background-color: var(--ds-success) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-deselected {
+    .lux-table-thead > tr > th.th-deselected {
       background-color: var(--ds-on-surface-variant) !important;
       color: var(--ds-text-secondary) !important;
       opacity: 0.7;
     }
 
-    .app-table-thead > tr > th.th-col-dark {
+    .lux-table-thead > tr > th.th-col-dark {
       background-color: var(--ds-on-surface) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-col-green {
+    .lux-table-thead > tr > th.th-col-green {
       background-color: var(--ds-success) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-col-orange {
+    .lux-table-thead > tr > th.th-col-orange {
       background-color: var(--ds-warning) !important;
       color: var(--ds-accent-text-warning) !important;
     }
 
-    .app-table-thead > tr > th.th-col-red {
+    .lux-table-thead > tr > th.th-col-red {
       background-color: var(--ds-danger) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-col-blue-medium {
+    .lux-table-thead > tr > th.th-col-blue-medium {
       background-color: var(--ds-primary-hover) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-col-blue-dark {
+    .lux-table-thead > tr > th.th-col-blue-dark {
       background-color: var(--ds-primary) !important;
       color: var(--ds-primary-text) !important;
     }
 
-    .app-table-thead > tr > th.th-col-navy {
+    .lux-table-thead > tr > th.th-col-navy {
       background-color: var(--ds-primary-active) !important;
       color: var(--ds-primary-text) !important;
     }
 
     /* Normalize caption borders/background locally for custom-table. */
-    .app-table-caption {
+    .lux-table-caption {
       border: none !important;
       background: transparent !important;
       padding-bottom: 0 !important;
@@ -249,28 +249,28 @@
 }
 
 /* ─── Modifier: sin scroll horizontal ───────────────────────────
-   Uso: <app-table class="custom-table custom-table-fixed">
+   Uso: <lux-table class="custom-table custom-table-fixed">
    Elimina min-width fijo, fuerza table-layout:fixed y permite
    que las celdas envuelvan texto en vez de desbordar.
    ─────────────────────────────────────────────────────────────── */
 .custom-table-fixed {
-  &.app-table,
-  .app-table {
-    .app-table-table,
+  &.lux-table,
+  .lux-table {
+    .lux-table-table,
     table {
       min-width: auto;
       table-layout: fixed;
     }
 
-    .app-table-tbody > tr > td,
-    .app-table-thead > tr > th {
+    .lux-table-tbody > tr > td,
+    .lux-table-thead > tr > th {
       white-space: normal !important;
       word-break: break-word;
     }
 
     // Columnas con ancho fijo porcentual
-    .app-table-thead > tr > th,
-    .app-table-tbody > tr > td {
+    .lux-table-thead > tr > th,
+    .lux-table-tbody > tr > td {
       &.table-col-7 {
         width: 7%;
       }
@@ -324,8 +324,8 @@
         }
       }
 
-      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140, 150,
-        160, 260, 320
+      @each $px in 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 130, 140,
+        150, 160, 260, 320
       {
         &.table-col-#{$px}px {
           width: #{$px}px !important;

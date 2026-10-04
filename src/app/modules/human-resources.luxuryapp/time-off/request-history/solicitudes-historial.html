@@ -2,7 +2,7 @@
   <div class="card-body">
     <!-- Desktop View -->
     <div class="d-none d-md-block">
-      <app-table
+      <lux-table
         #dt
         [value]="data()"
         [loading]="loading()"
@@ -15,7 +15,7 @@
         [scrollHeight]="scrollHeight"
       >
         <ng-template #caption>
-          <app-table-caption
+          <lux-table-caption
             [dt]="dt"
             [showAdd]="false"
             [showSearch]="false"
@@ -189,9 +189,9 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <app-table-empty-message [colspan]="8" />
+          <lux-table-empty-message [colspan]="8" />
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
 
     <!-- Mobile View -->

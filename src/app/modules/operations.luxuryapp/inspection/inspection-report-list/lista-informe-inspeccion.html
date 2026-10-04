@@ -33,7 +33,8 @@
   <!-- Botón PDF -->
   @if (inspectionResultIdControl.value !== '' && dataSignal()) {
   <div class="mb-6 d-flex justify-content-end">
-    <iw-button
+    <lux-button-web
+      displayMode="both"
       label="Descargar PDF"
       severity="danger"
       iconClass="material-symbols-light:picture-as-pdf"

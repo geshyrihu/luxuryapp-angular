@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-end flex-wrap">
-      <app-table-caption
+      <lux-table-caption
         (add)="showModalAddEmployee()"
         [dt]="dt"
         [rolAuth]="
@@ -138,12 +138,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile

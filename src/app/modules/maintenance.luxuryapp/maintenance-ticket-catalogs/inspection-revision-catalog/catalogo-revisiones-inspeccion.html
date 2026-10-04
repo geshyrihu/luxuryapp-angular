@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -15,7 +15,7 @@
 >
   <!-- class="p-datatable-sm" -->
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
@@ -36,7 +36,10 @@
   <ng-template #groupheader let-item>
     <tr class="table-group-header bg-light">
       <td colspan="3" class="fw-bold">
-        <app-icon icon="material-symbols-light:folder-open" class="text-primary me-2 align-middle text-xl" />
+        <app-icon
+          icon="material-symbols-light:folder-open"
+          class="text-primary me-2 align-middle text-xl"
+        />
         <span class="align-middle">{{ item.categoria }}</span>
       </td>
     </tr>
@@ -59,12 +62,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="3" />
+    <lux-table-empty-message [colspan]="3" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -88,8 +91,7 @@
 
       <h2 class="font-normal m-0">{{ item.description }}</h2>
       <p class="text-body-secondary m-0">
-        {{ getDepartamentLabel(item.departament) }} ·
-        {{ item.categoria }}
+        {{ getDepartamentLabel(item.departament) }} · {{ item.categoria }}
       </p>
 
       <ili-action-menu slot="end">

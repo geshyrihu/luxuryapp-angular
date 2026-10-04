@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="MANTENIMIENTOS" />
 @if (dataSignal()) {
-<app-table
+<lux-table
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -8,7 +8,7 @@
 >
   <ng-template #header>
     <tr>
-      <th >Mantenimiento</th>
+      <th>Mantenimiento</th>
       <th class="table-col-13">Total</th>
       <th class="table-col-13">Concluido</th>
       <th class="table-col-13">Pendiente</th>
@@ -35,9 +35,9 @@
       <td class="text-center font-size-16 text-black">{{ dato.sinImage }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 <!-- reportes por proveedor -->
-<app-table
+<lux-table
   [value]="dataProviderSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -74,13 +74,13 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 } @if (dataSignal() === null) {
-<app-table>
+<lux-table>
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between">
       NO SE TIENEN REGISTROS
     </div>
   </ng-template>
-</app-table>
+</lux-table>
 }

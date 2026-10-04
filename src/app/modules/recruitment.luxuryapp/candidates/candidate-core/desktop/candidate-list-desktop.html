@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -41,7 +41,7 @@
           Todos
         </button>
       </div>
-      <app-table-caption
+      <lux-table-caption
         (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
         [dt]="dt"
         aria-label="Agregar nuevo candidato"
@@ -83,10 +83,18 @@
     <tr>
       <td class="text-center w-3rem">
         @if (item.photoUrl) {
-        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem rounded-circle object-cover" />
+        <img
+          [src]="item.photoUrl"
+          alt=""
+          class="w-2rem h-2rem rounded-circle object-cover"
+        />
         } @else {
-        <div class="w-2rem h-2rem rounded-circle bg-primary-100 d-flex align-items-center justify-content-center">
-          <span class="text-primary fw-semibold text-sm">{{ item.fullName.charAt(0) }}</span>
+        <div
+          class="w-2rem h-2rem rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
+        >
+          <span class="text-primary fw-semibold text-sm"
+            >{{ item.fullName.charAt(0) }}</span
+          >
         </div>
         }
       </td>
@@ -164,9 +172,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table>

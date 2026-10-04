@@ -8,16 +8,6 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
-import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
-import { Workbook } from "exceljs";
-import * as FileSaver from "file-saver";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -26,6 +16,16 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
+import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
+import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import { Workbook } from "exceljs";
+import * as FileSaver from "file-saver";
 
 interface IExecutiveReportFilters {
   medidorIds: FormControl<string[]>;
@@ -95,7 +95,7 @@ interface IWeeklyExecutiveReport {
     CustomInputMultiselectSignal,
     WebButtonLabel,
     WebButtonLabelDownload,
-    TableCaption,
+    LuxTableCaption,
   ],
 })
 export class ReportConsumos {
@@ -262,4 +262,3 @@ export class ReportConsumos {
     });
   }
 }
-

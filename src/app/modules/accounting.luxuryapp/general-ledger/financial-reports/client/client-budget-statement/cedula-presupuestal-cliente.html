@@ -10,7 +10,7 @@
   </p>
   } @if (!loading() && rows().length) {
   <div class="rf-card rf-wrap d-none d-md-block">
-    <app-table
+    <lux-table
       [value]="rows()"
       class="rf-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1000px' }"
@@ -53,10 +53,7 @@
           <td class="rf-td-number--total" [class.rf-neg]="fila.acum < 0">
             {{ fila.acum | accountingNumber }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="fila.presupAnual < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="fila.presupAnual < 0">
             {{ fila.presupAnual | accountingNumber }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="fila.restante < 0">
@@ -66,10 +63,7 @@
         } @if (fila.tipo === 'gran-total') {
         <tr class="rf-row-result g-4">
           <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="fila.presupMes < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="fila.presupMes < 0">
             {{ fila.presupMes | accountingNumber }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="fila.oct < 0">
@@ -84,10 +78,7 @@
           <td class="rf-td-number--total" [class.rf-neg]="fila.acum < 0">
             {{ fila.acum | accountingNumber }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="fila.presupAnual < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="fila.presupAnual < 0">
             {{ fila.presupAnual | accountingNumber }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="fila.restante < 0">
@@ -97,10 +88,7 @@
         } @if (fila.tipo === 'total-extra') {
         <tr class="rf-row-total g-4">
           <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="fila.presupMes < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="fila.presupMes < 0">
             {{ fila.presupMes | accountingNumber }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="fila.oct < 0">
@@ -115,10 +103,7 @@
           <td class="rf-td-number--total" [class.rf-neg]="fila.acum < 0">
             {{ fila.acum | accountingNumber }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="fila.presupAnual < 0"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="fila.presupAnual < 0">
             {{ fila.presupAnual | accountingNumber }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="fila.restante < 0">
@@ -127,7 +112,7 @@
         </tr>
         }
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <app-data-view-mobile
@@ -160,13 +145,17 @@
           </div>
           <div class="col-6 p-0">
             {{ monthHeaders()[2] }}:
-            <span class="text-body fw-medium d-block" [class.rf-neg]="fila.mes < 0"
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.mes < 0"
               >{{ fila.mes | accountingNumber }}</span
             >
           </div>
           <div class="col-6 p-0">
             Acumulado:
-            <span class="text-body fw-medium d-block" [class.rf-neg]="fila.acum < 0"
+            <span
+              class="text-body fw-medium d-block"
+              [class.rf-neg]="fila.acum < 0"
               >{{ fila.acum | accountingNumber }}</span
             >
           </div>

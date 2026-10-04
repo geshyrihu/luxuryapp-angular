@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -27,7 +27,7 @@
         />
       </div>
       <div class="col-12 col-sm-9">
-        <app-table-caption
+        <lux-table-caption
           [viewNavigateButton]="false"
           (add)="
             onModalForm({
@@ -165,12 +165,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -199,7 +199,10 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:event-outline" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:event-outline"
+          class="text-xl text-primary"
+        />
       </div>
 
       <h2 class="text-base fw-bold mb-1">{{ item.nombre }}</h2>
@@ -224,9 +227,7 @@
         </div>
         <div class="p-0 text-xs">
           <p class="mb-0 text-body-secondary">Costo</p>
-          <p class="mb-1 fw-semibold">
-            {{ item.precio | CurrencyMexicoPipe }}
-          </p>
+          <p class="mb-1 fw-semibold">{{ item.precio | CurrencyMexicoPipe }}</p>
         </div>
       </div>
 

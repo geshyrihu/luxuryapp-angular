@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     #dt
     [value]="dataSignal()"
     [rows]="tableRows"
@@ -13,7 +13,7 @@
     groupRowsBy="employeeName"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Agregar Beneficiario' })"
         [dt]="dt"
       />
@@ -25,7 +25,7 @@
         <th>Nombre del Beneficiario</th>
         <th>Teléfono</th>
         <th>Parentesco</th>
-        <th ></th>
+        <th></th>
       </tr>
     </ng-template>
 
@@ -56,13 +56,13 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message [colspan]="5" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <!-- Mobile View -->
   <app-data-view-mobile
@@ -82,15 +82,13 @@
             class="text-xl text-primary"
           />
         </div>
-        
-          <h2 class="fw-bold">{{ item.employeeName }}</h2>
-          <p class="text-sm text-body-secondary">
-            ?? {{ item.fullName }}
-          </p>
-          <p class="text-sm text-body-secondary">
-            ?? {{ item.relationName }} | {{ item.phoneNumber }}
-          </p>
-        
+
+        <h2 class="fw-bold">{{ item.employeeName }}</h2>
+        <p class="text-sm text-body-secondary">?? {{ item.fullName }}</p>
+        <p class="text-sm text-body-secondary">
+          ?? {{ item.relationName }} | {{ item.phoneNumber }}
+        </p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

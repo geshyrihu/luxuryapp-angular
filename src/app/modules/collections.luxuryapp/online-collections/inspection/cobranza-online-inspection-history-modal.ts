@@ -6,12 +6,15 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,
@@ -21,11 +24,7 @@ import type {
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppTable,
-    WebButtonLabel,
-    TableCaption,
-  ],
+  imports: [AppTable, WebButtonLabel, LuxTableCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

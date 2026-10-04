@@ -145,8 +145,9 @@
   .card.card-interactive,
   .card[tabindex],
   .card[role="button"] {
-    transition: box-shadow 200ms ease,
-                border-color 200ms ease;
+    transition:
+      box-shadow 200ms ease,
+      border-color 200ms ease;
 
     &:hover {
       box-shadow: var(--ds-glow-primary);
@@ -155,29 +156,44 @@
   }
 
   // Semantic card glow según clase de borde asignada en template
-  .card.border-success { box-shadow: var(--ds-glow-success); border-color: var(--ds-success); }
-  .card.border-danger  { box-shadow: var(--ds-glow-danger);  border-color: var(--ds-danger);  }
-  .card.border-warning { box-shadow: var(--ds-glow-warning); border-color: var(--ds-warning); }
-  .card.border-info    { box-shadow: var(--ds-glow-info);    border-color: var(--ds-info);    }
-  .card.border-help    { box-shadow: var(--ds-glow-help);    border-color: var(--ds-help); }
+  .card.border-success {
+    box-shadow: var(--ds-glow-success);
+    border-color: var(--ds-success);
+  }
+  .card.border-danger {
+    box-shadow: var(--ds-glow-danger);
+    border-color: var(--ds-danger);
+  }
+  .card.border-warning {
+    box-shadow: var(--ds-glow-warning);
+    border-color: var(--ds-warning);
+  }
+  .card.border-info {
+    box-shadow: var(--ds-glow-info);
+    border-color: var(--ds-info);
+  }
+  .card.border-help {
+    box-shadow: var(--ds-glow-help);
+    border-color: var(--ds-help);
+  }
 
   // ── 9. APP TABLE COMPLEMENTS ─────────────────────────────────
 
-  .app-table {
-    .app-table-caption,
-    .app-table-paginator {
+  .lux-table {
+    .lux-table-caption,
+    .lux-table-paginator {
       background-color: var(--ds-bg-surface);
       color: var(--ds-text-primary);
       border-color: var(--ds-border);
     }
 
-    .app-table-thead > tr > th {
+    .lux-table-thead > tr > th {
       background-color: var(--primary-700);
       color: var(--ds-on-primary);
       border-color: var(--ds-border);
     }
 
-    .app-table-tbody > tr {
+    .lux-table-tbody > tr {
       background-color: var(--ds-bg-surface);
       color: var(--ds-text-primary);
 
@@ -192,10 +208,9 @@
       &:hover {
         background-color: var(--ds-bg-elevated);
       }
-
     }
 
-    .app-table-tfoot > tr > td {
+    .lux-table-tfoot > tr > td {
       background-color: var(--ds-bg-sunken);
       color: var(--ds-text-primary);
       border-color: var(--ds-border);
@@ -205,17 +220,40 @@
   // ── 10. COBERTURA DE UTILIDADES ADICIONALES ───────────────────
   // Clases numéricas usadas en templates
 
-  .text-900, .text-800 { color: var(--ds-text-primary); }
-  .text-700, .text-600 { color: var(--ds-text-secondary); }
-  .text-500, .text-400 { color: var(--ds-text-muted); }
+  .text-900,
+  .text-800 {
+    color: var(--ds-text-primary);
+  }
+  .text-700,
+  .text-600 {
+    color: var(--ds-text-secondary);
+  }
+  .text-500,
+  .text-400 {
+    color: var(--ds-text-muted);
+  }
 
   // Fondos semánticos light → versión translúcida neon para dark
   .bg-blue-50,
-  .bg-primary-50   { background-color: var(--ds-primary-light); color: var(--ds-primary); }
-  .bg-green-50     { background-color: var(--ds-success-light); color: var(--ds-success); }
-  .bg-red-50       { background-color: var(--ds-danger-light);  color: var(--ds-danger);  }
+  .bg-primary-50 {
+    background-color: var(--ds-primary-light);
+    color: var(--ds-primary);
+  }
+  .bg-green-50 {
+    background-color: var(--ds-success-light);
+    color: var(--ds-success);
+  }
+  .bg-red-50 {
+    background-color: var(--ds-danger-light);
+    color: var(--ds-danger);
+  }
   .bg-yellow-50,
-  .bg-orange-50    { background-color: var(--ds-warning-light); color: var(--ds-warning); }
-  .bg-cyan-50      { background-color: var(--ds-info-light);    color: var(--ds-info);    }
-
+  .bg-orange-50 {
+    background-color: var(--ds-warning-light);
+    color: var(--ds-warning);
+  }
+  .bg-cyan-50 {
+    background-color: var(--ds-info-light);
+    color: var(--ds-info);
+  }
 }

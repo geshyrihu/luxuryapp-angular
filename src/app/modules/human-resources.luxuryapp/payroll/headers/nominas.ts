@@ -15,7 +15,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
@@ -42,7 +42,7 @@ import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-messa
     AppSorticon,
     LxTag,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nominas.html",

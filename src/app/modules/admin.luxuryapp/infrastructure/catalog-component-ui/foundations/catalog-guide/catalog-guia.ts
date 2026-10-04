@@ -11,15 +11,15 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
@@ -284,7 +284,7 @@ export class CatalogGuia {
     },
     {
       family: "Tabla Bootstrap",
-      selector: "app-table-caption / footer",
+      selector: "lux-table-caption / footer",
       source: "shared/ui/web/table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",

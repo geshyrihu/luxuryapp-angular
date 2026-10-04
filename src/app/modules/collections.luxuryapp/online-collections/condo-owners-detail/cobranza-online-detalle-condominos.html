@@ -18,7 +18,7 @@
     class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2 mt-3"
   ></div>
 
-  <app-table
+  <lux-table
     #dt
     [value]="filteredRows()"
     [globalFilterFields]="globalFilterFields"
@@ -36,7 +36,7 @@
       <div
         class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 w-full g-4"
       >
-        <app-table-caption
+        <lux-table-caption
           [showAdd]="false"
           [dt]="dt"
           class="w-full xl:w-auto"
@@ -192,12 +192,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="4" />
+      <lux-table-empty-message [colspan]="4" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="filteredRows()" />
+      <lux-table-footer [data]="filteredRows()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="filteredRows()"

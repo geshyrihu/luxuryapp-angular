@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,22 +6,20 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 interface UnallocatedPayment {
   id: string;
@@ -37,7 +34,7 @@ interface UnallocatedPayment {
   selector: "app-reconciliation-dashboard",
   imports: [
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     WebButtonLabel,
     LxTag,
     LxCard,
@@ -90,4 +87,3 @@ export default class ReconciliationDashboard {
     }
   }
 }
-

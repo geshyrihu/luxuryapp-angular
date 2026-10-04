@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -15,7 +15,7 @@
     <ng-template #caption>
       <div class="d-flex align-items-center">
         <div class="flex-flex-grow-1-1">
-          <app-table-caption
+          <lux-table-caption
             (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
             [dt]="dt"
           />
@@ -110,12 +110,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [dt]="dt"

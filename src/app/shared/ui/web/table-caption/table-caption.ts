@@ -1,21 +1,21 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   effect,
   inject,
   input,
   output,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "@core/services/global-table-filter.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 
 @Component({
-  selector: "app-table-caption",
+  selector: "lux-table-caption",
   templateUrl: "./table-caption.html",
-  imports: [RouterModule, WebButtonLabelAdd, CustomSearchInput],
+  imports: [RouterModule, ButtonWeb, CustomSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -25,7 +25,7 @@ import { GlobalTableFilterService } from "@core/services/global-table-filter.ser
     `,
   ],
 })
-export class TableCaption {
+export class LuxTableCaption {
   private globalFilter = inject(GlobalTableFilterService);
   private destroyRef = inject(DestroyRef);
 
@@ -75,3 +75,5 @@ export class TableCaption {
     }
   }
 }
+
+export { LuxTableCaption as TableCaption };

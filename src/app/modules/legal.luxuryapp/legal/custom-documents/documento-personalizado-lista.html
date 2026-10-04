@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -8,14 +8,17 @@
     class="custom-table d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
     </ng-template>
     <ng-template #header>
       <tr>
-        <th class="bg-gradient text-white text-center" appSortableColumn="folio">
+        <th
+          class="bg-gradient text-white text-center"
+          appSortableColumn="folio"
+        >
           Folio
           <app-sorticon field="folio" />
         </th>
@@ -54,12 +57,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message [colspan]="5" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <app-data-view-mobile
@@ -73,8 +76,12 @@
         <app-icon icon="material-symbols-light:description-outline" />
       </div>
 
-       <h3 class="ion-text-wrap text-overflow-ellipsis overflow-hidden">{{ item.name }}</h3>
-       <p class="ion-text-wrap text-overflow-ellipsis overflow-hidden">Folio: {{ item.folio }} - {{ item.createAt }}</p>
+      <h3 class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
+        {{ item.name }}
+      </h3>
+      <p class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
+        Folio: {{ item.folio }} - {{ item.createAt }}
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

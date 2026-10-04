@@ -8,13 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { Workbook } from "exceljs";
-import FileSaver from "file-saver";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -25,11 +18,18 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { Workbook } from "exceljs";
+import FileSaver from "file-saver";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",
@@ -48,7 +48,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppSortableColumn,
     AppSorticon,
     WebButtonLabelDownload,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
 })

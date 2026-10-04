@@ -150,7 +150,7 @@ const GUIA_LABELS: Record<string, string> = {
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
           />
           <div class="card">
-            <app-table [value]="colorAssessment" class="p-datatable-sm">
+            <lux-table [value]="colorAssessment" class="p-datatable-sm">
               <ng-template #header
                 ><tr>
                   <th>Rol</th>
@@ -176,7 +176,7 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.recommendation }}</td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table>
           </div>
         }
 
@@ -187,7 +187,7 @@ const GUIA_LABELS: Record<string, string> = {
             class="mb-3 d-block"
           />
           <div class="card">
-            <app-table
+            <lux-table
               [value]="componentCatalog"
               [paginator]="true"
               [rows]="8"
@@ -228,7 +228,7 @@ const GUIA_LABELS: Record<string, string> = {
                   </td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table>
           </div>
         }
 
@@ -661,7 +661,7 @@ export class CatalogGuiaItem {
     },
     {
       family: "Tabla Bootstrap",
-      selector: "app-table-caption / footer",
+      selector: "lux-table-caption / footer",
       source: "shared/ui/web/table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",

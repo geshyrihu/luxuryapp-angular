@@ -6,15 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -24,6 +15,15 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
 
 @Component({
   selector: "app-contracts-policies",
@@ -40,7 +40,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
     AppSortableColumn,
 
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
 })
@@ -83,4 +83,3 @@ export class ContractsPolicies {
     return daysDifference <= 45;
   }
 }
-

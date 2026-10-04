@@ -409,7 +409,7 @@
   <!-- Tab 2: Contacto de emergencia -->
   <div tab="1">
     @if (emergencyContacts().length > 0) {
-    <app-table
+    <lux-table
       [value]="emergencyContacts()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -443,7 +443,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
@@ -464,7 +464,7 @@
   <!-- Tab 3: Datos clónicos -->
   <div tab="2">
     @if (clinicalData().length > 0) {
-    <app-table
+    <lux-table
       [value]="clinicalData()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -490,7 +490,7 @@
           <td class="text-body">{{ item.description }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
@@ -513,7 +513,7 @@
   <!-- Tab 4: Datos bancarios -->
   <div tab="3">
     @if (bankData().length > 0) {
-    <app-table
+    <lux-table
       [value]="bankData()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -531,7 +531,7 @@
           <td><code class="text-sm fw-medium">{{ item.bankKey }}</code></td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
@@ -550,7 +550,7 @@
   <!-- Tab 5: Beneficiarios -->
   <div tab="4">
     @if (beneficiaries().length > 0) {
-    <app-table
+    <lux-table
       [value]="beneficiaries()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -568,7 +568,7 @@
           <td>{{ item.relation }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
@@ -688,7 +688,7 @@
       </div>
     </lux-card>
     } @if (contracts().length > 0) {
-    <app-table
+    <lux-table
       [value]="contracts()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -749,7 +749,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div
@@ -977,7 +977,7 @@
             Historial de Modificaciones Salariales
           </h4>
         </div>
-        <app-table
+        <lux-table
           [value]="wp.salaryModifications"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -1025,7 +1025,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table>
       </div>
       }
     </div>
@@ -1134,7 +1134,7 @@
           <h4 class="m-0 fw-bold text-body">Solicitudes de Vacaciones</h4>
         </div>
         @if (vl.vacations.length > 0) {
-        <app-table
+        <lux-table
           [value]="vl.vacations"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -1177,7 +1177,7 @@
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table>
         } @else {
         <p
           class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
@@ -1202,7 +1202,7 @@
           <h4 class="m-0 fw-bold text-body">Permisos y Ausencias</h4>
         </div>
         @if (vl.leaves.length > 0) {
-        <app-table
+        <lux-table
           [value]="vl.leaves"
           class="shadow-sm rounded-xl overflow-hidden"
         >
@@ -1237,7 +1237,7 @@
               <td>{{ item.requestDate | apiDate:'dd/MM/yyyy' }}</td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table>
         } @else {
         <p
           class="text-body-secondary p-3 bg-body-tertiary rounded-lg border-1 border-100 m-0"
@@ -1253,7 +1253,7 @@
   <!-- Tab 8: Incidencias -->
   <div tab="8">
     @if (incidents().length > 0) {
-    <app-table
+    <lux-table
       [value]="incidents()"
       class="shadow-sm rounded-xl overflow-hidden mt-3"
     >
@@ -1325,7 +1325,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     } @else {
     <div class="d-flex flex-column align-items-center py-5 gap-3">
       <div

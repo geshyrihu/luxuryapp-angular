@@ -25,7 +25,7 @@
     class="d-block"
   />
   @switch (activeTab()) { @case ("0") {
-  <app-table
+  <lux-table
     #table
     [value]="propios()"
     [loading]="loading()"
@@ -79,7 +79,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="propios()"
@@ -112,7 +112,7 @@
     </ng-template>
   </app-data-view-mobile>
   } @case ("1") {
-  <app-table
+  <lux-table
     [value]="plantillas()"
     [rows]="rows"
     [paginator]="true"
@@ -154,7 +154,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="plantillas()"

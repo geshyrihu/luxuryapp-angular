@@ -5,98 +5,90 @@
 
   <div class="col-12">
     <div class="card" class="shadow-sm rounded-xl overflow-hidden">
-
-        <div class="row g-4">
-          <div class="col-12 col-lg-4">
-            <div class="text-sm fw-semibold text-body mb-2">
-              Rango de fechas
-            </div>
-            <app-rango-calendario-yyyymmdd
-              [mostrartextHasta]="false"
-              [mostrartextDesde]="false"
-            />
-            <small class="d-block mt-2 text-body-secondary">
-              Vista semanal sobre el rango seleccionado.
-            </small>
-          </div>
-
-          <div class="col-12 col-lg-8">
-            <form [formGroup]="filtersForm" class="row g-4">
-              <div class="col-12 col-md-6 col-xl-4">
-                <custom-input-multiselect-signal
-                  [control]="filtersForm.controls.medidorIds"
-                  [options]="medidorOptions()"
-                  label="Medidores"
-                  placeholder="Todos los medidores"
-                />
-              </div>
-
-              <div class="col-12 col-md-6 col-xl-4">
-                <custom-input-multiselect-signal
-                  [control]="filtersForm.controls.medidorCategoriaIds"
-                  [options]="categoriaOptions()"
-                  label="Categorias"
-                  placeholder="Todas las categorias"
-                />
-              </div>
-
-              <div class="col-12 col-md-6 col-xl-4">
-                <custom-input-multiselect-signal
-                  [control]="filtersForm.controls.areas"
-                  [options]="areaOptions()"
-                  label="Area / ubicacion"
-                  placeholder="Todas las areas"
-                />
-                <small class="text-body-secondary">
-                  Fuente actual: descripcion del medidor.
-                </small>
-              </div>
-            </form>
-
-            <div class="d-flex flex-wrap gap-2 justify-content-end mt-2">
-              <il-button
-                type="button"
-                label="Aplicar filtros"
-                (clicked)="loadReport()"
-              />
-              <il-button
-                type="button"
-                variant="outline"
-                label="Limpiar"
-                (clicked)="onClearFilters()"
-              />
-              <il-button-download
-                iconClass="material-symbols-light:table-view"
-                severity="success"
-                (clicked)="exportExcel()"
-              />
-            </div>
-          </div>
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="text-sm fw-semibold text-body mb-2">Rango de fechas</div>
+          <app-rango-calendario-yyyymmdd
+            [mostrartextHasta]="false"
+            [mostrartextDesde]="false"
+          />
+          <small class="d-block mt-2 text-body-secondary">
+            Vista semanal sobre el rango seleccionado.
+          </small>
         </div>
 
+        <div class="col-12 col-lg-8">
+          <form [formGroup]="filtersForm" class="row g-4">
+            <div class="col-12 col-md-6 col-xl-4">
+              <custom-input-multiselect-signal
+                [control]="filtersForm.controls.medidorIds"
+                [options]="medidorOptions()"
+                label="Medidores"
+                placeholder="Todos los medidores"
+              />
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <custom-input-multiselect-signal
+                [control]="filtersForm.controls.medidorCategoriaIds"
+                [options]="categoriaOptions()"
+                label="Categorias"
+                placeholder="Todas las categorias"
+              />
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <custom-input-multiselect-signal
+                [control]="filtersForm.controls.areas"
+                [options]="areaOptions()"
+                label="Area / ubicacion"
+                placeholder="Todas las areas"
+              />
+              <small class="text-body-secondary">
+                Fuente actual: descripcion del medidor.
+              </small>
+            </div>
+          </form>
+
+          <div class="d-flex flex-wrap gap-2 justify-content-end mt-2">
+            <il-button
+              type="button"
+              label="Aplicar filtros"
+              (clicked)="loadReport()"
+            />
+            <il-button
+              type="button"
+              variant="outline"
+              label="Limpiar"
+              (clicked)="onClearFilters()"
+            />
+            <il-button-download
+              iconClass="material-symbols-light:table-view"
+              severity="success"
+              (clicked)="exportExcel()"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   @if (report(); as data) {
   <div class="col-12 col-md-6 col-xl-3">
-    <div
-      class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full"
-    >
+    <div class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full">
       <div class="text-body-secondary text-sm mb-2">Consumo total</div>
       <div class="text-3xl fw-bold text-body">
         {{ data.totalConsumo | number: "1.0-2" }}
       </div>
       <div class="text-body-secondary text-sm mt-2">
-        {{ data.fechaInicio | apiDate: "dd/MM/yyyy" }} al {{ data.fechaFin | apiDate:
-        "dd/MM/yyyy" }}
+        {{ data.fechaInicio | apiDate: "dd/MM/yyyy" }} al {{ data.fechaFin |
+        apiDate: "dd/MM/yyyy" }}
       </div>
     </div>
   </div>
 
   <div class="col-12 col-md-6 col-xl-3">
-    <div
-      class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full"
-    >
+    <div class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full">
       <div class="text-body-secondary text-sm mb-2">Promedio semanal</div>
       <div class="text-3xl fw-bold text-body">
         {{ data.promedioSemanal | number: "1.0-2" }}
@@ -108,9 +100,7 @@
   </div>
 
   <div class="col-12 col-md-6 col-xl-3">
-    <div
-      class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full"
-    >
+    <div class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full">
       <div class="text-body-secondary text-sm mb-2">Medidores incluidos</div>
       <div class="text-3xl fw-bold text-body">{{ data.totalMedidores }}</div>
       <div class="text-body-secondary text-sm mt-2">
@@ -120,12 +110,12 @@
   </div>
 
   <div class="col-12 col-md-6 col-xl-3">
-    <div
-      class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full"
-    >
+    <div class="bg-body rounded-xl p-3 border-1 border-bg-body-tertiary h-full">
       <div class="text-body-secondary text-sm mb-2">Categorias</div>
       <div class="text-3xl fw-bold text-body">{{ data.totalCategorias }}</div>
-      <div class="text-body-secondary text-sm mt-2">Desglose ejecutivo por categoria</div>
+      <div class="text-body-secondary text-sm mt-2">
+        Desglose ejecutivo por categoria
+      </div>
     </div>
   </div>
 
@@ -134,14 +124,15 @@
       <div class="card-header">
         <div class="px-3 pt-3">
           <div class="text-xl fw-semibold">Consumo semanal</div>
-          <div class="text-body-secondary text-sm">Acumulado del rango seleccionado</div>
+          <div class="text-body-secondary text-sm">
+            Acumulado del rango seleccionado
+          </div>
         </div>
       </div>
 
-        <div >
-          <app-multi-axis-chart [data]="data.graficaSemanal" />
-        </div>
-
+      <div>
+        <app-multi-axis-chart [data]="data.graficaSemanal" />
+      </div>
     </div>
   </div>
 
@@ -156,32 +147,29 @@
         </div>
       </div>
 
-        <div class="d-flex flex-column gap-2">
-          @for (categoria of data.categorias; track
-          categoria.medidorCategoriaId) {
-          <div
-            class="bg-body-tertiary rounded-lg p-3 border-1 border-bg-body-tertiary"
-          >
-            <div class="d-flex justify-content-between gap-3">
-              <div>
-                <div class="fw-semibold text-body">
-                  {{ categoria.categoria }}
-                </div>
-                <div class="text-body-secondary text-sm">
-                  {{ categoria.totalMedidores }} medidores
-                </div>
-              </div>
-              <div class="text-end">
-                <div class="fw-bold text-body">
-                  {{ categoria.totalConsumo | number: "1.0-2" }}
-                </div>
-                <div class="text-body-secondary text-sm">consumo</div>
+      <div class="d-flex flex-column gap-2">
+        @for (categoria of data.categorias; track categoria.medidorCategoriaId)
+        {
+        <div
+          class="bg-body-tertiary rounded-lg p-3 border-1 border-bg-body-tertiary"
+        >
+          <div class="d-flex justify-content-between gap-3">
+            <div>
+              <div class="fw-semibold text-body">{{ categoria.categoria }}</div>
+              <div class="text-body-secondary text-sm">
+                {{ categoria.totalMedidores }} medidores
               </div>
             </div>
+            <div class="text-end">
+              <div class="fw-bold text-body">
+                {{ categoria.totalConsumo | number: "1.0-2" }}
+              </div>
+              <div class="text-body-secondary text-sm">consumo</div>
+            </div>
           </div>
-          }
         </div>
-
+        }
+      </div>
     </div>
   </div>
 
@@ -190,60 +178,60 @@
       <div class="card-header">
         <div class="px-3 pt-3">
           <div class="text-xl fw-semibold">Detalle por medidor</div>
-          <div class="text-body-secondary text-sm">Ordenado por mayor consumo total</div>
+          <div class="text-body-secondary text-sm">
+            Ordenado por mayor consumo total
+          </div>
         </div>
       </div>
 
-        <app-table
-          [value]="data.medidores"
-          [paginator]="true"
-          [rows]="10"
-          [rowsPerPageOptions]="[10, 25, 50]"
-          class="custom-table"
-        >
-          <ng-template #caption>
-            <app-table-caption
-              title="Detalle por medidor"
-              [showAdd]="false"
-              [showSearch]="false"
-            />
-          </ng-template>
-          <ng-template #header>
-            <tr>
-              <th>Categoria</th>
-              <th>Numero</th>
-              <th>Area / ubicacion</th>
-              <th>Descripcion</th>
-              <th class="text-end">Consumo total</th>
-              <th class="text-end">Promedio semanal</th>
-              <th class="text-end">Max. configurado</th>
-              <th class="text-end">Max. detectado</th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-item>
-            <tr>
-              <td>{{ item.categoria }}</td>
-              <td>{{ item.numeroMedidor }}</td>
-              <td>{{ item.area }}</td>
-              <td>{{ item.descripcion }}</td>
-              <td class="text-end">
-                {{ item.consumoTotal | number: "1.0-2" }}
-              </td>
-              <td class="text-end">
-                {{ item.promedioSemanal | number: "1.0-2" }}
-              </td>
-              <td class="text-end">
-                {{ item.consumoDiarioMaximoConfigurado | number: "1.0-2" }}
-              </td>
-              <td class="text-end">
-                {{ item.consumoMaximoDetectado | number: "1.0-2" }}
-              </td>
-            </tr>
-          </ng-template>
-        </app-table>
-      </div>
+      <lux-table
+        [value]="data.medidores"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        class="custom-table"
+      >
+        <ng-template #caption>
+          <lux-table-caption
+            title="Detalle por medidor"
+            [showAdd]="false"
+            [showSearch]="false"
+          />
+        </ng-template>
+        <ng-template #header>
+          <tr>
+            <th>Categoria</th>
+            <th>Numero</th>
+            <th>Area / ubicacion</th>
+            <th>Descripcion</th>
+            <th class="text-end">Consumo total</th>
+            <th class="text-end">Promedio semanal</th>
+            <th class="text-end">Max. configurado</th>
+            <th class="text-end">Max. detectado</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.numeroMedidor }}</td>
+            <td>{{ item.area }}</td>
+            <td>{{ item.descripcion }}</td>
+            <td class="text-end">{{ item.consumoTotal | number: "1.0-2" }}</td>
+            <td class="text-end">
+              {{ item.promedioSemanal | number: "1.0-2" }}
+            </td>
+            <td class="text-end">
+              {{ item.consumoDiarioMaximoConfigurado | number: "1.0-2" }}
+            </td>
+            <td class="text-end">
+              {{ item.consumoMaximoDetectado | number: "1.0-2" }}
+            </td>
+          </tr>
+        </ng-template>
+      </lux-table>
+    </div>
   </div>
-} @else {
+  } @else {
   <div class="col-12">
     <div
       class="bg-body rounded-xl border-1 border-bg-body-tertiary p-4 text-center text-body-secondary"
@@ -253,7 +241,3 @@
   </div>
   }
 </div>
-
-
-
-

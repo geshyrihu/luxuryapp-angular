@@ -18,7 +18,7 @@
 
   <!-- ── Vacaciones federales ─────────────────────────────────────────── -->
   <div class="card p-0">
-    <app-table
+    <lux-table
       [value]="federalParameters()"
       [loading]="loading()"
       [paginator]="true"
@@ -58,14 +58,14 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!-- ── ISN por estado ──────────────────────────────────────────────── -->
   <div class="card p-0">
-    <app-table
+    <lux-table
       [value]="stateTaxParameters()"
       [loading]="loading()"
       [paginator]="true"
@@ -82,7 +82,10 @@
           <th class="table-col-15" appSortableColumn="year">
             AÑO <app-sorticon field="year" />
           </th>
-          <th class="table-col-25" appSortableColumn="employerPayrollTaxPercentage">
+          <th
+            class="table-col-25"
+            appSortableColumn="employerPayrollTaxPercentage"
+          >
             ISN (%) <app-sorticon field="employerPayrollTaxPercentage" />
           </th>
           <th class="table-col-20"></th>
@@ -92,7 +95,9 @@
         <tr>
           <td>{{ stateText(row.state) }}</td>
           <td>{{ row.year }}</td>
-          <td>{{ row.employerPayrollTaxPercentage * 100 | number: "1.2-4" }}%</td>
+          <td>
+            {{ row.employerPayrollTaxPercentage * 100 | number: "1.2-4" }}%
+          </td>
           <td class="text-center">
             <iw-button
               iconClass="material-symbols-light:edit"
@@ -105,9 +110,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 

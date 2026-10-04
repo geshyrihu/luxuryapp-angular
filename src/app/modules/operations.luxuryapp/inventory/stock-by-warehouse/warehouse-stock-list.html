@@ -2,7 +2,7 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table
       (onSort)="onSort()"
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
@@ -17,7 +17,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           [title]="'Inventario'"
           (add)="addProductos({ id: 0, title: 'Agregar Registro' })"
           [dt]="dt"
@@ -122,9 +122,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="7" />
+        <lux-table-empty-message [colspan]="7" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 

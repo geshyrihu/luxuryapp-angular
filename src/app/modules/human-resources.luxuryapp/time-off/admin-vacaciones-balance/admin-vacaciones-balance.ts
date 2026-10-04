@@ -18,7 +18,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit";
@@ -42,7 +42,7 @@ import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-a
     AppSorticon,
     WebButtonLabel,
     LxTag,
-    TableCaption,
+    LuxTableCaption,
     WebButtonLabelEdit,
     DataViewMobile,
     LxConfirmDialog,

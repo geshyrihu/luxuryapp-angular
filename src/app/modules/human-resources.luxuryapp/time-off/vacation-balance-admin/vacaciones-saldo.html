@@ -280,7 +280,7 @@
               No hay solicitudes de vacaciones en este periodo.
             </div>
             } @else {
-            <app-table
+            <lux-table
               [value]="requests()"
               [paginator]="true"
               [rows]="5"
@@ -325,7 +325,7 @@
                   <td>{{ req.approvalDate || '—' }}</td>
                 </tr>
               </ng-template>
-            </app-table>
+            </lux-table>
             }
           </div>
         </div>

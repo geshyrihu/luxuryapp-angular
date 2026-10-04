@@ -293,7 +293,7 @@
       </div>
     </div>
 
-    <app-table
+    <lux-table
       [value]="grupo.ordenes"
       class="p-datatable-sm p-datatable-gridlines font-sm border-0"
       [scrollable]="true"
@@ -506,7 +506,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   }
 
@@ -551,7 +551,7 @@
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
-    <app-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
+    <lux-table [value]="ordenesFueraProceso()" class="p-datatable-sm">
       <ng-template #header>
         <tr>
           <th>Proveedor</th>
@@ -595,7 +595,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
     }
   </div>
 

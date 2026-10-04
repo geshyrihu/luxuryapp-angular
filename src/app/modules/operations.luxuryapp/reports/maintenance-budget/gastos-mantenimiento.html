@@ -1,6 +1,6 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table
   #dt
   [value]="resumenGastos()"
   [scrollable]="true"
@@ -24,7 +24,7 @@
       <td>{{ item.total }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 
 <table class="table custom-table table-striped">
   <thead>
@@ -62,8 +62,8 @@
               </td>
               <td class="table-col-30">{{ items.equipo }}</td>
               <td class="table-col-20">{{ items.recurrencia }}</td>
-              <td >{{ items.mes }}</td>
-              <td >
+              <td>{{ items.mes }}</td>
+              <td>
                 @if (items.costo !== "$0.00") {
                 <div>{{ items.costo }}</div>
                 } @if (items.costo === "$0.00") {

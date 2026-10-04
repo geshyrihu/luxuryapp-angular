@@ -20,7 +20,8 @@
     </div>
 
     <div class="catalog-header__end">
-      <iw-button
+      <lux-button-web
+        displayMode="icon"
         [icon]="themeService.isDarkMode() ? 'material-symbols-light:sunny' : 'material-symbols-light:nightlight'"
         [severity]="themeService.isDarkMode() ? 'warn' : 'secondary'"
         (clicked)="toggleTheme()"
@@ -28,7 +29,8 @@
         variant="text"
         lxTooltip="Alternar tema"
       />
-      <iw-button
+      <lux-button-web
+        displayMode="icon"
         icon="material-symbols-light:devices-other"
         [severity]="mobilePreview() ? 'primary' : 'secondary'"
         (clicked)="mobilePreview.set(!mobilePreview())"

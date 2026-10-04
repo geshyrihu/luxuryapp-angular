@@ -7,18 +7,18 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 @Component({
   selector: "app-report-ticket",
   templateUrl: "./report-ticket.html",
@@ -30,7 +30,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
     AppSorticon,
     AppAvatar,
     PageTitleReportMaintenance,
-    TableCaption,
+    LuxTableCaption,
   ],
 })
 export class ReportTicket {
@@ -119,4 +119,3 @@ export class ReportTicket {
     };
   }
 }
-

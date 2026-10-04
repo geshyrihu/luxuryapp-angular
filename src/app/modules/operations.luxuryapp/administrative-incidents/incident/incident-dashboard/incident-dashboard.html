@@ -97,7 +97,9 @@
           height="300px"
         />
         } @else {
-        <div class="text-center text-body-secondary py-5">Sin datos disponibles</div>
+        <div class="text-center text-body-secondary py-5">
+          Sin datos disponibles
+        </div>
         }
       </div>
     </div>
@@ -114,7 +116,9 @@
           height="300px"
         />
         } @else {
-        <div class="text-center text-body-secondary py-5">Sin datos disponibles</div>
+        <div class="text-center text-body-secondary py-5">
+          Sin datos disponibles
+        </div>
         }
       </div>
     </div>
@@ -122,10 +126,8 @@
 
   <!-- Tabla: Top Empleados -->
   <div class="card p-4">
-    <h3 class="text-lg fw-semibold mb-4">
-      Top Empleados con Mís Incidencias
-    </h3>
-    <app-table
+    <h3 class="text-lg fw-semibold mb-4">Top Empleados con Mís Incidencias</h3>
+    <lux-table
       [value]="dashboard()!.topEmployees"
       [paginator]="true"
       [rows]="10"
@@ -152,7 +154,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!-- Distribución por Severidad -->
@@ -161,7 +163,9 @@
     <h3 class="text-lg fw-semibold mb-4">Distribución por Severidad</h3>
     <div class="d-flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
-      <div class="d-flex align-items-center px-3 py-2 bg-body-tertiary rounded-lg">
+      <div
+        class="d-flex align-items-center px-3 py-2 bg-body-tertiary rounded-lg"
+      >
         <span class="fw-medium">{{ item.name }}</span>
         <span class="badge badge-info ms-2">{{ item.count }}</span>
       </div>

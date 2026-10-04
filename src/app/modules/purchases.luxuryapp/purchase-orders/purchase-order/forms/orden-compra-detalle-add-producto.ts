@@ -33,7 +33,7 @@ import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 
 interface IOrdenCompraDetalleRowForm {
@@ -68,7 +68,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     AppAvatar,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     LxMessage,
   ],

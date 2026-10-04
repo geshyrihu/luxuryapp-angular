@@ -1,5 +1,4 @@
 <section>
-
   @if (!hasCustomer()) {
   <div class="mb-4 border-1 border rounded p-4">
     <div class="fw-medium mb-2">Sin cliente activo</div>
@@ -53,7 +52,7 @@
     </div>
   </div>
 
-  <app-table
+  <lux-table
     [value]="rows()"
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -68,7 +67,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" [showAdd]="false" />
+      <lux-table-caption [dt]="dt" [showAdd]="false" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -113,9 +112,9 @@
       </tr>
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="rows()" />
+      <lux-table-footer [data]="rows()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <div class="mb-4 text-sm text-body-secondary">
     Selecciona una fila o usa

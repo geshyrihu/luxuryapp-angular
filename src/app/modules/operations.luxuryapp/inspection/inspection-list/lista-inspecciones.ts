@@ -40,11 +40,13 @@ export class ListaInspecciones {
 
   selectedAreaSignal = signal<string>("");
   selectedRecurrenceSignal = signal<string>("");
+  appliedAreaSignal = signal<string>("");
+  appliedRecurrenceSignal = signal<string>("");
 
   inspeccionesFiltradasSignal = computed(() => {
     const original = this.inspeccionesOriginalesSignal();
-    const area = this.selectedAreaSignal();
-    const recurrence = this.selectedRecurrenceSignal();
+    const area = this.appliedAreaSignal();
+    const recurrence = this.appliedRecurrenceSignal();
 
     return original
       .map((group) => ({
@@ -83,6 +85,18 @@ export class ListaInspecciones {
     this.router.navigate(ROUTES.INSPECCIONES.DETALLE(id));
   }
 
+  applyFilters(): void {
+    this.appliedAreaSignal.set(this.selectedAreaSignal());
+    this.appliedRecurrenceSignal.set(this.selectedRecurrenceSignal());
+  }
+
+  clearFilters(): void {
+    this.selectedAreaSignal.set("");
+    this.selectedRecurrenceSignal.set("");
+    this.appliedAreaSignal.set("");
+    this.appliedRecurrenceSignal.set("");
+  }
+
   onLoadData() {
     this.apiResponseS
       .onGetList<InspectionListItem[]>(
@@ -96,7 +110,7 @@ export class ListaInspecciones {
         const data = result ?? [];
         this.inspeccionesOriginalesSignal.set(data);
 
-        // Extraer Ã¡reas responsables del arreglo y eliminar duplicados
+        // Extraer áreas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
           areas.map((area) => ({
@@ -115,7 +129,7 @@ export class ListaInspecciones {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

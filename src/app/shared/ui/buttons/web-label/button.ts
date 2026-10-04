@@ -22,14 +22,20 @@ import { BaseButton } from "../base/base-button";
     >
       @if (loading()) {
         <app-spinner [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
-      } @else if (emoji()) {
-        <span>{{ emoji() }}</span>
-      } @else if (iconClass()) {
-        <app-icon [icon]="resolvedIconClass()" />
-      } @else if (icon()) {
-        <app-icon [icon]="resolvedIcon()" />
+      } @else {
+        @if (displayMode() !== "label") {
+          @if (emoji()) {
+            <span>{{ emoji() }}</span>
+          } @else if (iconClass()) {
+            <app-icon [icon]="resolvedIconClass()" />
+          } @else if (icon()) {
+            <app-icon [icon]="resolvedIcon()" />
+          }
+        }
+        @if (displayMode() !== "icon") {
+          <span>{{ label() || "Continuar" }}</span>
+        }
       }
-      <span>{{ label() || "Continuar" }}</span>
     </button>
   `,
 })

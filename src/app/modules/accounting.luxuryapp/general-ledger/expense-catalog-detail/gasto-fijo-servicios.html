@@ -4,9 +4,9 @@
 </p>
 }
 
-<app-table [value]="productosAgregados()" #dc class="card d-none d-md-block">
+<lux-table [value]="productosAgregados()" #dc class="card d-none d-md-block">
   <ng-template #caption>
-    <app-table-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
+    <lux-table-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -71,14 +71,14 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
-</app-table>
+</lux-table>
 
-<app-table
+<lux-table
   [(selection)]="selectedProducts"
   #dt
   class="custom-table card d-none d-md-block"
@@ -91,7 +91,7 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption [dt]="dt" [showAdd]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -160,6 +160,6 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="productos()" />
+    <lux-table-footer [data]="productos()" />
   </ng-template>
-</app-table>
+</lux-table>

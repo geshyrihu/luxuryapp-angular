@@ -849,7 +849,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Table - p-table</h3>
                 </div>
                 <div class="card-body">
-                  <app-table [value]="tableData" class="p-datatable-sm">
+                  <lux-table [value]="tableData" class="p-datatable-sm">
                     <ng-template #header
                       ><tr>
                         <th>Nombre</th>
@@ -868,7 +868,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         </td>
                       </tr>
                     </ng-template>
-                  </app-table>
+                  </lux-table>
                 </div>
               </div>
             }
@@ -1247,10 +1247,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <div class="card-body">
                     <p class="catalog-helper-text text-sm m-0 mb-3">
                       Debajo del calendario:
-                      <code>app-table class="custom-table "</code>
+                      <code>lux-table class="custom-table "</code>
                       con paginacion, busqueda y botones de accion DS.
                     </p>
-                    <app-table
+                    <lux-table
                       [value]="calendarTableDemo"
                       class="custom-table "
                       [rows]="4"
@@ -1278,7 +1278,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           </td>
                         </tr>
                       </ng-template>
-                    </app-table>
+                    </lux-table>
                   </div>
                 </div>
               </div>

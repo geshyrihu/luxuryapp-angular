@@ -32,7 +32,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -69,7 +69,7 @@ import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-messa
     LxTooltipDirective,
     AppImage,
     AppAvatar,
-    TableCaption,
+    LuxTableCaption,
     InitialsAbbrPipe,
     AppIcon,
   ],

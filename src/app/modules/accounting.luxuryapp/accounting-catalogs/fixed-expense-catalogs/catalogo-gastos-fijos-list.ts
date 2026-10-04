@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -27,6 +26,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { firstValueFrom } from "rxjs";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -48,7 +48,7 @@ import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 
@@ -61,7 +61,7 @@ import { TableFooter } from "@ui/web/table-footer/table-footer";
     IonInputCheckbox,
     IonInputSelect,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     WebButtonIconEdit,
@@ -189,21 +189,20 @@ export class CatalogoGastosFijosList {
   // Computed signal to determine if all items are selected
   isAllSelected = computed(() => {
     const data = this.dataSignal();
-    return (
-      data?.length > 0 &&
-      data.every((item) => item.crearOrdenCompra)
-    );
+    return data?.length > 0 && data.every((item) => item.crearOrdenCompra);
   });
 
-  isFirstQuincenaSelected = computed(() =>
-    this.dataSignal()?.some(
-      (item) => item.quincena === 0 && item.crearOrdenCompra,
-    ) ?? false,
+  isFirstQuincenaSelected = computed(
+    () =>
+      this.dataSignal()?.some(
+        (item) => item.quincena === 0 && item.crearOrdenCompra,
+      ) ?? false,
   );
-  isSecondQuincenaSelected = computed(() =>
-    this.dataSignal()?.some(
-      (item) => item.quincena === 1 && item.crearOrdenCompra,
-    ) ?? false,
+  isSecondQuincenaSelected = computed(
+    () =>
+      this.dataSignal()?.some(
+        (item) => item.quincena === 1 && item.crearOrdenCompra,
+      ) ?? false,
   );
 
   constructor() {
@@ -459,4 +458,3 @@ export class CatalogoGastosFijosList {
     });
   }
 }
-

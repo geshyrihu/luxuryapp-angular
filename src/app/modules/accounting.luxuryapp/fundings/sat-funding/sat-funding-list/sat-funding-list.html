@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table
     class="custom-table d-none d-md-block"
     #dt
     [value]="data()"
@@ -15,7 +15,7 @@
     [scrollHeight]="scrollHeight"
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" title="Listado de Fondeos SAT" />
+      <lux-table-caption [dt]="dt" title="Listado de Fondeos SAT" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -49,9 +49,9 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="4" />
+      <lux-table-empty-message [colspan]="4" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <app-data-view-mobile
@@ -62,7 +62,10 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:paid" class="text-xl text-green-500" />
+        <app-icon
+          icon="material-symbols-light:paid"
+          class="text-xl text-green-500"
+        />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.periodDisplayName }}</h3>

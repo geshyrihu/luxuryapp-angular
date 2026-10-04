@@ -25,7 +25,7 @@ import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/service
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
@@ -47,7 +47,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
     AppSorticon,
 
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     MobileListItem,

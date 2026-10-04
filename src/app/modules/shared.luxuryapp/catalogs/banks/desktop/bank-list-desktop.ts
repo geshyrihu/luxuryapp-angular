@@ -6,21 +6,18 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import {
   AppSortableColumn,
   AppSorticon,
   AppTable,
-} from "@ui/web/table/table";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+} from "src/app/shared/ui/web/lux-table/table";
 import { BankDto } from "../interfaces/banks.dto";
 
 @Component({
@@ -28,7 +25,7 @@ import { BankDto } from "../interfaces/banks.dto";
   templateUrl: "./bank-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,

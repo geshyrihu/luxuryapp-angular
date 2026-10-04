@@ -73,7 +73,7 @@
     }
   </div>
 
-  <app-table
+  <lux-table
     [value]="baseService.morososData()?.propiedades ?? []"
     [loading]="baseService.loading()"
     dataKey="numCtaBase"
@@ -89,7 +89,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" [showAdd]="false" label="Morosos" />
+      <lux-table-caption [dt]="dt" [showAdd]="false" label="Morosos" />
     </ng-template>
 
     <ng-template #header>
@@ -152,10 +152,10 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message
+      <lux-table-empty-message
         title="Sin morosos"
         message="No se encontraron propiedades con deuda."
       />
     </ng-template>
-  </app-table>
+  </lux-table>
 </section>

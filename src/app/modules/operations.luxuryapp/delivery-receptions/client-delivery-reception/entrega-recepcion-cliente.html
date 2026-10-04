@@ -12,7 +12,7 @@ cb_departamento; track item) {
 }
 <hr />
 }
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="data()"
   #dt
@@ -20,7 +20,7 @@ cb_departamento; track item) {
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [showAdd]="false"
       [dt]="dt"
@@ -124,9 +124,9 @@ cb_departamento; track item) {
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile

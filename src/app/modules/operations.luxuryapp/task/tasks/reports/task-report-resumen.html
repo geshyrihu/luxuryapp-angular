@@ -1,7 +1,7 @@
 <app-task-date-range-selector (selectedDates)="onDateRangeSelected($event)" />
 <hr />
 @if (data) {
-<app-table
+<lux-table
   [value]="data?.GroupedTicketReport"
   [paginator]="true"
   [rows]="tableRows"
@@ -24,7 +24,7 @@
       <td>{{ group.TotalTicketsClosed }}</td>
       <td>{{ group.TotalTicketsPending }}</td>
       <td>
-        <app-table
+        <lux-table
           [value]="group.Tickets"
           [scrollable]="true"
           [scrollHeight]="scrollHeight"
@@ -47,16 +47,9 @@
               <td>{{ ticket.Status }}</td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table>
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }
-
-
-
-
-
-
-

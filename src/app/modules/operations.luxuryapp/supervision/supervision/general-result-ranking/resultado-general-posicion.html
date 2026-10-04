@@ -1,14 +1,14 @@
 @if (dataSignal()) {
 <div class="row g-4">
   <div class="col-12 col-md-4">
-    <app-table
+    <lux-table
       [value]="dataSignal().posicionesMinutas"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
       class="custom-table d-none d-md-block"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           [title]="'Minutas'"
           [showSearch]="false"
           [showAdd]="false"
@@ -28,17 +28,17 @@
           <td>{{ item.porcentajeEjecucion }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   <div class="col-12 col-md-4">
-    <app-table
+    <lux-table
       [value]="dataSignal().posicionesPreventivos"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
       class="custom-table d-none d-md-block"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           [title]="'Preventivos'"
           [showSearch]="false"
           [showAdd]="false"
@@ -58,17 +58,17 @@
           <td>{{ item.porcentajeEjecucion }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   <div class="col-12 col-md-4">
-    <app-table
+    <lux-table
       [value]="dataSignal().posicionesCorrectivos"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
       class="custom-table d-none d-md-block"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           [title]="'Correctivos'"
           [showSearch]="false"
           [showAdd]="false"
@@ -88,7 +88,7 @@
           <td>{{ item.porcentajeEjecucion }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 }

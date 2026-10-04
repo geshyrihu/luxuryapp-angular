@@ -15,7 +15,7 @@
   </lux-toolbar>
 
   <!-- Desktop View -->
-  <app-table
+  <lux-table
     #dt
     [value]="data()"
     [loading]="loading()"
@@ -25,7 +25,7 @@
     class="p-datatable-gridlines d-none d-md-block"
   >
     <ng-template #caption>
-      <app-app-table-caption
+      <app-lux-table-caption
         [title]="'Tareas Asignadas'"
         [showGlobalFilter]="false"
         [showAddButton]="false"
@@ -72,15 +72,15 @@
       </tr>
     </ng-template>
     <ng-template #summary>
-      <app-app-table-footer
+      <app-lux-table-footer
         [totalRecords]="data().length"
         [emptyMessage]="'No hay tareas para esta fecha.'"
       />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="5" />
+      <lux-table-empty-message [colspan]="5" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <!-- Mobile View -->
   <app-data-view-mobile

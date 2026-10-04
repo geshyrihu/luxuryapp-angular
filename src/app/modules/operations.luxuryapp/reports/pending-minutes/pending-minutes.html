@@ -8,7 +8,7 @@
   <!-- Encabezado del reporte -->
   <div class="border-bottom-1 border p-3 bg-body-tertiary"></div>
   <!-- Tabla de solicitudes pendientes -->
-  <app-table
+  <lux-table
     [value]="reportData().pendings"
     [scrollable]="true"
     [scrollHeight]="scrollHeight"
@@ -26,7 +26,6 @@
                 [src]="reportData().customer.customerImage"
                 alt="Logo del cliente"
                 class="img-fluid border mb-2"
-                
               />
               }
               <h5>{{ reportData().customer.nombreCorto }}</h5>
@@ -48,28 +47,17 @@
                   [src]="admin.photoEmployee"
                   alt="Foto del administrador"
                   class="rounded-circle border me-2"
-                  
                 />
                 <div class="text-start">
-                  <p
-                    class="mb-0 text-body-secondary"
-                    
-                  >
+                  <p class="mb-0 text-body-secondary">
                     {{ admin.nameEmployee }}
                   </p>
-                  <p
-                    class="mb-0 text-body-secondary"
-                    
-                  >
-                    {{ admin.email }}
-                  </p>
-                  <p
-                    class="mb-0 text-body-secondary"
-                    
-                    
-                  >
-                    <app-icon [icon]="'material-symbols-light:alternate-email'" class="icon icon- me-1" />{{
-                    admin.phoneNumber }}
+                  <p class="mb-0 text-body-secondary">{{ admin.email }}</p>
+                  <p class="mb-0 text-body-secondary">
+                    <app-icon
+                      [icon]="'material-symbols-light:alternate-email'"
+                      class="icon icon- me-1"
+                    />{{ admin.phoneNumber }}
                   </p>
                 </div>
               </div>
@@ -101,7 +89,7 @@
         <td>{{ ticket.fechaUltimoSeguimiento }} - {{ ticket.seguimiento }}</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
   <!-- (MEJORA) Mensaje claro si no hay datos después de cargar -->
   @if (!reportData() && !loading()) {
   <div class="p-3 bg-body-tertiary text-center rounded text-body-secondary">

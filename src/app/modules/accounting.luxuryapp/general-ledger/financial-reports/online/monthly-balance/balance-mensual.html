@@ -51,7 +51,7 @@
   <!-- Tabla -->
   @if (rows().length) {
   <div class="rf-card rf-wrap pt-4 d-none d-md-block">
-    <app-table
+    <lux-table
       [value]="rows()"
       class="rf-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1200px' }"
@@ -115,7 +115,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <app-data-view-mobile
@@ -142,9 +142,7 @@
           @for (monto of row.montos; track $index) {
           <div class="col-4 p-0">
             {{ MONTHS[$index] }}:
-            <span
-              class="text-body fw-medium d-block"
-              [class.rf-neg]="monto < 0"
+            <span class="text-body fw-medium d-block" [class.rf-neg]="monto < 0"
               >{{ monto | accountingNumber : "1.0-0" }}</span
             >
           </div>

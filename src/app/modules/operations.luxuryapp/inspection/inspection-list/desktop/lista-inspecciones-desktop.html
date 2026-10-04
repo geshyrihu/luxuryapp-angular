@@ -14,15 +14,15 @@
         label="Reportes"
         size="sm"
         severity="secondary"
-        lxTooltip="Ver reportes de inspección"
+        tooltip="Ver reportes de inspección"
         (clicked)="reportes.emit()"
       />
     </div>
   </div>
 
   <div class="card p-3">
-    <div class="row g-3">
-      <div class="col-12 col-md-6">
+    <div class="row g-3 align-items-end">
+      <div class="col-12 col-xl-5">
         <custom-input-select-signal
           [ngModel]="selectedArea()"
           (ngModelChange)="filterAreaChange.emit($event)"
@@ -33,7 +33,7 @@
           [filter]="true"
         />
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-xl-5">
         <custom-input-select-signal
           [ngModel]="selectedRecurrence()"
           (ngModelChange)="filterRecurrenceChange.emit($event)"
@@ -48,11 +48,25 @@
           [filter]="true"
         />
       </div>
+      <div class="col-12 col-xl-2 d-flex justify-content-end gap-2">
+        <il-button
+          label="Limpiar filtros"
+          severity="secondary"
+          variant="outline"
+          iconClass="material-symbols-light:filter-alt-off"
+          (clicked)="clearFilters.emit()"
+        />
+        <il-button
+          label="Aplicar filtros"
+          iconClass="material-symbols-light:filter-alt"
+          (clicked)="applyFilters.emit()"
+        />
+      </div>
     </div>
   </div>
 
   <div class="card p-0">
-    <app-table
+    <lux-table
       #dt
       [globalFilterFields]="globalFilterFields"
       [paginator]="true"
@@ -104,9 +118,9 @@
                 size="sm"
                 class="btn--circle"
                 icon="search"
-                [attr.aria-label]="'Ver detalles de ' + item.name"
-                (clicked)="detalles.emit(item.id)"
-              />
+                 [attr.aria-label]="'Ver detalles de ' + item.name"
+                 (clicked)="detalles.emit(item.id)"
+               />
               <iw-button-delete
                 size="sm"
                 class="btn--circle"
@@ -118,8 +132,8 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="3" />
+        <lux-table-empty-message [colspan]="3" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>

@@ -128,7 +128,7 @@
 
 <hr />
 
-<app-table
+<lux-table
   [globalFilterFields]="service.globalFilterFields()"
   [scrollable]="true"
   [showCurrentPageReport]="true"
@@ -140,7 +140,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -192,6 +192,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message [colspan]="5" />
   </ng-template>
-</app-table>
+</lux-table>

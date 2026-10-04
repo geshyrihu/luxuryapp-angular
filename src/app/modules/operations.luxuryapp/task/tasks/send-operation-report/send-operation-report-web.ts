@@ -6,10 +6,10 @@ import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({
@@ -27,7 +27,7 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     WebButtonLabel,
     WebButtonLabelConfirm,
     WebButtonLabelAdd,
-    TableCaption,
+    LuxTableCaption,
   ],
   templateUrl: "./send-operation-report-web.html",
   changeDetection: ChangeDetectionStrategy.Eager,

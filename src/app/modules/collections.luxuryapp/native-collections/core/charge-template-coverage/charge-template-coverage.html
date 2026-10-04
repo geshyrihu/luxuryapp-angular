@@ -1,5 +1,5 @@
 <div class="card p-3 p-md-4">
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
@@ -10,7 +10,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         title="Cuotas Vigentes por Propiedad"
         [showAdd]="false"
         [dt]="dt"
@@ -92,5 +92,5 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>

@@ -14,9 +14,11 @@ type ButtonSeverity =
   | "ai";
 type ButtonVariant = "solid" | "outline" | "soft" | "text" | "link";
 type ButtonSize = "small" | "large" | "sm" | "md" | "lg";
+export type ButtonDisplayMode = "label" | "icon" | "both";
 
 @Directive()
 export abstract class BaseButton {
+  displayMode = input<ButtonDisplayMode>("label");
   label = input<string>("");
   title = input<string>("");
   icon = input<string>("");

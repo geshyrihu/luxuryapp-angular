@@ -61,17 +61,21 @@ $success-900: #08402a !default;
 $success-950: #042417 !default;
 
 // Warning (Ámbar operativo)
-$warning-50: #fffdf5 !default;
-$warning-100: #fff3c4 !default; // warning-container
-$warning-200: #ffe082 !default;
-$warning-300: #ffd54f !default;
-$warning-400: #ffca28 !default;
-$warning-500: #ffc107 !default;
-$warning-600: #ffb300 !default;
-$warning-700: #ffa000 !default;
-$warning-800: #ff8f00 !default;
-$warning-900: #e65100 !default;
-$warning-950: #5d2e00 !default;
+// Recalibrado 2026-10-04: la rampa Material original (#ffb300, saturación plena)
+// competía con el navy de marca en botones sólidos y tags. Se desatura y oscurece
+// a un ámbar-oro sobrio, coherente con "Deep Navy". Se mantienen relaciones de
+// contraste: 950 sobre 600 >= 4.5:1 (AA) y 950 sobre blanco >= 13:1.
+$warning-50: #fdfbf4 !default;
+$warning-100: #faf2d7 !default; // warning-container
+$warning-200: #f3e3ab !default;
+$warning-300: #e9cf78 !default;
+$warning-400: #ddb945 !default;
+$warning-500: #cfa31f !default;
+$warning-600: #bd8f16 !default;
+$warning-700: #9c7312 !default;
+$warning-800: #7a580e !default;
+$warning-900: #5a3f0a !default;
+$warning-950: #382706 !default;
 
 // Oro documental: reservado para reportes y elementos premium documentales.
 $report-gold-50: #fdfcf7 !default;

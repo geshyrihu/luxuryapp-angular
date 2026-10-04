@@ -38,9 +38,9 @@
             <app-breakdown-list
               heading="Análisis de Cobranza Mensual"
               [subheading]="analysisData()?.periodo ?? ''"
-            [items]="filasAnalisisMensual()"
-            format="number"
-          />
+              [items]="filasAnalisisMensual()"
+              format="number"
+            />
           </div>
           <div
             class="p-3 border-top-1 border bg-gray-50 d-flex justify-content-end"
@@ -83,7 +83,9 @@
         <div class="rf-card p-4 h-full d-flex flex-column">
           <div class="text-lg fw-semibold mb-1">Composición de Cobranza</div>
           <div class="text-body-secondary mb-3">Distribución de la cartera</div>
-          <div class="flex-grow-1 d-flex align-items-center justify-content-center w-full">
+          <div
+            class="flex-grow-1 d-flex align-items-center justify-content-center w-full"
+          >
             @if (chartData(); as googlePieData) {
             <app-google-pie-chart4
               class="d-block w-full"
@@ -187,7 +189,7 @@
         </div>
       </div>
 
-      <app-table
+      <lux-table
         [value]="towers()"
         class="rf-table p-datatable-sm d-none d-md-block"
       >
@@ -223,9 +225,7 @@
             <td class="text-end">
               {{ row.extraordinaryBalance | accountingNumber}}
             </td>
-            <td class="text-end">
-              {{ row.finesBalance | accountingNumber}}
-            </td>
+            <td class="text-end">{{ row.finesBalance | accountingNumber}}</td>
             <td class="text-end fw-medium">
               {{ row.totalBalance | accountingNumber}}
             </td>
@@ -251,7 +251,7 @@
           </tr>
           }
         </ng-template>
-      </app-table>
+      </lux-table>
 
       <div class="d-md-none">
         <app-data-view-mobile [data]="towers()" [showAdd]="false">
@@ -269,7 +269,8 @@
                   {{ row.departmentCount }} departamentos
                 </p>
                 <p class="text-xs m-0 mt-1 text-body-secondary">
-                  Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{ row.extraordinaryBalance | accountingNumber}} · Multas {{
+                  Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{
+                  row.extraordinaryBalance | accountingNumber}} · Multas {{
                   row.finesBalance | accountingNumber}}
                 </p>
                 <p class="text-xs m-0 mt-1 text-primary fw-medium">
@@ -330,10 +331,10 @@
       </div>
 
       <app-ranked-list
-            heading="Saldos a favor"
-            [items]="anticiposItems()"
-            [total]="totalAFavor()"
-            format="number"
+        heading="Saldos a favor"
+        [items]="anticiposItems()"
+        [total]="totalAFavor()"
+        format="number"
         accent="var(--ds-success)"
         maxHeight="34rem"
         emptyMessage="Ningún condómino tiene saldo a favor al corte."
@@ -367,7 +368,7 @@
         />
       </div>
 
-      <app-table
+      <lux-table
         [value]="filteredRows()"
         class="rf-table p-datatable-sm p-datatable-striped"
         [tableStyle]="{ 'min-width': '1000px' }"
@@ -428,7 +429,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
   </div>
 </div>

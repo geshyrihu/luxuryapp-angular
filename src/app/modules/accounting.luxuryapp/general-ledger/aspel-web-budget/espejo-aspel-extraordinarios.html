@@ -1,10 +1,12 @@
 <div class="rf-shell budget-view-port-container">
   <!-- El encabezado ahora está centralizado en el wrapper -->
 
-  <div class="d-none d-md-flex flex-md-column flex-fill min-h-0 overflow-auto gap-3">
+  <div
+    class="d-none d-md-flex flex-md-column flex-fill min-h-0 overflow-auto gap-3"
+  >
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Extraordinarios (605)</h5>
-      <app-table
+      <lux-table
         [value]="extraordinarias()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -36,9 +38,7 @@
             <td pFrozenColumn>
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="rf-td-cuenta">
-                  {{ cuenta.codigo_Cuenta }}
-                </span>
+                <span class="rf-td-cuenta"> {{ cuenta.codigo_Cuenta }} </span>
                 <span class="text-body-secondary">|</span>
                 }
                 <span class="text-body fw-bold">
@@ -121,12 +121,12 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
 
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Proyectos (606)</h5>
-      <app-table
+      <lux-table
         [value]="proyectos()"
         [scrollable]="true"
         [showCurrentPageReport]="true"
@@ -162,9 +162,7 @@
             <td pFrozenColumn [attr.colspan]="2">
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="rf-td-cuenta">
-                  {{ cuenta.codigo_Cuenta }}
-                </span>
+                <span class="rf-td-cuenta"> {{ cuenta.codigo_Cuenta }} </span>
                 <span class="text-body-secondary">|</span>
                 }
                 <span class="text-body fw-bold">
@@ -286,7 +284,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
   </div>
 

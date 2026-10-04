@@ -51,7 +51,7 @@
   </div>
   }
 
-  <app-table
+  <lux-table
     [value]="rows()"
     [globalFilterFields]="['propertyFullName', 'accountNumber']"
     class="custom-table card d-none d-md-block"
@@ -61,7 +61,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
 
     <ng-template #header>
@@ -112,7 +112,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="rows()"

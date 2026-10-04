@@ -1,4 +1,4 @@
-<app-table [value]="dataSignal()" class="custom-table card d-none d-md-block">
+<lux-table [value]="dataSignal()" class="custom-table card d-none d-md-block">
   <ng-template #header>
     <tr>
       <th>Archivo</th>
@@ -13,7 +13,10 @@
           [tooltip]="'Visualizar ' + item.nameDocument"
           (clicked)="viewPdf(item.document, item.nameDocument)"
         >
-          <app-icon [icon]="'material-symbols-light:picture-as-pdf'" class="icon icon- label-icon text-danger" />
+          <app-icon
+            [icon]="'material-symbols-light:picture-as-pdf'"
+            class="icon icon- label-icon text-danger"
+          />
         </iw-button-item>
       </td>
       <td>{{ item.nameDocument }}</td>
@@ -25,6 +28,6 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message [colspan]="7" />
   </ng-template>
-</app-table>
+</lux-table>

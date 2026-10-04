@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ThemeService } from "@core/services/theme.service";
@@ -19,7 +19,7 @@ import { ThemeService } from "@core/services/theme.service";
     AppTag,
     LxTooltipDirective,
     AppIcon,
-    WebButtonIcon,
+    ButtonWeb,
   ],
   templateUrl: "./catalog-layout.html",
   styleUrls: ["./catalog-layout.scss"],
@@ -36,4 +36,3 @@ export class CatalogLayout {
     this.themeService.toggleTheme();
   }
 }
-

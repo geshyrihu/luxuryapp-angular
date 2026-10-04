@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -16,7 +16,7 @@
     groupRowsBy="pathParent"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
@@ -92,12 +92,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message [colspan]="8" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->

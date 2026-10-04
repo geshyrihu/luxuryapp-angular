@@ -1,6 +1,6 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -16,7 +16,7 @@
   [loading]="loading()"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="onModalForm({ id: 0, title: 'Nuevo Conocimiento' })"
       [dt]="dt"
     />
@@ -31,7 +31,9 @@
         Palabras Clave <app-sorticon field="keywords" />
       </th>
       <th appSortableColumn="route">Ruta <app-sorticon field="route" /></th>
-      <th appSortableColumn="isActive">Activo <app-sorticon field="isActive" /></th>
+      <th appSortableColumn="isActive">
+        Activo <app-sorticon field="isActive" />
+      </th>
       <th class="no-print"></th>
     </tr>
   </ng-template>
@@ -66,12 +68,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -82,16 +84,20 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:psychology" class="text-xl text-primary" />
-       <ion-label>
-         <h2 class="fw-bold">{{ item.topic }}</h2>
-         <p class="text-sm">
-           <span class="fw-bold text-primary"
-             >{{ item.moduleAppName || 'General' }}</span
-           >
-         </p>
-         <p class="text-sm text-wrap text-body-secondary">{{ item.keywords }}</p>
-       </ion-label>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:psychology"
+        class="text-xl text-primary"
+      />
+      <ion-label>
+        <h2 class="fw-bold">{{ item.topic }}</h2>
+        <p class="text-sm">
+          <span class="fw-bold text-primary"
+            >{{ item.moduleAppName || 'General' }}</span
+          >
+        </p>
+        <p class="text-sm text-wrap text-body-secondary">{{ item.keywords }}</p>
+      </ion-label>
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

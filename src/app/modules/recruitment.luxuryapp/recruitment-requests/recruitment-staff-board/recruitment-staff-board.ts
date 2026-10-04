@@ -37,7 +37,7 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -80,7 +80,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     CdkDragHandle,
     CdkDragPreview,
     CdkDropList,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     WebButtonLabel,
     WebButtonLabelItem,

@@ -7,7 +7,7 @@ unassignedData().length > 0) {
 <div class="d-none d-md-block">
   @if (dataExternal().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table
       #dtExternal
       [value]="dataExternal()"
       [scrollable]="true"
@@ -15,7 +15,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           title="Pendientes Externos"
           [showAdd]="false"
           [dt]="dtExternal"
@@ -53,11 +53,11 @@ unassignedData().length > 0) {
           En total hay {{ dataExternal().length }} pendientes externos.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   } @if (dataInternal().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table
       #dtInternal
       [value]="dataInternal()"
       [scrollable]="true"
@@ -65,7 +65,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           title="Pendientes Internos"
           [showAdd]="false"
           [dt]="dtInternal"
@@ -103,11 +103,11 @@ unassignedData().length > 0) {
           En total hay {{ dataInternal().length }} pendientes internos.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   } @if (unassignedData().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table
       #dtUnassigned
       [value]="unassignedData()"
       [scrollable]="true"
@@ -115,7 +115,7 @@ unassignedData().length > 0) {
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           title="Pendientes sin Asignar"
           [showAdd]="false"
           [dt]="dtUnassigned"
@@ -153,7 +153,7 @@ unassignedData().length > 0) {
           En total hay {{ unassignedData().length }} pendientes sin asignar.
         </div>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   }
 </div>

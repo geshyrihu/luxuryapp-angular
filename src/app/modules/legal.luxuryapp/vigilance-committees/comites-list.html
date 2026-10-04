@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   scrollHeight="750px"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption [dt]="dt" [showAdd]="false" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -49,12 +49,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="flatData()" />
+    <lux-table-footer [data]="flatData()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="flatData()"

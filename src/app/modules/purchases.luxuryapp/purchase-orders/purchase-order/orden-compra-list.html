@@ -1,6 +1,6 @@
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -53,7 +53,7 @@
           {{ customTitle() }}
         </h4>
         <div class="w-full sm:w-auto">
-          <app-table-caption
+          <lux-table-caption
             (add)="onModalAdd()"
             [dt]="dt"
             [noPadding]="true"
@@ -263,12 +263,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="data()"

@@ -19,7 +19,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -27,7 +27,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -47,12 +47,12 @@ import { VaultSecretForm } from "./vault-secret-form";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIcon,
+    ButtonWeb,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     MobileActionMenu,

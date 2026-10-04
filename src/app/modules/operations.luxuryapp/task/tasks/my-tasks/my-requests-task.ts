@@ -25,7 +25,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -47,7 +47,7 @@ import { TaskGroupService } from "../task.service";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     ActionMenu,
     TaskStatus,

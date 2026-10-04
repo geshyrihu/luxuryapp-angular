@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 
 /**
  * 🦶 TABLE FOOTER
@@ -6,7 +6,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
  * Pie de página simple para mostrar el conteo total de registros.
  */
 @Component({
-  selector: "app-table-footer",
+  selector: "lux-table-footer",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -19,12 +19,3 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
 export class TableFooter {
   data = input<any[]>([]);
 }
-
-
-
-
-
-
-
-
-

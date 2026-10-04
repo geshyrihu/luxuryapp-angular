@@ -6,7 +6,7 @@ import {
   inject,
 } from "@angular/core";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import type { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
 export interface ClasificacionDetailData {
@@ -22,7 +22,12 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-clasificacion-detail",
   imports: [
-    AccountingNumberPipe,CommonModule, AppTable, AppSortableColumn, AppSorticon],
+    AccountingNumberPipe,
+    CommonModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-2">
@@ -37,7 +42,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
           No hay departamentos en esta clasificación.
         </div>
       } @else {
-        <app-table
+        <lux-table
           [value]="rows()"
           [paginator]="rows().length > 15"
           [rows]="15"
@@ -99,22 +104,17 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
               <td class="font-mono text-sm">{{ row.accountNumber }}</td>
               <td>{{ row.propertyFullName || row.accountName }}</td>
               <td class="text-right">
-                {{
-                  row.maintenanceBalance | accountingNumber}}
+                {{ row.maintenanceBalance | accountingNumber }}
               </td>
               <td class="text-right">
-                {{
-                  row.extraordinaryBalance
-                    | accountingNumber}}
+                {{ row.extraordinaryBalance | accountingNumber }}
               </td>
               <td class="text-right">
-                {{ row.finesBalance | accountingNumber}}
+                {{ row.finesBalance | accountingNumber }}
               </td>
               <td class="text-right text-color-secondary text-sm">
                 @if (row.currentMonthCharge > 0) {
-                  {{
-                    row.currentMonthCharge
-                      | accountingNumber}}
+                  {{ row.currentMonthCharge | accountingNumber }}
                 } @else {
                   <span class="text-xs">Sin cargo</span>
                 }
@@ -129,7 +129,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
                       : ''
                 "
               >
-                {{ row.balance | accountingNumber}}
+                {{ row.balance | accountingNumber }}
               </td>
             </tr>
           </ng-template>
@@ -137,22 +137,21 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
             <tr class="font-bold border-top-2 surface-border bg-black-alpha-10">
               <td colspan="2" class="text-right">Totales:</td>
               <td class="text-right">
-                {{ totalMaintenance() | accountingNumber}}
+                {{ totalMaintenance() | accountingNumber }}
               </td>
               <td class="text-right">
-                {{
-                  totalExtraordinary() | accountingNumber}}
+                {{ totalExtraordinary() | accountingNumber }}
               </td>
               <td class="text-right">
-                {{ totalFines() | accountingNumber}}
+                {{ totalFines() | accountingNumber }}
               </td>
               <td class="text-right text-color-secondary"></td>
               <td class="text-right text-primary">
-                {{ totalBalance() | accountingNumber}}
+                {{ totalBalance() | accountingNumber }}
               </td>
             </tr>
           </ng-template>
-        </app-table>
+        </lux-table>
       }
     </div>
   `,

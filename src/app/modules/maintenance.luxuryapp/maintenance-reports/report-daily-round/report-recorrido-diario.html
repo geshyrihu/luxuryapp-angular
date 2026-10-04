@@ -1,12 +1,12 @@
 <page-title-report-maintenance title="BITÁCORA DIARIA" />
-<app-table
+<lux-table
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       title="BITÁCORA DIARIA"
       [showAdd]="false"
       [showSearch]="false"
@@ -28,4 +28,4 @@
     </tr>
     }
   </ng-template>
-</app-table>
+</lux-table>

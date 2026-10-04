@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tableRows"
@@ -16,7 +16,7 @@
         <app-rango-calendario-yyyymmdd />
       </div>
       <div class="col-12 col-sm-7">
-        <app-table-caption
+        <lux-table-caption
           [title]="nameMachinery"
           [showAdd]="false"
           [dt]="dt"
@@ -28,8 +28,8 @@
     <div class="card bg-body-tertiary mb-2 border-1 border">
       <div class="card-header border-bottom-1 border p-2">
         <p class="m-0 fw-bold">
-          {{ item.fechaRegistro | apiDate : "fullDate" }}, {{ item.fechaRegistro |
-          apiDate : "shortTime" }}
+          {{ item.fechaRegistro | apiDate : "fullDate" }}, {{ item.fechaRegistro
+          | apiDate : "shortTime" }}
         </p>
       </div>
       <div class="card-body p-3">
@@ -44,9 +44,9 @@
     </div>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile
@@ -63,7 +63,9 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item (click)="onCardEmployee(item.applicationUserId)">
       <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-body-secondary">{{ item.fechaRegistro | apiDate:'short' }} · {{ item.userName }}</p>
+      <p class="text-xs m-0 text-body-secondary">
+        {{ item.fechaRegistro | apiDate:'short' }} · {{ item.userName }}
+      </p>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

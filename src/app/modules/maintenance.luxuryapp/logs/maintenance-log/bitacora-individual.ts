@@ -27,7 +27,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 @Component({
@@ -38,7 +38,7 @@ import { AppTable } from "@ui/web/table/table";
     RangoCalendarioyyyymmdd,
     ApiDatePipe,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     MobileListItem,

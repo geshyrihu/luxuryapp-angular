@@ -38,7 +38,7 @@
   </div>
   }
 
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -53,7 +53,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" />
+      <lux-table-caption [dt]="dt" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -100,12 +100,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="visibleRows()" />
+      <lux-table-footer [data]="visibleRows()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="visibleRows()"

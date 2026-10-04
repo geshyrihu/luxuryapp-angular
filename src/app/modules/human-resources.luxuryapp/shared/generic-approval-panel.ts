@@ -6,11 +6,6 @@ import {
   input,
   output,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -18,6 +13,11 @@ import {
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
@@ -35,12 +35,12 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
     AppSorticon,
     WebButtonLabel,
     WebButtonLabelViewPdf,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields()"
       [value]="requests()"
       [paginator]="true"
@@ -55,7 +55,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
       #dt
     >
       <ng-template #caption>
-        <app-table-caption [showAdd]="false" [dt]="dt" />
+        <lux-table-caption [showAdd]="false" [dt]="dt" />
       </ng-template>
 
       <ng-template #header>
@@ -123,9 +123,9 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="requests()" />
+        <lux-table-footer [data]="requests()" />
       </ng-template>
-    </app-table>
+    </lux-table>
   `,
 })
 export class GenericApprovalPanel {

@@ -1,5 +1,5 @@
 <!-- Contenido visible solo en pantallas medianas y grandes -->
-<app-table
+<lux-table
   [value]="dataSignal()"
   #dt
   class="custom-table d-none d-md-block"
@@ -17,7 +17,7 @@
   [initialSortOrder]="1"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       [title]="'Categorias de grupos'"
       (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
@@ -48,7 +48,10 @@
     <tr pRowGroupHeader>
       <td colspan="6" class="bg-blue-50">
         <div class="d-flex align-items-center py-2 px-3">
-          <app-icon [icon]="'material-symbols-light:label'" class="me-2 text-blue-500" />
+          <app-icon
+            [icon]="'material-symbols-light:label'"
+            class="me-2 text-blue-500"
+          />
           <span class="fw-bold text-blue-900">{{ item.departament }}</span>
         </div>
       </td>
@@ -78,12 +81,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="6" />
+    <lux-table-empty-message [colspan]="6" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- Componente adaptado para version movil -->
 <app-data-view-mobile

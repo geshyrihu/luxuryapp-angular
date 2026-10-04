@@ -28,7 +28,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
@@ -108,7 +108,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],

@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [lazy]="true"
     (onLazyLoad)="loadDataLazy($event)"
@@ -137,12 +137,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
@@ -165,8 +165,8 @@
           {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
         </small>
         <small class="text-body-secondary">
-           Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
-           apiDate:'mediumDate' }}
+          Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
+          apiDate:'mediumDate' }}
         </small>
       </div>
 

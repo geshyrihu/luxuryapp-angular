@@ -10,7 +10,7 @@ import {
 import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
@@ -70,7 +70,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     AppAvatar,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     LxTag,
     MobileListItem,

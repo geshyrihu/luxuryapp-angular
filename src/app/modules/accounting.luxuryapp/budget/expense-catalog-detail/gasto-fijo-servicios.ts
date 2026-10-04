@@ -29,7 +29,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
@@ -47,7 +47,7 @@ import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

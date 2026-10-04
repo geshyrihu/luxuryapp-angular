@@ -31,7 +31,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppMessage } from "@ui/web/message/message";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import {
@@ -58,7 +58,7 @@ import {
     AppReorderableRowHandle,
     WebButtonLabel,
     NgbTooltipModule,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     WebButtonLabelViewPdf,

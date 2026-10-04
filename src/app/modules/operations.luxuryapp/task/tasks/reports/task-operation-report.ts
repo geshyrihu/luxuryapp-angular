@@ -26,7 +26,7 @@ import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-
 import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 
@@ -61,8 +61,8 @@ import { TaskReadList } from "../task-read-list";
 
     AppSorticon,
 
-    TableCaption,
-    TableCaption,
+    LuxTableCaption,
+    LuxTableCaption,
     AppImage,
     CustomInputSwitch,
     ReactiveFormsModule,

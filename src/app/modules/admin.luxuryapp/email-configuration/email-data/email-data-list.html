@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   #dt
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -12,7 +12,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
 
   <ng-template #header>
@@ -59,12 +59,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -75,13 +75,17 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:mail-outline" class="text-xl text-primary" />
-       <ion-label>
-         <p class="mt-0 mb-0">{{ item.email }}</p>
-         <p class="text-body-secondary font-size-12 mt-0 mb-0">
-           {{ item.applicationUser }}
-         </p>
-       </ion-label>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:mail-outline"
+        class="text-xl text-primary"
+      />
+      <ion-label>
+        <p class="mt-0 mb-0">{{ item.email }}</p>
+        <p class="text-body-secondary font-size-12 mt-0 mb-0">
+          {{ item.applicationUser }}
+        </p>
+      </ion-label>
 
       <ili-action-menu slot="end">
         <ng-container actions>

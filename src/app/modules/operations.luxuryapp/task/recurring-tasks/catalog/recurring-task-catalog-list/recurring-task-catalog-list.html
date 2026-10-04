@@ -3,7 +3,7 @@
     <h3 class="card-title">Catálogo de Tareas Recurrentes</h3>
   </div>
   <div class="card-body">
-    <app-table
+    <lux-table
       #dt
       [value]="data()"
       [rows]="10"
@@ -18,7 +18,7 @@
         <div
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
         >
-          <app-table-caption
+          <lux-table-caption
             (add)="showForm()"
             [dt]="dt"
             [noPadding]="true"
@@ -61,9 +61,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message [colspan]="5" />
       </ng-template>
-    </app-table>
+    </lux-table>
 
     <app-data-view-mobile
       [data]="data()"
@@ -93,8 +93,12 @@
           </div>
 
           <h5 class="mb-2">{{ template.title }}</h5>
-          <p class="text-sm text-body-secondary">Grupo: {{ template.workGroupName }}</p>
-          <p class="text-sm text-body-secondary">Estatus: {{ template.status }}</p>
+          <p class="text-sm text-body-secondary">
+            Grupo: {{ template.workGroupName }}
+          </p>
+          <p class="text-sm text-body-secondary">
+            Estatus: {{ template.status }}
+          </p>
 
           <ili-action-menu slot="end">
             <ng-container actions>

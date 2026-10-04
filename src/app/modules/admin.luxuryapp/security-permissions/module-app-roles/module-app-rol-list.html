@@ -1,7 +1,7 @@
 @if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
-<app-table
+<lux-table
   #dt1
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
@@ -18,7 +18,7 @@
   [sortOrder]="1"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt1" />
+    <lux-table-caption [dt]="dt1" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -60,9 +60,9 @@
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 INICIO: Vista para móviles -->
 <app-data-view-mobile

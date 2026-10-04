@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AppTable } from "@ui/web/table/table";
@@ -29,7 +29,7 @@ const DOCS_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("documenttypes") {
-          <app-table [value]="tiposDocumento" class="p-datatable-sm">
+          <lux-table [value]="tiposDocumento" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Tipo</th>
@@ -49,10 +49,10 @@ const DOCS_LABELS: Record<string, string> = {
                 </td>
               </tr>
             </ng-template>
-          </app-table>
+          </lux-table>
         }
         @case ("nomenclature") {
-          <app-table [value]="camposNomenclatura" class="p-datatable-sm">
+          <lux-table [value]="camposNomenclatura" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Campo</th>
@@ -67,10 +67,10 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.valores }}</td>
               </tr></ng-template
             >
-          </app-table>
+          </lux-table>
         }
         @case ("accessmatrix") {
-          <app-table [value]="matrizAcceso" class="p-datatable-sm">
+          <lux-table [value]="matrizAcceso" class="p-datatable-sm">
             <ng-template #header
               ><tr>
                 <th>Documento</th>
@@ -83,7 +83,7 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ row.superUsuario }}</td>
               </tr></ng-template
             >
-          </app-table>
+          </lux-table>
         }
       }
     </section>

@@ -36,7 +36,7 @@
     <div class="card">
       <h3 class="mt-0">Listado de sesiones</h3>
 
-      <app-table [value]="items()" [loading]="loading()">
+      <lux-table [value]="items()" [loading]="loading()">
         <ng-template #header>
           <tr>
             <th>Sesion</th>
@@ -64,9 +64,9 @@
           </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <app-table-empty-message [colspan]="3" />
+          <lux-table-empty-message [colspan]="3" />
         </ng-template>
-      </app-table>
+      </lux-table>
 
       @if (!items().length && !loading()) {
       <p class="text-body-secondary m-0">

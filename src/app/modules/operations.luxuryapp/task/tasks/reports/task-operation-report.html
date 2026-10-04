@@ -1,5 +1,5 @@
 @if (dataSignal()) {
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -15,7 +15,7 @@
   <ng-template #caption>
     <div class="row align-items-center g-4">
       <div class="col-12 col-lg-6">
-        <app-table-caption
+        <lux-table-caption
           title="Reporte Semanal"
           (add)="
               onModalForm({
@@ -149,7 +149,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">

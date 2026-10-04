@@ -25,7 +25,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { ETypeEmpresa, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -55,7 +55,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     WebButtonLabelEdit,
     DataViewMobile,
     TableEmptyMessage,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     AppTable,
     AppSortableColumn,

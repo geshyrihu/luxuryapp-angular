@@ -4,10 +4,14 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 
 @Component({
-  selector: "app-table-checkbox",
+  selector: "lux-table-checkbox",
 
   imports: [FormsModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,

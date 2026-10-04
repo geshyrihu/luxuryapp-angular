@@ -49,7 +49,7 @@
       Responsable: {{ group.responsibleRole }}
     </div>
 
-    <app-table [value]="group.items" [loading]="loading()">
+    <lux-table [value]="group.items" [loading]="loading()">
       <ng-template #header>
         <tr>
           <th>Item</th>
@@ -112,7 +112,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   }
 

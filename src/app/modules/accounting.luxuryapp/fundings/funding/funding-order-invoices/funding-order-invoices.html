@@ -1,4 +1,4 @@
-<app-table [value]="invoices()" class="border custom-table">
+<lux-table [value]="invoices()" class="border custom-table">
   <ng-template #header>
     <tr>
       <th>Folio</th>
@@ -13,17 +13,11 @@
       <td class="text-center">
         <iw-button-item
           iconClass="material-symbols-light:picture-as-pdf"
-          lxTooltip="Ver PDF" tooltipPosition="top"
+          lxTooltip="Ver PDF"
+          tooltipPosition="top"
           (clicked)="viewPdf(invoice.pdfFile, 'Factura')"
         />
       </td>
     </tr>
   </ng-template>
-</app-table>
-
-
-
-
-
-
-
+</lux-table>

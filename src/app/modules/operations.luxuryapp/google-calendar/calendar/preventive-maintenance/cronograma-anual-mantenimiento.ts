@@ -29,7 +29,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
@@ -52,7 +52,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     FormsModule,
     WebButtonLabel,
     CommonModule,
-    TableCaption,
+    LuxTableCaption,
     AppIcon,
   ],
 })

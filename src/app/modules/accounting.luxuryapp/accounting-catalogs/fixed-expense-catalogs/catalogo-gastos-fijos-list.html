@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
   #dt
@@ -69,7 +69,7 @@
       </div>
 
       <!-- botón Agregar -->
-      <app-table-caption
+      <lux-table-caption
         (add)="onModal( {id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
@@ -257,12 +257,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <div class="d-flex d-md-none flex-column vh-100 overflow-hidden">

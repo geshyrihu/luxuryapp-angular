@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     #dt
     [value]="items()"
     class="custom-table d-none d-md-block"
@@ -11,7 +11,7 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         title="Sanciones Disciplinarias"
         [(globalFilter)]="globalFilter"
       />
@@ -62,12 +62,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [totalRecords]="items().length" />
+      <lux-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
@@ -75,27 +75,23 @@
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-          
         >
-          <app-icon
-            icon="material-symbols-light:gavel"
-            
-          />
+          <app-icon icon="material-symbols-light:gavel" />
         </div>
-        
-          <h2 class="fw-bold">{{ item.sanctionTypeName }}</h2>
-          <p class="text-sm text-body-secondary">
-            {{ item.severityLevel }} |             {{ item.appliedDate |
-            apiDate:'dd/MM/yyyy' }}
-          </p>
-          <p class="text-sm">
-            <span
-              class="d-inline-flex align-items-center rounded-3xl border-1 border px-2 py-1 text-xs fw-semibold"
-              [ngClass]="getStatusBadge(item.sanctionStatus)"
-              >{{ item.sanctionStatus }}</span
-            >
-          </p>
-        
+
+        <h2 class="fw-bold">{{ item.sanctionTypeName }}</h2>
+        <p class="text-sm text-body-secondary">
+          {{ item.severityLevel }} | {{ item.appliedDate | apiDate:'dd/MM/yyyy'
+          }}
+        </p>
+        <p class="text-sm">
+          <span
+            class="d-inline-flex align-items-center rounded-3xl border-1 border px-2 py-1 text-xs fw-semibold"
+            [ngClass]="getStatusBadge(item.sanctionStatus)"
+            >{{ item.sanctionStatus }}</span
+          >
+        </p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

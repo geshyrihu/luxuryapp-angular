@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -67,16 +67,24 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
+    <div
+      class="d-flex flex-wrap gap-3 align-items-center justify-content-between"
+    >
       <div class="d-flex flex-wrap gap-2">
-        <span class="text-sm text-body-secondary align-self-center">Filtrar por estado:</span>
+        <span class="text-sm text-body-secondary align-self-center"
+          >Filtrar por estado:</span
+        >
         <app-select-button
           [options]="filterOptions()"
           [value]="statusFilter()"
           (valueChange)="statusFilter.set($event || '')"
         />
       </div>
-      <app-table-caption [dt]="dt" [showAdd]="false" aria-label="Agenda de entrevistas" />
+      <lux-table-caption
+        [dt]="dt"
+        [showAdd]="false"
+        aria-label="Agenda de entrevistas"
+      />
     </div>
   </ng-template>
   <ng-template #header>
@@ -126,8 +134,8 @@
         />
       </td>
       <td>
-        @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt | apiDate:
-        "dd/MM/yyyy HH:mm" }} } @else {
+        @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt |
+        apiDate: "dd/MM/yyyy HH:mm" }} } @else {
         <span class="text-body-secondary">Sin fecha</span>
         }
       </td>
@@ -161,27 +169,27 @@
       </td>
       <td class="no-print">
         @if (canCancelInterview(item)) {
-          <div (click)="$event.stopPropagation()">
-            <iw-button-item
-              size="sm"
-              class="btn--circle"
-              severity="danger"
-              iconClass="material-symbols-light:cancel"
-              [attr.aria-label]="'Cancelar entrevista de ' + item.candidateName"
-              (clicked)="onCancelInterview(item)"
-            />
-          </div>
+        <div (click)="$event.stopPropagation()">
+          <iw-button-item
+            size="sm"
+            class="btn--circle"
+            severity="danger"
+            iconClass="material-symbols-light:cancel"
+            [attr.aria-label]="'Cancelar entrevista de ' + item.candidateName"
+            (clicked)="onCancelInterview(item)"
+          />
+        </div>
         }
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="10" />
+    <lux-table-empty-message [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="filteredData()" />
+    <lux-table-footer [data]="filteredData()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <style>
   .row-overdue {

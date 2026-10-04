@@ -60,7 +60,7 @@
     </div>
   </lux-card>
 
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -71,7 +71,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         title="Historial de Cierres de Período"
         [showAdd]="false"
         [dt]="dt"
@@ -137,7 +137,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="dataSignal()"

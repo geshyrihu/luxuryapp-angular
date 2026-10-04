@@ -86,7 +86,7 @@
       </div>
     </div>
 
-    <app-table [value]="payment()!.allocations || []" class="custom-table">
+    <lux-table [value]="payment()!.allocations || []" class="custom-table">
       <ng-template #header>
         <tr>
           <th>Tipo de cargo</th>
@@ -133,13 +133,13 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message
+        <lux-table-empty-message
           [colspan]="6"
           title="Sin asignaciones"
           message="Este pago no ha sido aplicado a cargos todavía."
         />
       </ng-template>
-    </app-table>
+    </lux-table>
   </lux-card>
 
   <div class="d-block d-md-none">

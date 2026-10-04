@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     [value]="items()"
     class="custom-table card d-none d-md-block"
     [scrollable]="true"
@@ -11,7 +11,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         [showAdd]="!!employeeId()"
         (add)="onModalForm({ id: '', title: 'Nueva Adenda' })"
         [dt]="dt"
@@ -69,12 +69,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [data]="items()" />
+      <lux-table-footer [data]="items()" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -94,20 +94,18 @@
             class="text-xl text-yellow-500"
           />
         </div>
-        
-          <h2 class="fw-bold">
-            {{ item.addendumNumber }} é {{ item.title }}
-          </h2>
-          <p class="text-sm text-body-secondary">{{ item.addendumType }}</p>
-          <p class="text-sm text-body-secondary">
-            Efectiva: {{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}
-          </p>
-          <p class="text-sm">
-            <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
-              >{{ item.addendumStatus }}</span
-            >
-          </p>
-        
+
+        <h2 class="fw-bold">{{ item.addendumNumber }} é {{ item.title }}</h2>
+        <p class="text-sm text-body-secondary">{{ item.addendumType }}</p>
+        <p class="text-sm text-body-secondary">
+          Efectiva: {{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}
+        </p>
+        <p class="text-sm">
+          <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
+            >{{ item.addendumStatus }}</span
+          >
+        </p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

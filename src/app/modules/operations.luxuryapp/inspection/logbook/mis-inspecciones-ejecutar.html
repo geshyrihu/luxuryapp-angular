@@ -4,7 +4,7 @@
   </h4>
 
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <app-table
+  <lux-table
     #dt
     [globalFilterFields]="globalFilterFields()"
     [scrollHeight]="scrollHeight()"
@@ -14,7 +14,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption [dt]="dt" [showAdd]="false" />
+      <lux-table-caption [dt]="dt" [showAdd]="false" />
     </ng-template>
 
     <ng-template #header>
@@ -28,7 +28,7 @@
     </ng-template>
 
     <ng-template #groupheader let-item>
-        <tr>
+      <tr>
         <td colspan="5" class="bg-body-tertiary p-2">
           <span class="fw-bold ms-2 text-primary">
             {{ item.condominiumAssetName }}
@@ -80,9 +80,9 @@
       </tr>
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="flattenedData()" />
+      <lux-table-footer [data]="flattenedData()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <!-- 📱 INICIO: Componente adaptado para versión móvil -->
   <app-data-view-mobile

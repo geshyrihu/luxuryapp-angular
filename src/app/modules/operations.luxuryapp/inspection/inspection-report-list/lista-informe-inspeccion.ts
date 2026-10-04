@@ -17,14 +17,14 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-lista-informe-inspeccion",
   imports: [
     AppIcon,
-    WebButtonIcon,
+    ButtonWeb,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,
@@ -89,4 +89,3 @@ export class ListaInformeInspeccion implements OnInit {
       .then((data: any) => this.inspeccionPdfS.generarReporte(data, nombre));
   }
 }
-

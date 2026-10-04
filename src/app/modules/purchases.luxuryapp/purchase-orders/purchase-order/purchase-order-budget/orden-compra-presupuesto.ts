@@ -10,19 +10,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { MessageService } from "@core/services/message.service";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSpinner } from "@ui/web/spinner/spinner";
-import { MessageService } from "@core/services/message.service";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -35,6 +36,8 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import {
   PurchaseOrderBudgetAccount,
   PurchaseOrderBudgetAccountsResponse,
@@ -55,7 +58,7 @@ import {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     AppSpinner,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     LxTag,
   ],
@@ -127,14 +130,19 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       this.intYearControl.value,
     );
 
-    const result = await this.apiResponseS.onGetList<PurchaseOrderBudgetAccountsResponse>(urlApi);
+    const result =
+      await this.apiResponseS.onGetList<PurchaseOrderBudgetAccountsResponse>(
+        urlApi,
+      );
     if (result) {
-      const accounts = result.accounts.map((acc): PurchaseOrderBudgetAccountRow => ({
-        ...acc,
-        dineroUsadoControl: new FormControl<number | null>(
-          acc.dineroUsado || null,
-        ),
-      }));
+      const accounts = result.accounts.map(
+        (acc): PurchaseOrderBudgetAccountRow => ({
+          ...acc,
+          dineroUsadoControl: new FormControl<number | null>(
+            acc.dineroUsado || null,
+          ),
+        }),
+      );
       this.dataSignal.set(accounts);
     }
 

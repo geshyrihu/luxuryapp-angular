@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -59,7 +59,7 @@
           Eliminar Todo
         </button>
       </div>
-      <app-table-caption
+      <lux-table-caption
         [title]="'Inventario de Estaciones Manuales'"
         (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
         [dt]="dt"
@@ -115,12 +115,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="5" />
+    <lux-table-empty-message [colspan]="5" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

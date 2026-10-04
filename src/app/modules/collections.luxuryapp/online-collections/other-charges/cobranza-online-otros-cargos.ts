@@ -3,25 +3,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
-  signal,
 } from "@angular/core";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import type {
-  CobranzaOnlineDashboardResponse,
-  CobranzaOtroCargo,
-} from "../interfaces/cobranza-online-dashboard.model";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import type { CobranzaOtroCargo } from "../interfaces/cobranza-online-dashboard.model";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
@@ -34,7 +26,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     DataViewMobile,
     MobileListItem,

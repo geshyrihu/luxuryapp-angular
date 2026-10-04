@@ -98,7 +98,7 @@ export class DataViewMobile implements OnInit {
   /**
    * Cuando es `true`, el filtrado lo resuelve el servidor: se emite
    * `(search)` y `filteredData` deja de filtrar en cliente.
-   * Se usa en tablas `app-table` con `[lazy]="true"`.
+   * Se usa en tablas `lux-table` con `[lazy]="true"`.
    */
   serverSideFilter = input<boolean>(false);
 

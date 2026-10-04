@@ -16,10 +16,8 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppCard } from "@ui/web/card/card";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
-import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import {
   InspectionListItem,
   InspectionSummary,
@@ -45,8 +43,6 @@ type InspectionTableRow = InspectionSummary & {
     WebButtonIconDelete,
     WebButtonIconEdit,
     WebButtonIconItem,
-    AppToolbar,
-    AppCard,
     TableEmptyMessage,
   ],
 })
@@ -65,6 +61,8 @@ export class ListaInspeccionesDesktop {
   reportes = output<void>();
   filterAreaChange = output<string>();
   filterRecurrenceChange = output<string>();
+  applyFilters = output<void>();
+  clearFilters = output<void>();
 
   readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();

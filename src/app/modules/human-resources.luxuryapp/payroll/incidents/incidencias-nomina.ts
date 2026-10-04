@@ -18,7 +18,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import {
@@ -49,7 +49,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     WebButtonLabel,
     WebButtonLabelDelete,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incidencias-nomina.html",

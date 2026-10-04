@@ -28,7 +28,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
@@ -66,7 +66,7 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-busines
     AppSorticon,
     AppIcon,
     WebButtonLabelDownload,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     AspelCobranzaHausQueryPanel,
     CurrencyPipe,

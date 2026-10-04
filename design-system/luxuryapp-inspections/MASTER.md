@@ -431,14 +431,14 @@ From `src/styles/core/_borders.scss`:
 
 ### Color Contrast (Priority 1)
 
-| Element             | Background | Foreground | Contrast | WCAG           |
-| ------------------- | ---------- | ---------- | -------- | -------------- |
-| Body text           | `#F8F9FC`  | `#1A2634`  | 15.1:1   | AAA ✓          |
-| Headline            | `#FFFFFF`  | `#1B365D`  | 14.8:1   | AAA ✓          |
-| Secondary text      | `#FFFFFF`  | `#5A6878`  | 8.2:1    | AA ✓           |
-| Tertiary text       | `#FFFFFF`  | `#9AACBB`  | 5.4:1    | AA ✓           |
-| Report gold on navy | `--ds-document-ink` | `--ds-luxury-gold` | validate with audit | Report-only |
-| Report gold text on white | `#FFFFFF` | `#D4A74A` | insufficient | Do not use as normal text |
+| Element                   | Background          | Foreground         | Contrast            | WCAG                      |
+| ------------------------- | ------------------- | ------------------ | ------------------- | ------------------------- |
+| Body text                 | `#F8F9FC`           | `#1A2634`          | 15.1:1              | AAA ✓                     |
+| Headline                  | `#FFFFFF`           | `#1B365D`          | 14.8:1              | AAA ✓                     |
+| Secondary text            | `#FFFFFF`           | `#5A6878`          | 8.2:1               | AA ✓                      |
+| Tertiary text             | `#FFFFFF`           | `#9AACBB`          | 5.4:1               | AA ✓                      |
+| Report gold on navy       | `--ds-document-ink` | `--ds-luxury-gold` | validate with audit | Report-only               |
+| Report gold text on white | `#FFFFFF`           | `#D4A74A`          | insufficient        | Do not use as normal text |
 
 **Dark Mode Overrides:**
 
@@ -602,7 +602,7 @@ When active (`body.theme-dark`):
 
 - `<iw-button>` — Wrapper component for `.btn`
 - `<il-button>` / `<iw-button>` — Shared semantic web buttons
-- `<app-table>` — Shared data table with client-side and lazy/server-side modes
+- `<lux-table>` — Shared data table with client-side and lazy/server-side modes
 
 **Mobile (Ionic):**
 

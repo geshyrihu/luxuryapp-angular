@@ -32,7 +32,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -63,7 +63,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppSortableColumn,
     AppSorticon,
     CustomInputSelectSignal,
-    TableCaption,
+    LuxTableCaption,
     LxTooltipDirective,
     TableFooter,
     DataViewMobile,

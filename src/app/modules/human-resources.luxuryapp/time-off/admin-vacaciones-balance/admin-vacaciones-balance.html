@@ -1,7 +1,7 @@
 <lux-confirm-dialog />
 
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   #dt
   [value]="dataSignal()"
   [loading]="loading()"
@@ -17,7 +17,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <app-table-caption [dt]="dt" [showAddButton]="false" />
+      <lux-table-caption [dt]="dt" [showAddButton]="false" />
       <il-button
         label="Recalcular Balances"
         iconClass="material-symbols-light:sync"
@@ -76,9 +76,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="11" />
+    <lux-table-empty-message [colspan]="11" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile

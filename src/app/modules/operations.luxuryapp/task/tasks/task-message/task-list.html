@@ -1,5 +1,5 @@
 @if (dataSignal().items) {
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -27,7 +27,7 @@
         GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
       </h4>
       <div class="d-flex align-items-center gap-2">
-        <app-table-caption
+        <lux-table-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           (search)="onSearch($event)"
           [dt]="dt"
@@ -560,7 +560,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="17" />
+    <lux-table-empty-message [colspan]="17" />
   </ng-template>
 
   <ng-template #paginatorleft>
@@ -568,7 +568,7 @@
       En total hay {{ totalRecords() }} registros.
     </div>
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   class="d-block d-md-none"

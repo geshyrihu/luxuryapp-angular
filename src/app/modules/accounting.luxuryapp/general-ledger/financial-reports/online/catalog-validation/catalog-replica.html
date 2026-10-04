@@ -118,7 +118,7 @@
   }
 
   <!-- Tabla jerórquica -->
-  <app-table
+  <lux-table
     [value]="flatData()"
     [tableStyle]="{ 'min-width': '50rem' }"
     class="custom-table p-datatable-gridlines d-none d-md-block"
@@ -196,7 +196,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <div class="d-md-none d-flex flex-column gap-2">
     @for (account of flatData(); track account.numeroCuenta) { @if

@@ -1,7 +1,7 @@
 <div class="card shadow p-3 rounded">
   <!-- Vista de escritorio -->
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table
       [reorderableRows]="true"
       [reorderableColumns]="true"
       (onRowReorder)="onRowReorder($event)"
@@ -11,7 +11,7 @@
       class="custom-table card d-none d-md-block"
     >
       <ng-template #caption>
-        <app-table-caption [showAdd]="false" [dt]="dt" />
+        <lux-table-caption [showAdd]="false" [dt]="dt" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -35,7 +35,11 @@
         <tr [pReorderableRow]="index">
           <td>
             <div>
-              <app-icon icon="material-symbols-light:menu" class="icon" pReorderableRowHandle />
+              <app-icon
+                icon="material-symbols-light:menu"
+                class="icon"
+                pReorderableRowHandle
+              />
             </div>
           </td>
           <td class="text-center">{{ item.folio }}</td>
@@ -47,12 +51,12 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message [colspan]="5" />
       </ng-template>
       <ng-template #paginatorleft>
-        <app-table-footer [data]="dataSignal()" />
+        <lux-table-footer [data]="dataSignal()" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 
@@ -81,11 +85,17 @@
           <h2 class="fw-bold m-0 text-base text-wrap">{{ item.name }}</h2>
         </div>
         <p class="text-sm text-body-secondary m-0">
-          <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:currency-pound'"
+            class="me-1 text-xs"
+          />
           Folio: {{ item.folio }}
         </p>
         <p class="text-sm text-body-secondary m-0">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="me-1 text-xs"
+          />
           Fecha: {{ item.createAt }}
         </p>
 

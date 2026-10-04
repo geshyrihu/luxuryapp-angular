@@ -6,18 +6,18 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-resultado-general-posicion",
   templateUrl: "./resultado-general-posicion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppTable, TableCaption],
+  imports: [AppTable, LuxTableCaption],
 })
 export class ResultadoGeneralPosicion {
   apiResponseS = inject(ApiResponseService);
@@ -56,10 +56,7 @@ export class ResultadoGeneralPosicion {
   });
 
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = Endpoints.ResumenGeneral.position(
-      fechaInicio,
-      fechaFinal,
-    );
+    const urlApi = Endpoints.ResumenGeneral.position(fechaInicio, fechaFinal);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataSignal.set(result);
     });

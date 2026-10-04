@@ -7,19 +7,19 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
-import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppTable } from "@ui/web/table/table";
+import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 @Component({
   selector: "app-ticket-legal-reportes-internos",
   templateUrl: "./ticket-legal-reportes-internos.html",
@@ -32,7 +32,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     DataViewMobile,
     LxEmptyState,
     PageTitleReport,
-    TableCaption,
+    LuxTableCaption,
     TaskDateRangeSelector,
     MobileListItem,
     LxTag,
@@ -264,5 +264,3 @@ export class TicketLegalReportesInternos implements OnInit {
     );
   }
 }
-
-

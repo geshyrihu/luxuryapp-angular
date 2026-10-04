@@ -1,6 +1,11 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h2 class="text-xl fw-semibold m-0">Dashboard de accesos</h2>
-  <il-button label="Actualizar" iconClass="material-symbols-light:refresh" variant="text" (clicked)="onLoadData()" />
+  <il-button
+    label="Actualizar"
+    iconClass="material-symbols-light:refresh"
+    variant="text"
+    (clicked)="onLoadData()"
+  />
 </div>
 
 @if (stats(); as s) {
@@ -41,7 +46,12 @@
 <h3 class="text-lg fw-semibold mb-2">
   Dentro actualmente: {{ occupancy()?.currentInside ?? 0 }}
 </h3>
-<app-table [value]="occupancy()?.visits ?? []" [paginator]="true" [rows]="10" class="custom-table card">
+<lux-table
+  [value]="occupancy()?.visits ?? []"
+  [paginator]="true"
+  [rows]="10"
+  class="custom-table card"
+>
   <ng-template #header>
     <tr>
       <th>Visitante</th>
@@ -58,7 +68,9 @@
   </ng-template>
   <ng-template #emptymessage>
     <tr>
-      <td colspan="3" class="text-center text-body-secondary py-4">Nadie dentro.</td>
+      <td colspan="3" class="text-center text-body-secondary py-4">
+        Nadie dentro.
+      </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>

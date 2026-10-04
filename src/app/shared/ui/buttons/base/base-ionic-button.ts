@@ -1,1 +1,24 @@
-import { Directive, input, output } from "@angular/core";@Directive()export abstract class BaseIonicButton {  label = input<string>("");  title = input<string>("");  icon = input<string>("");  iconClass = input<string>("");  emoji = input<string>("");  customClass = input<string>("", { alias: "styleClass" });  disabled = input<boolean>(false);  loading = input<boolean>(false);  type = input<"button" | "submit" | "reset">("button");  ariaLabel = input<string>("");  clicked = output<Event>();  onClick(event: Event): void {    if (this.disabled() || this.loading()) return;    this.clicked.emit(event);  }}
+import { Directive, input, output } from "@angular/core";
+
+import type { ButtonDisplayMode } from "./base-button";
+
+@Directive()
+export abstract class BaseIonicButton {
+  displayMode = input<ButtonDisplayMode>("label");
+  label = input<string>("");
+  title = input<string>("");
+  icon = input<string>("");
+  iconClass = input<string>("");
+  emoji = input<string>("");
+  customClass = input<string>("", { alias: "styleClass" });
+  disabled = input<boolean>(false);
+  loading = input<boolean>(false);
+  type = input<"button" | "submit" | "reset">("button");
+  ariaLabel = input<string>("");
+  clicked = output<Event>();
+
+  onClick(event: Event): void {
+    if (this.disabled() || this.loading()) return;
+    this.clicked.emit(event);
+  }
+}

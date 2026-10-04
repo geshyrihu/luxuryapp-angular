@@ -29,7 +29,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TaskForm } from "../task-message/task-form";
@@ -41,7 +41,7 @@ import { TaskForm } from "../task-message/task-form";
   imports: [
     DataViewMobile,
     MobileListItem,
-    TableCaption,
+    LuxTableCaption,
     AppIcon,
     WebButtonLabel,
     AppTable,

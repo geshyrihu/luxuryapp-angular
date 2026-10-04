@@ -29,7 +29,7 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
@@ -56,7 +56,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileButtonLabelEdit,
     MobileButtonLabelItem,
     MobileListItem,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     AppTable,
 

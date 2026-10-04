@@ -1,3 +1,4 @@
+import { SatFundingDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -8,22 +9,21 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { cashOutline } from "ionicons/icons";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { SatFundingDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { cashOutline } from "ionicons/icons";
+import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
   selector: "app-sat-funding-list",
@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
 
     DataViewMobile,
     TableEmptyMessage,
@@ -84,5 +84,3 @@ export class SatFundingListComponent implements OnInit {
     this.router.navigate(ROUTES.SAT_FONDEOS.DETALLE(id));
   }
 }
-
-

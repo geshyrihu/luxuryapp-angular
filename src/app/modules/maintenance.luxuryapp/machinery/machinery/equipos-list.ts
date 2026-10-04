@@ -23,7 +23,6 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { InspectionQrPrintService } from "@operations.luxuryapp/inspection/inspection-qr-print.service";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { EquipmentContentsList } from "@maintenance.luxuryapp/machinery/equipment-content/equipment-content-list";
 import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";
@@ -34,6 +33,7 @@ import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machin
 import { CalendarioMaestroReadonly } from "@maintenance.luxuryapp/maintenance-planning/maintenance-calendar-master/calendario-maestro-readonly";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
+import { InspectionQrPrintService } from "@operations.luxuryapp/inspection/inspection-qr-print.service";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
@@ -41,7 +41,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
@@ -113,7 +113,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     AppImage,
     LxTooltipDirective,
     NgbTooltipModule,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     SanitizeHtmlPipe,
     CurrencyMexicoPipe,

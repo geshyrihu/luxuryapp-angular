@@ -8,14 +8,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { InspectionResultDTO } from "../models/inspection.model";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, WebButtonIcon, LxTooltipDirective],
+  imports: [AppIcon, ButtonWeb, LxTooltipDirective],
 })
 export class ResultadoInspeccion {
   apiResponseS = inject(ApiResponseService);

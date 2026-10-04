@@ -24,7 +24,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/action-icons-group.component";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
@@ -56,7 +56,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     LxTooltipDirective,
     TableFooter,
-    TableCaption,
+    LuxTableCaption,
     ImageAnalysisDialogComponent,
     ActionIconsGroupComponent,
     AppIcon,

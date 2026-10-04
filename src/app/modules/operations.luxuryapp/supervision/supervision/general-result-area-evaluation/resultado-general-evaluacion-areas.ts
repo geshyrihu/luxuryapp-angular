@@ -18,7 +18,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-evaluacion-areas-detalle";
@@ -31,7 +31,7 @@ import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-eval
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
   ],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {

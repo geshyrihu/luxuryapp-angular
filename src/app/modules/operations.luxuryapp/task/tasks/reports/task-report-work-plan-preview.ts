@@ -6,17 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppImage } from "@ui/web/image/image";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
@@ -29,7 +29,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     AppSortableColumn,
 
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     ReactiveFormsModule,
 
     CustomInputTextSignal,
@@ -65,10 +65,10 @@ export class TaskReportWorkPlanPreview {
     this.apiResponseS
       .onPost(
         Endpoints.TaskWorkPlans.create(
-        this.authS.applicationUserId,
-        this.customerIdS.customerId(),
-        this.year,
-        this.numeroSemana,
+          this.authS.applicationUserId,
+          this.customerIdS.customerId(),
+          this.year,
+          this.numeroSemana,
         ),
       )
       .then(() => this.onLoadData());
@@ -109,5 +109,3 @@ export class TaskReportWorkPlanPreview {
     );
   }
 }
-
-

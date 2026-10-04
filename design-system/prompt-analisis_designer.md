@@ -275,18 +275,18 @@ Realizar un **análisis exhaustivo, técnico y accionable (FASE 1)** de la propu
 
 ### 7.1 Inventario Obligatorio de Componentes Shared UI
 
-| Categoría   | Componentes actuales                                                                                         | Estado DS | Verificación crítica                              |
-| ----------- | ------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------- |
-| **Form**    | Inputs adaptativos, Bootstrap/native inputs, selects, calendarios, rating, editor                           | ✅        | CVA, validación, teclado, mobile parity           |
-| **Button**  | `il-button`, `iw-button`, `ili-button`, `ii-button` y botones semánticos                                     | ✅        | Touch target, estados, aria-label                 |
-| **Data**    | `app-table`, `DataViewMobile`, paginación, orden client/server-side                                          | ✅        | Lazy events, total records, responsive            |
-| **Panel**   | Cards, divider, fieldset, toolbar, skeleton, progress, badges, chips                                       | ✅        | Tokens, density, dark mode                        |
-| **Overlay** | `DialogHandlerService`, `NgbModal`, `ion-modal`, CDK Overlay, tooltips                                      | ✅        | Focus, Escape, backdrop, ARIA                     |
-| **Menu**    | Menubar, action-menu, AppMenu, breadcrumbs, steps, tree                                                     | ✅        | Keyboard navigation, positioning, mobile parity   |
-| **Message** | `MessageService`, toast, empty-state, spinner, loading overlays                                             | ✅        | Live regions, loading/error feedback              |
-| **File**    | FileUpload nativo, image preview, PDF viewer, upload PDF                                                    | ✅        | Keyboard, progress, error recovery                |
-| **Chart**   | Chart.js vía `ng2-charts`, radar, pie, bar, line, multi-axis                                                | ✅        | Responsive, animation policy, headless capture    |
-| **Media**   | `ng-gallery`/lightbox web, preview Ionic mobile, carousel Owl                                                | ✅        | Contain, ESC, focus return, responsive             |
+| Categoría   | Componentes actuales                                                              | Estado DS | Verificación crítica                            |
+| ----------- | --------------------------------------------------------------------------------- | --------- | ----------------------------------------------- |
+| **Form**    | Inputs adaptativos, Bootstrap/native inputs, selects, calendarios, rating, editor | ✅        | CVA, validación, teclado, mobile parity         |
+| **Button**  | `il-button`, `iw-button`, `ili-button`, `ii-button` y botones semánticos          | ✅        | Touch target, estados, aria-label               |
+| **Data**    | `lux-table`, `DataViewMobile`, paginación, orden client/server-side               | ✅        | Lazy events, total records, responsive          |
+| **Panel**   | Cards, divider, fieldset, toolbar, skeleton, progress, badges, chips              | ✅        | Tokens, density, dark mode                      |
+| **Overlay** | `DialogHandlerService`, `NgbModal`, `ion-modal`, CDK Overlay, tooltips            | ✅        | Focus, Escape, backdrop, ARIA                   |
+| **Menu**    | Menubar, action-menu, AppMenu, breadcrumbs, steps, tree                           | ✅        | Keyboard navigation, positioning, mobile parity |
+| **Message** | `MessageService`, toast, empty-state, spinner, loading overlays                   | ✅        | Live regions, loading/error feedback            |
+| **File**    | FileUpload nativo, image preview, PDF viewer, upload PDF                          | ✅        | Keyboard, progress, error recovery              |
+| **Chart**   | Chart.js vía `ng2-charts`, radar, pie, bar, line, multi-axis                      | ✅        | Responsive, animation policy, headless capture  |
+| **Media**   | `ng-gallery`/lightbox web, preview Ionic mobile, carousel Owl                     | ✅        | Contain, ESC, focus return, responsive          |
 
 ### 7.2 Estados por Componente (Mínimo Requerido)
 

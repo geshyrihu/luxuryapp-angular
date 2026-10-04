@@ -1,7 +1,7 @@
 @if (mensajeError) {
 <p class="p-error text-start italic text-sm">Seleccione producto y unidad</p>
 } @if (dataSignal()) {
-  <app-table
+<lux-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
   [globalFilterFields]="globalFilterFields()"
@@ -43,9 +43,7 @@
         DESCRIPCIÓN
         <app-sorticon field="producto" />
       </th>
-      <th>
-        Cantidad
-      </th>
+      <th>Cantidad</th>
       <th>Unidad</th>
       <th class="table-col-5">Agregar</th>
     </tr>
@@ -105,7 +103,7 @@
     }
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-  </app-table>
+</lux-table>
 }

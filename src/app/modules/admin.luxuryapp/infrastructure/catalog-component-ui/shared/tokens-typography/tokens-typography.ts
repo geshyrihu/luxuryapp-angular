@@ -55,7 +55,7 @@ import { AppTag } from "@ui/web/tag/tag";
         Tokens de tamaño de texto para cada contexto operativo. Un solo uso por
         nivel evita jerarquías rotas.
       </p>
-      <app-table [value]="erpScale" class="p-datatable-sm">
+      <lux-table [value]="erpScale" class="p-datatable-sm">
         <ng-template #header>
           <tr>
             <th>Uso</th>
@@ -85,7 +85,7 @@ import { AppTag } from "@ui/web/tag/tag";
             <td class="text-sm text-color-secondary">{{ item.usage }}</td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
 
     <!-- -- Familias Tipogróficas ------------------------------------ -->

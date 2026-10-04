@@ -24,7 +24,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { EquipmentContentForm } from "./equipment-content-form";
@@ -41,7 +41,7 @@ import { EquipmentContentsDialogData } from "./interfaces/equipment-content.inte
     AppSortableColumn,
     AppSorticon,
     AppImage,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     WebButtonIconDelete,

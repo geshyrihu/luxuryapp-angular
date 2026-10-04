@@ -1,6 +1,6 @@
 <div class="d-flex flex-column mb-4">
   <div class="d-none d-md-block">
-    <app-table
+    <lux-table
       #dt
       [value]="data()"
       [rows]="tableRows"
@@ -100,7 +100,7 @@
               </app-action-icons-group>
 
               <!-- Search -->
-              <app-table-caption [showAdd]="false" [dt]="dt" />
+              <lux-table-caption [showAdd]="false" [dt]="dt" />
             </div>
 
             <!-- Contextual Legend (Small) -->
@@ -299,9 +299,9 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!-- 📱 MOBILE -->

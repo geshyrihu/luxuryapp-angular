@@ -4,11 +4,11 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import type { TagSeverity } from "@ui/core/tag.base";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
+import type { TagSeverity } from "@ui/core/tag.base";
 import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
@@ -24,7 +24,7 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     AppSortableColumn,
     AppSorticon,
     CurrencyPipe,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     WebButtonIcon,
     LxTooltipDirective,

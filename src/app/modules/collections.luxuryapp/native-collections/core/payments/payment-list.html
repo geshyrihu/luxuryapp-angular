@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -13,7 +13,7 @@
       <div
         class="d-flex align-items-end justify-content-between flex-wrap mb-4"
       >
-        <app-table-caption
+        <lux-table-caption
           title="Cobranza y Recepción de Pagos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
@@ -107,9 +107,9 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="9" />
+      <lux-table-empty-message [colspan]="9" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <app-data-view-mobile

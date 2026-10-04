@@ -45,7 +45,7 @@ interface IWarehouseStockRowForm {
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -63,7 +63,7 @@ import { TableCaption } from "@ui/web/table-caption/table-caption";
     TableFooter,
     CustomInputNumberSignal,
     ReactiveFormsModule,
-    TableCaption,
+    LuxTableCaption,
   ],
 })
 export class WarehouseStockAdd implements OnInit {

@@ -9,21 +9,18 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
 import { CandidateApplicationListItem } from "../interfaces/candidate-application";
 
@@ -35,7 +32,7 @@ import { CandidateApplicationListItem } from "../interfaces/candidate-applicatio
     CommonModule,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
@@ -77,5 +74,3 @@ export class CandidateApplicationListDesktop {
     .pipe(takeUntilDestroyed())
     .subscribe((value) => this.onStageSelected(value));
 }
-
-

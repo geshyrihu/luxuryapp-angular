@@ -1,6 +1,6 @@
 <page-title-report-maintenance title="TICKETS" />
 @if (dataSignal()) {
-<app-table
+<lux-table
   #dt
   [value]="dataSignal()"
   [scrollable]="true"
@@ -8,7 +8,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       title="TICKETS POR ÁREA"
       [showAdd]="false"
       [showSearch]="false"
@@ -52,10 +52,10 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }
 <br />
-<app-table
+<lux-table
   #dt
   [value]="dataResponsable()"
   [scrollable]="true"
@@ -72,7 +72,7 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       title="ASIGNACIÓN DE TICKETS"
       [showAdd]="false"
       [showSearch]="false"
@@ -94,9 +94,9 @@
     </tr>
     }
   </ng-template>
-</app-table>
+</lux-table>
 @if (dataCargaTicket()) {
-<app-table
+<lux-table
   [value]="dataCargaTicket()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -104,7 +104,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       title="TICKETS SOLICITADOS"
       [showAdd]="false"
       [showSearch]="false"
@@ -175,5 +175,5 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }

@@ -1,6 +1,6 @@
 @if (isSuperUsuario()) {
 
-<app-table
+<lux-table
   #dt
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
@@ -14,7 +14,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       [showAdd]="true"
       [dt]="dt"
       label="Nueva configuracion"
@@ -89,13 +89,15 @@
         <div class="d-flex gap-1">
           <iw-button-edit (clicked)="onModalEditForm(item)" />
           @if (item.destinationType === 'GraphApi') {
-          <iw-button
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:cloud-done"
             severity="info"
             (clicked)="onTestConnection(item.id)"
           />
           }
-          <il-button
+          <lux-button-web
+            displayMode="both"
             label="Ejecutar"
             iconClass="material-symbols-light:play-arrow"
             severity="success"
@@ -107,13 +109,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
-
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

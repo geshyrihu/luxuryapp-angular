@@ -1,9 +1,9 @@
 # Plan de Remediacion y Mejora de `AppTable`
 
-**Tipo:** plan tecnico derivado de auditoria  
-**Fecha:** 2026-09-18  
-**Componente:** `src/app/shared/ui/web/table/table.ts`  
-**Documentacion base:** `README.md` en esta carpeta  
+**Tipo:** plan tecnico derivado de auditoria
+**Fecha:** 2026-09-18
+**Componente:** `src/app/shared/ui/web/table/table.ts`
+**Documentacion base:** `README.md` en esta carpeta
 **Auditorias origen:**
 
 - `docs/SharedLuxuryApp/DesignSystem/20260918-auditoria-shared-apptable-complemento.md`
@@ -26,29 +26,29 @@ eventos drag/drop, handlers concurrentes y persistencia del consumidor.
 
 ### 0.2 KPIs
 
-| KPI | Baseline | Objetivo | Plazo |
-|---|---|---|---|
-| Reorder con handle en `task-list` | No cerrado runtime | Drag visual y drop funcional | Fase 1 |
-| Persistencia de orden | No probada extremo a extremo | Orden conserva posicion tras recarga | Fase 1 |
-| Consumidores reorder auditados | Parcial | 100% de consumidores encontrados | Fase 2 |
-| Pruebas unitarias de `AppTable` | No identificadas | Casos criticos cubiertos | Fase 1 |
-| Regresiones de build | Build puede pasar aunque runtime falle | `tsc`, build, audit y diff check verdes | Cada fase |
-| Capacidades no implementadas declaradas como disponibles | Riesgo de compatibilidad silenciosa | Cero claims sin evidencia | Cierre |
+| KPI                                                      | Baseline                               | Objetivo                                | Plazo     |
+| -------------------------------------------------------- | -------------------------------------- | --------------------------------------- | --------- |
+| Reorder con handle en `task-list`                        | No cerrado runtime                     | Drag visual y drop funcional            | Fase 1    |
+| Persistencia de orden                                    | No probada extremo a extremo           | Orden conserva posicion tras recarga    | Fase 1    |
+| Consumidores reorder auditados                           | Parcial                                | 100% de consumidores encontrados        | Fase 2    |
+| Pruebas unitarias de `AppTable`                          | No identificadas                       | Casos criticos cubiertos                | Fase 1    |
+| Regresiones de build                                     | Build puede pasar aunque runtime falle | `tsc`, build, audit y diff check verdes | Cada fase |
+| Capacidades no implementadas declaradas como disponibles | Riesgo de compatibilidad silenciosa    | Cero claims sin evidencia               | Cierre    |
 
 ### 0.3 Reglas tecnicas del plan
 
 Aunque este componente no define reglas de negocio, se establecen reglas de
 contrato para impedir regresiones.
 
-| ID | Nivel | Regla | Componentes afectados |
-|---|---|---|---|
-| RN-TBL-001 | Nivel 1: invariante | Una fila solo puede iniciar reorder desde un descendiente marcado con `pReorderableRowHandle`. | `AppReorderableRow`, `AppReorderableRowHandle` |
-| RN-TBL-002 | Nivel 1: invariante | `onRowReorder` debe emitir indices coherentes con el arreglo visible que la tabla reordena. | `AppTable.dropRow()` |
-| RN-TBL-003 | Nivel 2: flujo | El consumidor debe actualizar su fuente de verdad despues del drop; el preview interno no sustituye persistencia. | `onRowReorder` de cada consumidor |
-| RN-TBL-004 | Nivel 2: flujo | Un drag de dependencia, columna o fila no debe consumir eventos pertenecientes a otro flujo. | handlers drag/drop |
-| RN-TBL-005 | Nivel 3: autorizacion | `AppTable` no ejecuta endpoints ni cambia datos de negocio; solo emite eventos tipados. | `AppTable`, consumidores |
-| RN-TBL-006 | Nivel 4: datos | `dragIndex` y `dropIndex` invalidos no deben producir mutaciones ni llamadas de persistencia. | `dropRow`, handlers |
-| RN-TBL-007 | Nivel 4: datos | En lazy, `first`/`rows` representan ventana server-side; no se deben interpretar como array global sin contrato explicito. | `AppTableLazyEvent`, consumidores lazy |
+| ID         | Nivel                 | Regla                                                                                                                      | Componentes afectados                          |
+| ---------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| RN-TBL-001 | Nivel 1: invariante   | Una fila solo puede iniciar reorder desde un descendiente marcado con `pReorderableRowHandle`.                             | `AppReorderableRow`, `AppReorderableRowHandle` |
+| RN-TBL-002 | Nivel 1: invariante   | `onRowReorder` debe emitir indices coherentes con el arreglo visible que la tabla reordena.                                | `AppTable.dropRow()`                           |
+| RN-TBL-003 | Nivel 2: flujo        | El consumidor debe actualizar su fuente de verdad despues del drop; el preview interno no sustituye persistencia.          | `onRowReorder` de cada consumidor              |
+| RN-TBL-004 | Nivel 2: flujo        | Un drag de dependencia, columna o fila no debe consumir eventos pertenecientes a otro flujo.                               | handlers drag/drop                             |
+| RN-TBL-005 | Nivel 3: autorizacion | `AppTable` no ejecuta endpoints ni cambia datos de negocio; solo emite eventos tipados.                                    | `AppTable`, consumidores                       |
+| RN-TBL-006 | Nivel 4: datos        | `dragIndex` y `dropIndex` invalidos no deben producir mutaciones ni llamadas de persistencia.                              | `dropRow`, handlers                            |
+| RN-TBL-007 | Nivel 4: datos        | En lazy, `first`/`rows` representan ventana server-side; no se deben interpretar como array global sin contrato explicito. | `AppTableLazyEvent`, consumidores lazy         |
 
 ### 0.4 Flujos de control
 
@@ -95,7 +95,6 @@ El plan remedia primero el circuito de reordenamiento de filas porque es el
 problema urgente y de mayor impacto funcional. Despues estabiliza el contrato
 transversal y audita consumidores de columnas congeladas, columnas movibles,
 uso real, sin implementar capacidades especulativas.
-
 
 ## 2. Objetivo
 
@@ -158,7 +157,7 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 1. Cierre del reorder de filas
 
-**Prioridad:** critica  
+**Prioridad:** critica
 **Objetivo:** hacer funcional y demostrable `pReorderableRowHandle`.
 
 ### Archivos principales
@@ -171,10 +170,10 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 ### Tareas
 
 - [ ] Confirmar que `AppReorderableRowHandle` aplica clase host estable y
-  funciona sobre `app-icon` y elementos HTML nativos.
+      funciona sobre `app-icon` y elementos HTML nativos.
 - [x] Confirmar que `AppReorderableRow` cancela drag iniciado fuera del handle.
 - [x] Definir `reorderableRows` como gate real: `false` bloquea drag/drop aun
-  cuando exista la directiva de fila.
+      cuando exista la directiva de fila.
 - [ ] Validar indices cuando drag y drop son la misma fila.
 - [ ] Validar indices fuera de rango y array vacio.
 - [ ] Aislar drop de reorder frente a drag de dependencia usando tipo MIME.
@@ -186,9 +185,9 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ### Criterios de paso
 
-- El DOM contiene `tr.app-table-reorderable-row`.
+- El DOM contiene `tr.lux-table-reorderable-row`.
 - Cada fila tiene `draggable="true"`.
-- El handle contiene `.app-table-row-handle`.
+- El handle contiene `.lux-table-row-handle`.
 - Arrastrar desde el menu mueve la fila.
 - Arrastrar desde una celda no handle no inicia reorder.
 - Drop cambia el orden visual.
@@ -199,14 +198,14 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 2. Cobertura de consumidores de reorder
 
-**Prioridad:** alta  
+**Prioridad:** alta
 **Objetivo:** eliminar diferencias entre consumidores migrados.
 
 ### Tareas
 
 - [ ] Inventariar todos los templates con `[pReorderableRow]`.
 - [ ] Verificar imports de `AppReorderableRow` y
-  `AppReorderableRowHandle` en cada standalone component.
+      `AppReorderableRowHandle` en cada standalone component.
 - [ ] Verificar binding `(onRowReorder)` en cada consumidor.
 - [ ] Clasificar handlers: persistencia, solo visual o pendiente.
 - [ ] Probar al menos un consumidor de cada modulo que tenga reorder.
@@ -220,14 +219,14 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 3. Orden y columnas congeladas
 
-**Prioridad:** alta  
+**Prioridad:** alta
 **Objetivo:** comprobar que las implementaciones DOM no solo compilan.
 
 ### Tareas
 
 - [ ] Auditar consumidores de `[reorderableColumns]`.
-- [ ] Confirmar que cada `<th>` recibe `data-app-table-col` y
-  `draggable="true"` cuando corresponde.
+- [ ] Confirmar que cada `<th>` recibe `data-lux-table-col` y
+      `draggable="true"` cuando corresponde.
 - [ ] Probar reorder visual de header y celdas body.
 - [ ] Auditar consumidores de `pFrozenColumn` y `alignFrozen`.
 - [ ] Probar multiples columnas frozen a izquierda y derecha.
@@ -243,7 +242,7 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 4. Lazy loading, sorting y filtro
 
-**Prioridad:** alta  
+**Prioridad:** alta
 **Objetivo:** hacer explicito el contrato server-side.
 
 ### Tareas
@@ -251,7 +250,7 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 - [ ] Inventariar consumidores con `[lazy]="true"`.
 - [ ] Verificar `onLazyLoad` real y no bindings muertos.
 - [ ] Confirmar payload `first`, `rows`, `globalFilter`, `sortField`,
-  `sortOrder`.
+      `sortOrder`.
 - [ ] Confirmar que lazy no hace filtro/orden/paginacion local adicional.
 - [ ] Verificar busqueda: una accion, una peticion.
 - [ ] Definir contrato de reorder cuando lazy representa una ventana parcial.
@@ -267,7 +266,7 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 5. Seleccion y agrupacion
 
-**Prioridad:** media  
+**Prioridad:** media
 **Objetivo:** verificar capacidades migradas que dependen de estado derivado.
 
 ### Tareas
@@ -288,15 +287,16 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 6. Calidad de contrato y tipado
 
-**Prioridad:** media  
+**Prioridad:** media
 **Objetivo:** reducir errores silenciosos por bindings heredados.
 
 ### Tareas
 
-  `strictTemplates: false`.
+`strictTemplates: false`.
+
 - [ ] Decidir compatibilidad o retiro documentado por cada input residual.
 - [ ] Evaluar reemplazo de `value: input<any[]>([])` por contrato generico o
-  tipo seguro compatible con Angular del proyecto.
+      tipo seguro compatible con Angular del proyecto.
 - [ ] Agregar validaciones defensivas para eventos imposibles.
 - [ ] Agregar pruebas unitarias para computeds y outputs.
 
@@ -309,7 +309,7 @@ Estas capacidades solo se agregaran mediante fase aprobada y evidencia de uso.
 
 ## Fase 7. Capacidades adicionales bajo evidencia
 
-**Prioridad:** baja  
+**Prioridad:** baja
 **Objetivo:** decidir si existe demanda real antes de ampliar `AppTable`.
 
 Solo iniciar con conteo de consumidores y aprobacion separada:
@@ -361,14 +361,14 @@ git diff --check
 
 ## 7. Riesgos y mitigaciones
 
-| Riesgo | Impacto | Mitigacion |
-|---|---|---|
-| Cache Vite bloqueada por procesos concurrentes | No se puede validar runtime | Detener builds/serve duplicados, limpiar solo `.angular/cache`, levantar un solo servidor |
-| Indices parciales en lazy | Orden incorrecto en backend | Definir contrato global antes de permitir reorder lazy |
-| `drop` de otro flujo interfiere | Reorder no dispara o persiste datos equivocados | MIME/type guards y pruebas de eventos |
-| Manipulacion DOM de columnas pierde sincronizacion | Header/body desalineados | Prueba con varias filas, scroll, frozen y rerender |
-| Build verde oculta fallo funcional | Falsa aceptacion | Runtime obligatorio y evidencia visual/network |
-| Agregar paridad no usada aumenta superficie | Regresiones y sobreconstruccion | Fase 7 requiere evidencia de consumidores |
+| Riesgo                                             | Impacto                                         | Mitigacion                                                                                |
+| -------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Cache Vite bloqueada por procesos concurrentes     | No se puede validar runtime                     | Detener builds/serve duplicados, limpiar solo `.angular/cache`, levantar un solo servidor |
+| Indices parciales en lazy                          | Orden incorrecto en backend                     | Definir contrato global antes de permitir reorder lazy                                    |
+| `drop` de otro flujo interfiere                    | Reorder no dispara o persiste datos equivocados | MIME/type guards y pruebas de eventos                                                     |
+| Manipulacion DOM de columnas pierde sincronizacion | Header/body desalineados                        | Prueba con varias filas, scroll, frozen y rerender                                        |
+| Build verde oculta fallo funcional                 | Falsa aceptacion                                | Runtime obligatorio y evidencia visual/network                                            |
+| Agregar paridad no usada aumenta superficie        | Regresiones y sobreconstruccion                 | Fase 7 requiere evidencia de consumidores                                                 |
 
 ## 8. Dependencias e impactos
 
@@ -381,7 +381,7 @@ git diff --check
 
 ### Impactos
 
-- `table.ts` es shared y afecta todos los consumidores de `app-table`.
+- `table.ts` es shared y afecta todos los consumidores de `lux-table`.
 - Cambios de directivas pueden alterar tablas migradas aunque no usen reorder.
 - Cambios en `AppTableLazyEvent` impactan consumidores server-side.
 - Cambios de DOM/clases impactan estilos globales de tabla.
@@ -430,19 +430,19 @@ El plan se considera cerrado cuando:
 ### Completado
 
 - [x] `AppReorderableRow` exige handle real; ya no permite iniciar drag desde
-  cualquier parte de la fila.
+      cualquier parte de la fila.
 - [x] `reorderableRows` funciona como gate real de drag/drop.
 - [x] Los 10 consumidores encontrados declaran `[reorderableRows]="true"`.
 - [x] `task-list` conserva imports de las directivas y handler con splice por
-  `dragIndex`/`dropIndex`.
+      `dragIndex`/`dropIndex`.
 - [x] Consumidores de reorder simple actualizan su signal antes de persistir.
 - [x] `funding-detail` pasa el grupo correcto al handler y reordena el grupo
-  correspondiente.
+      correspondiente.
 - [x] `sat-funding` importa ambas directivas y usa el handle sin binding
-  inexistente.
+      inexistente.
 - [x] Binding silencioso `sortField` de `sat-funding` fue migrado a
-  `initialSortField`; bindings `sortMode`/`rowGroupMode` retirados porque no
-  forman parte del contrato actual.
+      `initialSortField`; bindings `sortMode`/`rowGroupMode` retirados porque no
+      forman parte del contrato actual.
 - [x] README y complemento de auditoria actualizados con el gate real.
 
 ### Verificacion

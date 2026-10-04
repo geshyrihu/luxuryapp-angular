@@ -1,7 +1,7 @@
 <!-- REFACTOR: El template ha sido actualizado para leer el valor del total directamente
 del signal en `ordenCompraService.totalPorCubrir()`. -->
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -24,7 +24,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
         />
       </div>
       <div class="col-12 col-md-7">
-        <app-table-caption
+        <lux-table-caption
           [title]="'Presupuesto para Orden de Compra'"
           [showAdd]="false"
           [dt]="dt"
@@ -66,7 +66,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message [colspan]="7" />
   </ng-template>
   <ng-template #body let-item>
     <tr>
@@ -135,6 +135,6 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>

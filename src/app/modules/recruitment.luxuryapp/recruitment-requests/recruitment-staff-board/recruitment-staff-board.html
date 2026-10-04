@@ -3,7 +3,7 @@
  TABLA DE PUESTOS DE TRABAJO
  ═══════════════════════════════════════════════════════════════════
  -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
   [paginator]="true"
@@ -20,7 +20,7 @@
       class="d-flex flex-wrap align-items-end justify-content-between w-full gap-3"
     >
       <div class="flex-grow-1">
-        <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+        <lux-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
       <div class="d-flex flex-wrap gap-2 align-items-end pb-2">
         <il-button
@@ -361,13 +361,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="7" />
+    <lux-table-empty-message [colspan]="7" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="positions()" />
+    <lux-table-footer [data]="positions()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      POOL DE COLABORADORES SIN PUESTO ASIGNADO
@@ -433,7 +433,7 @@
         label="Ver perfil"
         (clicked)="onGoToProfile(emp)"
       />
-      <span cdkDragHandle class="drag-handle">â ¿</span>
+<span cdkDragHandle class="drag-handle">⠿</span>
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">

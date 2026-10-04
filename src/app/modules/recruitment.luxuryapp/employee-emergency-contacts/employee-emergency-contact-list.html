@@ -1,11 +1,11 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="
         onModalForm({
           id: '',
@@ -38,7 +38,8 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="d-flex justify-content-center">
-          @if (!isReadOnly()) { <iw-button
+          @if (!isReadOnly()) {
+          <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="
@@ -48,13 +49,15 @@
                 contacOfBeneficiary: 0,
               })
             "
-          /> }
-          @if (!isReadOnly()) { <iw-button-confirm
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
             iconClass="trash"
             severity="danger"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 0)"
-          /> }
+          />
+          }
         </div>
       </td>
     </tr>
@@ -62,26 +65,31 @@
 
   @if (dataEmergencyContact().length === 0) {
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
   }
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataEmergencyContact()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
- [showAdd]="!isReadOnly()">
+  [showAdd]="!isReadOnly()"
+>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:call-outline" class="text-xl text-red-500" />
+        <app-icon
+          icon="material-symbols-light:call-outline"
+          class="text-xl text-red-500"
+        />
       </div>
 
       <h3>{{ item.nameContact }}</h3>
       <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
 
-      @if (!isReadOnly()) { <ili-action-menu slot="end">
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
@@ -92,21 +100,22 @@
             label="Eliminar"
           />
         </ng-container>
-      </ili-action-menu> }
+      </ili-action-menu>
+      }
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
 
 <hr />
 
-<app-table
+<lux-table
   #dt
   [value]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="
         onModalForm({
           id: '',
@@ -139,7 +148,8 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="d-flex justify-content-center">
-          @if (!isReadOnly()) { <iw-button
+          @if (!isReadOnly()) {
+          <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="
@@ -149,13 +159,15 @@
                 contacOfBeneficiary: 1,
               })
             "
-          /> }
-          @if (!isReadOnly()) { <iw-button-confirm
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
             iconClass="trash"
             severity="danger"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 1)"
-          /> }
+          />
+          }
         </div>
       </td>
     </tr>
@@ -168,13 +180,14 @@
     </tr>
   </ng-template>
   }
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
- [showAdd]="!isReadOnly()">
+  [showAdd]="!isReadOnly()"
+>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
@@ -184,7 +197,8 @@
       <h3>{{ item.nameContact }}</h3>
       <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
 
-      @if (!isReadOnly()) { <ili-action-menu slot="end">
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
@@ -195,7 +209,8 @@
             label="Eliminar"
           />
         </ng-container>
-      </ili-action-menu> }
+      </ili-action-menu>
+      }
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

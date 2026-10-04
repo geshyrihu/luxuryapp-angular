@@ -1,7 +1,7 @@
 <div>
   <div class="d-none d-md-block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -20,16 +20,22 @@
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 bg-body-tertiary rounded shadow-sm g-4"
         >
           <!-- IZQUIERDA: Título y Status Filter -->
-          <div class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4">
-            <h4 class="m-0 text-uppercase text-primary fw-bold whitespace-nowrap">
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4"
+          >
+            <h4
+              class="m-0 text-uppercase text-primary fw-bold whitespace-nowrap"
+            >
               Mis tickets asignados
             </h4>
             <app-task-status (statusChange)="onLoadData($event)" />
           </div>
 
           <!-- DERECHA: Buscador, Agregar e Imprimir -->
-          <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-            <app-table-caption
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
+          >
+            <lux-table-caption
               (add)="onModalAdd({ id: '', title: 'Agregar' })"
               [dt]="dt"
               [noPadding]="true"
@@ -70,7 +76,9 @@
         >
           <td>
             <p class="m-0 text-xs text-body-secondary">{{ item.folio }}</p>
-            <p class="m-0 text-xs text-body-secondary">{{ item.createdAtDate }}</p>
+            <p class="m-0 text-xs text-body-secondary">
+              {{ item.createdAtDate }}
+            </p>
           </td>
           <td class="text-center d-none md:table-cell">
             <app-avatar
@@ -102,8 +110,12 @@
           <td class="text-center text-xs text-body-secondary">
             {{ item.creator | initialsAbbr }}
           </td>
-          <td class="text-xs text-body-secondary">{{ item.scheduledAt || 'é' }}</td>
-          <td class="text-center text-xs text-body-secondary d-none md:table-cell">
+          <td class="text-xs text-body-secondary">
+            {{ item.scheduledAt || 'é' }}
+          </td>
+          <td
+            class="text-center text-xs text-body-secondary d-none md:table-cell"
+          >
             {{ item.closedAtDate || 'é' }}
           </td>
           <td class="text-center">
@@ -173,9 +185,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="19" />
+        <lux-table-empty-message [colspan]="19" />
       </ng-template>
-    </app-table>
+    </lux-table>
     }
   </div>
 

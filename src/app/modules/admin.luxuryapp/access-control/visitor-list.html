@@ -9,22 +9,44 @@
       placeholder="Nombre completo"
       required
     />
-    <custom-input-text-signal [control]="form.controls.email" label="Correo" placeholder="Correo" />
-    <custom-input-text-signal [control]="form.controls.phone" label="Teléfono" placeholder="Teléfono" />
-    <custom-input-text-signal [control]="form.controls.company" label="Empresa" placeholder="Empresa" />
-    <custom-input-text-signal [control]="form.controls.vehiclePlate" label="Placa" placeholder="Placa vehicular" />
-    <custom-input-text-signal [control]="form.controls.documentId" label="Documento" placeholder="Documento de identidad" />
+    <custom-input-text-signal
+      [control]="form.controls.email"
+      label="Correo"
+      placeholder="Correo"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.phone"
+      label="Teléfono"
+      placeholder="Teléfono"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.company"
+      label="Empresa"
+      placeholder="Empresa"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.vehiclePlate"
+      label="Placa"
+      placeholder="Placa vehicular"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.documentId"
+      label="Documento"
+      placeholder="Documento de identidad"
+    />
 
     @if (editingId()) {
-    <custom-input-switch-signal [control]="form.controls.isBlacklisted" label="En lista negra" />
+    <custom-input-switch-signal
+      [control]="form.controls.isBlacklisted"
+      label="En lista negra"
+    />
     @if (form.controls.isBlacklisted.value) {
     <custom-input-text-signal
       [control]="form.controls.blacklistReason"
       label="Motivo de lista negra"
       placeholder="Motivo"
     />
-    }
-    }
+    } }
 
     <div class="d-flex gap-2 mt-2">
       <il-button
@@ -35,13 +57,23 @@
         [disabled]="form.invalid"
       />
       @if (editingId()) {
-      <il-button label="Cancelar" severity="secondary" variant="text" (clicked)="resetForm()" />
+      <il-button
+        label="Cancelar"
+        severity="secondary"
+        variant="text"
+        (clicked)="resetForm()"
+      />
       }
     </div>
   </form>
 </div>
 
-<app-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+<lux-table
+  [value]="dataSignal()"
+  [paginator]="true"
+  [rows]="10"
+  class="custom-table card"
+>
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -62,13 +94,20 @@
         } @else { No }
       </td>
       <td class="text-end">
-        <il-button label="Editar" variant="text" iconClass="material-symbols-light:edit" (clicked)="edit(v)" />
+        <il-button
+          label="Editar"
+          variant="text"
+          iconClass="material-symbols-light:edit"
+          (clicked)="edit(v)"
+        />
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
     <tr>
-      <td colspan="5" class="text-center text-body-secondary py-4">Sin visitantes registrados.</td>
+      <td colspan="5" class="text-center text-body-secondary py-4">
+        Sin visitantes registrados.
+      </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>

@@ -44,4 +44,6 @@ export class ListaInspeccionesMobile {
   reportes = output<void>();
   filterAreaChange = output<string>();
   filterRecurrenceChange = output<string>();
+  applyFilters = output<void>();
+  clearFilters = output<void>();
 }

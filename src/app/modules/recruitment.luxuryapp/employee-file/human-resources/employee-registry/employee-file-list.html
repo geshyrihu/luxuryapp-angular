@@ -12,7 +12,7 @@
     />
   </div>
 
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -27,7 +27,7 @@
     class="custom-table card d-none d-md-block"
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
 
     <ng-template #header>
@@ -81,13 +81,13 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
@@ -102,19 +102,23 @@
             class="text-xl text-primary"
           />
         </div>
-        
-          <h2 class="fw-bold">{{ item.fullName }}</h2>
-          <p class="text-sm text-body-secondary">No. {{ item.numberEmployee ?? 'é' }}</p>
-          <p class="text-sm text-body-secondary">{{ item.puesto || 'é' }}</p>
-          <p class="text-sm text-body-secondary">{{ item.departamento || 'é' }}</p>
-          <p class="text-sm">
-            <span
-              [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
-            >
-              {{ item.isActive ? 'Activo' : 'Inactivo' }}
-            </span>
-          </p>
-        
+
+        <h2 class="fw-bold">{{ item.fullName }}</h2>
+        <p class="text-sm text-body-secondary">
+          No. {{ item.numberEmployee ?? 'é' }}
+        </p>
+        <p class="text-sm text-body-secondary">{{ item.puesto || 'é' }}</p>
+        <p class="text-sm text-body-secondary">
+          {{ item.departamento || 'é' }}
+        </p>
+        <p class="text-sm">
+          <span
+            [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
+          >
+            {{ item.isActive ? 'Activo' : 'Inactivo' }}
+          </span>
+        </p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

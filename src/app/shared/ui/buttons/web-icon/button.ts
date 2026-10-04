@@ -18,17 +18,23 @@ import { BaseButton } from "../base/base-button";
       [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="emitClick($event)"
     >
-      @if (emoji()) {
-        <span>{{ emoji() }}</span>
-      } @else if (iconClass()) {
-        <app-icon [icon]="resolvedIconClass()" />
-      } @else if (icon()) {
-        <app-icon [icon]="resolvedIcon()" />
+      @if (displayMode() !== "label") {
+        @if (emoji()) {
+          <span>{{ emoji() }}</span>
+        } @else if (iconClass()) {
+          <app-icon [icon]="resolvedIconClass()" />
+        } @else if (icon()) {
+          <app-icon [icon]="resolvedIcon()" />
+        }
+      }
+      @if (displayMode() !== "icon") {
+        <span>{{ label() }}</span>
       }
     </button>
   `,
 })
 export class WebButtonIcon extends BaseButton {
+  override displayMode = input<"label" | "icon" | "both">("icon");
   override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
     "soft",
   );

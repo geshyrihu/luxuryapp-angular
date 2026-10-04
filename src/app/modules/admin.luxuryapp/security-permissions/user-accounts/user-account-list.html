@@ -19,7 +19,7 @@
 />
 } @else {
 <div class="card">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
     [rows]="tableRows"
@@ -38,7 +38,7 @@
       >
         <!-- Parte Izquierda: Título y bósqueda -->
         <div class="flex-grow-1">
-          <app-table-caption
+          <lux-table-caption
             (add)="onModalForm('', 'Crear Cuenta')"
             [dt]="dt"
             [noPadding]="true"
@@ -162,11 +162,11 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="6" />
+      <lux-table-empty-message [colspan]="6" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 } }

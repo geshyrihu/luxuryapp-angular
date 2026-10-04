@@ -2,23 +2,25 @@
   ============================================================================
   ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
   ============================================================================
-  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
-  FUNCIONAL y ESTABLE. 
-  
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+  FUNCIONAL y ESTABLE.
+
   Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
   sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
-  
+
   Por favor, NO rompan el código.
   ============================================================================
 -->
 @if (loading()) { } @else if (errorMensaje) {
-<div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">{{ errorMensaje }}</div>
+<div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">
+  {{ errorMensaje }}
+</div>
 } @else if (history().length === 0) {
 <div class="p-3 bg-body rounded shadow-sm mt-3 text-center text-body-secondary">
   No hay historial de cambios para esta partida.
 </div>
 } @else {
-<app-table [value]="history()" class="p-datatable-sm">
+<lux-table [value]="history()" class="p-datatable-sm">
   <ng-template #header>
     <tr>
       <th>Fecha</th>
@@ -37,12 +39,5 @@
       <td>{{ record.justification }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }
-
-
-
-
-
-
-

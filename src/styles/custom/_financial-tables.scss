@@ -139,12 +139,12 @@
 
 // ── FINANCIAL DATA TABLE ───────────────────────────────────
 // Modificador para tablas de datos contables densos.
-// Uso: class="custom-table financial-data-table app-table-sm"
+// Uso: class="custom-table financial-data-table lux-table-sm"
 .financial-data-table {
-  &.app-table,
-  .app-table {
+  &.lux-table,
+  .lux-table {
     // Encabezado unico (navy) para toda tabla financiera.
-    .app-table-thead > tr > th {
+    .lux-table-thead > tr > th {
       background: linear-gradient(
         180deg,
         var(--rf-grad-from) 0%,
@@ -160,16 +160,16 @@
       white-space: nowrap;
     }
 
-    .app-table-tbody > tr > td {
+    .lux-table-tbody > tr > td {
       padding: 0.3rem 0.5rem;
       font-size: 0.8rem;
     }
 
-    .app-table-sorticon {
+    .lux-table-sorticon {
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-sortable-column:hover {
+    .lux-table-sortable-column:hover {
       background-color: var(--primary-600) !important;
     }
   }
@@ -179,15 +179,15 @@
 // Fija el tfoot al borde inferior del área de scroll.
 // Uso: styleClass="budget-sticky-footer-table"
 .budget-sticky-footer-table {
-  &.app-table,
-  .app-table {
-    .app-table-tfoot {
+  &.lux-table,
+  .lux-table {
+    .lux-table-tfoot {
       position: sticky;
       bottom: 0;
       z-index: 2;
     }
 
-    .app-table-tfoot > tr > td {
+    .lux-table-tfoot > tr > td {
       background-color: var(--ds-bg-sunken);
       border-top: 2px solid var(--ds-border);
       font-weight: 700;
@@ -251,10 +251,10 @@
 // La clase numeric-column conserva la alineación tabular, pero no debe
 // cambiar la familia ni reducir el tamaño de los importes a monospace.
 .proposal-budget-table {
-  .app-table-table,
-  .app-table-thead,
-  .app-table-tbody,
-  .app-table-tfoot {
+  .lux-table-table,
+  .lux-table-thead,
+  .lux-table-tbody,
+  .lux-table-tfoot {
     font-family: var(--ds-font-family-base);
   }
 
@@ -568,18 +568,18 @@
   color: var(--rf-muted);
 }
 
-// Variante para app-table manteniendo el look rf-*.
+// Variante para lux-table manteniendo el look rf-*.
 .rf-table {
-  &.app-table,
-  .app-table {
-    .app-table-table {
+  &.lux-table,
+  .lux-table {
+    .lux-table-table {
       width: 100%;
       min-width: 760px;
       border-collapse: collapse;
       font-size: 0.9rem;
     }
 
-    .app-table-thead > tr > th {
+    .lux-table-thead > tr > th {
       background: linear-gradient(
         180deg,
         var(--rf-grad-from) 0%,
@@ -594,7 +594,7 @@
       white-space: nowrap;
     }
 
-    .app-table-tbody > tr > td {
+    .lux-table-tbody > tr > td {
       padding: 0.55rem 0.9rem;
       border: 1px solid var(--rf-line) !important;
       white-space: nowrap;
@@ -607,63 +607,63 @@
 // Necesario porque .rf-table aplica background:var(--rf-surface) a todos los td
 // con especificidad suficiente para tapar las clases rf-row-*.
 .rf-table {
-  &.app-table,
-  .app-table {
-    .app-table-tbody > tr.rf-row-section > td {
+  &.lux-table,
+  .lux-table {
+    .lux-table-tbody > tr.rf-row-section > td {
       background: var(--rf-soft) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .app-table-tbody > tr.rf-row-total > td {
+    .lux-table-tbody > tr.rf-row-total > td {
       background: var(--rf-total) !important;
       color: var(--rf-total-ink) !important;
       font-weight: 800 !important;
     }
 
-    .app-table-tbody > tr.rf-row-result > td {
+    .lux-table-tbody > tr.rf-row-result > td {
       background: var(--rf-result) !important;
       color: var(--rf-result-ink) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .app-table-tbody > tr.rf-row-fondo > td {
+    .lux-table-tbody > tr.rf-row-fondo > td {
       background: var(--rf-fondo-row) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .app-table-tbody > tr.rf-row-group > td {
+    .lux-table-tbody > tr.rf-row-group > td {
       background: var(--rf-row-group) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
     }
 
     // tfoot: respeta la clase del tr igual que tbody
-    .app-table-tfoot > tr.rf-row-section > td {
+    .lux-table-tfoot > tr.rf-row-section > td {
       background: var(--rf-soft) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .app-table-tfoot > tr.rf-row-total > td {
+    .lux-table-tfoot > tr.rf-row-total > td {
       background: var(--rf-total) !important;
       color: var(--rf-total-ink) !important;
       font-weight: 800 !important;
     }
 
-    .app-table-tfoot > tr.rf-row-result > td {
+    .lux-table-tfoot > tr.rf-row-result > td {
       background: var(--rf-result) !important;
       color: var(--rf-result-ink) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
-    .app-table-tfoot > tr.rf-row-concepto > td {
+    .lux-table-tfoot > tr.rf-row-concepto > td {
       background: var(--rf-surface) !important;
       color: var(--rf-ink) !important;
     }
@@ -673,50 +673,50 @@
 // Permite que las tablas rf con encabezados semánticos de presupuesto
 // conserven sus colores especiales por columna/mes.
 .rf-table {
-  &.app-table,
-  .app-table {
-    .app-table-thead > tr > th.th-selected {
+  &.lux-table,
+  .lux-table {
+    .lux-table-thead > tr > th.th-selected {
       background-color: var(--rf-selected-bg) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-deselected {
+    .lux-table-thead > tr > th.th-deselected {
       background-color: var(--rf-deselected-bg) !important;
       color: var(--rf-deselected-ink) !important;
       opacity: 0.7;
     }
 
-    .app-table-thead > tr > th.th-col-dark {
+    .lux-table-thead > tr > th.th-col-dark {
       background-color: var(--rf-col-dark) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-green {
+    .lux-table-thead > tr > th.th-col-green {
       background-color: var(--rf-selected-bg) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-orange {
+    .lux-table-thead > tr > th.th-col-orange {
       background-color: var(--rf-orange) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-red {
+    .lux-table-thead > tr > th.th-col-red {
       background-color: var(--rf-red) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-blue-medium {
+    .lux-table-thead > tr > th.th-col-blue-medium {
       background-color: var(--rf-blue-medium) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-blue-dark {
+    .lux-table-thead > tr > th.th-col-blue-dark {
       background-color: var(--rf-blue-dark) !important;
       color: var(--rf-on-dark) !important;
     }
 
-    .app-table-thead > tr > th.th-col-navy {
+    .lux-table-thead > tr > th.th-col-navy {
       background: var(--rf-navy) !important;
       color: var(--rf-on-dark) !important;
     }
@@ -787,17 +787,17 @@
 // Código 1=Activo (azul), 2=Pasivo (rojo), 3=Capital (verde).
 // Se aplican a rf-row-section para sobreescribir el fondo neutro.
 .rf-table {
-  &.app-table,
-  .app-table {
-    .app-table-tbody > tr.rf-row-section--activo > td {
+  &.lux-table,
+  .lux-table {
+    .lux-table-tbody > tr.rf-row-section--activo > td {
       background-color: var(--rf-activo-bg) !important;
       color: var(--rf-activo-ink) !important;
     }
-    .app-table-tbody > tr.rf-row-section--pasivo > td {
+    .lux-table-tbody > tr.rf-row-section--pasivo > td {
       background-color: var(--rf-pasivo-bg) !important;
       color: var(--rf-pasivo-ink) !important;
     }
-    .app-table-tbody > tr.rf-row-section--capital > td {
+    .lux-table-tbody > tr.rf-row-section--capital > td {
       background-color: var(--rf-capital-bg) !important;
       color: var(--rf-capital-ink) !important;
     }
@@ -809,10 +809,10 @@
 // encabezado = un solo tamano. Las filas semanticas (rf-row-total,
 // rf-row-result, rf-row-fondo) conservan su color por mayor especificidad.
 .rf-td-cuenta,
-.rf-table.app-table .app-table-tbody > tr > td.rf-td-cuenta,
-.rf-table .app-table .app-table-tbody > tr > td.rf-td-cuenta,
-.rf-table.app-table .app-table-tfoot > tr > td.rf-td-cuenta,
-.rf-table .app-table .app-table-tfoot > tr > td.rf-td-cuenta {
+.rf-table.lux-table .lux-table-tbody > tr > td.rf-td-cuenta,
+.rf-table .lux-table .lux-table-tbody > tr > td.rf-td-cuenta,
+.rf-table.lux-table .lux-table-tfoot > tr > td.rf-td-cuenta,
+.rf-table .lux-table .lux-table-tfoot > tr > td.rf-td-cuenta {
   font-family:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     monospace !important;
@@ -823,15 +823,15 @@
 
 .rf-table thead th,
 .financial-data-table thead th,
-.rf-table.app-table .app-table-thead > tr > th,
-.financial-data-table .app-table-thead > tr > th {
+.rf-table.lux-table .lux-table-thead > tr > th,
+.financial-data-table .lux-table-thead > tr > th {
   font-size: 0.8rem !important;
 }
 
-.rf-table.app-table,
-.rf-table .app-table {
-  .app-table-tbody > tr > td,
-  .app-table-tfoot > tr > td {
+.rf-table.lux-table,
+.rf-table .lux-table {
+  .lux-table-tbody > tr > td,
+  .lux-table-tfoot > tr > td {
     color: var(--rf-ink) !important;
   }
 }
@@ -842,10 +842,10 @@
 }
 
 // El negativo siempre gana, incluso dentro de filas semanticas.
-.rf-table.app-table .app-table-tbody > tr > td.rf-neg,
-.rf-table .app-table .app-table-tbody > tr > td.rf-neg,
-.rf-table.app-table .app-table-tfoot > tr > td.rf-neg,
-.rf-table .app-table .app-table-tfoot > tr > td.rf-neg {
+.rf-table.lux-table .lux-table-tbody > tr > td.rf-neg,
+.rf-table .lux-table .lux-table-tbody > tr > td.rf-neg,
+.rf-table.lux-table .lux-table-tfoot > tr > td.rf-neg,
+.rf-table .lux-table .lux-table-tfoot > tr > td.rf-neg {
   color: var(--rf-neg) !important;
 }
 

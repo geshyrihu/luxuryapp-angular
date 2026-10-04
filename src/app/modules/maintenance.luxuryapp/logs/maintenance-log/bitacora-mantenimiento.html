@@ -1,11 +1,11 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption (add)="onModalFormBiacora(0)" [dt]="dt" />
+    <lux-table-caption (add)="onModalFormBiacora(0)" [dt]="dt" />
     <br />
     <div class="w-full sm:w-30rem">
       <app-rango-calendario-yyyymmdd
@@ -53,9 +53,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="1" />
+    <lux-table-empty-message [colspan]="1" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile
@@ -76,15 +76,14 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-body-secondary">{{ item.machinery }} · {{ item.fechaRegistro | apiDate:'short' }}</p>
+      <p class="text-xs m-0 text-body-secondary">
+        {{ item.machinery }} · {{ item.fechaRegistro | apiDate:'short' }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>
           @if (aspRoleS.hasRole(AspRole.JefeMantenimiento)) {
-          <ili-button-delete
-            label="Eliminar"
-            (confirmed)="onDelete(item)"
-          />
+          <ili-button-delete label="Eliminar" (confirmed)="onDelete(item)" />
           }
         </ng-container>
       </ili-action-menu>

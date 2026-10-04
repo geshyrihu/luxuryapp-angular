@@ -5,13 +5,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,7 +13,14 @@ import {
   ComplianceGroupDTO,
 } from "@core/interfaces/recurring-tasks/recurring-task-compliance.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppTable } from "@ui/web/table/table";
 
 @Component({
   selector: "app-recurring-task-compliance-dashboard",
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxTag,
     DataViewMobile,
     MobileListItem,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     AppTable,
     AppIcon,
@@ -63,9 +63,10 @@ export class RecurringTaskComplianceDashboard implements OnInit {
     }
 
     try {
-      const response = await this.apiResponseS.onGetList<ComplianceDashboardDTO>(
-        Endpoints.RecurringTaskCompliance.dashboard(customerId),
-      );
+      const response =
+        await this.apiResponseS.onGetList<ComplianceDashboardDTO>(
+          Endpoints.RecurringTaskCompliance.dashboard(customerId),
+        );
 
       this.groups.set(response?.groups ?? []);
       this.totalGroupsWithoutTemplates.set(
@@ -93,4 +94,3 @@ export class RecurringTaskComplianceDashboard implements OnInit {
     )}%`;
   }
 }
-

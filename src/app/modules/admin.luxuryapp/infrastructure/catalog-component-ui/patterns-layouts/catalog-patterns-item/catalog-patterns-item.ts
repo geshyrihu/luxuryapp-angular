@@ -104,7 +104,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
             <app-card>
               <ng-template #content>
-                <app-table [value]="mockTableData" class="w-100">
+                <lux-table [value]="mockTableData" class="w-100">
                   <ng-template #header>
                     <tr>
                       <th>Folio</th>
@@ -128,7 +128,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       </td>
                     </tr>
                   </ng-template>
-                </app-table>
+                </lux-table>
               </ng-template>
             </app-card>
           </div>
@@ -295,7 +295,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <h3 class="card-title">Data Table Hybrid</h3>
             </div>
             <div class="card-body">
-              <app-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
+              <lux-table [value]="[{ id: 1, name: 'Test' }]" class="mt-2">
                 <ng-template #header
                   ><tr>
                     <th>Elemento</th>
@@ -307,7 +307,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     <td>{{ item.name }}</td>
                     <td><app-status-badge [status]="EStatus.Proceso" /></td></tr
                 ></ng-template>
-              </app-table>
+              </lux-table>
             </div>
           </div>
         }

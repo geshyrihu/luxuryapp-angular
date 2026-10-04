@@ -1,6 +1,6 @@
 <div class="row mb-2 g-4">
   <div class="col-12">
-    <app-table [value]="facturas()" class="custom-table">
+    <lux-table [value]="facturas()" class="custom-table">
       <ng-template #caption>
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-xl fw-bold">FACTURAS ASOCIADAS</span>
@@ -101,7 +101,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
 
     <!-- Resultado Validación -->
     @if (validationResult(); as result) {

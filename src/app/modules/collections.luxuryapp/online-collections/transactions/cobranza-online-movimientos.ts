@@ -7,18 +7,20 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon, AppFrozenColumn } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import {
+  AppFrozenColumn,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "@ui/web/table/table";
 import { CONCEPTS_CATALOG } from "../helpers/cobranza-conceptos";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
@@ -49,7 +51,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppSortableColumn,
     AppSorticon,
     AppFrozenColumn,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     MobileListItem,
     FormsModule,

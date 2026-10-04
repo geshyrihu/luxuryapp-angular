@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -13,7 +13,7 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <app-table-caption
+    <lux-table-caption
       (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
       aria-label="Agregar nuevo banco"
@@ -60,9 +60,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="4" />
+    <lux-table-empty-message [colspan]="4" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="data()" />
+    <lux-table-footer [data]="data()" />
   </ng-template>
-</app-table>
+</lux-table>

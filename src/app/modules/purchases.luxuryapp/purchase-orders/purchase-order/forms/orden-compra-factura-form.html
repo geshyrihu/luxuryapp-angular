@@ -1,5 +1,5 @@
 <lux-card>
-  <app-table
+  <lux-table
     [value]="facturas()"
     [tableStyle]="{'min-width': '50rem'}"
     class="p-datatable-sm"
@@ -55,9 +55,9 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <div class="row mt-4 bg-body-tertiary p-3 rounded g-4">
     <div class="col-12 fw-bold mb-2">

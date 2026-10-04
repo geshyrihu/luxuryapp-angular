@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -9,7 +9,7 @@
     class="p-datatable-striped"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         [title]="'Minutas de Juntas ' + customerName + ' ' + areaName"
         [showAdd]="false"
         [showAdd]="false"
@@ -76,12 +76,12 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="7" />
+      <lux-table-empty-message [colspan]="7" />
     </ng-template>
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <!-- 📱 MOBILE -->

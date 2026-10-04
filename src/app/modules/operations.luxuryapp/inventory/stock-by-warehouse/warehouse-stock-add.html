@@ -1,5 +1,5 @@
 <div class="d-none d-md-block"></div>
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
   [paginator]="true"
@@ -15,7 +15,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -113,6 +113,6 @@
     </ng-container>
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="formArray.getRawValue()" />
+    <lux-table-footer [data]="formArray.getRawValue()" />
   </ng-template>
-</app-table>
+</lux-table>

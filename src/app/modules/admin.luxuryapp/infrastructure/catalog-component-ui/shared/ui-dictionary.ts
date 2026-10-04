@@ -8,2169 +8,2169 @@ export interface UIDictionaryItem {
 
 export const UI_DICTIONARY: UIDictionaryItem[] = [
   {
-    "selector": "[lxTooltip]",
-    "className": "LxTooltipDirective",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tooltip/tooltip.directive.ts"
+    selector: "[lxTooltip]",
+    className: "LxTooltipDirective",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tooltip/tooltip.directive.ts",
   },
   {
-    "selector": "[lxTooltip]",
-    "className": "LxTooltip",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tooltip/tooltip.ts"
+    selector: "[lxTooltip]",
+    className: "LxTooltip",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tooltip/tooltip.ts",
   },
   {
-    "selector": "[lxWeb]",
-    "className": "LxWebDirective",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/viewport/viewport.directives.ts"
+    selector: "[lxWeb]",
+    className: "LxWebDirective",
+    category: "adaptive",
+    path: "shared/ui/adaptive/viewport/viewport.directives.ts",
   },
   {
-    "selector": "lux-accordion",
-    "className": "LxAccordion",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/accordion/accordion.ts"
+    selector: "lux-accordion",
+    className: "LxAccordion",
+    category: "adaptive",
+    path: "shared/ui/adaptive/accordion/accordion.ts",
   },
   {
-    "selector": "lux-action-sheet",
-    "className": "LxActionSheet",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/action-sheet/action-sheet.ts"
+    selector: "lux-action-sheet",
+    className: "LxActionSheet",
+    category: "adaptive",
+    path: "shared/ui/adaptive/action-sheet/action-sheet.ts",
   },
   {
-    "selector": "lux-avatar",
-    "className": "LxAvatar",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/avatar/avatar.ts"
+    selector: "lux-avatar",
+    className: "LxAvatar",
+    category: "adaptive",
+    path: "shared/ui/adaptive/avatar/avatar.ts",
   },
   {
-    "selector": "lux-badge",
-    "className": "LxBadge",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/badge/badge.ts"
+    selector: "lux-badge",
+    className: "LxBadge",
+    category: "adaptive",
+    path: "shared/ui/adaptive/badge/badge.ts",
   },
   {
-    "selector": "lux-breadcrumbs",
-    "className": "LxBreadcrumbs",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/breadcrumbs/breadcrumbs.ts"
+    selector: "lux-breadcrumbs",
+    className: "LxBreadcrumbs",
+    category: "adaptive",
+    path: "shared/ui/adaptive/breadcrumbs/breadcrumbs.ts",
   },
   {
-    "selector": "lux-card",
-    "className": "LxCard",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/card/card.ts"
+    selector: "lux-card",
+    className: "LxCard",
+    category: "adaptive",
+    path: "shared/ui/adaptive/card/card.ts",
   },
   {
-    "selector": "lux-carousel",
-    "className": "LxCarousel",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/carousel/carousel.ts"
+    selector: "lux-carousel",
+    className: "LxCarousel",
+    category: "adaptive",
+    path: "shared/ui/adaptive/carousel/carousel.ts",
   },
   {
-    "selector": "lux-checkbox",
-    "className": "LxCheckbox",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/checkbox/checkbox.ts"
+    selector: "lux-checkbox",
+    className: "LxCheckbox",
+    category: "adaptive",
+    path: "shared/ui/adaptive/checkbox/checkbox.ts",
   },
   {
-    "selector": "lux-chip",
-    "className": "LxChip",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/chip/chip.ts"
+    selector: "lux-chip",
+    className: "LxChip",
+    category: "adaptive",
+    path: "shared/ui/adaptive/chip/chip.ts",
   },
   {
-    "selector": "lux-confirm-dialog",
-    "className": "LxConfirmDialog",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts"
+    selector: "lux-confirm-dialog",
+    className: "LxConfirmDialog",
+    category: "adaptive",
+    path: "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts",
   },
   {
-    "selector": "lux-debug-console",
-    "className": "LxDebugConsole",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/debug-console/debug-console.ts"
+    selector: "lux-debug-console",
+    className: "LxDebugConsole",
+    category: "adaptive",
+    path: "shared/ui/adaptive/debug-console/debug-console.ts",
   },
   {
-    "selector": "lux-divider",
-    "className": "LxDivider",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/divider/divider.ts"
+    selector: "lux-divider",
+    className: "LxDivider",
+    category: "adaptive",
+    path: "shared/ui/adaptive/divider/divider.ts",
   },
   {
-    "selector": "lux-editor",
-    "className": "LxEditor",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/editor/editor.ts"
+    selector: "lux-editor",
+    className: "LxEditor",
+    category: "adaptive",
+    path: "shared/ui/adaptive/editor/editor.ts",
   },
   {
-    "selector": "lux-empty-state",
-    "className": "LxEmptyState",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/empty-state/empty-state.ts"
+    selector: "lux-empty-state",
+    className: "LxEmptyState",
+    category: "adaptive",
+    path: "shared/ui/adaptive/empty-state/empty-state.ts",
   },
   {
-    "selector": "lux-fieldset",
-    "className": "LxFieldset",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/fieldset/fieldset.ts"
+    selector: "lux-fieldset",
+    className: "LxFieldset",
+    category: "adaptive",
+    path: "shared/ui/adaptive/fieldset/fieldset.ts",
   },
   {
-    "selector": "lux-file-upload",
-    "className": "LxFileUpload",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/file-upload/file-upload.ts"
+    selector: "lux-file-upload",
+    className: "LxFileUpload",
+    category: "adaptive",
+    path: "shared/ui/adaptive/file-upload/file-upload.ts",
   },
   {
-    "selector": "lux-icon",
-    "className": "LxIcon",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/icon/icon.ts"
+    selector: "lux-icon",
+    className: "LxIcon",
+    category: "adaptive",
+    path: "shared/ui/adaptive/icon/icon.ts",
   },
   {
-    "selector": "lux-image",
-    "className": "LxImage",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/image/image.ts"
+    selector: "lux-image",
+    className: "LxImage",
+    category: "adaptive",
+    path: "shared/ui/adaptive/image/image.ts",
   },
   {
-    "selector": "lux-infinite-scroll",
-    "className": "LxInfiniteScroll",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts"
+    selector: "lux-infinite-scroll",
+    className: "LxInfiniteScroll",
+    category: "adaptive",
+    path: "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts",
   },
   {
-    "selector": "lux-listbox",
-    "className": "LxListbox",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/listbox/listbox.ts"
+    selector: "lux-listbox",
+    className: "LxListbox",
+    category: "adaptive",
+    path: "shared/ui/adaptive/listbox/listbox.ts",
   },
   {
-    "selector": "lux-loader",
-    "className": "LxLoader",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/loader/loader.ts"
+    selector: "lux-loader",
+    className: "LxLoader",
+    category: "adaptive",
+    path: "shared/ui/adaptive/loader/loader.ts",
   },
   {
-    "selector": "lux-menu",
-    "className": "LxMenu",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/menu/menu.ts"
+    selector: "lux-menu",
+    className: "LxMenu",
+    category: "adaptive",
+    path: "shared/ui/adaptive/menu/menu.ts",
   },
   {
-    "selector": "lux-menubar",
-    "className": "LxMenubar",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/menubar/menubar.ts"
+    selector: "lux-menubar",
+    className: "LxMenubar",
+    category: "adaptive",
+    path: "shared/ui/adaptive/menubar/menubar.ts",
   },
   {
-    "selector": "lux-message",
-    "className": "LxMessage",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/message/message.ts"
+    selector: "lux-message",
+    className: "LxMessage",
+    category: "adaptive",
+    path: "shared/ui/adaptive/message/message.ts",
   },
   {
-    "selector": "lux-modal",
-    "className": "LxModal",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/modal/modal.ts"
+    selector: "lux-modal",
+    className: "LxModal",
+    category: "adaptive",
+    path: "shared/ui/adaptive/modal/modal.ts",
   },
   {
-    "selector": "lux-multi-select",
-    "className": "LxMultiSelect",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/multi-select/multi-select.ts"
+    selector: "lux-multi-select",
+    className: "LxMultiSelect",
+    category: "adaptive",
+    path: "shared/ui/adaptive/multi-select/multi-select.ts",
   },
   {
-    "selector": "lux-offline-indicator",
-    "className": "LxOfflineIndicator",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/offline-indicator/offline-indicator.ts"
+    selector: "lux-offline-indicator",
+    className: "LxOfflineIndicator",
+    category: "adaptive",
+    path: "shared/ui/adaptive/offline-indicator/offline-indicator.ts",
   },
   {
-    "selector": "lux-paginator",
-    "className": "LxPaginator",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/paginator/paginator.ts"
+    selector: "lux-paginator",
+    className: "LxPaginator",
+    category: "adaptive",
+    path: "shared/ui/adaptive/paginator/paginator.ts",
   },
   {
-    "selector": "lux-panel",
-    "className": "LxPanel",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/panel/panel.ts"
+    selector: "lux-panel",
+    className: "LxPanel",
+    category: "adaptive",
+    path: "shared/ui/adaptive/panel/panel.ts",
   },
   {
-    "selector": "lux-popover",
-    "className": "LxPopover",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/popover/popover.ts"
+    selector: "lux-popover",
+    className: "LxPopover",
+    category: "adaptive",
+    path: "shared/ui/adaptive/popover/popover.ts",
   },
   {
-    "selector": "lux-processing-overlay",
-    "className": "LxProcessingOverlay",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/processing-overlay/processing-overlay.ts"
+    selector: "lux-processing-overlay",
+    className: "LxProcessingOverlay",
+    category: "adaptive",
+    path: "shared/ui/adaptive/processing-overlay/processing-overlay.ts",
   },
   {
-    "selector": "lux-progress-bar",
-    "className": "LxProgressBar",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/progress-bar/progress-bar.ts"
+    selector: "lux-progress-bar",
+    className: "LxProgressBar",
+    category: "adaptive",
+    path: "shared/ui/adaptive/progress-bar/progress-bar.ts",
   },
   {
-    "selector": "lux-pull-to-refresh",
-    "className": "LxPullToRefresh",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/pull-to-refresh/pull-to-refresh.ts"
+    selector: "lux-pull-to-refresh",
+    className: "LxPullToRefresh",
+    category: "adaptive",
+    path: "shared/ui/adaptive/pull-to-refresh/pull-to-refresh.ts",
   },
   {
-    "selector": "lux-radio-button",
-    "className": "LxRadioButton",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/radio-button/radio-button.ts"
+    selector: "lux-radio-button",
+    className: "LxRadioButton",
+    category: "adaptive",
+    path: "shared/ui/adaptive/radio-button/radio-button.ts",
   },
   {
-    "selector": "lux-rating",
-    "className": "LxRating",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/rating/rating.ts"
+    selector: "lux-rating",
+    className: "LxRating",
+    category: "adaptive",
+    path: "shared/ui/adaptive/rating/rating.ts",
   },
   {
-    "selector": "lux-scroll-top",
-    "className": "LxScrollTop",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tap-to-top/tap-to-top.ts"
+    selector: "lux-scroll-top",
+    className: "LxScrollTop",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tap-to-top/tap-to-top.ts",
   },
   {
-    "selector": "lux-sidebar",
-    "className": "LxSidebar",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/sidebar/sidebar.ts"
+    selector: "lux-sidebar",
+    className: "LxSidebar",
+    category: "adaptive",
+    path: "shared/ui/adaptive/sidebar/sidebar.ts",
   },
   {
-    "selector": "lux-skeleton",
-    "className": "LxSkeleton",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/skeleton/skeleton.ts"
+    selector: "lux-skeleton",
+    className: "LxSkeleton",
+    category: "adaptive",
+    path: "shared/ui/adaptive/skeleton/skeleton.ts",
   },
   {
-    "selector": "lux-spinner",
-    "className": "LxSpinner",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/spinner/spinner.ts"
+    selector: "lux-spinner",
+    className: "LxSpinner",
+    category: "adaptive",
+    path: "shared/ui/adaptive/spinner/spinner.ts",
   },
   {
-    "selector": "lux-split-button",
-    "className": "LxSplitButton",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/split-button/split-button.ts"
+    selector: "lux-split-button",
+    className: "LxSplitButton",
+    category: "adaptive",
+    path: "shared/ui/adaptive/split-button/split-button.ts",
   },
   {
-    "selector": "lux-status-badge",
-    "className": "LxStatusBadge",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/status-badge/status-badge.ts"
+    selector: "lux-status-badge",
+    className: "LxStatusBadge",
+    category: "adaptive",
+    path: "shared/ui/adaptive/status-badge/status-badge.ts",
   },
   {
-    "selector": "lux-stepper",
-    "className": "LxStepper",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/stepper/stepper.ts"
+    selector: "lux-stepper",
+    className: "LxStepper",
+    category: "adaptive",
+    path: "shared/ui/adaptive/stepper/stepper.ts",
   },
   {
-    "selector": "lux-steps",
-    "className": "LxSteps",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/steps/steps.ts"
+    selector: "lux-steps",
+    className: "LxSteps",
+    category: "adaptive",
+    path: "shared/ui/adaptive/steps/steps.ts",
   },
   {
-    "selector": "lux-swipe-actions",
-    "className": "LxSwipeActions",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/swipe-actions/swipe-actions.ts"
+    selector: "lux-swipe-actions",
+    className: "LxSwipeActions",
+    category: "adaptive",
+    path: "shared/ui/adaptive/swipe-actions/swipe-actions.ts",
   },
   {
-    "selector": "lux-table",
-    "className": "LxTable",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/table/table.ts"
+    selector: "lux-table",
+    className: "LxTable",
+    category: "adaptive",
+    path: "shared/ui/adaptive/table/table.ts",
   },
   {
-    "selector": "lux-tabs",
-    "className": "LxTabs",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tabs/tabs.ts"
+    selector: "lux-tabs",
+    className: "LxTabs",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tabs/tabs.ts",
   },
   {
-    "selector": "lux-tag",
-    "className": "LxTag",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tag/tag.ts"
+    selector: "lux-tag",
+    className: "LxTag",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tag/tag.ts",
   },
   {
-    "selector": "lux-timeline",
-    "className": "LxTimeline",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/timeline/timeline.ts"
+    selector: "lux-timeline",
+    className: "LxTimeline",
+    category: "adaptive",
+    path: "shared/ui/adaptive/timeline/timeline.ts",
   },
   {
-    "selector": "lux-toast",
-    "className": "LxToast",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/toast/toast.ts"
+    selector: "lux-toast",
+    className: "LxToast",
+    category: "adaptive",
+    path: "shared/ui/adaptive/toast/toast.ts",
   },
   {
-    "selector": "lux-toolbar",
-    "className": "LxToolbar",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/toolbar/toolbar.ts"
+    selector: "lux-toolbar",
+    className: "LxToolbar",
+    category: "adaptive",
+    path: "shared/ui/adaptive/toolbar/toolbar.ts",
   },
   {
-    "selector": "lux-tree",
-    "className": "LxTree",
-    "category": "adaptive",
-    "path": "shared/ui/adaptive/tree/tree.ts"
+    selector: "lux-tree",
+    className: "LxTree",
+    category: "adaptive",
+    path: "shared/ui/adaptive/tree/tree.ts",
   },
   {
-    "selector": "app-ai-chat-widget",
-    "className": "AiChatWidget",
-    "category": "ai-chat-widget",
-    "path": "shared/ui/ai-chat-widget/ai-chat-widget.ts"
+    selector: "app-ai-chat-widget",
+    className: "AiChatWidget",
+    category: "ai-chat-widget",
+    path: "shared/ui/ai-chat-widget/ai-chat-widget.ts",
   },
   {
-    "selector": "ii-button",
-    "className": "MobileButtonIcon",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button.ts"
+    selector: "ii-button",
+    className: "MobileButtonIcon",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button.ts",
   },
   {
-    "selector": "ii-button-active-desactive",
-    "className": "MobileButtonIconActiveDesactive",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-active-desactive.ts"
+    selector: "ii-button-active-desactive",
+    className: "MobileButtonIconActiveDesactive",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-active-desactive.ts",
   },
   {
-    "selector": "ii-button-add",
-    "className": "MobileButtonIconAdd",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-add.ts"
+    selector: "ii-button-add",
+    className: "MobileButtonIconAdd",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-add.ts",
   },
   {
-    "selector": "ii-button-confirm",
-    "className": "MobileButtonIconConfirm",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-confirm.ts"
+    selector: "ii-button-confirm",
+    className: "MobileButtonIconConfirm",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-confirm.ts",
   },
   {
-    "selector": "ii-button-delete",
-    "className": "MobileButtonIconDelete",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-delete.ts"
+    selector: "ii-button-delete",
+    className: "MobileButtonIconDelete",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-delete.ts",
   },
   {
-    "selector": "ii-button-download",
-    "className": "MobileButtonIconDownload",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-download.ts"
+    selector: "ii-button-download",
+    className: "MobileButtonIconDownload",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-download.ts",
   },
   {
-    "selector": "ii-button-edit",
-    "className": "MobileButtonIconEdit",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-edit.ts"
+    selector: "ii-button-edit",
+    className: "MobileButtonIconEdit",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-edit.ts",
   },
   {
-    "selector": "ii-button-save",
-    "className": "MobileButtonIconSave",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-save.ts"
+    selector: "ii-button-save",
+    className: "MobileButtonIconSave",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-save.ts",
   },
   {
-    "selector": "ii-button-send-email",
-    "className": "MobileButtonIconSendEmail",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-send-email.ts"
+    selector: "ii-button-send-email",
+    className: "MobileButtonIconSendEmail",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-send-email.ts",
   },
   {
-    "selector": "ii-button-tracking",
-    "className": "MobileButtonIconTracking",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-tracking.ts"
+    selector: "ii-button-tracking",
+    className: "MobileButtonIconTracking",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-tracking.ts",
   },
   {
-    "selector": "ii-button-view-pdf",
-    "className": "MobileButtonIconViewPdf",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-icon/button-view-pdf.ts"
+    selector: "ii-button-view-pdf",
+    className: "MobileButtonIconViewPdf",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-icon/button-view-pdf.ts",
   },
   {
-    "selector": "il-button",
-    "className": "WebButtonLabel",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button.ts"
+    selector: "il-button",
+    className: "WebButtonLabel",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button.ts",
   },
   {
-    "selector": "il-button-active-desactive",
-    "className": "WebButtonLabelActiveDesactive",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-active-desactive.ts"
+    selector: "il-button-active-desactive",
+    className: "WebButtonLabelActiveDesactive",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-active-desactive.ts",
   },
   {
-    "selector": "il-button-add",
-    "className": "WebButtonLabelAdd",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-add.ts"
+    selector: "il-button-add",
+    className: "WebButtonLabelAdd",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-add.ts",
   },
   {
-    "selector": "il-button-confirm",
-    "className": "WebButtonLabelConfirm",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-confirm.ts"
+    selector: "il-button-confirm",
+    className: "WebButtonLabelConfirm",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-confirm.ts",
   },
   {
-    "selector": "il-button-delete",
-    "className": "WebButtonLabelDelete",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-delete.ts"
+    selector: "il-button-delete",
+    className: "WebButtonLabelDelete",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-delete.ts",
   },
   {
-    "selector": "il-button-download",
-    "className": "WebButtonLabelDownload",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-download.ts"
+    selector: "il-button-download",
+    className: "WebButtonLabelDownload",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-download.ts",
   },
   {
-    "selector": "il-button-edit",
-    "className": "WebButtonLabelEdit",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-edit.ts"
+    selector: "il-button-edit",
+    className: "WebButtonLabelEdit",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-edit.ts",
   },
   {
-    "selector": "il-button-group",
-    "className": "IlButtonGroup",
-    "category": "buttons",
-    "path": "shared/ui/buttons/button-group/button-group.ts"
+    selector: "il-button-group",
+    className: "IlButtonGroup",
+    category: "buttons",
+    path: "shared/ui/buttons/button-group/button-group.ts",
   },
   {
-    "selector": "il-button-item",
-    "className": "WebButtonLabelItem",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-item.ts"
+    selector: "il-button-item",
+    className: "WebButtonLabelItem",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-item.ts",
   },
   {
-    "selector": "il-button-save",
-    "className": "WebButtonLabelSave",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-save.ts"
+    selector: "il-button-save",
+    className: "WebButtonLabelSave",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-save.ts",
   },
   {
-    "selector": "il-button-send-email",
-    "className": "WebButtonLabelSendEmail",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-send-email.ts"
+    selector: "il-button-send-email",
+    className: "WebButtonLabelSendEmail",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-send-email.ts",
   },
   {
-    "selector": "il-button-tracking",
-    "className": "WebButtonLabelTracking",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-tracking.ts"
+    selector: "il-button-tracking",
+    className: "WebButtonLabelTracking",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-tracking.ts",
   },
   {
-    "selector": "il-button-view-pdf",
-    "className": "WebButtonLabelViewPdf",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-label/button-view-pdf.ts"
+    selector: "il-button-view-pdf",
+    className: "WebButtonLabelViewPdf",
+    category: "buttons",
+    path: "shared/ui/buttons/web-label/button-view-pdf.ts",
   },
   {
-    "selector": "ili-button",
-    "className": "MobileButtonLabel",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button.ts"
+    selector: "ili-button",
+    className: "MobileButtonLabel",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button.ts",
   },
   {
-    "selector": "ili-button-active-desactive",
-    "className": "MobileButtonLabelActiveDesactive",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-active-desactive.ts"
+    selector: "ili-button-active-desactive",
+    className: "MobileButtonLabelActiveDesactive",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-active-desactive.ts",
   },
   {
-    "selector": "ili-button-add",
-    "className": "MobileButtonLabelAdd",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-add.ts"
+    selector: "ili-button-add",
+    className: "MobileButtonLabelAdd",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-add.ts",
   },
   {
-    "selector": "ili-button-confirm",
-    "className": "MobileButtonLabelConfirm",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-confirm.ts"
+    selector: "ili-button-confirm",
+    className: "MobileButtonLabelConfirm",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-confirm.ts",
   },
   {
-    "selector": "ili-button-delete",
-    "className": "MobileButtonLabelDelete",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-delete.ts"
+    selector: "ili-button-delete",
+    className: "MobileButtonLabelDelete",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-delete.ts",
   },
   {
-    "selector": "ili-button-download",
-    "className": "MobileButtonLabelDownload",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-download.ts"
+    selector: "ili-button-download",
+    className: "MobileButtonLabelDownload",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-download.ts",
   },
   {
-    "selector": "ili-button-edit",
-    "className": "MobileButtonLabelEdit",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-edit.ts"
+    selector: "ili-button-edit",
+    className: "MobileButtonLabelEdit",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-edit.ts",
   },
   {
-    "selector": "ili-button-item",
-    "className": "MobileButtonLabelItem",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-item.ts"
+    selector: "ili-button-item",
+    className: "MobileButtonLabelItem",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-item.ts",
   },
   {
-    "selector": "ili-button-save",
-    "className": "MobileButtonLabelSave",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-save.ts"
+    selector: "ili-button-save",
+    className: "MobileButtonLabelSave",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-save.ts",
   },
   {
-    "selector": "ili-button-send-email",
-    "className": "MobileButtonLabelSendEmail",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-send-email.ts"
+    selector: "ili-button-send-email",
+    className: "MobileButtonLabelSendEmail",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-send-email.ts",
   },
   {
-    "selector": "ili-button-tracking",
-    "className": "MobileButtonLabelTracking",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-tracking.ts"
+    selector: "ili-button-tracking",
+    className: "MobileButtonLabelTracking",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-tracking.ts",
   },
   {
-    "selector": "ili-button-view-pdf",
-    "className": "MobileButtonLabelViewPdf",
-    "category": "buttons",
-    "path": "shared/ui/buttons/mobile-label/button-view-pdf.ts"
+    selector: "ili-button-view-pdf",
+    className: "MobileButtonLabelViewPdf",
+    category: "buttons",
+    path: "shared/ui/buttons/mobile-label/button-view-pdf.ts",
   },
   {
-    "selector": "iw-button",
-    "className": "WebButtonIcon",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button.ts"
+    selector: "iw-button",
+    className: "WebButtonIcon",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button.ts",
   },
   {
-    "selector": "iw-button-active-desactive",
-    "className": "WebButtonIconActiveDesactive",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-active-desactive.ts"
+    selector: "iw-button-active-desactive",
+    className: "WebButtonIconActiveDesactive",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-active-desactive.ts",
   },
   {
-    "selector": "iw-button-add",
-    "className": "WebButtonIconAdd",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-add.ts"
+    selector: "iw-button-add",
+    className: "WebButtonIconAdd",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-add.ts",
   },
   {
-    "selector": "iw-button-confirm",
-    "className": "WebButtonIconConfirm",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-confirm.ts"
+    selector: "iw-button-confirm",
+    className: "WebButtonIconConfirm",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-confirm.ts",
   },
   {
-    "selector": "iw-button-delete",
-    "className": "WebButtonIconDelete",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-delete.ts"
+    selector: "iw-button-delete",
+    className: "WebButtonIconDelete",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-delete.ts",
   },
   {
-    "selector": "iw-button-download",
-    "className": "WebButtonIconDownload",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-download.ts"
+    selector: "iw-button-download",
+    className: "WebButtonIconDownload",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-download.ts",
   },
   {
-    "selector": "iw-button-edit",
-    "className": "WebButtonIconEdit",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-edit.ts"
+    selector: "iw-button-edit",
+    className: "WebButtonIconEdit",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-edit.ts",
   },
   {
-    "selector": "iw-button-item",
-    "className": "WebButtonIconItem",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-item.ts"
+    selector: "iw-button-item",
+    className: "WebButtonIconItem",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-item.ts",
   },
   {
-    "selector": "iw-button-save",
-    "className": "WebButtonIconSave",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-save.ts"
+    selector: "iw-button-save",
+    className: "WebButtonIconSave",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-save.ts",
   },
   {
-    "selector": "iw-button-send-email",
-    "className": "WebButtonIconSendEmail",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-send-email.ts"
+    selector: "iw-button-send-email",
+    className: "WebButtonIconSendEmail",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-send-email.ts",
   },
   {
-    "selector": "iw-button-tracking",
-    "className": "WebButtonIconTracking",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-tracking.ts"
+    selector: "iw-button-tracking",
+    className: "WebButtonIconTracking",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-tracking.ts",
   },
   {
-    "selector": "iw-button-view-pdf",
-    "className": "WebButtonIconViewPdf",
-    "category": "buttons",
-    "path": "shared/ui/buttons/web-icon/button-view-pdf.ts"
+    selector: "iw-button-view-pdf",
+    className: "WebButtonIconViewPdf",
+    category: "buttons",
+    path: "shared/ui/buttons/web-icon/button-view-pdf.ts",
   },
   {
-    "selector": "app-ds-chart",
-    "className": "DsChart",
-    "category": "charts",
-    "path": "shared/ui/charts/chart.ts"
+    selector: "app-ds-chart",
+    className: "DsChart",
+    category: "charts",
+    path: "shared/ui/charts/chart.ts",
   },
   {
-    "selector": "[step]",
-    "className": "StepperStepSection",
-    "category": "core",
-    "path": "shared/ui/core/stepper-step-section.directive.ts"
+    selector: "[step]",
+    className: "StepperStepSection",
+    category: "core",
+    path: "shared/ui/core/stepper-step-section.directive.ts",
   },
   {
-    "selector": "base-processing-overlay",
-    "className": "ProcessingOverlayBase",
-    "category": "core",
-    "path": "shared/ui/core/processing-overlay.base.ts"
+    selector: "base-processing-overlay",
+    className: "ProcessingOverlayBase",
+    category: "core",
+    path: "shared/ui/core/processing-overlay.base.ts",
   },
   {
-    "selector": "app-image-analysis-dialog",
-    "className": "ImageAnalysisDialogComponent",
-    "category": "image-analysis-dialog",
-    "path": "shared/ui/image-analysis-dialog/image-analysis-dialog.ts"
+    selector: "app-image-analysis-dialog",
+    className: "ImageAnalysisDialogComponent",
+    category: "image-analysis-dialog",
+    path: "shared/ui/image-analysis-dialog/image-analysis-dialog.ts",
   },
   {
-    "selector": "app-custom-input-upload-pdf-signal",
-    "className": "InputUploadPdf",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-upload-pdf/input-upload-pdf.ts"
+    selector: "app-custom-input-upload-pdf-signal",
+    className: "InputUploadPdf",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-upload-pdf/input-upload-pdf.ts",
   },
   {
-    "selector": "app-subir-pdf",
-    "className": "SubirPdf",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-upload-pdf-signal.ts"
+    selector: "app-subir-pdf",
+    className: "SubirPdf",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-upload-pdf-signal.ts",
   },
   {
-    "selector": "app-validation-errors-custom-input",
-    "className": "ValidationErrorsCustomInput",
-    "category": "inputs",
-    "path": "shared/ui/inputs/core/validation-errors-custom-input.ts"
+    selector: "app-validation-errors-custom-input",
+    className: "ValidationErrorsCustomInput",
+    category: "inputs",
+    path: "shared/ui/inputs/core/validation-errors-custom-input.ts",
   },
   {
-    "selector": "base-input-signal",
-    "className": "BaseInputSignal",
-    "category": "inputs",
-    "path": "shared/ui/inputs/core/base-input-signal.ts"
+    selector: "base-input-signal",
+    className: "BaseInputSignal",
+    category: "inputs",
+    path: "shared/ui/inputs/core/base-input-signal.ts",
   },
   {
-    "selector": "base-ionic-input",
-    "className": "BaseIonicInput",
-    "category": "inputs",
-    "path": "shared/ui/inputs/core/base-ionic-input.ts"
+    selector: "base-ionic-input",
+    className: "BaseIonicInput",
+    category: "inputs",
+    path: "shared/ui/inputs/core/base-ionic-input.ts",
   },
   {
-    "selector": "custom-input-autocomplete-multiple-signal",
-    "className": "CustomInputAutoMultiple",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-autocomplete-multiple-signal.ts"
+    selector: "custom-input-autocomplete-multiple-signal",
+    className: "CustomInputAutoMultiple",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-autocomplete-multiple-signal.ts",
   },
   {
-    "selector": "custom-input-autocomplete-signal",
-    "className": "InputAutocomplete",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-autocomplete/input-autocomplete.ts"
+    selector: "custom-input-autocomplete-signal",
+    className: "InputAutocomplete",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-autocomplete/input-autocomplete.ts",
   },
   {
-    "selector": "custom-input-check-signal",
-    "className": "InputCheck",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-check/input-check.ts"
+    selector: "custom-input-check-signal",
+    className: "InputCheck",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-check/input-check.ts",
   },
   {
-    "selector": "custom-input-currency-signal",
-    "className": "InputCurrency",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-currency/input-currency.ts"
+    selector: "custom-input-currency-signal",
+    className: "InputCurrency",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-currency/input-currency.ts",
   },
   {
-    "selector": "custom-input-date-signal",
-    "className": "InputDate",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-date/input-date.ts"
+    selector: "custom-input-date-signal",
+    className: "InputDate",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-date/input-date.ts",
   },
   {
-    "selector": "custom-input-date-time-native",
-    "className": "CustomInputDateTimeNative",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-date-time-native.ts"
+    selector: "custom-input-date-time-native",
+    className: "CustomInputDateTimeNative",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-date-time-native.ts",
   },
   {
-    "selector": "custom-input-date-time-signal",
-    "className": "InputDateTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-date-time/input-date-time.ts"
+    selector: "custom-input-date-time-signal",
+    className: "InputDateTime",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-date-time/input-date-time.ts",
   },
   {
-    "selector": "custom-input-datepicker-signal",
-    "className": "InputDatepicker",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-datepicker/input-datepicker.ts"
+    selector: "custom-input-datepicker-signal",
+    className: "InputDatepicker",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-datepicker/input-datepicker.ts",
   },
   {
-    "selector": "custom-input-decimal-signal",
-    "className": "CustomInputDecimal",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-decimal-signal.ts"
+    selector: "custom-input-decimal-signal",
+    className: "CustomInputDecimal",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-decimal-signal.ts",
   },
   {
-    "selector": "custom-input-email",
-    "className": "InputEmail",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-email/input-email.ts"
+    selector: "custom-input-email",
+    className: "InputEmail",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-email/input-email.ts",
   },
   {
-    "selector": "custom-input-file-signal",
-    "className": "InputFile",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-file/input-file.ts"
+    selector: "custom-input-file-signal",
+    className: "InputFile",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-file/input-file.ts",
   },
   {
-    "selector": "custom-input-hour-signal",
-    "className": "CustomInputHour",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-hour-signal.ts"
+    selector: "custom-input-hour-signal",
+    className: "CustomInputHour",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-hour-signal.ts",
   },
   {
-    "selector": "custom-input-img-signal",
-    "className": "InputImg",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-img/input-img.ts"
+    selector: "custom-input-img-signal",
+    className: "InputImg",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-img/input-img.ts",
   },
   {
-    "selector": "custom-input-mask-signal",
-    "className": "InputMask",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-mask/input-mask.ts"
+    selector: "custom-input-mask-signal",
+    className: "InputMask",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-mask/input-mask.ts",
   },
   {
-    "selector": "custom-input-month",
-    "className": "InputMonth",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-month/input-month.ts"
+    selector: "custom-input-month",
+    className: "InputMonth",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-month/input-month.ts",
   },
   {
-    "selector": "custom-input-multiselect-signal",
-    "className": "InputMultiselect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-multiselect/input-multiselect.ts"
+    selector: "custom-input-multiselect-signal",
+    className: "InputMultiselect",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-multiselect/input-multiselect.ts",
   },
   {
-    "selector": "custom-input-number-signal",
-    "className": "InputNumber",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-number/input-number.ts"
+    selector: "custom-input-number-signal",
+    className: "InputNumber",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-number/input-number.ts",
   },
   {
-    "selector": "custom-input-password-signal",
-    "className": "InputPassword",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-password/input-password.ts"
+    selector: "custom-input-password-signal",
+    className: "InputPassword",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-password/input-password.ts",
   },
   {
-    "selector": "custom-input-phone-prefix",
-    "className": "InputPhonePrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-phone-prefix/input-phone-prefix.ts"
+    selector: "custom-input-phone-prefix",
+    className: "InputPhonePrefix",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-phone-prefix/input-phone-prefix.ts",
   },
   {
-    "selector": "custom-input-select-button-signal",
-    "className": "CustomInputSelectButton",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-select-button-signal.ts"
+    selector: "custom-input-select-button-signal",
+    className: "CustomInputSelectButton",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-select-button-signal.ts",
   },
   {
-    "selector": "custom-input-select-signal",
-    "className": "InputSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-select/input-select.ts"
+    selector: "custom-input-select-signal",
+    className: "InputSelect",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-select/input-select.ts",
   },
   {
-    "selector": "custom-input-select-signal-bool",
-    "className": "InputSelectBool",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-select-bool/input-select-bool.ts"
+    selector: "custom-input-select-signal-bool",
+    className: "InputSelectBool",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-select-bool/input-select-bool.ts",
   },
   {
-    "selector": "custom-input-switch-signal",
-    "className": "CustomInputSwitch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-switch-signal.ts"
+    selector: "custom-input-switch-signal",
+    className: "CustomInputSwitch",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-switch-signal.ts",
   },
   {
-    "selector": "custom-input-text-signal",
-    "className": "InputText",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-text/input-text.ts"
+    selector: "custom-input-text-signal",
+    className: "InputText",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-text/input-text.ts",
   },
   {
-    "selector": "custom-input-textarea-signal",
-    "className": "InputTextarea",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-textarea/input-textarea.ts"
+    selector: "custom-input-textarea-signal",
+    className: "InputTextarea",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-textarea/input-textarea.ts",
   },
   {
-    "selector": "custom-input-time-signal",
-    "className": "InputTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-time/input-time.ts"
+    selector: "custom-input-time-signal",
+    className: "InputTime",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-time/input-time.ts",
   },
   {
-    "selector": "custom-input-toggle-switch-signal",
-    "className": "InputToggleSwitch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-toggle-switch/input-toggle-switch.ts"
+    selector: "custom-input-toggle-switch-signal",
+    className: "InputToggleSwitch",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-toggle-switch/input-toggle-switch.ts",
   },
   {
-    "selector": "custom-input-url",
-    "className": "InputUrl",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-url/input-url.ts"
+    selector: "custom-input-url",
+    className: "InputUrl",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-url/input-url.ts",
   },
   {
-    "selector": "custom-search-input-signal",
-    "className": "InputSearch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/adaptive/input-search/input-search.ts"
+    selector: "custom-search-input-signal",
+    className: "InputSearch",
+    category: "inputs",
+    path: "shared/ui/inputs/adaptive/input-search/input-search.ts",
   },
   {
-    "selector": "ion-input-autocomplete",
-    "className": "IonInputAutocomplete",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-autocomplete.ts"
+    selector: "ion-input-autocomplete",
+    className: "IonInputAutocomplete",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-autocomplete.ts",
   },
   {
-    "selector": "ion-input-checkbox",
-    "className": "IonInputCheckbox",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-checkbox.ts"
+    selector: "ion-input-checkbox",
+    className: "IonInputCheckbox",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-checkbox.ts",
   },
   {
-    "selector": "ion-input-currency",
-    "className": "IonInputCurrency",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-currency.ts"
+    selector: "ion-input-currency",
+    className: "IonInputCurrency",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-currency.ts",
   },
   {
-    "selector": "ion-input-date",
-    "className": "IonInputDate",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-date.ts"
+    selector: "ion-input-date",
+    className: "IonInputDate",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-date.ts",
   },
   {
-    "selector": "ion-input-date-time",
-    "className": "IonInputDateTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-date-time.ts"
+    selector: "ion-input-date-time",
+    className: "IonInputDateTime",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-date-time.ts",
   },
   {
-    "selector": "ion-input-datepicker",
-    "className": "IonInputDatepicker",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-datepicker.ts"
+    selector: "ion-input-datepicker",
+    className: "IonInputDatepicker",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-datepicker.ts",
   },
   {
-    "selector": "ion-input-email",
-    "className": "IonInputEmail",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-email.ts"
+    selector: "ion-input-email",
+    className: "IonInputEmail",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-email.ts",
   },
   {
-    "selector": "ion-input-file",
-    "className": "IonInputFile",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-file.ts"
+    selector: "ion-input-file",
+    className: "IonInputFile",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-file.ts",
   },
   {
-    "selector": "ion-input-img",
-    "className": "IonInputImg",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-img.ts"
+    selector: "ion-input-img",
+    className: "IonInputImg",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-img.ts",
   },
   {
-    "selector": "ion-input-mask",
-    "className": "IonInputMask",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-mask.ts"
+    selector: "ion-input-mask",
+    className: "IonInputMask",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-mask.ts",
   },
   {
-    "selector": "ion-input-month",
-    "className": "IonInputMonth",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-month.ts"
+    selector: "ion-input-month",
+    className: "IonInputMonth",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-month.ts",
   },
   {
-    "selector": "ion-input-multiselect",
-    "className": "IonInputMultiselect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-multiselect.ts"
+    selector: "ion-input-multiselect",
+    className: "IonInputMultiselect",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-multiselect.ts",
   },
   {
-    "selector": "ion-input-ng-select",
-    "className": "IonInputNgSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-ng-select.ts"
+    selector: "ion-input-ng-select",
+    className: "IonInputNgSelect",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-ng-select.ts",
   },
   {
-    "selector": "ion-input-number",
-    "className": "IonInputNumber",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-number.ts"
+    selector: "ion-input-number",
+    className: "IonInputNumber",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-number.ts",
   },
   {
-    "selector": "ion-input-password",
-    "className": "IonInputPassword",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-password.ts"
+    selector: "ion-input-password",
+    className: "IonInputPassword",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-password.ts",
   },
   {
-    "selector": "ion-input-phone-prefix",
-    "className": "IonInputPhonePrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-phone-prefix.ts"
+    selector: "ion-input-phone-prefix",
+    className: "IonInputPhonePrefix",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-phone-prefix.ts",
   },
   {
-    "selector": "ion-input-search",
-    "className": "IonInputSearch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-search.ts"
+    selector: "ion-input-search",
+    className: "IonInputSearch",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-search.ts",
   },
   {
-    "selector": "ion-input-select",
-    "className": "IonInputSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-select.ts"
+    selector: "ion-input-select",
+    className: "IonInputSelect",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-select.ts",
   },
   {
-    "selector": "ion-input-select-bool",
-    "className": "IonInputSelectBool",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-select-bool.ts"
+    selector: "ion-input-select-bool",
+    className: "IonInputSelectBool",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-select-bool.ts",
   },
   {
-    "selector": "ion-input-select-prefix",
-    "className": "IonInputSelectPrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-select-prefix.ts"
+    selector: "ion-input-select-prefix",
+    className: "IonInputSelectPrefix",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-select-prefix.ts",
   },
   {
-    "selector": "ion-input-text",
-    "className": "IonInputText",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-text.ts"
+    selector: "ion-input-text",
+    className: "IonInputText",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-text.ts",
   },
   {
-    "selector": "ion-input-textarea",
-    "className": "IonInputTextarea",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-textarea.ts"
+    selector: "ion-input-textarea",
+    className: "IonInputTextarea",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-textarea.ts",
   },
   {
-    "selector": "ion-input-time",
-    "className": "IonInputTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-time.ts"
+    selector: "ion-input-time",
+    className: "IonInputTime",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-time.ts",
   },
   {
-    "selector": "ion-input-toggle",
-    "className": "IonInputToggle",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-toggle.ts"
+    selector: "ion-input-toggle",
+    className: "IonInputToggle",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-toggle.ts",
   },
   {
-    "selector": "ion-input-upload-pdf",
-    "className": "IonInputUploadPdf",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-upload-pdf.ts"
+    selector: "ion-input-upload-pdf",
+    className: "IonInputUploadPdf",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-upload-pdf.ts",
   },
   {
-    "selector": "ion-input-url",
-    "className": "IonInputUrl",
-    "category": "inputs",
-    "path": "shared/ui/inputs/mobile/ion-input-url.ts"
+    selector: "ion-input-url",
+    className: "IonInputUrl",
+    category: "inputs",
+    path: "shared/ui/inputs/mobile/ion-input-url.ts",
   },
   {
-    "selector": "web-custom-input-autocomplete-signal",
-    "className": "CustomInputAutoComplete",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-autocomplete-signal.ts"
+    selector: "web-custom-input-autocomplete-signal",
+    className: "CustomInputAutoComplete",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-autocomplete-signal.ts",
   },
   {
-    "selector": "web-custom-input-date-time-signal",
-    "className": "CustomInputDateTimeSignal",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-date-time-signal.ts"
+    selector: "web-custom-input-date-time-signal",
+    className: "CustomInputDateTimeSignal",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-date-time-signal.ts",
   },
   {
-    "selector": "web-custom-input-datepicker-signal",
-    "className": "CustomInputDatepicker",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-datepicker-signal.ts"
+    selector: "web-custom-input-datepicker-signal",
+    className: "CustomInputDatepicker",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-datepicker-signal.ts",
   },
   {
-    "selector": "web-custom-input-email",
-    "className": "CustomInputEmail",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-email-signal.ts"
+    selector: "web-custom-input-email",
+    className: "CustomInputEmail",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-email-signal.ts",
   },
   {
-    "selector": "web-custom-input-img-signal",
-    "className": "CustomInputImg",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-img-signal.ts"
+    selector: "web-custom-input-img-signal",
+    className: "CustomInputImg",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-img-signal.ts",
   },
   {
-    "selector": "web-custom-input-mask-signal",
-    "className": "CustomInputMaskSignal",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-mask-signal.ts"
+    selector: "web-custom-input-mask-signal",
+    className: "CustomInputMaskSignal",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-mask-signal.ts",
   },
   {
-    "selector": "web-custom-input-month",
-    "className": "CustomInputMonth",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-month-signal.ts"
+    selector: "web-custom-input-month",
+    className: "CustomInputMonth",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-month-signal.ts",
   },
   {
-    "selector": "web-custom-input-phone-prefix",
-    "className": "CustomInputPhonePrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-phone-prefix.ts"
+    selector: "web-custom-input-phone-prefix",
+    className: "CustomInputPhonePrefix",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-phone-prefix.ts",
   },
   {
-    "selector": "web-custom-input-url",
-    "className": "CustomInputUrl",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/custom-input-url-signal.ts"
+    selector: "web-custom-input-url",
+    className: "CustomInputUrl",
+    category: "inputs",
+    path: "shared/ui/inputs/web/custom-input-url-signal.ts",
   },
   {
-    "selector": "web-input-autocomplete",
-    "className": "WebInputAutocomplete",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-autocomplete/input-autocomplete.ts"
+    selector: "web-input-autocomplete",
+    className: "WebInputAutocomplete",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-autocomplete/input-autocomplete.ts",
   },
   {
-    "selector": "web-input-check",
-    "className": "WebInputCheck",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-check/input-check.ts"
+    selector: "web-input-check",
+    className: "WebInputCheck",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-check/input-check.ts",
   },
   {
-    "selector": "web-input-currency",
-    "className": "WebInputCurrency",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-currency/input-currency.ts"
+    selector: "web-input-currency",
+    className: "WebInputCurrency",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-currency/input-currency.ts",
   },
   {
-    "selector": "web-input-date",
-    "className": "WebInputDate",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-date/input-date.ts"
+    selector: "web-input-date",
+    className: "WebInputDate",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-date/input-date.ts",
   },
   {
-    "selector": "web-input-date-time",
-    "className": "WebInputDateTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-date-time/input-date-time.ts"
+    selector: "web-input-date-time",
+    className: "WebInputDateTime",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-date-time/input-date-time.ts",
   },
   {
-    "selector": "web-input-datepicker",
-    "className": "WebInputDatepicker",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-datepicker/input-datepicker.ts"
+    selector: "web-input-datepicker",
+    className: "WebInputDatepicker",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-datepicker/input-datepicker.ts",
   },
   {
-    "selector": "web-input-email",
-    "className": "WebInputEmail",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-email/input-email.ts"
+    selector: "web-input-email",
+    className: "WebInputEmail",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-email/input-email.ts",
   },
   {
-    "selector": "web-input-file",
-    "className": "WebInputFile",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-file/input-file.ts"
+    selector: "web-input-file",
+    className: "WebInputFile",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-file/input-file.ts",
   },
   {
-    "selector": "web-input-img",
-    "className": "WebInputImg",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-img/input-img.ts"
+    selector: "web-input-img",
+    className: "WebInputImg",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-img/input-img.ts",
   },
   {
-    "selector": "web-input-mask",
-    "className": "WebInputMask",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-mask/input-mask.ts"
+    selector: "web-input-mask",
+    className: "WebInputMask",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-mask/input-mask.ts",
   },
   {
-    "selector": "web-input-month",
-    "className": "WebInputMonth",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-month/input-month.ts"
+    selector: "web-input-month",
+    className: "WebInputMonth",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-month/input-month.ts",
   },
   {
-    "selector": "web-input-multiselect",
-    "className": "WebInputMultiselect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-multiselect/input-multiselect.ts"
+    selector: "web-input-multiselect",
+    className: "WebInputMultiselect",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-multiselect/input-multiselect.ts",
   },
   {
-    "selector": "web-input-number",
-    "className": "WebInputNumber",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-number/input-number.ts"
+    selector: "web-input-number",
+    className: "WebInputNumber",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-number/input-number.ts",
   },
   {
-    "selector": "web-input-password",
-    "className": "WebInputPassword",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-password/input-password.ts"
+    selector: "web-input-password",
+    className: "WebInputPassword",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-password/input-password.ts",
   },
   {
-    "selector": "web-input-phone-prefix",
-    "className": "WebInputPhonePrefix",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-phone-prefix/input-phone-prefix.ts"
+    selector: "web-input-phone-prefix",
+    className: "WebInputPhonePrefix",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-phone-prefix/input-phone-prefix.ts",
   },
   {
-    "selector": "web-input-search",
-    "className": "WebInputSearch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-search/input-search.ts"
+    selector: "web-input-search",
+    className: "WebInputSearch",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-search/input-search.ts",
   },
   {
-    "selector": "web-input-select",
-    "className": "WebInputSelect",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-select/input-select.ts"
+    selector: "web-input-select",
+    className: "WebInputSelect",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-select/input-select.ts",
   },
   {
-    "selector": "web-input-select-bool",
-    "className": "WebInputSelectBool",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-select-bool/input-select-bool.ts"
+    selector: "web-input-select-bool",
+    className: "WebInputSelectBool",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-select-bool/input-select-bool.ts",
   },
   {
-    "selector": "web-input-text",
-    "className": "WebInputText",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-text/input-text.ts"
+    selector: "web-input-text",
+    className: "WebInputText",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-text/input-text.ts",
   },
   {
-    "selector": "web-input-textarea",
-    "className": "WebInputTextarea",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-textarea/input-textarea.ts"
+    selector: "web-input-textarea",
+    className: "WebInputTextarea",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-textarea/input-textarea.ts",
   },
   {
-    "selector": "web-input-time",
-    "className": "WebInputTime",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-time/input-time.ts"
+    selector: "web-input-time",
+    className: "WebInputTime",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-time/input-time.ts",
   },
   {
-    "selector": "web-input-toggle-switch",
-    "className": "WebInputToggleSwitch",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-toggle-switch/input-toggle-switch.ts"
+    selector: "web-input-toggle-switch",
+    className: "WebInputToggleSwitch",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-toggle-switch/input-toggle-switch.ts",
   },
   {
-    "selector": "web-input-upload-pdf",
-    "className": "WebInputUploadPdf",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-upload-pdf/input-upload-pdf.ts"
+    selector: "web-input-upload-pdf",
+    className: "WebInputUploadPdf",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-upload-pdf/input-upload-pdf.ts",
   },
   {
-    "selector": "web-input-url",
-    "className": "WebInputUrl",
-    "category": "inputs",
-    "path": "shared/ui/inputs/web/input-url/input-url.ts"
+    selector: "web-input-url",
+    className: "WebInputUrl",
+    category: "inputs",
+    path: "shared/ui/inputs/web/input-url/input-url.ts",
   },
   {
-    "selector": "app-data-view-mobile",
-    "className": "DataViewMobile",
-    "category": "mobile",
-    "path": "shared/ui/mobile/data-view-mobile/data-view-mobile.ts"
+    selector: "app-data-view-mobile",
+    className: "DataViewMobile",
+    category: "mobile",
+    path: "shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
   },
   {
-    "selector": "app-tab-bar",
-    "className": "AppTabBar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tab-bar/tab-bar.ts"
+    selector: "app-tab-bar",
+    className: "AppTabBar",
+    category: "mobile",
+    path: "shared/ui/mobile/tab-bar/tab-bar.ts",
   },
   {
-    "selector": "ili-accordion",
-    "className": "MobileAccordion",
-    "category": "mobile",
-    "path": "shared/ui/mobile/accordion/accordion.ts"
+    selector: "ili-accordion",
+    className: "MobileAccordion",
+    category: "mobile",
+    path: "shared/ui/mobile/accordion/accordion.ts",
   },
   {
-    "selector": "ili-action-menu",
-    "className": "MobileActionMenu",
-    "category": "mobile",
-    "path": "shared/ui/mobile/action-menu-mobile/action-menu-mobile.ts"
+    selector: "ili-action-menu",
+    className: "MobileActionMenu",
+    category: "mobile",
+    path: "shared/ui/mobile/action-menu-mobile/action-menu-mobile.ts",
   },
   {
-    "selector": "ili-avatar",
-    "className": "MobileAvatar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/avatar/avatar.ts"
+    selector: "ili-avatar",
+    className: "MobileAvatar",
+    category: "mobile",
+    path: "shared/ui/mobile/avatar/avatar.ts",
   },
   {
-    "selector": "ili-badge",
-    "className": "MobileBadge",
-    "category": "mobile",
-    "path": "shared/ui/mobile/badge/badge.ts"
+    selector: "ili-badge",
+    className: "MobileBadge",
+    category: "mobile",
+    path: "shared/ui/mobile/badge/badge.ts",
   },
   {
-    "selector": "ili-bottom-nav",
-    "className": "MobileBottomNav",
-    "category": "mobile",
-    "path": "shared/ui/mobile/bottom-nav/bottom-nav.ts"
+    selector: "ili-bottom-nav",
+    className: "MobileBottomNav",
+    category: "mobile",
+    path: "shared/ui/mobile/bottom-nav/bottom-nav.ts",
   },
   {
-    "selector": "ili-breadcrumbs",
-    "className": "MobileBreadcrumbs",
-    "category": "mobile",
-    "path": "shared/ui/mobile/breadcrumbs/breadcrumbs.ts"
+    selector: "ili-breadcrumbs",
+    className: "MobileBreadcrumbs",
+    category: "mobile",
+    path: "shared/ui/mobile/breadcrumbs/breadcrumbs.ts",
   },
   {
-    "selector": "ili-card",
-    "className": "MobileCard",
-    "category": "mobile",
-    "path": "shared/ui/mobile/card/card.ts"
+    selector: "ili-card",
+    className: "MobileCard",
+    category: "mobile",
+    path: "shared/ui/mobile/card/card.ts",
   },
   {
-    "selector": "ili-carousel",
-    "className": "MobileCarousel",
-    "category": "mobile",
-    "path": "shared/ui/mobile/carousel/carousel.ts"
+    selector: "ili-carousel",
+    className: "MobileCarousel",
+    category: "mobile",
+    path: "shared/ui/mobile/carousel/carousel.ts",
   },
   {
-    "selector": "ili-checkbox",
-    "className": "IliCheckbox",
-    "category": "mobile",
-    "path": "shared/ui/mobile/checkbox/checkbox.ts"
+    selector: "ili-checkbox",
+    className: "IliCheckbox",
+    category: "mobile",
+    path: "shared/ui/mobile/checkbox/checkbox.ts",
   },
   {
-    "selector": "ili-chip",
-    "className": "MobileChip",
-    "category": "mobile",
-    "path": "shared/ui/mobile/chip/chip.ts"
+    selector: "ili-chip",
+    className: "MobileChip",
+    category: "mobile",
+    path: "shared/ui/mobile/chip/chip.ts",
   },
   {
-    "selector": "ili-confirm-dialog",
-    "className": "MobileConfirmDialog",
-    "category": "mobile",
-    "path": "shared/ui/mobile/confirm-dialog/confirm-dialog.ts"
+    selector: "ili-confirm-dialog",
+    className: "MobileConfirmDialog",
+    category: "mobile",
+    path: "shared/ui/mobile/confirm-dialog/confirm-dialog.ts",
   },
   {
-    "selector": "ili-divider",
-    "className": "IliDivider",
-    "category": "mobile",
-    "path": "shared/ui/mobile/divider/divider.ts"
+    selector: "ili-divider",
+    className: "IliDivider",
+    category: "mobile",
+    path: "shared/ui/mobile/divider/divider.ts",
   },
   {
-    "selector": "ili-editor",
-    "className": "MobileEditor",
-    "category": "mobile",
-    "path": "shared/ui/mobile/editor/editor.ts"
+    selector: "ili-editor",
+    className: "MobileEditor",
+    category: "mobile",
+    path: "shared/ui/mobile/editor/editor.ts",
   },
   {
-    "selector": "ili-empty-state",
-    "className": "MobileEmptyState",
-    "category": "mobile",
-    "path": "shared/ui/mobile/empty-state/empty-state.ts"
+    selector: "ili-empty-state",
+    className: "MobileEmptyState",
+    category: "mobile",
+    path: "shared/ui/mobile/empty-state/empty-state.ts",
   },
   {
-    "selector": "ili-fieldset",
-    "className": "IliFieldset",
-    "category": "mobile",
-    "path": "shared/ui/mobile/fieldset/fieldset.ts"
+    selector: "ili-fieldset",
+    className: "IliFieldset",
+    category: "mobile",
+    path: "shared/ui/mobile/fieldset/fieldset.ts",
   },
   {
-    "selector": "ili-file-upload",
-    "className": "IliFileUpload",
-    "category": "mobile",
-    "path": "shared/ui/mobile/file-upload/file-upload.ts"
+    selector: "ili-file-upload",
+    className: "IliFileUpload",
+    category: "mobile",
+    path: "shared/ui/mobile/file-upload/file-upload.ts",
   },
   {
-    "selector": "ili-icon",
-    "className": "AppIconMobile",
-    "category": "mobile",
-    "path": "shared/ui/mobile/app-icon/app-icon.ts"
+    selector: "ili-icon",
+    className: "AppIconMobile",
+    category: "mobile",
+    path: "shared/ui/mobile/app-icon/app-icon.ts",
   },
   {
-    "selector": "ili-image",
-    "className": "MobileImage",
-    "category": "mobile",
-    "path": "shared/ui/mobile/image/image.ts"
+    selector: "ili-image",
+    className: "MobileImage",
+    category: "mobile",
+    path: "shared/ui/mobile/image/image.ts",
   },
   {
-    "selector": "ili-infinite-scroll",
-    "className": "MobileInfiniteScroll",
-    "category": "mobile",
-    "path": "shared/ui/mobile/infinite-scroll/infinite-scroll.ts"
+    selector: "ili-infinite-scroll",
+    className: "MobileInfiniteScroll",
+    category: "mobile",
+    path: "shared/ui/mobile/infinite-scroll/infinite-scroll.ts",
   },
   {
-    "selector": "ili-list-item",
-    "className": "MobileListItem",
-    "category": "mobile",
-    "path": "shared/ui/mobile/list-item/list-item.ts"
+    selector: "ili-list-item",
+    className: "MobileListItem",
+    category: "mobile",
+    path: "shared/ui/mobile/list-item/list-item.ts",
   },
   {
-    "selector": "ili-listbox",
-    "className": "MobileListbox",
-    "category": "mobile",
-    "path": "shared/ui/mobile/listbox/listbox.ts"
+    selector: "ili-listbox",
+    className: "MobileListbox",
+    category: "mobile",
+    path: "shared/ui/mobile/listbox/listbox.ts",
   },
   {
-    "selector": "ili-loader",
-    "className": "MobileLoader",
-    "category": "mobile",
-    "path": "shared/ui/mobile/loader/mobile-loader.ts"
+    selector: "ili-loader",
+    className: "MobileLoader",
+    category: "mobile",
+    path: "shared/ui/mobile/loader/mobile-loader.ts",
   },
   {
-    "selector": "ili-menu",
-    "className": "MobileMenu",
-    "category": "mobile",
-    "path": "shared/ui/mobile/menu/menu.ts"
+    selector: "ili-menu",
+    className: "MobileMenu",
+    category: "mobile",
+    path: "shared/ui/mobile/menu/menu.ts",
   },
   {
-    "selector": "ili-menubar",
-    "className": "MobileMenubar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/menubar/menubar.ts"
+    selector: "ili-menubar",
+    className: "MobileMenubar",
+    category: "mobile",
+    path: "shared/ui/mobile/menubar/menubar.ts",
   },
   {
-    "selector": "ili-message",
-    "className": "MobileMessage",
-    "category": "mobile",
-    "path": "shared/ui/mobile/message/message.ts"
+    selector: "ili-message",
+    className: "MobileMessage",
+    category: "mobile",
+    path: "shared/ui/mobile/message/message.ts",
   },
   {
-    "selector": "ili-modal",
-    "className": "MobileModal",
-    "category": "mobile",
-    "path": "shared/ui/mobile/modal/modal.ts"
+    selector: "ili-modal",
+    className: "MobileModal",
+    category: "mobile",
+    path: "shared/ui/mobile/modal/modal.ts",
   },
   {
-    "selector": "ili-multi-select",
-    "className": "MobileMultiSelect",
-    "category": "mobile",
-    "path": "shared/ui/mobile/multi-select/multi-select.ts"
+    selector: "ili-multi-select",
+    className: "MobileMultiSelect",
+    category: "mobile",
+    path: "shared/ui/mobile/multi-select/multi-select.ts",
   },
   {
-    "selector": "ili-offline-indicator",
-    "className": "MobileOfflineIndicator",
-    "category": "mobile",
-    "path": "shared/ui/mobile/offline-indicator/offline-indicator.ts"
+    selector: "ili-offline-indicator",
+    className: "MobileOfflineIndicator",
+    category: "mobile",
+    path: "shared/ui/mobile/offline-indicator/offline-indicator.ts",
   },
   {
-    "selector": "ili-page",
-    "className": "MobilePage",
-    "category": "mobile",
-    "path": "shared/ui/mobile/page/page.ts"
+    selector: "ili-page",
+    className: "MobilePage",
+    category: "mobile",
+    path: "shared/ui/mobile/page/page.ts",
   },
   {
-    "selector": "ili-paginator",
-    "className": "MobilePaginator",
-    "category": "mobile",
-    "path": "shared/ui/mobile/paginator/paginator.ts"
+    selector: "ili-paginator",
+    className: "MobilePaginator",
+    category: "mobile",
+    path: "shared/ui/mobile/paginator/paginator.ts",
   },
   {
-    "selector": "ili-panel",
-    "className": "IliPanel",
-    "category": "mobile",
-    "path": "shared/ui/mobile/panel/panel.ts"
+    selector: "ili-panel",
+    className: "IliPanel",
+    category: "mobile",
+    path: "shared/ui/mobile/panel/panel.ts",
   },
   {
-    "selector": "ili-popover",
-    "className": "MobilePopover",
-    "category": "mobile",
-    "path": "shared/ui/mobile/popover/popover.ts"
+    selector: "ili-popover",
+    className: "MobilePopover",
+    category: "mobile",
+    path: "shared/ui/mobile/popover/popover.ts",
   },
   {
-    "selector": "ili-processing-overlay",
-    "className": "MobileProcessingOverlay",
-    "category": "mobile",
-    "path": "shared/ui/mobile/processing-overlay/processing-overlay.ts"
+    selector: "ili-processing-overlay",
+    className: "MobileProcessingOverlay",
+    category: "mobile",
+    path: "shared/ui/mobile/processing-overlay/processing-overlay.ts",
   },
   {
-    "selector": "ili-progress-bar",
-    "className": "MobileProgressBar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/progress-bar/progress-bar.ts"
+    selector: "ili-progress-bar",
+    className: "MobileProgressBar",
+    category: "mobile",
+    path: "shared/ui/mobile/progress-bar/progress-bar.ts",
   },
   {
-    "selector": "ili-pull-to-refresh",
-    "className": "MobilePullToRefresh",
-    "category": "mobile",
-    "path": "shared/ui/mobile/pull-to-refresh/pull-to-refresh.ts"
+    selector: "ili-pull-to-refresh",
+    className: "MobilePullToRefresh",
+    category: "mobile",
+    path: "shared/ui/mobile/pull-to-refresh/pull-to-refresh.ts",
   },
   {
-    "selector": "ili-radio-button",
-    "className": "MobileRadioButton",
-    "category": "mobile",
-    "path": "shared/ui/mobile/radio-button/radio-button.ts"
+    selector: "ili-radio-button",
+    className: "MobileRadioButton",
+    category: "mobile",
+    path: "shared/ui/mobile/radio-button/radio-button.ts",
   },
   {
-    "selector": "ili-rating",
-    "className": "MobileRating",
-    "category": "mobile",
-    "path": "shared/ui/mobile/rating/rating.ts"
+    selector: "ili-rating",
+    className: "MobileRating",
+    category: "mobile",
+    path: "shared/ui/mobile/rating/rating.ts",
   },
   {
-    "selector": "ili-sidebar",
-    "className": "MobileSidebar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/sidebar/sidebar.ts"
+    selector: "ili-sidebar",
+    className: "MobileSidebar",
+    category: "mobile",
+    path: "shared/ui/mobile/sidebar/sidebar.ts",
   },
   {
-    "selector": "ili-skeleton",
-    "className": "MobileSkeleton",
-    "category": "mobile",
-    "path": "shared/ui/mobile/skeleton/skeleton.ts"
+    selector: "ili-skeleton",
+    className: "MobileSkeleton",
+    category: "mobile",
+    path: "shared/ui/mobile/skeleton/skeleton.ts",
   },
   {
-    "selector": "ili-spinner",
-    "className": "MobileSpinner",
-    "category": "mobile",
-    "path": "shared/ui/mobile/spinner/spinner.ts"
+    selector: "ili-spinner",
+    className: "MobileSpinner",
+    category: "mobile",
+    path: "shared/ui/mobile/spinner/spinner.ts",
   },
   {
-    "selector": "ili-split-button",
-    "className": "MobileSplitButton",
-    "category": "mobile",
-    "path": "shared/ui/mobile/split-button/split-button.ts"
+    selector: "ili-split-button",
+    className: "MobileSplitButton",
+    category: "mobile",
+    path: "shared/ui/mobile/split-button/split-button.ts",
   },
   {
-    "selector": "ili-status-badge",
-    "className": "MobileStatusBadge",
-    "category": "mobile",
-    "path": "shared/ui/mobile/status-badge/status-badge.ts"
+    selector: "ili-status-badge",
+    className: "MobileStatusBadge",
+    category: "mobile",
+    path: "shared/ui/mobile/status-badge/status-badge.ts",
   },
   {
-    "selector": "ili-stepper",
-    "className": "MobileStepper",
-    "category": "mobile",
-    "path": "shared/ui/mobile/stepper/stepper.ts"
+    selector: "ili-stepper",
+    className: "MobileStepper",
+    category: "mobile",
+    path: "shared/ui/mobile/stepper/stepper.ts",
   },
   {
-    "selector": "ili-steps",
-    "className": "MobileSteps",
-    "category": "mobile",
-    "path": "shared/ui/mobile/steps/steps.ts"
+    selector: "ili-steps",
+    className: "MobileSteps",
+    category: "mobile",
+    path: "shared/ui/mobile/steps/steps.ts",
   },
   {
-    "selector": "ili-swipe-actions",
-    "className": "MobileSwipeActions",
-    "category": "mobile",
-    "path": "shared/ui/mobile/swipe-actions/swipe-actions.ts"
+    selector: "ili-swipe-actions",
+    className: "MobileSwipeActions",
+    category: "mobile",
+    path: "shared/ui/mobile/swipe-actions/swipe-actions.ts",
   },
   {
-    "selector": "ili-table",
-    "className": "MobileTable",
-    "category": "mobile",
-    "path": "shared/ui/mobile/table/table.ts"
+    selector: "ili-table",
+    className: "MobileTable",
+    category: "mobile",
+    path: "shared/ui/mobile/table/table.ts",
   },
   {
-    "selector": "ili-tabs",
-    "className": "MobileTabs",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tabs/tabs.ts"
+    selector: "ili-tabs",
+    className: "MobileTabs",
+    category: "mobile",
+    path: "shared/ui/mobile/tabs/tabs.ts",
   },
   {
-    "selector": "ili-tag",
-    "className": "MobileTag",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tag/tag.ts"
+    selector: "ili-tag",
+    className: "MobileTag",
+    category: "mobile",
+    path: "shared/ui/mobile/tag/tag.ts",
   },
   {
-    "selector": "ili-tap-to-top",
-    "className": "MobileTapToTop",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tap-to-top/tap-to-top.ts"
+    selector: "ili-tap-to-top",
+    className: "MobileTapToTop",
+    category: "mobile",
+    path: "shared/ui/mobile/tap-to-top/tap-to-top.ts",
   },
   {
-    "selector": "ili-timeline",
-    "className": "MobileTimeline",
-    "category": "mobile",
-    "path": "shared/ui/mobile/timeline/timeline.ts"
+    selector: "ili-timeline",
+    className: "MobileTimeline",
+    category: "mobile",
+    path: "shared/ui/mobile/timeline/timeline.ts",
   },
   {
-    "selector": "ili-toast",
-    "className": "MobileToast",
-    "category": "mobile",
-    "path": "shared/ui/mobile/toast/toast.ts"
+    selector: "ili-toast",
+    className: "MobileToast",
+    category: "mobile",
+    path: "shared/ui/mobile/toast/toast.ts",
   },
   {
-    "selector": "ili-toolbar",
-    "className": "MobileToolbar",
-    "category": "mobile",
-    "path": "shared/ui/mobile/toolbar/toolbar.ts"
+    selector: "ili-toolbar",
+    className: "MobileToolbar",
+    category: "mobile",
+    path: "shared/ui/mobile/toolbar/toolbar.ts",
   },
   {
-    "selector": "ili-tooltip",
-    "className": "MobileTooltip",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tooltip/tooltip.ts"
+    selector: "ili-tooltip",
+    className: "MobileTooltip",
+    category: "mobile",
+    path: "shared/ui/mobile/tooltip/tooltip.ts",
   },
   {
-    "selector": "ili-tree",
-    "className": "MobileTree",
-    "category": "mobile",
-    "path": "shared/ui/mobile/tree/tree.ts"
+    selector: "ili-tree",
+    className: "MobileTree",
+    category: "mobile",
+    path: "shared/ui/mobile/tree/tree.ts",
   },
   {
-    "selector": "[appFocusTrap]",
-    "className": "FocusTrap",
-    "category": "primitives",
-    "path": "shared/ui/primitives/focus-trap/focus-trap.ts"
+    selector: "[appFocusTrap]",
+    className: "FocusTrap",
+    category: "primitives",
+    path: "shared/ui/primitives/focus-trap/focus-trap.ts",
   },
   {
-    "selector": "app-action-icons-group",
-    "className": "ActionIconsGroupComponent",
-    "category": "primitives",
-    "path": "shared/ui/primitives/action-icons-group/action-icons-group.component.ts"
+    selector: "app-action-icons-group",
+    className: "ActionIconsGroupComponent",
+    category: "primitives",
+    path: "shared/ui/primitives/action-icons-group/action-icons-group.component.ts",
   },
   {
-    "selector": "app-activity-log",
-    "className": "ActivityLog",
-    "category": "primitives",
-    "path": "shared/ui/primitives/activity-log/activity-log.ts"
+    selector: "app-activity-log",
+    className: "ActivityLog",
+    category: "primitives",
+    path: "shared/ui/primitives/activity-log/activity-log.ts",
   },
   {
-    "selector": "app-approval-workflow",
-    "className": "ApprovalWorkflow",
-    "category": "primitives",
-    "path": "shared/ui/primitives/approval-workflow/approval-workflow.ts"
+    selector: "app-approval-workflow",
+    className: "ApprovalWorkflow",
+    category: "primitives",
+    path: "shared/ui/primitives/approval-workflow/approval-workflow.ts",
   },
   {
-    "selector": "app-avatar-group",
-    "className": "AvatarGroup",
-    "category": "primitives",
-    "path": "shared/ui/primitives/avatar-group/avatar-group.ts"
+    selector: "app-avatar-group",
+    className: "AvatarGroup",
+    category: "primitives",
+    path: "shared/ui/primitives/avatar-group/avatar-group.ts",
   },
   {
-    "selector": "app-breakdown-list",
-    "className": "AppBreakdownList",
-    "category": "primitives",
-    "path": "shared/ui/primitives/breakdown-list/breakdown-list.ts"
+    selector: "app-breakdown-list",
+    className: "AppBreakdownList",
+    category: "primitives",
+    path: "shared/ui/primitives/breakdown-list/breakdown-list.ts",
   },
   {
-    "selector": "app-gauge",
-    "className": "Gauge",
-    "category": "primitives",
-    "path": "shared/ui/primitives/gauge/gauge.ts"
+    selector: "app-gauge",
+    className: "Gauge",
+    category: "primitives",
+    path: "shared/ui/primitives/gauge/gauge.ts",
   },
   {
-    "selector": "app-icon",
-    "className": "AppIcon",
-    "category": "primitives",
-    "path": "shared/ui/primitives/app-icon/app-icon.ts"
+    selector: "app-icon",
+    className: "AppIcon",
+    category: "primitives",
+    path: "shared/ui/primitives/app-icon/app-icon.ts",
   },
   {
-    "selector": "app-inventory-level",
-    "className": "AppInventoryLevel",
-    "category": "primitives",
-    "path": "shared/ui/primitives/inventory-level/inventory-level.ts"
+    selector: "app-inventory-level",
+    className: "AppInventoryLevel",
+    category: "primitives",
+    path: "shared/ui/primitives/inventory-level/inventory-level.ts",
   },
   {
-    "selector": "app-kpi-card",
-    "className": "KpiCard",
-    "category": "primitives",
-    "path": "shared/ui/primitives/kpi-card/kpi-card.ts"
+    selector: "app-kpi-card",
+    className: "KpiCard",
+    category: "primitives",
+    path: "shared/ui/primitives/kpi-card/kpi-card.ts",
   },
   {
-    "selector": "app-lead-scoring",
-    "className": "LeadScoring",
-    "category": "primitives",
-    "path": "shared/ui/primitives/lead-scoring/lead-scoring.ts"
+    selector: "app-lead-scoring",
+    className: "LeadScoring",
+    category: "primitives",
+    path: "shared/ui/primitives/lead-scoring/lead-scoring.ts",
   },
   {
-    "selector": "app-multiple-segmented-control",
-    "className": "MultipleSegmentedControl",
-    "category": "primitives",
-    "path": "shared/ui/primitives/multiple-segmented-control/multiple-segmented-control.ts"
+    selector: "app-multiple-segmented-control",
+    className: "MultipleSegmentedControl",
+    category: "primitives",
+    path: "shared/ui/primitives/multiple-segmented-control/multiple-segmented-control.ts",
   },
   {
-    "selector": "app-order-status",
-    "className": "OrderStatus",
-    "category": "primitives",
-    "path": "shared/ui/primitives/order-status/order-status.ts"
+    selector: "app-order-status",
+    className: "OrderStatus",
+    category: "primitives",
+    path: "shared/ui/primitives/order-status/order-status.ts",
   },
   {
-    "selector": "app-ranked-list",
-    "className": "AppRankedList",
-    "category": "primitives",
-    "path": "shared/ui/primitives/ranked-list/ranked-list.ts"
+    selector: "app-ranked-list",
+    className: "AppRankedList",
+    category: "primitives",
+    path: "shared/ui/primitives/ranked-list/ranked-list.ts",
   },
   {
-    "selector": "app-realtime-indicator",
-    "className": "AppRealtimeIndicator",
-    "category": "primitives",
-    "path": "shared/ui/primitives/realtime-indicator/realtime-indicator.ts"
+    selector: "app-realtime-indicator",
+    className: "AppRealtimeIndicator",
+    category: "primitives",
+    path: "shared/ui/primitives/realtime-indicator/realtime-indicator.ts",
   },
   {
-    "selector": "app-segmented-control",
-    "className": "SegmentedControl",
-    "category": "primitives",
-    "path": "shared/ui/primitives/segmented-control/segmented-control.ts"
+    selector: "app-segmented-control",
+    className: "SegmentedControl",
+    category: "primitives",
+    path: "shared/ui/primitives/segmented-control/segmented-control.ts",
   },
   {
-    "selector": "app-stat-card",
-    "className": "AppStatCard",
-    "category": "primitives",
-    "path": "shared/ui/primitives/stat-card/stat-card.ts"
+    selector: "app-stat-card",
+    className: "AppStatCard",
+    category: "primitives",
+    path: "shared/ui/primitives/stat-card/stat-card.ts",
   },
   {
-    "selector": "app-tour",
-    "className": "Tour",
-    "category": "primitives",
-    "path": "shared/ui/primitives/tour/tour.ts"
+    selector: "app-tour",
+    className: "Tour",
+    category: "primitives",
+    path: "shared/ui/primitives/tour/tour.ts",
   },
   {
-    "selector": "app-tristate-switch",
-    "className": "AppTristateSwitch",
-    "category": "primitives",
-    "path": "shared/ui/primitives/tristate-switch/tristate-switch.ts"
+    selector: "app-tristate-switch",
+    className: "AppTristateSwitch",
+    category: "primitives",
+    path: "shared/ui/primitives/tristate-switch/tristate-switch.ts",
   },
   {
-    "selector": "[appSortableColumn]",
-    "className": "AppSortableColumn",
-    "category": "web",
-    "path": "shared/ui/web/table/table.ts"
+    selector: "[appSortableColumn]",
+    className: "AppSortableColumn",
+    category: "web",
+    path: "shared/ui/web/table/table.ts",
   },
   {
-    "selector": "app-action-menu",
-    "className": "ActionMenu",
-    "category": "web",
-    "path": "shared/ui/web/action-menu/action-menu.ts"
+    selector: "app-action-menu",
+    className: "ActionMenu",
+    category: "web",
+    path: "shared/ui/web/action-menu/action-menu.ts",
   },
   {
-    "selector": "app-advanced-pie-chart",
-    "className": "AdvancedPieChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/advanced-pie-chart.ts"
+    selector: "app-advanced-pie-chart",
+    className: "AdvancedPieChart",
+    category: "web",
+    path: "shared/ui/web/charts/advanced-pie-chart.ts",
   },
   {
-    "selector": "app-avatar",
-    "className": "AppAvatar",
-    "category": "web",
-    "path": "shared/ui/web/avatar/avatar.ts"
+    selector: "app-avatar",
+    className: "AppAvatar",
+    category: "web",
+    path: "shared/ui/web/avatar/avatar.ts",
   },
   {
-    "selector": "app-badge",
-    "className": "AppBadge",
-    "category": "web",
-    "path": "shared/ui/web/badge/badge.ts"
+    selector: "app-badge",
+    className: "AppBadge",
+    category: "web",
+    path: "shared/ui/web/badge/badge.ts",
   },
   {
-    "selector": "app-bitacora-filtro-fecha-form",
-    "className": "BitacoraFiltroFechaForm",
-    "category": "web",
-    "path": "shared/ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form.ts"
+    selector: "app-bitacora-filtro-fecha-form",
+    className: "BitacoraFiltroFechaForm",
+    category: "web",
+    path: "shared/ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form.ts",
   },
   {
-    "selector": "app-breadcrumbs",
-    "className": "Breadcrumbs",
-    "category": "web",
-    "path": "shared/ui/web/breadcrumbs/breadcrumbs.ts"
+    selector: "app-breadcrumbs",
+    className: "Breadcrumbs",
+    category: "web",
+    path: "shared/ui/web/breadcrumbs/breadcrumbs.ts",
   },
   {
-    "selector": "app-cabecera-solicitud-pago-pdf",
-    "className": "CabeceraSolicitudPagoPdf",
-    "category": "web",
-    "path": "shared/ui/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf.ts"
+    selector: "app-cabecera-solicitud-pago-pdf",
+    className: "CabeceraSolicitudPagoPdf",
+    category: "web",
+    path: "shared/ui/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf.ts",
   },
   {
-    "selector": "app-calendar-range",
-    "className": "CalendarRange",
-    "category": "web",
-    "path": "shared/ui/web/rango-calendario-mes-anio/calendar-range.ts"
+    selector: "app-calendar-range",
+    className: "CalendarRange",
+    category: "web",
+    path: "shared/ui/web/rango-calendario-mes-anio/calendar-range.ts",
   },
   {
-    "selector": "app-card",
-    "className": "AppCard",
-    "category": "web",
-    "path": "shared/ui/web/card/card.ts"
+    selector: "app-card",
+    className: "AppCard",
+    category: "web",
+    path: "shared/ui/web/card/card.ts",
   },
   {
-    "selector": "app-carousel",
-    "className": "Carousel",
-    "category": "web",
-    "path": "shared/ui/web/carousel/carousel.ts"
+    selector: "app-carousel",
+    className: "Carousel",
+    category: "web",
+    path: "shared/ui/web/carousel/carousel.ts",
   },
   {
-    "selector": "app-chart-wrapper",
-    "className": "ChartWrapper",
-    "category": "web",
-    "path": "shared/ui/web/charts/chart-wrapper.ts"
+    selector: "app-chart-wrapper",
+    className: "ChartWrapper",
+    category: "web",
+    path: "shared/ui/web/charts/chart-wrapper.ts",
   },
   {
-    "selector": "app-checkbox",
-    "className": "AppCheckbox",
-    "category": "web",
-    "path": "shared/ui/web/checkbox/checkbox.ts"
+    selector: "app-checkbox",
+    className: "AppCheckbox",
+    category: "web",
+    path: "shared/ui/web/checkbox/checkbox.ts",
   },
   {
-    "selector": "app-chip",
-    "className": "AppChip",
-    "category": "web",
-    "path": "shared/ui/web/chip/chip.ts"
+    selector: "app-chip",
+    className: "AppChip",
+    category: "web",
+    path: "shared/ui/web/chip/chip.ts",
   },
   {
-    "selector": "app-comparison-table",
-    "className": "ComparisonTable",
-    "category": "web",
-    "path": "shared/ui/web/comparison-table/comparison-table.ts"
+    selector: "app-comparison-table",
+    className: "ComparisonTable",
+    category: "web",
+    path: "shared/ui/web/comparison-table/comparison-table.ts",
   },
   {
-    "selector": "app-confirm-dialog",
-    "className": "ConfirmDialog",
-    "category": "web",
-    "path": "shared/ui/web/confirm-dialog/confirm-dialog.ts"
+    selector: "app-confirm-dialog",
+    className: "ConfirmDialog",
+    category: "web",
+    path: "shared/ui/web/confirm-dialog/confirm-dialog.ts",
   },
   {
-    "selector": "app-custom-bar-chart",
-    "className": "CustomBarChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/custom-bar-chart.ts"
+    selector: "app-custom-bar-chart",
+    className: "CustomBarChart",
+    category: "web",
+    path: "shared/ui/web/charts/custom-bar-chart.ts",
   },
   {
-    "selector": "app-customer-360",
-    "className": "AppCustomer360",
-    "category": "web",
-    "path": "shared/ui/web/customer-360/customer-360.ts"
+    selector: "app-customer-360",
+    className: "AppCustomer360",
+    category: "web",
+    path: "shared/ui/web/customer-360/customer-360.ts",
   },
   {
-    "selector": "app-dashboard-layout",
-    "className": "DashboardLayout",
-    "category": "web",
-    "path": "shared/ui/web/dashboard-layout/dashboard-layout.ts"
+    selector: "app-dashboard-layout",
+    className: "DashboardLayout",
+    category: "web",
+    path: "shared/ui/web/dashboard-layout/dashboard-layout.ts",
   },
   {
-    "selector": "app-data-grid",
-    "className": "DataGrid",
-    "category": "web",
-    "path": "shared/ui/web/data-grid/data-grid.ts"
+    selector: "app-data-grid",
+    className: "DataGrid",
+    category: "web",
+    path: "shared/ui/web/data-grid/data-grid.ts",
   },
   {
-    "selector": "app-dialog",
-    "className": "Dialog",
-    "category": "web",
-    "path": "shared/ui/web/dialog/dialog.ts"
+    selector: "app-dialog",
+    className: "Dialog",
+    category: "web",
+    path: "shared/ui/web/dialog/dialog.ts",
   },
   {
-    "selector": "app-divider",
-    "className": "AppDivider",
-    "category": "web",
-    "path": "shared/ui/web/divider/divider.ts"
+    selector: "app-divider",
+    className: "AppDivider",
+    category: "web",
+    path: "shared/ui/web/divider/divider.ts",
   },
   {
-    "selector": "app-document-previewer",
-    "className": "DocumentPreviewer",
-    "category": "web",
-    "path": "shared/ui/web/document-previewer/document-previewer.ts"
+    selector: "app-document-previewer",
+    className: "DocumentPreviewer",
+    category: "web",
+    path: "shared/ui/web/document-previewer/document-previewer.ts",
   },
   {
-    "selector": "app-editor",
-    "className": "AppEditor",
-    "category": "web",
-    "path": "shared/ui/web/editor/editor.ts"
+    selector: "app-editor",
+    className: "AppEditor",
+    category: "web",
+    path: "shared/ui/web/editor/editor.ts",
   },
   {
-    "selector": "app-empty-state",
-    "className": "EmptyState",
-    "category": "web",
-    "path": "shared/ui/web/empty-state/empty-state.ts"
+    selector: "app-empty-state",
+    className: "EmptyState",
+    category: "web",
+    path: "shared/ui/web/empty-state/empty-state.ts",
   },
   {
-    "selector": "app-fieldset",
-    "className": "AppFieldset",
-    "category": "web",
-    "path": "shared/ui/web/fieldset/fieldset.ts"
+    selector: "app-fieldset",
+    className: "AppFieldset",
+    category: "web",
+    path: "shared/ui/web/fieldset/fieldset.ts",
   },
   {
-    "selector": "app-file-upload",
-    "className": "FileUpload",
-    "category": "web",
-    "path": "shared/ui/web/file-upload/file-upload.ts"
+    selector: "app-file-upload",
+    className: "FileUpload",
+    category: "web",
+    path: "shared/ui/web/file-upload/file-upload.ts",
   },
   {
-    "selector": "app-funnel-chart",
-    "className": "FunnelChart",
-    "category": "web",
-    "path": "shared/ui/web/funnel-chart/funnel-chart.ts"
+    selector: "app-funnel-chart",
+    className: "FunnelChart",
+    category: "web",
+    path: "shared/ui/web/funnel-chart/funnel-chart.ts",
   },
   {
-    "selector": "app-gantt",
-    "className": "AppGantt",
-    "category": "web",
-    "path": "shared/ui/web/gantt/gantt.ts"
+    selector: "app-gantt",
+    className: "AppGantt",
+    category: "web",
+    path: "shared/ui/web/gantt/gantt.ts",
   },
   {
-    "selector": "app-google-pie-chart4",
-    "className": "GooglePieChart4",
-    "category": "web",
-    "path": "shared/ui/web/charts/google-pie-chart4.ts"
+    selector: "app-google-pie-chart4",
+    className: "GooglePieChart4",
+    category: "web",
+    path: "shared/ui/web/charts/google-pie-chart4.ts",
   },
   {
-    "selector": "app-header-customer",
-    "className": "HeaderCustomer",
-    "category": "web",
-    "path": "shared/ui/web/header-customer/haeder-customer.ts"
+    selector: "app-header-customer",
+    className: "HeaderCustomer",
+    category: "web",
+    path: "shared/ui/web/header-customer/haeder-customer.ts",
   },
   {
-    "selector": "app-heatmap",
-    "className": "AppHeatmap",
-    "category": "web",
-    "path": "shared/ui/web/heatmap/heatmap.ts"
+    selector: "app-heatmap",
+    className: "AppHeatmap",
+    category: "web",
+    path: "shared/ui/web/heatmap/heatmap.ts",
   },
   {
-    "selector": "app-image",
-    "className": "AppImage",
-    "category": "web",
-    "path": "shared/ui/web/image/image.ts"
+    selector: "app-image",
+    className: "AppImage",
+    category: "web",
+    path: "shared/ui/web/image/image.ts",
   },
   {
-    "selector": "app-image-fallback",
-    "className": "AppImageFallback",
-    "category": "web",
-    "path": "shared/ui/web/image-fallback/image-fallback.ts"
+    selector: "app-image-fallback",
+    className: "AppImageFallback",
+    category: "web",
+    path: "shared/ui/web/image-fallback/image-fallback.ts",
   },
   {
-    "selector": "app-infinite-scroll",
-    "className": "InfiniteScroll",
-    "category": "web",
-    "path": "shared/ui/web/infinite-scroll/infinite-scroll.ts"
+    selector: "app-infinite-scroll",
+    className: "InfiniteScroll",
+    category: "web",
+    path: "shared/ui/web/infinite-scroll/infinite-scroll.ts",
   },
   {
-    "selector": "app-listbox",
-    "className": "AppListbox",
-    "category": "web",
-    "path": "shared/ui/web/listbox/listbox.ts"
+    selector: "app-listbox",
+    className: "AppListbox",
+    category: "web",
+    path: "shared/ui/web/listbox/listbox.ts",
   },
   {
-    "selector": "app-loader",
-    "className": "AppLoader",
-    "category": "web",
-    "path": "shared/ui/web/loader/loader.ts"
+    selector: "app-loader",
+    className: "AppLoader",
+    category: "web",
+    path: "shared/ui/web/loader/loader.ts",
   },
   {
-    "selector": "app-menu",
-    "className": "AppMenu",
-    "category": "web",
-    "path": "shared/ui/web/menu/menu.ts"
+    selector: "app-menu",
+    className: "AppMenu",
+    category: "web",
+    path: "shared/ui/web/menu/menu.ts",
   },
   {
-    "selector": "app-menubar",
-    "className": "Menubar",
-    "category": "web",
-    "path": "shared/ui/web/menubar/menubar.ts"
+    selector: "app-menubar",
+    className: "Menubar",
+    category: "web",
+    path: "shared/ui/web/menubar/menubar.ts",
   },
   {
-    "selector": "app-mesanio",
-    "className": "Mesanio",
-    "category": "web",
-    "path": "shared/ui/web/mesanio/mesanio.ts"
+    selector: "app-mesanio",
+    className: "Mesanio",
+    category: "web",
+    path: "shared/ui/web/mesanio/mesanio.ts",
   },
   {
-    "selector": "app-message",
-    "className": "AppMessage",
-    "category": "web",
-    "path": "shared/ui/web/message/message.ts"
+    selector: "app-message",
+    className: "AppMessage",
+    category: "web",
+    path: "shared/ui/web/message/message.ts",
   },
   {
-    "selector": "app-module-guide",
-    "className": "ModuleGuide",
-    "category": "web",
-    "path": "shared/ui/web/module-guide/module-guide.ts"
+    selector: "app-module-guide",
+    className: "ModuleGuide",
+    category: "web",
+    path: "shared/ui/web/module-guide/module-guide.ts",
   },
   {
-    "selector": "app-multi-axis-chart",
-    "className": "MultiAxisChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/multi-axis-chart.ts"
+    selector: "app-multi-axis-chart",
+    className: "MultiAxisChart",
+    category: "web",
+    path: "shared/ui/web/charts/multi-axis-chart.ts",
   },
   {
-    "selector": "app-multi-select",
-    "className": "AppMultiSelect",
-    "category": "web",
-    "path": "shared/ui/web/multi-select/multi-select.ts"
+    selector: "app-multi-select",
+    className: "AppMultiSelect",
+    category: "web",
+    path: "shared/ui/web/multi-select/multi-select.ts",
   },
   {
-    "selector": "app-offline-indicator",
-    "className": "OfflineIndicator",
-    "category": "web",
-    "path": "shared/ui/web/offline-indicator/offline-indicator.ts"
+    selector: "app-offline-indicator",
+    className: "OfflineIndicator",
+    category: "web",
+    path: "shared/ui/web/offline-indicator/offline-indicator.ts",
   },
   {
-    "selector": "app-paginator",
-    "className": "AppPaginator",
-    "category": "web",
-    "path": "shared/ui/web/paginator/paginator.ts"
+    selector: "app-paginator",
+    className: "AppPaginator",
+    category: "web",
+    path: "shared/ui/web/paginator/paginator.ts",
   },
   {
-    "selector": "app-panel",
-    "className": "AppPanel",
-    "category": "web",
-    "path": "shared/ui/web/panel/panel.ts"
+    selector: "app-panel",
+    className: "AppPanel",
+    category: "web",
+    path: "shared/ui/web/panel/panel.ts",
   },
   {
-    "selector": "app-pdf-viewer-modal",
-    "className": "PdfViewerModal",
-    "category": "web",
-    "path": "shared/ui/web/pdf-viewer-modal/pdf-viewer-modal.ts"
+    selector: "app-pdf-viewer-modal",
+    className: "PdfViewerModal",
+    category: "web",
+    path: "shared/ui/web/pdf-viewer-modal/pdf-viewer-modal.ts",
   },
   {
-    "selector": "app-pie-chart",
-    "className": "PieChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/pie-chart.ts"
+    selector: "app-pie-chart",
+    className: "PieChart",
+    category: "web",
+    path: "shared/ui/web/charts/pie-chart.ts",
   },
   {
-    "selector": "app-pivot-table",
-    "className": "PivotTable",
-    "category": "web",
-    "path": "shared/ui/web/pivot-table/pivot-table.ts"
+    selector: "app-pivot-table",
+    className: "PivotTable",
+    category: "web",
+    path: "shared/ui/web/pivot-table/pivot-table.ts",
   },
   {
-    "selector": "app-popover",
-    "className": "AppPopover",
-    "category": "web",
-    "path": "shared/ui/web/popover/popover.ts"
+    selector: "app-popover",
+    className: "AppPopover",
+    category: "web",
+    path: "shared/ui/web/popover/popover.ts",
   },
   {
-    "selector": "app-processing-overlay",
-    "className": "AppProcessingOverlay",
-    "category": "web",
-    "path": "shared/ui/web/processing-overlay/processing-overlay.ts"
+    selector: "app-processing-overlay",
+    className: "AppProcessingOverlay",
+    category: "web",
+    path: "shared/ui/web/processing-overlay/processing-overlay.ts",
   },
   {
-    "selector": "app-progress-bar",
-    "className": "AppProgressBar",
-    "category": "web",
-    "path": "shared/ui/web/progress-bar/progress-bar.ts"
+    selector: "app-progress-bar",
+    className: "AppProgressBar",
+    category: "web",
+    path: "shared/ui/web/progress-bar/progress-bar.ts",
   },
   {
-    "selector": "app-pull-to-refresh",
-    "className": "PullToRefresh",
-    "category": "web",
-    "path": "shared/ui/web/pull-to-refresh/pull-to-refresh.ts"
+    selector: "app-pull-to-refresh",
+    className: "PullToRefresh",
+    category: "web",
+    path: "shared/ui/web/pull-to-refresh/pull-to-refresh.ts",
   },
   {
-    "selector": "app-radar-chart",
-    "className": "RadarChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/radar-chart.ts"
+    selector: "app-radar-chart",
+    className: "RadarChart",
+    category: "web",
+    path: "shared/ui/web/charts/radar-chart.ts",
   },
   {
-    "selector": "app-radio-button",
-    "className": "AppRadioButton",
-    "category": "web",
-    "path": "shared/ui/web/radio-button/radio-button.ts"
+    selector: "app-radio-button",
+    className: "AppRadioButton",
+    category: "web",
+    path: "shared/ui/web/radio-button/radio-button.ts",
   },
   {
-    "selector": "app-rango-calendario-yyyymmdd",
-    "className": "RangoCalendarioyyyymmdd",
-    "category": "web",
-    "path": "shared/ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd.ts"
+    selector: "app-rango-calendario-yyyymmdd",
+    className: "RangoCalendarioyyyymmdd",
+    category: "web",
+    path: "shared/ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd.ts",
   },
   {
-    "selector": "app-rating",
-    "className": "AppRating",
-    "category": "web",
-    "path": "shared/ui/web/rating/rating.ts"
+    selector: "app-rating",
+    className: "AppRating",
+    category: "web",
+    path: "shared/ui/web/rating/rating.ts",
   },
   {
-    "selector": "app-report-header",
-    "className": "ReportHeader",
-    "category": "web",
-    "path": "shared/ui/web/report-header/report-header.ts"
+    selector: "app-report-header",
+    className: "ReportHeader",
+    category: "web",
+    path: "shared/ui/web/report-header/report-header.ts",
   },
   {
-    "selector": "app-scroll-top",
-    "className": "ScrollTop",
-    "category": "web",
-    "path": "shared/ui/web/tap-to-top/tap-to-top.ts"
+    selector: "app-scroll-top",
+    className: "ScrollTop",
+    category: "web",
+    path: "shared/ui/web/tap-to-top/tap-to-top.ts",
   },
   {
-    "selector": "app-select-button",
-    "className": "AppSelectButton",
-    "category": "web",
-    "path": "shared/ui/web/select-button/select-button.ts"
+    selector: "app-select-button",
+    className: "AppSelectButton",
+    category: "web",
+    path: "shared/ui/web/select-button/select-button.ts",
   },
   {
-    "selector": "app-sidebar",
-    "className": "Sidebar",
-    "category": "web",
-    "path": "shared/ui/web/sidebar/sidebar.ts"
+    selector: "app-sidebar",
+    className: "Sidebar",
+    category: "web",
+    path: "shared/ui/web/sidebar/sidebar.ts",
   },
   {
-    "selector": "app-skeleton",
-    "className": "AppSkeleton",
-    "category": "web",
-    "path": "shared/ui/web/skeleton/skeleton.ts"
+    selector: "app-skeleton",
+    className: "AppSkeleton",
+    category: "web",
+    path: "shared/ui/web/skeleton/skeleton.ts",
   },
   {
-    "selector": "app-spinner",
-    "className": "AppSpinner",
-    "category": "web",
-    "path": "shared/ui/web/spinner/spinner.ts"
+    selector: "app-spinner",
+    className: "AppSpinner",
+    category: "web",
+    path: "shared/ui/web/spinner/spinner.ts",
   },
   {
-    "selector": "app-split-button",
-    "className": "AppSplitButton",
-    "category": "web",
-    "path": "shared/ui/web/split-button/split-button.ts"
+    selector: "app-split-button",
+    className: "AppSplitButton",
+    category: "web",
+    path: "shared/ui/web/split-button/split-button.ts",
   },
   {
-    "selector": "app-status-badge",
-    "className": "StatusBadge",
-    "category": "web",
-    "path": "shared/ui/web/status-badge/status-badge.ts"
+    selector: "app-status-badge",
+    className: "StatusBadge",
+    category: "web",
+    path: "shared/ui/web/status-badge/status-badge.ts",
   },
   {
-    "selector": "app-steps",
-    "className": "AppSteps",
-    "category": "web",
-    "path": "shared/ui/web/steps/steps.ts"
+    selector: "app-steps",
+    className: "AppSteps",
+    category: "web",
+    path: "shared/ui/web/steps/steps.ts",
   },
   {
-    "selector": "app-swipe-actions",
-    "className": "SwipeActions",
-    "category": "web",
-    "path": "shared/ui/web/swipe-actions/swipe-actions.ts"
+    selector: "app-swipe-actions",
+    className: "SwipeActions",
+    category: "web",
+    path: "shared/ui/web/swipe-actions/swipe-actions.ts",
   },
   {
-    "selector": "app-table-caption",
-    "className": "TableCaption",
-    "category": "web",
-    "path": "shared/ui/web/table-caption/table-caption.ts"
+    selector: "lux-table-caption",
+    className: "LuxTableCaption",
+    category: "web",
+    path: "shared/ui/web/table-caption/table-caption.ts",
   },
   {
-    "selector": "app-table-checkbox",
-    "className": "TableCheckbox",
-    "category": "web",
-    "path": "shared/ui/web/table-checkbox/table-checkbox.ts"
+    selector: "lux-table-checkbox",
+    className: "TableCheckbox",
+    category: "web",
+    path: "shared/ui/web/table-checkbox/table-checkbox.ts",
   },
   {
-    "selector": "app-table-empty-message",
-    "className": "TableEmptyMessage",
-    "category": "web",
-    "path": "shared/ui/web/table-empty-message/table-empty-message.ts"
+    selector: "lux-table-empty-message",
+    className: "TableEmptyMessage",
+    category: "web",
+    path: "shared/ui/web/table-empty-message/table-empty-message.ts",
   },
   {
-    "selector": "app-table-footer",
-    "className": "TableFooter",
-    "category": "web",
-    "path": "shared/ui/web/table-footer/table-footer.ts"
+    selector: "lux-table-footer",
+    className: "TableFooter",
+    category: "web",
+    path: "shared/ui/web/table-footer/table-footer.ts",
   },
   {
-    "selector": "app-table-global-filter",
-    "className": "TableGlobalFilter",
-    "category": "web",
-    "path": "shared/ui/web/table-global-filter/table-global-filter.ts"
+    selector: "lux-table-global-filter",
+    className: "TableGlobalFilter",
+    category: "web",
+    path: "shared/ui/web/table-global-filter/table-global-filter.ts",
   },
   {
-    "selector": "app-tabs",
-    "className": "Tabs",
-    "category": "web",
-    "path": "shared/ui/web/tabs/tabs.ts"
+    selector: "app-tabs",
+    className: "Tabs",
+    category: "web",
+    path: "shared/ui/web/tabs/tabs.ts",
   },
   {
-    "selector": "app-tag",
-    "className": "AppTag",
-    "category": "web",
-    "path": "shared/ui/web/tag/tag.ts"
+    selector: "app-tag",
+    className: "AppTag",
+    category: "web",
+    path: "shared/ui/web/tag/tag.ts",
   },
   {
-    "selector": "app-territory-map",
-    "className": "AppTerritoryMap",
-    "category": "web",
-    "path": "shared/ui/web/territory-map/territory-map.ts"
+    selector: "app-territory-map",
+    className: "AppTerritoryMap",
+    category: "web",
+    path: "shared/ui/web/territory-map/territory-map.ts",
   },
   {
-    "selector": "app-timeline",
-    "className": "Timeline",
-    "category": "web",
-    "path": "shared/ui/web/timeline/timeline.ts"
+    selector: "app-timeline",
+    className: "Timeline",
+    category: "web",
+    path: "shared/ui/web/timeline/timeline.ts",
   },
   {
-    "selector": "app-toast",
-    "className": "AppToast",
-    "category": "web",
-    "path": "shared/ui/web/toast/toast.ts"
+    selector: "app-toast",
+    className: "AppToast",
+    category: "web",
+    path: "shared/ui/web/toast/toast.ts",
   },
   {
-    "selector": "app-toggle-switch",
-    "className": "AppToggleSwitch",
-    "category": "web",
-    "path": "shared/ui/web/toggle-switch/toggle-switch.ts"
+    selector: "app-toggle-switch",
+    className: "AppToggleSwitch",
+    category: "web",
+    path: "shared/ui/web/toggle-switch/toggle-switch.ts",
   },
   {
-    "selector": "app-toolbar",
-    "className": "AppToolbar",
-    "category": "web",
-    "path": "shared/ui/web/toolbar/toolbar.ts"
+    selector: "app-toolbar",
+    className: "AppToolbar",
+    category: "web",
+    path: "shared/ui/web/toolbar/toolbar.ts",
   },
   {
-    "selector": "app-touchspin",
-    "className": "Touchspin",
-    "category": "web",
-    "path": "shared/ui/web/touchspin/touchspin.ts"
+    selector: "app-touchspin",
+    className: "Touchspin",
+    category: "web",
+    path: "shared/ui/web/touchspin/touchspin.ts",
   },
   {
-    "selector": "app-tree",
-    "className": "Tree",
-    "category": "web",
-    "path": "shared/ui/web/tree/tree.ts"
+    selector: "app-tree",
+    className: "Tree",
+    category: "web",
+    path: "shared/ui/web/tree/tree.ts",
   },
   {
-    "selector": "lux-section-nav",
-    "className": "LxSectionNav",
-    "category": "web",
-    "path": "shared/ui/web/section-nav/section-nav.ts"
+    selector: "lux-section-nav",
+    className: "LxSectionNav",
+    category: "web",
+    path: "shared/ui/web/section-nav/section-nav.ts",
   },
   {
-    "selector": "ng-template[accordionPanel]",
-    "className": "AccordionPanel",
-    "category": "web",
-    "path": "shared/ui/web/accordion/accordion.ts"
+    selector: "ng-template[accordionPanel]",
+    className: "AccordionPanel",
+    category: "web",
+    path: "shared/ui/web/accordion/accordion.ts",
   },
   {
-    "selector": "page-title-report",
-    "className": "PageTitleReport",
-    "category": "web",
-    "path": "shared/ui/web/title-page-report/page-title-report.ts"
+    selector: "page-title-report",
+    className: "PageTitleReport",
+    category: "web",
+    path: "shared/ui/web/title-page-report/page-title-report.ts",
   },
   {
-    "selector": "page-title-report-maintenance",
-    "className": "PageTitleReportMaintenance",
-    "category": "web",
-    "path": "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts"
-  }
+    selector: "page-title-report-maintenance",
+    className: "PageTitleReportMaintenance",
+    category: "web",
+    path: "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts",
+  },
 ];

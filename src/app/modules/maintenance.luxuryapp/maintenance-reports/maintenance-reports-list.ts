@@ -8,21 +8,21 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
-import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { StorageService } from "@core/services/storage.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppTable } from "@ui/web/table/table";
+import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
 @Component({
   selector: "app-maintenance-reports",
@@ -35,7 +35,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     RouterModule,
     NgbTooltipModule,
     AppTable,
-    TableCaption,
+    LuxTableCaption,
     PageTitleReport,
     CustomInputTextSignal,
     DataViewMobile,

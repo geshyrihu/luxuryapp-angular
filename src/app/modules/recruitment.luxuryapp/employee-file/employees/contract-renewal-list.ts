@@ -1,27 +1,30 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   OnInit,
-  signal,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { AppTag } from "@ui/web/tag/tag";
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ContractRenewalService } from "./services/contract-renewal.service";
-import { ContractRenewalEvaluationDTO, ContractRenewalStatus } from "./employee-registry/interfaces/contract-renewal.dto";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AppTag } from "@ui/web/tag/tag";
 import { ContractRenewalFormComponent } from "./contract-renewal-form";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  ContractRenewalEvaluationDTO,
+  ContractRenewalStatus,
+} from "./employee-registry/interfaces/contract-renewal.dto";
+import { ContractRenewalService } from "./services/contract-renewal.service";
 
-type StatusSeverity = "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
-import { DialogSize } from "@core/services/dialog-handler.service";
+type StatusSeverity =
+  "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
 
 @Component({
   selector: "app-contract-renewal-list",
@@ -61,12 +64,13 @@ import { DialogSize } from "@core/services/dialog-handler.service";
         <div class="alert-banner">
           <app-icon name="alert-circle" class="alert-icon" />
           <span>
-            <strong>{{ pendingCount() }}</strong> renovaciones pendientes de decisión
+            <strong>{{ pendingCount() }}</strong> renovaciones pendientes de
+            decisión
           </span>
         </div>
       }
 
-      <app-table
+      <lux-table
         [value]="renewalService.renewals()"
         [loading]="renewalService.isLoading()"
         [paginator]="true"
@@ -74,13 +78,19 @@ import { DialogSize } from "@core/services/dialog-handler.service";
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} renovaciones"
         [rowsPerPageOptions]="[10, 25, 50]"
-        [globalFilterFields]="['employeeName', 'positionName', 'contractNumber']"
+        [globalFilterFields]="[
+          'employeeName',
+          'positionName',
+          'contractNumber',
+        ]"
         [tableStyle]="{ 'min-width': '50rem' }"
         dataKey="id"
       >
         <ng-template #caption>
           <div class="table-caption">
-            <span class="caption-title">Listado de Renovaciones de Contratos</span>
+            <span class="caption-title"
+              >Listado de Renovaciones de Contratos</span
+            >
             <div class="caption-filters">
               <input
                 type="text"
@@ -191,7 +201,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
     </div>
   `,
   styles: `
@@ -311,12 +321,16 @@ export class ContractRenewalListComponent implements OnInit {
   protected readonly dialogHandler = inject(DialogHandlerService);
 
   // Computed counts
-  pendingCount = computed(() =>
-    this.renewalService.renewals().filter((r) => r.status === "EnAnalisis").length
+  pendingCount = computed(
+    () =>
+      this.renewalService.renewals().filter((r) => r.status === "EnAnalisis")
+        .length,
   );
 
-  decidedCount = computed(() =>
-    this.renewalService.renewals().filter((r) => r.status === "Decidido").length
+  decidedCount = computed(
+    () =>
+      this.renewalService.renewals().filter((r) => r.status === "Decidido")
+        .length,
   );
 
   ngOnInit(): void {
@@ -326,11 +340,14 @@ export class ContractRenewalListComponent implements OnInit {
   loadRenewals(forceRefresh = false): void {
     try {
       const customerId = "1"; // TODO: Get from current user context
-      this.renewalService.loadAll(customerId, forceRefresh).then(() => {
-        // Data is set internally in the service
-      }).catch((error) => {
-        console.error("Error loading renewals:", error);
-      });
+      this.renewalService
+        .loadAll(customerId, forceRefresh)
+        .then(() => {
+          // Data is set internally in the service
+        })
+        .catch((error) => {
+          console.error("Error loading renewals:", error);
+        });
     } catch (error) {
       console.error("Error loading renewals:", error);
     }
@@ -351,8 +368,13 @@ export class ContractRenewalListComponent implements OnInit {
     return labels[status] ?? status;
   }
 
-  protected getStatusSeverity(status: ContractRenewalStatus): "info" | "success" | "warn" | "danger" | "secondary" | "contrast" {
-    const severities: Record<string, "info" | "success" | "warn" | "danger" | "secondary" | "contrast"> = {
+  protected getStatusSeverity(
+    status: ContractRenewalStatus,
+  ): "info" | "success" | "warn" | "danger" | "secondary" | "contrast" {
+    const severities: Record<
+      string,
+      "info" | "success" | "warn" | "danger" | "secondary" | "contrast"
+    > = {
       EnAnalisis: "warn",
       EvaluacionCompletada: "info",
       Decidido: "success",
@@ -361,12 +383,14 @@ export class ContractRenewalListComponent implements OnInit {
     return severities[status] ?? "secondary";
   }
 
-  async openDecisionModal(renewal: ContractRenewalEvaluationDTO): Promise<void> {
+  async openDecisionModal(
+    renewal: ContractRenewalEvaluationDTO,
+  ): Promise<void> {
     const result = await this.dialogHandler.openDialog<{ action: string }>(
       ContractRenewalFormComponent,
       { renewal },
       `Decisión de Renovación - ${renewal.contractNumber}`,
-      "lg" as DialogSize
+      "lg" as DialogSize,
     );
 
     if (result) {
@@ -376,4 +400,3 @@ export class ContractRenewalListComponent implements OnInit {
     }
   }
 }
-

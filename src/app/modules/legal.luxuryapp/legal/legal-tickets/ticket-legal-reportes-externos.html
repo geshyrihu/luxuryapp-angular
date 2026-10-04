@@ -21,9 +21,9 @@
 <div class="d-none d-md-block">
   @if (reportData()) {
   <div class="card mb-4">
-    <app-table [value]="kpiRows()" class="custom-table">
+    <lux-table [value]="kpiRows()" class="custom-table">
       <ng-template #caption>
-        <app-table-caption title="Resultado del Periodo" [showAdd]="false" />
+        <lux-table-caption title="Resultado del Periodo" [showAdd]="false" />
       </ng-template>
       <ng-template #header>
         <tr>
@@ -43,11 +43,11 @@
           <td>{{ row.label }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   } @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table
       [value]="requestsAttended()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
@@ -73,11 +73,11 @@
           <td>{{ ticket.concepto }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   } @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <app-table
+    <lux-table
       [value]="requestsPending()"
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
@@ -118,7 +118,7 @@
           <td>{{ ticket.ultimoSeguimiento }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {

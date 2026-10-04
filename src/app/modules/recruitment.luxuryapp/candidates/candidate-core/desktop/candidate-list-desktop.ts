@@ -7,23 +7,20 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { CandidateInterviewProgressStatus } from "@core/enums/candidate-interview-progress-status";
 import { CandidateStatus } from "@core/enums/candidate-status";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { MappedPTag } from "../../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS } from "../candidate-interview-progress-tag-options";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
@@ -35,7 +32,7 @@ import { CandidateListItem } from "../interfaces/candidate.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
 
   imports: [
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
@@ -88,5 +85,3 @@ export class CandidateListDesktop {
       : data.filter((item) => item.interviewProgress === filter);
   });
 }
-
-

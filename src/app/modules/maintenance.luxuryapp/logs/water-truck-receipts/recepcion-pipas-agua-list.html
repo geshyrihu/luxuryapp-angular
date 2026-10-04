@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -58,7 +58,7 @@
 
       <!-- DERECHA: Buscador y Agregar -->
       <div class="flex-shrink-0">
-        <app-table-caption
+        <lux-table-caption
           (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
           [dt]="dt"
           [noPadding]="true"
@@ -74,7 +74,9 @@
         Llegada <app-sorticon field="horaLlegada" />
       </th>
       <th>Termino</th>
-      <th appSortableColumn="empresa">Empresa <app-sorticon field="empresa" /></th>
+      <th appSortableColumn="empresa">
+        Empresa <app-sorticon field="empresa" />
+      </th>
       <th appSortableColumn="placasCamion">
         Placas <app-sorticon field="placasCamion" />
       </th>
@@ -220,13 +222,13 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="13" />
+    <lux-table-empty-message [colspan]="13" />
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <app-data-view-mobile
   [data]="dataSignal()"

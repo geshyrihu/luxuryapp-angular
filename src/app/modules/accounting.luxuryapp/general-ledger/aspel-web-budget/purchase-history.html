@@ -1,5 +1,5 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tableRows"
@@ -11,7 +11,7 @@
   class="custom-table card d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [dt]="dt" [showAdd]="false" />
+    <lux-table-caption [dt]="dt" [showAdd]="false" />
   </ng-template>
 
   <ng-template #header>
@@ -93,7 +93,7 @@
   </ng-template>
 
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
   <ng-template #emptymessage>
     <tr>
@@ -108,7 +108,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- NOTA: Se ha eliminado el (add) para que sea una vista de solo lectura. -->
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->

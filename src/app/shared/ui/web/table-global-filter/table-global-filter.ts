@@ -10,7 +10,7 @@ import { AppIcon } from "../../primitives/app-icon/app-icon";
  * Se conecta a una p-table para filtrar en todos los campos configurados.
  */
 @Component({
-  selector: "app-table-global-filter",
+  selector: "lux-table-global-filter",
   imports: [FormsModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

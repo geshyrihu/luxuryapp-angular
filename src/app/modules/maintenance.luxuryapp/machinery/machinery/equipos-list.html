@@ -4,7 +4,7 @@
   <!-- ================================================================== -->
   <div class="d-none d-md-block">
     @if (data()) {
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -46,7 +46,7 @@
             class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
           >
             <div class="flex-grow-1">
-              <app-table-caption
+              <lux-table-caption
                 [title]="title()"
                 (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
                 [dt]="dt"
@@ -213,9 +213,9 @@
       </ng-template>
 
       <ng-template #paginatorleft>
-        <app-table-footer [data]="data()" />
+        <lux-table-footer [data]="data()" />
       </ng-template>
-    </app-table>
+    </lux-table>
     }
   </div>
 

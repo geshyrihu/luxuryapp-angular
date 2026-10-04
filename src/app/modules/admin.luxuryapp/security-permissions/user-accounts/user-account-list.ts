@@ -29,7 +29,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { UserAccountDto } from "./interfaces/user-account.dto";
@@ -54,7 +54,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonLabelActiveDesactive,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     CustomInputSelectSignal,
   ],

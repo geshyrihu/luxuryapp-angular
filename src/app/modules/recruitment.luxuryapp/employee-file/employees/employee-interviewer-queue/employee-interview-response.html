@@ -50,16 +50,23 @@
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-body-secondary d-block mb-1">Entrevista programada</small>
+        <small class="text-body-secondary d-block mb-1"
+          >Entrevista programada</small
+        >
         <div class="fw-semibold">
-          {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
+          {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm'
+          }}
         </div>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-body-secondary d-block mb-1">Entrevistador asignado</small>
-        <div class="fw-semibold">{{ interviewData()?.assignedInterviewerName }}</div>
+        <small class="text-body-secondary d-block mb-1"
+          >Entrevistador asignado</small
+        >
+        <div class="fw-semibold">
+          {{ interviewData()?.assignedInterviewerName }}
+        </div>
       </div>
     </div>
     <div class="col-12 col-md-4">
@@ -120,7 +127,7 @@
   @if (interviewData()?.timeline?.length) {
   <div class="card p-3 mb-4">
     <div class="fw-semibold mb-3">Seguimiento</div>
-    <app-table
+    <lux-table
       [value]="interviewData()?.timeline"
       [paginator]="false"
       [scrollable]="true"
@@ -145,24 +152,27 @@
           <td>{{ item.comment }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   }
 </div>
-}
-
-@if (showReasonModal()) {
+} @if (showReasonModal()) {
 <div class="dialog-mask" (click)="closeReasonModal()">
-  <div class="dialog-container card p-4" style="max-width: 500px; min-width: 320px;" (click)="$event.stopPropagation()">
+  <div
+    class="dialog-container card p-4"
+    style="max-width: 500px; min-width: 320px"
+    (click)="$event.stopPropagation()"
+  >
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="m-0">
-        @switch (pendingAction()) {
-          @case ("markNoShow") { Marcar no asistencia }
-          @case ("reject") { Rechazar candidato }
-          @case ("approve") { Aprobar / Continuar }
-        }
+        @switch (pendingAction()) { @case ("markNoShow") { Marcar no asistencia
+        } @case ("reject") { Rechazar candidato } @case ("approve") { Aprobar /
+        Continuar } }
       </h3>
-      <button class="p-2 hover:bg-gray-100 rounded" (click)="closeReasonModal()">
+      <button
+        class="p-2 hover:bg-gray-100 rounded"
+        (click)="closeReasonModal()"
+      >
         <i class="mdi mdi-close text-xl"></i>
       </button>
     </div>
@@ -178,11 +188,11 @@
         [filter]="true"
       />
     </div>
-    }
-
-    @if (pendingAction() === 'approve') {
+    } @if (pendingAction() === 'approve') {
     <div class="mb-4">
-      <label class="d-block text-sm fw-medium mb-2">Fecha de Presentación Acordada *</label>
+      <label class="d-block text-sm fw-medium mb-2"
+        >Fecha de Presentación Acordada *</label
+      >
       <custom-input-date-signal
         [ngModel]="agreedPresentationDate()"
         (ngModelChange)="agreedPresentationDate.set($event)"

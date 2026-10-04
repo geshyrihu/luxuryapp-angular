@@ -1,4 +1,4 @@
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [value]="filteredPositions()"
   class="custom-table card d-none d-md-block"
@@ -149,7 +149,7 @@
         class="d-flex flex-column flex-md-row align-items-center justify-content-end gap-3 w-full xl:w-auto g-4"
       >
         <div class="staff-caption-search w-full md:w-auto">
-          <app-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+          <lux-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
         </div>
 
         <div
@@ -511,6 +511,6 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="showSalaryColumn() ? 6 : 5" />
+    <lux-table-empty-message [colspan]="showSalaryColumn() ? 6 : 5" />
   </ng-template>
-</app-table>
+</lux-table>

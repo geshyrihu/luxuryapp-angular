@@ -1,7 +1,7 @@
 <div class="h6">DEPTO : {{ depto }}</div>
 <div class="h6">NOMBRE : {{ nombre }}</div>
 <div class="h6">SEMANA : {{ semana }}</div>
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="30"
@@ -20,7 +20,7 @@
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <div class="flex-grow-1">
-        <app-table-caption
+        <lux-table-caption
           class="ocultar"
           [title]="'Bitacora Supervisión'"
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -131,12 +131,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="9" />
+    <lux-table-empty-message [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- 📱 MOBILE -->
 <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">

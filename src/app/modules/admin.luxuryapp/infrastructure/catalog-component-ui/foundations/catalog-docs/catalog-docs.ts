@@ -1,15 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AppTag } from "@ui/web/tag/tag";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";
 import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
 import { TipoDocumento } from "./interfaces/tipo-documento.interface";
 
 @Component({
   selector: "app-catalog-docs",
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppTag, AppIcon],
+  imports: [
+    CommonModule,
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    AppTag,
+    AppIcon,
+  ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -72,7 +79,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
                 >
               </div>
-              <app-table [value]="camposNomenclatura" class="p-datatable-sm">
+              <lux-table [value]="camposNomenclatura" class="p-datatable-sm">
                 <ng-template #header
                   ><tr>
                     <th>Campo</th>
@@ -87,7 +94,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     <td class="text-xs">{{ row.valores }}</td>
                   </tr></ng-template
                 >
-              </app-table>
+              </lux-table>
             </div>
           </div>
         </div>
@@ -98,7 +105,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
               <span class="card-title">Matriz de Acceso por Rol</span>
             </div>
             <div class="card-body">
-              <app-table
+              <lux-table
                 [value]="matrizAcceso"
                 [scrollable]="true"
                 scrollHeight="300px"
@@ -149,7 +156,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     </td>
                   </tr>
                 </ng-template>
-              </app-table>
+              </lux-table>
             </div>
           </div>
         </div>

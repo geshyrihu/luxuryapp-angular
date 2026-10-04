@@ -261,7 +261,7 @@
   <p>El cuadro comparativo esta optimizado para pantallas de escritorio.</p>
 </div>
 
-<app-table
+<lux-table
   [value]="getDisplayedSolicitudDetalle()"
   class="custom-table d-none d-md-block"
 >
@@ -332,10 +332,10 @@
     </tr>
     }
   </ng-template>
-</app-table>
+</lux-table>
 
 @if (cotizacionProveedorSignal()?.length) {
-<app-table
+<lux-table
   [value]="[{}]"
   class="custom-table w-full mt-4"
   [tableStyle]="{ border: 'none' }"
@@ -388,7 +388,7 @@
       }
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }
 <div class="mt-3">
   <div
@@ -418,7 +418,7 @@
     </div>
     }
   </div>
-  <app-table [value]="budgetSignal()" class="custom-table text-sm">
+  <lux-table [value]="budgetSignal()" class="custom-table text-sm">
     <ng-template #header>
       <tr>
         <th class="text-start">CUENTA</th>
@@ -489,7 +489,7 @@
         </td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 <lux-modal
   header="Auditoria de Compras - Analisis IA"

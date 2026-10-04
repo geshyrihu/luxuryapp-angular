@@ -7,16 +7,16 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-resultado-general-evaluacion-areas-detalle",
   templateUrl: "./resultado-general-evaluacion-areas-detalle.html",
@@ -27,7 +27,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    TableCaption,
+    LuxTableCaption,
     CommonModule,
     SanitizeHtmlPipe,
   ],

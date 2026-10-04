@@ -22,7 +22,7 @@
     </div>
   </lux-card>
 
-  <app-table
+  <lux-table
     [value]="dataSignal()"
     [paginator]="true"
     [rows]="tableRows"
@@ -33,7 +33,7 @@
     #dt
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         title="Casos de Cobranza Legal"
         [showAddButton]="false"
         [dt]="dt"
@@ -85,9 +85,9 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message [colspan]="8" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [data]="dataSignal()"

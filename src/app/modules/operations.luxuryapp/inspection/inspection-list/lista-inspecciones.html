@@ -11,6 +11,8 @@
     (reportes)="navigateToReportes()"
     (filterAreaChange)="selectedAreaSignal.set($event)"
     (filterRecurrenceChange)="selectedRecurrenceSignal.set($event)"
+    (applyFilters)="applyFilters()"
+    (clearFilters)="clearFilters()"
   />
 } @else {
   <app-lista-inspecciones-desktop
@@ -25,5 +27,7 @@
     (reportes)="navigateToReportes()"
     (filterAreaChange)="selectedAreaSignal.set($event)"
     (filterRecurrenceChange)="selectedRecurrenceSignal.set($event)"
+    (applyFilters)="applyFilters()"
+    (clearFilters)="clearFilters()"
   />
 }

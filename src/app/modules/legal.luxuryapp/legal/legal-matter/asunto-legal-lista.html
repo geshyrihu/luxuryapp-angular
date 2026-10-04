@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table
       #dt
       [value]="dataSignal()"
       [globalFilterFields]="globalFilterFields()"
@@ -19,7 +19,7 @@
       <ng-template #caption>
         <div class="row align-items-center g-4">
           <div class="col-12 col-md-10">
-            <app-table-caption
+            <lux-table-caption
               (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
               [dt]="dt"
               label="Agregar asunto"
@@ -98,9 +98,9 @@
         }
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="4" />
+        <lux-table-empty-message [colspan]="4" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 
@@ -152,19 +152,19 @@
         </p>
 
         <ili-action-menu end>
-            <ng-container actions>
-              <ili-button-edit
-                (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"
-                label="Editar"
-                []="true"
-              />
-              <ili-button-delete
-                (confirmed)="onDelete(legalMatter.id)"
-                label="Eliminar"
-                []="true"
-              />
-            </ng-container>
-          </ili-action-menu>
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"
+              label="Editar"
+              []="true"
+            />
+            <ili-button-delete
+              (confirmed)="onDelete(legalMatter.id)"
+              label="Eliminar"
+              []="true"
+            />
+          </ng-container>
+        </ili-action-menu>
       </ili-list-item>
       }
     </div>

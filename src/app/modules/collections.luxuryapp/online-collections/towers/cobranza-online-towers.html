@@ -9,10 +9,12 @@
   } @else {
   <div class="mb-2 mt-1">
     <div class="text-lg fw-semibold text-body">Resumen por Torres</div>
-    <div class="text-sm text-body-secondary">Agrupacin de la deuda por cada torre del condominio.</div>
+    <div class="text-sm text-body-secondary">
+      Agrupacin de la deuda por cada torre del condominio.
+    </div>
   </div>
   <div class="mb-4">
-    <app-table [value]="towers()" styleClass="p-datatable-sm hidden md:block">
+    <lux-table [value]="towers()" styleClass="p-datatable-sm hidden md:block">
       <ng-template #header>
         <tr>
           <th appSortableColumn="towerName">
@@ -45,9 +47,7 @@
           <td class="text-end">
             {{ row.extraordinaryBalance | accountingNumber}}
           </td>
-          <td class="text-end">
-            {{ row.finesBalance | accountingNumber}}
-          </td>
+          <td class="text-end">{{ row.finesBalance | accountingNumber}}</td>
           <td class="text-end fw-medium">
             {{ row.totalBalance | accountingNumber}}
           </td>
@@ -56,9 +56,7 @@
       <ng-template #footer>
         <tr>
           <td class="text-end fw-bold">Total:</td>
-          <td class="text-end fw-bold">
-            {{ totalTowers()?.departmentCount }}
-          </td>
+          <td class="text-end fw-bold">{{ totalTowers()?.departmentCount }}</td>
           <td class="text-end fw-bold">
             {{ totalTowers()?.maintenanceBalance | accountingNumber}}
           </td>
@@ -73,7 +71,7 @@
           </td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
 
     <div class="d-md-none">
       <app-data-view-mobile [data]="towers()" [showAdd]="false">
@@ -91,8 +89,9 @@
                 {{ row.departmentCount }} departamentos
               </p>
               <p class="text-xs m-0 mt-1 text-body-secondary">
-                Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{ row.extraordinaryBalance | accountingNumber}} · Multas {{ row.finesBalance
-                | accountingNumber}}
+                Mtto {{ row.maintenanceBalance | accountingNumber}} · Ext {{
+                row.extraordinaryBalance | accountingNumber}} · Multas {{
+                row.finesBalance | accountingNumber}}
               </p>
               <p class="text-xs m-0 mt-1 text-primary fw-medium">
                 Total {{ row.totalBalance | accountingNumber}}

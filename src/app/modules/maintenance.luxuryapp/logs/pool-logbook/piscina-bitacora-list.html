@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tableRows"
@@ -12,7 +12,7 @@
 >
   <ng-template #caption>
     <div class="d-flex align-items-center justify-content-between gap-2 w-full">
-      <app-table-caption
+      <lux-table-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
       />
@@ -31,7 +31,13 @@
         >
           <app-icon icon="material-symbols-light:upload" /> Importar
         </button>
-        <input #fileInput type="file" accept=".xlsx" class="d-none" (change)="onImportExcel($event)" />
+        <input
+          #fileInput
+          type="file"
+          accept=".xlsx"
+          class="d-none"
+          (change)="onImportExcel($event)"
+        />
       </div>
     </div>
   </ng-template>
@@ -106,12 +112,12 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="13" />
+    <lux-table-empty-message [colspan]="13" />
   </ng-template>
   <ng-template #paginatorleft>
-    <app-table-footer [data]="dataSignal()" />
+    <lux-table-footer [data]="dataSignal()" />
   </ng-template>
-</app-table>
+</lux-table>
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -130,7 +136,10 @@
 
       <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="fw-bold m-0 text-base">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="me-1 text-primary"
+          />
           {{ item.dateString }}
         </h2>
       </div>

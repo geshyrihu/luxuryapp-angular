@@ -2,7 +2,7 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
   <div class="card">
-    <app-table
+    <lux-table
       [globalFilterFields]="globalFilterFields()"
       [paginator]="true"
       [rows]="tableRows"
@@ -17,7 +17,7 @@
       class="custom-table"
     >
       <ng-template #caption>
-        <app-table-caption
+        <lux-table-caption
           (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
           [dt]="dt"
         />
@@ -69,9 +69,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="7" />
+        <lux-table-empty-message [colspan]="7" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 </div>
 }

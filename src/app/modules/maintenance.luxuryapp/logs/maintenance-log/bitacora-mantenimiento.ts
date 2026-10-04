@@ -24,7 +24,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
@@ -42,7 +42,7 @@ import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
     AppSorticon,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     MobileListItem,
     MobileActionMenu,

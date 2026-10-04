@@ -1,5 +1,5 @@
 <div class="card">
-  <app-table
+  <lux-table
     #dt
     [value]="items()"
     class="custom-table d-none d-md-block"
@@ -11,7 +11,7 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         [showAdd]="!!employeeId()"
         title="Contratos Laborales"
         (add)="onModalForm({ id: '', title: 'Nuevo Contrato Laboral' })"
@@ -36,12 +36,17 @@
         <td>
           <div class="d-flex flex-column">
             <span class="fw-semibold">{{ item.employeeName }}</span>
-            <small class="text-body-secondary">{{ item.workPositionName }}</small>
+            <small class="text-body-secondary"
+              >{{ item.workPositionName }}</small
+            >
           </div>
         </td>
         <td>{{ item.contractType }}</td>
         <td>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</td>
-        <td>{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}</td>
+        <td>
+          {{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido'
+          }}
+        </td>
         <td class="text-end">
           {{ item.salaryAtContract | currency:'MXN':'symbol':'1.2-2' }}
         </td>
@@ -51,14 +56,17 @@
           >
         </td>
         <td class="text-center">
-          <iw-button-item icon="material-symbols-light:visibility-outline" (click)="onViewDetail(item)" />
-          @if (item.status === 'Borrador' || item.status === 'Activo' || item.status === 'PendienteFirma') {
+          <iw-button-item
+            icon="material-symbols-light:visibility-outline"
+            (click)="onViewDetail(item)"
+          />
+          @if (item.status === 'Borrador' || item.status === 'Activo' ||
+          item.status === 'PendienteFirma') {
           <iw-button-edit (click)="onEdit(item)" />
-          }
-          @if (item.pdfUrl) {
+          } @if (item.pdfUrl) {
           <iw-button-view-pdf [url]="item.pdfUrl" fileName="Contrato" />
-          }
-          @if (item.status === 'Borrador' || item.status === 'Activo' || item.status === 'PendienteFirma') {
+          } @if (item.status === 'Borrador' || item.status === 'Activo' ||
+          item.status === 'PendienteFirma') {
           <iw-button-item
             icon="material-symbols-light:cancel"
             lxTooltip="Terminar"
@@ -70,12 +78,12 @@
       </tr>
     </ng-template>
     <ng-template #footer>
-      <app-table-footer [totalRecords]="items().length" />
+      <lux-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="8" />
+      <lux-table-empty-message [colspan]="8" />
     </ng-template>
-  </app-table>
+  </lux-table>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -96,18 +104,18 @@
           />
         </div>
 
-          <h2 class="fw-bold">{{ item.contractNumber }}</h2>
-          <p class="text-sm text-body-secondary">{{ item.employeeName }}</p>
-          <p class="text-sm text-body-secondary">{{ item.contractType }}</p>
-          <p class="text-sm text-body-secondary">
-            {{ item.startDate | apiDate:'dd/MM/yyyy' }} -
-            {{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
-          </p>
-          <p class="text-sm">
-            <span [class]="'badge ' + getStatusBadge(item.status)"
-              >{{ item.status }}</span
-            >
-          </p>
+        <h2 class="fw-bold">{{ item.contractNumber }}</h2>
+        <p class="text-sm text-body-secondary">{{ item.employeeName }}</p>
+        <p class="text-sm text-body-secondary">{{ item.contractType }}</p>
+        <p class="text-sm text-body-secondary">
+          {{ item.startDate | apiDate:'dd/MM/yyyy' }} - {{ item.endDate ?
+          (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
+        </p>
+        <p class="text-sm">
+          <span [class]="'badge ' + getStatusBadge(item.status)"
+            >{{ item.status }}</span
+          >
+        </p>
 
         <ili-action-menu slot="end">
           <ng-container actions>
@@ -116,7 +124,8 @@
               iconName="eye-outline"
               (clicked)="onViewDetail(item)"
             />
-            @if (item.status === 'Borrador' || item.status === 'Activo' || item.status === 'PendienteFirma') {
+            @if (item.status === 'Borrador' || item.status === 'Activo' ||
+            item.status === 'PendienteFirma') {
             <ili-button-item
               label="Editar"
               iconName="create-outline"

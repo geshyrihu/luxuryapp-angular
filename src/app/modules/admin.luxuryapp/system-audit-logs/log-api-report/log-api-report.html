@@ -2,7 +2,7 @@
 <lux-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="d-none d-md-block mt-3">
-    <app-table
+    <lux-table
       #dt
       [value]="data()"
       [loading]="loading()"
@@ -22,7 +22,7 @@
           class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
         >
           <div class="flex-grow-1">
-            <app-table-caption
+            <lux-table-caption
               [dt]="dt"
               (search)="onSearch($event)"
               [showAdd]="false"
@@ -156,9 +156,9 @@
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message [colspan]="5" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!-- VISTA MóVIL -->

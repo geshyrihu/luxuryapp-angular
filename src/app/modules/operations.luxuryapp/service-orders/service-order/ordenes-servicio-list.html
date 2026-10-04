@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -72,7 +72,7 @@
         />
       </div>
       <div class="ms-auto">
-        <app-table-caption
+        <lux-table-caption
           [title]="filtroEquiposValue | titlecase"
           (add)="
         onEdit({
@@ -153,7 +153,10 @@
           />
         </div>
       </td>
-      <td>{{ item.isInternalExecution ? "Personal interno" : (item.provider || "Sin proveedor asignado") }}</td>
+      <td>
+        {{ item.isInternalExecution ? "Personal interno" : (item.provider ||
+        "Sin proveedor asignado") }}
+      </td>
       <td>
         <lux-tag
           [value]="getStatusLabel(item.status)"
@@ -247,9 +250,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
 <app-data-view-mobile
@@ -367,7 +370,8 @@
             "
           />
           <span class="text-xs text-body-secondary align-self-center">
-            ({{ item.isInternalExecution ? "Personal interno" : (item.provider || "Sin proveedor asignado") }})
+            ({{ item.isInternalExecution ? "Personal interno" : (item.provider
+            || "Sin proveedor asignado") }})
           </span>
         </div>
 

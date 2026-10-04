@@ -4,15 +4,20 @@
 </div>
 } @else if (!interviewData()) {
 <div class="d-flex flex-column align-items-center p-5 gap-2">
-  <span class="text-body-secondary">Este candidato no tiene un proceso activo.</span>
+  <span class="text-body-secondary"
+    >Este candidato no tiene un proceso activo.</span
+  >
 </div>
 } @else {
 <div class="p-1">
   <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
     <div>
-      <h2 class="fw-semibold text-xl m-0">{{ interviewData()?.candidateName }}</h2>
+      <h2 class="fw-semibold text-xl m-0">
+        {{ interviewData()?.candidateName }}
+      </h2>
       <span class="text-sm text-body-secondary"
-        >{{ interviewData()?.vacancyFolio }} - {{ interviewData()?.positionName }}</span
+        >{{ interviewData()?.vacancyFolio }} - {{ interviewData()?.positionName
+        }}</span
       >
     </div>
     <app-candidate-stage-badge [stage]="interviewData()?.currentStage" />
@@ -36,15 +41,20 @@
     </div>
     <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-body-secondary d-block mb-1">Entrevista programada</small>
+        <small class="text-body-secondary d-block mb-1"
+          >Entrevista programada</small
+        >
         <div class="fw-semibold">
-          {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
+          {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm'
+          }}
         </div>
       </div>
     </div>
     <div class="col-12 col-md-6">
       <div class="card p-3 h-full">
-        <small class="text-body-secondary d-block mb-1">Entrevistador asignado</small>
+        <small class="text-body-secondary d-block mb-1"
+          >Entrevistador asignado</small
+        >
         <div class="fw-semibold">
           {{ interviewData()?.assignedInterviewerName || "Sin asignar" }}
         </div>
@@ -69,7 +79,7 @@
   @if (interviewData()?.timeline?.length) {
   <div class="card p-3 mb-3">
     <div class="fw-semibold mb-3">Seguimiento</div>
-    <app-table
+    <lux-table
       [value]="interviewData()?.timeline"
       [paginator]="false"
       [scrollable]="true"
@@ -92,7 +102,7 @@
           <td>{{ item.comment }}</td>
         </tr>
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
   }
 </div>

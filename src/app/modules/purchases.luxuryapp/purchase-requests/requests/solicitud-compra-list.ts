@@ -27,7 +27,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import {
@@ -50,8 +50,8 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
-import { TagSeverity } from "@ui/core/tag.base";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { TagSeverity } from "@ui/core/tag.base";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
@@ -78,7 +78,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     AppSorticon,
     LxTooltipDirective,
     WebButtonLabel,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     AppIcon,

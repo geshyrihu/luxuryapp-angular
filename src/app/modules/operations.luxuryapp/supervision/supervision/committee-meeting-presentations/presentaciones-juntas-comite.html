@@ -1,5 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<app-table
+<lux-table
   [globalFilterFields]="globalFilterFields"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -9,7 +9,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <app-table-caption [showAdd]="false" [dt]="dt" />
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
     <br />
     <div class="w-full sm:w-1/3 mt-3">
       <custom-input-text-signal
@@ -42,7 +42,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
   <ng-template #body let-i="rowIndex" let-item>
     <tr>
@@ -58,7 +58,9 @@
             <p class="m-0 text-sm fw-semibold">{{ item.userPortada }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaPortada }}</p>
+            <p class="m-0 text-xs text-body-secondary">
+              {{ item.fechaCargaPortada }}
+            </p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
@@ -75,7 +77,9 @@
             <p class="m-0 text-sm fw-semibold">{{ item.userContable }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaContable }}</p>
+            <p class="m-0 text-xs text-body-secondary">
+              {{ item.fechaCargaContable }}
+            </p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoContable" pdf="Portada" />
@@ -109,7 +113,9 @@
             <p class="m-0 text-sm fw-semibold">{{ item.userSupervisor }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaSupervisor }}</p>
+            <p class="m-0 text-xs text-body-secondary">
+              {{ item.fechaCargaSupervisor }}
+            </p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoFinal" pdf="Portada" />
@@ -120,7 +126,7 @@
       </td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
@@ -135,7 +141,10 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:co-present" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:co-present"
+          class="text-xl text-primary"
+        />
       </div>
 
       <!-- Cliente -->

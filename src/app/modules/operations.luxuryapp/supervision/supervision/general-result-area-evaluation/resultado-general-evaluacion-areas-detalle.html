@@ -1,6 +1,6 @@
 @if (dataSignal()) {
 <div class="d-none d-md-block">
-  <app-table
+  <lux-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
     [scrollable]="true"
@@ -9,7 +9,7 @@
     class="p-datatable-striped"
   >
     <ng-template #caption>
-      <app-table-caption [showAdd]="false" [dt]="dt" />
+      <lux-table-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
     <ng-template #header>
       <tr>
@@ -70,7 +70,7 @@
         <td colspan="6">Sin registros.</td>
       </tr>
     </ng-template>
-  </app-table>
+  </lux-table>
 </div>
 
 <!-- 📱 MOBILE -->

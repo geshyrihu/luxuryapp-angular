@@ -3,7 +3,7 @@ Esto asegura que solo se muestre cuando hay datos y la carga ha finalizado. -->
 @if (reportData() && !loading()) {
 <!-- Tabla de solicitudes pendientes -->
 <!-- óCAMBIO! El [value] de la tabla ahora apunta a reportData().estadosFinancieros -->
-<app-table
+<lux-table
   [value]="reportData().estadosFinancieros"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -21,7 +21,6 @@ Esto asegura que solo se muestre cuando hay datos y la carga ha finalizado. -->
               [src]="reportData().customer.customerImage"
               alt="Logo del cliente"
               class="img-fluid border mb-2 mx-auto"
-              
             />
             }
             <h5>{{ reportData().customer.nombreCorto }}</h5>
@@ -47,7 +46,7 @@ Esto asegura que solo se muestre cuando hay datos y la carga ha finalizado. -->
       <td class="text-center">{{ ticket.sendDate }}</td>
     </tr>
   </ng-template>
-</app-table>
+</lux-table>
 }
 
 <!-- 3. (MEJORA) Mensaje para el usuario si no se encuentran datos -->

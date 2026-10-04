@@ -6,11 +6,6 @@ import {
   signal,
 } from "@angular/core";
 
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import {
@@ -22,6 +17,11 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { IncidentTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { IncidentTypeForm } from "./incident-type-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -51,7 +51,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppSortableColumn,
 
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
   ],
@@ -95,5 +95,3 @@ export class IncidentTypeList implements OnInit {
       .then(() => this.onLoadData());
   }
 }
-
-

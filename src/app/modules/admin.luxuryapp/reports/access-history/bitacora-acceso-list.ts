@@ -7,24 +7,21 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ButtonType } from "@core/enums/button-type.enum";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
+import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ButtonType } from "@core/enums/button-type.enum";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DateService } from "@core/services/date.service";
-import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 @Component({
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",
@@ -39,7 +36,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxAvatar,
     CalendarRange,
     WebButtonIcon,
-    TableCaption,
+    LuxTableCaption,
     LxBadge,
   ],
 })
@@ -143,4 +140,3 @@ export class BitacoraAcceso {
       });
   }
 }
-

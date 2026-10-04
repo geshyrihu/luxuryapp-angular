@@ -27,6 +27,20 @@
       [horizontal]="false"
       [filter]="true"
     />
+    <div class="d-flex gap-2">
+      <ili-button
+        label="Limpiar filtros"
+        severity="secondary"
+        variant="outline"
+        iconClass="material-symbols-light:filter-alt-off"
+        (clicked)="clearFilters.emit()"
+      />
+      <ili-button
+        label="Aplicar filtros"
+        iconClass="material-symbols-light:filter-alt"
+        (clicked)="applyFilters.emit()"
+      />
+    </div>
     <ili-button
       iconClass="material-symbols-light:menu-book-outline"
       label="Reportes"

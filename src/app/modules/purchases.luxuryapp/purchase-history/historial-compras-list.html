@@ -12,7 +12,9 @@
       <div class="row formgrid g-4">
         <div class="col-12 col-lg-3">
           <div class="d-flex flex-column gap-2 h-full">
-            <div class="d-flex align-items-center justify-content-between gap-2">
+            <div
+              class="d-flex align-items-center justify-content-between gap-2"
+            >
               <label class="text-sm fw-semibold">Rango de fechas</label>
               <button
                 type="button"
@@ -85,9 +87,7 @@
         <div class="col-12 col-lg-4">
           <div class="d-flex flex-column gap-3 h-full">
             <div class="d-flex flex-column gap-2">
-              <label class="text-sm fw-semibold"
-                >Estado de autorizacion</label
-              >
+              <label class="text-sm fw-semibold">Estado de autorizacion</label>
               <app-segmented-control
                 ariaLabel="Filtro por estado de autorizacion"
                 [items]="estadoAutorizacionOptions"
@@ -113,7 +113,7 @@
 </section>
 
 <section class="card p-3 p-md-4 d-none d-md-block">
-  <app-table
+  <lux-table
     #dt
     [globalFilterFields]="globalFilterFields()"
     [loading]="loading()"
@@ -126,7 +126,7 @@
     class="custom-table"
   >
     <ng-template #caption>
-      <app-table-caption
+      <lux-table-caption
         [title]="'Compras pagadas'"
         [showAdd]="false"
         [dt]="dt"
@@ -187,13 +187,13 @@
     </ng-template>
 
     <ng-template #emptymessage>
-      <app-table-empty-message [colspan]="9" />
+      <lux-table-empty-message [colspan]="9" />
     </ng-template>
 
     <ng-template #paginatorleft>
-      <app-table-footer [data]="dataSignal()" />
+      <lux-table-footer [data]="dataSignal()" />
     </ng-template>
-  </app-table>
+  </lux-table>
 </section>
 
 <app-data-view-mobile
@@ -213,7 +213,8 @@
       <p>Folio: {{ item.folio }} | {{ item.tipoOrdenLabel }}</p>
       <p>Factura: {{ item.factura }}</p>
       <p>
-        Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud | apiDate }}
+        Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud |
+        apiDate }}
       </p>
       <ili-action-menu slot="end">
         <ng-container actions>

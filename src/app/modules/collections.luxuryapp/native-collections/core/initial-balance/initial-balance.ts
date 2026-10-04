@@ -7,20 +7,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   BulkSetInitialBalanceDTO,
   PropertyInitialBalanceDTO,
@@ -43,7 +43,7 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     DataViewMobile,
     MobileListItem,
     AppIcon,
-    TableCaption,
+    LuxTableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./initial-balance.html",
@@ -120,4 +120,3 @@ export default class InitialBalance {
     }
   }
 }
-

@@ -1,7 +1,7 @@
 @if (templateInfo(); as template) {
 
 <!-- Desktop View -->
-<app-table
+<lux-table
   #dt
   [value]="items()"
   [rows]="10"
@@ -27,7 +27,7 @@
 
       <!-- Caption a la derecha -->
       <div class="d-flex align-items-center">
-        <app-table-caption (add)="showItemForm()" [dt]="dt" />
+        <lux-table-caption (add)="showItemForm()" [dt]="dt" />
       </div>
     </div>
   </ng-template>
@@ -71,12 +71,12 @@
     </tr>
   </ng-template>
   <ng-template #summary>
-    <app-table-footer
+    <lux-table-footer
       [totalRecords]="items().length"
       [emptyMessage]="'No se encontraron items para esta plantilla.'"
     />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- Mobile View -->
 @if (items().length === 0 && !items()) {
@@ -102,17 +102,17 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <h5 class="mb-2">{{ item.title }}</h5>
-        <app-status-badge
-          [value]="item.priority"
-          [status]="getPriorityDisplay(item.priority).text"
-          [severity]="getPriorityDisplay(item.priority).severity"
-        />
-        <p class="text-sm text-body-secondary mt-2">
-          {{ formatRecurrenceRule(item.recurrenceRule) }}
-        </p>
-      
+
+      <h5 class="mb-2">{{ item.title }}</h5>
+      <app-status-badge
+        [value]="item.priority"
+        [status]="getPriorityDisplay(item.priority).text"
+        [severity]="getPriorityDisplay(item.priority).severity"
+      />
+      <p class="text-sm text-body-secondary mt-2">
+        {{ formatRecurrenceRule(item.recurrenceRule) }}
+      </p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit label="Editar" (clicked)="showItemForm(item)" />

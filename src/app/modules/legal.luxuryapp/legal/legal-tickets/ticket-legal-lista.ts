@@ -24,7 +24,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
@@ -62,7 +62,7 @@ import { AspRoleService } from "../../../../core/auth/services/asp-role.service"
     AppSorticon,
     LxTooltipDirective,
     LxTag,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     WebButtonIconEdit,
     DataViewMobile,

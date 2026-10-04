@@ -78,7 +78,7 @@ import {
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
@@ -112,7 +112,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         height: 100%;
         overflow: hidden;
       }
-      :host ::ng-deep app-table-caption > div {
+      :host ::ng-deep lux-table-caption > div {
         margin-bottom: 0 !important;
       }
       :host ::ng-deep app-task-status > div {
@@ -173,7 +173,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     CustomInputToggleSwitch,
     FormsModule,
     ReactiveFormsModule,
-    TableCaption,
+    LuxTableCaption,
     DataViewMobile,
     LxTooltipDirective,
     LxPopover,

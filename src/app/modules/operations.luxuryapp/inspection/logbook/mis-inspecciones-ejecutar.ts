@@ -26,7 +26,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppTable } from "@ui/web/table/table";
 import { map } from "rxjs";
@@ -46,7 +46,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppTable,
 
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,6 +1,9 @@
 @if (loading()) {
 <div class="d-flex justify-content-center align-items-center">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
+  <app-icon
+    [icon]="'material-symbols-light:progress-activity'"
+    class="text-4xl text-primary"
+  />
 </div>
 } @else {
 
@@ -41,7 +44,7 @@
 }
 
 <!-- Tabla de empleados -->
-<app-table
+<lux-table
   #dt
   [value]="data()"
   [globalFilterFields]="globalFilterFields()"
@@ -56,7 +59,7 @@
 >
   <ng-template #caption>
     <div class="d-flex justify-content-between">
-      <app-table-caption [dt]="dt" [showAdd]="false" />
+      <lux-table-caption [dt]="dt" [showAdd]="false" />
       <il-button
         label="Exportar Excel"
         iconClass="material-symbols-light:table-view"
@@ -110,9 +113,9 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <app-table-empty-message [colspan]="8" />
+    <lux-table-empty-message [colspan]="8" />
   </ng-template>
-</app-table>
+</lux-table>
 
 <!-- Vista movil -->
 <app-data-view-mobile

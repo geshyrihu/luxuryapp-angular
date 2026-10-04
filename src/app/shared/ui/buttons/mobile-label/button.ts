@@ -24,10 +24,14 @@ import { MobileButtonBase } from "../mobile-button-base";
       @if (loading()) {
         <ion-spinner name="crescent" />
       } @else {
-        @if (iconClass()) {
-          <app-icon [icon]="resolvedIconClass()" slot="start" />
+        @if (displayMode() !== "label") {
+          @if (iconClass()) {
+            <app-icon [icon]="resolvedIconClass()" slot="start" />
+          }
         }
-        {{ label() || "Continuar" }}
+        @if (displayMode() !== "icon") {
+          {{ label() || "Continuar" }}
+        }
       }
     </ion-button>
   `,

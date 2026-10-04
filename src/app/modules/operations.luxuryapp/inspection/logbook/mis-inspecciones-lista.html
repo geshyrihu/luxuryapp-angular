@@ -26,7 +26,7 @@
 
   <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="d-none d-md-block">
-    <app-table [value]="dataSignal()" class="custom-table">
+    <lux-table [value]="dataSignal()" class="custom-table">
       <ng-template #header>
         <tr>
           <th>Estado</th>
@@ -40,9 +40,9 @@
         <tr>
           <td>
             @if (item.isRealized) {
-            <app-icon [icon]="'material-symbols-light:check'"  />
+            <app-icon [icon]="'material-symbols-light:check'" />
             Realizada } @else {
-            <app-icon [icon]="'material-symbols-light:close'"  />
+            <app-icon [icon]="'material-symbols-light:close'" />
             Pendiente }
           </td>
           <td>{{ item.nameInspection }}</td>
@@ -62,16 +62,18 @@
                 [routerLink]="ROUTES.BITACORAS.MI_INSPECCION(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Inspeccionar"
-                ><app-icon [icon]="'material-symbols-light:chevron-right'"></app-icon
+                ><app-icon
+                  [icon]="'material-symbols-light:chevron-right'"
+                ></app-icon
               ></a>
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <app-table-empty-message [colspan]="5" />
+        <lux-table-empty-message [colspan]="5" />
       </ng-template>
-    </app-table>
+    </lux-table>
   </div>
 
   <!--📲INICIO: Componente adaptado para versión móvil -->
@@ -105,10 +107,16 @@
               class="text-danger-600"
             />
             }
-            <h2 class="text-title-md m-0 text-on-surface">{{ item.nameInspection }}</h2>
+            <h2 class="text-title-md m-0 text-on-surface">
+              {{ item.nameInspection }}
+            </h2>
           </div>
-          <p class="text-body-sm text-on-surface-secondary m-0">{{ item.departament }}</p>
-          <p class="text-body-sm text-on-surface-secondary m-0">Frecuencia: {{ item.frequency }}</p>
+          <p class="text-body-sm text-on-surface-secondary m-0">
+            {{ item.departament }}
+          </p>
+          <p class="text-body-sm text-on-surface-secondary m-0">
+            Frecuencia: {{ item.frequency }}
+          </p>
         </div>
 
         <ili-action-menu slot="end">

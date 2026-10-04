@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { NominaDetalleDTO } from "../interfaces/nomina-detalle.interface";
 import {
@@ -47,7 +47,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     WebButtonLabel,
     WebButtonLabelEdit,
     DataViewMobile,
-    TableCaption,
+    LuxTableCaption,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",

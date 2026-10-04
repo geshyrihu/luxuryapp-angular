@@ -8,13 +8,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
 import {
@@ -23,10 +16,17 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ROUTES } from "src/app/routing/route-paths";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { SwalService } from "@core/services/swal.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CandidateRecruitmentAgendaItem } from "./candidates/candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
@@ -39,13 +39,11 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
     ApiDatePipe,
     WebButtonIconItem,
     WebButtonIconViewPdf,
-    TableCaption,
+    LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
-
     AppSortableColumn,
-
     AppSorticon,
     CandidateStageBadge,
     MappedPTag,
@@ -193,4 +191,3 @@ export class RecruitmentAgendaList implements OnInit {
     return "";
   }
 }
-

@@ -76,7 +76,7 @@
 
   <div class="col-12">
     <div class="card">
-      <app-table
+      <lux-table
         [value]="items()"
         [loading]="loading()"
         [scrollable]="true"
@@ -198,7 +198,7 @@
             </td>
           </tr>
         </ng-template>
-      </app-table>
+      </lux-table>
 
       @if (!items().length && !loading()) {
       <p class="m-0 text-body-secondary">

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { EmptyState } from "@ui/web/empty-state/empty-state";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
 
 @Component({
-  selector: "app-table-empty-message",
+  selector: "lux-table-empty-message",
 
   imports: [EmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,

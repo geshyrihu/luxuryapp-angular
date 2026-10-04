@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import {
   DialogService,
@@ -24,7 +24,7 @@ import { environment } from "src/environments/environment";
  */
 @Component({
   selector: "app-pdf-viewer-modal",
-  imports: [PdfViewerModule, AppSpinner, WebButtonLabel],
+  imports: [PdfViewerModule, AppSpinner, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pdf-viewer-modal.html",
   providers: [DialogService],

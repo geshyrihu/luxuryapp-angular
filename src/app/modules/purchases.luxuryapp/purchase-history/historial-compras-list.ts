@@ -10,23 +10,6 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import {
-  type SegmentItem,
-  SegmentedControl,
-} from "@ui/primitives/segmented-control/segmented-control";
-import { TableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
-import { addIcons } from "ionicons";
-import { checkmarkCircleOutline } from "ionicons/icons";
-import { startWith } from "rxjs";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -35,9 +18,26 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import {
+  type SegmentItem,
+  SegmentedControl,
+} from "@ui/primitives/segmented-control/segmented-control";
+import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { addIcons } from "ionicons";
+import { checkmarkCircleOutline } from "ionicons/icons";
+import { startWith } from "rxjs";
+import { ROUTES } from "src/app/routing/route-paths";
 import { HistorialComprasItem } from "./interfaces/historial-compras-item.interface";
 
 const TIPO_COMPRA_OPTIONS: SegmentItem[] = [
@@ -93,7 +93,7 @@ type HistorialComprasDateFilterForm = {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableCaption,
+    LuxTableCaption,
     TableFooter,
     DataViewMobile,
     MobileListItem,
@@ -283,4 +283,3 @@ export class HistorialComprasList {
     return `${year}-${month}-${day}`;
   }
 }
-
