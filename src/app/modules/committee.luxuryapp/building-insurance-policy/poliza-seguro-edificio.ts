@@ -10,7 +10,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
@@ -24,7 +24,7 @@ import {
 } from "ionicons/icons";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [ApiDatePipe, WebButtonLabelViewPdf, AppIcon],
+  imports: [ApiDatePipe, ButtonWeb, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./poliza-seguro-edificio.html",
 })
@@ -57,6 +57,7 @@ export class PolizaSeguroEdificio {
         this.data.set(result);
       });
   }
+
   viewPdf(url: string, fileName: string): void {
     this.dialogHandlerS.openDialog(
       PdfViewerModal,

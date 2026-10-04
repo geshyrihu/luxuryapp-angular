@@ -49,9 +49,13 @@
 
     @if (policy.pathDocument) {
     <div class="committee-card-panel__footer">
-      <il-button-view-pdf
-        [url]="policy.pathDocument"
-        fileName="Póliza | Contrato"
+      <lux-button-web
+        kind="view-pdf"
+        displayMode="both"
+        label="Ver archivo"
+        severity="secondary"
+        variant="soft"
+        (clicked)="viewPdf(policy.pathDocument, 'Póliza | Contrato')"
       />
     </div>
     }
