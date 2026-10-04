@@ -46,6 +46,12 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { OrdenCompraDetalleForm } from "../purchase-order-detail-form/orden-compra-detalle-form";
+import {
+  generateYearOptions,
+  groupFundingPeriodsByMonth,
+  toggleFundingPeriodSelection,
+} from "../funding-period-grouping";
+import { calculatePurchaseOrderLineTotals } from "../purchase-order-line-calculator";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
   [TipoGasto.Variable]: "GASTOS VARIABLES",
@@ -257,51 +263,27 @@ export class CreateOrdenCompraWizard implements OnInit {
           });
       }
     }
-    this.cb_fiscalYear.set(this.generateYearOptions());
+    this.cb_fiscalYear.set(generateYearOptions());
     this.onLoadSelects();
     this.loadFundingOptions();
     this.loadAccounts(this.step3Form.controls.fiscalYear.value);
   }
 
   async loadFundingOptions() {
-    this.cb_fundingYear.set(this.generateYearOptions());
+    this.cb_fundingYear.set(generateYearOptions());
     const periods = await firstValueFrom(
       this.enumSelectS.onLoadEnumList("funding-period", false),
     );
     this.processFundingPeriods(periods as SelectItemDto[]);
   }
 
-  private generateYearOptions(): SelectItemDto[] {
-    const currentYear = new Date().getFullYear();
-    return [
-      { label: (currentYear - 1).toString(), value: currentYear - 1 },
-      { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
-    ];
-  }
-
   processFundingPeriods(periods: SelectItemDto[]) {
-    const months: Record<string, PurchaseOrderFundingPeriodGroup> = {};
-    periods.forEach((period) => {
-      const monthName = period.label.split(" ")[2];
-      if (!months[monthName]) {
-        months[monthName] = {
-          monthName: monthName,
-          quincenas: [],
-        };
-      }
-      months[monthName].quincenas.push(period);
-    });
-    this.fundingPeriodsByMonth.set(Object.values(months));
+    this.fundingPeriodsByMonth.set(groupFundingPeriodsByMonth(periods));
   }
 
   selectFundingPeriod(quincena: SelectItemDto) {
     const control = this.step1Form.get("fundingPeriod");
-    if (control?.value === quincena.value) {
-      control.setValue(null);
-    } else {
-      control.setValue(quincena.value);
-    }
+    control?.setValue(toggleFundingPeriodSelection(control.value, quincena.value));
   }
 
   onLoadSelects(): void {
@@ -484,22 +466,27 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   // `descuento`, `ivaAplicado` y las retenciones son PORCENTAJES (0-100),
   // igual que en OrdenCompraDetalle.SubTotal/Total del backend — no montos.
+  // Fuente única: calculatePurchaseOrderLineTotals. No reimplementar esta fórmula aquí.
   calculateItemSubtotal(item: PurchaseOrderProductDraft): number {
-    const quantity = Number(item.quantity) || 0;
-    const unitPrice = Number(item.unitPrice) || 0;
-    const descuentoMonto =
-      ((Number(item.descuento) || 0) / 100) * unitPrice * quantity;
-    return quantity * unitPrice - descuentoMonto;
+    return calculatePurchaseOrderLineTotals({
+      cantidad: Number(item.quantity) || 0,
+      precio: Number(item.unitPrice) || 0,
+      descuento: Number(item.descuento) || 0,
+      ivaAplicado: Number(item.ivaAplicado) || 0,
+      retencionIVAPorcentaje: Number(item.retencionIVAPorcentaje) || 0,
+      retencionISRPorcentaje: Number(item.retencionISRPorcentaje) || 0,
+    }).subtotal;
   }
 
   calculateItemTotal(item: PurchaseOrderProductDraft): number {
-    const subtotal = this.calculateItemSubtotal(item);
-    const iva = subtotal * ((Number(item.ivaAplicado) || 0) / 100);
-    const retencionIva =
-      subtotal * ((Number(item.retencionIVAPorcentaje) || 0) / 100);
-    const retencionIsr =
-      subtotal * ((Number(item.retencionISRPorcentaje) || 0) / 100);
-    return subtotal + iva - retencionIva - retencionIsr;
+    return calculatePurchaseOrderLineTotals({
+      cantidad: Number(item.quantity) || 0,
+      precio: Number(item.unitPrice) || 0,
+      descuento: Number(item.descuento) || 0,
+      ivaAplicado: Number(item.ivaAplicado) || 0,
+      retencionIVAPorcentaje: Number(item.retencionIVAPorcentaje) || 0,
+      retencionISRPorcentaje: Number(item.retencionISRPorcentaje) || 0,
+    }).total;
   }
 
   calculateTotalProducts(): number {

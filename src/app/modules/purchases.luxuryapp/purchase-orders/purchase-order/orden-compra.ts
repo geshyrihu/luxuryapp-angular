@@ -47,6 +47,7 @@ import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupus
 import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
 import { OrdenCompraPresupuesto } from "./purchase-order-budget/orden-compra-presupuesto";
+import { sumPurchaseOrderLineTotals } from "./purchase-order-line-calculator";
 import {
   PurchaseOrderDetailLine,
   PurchaseOrderValidationResult,
@@ -170,32 +171,14 @@ export class OrdenCompra implements OnInit {
     total: number;
   }> = computed(() => {
     const detalle = this.ordenCompraDetalle();
-    let subTotal = 0;
-    let ivaTotal = 0;
-    let retencionIvaTotal = 0;
-    let retencionIsrTotal = 0;
+    const { subtotal, iva, retencionIva, retencionIsr } =
+      sumPurchaseOrderLineTotals(detalle);
 
-    for (const item of detalle) {
-      // Calculos por linea
-      const itemSubTotal =
-        item.cantidad * item.precio * (1 - item.descuento / 100);
-      const itemIva = itemSubTotal * (item.ivaAplicado / 100);
-      const itemRetencionIva =
-        itemSubTotal * (item.retencionIVAPorcentaje / 100);
-      const itemRetencionIsr =
-        itemSubTotal * (item.retencionISRPorcentaje / 100);
-
-      // Suma a los totales
-      subTotal += itemSubTotal;
-      ivaTotal += itemIva;
-      retencionIvaTotal += itemRetencionIva;
-      retencionIsrTotal += itemRetencionIsr;
-    }
     return {
-      subtotal: subTotal,
-      iva: ivaTotal,
-      retencionIva: retencionIvaTotal,
-      retencionIsr: retencionIsrTotal,
+      subtotal,
+      iva,
+      retencionIva,
+      retencionIsr,
       // Final total comes from backend through OrdenCompraService.
       total: this.ordenCompraService.totalOrdenCompra(),
     };

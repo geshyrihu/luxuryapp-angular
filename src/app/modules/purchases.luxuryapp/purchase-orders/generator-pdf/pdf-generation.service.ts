@@ -5,6 +5,10 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
+import {
+  calculatePurchaseOrderLineTotals,
+  sumPurchaseOrderLineTotals,
+} from "../purchase-order/purchase-order-line-calculator";
 
 interface PurchaseOrderPdfPaymentData {
   nameCheck: string;
@@ -390,25 +394,13 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   private async buildOrdenCompraHtmlContent(data: PurchaseOrderPdfData): Promise<string> {
-    let subTotal = 0;
-    let ivaTotal = 0;
-    let retencionIvaTotal = 0;
-    let retencionIsrTotal = 0;
-
-    for (const item of data.ordenCompraDetalle) {
-      const itemSubTotal =
-        item.cantidad * item.precio * (1 - item.descuento / 100);
-      subTotal += itemSubTotal;
-      ivaTotal += itemSubTotal * (item.ivaAplicado / 100);
-      retencionIvaTotal += itemSubTotal * (item.retencionIVAPorcentaje / 100);
-      retencionIsrTotal += itemSubTotal * (item.retencionISRPorcentaje / 100);
-    }
-    const totalFinal =
-      subTotal + ivaTotal - retencionIvaTotal - retencionIsrTotal;
+    // Fuente única: sumPurchaseOrderLineTotals. No reimplementar esta fórmula aquí.
+    const { subtotal: subTotal, iva: ivaTotal, retencionIva: retencionIvaTotal, retencionIsr: retencionIsrTotal, total: totalFinal } =
+      sumPurchaseOrderLineTotals(data.ordenCompraDetalle);
 
     let productRowsHtml = "";
     data.ordenCompraDetalle.forEach((item) => {
-      const importe = item.cantidad * item.precio * (1 - item.descuento / 100);
+      const importe = calculatePurchaseOrderLineTotals(item).subtotal;
       productRowsHtml += `
         <tr>
           <td style="text-align: center;">${item.cantidad}</td>

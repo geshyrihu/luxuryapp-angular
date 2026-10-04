@@ -152,33 +152,6 @@ export const comprasRoutes: Routes = [
     },
   },
   {
-    // Suggested path: 'purchase-order-pdf/:id'
-    path: "orden-compra-pdf/:id",
-    loadComponent: () =>
-      import("@purchases.luxuryapp/purchase-orders/purchase-order/purchase-order-pdf/orden-compra-pdf").then(
-        (m) => m.OrdenCompraPdf,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "PDF Orden de Compra",
-      breadcrumb: "PDF Orden de Compra",
-    },
-  },
-  {
-    // Suggested path: 'payment-request-pdf/:id'
-    path: "solicitud-pago-pdf/:id",
-    loadComponent: () =>
-      import("@purchases.luxuryapp/purchase-orders/purchase-order/payment-request-pdf/solicitud-pago-pdf").then(
-        (m) => m.SolicitudPagoPdfComponent,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "PDF Solicitud de Pago",
-      breadcrumb: "PDF Solicitud de Pago",
-    },
-  },
-
-  {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
       import("@purchases.luxuryapp/purchase-history/historial-compras-wrapper").then(

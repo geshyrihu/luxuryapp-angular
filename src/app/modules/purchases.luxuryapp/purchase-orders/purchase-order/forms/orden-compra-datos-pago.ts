@@ -28,6 +28,11 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import {
+  generateYearOptions,
+  groupFundingPeriodsByMonth,
+  toggleFundingPeriodSelection,
+} from "../funding-period-grouping";
+import {
   PurchaseOrderFundingPeriodGroup,
   PurchaseOrderPaymentFormData,
   PurchaseOrderProviderData,
@@ -172,7 +177,7 @@ export class OrdenCompraDatosPago implements OnInit {
     this.cb_formaPago.set((wayToPay as SelectItemDto[]) || []);
     this.cb_tipoGasto.set((tipoGasto as SelectItemDto[]) || []);
     this.processFundingPeriods((fundingPeriods as SelectItemDto[]) || []);
-    this.cb_fundingYear.set(this.generateYearOptions());
+    this.cb_fundingYear.set(generateYearOptions());
 
     const result = await this.apiResponseS.onGetItem<PurchaseOrderPaymentFormData>(
       Endpoints.PurchaseOrderPaymentData.getById(this.ordenCompraDatosPagoId),
@@ -180,40 +185,13 @@ export class OrdenCompraDatosPago implements OnInit {
     if (result) this.form.patchValue(result);
   }
 
-  // Nuevo método para generar opciones de Año
-  private generateYearOptions(): SelectItemDto[] {
-    const currentYear = new Date().getFullYear();
-    return [
-      { label: (currentYear - 1).toString(), value: currentYear - 1 },
-      { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
-    ];
-  }
-
   processFundingPeriods(periods: SelectItemDto[]) {
-    const months: Record<string, PurchaseOrderFundingPeriodGroup> = {};
-    periods.forEach((period) => {
-      if (period && period.label) {
-        const monthName = period.label.split(" ")[2];
-        if (!months[monthName]) {
-          months[monthName] = {
-            monthName: monthName,
-            quincenas: [],
-          };
-        }
-        months[monthName].quincenas.push(period);
-      }
-    });
-    this.fundingPeriodsByMonth.set(Object.values(months));
+    this.fundingPeriodsByMonth.set(groupFundingPeriodsByMonth(periods));
   }
 
   selectFundingPeriod(quincena: SelectItemDto) {
-    // Si la quincena seleccionada es la actual, la deselecciona.
-    if (this.form.get("fundingPeriod").value === quincena.value) {
-      this.form.get("fundingPeriod").setValue(null);
-    } else {
-      this.form.get("fundingPeriod").setValue(quincena.value);
-    }
+    const control = this.form.get("fundingPeriod");
+    control?.setValue(toggleFundingPeriodSelection(control.value, quincena.value));
   }
 
   onSubmit() {
