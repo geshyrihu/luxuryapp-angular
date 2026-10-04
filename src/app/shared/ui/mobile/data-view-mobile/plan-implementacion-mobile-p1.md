@@ -171,7 +171,7 @@ Más columnas, filtros, paginator, acciones condicionales.
 
 | Web actual                                                                          | Mobile propuesto                                    |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------- |
-| 6 columnas: #, Proveedor, Descripcion, Fecha Contratacion, Fecha Termino, Documento | **Línea 1:** `item.descripcion`                     |
+| 6 columnas: #, Proveedor, Descripción, Fecha Contratacion, Fecha Termino, Documento | **Línea 1:** `item.descripcion`                     |
 | 1 acción: view-pdf                                                                  | **Línea 2:** `item.proveedor` · `item.fechaTermino` |
 | Paginator con footer, globalFilterFields                                            | **Acciones:** ver PDF                               |
 

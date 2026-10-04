@@ -38,7 +38,7 @@
       <th>Fin</th>
       <th>Pago</th>
       <th appSortableColumn="diasHabiles">
-        Dias Habiles <app-sorticon field="diasHabiles" />
+        DÍAS HÁBILES <app-sorticon field="diasHabiles" />
       </th>
       <th>Estado</th>
       <th>Nominas</th>
@@ -69,7 +69,7 @@
             iconClass="material-symbols-light:event-busy"
             severity="secondary"
             variant="text"
-            lxTooltip="Dias no habiles"
+            lxTooltip="Días no habiles"
             (clicked)="openDiasNoHabiles(item)"
           />
           <iw-button-delete (confirmed)="onDelete(item)" />
@@ -110,7 +110,7 @@
           [severity]="getEstadoSeverity(item.estado)"
           [value]="item.estado"
         />
-        <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
+        <span class="text-xs">{{ item.diasHabiles }} días habiles</span>
       </div>
 
       <div end class="d-flex align-items-center gap-1">

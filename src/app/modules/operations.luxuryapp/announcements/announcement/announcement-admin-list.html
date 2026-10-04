@@ -1,273 +1,33 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
-    >
-      <div class="flex-grow-1">
-        <lux-table-caption
-          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-          [dt]="dt"
-          [noPadding]="true"
-          [noMargin]="true"
-        />
-      </div>
-
-      <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-        <div class="w-15rem">
-          <custom-input-select-signal
-            [control]="statusControl"
-            (onChange)="onFilterChange()"
-            [data]="statusOptions()"
-            placeholder="Estado"
-            [horizontal]="false"
-            [noMargin]="true"
-          />
-        </div>
-        <div class="w-15rem">
-          <custom-input-select-signal
-            [control]="typeControl"
-            (onChange)="onFilterChange()"
-            [data]="typeOptions()"
-            placeholder="Tipo"
-            [horizontal]="false"
-            [noMargin]="true"
-          />
-        </div>
-        <div class="flex-shrink-0">
-          <il-button
-            label="Filtrar"
-            iconClass="material-symbols-light:search"
-            variant="outline"
-          />
-        </div>
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="folio">
-        Folio
-        <app-sorticon field="folio" />
-      </th>
-      <th appSortableColumn="title">
-        Titulo
-        <app-sorticon field="title" />
-      </th>
-      <th appSortableColumn="announcementType">
-        Tipo
-        <app-sorticon field="announcementType" />
-      </th>
-      <th appSortableColumn="status">
-        Estado
-        <app-sorticon field="status" />
-      </th>
-      <th appSortableColumn="customerName">
-        Cliente
-        <app-sorticon field="customerName" />
-      </th>
-      <th appSortableColumn="publishedAt">
-        Publicación
-        <app-sorticon field="publishedAt" />
-      </th>
-      <th appSortableColumn="expirationDate">
-        Expiración
-        <app-sorticon field="expirationDate" />
-      </th>
-      <th class="no-print"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.folio }}</td>
-      <td>{{ item.title }}</td>
-      <td>
-        <lux-tag
-          [value]="item.announcementType"
-          [severity]="
-            item.announcementType === 'Urgente'
-              ? 'danger'
-              : item.announcementType === 'Informativo'
-                ? 'info'
-                : item.announcementType === 'General'
-                  ? 'primary'
-                  : 'secondary'
-          "
-        />
-      </td>
-      <td>
-        <lux-tag
-          [value]="item.status"
-          [severity]="
-            item.status === 'Publicado'
-              ? 'success'
-              : item.status === 'Borrador'
-                ? 'secondary'
-                : item.status === 'Archivado'
-                  ? 'warning'
-                  : 'secondary'
-          "
-        />
-      </td>
-      <td>{{ item.customerName }}</td>
-      <td>{{ item.publishedAt | apiDate: "dd/MM/yyyy" }}</td>
-      <td>{{ item.expirationDate | apiDate: "dd/MM/yyyy" }}</td>
-      <td>
-        <div class="d-flex">
-          <iw-button-edit (clicked)="onModalForm(item)" />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-          <iw-button-download
-            iconClass="material-symbols-light:picture-as-pdf"
-            ngbTooltip="Descargar PDF"
-            severity="danger"
-            (clicked)="onDownloadPdf(item.id)"
-          />
-          <iw-button-item
-            (clicked)="onViewPreview(item.id)"
-            iconClass="material-symbols-light:book"
-            lxTooltip="Vista previa"
-            tooltipPosition="top"
-          />
-          <iw-button-item
-            (clicked)="onViewAnalytics(item.id)"
-            iconClass="material-symbols-light:bar-chart"
-            lxTooltip="Analíticas"
-            tooltipPosition="top"
-          />
-        </div>
-      </td>
-      <!-- Opciones -->
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-announcement-admin-list-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <div customFilters class="px-4 py-2 d-flex flex-column gap-3">
-    <div>
-      <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
-        Filtrar por Estado
-      </h5>
-      <custom-input-select-signal
-        [control]="statusControl"
-        (onChange)="onFilterChange()"
-        [data]="statusOptions()"
-        placeholder="Estado"
-        [horizontal]="false"
-      />
-    </div>
-
-    <div>
-      <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
-        Filtrar por Tipo
-      </h5>
-      <custom-input-select-signal
-        [control]="typeControl"
-        (onChange)="onFilterChange()"
-        [data]="typeOptions()"
-        placeholder="Tipo"
-        [horizontal]="false"
-      />
-    </div>
-  </div>
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg bg-primary-50 w-3rem h-3rem"
-      >
-        <app-icon
-          icon="material-symbols-light:campaign"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h2 class="fw-bold m-0 text-base">{{ item.title }}</h2>
-        <lux-tag
-          [value]="item.status"
-          [severity]="
-              item.status === 'Publicado'
-                ? 'success'
-                : item.status === 'Borrador'
-                  ? 'secondary'
-                  : item.status === 'Archivado'
-                    ? 'warning'
-                    : 'secondary'
-            "
-        />
-      </div>
-      <p class="text-medium text-body-secondary m-0 text-sm mb-1">
-        <app-icon
-          [icon]="'material-symbols-light:calendar-today'"
-          class="me-1"
-        />
-        Publicado: {{ item.publishedAt | apiDate: "dd/MM/yyyy" }}
-      </p>
-      <p class="text-medium text-body-secondary m-0 text-sm">
-        <app-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
-        Cliente: {{ item.customerName }}
-      </p>
-      <lux-tag
-        [value]="item.announcementType"
-        class="mt-2 d-block"
-        [severity]="
-            item.announcementType === 'Urgente'
-              ? 'danger'
-              : item.announcementType === 'Informativo'
-                ? 'info'
-                : item.announcementType === 'General'
-                  ? 'primary'
-                  : 'secondary'
-          "
-      />
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-
-          <ili-button-item
-            (clicked)="onDownloadPdf(item.id)"
-            iconName="document-text-outline"
-            label="Descargar PDF"
-          />
-
-          <ili-button-item
-            (clicked)="onViewPreview(item.id)"
-            iconName="book-outline"
-            label="Vista previa"
-          />
-
-          <ili-button-item
-            (clicked)="onViewAnalytics(item.id)"
-            iconName="bar-chart-outline"
-            label="Analóticas"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [statusControl]="statusControl"
+  [typeControl]="typeControl"
+  [statusOptions]="statusOptions()"
+  [typeOptions]="typeOptions()"
+  (filterChange)="onFilterChange()"
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (downloadPdf)="onDownloadPdf($event)"
+  (viewPreview)="onViewPreview($event)"
+  (viewAnalytics)="onViewAnalytics($event)"
+/>
+} @else {
+<app-announcement-admin-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [statusControl]="statusControl"
+  [typeControl]="typeControl"
+  [statusOptions]="statusOptions()"
+  [typeOptions]="typeOptions()"
+  (filterChange)="onFilterChange()"
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (downloadPdf)="onDownloadPdf($event)"
+  (viewPreview)="onViewPreview($event)"
+  (viewAnalytics)="onViewAnalytics($event)"
+/>
+}

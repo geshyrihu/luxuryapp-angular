@@ -8,61 +8,25 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { IncidentListDesktop } from "./desktop/incident-list-desktop";
 import { IncidentFormComponent } from "./incident-form";
 import { IncidentResolveComponent } from "./incident-resolve";
 import {
   IncidentDetailDTO,
   IncidentListDTO,
 } from "./interfaces/incident.interfaces";
-
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { IncidentListMobile } from "./mobile/incident-list-mobile";
 
 @Component({
   selector: "app-incident-list",
   templateUrl: "./incident-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDownload,
-    WebButtonIconViewPdf,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    LuxTableCaption,
-    TableFooter,
-
-    DataViewMobile,
-  ],
+  imports: [IncidentListDesktop, IncidentListMobile],
 })
 export class IncidentList implements OnInit {
   employeeId = input<string>();
@@ -70,15 +34,12 @@ export class IncidentList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   toastS = inject(CustomToastService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   swalS = inject(SwalService);
   customerIdService = inject(CustomerIdService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<IncidentListDTO[]>([]);
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = signal([
     "employeeName",
@@ -232,27 +193,5 @@ export class IncidentList implements OnInit {
         });
     };
     input.click();
-  }
-
-  getSeverityBadge(severity: string): string {
-    const map: Record<string, string> = {
-      Low: "bg-sky-100 text-sky-700 border-sky-200",
-      Moderate: "bg-amber-100 text-amber-700 border-amber-200",
-      Medium: "bg-red-100 text-red-700 border-red-200",
-      High: "bg-red-100 text-red-700 border-red-200",
-    };
-    return map[severity] ?? "bg-slate-100 text-slate-700 border-slate-200";
-  }
-
-  getStatusBadge(status: string): string {
-    const map: Record<string, string> = {
-      Reportado: "bg-amber-100 text-amber-700 border-amber-200",
-      EnInvestigacion: "bg-sky-100 text-sky-700 border-sky-200",
-      ResueltoSinSancion: "bg-green-100 text-green-700 border-green-200",
-      ResueltoConSancion: "bg-red-100 text-red-700 border-red-200",
-      Archivado: "bg-slate-100 text-slate-700 border-slate-200",
-      Cancelado: "bg-slate-100 text-slate-700 border-slate-200",
-    };
-    return map[status] ?? "bg-slate-100 text-slate-700 border-slate-200";
   }
 }

@@ -173,6 +173,7 @@ export interface InspectionExecutionSnapshot {
   equipmentId: string;
   equipmentName: string;
   inventoryCategory: number;
+  inventoryCategoryDisplayName: string;
   brand: string | null;
   model: string | null;
   serialNumber: string | null;

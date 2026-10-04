@@ -15657,7 +15657,7 @@
                     "type": "string",
                     "format": "binary"
                   },
-                  "Descripcion": {
+                  "Descripción": {
                     "type": "string"
                   },
                   "ApplicationUserId": {
@@ -15669,7 +15669,7 @@
                 "File": {
                   "style": "form"
                 },
-                "Descripcion": {
+                "Descripción": {
                   "style": "form"
                 },
                 "ApplicationUserId": {
@@ -23951,7 +23951,7 @@
                     "type": "integer",
                     "format": "int32"
                   },
-                  "Descripcion": {
+                  "Descripción": {
                     "type": "string"
                   }
                 }
@@ -23963,7 +23963,7 @@
                 "TipoEvidencia": {
                   "style": "form"
                 },
-                "Descripcion": {
+                "Descripción": {
                   "style": "form"
                 }
               }
@@ -64998,7 +64998,7 @@
                     "type": "string",
                     "format": "binary"
                   },
-                  "Descripcion": {
+                  "Descripción": {
                     "type": "string"
                   },
                   "ApplicationUserId": {
@@ -65010,7 +65010,7 @@
                 "File": {
                   "style": "form"
                 },
-                "Descripcion": {
+                "Descripción": {
                   "style": "form"
                 },
                 "ApplicationUserId": {
@@ -72922,7 +72922,7 @@
                     "type": "integer",
                     "format": "int32"
                   },
-                  "Descripcion": {
+                  "Descripción": {
                     "type": "string"
                   }
                 }
@@ -72934,7 +72934,7 @@
                 "TipoEvidencia": {
                   "style": "form"
                 },
-                "Descripcion": {
+                "Descripción": {
                   "style": "form"
                 }
               }
@@ -147700,4 +147700,3 @@
     }
   ]
 }
-

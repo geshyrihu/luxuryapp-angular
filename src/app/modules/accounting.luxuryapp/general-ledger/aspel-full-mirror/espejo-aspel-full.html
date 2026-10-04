@@ -166,13 +166,13 @@
       >
         <ng-template #header>
           <tr>
-            <th>No. Cuenta</th>
-            <th>Descripción</th>
-            <th class="text-center">Saldo Ini.</th>
+            <th>NO. CUENTA</th>
+            <th>DESCRIPCIÓN</th>
+            <th class="text-center">SALDO INI.</th>
             @for (mes of meses; track mes) {
             <th class="text-center">{{ mes }}</th>
             }
-            <th class="text-center">Resultado</th>
+            <th class="text-center">RESULTADO</th>
           </tr>
         </ng-template>
 
@@ -186,7 +186,7 @@
               @if (fila.nivel !== 'grupo') { {{ fila.numCta }} }
             </td>
 
-            <!-- Descripcion -->
+            <!-- Descripción -->
             <td
               class="rf-td-descripcion--item"
               [style.color]="fila.nivel === 'grupo' ? 'white' : '#1e293b'"

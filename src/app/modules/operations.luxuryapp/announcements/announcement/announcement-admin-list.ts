@@ -6,75 +6,23 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { AnnouncementAdminListDesktop } from "./desktop/announcement-admin-list-desktop";
+import { AnnouncementAdminListMobile } from "./mobile/announcement-admin-list-mobile";
 
 @Component({
   selector: "app-announcement-admin-list",
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    WebButtonIconDownload,
-    WebButtonIconItem,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    ApiDatePipe,
-    RouterModule,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonLabel,
-
-    LxTag,
-    LxTooltipDirective,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    AppIcon,
-    CustomInputSelectSignal,
-    MobileListItem,
-  ],
+  imports: [AnnouncementAdminListDesktop, AnnouncementAdminListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-admin-list.html",
 })
@@ -82,12 +30,11 @@ export class AnnouncementAdminList implements OnInit {
   readonly ROUTES = ROUTES;
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  private router = inject(Router); // Inyectar Router
+  platformS = inject(PlatformService);
+  private router = inject(Router);
 
   dataSignal = signal<IAnnouncementAdminList[]>([]);
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];

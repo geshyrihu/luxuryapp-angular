@@ -14,7 +14,7 @@
           Auditoria de Cuentas Aspel
         </p>
         <p class="text-body-secondary m-0">
-          Catalogo general por cuenta y descripcion, con presencia por customer
+          Catálogo general por cuenta y descripción, con presencia por customer
         </p>
       </div>
     </div>
@@ -172,10 +172,10 @@
     >
       <ng-template #header>
         <tr>
-          <th class="text-center">Nivel</th>
-          <th>No. Cuenta</th>
-          <th class="text-center">Naturaleza</th>
-          <th>Descripción</th>
+          <th class="text-center">NIVEL</th>
+          <th>NO. CUENTA</th>
+          <th class="text-center">NATURALEZA</th>
+          <th>DESCRIPCIÓN</th>
           @for (customer of customerColumns(); track customer.customerId) {
           <th class="text-center">{{ customer.customerShortName }}</th>
           }

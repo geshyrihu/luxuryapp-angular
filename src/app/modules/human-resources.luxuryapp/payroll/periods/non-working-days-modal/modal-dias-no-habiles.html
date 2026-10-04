@@ -11,7 +11,7 @@
       <div class="col-12 col-md-5">
         <custom-input-text-signal
           [control]="form.controls['descripcion']"
-          label="Descripcion"
+          label="Descripción"
           placeholder="Ej. Dia de la Independencia"
         />
       </div>
@@ -33,14 +33,14 @@
 
   <!-- Listado de dias no habiles -->
   <lux-table [value]="dias()" [loading]="loading()" class="p-datatable-sm">
-    <ng-template #header>
-      <tr>
-        <th>Fecha</th>
-        <th>Descripción</th>
-        <th>Festivo</th>
-        <th></th>
-      </tr>
-    </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>FECHA</th>
+          <th>DESCRIPCIÓN</th>
+          <th>FESTIVO</th>
+          <th></th>
+        </tr>
+      </ng-template>
     <ng-template #body let-dia>
       <tr>
         <td>{{ dia.fecha | apiDate: "dd/MM/yyyy" }}</td>
@@ -63,7 +63,7 @@
     </ng-template>
     <ng-template #emptymessage>
       <tr>
-        <td colspan="4">Sin dias no habiles registrados.</td>
+        <td colspan="4">Sin días no habiles registrados.</td>
       </tr>
     </ng-template>
   </lux-table>

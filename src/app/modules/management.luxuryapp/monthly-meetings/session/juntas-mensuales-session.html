@@ -37,13 +37,13 @@
       <h3 class="mt-0">Listado de sesiones</h3>
 
       <lux-table [value]="items()" [loading]="loading()">
-        <ng-template #header>
-          <tr>
-            <th>Sesión</th>
-            <th>Fecha</th>
-            <th>Estatus</th>
-          </tr>
-        </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>SESION</th>
+          <th>FECHA</th>
+          <th>ESTATUS</th>
+        </tr>
+      </ng-template>
 
         <ng-template #body let-item>
           <tr
@@ -152,7 +152,7 @@
         <il-button-delete
           label="Cancelar sesion"
           [text]="true"
-          confirmMessage="Esta accion cancelara la sesion y, si existe agenda ligada, tambien cancelara el evento de agenda."
+          confirmMessage="Esta acción cancelará la sesión y, si existe agenda ligada, también cancelará el evento de agenda."
           (confirmed)="onCancel()"
         />
         }
@@ -234,7 +234,7 @@
       </div>
       } @else {
       <p class="text-body-secondary m-0">
-        Selecciona una sesion para ver su detalle consolidado.
+        Selecciona una sesión para ver su detalle consolidado.
       </p>
       }
     </div>

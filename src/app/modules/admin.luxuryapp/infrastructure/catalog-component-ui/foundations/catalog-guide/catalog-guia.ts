@@ -75,7 +75,7 @@ export class CatalogGuia {
   sampleName = "Torre Administrativa";
   sampleBudget = 125000;
   sampleDescription =
-    "Descripcion breve, accionable y sin lenguaje ambiguo para el usuario operativo.";
+    "Descripción breve, accionable y sin lenguaje ambiguo para el usuario operativo.";
   selectedArea: { label: string; value: string } | null = null;
   selectedModules: { label: string; value: string }[] = [];
   selectedDate = new Date(2026, 3, 22);

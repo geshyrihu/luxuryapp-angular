@@ -751,7 +751,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     for (const file of this.selectedEvidenceFiles) {
       const formData = new FormData();
       formData.append("File", file);
-      formData.append("Descripcion", file.name);
+      formData.append("Descripción", file.name);
       formData.append("ApplicationUserId", this.authS.applicationUserId);
       const result = await this.apiResponseS.onPostFile(
         Endpoints.PurchaseRequests.cuadroComparativoEvidences(

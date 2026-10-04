@@ -1,0 +1,112 @@
+<!--📲INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <div customFilters class="px-4 py-2 d-flex flex-column gap-3">
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
+        Filtrar por Estado
+      </h5>
+      <custom-input-select-signal
+        [control]="statusControl()"
+        (onChange)="filterChange.emit()"
+        [data]="statusOptions()"
+        placeholder="Estado"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
+        Filtrar por Tipo
+      </h5>
+      <custom-input-select-signal
+        [control]="typeControl()"
+        (onChange)="filterChange.emit()"
+        [data]="typeOptions()"
+        placeholder="Tipo"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg bg-primary-50 w-3rem h-3rem"
+      >
+        <app-icon
+          icon="material-symbols-light:campaign"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="fw-bold m-0 text-base">{{ item.title }}</h2>
+        <lux-tag
+          [value]="item.status"
+          [severity]="
+              item.status === 'Publicado'
+                ? 'success'
+                : item.status === 'Borrador'
+                  ? 'secondary'
+                  : item.status === 'Archivado'
+                    ? 'warning'
+                    : 'secondary'
+            "
+        />
+      </div>
+      <p class="text-medium text-body-secondary m-0 text-sm mb-1">
+        <app-icon
+          [icon]="'material-symbols-light:calendar-today'"
+          class="me-1"
+        />
+        Publicado: {{ item.publishedAt | apiDate: "dd/MM/yyyy" }}
+      </p>
+      <p class="text-medium text-body-secondary m-0 text-sm">
+        <app-icon [icon]="'material-symbols-light:apartment'" class="me-1" />
+        Cliente: {{ item.customerName }}
+      </p>
+      <lux-tag
+        [value]="item.announcementType"
+        class="mt-2 d-block"
+        [severity]="
+            item.announcementType === 'Urgente'
+              ? 'danger'
+              : item.announcementType === 'Informativo'
+                ? 'info'
+                : item.announcementType === 'General'
+                  ? 'primary'
+                  : 'secondary'
+          "
+      />
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+
+          <ili-button-item
+            (clicked)="downloadPdf.emit(item.id)"
+            iconName="document-text-outline"
+            label="Descargar PDF"
+          />
+
+          <ili-button-item
+            (clicked)="viewPreview.emit(item.id)"
+            iconName="book-outline"
+            label="Vista previa"
+          />
+
+          <ili-button-item
+            (clicked)="viewAnalytics.emit(item.id)"
+            iconName="bar-chart-outline"
+            label="Analóticas"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

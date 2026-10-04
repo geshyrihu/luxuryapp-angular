@@ -82,14 +82,14 @@
         [scrollable]="true"
         scrollHeight="620px"
       >
-        <ng-template #header>
-          <tr>
-            <th>Sesión</th>
-            <th>Presentacion sugerida</th>
-            <th>Minuta sugerida</th>
-            <th>Aplicar</th>
-          </tr>
-        </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>SESION</th>
+          <th>PRESENTACIÓN SUGERIDA</th>
+          <th>MINUTA SUGERIDA</th>
+          <th>APLICAR</th>
+        </tr>
+      </ng-template>
 
         <ng-template #body let-item>
           <tr>
@@ -189,7 +189,7 @@
                   icon="material-symbols-light:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalTitle="Aplicar conciliacion"
-                  swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."
+                  swalText="Se vincularán los registros seleccionados a la sesión mensual. Esta acción no elimina histórico existente."
                   swalConfirmButtonText="Si, aplicar"
                   swalCancelButtonText="Cancelar"
                   (confirmed)="onApply(item)"

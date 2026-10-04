@@ -78,15 +78,15 @@
     [tableStyle]="{ 'min-width': '60rem' }"
     styleClass="p-datatable-striped"
   >
-    <ng-template #header>
-      <tr>
-        <th style="width: 3rem"></th>
-        <th>Documento</th>
-        <th style="width: 8rem">Estado</th>
-        <th style="width: 10rem">Validación</th>
-        <th style="width: 14rem">Acciones</th>
-      </tr>
-    </ng-template>
+     <ng-template #header>
+       <tr>
+         <th style="width: 3rem"></th>
+         <th>DOCUMENTO</th>
+         <th style="width: 8rem">ESTADO</th>
+         <th style="width: 10rem">VALIDACIÓN</th>
+         <th style="width: 14rem">ACCIONES</th>
+       </tr>
+     </ng-template>
     <ng-template #body let-doc let-rowIndex="rowIndex">
       <tr [pReorderableRow]="rowIndex">
         <td>

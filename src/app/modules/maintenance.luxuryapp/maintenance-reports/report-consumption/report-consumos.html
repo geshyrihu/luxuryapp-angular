@@ -45,7 +45,7 @@
                 placeholder="Todas las areas"
               />
               <small class="text-body-secondary">
-                Fuente actual: descripcion del medidor.
+                 Fuente actual: descripción del medidor.
               </small>
             </div>
           </form>
@@ -198,18 +198,18 @@
             [showSearch]="false"
           />
         </ng-template>
-        <ng-template #header>
-          <tr>
-            <th>Categoria</th>
-            <th>Numero</th>
-            <th>Area / ubicacion</th>
-            <th>Descripción</th>
-            <th class="text-end">Consumo total</th>
-            <th class="text-end">Promedio semanal</th>
-            <th class="text-end">Max. configurado</th>
-            <th class="text-end">Max. detectado</th>
-          </tr>
-        </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>CATEGORÍA</th>
+          <th>NÚMERO</th>
+          <th>ÁREA / UBICACIÓN</th>
+          <th>DESCRIPCIÓN</th>
+          <th class="text-end">CONSUMO TOTAL</th>
+          <th class="text-end">PROMEDIO SEMANAL</th>
+          <th class="text-end">MÁX. CONFIGURADO</th>
+          <th class="text-end">MÁX. DETECTADO</th>
+        </tr>
+      </ng-template>
         <ng-template #body let-item>
           <tr>
             <td>{{ item.categoria }}</td>

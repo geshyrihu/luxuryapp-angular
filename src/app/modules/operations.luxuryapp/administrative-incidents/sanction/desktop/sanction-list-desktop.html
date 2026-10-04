@@ -1,0 +1,72 @@
+<div class="card">
+  <lux-table
+    #dt
+    [value]="data()"
+    class="custom-table"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [globalFilterFields]="globalFilterFields()"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        title="Sanciones Disciplinarias"
+        [globalFilter]="globalFilter()"
+        (globalFilterChange)="globalFilterChange.emit($event)"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-lg">Tipo de Sancion</th>
+        <th class="table-col-md">Severidad</th>
+        <th class="table-col-sm">Fecha Aplicacion</th>
+        <th class="table-col-sm">Fin Efecto</th>
+        <th class="table-col-md text-center">Estatus</th>
+        <th class="table-col-sm text-center">Apelacion</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.sanctionTypeName }}</td>
+        <td>{{ item.severityLevel }}</td>
+        <td>{{ item.appliedDate | apiDate:'dd/MM/yyyy' }}</td>
+        <td>
+          {{ item.effectiveEndDate ? (item.effectiveEndDate |
+          apiDate:'dd/MM/yyyy') : '-' }}
+        </td>
+        <td class="text-center">
+          <span
+            class="d-inline-flex align-items-center rounded-3xl border-1 border px-3 py-1 text-xs fw-semibold"
+            [ngClass]="getStatusBadge(item.sanctionStatus)"
+            >{{ item.sanctionStatus }}</span
+          >
+        </td>
+        <td class="text-center">
+          @if (item.allowAppeal && item.appealDeadline) {
+          <span class="text-body-secondary"
+            >{{ item.appealDeadline | apiDate:'dd/MM/yyyy' }}</span
+          >
+          } @else {
+          <span class="text-body-secondary">-</span>
+          }
+        </td>
+        <td class="text-center">
+          <iw-button-item
+            icon="material-symbols-light:sync"
+            title="Cambiar estatus"
+            (click)="changeStatus.emit(item)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <lux-table-footer [totalRecords]="data().length" />
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="7" />
+    </ng-template>
+  </lux-table>
+</div>

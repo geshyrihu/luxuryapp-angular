@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
+import { HtmlPrintService } from "@core/services/html-print.service";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { HtmlPrintService } from "@core/services/html-print.service";
 import {
   IAutitoriaCuentaAspelCatalogoDTO,
   IAutitoriaCuentaAspelCustomerDTO,
@@ -44,7 +44,7 @@ export class AutitoriaCuentasAspelExportService {
       { header: "Nivel", key: "nivel", width: 10 },
       { header: "No. Cuenta", key: "numCta", width: 18 },
       { header: "Naturaleza", key: "naturaleza", width: 14 },
-      { header: "Descripcion", key: "descripcion", width: 34 },
+      { header: "Descripción", key: "descripcion", width: 34 },
       ...customerColumns,
     ];
 
@@ -300,4 +300,3 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
-

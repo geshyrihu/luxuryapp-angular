@@ -1,4 +1,4 @@
-<div class="container-fluid p-4">
+<div class="container-fluid p-3 p-md-4">
   <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4"
   >
@@ -8,7 +8,7 @@
         Levantamientos iniciales, inspecciones mayores y anexos.
       </p>
     </div>
-    <div class="d-flex gap-2">
+    <div class="d-flex flex-wrap gap-2">
       <lux-button-web
         kind="custom"
         label="Actualizar"
@@ -29,63 +29,114 @@
   </div>
 
   <div class="card mb-4">
-    <lux-table
-      [value]="executions()"
-      [size]="'small'"
-      dataKey="id"
-      [scrollable]="true"
-      scrollHeight="24rem"
-    >
-      <ng-template #header>
-        <tr>
-          <th>Folio</th>
-          <th>Tipo</th>
-          <th class="text-center">Equipos</th>
-          <th>Estado</th>
-          <th>Fecha</th>
-          <th class="table-col-10"></th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr [class.table-row-selected]="item.id === selectedId()">
-          <td>{{ item.folio || "—" }}</td>
-          <td>
-            {{ item.inspectionTypeDisplayName }}
-            @if (item.isAnnex) {
-            <span class="approval-chip approval-chip--annex ms-1">Anexo</span>
-            }
-          </td>
-          <td class="text-center">{{ item.equipmentCount }}</td>
-          <td>
-            <span [class]="statusBadgeClass(item.approvalStatus)">
-              {{ item.approvalStatusDisplayName }}
-            </span>
-          </td>
-          <td>{{ item.createdAt | apiDate : "dd/MM/yyyy" }}</td>
-          <td>
-            <div class="d-flex justify-content-end">
-              <lux-button-web
-                kind="custom"
-                icon="material-symbols-light:fact-check"
-                displayMode="icon"
-                tooltip="Abrir el acta para revisar o firmar"
-                (clicked)="onSelect(item)"
-              />
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
+    <!-- 💻 Desktop: tabla -->
+    <div class="d-none d-md-block">
+      <lux-table
+        [value]="executions()"
+        [size]="'small'"
+        dataKey="id"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 20, 50]"
+        (onPage)="onPage($event)"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Folio</th>
+            <th>Tipo</th>
+            <th class="text-center">Equipos</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th class="table-col-10"></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr [class.table-row-selected]="item.id === selectedId()">
+            <td>{{ item.folio || "—" }}</td>
+            <td>
+              {{ item.inspectionTypeDisplayName }}
+              @if (item.isAnnex) {
+              <span class="approval-chip approval-chip--annex ms-1">Anexo</span>
+              }
+            </td>
+            <td class="text-center">{{ item.equipmentCount }}</td>
+            <td>
+              <span [class]="statusBadgeClass(item.approvalStatus)">
+                {{ item.approvalStatusDisplayName }}
+              </span>
+            </td>
+            <td>{{ item.createdAt | apiDate : "dd/MM/yyyy" }}</td>
+            <td>
+              <div class="d-flex justify-content-end">
+                <lux-button-web
+                  kind="custom"
+                  label="Abrir acta"
+                  icon="material-symbols-light:fact-check"
+                  displayMode="icon"
+                  tooltip="Abrir el acta para revisar o firmar"
+                  (clicked)="onSelect(item)"
+                />
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <lux-table-empty-message
+            [colspan]="6"
+            message="No hay levantamientos ni inspecciones mayores para este cliente."
+          />
+        </ng-template>
+      </lux-table>
+    </div>
+
+    <!-- 📲 Mobile: lista apilada -->
+    <div class="d-md-none">
+      @if (executions().length === 0) {
+      <div class="p-4">
         <lux-table-empty-message
-          [colspan]="6"
+          [colspan]="1"
           message="No hay levantamientos ni inspecciones mayores para este cliente."
         />
-      </ng-template>
-    </lux-table>
+      </div>
+      } @else {
+      <div class="approval-mobile-list">
+        @for (item of executions(); track item.id) {
+        <ili-list-item (click)="onSelect(item)" class="cursor-pointer">
+          <div start class="approval-mobile-icon">
+            <app-icon icon="material-symbols-light:verified" />
+          </div>
+          <div class="d-flex flex-column gap-1">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="text-title-sm m-0">{{ item.folio || "Sin folio" }}</span>
+              <span [class]="statusBadgeClass(item.approvalStatus)">
+                {{ item.approvalStatusDisplayName }}
+              </span>
+              @if (item.isAnnex) {
+              <span class="approval-chip approval-chip--annex">Anexo</span>
+              }
+            </div>
+            <span class="approval-muted">
+              {{ item.inspectionTypeDisplayName }} · {{ item.equipmentCount }}
+              equipos
+            </span>
+            <span class="approval-muted">
+              {{ item.createdAt | apiDate : "dd/MM/yyyy" }}
+            </span>
+          </div>
+          <app-icon
+            slot="end"
+            icon="material-symbols-light:chevron-right"
+            class="text-2xl text-on-surface-secondary"
+          />
+        </ili-list-item>
+        }
+      </div>
+      }
+    </div>
   </div>
 
   @if (selectedExecution(); as selected) {
-  <div class="card p-4">
+  <div class="card p-3 p-md-4">
     <div
       class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3"
     >
@@ -253,36 +304,70 @@
     }
 
     <h6 class="text-title-sm mb-2">Cobertura congelada</h6>
-    <lux-table [value]="coverage()" [size]="'small'" [scrollable]="true" scrollHeight="20rem">
-      <ng-template #header>
-        <tr>
-          <th>Equipo</th>
-          <th>Categoría</th>
-          <th>Ubicación</th>
-          <th>Estado</th>
-          <th class="text-center">Hallazgos</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-snap>
-        <tr>
-          <td>{{ snap.equipmentName }}</td>
-          <td>{{ snap.inventoryCategory }}</td>
-          <td>{{ snap.location || "—" }}</td>
-          <td>
-            {{ evaluationLabel(snap.evaluationState) }}
-            @if (snap.exceptionReason) {
-            <span class="approval-muted d-block">
-              {{ snap.exceptionReason }}
+
+    <!-- 💻 Desktop: tabla -->
+    <div class="d-none d-md-block">
+      <lux-table [value]="coverage()" [size]="'small'" [paginator]="true" [rows]="15">
+        <ng-template #header>
+          <tr>
+            <th>Equipo</th>
+            <th>Categoría</th>
+            <th>Ubicación</th>
+            <th>Estado</th>
+            <th class="text-center">Hallazgos</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-snap>
+          <tr>
+            <td>{{ snap.equipmentName }}</td>
+            <td>{{ snap.inventoryCategoryDisplayName }}</td>
+            <td>{{ snap.location || "—" }}</td>
+            <td>
+              {{ evaluationLabel(snap.evaluationState) }}
+              @if (snap.exceptionReason) {
+              <span class="approval-muted d-block">
+                {{ snap.exceptionReason }}
+              </span>
+              }
+            </td>
+            <td class="text-center">{{ snap.findings.length }}</td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <lux-table-empty-message [colspan]="5" message="Sin equipos en la cobertura." />
+        </ng-template>
+      </lux-table>
+    </div>
+
+    <!-- 📲 Mobile: tarjetas apiladas -->
+    <div class="d-md-none approval-mobile-list">
+      @if (coverage().length === 0) {
+      <p class="text-body-sm text-on-surface-secondary">Sin equipos en la cobertura.</p>
+      } @else {
+      @for (snap of coverage(); track snap.id) {
+      <ili-list-item alignTop="true">
+        <div class="d-flex flex-column gap-1">
+          <span class="text-title-sm m-0">{{ snap.equipmentName }}</span>
+          <span class="approval-muted">
+            {{ snap.inventoryCategoryDisplayName }}
+          </span>
+          <span class="approval-muted">{{ snap.location || "—" }}</span>
+          <div class="d-flex align-items-center gap-2 mt-1 flex-wrap">
+            <span class="approval-chip approval-chip--draft">
+              {{ evaluationLabel(snap.evaluationState) }}
             </span>
-            }
-          </td>
-          <td class="text-center">{{ snap.findings.length }}</td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="5" message="Sin equipos en la cobertura." />
-      </ng-template>
-    </lux-table>
+            <span class="approval-muted">
+              {{ snap.findings.length }} hallazgo(s)
+            </span>
+          </div>
+          @if (snap.exceptionReason) {
+          <span class="approval-muted">{{ snap.exceptionReason }}</span>
+          }
+        </div>
+      </ili-list-item>
+      }
+      }
+    </div>
 
     @if (approval()?.events?.length) {
     <h6 class="text-title-sm mb-2 mt-4">Bitácora del acta</h6>
@@ -302,9 +387,7 @@
             {{ event.occurredAt | apiDate : "dd/MM/yyyy HH:mm" }} · v{{ event.version }}
           </span>
           @if (event.reason) {
-          <span class="approval-muted d-block">
-            {{ event.reason }}
-          </span>
+          <span class="approval-muted d-block">{{ event.reason }}</span>
           }
         </div>
       </li>

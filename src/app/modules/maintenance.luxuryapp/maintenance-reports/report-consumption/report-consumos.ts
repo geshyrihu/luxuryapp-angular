@@ -234,7 +234,7 @@ export class ReportConsumos {
       Categoria: item.categoria,
       "Numero de medidor": item.numeroMedidor,
       "Area o ubicacion": item.area,
-      Descripcion: item.descripcion,
+      Descripción: item.descripcion,
       "Consumo total": item.consumoTotal,
       "Promedio semanal": item.promedioSemanal,
       "Maximo diario configurado": item.consumoDiarioMaximoConfigurado,

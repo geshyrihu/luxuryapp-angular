@@ -22,30 +22,30 @@
   <ng-template #paginatorleft>
     <lux-table-footer [data]="data()" />
   </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>Né</th>
-      <th appSortableColumn="fotografia">
-        Fotografia <app-sorticon field="fotografia" />
-      </th>
-      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
-      <th appSortableColumn="modelo">Modelo <app-sorticon field="modelo" /></th>
-      <th appSortableColumn="serie">Serie <app-sorticon field="serie" /></th>
-      <th appSortableColumn="bateria">
-        Bateria <app-sorticon field="bateria" />
-      </th>
-      <th appSortableColumn="fechaCompra">
-        Compra <app-sorticon field="fechaCompra" />
-      </th>
-      <th appSortableColumn="responsibleAreaName">
-        Area <app-sorticon field="responsibleAreaName" />
-      </th>
-      <th appSortableColumn="applicationUser">
-        Responsable <app-sorticon field="applicationUser" />
-      </th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>N°</th>
+          <th appSortableColumn="fotografia">
+            FOTOGRAFÍA <app-sorticon field="fotografia" />
+          </th>
+          <th appSortableColumn="marca">MARCA <app-sorticon field="marca" /></th>
+          <th appSortableColumn="modelo">MODELO <app-sorticon field="modelo" /></th>
+          <th appSortableColumn="serie">SERIE <app-sorticon field="serie" /></th>
+          <th appSortableColumn="bateria">
+            BATERÍA <app-sorticon field="bateria" />
+          </th>
+          <th appSortableColumn="fechaCompra">
+            COMPRA <app-sorticon field="fechaCompra" />
+          </th>
+          <th appSortableColumn="responsibleAreaName">
+            ÁREA <app-sorticon field="responsibleAreaName" />
+          </th>
+          <th appSortableColumn="applicationUser">
+            RESPONSABLE <app-sorticon field="applicationUser" />
+          </th>
+          <th class="table-col-5"></th>
+        </tr>
+      </ng-template>
   <ng-template #body let-item let-i="rowIndex">
     <tr>
       <td>{{ i + 1 }}</td>

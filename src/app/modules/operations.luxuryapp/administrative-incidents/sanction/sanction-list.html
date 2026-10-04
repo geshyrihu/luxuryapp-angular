@@ -1,107 +1,14 @@
-<div class="card">
-  <lux-table
-    #dt
-    [value]="items()"
-    class="custom-table d-none d-md-block"
-    [scrollable]="true"
-    [scrollHeight]="tableScrollH.scrollHeight()"
-    [paginator]="true"
-    [rows]="tableRows"
-    [rowsPerPageOptions]="rowsPerPageOptions"
-    [globalFilterFields]="globalFilterFields"
-  >
-    <ng-template #caption>
-      <lux-table-caption
-        title="Sanciones Disciplinarias"
-        [(globalFilter)]="globalFilter"
-      />
-    </ng-template>
-    <ng-template #header>
-      <tr>
-        <th class="table-col-lg">Tipo de Sancion</th>
-        <th class="table-col-md">Severidad</th>
-        <th class="table-col-sm">Fecha Aplicacion</th>
-        <th class="table-col-sm">Fin Efecto</th>
-        <th class="table-col-md text-center">Estatus</th>
-        <th class="table-col-sm text-center">Apelacion</th>
-        <th class="table-col-actions">Acciones</th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-item>
-      <tr>
-        <td>{{ item.sanctionTypeName }}</td>
-        <td>{{ item.severityLevel }}</td>
-        <td>{{ item.appliedDate | apiDate:'dd/MM/yyyy' }}</td>
-        <td>
-          {{ item.effectiveEndDate ? (item.effectiveEndDate |
-          apiDate:'dd/MM/yyyy') : '-' }}
-        </td>
-        <td class="text-center">
-          <span
-            class="d-inline-flex align-items-center rounded-3xl border-1 border px-3 py-1 text-xs fw-semibold"
-            [ngClass]="getStatusBadge(item.sanctionStatus)"
-            >{{ item.sanctionStatus }}</span
-          >
-        </td>
-        <td class="text-center">
-          @if (item.allowAppeal && item.appealDeadline) {
-          <span class="text-body-secondary"
-            >{{ item.appealDeadline | apiDate:'dd/MM/yyyy' }}</span
-          >
-          } @else {
-          <span class="text-body-secondary">-</span>
-          }
-        </td>
-        <td class="text-center">
-          <iw-button-item
-            icon="material-symbols-light:sync"
-            title="Cambiar estatus"
-            (click)="onChangeStatus(item)"
-          />
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #footer>
-      <lux-table-footer [totalRecords]="items().length" />
-    </ng-template>
-    <ng-template #emptymessage>
-      <lux-table-empty-message [colspan]="7" />
-    </ng-template>
-  </lux-table>
-
-  <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
-    <ng-template #listItemTemplate let-item>
-      <ili-list-item>
-        <div
-          start
-          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        >
-          <app-icon icon="material-symbols-light:gavel" />
-        </div>
-
-        <h2 class="fw-bold">{{ item.sanctionTypeName }}</h2>
-        <p class="text-sm text-body-secondary">
-          {{ item.severityLevel }} | {{ item.appliedDate | apiDate:'dd/MM/yyyy'
-          }}
-        </p>
-        <p class="text-sm">
-          <span
-            class="d-inline-flex align-items-center rounded-3xl border-1 border px-2 py-1 text-xs fw-semibold"
-            [ngClass]="getStatusBadge(item.sanctionStatus)"
-            >{{ item.sanctionStatus }}</span
-          >
-        </p>
-
-        <ili-action-menu slot="end">
-          <ng-container actions>
-            <ili-button-item
-              label="Cambiar estatus"
-              iconName="sync-outline"
-              (clicked)="onChangeStatus(item)"
-            />
-          </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
-    </ng-template>
-  </app-data-view-mobile>
-</div>
+@if (platformS.isMobile()) {
+<app-sanction-list-mobile
+  [data]="items()"
+  (changeStatus)="onChangeStatus($event)"
+/>
+} @else {
+<app-sanction-list-desktop
+  [data]="items()"
+  [globalFilterFields]="globalFilterFields"
+  [globalFilter]="globalFilter()"
+  (globalFilterChange)="globalFilter.set($event)"
+  (changeStatus)="onChangeStatus($event)"
+/>
+}

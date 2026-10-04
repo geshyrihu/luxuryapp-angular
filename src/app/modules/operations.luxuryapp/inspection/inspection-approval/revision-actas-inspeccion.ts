@@ -14,6 +14,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -30,7 +31,8 @@ type ReasonMode = "return" | "reopen" | null;
  * Pantalla de revisión y firma digital de actas de inspección (Fase 3):
  * envía a revisión, devuelve con motivo, firma/cierra, reabre y genera anexos.
  * Toda la autorización se valida en backend (deny-by-default); la UI solo
- * habilita acciones según el estado del acta.
+ * habilita acciones según el estado del acta. Layout responsive: tablas en
+ * desktop, listas apiladas en móvil.
  */
 @Component({
   selector: "app-revision-actas-inspeccion",
@@ -42,6 +44,7 @@ type ReasonMode = "return" | "reopen" | null;
     AppIcon,
     AppTable,
     TableEmptyMessage,
+    MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./revision-actas-inspeccion.html",
@@ -121,6 +124,10 @@ export class RevisionActasInspeccion {
       default:
         return "Evaluado";
     }
+  }
+
+  onPage(event: { first: number; rows: number }): void {
+    void event;
   }
 
   async loadExecutions(customerId: string): Promise<void> {

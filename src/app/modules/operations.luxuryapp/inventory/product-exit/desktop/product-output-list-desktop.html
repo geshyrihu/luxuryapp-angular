@@ -63,37 +63,37 @@
         </div>
       </div>
     </ng-template>
-    <ng-template #header>
-      <tr>
-        <th appSortableColumn="fechaSalida">
-          Fecha Salida
-          <app-sorticon field="fechaSalida" />
-        </th>
-        <th appSortableColumn="producto">
-          Producto
-          <app-sorticon field="producto" />
-        </th>
-        <th appSortableColumn="cantidad">
-          Cantidad
-          <app-sorticon field="cantidad" />
-        </th>
-        <th appSortableColumn="unidadMedida">
-          Unidad
-          <app-sorticon field="unidadMedida" />
-        </th>
-        <th appSortableColumn="quienUso">
-          Recibio
-          <app-sorticon field="quienUso" />
-        </th>
-        <th appSortableColumn="usoPrducto">
-          Uso
-          <app-sorticon field="usoPrducto" />
-        </th>
-        @if (isSuperUsuario()) {
-        <th class="table-col-5"></th>
-        }
-      </tr>
-    </ng-template>
+<ng-template #header>
+    <tr>
+      <th appSortableColumn="fechaSalida">
+        FECHA SALIDA
+        <app-sorticon field="fechaSalida" />
+      </th>
+      <th appSortableColumn="producto">
+        PRODUCTO
+        <app-sorticon field="producto" />
+      </th>
+      <th appSortableColumn="cantidad">
+        CANTIDAD
+        <app-sorticon field="cantidad" />
+      </th>
+      <th appSortableColumn="unidadMedida">
+        UNIDAD
+        <app-sorticon field="unidadMedida" />
+      </th>
+      <th appSortableColumn="quienUso">
+        RECIBIO
+        <app-sorticon field="quienUso" />
+      </th>
+      <th appSortableColumn="usoPrducto">
+        USO
+        <app-sorticon field="usoPrducto" />
+      </th>
+      @if (isSuperUsuario()) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
     <ng-template #body let-item>
       <tr>
         <td>{{ item.fechaSalida | apiDate:'mediumDate' }}</td>

@@ -13,37 +13,37 @@
     <ng-template #caption>
       <lux-table-caption [showAdd]="false" [dt]="dt" />
     </ng-template>
-    <ng-template #header>
-      <tr>
-        <th appSortableColumn="fechaEntrada">
-          Fecha Entrada
-          <app-sorticon field="fechaEntrada" />
-        </th>
-        <th appSortableColumn="nombreProducto">
-          Producto
-          <app-sorticon field="nombreProducto" />
-        </th>
-        <th appSortableColumn="cantidad">
-          cantidad
-          <app-sorticon field="cantidad" />
-        </th>
-        <th appSortableColumn="unidadMedida">
-          Unidad
-          <app-sorticon field="unidadMedida" />
-        </th>
-        <th appSortableColumn="provider">
-          Proveedor
-          <app-sorticon field="provider" />
-        </th>
-        <th appSortableColumn="numeroFactura">
-          Factura
-          <app-sorticon field="numeroFactura" />
-        </th>
-        @if (isSuperUsuario()) {
-        <th class="table-col-5"></th>
-        }
-      </tr>
-    </ng-template>
+<ng-template #header>
+    <tr>
+      <th appSortableColumn="fechaEntrada">
+        FECHA ENTRADA
+        <app-sorticon field="fechaEntrada" />
+      </th>
+      <th appSortableColumn="nombreProducto">
+        PRODUCTO
+        <app-sorticon field="nombreProducto" />
+      </th>
+      <th appSortableColumn="cantidad">
+        CANTIDAD
+        <app-sorticon field="cantidad" />
+      </th>
+      <th appSortableColumn="unidadMedida">
+        UNIDAD
+        <app-sorticon field="unidadMedida" />
+      </th>
+      <th appSortableColumn="provider">
+        PROVEEDOR
+        <app-sorticon field="provider" />
+      </th>
+      <th appSortableColumn="numeroFactura">
+        FACTURA
+        <app-sorticon field="numeroFactura" />
+      </th>
+      @if (isSuperUsuario()) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
     <ng-template #body let-item>
       <tr>
         <td>| {{ item.fechaEntrada | apiDate:'mediumDate' }}</td>

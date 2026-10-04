@@ -88,3 +88,22 @@
   padding: 0.5rem 0.75rem;
   border-left: 2px solid var(--ds-primary-200, #bfdbfe);
 }
+
+.approval-mobile-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ds-border, #e5e7eb);
+}
+
+.approval-mobile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  background: var(--ds-primary-50, #eff6ff);
+  color: var(--ds-primary-700, #1d4ed8);
+  font-size: 1.5rem;
+}

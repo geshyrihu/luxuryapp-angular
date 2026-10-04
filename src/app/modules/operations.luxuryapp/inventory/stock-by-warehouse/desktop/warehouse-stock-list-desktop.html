@@ -21,37 +21,37 @@
         [rolAuth]="canAdd()"
       />
     </ng-template>
-    <ng-template #header>
-      <tr>
-        <th appSortableColumn="producto.nombreProducto">
-          Producto
-          <app-sorticon field="producto.nombreProducto" />
-        </th>
-        <th appSortableColumn="existencia">
-          Existencia
-          <app-sorticon field="existencia" />
-        </th>
-        <th appSortableColumn="unidadDeMedida.descripcion">
-          Unidad
-          <app-sorticon field="unidadDeMedida.descripcion" />
-        </th>
-        <th appSortableColumn="stockMin">
-          Stock Min
-          <app-sorticon field="stockMin" />
-        </th>
-        <th appSortableColumn="stockMax">
-          Stock Max
-          <app-sorticon field="stockMax" />
-        </th>
-        <th appSortableColumn="compraRequerida">
-          Compra Sugerida
-          <app-sorticon field="compraRequerida" />
-        </th>
-        @if ( canManage() ) {
-        <th></th>
-        }
-      </tr>
-    </ng-template>
+<ng-template #header>
+    <tr>
+      <th appSortableColumn="producto.nombreProducto">
+        PRODUCTO
+        <app-sorticon field="producto.nombreProducto" />
+      </th>
+      <th appSortableColumn="existencia">
+        EXISTENCIA
+        <app-sorticon field="existencia" />
+      </th>
+      <th appSortableColumn="unidadDeMedida.descripcion">
+        UNIDAD
+        <app-sorticon field="unidadDeMedida.descripcion" />
+      </th>
+      <th appSortableColumn="stockMin">
+        STOCK MIN
+        <app-sorticon field="stockMin" />
+      </th>
+      <th appSortableColumn="stockMax">
+        STOCK MAX
+        <app-sorticon field="stockMax" />
+      </th>
+      <th appSortableColumn="compraRequerida">
+        COMPRA SUGERIDA
+        <app-sorticon field="compraRequerida" />
+      </th>
+      @if ( canManage() ) {
+      <th></th>
+      }
+    </tr>
+  </ng-template>
     <ng-template #body let-item let-rowIndex="rowIndex">
       @if (rowGroupMetadata()[item.category].index === rowIndex) {
       <tr>

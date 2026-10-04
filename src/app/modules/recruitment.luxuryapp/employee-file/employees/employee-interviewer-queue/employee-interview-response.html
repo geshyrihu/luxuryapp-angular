@@ -134,14 +134,14 @@
       [tableStyle]="{ 'min-width': '50rem' }"
       class="custom-table card"
     >
-      <ng-template #header>
-        <tr>
-          <th>Fecha</th>
-          <th>Acción</th>
-          <th>Usuario</th>
-          <th>Comentario</th>
-        </tr>
-      </ng-template>
+       <ng-template #header>
+         <tr>
+           <th>FECHA</th>
+           <th>ACCIÓN</th>
+           <th>USUARIO</th>
+           <th>COMENTARIO</th>
+         </tr>
+       </ng-template>
       <ng-template #body let-item>
         <tr>
           <td>{{ item.createdAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
