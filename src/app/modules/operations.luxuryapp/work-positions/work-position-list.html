@@ -1,263 +1,32 @@
-<!--
-  ═══════════════════════════════════════════════════════════════════
-  PLANTILLA INTERNA (PUESTOS DE TRABAJO)
-  Vista responsive: tabla Bootstrap en escritorio, data-view-mobile en móvil.
-  ═══════════════════════════════════════════════════════════════════
--->
-<lux-table
-  #dt
-  [value]="filteredData()"
-  [globalFilterFields]="globalFilterFields()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  groupRowsBy="departament"
-  initialSortField="departament"
-  sortMode="single"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div
-      class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 mb-3 w-full g-4"
-    >
-      <app-segmented-control
-        [items]="departmentFilterItems()"
-        [(value)]="selectedDepartment"
-        ariaLabel="Filtrar por departamento"
-      />
-
-      <div
-        class="d-flex flex-column flex-md-row align-items-center justify-content-end gap-3 w-full xl:w-auto g-4"
-      >
-        <div class="staff-caption-search w-full md:w-auto">
-          <lux-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
-        </div>
-
-        <div
-          class="staff-board-actions d-flex flex-wrap gap-2 align-items-center justify-content-center justify-content-md-end"
-        >
-          @if (statusFilter() === 'Activo') {
-          <il-button
-            (clicked)="onStatusFilterChange('Inactivo')"
-            label="Inactivos"
-            iconClass="material-symbols-light:visibility-off"
-            severity="danger"
-            variant="outlined"
-          />
-          } @else {
-          <il-button
-            (clicked)="onStatusFilterChange('Activo')"
-            label="Activos"
-            iconClass="material-symbols-light:visibility"
-            severity="success"
-            variant="outlined"
-          />
-          }
-        </div>
-      </div>
-    </div>
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
-      </th>
-      <th class="w-32" appSortableColumn="turno">
-        TURNO <app-sorticon field="turno" />
-      </th>
-      @if (showSalaryColumn()) {
-      <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
-      }
-      <th class="w-52 text-center">ACCIONES</th>
-      <th class="border-left-2">COLABORADOR</th>
-    </tr>
-  </ng-template>
-
-  <ng-template #groupheader let-item>
-    <tr>
-      <td
-        [attr.colspan]="showSalaryColumn() ? 5 : 4"
-        class="staff-group-header-cell"
-      >
-        <span class="group-header-label">
-          <app-icon [icon]="'material-symbols-light:work'" />
-          {{ getDepartamentLabel(item.departament) }}
-        </span>
-      </td>
-    </tr>
-  </ng-template>
-
-  <ng-template #body let-item>
-    <tr [class.row-vacant]="isVacant(item)">
-      <!-- PUESTO -->
-      <td>
-        @if (necesitaActualizacion(item)) {
-        <div class="d-flex align-items-center gap-2">
-          <lux-tag
-            severity="warn"
-            value="Actualizar puesto"
-            icon="material-symbols-light:warning"
-          />
-        </div>
-        } @else {
-        <div>
-          <span class="text-body-secondary">{{ item.folio }}</span>
-          <p class="mt-1 fw-semibold">{{ item.applicationRoleName }}</p>
-        </div>
-        }
-      </td>
-
-      <!-- TURNO -->
-      <td>{{ item.turno }}</td>
-
-      <!-- SUELDOS -->
-      @if (showSalaryColumn()) {
-      <td class="no-print">
-        <div class="d-flex flex-column gap-1">
-          <div
-            class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
-          >
-            <span class="text-body-secondary fw-bold">PRE:</span>
-            <span class="text-xs">{{ item.sueldoBase }}</span>
-          </div>
-          <div class="d-flex justify-content-between">
-            <span class="text-body-secondary fw-bold">ACT:</span>
-            <span class="text-xs fw-bold text-primary">{{ item.sueldo }}</span>
-          </div>
-        </div>
-      </td>
-      }
-
-      <!-- ACCIONES -->
-      <td>
-        <div class="d-flex align-items-center justify-content-center gap-1">
-          <iw-button-item
-            iconClass="material-symbols-light:tune"
-            lxTooltip="Ajustes Generales"
-            ariaLabel="Ajustes Generales"
-            tooltipPosition="top"
-            (clicked)="onModalDetails(item)"
-          />
-        </div>
-      </td>
-
-      <!-- COLABORADOR -->
-      <td class="border-left-2">
-        @if (!isVacant(item)) {
-        <div class="d-flex align-items-center gap-2">
-          @if (item.applicationUserPhoto) {
-          <app-avatar
-            [image]="item.applicationUserPhoto"
-            shape="circle"
-            size="large"
-            class="cursor-pointer me-2"
-            (click)="onCardEmployee(item.applicationUserId!)"
-            lxTooltip="Ver tarjeta"
-          />
-          } @else {
-          <app-avatar
-            icon="material-symbols-light:person"
-            shape="circle"
-            size="large"
-            class="me-2"
-          />
-          }
-          <span class="fw-semibold truncate flex-fill min-w-0"
-            >{{ item.applicationUser }}</span
-          >
-          @if (item.employeeId) {
-          <iw-button-item
-            iconClass="material-symbols-light:manage-accounts"
-            lxTooltip="Administrar empleado"
-            ariaLabel="Administrar empleado"
-            tooltipPosition="top"
-            (clicked)="onAdministerEmployee(item.employeeId!, item.applicationUserId!)"
-            class="flex-shrink-0"
-          />
-
-          }
-        </div>
-        } @else {
-        <span class="badge badge-info">VACANTE</span>
-        }
-      </td>
-    </tr>
-  </ng-template>
-
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="showSalaryColumn() ? 5 : 4" />
-  </ng-template>
-</lux-table>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     VISTA MÓVIL
-     ═══════════════════════════════════════════════════════════════════ -->
-<app-data-view-mobile
-  class="d-block d-md-none"
+@if (platformS.isMobile()) {
+<app-work-position-list-mobile
   [data]="filteredData()"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        @if (!isVacant(item) && item.applicationUserPhoto) {
-        <app-avatar
-          [image]="item.applicationUserPhoto"
-          shape="circle"
-          size="large"
-        />
-        } @else {
-        <app-avatar
-          icon="material-symbols-light:person"
-          shape="circle"
-          size="large"
-        />
-        }
-      </div>
-      <div>
-        <small class="text-body-secondary">{{ item.folio }}</small>
-        <p class="m-0 fw-semibold">{{ item.applicationRoleName }}</p>
-        <small class="text-body-secondary"
-          >{{ item.turno }} · {{ getDepartamentLabel(item.departament) }}</small
-        >
-        @if (necesitaActualizacion(item)) {
-        <lux-tag
-          severity="warn"
-          value="Actualizar puesto"
-          icon="material-symbols-light:warning"
-          class="text-xs"
-        />
-        }
-      </div>
-      <div end>
-        <ili-action-menu>
-          <ili-button-item
-            iconClass="material-symbols-light:tune"
-            label="Ajustes Generales"
-            (clicked)="onModalDetails(item)"
-          />
-          @if (!isVacant(item)) {
-          <ili-button-item
-            iconClass="material-symbols-light:person"
-            label="Ver colaborador"
-            (clicked)="onCardEmployee(item.applicationUserId!)"
-          />
-          @if (item.employeeId) {
-          <ili-button-item
-            iconClass="material-symbols-light:manage-accounts"
-            label="Administrar empleado"
-            (clicked)="onAdministerEmployee(item.employeeId!, item.applicationUserId!)"
-          />
-          } }
-          <ili-button-item
-            iconClass="material-symbols-light:delete-outline"
-            label="Eliminar"
-            severity="danger"
-            (clicked)="onRequestDelete(item)"
-          />
-        </ili-action-menu>
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [departamentLabels]="departamentLabels"
+  (details)="onModalDetails($event)"
+  (administerEmployee)="
+    onAdministerEmployee($event.employeeId, $event.userId)
+  "
+  (cardEmployee)="onCardEmployee($event)"
+  (requestDelete)="onRequestDelete($event)"
+/>
+} @else {
+<app-work-position-list-desktop
+  [data]="filteredData()"
+  [globalFilterFields]="globalFilterFields()"
+  [departmentFilterItems]="departmentFilterItems()"
+  [selectedDepartment]="selectedDepartment()"
+  [statusFilter]="statusFilter()"
+  [showSalaryColumn]="showSalaryColumn()"
+  [scrollHeight]="scrollHeight()"
+  [departamentLabels]="departamentLabels"
+  (statusFilterChange)="onStatusFilterChange($event)"
+  (departmentChange)="selectedDepartment.set($event)"
+  (details)="onModalDetails($event)"
+  (administerEmployee)="
+    onAdministerEmployee($event.employeeId, $event.userId)
+  "
+  (cardEmployee)="onCardEmployee($event)"
+  (requestDelete)="onRequestDelete($event)"
+/>
+}

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,71 +6,29 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { LxRating } from "@ui/adaptive/rating/rating";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
-import { AppPaginator } from "@ui/web/paginator/paginator";
-
+import { FormControl } from "@angular/forms";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields, rowsPerPageOptions } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { CalificacionProveedor } from "@operations.luxuryapp/provider-qualifications/calificacion-proveedor";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ProviderListDesktop } from "./desktop/provider-list-desktop";
+import { ProviderListMobile } from "./mobile/provider-list-mobile";
 import { ProveedorForm } from "./proveedor-form";
 import { TarjetaProveedor } from "./provider-card";
 import { ProviderUse } from "./provider-use";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    WebButtonLabel,
-    CustomSearchInput,
-    SegmentedControl,
-    LxRating,
-    LxAvatar,
-    DataViewMobile,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-    AppPaginator,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LxTooltipDirective,
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconDelete,
-  ],
+  imports: [ProviderListDesktop, ProviderListMobile],
 })
 export class ListProvider implements OnInit {
   roles = ApplicationRole;
@@ -81,6 +38,7 @@ export class ListProvider implements OnInit {
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
+  platformS = inject(PlatformService);
   // Datos de la tabla
   dataSignal = signal<BusquedaProveedor[]>([]);
   totalRecords: number = 0; // Total de registros para paginador
@@ -100,7 +58,6 @@ export class ListProvider implements OnInit {
       mobileSearchBlob: this.buildMobileSearchBlob(item),
     })),
   );
-  tableRows: number = tableRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   loading = signal(true);
 
@@ -108,9 +65,6 @@ export class ListProvider implements OnInit {
   title: string = "Directorio de Proveedores"; // O el titulo que prefieras.
   label: string = "Agregar";
   rolAuth: boolean = false; // La inicializaremos en ngOnInit
-
-  // Referencia para dialogos.
-  ref: DynamicDialogRef;
 
   // Opciones de filtro para tipo de servicio y nivel de acceso
   serviceTypes = [

@@ -1,0 +1,73 @@
+<app-data-view-mobile
+  class="d-block d-md-none"
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        @if (!isVacant(item) && item.applicationUserPhoto) {
+        <app-avatar
+          [image]="item.applicationUserPhoto"
+          shape="circle"
+          size="large"
+        />
+        } @else {
+        <app-avatar
+          icon="material-symbols-light:person"
+          shape="circle"
+          size="large"
+        />
+        }
+      </div>
+      <div>
+        <small class="text-body-secondary">{{ item.folio }}</small>
+        <p class="m-0 fw-semibold">{{ item.applicationRoleName }}</p>
+        <small class="text-body-secondary"
+          >{{ item.turno }} · {{ getDepartamentLabel(item.departament) }}</small
+        >
+        @if (necesitaActualizacion(item)) {
+        <lux-tag
+          severity="warn"
+          value="Actualizar puesto"
+          icon="material-symbols-light:warning"
+          class="text-xs"
+        />
+        }
+      </div>
+      <div end>
+        <ili-action-menu>
+          <ili-button-item
+            iconClass="material-symbols-light:tune"
+            label="Ajustes Generales"
+            (clicked)="details.emit(item)"
+          />
+          @if (!isVacant(item)) {
+          <ili-button-item
+            iconClass="material-symbols-light:person"
+            label="Ver colaborador"
+            (clicked)="cardEmployee.emit(item.applicationUserId!)"
+          />
+          @if (item.employeeId) {
+          <ili-button-item
+            iconClass="material-symbols-light:manage-accounts"
+            label="Administrar empleado"
+            (clicked)="
+              administerEmployee.emit({
+                employeeId: item.employeeId!,
+                userId: item.applicationUserId!
+              })
+            "
+          />
+          } }
+          <ili-button-item
+            iconClass="material-symbols-light:delete-outline"
+            label="Eliminar"
+            severity="danger"
+            (clicked)="requestDelete.emit(item)"
+          />
+        </ili-action-menu>
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

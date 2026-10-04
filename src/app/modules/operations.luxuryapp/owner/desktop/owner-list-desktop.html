@@ -1,0 +1,111 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <div class="d-flex align-items-center justify-content-between w-full">
+      <lux-table-caption
+        (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [rolAuth]="canManage()"
+      />
+      <div class="d-flex">
+        <il-button
+          severity="success"
+          iconClass="material-symbols-light:table-view"
+          (clicked)="exportExcel.emit()"
+          label="Exportar"
+        />
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-sm-4"></div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10" appSortableColumn="property">
+        Propiedad
+        <app-sorticon field="property" />
+      </th>
+      <th class="table-col-10" appSortableColumn="habitant">
+        Habitante
+        <app-sorticon field="habitant" />
+      </th>
+      <th class="table-col-10" appSortableColumn="fullName">
+        Nombre
+        <app-sorticon field="fullName" />
+      </th>
+
+      <th class="table-col-10" appSortableColumn="fixedPhone">
+        Télefono fijo
+        <app-sorticon field="fixedPhone" />
+      </th>
+      <th class="table-col-10" appSortableColumn="extencion">
+        Extensión
+        <app-sorticon field="extencion" />
+      </th>
+      <th class="table-col-10">Télefono</th>
+      <th class="table-col-10" appSortableColumn="email">
+        Email
+        <app-sorticon field="email" />
+      </th>
+      <th class="table-col-10" appSortableColumn="enviarMails" class="no-print">
+        Enviar Info
+        <app-sorticon field="enviarMails" />
+      </th>
+      @if ( canManage() ) {
+      <th class="no-print"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.property }}</td>
+      <td>{{ item.habitant }}</td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.fixedPhone }}</td>
+      <td>{{ item.extencion }}</td>
+      <td>{{ item.phoneNumber }}</td>
+      <td>{{ item.email }}</td>
+      <td class="no-print">
+        @if (item.enviarMails) {
+        <app-icon
+          [icon]="'material-symbols-light:check'"
+          class="text-success icon icon-"
+        />
+        } @if (!item.enviarMails) {
+        <app-icon
+          [icon]="'material-symbols-light:close'"
+          class="text-danger icon icon-"
+        />
+        }
+      </td>
+      @if ( canManage() ) {
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <il-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            <il-button-delete
+              (confirmed)="delete.emit(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="9" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

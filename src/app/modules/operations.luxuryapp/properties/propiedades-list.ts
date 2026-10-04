@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,67 +11,25 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Property } from "@core/interfaces/property.interface";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { OwnerForm } from "../owner/owner-form";
+import { PropiedadesListDesktop } from "./desktop/propiedades-list-desktop";
+import { PropiedadesListMobile } from "./mobile/propiedades-list-mobile";
 import { PropiedadesForm } from "./propiedades-form";
 
 @Component({
   selector: "app-propiedades-list",
   templateUrl: "./propiedades-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTooltipDirective,
-    DataViewMobile,
-    LuxTableCaption,
-    TableEmptyMessage,
-    TableFooter,
-    // Tabla web (acciones directas → solo icono)
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    WebButtonIconItem,
-    // Caption (CTA general, no es acción de fila)
-    WebButtonLabel,
-    // Vista móvil
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [PropiedadesListDesktop, PropiedadesListMobile],
 })
 export class PropiedadesList {
   apiResponseS = inject(ApiResponseService);
@@ -80,13 +37,20 @@ export class PropiedadesList {
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
+  platformS = inject(PlatformService);
   dataSignal = signal<Property[]>([]);
   public AspRole = ApplicationRole;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
+
+  canManage = computed(() =>
+    this.aspRoleS.hasAny([
+      ApplicationRole.Asistente,
+      ApplicationRole.Administrador,
+      ApplicationRole.SuperUsuario,
+    ]),
+  );
 
   constructor() {
     effect(() => {

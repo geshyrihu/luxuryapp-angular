@@ -12,62 +12,23 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Owner } from "@core/interfaces/list-condomino.interface";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { OwnerListDesktop } from "./desktop/owner-list-desktop";
+import { OwnerListMobile } from "./mobile/owner-list-mobile";
 import { OwnerForm } from "./owner-form";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-owner-list",
   templateUrl: "./owner-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    WebButtonLabel,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-  ],
+  imports: [OwnerListDesktop, OwnerListMobile],
 })
 export class OwnerList {
   apiResponseS = inject(ApiResponseService);
@@ -76,6 +37,7 @@ export class OwnerList {
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
   excelExportS = inject(ExcelExportService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<Owner[]>([]);
   public AspRole = ApplicationRole;
@@ -83,9 +45,13 @@ export class OwnerList {
   loading = signal(true);
   ref: DynamicDialogRef;
 
-  // Helpers
-  rowsPerPageOptions = rowsPerPageOptions();
-  tableRows = tableRows();
+  canManage = computed(() =>
+    this.aspRoleS.hasAny([
+      ApplicationRole.Asistente,
+      ApplicationRole.Administrador,
+      ApplicationRole.SuperUsuario,
+    ]),
+  );
 
   constructor() {
     effect(() => {

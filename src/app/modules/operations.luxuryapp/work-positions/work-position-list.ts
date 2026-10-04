@@ -8,8 +8,27 @@ import {
   ViewChild,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { AuthService } from "@core/auth/services/auth.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
+import { Department } from "@core/enums/department.enum";
+import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { FilterRequestsService } from "@core/http/services/filter-requests.service";
+import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { SegmentItem } from "@ui/primitives/segmented-control/segmented-control";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { WorkPositionListDesktop } from "./desktop/work-position-list-desktop";
+import { IWorkPosition } from "./interfaces/work-position.model";
+import { WorkPositionListMobile } from "./mobile/work-position-list-mobile";
+import { WorkPositionDetails } from "./work-position-details";
+
 import { addIcons } from "ionicons";
 import {
   add,
@@ -20,67 +39,13 @@ import {
   personOutline,
   timeOutline,
 } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { AuthService } from "@core/auth/services/auth.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { Department } from "@core/enums/department.enum";
-import { globalFilterFields as getGlobalFilterFields } from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { FilterRequestsService } from "@core/http/services/filter-requests.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { IWorkPosition } from "./interfaces/work-position.model";
-import { WorkPositionDetails } from "./work-position-details";
-
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import {
-  SegmentedControl,
-  SegmentItem,
-} from "@ui/primitives/segmented-control/segmented-control";
 
 @Component({
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
   styleUrl: "./work-position-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconItem,
-    LxTooltipDirective,
-    MobileActionMenu,
-    WebButtonLabel,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    AppAvatar,
-    LuxTableCaption,
-    DataViewMobile,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-    SegmentedControl,
-  ],
+  imports: [WorkPositionListDesktop, WorkPositionListMobile],
 })
 export class WorkPositionList {
   // --- INYECCIÓN DE DEPENDENCIAS ---
@@ -94,6 +59,7 @@ export class WorkPositionList {
   private tableScrollHeightS = inject(TableScrollHeightService);
   private filterRequestsService = inject(FilterRequestsService);
   private confirmS = inject(ConfirmService);
+  platformS = inject(PlatformService);
 
   // --- SIGNALS Y PROPIEDADES ---
   data = signal<IWorkPosition[]>([]);

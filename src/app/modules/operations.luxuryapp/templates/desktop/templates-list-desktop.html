@@ -1,0 +1,70 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+      [showAdd]="isSuperUsuario()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-30" appSortableColumn="folio">
+        Folio
+        <app-sorticon field="folio" />
+      </th>
+      <th class="table-col-30" appSortableColumn="descripcion">
+        DESCRIPCIÓN
+        <app-sorticon field="descripcion" />
+      </th>
+      <th class="table-col-30" appSortableColumn="pathFormato">
+        Archivo
+        <app-sorticon field="pathFormato" />
+      </th>
+      @if (isSuperUsuario()) {
+      <th class="table-col-10"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.name | uppercase }}</td>
+      <td class="text-center">
+        <iw-button-view-pdf [url]="item.path" fileName="Formato" />
+      </td>
+      <!-- Opciones -->
+      @if (isSuperUsuario()) {
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <il-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            <il-button-delete
+              (confirmed)="delete.emit(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      }
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="4" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

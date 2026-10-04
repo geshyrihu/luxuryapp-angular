@@ -1,0 +1,41 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:location-city" />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
+      <p>
+        Cta: {{ formatAccountNumber(item.accountNumber) }} @if (item.floor) {
+        &middot; Piso: {{ item.floor }} } @if (item.unitNumber) { &middot; Int:
+        {{ item.unitNumber }} }
+      </p>
+      <p>
+        @if (item.areaM2) { área: {{ item.areaM2 | number:'1.2-2' }} mí } @if
+        (item.indivisoPercentage) { &middot; Indiviso: {{
+        item.indivisoPercentage | percent:'1.2-5' }} }
+      </p>
+      @if (item.isDelinquent) {
+      <p class="text-red-600 fw-medium">Moroso</p>
+      }
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

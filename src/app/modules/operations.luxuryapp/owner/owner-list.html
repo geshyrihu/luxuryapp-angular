@@ -1,144 +1,19 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div class="d-flex align-items-center justify-content-between w-full">
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-        [dt]="dt"
-        [rolAuth]="
-          aspRoleS.hasAny([
-            AspRole.Asistente,
-            AspRole.Administrador,
-            AspRole.SuperUsuario,
-          ])
-        "
-      />
-      <div class="d-flex">
-        <il-button
-          severity="success"
-          iconClass="material-symbols-light:table-view"
-          (clicked)="onExportExcel()"
-          label="Exportar"
-        />
-      </div>
-    </div>
-    <div class="row g-4">
-      <div class="col-12 col-sm-4"></div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-10" appSortableColumn="property">
-        Propiedad
-        <app-sorticon field="property" />
-      </th>
-      <th class="table-col-10" appSortableColumn="habitant">
-        Habitante
-        <app-sorticon field="habitant" />
-      </th>
-      <th class="table-col-10" appSortableColumn="fullName">
-        Nombre
-        <app-sorticon field="fullName" />
-      </th>
-
-      <th class="table-col-10" appSortableColumn="fixedPhone">
-        Télefono fijo
-        <app-sorticon field="fixedPhone" />
-      </th>
-      <th class="table-col-10" appSortableColumn="extencion">
-        Extensión
-        <app-sorticon field="extencion" />
-      </th>
-      <th class="table-col-10">Télefono</th>
-      <th class="table-col-10" appSortableColumn="email">
-        Email
-        <app-sorticon field="email" />
-      </th>
-      <th class="table-col-10" appSortableColumn="enviarMails" class="no-print">
-        Enviar Info
-        <app-sorticon field="enviarMails" />
-      </th>
-      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
-      AspRole.SuperUsuario, ]) ) {
-      <th class="no-print"></th>
-      }
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.property }}</td>
-      <td>{{ item.habitant }}</td>
-      <td>{{ item.fullName }}</td>
-      <td>{{ item.fixedPhone }}</td>
-      <td>{{ item.extencion }}</td>
-      <td>{{ item.phoneNumber }}</td>
-      <td>{{ item.email }}</td>
-      <td class="no-print">
-        @if (item.enviarMails) {
-        <app-icon
-          [icon]="'material-symbols-light:check'"
-          class="text-success icon icon-"
-        />
-        } @if (!item.enviarMails) {
-        <app-icon
-          [icon]="'material-symbols-light:close'"
-          class="text-danger icon icon-"
-        />
-        }
-      </td>
-      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
-      AspRole.SuperUsuario, ]) ) {
-      <td class="no-print">
-        <app-action-menu>
-          <ng-container actions>
-            <il-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            <il-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </app-action-menu>
-      </td>
-      }
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="9" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-owner-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        <app-icon icon="material-symbols-light:home-outline" />
-      </div>
-
-      <h3>{{ item.habitant }}</h3>
-      <p>{{ item.property }} é {{ item.phoneNumber }}</p>
-      <p>{{ item.email }}</p>
-
-      <ili-action-menu slot="end">
-        <ili-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          label="Editar"
-        />
-        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-owner-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [canManage]="canManage()"
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (exportExcel)="onExportExcel()"
+/>
+}

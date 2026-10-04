@@ -1,0 +1,228 @@
+<!-- Directorio de Proveedores: vista moderna en tarjetas -->
+<!-- Filtros y acción principal -->
+<div
+  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4 g-4"
+>
+  <app-segmented-control
+    [items]="serviceTypes()"
+    [value]="serviceTypeControl().value"
+    (changed)="serviceTypeChange.emit($event)"
+    ariaLabel="Tipo de Servicio"
+  />
+
+  <div class="d-flex align-items-center gap-2 w-full md:w-auto">
+    <custom-search-input-signal
+      class="flex-fill"
+      (searchChange)="filter.emit($event)"
+      placeholder="Buscar proveedor..."
+    />
+    @if (rolAuth()) {
+    <il-button
+      variant="outline"
+      iconClass="material-symbols-light:add"
+      [label]="label()"
+      (clicked)="add.emit({ id: '', title: 'Nuevo Registro' })"
+    />
+    }
+  </div>
+</div>
+
+<hr class="my-0 border" />
+
+<!-- Grid de tarjetas -->
+@if (data().length > 0) {
+<div class="row g-4">
+  @for (item of data(); track item.providerId) {
+  <div class="col-12 col-sm-6 col-lg-4 p-2">
+    <lux-card class="h-full d-flex flex-column">
+      <!-- Encabezado: logo + nombre + ficha -->
+      <div class="d-flex align-items-start justify-content-between gap-2">
+        <div class="d-flex align-items-center gap-3 min-w-0">
+          <lux-avatar
+            [image]="item.pathPhoto"
+            icon="material-symbols-light:store-outline"
+            shape="square"
+            size="xlarge"
+            styleClass="rounded shadow-sm"
+          />
+          <div class="min-w-0">
+            <div class="fw-bold text-lg text-body truncate">
+              {{ item.nameProvider }}
+            </div>
+            <div class="text-body-secondary text-sm truncate">
+              {{ item.nameComercial }}
+            </div>
+            <div class="text-body-secondary text-xs mt-1">
+              RFC: {{ item.rfc }}
+            </div>
+          </div>
+        </div>
+        <app-icon
+          [icon]="'material-symbols-light:badge'"
+          class="cursor-pointer text-primary text-xl"
+          lxTooltip="Ver Ficha Técnica"
+          (click)="showCard.emit(item)"
+        />
+      </div>
+
+      <!-- Insignias de estado -->
+      <div class="d-flex flex-wrap gap-1 mt-2">
+        <lux-tag
+          [value]="item.autorizado ? 'Autorizado' : 'No autorizado'"
+          [severity]="item.autorizado ? 'success' : 'danger'"
+        />
+        <lux-tag
+          [value]="item.activo ? 'Activo' : 'Inactivo'"
+          [severity]="item.activo ? 'success' : 'warning'"
+        />
+        @if (item.sales) {
+        <lux-tag value="Ventas" severity="secondary" />
+        } @if (item.repair) {
+        <lux-tag value="Reparación" severity="secondary" />
+        }
+      </div>
+
+      <!-- Tipo de servicio -->
+      <div
+        class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider mt-2"
+      >
+        {{ item.tipoServicio }}
+      </div>
+
+      <!-- Calificaciones -->
+      @if (item.calificacionProveedor.length > 0) {
+      <div class="d-flex flex-column gap-1 bg-body-tertiary p-2 rounded mt-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="text-xs text-body-secondary">Servicio</span>
+          <lux-rating
+            [value]="calificacionPromedio(item.calificacionProveedor, 'servicio')"
+            [readonly]="true"
+            [stars]="5"
+            [allowCancel]="false"
+          ></lux-rating>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="text-xs text-body-secondary">Precio</span>
+          <lux-rating
+            [value]="calificacionPromedio(item.calificacionProveedor, 'precio')"
+            [readonly]="true"
+            [stars]="5"
+            [allowCancel]="false"
+          ></lux-rating>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="text-xs text-body-secondary">Entrega</span>
+          <lux-rating
+            [value]="calificacionPromedio(item.calificacionProveedor, 'entrega')"
+            [readonly]="true"
+            [stars]="5"
+            [allowCancel]="false"
+          ></lux-rating>
+        </div>
+      </div>
+      }
+
+      <!-- Contacto -->
+      <div class="d-flex flex-column gap-1 text-sm mt-2">
+        <div class="d-flex align-items-center text-body-secondary">
+          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <span>{{ item.phoneOne }}</span>
+        </div>
+        @if (item.phoneTwo) {
+        <div class="d-flex align-items-center text-body-secondary">
+          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <span>{{ item.phoneTwo }}</span>
+        </div>
+        }
+      </div>
+
+      <!-- Categorías -->
+      @if (item.categorias?.length) {
+      <div class="d-flex flex-wrap gap-1 mt-2">
+        @for (categoria of item.categorias; track $index) {
+        <lux-tag
+          [value]="categoria.nombreCategoria | uppercase"
+          severity="info"
+        />
+        }
+      </div>
+      }
+
+      <!-- Acciones -->
+      <div
+        class="d-flex flex-wrap align-items-center gap-1 mt-3 pt-3 border-top-1 border"
+      >
+        @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
+        roles.Administrador, roles.SuperUsuario, roles.SupervisionOperativa,
+        roles.Legal, ]) && item.id != 109 ) {
+        <iw-button-edit
+          (clicked)="edit.emit({ id: item.providerId, title: 'Editar' })"
+        />
+        } @if (item.activo) {
+        <iw-button-item
+          iconClass="material-symbols-light:bar-chart"
+          lxTooltip="Calificar"
+          (clicked)="calificar.emit({
+              providerId: item.providerId,
+              nameProvider: item.nameComercial
+            })"
+        />
+        } @if (validateRole([roles.SuperUsuario])) {
+        <iw-button-delete (confirmed)="delete.emit(item.providerId)" />
+        } @if (!item.activo && validateRole([roles.SuperUsuario])) {
+        <iw-button-item
+          (clicked)="
+            activate.emit({ providerId: item.providerId, state: !item.activo })
+          "
+          iconClass="material-symbols-light:check"
+          lxTooltip="Activar"
+          tooltipPosition="top"
+        />
+        } @if (item.activo && validateRole([roles.SuperUsuario])) {
+        <iw-button-item
+          (clicked)="
+            activate.emit({ providerId: item.providerId, state: !item.activo })
+          "
+          iconClass="material-symbols-light:block"
+          lxTooltip="Inactivar"
+          tooltipPosition="top"
+        />
+
+        <iw-button-item
+          (clicked)="
+            coincidencias.emit({ providerId: item.providerId, state: !item.activo })
+          "
+          iconClass="material-symbols-light:search"
+          lxTooltip="Buscar Coincidencias"
+        />
+
+        <iw-button-item
+          (clicked)="authorized.emit(item.providerId)"
+          [iconClass]="
+            item.autorizado
+              ? 'material-symbols-light:shield'
+              : 'material-symbols-light:block'
+          "
+          [lxTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
+          tooltipPosition="top"
+        />
+        }
+      </div>
+    </lux-card>
+  </div>
+  }
+</div>
+} @else {
+<div class="d-flex justify-content-center p-5 text-body-secondary">
+  No se encontraron proveedores.
+</div>
+}
+
+<!-- Paginación (modo servidor) -->
+<app-paginator
+  [page]="page() - 1"
+  [rows]="rows()"
+  [totalRecords]="totalRecords()"
+  [rowsPerPageOptions]="rowsPerPageOptions()"
+  (paginationChange)="pageChange.emit($event)"
+/>

@@ -1,0 +1,134 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <div class="d-flex justify-content-between align-items-center">
+      <lux-table-caption
+        [title]="'Propiedades'"
+        (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [rolAuth]="canManage()"
+      />
+      @if (canManage()) {
+      <div>
+        <input
+          type="file"
+          #fileInput
+          class="d-none"
+          (change)="fileSelected.emit($event)"
+          accept=".xlsx, .xls"
+        />
+        <il-button
+          label="Importar desde Excel"
+          iconClass="material-symbols-light:upload"
+          severity="success"
+          (clicked)="fileInput.click()"
+        />
+        <il-button
+          label="Descargar Plantilla"
+          iconClass="material-symbols-light:download"
+          severity="secondary"
+          (clicked)="downloadTemplate.emit()"
+        />
+      </div>
+      }
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="w-5rem" appSortableColumn="accountNumber">
+        Cta.
+        <app-sorticon field="accountNumber" />
+      </th>
+      <th class="w-6rem" appSortableColumn="tower">
+        Torre
+        <app-sorticon field="tower" />
+      </th>
+      <th class="w-9rem" appSortableColumn="department">
+        Departamento
+        <app-sorticon field="department" />
+      </th>
+      <th class="w-6rem" appSortableColumn="floor">
+        Piso
+        <app-sorticon field="floor" />
+      </th>
+      <th class="w-7rem" appSortableColumn="unitNumber">
+        No. Int.
+        <app-sorticon field="unitNumber" />
+      </th>
+      <th class="w-7rem" appSortableColumn="areaM2">
+        área m2
+        <app-sorticon field="areaM2" />
+      </th>
+      <th class="w-8rem" appSortableColumn="indivisoPercentage">
+        Indiviso
+        <app-sorticon field="indivisoPercentage" />
+      </th>
+      <th class="w-7rem" appSortableColumn="parkingSlots">
+        Cajones
+        <app-sorticon field="parkingSlots" />
+      </th>
+      <th class="w-7rem" appSortableColumn="storageUnit">
+        Bodega
+        <app-sorticon field="storageUnit" />
+      </th>
+      <th class="w-6rem text-center" appSortableColumn="isDelinquent">
+        Moroso
+        <app-sorticon field="isDelinquent" />
+      </th>
+      @if (canManage()) {
+      <th class="w-8rem"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [class.bg-body-tertiary]="item.isDelinquent">
+      <td>{{ formatAccountNumber(item.accountNumber) }}</td>
+      <td>{{ item.tower }}</td>
+      <td>{{ item.department }}</td>
+      <td>{{ item.floor }}</td>
+      <td>{{ item.unitNumber }}</td>
+      <td>{{ item.areaM2 | number:'1.2-2' }}</td>
+      <td>{{ item.indivisoPercentage | percent:'1.2-5' }}</td>
+      <td>{{ item.parkingSlots | number }}</td>
+      <td>{{ item.storageUnit }}</td>
+      <td class="text-center">
+        @if (item.isDelinquent) {
+        <span class="badge bg-red-100 text-red-800 text-xs px-2 py-1 rounded"
+          >Moroso</span
+        >
+        }
+      </td>
+      <td class="no-print">
+        <div class="d-flex gap-1">
+          <iw-button-item
+            iconClass="material-symbols-light:group"
+            lxTooltip="Ocupantes"
+            tooltipPosition="top"
+            (clicked)="showOccupants.emit(item)"
+          />
+          @if (canManage()) {
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="11" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

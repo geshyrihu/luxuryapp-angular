@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,70 +12,24 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import {
-  NgbDropdownModule,
-  NgbTooltipModule,
-} from "@ng-bootstrap/ng-bootstrap";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { TemplatesListDesktop } from "./desktop/templates-list-desktop";
+import { TemplatesListMobile } from "./mobile/templates-list-mobile";
 import { TemplatesForm } from "./templates-form";
-
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-templates-list",
   templateUrl: "./templates-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonLabelDelete,
-    AppIcon,
-    MobileListItem,
-    WebButtonIconViewPdf,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    NgbDropdownModule,
-    NgbTooltipModule,
-    LuxTableCaption,
-    TableFooter,
-    ActionMenu,
-    DataViewMobile,
-    WebButtonLabelEdit,
-  ],
+  imports: [TemplatesListDesktop, TemplatesListMobile],
 })
 export class TemplatesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -85,6 +38,7 @@ export class TemplatesList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
   public aspRoleS = inject(AspRoleService);
+  platformS = inject(PlatformService);
   public AspRole = ApplicationRole;
 
   // Usar el servicio global para scrollHeight
@@ -98,9 +52,11 @@ export class TemplatesList implements OnInit {
     return globalFilterFields(data);
   });
 
+  isSuperUsuario = computed(() =>
+    this.aspRoleS.hasRole(this.AspRole.SuperUsuario),
+  );
+
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   constructor() {
@@ -115,7 +71,7 @@ export class TemplatesList implements OnInit {
   }
 
   onLoadData() {
-    const customerId: string = this.customerIdS.customerId();
+    const customerId = this.customerIdS.customerId();
     const urlApi = Endpoints.CustomDocuments.listByCustomerAndType(
       customerId,
       EDocumentType.Template,
