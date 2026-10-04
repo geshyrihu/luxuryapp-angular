@@ -33,7 +33,7 @@ import { SearchService } from "@core/services/search.service";
 import { ThemeService } from "@core/services/theme.service";
 import { UpdateService } from "@core/services/update-pwa.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
@@ -55,7 +55,7 @@ import { HeaderEmployeeAiModal } from "./header-employee-ai-modal";
   imports: [
     AppIcon,
     Breadcrumbs,
-    WebButtonLabel,
+    ButtonWeb,
     AppMenu,
     NotificationsGadget,
     Profiledesktop,

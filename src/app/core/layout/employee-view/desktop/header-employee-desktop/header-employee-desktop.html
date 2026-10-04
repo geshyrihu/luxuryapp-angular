@@ -398,14 +398,16 @@
           />
         </div>
         <div class="d-flex gap-2">
-          <il-button
+          <lux-button-web
+            displayMode="both"
             icon="material-symbols-light:content-copy"
             [label]="currentMode() === 'poster' ? 'Copiar Póster' : 'Copiar como Imagen'"
             severity="contrast"
             size="sm"
             (clicked)="copyAsImage()"
           />
-          <il-button
+          <lux-button-web
+            displayMode="both"
             icon="material-symbols-light:picture-as-pdf"
             [label]="currentMode() === 'poster' ? 'Descargar PDF' : 'Exportar a PDF'"
             severity="contrast"
@@ -423,27 +425,31 @@
       class="d-flex justify-content-end gap-2 w-full border-top-1 border pt-3 mt-2"
     >
       @if (aiAnnouncementResult()) {
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Nueva Idea"
         icon="material-symbols-light:refresh"
         severity="contrast"
         variant="text"
         (clicked)="userIdeaControl.reset(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
       />
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Cerrar"
         icon="material-symbols-light:close"
         (clicked)="close()"
       />
       } @else {
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Cancelar"
         icon="material-symbols-light:close"
         severity="contrast"
         variant="text"
         (clicked)="close()"
       />
-      <il-button
+      <lux-button-web
+        displayMode="both"
         label="Comunicado (Texto + Emojis)"
         icon="material-symbols-light:sentiment-satisfied"
         severity="contrast"
