@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <lx-tabs [tabs]="catalogTabs()" [activeId]="activeTab()" (tabChange)="onTabChange($event)" class="d-block" />
+  <lux-tabs [tabs]="catalogTabs()" [activeId]="activeTab()" (tabChange)="onTabChange($event)" class="d-block" />
   @switch (activeTab()) {
     @case ("0") {
         <app-table
@@ -47,7 +47,7 @@
             <tr>
               <td class="fw-semibold">{{ r.name }}</td>
               <td class="text-body-secondary text-sm">{{ r.description }}</td>
-              <td><lx-tag [value]="r.visualizationType" severity="info" /></td>
+              <td><lux-tag [value]="r.visualizationType" severity="info" /></td>
               <td>{{ r.dataSource }}</td>
               <td>{{ r.createdAt | apiDate: 'dd/MM/yyyy' }}</td>
               <td>
@@ -87,7 +87,7 @@
             <div class="d-flex flex-column gap-1">
               <div class="d-flex justify-content-between align-items-center">
                 <span class="fw-bold text-lg">{{ r.name }}</span>
-                <lx-tag [value]="r.visualizationType" severity="info" />
+                <lux-tag [value]="r.visualizationType" severity="info" />
               </div>
               <p class="text-sm text-body-secondary m-0">{{ r.description }}</p>
               <span class="text-xs text-body-secondary"
@@ -125,7 +125,7 @@
               <td class="fw-semibold">{{ r.name }}</td>
               <td class="text-body-secondary text-sm">{{ r.description }}</td>
               <td>
-                <lx-tag [value]="r.visualizationType" severity="success" />
+                <lux-tag [value]="r.visualizationType" severity="success" />
               </td>
               <td>{{ r.createdBy }}</td>
               <td>
@@ -156,7 +156,7 @@
             <div class="d-flex flex-column gap-1">
               <div class="d-flex justify-content-between align-items-center">
                 <span class="fw-bold text-lg">{{ r.name }}</span>
-                <lx-tag [value]="r.visualizationType" severity="success" />
+                <lux-tag [value]="r.visualizationType" severity="success" />
               </div>
               <p class="text-sm text-body-secondary m-0">{{ r.description }}</p>
               <span class="text-xs text-body-secondary">Por: {{ r.createdBy }}</span>

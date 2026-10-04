@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewEncapsulation } from "@angular/core";
-import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { PullToRefreshBase } from "@ui/core/pull-to-refresh.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-pull-to-refresh",
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       @if (pulling()) {
         <div class="ptr-indicator" [style.height.px]="pullDistance()">
           <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
-            <app-icon
+            <lux-icon
               [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
             />
           </div>

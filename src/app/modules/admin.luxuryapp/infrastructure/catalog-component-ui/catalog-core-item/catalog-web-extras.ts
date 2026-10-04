@@ -15,7 +15,7 @@ import { AppPopover } from "@ui/web/popover/popover";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { Tree } from "@ui/web/tree/tree";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 const LABELS: Record<string, string> = { forms: "Forms & Inputs", data: "Data Display", feedback: "Feedback & Status", navigation: "Navigation", overlays: "Overlays & Surfaces" };
 
@@ -30,7 +30,7 @@ const LABELS: Record<string, string> = { forms: "Forms & Inputs", data: "Data Di
         @case ("feedback") { <div class="card"><div class="card-body d-flex align-items-center gap-4"><app-spinner [size]="40" /><app-infinite-scroll [loading]="false" threshold="100px" /><app-chip label="Activo" color="primary" /></div></div> }
         @case ("navigation") { <div class="card"><div class="card-body"><app-menu [model]="menuItems" /><app-image src="https://via.placeholder.com/150" alt="Placeholder" width="150" /></div></div> }
         @case ("overlays") { <div class="card"><div class="card-body"><app-panel header="Panel de ejemplo" [toggleable]="true"><app-popover dismissable="true"><p>Contenido del popover.</p></app-popover></app-panel><app-image-fallback src="https://invalid.example/image.png" alt="Fallback" width="150" height="150" /></div></div> }
-        @default { <div class="card"><div class="card-body"><app-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div> }
+        @default { <div class="card"><div class="card-body"><lux-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div> }
       }
     </section>
   `,

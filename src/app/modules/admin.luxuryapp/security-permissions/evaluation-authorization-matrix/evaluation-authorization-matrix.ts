@@ -11,7 +11,7 @@ import { EndpointsSelectItem } from "@core/constants/endpoints/select-item.endpo
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { ApplicationRoleDto } from "../application-roles/interfaces/application-role.dto";
 import {

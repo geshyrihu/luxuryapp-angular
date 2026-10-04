@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { RatingBase } from "@ui/base/rating.base";
+import { RatingBase } from "@ui/core/rating.base";
 import { MobileRating } from "@ui/mobile/rating/rating";
 import { AppRating } from "@ui/web/rating/rating";
 import { PlatformService } from "@core/services/platform.service";
@@ -7,10 +7,10 @@ import { PlatformService } from "@core/services/platform.service";
 /**
  * Wrapper multiplataforma de Rating. Renderiza `app-rating` (Bootstrap) o
  * `ili-rating` (estrellas táctiles Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-rating [(value)]="..." />`.
+ * Punto de entrada recomendado: `<lux-rating [(value)]="..." />`.
  */
 @Component({
-  selector: "lx-rating",
+  selector: "lux-rating",
 
   imports: [AppRating, MobileRating],
   template: `

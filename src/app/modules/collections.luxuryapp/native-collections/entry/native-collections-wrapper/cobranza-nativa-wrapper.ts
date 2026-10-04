@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { TabItem } from "@ui/base/tabs.base";
+import { TabItem } from "@ui/core/tabs.base";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -15,7 +15,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import BillingConfigModal from "../../configuration/billing-config/billing-config-modal";
 import {
   CobranzaCard,

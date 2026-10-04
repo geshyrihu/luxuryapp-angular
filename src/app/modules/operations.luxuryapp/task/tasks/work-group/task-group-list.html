@@ -56,7 +56,7 @@
                 {{ item.nameGroup }}
               </h3>
               @if (item.isLegalGroup) {
-              <lx-tag value="Legal" severity="warn" />
+              <lux-tag value="Legal" severity="warn" />
               }
             </div>
             <app-status-badge
@@ -82,7 +82,7 @@
             >
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:move-to-inbox"
               class="text-body-secondary"
             />
@@ -181,7 +181,7 @@
             <span class="fw-semibold text-sm">
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:forum-outline"
               class="text-base"
             />

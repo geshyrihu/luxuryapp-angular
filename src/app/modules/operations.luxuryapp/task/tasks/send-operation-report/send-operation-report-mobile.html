@@ -1,5 +1,5 @@
 <div class="d-flex flex-column gap-2">
-  <app-segmented-control
+  <lux-segmented-control
     [items]="segmentItems"
     ariaLabel="Acciones de destinatarios"
     (changed)="onSegmentChange($event)"
@@ -55,7 +55,7 @@
   <div>
     @for (item of service.destinatariosAdicionales; track item; let i = $index) {
     <span class="ms-1 relative inline-block">
-      <lx-tag
+      <lux-tag
         value="{{ item.nivelPrivacidad }}/{{ item.email }}"
         severity="info"
         class="p-2"
@@ -63,7 +63,7 @@
       <span
         class="absolute top-0 right-0 -mt-2 -me-2 p-badge p-badge-success p-badge-rounded"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:close'"
           class="cursor-pointer"
           tooltip="Descartar correo"

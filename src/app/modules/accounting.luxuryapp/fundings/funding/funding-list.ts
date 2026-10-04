@@ -28,7 +28,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FaqsFondeo } from "@accounting.luxuryapp/fundings/funding/faqs-fondeo";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { FundingForm } from "./funding-form";
 @Component({
   selector: "app-funding-list",

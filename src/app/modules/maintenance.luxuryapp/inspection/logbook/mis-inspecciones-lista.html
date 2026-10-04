@@ -40,9 +40,9 @@
         <tr>
           <td>
             @if (item.isRealized) {
-            <app-icon [icon]="'material-symbols-light:check'"  />
+            <lux-icon [icon]="'material-symbols-light:check'"  />
             Realizada } @else {
-            <app-icon [icon]="'material-symbols-light:close'"  />
+            <lux-icon [icon]="'material-symbols-light:close'"  />
             Pendiente }
           </td>
           <td>{{ item.nameInspection }}</td>
@@ -55,15 +55,13 @@
                 [routerLink]="ROUTES.INSPECCIONES.RESULTADO(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Ver resultado"
-                ><app-icon [icon]="'material-symbols-light:book'"></app-icon
-              ></a>
+                ><lux-icon [icon]="'material-symbols-light:book'"></lux-icon></a>
               }
               <a
                 [routerLink]="ROUTES.BITACORAS.MI_INSPECCION(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Inspeccionar"
-                ><app-icon [icon]="'material-symbols-light:chevron-right'"></app-icon
-              ></a>
+                ><lux-icon [icon]="'material-symbols-light:chevron-right'"></lux-icon></a>
             </div>
           </td>
         </tr>
@@ -86,7 +84,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:manage-search"
             class="text-xl text-primary-700"
           />
@@ -95,12 +93,12 @@
         <div class="d-flex flex-column gap-2 flex-grow-1">
           <div class="d-flex align-items-center gap-2">
             @if (item.isRealized) {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:check-circle'"
               class="text-success-600"
             />
             } @else {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:error-outline'"
               class="text-danger-600"
             />

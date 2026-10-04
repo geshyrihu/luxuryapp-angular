@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { TagBase } from "@ui/base/tag.base";
+import { TagBase } from "@ui/core/tag.base";
 import { MobileTag } from "@ui/mobile/tag/tag";
 import { AppTag } from "@ui/web/tag/tag";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-tag",
+  selector: "lux-tag",
 
   imports: [AppTag, MobileTag],
   template: `

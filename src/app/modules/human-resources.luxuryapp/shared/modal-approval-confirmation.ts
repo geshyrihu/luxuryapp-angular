@@ -18,7 +18,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -45,13 +45,13 @@ import { ApprovalInfoService } from "./approval-info.service";
   template: `
     @if (loading) {
       <div class="d-flex justify-center items-center p-5">
-        <lx-spinner [strokeWidth]="6" [ariaLabel]="'loading'"></lx-spinner>
+        <lux-spinner [strokeWidth]="6" [ariaLabel]="'loading'"></lux-spinner>
       </div>
     } @else {
       <div class="p-fluid p-3">
         <div class="mb-4 text-center">
           <h4 class="mb-1">{{ request.employeeFullName }}</h4>
-          <lx-tag [value]="request.requestType" [rounded]="true"></lx-tag>
+          <lux-tag [value]="request.requestType" [rounded]="true"></lux-tag>
         </div>
 
         @if (request.requestType === "Permiso") {
@@ -80,7 +80,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="d-flex items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:history'"
                 class="text-xl"
               />
@@ -88,7 +88,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               El empleado ha solicitado
-              <lx-tag
+              <lux-tag
                 [value]="leaveHistory?.recentRequests ?? 0"
                 severity="info"
               />
@@ -100,7 +100,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="d-flex items-center mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:sunny'"
                 class="text-xl"
               />
@@ -108,7 +108,7 @@ import { ApprovalInfoService } from "./approval-info.service";
             </div>
             <p class="text-600">
               Días disponibles:
-              <lx-tag
+              <lux-tag
                 [value]="vacationBalance?.availableDays ?? 0"
                 severity="success"
               />
@@ -116,11 +116,11 @@ import { ApprovalInfoService } from "./approval-info.service";
           </div>
         }
 
-        <lx-divider />
+        <lux-divider />
 
         <div class="mt-4">
           <div class="d-flex items-center mb-3">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:group'"
               class="text-xl text-orange-500"
             />
@@ -136,13 +136,13 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingLeaveRequests; track req.id) {
                     <li class="d-flex items-center justify-between p-2">
                       <span>
-                        <app-icon
+                        <lux-icon
                           [icon]="'material-symbols-light:person'"
                           class="me-2 text-gray-600"
                         />
                         {{ req.fullName }}
                       </span>
-                      <lx-tag
+                      <lux-tag
                         [value]="
                           (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
@@ -155,7 +155,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <lx-message
+              <lux-message
                 severity="info"
                 text="No hay otras solicitudes de permiso que se solapen en estas fechas."
               />
@@ -169,13 +169,13 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingVacationRequests; track req.id) {
                     <li class="d-flex items-center justify-between p-2">
                       <span>
-                        <app-icon
+                        <lux-icon
                           [icon]="'material-symbols-light:person'"
                           class="me-2 text-gray-600"
                         />
                         {{ req.fullName }}
                       </span>
-                      <lx-tag
+                      <lux-tag
                         [value]="
                           (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
@@ -188,7 +188,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                 </ul>
               </div>
             } @else {
-              <lx-message
+              <lux-message
                 severity="info"
                 text="No hay otras solicitudes de vacaciones que se solapen en estas fechas."
               />

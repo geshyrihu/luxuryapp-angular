@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   IReporteFinancieroDto,
   IReporteFinancieroFilaDto,

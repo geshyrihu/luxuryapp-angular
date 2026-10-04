@@ -10,7 +10,7 @@ import {
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,

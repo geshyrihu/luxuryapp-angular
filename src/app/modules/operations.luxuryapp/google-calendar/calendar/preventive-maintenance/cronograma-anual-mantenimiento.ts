@@ -32,8 +32,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { CronogramaCompletoStatusDialog } from "./cronograma-completo-status-dialog";
 import { CronogramaItem } from "./interfaces/CronogramaItem";

@@ -122,7 +122,7 @@
       <!-- Foto / Selfie -->
       <td class="text-center">
         @if (item.fotoUrl) {
-        <lx-image
+        <lux-image
           [src]="item.fotoUrl"
           alt="Selfie"
           width="48"
@@ -156,20 +156,20 @@
       <!-- Badge anomalía -->
       <td class="text-center">
         @if (item.esAnomalia) {
-        <lx-tag
+        <lux-tag
           [value]="item.tipoAnomalia ?? 'Anomalía'"
           severity="danger"
           [tooltip]="item.notaAnomalia ?? ''"
         />
         } @else {
-        <lx-tag value="OK" severity="success" />
+        <lux-tag value="OK" severity="success" />
         }
       </td>
 
       <!-- Estado revisión -->
       <td class="text-center">
         @if (item.estadoAnomalia) {
-        <lx-tag
+        <lux-tag
           [value]="item.estadoAnomalia"
           [severity]="getBadgeSeverity(item.estadoAnomalia)"
         />
@@ -281,7 +281,7 @@
           <div class="text-xs text-body-secondary">{{ item.tipo }}</div>
         </div>
         @if (item.fotoUrl) {
-        <lx-image
+        <lux-image
           [src]="item.fotoUrl"
           alt="Selfie"
           width="40"
@@ -303,7 +303,7 @@
       </div>
       } @if (item.esAnomalia) {
       <div class="d-flex justify-content-between align-items-center mt-2">
-        <lx-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
+        <lux-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
         @if (item.estadoAnomalia === 'Pendiente de revisión') {
         <div class="d-flex gap-1">
           <iw-button
@@ -322,7 +322,7 @@
           />
         </div>
         } @else {
-        <lx-tag
+        <lux-tag
           [value]="item.estadoAnomalia ?? ''"
           [severity]="getBadgeSeverity(item.estadoAnomalia)"
         />

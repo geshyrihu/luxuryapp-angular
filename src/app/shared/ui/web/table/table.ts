@@ -17,7 +17,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Directive({
   selector: "[appSortableColumn]",
@@ -132,12 +132,12 @@ export class AppFrozenColumn {
     <span class="app-table-sorticon">
       @if (table.sortField() === field()) {
         @if (table.sortOrder() === 1) {
-          <app-icon icon="material-symbols-light:arrow-upward" />
+          <lux-icon icon="material-symbols-light:arrow-upward" />
         } @else {
-          <app-icon icon="material-symbols-light:arrow-downward" />
+          <lux-icon icon="material-symbols-light:arrow-downward" />
         }
       } @else {
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:swap-vert"
           class="app-table-sorticon-neutral"
         />

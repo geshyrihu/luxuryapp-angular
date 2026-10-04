@@ -6,14 +6,14 @@
     </p>
   </div>
 
-  <lx-divider />
+  <lux-divider />
 
   @if (isLoading()) {
   <p class="m-0 text-body-secondary">Cargando documentos...</p>
   } @else {
   
   @if (!isReadOnly()) {
-  <lx-fieldset legend="Agregar Nuevo Documento" [toggleable]="true" [collapsed]="false" class="mb-4 d-block">
+  <lux-fieldset legend="Agregar Nuevo Documento" [toggleable]="true" [collapsed]="false" class="mb-4 d-block">
     <div class="d-flex gap-3 align-items-end flex-wrap">
       <div class="d-flex flex-column gap-1 flex-fill min-w-min">
         <label class="text-sm fw-semibold text-body-secondary">Tipo de documento del catlogo</label>
@@ -48,7 +48,7 @@
         />
       </div>
     </div>
-  </lx-fieldset>
+  </lux-fieldset>
   }
 
   <app-table
@@ -72,7 +72,7 @@
       <tr [pReorderableRow]="rowIndex">
         <td>
           @if (!isReadOnly()) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:menu'"
             pReorderableRowHandle
             class="cursor-move"
@@ -83,7 +83,7 @@
           <div class="d-flex align-items-center gap-2">
             <span class="fw-semibold">{{ doc.documentTypeName }}</span>
             @if (doc.isMandatory) {
-              <lx-tag value="Obligatorio" severity="danger" class="text-xs" />
+              <lux-tag value="Obligatorio" severity="danger" class="text-xs" />
             }
           </div>
           @if (doc.fileUrl) {
@@ -94,14 +94,14 @@
           }
         </td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="doc.isSubmitted ? 'Cargado' : 'Pendiente'"
             [severity]="doc.isSubmitted ? 'success' : 'warn'"
             class="text-xs"
           />
         </td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="doc.isValidated ? 'Validado' : 'Pendiente'"
             [severity]="doc.isValidated ? 'success' : 'warning'"
             class="text-xs"

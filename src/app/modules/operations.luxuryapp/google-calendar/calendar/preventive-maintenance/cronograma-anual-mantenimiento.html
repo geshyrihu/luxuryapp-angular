@@ -106,7 +106,7 @@
                 <div class="logo-sub-luxury">Mantenimiento Preventivo</div>
               </div>
               <div class="badge-doc-luxury">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:label'"
                   class="me-1"
                 />
@@ -204,7 +204,7 @@
                 (click)="onModalForm(getServiceIdForMonth(customer, mes))"
                 class="cursor-pointer"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:check-box'"
                   class="text-primary text-xl"
                 />
@@ -240,7 +240,7 @@
         <div
           class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
         >
-          <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="me-1" />
+          <lux-icon [icon]="getFiltroIconClass(filtro.emoji)" class="me-1" />
           <span class="">{{ filtro.nombre | titlecase }}</span>
         </div>
         }
@@ -267,7 +267,7 @@
           class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
         >
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:check-box-outline"
             slot="start"
             color="success"
@@ -277,7 +277,7 @@
             <h3 class="text-base fw-semibold">{{ item.nameMachinery }}</h3>
             <p class="text-xs text-body-secondary">Mantenimiento Preventivo</p>
           </span>
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:edit-outline"
             slot="end"
             color="medium"
@@ -287,7 +287,7 @@
         <div
           class="d-flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:event-busy'"
             class="text-6xl mb-3 text-body-secondary"
           />

@@ -1,6 +1,6 @@
 <div class="p-md-3">
   <!-- Overlay de procesamiento con indicador de progreso -->
-  <lx-processing-overlay
+  <lux-processing-overlay
     [isProcessing]="submitting()"
     [progress]="processingProgress()"
     [message]="processingMessage()"
@@ -12,7 +12,7 @@
     <details class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 shadow-sm">
       <summary class="text-blue-900 fw-bold text-uppercase text-xs cursor-pointer">Guía de registro</summary>
       <div class="d-flex align-items-start gap-3 mt-2">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:info'"
         class="text-blue-600 text-xl mt-1"
       />
@@ -22,7 +22,7 @@
         </p>
         <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
           <li class="mb-1 d-flex align-items-start">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:check'"
               class="text-blue-500 me-2 mt-1 text-xs"
             />
@@ -33,7 +33,7 @@
             </span>
           </li>
           <li class="mb-1 d-flex align-items-start">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:check'"
               class="text-blue-500 me-2 mt-1 text-xs"
             />
@@ -220,7 +220,7 @@
     <details class="border rounded p-3 mb-3">
       <summary id="task-additional-images-title" class="text-sm fw-bold text-uppercase cursor-pointer">Imágenes adicionales</summary>
       <div class="pt-3">
-       <lx-file-upload
+       <lux-file-upload
          accept="image/*,.heic,.heif"
          [maxFileSize]="10000000"
          [multiple]="true"
@@ -266,7 +266,7 @@
     <div class="row g-4">
       <div class="col-12 mb-2">
         <small class="text-body-secondary italic">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:photo-camera'"
             class="me-1"
           />
@@ -301,7 +301,7 @@
             />
           </div>
           }
-          <lx-file-upload
+          <lux-file-upload
             accept="image/*,.heic,.heif"
             [maxFileSize]="10000000"
             [multiple]="false"
@@ -326,7 +326,7 @@
             />
           </div>
           }
-          <lx-file-upload
+          <lux-file-upload
             accept="image/*,.heic,.heif"
             [maxFileSize]="10000000"
             [multiple]="false"

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

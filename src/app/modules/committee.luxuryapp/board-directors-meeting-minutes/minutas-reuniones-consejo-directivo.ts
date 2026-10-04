@@ -18,7 +18,7 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
   imports: [RouterModule, AppIcon],

@@ -1,7 +1,7 @@
 <div class="card p-5">
   <!-- Encabezado Inspiracional -->
   <div class="text-center mb-6">
-    <app-icon [icon]="'material-symbols-light:monitoring'" class="text-6xl text-primary mb-3" />
+    <lux-icon [icon]="'material-symbols-light:monitoring'" class="text-6xl text-primary mb-3" />
     <h1 class="text-4xl fw-bold text-primary-900 m-0">
       Dominando los Reportes Dinámicos
     </h1>
@@ -18,12 +18,12 @@
         class="bg-body p-4 rounded shadow-sm h-full border-top-3 border-primary"
       >
         <div class="d-flex align-items-center gap-2 mb-3">
-          <app-icon [icon]="'material-symbols-light:explore'" class="text-2xl text-primary" />
+          <lux-icon [icon]="'material-symbols-light:explore'" class="text-2xl text-primary" />
           <h2 class="m-0 text-primary-900">Conceptos Clave</h2>
         </div>
         <ul class="list-none p-0 m-0 line-height-4">
           <li class="d-flex align-items-start gap-2 mb-3">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
             <div>
               <strong>Definición vs. Resultado:</strong>
               Tú diseñas el "molde" (la definición) y el sistema lo llena con
@@ -31,7 +31,7 @@
             </div>
           </li>
           <li class="d-flex align-items-start gap-2 mb-3">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
             <div>
               <strong>Filtros Inteligentes:</strong>
               No necesitas elegir cuenta por cuenta. Puedes usar prefijos (ej.
@@ -39,7 +39,7 @@
             </div>
           </li>
           <li class="d-flex align-items-start gap-2">
-            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" class="text-green-500 mt-1" />
             <div>
               <strong>Signos Contables:</strong>
               Usa "Restar" para gastos y "Sumar" para ingresos. El sistema se
@@ -56,7 +56,7 @@
         class="bg-body p-4 rounded shadow-sm h-full border-top-3 border-orange-500"
       >
         <div class="d-flex align-items-center gap-2 mb-3">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:fact-check'"
             class="text-2xl text-orange-500"
           />
@@ -114,13 +114,13 @@
       >
         <div class="d-flex align-items-center justify-content-between mb-4">
           <div class="d-flex align-items-center gap-2">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:photo'"
               class="text-2xl text-green-500"
             />
             <h2 class="m-0 text-primary-900">Ejemplos de Configuración</h2>
           </div>
-          <lx-tag value="Usa el botón 'Ver Ejemplos' en el constructor" severity="info" />
+          <lux-tag value="Usa el botón 'Ver Ejemplos' en el constructor" severity="info" />
         </div>
 
         <div class="row g-4">
@@ -158,7 +158,7 @@
   </div>
 
   <!-- SECCIÓN AVANZADA / TÉCNICA -->
-  <lx-accordion class="mt-4 d-block" [items]="technicalAccordion">
+  <lux-accordion class="mt-4 d-block" [items]="technicalAccordion">
       <div accordion="technical">
         <div class="row text-sm g-4">
           <div class="col-12 col-md-6">
@@ -190,7 +190,7 @@
           </div>
         </div>
       </div>
-  </lx-accordion>
+  </lux-accordion>
 
   <div class="d-flex justify-content-center mt-5">
     <il-button

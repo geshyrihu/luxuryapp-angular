@@ -6,7 +6,7 @@ import {
   input,
   viewChild,
 } from "@angular/core";
-import { TabsBase } from "@ui/base/tabs.base";
+import { TabsBase } from "@ui/core/tabs.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

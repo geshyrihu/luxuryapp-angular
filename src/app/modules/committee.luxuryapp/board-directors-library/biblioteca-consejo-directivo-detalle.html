@@ -3,7 +3,7 @@
 
   @if (!loading() && dataSignal().length === 0) {
   <div class="committee-doc-empty">
-    <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
+    <lux-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
     <p class="committee-doc-empty__text">No se encontraron documentos</p>
   </div>
   } @else { @for (item of dataSignal(); track item.id) {
@@ -13,7 +13,7 @@
     (click)="viewPdf(item.path, item.name)"
   >
     <span class="committee-doc-item__icon">
-      <app-icon icon="material-symbols-light:description" class="text-primary" />
+      <lux-icon icon="material-symbols-light:description" class="text-primary" />
     </span>
     <span class="committee-doc-item__content">
       <span class="committee-doc-item__title" [title]="item.name"
@@ -23,7 +23,7 @@
         {{ item.primaryDetail }}@if (item.date) { · {{ item.date }} }
       </span>
     </span>
-    <app-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
+    <lux-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
   </button>
   } }
 </section>

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "@core/services/platform.service";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { IonInputNumber } from "../../mobile/ion-input-number";
 import { WebInputNumber } from "../../web/input-number/input-number";
 

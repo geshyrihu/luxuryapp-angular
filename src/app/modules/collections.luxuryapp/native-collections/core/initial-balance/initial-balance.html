@@ -1,4 +1,4 @@
-<lx-card class="card">
+<lux-card class="card">
   <div class="d-flex align-items-center justify-content-between mb-3 gap-3 flex-wrap">
     <div>
       <h3 class="text-lg fw-bold m-0">Saldos Iniciales por Propiedad</h3>
@@ -21,22 +21,22 @@
 
   @if (loading()) {
   <div class="d-flex justify-content-center p-5">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
   </div>
   } @else {
   @if (rows().length > 0) {
   <div class="d-flex gap-3 mb-3 flex-wrap">
-    <lx-tag [value]="'Total propiedades: ' + rows().length" severity="contrast" />
-    <lx-tag
+    <lux-tag [value]="'Total propiedades: ' + rows().length" severity="contrast" />
+    <lux-tag
       [value]="'Con saldo inicial: ' + contarConSaldo()"
       severity="success"
     />
-    <lx-tag
+    <lux-tag
       [value]="'Sin saldo inicial: ' + (rows().length - contarConSaldo())"
       severity="warning"
     />
     @if (hasPendingChanges()) {
-    <lx-tag
+    <lux-tag
       [value]="'Pendientes de guardar: ' + contarPendientes()"
       severity="info"
     />
@@ -64,7 +64,7 @@
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
           <div class="d-flex align-items-center gap-1">
-            <app-icon [icon]="'material-symbols-light:edit'" class="text-xs text-body-secondary" />
+            <lux-icon [icon]="'material-symbols-light:edit'" class="text-xs text-body-secondary" />
             Monto ($) editable
           </div>
         </th>
@@ -77,11 +77,11 @@
         <td class="text-sm text-body-secondary">{{ row.accountNumber }}</td>
         <td class="text-center">
           @if (row.dirty && (row.amount ?? 0) > 0) {
-          <lx-tag value="Por guardar" severity="info" />
+          <lux-tag value="Por guardar" severity="info" />
           } @else if (row.hasSaldoInicial) {
-          <lx-tag value="Registrado" severity="success" />
+          <lux-tag value="Registrado" severity="success" />
           } @else {
-          <lx-tag value="Sin saldo" severity="warning" />
+          <lux-tag value="Sin saldo" severity="warning" />
           }
         </td>
         <td>
@@ -115,7 +115,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-yellow-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
-          <app-icon icon="material-symbols-light:wallet" class="text-yellow-600 text-xl" />
+          <lux-icon icon="material-symbols-light:wallet" class="text-yellow-600 text-xl" />
         </div>
         <div class="flex-fill min-w-0">
           <h3>{{ row.propertyFullName }}</h3>
@@ -134,4 +134,4 @@
     </ng-template>
   </app-data-view-mobile>
   }
-</lx-card>
+</lux-card>

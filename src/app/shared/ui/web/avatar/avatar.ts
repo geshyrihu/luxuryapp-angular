@@ -4,8 +4,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { AvatarBase } from "@ui/base/avatar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AvatarBase } from "@ui/core/avatar.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppAvatar — CSS propio. Prioridad image > label > icono (`app-icon`).
@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       } @else if (label()) {
         <span class="app-avatar-label">{{ label() }}</span>
       } @else if (icon()) {
-        <app-icon [icon]="icon()" />
+        <lux-icon [icon]="icon()" />
       }
     </div>
   `,

@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface PivotDimension {
   field: string;
@@ -57,7 +57,7 @@ export interface PivotValue {
                     [style.paddingLeft.px]="row.level * 20"
                   ></span>
                   @if (row.children?.length) {
-                    <app-icon
+                    <lux-icon
                       [icon]="
                         row.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                       "

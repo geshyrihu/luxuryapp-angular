@@ -15,7 +15,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 
@@ -30,7 +30,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
     <div class="d-flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
         <span class="p-inputgroup-addon"
-          ><app-icon [icon]="'material-symbols-light:search'"
+          ><lux-icon [icon]="'material-symbols-light:search'"
         /></span>
         <custom-input-text-signal
           placeholder="Filtrar catálogo..."
@@ -45,7 +45,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
         <div
           class="d-flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
-          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl text-primary-500" />
+          <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl text-primary-500" />
           <span class="text-xs text-500 uppercase font-bold tracking-wider"
             >Cargando...</span
           >
@@ -56,7 +56,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
           cdkDropList
           cdkDropListSortingDisabled="true"
         >
-          <lx-tree
+          <lux-tree
             [value]="filteredNodes()"
             selectionMode="checkbox"
             [(selection)]="selectedNodes"
@@ -78,7 +78,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
                   *cdkDragPreview
                   class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm d-flex align-items-center gap-2 opacity-90 z-5"
                 >
-                  <app-icon [icon]="'material-symbols-light:menu'" class="text-primary-500" />
+                  <lux-icon [icon]="'material-symbols-light:menu'" class="text-primary-500" />
                   <span class="font-mono text-xs font-bold text-primary-900">{{
                     node.data.code
                   }}</span>
@@ -87,7 +87,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
                   }}</span>
                 </div>
 
-                <lx-badge
+                <lux-badge
                   [value]="'N' + node.data.level"
                   [severity]="getBadgeSeverity(node.data.level)"
                   class="text-xs"
@@ -105,7 +105,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
                 </div>
               </div>
             </ng-template>
-          </lx-tree>
+          </lux-tree>
         </div>
       }
     </div>

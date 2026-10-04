@@ -1,8 +1,8 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TagSeverity } from "@ui/base/tag.base";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import type { TagSeverity } from "@ui/core/tag.base";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";

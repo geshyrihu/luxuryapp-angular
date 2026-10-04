@@ -9,7 +9,7 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
 import { MessageService } from "@core/services/message.service";
 import { TicketAnalysisService } from "@operations.luxuryapp/service-orders/service-order/services/ticket-analysis.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-image-analysis-dialog",
@@ -95,7 +95,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
             @if (analysisResult) {
               <div class="result-container">
                 <div class="text-center mb-3">
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:check-circle'"
                     class="text-green-500 text-3xl"
                   />

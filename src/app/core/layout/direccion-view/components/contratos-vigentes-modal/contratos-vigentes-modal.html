@@ -1,6 +1,6 @@
 @if (cargando()) {
 <div class="d-flex align-items-center gap-2 py-5 justify-content-center">
-  <app-icon
+  <lux-icon
     icon="material-symbols-light:progress-activity"
     style="font-size: 1.5rem"
     class="ner text-primary ds-animate-spin"
@@ -9,7 +9,7 @@
 </div>
 } @else if (!resumen() || resumen()!.total === 0) {
 <div class="d-flex flex-column align-items-center py-5 gap-3 text-body-secondary">
-  <app-icon icon="material-symbols-light:note-alt" style="font-size: 3rem" />
+  <lux-icon icon="material-symbols-light:note-alt" style="font-size: 3rem" />
   <span>Sin contratos vigentes registrados</span>
 </div>
 } @else {
@@ -33,7 +33,7 @@
       (click)="toggleCliente(customer.customerName)"
     >
       <div class="d-flex align-items-center gap-2">
-        <app-icon icon="material-symbols-light:apartment" class="text-primary text-sm" />
+        <lux-icon icon="material-symbols-light:apartment" class="text-primary text-sm" />
         <span class="fw-bold text-body">{{ customer.customerName }}</span>
       </div>
       <div class="d-flex align-items-center gap-3">
@@ -41,7 +41,7 @@
           >{{ customer.total }} contrato{{ customer.total === 1 ? '' : 's'
           }}</span
         >
-        <app-icon
+        <lux-icon
           [icon]="estaExpandido(customer.customerName) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
           class="text-body-secondary text-xs"
         />
@@ -61,13 +61,13 @@
         <!-- Indicador vencimiento -->
         <div class="flex-none mt-1">
           @if (contrato.porVencer) {
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:warning-outline"
             lxTooltip="Por vencer"
             class="text-ds-warning text-sm"
           />
           } @else {
-          <app-icon icon="material-symbols-light:check-circle" class="text-ds-success text-sm" />
+          <lux-icon icon="material-symbols-light:check-circle" class="text-ds-success text-sm" />
           }
         </div>
 

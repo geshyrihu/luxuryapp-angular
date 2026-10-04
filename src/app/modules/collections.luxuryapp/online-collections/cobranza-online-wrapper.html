@@ -6,7 +6,7 @@
         class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between gap-2 g-2"
       >
         <div class="cobranza-header-title d-flex align-items-center gap-3">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:monitoring'"
             class="text-2xl"
           />
@@ -44,10 +44,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:dashboard-outline"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Resumen</span>
           </a>
           <a
@@ -62,10 +62,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:pie-chart"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Análisis</span>
           </a>
           <a
@@ -80,10 +80,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:group-outline"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Detalle Condóminos</span>
           </a>
           <a
@@ -98,10 +98,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:warning-outline"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Morosidad</span>
           </a>
           <a
@@ -116,10 +116,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:add-card"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Otros Cargos</span>
           </a>
           <a
@@ -134,10 +134,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:swap-horiz"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Movimientos del Mes</span>
           </a>
           <a
@@ -152,10 +152,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:payments"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Adelantos</span>
           </a>
           <a
@@ -170,10 +170,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:apartment"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Torres</span>
           </a>
           <a
@@ -188,10 +188,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:person-off"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Cuentas omitidas</span>
           </a>
           <a
@@ -206,10 +206,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:format-list-bulleted"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm">Listado Base</span>
           </a>
           <button
@@ -226,10 +226,10 @@
                 border-color 0.15s;
             "
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:refresh"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-sm"
               >{{ syncRunning() ? "Sync..." : "Refrescar" }}</span
             >
@@ -260,7 +260,7 @@
       <ili-accordion [items]="contextAccordionItems()" class="flex-fill">
         <div accordion="context" class="d-flex flex-wrap gap-3 gap-md-4">
           <ili-list-item [noPadding]="true">
-            <app-icon
+            <lux-icon
               start
               icon="material-symbols-light:database"
               class="text-xl text-body-secondary"
@@ -271,7 +271,7 @@
             >
           </ili-list-item>
           <ili-list-item [noPadding]="true">
-            <app-icon
+            <lux-icon
               start
               icon="material-symbols-light:schedule"
               class="text-xl text-body-secondary"
@@ -282,7 +282,7 @@
             >
           </ili-list-item>
           <ili-list-item [noPadding]="true" [divider]="false">
-            <app-icon
+            <lux-icon
               start
               icon="material-symbols-light:group-outline"
               class="text-xl text-body-secondary"
@@ -321,7 +321,7 @@
         class="bg-body p-4 shadow-4 rounded d-flex flex-column align-items-center"
         style="min-width: 300px"
       >
-        <lx-spinner [size]="32" />
+        <lux-spinner [size]="32" />
         <div class="mt-4 text-xl fw-medium text-body text-center">
           Consultando Aspel
         </div>

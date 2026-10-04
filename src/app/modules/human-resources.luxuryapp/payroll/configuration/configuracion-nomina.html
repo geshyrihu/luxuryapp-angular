@@ -3,14 +3,14 @@
   class="d-flex justify-content-center align-items-center"
   
 >
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
+  <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
 </div>
 } @else {
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row g-4">
     <!-- Frecuencia y Dias de Pago -->
     <div class="col-12">
-      <lx-fieldset legend="Frecuencia de Pago">
+      <lux-fieldset legend="Frecuencia de Pago">
         <div class="row g-4">
           <div class="col-12 col-md-4">
             <custom-input-select-signal
@@ -35,12 +35,12 @@
             />
           </div>
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Prestaciones de Ley -->
     <div class="col-12">
-      <lx-fieldset legend="Prestaciones de Ley (LFT)">
+      <lux-fieldset legend="Prestaciones de Ley (LFT)">
         <div class="row g-4">
           <div class="col-12 col-md-6">
             <custom-input-number-signal
@@ -59,12 +59,12 @@
             />
           </div>
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Control de Asistencia -->
     <div class="col-12">
-      <lx-fieldset legend="Control de Asistencia">
+      <lux-fieldset legend="Control de Asistencia">
         <div class="row g-4">
           <div class="col-12 col-md-6">
             <custom-input-number-signal
@@ -81,12 +81,12 @@
             />
           </div>
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Cuotas IMSS (Parte Obrera) -->
     <div class="col-12">
-      <lx-fieldset legend="Cuotas IMSS - Parte Obrera">
+      <lux-fieldset legend="Cuotas IMSS - Parte Obrera">
         <div class="row g-4">
           <div class="col-12 col-md-4">
             <custom-input-decimal-signal
@@ -116,7 +116,7 @@
             />
           </div>
         </div>
-      </lx-fieldset>
+      </lux-fieldset>
     </div>
 
     <!-- Guardar -->

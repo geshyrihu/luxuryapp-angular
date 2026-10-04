@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { MenuBase } from "@ui/base/menu.base";
+import { MenuBase } from "@ui/core/menu.base";
 import { IonList, IonItem, IonLabel, IonIcon } from "@ionic/angular";
 
 @Component({

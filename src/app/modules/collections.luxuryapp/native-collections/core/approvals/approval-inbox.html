@@ -31,7 +31,7 @@
     <ng-template #body let-item>
       <tr>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="operationLabel(item.operationType)"
             [severity]="operationSeverity(item.operationType)"
           />
@@ -42,7 +42,7 @@
           {{ item.requestedAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="statusLabel(item.status)"
             [severity]="statusSeverity(item.status)"
           />
@@ -79,7 +79,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:verified-outline"
           class="text-purple-600 text-xl"
         />

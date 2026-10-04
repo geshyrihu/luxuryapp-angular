@@ -7,9 +7,9 @@ import {
   input,
   viewChild,
 } from "@angular/core";
-import { TabsBase } from "@ui/base/tabs.base";
+import { TabsBase } from "@ui/core/tabs.base";
 import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppTabs — Wrapper con navegación Bootstrap. El contenido se proyecta en un
@@ -29,7 +29,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         <li [ngbNavItem]="tab.id" [disabled]="tab.disabled ?? false">
           <button ngbNavLink type="button">
             @if (tab.icon) {
-              <app-icon [icon]="tab.icon" class="me-2" />
+              <lux-icon [icon]="tab.icon" class="me-2" />
             }
             {{ tab.label }}
           </button>

@@ -40,9 +40,9 @@
         </td>
         <td class="text-center">
           @if (item.isActive) {
-          <lx-tag value="Activo" severity="success" />
+          <lux-tag value="Activo" severity="success" />
           } @else {
-          <lx-tag value="Inactivo" severity="secondary" />
+          <lux-tag value="Inactivo" severity="secondary" />
           }
         </td>
         <td class="text-center">
@@ -71,7 +71,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon icon="material-symbols-light:description" class="text-blue-600 text-xl" />
+        <lux-icon icon="material-symbols-light:description" class="text-blue-600 text-xl" />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.articleNumber }} · {{ item.title }}</h3>

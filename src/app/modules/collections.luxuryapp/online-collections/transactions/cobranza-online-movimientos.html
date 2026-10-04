@@ -68,12 +68,12 @@
             @if (getCell(row, concept.id); as cell) {
             <div class="d-flex flex-column gap-1 align-items-center">
               @if (cell.cargo > 0) {
-              <lx-tag
+              <lux-tag
                 [value]="'+' + (cell.cargo | accountingNumber)"
                 severity="danger"
               />
               } @if (cell.abono > 0) {
-              <lx-tag
+              <lux-tag
                 [value]="'-' + (cell.abono | accountingNumber)"
                 severity="success"
               />
@@ -136,7 +136,7 @@
               start
               class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             >
-              <app-icon icon="material-symbols-light:swap-horiz" />
+              <lux-icon icon="material-symbols-light:swap-horiz" />
             </div>
             <div class="flex-fill min-w-0 ion-text-wrap py-2">
               <p class="fw-semibold m-0 text-body">{{ row.accountName }}</p>

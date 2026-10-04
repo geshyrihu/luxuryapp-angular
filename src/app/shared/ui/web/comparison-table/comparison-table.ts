@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface ComparisonItem {
   feature: string;
@@ -45,7 +45,7 @@ export interface ComparisonItem {
                   [class.comparison-col-highlight]="col === highlightColumn()"
                 >
                   @if (col === highlightColumn() && showCheckmark()) {
-                    <app-icon
+                    <lux-icon
                       icon="material-symbols-light:check-circle"
                       style="color:var(--ds-success)"
                       style="font-size: 1.1rem"

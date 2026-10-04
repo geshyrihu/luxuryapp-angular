@@ -40,7 +40,7 @@
           />
         </td>
         <td>
-          <lx-avatar
+          <lux-avatar
             [image]="item.photoPath"
             alt=""
             shape="square"
@@ -125,7 +125,7 @@
             <span class="fw-medium text-sm"
               >{{ registro.fechaRegistro }}</span
             >
-            <lx-badge
+            <lux-badge
               [color]="registro.evento === 'Ingreso' ? 'success' : 'danger'"
               [value]="registro.evento"
             />
@@ -141,7 +141,7 @@
   </div>
   } @else {
   <div class="text-center p-4">
-    <app-icon icon="material-symbols-light:search" />
+    <lux-icon icon="material-symbols-light:search" />
     <p class="mt-2 text-medium">No se encontraron registros.</p>
   </div>
   }

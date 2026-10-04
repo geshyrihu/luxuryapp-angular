@@ -85,11 +85,11 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
  */
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon, AppIconName } from "@ui/shared/app-icon/app-icon";
+import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon";
 import {
   MultipleSegmentedControl,
   SegmentItem,
-} from "@ui/shared/multiple-segmented-control/multiple-segmented-control";
+} from "@ui/primitives/multiple-segmented-control/multiple-segmented-control";
 /**
  * Componente principal para la gestión de la propuesta de presupuesto.
  * Maneja la visualización, edición y colaboración en tiempo real de las partidas presupuestarias.

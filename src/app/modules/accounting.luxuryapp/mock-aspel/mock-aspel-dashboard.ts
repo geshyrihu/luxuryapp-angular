@@ -5,7 +5,7 @@ import { RouterLink } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { EstadoDeCuentaResponse, MockAspelService, MockAspelSyncCustomer, MovimientoFilterOption, MovimientoResponse, PagedResponse, SaldoResponse } from "./services/mock-aspel.service";
 
 @Component({

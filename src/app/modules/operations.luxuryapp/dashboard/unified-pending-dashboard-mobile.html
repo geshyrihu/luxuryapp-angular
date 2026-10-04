@@ -18,7 +18,7 @@
         class="px-3 py-2 rounded-3xl d-flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white flex-shrink-0 text-nowrap"
         (click)="generateDailyReport()"
       >
-        <app-icon icon="material-symbols-light:add" class="text-white" />
+        <lux-icon icon="material-symbols-light:add" class="text-white" />
         <span class="fw-bold text-sm">Informe IA</span>
       </div>
 
@@ -69,7 +69,7 @@
         <!-- Date and Status -->
         <div class="d-flex justify-content-between align-items-center w-full">
           <div class="d-flex align-items-center gap-1">
-            <app-icon
+            <lux-icon
               [icon]="getModuleIcon(item.module)"
               [class.text-primary]="getModuleColor(item.module) === 'primary'"
               [class.text-warning]="getModuleColor(item.module) === 'warning'"
@@ -77,11 +77,11 @@
               [class.text-danger]="getModuleColor(item.module) === 'danger'"
               [class.text-500]="getModuleColor(item.module) === 'medium'"
               class="text-base"
-            ></app-icon>
+            ></lux-icon>
             <span class="text-xs fw-medium text-body-secondary">{{ item.formattedDate }}</span>
           </div>
           @if (item.status) {
-          <lx-tag [severity]="getSeverityColor(item.status)" [value]="item.status"></lx-tag>
+          <lux-tag [severity]="getSeverityColor(item.status)" [value]="item.status"></lux-tag>
           }
         </div>
 
@@ -99,7 +99,7 @@
         <div class="d-flex justify-content-between align-items-center text-xs mt-2 border-top-1 border pt-2">
           @if (item.responsible) {
           <div class="d-flex align-items-center gap-1 text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-2xl">
-            <app-icon icon="material-symbols-light:account-circle-outline" />
+            <lux-icon icon="material-symbols-light:account-circle-outline" />
             <span class="fw-medium">{{ item.responsible?.split(' ')[0] }}</span>
           </div>
           } @else {
@@ -113,7 +113,7 @@
             [class.text-orange-500]="item.daysOpen > 6 && item.daysOpen <= 8"
             [class.text-500]="item.daysOpen <= 6"
           >
-            @if(item.daysOpen > 6) { <app-icon icon="material-symbols-light:error-outline" /> }
+            @if(item.daysOpen > 6) { <lux-icon icon="material-symbols-light:error-outline" /> }
             <span>{{ item.daysOpen }} días</span>
           </div>
           }
@@ -122,7 +122,7 @@
 
       <!-- Chevron Right -->
       <div class="d-flex align-items-center h-full ps-2">
-        <app-icon icon="material-symbols-light:chevron-right" class="text-body-secondary text-xl" />
+        <lux-icon icon="material-symbols-light:chevron-right" class="text-body-secondary text-xl" />
       </div>
     </div>
   </ng-template>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MenubarBase } from "@ui/base/menubar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { MenubarBase } from "@ui/core/menubar.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Component({
@@ -12,13 +12,13 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
       @for (item of items(); track $index; let i = $index) {
         <li class="nav-item app-menubar-item" [class.dropdown]="children(item).length > 0">
           <a class="nav-link" [class.dropdown-toggle]="children(item).length > 0" href="#" (click)="onItemClick(item, $event, i)">
-            @if (item.icon) { <app-icon [icon]="iconName(item.icon)" /> }
+            @if (item.icon) { <lux-icon [icon]="iconName(item.icon)" /> }
             {{ item.label }}
           </a>
           @if (children(item).length > 0 && openIndex() === i) {
             <ul class="dropdown-menu show app-menubar-dropdown">
               @for (sub of children(item); track $index) {
-                <li><a class="dropdown-item" href="#" (click)="onItemClick(sub, $event, i)">@if (sub.icon) { <app-icon [icon]="iconName(sub.icon)" /> } {{ sub.label }}</a></li>
+                <li><a class="dropdown-item" href="#" (click)="onItemClick(sub, $event, i)">@if (sub.icon) { <lux-icon [icon]="iconName(sub.icon)" /> } {{ sub.label }}</a></li>
               }
             </ul>
           }

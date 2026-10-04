@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
   computed,
 } from "@angular/core";
-import { ChipBase } from "@ui/base/chip.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ChipBase } from "@ui/core/chip.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppChip — CSS propio (badge redondeado). Renderiza icono (`app-icon`),
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       @if (image()) {
         <img [src]="image()" class="app-chip-img" alt="" />
       } @else if (icon()) {
-        <app-icon [icon]="icon()" class="app-chip-icon" />
+        <lux-icon [icon]="icon()" class="app-chip-icon" />
       }
       <span class="app-chip-label">{{ label() }}</span>
       @if (removable() && !disabled()) {
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
           aria-label="Quitar"
           (click)="$event.stopPropagation(); onRemove()"
         >
-          <app-icon icon="material-symbols-light:close" />
+          <lux-icon icon="material-symbols-light:close" />
         </button>
       }
     </span>

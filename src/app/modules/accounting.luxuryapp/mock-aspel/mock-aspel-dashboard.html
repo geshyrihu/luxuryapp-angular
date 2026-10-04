@@ -9,10 +9,10 @@
       </p>
     </div>
     <a routerLink="nueva-poliza" class="new-policy-link">
-      <app-icon icon="material-symbols-light:add-notes" /> Nueva póliza
+      <lux-icon icon="material-symbols-light:add-notes" /> Nueva póliza
     </a>
     <button type="button" class="sync-button" (click)="openSyncPanel()">
-      <app-icon icon="material-symbols-light:sync" /> Sincronizar datos reales
+      <lux-icon icon="material-symbols-light:sync" /> Sincronizar datos reales
     </button>
   </header>
 
@@ -82,11 +82,11 @@
 
   @if (error()) {
   <div class="status-banner error">
-    <app-icon icon="material-symbols-light:error" />{{ error() }}
+    <lux-icon icon="material-symbols-light:error" />{{ error() }}
   </div>
   } @if (notice()) {
   <div class="status-banner success">
-    <app-icon icon="material-symbols-light:check-circle" />{{ notice() }}
+    <lux-icon icon="material-symbols-light:check-circle" />{{ notice() }}
   </div>
   }
 
@@ -115,7 +115,7 @@
       [class.active]="activeView() === 'budget'"
       (click)="showBudgetView()"
     >
-      <app-icon icon="material-symbols-light:monitoring" />
+      <lux-icon icon="material-symbols-light:monitoring" />
       Real vs presupuesto
     </button>
     <button
@@ -123,7 +123,7 @@
       [class.active]="activeView() === 'ledger'"
       (click)="showLedgerView()"
     >
-      <app-icon icon="material-symbols-light:receipt-long" />
+      <lux-icon icon="material-symbols-light:receipt-long" />
       Libro auxiliar
     </button>
   </div>
@@ -196,7 +196,7 @@
   }
 
   @if (activeView() === 'ledger') {
-  <lx-card>
+  <lux-card>
     <div class="ledger-title">
       <div>
         <p class="eyebrow">Libro auxiliar</p>
@@ -274,7 +274,7 @@
         Siguiente
       </button>
     </footer>
-  </lx-card>
+  </lux-card>
   }
 
   @if (loadingEstadoCuenta()) {

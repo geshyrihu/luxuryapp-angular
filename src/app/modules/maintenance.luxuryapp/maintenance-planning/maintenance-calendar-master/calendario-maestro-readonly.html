@@ -7,7 +7,7 @@
     >
       <span>{{ item.month }}</span>
       @if (item.items?.length > 0) {
-      <lx-tag [value]="item.items.length" severity="secondary" class="text-xs"  />
+      <lux-tag [value]="item.items.length" severity="secondary" class="text-xs"  />
       }
     </div>
 
@@ -33,7 +33,7 @@
               {{ evento.task }}
             </div>
             } @if (evento.frequency) {
-            <lx-tag
+            <lux-tag
               [value]="evento.frequency"
               severity="info"
               icon="material-symbols-light:schedule"
@@ -41,7 +41,7 @@
              />
             }
           </div>
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:chevron-right'"
             class="text-body-secondary flex-shrink-0 mt-1"
           />
@@ -56,7 +56,7 @@
   </div>
   } @empty {
   <div class="col-12 text-center text-body-secondary p-5">
-    <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 d-block" />
+    <lux-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 d-block" />
     <span>Sin datos en el calendario</span>
   </div>
   }

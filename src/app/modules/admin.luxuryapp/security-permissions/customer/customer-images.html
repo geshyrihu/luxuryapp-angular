@@ -9,14 +9,14 @@
     (click)="fileInput.click()"
   >
     @if (uploading()) {
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary mb-2"
       
     />
     <p class="text-body fw-medium m-0">Subiendo imágenes...</p>
     } @else {
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:cloud-upload'"
       class="mb-2"
       
@@ -51,7 +51,7 @@
   <!-- Galería -->
   @if (loading()) {
   <div class="d-flex justify-content-center align-items-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary"
       
@@ -64,7 +64,7 @@
       <div
         class="card-image-container relative rounded overflow-hidden shadow-sm hover:shadow transition-all transition-duration-300"
       >
-        <lx-image
+        <lux-image
           [src]="img.pathImag"
           [alt]="'Imagen de cliente'"
           [preview]="true"
@@ -89,7 +89,7 @@
   <div
     class="d-flex flex-column align-items-center justify-content-center py-5 text-center"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:photo'"
       class="text-body-secondary mb-2"
       

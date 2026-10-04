@@ -4,8 +4,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { EmptyStateBase } from "@ui/base/empty-state.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { EmptyStateBase } from "@ui/core/empty-state.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "ili-empty-state",
@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       @if (tag()) {
         <span class="ili-empty-tag">{{ tag() }}</span>
       }
-      <app-icon
+      <lux-icon
         [icon]="icon()"
         class="ili-empty-icon"
         [style.color]="iconColor()"
@@ -30,7 +30,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
           size="small"
           (click)="action.emit()"
         >
-          <app-icon [icon]="actionIcon()" class="me-2" />
+          <lux-icon [icon]="actionIcon()" class="me-2" />
           {{ actionLabel() }}
         </ion-button>
       }

@@ -1,9 +1,9 @@
 <div class="wizard-container p-4">
-  <lx-steps
+  <lux-steps
     [model]="items"
     [(activeIndex)]="activeIndex"
     [readonly]="true"
-  ></lx-steps>
+  ></lux-steps>
 
   <div class="wizard-content mt-4">
     <!-- Step 1: General Information -->
@@ -88,20 +88,19 @@
           <div class="row g-4">
             @for (month of fundingPeriodsByMonth(); track month.monthName) {
             <div class="col-12 col-md-6 col-lg-4">
-              <lx-message
+              <lux-message
                 [text]="month.monthName"
                 class="w-full justify-content-start"
                 ><div class="flex-flex-grow-1-1 text-end">
                   @for ( quincena of month.quincenas; track quincena.value ) {
-                  <lx-tag
+                  <lux-tag
                     (click)="selectFundingPeriod(quincena)"
                     [value]="quincena.label.split(' ')[0]"
                     [severity]=" step1Form.get('fundingPeriod')?.value === quincena.value ? 'success' : 'secondary' "
                     class="ms-2 cursor-pointer"
                   />
                   }
-                </div></lx-message
-              >
+                </div></lux-message>
             </div>
             }
           </div>
@@ -361,7 +360,7 @@
             <div
               class="d-flex align-items-center justify-content-center flex-column py-5"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:cloud-upload'"
                 class="border-2 rounded-circle p-5 text-8xl text-body-secondary border-400"
               />
@@ -481,7 +480,7 @@
         <ul>
           @for (file of uploadedFiles(); track $index) {
           <li>
-            <app-icon
+            <lux-icon
               [icon]="getActionIcon(file.name)"
               [ngClass]="getActionIconClass(file.name)"
               class="me-2"

@@ -1,10 +1,10 @@
 <div class="staff-checklist-modal">
-  <lx-card [elevated]="true" class="staff-checklist-modal__card">
+  <lux-card [elevated]="true" class="staff-checklist-modal__card">
     <ng-template #header>
       <div class="staff-checklist-modal__header">
         <div class="staff-checklist-modal__identity">
           <div class="staff-checklist-modal__icon">
-            <app-icon icon="material-symbols-light:checklist" />
+            <lux-icon icon="material-symbols-light:checklist" />
           </div>
           <div>
             <p class="staff-checklist-modal__eyebrow m-0">Plantilla interna</p>
@@ -39,7 +39,7 @@
       </p>
       } @else if (tasks().length === 0) {
       <div class="staff-checklist-modal__empty">
-        <app-icon icon="material-symbols-light:fact-check" />
+        <lux-icon icon="material-symbols-light:fact-check" />
         <p class="m-0">No hay tareas configuradas para este colaborador.</p>
       </div>
       } @else {
@@ -60,11 +60,11 @@
               </div>
 
               <div class="staff-checklist-modal__badges">
-                <lx-tag
+                <lux-tag
                   [value]="getDeadlineLabel(task)"
                   [severity]="getDeadlineSeverity(task)"
                 />
-                <lx-tag
+                <lux-tag
                   [value]="task.deadline | apiDate:'dd/MM/yyyy'"
                   [severity]="getDeadlineSeverity(task)"
                 />
@@ -117,5 +117,5 @@
         (clicked)="onSaveAll()"
       />
     </div>
-  </lx-card>
+  </lux-card>
 </div>

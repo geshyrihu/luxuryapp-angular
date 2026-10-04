@@ -17,7 +17,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
+import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
 import { AppPaginator } from "@ui/web/paginator/paginator";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -44,7 +44,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-provider-list",

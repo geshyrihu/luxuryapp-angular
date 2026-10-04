@@ -14,7 +14,7 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   CobranzaPaymentAllocationDetailDTO,
   CobranzaPaymentResponseDTO,

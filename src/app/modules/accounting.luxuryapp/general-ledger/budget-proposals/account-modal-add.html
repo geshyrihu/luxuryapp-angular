@@ -30,7 +30,7 @@
   >
     <span>{{ account.codigoCuenta }} - {{ account.descripcionCuenta }}</span>
     @if (isSelected(account.codigoCuenta)) {
-    <app-icon [icon]="'material-symbols-light:check'" class="text-primary" />
+    <lux-icon [icon]="'material-symbols-light:check'" class="text-primary" />
     }
   </div>
   }
@@ -47,7 +47,6 @@
   />
 </div>
 } @else {
-<lx-message severity="info"
-  >No hay cuentas disponibles que coincidan con la bósqueda.</lx-message
->
+<lux-message severity="info"
+  >No hay cuentas disponibles que coincidan con la bósqueda.</lux-message>
 }

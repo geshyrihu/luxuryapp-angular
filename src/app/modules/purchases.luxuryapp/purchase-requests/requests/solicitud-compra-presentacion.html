@@ -78,14 +78,14 @@
                     [class.summary-priority-icon-info]="priority.severity === 'info'"
                     [class.summary-priority-icon-secondary]="priority.severity === 'secondary'"
                   >
-                    <app-icon [icon]="getPrioridadIcon(priority.value)" />
+                    <lux-icon [icon]="getPrioridadIcon(priority.value)" />
                   </span>
                   {{ priority.label }}
                 </span>
                 }
                 <span class="text-body-secondary text-xs ms-2">Tipos:</span>
                 @for (type of typeOptions; track type.value) {
-                <lx-tag
+                <lux-tag
                   [value]="type.label"
                   [severity]="type.severity"
                   [rounded]="true"
@@ -153,7 +153,7 @@
                       </div>
                     </td>
                     <td>
-                      <lx-tag
+                      <lux-tag
                         [value]="row.tipoSolicitudLabel"
                         [severity]="row.tipoSolicitudSeverity"
                         [rounded]="true"
@@ -201,12 +201,12 @@
           <div class="row align-items-start mb-2 g-2">
             <div class="col-12 col-lg-7">
               <div class="d-flex align-items-center gap-2 mb-1">
-                <lx-tag
+                <lux-tag
                   [value]="getTipoSolicitudLabel(solicitud.tipoSolicitud)"
                   [severity]="getTipoSolicitudSeverity(solicitud.tipoSolicitud)"
                   [rounded]="true"
                 />
-                <lx-tag
+                <lux-tag
                   [value]="getPrioridadLabel(solicitud.prioridad)"
                   [severity]="getPrioridadSeverity(solicitud.prioridad)"
                   [rounded]="true"

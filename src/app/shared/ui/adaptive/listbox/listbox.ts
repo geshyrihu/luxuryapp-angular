@@ -1,12 +1,12 @@
 import { Component, forwardRef, inject } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { ListboxBase } from "@ui/base/listbox.base";
+import { ListboxBase } from "@ui/core/listbox.base";
 import { MobileListbox } from "@ui/mobile/listbox/listbox";
 import { AppListbox } from "@ui/web/listbox/listbox";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-listbox",
+  selector: "lux-listbox",
 
   imports: [AppListbox, MobileListbox],
   template: `

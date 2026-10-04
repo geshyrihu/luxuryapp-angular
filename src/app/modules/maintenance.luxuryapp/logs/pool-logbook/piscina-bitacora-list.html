@@ -22,14 +22,14 @@
           class="px-3 py-2 rounded-lg border border-primary text-primary text-sm d-flex align-items-center gap-1"
           (click)="onExportExcel()"
         >
-          <app-icon icon="material-symbols-light:download" /> Excel
+          <lux-icon icon="material-symbols-light:download" /> Excel
         </button>
         <button
           type="button"
           class="px-3 py-2 rounded-lg border border-primary text-primary text-sm d-flex align-items-center gap-1"
           (click)="fileInput.click()"
         >
-          <app-icon icon="material-symbols-light:upload" /> Importar
+          <lux-icon icon="material-symbols-light:upload" /> Importar
         </button>
         <input #fileInput type="file" accept=".xlsx" class="d-none" (change)="onImportExcel($event)" />
       </div>
@@ -68,7 +68,7 @@
       <td class="text-center">{{ item.aplicationPhMas }}</td>
       <td class="text-center">{{ item.aplicationPhMenos }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.cepillado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.cepillado"
@@ -76,7 +76,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.aspirado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.aspirado"
@@ -84,7 +84,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.cenefas ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.cenefas"
@@ -125,12 +125,12 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:pool" />
+        <lux-icon icon="material-symbols-light:pool" />
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="fw-bold m-0 text-base">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-primary" />
+          <lux-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-primary" />
           {{ item.dateString }}
         </h2>
       </div>
@@ -162,7 +162,7 @@
           class="d-flex align-items-center gap-1"
           [class.opacity-50]="!item.cepillado"
         >
-          <app-icon
+          <lux-icon
             [icon]="item.cepillado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
             [class]="item.cepillado ? 'text-green-600' : 'text-400'"
           />
@@ -172,7 +172,7 @@
           class="d-flex align-items-center gap-1 ms-3"
           [class.opacity-50]="!item.aspirado"
         >
-          <app-icon
+          <lux-icon
             [icon]="item.aspirado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
             [class]="item.aspirado ? 'text-green-600' : 'text-400'"
           />

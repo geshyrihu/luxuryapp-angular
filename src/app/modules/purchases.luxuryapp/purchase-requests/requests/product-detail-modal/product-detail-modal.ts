@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TagSeverity } from "@ui/base/tag.base";
+import { TagSeverity } from "@ui/core/tag.base";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "../nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
 
@@ -16,8 +16,8 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
       @if (solicitud()) {
       <div class="mb-3">
         <div class="d-flex align-items-center gap-2 mb-2">
-          <lx-tag [value]="getTipoSolicitudLabel(solicitud().tipoSolicitud)" [severity]="getTipoSolicitudSeverity(solicitud().tipoSolicitud)" [rounded]="true" />
-          <lx-tag [value]="getPrioridadLabel(solicitud().prioridad)" [severity]="getPrioridadSeverity(solicitud().prioridad)" [rounded]="true" />
+          <lux-tag [value]="getTipoSolicitudLabel(solicitud().tipoSolicitud)" [severity]="getTipoSolicitudSeverity(solicitud().tipoSolicitud)" [rounded]="true" />
+          <lux-tag [value]="getPrioridadLabel(solicitud().prioridad)" [severity]="getPrioridadSeverity(solicitud().prioridad)" [rounded]="true" />
         </div>
         <h4 class="fw-semibold mb-1">{{ solicitud().equipoOInstalacion }}</h4>
         <p class="text-body-secondary mb-0">{{ solicitud().justificacionGasto }}</p>

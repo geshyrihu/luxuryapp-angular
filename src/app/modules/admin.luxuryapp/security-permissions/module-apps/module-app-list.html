@@ -71,7 +71,7 @@
         <td>{{ item.icon }}</td>
         <td>{{ item.routerLink }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="item.viewMobil ? 'Sí' : 'No'"
             [severity]="item.viewMobil ? 'success' : 'danger'"
             class="p-2"
@@ -109,7 +109,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <app-icon
+      <lux-icon
         slot="start"
         icon="material-symbols-light:devices-other"
         [color]="item.viewMobil ? 'success' : 'medium'"

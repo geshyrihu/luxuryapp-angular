@@ -30,7 +30,7 @@
       <tr>
         <td>
           {{ item.folio }}
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:back-hand'"
             ngbTooltip="Ver"
             placement="top"
@@ -73,7 +73,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:wallet"
             
           />
@@ -83,7 +83,7 @@
             <span class="text-xs fw-bold text-body-secondary"
               >Folio: {{item.folio}}</span
             >
-            <lx-badge
+            <lux-badge
               [color]="item.statuspago == 'Pagada' ? 'success' : 'danger'"
               [value]="item.statuspago"
             />
@@ -96,7 +96,7 @@
             >
           </div>
         
-        <app-icon icon="material-symbols-light:chevron-right" end color="medium" />
+        <lux-icon icon="material-symbols-light:chevron-right" end color="medium" />
 </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

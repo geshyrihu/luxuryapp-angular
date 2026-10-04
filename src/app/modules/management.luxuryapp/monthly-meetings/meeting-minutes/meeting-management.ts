@@ -13,7 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { MeetingEmailDispatch } from "@core/interfaces/meeting-email-dispatch.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   AreaDetailsTable,

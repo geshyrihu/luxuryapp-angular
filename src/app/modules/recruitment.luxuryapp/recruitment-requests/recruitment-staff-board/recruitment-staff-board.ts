@@ -41,7 +41,7 @@ import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/w
 import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-description-form";
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { SolicitudVacanteForm } from "@operations.luxuryapp/recruitment-requests/vacancy-requests/solicitud-vacante-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";

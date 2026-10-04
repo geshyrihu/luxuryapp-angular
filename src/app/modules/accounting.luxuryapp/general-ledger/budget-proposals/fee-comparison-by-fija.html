@@ -12,7 +12,7 @@
   ============================================================================
 -->
 @if (comparisonData(); as data) {
-<lx-card>
+<lux-card>
 <ng-template #content>
     <p class="text-body-secondary">
       Cólculo basado en la división del presupuesto total entre
@@ -254,7 +254,7 @@
       }
     </div>
   </ng-template>
-</lx-card>
+</lux-card>
 } @else if (!loading()) {
-<lx-message severity="info">No hay datos de comparación disponibles.</lx-message>
+<lux-message severity="info">No hay datos de comparación disponibles.</lux-message>
 }

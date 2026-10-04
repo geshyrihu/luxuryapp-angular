@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface GanttTask {
   id: string;
@@ -41,7 +41,7 @@ export interface GanttTask {
             (click)="shiftDays(-7)"
             title="Semana anterior"
           >
-            <app-icon icon="material-symbols-light:chevron-left" />
+            <lux-icon icon="material-symbols-light:chevron-left" />
           </button>
           <span class="gantt-nav-range">{{ rangeLabel() }}</span>
           <button
@@ -49,7 +49,7 @@ export interface GanttTask {
             (click)="shiftDays(7)"
             title="Semana siguiente"
           >
-            <app-icon icon="material-symbols-light:chevron-right" />
+            <lux-icon icon="material-symbols-light:chevron-right" />
           </button>
         </div>
       </div>

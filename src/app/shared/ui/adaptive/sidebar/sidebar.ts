@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { SidebarBase } from "@ui/base/sidebar.base";
+import { SidebarBase } from "@ui/core/sidebar.base";
 import { MobileSidebar } from "@ui/mobile/sidebar/sidebar";
 import { Sidebar } from "@ui/web/sidebar/sidebar";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-sidebar",
+  selector: "lux-sidebar",
 
   imports: [NgTemplateOutlet, Sidebar, MobileSidebar],
   template: `

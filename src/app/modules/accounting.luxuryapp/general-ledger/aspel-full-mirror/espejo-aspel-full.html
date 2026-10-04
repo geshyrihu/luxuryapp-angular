@@ -7,7 +7,7 @@
         <div
           class="d-flex align-items-center justify-content-center bg-primary-50 rounded-lg"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:table'"
             class="text-primary-600"
           />
@@ -51,7 +51,7 @@
       </div>
 
       @if (loading()) {
-      <lx-spinner [size]="16" [strokeWidth]="4" />
+      <lux-spinner [size]="16" [strokeWidth]="4" />
       } @if (!loading() && rawData()) {
       <span class="border-left-1 border"></span>
 
@@ -116,7 +116,7 @@
     class="d-flex align-items-center gap-2 mb-3 mt-5"
     [id]="'grupo-' + grupo.codigo"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:bar-chart'"
       class="text-xl text-primary-600"
     />
@@ -262,7 +262,7 @@
   <div
     class="rf-card rf-empty d-flex flex-column align-items-center justify-content-center"
   >
-    <app-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
+    <lux-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
     <p class="m-0">
       Selecciona un cliente y ejercicio para cargar el espejo Aspel.
     </p>

@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3">
 
-  <lx-card [padded]="false">
+  <lux-card [padded]="false">
     @if (data()) {
     <div class="d-flex flex-column">
       <div class="p-3 border-bottom-1 border bg-body-tertiary">
@@ -47,9 +47,9 @@
     </div>
     } @else {
     <div class="d-flex flex-column align-items-center justify-content-center p-5 text-body-secondary">
-      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl mb-2" />
+      <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl mb-2" />
       <span>Cargando horarios...</span>
     </div>
     }
-  </lx-card>
+  </lux-card>
 </div>

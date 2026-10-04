@@ -1,7 +1,7 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 import { openPdf } from "../shared/pdf";
 
@@ -20,7 +20,7 @@ import { openPdf } from "../shared/pdf";
       [class]="styleClass()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="start" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="start" />
       {{ label() || "Ver archivo" }}
     </ion-button>
   `,

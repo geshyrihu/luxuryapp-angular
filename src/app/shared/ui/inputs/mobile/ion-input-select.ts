@@ -1,7 +1,7 @@
 import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonSelect, IonSelectOption } from "@ionic/angular";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../core/base-ionic-input";
 
 /**
  * 🔽 ION INPUT SELECT - Mobile (Ionic)

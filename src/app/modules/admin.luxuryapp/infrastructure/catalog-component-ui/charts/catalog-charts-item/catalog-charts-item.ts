@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ThemeService } from "@core/services/theme.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
 
@@ -77,7 +77,7 @@ const CHARTS_LABELS: Record<string, string> = {
               <div
                 class="d-flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:timeline"
                   class="text-4xl text-gray-400"
                 />

@@ -28,7 +28,7 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

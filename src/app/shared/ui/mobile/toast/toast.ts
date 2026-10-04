@@ -8,7 +8,7 @@ import {
   informationCircle,
   warning,
 } from "ionicons/icons";
-import { ToastBase } from "../../base/toast.base";
+import { ToastBase } from "../../core/toast.base";
 
 @Component({
   selector: "ili-toast",

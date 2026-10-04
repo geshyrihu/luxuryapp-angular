@@ -14,7 +14,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { BrevoEmailLogDto } from "./interfaces/brevo-email-log.interface";
 import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
 

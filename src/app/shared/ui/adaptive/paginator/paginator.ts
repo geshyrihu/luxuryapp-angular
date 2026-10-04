@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { PaginatorBase } from "@ui/base/paginator.base";
+import { PaginatorBase } from "@ui/core/paginator.base";
 import { MobilePaginator } from "@ui/mobile/paginator/paginator";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-paginator",
+  selector: "lux-paginator",
 
   imports: [MobilePaginator],
   template: `

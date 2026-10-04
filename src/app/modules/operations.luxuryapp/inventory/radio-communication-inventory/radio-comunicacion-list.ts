@@ -30,7 +30,7 @@ import {
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { RadioComunicacionForm } from "./radio-comunicacion-form";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

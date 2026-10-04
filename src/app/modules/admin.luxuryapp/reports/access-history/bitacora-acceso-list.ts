@@ -24,7 +24,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",

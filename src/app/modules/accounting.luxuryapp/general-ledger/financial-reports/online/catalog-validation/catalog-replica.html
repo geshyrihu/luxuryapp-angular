@@ -54,7 +54,7 @@
 
   @if (loading()) {
   <div class="d-flex align-items-center text-body-secondary mb-4 gap-2">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando catálogo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -67,7 +67,7 @@
   @if (cuentasFaltantes().length > 0) {
   <div class="bg-body-tertiary p-4 rounded mb-4 border-left-4 border-orange-500">
     <div class="d-flex align-items-center mb-3">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:warning'"
         class="text-orange-500 text-xl"
       />
@@ -87,7 +87,7 @@
       <div
         class="d-flex align-items-center bg-body rounded p-2 border-1 border-orange-300 gap-2"
       >
-        <lx-tag
+        <lux-tag
           [value]="faltante.clasificacion"
           [severity]="getSeverity(faltante.clasificacion)"
           class="text-xs"
@@ -103,7 +103,7 @@
   } @else {
   <div class="bg-body-tertiary p-3 rounded mb-4 border-left-4 border-green-500">
     <div class="d-flex align-items-center gap-2">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
@@ -218,11 +218,11 @@
       <div class="fw-bold mb-1">{{ account.descripcion }}</div>
       <div class="text-xs text-body-secondary mb-2">{{ account.origenDatos }}</div>
       <div class="d-flex flex-wrap gap-1">
-        @if (account.epf) { <lx-tag value="EPF" severity="info" /> } @if
-        (account.er) { <lx-tag value="ER" severity="success" /> } @if
-        (account.cedP) { <lx-tag value="CedP" severity="warn" /> } @if
-        (account.fe) { <lx-tag value="FE" severity="secondary" /> } @if
-        (account.aCob) { <lx-tag value="ACob" severity="danger" /> }
+        @if (account.epf) { <lux-tag value="EPF" severity="info" /> } @if
+        (account.er) { <lux-tag value="ER" severity="success" /> } @if
+        (account.cedP) { <lux-tag value="CedP" severity="warn" /> } @if
+        (account.fe) { <lux-tag value="FE" severity="secondary" /> } @if
+        (account.aCob) { <lux-tag value="ACob" severity="danger" /> }
       </div>
     </div>
     } }

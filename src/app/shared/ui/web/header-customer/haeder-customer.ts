@@ -25,7 +25,7 @@ import { TicketFilterService } from "@operations.luxuryapp/service-orders/servic
     <div
       class="header-customer d-flex align-items-center justify-content-between"
     >
-      <lx-avatar
+      <lux-avatar
         [image]="
           logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
         "

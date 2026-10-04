@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";

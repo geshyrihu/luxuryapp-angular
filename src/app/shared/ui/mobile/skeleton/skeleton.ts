@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { IonSkeletonText } from "@ionic/angular";
-import { SkeletonBase } from "@ui/base/skeleton.base";
+import { SkeletonBase } from "@ui/core/skeleton.base";
 
 @Component({
   selector: "ili-skeleton",

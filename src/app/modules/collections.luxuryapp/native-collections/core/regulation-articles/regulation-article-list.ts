@@ -26,7 +26,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { RegulationArticleResponseDTO } from "../../interfaces/property-fine.dto";
 import { RegulationArticleForm } from "./regulation-article-form";
 

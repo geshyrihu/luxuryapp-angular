@@ -19,7 +19,7 @@
     <div>
       <h6 class="mt-4">Items de Tareas</h6>
       @for (template of templates(); track template.id) {
-      <lx-fieldset [legend]="template.name" [toggleable]="true" class="mb-3">
+      <lux-fieldset [legend]="template.name" [toggleable]="true" class="mb-3">
         <small class="text-body-secondary d-block mb-2"
           >Rol: {{ template.roleName }}</small
         >
@@ -34,7 +34,7 @@
         } @empty {
         <div class="text-body-secondary">Esta plantilla no tiene items.</div>
         }
-      </lx-fieldset>
+      </lux-fieldset>
       }
       <div class="d-flex justify-content-end mt-4">
         <il-button-save

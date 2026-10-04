@@ -74,7 +74,7 @@
     <tr>
       <td class="no-print">{{ rowIndex + 1 }}</td>
       <td class="text-center">
-        <lx-avatar
+        <lux-avatar
           [image]="item.photoPath"
           alt=""
           class="me-2"
@@ -86,11 +86,11 @@
         {{ item.fullName }}
         <div class="mt-1">
           @if (item.isOverdueDocuments) {
-            <lx-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lx-tag>
+            <lux-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lux-tag>
           } @else if (item.hasPendingDocuments) {
-            <lx-tag severity="warning" value="Docs. Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
+            <lux-tag severity="warning" value="Docs. Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lux-tag>
           } @else {
-            <lx-tag severity="success" value="Expediente OK" icon="material-symbols-light:check-circle" class="text-xs"></lx-tag>
+            <lux-tag severity="success" value="Expediente OK" icon="material-symbols-light:check-circle" class="text-xs"></lux-tag>
           }
         </div>
       </td>
@@ -148,7 +148,7 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:badge-outline" />
+        <lux-icon icon="material-symbols-light:badge-outline" />
         }
       </div>
 
@@ -157,9 +157,9 @@
       </p>
       <div class="mt-1">
         @if (item.isOverdueDocuments) {
-          <lx-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lx-tag>
+          <lux-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lux-tag>
         } @else if (item.hasPendingDocuments) {
-          <lx-tag severity="warning" value="Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
+          <lux-tag severity="warning" value="Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lux-tag>
         }
       </div>
       <p class="text-xs m-0 mt-1 text-body-secondary">

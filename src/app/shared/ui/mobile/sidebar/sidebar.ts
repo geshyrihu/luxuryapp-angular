@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SidebarBase } from "@ui/base/sidebar.base";
+import { SidebarBase } from "@ui/core/sidebar.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

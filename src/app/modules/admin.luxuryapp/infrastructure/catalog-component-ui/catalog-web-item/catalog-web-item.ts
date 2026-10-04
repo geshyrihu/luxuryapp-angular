@@ -81,7 +81,7 @@ import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
 import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
 import { MobileFeedback } from "../catalog-mobile/mobile-feedback/mobile-feedback";
@@ -395,16 +395,16 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <!-- Ejemplo visual -->
                     <div class="d-flex align-items-center gap-3 mb-4">
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:menu" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:menu" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:notifications" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:notifications" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:search" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:search" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn" disabled>
-                        <app-icon icon="material-symbols-light:settings" class="text-xl" />
+                        <lux-icon icon="material-symbols-light:settings" class="text-xl" />
                       </button>
                     </div>
 
@@ -1381,7 +1381,7 @@ export class CatalogWebItem {
 
   // Icon button demo
   readonly iconBtnHtml = `<button type="button" class="ds-icon-btn" (click)="accion()">
-  <app-icon icon="material-symbols-light:menu" class="text-xl" />
+  <lux-icon icon="material-symbols-light:menu" class="text-xl" />
 </button>`;
 
   readonly iconBtnScss = `.mi-clase-boton {

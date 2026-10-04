@@ -14,7 +14,7 @@
   ]; track section.title) {
   @if (section.value) {
   <section class="description-card">
-    <h3><app-icon [icon]="section.icon" class="text-primary" />{{ section.title }}</h3>
+    <h3><lux-icon [icon]="section.icon" class="text-primary" />{{ section.title }}</h3>
     <p>{{ section.value }}</p>
   </section>
   }
@@ -22,7 +22,7 @@
 
   <div class="description-footer">
     <span class="text-body-secondary">Cobertura de fin de semana</span>
-    <lx-tag
+    <lux-tag
       [value]="item.requiresWeekendShift ? 'Requerida' : 'No requerida'"
       [severity]="item.requiresWeekendShift ? 'warn' : 'success'"
     />
@@ -30,7 +30,7 @@
 </div>
 } @else {
 <div class="d-flex align-items-center justify-content-center p-5 text-body-secondary">
-  <app-icon icon="material-symbols-light:progress-activity" class="me-2" />
+  <lux-icon icon="material-symbols-light:progress-activity" class="me-2" />
   Cargando descripción del puesto...
 </div>
 }

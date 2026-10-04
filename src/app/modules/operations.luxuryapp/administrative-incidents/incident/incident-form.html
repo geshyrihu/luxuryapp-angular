@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <lx-tabs [tabs]="tabs()" [(activeId)]="activeTab">
+  <lux-tabs [tabs]="tabs()" [(activeId)]="activeTab">
     <div tab="datos">
       <div class="row pt-2 g-4">
         <div class="col-12 col-md-6">
@@ -65,7 +65,7 @@
       <app-suspension-days-manager [incidentId]="id()" />
       }
     </div>
-  </lx-tabs>
+  </lux-tabs>
 
   <!-- ─── FOOTER FIJO ───────────────────────────────────────── -->
   <div

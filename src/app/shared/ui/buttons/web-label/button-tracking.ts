@@ -1,4 +1,4 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { TrackingEvent } from "../shared/tracking";
 
@@ -25,7 +25,7 @@ import { TrackingEvent } from "../shared/tracking";
       [tooltipDisabled]="!tooltipText()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" />
       <span>{{ label() || "Seguimiento" }}</span>
       @if (badgeCount() && badgeCount()! > 0) {
         <span

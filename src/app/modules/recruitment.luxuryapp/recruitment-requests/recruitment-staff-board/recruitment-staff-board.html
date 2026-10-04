@@ -72,14 +72,14 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary fw-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
+        <lux-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 fw-bold border-bottom-2 border-bluegray-200 border-left-2"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:person'"
           class="me-2"
         />COLABORADOR ASIGNADO
@@ -121,7 +121,7 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="d-flex align-items-center">
-          <lx-tag
+          <lux-tag
             severity="warn"
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
@@ -210,7 +210,7 @@
           <!-- -- Puesto ocupado -- -->
           <div class="d-flex align-items-center">
             @if (item.applicationUserPhoto) {
-            <lx-avatar
+            <lux-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
@@ -219,7 +219,7 @@
               lxTooltip="Ver tarjeta"
             />
             } @else {
-            <lx-avatar
+            <lux-avatar
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
@@ -232,26 +232,26 @@
               >
               <div class="mt-1">
                 @if (item.isOverdueDocuments) {
-                <lx-tag
+                <lux-tag
                   severity="danger"
                   value="Vencido > 24h"
                   icon="material-symbols-light:warning"
                   class="text-xs"
-                ></lx-tag>
+                ></lux-tag>
                 } @else if (item.hasPendingDocuments) {
-                <lx-tag
+                <lux-tag
                   severity="warning"
                   value="Docs. Pendientes"
                   icon="material-symbols-light:schedule"
                   class="text-xs"
-                ></lx-tag>
+                ></lux-tag>
                 } @else {
-                <lx-tag
+                <lux-tag
                   severity="success"
                   value="Expediente OK"
                   icon="material-symbols-light:check-circle"
                   class="text-xs"
-                ></lx-tag>
+                ></lux-tag>
                 }
               </div>
             </div>
@@ -295,7 +295,7 @@
               class="drop-zone vacant-drop-zone d-flex align-items-center justify-content-between p-2"
             >
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:group'"
                   class="text-body-secondary"
                 />
@@ -342,7 +342,7 @@
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
               >
                 <div class="d-flex align-items-center gap-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />
@@ -378,20 +378,20 @@
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="d-flex align-items-center">
-      <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
+      <lux-icon [icon]="'material-symbols-light:group'" class="text-lg" />
       <span class="fw-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-sm"
       />
       }
     </div>
-    <app-icon
+    <lux-icon
       [icon]="poolExpanded() ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
     />
   </div>
@@ -401,7 +401,7 @@
   <p class="text-sm text-body-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:manage-accounts'"
       class="text-xs"
     />
@@ -425,7 +425,7 @@
     </p>
     } @for (emp of unassignedEmployees(); track emp.applicationUserId) {
     <div cdkDrag [cdkDragData]="emp" class="employee-chip">
-      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lux-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="chip-info">
         <span class="chip-name">{{ emp.fullName }}</span>
         <span class="chip-sub">{{ emp.userName }}</span>
@@ -439,7 +439,7 @@
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">
-          <lx-avatar [image]="emp.photoPath" shape="circle" />
+          <lux-avatar [image]="emp.photoPath" shape="circle" />
           <span>{{ emp.fullName }}</span>
         </div>
       </ng-template>
@@ -452,7 +452,7 @@
 <!-- ═══════════════════════════════════════════════════════════════════
      DRAWER é ASIGNACIÓN RÁPIDA (alternativa al DnD)
      ═══════════════════════════════════════════════════════════════════ -->
-<lx-sidebar
+<lux-sidebar
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisible.set($event)"
   position="right"
@@ -463,7 +463,7 @@
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
       <div class="d-flex align-items-center mb-1">
-        <app-icon [icon]="'material-symbols-light:work'" />
+        <lux-icon [icon]="'material-symbols-light:work'" />
         <span class="fw-bold">{{ pos.folio }}</span>
       </div>
       <p class="m-0 fw-semibold">{{ pos.applicationRoleName }}</p>
@@ -476,7 +476,7 @@
 
     @if (assignLoading()) {
     <div class="d-flex justify-content-center py-4">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-2xl"
       />
@@ -488,22 +488,22 @@
     } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
     <!-- DS: menu-item (dropdown/_dropdowns.scss) é flex, hover bg, cursor pointer -->
     <div class="menu-item" (click)="onAssignFromDrawer(emp)">
-      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lux-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="d-flex flex-column min-w-0 flex-grow-1">
         <span class="fw-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-body-secondary truncate">{{ emp.userName }}</span>
       </div>
-      <app-icon [icon]="'material-symbols-light:chevron-right'" />
+      <lux-icon [icon]="'material-symbols-light:chevron-right'" />
     </div>
     } }
   </div>
   }
-</lx-sidebar>
+</lux-sidebar>
 
 <!-- ═══════════════════════════════════════════════════════════════════
      MODAL é INACTIVOS (Puestos y Colaboradores)
      ═══════════════════════════════════════════════════════════════════ -->
-<lx-modal
+<lux-modal
   [visible]="inactivosVisible()"
   (visibleChange)="inactivosVisible.set($event)"
   header="Inactivos"
@@ -530,7 +530,7 @@
 
   @if (inactivosLoading()) {
   <div class="d-flex justify-content-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl"
     />
@@ -540,7 +540,7 @@
   <!-- -- Tab: Puestos inactivos -- -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />
@@ -570,7 +570,7 @@
   <!-- -- Tab: Colaboradores inactivos -- -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />
@@ -580,7 +580,7 @@
   <div class="d-flex flex-column">
     @for (emp of inactiveEmployees(); track emp.applicationUserId) {
     <div class="card card--bordered">
-      <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <lux-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="d-flex flex-column min-w-0 flex-grow-1">
         <span class="fw-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-body-secondary truncate">{{ emp.userName }}</span>
@@ -608,4 +608,4 @@
     }
   </div>
   } }
-</lx-modal>
+</lux-modal>

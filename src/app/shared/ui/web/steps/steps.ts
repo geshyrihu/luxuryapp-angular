@@ -4,8 +4,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { StepsBase } from "@ui/base/steps.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { StepsBase } from "@ui/core/steps.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-steps",
@@ -29,7 +29,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
           >
             <span class="app-steps-index">
               @if (i < activeIndex()) {
-                <app-icon icon="material-symbols-light:check" />
+                <lux-icon icon="material-symbols-light:check" />
               } @else {
                 {{ i + 1 }}
               }

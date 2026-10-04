@@ -1,7 +1,7 @@
 <div class="card p-0 p-md-4">
-  <lx-card class="card card--elevated mb-3">
+  <lux-card class="card card--elevated mb-3">
     <div class="d-flex gap-2 align-items-start">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:shield'"
         class="text-primary mt-1"
       />
@@ -12,9 +12,9 @@
         para auditores.
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 
-  <lx-card class="card card--elevated mb-3">
+  <lux-card class="card card--elevated mb-3">
     <div class="row formgrid align-items-end g-4">
       <div class="field col-12 col-md-4">
         <custom-input-select-signal
@@ -40,7 +40,7 @@
         />
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 
   <app-table
     [value]="dataSignal()"
@@ -79,7 +79,7 @@
         <td class="text-sm">{{ log.summary }}</td>
         <td class="text-sm">{{ log.actor }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="successMeta(log.isSuccess).label"
             [severity]="successMeta(log.isSuccess).severity"
           />
@@ -108,7 +108,7 @@
           class="w-2rem h-2rem rounded-lg d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
           [class]="log.isSuccess ? 'bg-green-100' : 'bg-red-100'"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:description"
             [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"
           />

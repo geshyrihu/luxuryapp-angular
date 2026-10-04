@@ -58,7 +58,7 @@
       <td>{{ item.offsetDaysFromMeeting }}</td>
       <td>{{ item.version }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="severity(item.isActive)"
           [value]="item.isActive ? 'Activo' : 'Inactivo'"
         />
@@ -92,7 +92,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:fact-check" class="text-xl text-primary" />
+       <lux-icon slot="start" icon="material-symbols-light:fact-check" class="text-xl text-primary" />
 
        <ion-label>
          <p class="fw-semibold m-0 text-body">{{ item.title }}</p>

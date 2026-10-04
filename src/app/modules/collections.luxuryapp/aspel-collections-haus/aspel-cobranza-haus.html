@@ -9,13 +9,13 @@
       </p>
     </div>
     <div class="d-flex flex-wrap gap-2 align-items-center">
-      <lx-tag
+      <lux-tag
         [value]="customerId()"
         severity="secondary"
         class="max-w-16rem overflow-hidden text-truncate"
       />
-      <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
-      <lx-tag value="Live" severity="contrast" />
+      <!-- <lux-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
+      <lux-tag value="Live" severity="contrast" />
       <il-button
         label="Reglas de Negocio"
         variant="text"
@@ -28,7 +28,7 @@
   </div>
 
   @if (!hasCustomerContext()) {
-  <lx-message
+  <lux-message
     severity="warn"
     text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado."
   />
@@ -95,31 +95,31 @@
     }
   </div>
   } @if (loading()) {
-  <lx-card class="shadow-none border-1 border border-dashed rounded-xl">
+  <lux-card class="shadow-none border-1 border border-dashed rounded-xl">
     <div
       class="d-flex align-items-center justify-content-center gap-3 min-h-6rem text-body-secondary"
     >
-      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl" />
+      <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl" />
       <span class="text-lg">
         Consultando informacion en {{ dataSource() === "local" ? "snapshot
         local" : "Aspel live" }}...
       </span>
     </div>
-  </lx-card>
+  </lux-card>
   } @else if (mode() === "accounts" && accountRows().length) {
   <div class="row g-4">
     <div class="col-12 col-md-4">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Customer</span
         >
         <strong class="d-block text-xl">{{ customerId() }}</strong>
         <small class="text-body-secondary">Contexto actual</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-4">
-      <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Ejercicio</span
         >
@@ -127,11 +127,11 @@
         <small class="text-body-secondary"
           >Usado para cargar el catalogo seleccionado</small
         >
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-4">
-      <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Total cuentas</span
         >
@@ -139,7 +139,7 @@
         <small class="text-body-secondary"
           >Cuentas devueltas por la fuente seleccionada</small
         >
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
@@ -190,7 +190,7 @@
           >
         </td>
         <td>{{ item.nombre }}</td>
-        <td><lx-tag [value]="item.estatus" severity="secondary" /></td>
+        <td><lux-tag [value]="item.estatus" severity="secondary" /></td>
       </tr>
     </ng-template>
 
@@ -202,7 +202,7 @@
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
@@ -214,17 +214,17 @@
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Cuenta</span
         >
         <strong class="d-block text-xl">{{ estadoCuenta()?.numCta }}</strong>
         <small class="text-body-secondary">{{ estadoCuenta()?.departamento }}</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Rango</span
         >
@@ -235,11 +235,11 @@
         <small class="text-body-secondary"
           >{{ estadoMovimientos().length }} movimientos</small
         >
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo inicial</span
         >
@@ -248,11 +248,11 @@
           "1.2-2" }}</strong
         >
         <small class="text-body-secondary">Al corte de apertura</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo final</span
         >
@@ -261,7 +261,7 @@
           }}</strong
         >
         <small class="text-body-secondary">Al cierre del rango</small>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
@@ -320,7 +320,7 @@
       <tr>
         <td>{{ item.fecha }}</td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="item.tipo"
             [severity]="item.tipo === 'cargo' ? 'warn' : 'success'"
           />
@@ -346,7 +346,7 @@
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
@@ -359,7 +359,7 @@
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Cuenta base</span
         >
@@ -367,11 +367,11 @@
           >{{ detalleCobranza()?.numCtaBase }}</strong
         >
         <small class="text-body-secondary">{{ detalleCobranza()?.departamento }}</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Rango</span
         >
@@ -382,11 +382,11 @@
         <small class="text-body-secondary"
           >{{ detalleConceptRows().length }} conceptos</small
         >
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo inicial total</span
         >
@@ -395,11 +395,11 @@
           : "1.2-2" }}</strong
         >
         <small class="text-body-secondary">Arrastre al inicio del rango</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Cargos / Abonos</span
         >
@@ -411,11 +411,11 @@
         <small class="text-body-secondary"
           >{{ detalleCobranza()?.totalConceptos }} conceptos en deuda</small
         >
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Adelantos</span
         >
@@ -424,11 +424,11 @@
           "1.2-2" }}</strong
         >
         <small class="text-body-secondary">Pagos a favor o sobrepagos</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4">
-      <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Saldo final total</span
         >
@@ -437,11 +437,11 @@
           "1.2-2" }}</strong
         >
         <small class="text-body-secondary">Deuda compuesta al cierre</small>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
-  <lx-card class="shadow-none border-1 border border-dashed">
+  <lux-card class="shadow-none border-1 border border-dashed">
     <div class="d-flex flex-column gap-3">
       <div class="d-flex justify-content-between align-items-start gap-3">
         <div>
@@ -479,7 +479,7 @@
         <ng-template #body let-item>
           <tr>
             <td>
-              <lx-tag
+              <lux-tag
                 [value]="item.concepto"
                 [severity]="getConceptSeverity(item.concepto)"
               />
@@ -527,40 +527,40 @@
         </ng-template>
       </app-table>
     </div>
-  </lx-card>
+  </lux-card>
 
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-3">
-          <lx-card class="shadow-none border-1 border h-full">
+          <lux-card class="shadow-none border-1 border h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Cuenta base</span>
             <strong class="d-block text-xl">{{ contrapartidas()?.numCtaBase }}</strong>
             <small class="text-body-secondary">{{ contrapartidas()?.departamento }}</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-3">
-          <lx-card class="shadow-none border-1 border h-full">
+          <lux-card class="shadow-none border-1 border h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Rango</span>
             <strong class="d-block text-xl">{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
             <small class="text-body-secondary">{{ contrapartidas()?.totalMovimientos }} movimientos</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-3">
-          <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+          <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Saldo inicial</span>
             <strong class="d-block text-xl">{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-body-secondary">Cuenta base</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-3">
-          <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+          <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Saldo final</span>
             <strong class="d-block text-xl">{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-body-secondary">Cuenta base</small>
-</lx-card>
+</lux-card>
         </div>
       </div>
 
@@ -624,7 +624,7 @@
   <div
     class="p-3 mb-4 rounded border-1 border bg-blue-50 text-blue-800 d-flex align-items-start gap-3"
   >
-    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
+    <lux-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="d-block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
       <span class="text-sm"
@@ -636,17 +636,17 @@
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Customer</span
         >
         <strong class="d-block text-xl">{{ customerId() }}</strong>
         <small class="text-body-secondary">Contexto actual</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border h-full">
+      <lux-card class="shadow-none border-1 border h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Fecha corte</span
         >
@@ -654,11 +654,11 @@
           >{{ deudasActuales()?.fechaCorte }}</strong
         >
         <small class="text-body-secondary">Saldo al corte consultado</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Propiedades con deuda</span
         >
@@ -666,11 +666,11 @@
           >{{ deudasActuales()?.totalPropiedadesConDeuda }}</strong
         >
         <small class="text-body-secondary">Solo saldos positivos</small>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+      <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
         <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary"
           >Deuda total</span
         >
@@ -679,7 +679,7 @@
           }}</strong
         >
         <small class="text-body-secondary">Saldo vigente acumulado</small>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
@@ -743,7 +743,7 @@
         </td>
         <td>{{ item.departamento }}</td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'"
             [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'"
           />
@@ -773,43 +773,43 @@
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-2">
-          <lx-card class="shadow-none border-1 border h-full">
+          <lux-card class="shadow-none border-1 border h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Cuenta base</span>
             <strong class="d-block text-xl">{{ pendientes()?.numCtaBase }}</strong>
             <small class="text-body-secondary">{{ pendientes()?.departamento || "Sin nombre de departamento" }}</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-3">
-          <lx-card class="shadow-none border-1 border h-full">
+          <lux-card class="shadow-none border-1 border h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Rango consultado</span>
             <strong class="d-block text-xl">{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
             <small class="text-body-secondary">Customer actual en contexto</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-2">
-          <lx-card class="shadow-none border-1 border bg-orange-50 h-full">
+          <lux-card class="shadow-none border-1 border bg-orange-50 h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Conceptos encontrados</span>
             <strong class="d-block text-xl">{{ pendientes()?.totalConceptos }}</strong>
             <small class="text-body-secondary">Conceptos disponibles en la cuenta</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-6 col-lg-2">
-          <lx-card class="shadow-none border-1 border h-full">
+          <lux-card class="shadow-none border-1 border h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Saldo inicial total</span>
             <strong class="d-block text-xl">{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-body-secondary">Suma inicial del rango consultado</small>
-</lx-card>
+</lux-card>
         </div>
 
         <div class="col-12 col-md-12 col-lg-3">
-          <lx-card class="shadow-none border-1 border bg-blue-50 h-full">
+          <lux-card class="shadow-none border-1 border bg-blue-50 h-full">
 <span class="d-block mb-1 text-xs text-uppercase fw-semibold text-body-secondary">Saldo pendiente total</span>
             <strong class="d-block text-xl">{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
             <small class="text-body-secondary">Saldo vigente acumulado por concepto</small>
-</lx-card>
+</lux-card>
         </div>
       </div>
 
@@ -871,7 +871,7 @@
         <ng-template #body let-item>
           <tr>
             <td>
-              <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
+              <lux-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
             <td><code class="text-sm px-2 py-1 rounded bg-body-tertiary font-mono">{{ item.numCta }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
@@ -913,12 +913,12 @@
         </ng-template>
       </app-table> -->
   } @else if (searched()) {
-  <lx-message
+  <lux-message
     severity="info"
     text="La consulta no devolvio registros con los filtros actuales."
   />
   } @else {
-  <lx-message
+  <lux-message
     severity="info"
     text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta."
   />

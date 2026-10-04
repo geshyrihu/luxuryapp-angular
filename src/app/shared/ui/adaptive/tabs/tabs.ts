@@ -5,7 +5,7 @@ import {
   inject,
   viewChild,
 } from "@angular/core";
-import { TabsBase } from "@ui/base/tabs.base";
+import { TabsBase } from "@ui/core/tabs.base";
 import { MobileTabs } from "@ui/mobile/tabs/tabs";
 import { Tabs } from "@ui/web/tabs/tabs";
 import { PlatformService } from "@core/services/platform.service";
@@ -16,7 +16,7 @@ import { PlatformService } from "@core/services/platform.service";
  * en un contenedor propio para no perder el contenido al alternar de stack.
  */
 @Component({
-  selector: "lx-tabs",
+  selector: "lux-tabs",
 
   imports: [Tabs, MobileTabs],
   template: `

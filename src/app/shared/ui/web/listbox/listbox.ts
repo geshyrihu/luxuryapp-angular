@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NgClass, NgStyle, NgTemplateOutlet } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { ListboxBase } from "@ui/base/listbox.base";
+import { ListboxBase } from "@ui/core/listbox.base";
 
 @Component({
   selector: "app-listbox",

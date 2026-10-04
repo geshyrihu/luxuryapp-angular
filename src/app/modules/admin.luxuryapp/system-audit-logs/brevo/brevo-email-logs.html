@@ -104,7 +104,7 @@
 
       <!-- Estado / Evento -->
       <td>
-        <lx-tag
+        <lux-tag
           [value]="etiquetaEvento(log.event)"
           [severity]="severidadEvento(log.event)"
         />
@@ -137,7 +137,7 @@
   <ng-template #emptymessage>
     <tr>
       <td colspan="6" class="text-center py-5 text-body-secondary">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:move-to-inbox'"
           class="text-3xl mb-2 d-block"
         />
@@ -150,12 +150,12 @@
   <ng-template #loadingbody>
     @for (i of [1, 2, 3, 4, 5]; track i) {
     <tr>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton width="90px" /></td>
-      <td><lx-skeleton width="120px" /></td>
-      <td><lx-skeleton /></td>
-      <td><lx-skeleton width="60px" /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton width="90px" /></td>
+      <td><lux-skeleton width="120px" /></td>
+      <td><lux-skeleton /></td>
+      <td><lux-skeleton width="60px" /></td>
     </tr>
     }
   </ng-template>

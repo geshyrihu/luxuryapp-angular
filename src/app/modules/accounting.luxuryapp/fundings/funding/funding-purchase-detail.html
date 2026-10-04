@@ -1,7 +1,7 @@
 <!-- Spinner de carga que se muestra mientras se obtienen los datos -->
 @if (!data() && submitting()) {
 <div class="text-center my-5">
-  <lx-spinner [size]="48" [strokeWidth]="4" />
+  <lux-spinner [size]="48" [strokeWidth]="4" />
   <p class="mt-2">Cargando detalle de la orden...</p>
 </div>
 }
@@ -109,7 +109,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Estado General</label
         >
         <p>
-          <lx-tag
+          <lux-tag
             class="text-base"
             [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' : data().statusOrdenCompra === 'Pendiente' ? 'warning' : data().statusOrdenCompra === 'Rechazada' ? 'danger' : data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'"
             [value]="data().statusOrdenCompra"
@@ -119,7 +119,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       <div class="col-12 col-md-3">
         <label class="d-block text-body-secondary fw-medium">Recibido</label>
         <p>
-          <lx-tag
+          <lux-tag
             class="text-base"
             [severity]="data().seRecibio ? 'success' : 'secondary'"
             [value]="data().seRecibio ? 'Sí' : 'No'"
@@ -129,7 +129,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
       <div class="col-12 col-md-3">
         <label class="d-block text-body-secondary fw-medium">Pagado</label>
         <p>
-          <lx-tag
+          <lux-tag
             class="text-base"
             [severity]="data().sePago ? 'success' : 'secondary'"
             [value]="data().sePago ? 'Sí' : 'No'"
@@ -141,7 +141,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Trámite de Pago</label
         >
         <p>
-          <lx-tag
+          <lux-tag
             class="text-base"
             [severity]="data().tramitarPago ? 'info' : 'secondary'"
             [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'"

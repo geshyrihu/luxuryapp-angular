@@ -284,7 +284,7 @@ Contenedor principal de la vista de presupuesto.
             </td>
             <td class="text-end fw-bold">
               @let totalRestante = getPresupuestoRestanteMesesVisibles();
-              <lx-tag
+              <lux-tag
                 severity="warn"
                 [class]="totalRestante < 0 ? 'text-red-700' : 'text-green-700'"
                 [value]=" totalRestante !== 0 ? (totalRestante | number: '1.0-0') : '-' "
@@ -329,7 +329,7 @@ Contenedor principal de la vista de presupuesto.
               <div class="d-flex justify-content-between align-items-center mb-1">
                 <span class="text-sm fw-bold text-body">{{ cuenta.codigo_Cuenta }}</span>
                 @if (cuenta.esFilaAgrupadora) {
-                <lx-tag value="Agrupadora" severity="info" class="text-xs px-2" />
+                <lux-tag value="Agrupadora" severity="info" class="text-xs px-2" />
                 }
               </div>
               

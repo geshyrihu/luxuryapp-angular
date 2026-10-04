@@ -22,7 +22,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/recurring-task-template-catalog.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { RecurringTaskCatalogForm } from "../recurring-task-catalog-form/recurring-task-catalog-form";
 
 @Component({

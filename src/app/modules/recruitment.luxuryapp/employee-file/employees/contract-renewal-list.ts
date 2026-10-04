@@ -16,7 +16,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ContractRenewalService } from "./services/contract-renewal.service";
 import { ContractRenewalEvaluationDTO, ContractRenewalStatus } from "./employee-registry/interfaces/contract-renewal.dto";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ContractRenewalFormComponent } from "./contract-renewal-form";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 
@@ -42,7 +42,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
     <div class="contract-renewal-list">
       <div class="list-header">
         <h2 class="list-title">
-          <app-icon name="file-clock" class="title-icon" />
+          <lux-icon name="file-clock" class="title-icon" />
           Bandeja de Renovaciones
         </h2>
         <div class="header-actions">
@@ -59,7 +59,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
       <!-- Alert banner if there are pending renewals -->
       @if (pendingCount() > 0) {
         <div class="alert-banner">
-          <app-icon name="alert-circle" class="alert-icon" />
+          <lux-icon name="alert-circle" class="alert-icon" />
           <span>
             <strong>{{ pendingCount() }}</strong> renovaciones pendientes de decisión
           </span>
@@ -122,13 +122,13 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           <tr>
             <td>
               <div class="employee-cell">
-                <app-icon name="user" class="cell-icon" />
+                <lux-icon name="user" class="cell-icon" />
                 <span>{{ renewal.employeeName }}</span>
               </div>
             </td>
             <td>
               <div class="position-cell">
-                <app-icon name="briefcase" class="cell-icon" />
+                <lux-icon name="briefcase" class="cell-icon" />
                 <span>{{ renewal.positionName }}</span>
               </div>
             </td>
@@ -167,7 +167,7 @@ import { DialogSize } from "@core/services/dialog-handler.service";
           <tr>
             <td colspan="6" class="text-center py-4">
               <div class="empty-state">
-                <app-icon name="file-check" class="empty-icon" />
+                <lux-icon name="file-check" class="empty-icon" />
                 <p>No hay renovaciones registradas</p>
               </div>
             </td>

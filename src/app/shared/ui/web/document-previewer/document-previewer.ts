@@ -4,7 +4,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-document-previewer",
@@ -22,7 +22,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
               class="doc-previewer-btn"
               title="Descargar"
             >
-              <app-icon icon="material-symbols-light:download" />
+              <lux-icon icon="material-symbols-light:download" />
             </a>
           }
           @if (printable()) {
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
               (click)="print()"
               title="Imprimir"
             >
-              <app-icon icon="material-symbols-light:print" />
+              <lux-icon icon="material-symbols-light:print" />
             </button>
           }
         </div>
@@ -45,7 +45,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
           ></iframe>
         } @else {
           <div class="doc-previewer-empty">
-            <app-icon icon="material-symbols-light:description" class="text-4xl" />
+            <lux-icon icon="material-symbols-light:description" class="text-4xl" />
             <p>Vista previa no disponible</p>
           </div>
         }

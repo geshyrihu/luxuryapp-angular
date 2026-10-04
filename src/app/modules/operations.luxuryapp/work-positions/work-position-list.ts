@@ -48,12 +48,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   SegmentedControl,
   SegmentItem,
-} from "@ui/shared/segmented-control/segmented-control";
+} from "@ui/primitives/segmented-control/segmented-control";
 
 @Component({
   selector: "app-work-position-list",

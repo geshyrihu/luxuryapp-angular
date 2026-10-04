@@ -81,7 +81,7 @@
           <td>{{ formatBusinessDateTime(item.startAt) }}</td>
           <td class="text-center">{{ item.guestCount }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="getStatusLabel(item)"
               [severity]="getStatusSeverity(item)"
             />
@@ -185,27 +185,27 @@
               <div
                 class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
-                <app-icon icon="material-symbols-light:schedule" />
+                <lux-icon icon="material-symbols-light:schedule" />
                 <span>{{ formatBusinessTime(item.startAt) }}</span>
               </div>
               <div
                 class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
-                <app-icon icon="material-symbols-light:group-outline" />
+                <lux-icon icon="material-symbols-light:group-outline" />
                 <span>{{ item.guestCount }} Invitados</span>
               </div>
               @if (item.recurrenceSummary) {
               <div
                 class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
-                <app-icon icon="material-symbols-light:refresh" />
+                <lux-icon icon="material-symbols-light:refresh" />
                 <span>{{ item.recurrenceSummary }}</span>
               </div>
               }
             </div>
 
             <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
-              <lx-tag
+              <lux-tag
                 [value]="getStatusLabel(item)"
                 [severity]="getStatusSeverity(item)"
               />
@@ -217,7 +217,7 @@
                 target="_blank"
                 class="no-underline text-xs fw-bold px-2 py-1 rounded bg-green-100 text-green-800 d-flex align-items-center gap-1"
               >
-                <app-icon icon="material-symbols-light:videocam" /> Meet
+                <lux-icon icon="material-symbols-light:videocam" /> Meet
               </a>
               }
             </div>

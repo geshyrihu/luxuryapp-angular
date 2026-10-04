@@ -40,7 +40,7 @@
       <div class="d-flex flex-wrap gap-3">
         @for (day of weekDays; track day.value) {
         <div class="d-flex align-items-center">
-          <lx-checkbox
+          <lux-checkbox
             [checked]="isDaySelected(day.value)"
             (checkedChange)="toggleDay(day.value, $event)"
             [inputId]="day.value"
@@ -70,7 +70,7 @@
       [class.border-primary]="monthlyType === 'dayOfMonth'"
     >
       <div class="d-flex align-items-center mb-2">
-        <lx-radio-button
+        <lux-radio-button
           value="dayOfMonth"
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfMonth"
@@ -104,7 +104,7 @@
       [class.border-primary]="monthlyType === 'lastDayOfMonth'"
     >
       <div class="d-flex align-items-center mb-2">
-        <lx-radio-button
+        <lux-radio-button
           value="lastDayOfMonth"
           [control]="recurrenceForm.controls.monthlyType"
           inputId="lastDayOfMonth"
@@ -128,7 +128,7 @@
       [class.border-primary]="monthlyType === 'dayOfWeek'"
     >
       <div class="d-flex align-items-center mb-2">
-        <lx-radio-button
+        <lux-radio-button
           value="dayOfWeek"
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfWeek"

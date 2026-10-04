@@ -70,7 +70,7 @@
     <div class="fadein">
       <div class="row mb-6 g-4">
         <div class="col-12 col-md-4">
-          <lx-card class="card card--elevated card--primary h-full">
+          <lux-card class="card card--elevated card--primary h-full">
             <p class="text-xs mb-1 text-uppercase tracking-wider fw-semibold">
               Total A Pagar
             </p>
@@ -78,10 +78,10 @@
               {{ statement()!.summary.totalToPay |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
-          </lx-card>
+          </lux-card>
         </div>
         <div class="col-12 col-md-4">
-          <lx-card class="card card--elevated h-full">
+          <lux-card class="card card--elevated h-full">
             <p
               class="text-body-secondary text-xs mb-1 text-uppercase tracking-wider fw-semibold"
             >
@@ -91,10 +91,10 @@
               {{ statement()!.summary.totalDebt |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
-          </lx-card>
+          </lux-card>
         </div>
         <div class="col-12 col-md-4">
-          <lx-card class="card card--elevated h-full">
+          <lux-card class="card card--elevated h-full">
             <p
               class="text-body-secondary text-xs mb-1 text-uppercase tracking-wider fw-semibold"
             >
@@ -104,11 +104,11 @@
               {{ statement()!.summary.totalCreditBalance |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
-          </lx-card>
+          </lux-card>
         </div>
       </div>
 
-      <lx-card class="card d-none d-md-block">
+      <lux-card class="card d-none d-md-block">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="text-lg fw-bold text-body">Movimientos (Kardex)</h3>
           <div class="d-flex gap-2">
@@ -154,7 +154,7 @@
               <td>{{ entry.date | apiDate:'dd/MMM/yyyy' }}</td>
               <td class="fw-medium text-body">{{ entry.concept }}</td>
               <td class="text-center">
-                <lx-tag
+                <lux-tag
                   [value]="entry.type | uppercase"
                   [severity]="entryTypeSeverity(entry.type)"
                 />
@@ -181,15 +181,15 @@
             </tr>
           </ng-template>
         </app-table>
-      </lx-card>
+      </lux-card>
 
       <div class="d-block d-md-none d-flex flex-column gap-1">
-        <lx-card class="card">
+        <lux-card class="card">
           <div class="d-flex align-items-center py-2">
             <div
               class="w-2rem h-2rem rounded-circle bg-dark text-white d-flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:home'"
                 class="text-sm"
               />
@@ -225,18 +225,18 @@
               (clicked)="downloadPdf()"
             />
           </div>
-        </lx-card>
+        </lux-card>
 
         <div class="px-0 pb-1 pt-3 fw-semibold text-body-secondary text-sm">
           Movimientos ({{ statement()!.ledger.length }})
         </div>
 
         @for (entry of statement()!.ledger; track entry.id) {
-        <lx-card class="card mb-2">
+        <lux-card class="card mb-2">
           <div class="d-flex align-items-start justify-content-between gap-3">
             <div class="flex-grow-1 min-w-0">
               <div class="mb-2">
-                <lx-tag
+                <lux-tag
                   [value]="entry.type | uppercase"
                   [severity]="entryTypeSeverity(entry.type)"
                 />
@@ -266,21 +266,21 @@
               </p>
             </div>
           </div>
-        </lx-card>
+        </lux-card>
         } @if (statement()!.ledger.length === 0) {
-        <lx-card class="card text-center text-body-secondary">
-          <app-icon
+        <lux-card class="card text-center text-body-secondary">
+          <lux-icon
             [icon]="'material-symbols-light:move-to-inbox'"
             class="text-4xl mb-2 d-block"
           />
           <p class="text-sm">Sin movimientos registrados</p>
-        </lx-card>
+        </lux-card>
         }
       </div>
     </div>
     } @else { @if (!loading()) {
-    <lx-card class="card card--elevated text-center mt-5">
-      <app-icon
+    <lux-card class="card card--elevated text-center mt-5">
+      <lux-icon
         [icon]="'material-symbols-light:receipt'"
         class="text-6xl text-body-secondary mb-4"
       />
@@ -289,7 +289,7 @@
         Busca y selecciona una propiedad para ver su historial de cuotas y
         pagos.
       </p>
-    </lx-card>
+    </lux-card>
     } }
   </div>
 </div>

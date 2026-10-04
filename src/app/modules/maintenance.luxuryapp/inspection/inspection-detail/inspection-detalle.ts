@@ -16,7 +16,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -45,16 +45,16 @@ import { InspectionEdit } from "../models/inspection.model";
     <div class="p-4">
       @if (loading()) {
         <div class="d-none d-md-flex flex-column gap-3">
-          <lx-skeleton height="2rem" styleClass="mb-2" />
-          <lx-skeleton height="1.5rem" />
-          <lx-skeleton height="10rem" />
-          <lx-skeleton height="10rem" />
+          <lux-skeleton height="2rem" styleClass="mb-2" />
+          <lux-skeleton height="1.5rem" />
+          <lux-skeleton height="10rem" />
+          <lux-skeleton height="10rem" />
         </div>
         <div class="d-flex d-md-none flex-column gap-3">
-          <lx-skeleton height="2rem" styleClass="mb-2" />
-          <lx-skeleton height="1.5rem" />
-          <lx-skeleton height="10rem" />
-          <lx-skeleton height="10rem" />
+          <lux-skeleton height="2rem" styleClass="mb-2" />
+          <lux-skeleton height="1.5rem" />
+          <lux-skeleton height="10rem" />
+          <lux-skeleton height="10rem" />
         </div>
       } @else if (error()) {
         <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded">
@@ -62,7 +62,7 @@ import { InspectionEdit } from "../models/inspection.model";
         </div>
       } @else if (inspection()) {
         <div class="d-none d-md-block">
-        <lx-card>
+        <lux-card>
           <div class="d-flex justify-between items-start mb-6">
             <div>
               <h1 class="text-3xl fw-bold mb-1">{{ inspection().name }}</h1>
@@ -86,9 +86,9 @@ import { InspectionEdit } from "../models/inspection.model";
             </div>
           </div>
 
-        </lx-card>
+        </lux-card>
 
-        <lx-card class="mt-4">
+        <lux-card class="mt-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="text-xl fw-bold m-0">Equipos y criterios de revisión</h2>
             <il-button
@@ -100,11 +100,11 @@ import { InspectionEdit } from "../models/inspection.model";
 
           @if (equipmentItems().length > 0) {
             @for (item of equipmentItems(); track item.inspectionCondominiumAssetId) {
-              <lx-card class="mb-4">
+              <lux-card class="mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2">
-                      <app-icon icon="material-symbols-light:settings" />
+                      <lux-icon icon="material-symbols-light:settings" />
                     </div>
                     <h3 class="text-lg fw-bold m-0">{{ item.name | uppercase }}</h3>
                   </div>
@@ -128,7 +128,7 @@ import { InspectionEdit } from "../models/inspection.model";
                     @for (review of item.reviews; track review.id) {
                       <div class="d-flex justify-content-between align-items-start gap-3">
                         <div class="d-flex align-items-start gap-2">
-                          <app-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
+                          <lux-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
                           <p class="text-body-sm m-0">{{ review.description }}</p>
                         </div>
                         <il-button-delete
@@ -143,19 +143,19 @@ import { InspectionEdit } from "../models/inspection.model";
                     Sin criterios de revisión registrados
                   </p>
                 }
-              </lx-card>
+              </lux-card>
             }
           } @else {
             <div class="d-flex flex-column align-items-center text-center gap-3 py-5">
-              <app-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
+              <lux-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
               <p class="text-body-secondary m-0">No hay equipos configurados en este recorrido.</p>
               <il-button label="Agregar el primer equipo" iconClass="material-symbols-light:add-circle" (clicked)="onAddEquipment()" />
             </div>
           }
-        </lx-card>
+        </lux-card>
         </div>
         <div class="d-block d-md-none">
-          <lx-card>
+          <lux-card>
             <div class="d-flex flex-column gap-3">
               <div>
                 <h1 class="text-2xl fw-bold mb-1">{{ inspection().name }}</h1>
@@ -178,8 +178,8 @@ import { InspectionEdit } from "../models/inspection.model";
                 <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
               </div>
             </div>
-          </lx-card>
-          <lx-card class="mt-4">
+          </lux-card>
+          <lux-card class="mt-4">
             <div class="d-flex flex-column gap-3">
               <div class="d-flex flex-column gap-2">
                 <h2 class="text-xl fw-bold m-0">Equipos y criterios de revisión</h2>
@@ -187,11 +187,11 @@ import { InspectionEdit } from "../models/inspection.model";
               </div>
               @if (equipmentItems().length > 0) {
                 @for (item of equipmentItems(); track item.inspectionCondominiumAssetId) {
-                  <lx-card class="mb-3">
+                  <lux-card class="mb-3">
                     <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
                       <div class="d-flex align-items-center gap-2">
                         <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2">
-                          <app-icon icon="material-symbols-light:settings" />
+                          <lux-icon icon="material-symbols-light:settings" />
                         </div>
                         <h3 class="text-lg fw-bold m-0 text-break">{{ item.name | uppercase }}</h3>
                       </div>
@@ -208,7 +208,7 @@ import { InspectionEdit } from "../models/inspection.model";
                         @for (review of item.reviews; track review.id) {
                           <div class="d-flex justify-content-between align-items-start gap-2">
                             <div class="d-flex align-items-start gap-2">
-                              <app-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
+                              <lux-icon icon="material-symbols-light:check-circle-outline" class="text-success-600 flex-shrink-0" />
                               <p class="text-body-sm m-0 flex-grow-1 text-break">{{ review.description }}</p>
                             </div>
                             <il-button-delete label="Eliminar" (confirmed)="onDeleteReview(review.id, item.inspectionCondominiumAssetId)" />
@@ -218,17 +218,17 @@ import { InspectionEdit } from "../models/inspection.model";
                     } @else {
                       <p class="text-body-sm text-body-secondary m-0">Sin criterios de revisión registrados</p>
                     }
-                  </lx-card>
+                  </lux-card>
                 }
               } @else {
                 <div class="d-flex flex-column align-items-center text-center gap-3 py-5">
-                  <app-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
+                  <lux-icon icon="material-symbols-light:construction" class="text-5xl text-body-secondary" />
                   <p class="text-body-secondary m-0">No hay equipos configurados en este recorrido.</p>
                   <il-button label="Agregar el primer equipo" iconClass="material-symbols-light:add-circle" (clicked)="onAddEquipment()" />
                 </div>
               }
             </div>
-          </lx-card>
+          </lux-card>
         </div>
       }
     </div>

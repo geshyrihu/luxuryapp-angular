@@ -13,7 +13,7 @@ import { TableFooter } from "@ui/web/table-footer/table-footer";
 import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { EquipmentContentForm } from "./equipment-content-form";
 import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import { EquipmentContentsDialogData } from "./interfaces/equipment-content.interface";

@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { ModalBase } from "@ui/base/modal.base";
+import { ModalBase } from "@ui/core/modal.base";
 import { MobileModal } from "@ui/mobile/modal/modal";
 import { Dialog } from "@ui/web/dialog/dialog";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-modal",
+  selector: "lux-modal",
 
   imports: [NgTemplateOutlet, Dialog, MobileModal],
   changeDetection: ChangeDetectionStrategy.Eager,

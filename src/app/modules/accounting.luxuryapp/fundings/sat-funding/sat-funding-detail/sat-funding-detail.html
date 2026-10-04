@@ -1,7 +1,7 @@
 <div class="row g-4">
   <!-- Download Form Card -->
   <div class="col-12">
-    <lx-card>
+    <lux-card>
       <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
         <div class="row g-4">
           <div class="col-12 col-md-4">
@@ -29,12 +29,12 @@
           ></il-button-save>
         </div>
       </form>
-    </lx-card>
+    </lux-card>
   </div>
 
   <!-- Invoices Table -->
   <div class="col-12">
-    <lx-card>
+    <lux-card>
       <app-table
         #dtInvoices
         [value]="invoices()"
@@ -73,7 +73,7 @@
                 [disabled]="!selection || selection.length === 0"
               ></iw-button-confirm>
               <span class="p-input-icon-left ms-auto">
-                <app-icon [icon]="'material-symbols-light:search'" />
+                <lux-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -128,7 +128,7 @@
                 class="d-flex align-items-center justify-content-center"
                  pReorderableRowHandle
               >
-                <app-icon [icon]="'material-symbols-light:menu'" />
+                <lux-icon [icon]="'material-symbols-light:menu'" />
               </div>
             </td>
             <td>
@@ -152,6 +152,6 @@
           </tr>
         </ng-template>
       </app-table>
-    </lx-card>
+    </lux-card>
   </div>
 </div>

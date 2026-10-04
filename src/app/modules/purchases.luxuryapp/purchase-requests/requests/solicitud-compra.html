@@ -13,13 +13,13 @@
     <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
       <div class="d-flex align-items-center">
         @if (id && id !== "" && id !== "0") {
-        <lx-tag
+        <lux-tag
           [value]="form.controls.folio.value"
           color="info"
           class="text-lg"
         />
         } @else {
-        <lx-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
+        <lux-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
         }
         <h3 class="m-0 fw-bold text-body ms-2">Solicitud de Compra</h3>
       </div>
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <lx-divider />
+    <lux-divider />
 
     <!-- CAMPOS DEL FORMULARIO -->
     <div class="row mt-2 g-4">
@@ -137,7 +137,7 @@
   @if (id && id !== "" && id !== "0") {
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div class="d-flex align-items-center">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:shopping-cart'"
         class="text-xl text-primary me-2"
       />
@@ -167,7 +167,7 @@
   <div
     class="bg-body-tertiary rounded p-3 text-body-secondary text-sm d-flex align-items-center gap-2"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:info'"
       class="text-lg"
     />
@@ -193,7 +193,7 @@
     <div class="d-flex flex-wrap">
       @if (cotizacionesRelacionadas.length > 0) { @for (item of
       cotizacionesRelacionadas; track item.id) {
-      <lx-tag
+      <lux-tag
         (click)="onAddOrEdit(item.id)"
         [value]="item.folio"
         severity="warning"

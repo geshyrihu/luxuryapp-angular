@@ -7,8 +7,8 @@ import {
 import {
   AppRankedList,
   RankedListItem,
-} from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+} from "@ui/primitives/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   DialogHandlerService,

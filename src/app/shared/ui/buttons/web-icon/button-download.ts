@@ -1,7 +1,7 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
@@ -19,7 +19,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Download" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.Download" />
     </button>
   `,
 })

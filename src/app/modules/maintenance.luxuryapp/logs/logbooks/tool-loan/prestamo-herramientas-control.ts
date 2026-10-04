@@ -30,7 +30,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-control";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

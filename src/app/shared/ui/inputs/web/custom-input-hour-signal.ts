@@ -2,7 +2,7 @@ import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 /**
  * ⏰ CUSTOM INPUT HOUR

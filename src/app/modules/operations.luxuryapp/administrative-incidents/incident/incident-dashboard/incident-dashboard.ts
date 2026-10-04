@@ -12,7 +12,7 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   IncidentDashboardDTO,
   IncidentDashboardFilterDTO,

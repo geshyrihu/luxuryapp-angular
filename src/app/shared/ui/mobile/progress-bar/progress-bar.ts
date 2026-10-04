@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonProgressBar } from "@ionic/angular";
-import { ProgressBarBase } from "@ui/base/progress-bar.base";
+import { ProgressBarBase } from "@ui/core/progress-bar.base";
 
 /**
  * MobileProgressBar — ProgressBar sobre `ion-progress-bar`. `value` en 0..100

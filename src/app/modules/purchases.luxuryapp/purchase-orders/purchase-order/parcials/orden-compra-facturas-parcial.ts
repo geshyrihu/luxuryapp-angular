@@ -19,7 +19,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PurchaseOrderInvoice, PurchaseOrderValidationResult } from "../purchase-order.types";
 @Component({
   selector: "app-orden-compra-facturas-parcial",

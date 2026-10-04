@@ -136,7 +136,7 @@
       class="bg-body rounded-xl border-1 border shadow-sm overflow-x-auto"
       style="scrollbar-width: thin"
     >
-      <lx-tabs
+      <lux-tabs
         [tabs]="reportTabs()"
         [activeId]="reportIndex().toString()"
         (tabChange)="onTabChange($event)"
@@ -186,7 +186,7 @@
         <div tab="12" class="p-3 pt-4">
           <app-resultados-extraordinarios />
         </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
 
     <app-ai-agent-contable

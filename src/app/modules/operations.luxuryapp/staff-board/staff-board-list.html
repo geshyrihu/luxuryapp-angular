@@ -15,7 +15,7 @@
       aria-label="Guía Operativa del Directorio"
     >
       <div class="staff-directory-guide__header">
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:menu-book"
           class="staff-directory-guide__title-icon"
         />
@@ -32,12 +32,12 @@
       <div class="staff-directory-guide__grid">
         <div class="staff-directory-guide__panel">
           <div class="staff-directory-guide__panel-title">
-            <app-icon icon="material-symbols-light:confirmation-number" />
+            <lux-icon icon="material-symbols-light:confirmation-number" />
             <span>Significado de Tickets Abiertos</span>
           </div>
           <ul class="staff-directory-guide__list">
             <li>
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:confirmation-number"
                 class="text-warning"
               />
@@ -47,7 +47,7 @@
               >
             </li>
             <li>
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:airplane-ticket"
                 class="text-danger"
               />
@@ -57,7 +57,7 @@
               >
             </li>
             <li>
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:local-activity"
                 class="text-info"
               />
@@ -73,33 +73,33 @@
           class="staff-directory-guide__panel staff-directory-guide__panel--can"
         >
           <div class="staff-directory-guide__panel-title">
-            <app-icon icon="material-symbols-light:check-circle" />
+            <lux-icon icon="material-symbols-light:check-circle" />
             <span>Responsabilidades (Puedes)</span>
           </div>
           <ul class="staff-directory-guide__list">
             <li>
-              <app-icon icon="material-symbols-light:check" />
+              <lux-icon icon="material-symbols-light:check" />
               <span
                 >Crear puestos de trabajo y registrar su DESCRIPCIÓN
                 operativa.</span
               >
             </li>
             <li>
-              <app-icon icon="material-symbols-light:check" />
+              <lux-icon icon="material-symbols-light:check" />
               <span
                 >Configurar horarios y prestaciones que ofrece el cliente para
                 cada puesto.</span
               >
             </li>
             <li>
-              <app-icon icon="material-symbols-light:check" />
+              <lux-icon icon="material-symbols-light:check" />
               <span
                 >Solicitar la baja o modificación salarial de empleados activos
                 vinculados a un puesto.</span
               >
             </li>
             <li>
-              <app-icon icon="material-symbols-light:check" />
+              <lux-icon icon="material-symbols-light:check" />
               <span
                 >Registrar incidencias administrativas de empleados
                 activos.</span
@@ -112,19 +112,19 @@
           class="staff-directory-guide__panel staff-directory-guide__panel--cannot"
         >
           <div class="staff-directory-guide__panel-title">
-            <app-icon icon="material-symbols-light:lock" />
+            <lux-icon icon="material-symbols-light:lock" />
             <span>Restricciones (No Puedes)</span>
           </div>
           <ul class="staff-directory-guide__list">
             <li>
-              <app-icon icon="material-symbols-light:lock" />
+              <lux-icon icon="material-symbols-light:lock" />
               <span
                 >Reclutamiento registra al empleado que cubrirá la vacante y
                 recauda su documentación.</span
               >
             </li>
             <li>
-              <app-icon icon="material-symbols-light:warning" />
+              <lux-icon icon="material-symbols-light:warning" />
               <span
                 >Al quedar activo en un puesto, el empleado recibe
                 automáticamente sus credenciales de LuxuryApp por email y
@@ -139,7 +139,7 @@
     <div
       class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 mb-3 w-full g-4"
     >
-      <app-segmented-control
+      <lux-segmented-control
         [items]="departmentFilterItems()"
         [(value)]="selectedDepartment"
         ariaLabel="Filtrar por departamento"
@@ -239,7 +239,7 @@
         class="staff-group-header-cell"
       >
         <span class="group-header-label">
-          <app-icon icon="material-symbols-light:work" />
+          <lux-icon icon="material-symbols-light:work" />
           {{ getDepartamentLabel(item.departament) }}
         </span>
       </td>
@@ -251,7 +251,7 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="d-flex align-items-center gap-2">
-          <lx-tag
+          <lux-tag
             severity="warn"
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
@@ -339,7 +339,7 @@
           @if (!isVacant(item)) {
           <div class="d-flex align-items-center gap-2">
             @if (item.applicationUserPhoto) {
-            <lx-avatar
+            <lux-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
@@ -350,7 +350,7 @@
               lxTooltip="Ver tarjeta"
             />
             } @else {
-            <lx-avatar
+            <lux-avatar
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
@@ -364,7 +364,7 @@
               @let tickets = openTickets(item); @if (tickets.length > 0) {
               <div class="d-flex flex-wrap gap-1 mt-1">
                 @for (ticket of tickets; track ticket.type) {
-                <lx-tag
+                <lux-tag
                   [value]="ticket.folio ? 'VA-' + ticket.folio : ticket.label"
                   [severity]="ticket.severity"
                   [icon]="ticket.icon"
@@ -374,7 +374,7 @@
               </div>
               }
               <div class="d-flex flex-wrap align-items-center gap-1 mt-1">
-                <lx-tag
+                <lux-tag
                   [value]="(item.turno || 'Sin turno') + ' | ' + (item.workPositionScheduleName || 'Sin horario')"
                   icon="material-symbols-light:calendar-month"
                   severity="secondary"
@@ -441,7 +441,7 @@
               class="drop-zone vacant-drop-zone d-flex align-items-center justify-content-between p-2"
             >
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:group"
                   class="text-body-secondary"
                 />
@@ -460,7 +460,7 @@
             </div>
 
             @if (vacancyState(item) === 'open') {
-            <lx-tag
+            <lux-tag
               severity="warn"
               value="Ticket Vacante"
               icon="material-symbols-light:confirmation-number"
@@ -473,7 +473,7 @@
               VA-{{ item.positionRequest!.folio }} | Vacante abierta
             </span>
             } @else if (vacancyState(item) === 'inProgress') {
-            <lx-tag
+            <lux-tag
               severity="info"
               value="Ticket Vacante"
               icon="material-symbols-light:confirmation-number"
@@ -493,7 +493,7 @@
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
               >
                 <div class="d-flex align-items-center gap-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />

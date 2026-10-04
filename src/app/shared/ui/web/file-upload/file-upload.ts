@@ -14,7 +14,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { PlatformService } from "@core/services/platform.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface UploadFile {
   name: string;
@@ -119,7 +119,7 @@ export interface FileUploadEvent {
                   class="file-preview rounded"
                 />
               } @else {
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:description"
                   class="text-2xl text-color-muted"
                 />
@@ -145,13 +145,13 @@ export interface FileUploadEvent {
               </div>
 
               @if (file.status === "done") {
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:check-circle"
                   class="text-lg"
                   style="color: var(--ds-success)"
                 />
               } @else if (file.status === "error") {
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:error"
                   class="text-lg"
                   style="color: var(--ds-danger)"

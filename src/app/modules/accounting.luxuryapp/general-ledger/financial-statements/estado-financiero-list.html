@@ -18,25 +18,25 @@
     <tr>
       <th>
         <div class="d-flex align-items-center">
-          <lx-tag value="1" severity="info" class="me-2"></lx-tag>
+          <lux-tag value="1" severity="info" class="me-2"></lux-tag>
           <span class="fw-semibold">PERIODO</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
-          <lx-tag value="2" severity="info" class="me-2"></lx-tag>
+          <lux-tag value="2" severity="info" class="me-2"></lux-tag>
           <span class="fw-semibold">ARCHIVO</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
-          <lx-tag value="3" severity="info" class="me-2"></lx-tag>
+          <lux-tag value="3" severity="info" class="me-2"></lux-tag>
           <span class="fw-semibold">AUTORIZACIÓN</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
-          <lx-tag value="4" severity="info" class="me-2"></lx-tag>
+          <lux-tag value="4" severity="info" class="me-2"></lux-tag>
           <span class="fw-semibold">ENVÍO</span>
         </div>
       </th>
@@ -171,7 +171,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:monitoring"
           class="text-xl text-primary"
         />
@@ -179,14 +179,14 @@
       <div class="flex-fill min-w-0">
         <div class="d-flex justify-content-between mb-1">
           <h2 class="fw-bold m-0">{{ item.periodoExistente }}</h2>
-          <lx-tag value="1" severity="info" class="text-xs"></lx-tag>
+          <lux-tag value="1" severity="info" class="text-xs"></lux-tag>
         </div>
 
         <!-- Status Indicators Stack -->
         <div class="d-flex flex-column mt-2">
           <!-- Archivo -->
           <div class="d-flex align-items-center">
-            <lx-tag value="2" severity="info" class="text-xs"></lx-tag>
+            <lux-tag value="2" severity="info" class="text-xs"></lux-tag>
             <div class="d-flex flex-column">
               <span class="text-sm fw-semibold">
                 {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
@@ -201,7 +201,7 @@
           </div>
           <!-- Autorización -->
           <div class="d-flex align-items-center">
-            <lx-tag value="3" severity="info" class="text-xs"></lx-tag>
+            <lux-tag value="3" severity="info" class="text-xs"></lux-tag>
             <div class="d-flex flex-column">
               <span class="text-sm fw-semibold">
                 {{ item.personWhoAuthorized ? "Autorizado: " +
@@ -216,7 +216,7 @@
           </div>
           <!-- ENVÍO -->
           <div class="d-flex align-items-center">
-            <lx-tag value="4" severity="info" class="text-xs"></lx-tag>
+            <lux-tag value="4" severity="info" class="text-xs"></lux-tag>
             <div class="d-flex flex-column">
               <span class="text-sm fw-semibold">
                 {{ item.personWhoSend ? "Enviado: " + item.sendDate :

@@ -1,6 +1,6 @@
-import { AppIcon as AppIconCatalog } from "../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../primitives/app-icon/app-icon.catalog";
 import { Directive, computed, input } from "@angular/core";
-import type { AppIconName } from "../shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "../primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { BaseIonicButton } from "./base/base-ionic-button";
 
@@ -61,7 +61,7 @@ export abstract class MobileButtonBase extends BaseIonicButton {
   });
 
   /**
-   * Icono normalizado a identificador de Iconify para `<app-icon>`.
+   * Icono normalizado a identificador de Iconify para `<lux-icon>`.
    *
    * `iconClass`/`icon` aceptan formatos heredados (`"add"`, `"pi pi-plus"`,
    * `"material-symbols-light:add"`), así que hay que pasarlos por el resolutor.

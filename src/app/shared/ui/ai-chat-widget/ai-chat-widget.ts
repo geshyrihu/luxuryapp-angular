@@ -12,7 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { MarkdownModule } from "ngx-markdown";
 import { AuthService } from "@core/auth/services/auth.service";
 import { AiChatService } from "@core/services/ai-chat.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 
 @Component({

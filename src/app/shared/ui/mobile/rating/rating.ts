@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { RatingBase } from "@ui/base/rating.base";
+import { RatingBase } from "@ui/core/rating.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

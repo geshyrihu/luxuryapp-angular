@@ -169,15 +169,15 @@
       </td>
       <td class="text-sm">
         @if (item.isFueraFondeo) {
-        <lx-tag severity="warn" value="Fuera de proceso" />
+        <lux-tag severity="warn" value="Fuera de proceso" />
         } @else if (item.isFunded) {
-        <lx-tag severity="success" [value]="item.fundingPeriodName" />
+        <lux-tag severity="success" [value]="item.fundingPeriodName" />
         } @else {
         <span class="text-body-secondary italic">Sin Asignar</span>
         }
         <br />
         <span class="text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />
@@ -336,7 +336,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:shopping-bag'"
           class="text-xl text-yellow-700"
         />

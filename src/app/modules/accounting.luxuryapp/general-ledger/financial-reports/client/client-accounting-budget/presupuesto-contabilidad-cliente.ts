@@ -14,7 +14,7 @@ import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
 } from "@collections.luxuryapp/online-collections/interfaces/presupuesto-contabilidad.model";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";

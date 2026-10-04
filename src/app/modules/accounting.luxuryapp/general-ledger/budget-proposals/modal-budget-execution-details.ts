@@ -23,7 +23,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",

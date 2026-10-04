@@ -43,7 +43,7 @@
       <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noObstructions ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noObstructions"
@@ -51,7 +51,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noContamination ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noContamination"
@@ -59,7 +59,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"
@@ -67,7 +67,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.ledStatusOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.ledStatusOk"
@@ -75,7 +75,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.mountingSecure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.mountingSecure"
@@ -113,7 +113,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-yellow-100"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:detector-alarm"
           class="text-xl text-yellow-500"
         />

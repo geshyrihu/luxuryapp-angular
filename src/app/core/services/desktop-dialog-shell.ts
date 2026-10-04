@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { Subject } from "rxjs";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -26,7 +26,7 @@ import {
         aria-label="Cerrar"
         (click)="dismiss()"
       >
-        <app-icon icon="material-symbols-light:close" />
+        <lux-icon icon="material-symbols-light:close" />
       </button>
     </div>
     <div class="modal-body">

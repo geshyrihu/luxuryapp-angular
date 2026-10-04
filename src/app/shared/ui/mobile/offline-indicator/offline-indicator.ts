@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
+import { OfflineIndicatorBase } from "@ui/core/offline-indicator.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

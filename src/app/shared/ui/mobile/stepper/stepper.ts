@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { StepperBase } from "@ui/base/stepper.base";
+import { StepperBase } from "@ui/core/stepper.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

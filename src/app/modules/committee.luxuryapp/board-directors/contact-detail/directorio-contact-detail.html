@@ -20,7 +20,7 @@
     }
     @if (person.isOnShift !== null) {
     <div class="committee-contact-detail__shift">
-      <app-realtime-indicator
+      <lux-realtime-indicator
         [status]="person.isOnShift ? 'live' : 'paused'"
         [label]="person.isOnShift ? 'En turno' : 'Fuera de turno'"
       />
@@ -30,10 +30,10 @@
 
   <!-- Teléfono 1 -->
   @if (person.phoneNumber) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:call" /> Teléfono 1
+        <lux-icon icon="material-symbols-light:call" /> Teléfono 1
       </span>
       <span class="committee-contact-detail__value">{{ person.phoneNumber }}</span>
       @if (!person.isLocation) {
@@ -54,15 +54,15 @@
       </div>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Teléfono 2 -->
   @if (person.phoneTwo) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:call" /> Teléfono 2
+        <lux-icon icon="material-symbols-light:call" /> Teléfono 2
       </span>
       <span class="committee-contact-detail__value">{{ person.phoneTwo }}</span>
       @if (!person.isLocation) {
@@ -72,39 +72,39 @@
       </div>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Extensión 1 -->
   @if (person.extensionOne) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:deskphone" /> Extensión 1
+        <lux-icon icon="material-symbols-light:deskphone" /> Extensión 1
       </span>
       <span class="committee-contact-detail__value">{{ person.extensionOne }}</span>
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Extensión 2 -->
   @if (person.extensionTwo) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:deskphone" /> Extensión 2
+        <lux-icon icon="material-symbols-light:deskphone" /> Extensión 2
       </span>
       <span class="committee-contact-detail__value">{{ person.extensionTwo }}</span>
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Correo -->
   @if (person.email) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:mail-outline" /> Correo
+        <lux-icon icon="material-symbols-light:mail-outline" /> Correo
       </span>
       <span class="committee-contact-detail__value">{{ person.email }}</span>
       <div class="committee-contact-detail__actions">
@@ -116,15 +116,15 @@
         />
       </div>
     </div>
-  </lx-card>
+  </lux-card>
   }
 
   <!-- Horario -->
   @if (!person.isLocation) {
-  <lx-card>
+  <lux-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="material-symbols-light:schedule" /> Horario
+        <lux-icon icon="material-symbols-light:schedule" /> Horario
       </span>
       @if (person.schedule?.length) {
       <div class="committee-schedule">
@@ -139,6 +139,6 @@
       <span class="committee-schedule__empty">Sin horario registrado.</span>
       }
     </div>
-  </lx-card>
+  </lux-card>
   }
 </div>

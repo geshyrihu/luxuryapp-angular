@@ -2,7 +2,7 @@
   <!-- ── Hero ──────────────────────────────────────────────── -->
   <div class="nom-hero mb-4">
     <div class="nom-hero__copy">
-      <lx-tag value="Recursos Humanos" severity="info" />
+      <lux-tag value="Recursos Humanos" severity="info" />
       <h1>Gestion de Nomina</h1>
       <p>
         Sistema integral de nomina quincenal. Administra periodos, genera
@@ -31,7 +31,7 @@
       @for (metric of heroMetrics; track metric.label) {
       <article class="nom-metric">
         <span [class]="'nom-metric__icon nom-metric__icon--' + metric.tone">
-          <app-icon [icon]="metric.icon" />
+          <lux-icon [icon]="metric.icon" />
         </span>
         <div>
           <strong>{{ metric.value }}</strong>
@@ -64,7 +64,7 @@
             <!-- Icon + title + roles -->
             <div class="d-flex align-items-start gap-2 mb-2">
               <div class="nom-card__icon" [style.background]="card.bgColor">
-                <app-icon [icon]="card.icon" class="text-sm text-body" />
+                <lux-icon [icon]="card.icon" class="text-sm text-body" />
               </div>
               <div class="flex-fill">
                 <div class="fw-semibold text-body text-sm">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="d-flex flex-wrap gap-1 mt-1">
                   @for (role of card.roles; track role) {
-                  <lx-tag
+                  <lux-tag
                     [value]="role"
                     [severity]="roleTagSeverity(role)"
                     class="text-xs"
@@ -103,7 +103,7 @@
               <span
                 class="flex-fill d-flex align-items-center justify-content-center gap-1 px-3 py-2 rounded-lg text-xs text-body-secondary bg-body-tertiary border-1 border"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:fullscreen'"
                   class="text-xs"
                 />
@@ -126,7 +126,7 @@
           <div class="nom-expand px-3 pb-3">
             <div class="mt-3 mb-3">
               <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:format-list-bulleted'"
                   class="text-xs me-1"
                 />Que puedes hacer
@@ -142,7 +142,7 @@
 
             <div class="mb-3">
               <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:dns'"
                   class="text-xs me-1"
                 />Endpoints del API
@@ -167,14 +167,14 @@
             @if (card.states?.length) {
             <div class="mb-3">
               <div class="text-xs fw-semibold text-body-secondary text-uppercase mb-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:label'"
                   class="text-xs me-1"
                 />Estados posibles
               </div>
               <div class="d-flex flex-wrap gap-1">
                 @for (s of card.states; track s) {
-                <lx-tag
+                <lux-tag
                   [value]="s"
                   severity="secondary"
                   class="text-xs font-mono"
@@ -185,7 +185,7 @@
             } @if (card.notes) {
             <div class="p-2 bg-yellow-50 rounded border-1 border-yellow-200">
               <div class="text-xs text-yellow-800 line-height-3">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:info'"
                   class="me-1"
                 />{{ card.notes }}
@@ -203,7 +203,7 @@
 
   <!-- ── Footer CTA ─────────────────────────────────────────── -->
   <div class="nom-footer-cta mt-4 d-flex align-items-center gap-3">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:attach-money'"
       class="text-primary text-2xl flex-shrink-0"
     />

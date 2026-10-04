@@ -22,8 +22,8 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
 import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 

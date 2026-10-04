@@ -1,7 +1,7 @@
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface Territory {
   id: string;
@@ -32,17 +32,17 @@ export interface Territory {
         <h3 class="tm-title">{{ title() }}</h3>
         <div class="tm-summary">
           <span class="tm-stat"
-            ><app-icon
+            ><lux-icon
               icon="material-symbols-light:location-on"
             />{{ territories().length }} territorios</span
           >
           <span class="tm-stat"
-            ><app-icon
+            ><lux-icon
               icon="material-symbols-light:groups"
             />{{ totalAccounts() }} cuentas</span
           >
           <span class="tm-stat"
-            ><app-icon icon="material-symbols-light:attach-money" />{{
+            ><lux-icon icon="material-symbols-light:attach-money" />{{
               formatCurrency(totalRevenue())
             }}</span
           >
@@ -54,7 +54,7 @@ export interface Territory {
         <div class="tm-region">
           @if (region) {
             <h4 class="tm-region-title">
-              <app-icon icon="material-symbols-light:map" />
+              <lux-icon icon="material-symbols-light:map" />
               {{ region }}
             </h4>
           }

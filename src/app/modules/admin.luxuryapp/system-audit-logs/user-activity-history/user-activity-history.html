@@ -1,5 +1,5 @@
 <!-- Panel de Filtros -->
-<lx-card>
+<lux-card>
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="d-none d-md-block mt-3">
     <app-table
@@ -117,10 +117,10 @@
           <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>{{ item.userName }}</td>
           <td>
-            <lx-tag [value]="item.userType"></lx-tag>
+            <lux-tag [value]="item.userType"></lux-tag>
           </td>
           <td>
-            <lx-tag [value]="item.activityType" severity="info"></lx-tag>
+            <lux-tag [value]="item.activityType" severity="info"></lux-tag>
           </td>
           <td>{{ item.module }}</td>
           <td>{{ item.details }}</td>
@@ -158,21 +158,21 @@
            <ion-label>
              <div class="d-flex justify-content-between align-items-center mb-1">
                <h2 class="fw-bold m-0 text-base">{{ item.userName }}</h2>
-               <lx-tag [value]="item.userType"></lx-tag>
+               <lux-tag [value]="item.userType"></lux-tag>
              </div>
 
           <p class="text-medium text-body-secondary m-0 text-sm mb-1">
-            <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" /> {{
+            <lux-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" /> {{
             item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
           </p>
 
           <div class="d-flex align-items-center gap-2 mb-1">
             <span class="fw-bold text-sm">{{ item.module }}</span>
-            <lx-tag
+            <lux-tag
               [value]="item.activityType"
               severity="info"
               class="text-xs"
-            ></lx-tag>
+            ></lux-tag>
           </div>
 
              <p class="text-sm text-body-secondary m-0 text-wrap">
@@ -194,4 +194,4 @@
     />
     }
   </div>
-</lx-card>
+</lux-card>

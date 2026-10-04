@@ -30,7 +30,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ModuleAppDto } from "./interfaces/module-app.dto";
 import { ModuleAppForm } from "./module-app-form";
 @Component({

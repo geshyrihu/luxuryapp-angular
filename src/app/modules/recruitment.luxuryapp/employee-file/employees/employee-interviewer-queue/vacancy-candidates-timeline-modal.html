@@ -13,7 +13,7 @@
     @for (candidate of candidateTimelines(); track candidate.candidateProcessId) {
     <section class="candidate-timeline-column card shadow-1 rounded">
       <header class="candidate-timeline-header d-flex align-items-start gap-3">
-        <lx-avatar
+        <lux-avatar
           [image]="candidate.photoUrl"
           shape="circle"
           size="xlarge"
@@ -48,13 +48,13 @@
             <div class="candidate-timeline-event-card p-3 rounded">
             <div class="d-flex align-items-center flex-wrap gap-2">
               <span class="text-sm text-body-secondary">{{ event.fromStageName }}</span>
-              <app-icon icon="material-symbols-light:arrow-right-alt" class="text-body-secondary" />
-              <lx-tag [value]="event.stageName" />
+              <lux-icon icon="material-symbols-light:arrow-right-alt" class="text-body-secondary" />
+              <lux-tag [value]="event.stageName" />
             </div>
 
             @if (event.comment) {
             <div class="mt-2 p-2 bg-body-tertiary rounded text-sm text-body fst-italic">
-              <app-icon icon="material-symbols-light:chat" class="me-1 align-middle" />
+              <lux-icon icon="material-symbols-light:chat" class="me-1 align-middle" />
               {{ event.comment }}
             </div>
             }

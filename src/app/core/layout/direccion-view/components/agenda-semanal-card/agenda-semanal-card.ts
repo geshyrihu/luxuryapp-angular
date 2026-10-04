@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 

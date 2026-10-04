@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { TapToTopBase } from "@ui/base/tap-to-top.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TapToTopBase } from "@ui/core/tap-to-top.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-scroll-top",
@@ -8,7 +8,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
   template: `
     @if (show) {
       <button type="button" class="app-scroll-top-btn" aria-label="Volver arriba" (click)="tapToTop()">
-        <app-icon icon="material-symbols-light:arrow-upward" />
+        <lux-icon icon="material-symbols-light:arrow-upward" />
       </button>
     }
   `,

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
@@ -21,7 +21,7 @@ import { BaseButton } from "../base/base-button";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else if (iconClass()) {
-        <app-icon [icon]="resolvedIconClass()" />
+        <lux-icon [icon]="resolvedIconClass()" />
       }
       <span>{{ label() || "Accion" }}</span>
     </button>

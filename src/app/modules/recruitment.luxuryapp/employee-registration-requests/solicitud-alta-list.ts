@@ -40,8 +40,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { EStatus } from "@ui/base/status-badge.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { EStatus } from "@ui/core/status-badge.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";
 import { CandidateDetail } from "../candidates/candidate-core/candidate-detail";
 import {

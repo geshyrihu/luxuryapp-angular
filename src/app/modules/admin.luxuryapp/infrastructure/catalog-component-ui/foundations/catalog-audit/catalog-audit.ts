@@ -1,8 +1,8 @@
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 import { ItemChecklist } from "./interfaces/item-checklist.interface";
@@ -42,7 +42,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.border-green-200]="bloque.titulo === 'Buena practica'"
                 >
                   <div class="d-flex align-items-center gap-2 mb-3">
-                    <app-icon
+                    <lux-icon
                       [icon]="iconifyIcon(bloque.icono)"
                       class="text-xl"
                     />

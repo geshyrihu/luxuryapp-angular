@@ -78,7 +78,7 @@
             @if (item.photoUrl) {
               <img [src]="item.photoUrl" [alt]="item.name" class="rounded object-fit-cover" width="72" height="72" />
             } @else {
-              <app-icon icon="material-symbols-light:inventory-2" />
+              <lux-icon icon="material-symbols-light:inventory-2" />
             }
             <div class="flex-grow-1">
               <h3 class="h6 mb-1">{{ item.name }}</h3>
@@ -89,10 +89,10 @@
           @if (canManageContents()) {
             <div class="d-flex justify-content-end gap-2 mt-2">
               <button type="button" class="btn btn-rounded btn-text-primary btn-sm" (click)="onEdit(item)">
-                <app-icon icon="material-symbols-light:edit-outline" />
+                <lux-icon icon="material-symbols-light:edit-outline" />
               </button>
               <button type="button" class="btn btn-rounded btn-text-danger btn-sm" (click)="onDelete(item.id)">
-                <app-icon icon="material-symbols-light:delete-outline" />
+                <lux-icon icon="material-symbols-light:delete-outline" />
               </button>
             </div>
           }

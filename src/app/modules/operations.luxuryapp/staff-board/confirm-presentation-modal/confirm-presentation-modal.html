@@ -13,7 +13,7 @@
       <label class="fw-semibold">¿Se presentó el candidato?</label>
       <div class="d-flex gap-4">
         <div class="d-flex align-items-center gap-2">
-          <lx-radio-button
+          <lux-radio-button
             [control]="form.controls.isPresented"
             [value]="true"
             inputId="rbYes"
@@ -21,7 +21,7 @@
           <label for="rbYes">Sí se presentó</label>
         </div>
         <div class="d-flex align-items-center gap-2">
-          <lx-radio-button
+          <lux-radio-button
             [control]="form.controls.isPresented"
             [value]="false"
             inputId="rbNo"
@@ -36,7 +36,7 @@
       <label class="fw-semibold">Motivo / Acción</label>
       <div class="d-flex flex-column gap-3">
         <div class="d-flex align-items-center gap-2">
-          <lx-radio-button
+          <lux-radio-button
             [control]="form.controls.status"
             value="Rescheduled"
             inputId="rbRescheduled"
@@ -44,7 +44,7 @@
           <label for="rbRescheduled">Cambió fecha de ingreso (Reprogramar)</label>
         </div>
         <div class="d-flex align-items-center gap-2">
-          <lx-radio-button
+          <lux-radio-button
             [control]="form.controls.status"
             value="NoShow"
             inputId="rbNoShow"

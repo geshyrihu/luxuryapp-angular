@@ -1,8 +1,8 @@
 import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { MessageService } from "@core/services/message.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-toast",
@@ -12,7 +12,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
       @for (msg of messageService.messages(); track msg.id) {
         <div class="toast show app-toast" [ngClass]="'app-toast-' + (msg.severity || 'info')" role="alert">
           <div class="toast-header">
-            <app-icon [icon]="icon(msg.severity)" class="me-2" />
+            <lux-icon [icon]="icon(msg.severity)" class="me-2" />
             <strong class="me-auto">{{ msg.summary }}</strong>
             <button type="button" class="btn-close" aria-label="Cerrar" (click)="messageService.remove(msg.id)"></button>
           </div>

@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { SwipeActionsBase } from "@ui/core/swipe-actions.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
-export type { SwipeAction } from "@ui/base/swipe-actions.base";
+export type { SwipeAction } from "@ui/core/swipe-actions.base";
 
 @Component({
   selector: "app-swipe-actions",
@@ -24,7 +24,7 @@ export type { SwipeAction } from "@ui/base/swipe-actions.base";
             [style.background]="action.color"
             (click)="action.action(); reset()"
           >
-            <app-icon [icon]="action.icon" class="text-white" />
+            <lux-icon [icon]="action.icon" class="text-white" />
             <span>{{ action.label }}</span>
           </button>
         }

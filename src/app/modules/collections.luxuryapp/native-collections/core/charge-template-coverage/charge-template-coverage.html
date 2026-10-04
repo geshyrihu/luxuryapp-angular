@@ -32,7 +32,7 @@
       <tr pRowGroupHeader>
         <td [attr.colspan]="3 + periodColumns().length" class="bg-body-tertiary py-2 px-3">
           <div class="d-flex align-items-center gap-2">
-            <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
+            <lux-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
             <span class="fw-bold text-primary">{{ row.propertyName }}</span>
             <span class="text-body-secondary text-sm">· Cta: {{ row.accountNumber }}</span>
             @if (row.indivisoPercentage) {
@@ -52,7 +52,7 @@
           <div class="text-xs text-body-secondary">{{ row.chargeTypeName || "Tipo sin clasificar" }}</div>
         </td>
         <td class="text-center">
-          <lx-tag [value]="methodLabel(row.calculationMethod)" [severity]="methodSeverity(row.calculationMethod)" />
+          <lux-tag [value]="methodLabel(row.calculationMethod)" [severity]="methodSeverity(row.calculationMethod)" />
         </td>
         <td class="text-end text-sm fw-bold">
           {{ row.baseAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}

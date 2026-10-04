@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { TreeBase } from "@ui/base/tree.base";
+import { TreeBase } from "@ui/core/tree.base";
 import { MobileTree } from "@ui/mobile/tree/tree";
 import { Tree } from "@ui/web/tree/tree";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-tree",
+  selector: "lux-tree",
 
   imports: [NgTemplateOutlet, Tree, MobileTree],
   template: `

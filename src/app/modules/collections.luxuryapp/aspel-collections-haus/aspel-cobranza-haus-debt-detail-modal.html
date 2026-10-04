@@ -111,7 +111,7 @@
         class="p-3 bg-body-tertiary border-bottom-1 border d-flex flex-column gap-2"
       >
         <div class="d-flex justify-content-between align-items-center">
-          <lx-tag
+          <lux-tag
             [value]="item.concepto"
             [severity]="getConceptSeverity(item.concepto)"
           />
@@ -220,7 +220,7 @@
               [icon]="expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'"
               class="me-2"
             />
-            <lx-tag
+            <lux-tag
               [value]="item.concepto"
               [severity]="getConceptSeverity(item.concepto)"
             />
@@ -298,7 +298,7 @@
     </ng-template>
   </app-table>
   } } @else {
-  <lx-message
+  <lux-message
     severity="info"
     text="No fue posible obtener el detalle de la deuda para esta propiedad."
   />

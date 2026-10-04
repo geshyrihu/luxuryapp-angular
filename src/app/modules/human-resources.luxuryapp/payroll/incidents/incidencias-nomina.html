@@ -68,7 +68,7 @@
     <tr>
       <td>{{ item.nombreEmpleado }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="getTipoSeverity(item.tipoIncidencia)"
           [value]="item.tipoIncidenciaDisplay"
         />
@@ -80,7 +80,7 @@
         {{ item.montoDescuento | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
-        <lx-tag
+        <lux-tag
           [severity]="item.esSincronizada ? 'success' : 'secondary'"
           [value]="item.esSincronizada ? 'Auto' : 'Manual'"
         />
@@ -108,13 +108,13 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:attach-money" />
+        <lux-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
       <p class="text-xs m-0">{{ item.fecha | apiDate: "dd/MM/yyyy" }}</p>
       <div class="d-flex gap-2 mt-1">
-        <lx-tag
+        <lux-tag
           [severity]="getTipoSeverity(item.tipoIncidencia)"
           [value]="item.tipoIncidenciaDisplay"
         />

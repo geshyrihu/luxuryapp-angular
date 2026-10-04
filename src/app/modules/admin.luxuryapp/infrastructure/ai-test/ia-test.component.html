@@ -1,5 +1,5 @@
 <div class="p-4">
-  <lx-card header="Prueba de Modelos de Inteligencia Artificial">
+  <lux-card header="Prueba de Modelos de Inteligencia Artificial">
     <div class="row g-4">
       <div class="col-12 col-md-4" [formGroup]="form">
         <div class="mb-4">
@@ -38,7 +38,7 @@
           
           @if (isLoading()) {
           <div class="d-flex align-items-center gap-2 text-primary">
-            <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin"  />
+            <lux-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin"  />
             <span>Generando respuesta...</span>
           </div>
           }
@@ -63,5 +63,5 @@
         </div>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 </div>

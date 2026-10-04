@@ -41,7 +41,7 @@
 
   <div class="border rounded p-3 bg-body-tertiary">
     <div class="fw-semibold text-sm mb-2">Evidencia del nuevo seguimiento</div>
-    <lx-file-upload
+    <lux-file-upload
       accept="image/*,.heic,.heif"
       [maxFileSize]="10000000"
       [multiple]="true"
@@ -69,7 +69,7 @@
         <div class="timeline-event-wrapper">
         <div class="d-flex align-items-center justify-content-between mb-2">
           <span class="timeline-thumbnail fw-bold text-sm">
-            <app-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
+            <lux-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
             {{ follow.applicationUser }}
           </span>
           <div class="d-flex align-items-center gap-2">
@@ -86,7 +86,7 @@
         </p>
         <div class="timeline-evidence">
           <span class="text-xs fw-semibold text-uppercase">Evidencia</span>
-          <lx-file-upload
+          <lux-file-upload
             accept="image/*,.heic,.heif"
             [maxFileSize]="10000000"
              [multiple]="true"
@@ -132,7 +132,7 @@
       class="d-flex flex-column align-items-center justify-content-center p-5 bg-body-tertiary rounded"
     >
       <div class="rounded-circle bg-body-tertiary p-3 mb-3">
-        <app-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-body-secondary" />
+        <lux-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-body-secondary" />
       </div>
       <span class="text-body fw-medium">No hay seguimientos registrados</span>
       <span class="text-body-secondary text-sm mt-1">Sí el primero en agregar uno.</span>

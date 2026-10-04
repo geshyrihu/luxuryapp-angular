@@ -20,301 +20,307 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/adaptive/tooltip/tooltip.ts"
   },
   {
-    "selector": "lx-accordion",
+    "selector": "[lxWeb]",
+    "className": "LxWebDirective",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/viewport/viewport.directives.ts"
+  },
+  {
+    "selector": "lux-accordion",
     "className": "LxAccordion",
     "category": "adaptive",
     "path": "shared/ui/adaptive/accordion/accordion.ts"
   },
   {
-    "selector": "lx-action-sheet",
+    "selector": "lux-action-sheet",
     "className": "LxActionSheet",
     "category": "adaptive",
     "path": "shared/ui/adaptive/action-sheet/action-sheet.ts"
   },
   {
-    "selector": "lx-avatar",
+    "selector": "lux-avatar",
     "className": "LxAvatar",
     "category": "adaptive",
     "path": "shared/ui/adaptive/avatar/avatar.ts"
   },
   {
-    "selector": "lx-badge",
+    "selector": "lux-badge",
     "className": "LxBadge",
     "category": "adaptive",
     "path": "shared/ui/adaptive/badge/badge.ts"
   },
   {
-    "selector": "lx-breadcrumbs",
+    "selector": "lux-breadcrumbs",
     "className": "LxBreadcrumbs",
     "category": "adaptive",
     "path": "shared/ui/adaptive/breadcrumbs/breadcrumbs.ts"
   },
   {
-    "selector": "lx-card",
+    "selector": "lux-card",
     "className": "LxCard",
     "category": "adaptive",
     "path": "shared/ui/adaptive/card/card.ts"
   },
   {
-    "selector": "lx-carousel",
+    "selector": "lux-carousel",
     "className": "LxCarousel",
     "category": "adaptive",
     "path": "shared/ui/adaptive/carousel/carousel.ts"
   },
   {
-    "selector": "lx-checkbox",
+    "selector": "lux-checkbox",
     "className": "LxCheckbox",
     "category": "adaptive",
     "path": "shared/ui/adaptive/checkbox/checkbox.ts"
   },
   {
-    "selector": "lx-chip",
+    "selector": "lux-chip",
     "className": "LxChip",
     "category": "adaptive",
     "path": "shared/ui/adaptive/chip/chip.ts"
   },
   {
-    "selector": "lx-confirm-dialog",
+    "selector": "lux-confirm-dialog",
     "className": "LxConfirmDialog",
     "category": "adaptive",
     "path": "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts"
   },
   {
-    "selector": "lx-debug-console",
+    "selector": "lux-debug-console",
     "className": "LxDebugConsole",
     "category": "adaptive",
     "path": "shared/ui/adaptive/debug-console/debug-console.ts"
   },
   {
-    "selector": "lx-divider",
+    "selector": "lux-divider",
     "className": "LxDivider",
     "category": "adaptive",
     "path": "shared/ui/adaptive/divider/divider.ts"
   },
   {
-    "selector": "lx-editor",
+    "selector": "lux-editor",
     "className": "LxEditor",
     "category": "adaptive",
     "path": "shared/ui/adaptive/editor/editor.ts"
   },
   {
-    "selector": "lx-empty-state",
+    "selector": "lux-empty-state",
     "className": "LxEmptyState",
     "category": "adaptive",
     "path": "shared/ui/adaptive/empty-state/empty-state.ts"
   },
   {
-    "selector": "lx-fieldset",
+    "selector": "lux-fieldset",
     "className": "LxFieldset",
     "category": "adaptive",
     "path": "shared/ui/adaptive/fieldset/fieldset.ts"
   },
   {
-    "selector": "lx-file-upload",
+    "selector": "lux-file-upload",
     "className": "LxFileUpload",
     "category": "adaptive",
     "path": "shared/ui/adaptive/file-upload/file-upload.ts"
   },
   {
-    "selector": "lx-image",
+    "selector": "lux-image",
     "className": "LxImage",
     "category": "adaptive",
     "path": "shared/ui/adaptive/image/image.ts"
   },
   {
-    "selector": "lx-infinite-scroll",
+    "selector": "lux-infinite-scroll",
     "className": "LxInfiniteScroll",
     "category": "adaptive",
     "path": "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts"
   },
   {
-    "selector": "lx-listbox",
+    "selector": "lux-listbox",
     "className": "LxListbox",
     "category": "adaptive",
     "path": "shared/ui/adaptive/listbox/listbox.ts"
   },
   {
-    "selector": "lx-loader",
+    "selector": "lux-loader",
     "className": "LxLoader",
     "category": "adaptive",
     "path": "shared/ui/adaptive/loader/loader.ts"
   },
   {
-    "selector": "lx-menu",
+    "selector": "lux-menu",
     "className": "LxMenu",
     "category": "adaptive",
     "path": "shared/ui/adaptive/menu/menu.ts"
   },
   {
-    "selector": "lx-menubar",
+    "selector": "lux-menubar",
     "className": "LxMenubar",
     "category": "adaptive",
     "path": "shared/ui/adaptive/menubar/menubar.ts"
   },
   {
-    "selector": "lx-message",
+    "selector": "lux-message",
     "className": "LxMessage",
     "category": "adaptive",
     "path": "shared/ui/adaptive/message/message.ts"
   },
   {
-    "selector": "lx-modal",
+    "selector": "lux-modal",
     "className": "LxModal",
     "category": "adaptive",
     "path": "shared/ui/adaptive/modal/modal.ts"
   },
   {
-    "selector": "lx-multi-select",
+    "selector": "lux-multi-select",
     "className": "LxMultiSelect",
     "category": "adaptive",
     "path": "shared/ui/adaptive/multi-select/multi-select.ts"
   },
   {
-    "selector": "lx-offline-indicator",
+    "selector": "lux-offline-indicator",
     "className": "LxOfflineIndicator",
     "category": "adaptive",
     "path": "shared/ui/adaptive/offline-indicator/offline-indicator.ts"
   },
   {
-    "selector": "lx-paginator",
+    "selector": "lux-paginator",
     "className": "LxPaginator",
     "category": "adaptive",
     "path": "shared/ui/adaptive/paginator/paginator.ts"
   },
   {
-    "selector": "lx-panel",
+    "selector": "lux-panel",
     "className": "LxPanel",
     "category": "adaptive",
     "path": "shared/ui/adaptive/panel/panel.ts"
   },
   {
-    "selector": "lx-popover",
+    "selector": "lux-popover",
     "className": "LxPopover",
     "category": "adaptive",
     "path": "shared/ui/adaptive/popover/popover.ts"
   },
   {
-    "selector": "lx-processing-overlay",
+    "selector": "lux-processing-overlay",
     "className": "LxProcessingOverlay",
     "category": "adaptive",
     "path": "shared/ui/adaptive/processing-overlay/processing-overlay.ts"
   },
   {
-    "selector": "lx-progress-bar",
+    "selector": "lux-progress-bar",
     "className": "LxProgressBar",
     "category": "adaptive",
     "path": "shared/ui/adaptive/progress-bar/progress-bar.ts"
   },
   {
-    "selector": "lx-pull-to-refresh",
+    "selector": "lux-pull-to-refresh",
     "className": "LxPullToRefresh",
     "category": "adaptive",
     "path": "shared/ui/adaptive/pull-to-refresh/pull-to-refresh.ts"
   },
   {
-    "selector": "lx-radio-button",
+    "selector": "lux-radio-button",
     "className": "LxRadioButton",
     "category": "adaptive",
     "path": "shared/ui/adaptive/radio-button/radio-button.ts"
   },
   {
-    "selector": "lx-rating",
+    "selector": "lux-rating",
     "className": "LxRating",
     "category": "adaptive",
     "path": "shared/ui/adaptive/rating/rating.ts"
   },
   {
-    "selector": "lx-scroll-top",
+    "selector": "lux-scroll-top",
     "className": "LxScrollTop",
     "category": "adaptive",
     "path": "shared/ui/adaptive/tap-to-top/tap-to-top.ts"
   },
   {
-    "selector": "lx-sidebar",
+    "selector": "lux-sidebar",
     "className": "LxSidebar",
     "category": "adaptive",
     "path": "shared/ui/adaptive/sidebar/sidebar.ts"
   },
   {
-    "selector": "lx-skeleton",
+    "selector": "lux-skeleton",
     "className": "LxSkeleton",
     "category": "adaptive",
     "path": "shared/ui/adaptive/skeleton/skeleton.ts"
   },
   {
-    "selector": "lx-spinner",
+    "selector": "lux-spinner",
     "className": "LxSpinner",
     "category": "adaptive",
     "path": "shared/ui/adaptive/spinner/spinner.ts"
   },
   {
-    "selector": "lx-split-button",
+    "selector": "lux-split-button",
     "className": "LxSplitButton",
     "category": "adaptive",
     "path": "shared/ui/adaptive/split-button/split-button.ts"
   },
   {
-    "selector": "lx-status-badge",
+    "selector": "lux-status-badge",
     "className": "LxStatusBadge",
     "category": "adaptive",
     "path": "shared/ui/adaptive/status-badge/status-badge.ts"
   },
   {
-    "selector": "lx-stepper",
+    "selector": "lux-stepper",
     "className": "LxStepper",
     "category": "adaptive",
     "path": "shared/ui/adaptive/stepper/stepper.ts"
   },
   {
-    "selector": "lx-steps",
+    "selector": "lux-steps",
     "className": "LxSteps",
     "category": "adaptive",
     "path": "shared/ui/adaptive/steps/steps.ts"
   },
   {
-    "selector": "lx-swipe-actions",
+    "selector": "lux-swipe-actions",
     "className": "LxSwipeActions",
     "category": "adaptive",
     "path": "shared/ui/adaptive/swipe-actions/swipe-actions.ts"
   },
   {
-    "selector": "lx-table",
+    "selector": "lux-table",
     "className": "LxTable",
     "category": "adaptive",
     "path": "shared/ui/adaptive/table/table.ts"
   },
   {
-    "selector": "lx-tabs",
+    "selector": "lux-tabs",
     "className": "LxTabs",
     "category": "adaptive",
     "path": "shared/ui/adaptive/tabs/tabs.ts"
   },
   {
-    "selector": "lx-tag",
+    "selector": "lux-tag",
     "className": "LxTag",
     "category": "adaptive",
     "path": "shared/ui/adaptive/tag/tag.ts"
   },
   {
-    "selector": "lx-timeline",
+    "selector": "lux-timeline",
     "className": "LxTimeline",
     "category": "adaptive",
     "path": "shared/ui/adaptive/timeline/timeline.ts"
   },
   {
-    "selector": "lx-toast",
+    "selector": "lux-toast",
     "className": "LxToast",
     "category": "adaptive",
     "path": "shared/ui/adaptive/toast/toast.ts"
   },
   {
-    "selector": "lx-toolbar",
+    "selector": "lux-toolbar",
     "className": "LxToolbar",
     "category": "adaptive",
     "path": "shared/ui/adaptive/toolbar/toolbar.ts"
   },
   {
-    "selector": "lx-tree",
+    "selector": "lux-tree",
     "className": "LxTree",
     "category": "adaptive",
     "path": "shared/ui/adaptive/tree/tree.ts"
@@ -324,18 +330,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "AiChatWidget",
     "category": "ai-chat-widget",
     "path": "shared/ui/ai-chat-widget/ai-chat-widget.ts"
-  },
-  {
-    "selector": "[step]",
-    "className": "StepperStepSection",
-    "category": "base",
-    "path": "shared/ui/base/stepper-step-section.directive.ts"
-  },
-  {
-    "selector": "base-processing-overlay",
-    "className": "ProcessingOverlayBase",
-    "category": "base",
-    "path": "shared/ui/base/processing-overlay.base.ts"
   },
   {
     "selector": "ii-button",
@@ -626,10 +620,28 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/buttons/web-icon/button-view-pdf.ts"
   },
   {
+    "selector": "app-ds-chart",
+    "className": "DsChart",
+    "category": "charts",
+    "path": "shared/ui/charts/chart.ts"
+  },
+  {
+    "selector": "[step]",
+    "className": "StepperStepSection",
+    "category": "core",
+    "path": "shared/ui/core/stepper-step-section.directive.ts"
+  },
+  {
+    "selector": "base-processing-overlay",
+    "className": "ProcessingOverlayBase",
+    "category": "core",
+    "path": "shared/ui/core/processing-overlay.base.ts"
+  },
+  {
     "selector": "app-image-analysis-dialog",
     "className": "ImageAnalysisDialogComponent",
     "category": "image-analysis-dialog",
-    "path": "shared/ui/image-analysis-dialog/image-analysis-dialog.component.ts"
+    "path": "shared/ui/image-analysis-dialog/image-analysis-dialog.ts"
   },
   {
     "selector": "app-custom-input-upload-pdf-signal",
@@ -647,19 +659,19 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "selector": "app-validation-errors-custom-input",
     "className": "ValidationErrorsCustomInput",
     "category": "inputs",
-    "path": "shared/ui/inputs/base/validation-errors-custom-input.ts"
+    "path": "shared/ui/inputs/core/validation-errors-custom-input.ts"
   },
   {
     "selector": "base-input-signal",
     "className": "BaseInputSignal",
     "category": "inputs",
-    "path": "shared/ui/inputs/base/base-input-signal.ts"
+    "path": "shared/ui/inputs/core/base-input-signal.ts"
   },
   {
     "selector": "base-ionic-input",
     "className": "BaseIonicInput",
     "category": "inputs",
-    "path": "shared/ui/inputs/base/base-ionic-input.ts"
+    "path": "shared/ui/inputs/core/base-ionic-input.ts"
   },
   {
     "selector": "custom-input-autocomplete-multiple-signal",
@@ -1528,116 +1540,116 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
   {
     "selector": "[appFocusTrap]",
     "className": "FocusTrap",
-    "category": "shared",
-    "path": "shared/ui/shared/focus-trap/focus-trap.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/focus-trap/focus-trap.ts"
   },
   {
-    "selector": "app-action-icons-group",
+    "selector": "lux-action-icons-group",
     "className": "ActionIconsGroupComponent",
-    "category": "shared",
-    "path": "shared/ui/shared/action-icons-group/action-icons-group.component.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/action-icons-group/action-icons-group.component.ts"
   },
   {
-    "selector": "app-activity-log",
+    "selector": "lux-activity-log",
     "className": "ActivityLog",
-    "category": "shared",
-    "path": "shared/ui/shared/activity-log/activity-log.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/activity-log/activity-log.ts"
   },
   {
-    "selector": "app-approval-workflow",
+    "selector": "lux-approval-workflow",
     "className": "ApprovalWorkflow",
-    "category": "shared",
-    "path": "shared/ui/shared/approval-workflow/approval-workflow.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/approval-workflow/approval-workflow.ts"
   },
   {
-    "selector": "app-avatar-group",
+    "selector": "lux-avatar-group",
     "className": "AvatarGroup",
-    "category": "shared",
-    "path": "shared/ui/shared/avatar-group/avatar-group.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/avatar-group/avatar-group.ts"
   },
   {
-    "selector": "app-breakdown-list",
+    "selector": "lux-breakdown-list",
     "className": "AppBreakdownList",
-    "category": "shared",
-    "path": "shared/ui/shared/breakdown-list/breakdown-list.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/breakdown-list/breakdown-list.ts"
   },
   {
-    "selector": "app-gauge",
+    "selector": "lux-gauge",
     "className": "Gauge",
-    "category": "shared",
-    "path": "shared/ui/shared/gauge/gauge.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/gauge/gauge.ts"
   },
   {
-    "selector": "app-icon",
+    "selector": "lux-icon",
     "className": "AppIcon",
-    "category": "shared",
-    "path": "shared/ui/shared/app-icon/app-icon.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/app-icon/app-icon.ts"
   },
   {
-    "selector": "app-inventory-level",
+    "selector": "lux-inventory-level",
     "className": "AppInventoryLevel",
-    "category": "shared",
-    "path": "shared/ui/shared/inventory-level/inventory-level.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/inventory-level/inventory-level.ts"
   },
   {
-    "selector": "app-kpi-card",
+    "selector": "lux-kpi-card",
     "className": "KpiCard",
-    "category": "shared",
-    "path": "shared/ui/shared/kpi-card/kpi-card.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/kpi-card/kpi-card.ts"
   },
   {
-    "selector": "app-lead-scoring",
+    "selector": "lux-lead-scoring",
     "className": "LeadScoring",
-    "category": "shared",
-    "path": "shared/ui/shared/lead-scoring/lead-scoring.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/lead-scoring/lead-scoring.ts"
   },
   {
-    "selector": "app-multiple-segmented-control",
+    "selector": "lux-multiple-segmented-control",
     "className": "MultipleSegmentedControl",
-    "category": "shared",
-    "path": "shared/ui/shared/multiple-segmented-control/multiple-segmented-control.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/multiple-segmented-control/multiple-segmented-control.ts"
   },
   {
-    "selector": "app-order-status",
+    "selector": "lux-order-status",
     "className": "OrderStatus",
-    "category": "shared",
-    "path": "shared/ui/shared/order-status/order-status.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/order-status/order-status.ts"
   },
   {
-    "selector": "app-ranked-list",
+    "selector": "lux-ranked-list",
     "className": "AppRankedList",
-    "category": "shared",
-    "path": "shared/ui/shared/ranked-list/ranked-list.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/ranked-list/ranked-list.ts"
   },
   {
-    "selector": "app-realtime-indicator",
+    "selector": "lux-realtime-indicator",
     "className": "AppRealtimeIndicator",
-    "category": "shared",
-    "path": "shared/ui/shared/realtime-indicator/realtime-indicator.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/realtime-indicator/realtime-indicator.ts"
   },
   {
-    "selector": "app-segmented-control",
+    "selector": "lux-segmented-control",
     "className": "SegmentedControl",
-    "category": "shared",
-    "path": "shared/ui/shared/segmented-control/segmented-control.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/segmented-control/segmented-control.ts"
   },
   {
-    "selector": "app-stat-card",
+    "selector": "lux-stat-card",
     "className": "AppStatCard",
-    "category": "shared",
-    "path": "shared/ui/shared/stat-card/stat-card.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/stat-card/stat-card.ts"
   },
   {
-    "selector": "app-tour",
+    "selector": "lux-tour",
     "className": "Tour",
-    "category": "shared",
-    "path": "shared/ui/shared/tour/tour.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/tour/tour.ts"
   },
   {
-    "selector": "app-tristate-switch",
+    "selector": "lux-tristate-switch",
     "className": "AppTristateSwitch",
-    "category": "shared",
-    "path": "shared/ui/shared/tristate-switch/tristate-switch.ts"
+    "category": "primitives",
+    "path": "shared/ui/primitives/tristate-switch/tristate-switch.ts"
   },
   {
     "selector": "[appSortableColumn]",
@@ -1814,6 +1826,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/gantt/gantt.ts"
   },
   {
+    "selector": "app-google-pie-chart4",
+    "className": "GooglePieChart4",
+    "category": "web",
+    "path": "shared/ui/web/charts/google-pie-chart4.ts"
+  },
+  {
     "selector": "app-header-customer",
     "className": "HeaderCustomer",
     "category": "web",
@@ -1940,12 +1958,6 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/popover/popover.ts"
   },
   {
-    "selector": "app-radar-chart",
-    "className": "RadarChart",
-    "category": "web",
-    "path": "shared/ui/web/charts/radar-chart.ts"
-  },
-  {
     "selector": "app-processing-overlay",
     "className": "AppProcessingOverlay",
     "category": "web",
@@ -1962,6 +1974,12 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "PullToRefresh",
     "category": "web",
     "path": "shared/ui/web/pull-to-refresh/pull-to-refresh.ts"
+  },
+  {
+    "selector": "app-radar-chart",
+    "className": "RadarChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/radar-chart.ts"
   },
   {
     "selector": "app-radio-button",
@@ -2042,10 +2060,34 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "path": "shared/ui/web/swipe-actions/swipe-actions.ts"
   },
   {
+    "selector": "app-table-caption",
+    "className": "TableCaption",
+    "category": "web",
+    "path": "shared/ui/web/table-caption/table-caption.ts"
+  },
+  {
     "selector": "app-table-checkbox",
     "className": "TableCheckbox",
     "category": "web",
     "path": "shared/ui/web/table-checkbox/table-checkbox.ts"
+  },
+  {
+    "selector": "app-table-empty-message",
+    "className": "TableEmptyMessage",
+    "category": "web",
+    "path": "shared/ui/web/table-empty-message/table-empty-message.ts"
+  },
+  {
+    "selector": "app-table-footer",
+    "className": "TableFooter",
+    "category": "web",
+    "path": "shared/ui/web/table-footer/table-footer.ts"
+  },
+  {
+    "selector": "app-table-global-filter",
+    "className": "TableGlobalFilter",
+    "category": "web",
+    "path": "shared/ui/web/table-global-filter/table-global-filter.ts"
   },
   {
     "selector": "app-tabs",
@@ -2124,35 +2166,5 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     "className": "PageTitleReportMaintenance",
     "category": "web",
     "path": "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts"
-  },
-  {
-    "selector": "app-table-caption",
-    "className": "TableCaption",
-    "category": "web",
-    "path": "shared/ui/web/app-table-caption/app-table-caption.ts"
-  },
-  {
-    "selector": "app-table-global-filter",
-    "className": "TableGlobalFilter",
-    "category": "web",
-    "path": "shared/ui/web/table-global-filter/table-global-filter.ts"
-  },
-  {
-    "selector": "app-table-empty-message",
-    "className": "TableEmptyMessage",
-    "category": "web",
-    "path": "shared/ui/web/app-table-empty-message/app-table-empty-message.ts"
-  },
-  {
-    "selector": "app-table-footer",
-    "className": "TableFooter",
-    "category": "web",
-    "path": "shared/ui/web/app-table-footer/app-table-footer.ts"
-  },
-  {
-    "selector": "sb-chart-host",
-    "className": "ChartHost",
-    "category": "web",
-    "path": "shared/ui/web/charts/chart-wrapper.stories.ts"
   }
 ];

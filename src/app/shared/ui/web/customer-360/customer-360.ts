@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { AppDivider } from "@ui/web/divider/divider";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export interface Customer360Data {
   // Identity
@@ -60,19 +60,19 @@ export interface Customer360Data {
           }
           @if (data().company) {
             <span class="c360-company">
-              <app-icon icon="material-symbols-light:apartment" class="text-sm" />
+              <lux-icon icon="material-symbols-light:apartment" class="text-sm" />
               {{ data().company }}
             </span>
           }
           <div class="c360-contact-links">
             @if (data().email) {
               <a [href]="'mailto:' + data().email" class="c360-link">
-                <app-icon icon="material-symbols-light:mail-outline" /> {{ data().email }}
+                <lux-icon icon="material-symbols-light:mail-outline" /> {{ data().email }}
               </a>
             }
             @if (data().phone) {
               <a [href]="'tel:' + data().phone" class="c360-link">
-                <app-icon icon="material-symbols-light:call-outline" /> {{ data().phone }}
+                <lux-icon icon="material-symbols-light:call-outline" /> {{ data().phone }}
               </a>
             }
           </div>
@@ -94,28 +94,28 @@ export interface Customer360Data {
             (click)="action.emit('email')"
             title="Enviar email"
           >
-            <app-icon icon="material-symbols-light:drafts" />
+            <lux-icon icon="material-symbols-light:drafts" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('call')"
             title="Llamar"
           >
-            <app-icon icon="material-symbols-light:add-call" />
+            <lux-icon icon="material-symbols-light:add-call" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('meeting')"
             title="Agendar reunión"
           >
-            <app-icon icon="material-symbols-light:event-note" />
+            <lux-icon icon="material-symbols-light:event-note" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('note')"
             title="Añadir nota"
           >
-            <app-icon icon="material-symbols-light:note-add" />
+            <lux-icon icon="material-symbols-light:note-add" />
           </button>
         </div>
       </div>
@@ -166,14 +166,14 @@ export interface Customer360Data {
         @if (data().recentActivity?.length) {
           <div class="c360-section">
             <h4 class="c360-section-title">
-              <app-icon icon="material-symbols-light:history" />
+              <lux-icon icon="material-symbols-light:history" />
               Actividad reciente
             </h4>
             <div class="c360-activity">
               @for (item of data().recentActivity!; track item.text) {
                 <div class="c360-activity-item">
                   <div class="c360-activity-icon">
-                    <app-icon [icon]="item.icon" />
+                    <lux-icon [icon]="item.icon" />
                   </div>
                   <div class="c360-activity-content">
                     <span class="c360-activity-text">{{ item.text }}</span>
@@ -189,7 +189,7 @@ export interface Customer360Data {
         @if (data().deals?.length) {
           <div class="c360-section">
             <h4 class="c360-section-title">
-              <app-icon icon="material-symbols-light:work-outline" />
+              <lux-icon icon="material-symbols-light:work-outline" />
               Deals activos
             </h4>
             <div class="c360-deals">

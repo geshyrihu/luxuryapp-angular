@@ -43,7 +43,7 @@ import {
   SatDownloadRequestDto,
   SatFundingDetailDto,
 } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 
 @Component({

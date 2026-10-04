@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
-import { PopoverBase } from "@ui/base/popover.base";
+import { PopoverBase } from "@ui/core/popover.base";
 
 /**
  * AppPopover — panel flotante libre sobre CDK Overlay. [Fase 3

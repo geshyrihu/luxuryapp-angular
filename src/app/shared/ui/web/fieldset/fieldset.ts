@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, linkedSignal } from "@angular/core";
-import { FieldsetBase } from "@ui/base/fieldset.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { FieldsetBase } from "@ui/core/fieldset.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-fieldset",
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         (keydown.space)="$event.preventDefault(); toggle()"
       >
         @if (toggleable()) {
-          <app-icon [icon]="isCollapsed() ? 'material-symbols-light:chevron-right' : 'material-symbols-light:expand-more'" />
+          <lux-icon [icon]="isCollapsed() ? 'material-symbols-light:chevron-right' : 'material-symbols-light:expand-more'" />
         }
         {{ legend() }}
       </legend>

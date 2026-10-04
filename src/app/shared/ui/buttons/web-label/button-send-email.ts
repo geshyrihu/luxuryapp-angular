@@ -1,4 +1,4 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +7,7 @@ import {
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { SwalService } from "@core/services/swal.service";
 
@@ -26,7 +26,7 @@ import { SwalService } from "@core/services/swal.service";
       [tooltipDisabled]="!tooltipText()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" />
       <span>{{ label() || "Enviar correo" }}</span>
     </button>
   `,

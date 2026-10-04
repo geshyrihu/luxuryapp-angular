@@ -41,7 +41,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AspRoleService } from "../../../../core/auth/services/asp-role.service";
 
 @Component({

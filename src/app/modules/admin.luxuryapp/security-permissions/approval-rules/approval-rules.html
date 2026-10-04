@@ -13,7 +13,7 @@
 
   @if (loading()) {
     <div class="approval-rules-mobile-loading">
-      <lx-skeleton height="220px" />
+      <lux-skeleton height="220px" />
     </div>
   } @else {
     <ion-list class="approval-rules-mobile-list" lines="none">
@@ -46,7 +46,7 @@
     </ion-list>
   }
 } @else {
-  <lx-card>
+  <lux-card>
     <ng-template #header>
       <div
         class="p-4 d-flex justify-content-between align-items-center border-bottom-1 border"
@@ -68,7 +68,7 @@
 
     @if (loading()) {
       <div class="p-4">
-        <lx-skeleton height="400px" />
+        <lux-skeleton height="400px" />
       </div>
     } @else {
       <div class="table-container">
@@ -106,7 +106,7 @@
                     optionValue="value"
                   >
                     <ng-template #item let-item>
-                      <app-icon [icon]="item.icon" class="me-2" />
+                      <lux-icon [icon]="item.icon" class="me-2" />
                       <span>{{ item.label }}</span>
                     </ng-template>
                   </custom-input-select-button-signal>
@@ -117,5 +117,5 @@
         </app-table>
       </div>
     }
-  </lx-card>
+  </lux-card>
 }

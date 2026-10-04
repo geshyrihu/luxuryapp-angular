@@ -15,9 +15,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import {
   AppBreakdownList,
   type BreakdownItem,
-} from "@ui/shared/breakdown-list/breakdown-list";
-import { AppRankedList } from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+} from "@ui/primitives/breakdown-list/breakdown-list";
+import { AppRankedList } from "@ui/primitives/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -31,7 +31,7 @@ import {
   COBRANZA_ONLINE_STORE_AUTOLOAD,
   CobranzaOnlineStoreService,
 } from "@collections.luxuryapp/online-collections/state/cobranza-online-store.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ThemeService } from "@core/services/theme.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 

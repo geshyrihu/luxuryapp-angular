@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { StepsBase } from "@ui/base/steps.base";
+import { StepsBase } from "@ui/core/steps.base";
 import { MobileSteps } from "@ui/mobile/steps/steps";
 import { AppSteps } from "@ui/web/steps/steps";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-steps",
+  selector: "lux-steps",
 
   imports: [AppSteps, MobileSteps],
   template: `

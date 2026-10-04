@@ -46,7 +46,7 @@
         <tr>
           <td class="text-center">
             @if (row.icon) {
-            <app-icon [icon]="row.icon" [style.color]="row.iconColor" />
+            <lux-icon [icon]="row.icon" [style.color]="row.iconColor" />
             }
           </td>
           <td class="text-center fw-bold">{{ row.value }}</td>
@@ -73,7 +73,7 @@
       <ng-template #header>
         <tr>
           <th colspan="3" class="text-center">
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:check-circle"
               
               class="me-2"
@@ -118,7 +118,7 @@
       <ng-template #header>
         <tr>
           <th colspan="7" class="text-center">
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:error"
               
               class="me-2"
@@ -156,7 +156,7 @@
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {
-  <lx-empty-state
+  <lux-empty-state
     icon="material-symbols-light:description"
     title="Sin datos"
     message="No hay información para el periodo seleccionado."
@@ -182,7 +182,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:confirmation-number"
               class="text-xl text-primary"
             />
@@ -190,33 +190,33 @@
           
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span>TICKET INICIAL</span>
-              <lx-tag [value]="d.ticketsAlInicio" severity="info"></lx-tag>
+              <lux-tag [value]="d.ticketsAlInicio" severity="info"></lux-tag>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span>TICKET FINAL</span>
-              <lx-tag [value]="d.ticketsAlFinal" severity="info"></lx-tag>
+              <lux-tag [value]="d.ticketsAlFinal" severity="info"></lux-tag>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span>SOLICITUDES NUEVAS</span>
-              <lx-tag [value]="d.ticketsEnRango" severity="secondary"></lx-tag>
+              <lux-tag [value]="d.ticketsEnRango" severity="secondary"></lux-tag>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span>SOLICITUDES ATENDIDAS</span>
-              <lx-tag
+              <lux-tag
                 [value]="d.solicitudesAtendidas"
                 severity="success"
-              ></lx-tag>
+              ></lux-tag>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span>PENDIENTES DEL PERIODO</span>
-              <lx-tag
+              <lux-tag
                 [value]="d.pendientesSoloDelPeriodo"
                 severity="warn"
-              ></lx-tag>
+              ></lux-tag>
             </div>
             <div class="d-flex justify-content-between align-items-center">
               <span>PENDIENTES ACUMULADAS</span>
-              <lx-tag [value]="d.pendientesAlFinal" severity="danger"></lx-tag>
+              <lux-tag [value]="d.pendientesAlFinal" severity="danger"></lux-tag>
             </div>
           
         </ili-list-item>
@@ -229,7 +229,7 @@
       class="p-3 m-0 text-center"
       
     >
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:check-circle"
         
         class="me-2"
@@ -244,7 +244,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:check"
               
             />
@@ -252,7 +252,7 @@
           
             <div class="d-flex justify-content-between align-items-center">
               <h6 class="mb-1">#{{ rowIndex + 1 }} — {{ ticket.concepto }}</h6>
-              <lx-tag [value]="ticket.solicitudes" severity="success"></lx-tag>
+              <lux-tag [value]="ticket.solicitudes" severity="success"></lux-tag>
             </div>
           
         </ili-list-item>
@@ -265,7 +265,7 @@
       class="p-3 m-0 text-center"
       
     >
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:warning"
         
         class="me-2"
@@ -280,7 +280,7 @@
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
             
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:confirmation-number"
               
             />
@@ -288,7 +288,7 @@
           
             <div class="d-flex justify-content-between align-items-center">
               <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
-              <lx-tag [value]="ticket.dias + ' días'" severity="danger"></lx-tag>
+              <lux-tag [value]="ticket.dias + ' días'" severity="danger"></lux-tag>
             </div>
             <small 
               >{{ ticket.fecha | apiDate: "dd/MM/yyyy" }} — {{ ticket.cliente
@@ -307,7 +307,7 @@
   </div>
   } @if (!reportData() && requestsAttended().length === 0 &&
   requestsPending().length === 0) {
-  <lx-empty-state
+  <lux-empty-state
     icon="material-symbols-light:description"
     title="Sin datos"
     message="No hay información para el periodo seleccionado."

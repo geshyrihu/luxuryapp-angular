@@ -92,13 +92,13 @@
           </td>
           <td class="text-center">
             @if (item.priority === "High") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
             />
             } @if (item.priority === "Low") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
@@ -173,7 +173,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:fact-check"
           class="text-xl text-primary"
         />

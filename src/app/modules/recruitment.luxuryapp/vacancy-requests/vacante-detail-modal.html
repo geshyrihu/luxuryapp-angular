@@ -8,14 +8,14 @@
       <h2 class="vacancy-detail-title">{{ position.applicationRoleName || "Puesto sin asignar" }}</h2>
       <p class="vacancy-detail-subtitle">Información laboral, prestaciones y horario operativo</p>
     </div>
-    <lx-tag
+    <lux-tag
       [value]="stateLabel(position.state)"
       [severity]="stateLabel(position.state) === 'Activo' ? 'success' : 'secondary'"
     />
   </header>
   }
 
-  <lx-tabs [tabs]="tabs" [(activeId)]="activeTab">
+  <lux-tabs [tabs]="tabs" [(activeId)]="activeTab">
     <div tab="resumen">
       @if (wp; as position) {
       <div class="vacancy-detail-meta">
@@ -34,7 +34,7 @@
       </div>
       <div class="vacancy-detail-card mt-3">
         <h3 class="vacancy-detail-card-title">
-          <app-icon icon="material-symbols-light:badge" class="text-primary" />
+          <lux-icon icon="material-symbols-light:badge" class="text-primary" />
           Perfil del puesto
         </h3>
         <div class="vacancy-detail-meta">
@@ -61,7 +61,7 @@
       @if (wp; as position) {
       <div class="vacancy-detail-card">
         <h3 class="vacancy-detail-card-title">
-          <app-icon icon="material-symbols-light:schedule" class="text-primary" />
+          <lux-icon icon="material-symbols-light:schedule" class="text-primary" />
           Horario de trabajo
         </h3>
         <div class="schedule-meta">
@@ -115,7 +115,7 @@
         } }
         <div class="vacancy-detail-card d-flex align-items-center justify-content-between gap-3">
           <span class="vacancy-detail-stat-label">Requiere trabajo en fin de semana</span>
-          <lx-tag [value]="description.requiresWeekendShift ? 'Sí' : 'No'" [severity]="description.requiresWeekendShift ? 'warn' : 'success'" />
+          <lux-tag [value]="description.requiresWeekendShift ? 'Sí' : 'No'" [severity]="description.requiresWeekendShift ? 'warn' : 'success'" />
         </div>
       </div>
       } @else {
@@ -128,7 +128,7 @@
       <div class="d-flex flex-column gap-3">
         <div class="vacancy-detail-card">
           <h3 class="vacancy-detail-card-title">
-            <app-icon icon="material-symbols-light:redeem" class="text-primary" />
+            <lux-icon icon="material-symbols-light:redeem" class="text-primary" />
             Prestaciones configuradas
           </h3>
           <div class="benefit-grid">
@@ -149,5 +149,5 @@
       <div class="vacancy-detail-card text-body-secondary">Cargando prestaciones...</div>
       }
     </div>
-  </lx-tabs>
+  </lux-tabs>
 </div>

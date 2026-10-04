@@ -70,7 +70,7 @@
         </td>
         <td class="text-center">
           @if (item.generatedAutomatically) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:bolt'"
             class="text-purple-600"
             title="Generado por sistema"
@@ -78,7 +78,7 @@
           }
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="statusMeta(item.status).label"
             [severity]="statusMeta(item.status).severity"
           />
@@ -119,7 +119,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:credit-card-outline"
           class="text-orange-600 text-xl"
         />

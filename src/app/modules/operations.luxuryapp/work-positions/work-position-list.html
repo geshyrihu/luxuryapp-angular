@@ -19,7 +19,7 @@
     <div
       class="d-flex flex-column flex-xl-row align-items-center justify-content-between gap-3 mb-3 w-full g-4"
     >
-      <app-segmented-control
+      <lux-segmented-control
         [items]="departmentFilterItems()"
         [(value)]="selectedDepartment"
         ariaLabel="Filtrar por departamento"
@@ -81,7 +81,7 @@
     <tr>
       <td [attr.colspan]="showSalaryColumn() ? 5 : 4" class="staff-group-header-cell">
         <span class="group-header-label">
-          <app-icon [icon]="'material-symbols-light:work'" />
+          <lux-icon [icon]="'material-symbols-light:work'" />
           {{ getDepartamentLabel(item.departament) }}
         </span>
       </td>
@@ -94,7 +94,7 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="d-flex align-items-center gap-2">
-          <lx-tag
+          <lux-tag
             severity="warn"
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
@@ -225,7 +225,7 @@
           >{{ item.turno }} · {{ getDepartamentLabel(item.departament) }}</small
         >
         @if (necesitaActualizacion(item)) {
-        <lx-tag
+        <lux-tag
           severity="warn"
           value="Actualizar puesto"
           icon="material-symbols-light:warning"

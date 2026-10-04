@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ProcessingOverlayBase } from "@ui/core/processing-overlay.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * Overlay de procesamiento para web (Bootstrap).
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         >
           <!-- Spinner -->
           <div class="animate-spin mb-4 inline-block">
-            <app-icon icon="material-symbols-light:progress-activity" class="text-3xl text-primary-500" />
+            <lux-icon icon="material-symbols-light:progress-activity" class="text-3xl text-primary-500" />
           </div>
 
           <!-- Mensaje principal -->

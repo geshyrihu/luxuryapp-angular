@@ -15,7 +15,7 @@
         <h5 class="me-3 text-lg fw-semibold">
           Riesgo General del Condominio:
         </h5>
-        <lx-tag
+        <lux-tag
           severity="warning"
           value="Medio (Placeholder)"
           class="text-lg"
@@ -27,7 +27,7 @@
   <!-- Acordeón con los Módulos de Auditoría -->
   <div class="card">
     @for (module of auditModules; track module.name) {
-    <lx-accordion
+    <lux-accordion
       class="d-block mb-2"
       [items]="[{ id: module.name, title: module.name, icon: module.icon }]"
     >
@@ -46,7 +46,7 @@
               <tr>
                 <td>{{ item.control }}</td>
                 <td>
-                  <lx-tag
+                  <lux-tag
                     [severity]="item.type === 'Obligatorio' ? 'danger' : 'info'"
                     [value]="item.type"
                    />
@@ -91,7 +91,7 @@
             </ng-template>
           </app-table>
         </div>
-    </lx-accordion>
+    </lux-accordion>
     }
   </div>
 

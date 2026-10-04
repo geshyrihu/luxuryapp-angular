@@ -165,12 +165,12 @@
           (clicked)="helpPopover.toggle($event)"
         />
 
-        <lx-popover #helpPopover styleClass="shadow">
+        <lux-popover #helpPopover styleClass="shadow">
           <div>
             <p
               class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary me-1"
               />
@@ -183,7 +183,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-primary"
                   />
@@ -206,7 +206,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-purple-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:link'"
                     class="text-purple-600"
                   />
@@ -233,7 +233,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-orange-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:account-tree'"
                     class="text-orange-600"
                   />
@@ -244,12 +244,12 @@
                   </p>
                   <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:account-tree'"
                       class="text-primary"
                     />
                     tienen subtareas. Las tareas con
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:keyboard-double-arrow-down'"
                       class="text-body-secondary"
                     />
@@ -260,7 +260,7 @@
               </div>
             </div>
           </div>
-        </lx-popover>
+        </lux-popover>
       </div>
     </div>
   </ng-template>
@@ -305,14 +305,14 @@
     >
       <td class="text-center">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:menu'"
             class="cursor-move text-body-secondary"
             pReorderableRowHandle
             lxTooltip="Arrastra para reordenar la tarea"
             tooltipPosition="top"
           />
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:link'"
             class="text-body-secondary cursor-grab"
             draggable="true"
@@ -330,14 +330,14 @@
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:keyboard-double-arrow-down'"
             class="text-body-secondary flex-shrink-0 me-1"
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
           } @if (item.hasSubTasks) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:account-tree'"
             class="text-primary flex-shrink-0 me-1"
             lxTooltip="Tiene subtareas"
@@ -372,7 +372,7 @@
                 (click)="onClearDependency(item.id)"
                 lxTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:arrow-forward'"
                   class="text-xs"
                 />
@@ -384,20 +384,20 @@
               class="m-0 fw-semibold text-xs text-body d-flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:schedule'"
                 class="text-orange-600"
                 lxTooltip="Urgente: Más de 15 días sin programar"
               />
               } @if (item.priority === 'High') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:warning'"
                 class="text-red-500 cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
@@ -430,14 +430,14 @@
 
       <td>
         <p class="m-0 text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-body-secondary mt-1">
-          <app-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
+          <lux-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
           item.closedAtDate }}
         </p>
         }
@@ -447,7 +447,7 @@
         <div class="d-flex align-items-center justify-content-center gap-2">
           @if (item.beforeWork) {
           <figure class="m-0 text-center">
-            <lx-image
+            <lux-image
               [src]="item.beforeWork"
               alt="."
               [preview]="true"
@@ -459,7 +459,7 @@
           </figure>
           } @if (item.afterWork) {
           <figure class="m-0 text-center">
-            <lx-image
+            <lux-image
               [src]="item.afterWork"
               alt="."
               [preview]="true"
@@ -512,7 +512,7 @@
             class="cursor-pointer d-flex align-items-center gap-1 text-decoration-none"
             lxTooltip="Seguimientos"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:forum'"
               class="text-blue-500"
             />
@@ -615,19 +615,19 @@
 
       <div class="d-flex gap-2 overflow-x-auto w-full hide-scrollbar mt-2">
         <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPendingBoard()">
-          <app-icon icon="material-symbols-light:grid-view-outline" slot="start"></app-icon>
+          <lux-icon icon="material-symbols-light:grid-view-outline" slot="start"></lux-icon>
           Tablero
         </ion-button>
         <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewClickedWorkPlan()">
-          <app-icon icon="material-symbols-light:article-outline" slot="start"></app-icon>
+          <lux-icon icon="material-symbols-light:article-outline" slot="start"></lux-icon>
           Plan
         </ion-button>
         <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onPreviewWeeklyReport()">
-          <app-icon icon="material-symbols-light:visibility-outline" slot="start"></app-icon>
+          <lux-icon icon="material-symbols-light:visibility-outline" slot="start"></lux-icon>
           Previa
         </ion-button>
         <ion-button fill="outline" size="small" class="flex-shrink-0" (click)="onSendWeeklyReport()">
-          <app-icon icon="material-symbols-light:send-outline" slot="start"></app-icon>
+          <lux-icon icon="material-symbols-light:send-outline" slot="start"></lux-icon>
           Reporte
         </ion-button>
       </div>
@@ -661,7 +661,7 @@
 
           <!-- Derecha: Estado, Días y 3 puntos -->
           <div class="d-flex align-items-center gap-2">
-            <lx-tag
+            <lux-tag
               [severity]="item.status === 'Completed' ? 'success' : item.status === 'InProgress' ? 'info' : item.status === 'Reopened' ? 'warning' : 'secondary'"
               [value]="item.status === 'Completed' ? 'Terminado' : item.status === 'InProgress' ? 'En Proceso' : item.status === 'Reopened' ? 'Reabierto' : 'No Iniciado'"
             />
@@ -729,7 +729,7 @@
             class="text-purple-500 text-xs cursor-pointer py-1"
             (click)="onClearDependency(item.id)"
           >
-            <app-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
+            <lux-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
             item.dependsOnTaskFolio }}
           </span>
           }
@@ -738,7 +738,7 @@
         <!-- Cuerpo: Título, DESCRIPCIÓN, Imágenes -->
         <h6 class="text-sm fw-semibold m-0 text-wrap text-body">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:schedule'"
             class="text-orange-600 me-1"
           />

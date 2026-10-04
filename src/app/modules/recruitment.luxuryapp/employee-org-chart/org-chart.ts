@@ -14,7 +14,7 @@ import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxToast } from "@ui/adaptive/toast/toast";
-import { TabItem } from "@ui/base/tabs.base";
+import { TabItem } from "@ui/core/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MessageService } from "@core/services/message.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -22,7 +22,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   buildOrgChartGraph,
   flattenOrgChartNodes,

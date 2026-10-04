@@ -3,7 +3,7 @@
   <div
     class="d-flex align-items-center gap-2 pb-2 border-bottom-1 border"
   >
-    <app-icon [icon]="'material-symbols-light:settings'" class="text-primary text-xl" />
+    <lux-icon [icon]="'material-symbols-light:settings'" class="text-primary text-xl" />
     <span class="text-xl fw-bold text-body">{{ data.nombreEquipo }}</span>
   </div>
   }
@@ -35,7 +35,7 @@
       class="text-body-secondary text-sm fw-medium text-uppercase tracking-wide mb-2 d-block"
     >
       Proveedores @if (proveedores?.length > 0) {
-      <lx-tag
+      <lux-tag
         [value]="proveedores.length"
         severity="secondary"
         class="ms-2 text-xs"
@@ -56,7 +56,7 @@
         <div
           class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-lg bg-primary-100"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:apartment'"
             class="text-primary text-sm"
           />
@@ -64,13 +64,13 @@
         <span class="fw-medium text-body flex-fill"
           >{{ proveedor.nameProvider }}</span
         >
-        <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-body-secondary" />
+        <lux-icon [icon]="'material-symbols-light:chevron-right'" class="text-body-secondary" />
       </div>
       }
     </div>
     } @else {
     <div class="bg-body-tertiary rounded p-3 text-body-secondary text-sm text-center">
-      <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="me-2" />Sin proveedores asignados
+      <lux-icon [icon]="'material-symbols-light:move-to-inbox'" class="me-2" />Sin proveedores asignados
     </div>
     }
   </div>

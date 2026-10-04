@@ -1,10 +1,10 @@
 <div class="authorization-page">
-  <lx-card
+  <lux-card
     header="Matriz de autorización de evaluaciones"
     subheader="Define qué roles pueden administrar plantillas, con qué alcance y para qué roles aplican."
   >
     @if (loading()) {
-      <lx-skeleton />
+      <lux-skeleton />
     } @else {
       <div class="authorization-toolbar">
         <div>
@@ -12,7 +12,7 @@
           <p>Solo SuperUsuario y Direccion pueden modificar estas reglas.</p>
         </div>
         <button type="button" class="primary-button" (click)="beginCreate()">
-          <app-icon icon="material-symbols-light:add" /> Nueva regla
+          <lux-icon icon="material-symbols-light:add" /> Nueva regla
         </button>
       </div>
 
@@ -117,5 +117,5 @@
         }
       </section>
     }
-  </lx-card>
+  </lux-card>
 </div>

@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /** Web action menu rendered in a CDK overlay. */
 @Component({
@@ -27,7 +27,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
         [attr.aria-expanded]="isOpen"
         aria-label="Opciones"
       >
-        <app-icon icon="material-symbols-light:more-vert" class="text-xl" />
+        <lux-icon icon="material-symbols-light:more-vert" class="text-xl" />
       </button>
 
       <ng-template #panelTpl>

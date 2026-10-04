@@ -243,7 +243,7 @@
 
     <!-- Mensaje de error -->
     @if (sharedS.errorMensaje()) {
-    <lx-message
+    <lux-message
       severity="error"
       [text]="sharedS.errorMensaje()!"
       class="w-full"
@@ -284,7 +284,7 @@
       />
     </div>
 
-    <lx-tabs
+    <lux-tabs
       [tabs]="budgetTabs"
       [activeId]="activeTabValue()"
       (tabChange)="activeTabValue.set($event.id)"

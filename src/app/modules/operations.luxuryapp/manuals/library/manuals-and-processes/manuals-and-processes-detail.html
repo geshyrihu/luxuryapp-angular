@@ -4,7 +4,7 @@
     class="d-flex align-items-center justify-content-center py-5"
 
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-primary text-4xl ds-animate-spin"
     />
@@ -45,7 +45,7 @@
             <div
               class="bg-body-tertiary border-1 border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-body"
             >
-              <app-icon [icon]="'material-symbols-light:book'" class="text-xs" />
+              <lux-icon [icon]="'material-symbols-light:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
             <div class="d-flex align-items-center gap-2">
@@ -100,49 +100,49 @@
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:account-tree'" />
+            <lux-icon [icon]="'material-symbols-light:account-tree'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:calendar-clock'" />
+            <lux-icon [icon]="'material-symbols-light:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:label'" />
+            <lux-icon [icon]="'material-symbols-light:label'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:verified'" />
+            <lux-icon [icon]="'material-symbols-light:verified'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:web'" />
+            <lux-icon [icon]="'material-symbols-light:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:group'" />
+            <lux-icon [icon]="'material-symbols-light:group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:apartment'" />
+            <lux-icon [icon]="'material-symbols-light:apartment'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
             class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
-            <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
+            <lux-icon [icon]="'material-symbols-light:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
         </div>
@@ -229,7 +229,7 @@
             </p>
           </div>
         </div>
-        <lx-tag
+        <lux-tag
           [value]="(manual()!.pasos?.length || 0) + ' pasos'"
           severity="secondary"
          />
@@ -259,7 +259,7 @@
               <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
                 <h4 class="text-base text-body m-0">{{ paso.titulo }}</h4>
                 @for (nombre of paso.responsableRoleNombres; track nombre) {
-                <lx-tag [value]="nombre" severity="secondary" />
+                <lux-tag [value]="nombre" severity="secondary" />
                 }
               </div>
               @if (paso.descripcion) {
@@ -344,7 +344,7 @@
             </div>
             } } @else {
             <div class="d-flex align-items-center gap-2">
-              <app-icon [icon]="'material-symbols-light:open-in-new'" class="text-primary" />
+              <lux-icon [icon]="'material-symbols-light:open-in-new'" class="text-primary" />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
                 <il-button
                   label="Abrir Enlace"
@@ -366,7 +366,7 @@
       </div>
       } @else {
       <div class="text-center py-5">
-        <app-icon [icon]="'material-symbols-light:book'" class="text-4xl text-body-secondary mb-3" />
+        <lux-icon [icon]="'material-symbols-light:book'" class="text-4xl text-body-secondary mb-3" />
         <p class="text-body-secondary m-0">Este manual aun no tiene pasos definidos.</p>
       </div>
       }
@@ -399,7 +399,7 @@
               class="bg-body-tertiary rounded-xl border-1 border p-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="d-flex align-items-center gap-3">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:description'"
                   class="text-xl text-primary"
                 />

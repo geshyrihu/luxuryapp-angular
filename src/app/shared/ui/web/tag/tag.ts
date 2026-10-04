@@ -4,8 +4,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { TagBase } from "@ui/base/tag.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TagBase } from "@ui/core/tag.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-tag",
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
       [lxTooltip]="tooltip()"
     >
       @if (icon()) {
-        <app-icon [icon]="icon()" class="app-tag-icon" />
+        <lux-icon [icon]="icon()" class="app-tag-icon" />
       }
       {{ displayValue() }}
     </span>

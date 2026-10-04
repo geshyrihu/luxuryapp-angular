@@ -31,7 +31,7 @@ import {
   DialogHandlerService,
   DialogService,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
 

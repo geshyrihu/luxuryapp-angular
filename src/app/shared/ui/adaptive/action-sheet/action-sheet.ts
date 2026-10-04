@@ -5,7 +5,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-action-sheet",
+  selector: "lux-action-sheet",
 
   imports: [NgTemplateOutlet, ActionMenu, MobileActionMenu],
   template: `

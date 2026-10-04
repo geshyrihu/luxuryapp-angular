@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
     <div>
       <h2 class="text-xl fw-bold text-body d-flex align-items-center">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:bar-chart'"
           class="text-primary me-2"
         />
@@ -28,7 +28,7 @@
 
   @if (!metricas()) {
   <div class="d-flex align-items-center justify-content-center h-12rem text-body-secondary">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl me-3"
     />
@@ -37,10 +37,10 @@
   } @else {
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--primary p-5 h-full">
+      <lux-card class="card card--elevated card--primary p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
-            <app-icon [icon]="'material-symbols-light:percent'" />
+            <lux-icon [icon]="'material-symbols-light:percent'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -53,7 +53,7 @@
           {{ metricas()!.porcentajeCobrado | number: '1.1-1' }}%
         </div>
 
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.porcentajeCobrado"
           [showValue]="false"
@@ -64,14 +64,14 @@
           de {{ metricas()!.totalFacturado | currency:'MXN':'symbol':'1.0-0' }}
           facturado
         </p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--success p-5 h-full">
+      <lux-card class="card card--elevated card--success p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
-            <app-icon [icon]="'material-symbols-light:check-circle'" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -84,14 +84,14 @@
           ${{ metricas()!.totalCobrado | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">ingresos recibidos</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--warning p-5 h-full">
+      <lux-card class="card card--elevated card--warning p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
-            <app-icon [icon]="'material-symbols-light:schedule'" />
+            <lux-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -104,14 +104,14 @@
           ${{ metricas()!.totalPendiente | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">por cobrar</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--danger p-5 h-full">
+      <lux-card class="card card--elevated card--danger p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
-            <app-icon [icon]="'material-symbols-light:warning'" />
+            <lux-icon [icon]="'material-symbols-light:warning'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -124,16 +124,16 @@
           ${{ metricas()!.totalVencido | number: '1.0-0' }}
         </div>
         <p class="text-xs text-body-secondary mt-1">deuda vencida</p>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--success p-5 h-full">
+      <lux-card class="card card--elevated card--success p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-green-600">
-            <app-icon [icon]="'material-symbols-light:check-circle'" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -145,21 +145,21 @@
         <div class="text-3xl font-extrabold text-green-600">
           {{ metricas()!.propiedadesAlCorriente }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesAlCorriente / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="success"
         />
         <p class="text-xs text-body-secondary mt-2">unidades sin deuda</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--warning p-5 h-full">
+      <lux-card class="card card--elevated card--warning p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-orange-600">
-            <app-icon [icon]="'material-symbols-light:schedule'" />
+            <lux-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -171,21 +171,21 @@
         <div class="text-3xl font-extrabold text-orange-600">
           {{ metricas()!.propiedadesConDeuda }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesConDeuda / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="warning"
         />
         <p class="text-xs text-body-secondary mt-2">con cargos pendientes</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated card--danger p-5 h-full">
+      <lux-card class="card card--elevated card--danger p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square text-red-500">
-            <app-icon [icon]="'material-symbols-light:block'" />
+            <lux-icon [icon]="'material-symbols-light:block'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -197,21 +197,21 @@
         <div class="text-3xl font-extrabold text-red-600">
           {{ metricas()!.propiedadesMorosas }}
         </div>
-        <lx-progress-bar
+        <lux-progress-bar
           class="d-block mt-3"
           [value]="metricas()!.totalPropiedades > 0 ? (metricas()!.propiedadesMorosas / metricas()!.totalPropiedades * 100) : 0"
           [showValue]="false"
           color="danger"
         />
         <p class="text-xs text-body-secondary mt-2">deuda vencida grave</p>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <div class="d-flex align-items-center mb-3">
           <div class="avatar avatar--md avatar--square">
-            <app-icon [icon]="'material-symbols-light:home'" />
+            <lux-icon [icon]="'material-symbols-light:home'" />
           </div>
           <span
             class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
@@ -241,15 +241,15 @@
           }
         </div>
         <p class="text-xs text-body-secondary mt-2">en el condominio</p>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-12 col-lg-6">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:monitoring'"
             class="text-primary me-2"
           />
@@ -295,13 +295,13 @@
             Cobrado
           </span>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
 
     <div class="col-12 col-lg-6">
-      <lx-card class="card card--elevated p-5 h-full">
+      <lux-card class="card card--elevated p-5 h-full">
         <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:arrow-downward'"
             class="text-red-400 me-2"
           />
@@ -340,7 +340,7 @@
           }
         </div>
         }
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 

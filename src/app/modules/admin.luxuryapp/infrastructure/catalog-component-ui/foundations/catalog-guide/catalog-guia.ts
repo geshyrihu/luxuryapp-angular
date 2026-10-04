@@ -19,7 +19,7 @@ import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";

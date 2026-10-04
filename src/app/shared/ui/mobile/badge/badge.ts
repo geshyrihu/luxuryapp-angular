@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonBadge } from "@ionic/angular";
-import { BadgeBase } from "@ui/base/badge.base";
+import { BadgeBase } from "@ui/core/badge.base";
 
 /**
  * MobileBadge — Badge sobre `ion-badge` con color semántico y tamaño.

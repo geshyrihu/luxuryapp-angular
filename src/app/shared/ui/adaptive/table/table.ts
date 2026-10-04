@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { TableBase } from "@ui/base/table.base";
+import { TableBase } from "@ui/core/table.base";
 import { MobileTable } from "@ui/mobile/table/table";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-table",
+  selector: "lux-table",
 
   imports: [MobileTable],
   template: `

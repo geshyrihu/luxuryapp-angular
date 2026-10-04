@@ -6,7 +6,7 @@ import {
 } from "@angular/forms";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
   selector: "custom-input-select-button-signal",

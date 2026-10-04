@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonInput } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../core/base-ionic-input";
 
 /**
  * 🔐 ION INPUT PASSWORD - Mobile (Ionic)

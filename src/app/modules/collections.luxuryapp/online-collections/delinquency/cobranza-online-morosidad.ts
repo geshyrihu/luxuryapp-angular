@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
-import { AppRankedList, RankedListItem } from "@ui/shared/ranked-list/ranked-list";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppRankedList, RankedListItem } from "@ui/primitives/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import {
   DialogHandlerService,

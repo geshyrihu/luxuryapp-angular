@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { FieldsetBase } from "@ui/base/fieldset.base";
+import { FieldsetBase } from "@ui/core/fieldset.base";
 import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
 import { AppFieldset } from "@ui/web/fieldset/fieldset";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-fieldset",
+  selector: "lux-fieldset",
 
   imports: [NgTemplateOutlet, AppFieldset, IliFieldset],
   template: `

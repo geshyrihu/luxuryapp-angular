@@ -20,7 +20,7 @@ interface LogEntry {
  * En el template:
  * ```html
  * @if (debugConsole.showConsole()) {
- *   <lx-debug-console [logs]="debugConsole.logs()" />
+ *   <lux-debug-console [logs]="debugConsole.logs()" />
  * }
  * ```
  */

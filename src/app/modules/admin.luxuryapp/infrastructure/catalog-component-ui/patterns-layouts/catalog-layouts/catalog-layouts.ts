@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-catalog-layouts",
@@ -393,7 +393,7 @@ import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
                 <div
                   class="d-flex align-items-start gap-3 p-3 surface-ground border-round h-full"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="r.icon"
                     [style.color]="r.color"
                     class="text-2xl flex-shrink-0 mt-1"

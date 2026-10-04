@@ -1,5 +1,5 @@
 <div class="matrix-page">
-  <lx-card
+  <lux-card
     header="Matriz de Entrevistadores"
     subheader="Relaciona cada puesto evaluado con los roles entrevistadores que pueden atenderlo por cliente."
   >
@@ -19,7 +19,7 @@
         <div class="matrix-toolbar__summary">
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:rule-settings-outline" />
+              <lux-icon icon="material-symbols-light:rule-settings-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Reglas activas</span>
@@ -29,7 +29,7 @@
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:work-outline" />
+              <lux-icon icon="material-symbols-light:work-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Puestos evaluados</span>
@@ -39,7 +39,7 @@
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:group-outline" />
+              <lux-icon icon="material-symbols-light:group-outline" />
             </span>
             <div class="matrix-summary-card__content">
               <span class="matrix-summary-card__label">Entrevistadores</span>
@@ -68,7 +68,7 @@
     </div>
 
     @if (loading()) {
-      <lx-skeleton />
+      <lux-skeleton />
     } @else if (interviewerRoles().length === 0 || workPositionRoles().length === 0) {
       <div class="matrix-state">
         <h3>Sin catalogo de roles</h3>
@@ -140,12 +140,12 @@
                       @if (isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))) {
                         <span class="matrix-cell__spinner"></span>
                       } @else if (getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active') {
-                        <app-icon
+                        <lux-icon
                           icon="material-symbols-light:check-small"
                           class="matrix-cell__check"
                         />
                       } @else {
-                        <app-icon
+                        <lux-icon
                           icon="material-symbols-light:add"
                           class="matrix-cell__plus"
                         />
@@ -159,5 +159,5 @@
         </table>
       </div>
     }
-  </lx-card>
+  </lux-card>
 </div>

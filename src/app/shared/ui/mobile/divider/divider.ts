@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { DividerBase } from "@ui/base/divider.base";
+import { DividerBase } from "@ui/core/divider.base";
 
 @Component({
   imports: [NgTemplateOutlet],

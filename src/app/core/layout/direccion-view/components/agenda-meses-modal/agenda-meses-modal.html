@@ -24,7 +24,7 @@
 <!-- Cargando -->
 @if (cargando()) {
 <div class="d-flex justify-content-center align-items-center py-5">
-  <app-icon
+  <lux-icon
     icon="material-symbols-light:progress-activity"
     style="font-size: 1.5rem"
     class="ner text-primary ds-animate-spin"
@@ -35,7 +35,7 @@
 <div
   class="d-flex flex-column align-items-center justify-content-center py-5 gap-3"
 >
-  <app-icon
+  <lux-icon
     icon="material-symbols-light:event"
     style="font-size: 3rem"
     class="text-body-secondary"
@@ -89,7 +89,7 @@
               [severity]="getModalityClass(evento.modalityName)"
             />
             @if (evento.isRecurring) {
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:refresh"
               lxTooltip="Recurrente"
               class="text-xs text-body-secondary"
@@ -102,11 +102,11 @@
             target="_blank"
             class="text-xs text-primary no-underline d-flex align-items-center gap-1"
           >
-            <app-icon icon="material-symbols-light:videocam" /> Unirse a Meet
+            <lux-icon icon="material-symbols-light:videocam" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
           <span class="text-xs text-body-secondary d-flex align-items-center gap-1">
-            <app-icon icon="material-symbols-light:location-on-outline" /> {{ evento.location }}
+            <lux-icon icon="material-symbols-light:location-on-outline" /> {{ evento.location }}
           </span>
           }
         </div>
@@ -117,7 +117,7 @@
           class="d-flex align-items-center gap-1 flex-none text-body-secondary"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
-          <app-icon icon="material-symbols-light:group-outline" class="text-xs" />
+          <lux-icon icon="material-symbols-light:group-outline" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>
         </div>
         }

@@ -1,11 +1,11 @@
 import { Component, ContentChild, inject, TemplateRef } from "@angular/core";
-import { ToolbarBase } from "@ui/base/toolbar.base";
+import { ToolbarBase } from "@ui/core/toolbar.base";
 import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-toolbar",
+  selector: "lux-toolbar",
 
   imports: [AppToolbar, MobileToolbar],
   template: `

@@ -15,7 +15,7 @@
       size="large"
       styleClass="rounded-lg shadow-sm"
     />
-    <app-icon icon="material-symbols-light:keyboard-arrow-down" class="text-white opacity-60" />
+    <lux-icon icon="material-symbols-light:keyboard-arrow-down" class="text-white opacity-60" />
   </div>
 
   <div class="profile-popup-menu">
@@ -23,7 +23,7 @@
       class="profile-popup-item"
       (click)="navigateToProfile(); profilePopover.hide()"
     >
-      <app-icon icon="material-symbols-light:key" />
+      <lux-icon icon="material-symbols-light:key" />
       <span>Cambiar contraseña</span>
     </button>
 
@@ -31,7 +31,7 @@
       class="profile-popup-item"
       (click)="navigateToPasswordManager(); profilePopover.hide()"
     >
-      <app-icon icon="material-symbols-light:lock" />
+      <lux-icon icon="material-symbols-light:lock" />
       <span>Credenciales de servicios</span>
     </button>
 
@@ -40,7 +40,7 @@
       class="profile-popup-item"
       (click)="onUpdateClick(); profilePopover.hide()"
     >
-      <app-icon icon="material-symbols-light:sync" />
+      <lux-icon icon="material-symbols-light:sync" />
       <span>Actualizar Aplicación</span>
     </button>
     }
@@ -51,7 +51,7 @@
       class="profile-popup-item profile-popup-item--danger"
       (click)="logOut()"
     >
-      <app-icon icon="material-symbols-light:logout" />
+      <lux-icon icon="material-symbols-light:logout" />
       <span>Cerrar sesión</span>
     </button>
 

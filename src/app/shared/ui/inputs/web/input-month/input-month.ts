@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { CustomInputMonth } from "../custom-input-month-signal";
 
 @Component({

@@ -35,7 +35,7 @@ import { AccountingCatalogExcelService } from "@core/services/accounting-catalog
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";
 import { InventarioEstacionManualPdfService } from "./inventario-estacion-manual-pdf.service";

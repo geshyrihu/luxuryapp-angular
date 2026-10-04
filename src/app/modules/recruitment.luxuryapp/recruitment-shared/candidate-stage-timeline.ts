@@ -11,7 +11,7 @@ import { CANDIDATE_PROCESS_STAGE_LABELS } from "./candidate-stage-labels";
 
 @Component({
   selector: "app-candidate-stage-timeline",
-  template: `<lx-timeline [events]="events()" align="left" layout="vertical" />`,
+  template: `<lux-timeline [events]="events()" align="left" layout="vertical" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LxTimeline],
 })

@@ -1,5 +1,5 @@
 <div class="card p-0 p-md-4">
-  <lx-card class="card card--elevated mb-3">
+  <lux-card class="card card--elevated mb-3">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
       <div>
         <div class="fw-semibold text-sm">Evaluación Automática de Morosidad</div>
@@ -16,7 +16,7 @@
         (clicked)="onEvaluateAndEscalate()"
       />
     </div>
-  </lx-card>
+  </lux-card>
 
   <app-table
     [value]="dataSignal()"
@@ -56,14 +56,14 @@
           {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }}
         </td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="agingMeta(item.agingBucket).label"
             [severity]="agingMeta(item.agingBucket).severity"
           />
         </td>
         <td class="text-sm">{{ item.assignedTo || "Sin asignar" }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="statusMeta(item.status).label"
             [severity]="statusMeta(item.status).severity"
           />
@@ -96,7 +96,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-red-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:error-outline"
             class="text-red-600 text-xl"
           />

@@ -3,7 +3,7 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
 } from "@ionic/angular";
-import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
+import { InfiniteScrollBase } from "@ui/core/infinite-scroll.base";
 
 @Component({
   selector: "ili-infinite-scroll",

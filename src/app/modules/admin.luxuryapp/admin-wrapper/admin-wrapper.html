@@ -6,7 +6,7 @@
       <div
         class="d-flex align-items-center justify-content-center rounded-xl shadow-sm"
       >
-        <app-icon icon="material-symbols-light:settings-outline" />
+        <lux-icon icon="material-symbols-light:settings-outline" />
       </div>
       <div>
         <h1 class="ds-heading text-3xl fw-bold text-body m-0">
@@ -23,7 +23,7 @@
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
   <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-    <app-icon [icon]="group.icon" />
+    <lux-icon [icon]="group.icon" />
     <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
       {{ group.label }}
     </h2>
@@ -33,7 +33,7 @@
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-      <lx-card
+      <lux-card
         class="card card--interactive card--elevated h-full"
         (click)="navigateTo(module.route)"
       >
@@ -43,9 +43,9 @@
               class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
               [style.backgroundColor]="module.bgColor"
             >
-              <app-icon [icon]="module.icon" [style.color]="module.color" />
+              <lux-icon [icon]="module.icon" [style.color]="module.color" />
             </div>
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:north-east"
               class="text-body-secondary"
             />
@@ -59,7 +59,7 @@
             </p>
           </div>
         </div>
-      </lx-card>
+      </lux-card>
     </div>
     }
   </div>
@@ -75,7 +75,7 @@
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
     >
-      <app-icon icon="material-symbols-light:settings-outline" />
+      <lux-icon icon="material-symbols-light:settings-outline" />
     </div>
     <div>
       <h2 class="fw-bold m-0 text-body">Administración</h2>
@@ -89,14 +89,14 @@
     <!-- Divisor de grupo -->
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
-        <app-icon [icon]="group.icon" />
+        <lux-icon [icon]="group.icon" />
         <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
 
     @for (module of group.cards; track module.route) {
     <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
-       <app-icon slot="start" [icon]="module.icon" [style.color]="module.color" />
+       <lux-icon slot="start" [icon]="module.icon" [style.color]="module.color" />
        <ion-label>
          <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
          <p class="text-xs m-0 mt-1 text-body-secondary">

@@ -28,7 +28,7 @@ import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { PasswordForm } from "./password-form";
 

@@ -7,7 +7,7 @@ import {
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 
 @Component({
   selector: "web-input-multiselect",

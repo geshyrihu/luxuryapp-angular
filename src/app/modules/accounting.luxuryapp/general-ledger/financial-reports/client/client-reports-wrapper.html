@@ -26,7 +26,7 @@
     </header>
 
     <div class="bg-body rounded-xl border-1 border shadow-sm">
-      <lx-tabs [tabs]="reportTabs()" [activeId]="tabIndex().toString()" (tabChange)="onTabChange($event)">
+      <lux-tabs [tabs]="reportTabs()" [activeId]="tabIndex().toString()" (tabChange)="onTabChange($event)">
         <div tab="0" class="p-4 pt-5">
             <app-epf-cliente
               [customerId]="customerId()"
@@ -111,7 +111,7 @@
               [mes]="mes()"
             />
           </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
   </div>
 </section>

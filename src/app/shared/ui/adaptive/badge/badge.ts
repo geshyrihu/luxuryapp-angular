@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { BadgeBase } from "@ui/base/badge.base";
+import { BadgeBase } from "@ui/core/badge.base";
 import { MobileBadge } from "@ui/mobile/badge/badge";
 import { AppBadge } from "@ui/web/badge/badge";
 import { PlatformService } from "@core/services/platform.service";
@@ -7,10 +7,10 @@ import { PlatformService } from "@core/services/platform.service";
 /**
  * Wrapper multiplataforma de Badge. Renderiza `app-badge` (Bootstrap) o
  * `ili-badge` (Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-badge [value]="..." />`.
+ * Punto de entrada recomendado: `<lux-badge [value]="..." />`.
  */
 @Component({
-  selector: "lx-badge",
+  selector: "lux-badge",
 
   imports: [AppBadge, MobileBadge],
   template: `

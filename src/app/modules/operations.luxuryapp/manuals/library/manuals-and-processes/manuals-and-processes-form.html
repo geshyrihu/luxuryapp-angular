@@ -9,7 +9,7 @@
         class="bg-body-tertiary rounded-xl p-4 mb-4 border-1 border"
       >
         <div class="d-flex align-items-center gap-3 mb-2">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:info'"
             class="text-2xl text-primary"
           />
@@ -206,7 +206,7 @@
           <label class="fw-bold mb-2 d-block text-sm text-body"
             >Visibilidad: Customers</label
           >
-          <lx-listbox
+          <lux-listbox
             [options]="customers()"
             formControlName="customerIds"
             [multiple]="true"
@@ -224,7 +224,7 @@
           <label class="fw-bold mb-2 d-block text-sm text-body"
             >Visibilidad: Roles</label
           >
-          <lx-listbox
+          <lux-listbox
             [options]="roles()"
             formControlName="roleIds"
             [multiple]="true"

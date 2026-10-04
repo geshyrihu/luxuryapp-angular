@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { LoaderBase } from "../../base/loader.base";
+import { LoaderBase } from "../../core/loader.base";
 
 @Component({
   selector: "app-loader",

@@ -57,7 +57,7 @@
       class="bg-body rounded shadow-sm d-flex flex-column"
       
     >
-      <lx-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="d-flex flex-column h-full">
+      <lux-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="d-flex flex-column h-full">
         <div class="flex-fill overflow-auto">
           @switch (activeTabReq()) {
           <!-- PARAMS -->
@@ -164,7 +164,7 @@
             }
           }
         </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
 
     <!-- Panel derecho: Response -->
@@ -193,14 +193,14 @@
           customClass="ml-auto"
         />
         } @if (loading()) {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:progress-activity'"
           class="ds-animate-spin text-primary ms-auto"
         />
         }
       </div>
 
-      <lx-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="d-flex flex-column flex-fill min-h-0">
+      <lux-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="d-flex flex-column flex-fill min-h-0">
         <div class="flex-fill overflow-auto">
           @switch (activeTabRes()) {
           <!-- Body response -->
@@ -243,7 +243,7 @@
             }
           }
         </div>
-      </lx-tabs>
+      </lux-tabs>
     </div>
   </div>
 

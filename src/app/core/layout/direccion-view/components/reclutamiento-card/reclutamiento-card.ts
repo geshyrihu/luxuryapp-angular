@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { VacantesResumenDto } from "./reclutamiento-card.model";
 
 @Component({

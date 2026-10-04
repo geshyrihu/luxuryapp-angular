@@ -1,4 +1,4 @@
-<lx-card class="card">
+<lux-card class="card">
   <div class="p-3 mb-4 bg-body-tertiary rounded border-1 border">
     <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
       <div>
@@ -10,7 +10,7 @@
         </div>
         @if (lastResult() !== null) {
         <div class="mt-2">
-          <lx-tag
+          <lux-tag
             [value]="'Ultima ejecucion: ' + lastResult() + ' pagos conciliados'"
             severity="success"
             icon="material-symbols-light:check-circle"
@@ -67,7 +67,7 @@
           {{ pay.reference || 'Sin referencia' }}
         </td>
         <td class="text-center">
-          <lx-tag [value]="pay.status" severity="warning" />
+          <lux-tag [value]="pay.status" severity="warning" />
         </td>
       </tr>
     </ng-template>
@@ -92,7 +92,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
         >
-          <app-icon icon="material-symbols-light:call-merge" class="text-orange-600 text-xl" />
+          <lux-icon icon="material-symbols-light:call-merge" class="text-orange-600 text-xl" />
         </div>
         <div class="flex-fill min-w-0">
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
@@ -104,4 +104,4 @@
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
-</lx-card>
+</lux-card>

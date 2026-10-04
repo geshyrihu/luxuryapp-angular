@@ -30,7 +30,7 @@
       <tr pRowGroupHeader>
         <td colspan="3" class="staff-group-header-cell">
           <span class="group-header-label">
-            <app-icon icon="material-symbols-light:work" />
+            <lux-icon icon="material-symbols-light:work" />
             {{ item.department }}
           </span>
         </td>
@@ -42,13 +42,13 @@
         <td>
           <div class="d-flex align-items-center gap-2">
             @if (item.photoUrl) {
-            <lx-avatar
+            <lux-avatar
               [image]="item.photoUrl"
               shape="circle"
               size="large"
             />
             } @else {
-            <lx-avatar
+            <lux-avatar
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
@@ -65,14 +65,14 @@
 
         <td class="text-center">
           @if (item.hasActiveContract) {
-          <lx-tag
+          <lux-tag
             severity="success"
             value="Contrato Activo"
             icon="material-symbols-light:check-circle"
             rounded
           />
           } @else {
-          <lx-tag
+          <lux-tag
             severity="secondary"
             value="Sin Contrato Activo"
             icon="material-symbols-light:help-outline"

@@ -1,11 +1,11 @@
 import { Component, contentChild, inject, TemplateRef } from "@angular/core";
-import { CarouselBase } from "@ui/base/carousel.base";
+import { CarouselBase } from "@ui/core/carousel.base";
 import { MobileCarousel } from "@ui/mobile/carousel/carousel";
 import { Carousel } from "@ui/web/carousel/carousel";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-carousel",
+  selector: "lux-carousel",
 
   imports: [Carousel, MobileCarousel],
   template: `

@@ -1,6 +1,6 @@
 @if (loading()) {
   <div class="d-flex justify-center items-center p-5">
-    <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle'" />
+    <lux-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle'" />
   </div>
 } @else if (request.requestType === "Permiso" && leaveDetail()) {
   <div class="p-3">
@@ -20,7 +20,7 @@
         </p>
         <p>
           <strong>Tipo de día:</strong>
-          <lx-tag
+          <lux-tag
             [value]="leaveDetail().isPartial ? 'Parcial' : 'Día completo'"
             [severity]="leaveDetail().isPartial ? 'warn' : 'info'"
           />
@@ -35,7 +35,7 @@
       <div class="col-12 col-md-6">
         <p>
           <strong>Estado:</strong>
-          <lx-tag
+          <lux-tag
             [value]="leaveDetail().status"
             [severity]="getStatusSeverity(leaveDetail().status)"
           />
@@ -107,7 +107,7 @@
       <div class="col-12 col-md-6">
         <p>
           <strong>Estado:</strong>
-          <lx-tag
+          <lux-tag
             [value]="vacationDetail().status"
             [severity]="getStatusSeverity(vacationDetail().status)"
           />

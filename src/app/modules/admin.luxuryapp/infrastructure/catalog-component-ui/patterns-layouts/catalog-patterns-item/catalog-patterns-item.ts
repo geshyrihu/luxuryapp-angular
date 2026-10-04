@@ -13,8 +13,8 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "@ui/web/table/table";
 import { Tabs } from "@ui/web/tabs/tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 import { AppCard } from "@ui/web/card/card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -127,7 +127,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">$125,000</h3>
                     </div>
                     <div class="bg-success-light text-success p-2 rounded">
-                      <app-icon icon="material-symbols-light:trending-up" class="text-xl" />
+                      <lux-icon icon="material-symbols-light:trending-up" class="text-xl" />
                     </div>
                   </div>
                   <p class="text-xs text-secondary mt-3 m-0">+14% respecto al mes anterior</p>
@@ -141,7 +141,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">42</h3>
                     </div>
                     <div class="bg-primary-light text-primary p-2 rounded">
-                      <app-icon icon="material-symbols-light:shopping-cart" class="text-xl" />
+                      <lux-icon icon="material-symbols-light:shopping-cart" class="text-xl" />
                     </div>
                   </div>
                   <p class="text-xs text-secondary mt-3 m-0">5 requieren atención</p>
@@ -186,7 +186,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     <div class="d-flex gap-3 mb-3">
                       <div class="d-flex flex-column align-items-center">
                         <div class="rounded-full bg-primary text-white p-1 d-flex">
-                          <app-icon icon="material-symbols-light:check" class="text-sm" />
+                          <lux-icon icon="material-symbols-light:check" class="text-sm" />
                         </div>
                         <div class="flex-grow-1 border-start border-2 border-primary mt-1 mb-1" style="min-height: 20px;"></div>
                       </div>
@@ -198,7 +198,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     <div class="d-flex gap-3">
                       <div class="d-flex flex-column align-items-center">
                         <div class="rounded-full bg-surface border border-2 border-secondary text-secondary p-1 d-flex">
-                          <app-icon icon="material-symbols-light:pending" class="text-sm" />
+                          <lux-icon icon="material-symbols-light:pending" class="text-sm" />
                         </div>
                       </div>
                       <div>
@@ -223,7 +223,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               >
                 <h3 class="m-0">Medidor Elóctrico A1</h3>
                 <div class="d-flex align-items-center gap-2 mb-3 mt-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:flash-on"
                     class="text-xl text-primary"
                   />
@@ -357,13 +357,13 @@ const PATTERNS_LABELS: Record<string, string> = {
                           style="width:44px;height:44px;"
                           [style.backgroundColor]="card.bgColor"
                         >
-                          <app-icon
+                          <lux-icon
                             [icon]="card.icon"
                             style="font-size:1.35rem;"
                             [style.color]="card.color"
                           />
                         </div>
-                        <app-icon
+                        <lux-icon
                           icon="material-symbols-light:north-east"
                           class="text-400 text-lg"
                         />
@@ -464,7 +464,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                   <div
                     class="surface-ground border-round px-3 py-1 text-xs d-flex align-items-center gap-2"
                   >
-                    <app-icon [icon]="impl.icon" class="text-primary" />
+                    <lux-icon [icon]="impl.icon" class="text-primary" />
                     <span class="font-medium">{{ impl.label }}</span>
                     <code class="text-color-secondary">{{ impl.route }}</code>
                   </div>

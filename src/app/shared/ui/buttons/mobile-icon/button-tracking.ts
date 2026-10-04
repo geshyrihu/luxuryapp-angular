@@ -1,4 +1,4 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 import { IonBadge, IonButton } from "@ionic/angular";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 import { TrackingEvent } from "../shared/tracking";
 
@@ -24,7 +24,7 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="icon-only" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="icon-only" />
       @if (badgeCount() && badgeCount()! > 0) {
         <ion-badge color="danger" slot="end">
           {{ badgeCount()! > 99 ? "99+" : badgeCount() }}

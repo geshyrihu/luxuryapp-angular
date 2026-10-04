@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { StatusBadgeBase } from "@ui/base/status-badge.base";
+import { StatusBadgeBase } from "@ui/core/status-badge.base";
 import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { PlatformService } from "@core/services/platform.service";
@@ -7,10 +7,10 @@ import { PlatformService } from "@core/services/platform.service";
 /**
  * Wrapper multiplataforma de StatusBadge. Renderiza `app-status-badge` (web,
  * con tooltip) o `ili-status-badge` (Ionic, sin tooltip) según la plataforma.
- * Punto de entrada recomendado: `<lx-status-badge [status]="..." />`.
+ * Punto de entrada recomendado: `<lux-status-badge [status]="..." />`.
  */
 @Component({
-  selector: "lx-status-badge",
+  selector: "lux-status-badge",
 
   imports: [StatusBadge, MobileStatusBadge],
   template: `

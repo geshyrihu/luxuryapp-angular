@@ -89,7 +89,7 @@
             class="p-link text-primary ms-2"
             lxTooltip="Corregir Cliente"
           >
-            <app-icon icon="material-symbols-light:edit-square" />
+            <lux-icon icon="material-symbols-light:edit-square" />
           </button>
         </div>
       </td>
@@ -99,11 +99,11 @@
         <small>{{ item.description }}</small>
       </td>
       <td>
-        <app-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
+        <lux-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
         item.assignee }}
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           (click)="onModalUpdateStatus({ id: item.id })"
           class="p-2 cursor-pointer"
           lxTooltip="Actualizar estatus"
@@ -161,7 +161,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:confirmation-number"
           class="text-xl text-primary"
         />

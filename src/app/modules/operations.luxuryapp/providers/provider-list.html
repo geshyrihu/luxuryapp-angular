@@ -3,7 +3,7 @@
 <div
   class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4 g-4"
 >
-  <app-segmented-control
+  <lux-segmented-control
     [items]="serviceTypes"
     [value]="selectedServiceTypeControl.value"
     (changed)="onServiceTypeChange($event)"
@@ -34,11 +34,11 @@
 <div class="row g-4">
   @for (item of dataSignal(); track item.providerId) {
   <div class="col-12 col-sm-6 col-lg-4 p-2">
-    <lx-card class="h-full d-flex flex-column">
+    <lux-card class="h-full d-flex flex-column">
       <!-- Encabezado: logo + nombre + ficha -->
       <div class="d-flex align-items-start justify-content-between gap-2">
         <div class="d-flex align-items-center gap-3 min-w-0">
-          <lx-avatar
+          <lux-avatar
             [image]="item.pathPhoto"
             icon="material-symbols-light:store-outline"
             shape="square"
@@ -55,7 +55,7 @@
             <div class="text-body-secondary text-xs mt-1">RFC: {{ item.rfc }}</div>
           </div>
         </div>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:badge'"
           class="cursor-pointer text-primary text-xl"
           lxTooltip="Ver Ficha Técnica"
@@ -65,18 +65,18 @@
 
       <!-- Insignias de estado -->
       <div class="d-flex flex-wrap gap-1 mt-2">
-        <lx-tag
+        <lux-tag
           [value]="item.autorizado ? 'Autorizado' : 'No autorizado'"
           [severity]="item.autorizado ? 'success' : 'danger'"
         />
-        <lx-tag
+        <lux-tag
           [value]="item.activo ? 'Activo' : 'Inactivo'"
           [severity]="item.activo ? 'success' : 'warning'"
         />
         @if (item.sales) {
-        <lx-tag value="Ventas" severity="secondary" />
+        <lux-tag value="Ventas" severity="secondary" />
         } @if (item.repair) {
-        <lx-tag value="Reparación" severity="secondary" />
+        <lux-tag value="Reparación" severity="secondary" />
         }
       </div>
 
@@ -90,30 +90,30 @@
       <div class="d-flex flex-column gap-1 bg-body-tertiary p-2 rounded mt-2">
         <div class="d-flex align-items-center justify-content-between">
           <span class="text-xs text-body-secondary">Servicio</span>
-          <lx-rating
+          <lux-rating
             [value]="calificacionPromedio(item.calificacionProveedor, 'servicio')"
             [readonly]="true"
             [stars]="5"
             [allowCancel]="false"
-          ></lx-rating>
+          ></lux-rating>
         </div>
         <div class="d-flex align-items-center justify-content-between">
           <span class="text-xs text-body-secondary">Precio</span>
-          <lx-rating
+          <lux-rating
             [value]="calificacionPromedio(item.calificacionProveedor, 'precio')"
             [readonly]="true"
             [stars]="5"
             [allowCancel]="false"
-          ></lx-rating>
+          ></lux-rating>
         </div>
         <div class="d-flex align-items-center justify-content-between">
           <span class="text-xs text-body-secondary">Entrega</span>
-          <lx-rating
+          <lux-rating
             [value]="calificacionPromedio(item.calificacionProveedor, 'entrega')"
             [readonly]="true"
             [stars]="5"
             [allowCancel]="false"
-          ></lx-rating>
+          ></lux-rating>
         </div>
       </div>
       }
@@ -121,12 +121,12 @@
       <!-- Contacto -->
       <div class="d-flex flex-column gap-1 text-sm mt-2">
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneOne }}</span>
         </div>
         @if (item.phoneTwo) {
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneTwo }}</span>
         </div>
         }
@@ -136,7 +136,7 @@
       @if (item.categorias?.length) {
       <div class="d-flex flex-wrap gap-1 mt-2">
         @for (categoria of item.categorias; track $index) {
-        <lx-tag
+        <lux-tag
           [value]="categoria.nombreCategoria | uppercase"
           severity="info"
         />
@@ -213,7 +213,7 @@
         />
         }
       </div>
-    </lx-card>
+    </lux-card>
   </div>
   }
 </div>
@@ -243,7 +243,7 @@
         start
         class="w-3rem h-3rem rounded-lg bg-green-50 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:store-outline"
           class="text-green-600 text-xl"
         />

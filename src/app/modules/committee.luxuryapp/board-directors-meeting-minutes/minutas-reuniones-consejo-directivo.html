@@ -3,7 +3,7 @@
 
   @if (dataSignal().length === 0) {
   <div class="committee-doc-empty">
-    <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
+    <lux-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
     <p class="committee-doc-empty__text">No hay documentos disponibles</p>
   </div>
   } @else { @for (item of dataSignal(); track item.id) {
@@ -12,7 +12,7 @@
     class="committee-doc-item"
   >
     <span class="committee-doc-item__icon">
-      <app-icon
+      <lux-icon
         [icon]="getIconForFile(item.fileExtension).icon"
         [class]="getIconForFile(item.fileExtension).color"
       />
@@ -23,7 +23,7 @@
         >Archivo .{{ item.fileExtension }}</span
       >
     </span>
-    <app-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
+    <lux-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
   </a>
   } }
 </section>

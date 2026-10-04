@@ -24,7 +24,7 @@
             <td>{{ item.nameMachinery }}</td>
             <td>{{ item.executionDate | apiDate:'dd/MM/yyyy' }}</td>
             <td>
-              <lx-tag
+              <lux-tag
                 [value]="item.status"
                 [severity]="getBadgeSeverity(item.status)"
                />

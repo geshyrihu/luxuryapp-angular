@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { TapToTopBase } from "@ui/base/tap-to-top.base";
+import { TapToTopBase } from "@ui/core/tap-to-top.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

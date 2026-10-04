@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AppIcon } from "../../../shared/app-icon/app-icon";
+import { AppIcon } from "../../../primitives/app-icon/app-icon";
 
 @Component({
   selector: "web-input-search",
@@ -14,7 +14,7 @@ import { AppIcon } from "../../../shared/app-icon/app-icon";
   template: `
     <div class="input-group input-group--prefix">
       <span class="input-prefix">
-        <app-icon icon="material-symbols-light:search" />
+        <lux-icon icon="material-symbols-light:search" />
       </span>
 
       <input

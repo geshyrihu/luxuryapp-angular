@@ -4,7 +4,7 @@ import {
   effect,
   signal,
 } from "@angular/core";
-import { PanelBase } from "@ui/base/panel.base";
+import { PanelBase } from "@ui/core/panel.base";
 
 @Component({
   selector: "app-panel",

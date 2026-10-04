@@ -39,9 +39,9 @@
                   [class.bg-primary-50]="selectedModule() === null"
                   (click)="onModuleFilterChange(null)"
                 >
-                  <app-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
+                  <lux-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
                   <span class="fw-bold text-sm">Todos</span>
-                  <lx-tag
+                  <lux-tag
                     [value]="allData.length"
                     severity="secondary"
                     class="text-xs py-0"
@@ -69,7 +69,7 @@
               <div class="flex-flex-grow-1-1"></div>
 
               <!-- Action Icons Group -->
-              <app-action-icons-group>
+              <lux-action-icons-group>
                 <iw-button
                   iconClass="material-symbols-light:photo-camera"
                   severity="secondary"
@@ -94,7 +94,7 @@
                   (clicked)="sendExecutiveReport()"
                 />
                 }
-              </app-action-icons-group>
+              </lux-action-icons-group>
 
               <!-- Search -->
               <app-table-caption [showAdd]="false" [dt]="dt" />
@@ -102,7 +102,7 @@
 
             <!-- Contextual Legend (Small) -->
             <div class="d-flex align-items-center text-xs text-body-secondary px-1">
-              <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
+              <lux-icon [icon]="'material-symbols-light:info'" class="text-primary" />
               <div class="d-flex align-items-center gap-1">
                 <span
                   class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 rounded"
@@ -159,7 +159,7 @@
         >
           <!-- Module -->
           <td class="ps-3 vertical-align-middle">
-            <lx-tag
+            <lux-tag
               [value]="item.module"
               [severity]="getModuleSeverity(item.module)"
               class="text-xs text-uppercase fw-bold px-2 py-1"
@@ -173,7 +173,7 @@
                 >{{ item.date | apiDate: 'dd MMM' }}</span
               >
               <span class="text-body-secondary text-xs d-flex align-items-center gap-1"
-                ><app-icon [icon]="'material-symbols-light:schedule'" class="text-xs" /> {{
+                ><lux-icon [icon]="'material-symbols-light:schedule'" class="text-xs" /> {{
                 item.date | apiDate: 'HH:mm' }}</span
               >
             </div>
@@ -215,7 +215,7 @@
           <td class="vertical-align-middle">
             @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
             <div class="d-flex align-items-start p-2 bg-body-tertiary rounded">
-              <app-icon [icon]="'material-symbols-light:comment'" class="text-primary mt-1" />
+              <lux-icon [icon]="'material-symbols-light:comment'" class="text-primary mt-1" />
               <span
                 class="text-body-secondary text-xs line-height-2 line-clamp-2"
                 [lxTooltip]="item.lastFollowup"
@@ -230,7 +230,7 @@
 
           <!-- Status -->
           <td class="text-center vertical-align-middle">
-            <lx-tag
+            <lux-tag
               [value]="item.status"
               [severity]="getSeverity(item.status)"
               [rounded]="true"
@@ -266,7 +266,7 @@
               <div
                 class="rounded-circle bg-bg-body-tertiary p-4 d-flex align-items-center justify-content-center"
               >
-                <app-icon [icon]="'material-symbols-light:check'" class="text-4xl text-body-secondary" />
+                <lux-icon [icon]="'material-symbols-light:check'" class="text-4xl text-body-secondary" />
               </div>
               <span class="fw-medium text-xl text-body"
                 >Bien Bandeja Limpia!</span
@@ -297,9 +297,9 @@
           [class.bg-primary-50]="selectedModule() === null"
           (click)="onModuleFilterChange(null)"
         >
-          <app-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
+          <lux-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
           <span class="fw-bold text-sm">Todos</span>
-          <lx-tag
+          <lux-tag
             [value]="allData.length"
             severity="secondary"
             class="text-xs py-0"

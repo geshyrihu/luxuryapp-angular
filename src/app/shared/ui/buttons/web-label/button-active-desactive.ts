@@ -1,4 +1,4 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="toggleState()"
     >
-      <app-icon
+      <lux-icon
         [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
       />
       <span>{{ state() ? inactivasLabel() : activasLabel() }}</span>

@@ -9,7 +9,7 @@
         {{ data().cliente.nameCustomer }}
       </h2>
       <p class="text-sm text-body-secondary m-0 d-flex align-items-center mt-1">
-        <app-icon icon="material-symbols-light:location-on-outline" class="me-1" />
+        <lux-icon icon="material-symbols-light:location-on-outline" class="me-1" />
         <a
           [href]="data().cliente.googleMpasUbication"
           target="_blank"
@@ -60,7 +60,7 @@
   @for (item of group.empleados; track item.email) {
   <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
     <div class="me-3">
-      <lx-avatar
+      <lux-avatar
         [image]="item.photoEmployee"
         icon="material-symbols-light:person"
         shape="circle"
@@ -72,7 +72,7 @@
       <p>{{ item.applicationRoleName }}</p>
       @if (item.phoneNumber) {
       <p class="text-sm text-body-secondary">
-        <app-icon icon="material-symbols-light:call-outline" class="vertical-align-middle me-1" />
+        <lux-icon icon="material-symbols-light:call-outline" class="vertical-align-middle me-1" />
         <a
           [href]="'tel:' + item.phoneNumber"
           class="text-body-secondary no-underline"
@@ -81,7 +81,7 @@
       </p>
       } @if (item.email) {
       <p class="text-sm text-body-secondary">
-        <app-icon icon="material-symbols-light:mail-outline" class="vertical-align-middle me-1" />
+        <lux-icon icon="material-symbols-light:mail-outline" class="vertical-align-middle me-1" />
         <a
           [href]="'mailto:' + item.email"
           class="text-body-secondary no-underline"

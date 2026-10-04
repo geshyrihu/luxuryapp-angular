@@ -1,4 +1,4 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +7,7 @@ import {
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { ConfirmService } from "../shared/confirm.service";
 
@@ -26,7 +26,7 @@ import { ConfirmService } from "../shared/confirm.service";
       [tooltipDisabled]="!tooltipText()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
       <span>{{ label() || "Eliminar" }}</span>
     </button>
   `,

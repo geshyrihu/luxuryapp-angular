@@ -35,7 +35,7 @@ import { OrdenCompraDatosAuthParcial } from "@purchases.luxuryapp/purchase-order
 import { OrdenCompraDatosCotizacion } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-cotizacion";
 import { OrdenCompraDatosPagoParcial } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-datos-pago-parcial";
 import { OrdenCompraStatusParcial } from "@purchases.luxuryapp/purchase-orders/purchase-order/parcials/orden-compra-status-parcial";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
 import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
 import { OrdenCompraDetalleAddProducto } from "./forms/orden-compra-detalle-add-producto";

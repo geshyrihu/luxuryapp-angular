@@ -1,9 +1,9 @@
 <!-- Aviso cuando no hay partidas agregadas -->
 @if (presupuestoAgregados().length === 0) {
-<lx-message severity="info"><p>
+<lux-message severity="info"><p>
     No hay partidas agregadas. Seleccione una cuenta del católogo de cuentas
     para agregarla al presupuesto.
-  </p></lx-message>
+  </p></lux-message>
 } @if (presupuestoAgregados().length > 0) {
 <app-table #dtt class="card d-none d-md-block" [value]="presupuestoAgregados()">
   <ng-template #caption>
@@ -97,7 +97,7 @@
       <td>
         <div class="d-flex justify-content-center">
           @if (submitting()) {
-          <lx-spinner [size]="32" [strokeWidth]="8" />
+          <lux-spinner [size]="32" [strokeWidth]="8" />
           } @else {
           <iw-button iconClass="material-symbols-light:save" (clicked)="onSubmit(item)" />
           }

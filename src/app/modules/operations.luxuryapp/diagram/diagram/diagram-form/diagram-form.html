@@ -10,7 +10,7 @@
   <div class="row g-4">
     <div class="col-12 col-md-6">
       <label class="fw-bold mb-2 d-block text-sm">Customers Objetivo</label>
-      <lx-listbox
+      <lux-listbox
         [options]="allCustomers()"
         formControlName="targetCustomerIds"
         [multiple]="true"
@@ -21,12 +21,12 @@
         class="w-full"
         [listStyle]="{ 'max-height': '200px' }"
         emptyFilterMessage="No se encontraron clientes"
-      ></lx-listbox>
+      ></lux-listbox>
     </div>
 
     <div class="col-12 col-md-6">
       <label class="fw-bold mb-2 d-block text-sm">Roles Objetivo</label>
-      <lx-listbox
+      <lux-listbox
         [options]="allRoles()"
         formControlName="targetRoleIds"
         [multiple]="true"
@@ -37,7 +37,7 @@
         class="w-full d-block"
         [listStyle]="{ 'max-height': '200px' }"
         emptyFilterMessage="No se encontraron roles"
-      ></lx-listbox>
+      ></lux-listbox>
     </div>
   </div>
 

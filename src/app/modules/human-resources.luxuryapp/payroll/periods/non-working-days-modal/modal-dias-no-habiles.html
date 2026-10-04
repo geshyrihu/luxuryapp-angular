@@ -46,7 +46,7 @@
         <td>{{ dia.fecha | apiDate: "dd/MM/yyyy" }}</td>
         <td>{{ dia.descripcion }}</td>
         <td>
-          <lx-tag
+          <lux-tag
             [severity]="dia.esFestivoOficial ? 'success' : 'secondary'"
             [value]="dia.esFestivoOficial ? 'Si' : 'No'"
           />

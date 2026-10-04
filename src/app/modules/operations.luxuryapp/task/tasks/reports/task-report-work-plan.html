@@ -99,13 +99,13 @@
       </td>
       <td class="text-center">
         @if (item.priority === 'Alta') {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"
         />
         } @if (item.priority === 'Baja') {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"
@@ -141,11 +141,11 @@
             [count]="item.ticketMessageFollowUp"
             (followUpCompleted)="onLoadData()"
           />
-          <lx-split-button
+          <lux-split-button
             icon="material-symbols-light:more-vert"
             lxTooltip="Opciones"
             [model]="getMenuItems(item)"
-          ></lx-split-button> -->
+          ></lux-split-button> -->
         </div>
       </td>
     </tr>

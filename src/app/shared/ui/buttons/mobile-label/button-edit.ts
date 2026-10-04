@@ -1,7 +1,7 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton } from "@ionic/angular";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
@@ -19,7 +19,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" slot="start" />
+      <lux-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" slot="start" />
       {{ label() || "Editar" }}
     </ion-button>
   `,

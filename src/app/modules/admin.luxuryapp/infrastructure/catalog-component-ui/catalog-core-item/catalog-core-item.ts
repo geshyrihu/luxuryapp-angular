@@ -4,7 +4,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
 import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 const LABELS: Record<string, string> = {
   datagrid: "Data Grid",
@@ -37,7 +37,7 @@ const LABELS: Record<string, string> = {
           <div class="card"><div class="card-body"><app-funnel-chart title="Embudo de ventas" [labels]="['Leads', 'Contactados', 'Propuesta', 'Cerrados']" [values]="[1200, 820, 430, 95]" /></div></div>
         }
         @default {
-          <div class="card"><div class="card-body d-flex align-items-center gap-2"><app-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div>
+          <div class="card"><div class="card-body d-flex align-items-center gap-2"><lux-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div>
         }
       }
     </section>

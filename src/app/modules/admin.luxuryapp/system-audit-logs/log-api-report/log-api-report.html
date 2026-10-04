@@ -1,5 +1,5 @@
 <!-- Panel de Filtros -->
-<lx-card>
+<lux-card>
   <!-- VISTA DE ESCRITORIO -->
   <div class="d-none d-md-block mt-3">
     <app-table
@@ -110,10 +110,10 @@
           </td>
           <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="item.level"
               [severity]="getLevelSeverity(item.level)"
-            ></lx-tag>
+            ></lux-tag>
           </td>
           <td>{{ item.userName || 'N/A' }}</td>
           <td class="max-w-400 text-wrap">{{ item.message }}</td>
@@ -123,7 +123,7 @@
           <td></td>
           <td colspan="4" class="bg-body-tertiary p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
+              <lux-icon [icon]="'material-symbols-light:info'" class="text-primary" />
               <strong class="text-sm">Propiedades:</strong>
             </div>
             <pre
@@ -139,7 +139,7 @@
           <td></td>
           <td colspan="4" class="bg-red-50 p-3">
             <div class="d-flex align-items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
+              <lux-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
               <strong class="text-sm text-red-600">Excepción:</strong>
             </div>
             <pre
@@ -165,22 +165,22 @@
     >
       <ng-template #listItemTemplate let-item>
          <ili-list-item>
-           <lx-tag slot="start"
+           <lux-tag slot="start"
              [value]="item.level.charAt(0).toUpperCase()"
              [severity]="getLevelSeverity(item.level)"
-           ></lx-tag>
+           ></lux-tag>
            <ion-label>
           <div class="d-flex justify-content-between align-items-center mb-1">
             <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
             <p class="text-medium text-body-secondary m-0 text-sm">
-              <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
+              <lux-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
               {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
             </p>
           </div>
 
           @if (item.userName) {
           <p class="text-sm text-body-secondary m-0 mb-1">
-            <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-xs" /> {{
+            <lux-icon [icon]="'material-symbols-light:person'" class="me-1 text-xs" /> {{
             item.userName }}
           </p>
           }
@@ -190,7 +190,7 @@
           @if (item.properties) {
           <div class="mb-2">
             <span class="text-xs d-flex align-items-center gap-1 mb-1">
-              <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
+              <lux-icon [icon]="'material-symbols-light:info'" /> Propiedades:
             </span>
             <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre>
@@ -200,7 +200,7 @@
             <span
               class="text-xs text-danger d-flex align-items-center gap-1 mb-1"
             >
-              <app-icon [icon]="'material-symbols-light:warning'" /> Excepción:
+              <lux-icon [icon]="'material-symbols-light:warning'" /> Excepción:
             </span>
             <pre
               class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
@@ -224,4 +224,4 @@
     />
     }
   </div>
-</lx-card>
+</lux-card>

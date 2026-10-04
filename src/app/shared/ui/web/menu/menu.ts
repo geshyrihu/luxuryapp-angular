@@ -13,8 +13,8 @@ import {
 } from "@angular/core";
 import { Overlay, OverlayRef } from "@angular/cdk/overlay";
 import { TemplatePortal } from "@angular/cdk/portal";
-import { MenuBase } from "@ui/base/menu.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { MenuBase } from "@ui/core/menu.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppMenu — panel flotante sobre CDK Overlay. [Fase 3 migración
@@ -51,7 +51,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
                 />
               } @else {
                 @if (item.icon) {
-                  <app-icon [icon]="item.icon" class="me-2" />
+                  <lux-icon [icon]="item.icon" class="me-2" />
                 }
                 {{ item.label }}
               }

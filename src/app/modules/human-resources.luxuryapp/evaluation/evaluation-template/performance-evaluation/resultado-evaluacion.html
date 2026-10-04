@@ -1,7 +1,7 @@
 @if (evaluationResult()) {
 <div class="evaluation-report p-4">
   <!-- SECCIÓN DE ENCABEZADO -->
-  <lx-card class="mb-4">
+  <lux-card class="mb-4">
     <ng-template #header>
       <div class="text-center p-3">
         <h3 class="m-0 mb-2">
@@ -14,7 +14,7 @@
           size="small"
         />
       </div>
-      <lx-divider />
+      <lux-divider />
     </ng-template>
     <ng-template #content>
       <div class="row text-center md:text-start g-4">
@@ -47,12 +47,12 @@
         </div>
       </div>
     </ng-template>
-  </lx-card>
+  </lux-card>
 
   <!-- SECCIÓN DE GRÁFICO Y RESUMEN -->
   <div class="row g-4">
     <div class="col-12 col-lg-6">
-      <lx-card class="h-full">
+      <lux-card class="h-full">
         <ng-template #content>
           <div class="chart-container">
             <!-- Canvas del gráfico -->
@@ -73,50 +73,50 @@
             }
           </div>
         </ng-template>
-      </lx-card>
+      </lux-card>
     </div>
 
     <!-- Puntuación Final -->
     <div class="col-12 col-lg-6">
-      <lx-card class="h-full">
+      <lux-card class="h-full">
         <ng-template #content>
           <div class="text-center">
             <div class="d-flex flex-column align-items-center">
-              <lx-tag
+              <lux-tag
                 [value]="evaluationResult()!.finalScoreFormatted"
                 [severity]="finalScoreSeverity()"
                 class="evaluation-score-tag"
-              ></lx-tag>
+              ></lux-tag>
               <div class="text-lg mt-3">
                 Promedio: {{ evaluationResult()!.finalScore | number:'1.2-2' }}
                 / 5.00
               </div>
             </div>
-            <lx-divider layout="horizontal" class="my-3" />
+            <lux-divider layout="horizontal" class="my-3" />
             <div class="final-comments">
               <h4 class="mb-1">Comentarios</h4>
               @if (evaluationResult()!.finalComments &&
               evaluationResult()!.finalComments.length > 0) { @for (comment of
               evaluationResult()!.finalComments; track comment.categoryName) {
-              <lx-message
+              <lux-message
                 [severity]="comment.severity"
                 [text]="comment.categoryName + ': ' + comment.comment"
-              ></lx-message>
+              ></lux-message>
               } } @else {
-              <lx-message
+              <lux-message
                 severity="info"
                 text="Sin comentarios finales."
-              ></lx-message>
+              ></lux-message>
               }
             </div>
           </div>
         </ng-template>
-      </lx-card>
+      </lux-card>
     </div>
   </div>
 
   <!-- SECCIÓN DE DETALLES POR CATEGORÍA -->
-  <lx-card class="mt-4">
+  <lux-card class="mt-4">
     <ng-template #title>
       <div class="bg-primary text-white p-3 rounded-top">
         <h5 class="m-0">Detalle por Categorías</h5>
@@ -130,12 +130,12 @@
           class="d-flex justify-content-between align-items-center bg-body-tertiary p-3 mb-3 rounded"
         >
           <h6 class="m-0 d-flex align-items-center">
-            <app-icon [icon]="'material-symbols-light:folder'" class="me-2" />{{ category.name }}
+            <lux-icon [icon]="'material-symbols-light:folder'" class="me-2" />{{ category.name }}
           </h6>
-          <lx-tag
+          <lux-tag
             value="Puntaje: {{ category.categoryScore | number:'1.1-1' }}"
             severity="info"
-          ></lx-tag>
+          ></lux-tag>
         </div>
         <div>
           @for (answer of category.answers; track answer; let j = $index) {
@@ -148,10 +148,10 @@
             <div
               class="d-flex justify-content-between align-items-center flex-wrap"
             >
-              <lx-tag
+              <lux-tag
                 value="Puntaje: {{ answer.score }} / 5"
                 severity="success"
-              ></lx-tag>
+              ></lux-tag>
               <div class="mt-2 mt-sm-0">
                 <span class="fw-bold me-2">Comentarios:</span>
                 <span class="text-body-secondary"
@@ -165,7 +165,7 @@
       </div>
       }
     </ng-template>
-  </lx-card>
+  </lux-card>
 
   <!-- PIE DE PÁGINA PARA IMPRESIÓN -->
   <div class="print-footer text-center mt-4 pt-3 border-top-1 border">

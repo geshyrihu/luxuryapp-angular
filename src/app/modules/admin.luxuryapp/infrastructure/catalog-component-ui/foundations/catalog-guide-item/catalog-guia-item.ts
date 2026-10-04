@@ -17,8 +17,8 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
@@ -73,7 +73,7 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="col-12 col-md-4">
                 <div class="card h-full">
                   <div class="d-flex align-items-center gap-3">
-                    <app-icon [icon]="m.icon" class="text-primary text-3xl" />
+                    <lux-icon [icon]="m.icon" class="text-primary text-3xl" />
                     <div>
                       <div class="text-2xl font-bold">{{ m.value }}</div>
                       <div class="font-semibold">{{ m.label }}</div>
@@ -93,7 +93,7 @@ const GUIA_LABELS: Record<string, string> = {
                   class="card h-full border-top-3 border-primary surface-card"
                 >
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <app-icon [icon]="s.icon" class="text-primary text-2xl" />
+                    <lux-icon [icon]="s.icon" class="text-primary text-2xl" />
                     <strong class="text-xl">{{ s.title }}</strong>
                   </div>
                   <p class="text-color-secondary line-height-3 mb-3">
@@ -123,7 +123,7 @@ const GUIA_LABELS: Record<string, string> = {
                   class="card"
                 >
                   <div class="d-flex align-items-start gap-3">
-                    <app-icon [icon]="p.icon" class="text-primary text-2xl" />
+                    <lux-icon [icon]="p.icon" class="text-primary text-2xl" />
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
@@ -238,7 +238,7 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="col-12 col-md-6 col-xl-3">
                 <div [class]="'card ' + r.cardClass">
                   <div class="d-flex align-items-start gap-3">
-                    <app-icon [icon]="r.iconClass" />
+                    <lux-icon [icon]="r.iconClass" />
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>

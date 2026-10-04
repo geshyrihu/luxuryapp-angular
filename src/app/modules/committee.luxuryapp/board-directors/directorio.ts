@@ -14,12 +14,12 @@ import { AppImageFallback } from "@ui/web/image-fallback/image-fallback";
 import {
   SegmentedControl,
   SegmentItem,
-} from "@ui/shared/segmented-control/segmented-control";
-import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+} from "@ui/primitives/segmented-control/segmented-control";
+import { AppRealtimeIndicator } from "@ui/primitives/realtime-indicator/realtime-indicator";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { DirectorioContactDetail } from "./contact-detail/directorio-contact-detail";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-directorio",

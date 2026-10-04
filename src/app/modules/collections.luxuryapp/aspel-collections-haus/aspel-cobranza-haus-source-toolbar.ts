@@ -71,13 +71,13 @@ import {
 
             <div class="d-flex flex-wrap align-items-center gap-2 text-sm">
               <span class="text-600">Customer:</span>
-              <lx-tag
+              <lux-tag
                 [value]="customerId || 'Sin contexto'"
                 severity="secondary"
               />
-              <lx-tag [value]="'Año sync: ' + syncYear" severity="info" />
+              <lux-tag [value]="'Año sync: ' + syncYear" severity="info" />
               @if (localStatus) {
-                <lx-tag
+                <lux-tag
                   [value]="
                     localStatus.snapshotReady
                       ? 'Snapshot listo'

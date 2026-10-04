@@ -31,7 +31,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({

@@ -7,8 +7,8 @@ import {
   OnDestroy,
   ViewEncapsulation,
 } from "@angular/core";
-import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { InfiniteScrollBase } from "@ui/core/infinite-scroll.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-infinite-scroll",
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
     <div #sentinel class="infinite-scroll-sentinel">
       @if (loading()) {
         <div class="infinite-scroll-loader">
-          <app-icon icon="material-symbols-light:progress-activity" class="infinite-scroll-spinner" />
+          <lux-icon icon="material-symbols-light:progress-activity" class="infinite-scroll-spinner" />
           <span>Cargando más registros...</span>
         </div>
       }

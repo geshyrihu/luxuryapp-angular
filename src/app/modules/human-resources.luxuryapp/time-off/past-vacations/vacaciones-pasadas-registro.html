@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <lx-card>
+  <lux-card>
     <div class="row g-4">
       <!-- Employee Selection -->
       <div class="col-12 col-md-4">
@@ -17,30 +17,30 @@
           />
         </div>
         @if(balance(); as b){
-        <lx-message
+        <lux-message
           severity="info"
           [text]="'Fecha de Ingreso: ' + (b.employeeAdmissionDate | apiDate:'dd-MM-yyyy')"
-        ></lx-message>
+        ></lux-message>
 
         @if (eligibilityStatus() === 'not-yet-6-months') {
-        <lx-message
+        <lux-message
           severity="error"
           text="Este empleado no puede registrar vacaciones hasta cumplir 6 meses de antigóedad."
           class="mt-2"
-        ></lx-message>
+        ></lux-message>
         } @else if (eligibilityStatus() === 'not-eligible-this-year') {
-        <lx-message
+        <lux-message
           severity="error"
           text="Este empleado no tiene derecho a vacaciones para el Año consultado."
           class="mt-2"
-        ></lx-message>
+        ></lux-message>
         } @else if (eligibilityStatus() === 'eligible' &&
         allowedAdvanceDaysDisplay() !== null) {
-        <lx-message
+        <lux-message
           severity="info"
           [text]="'Puede solicitar un adelanto de hasta ' + allowedAdvanceDaysDisplay() + ' días. Disponibles para adelanto: ' + availableAdvanceDaysDisplay()"
           class="mt-2"
-        ></lx-message>
+        ></lux-message>
         } }
       </div>
 
@@ -78,15 +78,15 @@
           </div>
         </div>
         @if(requestedDays() > 0){
-        <lx-message
+        <lux-message
           severity="warn"
           [text]="' Días solicitados: ' + requestedDays()"
-        ></lx-message>
-        <lx-message
+        ></lux-message>
+        <lux-message
           severity="info"
           text="Nota: Domingos y días festivos no se cuentan en el total."
           class="mt-2"
-        ></lx-message>
+        ></lux-message>
         }
       </div>
       <!-- Comments -->
@@ -106,7 +106,7 @@
       <!-- Balance Information -->
       <div class="col-12 col-md-6">
         @if (loadingBalance()) {
-        <lx-skeleton height="8.5rem" styleClass="h-full" />
+        <lux-skeleton height="8.5rem" styleClass="h-full" />
         } @else if (balance(); as b) {
         <div class="bg-body-tertiary p-3 rounded h-full">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -158,7 +158,7 @@
     <div class="mt-4">
       <h5 class="m-0 mb-2">Historial de Solicitudes de Vacaciones</h5>
       @if(loadingHistory()){
-      <lx-skeleton height="10rem" />
+      <lux-skeleton height="10rem" />
       } @else {
       <app-table
         [value]="history()"
@@ -186,7 +186,7 @@
             <td>{{ request.seniorityYearDescription }}</td>
             <td>{{ request.requestedDays }}</td>
             <td>
-              <lx-tag
+              <lux-tag
                 [value]="request.statusName"
                 [severity]="request.statusName === 'Aprobada' ? 'success' : (request.statusName === 'Rechazada' ? 'danger' : 'info')"
               />
@@ -217,9 +217,9 @@
       }
       <!-- Server Error -->
       @if (serverError()) {
-      <lx-message severity="error" [text]="serverError()" class="mt-2" />
+      <lux-message severity="error" [text]="serverError()" class="mt-2" />
       } @if (balance()?.isEligibleForAdvance) {
-      <lx-message
+      <lux-message
         severity="info"
         text="Este empleado puede solicitar un adelanto de hasta {{balance().allowedAdvanceDays}} días. Disponibles para adelanto: {{balance().availableAdvanceDays}}."
         class="mt-2"
@@ -236,5 +236,5 @@
         />
       </div>
     </ng-template>
-  </lx-card>
+  </lux-card>
 </form>

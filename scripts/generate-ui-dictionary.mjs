@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const uiDir = path.resolve(__dirname, "../src/app/shared/ui");
 const outputFile = path.resolve(
   __dirname,
-  "../src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/shared/ui-dictionary.ts",
+  "../src/app/modules/admin.luxuryapp/infrastructure/catalog-component-ui/shared/ui-dictionary.ts",
 );
 
 function findTsFiles(dir, fileList = []) {

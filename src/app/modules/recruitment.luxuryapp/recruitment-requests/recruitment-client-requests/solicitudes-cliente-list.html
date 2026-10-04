@@ -48,7 +48,7 @@
       <td>{{ item.tipoSolicitud }}</td>
       <td>{{ item.nombreEmpleado }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="getTagSeverity(item.status)"
           [rounded]="true"
@@ -127,7 +127,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-xl text-purple-600"
         />

@@ -1,5 +1,5 @@
 <div class="p-3">
-  <lx-card>
+  <lux-card>
     <ng-template #title>Sincronización manual Aspel</ng-template>
     <ng-template #subtitle>
       Ejecuta la carga manual de Aspel para el cliente activo actual. El proceso
@@ -12,7 +12,7 @@
           class="bg-body-tertiary p-3 rounded-lg border-1 border-blue-100 h-full"
         >
           <div class="d-flex align-items-center gap-2 mb-2 text-blue-700">
-            <app-icon [icon]="'material-symbols-light:info'" class="text-xl" />
+            <lux-icon [icon]="'material-symbols-light:info'" class="text-xl" />
             <span class="fw-bold">Cliente Seleccionado</span>
           </div>
           <div class="text-sm line-height-3">
@@ -86,5 +86,5 @@
       ><code class="language-json">{{ lastResult() | json }}</code></pre>
     </div>
     }
-  </lx-card>
+  </lux-card>
 </div>

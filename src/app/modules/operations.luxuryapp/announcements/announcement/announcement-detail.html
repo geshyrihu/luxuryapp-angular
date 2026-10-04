@@ -7,7 +7,7 @@
           (click)="navigateBack()"
           class="btn btn-secondary btn-sm cursor-pointer"
         >
-          <app-icon [icon]="'material-symbols-light:arrow-back'" class="me-1" /> Volver al listado
+          <lux-icon [icon]="'material-symbols-light:arrow-back'" class="me-1" /> Volver al listado
         </a>
       </div>
 
@@ -25,7 +25,7 @@
           <h1 class="text-3xl fw-bold mb-2">{{ announcement().title }}</h1>
           <div class="text-sm text-body-secondary mb-4">
             <span
-              ><app-icon [icon]="'material-symbols-light:calendar-today'" class="me-2" />Publicado: {{
+              ><lux-icon [icon]="'material-symbols-light:calendar-today'" class="me-2" />Publicado: {{
               announcement().publishedAt | apiDate: 'fullDate' }}</span
             >
           </div>
@@ -43,7 +43,7 @@
               [href]="announcement().externalLink"
               target="_blank"
               class="btn btn-secondary btn-sm"
-              ><app-icon [icon]="'material-symbols-light:open-in-new'" class="me-1" /> Visitar
+              ><lux-icon [icon]="'material-symbols-light:open-in-new'" class="me-1" /> Visitar
               Enlace</a
             >
           </div>
@@ -62,7 +62,7 @@
                 target="_blank"
                 class="p-2 bg-body-tertiary rounded text-body hover:bg-body-tertiary transition-colors transition-duration-200 d-flex align-items-center"
               >
-                <app-icon [icon]="'material-symbols-light:download'" class="me-2" />
+                <lux-icon [icon]="'material-symbols-light:download'" class="me-2" />
                 <span>{{ item.fileName }}</span>
               </a>
               }
@@ -79,16 +79,16 @@
 <div class="d-block d-md-none pb-5">
   <div class="p-2">
     <button class="btn btn-rounded btn-text-secondary btn-sm" (click)="navigateBack()">
-      <app-icon icon="material-symbols-light:arrow-back" slot="start" />
+      <lux-icon icon="material-symbols-light:arrow-back" slot="start" />
       Volver
     </button>
 
     <div class="m-0">
       @if (announcement().imagePath) {
-      <lx-image
+      <lux-image
         [src]="announcement().imagePath"
         [alt]="announcement().title"
-      ></lx-image>
+      ></lux-image>
       }
 
       <div class="border-1 border shadow-sm rounded-xl">
@@ -107,7 +107,7 @@
         @if (announcement().externalLink) {
         <div class="ion-margin-top">
           <button class="btn btn-rounded btn-text-primary btn-sm">
-            Visitar Enlace <app-icon icon="material-symbols-light:open-in-new" slot="end" />
+            Visitar Enlace <lux-icon icon="material-symbols-light:open-in-new" slot="end" />
           </button>
         </div>
         } @if (announcement().attachments && announcement().attachments.length > 0)
@@ -118,9 +118,9 @@
           </div>
           @for (item of announcement().attachments; track item.id) {
           <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
-            <app-icon icon="material-symbols-light:description" slot="start" />
+            <lux-icon icon="material-symbols-light:description" slot="start" />
             <span class="">{{ item.fileName }}</span>
-            <app-icon icon="material-symbols-light:download" slot="end" color="primary" />
+            <lux-icon icon="material-symbols-light:download" slot="end" color="primary" />
           </div>
           }
         </div>

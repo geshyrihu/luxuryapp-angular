@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-4">
   @if (loading()) {
-  <lx-skeleton width="100%" height="20rem" />
+  <lux-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
   <div
     class="bg-body rounded-xl border-1 border shadow-sm p-0 p-xl-4 overflow-hidden"
@@ -16,7 +16,7 @@
         class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 border pb-3"
       >
         <span class="fw-bold text-uppercase text-lg line-height-3 text-primary">
-          <app-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
+          <lux-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
           total.descripcion }}
         </span>
         <!-- Numero de cuenta oculto en version cliente -->
@@ -238,7 +238,7 @@
   <div
     class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
   >
-    <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
+    <lux-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
     <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
     <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
   </div>

@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { IFlujoCajaDto } from "../../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";

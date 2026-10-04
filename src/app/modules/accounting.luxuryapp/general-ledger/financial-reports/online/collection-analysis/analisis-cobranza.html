@@ -16,7 +16,7 @@
     <div class="row g-4">
       @for (kpi of kpis(); track kpi.label) {
         <div class="col-12 col-md-4 col-xl-4">
-          <app-stat-card
+          <lux-stat-card
             orientation="horizontal"
             [label]="kpi.label"
             [value]="kpi.value"

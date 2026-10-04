@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     @if (totalGroupsWithoutTemplates() > 0) {
-      <lx-message
+      <lux-message
         severity="warn"
         class="d-block mb-3"
         [text]="
@@ -53,7 +53,7 @@
         <tr>
           <td>{{ group.workGroupName }}</td>
           <td>
-            <lx-tag
+            <lux-tag
               [value]="activeTemplateLabel(group)"
               [severity]="activeTemplateSeverity(group)"
             />
@@ -84,7 +84,7 @@
             start
             class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:monitoring"
               class="text-xl text-primary"
             />
@@ -92,7 +92,7 @@
 
           <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
             <h5 class="m-0">{{ group.workGroupName }}</h5>
-            <lx-tag
+            <lux-tag
               [value]="activeTemplateLabel(group)"
               [severity]="activeTemplateSeverity(group)"
             />

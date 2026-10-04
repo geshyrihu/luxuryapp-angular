@@ -62,7 +62,7 @@
       <div class="row g-3 mb-4">
         @for (kpi of kpisByGrupo(grupo); track kpi.id) {
           <div class="col-12 col-sm-6 col-xl-3">
-            <app-stat-card
+            <lux-stat-card
               [label]="kpi.nombre"
               [value]="sampleValue(kpi)"
               [icon]="kpi.icono"
@@ -71,7 +71,7 @@
               [suffix]="kpi.sufijo ?? ''"
               [trend]="kpi.tendenciaMuestra"
               [subtitle]="kpi.id"
-            ></app-stat-card>
+            ></lux-stat-card>
             <div class="mt-1 px-1" style="font-size: var(--ds-font-size-micro); color: var(--ds-text-muted)">
               {{ kpi.descripcion }}<br />
               <strong>Fuente:</strong> {{ kpi.fuenteDeDatos }}

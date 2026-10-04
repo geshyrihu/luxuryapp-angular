@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
+import { BreadcrumbsBase } from "@ui/core/breadcrumbs.base";
 import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { PlatformService } from "@core/services/platform.service";
@@ -7,10 +7,10 @@ import { PlatformService } from "@core/services/platform.service";
 /**
  * Wrapper multiplataforma de Breadcrumbs. Renderiza `app-breadcrumbs` (Bootstrap)
  * o `ili-breadcrumbs` (scroll horizontal nativo) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-breadcrumbs [items]="..." />`.
+ * Punto de entrada recomendado: `<lux-breadcrumbs [items]="..." />`.
  */
 @Component({
-  selector: "lx-breadcrumbs",
+  selector: "lux-breadcrumbs",
 
   imports: [Breadcrumbs, MobileBreadcrumbs],
   template: `

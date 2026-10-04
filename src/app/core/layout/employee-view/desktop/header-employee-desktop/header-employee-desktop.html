@@ -17,7 +17,7 @@
         tooltipPosition="bottom"
         aria-label="Abrir o cerrar el menú lateral"
       >
-        <app-icon icon="material-symbols-light:format-list-bulleted" />
+        <lux-icon icon="material-symbols-light:format-list-bulleted" />
       </button>
 
       <!-- Selector de Condominio -->
@@ -36,7 +36,7 @@
             style="width: 24px; height: 24px; object-fit: contain"
           />
           <span class="customer-selector-label">{{ customerName() }}</span>
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:keyboard-arrow-down"
             class="text-sm"
           />
@@ -97,7 +97,7 @@
         [attr.aria-label]="navIcon.ngbTooltip || navIcon.label || navIcon.iconClass"
         tooltipPosition="bottom"
       >
-        <app-icon
+        <lux-icon
           [icon]="navIcon.iconClass"
           [class.pi-spin]="navIcon.iconExtraClass?.includes('pi-spin')"
         />
@@ -113,7 +113,7 @@
         tooltipPosition="bottom"
         aria-label="Cambiar tema claro u oscuro"
       >
-        <app-icon [icon]="getThemeIcon()" />
+        <lux-icon [icon]="getThemeIcon()" />
       </button>
 
       <!-- Componentes de la derecha -->
@@ -143,11 +143,10 @@
       />
       <div>
         <span class="fw-bold text-xl d-block text-purple-700">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:auto-awesome-motion"
             class="text-purple-500 me-2 text-xl"
-          ></app-icon
-          >Asistente Ejecutivo IA
+          ></lux-icon>Asistente Ejecutivo IA
         </span>
         <span class="text-sm text-gray-500">{{ customerName() }}</span>
       </div>
@@ -235,7 +234,7 @@
                 [style.background-color]="'var(' + documentColor() + ')'"
                 [style.color]="'white'"
               >
-                <app-icon [icon]="getPosterPointIcon(i)" class="text-xl" />
+                <lux-icon [icon]="getPosterPointIcon(i)" class="text-xl" />
               </div>
               <div class="flex-fill">
                 <p
@@ -454,7 +453,7 @@
         label="Póster Visual"
       >
         <ng-template #icon>
-          <app-icon icon="material-symbols-light:photo" />
+          <lux-icon icon="material-symbols-light:photo" />
         </ng-template>
       </p-button> -->
       }

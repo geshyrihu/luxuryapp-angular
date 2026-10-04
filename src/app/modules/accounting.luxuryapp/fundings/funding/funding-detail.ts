@@ -45,7 +45,7 @@ import { CreateOrdenCompraWizard } from "@purchases.luxuryapp/purchase-orders/pu
 import { OrdenCompraDatosPago } from "@purchases.luxuryapp/purchase-orders/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { PaymentVoucherModal } from "@purchases.luxuryapp/purchase-orders/purchase-order/payment-voucher-modal/payment-voucher-modal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-purchase-order-outside-funding/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";

@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonIconDelete } from "../../../buttons/web-icon/button-delete";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 
 @Component({
   selector: "web-input-file",

@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { ToolbarBase } from "@ui/base/toolbar.base";
+import { ToolbarBase } from "@ui/core/toolbar.base";
 
 @Component({
   selector: "app-toolbar",

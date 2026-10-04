@@ -75,7 +75,7 @@
         {{ item.profession || item.applicationRole }}
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="item.status"
           [severity]="requestStatusTagSeverity(item.status)"
         />
@@ -83,14 +83,14 @@
       <td class="text-center">
         <div class="d-flex justify-content-center">
           @if (item.isDocumentationSent) {
-          <lx-tag
+          <lux-tag
             value="Enviado a RRHH"
             severity="success"
             icon="material-symbols-light:mark-email-read"
             [tooltip]="documentationSentTooltip(item)"
           />
           } @else {
-          <lx-tag
+          <lux-tag
             value="No enviado"
             severity="warning"
             icon="material-symbols-light:send"
@@ -180,7 +180,7 @@
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:person-add-outline"
           class="text-xl text-green-600"
         />

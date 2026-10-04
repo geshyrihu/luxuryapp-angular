@@ -1,11 +1,11 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { StepperBase } from "@ui/base/stepper.base";
+import { StepperBase } from "@ui/core/stepper.base";
 import { MobileStepper } from "@ui/mobile/stepper/stepper";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-stepper",
+  selector: "lux-stepper",
 
   imports: [NgTemplateOutlet, MobileStepper],
   template: `

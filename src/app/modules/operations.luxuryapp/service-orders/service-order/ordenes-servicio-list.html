@@ -139,7 +139,7 @@
       <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
       <td>
         <div class="cursor-pointer font-center">
-          <lx-tag
+          <lux-tag
             [value]="item.typeMaintanceFilter"
             class="ms-auto"
             (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
@@ -153,12 +153,12 @@
       </td>
       <td>{{ item.provider }}</td>
       <td>
-        <lx-tag
+        <lux-tag
           [value]="getStatusLabel(item.status)"
           [severity]="getBadgeSeverity(item.status)"
         />
         @if (item.isSuspended) {
-        <lx-tag
+        <lux-tag
           value="Detenida"
           severity="warning"
           [lxTooltip]="item.suspensionReason || 'Suspendida'"
@@ -167,14 +167,14 @@
         }
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           (click)="onModalFotos(item.id)"
           [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderImg.length"
         />
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           (click)="onModalRpeorteProveedor(item.id)"
           [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
           [value]="item.serviceOrderDocument.length"
@@ -287,7 +287,7 @@
           <div class="d-flex flex-wrap gap-2 mb-3">
             @for (item of filtroEquipos; track item) {
               <ion-button size="small" [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'" (click)="onReloadOrdenes(item.id, item.nombre)">
-                <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+                <lux-icon [icon]="item.icon" slot="start" class="me-1"></lux-icon>
                 {{ item.nombre | titlecase }}
               </ion-button>
             }
@@ -312,14 +312,14 @@
   <ng-template #listItemTemplate let-item>
     <ion-item>
       <ion-avatar slot="start" style="background: var(--ion-color-light); display: flex; align-items: center; justify-content: center;">
-        <app-icon icon="material-symbols-light:build" class="text-xl text-yellow-500"></app-icon>
+        <lux-icon icon="material-symbols-light:build" class="text-xl text-yellow-500"></lux-icon>
       </ion-avatar>
       <ion-label>
         <h2 class="ion-text-wrap fw-bold m-0">{{ item.machineryId }} - {{ item.machinery }}</h2>
         <p class="ion-text-wrap text-sm text-body-secondary mb-1">Folio: {{ item.folio || "Sin folio" }}</p>
         
         <div class="d-flex flex-wrap gap-1 mb-1">
-          <lx-tag
+          <lux-tag
             [value]="item.typeMaintanceFilter"
             [severity]="
               item.typeMaintanceFilter == 'Preventivo' ? 'success' :
@@ -331,16 +331,16 @@
         </div>
         
         <div class="d-flex flex-wrap gap-1">
-          <lx-tag [value]="getStatusLabel(item.status)" [severity]="getBadgeSeverity(item.status)" />
+          <lux-tag [value]="getStatusLabel(item.status)" [severity]="getBadgeSeverity(item.status)" />
           @if (item.isSuspended) {
-            <lx-tag value="Detenida" severity="warning" />
+            <lux-tag value="Detenida" severity="warning" />
           }
-          <lx-tag
+          <lux-tag
             (click)="onModalFotos(item.id)"
             [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderImg.length + ' Fotos'"
           />
-          <lx-tag
+          <lux-tag
             (click)="onModalRpeorteProveedor(item.id)"
             [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
             [value]="item.serviceOrderDocument.length + ' Reportes'"

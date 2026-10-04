@@ -1,8 +1,8 @@
 @if (item(); as req) {
 <div class="p-3">
-  <lx-card class="card card--elevated mb-4">
+  <lux-card class="card card--elevated mb-4">
     <div class="d-flex align-items-center gap-3">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:shield'"
         class="text-3xl text-primary"
       />
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-  </lx-card>
+  </lux-card>
 
   <div class="mb-4">
     <label class="text-body-secondary text-xs text-uppercase fw-medium">DESCRIPCIÓN</label>
@@ -40,9 +40,9 @@
   </div>
   }
 
-  <lx-card class="card card--elevated mb-4">
+  <lux-card class="card card--elevated mb-4">
     <div class="d-flex gap-2 align-items-start">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:warning'"
         class="text-warning mt-1"
       />
@@ -51,7 +51,7 @@
         operación se ejecuta automáticamente.
       </span>
     </div>
-  </lx-card>
+  </lux-card>
 
   <div class="mb-4">
     <custom-input-textarea-signal

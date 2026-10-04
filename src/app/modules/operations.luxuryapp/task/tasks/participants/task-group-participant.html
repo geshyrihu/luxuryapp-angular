@@ -34,7 +34,7 @@
   <app-spinner />
 </div>
 } @else if (cb_existing_Participant().length === 0) {
-<lx-message severity="info" text="No hay integrantes."></lx-message>
+<lux-message severity="info" text="No hay integrantes."></lux-message>
 } @else {
 <div class="d-flex flex-column mt-3 gap-2">
   @for (item of cb_existing_Participant(); track item.id) {
@@ -45,7 +45,7 @@
   >
     <!-- Lado izquierdo: icono + texto -->
     <div slot="start" class="me-2 d-flex align-items-center">
-      <app-icon
+      <lux-icon
         [icon]="
               item.isAdmin === 'Administrador'
                 ? 'material-symbols-light:person-remove'

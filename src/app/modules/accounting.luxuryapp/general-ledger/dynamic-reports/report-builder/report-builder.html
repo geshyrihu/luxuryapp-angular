@@ -5,7 +5,7 @@
   >
     <div class="d-flex align-items-center gap-3">
       <div class="bg-primary-500 text-white rounded p-2 shadow-sm">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:monitoring'"
           class="text-2xl"
         />
@@ -32,7 +32,7 @@
       <div
         class="d-flex align-items-center bg-primary-50 rounded-xl px-3 py-1 me-3 border-1 border-primary-100"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:calendar-today'"
           class="text-primary me-2"
         />
@@ -191,7 +191,7 @@
         <div
           class="d-flex flex-column align-items-center justify-content-center h-full text-body-secondary opacity-60"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:content-copy'"
             class="text-6xl mb-3"
           />
@@ -218,7 +218,7 @@
                 class="bg-primary-50 p-3 d-flex align-items-center justify-content-between border-bottom-1 border-primary-100"
               >
                 <div class="d-flex align-items-center gap-3 flex-fill">
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:folder-open'"
                     class="text-primary-500"
                   />
@@ -249,7 +249,7 @@
                   (cdkDropListDropped)="onAccountCdkDropToSection(sec.sectionId, $event)"
                   class="border-2 border-dashed border-primary-200 rounded-lg p-4 bg-primary-50 d-flex flex-column align-items-center justify-content-center text-center gap-2 text-primary-900"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:download'"
                     class="text-2xl text-primary-500"
                   />
@@ -287,7 +287,7 @@
 
                   <!-- Badge de Tipo -->
                   <div class="w-3rem d-flex justify-content-center">
-                    <lx-tag
+                    <lux-tag
                       [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
                       [severity]="row.rowType === 'account' ? 'info' : 'help'"
                       class="text-xs fw-bold"
@@ -316,7 +316,7 @@
                     <div
                       class="d-flex align-items-center gap-2 text-body-secondary italic text-xs w-full"
                     >
-                      <app-icon
+                      <lux-icon
                         [icon]="'material-symbols-light:download'"
                         class="animate-bounce"
                       />
@@ -336,7 +336,7 @@
                       class="d-flex flex-wrap gap-1 max-h-4rem overflow-y-auto"
                     >
                       @for (code of row.accountNumbers; track code) {
-                      <lx-chip
+                      <lux-chip
                         [label]="code"
                         icon="material-symbols-light:check"
                         color="primary"
@@ -424,7 +424,7 @@
                     </span>
                   </div>
 
-                  <lx-tag
+                  <lux-tag
                     [value]="row.rowId"
                     severity="secondary"
                     class="text-xs opacity-60 font-mono flex-shrink-0"
@@ -476,11 +476,11 @@
         class="p-3 border-bottom-1 border-bg-body-tertiary bg-primary-900 text-white d-flex align-items-center justify-content-between"
       >
         <h4 class="m-0 d-flex align-items-center gap-2">
-          <app-icon [icon]="'material-symbols-light:visibility-outline'" />
+          <lux-icon [icon]="'material-symbols-light:visibility-outline'" />
           Vista Previa Real
         </h4>
         @if (livePreviewS.computing()) {
-        <app-icon [icon]="'material-symbols-light:progress-activity'" />
+        <lux-icon [icon]="'material-symbols-light:progress-activity'" />
         }
       </div>
 
@@ -628,7 +628,7 @@
         <div class="p-3">
           <div class="bg-orange-50 rounded p-2 border-left-3 border-orange-500">
             <span class="text-xs fw-bold text-orange-900 d-block mb-2"
-              ><app-icon [icon]="'material-symbols-light:warning'" />
+              ><lux-icon [icon]="'material-symbols-light:warning'" />
               ADVERTENCIAS:</span
             >
             <ul class="m-0 p-0 ps-3 list-none d-flex flex-column gap-1">
@@ -647,7 +647,7 @@
 </div>
 
 <!-- Popover de Configuración Avanzada -->
-<lx-popover #opConfig>
+<lux-popover #opConfig>
   <div class="p-3 d-flex flex-column gap-3 w-20rem">
     <h5 class="m-0 border-bottom-1 border-bg-body-tertiary pb-2">
       Propiedades del Reporte
@@ -689,10 +689,10 @@
       ></custom-input-check-signal>
     </div>
   </div>
-</lx-popover>
+</lux-popover>
 
 <!-- DIALOGO: Ejemplos -->
-<lx-modal
+<lux-modal
   header="Aplicar Plantilla Predefinida"
   [(visible)]="showExamples"
   class="premium-dialog"
@@ -705,7 +705,7 @@
       <div
         class="bg-success-100 text-success-700 rounded-circle w-3rem h-3rem d-flex align-items-center justify-content-center shadow-sm"
       >
-        <app-icon [icon]="'material-symbols-light:wallet'" class="text-xl" />
+        <lux-icon [icon]="'material-symbols-light:wallet'" class="text-xl" />
       </div>
       <div>
         <h5 class="m-0 text-primary-900">Estado de Resultados</h5>
@@ -718,7 +718,7 @@
       <div
         class="bg-bg-body-tertiary text-bg-dark text-white rounded-circle w-3rem h-3rem d-flex align-items-center justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:balance'" class="text-xl" />
+        <lux-icon [icon]="'material-symbols-light:balance'" class="text-xl" />
       </div>
       <div>
         <h5 class="m-0">Balance General</h5>
@@ -726,7 +726,7 @@
       </div>
     </div>
   </div>
-</lx-modal>
+</lux-modal>
 
 <style>
   .bg-dots {

@@ -17,14 +17,14 @@
 
   @if (loading()) {
   <div class="d-flex justify-content-center my-5">
-    <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
+    <lux-spinner ariaLabel="Cargando módulos"></lux-spinner>
   </div>
   } @if (!loading() && filteredGroupedData().length === 0) {
-  <lx-message
+  <lux-message
     severity="warn"
     text="No se encontraron módulos."
     class="w-full"
-  ></lx-message>
+  ></lux-message>
   }
 
   <!-- Grupos en filas -->
@@ -64,7 +64,7 @@
               [class.text-red-400]="!item.isAssigned"
               [class.border-red-100]="!item.isAssigned"
             >
-              <app-icon
+              <lux-icon
                 [icon]="item.isAssigned ? 'material-symbols-light:check' : 'material-symbols-light:close'"
                 
               />
@@ -97,7 +97,7 @@
 
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
-      <app-icon [icon]="'material-symbols-light:search'" />
+      <lux-icon [icon]="'material-symbols-light:search'" />
       <custom-search-input-signal
         placeholder="Filtrar módulos..."
         (searchChange)="searchTerm.set($event)"
@@ -107,10 +107,10 @@
 
     @if (loading()) {
     <div class="d-flex justify-content-center my-5">
-      <lx-spinner ariaLabel="Cargando módulos"></lx-spinner>
+      <lux-spinner ariaLabel="Cargando módulos"></lux-spinner>
     </div>
     } @if (!loading() && filteredGroupedData().length === 0) {
-    <lx-message severity="warn" text="No se encontraron módulos."></lx-message>
+    <lux-message severity="warn" text="No se encontraron módulos."></lux-message>
     } @for (group of filteredGroupedData(); track group.groupTitle) {
     <div class="mb-3">
       <h3 class="text-xs text-body-secondary fw-bold px-3 text-uppercase m-0 mb-1">
@@ -122,7 +122,7 @@
       >
         @for (item of group.items; track item.moduleAppId) {
         <ili-list-item class="ion-no-padding">
-           <app-icon slot="start"
+           <lux-icon slot="start"
              [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
              [class.text-green-500]="item.isAssigned"
              [class.text-400]="!item.isAssigned"

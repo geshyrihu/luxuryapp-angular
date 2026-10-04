@@ -102,7 +102,7 @@
         }
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [value]="
             item.status === 0
               ? 'Pendiente'
@@ -117,7 +117,7 @@
                 ? 'success'
                 : 'secondary'
           "
-        ></lx-tag>
+        ></lux-tag>
       </td>
 
       <td class="no-print">
@@ -173,7 +173,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-yellow-100"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:article-outline"
           class="text-xl text-yellow-500"
         />
@@ -212,11 +212,11 @@
           [class.bg-secondary]="item.status == 2"
         >
           @if (item.status === 0) {
-          <app-icon [icon]="'material-symbols-light:close'" class="icon icon-" />
+          <lux-icon [icon]="'material-symbols-light:close'" class="icon icon-" />
           } @if (item.status === 1) {
-          <app-icon [icon]="'material-symbols-light:check'" class="icon icon-" />
+          <lux-icon [icon]="'material-symbols-light:check'" class="icon icon-" />
           } @if (item.status === 2) {
-          <app-icon [icon]="'material-symbols-light:block'" class="icon icon-" />
+          <lux-icon [icon]="'material-symbols-light:block'" class="icon icon-" />
           }
         </span>
       </p>

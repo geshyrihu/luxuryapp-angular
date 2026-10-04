@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TagSeverity } from "@ui/base/tag.base";
+import type { TagSeverity } from "@ui/core/tag.base";
 import {
   IonCard,
   IonCardContent,
@@ -18,7 +18,7 @@ import {
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogSize } from "@core/enums/dialog-size.enum";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";

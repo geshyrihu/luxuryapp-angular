@@ -11,28 +11,28 @@
     </div>
 
     <div class="hero-board">
-      <lx-tag value="Properties" icon="material-symbols-light:location-city" severity="secondary" [rounded]="true" class="hero-chip" />
+      <lux-tag value="Properties" icon="material-symbols-light:location-city" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
-        <app-icon [icon]="'material-symbols-light:arrow-forward'" />
+        <lux-icon [icon]="'material-symbols-light:arrow-forward'" />
       </div>
-      <lx-tag value="Cargos" icon="material-symbols-light:add-card" severity="secondary" [rounded]="true" class="hero-chip" />
+      <lux-tag value="Cargos" icon="material-symbols-light:add-card" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
-        <app-icon [icon]="'material-symbols-light:arrow-forward'" />
+        <lux-icon [icon]="'material-symbols-light:arrow-forward'" />
       </div>
-      <lx-tag value="Pagos" icon="material-symbols-light:credit-card" severity="secondary" [rounded]="true" class="hero-chip" />
+      <lux-tag value="Pagos" icon="material-symbols-light:credit-card" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
-        <app-icon [icon]="'material-symbols-light:arrow-forward'" />
+        <lux-icon [icon]="'material-symbols-light:arrow-forward'" />
       </div>
-      <lx-tag value="Estado de cuenta" icon="material-symbols-light:picture-as-pdf" severity="secondary" [rounded]="true" class="hero-chip" />
+      <lux-tag value="Estado de cuenta" icon="material-symbols-light:picture-as-pdf" severity="secondary" [rounded]="true" class="hero-chip" />
     </div>
   </section>
 
   <section class="event-ribbon">
     @for (item of eventStream; track item; let last = $last) {
     <div class="event-pill">
-      <lx-tag [value]="item" severity="contrast" [rounded]="true" />
+      <lux-tag [value]="item" severity="contrast" [rounded]="true" />
       @if (!last) {
-      <app-icon [icon]="'material-symbols-light:arrow-forward'" class="event-link" />
+      <lux-icon [icon]="'material-symbols-light:arrow-forward'" class="event-link" />
       }
     </div>
     }
@@ -49,10 +49,10 @@
 
     <div class="lane-grid">
       @for (node of sourceNodes; track node.title) {
-      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
+      <lux-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
-            <app-icon [icon]="node.icon" />
+            <lux-icon [icon]="node.icon" />
           </div>
           <div>
             <h3>{{ node.title }}</h3>
@@ -65,7 +65,7 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </lx-card>
+      </lux-card>
       }
     </div>
   </section>
@@ -92,10 +92,10 @@
 
     <div class="lane-grid">
       @for (node of generationNodes; track node.title) {
-      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
+      <lux-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
-            <app-icon [icon]="node.icon" />
+            <lux-icon [icon]="node.icon" />
           </div>
           <div>
             <h3>{{ node.title }}</h3>
@@ -108,27 +108,27 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </lx-card>
+      </lux-card>
       }
     </div>
   </section>
 
   <section class="center-engine">
-    <lx-card class="engine-node engine-node--core card card--elevated">
-      <lx-tag value="Nucleo operativo" severity="secondary" [rounded]="true" class="engine-label" />
+    <lux-card class="engine-node engine-node--core card card--elevated">
+      <lux-tag value="Nucleo operativo" severity="secondary" [rounded]="true" class="engine-label" />
       <h3>Motor de aplicacion y control</h3>
       <p>
         Todo cargo, pago, nota o recargo entra a un flujo donde se aplica,
         valida, audita y proyecta.
       </p>
-    </lx-card>
+    </lux-card>
 
     <div class="engine-spokes">
       @for (node of engineNodes; track node.title) {
-      <lx-card class="engine-node card card--elevated h-full" [class]="toneClass(node.tone)">
+      <lux-card class="engine-node card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
-            <app-icon [icon]="node.icon" />
+            <lux-icon [icon]="node.icon" />
           </div>
           <div>
             <h3>{{ node.title }}</h3>
@@ -141,7 +141,7 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </lx-card>
+      </lux-card>
       }
     </div>
   </section>
@@ -159,10 +159,10 @@
 
     <div class="lane-grid">
       @for (node of outputNodes; track node.title) {
-      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
+      <lux-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
-            <app-icon [icon]="node.icon" />
+            <lux-icon [icon]="node.icon" />
           </div>
           <div>
             <h3>{{ node.title }}</h3>
@@ -175,33 +175,33 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </lx-card>
+      </lux-card>
       }
     </div>
   </section>
 
   <section class="decision-wall">
-    <lx-card class="decision-card card card--elevated">
-      <lx-tag value="Si sucede este evento" severity="secondary" [rounded]="true" class="decision-title" />
+    <lux-card class="decision-card card card--elevated">
+      <lux-tag value="Si sucede este evento" severity="secondary" [rounded]="true" class="decision-title" />
       <h3>Se registra un pago</h3>
       <p>
         El sistema intenta aplicarlo a cargos pendientes, actualiza saldo,
         genera ledger, puede disparar notificacion y deja trazabilidad de quien
         lo registro.
       </p>
-    </lx-card>
+    </lux-card>
 
     <div class="decision-arrow">
-      <app-icon [icon]="'material-symbols-light:keyboard-double-arrow-right'" />
+      <lux-icon [icon]="'material-symbols-light:keyboard-double-arrow-right'" />
     </div>
 
-    <lx-card class="decision-card card card--elevated">
-      <lx-tag value="Entonces pasa esto" severity="secondary" [rounded]="true" class="decision-title" />
+    <lux-card class="decision-card card card--elevated">
+      <lux-tag value="Entonces pasa esto" severity="secondary" [rounded]="true" class="decision-title" />
       <h3>Se recalcula la fotografia financiera</h3>
       <p>
         Cambian estado de cuenta, aging, conciliacion, salidas PDF y posibles
         casos de cobranza si la deuda sigue viva.
       </p>
-    </lx-card>
+    </lux-card>
   </section>
 </div>

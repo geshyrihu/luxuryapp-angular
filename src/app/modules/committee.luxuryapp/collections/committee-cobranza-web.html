@@ -11,7 +11,7 @@
     <!-- 1. Avance de la cobranza del mes -->
     @if (baseService.avanceCobranza(); as avance) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cobrado del mes"
         [value]="avance.cobrado"
@@ -36,7 +36,7 @@
     <!-- 2. Cartera vencida -->
     @if (baseService.carteraVencida(); as cartera) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cartera vencida"
         [value]="cartera.total"
@@ -57,7 +57,7 @@
     <!-- 3. Cobranza judicial -->
     @if (baseService.cobranzaJudicial(); as judicial) {
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="En cobranza judicial"
         [value]="judicial.cantidad"
@@ -122,7 +122,7 @@
           {{ item.departamento || "Sin nombre" }}
         </td>
         <td>
-          <lx-tag
+          <lux-tag
             [value]="item.clasificacion"
             [severity]="clasificacionSeverity(item.clasificacion)"
           />

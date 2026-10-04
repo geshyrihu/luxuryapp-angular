@@ -1,7 +1,7 @@
 <div class="card p-4">
   <div class="cb-payments__header">
     <h1 class="cb-payments__title text-xl fw-bold">
-      <app-icon [icon]="'material-symbols-light:wallet'" class="me-2 text-primary" />
+      <lux-icon [icon]="'material-symbols-light:wallet'" class="me-2 text-primary" />
       Registrar Pago y Aplicar a Cargos
     </h1>
     <p class="cb-payments__subtitle text-sm mt-1">
@@ -11,7 +11,7 @@
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <lx-card class="card card--elevated mb-6">
+    <lux-card class="card card--elevated mb-6">
       <h2 class="text-md fw-semibold text-body mb-3">1. Seleccionar Propiedad</h2>
       <div class="d-flex flex-column flex-md-row align-items-end gap-3 g-4">
         <div class="flex-fill">
@@ -35,12 +35,12 @@
           [disabled]="!form.controls.propertyId.value || loadingCharges()"
         />
       </div>
-    </lx-card>
+    </lux-card>
 
     @if (selectedPropertyName()) {
     <div class="row g-4">
       <div class="col-12 col-lg-4">
-        <lx-card class="card h-full">
+        <lux-card class="card h-full">
           <h2 class="text-md fw-semibold text-body mb-4 border-bottom-1 pb-2">2. Datos del Ingreso</h2>
           <div class="d-flex flex-column gap-4">
             <custom-input-currency-signal [control]="form.controls.amount" label="Monto Recibido" required />
@@ -90,7 +90,7 @@
             </div>
             @if (totalSelectedToApply() > form.controls.amount.value) {
             <div class="cb-payments__warning text-xs d-flex align-items-center">
-              <app-icon [icon]="'material-symbols-light:warning'" class="me-2 text-lg" />
+              <lux-icon [icon]="'material-symbols-light:warning'" class="me-2 text-lg" />
               <span>No puedes aplicar más monto del que estás recibiendo en este pago.</span>
             </div>
             }
@@ -102,11 +102,11 @@
               />
             </div>
           </div>
-        </lx-card>
+        </lux-card>
       </div>
 
       <div class="col-12 col-lg-8">
-        <lx-card class="card h-full">
+        <lux-card class="card h-full">
           <div class="bg-body-tertiary px-4 py-3 border-bottom-1 border-200 d-flex justify-content-between align-items-center">
             <div>
               <h2 class="text-md fw-semibold text-body">3. Seleccionar Cargos a Pagar</h2>
@@ -121,7 +121,7 @@
           <div class="flex-flex-grow-1 p-0">
             @if (pendingCharges().length === 0) {
             <div class="d-flex flex-column align-items-center justify-content-center p-12 text-body-secondary">
-              <app-icon [icon]="'material-symbols-light:check-circle'" class="cb-payments__empty-icon text-5xl mb-4" />
+              <lux-icon [icon]="'material-symbols-light:check-circle'" class="cb-payments__empty-icon text-5xl mb-4" />
               <p class="text-lg fw-medium text-body">Esta propiedad está al día.</p>
               <p class="text-sm">No tiene cargos pendientes de pago o vencidos.</p>
             </div>
@@ -188,7 +188,7 @@
             </app-table>
             }
           </div>
-        </lx-card>
+        </lux-card>
       </div>
     </div>
     }

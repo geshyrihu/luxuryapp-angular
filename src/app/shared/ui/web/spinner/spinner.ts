@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   computed,
 } from "@angular/core";
-import { SpinnerBase } from "@ui/base/spinner.base";
+import { SpinnerBase } from "@ui/core/spinner.base";
 
 /**
  * AppSpinner — spinner circular CSS puro (Bootstrap `.spinner-border`) con

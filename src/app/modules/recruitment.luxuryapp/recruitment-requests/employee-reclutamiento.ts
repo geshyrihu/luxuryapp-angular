@@ -15,7 +15,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",

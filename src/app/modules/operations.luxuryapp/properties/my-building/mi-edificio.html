@@ -21,7 +21,7 @@
                 href="{{ data().cliente.googleMpasUbication }}"
                 target="_blank"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:location-on'"
                   class="icon icon- cursor-pointer"
                 />
@@ -75,7 +75,7 @@
         @for (item of group.empleados; track item.email) {
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
           <div class="bg-body p-3 shadow-sm rounded h-full d-flex align-items-center gap-3">
-            <lx-avatar
+            <lux-avatar
               [image]="item.photoEmployee"
               icon="material-symbols-light:person"
               shape="circle"

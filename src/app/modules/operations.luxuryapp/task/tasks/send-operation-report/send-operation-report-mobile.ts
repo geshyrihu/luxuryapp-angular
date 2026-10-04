@@ -13,8 +13,8 @@ import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import {
   SegmentedControl,
   SegmentItem,
-} from "@ui/shared/segmented-control/segmented-control";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+} from "@ui/primitives/segmented-control/segmented-control";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({

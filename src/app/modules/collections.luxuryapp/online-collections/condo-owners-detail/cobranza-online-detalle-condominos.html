@@ -164,7 +164,7 @@
         <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
         <td class="text-sm fw-medium">{{ row.condomino }}</td>
         <td class="text-center">
-          <lx-tag
+          <lux-tag
             [value]="row.clasificacion"
             [severity]="getSeverity(row.clasificacion)"
             class="text-xs"
@@ -211,7 +211,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:person" />
+          <lux-icon icon="material-symbols-light:person" />
         </div>
         <div class="flex-fill min-w-0 ion-text-wrap p-2">
           <p class="fw-semibold m-0 text-body">{{ item.condomino }}</p>
@@ -219,7 +219,7 @@
             {{ item.numeroCuenta }}
           </p>
           <div class="d-flex justify-content-between align-items-center mt-2">
-            <lx-tag
+            <lux-tag
               [value]="item.clasificacion"
               [severity]="getSeverity(item.clasificacion)"
               class="text-xs"

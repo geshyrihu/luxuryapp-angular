@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { ConfirmDialogBase } from "@ui/core/confirm-dialog.base";
 import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
 import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
 import { PlatformService } from "@core/services/platform.service";
@@ -7,10 +7,10 @@ import { PlatformService } from "@core/services/platform.service";
 /**
  * Wrapper multiplataforma de ConfirmDialog. Renderiza `app-confirm-dialog`
  * (Bootstrap) o `ili-confirm-dialog` (Ionic) según `PlatformService.isMobile()`.
- * Punto de entrada recomendado: `<lx-confirm-dialog [(visible)]="..." />`.
+ * Punto de entrada recomendado: `<lux-confirm-dialog [(visible)]="..." />`.
  */
 @Component({
-  selector: "lx-confirm-dialog",
+  selector: "lux-confirm-dialog",
 
   imports: [ConfirmDialog, MobileConfirmDialog],
   template: `

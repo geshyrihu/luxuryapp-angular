@@ -7,7 +7,7 @@
     </p>
   </div>
 
-  <lx-divider />
+  <lux-divider />
 
   @if (isLoading()) {
     <p class="m-0 text-body-secondary">Cargando documentos...</p>
@@ -15,14 +15,14 @@
     <div class="row mt-3 g-4">
       @for (row of documentRows(); track row.option.value) {
         <div class="col-12 col-md-3">
-          <lx-fieldset
+          <lux-fieldset
             [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
             [toggleable]="true"
             [collapsed]="false"
             class="mb-2"
           >
             @if (row.option.isMandatory) {
-              <lx-tag
+              <lux-tag
                 value="Obligatorio"
                 severity="danger"
                 class="text-xs mb-2"
@@ -64,7 +64,7 @@
                       />
                     }
                   </div>
-                  <lx-tag
+                  <lux-tag
                     [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
                     [severity]="row.document?.isValidated ? 'success' : 'warning'"
                     class="text-xs"
@@ -103,7 +103,7 @@
                 }
               </div>
             }
-          </lx-fieldset>
+          </lux-fieldset>
         </div>
       }
     </div>

@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MessageService } from "@core/services/message.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { TokenColor } from "./interfaces/token-color.interface";
 import { TokenGroup } from "./interfaces/token-group.interface";
 
@@ -51,7 +51,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                   {{ color.uso }}
                 </div>
               </div>
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:content-copy'"
                 class="text-color-secondary text-sm ms-2 flex-shrink-0"
               />
@@ -109,7 +109,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                       {{ color.uso }}
                     </div>
                   </div>
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:content-copy'"
                     class="text-color-secondary text-sm ms-2 flex-shrink-0"
                   />

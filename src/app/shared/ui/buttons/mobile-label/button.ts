@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton, IonSpinner } from "@ionic/angular";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon } from "../../primitives/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
@@ -26,7 +26,7 @@ import { MobileButtonBase } from "../mobile-button-base";
         <ion-spinner name="crescent" />
       } @else {
         @if (iconClass()) {
-          <app-icon [icon]="resolvedIconClass()" slot="start" />
+          <lux-icon [icon]="resolvedIconClass()" slot="start" />
         }
         {{ label() || "Continuar" }}
       }

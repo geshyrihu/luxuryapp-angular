@@ -3,7 +3,7 @@
   <div class="col-12 col-md-6">
     <h3 class="photos-label">Antes</h3>
     @if (beforeWork) {
-    <lx-image
+    <lux-image
       [src]="beforeWork"
       alt="Foto del antes"
       [preview]="true"
@@ -17,7 +17,7 @@
   <div class="col-12 col-md-6">
     <h3 class="photos-label">Después</h3>
     @if (afterWork) {
-    <lx-image
+    <lux-image
       [src]="afterWork"
       alt="Foto del después"
       [preview]="true"
@@ -38,7 +38,7 @@
   <div class="d-flex flex-wrap gap-3">
     @for (image of additionalImages(); track image.id) {
     <figure class="photos-figure m-0">
-      <lx-image
+      <lux-image
         [src]="image.path"
         [alt]="image.fileName"
         [preview]="true"
@@ -53,7 +53,7 @@
   </div>
   } @else {
   <div class="photos-empty p-4">
-    <app-icon icon="material-symbols-light:photo-library" class="photos-empty-icon" />
+    <lux-icon icon="material-symbols-light:photo-library" class="photos-empty-icon" />
     <p class="m-0">No hay imágenes adicionales para esta tarea.</p>
   </div>
   }

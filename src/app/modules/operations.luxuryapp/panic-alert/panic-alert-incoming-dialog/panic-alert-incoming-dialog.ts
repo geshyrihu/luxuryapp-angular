@@ -13,7 +13,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { SignalRService } from "@core/services/signalr.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PanicAlertRealTimeDto } from "../interfaces/panic-alert-real-time.dto";
 
 const RECIPIENT_ROLES: ApplicationRole[] = [
@@ -32,7 +32,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
       <div class="panic-overlay" (click)="$event.stopPropagation()">
         <div class="panic-dialog">
           <div class="panic-dialog__header">
-            <app-icon icon="material-symbols-light:error" class="panic-dialog__icon" />
+            <lux-icon icon="material-symbols-light:error" class="panic-dialog__icon" />
             <span class="panic-dialog__title">Alerta de Pónico</span>
           </div>
 
@@ -55,7 +55,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <app-icon icon="material-symbols-light:location-on" class="text-sm" />
+                <lux-icon icon="material-symbols-light:location-on" class="text-sm" />
                 Ver ubicación en mapa
               </a>
             }
@@ -68,7 +68,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
               (click)="onAttend()"
               [disabled]="isProcessing()"
             >
-              <app-icon icon="material-symbols-light:check-circle" />
+              <lux-icon icon="material-symbols-light:check-circle" />
               Atender
             </button>
             <button

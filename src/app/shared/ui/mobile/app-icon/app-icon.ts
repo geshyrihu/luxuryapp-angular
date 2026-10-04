@@ -5,8 +5,8 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   input,
 } from "@angular/core";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
-import { AppIconIonicon } from "@ui/shared/app-icon/app-icon.catalog-ionicon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
+import { AppIconIonicon } from "@ui/primitives/app-icon/app-icon.catalog-ionicon";
 
 /**
  * Variante móvil de AppIcon. Resuelve el mismo catálogo conceptual

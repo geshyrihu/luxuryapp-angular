@@ -21,7 +21,7 @@
           [class.selected]="selectedStyle() === option.value"
           (click)="selectStyle(option.value)"
         >
-          <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
+          <lux-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
           <span class="fw-bold">{{ option.label }}</span>
         </div>
       </div>
@@ -51,7 +51,7 @@
           [class.selected]="selectedElement() === option.value"
           (click)="selectElement(option.value)"
         >
-          <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
+          <lux-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
           <span class="fw-bold">{{ option.label }}</span>
         </div>
       </div>

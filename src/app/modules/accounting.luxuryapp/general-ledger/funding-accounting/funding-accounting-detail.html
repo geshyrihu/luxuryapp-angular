@@ -87,7 +87,7 @@
 <div>
   <app-table [value]="grupo.ordenes" class="custom-table card d-none d-md-block">
     <ng-template #caption>
-      <lx-message severity="secondary">{{grupo.tipoGasto | uppercase}}</lx-message>
+      <lux-message severity="secondary">{{grupo.tipoGasto | uppercase}}</lux-message>
     </ng-template>
     <ng-template #header>
       <tr>
@@ -138,17 +138,17 @@
           </span>
           }  -->
           @if (orden.factura || orden.pdfFile) {
-          <lx-tag class="tag-sm cursor-pointer w-text-xs"  severity="danger" [value]="orden.folioFiscal" (click)="viewPDF(orden.pdfFile)" />
+          <lux-tag class="tag-sm cursor-pointer w-text-xs"  severity="danger" [value]="orden.folioFiscal" (click)="viewPDF(orden.pdfFile)" />
           }
         </td>
         <!-- Columna de Validación XML -->
         <td class="text-center">
           @if (orden.validationStatus === true) {
-          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:check-circle" severity="success" />
+          <lux-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:check-circle" severity="success" />
           } @else if (orden.validationStatus === false) {
-          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:cancel" severity="danger" />
+          <lux-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:cancel" severity="danger" />
           } @else {
-          <lx-tag class="cursor-pointer text-xs" tooltip="No hay XML para validar" tooltipPosition="left" icon="material-symbols-light:help" severity="secondary" />
+          <lux-tag class="cursor-pointer text-xs" tooltip="No hay XML para validar" tooltipPosition="left" icon="material-symbols-light:help" severity="secondary" />
           }
         </td>
         <td class="text-start">{{ orden.nameProvider | uppercase }}</td>

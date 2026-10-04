@@ -15,8 +15,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { SwalService } from "@core/services/swal.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;

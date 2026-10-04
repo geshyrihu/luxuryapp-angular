@@ -1,6 +1,6 @@
 @if (loading()) {
   <div class="detail-loading">
-    <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle del permiso'" />
+    <lux-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle del permiso'" />
   </div>
 } @else if (requestData(); as data) {
   <section class="detail-modal">
@@ -13,7 +13,7 @@
     <div class="detail-grid">
       <div class="detail-item">
         <span class="detail-label">Estado</span>
-        <lx-tag
+        <lux-tag
           [value]="displayStatus(data.status)"
           [severity]="getStatusSeverity(displayStatus(data.status))"
           [rounded]="true"

@@ -29,7 +29,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ProjectedExpensesForm } from "./projected-expenses-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

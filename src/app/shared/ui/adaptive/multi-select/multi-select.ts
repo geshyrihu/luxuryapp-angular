@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { MultiSelectBase } from "@ui/base/multi-select.base";
+import { MultiSelectBase } from "@ui/core/multi-select.base";
 import { MobileMultiSelect } from "@ui/mobile/multi-select/multi-select";
 import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-multi-select",
+  selector: "lux-multi-select",
 
   imports: [AppMultiSelect, MobileMultiSelect],
   template: `

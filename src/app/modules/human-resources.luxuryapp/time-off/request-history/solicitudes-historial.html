@@ -150,7 +150,7 @@
             <td>{{ item.startDate | apiDate: "dd/MM/yyyy" }}</td>
             <td>{{ item.endDate | apiDate: "dd/MM/yyyy" }}</td>
             <td>
-              <lx-tag
+              <lux-tag
                 [value]="item.status"
                 [severity]="
                   item.status === 'Aprobada'
@@ -161,7 +161,7 @@
                         ? 'info'
                         : 'warn' // default: Pendiente
                 "
-              ></lx-tag>
+              ></lux-tag>
             </td>
             <td>{{ item.requestDate | apiDate: "dd/MM/yyyy HH:mm" }}</td>
             <td>{{ item.approverName || '—' }}</td>
@@ -208,7 +208,7 @@
               class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
               class="w-3rem h-3rem bg-primary-50"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:format-list-bulleted"
                 class="text-xl text-primary"
               />
@@ -224,7 +224,7 @@
             </p>
 
             <div end class="d-flex align-items-center">
-              <lx-tag
+              <lux-tag
                 [value]="item.status"
                 [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
                 class="ms-2"

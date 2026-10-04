@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
-import { CheckboxBase } from "@ui/base/checkbox.base";
+import { CheckboxBase } from "@ui/core/checkbox.base";
 import { IliCheckbox } from "@ui/mobile/checkbox/checkbox";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-checkbox",
+  selector: "lux-checkbox",
 
   imports: [AppCheckbox, IliCheckbox],
   template: `

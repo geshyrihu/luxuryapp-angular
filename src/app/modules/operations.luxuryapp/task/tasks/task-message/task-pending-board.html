@@ -4,7 +4,7 @@
     class="d-flex align-items-center justify-content-center py-5"
     
   >
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
   </div>
   } @else {
   <div class="w-full xl:w-10 mx-auto d-flex flex-column gap-4">
@@ -45,13 +45,13 @@
             <div
               class="d-inline-flex align-items-center gap-2 text-body-secondary"
             >
-              <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
+              <lux-icon [icon]="'material-symbols-light:format-list-bulleted'" />
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
             <div
               class="d-inline-flex align-items-center gap-2 text-body-secondary"
             >
-              <app-icon [icon]="'material-symbols-light:grid-view'" />
+              <lux-icon [icon]="'material-symbols-light:grid-view'" />
               <span>Areas: {{ groupedTasks().length }}</span>
             </div>
           </div>
@@ -95,7 +95,7 @@
             </p>
           </div>
         </div>
-        <lx-tag
+        <lux-tag
           [value]="group.tasks.length + ' tarea(s)'"
           severity="secondary"
          />
@@ -122,19 +122,18 @@
                   <span class="text-xs fw-bold text-body-secondary"
                     >{{ task.folio }}</span
                   >
-                  <lx-tag
+                  <lux-tag
                     [value]="statusLabel(task.status)"
                     [severity]="statusSeverity(task.status)"
                    />
                   @if (task.assignee) {
                   <span class="text-xs text-body-secondary"
-                    ><app-icon [icon]="'material-symbols-light:person'" class="me-1" />{{
+                    ><lux-icon [icon]="'material-symbols-light:person'" class="me-1" />{{
                     task.assignee }}</span
                   >
                   } @if (task.scheduledAt) {
                   <span class="text-xs text-body-secondary"
-                    ><app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1"></app-icon
-                    >{{ task.scheduledAt }}</span
+                    ><lux-icon [icon]="'material-symbols-light:calendar-today'" class="me-1"></lux-icon>{{ task.scheduledAt }}</span
                   >
                   }
                 </div>
@@ -166,7 +165,7 @@
     <div
       class="bg-body rounded-xl border-1 border p-5 shadow-sm text-center"
     >
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:check-circle'"
         class="text-4xl text-body-secondary mb-3 d-block"
       />

@@ -35,7 +35,7 @@ import {
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pending-minutes/cont-minuta-seguimientos";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
 

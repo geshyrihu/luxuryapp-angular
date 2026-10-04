@@ -108,7 +108,7 @@
         }
       </td>
       <td class="text-center">
-        <lx-tag
+        <lux-tag
           [severity]="
             item.status == 0
               ? 'danger'
@@ -205,7 +205,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:timeline"
           class="text-xl text-primary"
         />
@@ -220,7 +220,7 @@
         [innerHTML]="item.pendiente | sanitizeHtml"
       ></div>
       <p class="text-sm">
-        <lx-tag
+        <lux-tag
           [severity]="
               item.status == 0
                 ? 'danger'

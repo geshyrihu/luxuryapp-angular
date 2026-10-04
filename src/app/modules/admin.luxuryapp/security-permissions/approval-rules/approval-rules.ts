@@ -29,7 +29,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
 import { ApprovalMatrixDto } from "./interfaces/approval-matrix.dto";
 import { UpdateApprovalRulesDto } from "./interfaces/approval-rules-update.dto";

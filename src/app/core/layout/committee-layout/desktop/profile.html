@@ -20,7 +20,7 @@
         </span>
       </span>
       }
-      <app-icon icon="material-symbols-light:keyboard-arrow-down" class="committee-profile__caret" />
+      <lux-icon icon="material-symbols-light:keyboard-arrow-down" class="committee-profile__caret" />
     </div>
 
     <div class="profile-popup-menu">
@@ -45,7 +45,7 @@
         class="profile-popup-item"
         (click)="goToProfile(); profilePopover.hide()"
       >
-        <app-icon icon="material-symbols-light:person" />
+        <lux-icon icon="material-symbols-light:person" />
         <span>Perfil</span>
       </button>
 
@@ -54,13 +54,13 @@
         class="profile-popup-item"
         (click)="onUpdateClick(); profilePopover.hide()"
       >
-        <app-icon icon="material-symbols-light:sync" />
+        <lux-icon icon="material-symbols-light:sync" />
         <span>Actualizar</span>
       </button>
       }
 
       <button class="profile-popup-item" (click)="onForceReload()">
-        <app-icon icon="material-symbols-light:refresh" />
+        <lux-icon icon="material-symbols-light:refresh" />
         <span>Recargar app</span>
       </button>
 
@@ -68,7 +68,7 @@
         class="profile-popup-item"
         (click)="openAdminSite(); profilePopover.hide()"
       >
-        <app-icon icon="material-symbols-light:open-in-new" />
+        <lux-icon icon="material-symbols-light:open-in-new" />
         <span>Más de mi administración</span>
       </button>
 
@@ -78,7 +78,7 @@
         class="profile-popup-item profile-popup-item--danger"
         (click)="logout(); profilePopover.hide()"
       >
-        <app-icon icon="material-symbols-light:logout" />
+        <lux-icon icon="material-symbols-light:logout" />
         <span>Cerrar sesión</span>
       </button>
     </div>

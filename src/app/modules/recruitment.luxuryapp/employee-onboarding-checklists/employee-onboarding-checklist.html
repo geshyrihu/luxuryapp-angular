@@ -1,11 +1,11 @@
 <div class="d-flex flex-column gap-3 py-3">
-  <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+  <lux-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
     <ng-template #header>
       <div class="d-flex align-items-center gap-3 px-4 pt-4 pb-2">
         <div
           class="w-2rem h-2rem rounded-lg bg-primary-100 d-flex align-items-center justify-content-center flex-shrink-0"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:fact-check'"
             class="text-primary"
           />
@@ -37,7 +37,7 @@
             <div class="d-flex align-items-center gap-2">
               <strong class="text-body">{{ task.optionName }}</strong>
               @if (task.isCompleted) {
-              <lx-tag value="Completado" severity="success" class="text-xs" />
+              <lux-tag value="Completado" severity="success" class="text-xs" />
               }
             </div>
             @if (task.description) {
@@ -63,5 +63,5 @@
       </div>
       }
     </div>
-  </lx-card>
+  </lux-card>
 </div>

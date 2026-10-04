@@ -21,7 +21,7 @@ import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { DebugConsoleService } from "@core/services/debug-console.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 interface LogEntry {
   level: "log" | "error" | "warn" | "info";
@@ -19,7 +19,7 @@ interface LogEntry {
  * Se muestra como un overlay flotante en la esquina inferior.
  */
 @Component({
-  selector: "lx-debug-console",
+  selector: "lux-debug-console",
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -42,7 +42,7 @@ interface LogEntry {
             (click)="debugConsole.toggleConsole()"
             class="text-white hover:text-gray-300"
           >
-            <app-icon icon="material-symbols-light:close" class="text-lg" />
+            <lux-icon icon="material-symbols-light:close" class="text-lg" />
           </button>
         </div>
       </div>

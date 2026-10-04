@@ -55,7 +55,7 @@
         >
           <td>
             <div class="d-flex align-items-center">
-              <lx-avatar
+              <lux-avatar
                 [image]="item.photoPath"
                 [alt]="item.nameCustomer"
                 size="normal"
@@ -71,13 +71,13 @@
           <td class="text-xs">{{ item.register }}</td>
           <td>
             @if (item.isAssigned) {
-            <lx-tag severity="success" value="Activo"></lx-tag>
+            <lux-tag severity="success" value="Activo"></lux-tag>
             } @else {
-            <lx-tag severity="danger" value="Inactivo"></lx-tag>
+            <lux-tag severity="danger" value="Inactivo"></lux-tag>
             }
           </td>
           <td class="text-end">
-            <app-icon [icon]="'material-symbols-light:chevron-right'" />
+            <lux-icon [icon]="'material-symbols-light:chevron-right'" />
           </td>
         </tr>
       </ng-template>
@@ -125,7 +125,7 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:domain"
           
         />
@@ -141,9 +141,9 @@
        </ion-label>
       <div slot="end" class="d-flex align-items-center me-2">
         @if (customer.isAssigned) {
-        <lx-tag severity="success" value="Asignado"></lx-tag>
+        <lux-tag severity="success" value="Asignado"></lux-tag>
         } @else {
-        <lx-tag severity="danger" value="No Asignado"></lx-tag>
+        <lux-tag severity="danger" value="No Asignado"></lux-tag>
         }
       </div>
     </ili-list-item>

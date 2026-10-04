@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
-import { AppIcon, type AppIconName } from "../../shared/app-icon/app-icon";
+import { AppIcon, type AppIconName } from "../../primitives/app-icon/app-icon";
 
 export interface LxSectionNavItem {
   label: string;
@@ -24,7 +24,7 @@ export interface LxSectionNavItem {
         (click)="select(item)"
       >
         @if (item.icon) {
-        <app-icon class="lx-section-nav__icon" [icon]="item.icon" />
+        <lux-icon class="lx-section-nav__icon" [icon]="item.icon" />
         }
         <span class="lx-section-nav__label">{{ item.label }}</span>
       </button>

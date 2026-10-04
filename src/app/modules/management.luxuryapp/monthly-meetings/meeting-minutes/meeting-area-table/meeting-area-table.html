@@ -1,7 +1,7 @@
 <section class="mm-area">
   <header class="mm-area__head">
     <span class="mm-area__title">
-      <app-icon [icon]="icon()" class="mm-area__icon" aria-hidden="true" />
+      <lux-icon [icon]="icon()" class="mm-area__icon" aria-hidden="true" />
       {{ title() }}
       <span class="mm-chip mm-chip--total">
         <span class="mm-chip__value">{{ details().length }}</span>
@@ -43,7 +43,7 @@
             [class.mm-chip--done]="detail.status === 1"
             [class.mm-chip--denied]="detail.status === 2"
           >
-            <app-icon [icon]="statusIcon(detail.status)" aria-hidden="true" />
+            <lux-icon [icon]="statusIcon(detail.status)" aria-hidden="true" />
             {{ statusLabel(detail.status) }}
           </span>
           <h3 class="mm-item__title">{{ detail.title }}</h3>
@@ -61,7 +61,7 @@
           @for (seg of detail.seguimiento; track seg.id) {
           <li class="mm-followup">
             <div class="mm-followup__box">
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:comment"
                 class="mm-followup__icon"
                 aria-hidden="true"

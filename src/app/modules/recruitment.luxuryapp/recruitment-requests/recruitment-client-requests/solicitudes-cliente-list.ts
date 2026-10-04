@@ -37,7 +37,7 @@ import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitm
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
 import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-solicitudes-cliente-list",

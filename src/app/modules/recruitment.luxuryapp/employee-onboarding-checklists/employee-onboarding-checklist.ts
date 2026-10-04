@@ -8,7 +8,7 @@ import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SwalService } from "@core/services/swal.service";
 import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 

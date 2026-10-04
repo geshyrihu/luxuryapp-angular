@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { TreeBase, TreeNode } from "@ui/base/tree.base";
+import { TreeBase, TreeNode } from "@ui/core/tree.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

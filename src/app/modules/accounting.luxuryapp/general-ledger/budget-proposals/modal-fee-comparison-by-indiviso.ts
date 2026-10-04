@@ -57,7 +57,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -81,7 +81,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Total Anual:
@@ -108,7 +108,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
                   }}
                 </h3>
                 <p class="mb-0">por indiviso</p>
-                <lx-divider class="my-3"></lx-divider>
+                <lux-divider class="my-3"></lux-divider>
                 <div class="text-600">
                   <div>
                     Cambio:
@@ -118,11 +118,11 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
               </div>
             </div>
 
-            <lx-divider class="my-4">
+            <lux-divider class="my-4">
               <h6 class="text-uppercase font-semibold">
                 Detalle por Propiedad
               </h6>
-            </lx-divider>
+            </lux-divider>
 
             <app-table
               [value]="data.propertyIndivisoDetails"
@@ -165,9 +165,9 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
           </div>
         </div>
       } @else if (!loading()) {
-        <lx-message severity="info">
+        <lux-message severity="info">
           No hay datos de comparación disponibles.
-        </lx-message>
+        </lux-message>
       }
     </div>
   `,

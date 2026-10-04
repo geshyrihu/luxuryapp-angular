@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { BadgeBase } from "@ui/base/badge.base";
+import { BadgeBase } from "@ui/core/badge.base";
 
 /**
  * AppBadge — `.badge` de Bootstrap con color semántico y tamaño.

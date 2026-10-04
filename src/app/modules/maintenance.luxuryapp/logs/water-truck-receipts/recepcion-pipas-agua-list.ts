@@ -26,7 +26,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { RecepcionPipasAguaForm } from "./recepcion-pipas-agua-form";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 

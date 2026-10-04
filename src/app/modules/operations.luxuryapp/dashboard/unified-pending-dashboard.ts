@@ -21,8 +21,8 @@ import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-for
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/action-icons-group.component";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableCaption } from "@ui/web/table-caption/table-caption";
 import { TableFooter } from "@ui/web/table-footer/table-footer";

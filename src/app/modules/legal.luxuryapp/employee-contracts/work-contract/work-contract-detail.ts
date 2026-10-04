@@ -10,7 +10,7 @@ import { CurrencyPipe } from "@angular/common";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { EmployeeWorkContractDetailDTO } from "./interfaces/work-contract.dto";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 

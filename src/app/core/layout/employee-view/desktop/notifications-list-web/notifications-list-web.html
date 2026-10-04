@@ -5,7 +5,7 @@
         <span class="text-xl fw-bold">Notificaciones</span>
         <div class="d-flex align-items-center gap-2">
           @if (selectionMode()) {
-            <lx-checkbox
+            <lux-checkbox
               label="Todas"
               [checked]="allSelected()"
               (checkedChange)="toggleSelectAll()"
@@ -48,7 +48,7 @@
           "
         >
           @if (selectionMode()) {
-            <lx-checkbox
+            <lux-checkbox
               class="mt-1"
               [checked]="selectedIds().has(notification.id)"
               (checkedChange)="toggleSelection(notification.id)"
@@ -56,7 +56,7 @@
             />
           }
 
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:notifications"
             class="text-xl mt-1"
             [class.text-primary]="!notification.isRead"
@@ -91,7 +91,7 @@
           class="d-flex flex-column align-items-center justify-content-center text-center gap-3"
           style="height: 300px"
         >
-          <app-icon icon="material-symbols-light:move-to-inbox" class="text-4xl text-body-secondary" />
+          <lux-icon icon="material-symbols-light:move-to-inbox" class="text-4xl text-body-secondary" />
           <span class="text-body-secondary">No tienes notificaciones.</span>
         </div>
         }

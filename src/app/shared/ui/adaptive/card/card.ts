@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, contentChild, inject, TemplateRef } from "@angular/core";
-import { CardBase } from "@ui/base/card.base";
+import { CardBase } from "@ui/core/card.base";
 import { MobileCard } from "@ui/mobile/card/card";
 import { AppCard } from "@ui/web/card/card";
 import { PlatformService } from "@core/services/platform.service";
 
 @Component({
-  selector: "lx-card",
+  selector: "lux-card",
   host: { class: "lux-card" },
   imports: [NgTemplateOutlet, AppCard, MobileCard],
   template: `
@@ -48,7 +48,7 @@ export class LxCard extends CardBase {
   protected platform = inject(PlatformService);
 
   // Plantillas nombradas al estilo p-card proyectadas por el consumidor.
-  // `descendants: false` limita la búsqueda a los hijos directos de <lx-card>,
+  // `descendants: false` limita la búsqueda a los hijos directos de <lux-card>,
   // evitando colisiones con #header/#footer anidados (p. ej. dentro de un p-table).
   protected headerTpl = contentChild<TemplateRef<unknown>>("header", {
     descendants: false,

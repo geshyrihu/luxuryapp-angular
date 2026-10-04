@@ -37,7 +37,7 @@
   </div>
 
   @if (activeTab() === 'description') {
-  <lx-card [padded]="false">
+  <lux-card [padded]="false">
     @if (description(); as d) {
     <div class="d-flex flex-column gap-3 p-3">
       <div>
@@ -60,7 +60,7 @@
         <span class="text-body-secondary fw-bold">Entorno de trabajo</span>
         <p class="mt-1 white-space-pre-line">{{ d.workEnvironment }}</p>
       </div>
-      <lx-tag
+      <lux-tag
         [severity]="d.requiresWeekendShift ? 'warn' : 'success'"
         [value]="d.requiresWeekendShift ? 'Requiere turno fin de semana' : 'Sin turno fin de semana'"
       />
@@ -68,10 +68,10 @@
     } @else {
     <p class="p-3 text-body-secondary">Este puesto no tiene DESCRIPCIÓN registrada.</p>
     }
-  </lx-card>
+  </lux-card>
   } @else {
   <div class="d-flex flex-column gap-3">
-    <lx-card [padded]="false">
+    <lux-card [padded]="false">
       <div class="d-flex flex-column gap-2 p-3">
         <h3 class="m-0">Datos generales</h3>
         @if (general(); as g) {
@@ -103,9 +103,9 @@
         <p class="text-body-secondary">Cargando...</p>
         }
       </div>
-    </lx-card>
+    </lux-card>
 
-    <lx-card [padded]="false">
+    <lux-card [padded]="false">
       <div class="p-3">
         <h3 class="mt-0">Horarios de trabajo</h3>
         @if (hours(); as h) {
@@ -133,7 +133,7 @@
         <p class="text-body-secondary">Sin horarios registrados.</p>
         }
       </div>
-    </lx-card>
+    </lux-card>
   </div>
   }
 </div>

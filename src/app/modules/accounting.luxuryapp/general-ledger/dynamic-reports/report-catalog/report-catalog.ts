@@ -10,7 +10,7 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TabItem } from "@ui/base/tabs.base";
+import type { TabItem } from "@ui/core/tabs.base";
 import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,

@@ -2,7 +2,7 @@
   <!-- Header con info básica -->
   <div class="d-flex align-items-center mb-1 gap-3">
     <div class="bg-primary text-white rounded w-3rem h-3rem d-flex align-items-center justify-content-center text-xl fw-bold flex-shrink-0">
-      <app-icon icon="material-symbols-light:apartment" />
+      <lux-icon icon="material-symbols-light:apartment" />
     </div>
     <div>
       <div class="text-xl fw-bold text-body">{{ data.propertyFullName || data.accountName }}</div>
@@ -21,7 +21,7 @@
            'bg-body-tertiary border-1 border': data.classification === 'ANTICIPOS'
          }">
       <div class="d-flex align-items-center gap-2">
-        <app-icon icon="material-symbols-light:info" class="text-lg" [ngClass]="{
+        <lux-icon icon="material-symbols-light:info" class="text-lg" [ngClass]="{
              'text-red-500': data.classification === 'COBRANZA JUDICIAL',
              'text-orange-500': data.classification === 'MOROSOS',
              'text-blue-500': data.classification === 'DEUDA CORRIENTE',
@@ -46,7 +46,7 @@
 
   @if (isLoading()) {
     <div class="text-center p-4">
-      <lx-spinner [size]="40" />
+      <lux-spinner [size]="40" />
       <div class="mt-2 text-body-secondary">Cargando desglose...</div>
     </div>
   } @else if (detail()) {
@@ -55,7 +55,7 @@
         <div class="border-1 border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
           <div class="p-3 bg-body-tertiary border-bottom-1 border d-flex flex-column gap-2">
             <div class="d-flex justify-content-between align-items-center">
-              <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
+              <lux-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
               <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
                 {{ item.saldoFinal | accountingNumber}}
               </strong>
@@ -112,7 +112,7 @@
     </div>
   } @else {
     <div class="text-center p-4 text-body-secondary">
-      <app-icon icon="material-symbols-light:warning" class="text-3xl mb-2" />
+      <lux-icon icon="material-symbols-light:warning" class="text-3xl mb-2" />
       <div>No se pudo cargar el desglose.</div>
     </div>
   }

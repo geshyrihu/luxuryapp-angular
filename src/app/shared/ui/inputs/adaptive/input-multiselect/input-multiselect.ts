@@ -9,7 +9,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { PlatformService } from "@core/services/platform.service";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { IonInputMultiselect } from "../../mobile/ion-input-multiselect";
 import { WebInputMultiselect } from "../../web/input-multiselect/input-multiselect";
 

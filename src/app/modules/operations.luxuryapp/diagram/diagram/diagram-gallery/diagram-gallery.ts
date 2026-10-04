@@ -14,7 +14,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -59,7 +59,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
               <div
                 class="card-body d-flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:photo'"
                   class="text-6xl text-primary-400"
                 />

@@ -1,6 +1,6 @@
 <div class="committee-profile-page">
   <!-- Foto de perfil -->
-  <lx-card>
+  <lux-card>
     <div class="committee-avatar">
       <div class="committee-avatar__ring">
         <img
@@ -15,7 +15,7 @@
           (click)="triggerFile()"
           aria-label="Cambiar foto"
         >
-          <app-icon icon="material-symbols-light:photo-camera" />
+          <lux-icon icon="material-symbols-light:photo-camera" />
         </button>
       </div>
 
@@ -33,13 +33,13 @@
         (change)="onFileSelected($event)"
       />
     </div>
-  </lx-card>
+  </lux-card>
 
   <!-- Cambiar contraseña -->
-  <lx-card>
+  <lux-card>
     <div class="committee-form">
       <div class="committee-form__header">
-        <app-icon icon="material-symbols-light:lock" class="committee-form__icon" />
+        <lux-icon icon="material-symbols-light:lock" class="committee-form__icon" />
         <span class="committee-form__title">Cambiar contraseña</span>
       </div>
 
@@ -67,5 +67,5 @@
         (clicked)="updatePassword()"
       />
     </div>
-  </lx-card>
+  </lux-card>
 </div>

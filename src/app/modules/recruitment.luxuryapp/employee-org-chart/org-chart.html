@@ -9,16 +9,16 @@
 
     <div class="org-chart-page__header-actions">
       @if (reassignLoading()) {
-      <lx-tag severity="info" value="Reasignando..." />
+      <lux-tag severity="info" value="Reasignando..." />
       }
     </div>
   </div>
 
-  <lx-tabs [tabs]="tabs()" [activeId]="activeTab()" (activeIdChange)="onActiveTabChange($event)">
+  <lux-tabs [tabs]="tabs()" [activeId]="activeTab()" (activeIdChange)="onActiveTabChange($event)">
       <div tab="view">
         @if (loading()) {
         <div class="org-chart-state">
-          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
+          <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
         </div>
         } @else if (graphModel().nodes.length === 0) {
         <div class="org-chart-state org-chart-state--empty">
@@ -36,7 +36,7 @@
         </div>
         } @else if (loading()) {
         <div class="org-chart-state">
-          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
+          <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
         </div>
         } @else {
         <div class="org-chart-toolbar">
@@ -67,7 +67,7 @@
             (clicked)="reorderSelected(1)"
           />
           } @if (selectedOrigin()) {
-          <lx-tag
+          <lux-tag
             severity="warn"
             [value]="'Origen: ' + (selectedOrigin()?.roleDisplayName ?? '')"
           />
@@ -127,7 +127,7 @@
         }
         }
       </div>
-  </lx-tabs>
+  </lux-tabs>
 </div>
 
 <ng-template #graphCanvas>
@@ -297,7 +297,7 @@
   </div>
 </ng-template>
 
-<lx-sidebar
+<lux-sidebar
   [visible]="drawerVisible()" (visibleChange)="drawerVisible.set($event)"
   position="right"
   header="Miembros del rol"
@@ -305,7 +305,7 @@
   @if (selectedNodeForDetails(); as node) {
   <div class="org-detail">
     <div class="org-detail__header">
-      <lx-avatar
+      <lux-avatar
         icon="material-symbols-light:work"
         shape="circle"
         size="large"
@@ -331,9 +331,9 @@
       @for (member of node.members; track member.workPositionId) {
       <div class="org-detail-member">
         @if (member.hasEmployee && member.employeePhoto) {
-        <lx-avatar [image]="member.employeePhoto" shape="circle" size="normal" />
+        <lux-avatar [image]="member.employeePhoto" shape="circle" size="normal" />
         } @else {
-        <lx-avatar
+        <lux-avatar
           [label]="getMemberInitials(member)"
           shape="circle"
           size="normal"
@@ -361,6 +361,6 @@
     </div>
   </div>
   }
-</lx-sidebar>
+</lux-sidebar>
 
-<lx-toast />
+<lux-toast />
