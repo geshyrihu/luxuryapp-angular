@@ -12,8 +12,12 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -29,9 +33,9 @@ import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 import { UserAccountDto } from "./interfaces/user-account.dto";
 import { MdEditAccount } from "./md-edit-account";
 import { UserAccountForm } from "./user-account-form";

@@ -7,24 +7,19 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { AppTable } from "@ui/web/table/table";
-import { AppSpinner } from "@ui/web/spinner/spinner";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-report-meeting",
   templateUrl: "./report-meeting.html",
   styleUrls: ["./report-meeting.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ApiDatePipe,
-    SanitizeHtmlPipe,
-    AppTable,
-    AppSpinner,
-  ],
+  imports: [ApiDatePipe, SanitizeHtmlPipe, AppTable, AppSpinner],
 })
 export class ReportMeeting {
   apiResponseS = inject(ApiResponseService);
@@ -135,4 +130,3 @@ export class ReportMeeting {
     });
   }
 }
-

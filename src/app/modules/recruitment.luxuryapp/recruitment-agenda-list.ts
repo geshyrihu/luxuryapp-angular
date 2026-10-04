@@ -22,11 +22,15 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { CandidateRecruitmentAgendaItem } from "./candidates/candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";

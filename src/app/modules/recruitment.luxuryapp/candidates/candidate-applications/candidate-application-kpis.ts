@@ -15,7 +15,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ChartJsData } from "@ui/web/charts/chart-adapters";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   MappedPTag,
   MappedTagOption,

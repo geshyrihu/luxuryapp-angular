@@ -18,8 +18,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { firstValueFrom } from "rxjs";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -42,8 +42,8 @@ import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",

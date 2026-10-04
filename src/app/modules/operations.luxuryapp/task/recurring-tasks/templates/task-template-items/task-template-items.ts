@@ -19,13 +19,13 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,
   AppTable,
-} from "@ui/web/table/table";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

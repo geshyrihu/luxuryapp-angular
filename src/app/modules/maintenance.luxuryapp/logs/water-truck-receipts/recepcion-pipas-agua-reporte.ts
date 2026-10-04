@@ -20,16 +20,20 @@ import { HtmlPrintService } from "@core/services/html-print.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import FileSaver from "file-saver";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",

@@ -7,21 +7,28 @@ import {
   signal,
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
-import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
+import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-bancos-inversiones",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, AppTable, DataViewMobile, AccountingNumberPipe],
+  imports: [
+    LxSkeleton,
+    AppIcon,
+    CommonModule,
+    AppTable,
+    DataViewMobile,
+    AccountingNumberPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })

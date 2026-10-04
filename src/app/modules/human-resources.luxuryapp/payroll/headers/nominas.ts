@@ -15,9 +15,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 import ModalGenerarNomina from "./generate-payroll-modal/modal-generar-nomina";
 
@@ -26,7 +30,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 
 @Component({
   selector: "app-nominas",

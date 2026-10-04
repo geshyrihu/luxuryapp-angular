@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AppIcon } from "../../primitives/app-icon/app-icon";
 
 /**

@@ -8,9 +8,13 @@ import { WebButtonIcon } from "@ui/buttons/web-icon";
 import type { TagSeverity } from "@ui/core/tag.base";
 import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";

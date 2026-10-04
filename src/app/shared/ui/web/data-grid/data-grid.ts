@@ -15,7 +15,7 @@ import {
   AppTable,
   AppTableCheckbox,
   AppTableHeaderCheckbox,
-} from "@ui/web/table/table";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 export interface DataGridColumn {
   field: string;

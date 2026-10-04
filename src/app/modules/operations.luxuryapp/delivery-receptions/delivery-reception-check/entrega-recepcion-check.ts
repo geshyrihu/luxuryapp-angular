@@ -7,7 +7,7 @@ import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -19,7 +19,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     LxAccordion,
     AppTable,
-
 
     LxTag,
     CustomInputSelectButton,

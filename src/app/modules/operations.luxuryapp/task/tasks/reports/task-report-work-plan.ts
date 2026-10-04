@@ -29,9 +29,13 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskForm } from "../task-message/task-form";
 
 @Component({

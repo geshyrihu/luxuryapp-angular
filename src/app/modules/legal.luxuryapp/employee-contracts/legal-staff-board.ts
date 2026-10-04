@@ -1,13 +1,21 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LegalEmployeeService, type LegalEmployeeDTO } from "./legal-employee.service";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  LegalEmployeeService,
+  type LegalEmployeeDTO,
+} from "./legal-employee.service";
 
 @Component({
   selector: "app-legal-staff-board",
@@ -37,7 +45,9 @@ export class LegalStaffBoard {
   }
 
   onViewFile(employee: LegalEmployeeDTO): void {
-    this.router.navigateByUrl(`/recruitment/employee-files/${employee.employeeId}`);
+    this.router.navigateByUrl(
+      `/recruitment/employee-files/${employee.employeeId}`,
+    );
   }
 
   onManageContract(employee: LegalEmployeeDTO): void {

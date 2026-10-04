@@ -47,8 +47,8 @@ import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppTable } from "@ui/web/table/table";
 import { Subscription } from "rxjs";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import ProjectedExpensesList from "../aspel-mirror/projected-expenses-list";
 import { PurchaseHistory } from "../aspel-web-budget/purchase-history";
 import { AccountModalAdd } from "./account-modal-add";

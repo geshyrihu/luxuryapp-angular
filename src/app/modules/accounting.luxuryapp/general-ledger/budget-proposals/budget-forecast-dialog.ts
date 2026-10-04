@@ -20,21 +20,21 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import {
-  AppTable,
-  AppSortableColumn,
-  AppSorticon,
-  AppTableCheckbox,
-  AppTableHeaderCheckbox,
-} from "@ui/web/table/table";
 import { AiService } from "@core/services/ai.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+  AppTableCheckbox,
+  AppTableHeaderCheckbox,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
 
 @Component({
@@ -187,4 +187,3 @@ export class BudgetForecastDialog implements OnInit {
     return expensesToAverage.length ? sum / expensesToAverage.length : 0;
   }
 }
-

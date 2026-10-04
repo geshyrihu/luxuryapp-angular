@@ -13,8 +13,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppDivider } from "@ui/web/divider/divider";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppTable } from "@ui/web/table/table";
 import { Tabs } from "@ui/web/tabs/tabs";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AppCard } from "@ui/web/card/card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";

@@ -6,24 +6,24 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   DiasNoHabilesCreateDTO,
   DiasNoHabilesDTO,
 } from "../../interfaces/periodo-nomina.interface";
 
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-modal-dias-no-habiles",
@@ -103,4 +103,3 @@ export default class ModalDiasNoHabiles implements OnInit {
     if (result) await this.loadDias(periodoId);
   }
 }
-

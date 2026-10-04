@@ -10,7 +10,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";

@@ -11,15 +11,15 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 export interface VacationHistoryItemDTO {

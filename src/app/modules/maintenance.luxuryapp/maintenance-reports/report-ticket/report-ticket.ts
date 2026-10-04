@@ -16,9 +16,13 @@ import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-report-ticket",
   templateUrl: "./report-ticket.html",

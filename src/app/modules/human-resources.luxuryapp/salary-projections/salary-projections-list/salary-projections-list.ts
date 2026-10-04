@@ -16,8 +16,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   ISalaryProjection,
   salaryProjectionStateSeverity,

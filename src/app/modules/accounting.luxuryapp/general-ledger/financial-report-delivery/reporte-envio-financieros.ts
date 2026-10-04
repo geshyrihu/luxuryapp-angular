@@ -7,9 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -20,9 +17,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",

@@ -16,11 +16,15 @@ import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -37,9 +41,9 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { EStatus } from "@ui/core/status-badge.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { EStatus } from "@ui/core/status-badge.base";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";

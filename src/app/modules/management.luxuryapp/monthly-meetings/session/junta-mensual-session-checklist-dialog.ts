@@ -6,10 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -17,6 +13,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IChecklistItem {
   id: string;
@@ -188,4 +188,3 @@ export class JuntaMensualSessionChecklistDialog {
     });
   }
 }
-

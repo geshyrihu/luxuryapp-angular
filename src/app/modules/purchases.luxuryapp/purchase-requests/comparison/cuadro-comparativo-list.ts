@@ -27,7 +27,7 @@ import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppImage } from "@ui/web/image/image";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";

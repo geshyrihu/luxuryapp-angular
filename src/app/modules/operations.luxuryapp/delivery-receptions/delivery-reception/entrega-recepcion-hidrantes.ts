@@ -7,9 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { ReportHeader } from "@ui/web/report-header/report-header";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -18,11 +15,25 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ReportHeader } from "@ui/web/report-header/report-header";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-entrega-recepcion-hidrantes",
   templateUrl: "./entrega-recepcion-hidrantes.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppTable, AppSortableColumn, AppSorticon, ReportHeader, FormsModule, CustomInputCheckSignal],
+  imports: [
+    AppTable,
+    AppSortableColumn,
+    AppSorticon,
+    ReportHeader,
+    FormsModule,
+    CustomInputCheckSignal,
+  ],
 })
 export class EntregaRecepcionHidrantes {
   apiResponseS = inject(ApiResponseService);
@@ -45,9 +56,10 @@ export class EntregaRecepcionHidrantes {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.EntregaRecepcionReports.fireExtinguishersByCustomer(
-      this.customerIdS.customerId(),
-    );
+    const urlApi =
+      Endpoints.EntregaRecepcionReports.fireExtinguishersByCustomer(
+        this.customerIdS.customerId(),
+      );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

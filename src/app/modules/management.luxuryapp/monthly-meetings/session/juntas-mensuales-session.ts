@@ -21,9 +21,9 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { JuntaMensualSessionChecklistDialog } from "./junta-mensual-session-checklist-dialog";
 import { JuntaMensualSessionRescheduleForm } from "./junta-mensual-session-reschedule-form";
 

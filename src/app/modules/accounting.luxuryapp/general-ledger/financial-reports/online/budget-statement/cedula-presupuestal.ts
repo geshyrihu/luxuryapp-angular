@@ -7,19 +7,19 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 
 /** Nombres de meses para los encabezados de columnas */
 const MONTH_NAMES = [
@@ -87,7 +87,13 @@ const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [AppIcon, FormsModule, AppTable, AccountingNumberPipe, DataViewMobile],
+  imports: [
+    AppIcon,
+    FormsModule,
+    AppTable,
+    AccountingNumberPipe,
+    DataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })
@@ -313,4 +319,3 @@ export class CedulaPresupuestal {
     this.loading.set(false);
   }
 }
-

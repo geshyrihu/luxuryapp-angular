@@ -24,10 +24,14 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/action-icons-group.component";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components

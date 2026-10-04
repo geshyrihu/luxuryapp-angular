@@ -17,9 +17,13 @@ import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
@@ -285,7 +289,7 @@ export class CatalogGuia {
     {
       family: "Tabla Bootstrap",
       selector: "lux-table-caption / footer",
-      source: "shared/ui/web/table-*",
+      source: "shared/ui/web/lux-table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
       avoidWhen: "Listados mobile donde convenga DataViewMobile.",

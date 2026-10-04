@@ -6,19 +6,19 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable } from "@ui/web/table/table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
-import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
+import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
@@ -70,7 +70,6 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
     CustomInputSelectSignal,
     LxMessage,
     AppTable,
-
 
     LxTag,
   ],
@@ -315,5 +314,3 @@ export class VacacionesSaldo implements OnInit {
     }
   }
 }
-
-

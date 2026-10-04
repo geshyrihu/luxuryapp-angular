@@ -27,7 +27,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 // Added
 import { firstValueFrom } from "rxjs";
 
@@ -45,12 +45,12 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { OrdenCompraDetalleForm } from "../purchase-order-detail-form/orden-compra-detalle-form";
 import {
   generateYearOptions,
   groupFundingPeriodsByMonth,
   toggleFundingPeriodSelection,
 } from "../funding-period-grouping";
+import { OrdenCompraDetalleForm } from "../purchase-order-detail-form/orden-compra-detalle-form";
 import { calculatePurchaseOrderLineTotals } from "../purchase-order-line-calculator";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
@@ -283,7 +283,9 @@ export class CreateOrdenCompraWizard implements OnInit {
 
   selectFundingPeriod(quincena: SelectItemDto) {
     const control = this.step1Form.get("fundingPeriod");
-    control?.setValue(toggleFundingPeriodSelection(control.value, quincena.value));
+    control?.setValue(
+      toggleFundingPeriodSelection(control.value, quincena.value),
+    );
   }
 
   onLoadSelects(): void {

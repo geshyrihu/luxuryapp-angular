@@ -27,8 +27,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable } from "@ui/web/table/table";
 import { debounceTime } from "rxjs";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-cuadro-comparativo-cotizacion",

@@ -20,7 +20,10 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
+import {
+  AppFrozenColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,

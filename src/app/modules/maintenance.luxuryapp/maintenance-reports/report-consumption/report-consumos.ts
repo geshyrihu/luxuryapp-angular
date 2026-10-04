@@ -21,11 +21,11 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IExecutiveReportFilters {
   medidorIds: FormControl<string[]>;

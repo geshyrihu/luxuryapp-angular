@@ -22,13 +22,17 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-funding-accounting-list",

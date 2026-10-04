@@ -7,13 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { Mesanio } from "@ui/web/mesanio/mesanio";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -23,8 +16,19 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { Mesanio } from "@ui/web/mesanio/mesanio";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-resultado-general-dashboard",
   templateUrl: "./resultado-general-dashboard.html",

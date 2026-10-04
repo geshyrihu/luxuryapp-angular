@@ -11,8 +11,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-resultado-general-posicion",
   templateUrl: "./resultado-general-posicion.html",

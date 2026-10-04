@@ -1,8 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";
 import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
 import { TipoDocumento } from "./interfaces/tipo-documento.interface";

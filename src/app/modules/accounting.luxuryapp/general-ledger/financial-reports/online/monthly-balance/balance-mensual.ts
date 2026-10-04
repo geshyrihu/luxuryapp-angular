@@ -9,15 +9,15 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 
 @Component({
   selector: "app-balance-mensual",
@@ -151,4 +151,3 @@ export class BalanceMensual {
     }
   }
 }
-

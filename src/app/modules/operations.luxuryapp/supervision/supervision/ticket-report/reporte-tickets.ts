@@ -6,11 +6,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { Mesanio } from "@ui/web/mesanio/mesanio";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -22,8 +17,17 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppAvatar } from "@ui/web/avatar/avatar";
+import { Mesanio } from "@ui/web/mesanio/mesanio";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",
@@ -90,4 +94,3 @@ export class ReporteTickets {
     return { solicitudes, atendidas, pendientes };
   }
 }
-

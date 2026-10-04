@@ -18,9 +18,13 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IncidenciaNominaDTO,
   SincronizarIncidenciasDTO,

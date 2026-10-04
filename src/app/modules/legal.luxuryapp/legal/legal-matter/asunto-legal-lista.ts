@@ -23,11 +23,11 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";

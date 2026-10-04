@@ -7,20 +7,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IBaseAccountDto,
   ICuentaMayorDto,
   IFinancialStatementDto,
 } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 
 const MONTH_NAMES = [
   "Enero",
@@ -273,5 +273,3 @@ export class EstadoResultadosV2 {
     return (a[MONTH_KEYS[idx % 12]] as number) ?? 0;
   }
 }
-
-

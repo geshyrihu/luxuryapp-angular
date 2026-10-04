@@ -1,24 +1,28 @@
+import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   signal,
 } from "@angular/core";
-import { DecimalPipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IFederalVacationParameter,
   IStateTaxParameter,
   mexicanStateText,
 } from "../interfaces/salary-projections.models";
-import { ApiResponseService } from '@core/http/services/api-response.service';
-import { Endpoints } from '@core/constants/endpoints/endpoints';
 
 type PayrollParameterKind = "federal" | "state";
 
@@ -112,8 +116,12 @@ export class PayrollParameterConfig {
     this.loading.set(true);
     try {
       const [federal, stateTax] = await Promise.all([
-        this.api.onGetList<IFederalVacationParameter[]>(Endpoints.SalaryProjections.federalVacationParameters),
-        this.api.onGetList<IStateTaxParameter[]>(Endpoints.SalaryProjections.stateTaxParameters),
+        this.api.onGetList<IFederalVacationParameter[]>(
+          Endpoints.SalaryProjections.federalVacationParameters,
+        ),
+        this.api.onGetList<IStateTaxParameter[]>(
+          Endpoints.SalaryProjections.stateTaxParameters,
+        ),
       ]);
 
       if (federal) {
@@ -135,7 +143,9 @@ export class PayrollParameterConfig {
     this.editorKind.set("federal");
     this.editorYearsOfService.set(row.yearsOfService);
     this.editorYear.set(row.year);
-    this.editorLabel.set(`${row.yearsOfService} años de antigüedad · ${row.year}`);
+    this.editorLabel.set(
+      `${row.yearsOfService} años de antigüedad · ${row.year}`,
+    );
     this.editorValue.set(row.vacationDays);
     this.editorOpen.set(true);
   }

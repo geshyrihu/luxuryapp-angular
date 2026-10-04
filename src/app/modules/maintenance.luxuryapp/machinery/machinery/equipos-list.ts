@@ -41,9 +41,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -56,6 +53,13 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 // ... el resto de las importaciones de componentes y mdulos ...
 // ...
 

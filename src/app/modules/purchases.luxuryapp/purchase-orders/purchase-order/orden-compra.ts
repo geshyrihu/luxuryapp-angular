@@ -14,10 +14,10 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";

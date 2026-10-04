@@ -29,12 +29,16 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { CronogramaCompletoStatusDialog } from "./cronograma-completo-status-dialog";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";

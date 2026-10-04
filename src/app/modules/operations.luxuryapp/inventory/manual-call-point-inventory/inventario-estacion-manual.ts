@@ -23,10 +23,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -36,6 +32,14 @@ import {
   timeOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form";
 import { InventarioEstacionManualPdfService } from "./inventario-estacion-manual-pdf.service";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";

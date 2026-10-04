@@ -12,7 +12,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 

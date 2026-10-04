@@ -7,15 +7,15 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -149,4 +149,3 @@ export class CatalogReplica {
     this.loading.set(false);
   }
 }
-

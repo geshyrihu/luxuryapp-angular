@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,16 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { SwalService } from "@core/services/swal.service";
+import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
@@ -173,7 +173,8 @@ export class IncidentAttachmentsComponent {
 
   getFileIcon(mimeType: string): AppIconName {
     if (mimeType.startsWith("image/")) return "material-symbols-light:photo";
-    if (mimeType === "application/pdf") return "material-symbols-light:picture-as-pdf";
+    if (mimeType === "application/pdf")
+      return "material-symbols-light:picture-as-pdf";
     return "material-symbols-light:description";
   }
 
@@ -183,4 +184,3 @@ export class IncidentAttachmentsComponent {
     return "text-primary";
   }
 }
-

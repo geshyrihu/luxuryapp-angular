@@ -6,14 +6,14 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IncidentWitnessListDTO } from "../interfaces/incident.interfaces";
 import { IncidentWitnessFormComponent } from "./incident-witness-form";
 
@@ -112,4 +112,3 @@ export class IncidentWitnessesComponent implements OnInit {
       });
   }
 }
-

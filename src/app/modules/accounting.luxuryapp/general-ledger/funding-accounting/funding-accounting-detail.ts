@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { FundingPurchaseDetail } from "@accounting.luxuryapp/fundings/funding/funding-purchase-detail";
 import { FundingDetailDTO } from "@accounting.luxuryapp/fundings/funding/model/funding-detail-dto";

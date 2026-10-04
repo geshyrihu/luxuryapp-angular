@@ -17,8 +17,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 interface UnallocatedPayment {

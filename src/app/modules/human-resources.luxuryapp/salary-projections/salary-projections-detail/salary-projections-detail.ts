@@ -17,9 +17,9 @@ import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/emp
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { Subject, debounceTime } from "rxjs";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   ISalaryProjection,
   ISalaryProjectionItem,

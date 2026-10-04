@@ -16,16 +16,6 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppTable } from "@ui/web/table/table";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -39,6 +29,16 @@ import {
   RegisterPastVacationDTO,
 } from "@human-resources.luxuryapp/interfaces/register-past-vacation.interface";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 @Component({
@@ -57,7 +57,6 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
     WebButtonLabel,
     WebButtonLabelSave,
     AppTable,
-
 
     LxTag,
   ],
@@ -421,5 +420,3 @@ export class VacacionesPasadasRegistro implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
-
-

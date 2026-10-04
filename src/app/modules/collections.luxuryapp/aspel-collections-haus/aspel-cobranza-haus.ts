@@ -10,7 +10,11 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -28,8 +32,8 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";

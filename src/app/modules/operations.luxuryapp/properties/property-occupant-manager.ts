@@ -11,14 +11,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PropertyOccupant } from "@core/interfaces/property-occupant.interface";
@@ -26,6 +18,18 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-property-occupant-manager",
@@ -158,7 +162,8 @@ export class PropertyOccupantManager implements OnInit {
         this.errorMensaje = "Error al agregar el ocupante.";
       })
       .catch((error) => {
-        this.errorMensaje = error.error?.message || "Error al agregar el ocupante.";
+        this.errorMensaje =
+          error.error?.message || "Error al agregar el ocupante.";
       })
       .finally(() => this.loading.set(false));
   }
@@ -214,4 +219,3 @@ export class PropertyOccupantManager implements OnInit {
     this.ref.close(true);
   }
 }
-

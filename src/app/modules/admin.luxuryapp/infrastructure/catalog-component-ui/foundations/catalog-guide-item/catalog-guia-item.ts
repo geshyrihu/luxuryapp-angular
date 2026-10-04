@@ -22,8 +22,8 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
-import { AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ButtonCatalog } from "./button-catalog/button-catalog";
 
 type TagSeverity =
@@ -662,7 +662,7 @@ export class CatalogGuiaItem {
     {
       family: "Tabla Bootstrap",
       selector: "lux-table-caption / footer",
-      source: "shared/ui/web/table-*",
+      source: "shared/ui/web/lux-table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
       avoidWhen: "Listados mobile donde convenga DataViewMobile.",

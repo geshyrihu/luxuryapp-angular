@@ -17,10 +17,14 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { MappedPTag } from "../../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS } from "../candidate-interview-progress-tag-options";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";

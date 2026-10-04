@@ -19,11 +19,18 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",

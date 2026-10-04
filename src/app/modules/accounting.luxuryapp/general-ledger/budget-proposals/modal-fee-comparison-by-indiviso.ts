@@ -24,7 +24,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";
 @Component({
   selector: "app-fee-comparison-by-indiviso-modal",

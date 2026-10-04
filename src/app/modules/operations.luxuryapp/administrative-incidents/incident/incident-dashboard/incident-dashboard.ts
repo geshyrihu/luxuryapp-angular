@@ -6,13 +6,13 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IncidentDashboardDTO,
   IncidentDashboardFilterDTO,
@@ -171,4 +171,3 @@ export class IncidentDashboardComponent implements OnInit {
     this.loadDashboard();
   }
 }
-

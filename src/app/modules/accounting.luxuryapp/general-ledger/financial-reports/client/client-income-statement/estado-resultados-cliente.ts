@@ -7,17 +7,17 @@ import {
   input,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable } from "@ui/web/table/table";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 
 const MONTH_NAMES = [
   "Enero",
@@ -62,7 +62,13 @@ type ClientRow =
 
 @Component({
   selector: "app-estado-resultados-cliente",
-  imports: [AppIcon, AppTable, LxSkeleton, AccountingNumberPipe, DataViewMobile],
+  imports: [
+    AppIcon,
+    AppTable,
+    LxSkeleton,
+    AccountingNumberPipe,
+    DataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-cliente.html",
 })
@@ -201,4 +207,3 @@ export class EstadoResultadosClienteComponent {
     return m1 !== 0 || m2 !== 0 || m3 !== 0 || acum !== 0;
   }
 }
-

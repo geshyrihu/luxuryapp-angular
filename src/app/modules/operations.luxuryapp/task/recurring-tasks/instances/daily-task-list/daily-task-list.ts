@@ -14,7 +14,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
 @Component({

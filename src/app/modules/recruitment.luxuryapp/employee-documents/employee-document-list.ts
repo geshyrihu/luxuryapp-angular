@@ -14,6 +14,7 @@ import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-hum
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -26,8 +27,7 @@ import {
   AppReorderableRow,
   AppReorderableRowHandle,
   AppTable,
-} from "@ui/web/table/table";
-import { SwalService } from "@core/services/swal.service";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;

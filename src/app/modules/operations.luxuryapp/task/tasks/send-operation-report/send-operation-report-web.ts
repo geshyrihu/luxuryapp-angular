@@ -7,9 +7,13 @@ import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({

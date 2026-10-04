@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,15 +8,16 @@ import {
   signal,
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   SuspensionDayAddDTO,
   SuspensionDayDetailDTO,
@@ -209,4 +209,3 @@ export class SuspensionDaysManager implements OnInit {
       .then(() => this.loadDays());
   }
 }
-

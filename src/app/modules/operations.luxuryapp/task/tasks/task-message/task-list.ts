@@ -36,14 +36,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "@ui/web/table/table";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -65,6 +57,14 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { PrintService } from "@core/services/print.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
@@ -78,7 +78,7 @@ import {
   WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";

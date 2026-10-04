@@ -18,8 +18,8 @@ import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-documents/
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/core/tabs.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   EmployeeFileBankDataDTO,
@@ -36,12 +36,12 @@ import {
   EmployeeFileWorkPositionDTO,
 } from "./interfaces/employee-file.interfaces";
 
+import { EmployeeOnboardingChecklist } from "@recruitment.luxuryapp/employee-onboarding-checklists/employee-onboarding-checklist";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { EmployeeOnboardingChecklist } from "@recruitment.luxuryapp/employee-onboarding-checklists/employee-onboarding-checklist";
 
 @Component({
   selector: "app-employee-file-detail",

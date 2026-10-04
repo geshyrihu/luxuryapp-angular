@@ -30,7 +30,11 @@ import { AppRankedList } from "@ui/primitives/ranked-list/ranked-list";
 import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { GooglePieChart4 } from "@ui/web/charts/google-pie-chart4";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-analisis-cobranza-cliente",

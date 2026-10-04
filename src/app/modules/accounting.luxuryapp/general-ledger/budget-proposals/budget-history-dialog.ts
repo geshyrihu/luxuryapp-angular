@@ -11,6 +11,7 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
+import { BudgetProposalItemHistoryDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -19,15 +20,14 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { BudgetProposalItemHistoryDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-budget-history-dialog",
   imports: [CommonModule, AppTable, ApiDatePipe],
@@ -74,5 +74,3 @@ export class BudgetHistoryDialog implements OnInit {
     this.ref.close();
   }
 }
-
-

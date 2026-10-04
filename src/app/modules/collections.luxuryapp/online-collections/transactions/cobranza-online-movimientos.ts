@@ -14,13 +14,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
 import {
   AppFrozenColumn,
   AppSortableColumn,
   AppSorticon,
   AppTable,
-} from "@ui/web/table/table";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { CONCEPTS_CATALOG } from "../helpers/cobranza-conceptos";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";

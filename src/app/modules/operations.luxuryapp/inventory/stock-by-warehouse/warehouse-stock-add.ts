@@ -29,8 +29,12 @@ import {
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;
@@ -45,7 +49,7 @@ interface IWarehouseStockRowForm {
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",

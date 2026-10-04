@@ -13,7 +13,10 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
+import {
+  AppFrozenColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   getBudgetAccounts,
   getBudgetCompanyName,

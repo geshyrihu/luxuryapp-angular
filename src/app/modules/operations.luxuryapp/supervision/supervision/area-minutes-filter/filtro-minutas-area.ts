@@ -20,10 +20,14 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { EAreaMinutasDetallesPipe } from "@shared/pipes/area-minuta-detalles.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-filtro-minutas-area",
   templateUrl: "./filtro-minutas-area.html",

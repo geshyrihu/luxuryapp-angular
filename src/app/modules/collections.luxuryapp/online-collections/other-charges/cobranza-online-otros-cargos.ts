@@ -10,9 +10,13 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import type { CobranzaOtroCargo } from "../interfaces/cobranza-online-dashboard.model";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";

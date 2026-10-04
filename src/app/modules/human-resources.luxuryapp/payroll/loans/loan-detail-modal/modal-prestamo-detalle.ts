@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,15 +7,19 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppTable } from "@ui/web/table/table";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   PagoPrestamoDTO,
   PrestamoEmpleadoDecisionDTO,
@@ -112,4 +115,3 @@ export default class ModalPrestamoDetalle implements OnInit {
     return map[estado] ?? "secondary";
   }
 }
-

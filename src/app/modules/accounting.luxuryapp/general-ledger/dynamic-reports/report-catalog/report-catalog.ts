@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,24 +7,22 @@ import {
   viewChild,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import type { TabItem } from "@ui/core/tabs.base";
 import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
   WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
+import type { TabItem } from "@ui/core/tabs.base";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable } from "@ui/web/table/table";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

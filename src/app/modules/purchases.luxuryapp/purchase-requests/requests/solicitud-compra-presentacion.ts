@@ -14,13 +14,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TagSeverity } from "@ui/core/tag.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { TagSeverity } from "@ui/core/tag.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppIcon as AppIconCatalog } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppImage } from "@ui/web/image/image";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

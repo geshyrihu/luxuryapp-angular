@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";

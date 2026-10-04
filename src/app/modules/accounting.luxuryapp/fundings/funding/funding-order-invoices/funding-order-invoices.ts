@@ -13,7 +13,7 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-funding-order-invoices",

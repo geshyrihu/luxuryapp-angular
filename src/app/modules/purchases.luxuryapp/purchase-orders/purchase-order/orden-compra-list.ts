@@ -10,8 +10,12 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { ROUTES } from "src/app/routing/route-paths";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -34,9 +38,9 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompra } from "./orden-compra";
 import { PurchaseOrderListItem } from "./purchase-order.types";

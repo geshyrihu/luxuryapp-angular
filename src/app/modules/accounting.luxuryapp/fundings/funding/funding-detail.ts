@@ -23,7 +23,7 @@ import {
   AppReorderableRow,
   AppReorderableRowHandle,
   AppTable,
-} from "@ui/web/table/table";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";

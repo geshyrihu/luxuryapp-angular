@@ -25,8 +25,8 @@ import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruit
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable } from "@ui/web/table/table";
 import { firstValueFrom } from "rxjs";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 @Component({

@@ -9,18 +9,18 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 
 const MONTH_NAMES = [
   "Enero",
@@ -215,4 +215,3 @@ export class EstadoResultados {
     return m1 !== 0 || m2 !== 0 || m3 !== 0 || acum !== 0;
   }
 }
-

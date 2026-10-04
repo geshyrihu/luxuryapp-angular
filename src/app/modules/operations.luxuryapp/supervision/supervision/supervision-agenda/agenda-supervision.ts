@@ -32,10 +32,14 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
 

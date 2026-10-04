@@ -7,16 +7,15 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../interfaces/aspel-budget.interface";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 const MONTH_NAMES = [
   "ENE",
@@ -254,6 +253,4 @@ export class CedulaPresupuestalClienteComponent {
     this.data.set(result ?? null);
     this.loading.set(false);
   }
-
 }
-

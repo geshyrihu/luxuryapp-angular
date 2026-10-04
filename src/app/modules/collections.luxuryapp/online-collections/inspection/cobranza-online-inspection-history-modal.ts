@@ -13,8 +13,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,

@@ -36,7 +36,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;

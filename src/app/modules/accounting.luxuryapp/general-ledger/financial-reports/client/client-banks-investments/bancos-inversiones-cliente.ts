@@ -7,13 +7,13 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
 
 @Component({
   selector: "app-bancos-inversiones-cliente",
@@ -64,4 +64,3 @@ export class BancosInversionesClienteComponent {
     this.loading.set(false);
   }
 }
-

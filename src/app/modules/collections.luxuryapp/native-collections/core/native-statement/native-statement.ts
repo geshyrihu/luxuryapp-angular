@@ -1,9 +1,4 @@
-import {
-  CommonModule,
-  CurrencyPipe,
-  UpperCasePipe,
-} from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { CommonModule, CurrencyPipe, UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,13 +10,6 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -29,7 +17,15 @@ import {
   NativeCollectionRealTimeUpdateDto,
   SignalRService,
 } from "@core/services/signalr.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   NativeStatementResponseDTO,
   SendNativeStatementBatchResponseDTO,
@@ -297,4 +293,3 @@ export class NativeStatement implements OnInit {
     return type === "Cargo" ? ("danger" as const) : ("success" as const);
   }
 }
-

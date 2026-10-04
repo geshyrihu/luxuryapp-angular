@@ -75,5 +75,3 @@ export class LuxTableCaption {
     }
   }
 }
-
-export { LuxTableCaption as TableCaption };

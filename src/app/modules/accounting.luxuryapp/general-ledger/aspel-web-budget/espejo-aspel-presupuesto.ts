@@ -11,7 +11,10 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular";
-import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
+import {
+  AppFrozenColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";

@@ -3,8 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-tokens-typography",

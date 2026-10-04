@@ -6,6 +6,10 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PlatformService } from "@core/services/platform.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import {
   IonButtons,
   IonCard,
@@ -20,17 +24,16 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/angular";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { PlatformService } from "@core/services/platform.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppFrozenColumn, AppTable } from "@ui/web/table/table";
+import {
+  AppFrozenColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApprovalMatrixDto } from "./interfaces/approval-matrix.dto";
 import { UpdateApprovalRulesDto } from "./interfaces/approval-rules-update.dto";
 import { ApprovalRuleDto } from "./interfaces/approval-rules.dto";

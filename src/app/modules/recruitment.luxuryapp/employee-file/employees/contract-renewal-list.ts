@@ -14,8 +14,12 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
 import { AppTag } from "@ui/web/tag/tag";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ContractRenewalFormComponent } from "./contract-renewal-form";
 import {
   ContractRenewalEvaluationDTO,

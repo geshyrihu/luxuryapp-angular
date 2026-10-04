@@ -18,8 +18,8 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppTable } from "@ui/web/table/table";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",

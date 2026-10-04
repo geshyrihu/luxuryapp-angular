@@ -12,8 +12,12 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   CobranzaPaymentAllocationDetailDTO,

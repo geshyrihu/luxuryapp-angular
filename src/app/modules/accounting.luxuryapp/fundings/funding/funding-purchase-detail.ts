@@ -5,13 +5,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [
@@ -39,9 +39,7 @@ export class FundingPurchaseDetail {
     if (this.ordenCompraId !== "") this.onLoadData();
   }
   onLoadData() {
-    const urlApi = Endpoints.Funding.purchaseDetails(
-      this.ordenCompraId,
-    );
+    const urlApi = Endpoints.Funding.purchaseDetails(this.ordenCompraId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.data.set(result);
       this.submitting.set(false);

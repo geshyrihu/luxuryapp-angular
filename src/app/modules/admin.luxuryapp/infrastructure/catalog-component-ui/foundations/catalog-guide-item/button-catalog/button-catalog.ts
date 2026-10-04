@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { AppTable } from "@ui/web/table/table";
 import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import {
   MobileButtonIconActiveDesactive,

@@ -7,12 +7,12 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import type { IFlujoCajaDto } from "../../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import type { IFlujoCajaDto } from "../../interfaces/aspel-budget.interface";
 
 @Component({
   selector: "app-flujo-efectivo-cliente",
@@ -73,4 +73,3 @@ export class FlujoEfectivoClienteComponent {
     this.loading.set(false);
   }
 }
-

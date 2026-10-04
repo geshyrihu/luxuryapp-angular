@@ -16,8 +16,12 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   InspectionListItem,
   InspectionSummary,

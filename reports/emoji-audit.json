@@ -16007,7 +16007,7 @@
       "preview": "* 📄 REPORT HEADER"
     },
     {
-      "file": "src/app/shared/ui/web/table-caption/table-caption.html",
+      "file": "src/app/shared/ui/web/lux-table-caption/table-caption.html",
       "line": 18,
       "category": "template_comment",
       "module": "app/shared",
@@ -16016,7 +16016,7 @@
       "preview": "<!-- 📱 Vista Mobile -->"
     },
     {
-      "file": "src/app/shared/ui/web/table-footer/table-footer.ts",
+      "file": "src/app/shared/ui/web/lux-table-footer/table-footer.ts",
       "line": 4,
       "category": "code_comment",
       "module": "app/shared",
@@ -16025,7 +16025,7 @@
       "preview": "* 🦶 TABLE FOOTER"
     },
     {
-      "file": "src/app/shared/ui/web/table-global-filter/table-global-filter.ts",
+      "file": "src/app/shared/ui/web/lux-table-global-filter/table-global-filter.ts",
       "line": 7,
       "category": "code_comment",
       "module": "app/shared",

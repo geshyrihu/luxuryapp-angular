@@ -5,13 +5,13 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DashboardStatsDto } from "@core/interfaces/dashboard-stats.dto";
 import { OccupancyDto } from "@core/interfaces/occupancy.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-access-dashboard",

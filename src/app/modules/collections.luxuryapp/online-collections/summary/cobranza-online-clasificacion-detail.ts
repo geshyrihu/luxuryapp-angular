@@ -6,7 +6,11 @@ import {
   inject,
 } from "@angular/core";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import type { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
 export interface ClasificacionDetailData {

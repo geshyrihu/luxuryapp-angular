@@ -43,7 +43,7 @@ import {
   AppSorticon,
   AppTable,
   AppTableCheckbox,
-} from "@ui/web/table/table";
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 
 @Component({

@@ -17,7 +17,11 @@ import {
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { FiltroMinutasArea } from "../area-minutes-filter/filtro-minutas-area";
 @Component({
   selector: "app-minutas-resumen",

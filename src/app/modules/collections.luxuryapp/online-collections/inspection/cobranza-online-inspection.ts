@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { AppTable } from "@ui/web/table/table";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -17,8 +17,8 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,

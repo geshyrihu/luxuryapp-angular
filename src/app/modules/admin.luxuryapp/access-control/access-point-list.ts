@@ -12,15 +12,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccessPointDto } from "@core/interfaces/access-point.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
 
 @Component({
@@ -111,4 +111,3 @@ export class AccessPointList implements OnInit {
     });
   }
 }
-

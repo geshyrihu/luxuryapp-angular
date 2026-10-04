@@ -24,9 +24,13 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { EquipmentContentForm } from "./equipment-content-form";
 import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import { EquipmentContentsDialogData } from "./interfaces/equipment-content.interface";

@@ -22,9 +22,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

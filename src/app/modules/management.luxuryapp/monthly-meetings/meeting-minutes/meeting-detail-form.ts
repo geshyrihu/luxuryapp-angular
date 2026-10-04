@@ -7,8 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppTable, AppSortableColumn, AppSorticon } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -17,9 +15,15 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { EAreaMinutasDetallesPipe } from "@shared/pipes/area-minuta-detalles.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-meeting-detail-form",
   templateUrl: "./meeting-detail-form.html",
@@ -61,11 +65,10 @@ export class MeetingDetailForm implements OnInit {
     return this.dateS.getDateFormat(item);
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.MeetingsDetails.detailFilter(
-        this.meetingId,
-        this.status,
-      );
+    const urlApi = Endpoints.MeetingsDetails.detailFilter(
+      this.meetingId,
+      this.status,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -85,4 +88,3 @@ export class MeetingDetailForm implements OnInit {
     return total;
   }
 }
-

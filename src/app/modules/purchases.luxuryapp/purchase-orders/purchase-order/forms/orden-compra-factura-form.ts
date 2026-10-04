@@ -15,16 +15,16 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip"; // Added
-import { AppTable } from "@ui/web/table/table";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip"; // Added
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { PurchaseOrderInvoice } from "../purchase-order.types";
 export interface IOrdenCompraFacturaForm {
   pdfFile: FormControl<File | null>;

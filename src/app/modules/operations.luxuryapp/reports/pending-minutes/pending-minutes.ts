@@ -5,12 +5,12 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppTable } from "@ui/web/table/table";
-import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 // Definimos una interfaz para la respuesta de la API.
 // Esto es opcional pero MUY RECOMENDADO para tener un código mós seguro y autocompletado.
 interface PendingMinutesResponse {
@@ -70,4 +70,3 @@ export class PendingMinutes {
     }
   }
 }
-

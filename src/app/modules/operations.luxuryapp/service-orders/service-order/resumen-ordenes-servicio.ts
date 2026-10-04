@@ -6,8 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppTable } from "@ui/web/table/table";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import {
@@ -19,6 +17,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { ReporteOrdenesServicioService } from "@operations.luxuryapp/service-orders/service-order/services/reporte-ordenes-servicio.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafico";
 @Component({
   selector: "app-resumen-ordenes-servicio",

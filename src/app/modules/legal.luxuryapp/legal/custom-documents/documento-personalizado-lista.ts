@@ -25,10 +25,14 @@ import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete"
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

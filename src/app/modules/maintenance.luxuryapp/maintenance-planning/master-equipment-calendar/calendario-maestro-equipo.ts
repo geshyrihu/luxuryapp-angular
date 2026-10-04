@@ -21,10 +21,14 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "@ui/web/table-caption/table-caption";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/table-caption";
+import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/table-empty-message";
+import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/table-footer";
+import {
+  AppSortableColumn,
+  AppSorticon,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
 
 @Component({
