@@ -12,7 +12,6 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -45,7 +44,6 @@ export interface IOrdenCompraStatusForm {
     CustomInputCheckSignal,
     CustomInputTextSignal,
     WebButtonLabelSave,
-    LxCard,
   ],
 })
 export class OrdenCompraStatus implements OnInit {

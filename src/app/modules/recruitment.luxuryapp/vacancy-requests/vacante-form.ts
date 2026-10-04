@@ -18,7 +18,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { CandidateApplicationForm } from "@recruitment.luxuryapp/candidates/candidate-applications/candidate-application-form";
-import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -65,7 +64,6 @@ interface VacancyCandidateProcessDetail {
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    LxCard,
   ],
 })
 export class VacanteForm implements OnInit {

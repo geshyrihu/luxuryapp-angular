@@ -1,6 +1,4 @@
-<lux-card>
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
         [control]="form.controls.id"
         hidden
@@ -76,6 +74,4 @@
         [disabled]="form.controls.status.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</lux-card>
+</form>

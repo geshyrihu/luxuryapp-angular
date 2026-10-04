@@ -1,4 +1,4 @@
-<div class="card p-2">
+
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <custom-input-text-signal
       [control]="form.controls.id"
@@ -24,7 +24,7 @@
     />
     <il-button-save [disabled]="form.invalid" />
   </form>
-</div>
+
 
 <!-- Formulario de minuta -->
 @if (id) {

@@ -15,7 +15,6 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanel } from "@ui/adaptive/panel/panel";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -49,7 +48,6 @@ interface VacationRequestEditDTO {
   imports: [
     ApiDatePipe,
     ReactiveFormsModule,
-    LxCard,
     LxPanel,
     LxMessage,
     CustomInputDateSignal,

@@ -11,7 +11,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
@@ -29,7 +28,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    LxCard,
     CustomInputTextSignal,
     InputMask,
     InputPhonePrefix,

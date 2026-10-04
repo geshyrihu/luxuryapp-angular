@@ -1,6 +1,4 @@
-<lux-card>
-  <ng-template #content>
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-autocomplete-signal
         (propagar)="saveCustomer($event)"
         [control]="form.controls.customer"
@@ -49,6 +47,4 @@
       <div class="d-flex justify-content-end mt-4">
         <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
       </div>
-    </form>
-  </ng-template>
-</lux-card>
+</form>

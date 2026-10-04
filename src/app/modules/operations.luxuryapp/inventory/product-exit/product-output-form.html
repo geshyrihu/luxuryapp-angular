@@ -1,5 +1,5 @@
-<div class="card">
-  
+
+
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
       <custom-input-text-signal
         [control]="form.controls.id"
@@ -60,5 +60,3 @@
       />
       <il-button-save [disabled]="form.invalid || submitting()" />
     </form>
-  
-</div>
