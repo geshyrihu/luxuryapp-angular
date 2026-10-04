@@ -1,0 +1,69 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [showAdd]="isAdmin()"
+      (add)="add.emit({ id: '', title: 'Nuevo Almacón' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="nombre">
+        Nombre
+        <app-sorticon field="nombre" />
+      </th>
+      <th appSortableColumn="ubicacion">
+        Ubicación
+        <app-sorticon field="ubicacion" />
+      </th>
+      <th appSortableColumn="activo">
+        Estado
+        <app-sorticon field="activo" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.ubicacion }}</td>
+      <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-item
+            (clicked)="viewProducts.emit(item.id)"
+            lxTooltip="Ver Productos"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:package"
+          />
+          <iw-button-item
+            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
+            lxTooltip="Descargar Inventario"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:picture-as-pdf"
+          />
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="4" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

@@ -1,0 +1,62 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [title]="'Llaves'"
+      (add)="add.emit()"
+      [dt]="dt"
+    />
+    <iw-button-download
+      lxTooltip="Descargar PDF"
+      tooltipPosition="top"
+      (clicked)="downloadPdf.emit()"
+      class="mt-1"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="descripcion">
+        DESCRIPCIÓN <app-sorticon field="descripcion" />
+      </th>
+      <th appSortableColumn="marca">Marca <app-sorticon field="marca" /></th>
+      <th appSortableColumn="numeroLlave">
+        Número <app-sorticon field="numeroLlave" />
+      </th>
+      <th appSortableColumn="cantidad">
+        Cantidad <app-sorticon field="cantidad" />
+      </th>
+      <th appSortableColumn="equipoClasificacion">
+        Clasificación <app-sorticon field="equipoClasificacion" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td><span>{{ item.descripcion }}</span></td>
+      <td><span>{{ item.marca }}</span></td>
+      <td><span>{{ item.numeroLlave }}</span></td>
+      <td><span>{{ item.cantidad }}</span></td>
+      <td><span>{{ item.equipoClasificacion }}</span></td>
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit (clicked)="edit.emit(item)" />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

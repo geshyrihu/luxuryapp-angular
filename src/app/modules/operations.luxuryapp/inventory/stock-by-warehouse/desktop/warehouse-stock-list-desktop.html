@@ -1,0 +1,116 @@
+<div class="card">
+  <lux-table
+    (onSort)="sort.emit()"
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="data()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    sortField="category"
+    sortMode="single"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        [title]="'Inventario'"
+        (add)="add.emit()"
+        [dt]="dt"
+        [rolAuth]="canAdd()"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th appSortableColumn="producto.nombreProducto">
+          Producto
+          <app-sorticon field="producto.nombreProducto" />
+        </th>
+        <th appSortableColumn="existencia">
+          Existencia
+          <app-sorticon field="existencia" />
+        </th>
+        <th appSortableColumn="unidadDeMedida.descripcion">
+          Unidad
+          <app-sorticon field="unidadDeMedida.descripcion" />
+        </th>
+        <th appSortableColumn="stockMin">
+          Stock Min
+          <app-sorticon field="stockMin" />
+        </th>
+        <th appSortableColumn="stockMax">
+          Stock Max
+          <app-sorticon field="stockMax" />
+        </th>
+        <th appSortableColumn="compraRequerida">
+          Compra Sugerida
+          <app-sorticon field="compraRequerida" />
+        </th>
+        @if ( canManage() ) {
+        <th></th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template #body let-item let-rowIndex="rowIndex">
+      @if (rowGroupMetadata()[item.category].index === rowIndex) {
+      <tr>
+        <td colspan="7">
+          <span class="fw-bold ms-2">{{ item.category }}</span>
+        </td>
+      </tr>
+      }
+      <tr>
+        <td>
+          <span
+            (click)="tarjetaProducto.emit(item.productoId)"
+            class="pointer"
+          >
+            <app-avatar [image]="item.urlImagen" alt="..." size="xlarge" />
+            {{ item.producto }}
+          </span>
+        </td>
+        <td class="text-center">
+          <span
+            class="p-2 badge ms-1"
+            [class.bg-success]="item.existencia > item.stockMin"
+            [class.bg-danger]="item.stockMin >= item.existencia"
+          >
+            {{ item.existencia }}
+          </span>
+        </td>
+        <td>{{ item.unidadDeMedida }}</td>
+        <td class="text-center">{{ item.stockMin }}</td>
+        <td class="text-center">{{ item.stockMax }}</td>
+        <td class="text-center">{{ item.compraRequerida }}</td>
+        <td class="no-print">
+          <div class="d-flex">
+            <iw-button-item
+              [iconClass]="'material-symbols-light:add'"
+              lxTooltip="Entrada"
+              tooltipPosition="top"
+              (clicked)="addEntrada.emit({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
+            />
+
+            <iw-button-item
+              iconClass="material-symbols-light:remove"
+              lxTooltip="Salida"
+              tooltipPosition="top"
+              (clicked)="addSalida.emit({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
+            />
+
+            <iw-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            />
+            @if (item.existencia <= 0) {
+            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="7" />
+    </ng-template>
+  </lux-table>
+</div>

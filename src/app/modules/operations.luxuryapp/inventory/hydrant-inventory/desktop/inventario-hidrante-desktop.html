@@ -1,0 +1,111 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <div class="d-flex justify-content-between align-items-center w-full">
+      <div class="d-flex align-items-center gap-2">
+        <iw-button-item
+          (clicked)="openScanner.emit()"
+          [iconClass]="'material-symbols-light:qr-code'"
+          tooltip="Escanear QR"
+        />
+        <iw-button-download
+          (clicked)="downloadAllQr.emit()"
+          lxTooltip="QR"
+          tooltipPosition="top"
+          tooltip="Descargar todos los QR"
+        />
+        <iw-button-download
+          (clicked)="downloadTemplate.emit()"
+          lxTooltip="Plantilla"
+          tooltipPosition="top"
+          tooltip="Descargar plantilla Excel"
+        />
+        <iw-button-download
+          (clicked)="fileInput.click()"
+          lxTooltip="Importar"
+          tooltipPosition="top"
+          tooltip="Importar desde Excel"
+        />
+        <input
+          type="file"
+          accept=".xlsx"
+          class="d-none"
+          #fileInput
+          (change)="importExcel.emit($event)"
+        />
+      </div>
+      <lux-table-caption
+        [title]="'Inventario de Hidrantes'"
+        (add)="add.emit()"
+        [dt]="dt"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">Foto</th>
+      <th class="table-col-15" appSortableColumn="localCode">
+        Código <app-sorticon field="localCode" />
+      </th>
+      <th class="table-col-25" appSortableColumn="hydrantType">
+        Tipo <app-sorticon field="hydrantType" />
+      </th>
+      <th class="table-col-15" appSortableColumn="cabinetNumber">
+        Gabinete <app-sorticon field="cabinetNumber" />
+      </th>
+      <th class="table-col-25" appSortableColumn="location">
+        Ubicación <app-sorticon field="location" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <app-image
+          [src]="item.photo"
+          alt="."
+          width="100"
+          styleClass="shadow"
+          [preview]="true"
+        />
+      </td>
+      <td><span>{{ item.localCode }}</span></td>
+      <td><span>{{ item.hydrantType }}</span></td>
+      <td><span>{{ item.cabinetNumber }}</span></td>
+      <td><span>{{ item.location }}</span></td>
+      <td>
+        <div class="d-flex">
+          <iw-button-item
+            (clicked)="viewHistory.emit(item)"
+            tooltip="Ver historial de inspecciones"
+            [iconClass]="'material-symbols-light:format-list-bulleted'"
+          />
+          <iw-button-download
+            (clicked)="downloadQr.emit(item)"
+            tooltip="Descargar QR"
+          />
+          <iw-button-edit (clicked)="edit.emit(item)" />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

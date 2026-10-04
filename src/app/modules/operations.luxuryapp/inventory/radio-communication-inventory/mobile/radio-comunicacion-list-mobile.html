@@ -1,0 +1,30 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <div customFilters>
+    <ili-button-download (clicked)="downloadPdf.emit()" />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon
+          icon="material-symbols-light:radio"
+          class="text-xl text-green-500"
+        />
+      </div>
+
+      <h3>{{ item.marca }} é {{ item.modelo }}</h3>
+      <p>Serie: {{ item.serie }} | Bateróa: {{ item.bateria }}</p>
+      <p>{{ item.applicationUser }} é {{ item.departament }}</p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

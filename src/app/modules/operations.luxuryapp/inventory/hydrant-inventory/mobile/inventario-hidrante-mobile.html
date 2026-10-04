@@ -1,0 +1,43 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <div customFilters class="px-3 pb-2 d-flex flex-column gap-2">
+    <button
+      class="btn btn-rounded btn-text-primary btn-sm"
+      (click)="openScanner.emit()"
+    >
+      <app-icon icon="material-symbols-light:qr-code" slot="start" />
+      Escanear QR
+    </button>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <div
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+    >
+      <div slot="start">
+        <app-icon icon="material-symbols-light:water" />
+      </div>
+      <span class="">
+        <h3>
+          {{ item.localCode ? item.localCode + ' é ' : '' }}{{ item.hydrantType
+          }}
+        </h3>
+        <p>{{ item.location }}</p>
+      </span>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="viewHistory.emit(item)"
+            label="Historial"
+            iconName="list-outline"
+          />
+          <ili-button-download (clicked)="downloadQr.emit(item)" label="QR" />
+          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

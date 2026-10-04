@@ -1,0 +1,43 @@
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="isAdmin()"
+  (add)="add.emit({ id: '', title: 'Nuevo Almacén' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:warehouse"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <p class="mt-0 mb-0 fw-bold">{{ item.nombre }}</p>
+      <p class="text-body-secondary text-sm mt-0 mb-0">{{ item.ubicacion }}</p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="viewProducts.emit(item.id)"
+            label="Ver Productos"
+            iconName="cube-outline"
+          />
+          <ili-button-item
+            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
+            label="Descargar Inventario"
+            iconName="document-text-outline"
+          />
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
