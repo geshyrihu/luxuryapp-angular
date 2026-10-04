@@ -67,7 +67,7 @@ describe('CustomerLocationForm', () => {
     expect(component.form.controls.customerId.value).toBe('cust-1');
     expect(component.form.controls.name.value).toBe('');
     expect(component.form.controls.locationType.value).toBe('');
-    expect(component.form.controls.phoneOne.value).toBe('');
+    expect(component.form.controls.phoneOne.value).toBeNull();
     expect(component.form.controls.phoneTwo.value).toBeNull();
     expect(component.form.controls.contactName.value).toBeNull();
     expect(component.form.controls.notes.value).toBeNull();
@@ -76,7 +76,7 @@ describe('CustomerLocationForm', () => {
   });
 
   it('should have required validators on required fields', () => {
-    const requiredFields = ['name', 'locationType', 'phoneOne'];
+    const requiredFields = ['name', 'locationType'];
     requiredFields.forEach((field) => {
       const control = component.form.controls[field];
       expect(control.hasError('required')).toBe(true);
@@ -222,7 +222,7 @@ describe('CustomerLocationForm', () => {
       }));
     });
 
-    it('should set submitting signal to true during submission', () => {
+    it('should delegate valid submission to FormHelper', () => {
       component.form.patchValue({
         customerId: 'cust-1',
         name: 'Test',
@@ -230,10 +230,11 @@ describe('CustomerLocationForm', () => {
         phoneOne: '5512345678',
       });
 
-      expect(component.submitting()).toBe(false);
       component.onSubmit();
-      expect(component.submitting()).toBe(true);
+      expect(submitCrudSpy).toHaveBeenCalledWith(expect.objectContaining({
+        endpoint: 'customer-locations',
+        method: 'POST',
+      }));
     });
   });
 });
-

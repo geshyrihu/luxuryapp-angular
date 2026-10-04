@@ -35,6 +35,7 @@ describe("FundingList", () => {
     mockDialogHandlerS = {
       openDialog: vi.fn(),
       sizeLg: "900px",
+      sizeXl: "modal-xl",
     };
     mockRouter = { navigateByUrl: vi.fn(), navigate: vi.fn(), events: new Subject() };
 
@@ -99,7 +100,7 @@ describe("FundingList", () => {
       FundingForm,
       {},
       "Crear Fondeo",
-      "900px",
+      mockDialogHandlerS.sizeXl,
     );
   });
 
@@ -112,7 +113,7 @@ describe("FundingList", () => {
       FundingForm,
       data,
       "Edit Fondeo",
-      "900px",
+      mockDialogHandlerS.sizeXl,
     );
   });
 
@@ -122,7 +123,7 @@ describe("FundingList", () => {
       FaqsFondeo,
       {},
       "",
-      "900px",
+      mockDialogHandlerS.sizeXl,
     );
   });
 

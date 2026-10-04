@@ -61,6 +61,7 @@ describe("CandidateDetail", () => {
     dialogHandlerService = {
       openDialog: vi.fn().mockResolvedValue(false),
       sizeLg: "lg",
+      sizeXl: "modal-xl",
     };
 
     TestBed.overrideComponent(CandidateDetail, {
@@ -118,7 +119,7 @@ describe("CandidateDetail", () => {
         allowCreateCandidate: false,
       },
       "Asignar vacante e iniciar entrevista",
-      "lg",
+      dialogHandlerService.sizeXl,
     );
   });
 });

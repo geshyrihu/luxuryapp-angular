@@ -46,6 +46,7 @@ describe("CandidateList", () => {
     dialogHandlerService = {
       openDialog: vi.fn().mockResolvedValue(false),
       sizeLg: "lg",
+      sizeXl: "modal-xl",
     };
 
     platformService = {
@@ -123,7 +124,7 @@ describe("CandidateList", () => {
       expect.any(Function),
       { id: "1" },
       "Detalle del candidato",
-      "lg",
+      dialogHandlerService.sizeXl,
     );
   });
 });

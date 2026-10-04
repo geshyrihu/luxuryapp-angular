@@ -30,6 +30,8 @@ describe('CustomerLocationList', () => {
 
   const mockDialogHandlerService = {
     openDialog: vi.fn().mockResolvedValue(false),
+    sizeMd: 'modal-md',
+    sizeXl: 'modal-xl',
   };
 
   const mockTableScrollHeightService = {
@@ -186,7 +188,7 @@ describe('CustomerLocationList', () => {
         expect.any(Function),
         { customerId: 'cust-1', id: 'loc-1' },
         'Editar Ubicación',
-        expect.any(String)
+        mockDialogHandlerService.sizeMd,
       );
       expect(mockApiResponseService.onGetList).toHaveBeenCalled();
     });
@@ -291,7 +293,7 @@ describe('CustomerLocationList', () => {
         expect.any(Function),
         { customerId: 'cust-1' },
         'Nueva Ubicación',
-        expect.any(String)
+        mockDialogHandlerService.sizeXl,
       );
       expect(mockApiResponseService.onGetList).toHaveBeenCalled();
     });
@@ -314,4 +316,3 @@ describe('CustomerLocationList', () => {
     });
   });
 });
-

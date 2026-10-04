@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { EmptyStateBase } from "@ui/core/empty-state.base";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-empty-state",
-  imports: [WebButtonLabel, AppIcon],
+  imports: [ButtonWeb, AppIcon],
   template: `
     <div class="empty-state-root">
       <div class="empty-state-content">
@@ -14,7 +14,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         <strong class="empty-state-title">{{ title() }}</strong>
         <p class="empty-state-message">{{ message() }}</p>
         @if (actionLabel()) {
-          <il-button [label]="actionLabel()" [icon]="actionIcon()" [severity]="actionSeverity()" (clicked)="action.emit()" size="sm" />
+          <lux-button-web displayMode="both" [label]="actionLabel()" [icon]="actionIcon()" [severity]="actionSeverity()" (clicked)="action.emit()" size="sm" />
         }
       </div>
     </div>

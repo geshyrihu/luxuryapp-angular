@@ -36,6 +36,7 @@ describe("TaskTemplateItems", () => {
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
       sizeLg: "lg",
+      sizeXl: "modal-xl",
     };
     mockRoute = {
       snapshot: {
@@ -143,7 +144,7 @@ describe("TaskTemplateItems", () => {
       expect.any(Function),
       { templateId: "tmpl-1", item: undefined },
       "Nuevo Item",
-      "lg",
+      mockDialogHandlerS.sizeXl,
     );
   });
 
@@ -157,7 +158,7 @@ describe("TaskTemplateItems", () => {
       expect.any(Function),
       { templateId: "tmpl-1", item },
       "Editar Item",
-      "lg",
+      mockDialogHandlerS.sizeXl,
     );
   });
 

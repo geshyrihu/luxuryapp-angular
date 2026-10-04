@@ -36,6 +36,7 @@ describe("TaskTemplateList", () => {
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
       sizeLg: "lg",
+      sizeXl: "modal-xl",
     };
     mockTableScrollHeightS = {
       scrollHeight: signal("600px"),
@@ -170,7 +171,7 @@ describe("TaskTemplateList", () => {
       expect.any(Function),
       { template: undefined },
       "Nueva Plantilla",
-      "lg",
+      mockDialogHandlerS.sizeXl,
     );
   });
 
@@ -182,7 +183,7 @@ describe("TaskTemplateList", () => {
       expect.any(Function),
       { template },
       "Editar Plantilla",
-      "lg",
+      mockDialogHandlerS.sizeXl,
     );
   });
 

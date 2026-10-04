@@ -38,7 +38,7 @@ describe('InspeccionesForm', () => {
     it('should create form with default values', () => {
       expect(component.form).toBeDefined();
       expect(component.form.controls.name.value).toBe('');
-      expect(component.form.controls.frequency.value).toBe('');
+      expect(component.form.controls.recurrenceUnit.value).toBe(1);
     });
 
     it('should have isActive as true by default', () => {
@@ -56,8 +56,9 @@ describe('InspeccionesForm', () => {
         id: '123',
         name: 'Daily Check',
         customerId: 'cust-1',
-        departament: 'Maintenance',
-        frequency: 'daily',
+        departament: 1,
+        recurrenceUnit: 1,
+        recurrenceInterval: 1,
         isActive: true,
         createdAt: new Date().toISOString()
       };
@@ -69,7 +70,7 @@ describe('InspeccionesForm', () => {
       await fixture.whenStable();
 
       expect(component.form.controls.name.value).toBe('Daily Check');
-      expect(component.form.controls.frequency.value).toBe('daily');
+      expect(component.form.controls.recurrenceUnit.value).toBe(1);
       expect(component.loadError()).toBeNull();
     });
 
@@ -78,8 +79,9 @@ describe('InspeccionesForm', () => {
         id: '123',
         name: 'Weekly Check',
         customerId: 'cust-1',
-        departament: 'Maintenance',
-        frequency: 'weekly',
+        departament: 1,
+        recurrenceUnit: 2,
+        recurrenceInterval: 1,
         weeklyDays: [1, 3, 5],
         isActive: true,
         createdAt: new Date().toISOString()
@@ -91,7 +93,7 @@ describe('InspeccionesForm', () => {
       component.onLoadData();
       await fixture.whenStable();
 
-      expect(component.form.controls.frequency.value).toBe('weekly');
+      expect(component.form.controls.recurrenceUnit.value).toBe(2);
       expect(component.weeklyDays.length).toBe(3);
       expect(component.loadError()).toBeNull();
     });
@@ -101,8 +103,9 @@ describe('InspeccionesForm', () => {
         id: '123',
         name: 'Monthly Check',
         customerId: 'cust-1',
-        departament: 'Maintenance',
-        frequency: 'monthly',
+        departament: 1,
+        recurrenceUnit: 3,
+        recurrenceInterval: 1,
         dayOfMonth: 15,
         isActive: true,
         createdAt: new Date().toISOString()
@@ -114,7 +117,7 @@ describe('InspeccionesForm', () => {
       component.onLoadData();
       await fixture.whenStable();
 
-      expect(component.form.controls.frequency.value).toBe('monthly');
+      expect(component.form.controls.recurrenceUnit.value).toBe(3);
       expect(component.form.controls.dayOfMonth.value).toBe(15);
     });
 
@@ -123,8 +126,9 @@ describe('InspeccionesForm', () => {
         id: '123',
         name: 'Minimal Check',
         customerId: 'cust-1',
-        departament: 'Maintenance',
-        frequency: 'daily',
+        departament: 1,
+        recurrenceUnit: 1,
+        recurrenceInterval: 1,
         isActive: true,
         createdAt: new Date().toISOString()
       };
@@ -153,7 +157,7 @@ describe('InspeccionesForm', () => {
       const mockData: any = {
         id: '123',
         customerId: 'cust-1',
-        departament: 'Maintenance'
+        departament: 1
         // Missing 'name'
       };
 
@@ -179,17 +183,17 @@ describe('InspeccionesForm', () => {
 
   describe('onValidateFrequency - Frequency Validation', () => {
     it('should clear weeklyDays when frequency changes to daily', () => {
-      component.form.controls.frequency.setValue('weekly');
+      component.form.controls.recurrenceUnit.setValue(2);
       component.weeklyDays.push(new FormControl(1));
 
-      component.onValidateFrequency('daily');
+      component.onValidateFrequency(1);
 
       expect(component.weeklyDays.length).toBe(0);
-      expect(component.selectedFrequency()).toBe('daily');
+      expect(component.selectedFrequency()).toBe(1);
     });
 
     it('should require dayOfMonth validator for monthly frequency', () => {
-      component.onValidateFrequency('monthly');
+      component.onValidateFrequency(3);
 
       const dayOfMonthControl = component.form.controls.dayOfMonth;
       expect(dayOfMonthControl.validator).toBeTruthy();
@@ -198,15 +202,15 @@ describe('InspeccionesForm', () => {
 
     it('should clear dayOfMonth validator for daily frequency', () => {
       component.form.controls.dayOfMonth.setValue(15);
-      component.onValidateFrequency('daily');
+      component.onValidateFrequency(1);
 
       const dayOfMonthControl = component.form.controls.dayOfMonth;
       expect(dayOfMonthControl.value).toBeNull();
     });
 
     it('should set selectedFrequency signal', () => {
-      component.onValidateFrequency('weekly');
-      expect(component.selectedFrequency()).toBe('weekly');
+      component.onValidateFrequency(2);
+      expect(component.selectedFrequency()).toBe(2);
     });
   });
 
