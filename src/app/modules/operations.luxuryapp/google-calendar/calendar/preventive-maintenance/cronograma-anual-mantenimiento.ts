@@ -219,7 +219,7 @@ export class CronogramaAnualMantenimiento {
       CronogramaCompletoStatusDialog,
       { customerId, filterId: this.filtroId },
       "Cronograma Anual - Estado de Servicios",
-      this.dialogHandlerS.sizeLg,
+      this.dialogHandlerS.sizeXl,
     );
   }
 
@@ -236,27 +236,32 @@ export class CronogramaAnualMantenimiento {
   getServiceIdForMonth(
     customer: CronogramaItem,
     monthName: string,
-  ): number | null {
+  ): string | null {
     const monthNumber = this.meses.indexOf(monthName) + 1;
     if (!customer.maintenanceCalendars) return null;
     const servicio = customer.maintenanceCalendars.find(
       (s) => s.month === monthNumber,
     );
-    return servicio ? servicio.id : null;
+    return typeof servicio?.id === "string" && servicio.id.trim()
+      ? servicio.id
+      : null;
   }
 
   // --- Acciones de la Interfaz ---
 
-  onModalForm(data: any): void {
-    // Si data es solo un ID (número), lo adaptamos, o si es objeto lo usamos
-    const id = typeof data === "number" ? data : data.id;
+  onModalForm(
+    data: string | { id?: string | null; task?: string } | null | undefined,
+  ): void {
+    const candidateId = typeof data === "string" ? data : data?.id;
+    const id = typeof candidateId === "string" ? candidateId.trim() : "";
+    if (!id) return;
 
     this.dialogHandlerS
       .openDialog(
         MantenimientoPreventivoForm,
         { id, task: "edit" },
         `Editar Registro #${id}`,
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeXl,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

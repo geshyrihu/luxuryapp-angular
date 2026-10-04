@@ -141,6 +141,27 @@ describe("MantenimientoPreventivoForm", () => {
     expect(component.form.controls.providerId.hasError("required")).toBe(true);
   });
 
+  it("does not request an edit when calendar id is missing", async () => {
+    configMock.data.id = undefined;
+    apiResponseSMock.onGetItem.mockClear();
+    refMock.close.mockClear();
+
+    await component.onLoadData();
+
+    expect(apiResponseSMock.onGetItem).not.toHaveBeenCalled();
+    expect(refMock.close).toHaveBeenCalledWith(false);
+  });
+
+  it("closes edit dialog when API returns no calendar", async () => {
+    configMock.data.id = "calendar-id";
+    apiResponseSMock.onGetItem.mockResolvedValueOnce(null);
+    refMock.close.mockClear();
+
+    await component.onLoadData();
+
+    expect(refMock.close).toHaveBeenCalledWith(false);
+  });
+
   it("saveAccountingCatalog should patch form", () => {
     const item = { value: 55, label: "Catálogo Z" };
     component.saveAccountingCatalog(item);
@@ -157,4 +178,3 @@ describe("MantenimientoPreventivoForm", () => {
     expect(formHelper.FormHelper.submitCrud).toHaveBeenCalled();
   });
 });
-

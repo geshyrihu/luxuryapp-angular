@@ -156,29 +156,36 @@ describe("CronogramaAnualMantenimiento", () => {
   it("getServiceIdForMonth should return correct service id", () => {
     const item: any = {
       maintenanceCalendars: [
-        { id: 10, month: 1 },
-        { id: 20, month: 2 },
+        { id: "calendar-10", month: 1 },
+        { id: "calendar-20", month: 2 },
       ],
     };
-    expect(component.getServiceIdForMonth(item, "ENE")).toBe(10);
-    expect(component.getServiceIdForMonth(item, "FEB")).toBe(20);
+    expect(component.getServiceIdForMonth(item, "ENE")).toBe("calendar-10");
+    expect(component.getServiceIdForMonth(item, "FEB")).toBe("calendar-20");
     expect(component.getServiceIdForMonth(item, "MAR")).toBeNull();
   });
 
   it("onModalForm should open dialog and reload on success", async () => {
     const spy = vi.spyOn(component, "onLoadData");
     dialogHandlerSMock.openDialog.mockResolvedValue(true);
-    component.onModalForm({ id: 5, task: "edit" });
+    component.onModalForm({ id: "calendar-5", task: "edit" });
     await new Promise((resolve) => setTimeout(resolve));
-    expect(dialogHandlerSMock.openDialog).toHaveBeenCalled();
+    expect(dialogHandlerSMock.openDialog.mock.calls[0][1]).toEqual({
+      id: "calendar-5",
+      task: "edit",
+    });
+    expect(dialogHandlerSMock.openDialog.mock.calls[0][2]).toBe(
+      "Editar Registro #calendar-5",
+    );
     expect(spy).toHaveBeenCalled();
   });
 
-  it("onModalForm should open dialog with numeric id", async () => {
+  it("does not open edit dialog when calendar id is missing", () => {
     dialogHandlerSMock.openDialog.mockResolvedValue(true);
-    component.onModalForm(7);
-    await new Promise((resolve) => setTimeout(resolve));
-    expect(dialogHandlerSMock.openDialog).toHaveBeenCalled();
+    component.onModalForm(null);
+    component.onModalForm(undefined);
+    component.onModalForm({});
+    expect(dialogHandlerSMock.openDialog).not.toHaveBeenCalled();
   });
 
   it("trackByFiltro should return filtro.id", () => {

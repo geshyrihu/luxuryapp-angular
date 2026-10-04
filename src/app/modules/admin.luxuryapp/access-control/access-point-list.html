@@ -44,7 +44,12 @@
   </form>
 </div>
 
-<app-table [value]="dataSignal()" [paginator]="true" [rows]="10" class="custom-table card">
+<app-table
+  [value]="dataSignal()"
+  [paginator]="true"
+  [rows]="10"
+  class="custom-table card"
+>
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -72,7 +77,9 @@
   </ng-template>
   <ng-template #emptymessage>
     <tr>
-      <td colspan="5" class="text-center text-body-secondary py-4">Sin puntos de acceso.</td>
+      <td colspan="5" class="text-center text-body-secondary py-4">
+        Sin puntos de acceso.
+      </td>
     </tr>
   </ng-template>
 </app-table>

@@ -266,19 +266,49 @@ export class MantenimientoPreventivoForm implements OnInit {
   }
 
   async LoadCopy(): Promise<void> {
+    const calendarId = this.getCalendarId();
+    if (!calendarId) {
+      this.ref.close(false);
+      return;
+    }
+
     const result: any = await this.apiResponseS.onGetItem(
-      Endpoints.MaintenanceCalendars.get(this.config.data.id),
+      Endpoints.MaintenanceCalendars.get(calendarId),
     );
+    if (!result || !result.id) {
+      this.ref.close(false);
+      return;
+    }
+
     this.id = "";
     this.onPathForm(result);
   }
 
   async onLoadData(): Promise<void> {
+    const calendarId = this.getCalendarId();
+    if (!calendarId) {
+      this.ref.close(false);
+      return;
+    }
+
     const result: any = await this.apiResponseS.onGetItem(
-      Endpoints.MaintenanceCalendars.get(this.config.data.id),
+      Endpoints.MaintenanceCalendars.get(calendarId),
     );
+    if (!result || !result.id) {
+      this.ref.close(false);
+      return;
+    }
+
     this.id = result.id;
     this.onPathForm(result);
+  }
+
+  private getCalendarId(): string | null {
+    const id = this.config.data?.id;
+    if (typeof id === "string" && id.trim()) return id.trim();
+    if (typeof id === "number" && Number.isFinite(id) && id > 0)
+      return String(id);
+    return null;
   }
 
   onPathForm(result: any): void {
@@ -343,4 +373,3 @@ export class MantenimientoPreventivoForm implements OnInit {
     });
   }
 }
-

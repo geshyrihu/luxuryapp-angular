@@ -1,125 +1,129 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- ID oculto -->
-      <div class="d-none">
-        <custom-input-text-signal
-          [hidden]="true"
-          [control]="form.controls.id"
-          hidden
-          label="Id"
-        />
-      </div>
-
-      <!-- PRIMERA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <custom-input-switch-signal
-            [control]="form.controls.isInternalExecution"
-            label="Lo realiza personal interno"
-          />
-        </div>
-
-        <div class="col-12 col-md-6">
-          <custom-input-autocomplete-signal
-            (propagar)="saveMachineryId($event)"
-            [control]="form.controls.machineryName"
-            [data]="cb_machinery()"
-            label="Equipo o Instalación"
-            placeholder="Escribe para equipo o instalación"
-          />
-        </div>
-
-        <div class="col-6 col-md-3">
-          <custom-input-select-signal
-            [control]="form.controls.recurrence"
-            label="Recurrencia"
-            [data]="cb_recurrencia()"
-            [filter]="true"
-          />
-        </div>
-
-        <div class="col-6 col-md-3">
-          <custom-input-select-signal
-            [control]="form.controls.month"
-            label="Mes"
-            [data]="cb_month()"
-            [filter]="true"
-          />
-        </div>
-      </div>
-
-      <!-- SEGUNDA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <custom-input-select-signal
-            [control]="form.controls.typeMaintance"
-            label="Tipo de Mantenimiento"
-            [data]="cb_TypeMaintance()"
-            [filter]="true"
-          />
-        </div>
-
-        <div class="col-12 col-md-6">
-          <custom-input-number-signal
-            [control]="form.controls.price"
-            label="Precio"
-          />
-        </div>
-      </div>
-
-      <!-- TERCERA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <custom-input-autocomplete-signal
-            (propagar)="saveProviderId($event)"
-            [control]="form.controls.providerName"
-            [data]="cb_providers()"
-            [label]="form.controls.isInternalExecution.value ? 'Proveedor (no aplica)' : 'Proveedor'"
-            placeholder="Escribe para buscar proveedor"
-          />
-        </div>
-
-        <div class="col-12 col-md-6">
-          <custom-input-autocomplete-signal
-            (propagar)="saveAccountingCatalog($event)"
-            [control]="form.controls.accountingCatalogName"
-            [data]="cb_accountingCatalogs()"
-            label="Cuenta Afectada"
-            placeholder="Escribe para buscar cuenta contable"
-          />
-        </div>
-      </div>
-
-      <!-- CUARTA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.activity"
-            label="Actividad"
-            placeholder="Actividad"
-            rows="10"
-          />
-        </div>
-
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.observation"
-            label="Observaciones"
-            placeholder="Observaciones"
-            rows="10"
-          />
-        </div>
-      </div>
-
-      <!-- BOTÓN -->
-      <div class="d-flex justify-content-end mt-4">
-        <il-button-save
-          [propertyId]="id"
-          [disabled]="form.invalid"
-          [submitting]="submitting()"
-        />
-      </div>
-    </form>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- ID oculto -->
+  <div class="d-none">
+    <custom-input-text-signal
+      [hidden]="true"
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+    />
   </div>
-</div>
+
+  <!-- PRIMERA FILA -->
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <custom-input-autocomplete-signal
+        (propagar)="saveMachineryId($event)"
+        [control]="form.controls.machineryName"
+        [data]="cb_machinery()"
+        label="Equipo o Instalación"
+        placeholder="Escribe para equipo o instalación"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div class="col-6 col-md-3">
+      <custom-input-select-signal
+        [control]="form.controls.recurrence"
+        label="Recurrencia"
+        [data]="cb_recurrencia()"
+        [filter]="true"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div class="col-6 col-md-3">
+      <custom-input-select-signal
+        [control]="form.controls.month"
+        label="Mes"
+        [data]="cb_month()"
+        [filter]="true"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <!-- SEGUNDA FILA -->
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <custom-input-select-signal
+        [control]="form.controls.typeMaintance"
+        label="Tipo de Mantenimiento"
+        [data]="cb_TypeMaintance()"
+        [filter]="true"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <custom-input-number-signal
+        [control]="form.controls.price"
+        label="Precio"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <!-- TERCERA FILA -->
+  <div class="row g-4">
+    <div class="col-12">
+      <custom-input-switch-signal
+        [control]="form.controls.isInternalExecution"
+        label="Lo realiza personal interno"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <custom-input-autocomplete-signal
+        (propagar)="saveProviderId($event)"
+        [control]="form.controls.providerName"
+        [data]="cb_providers()"
+        [label]="form.controls.isInternalExecution.value ? 'Proveedor (no aplica)' : 'Proveedor'"
+        placeholder="Escribe para buscar proveedor"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <custom-input-autocomplete-signal
+        (propagar)="saveAccountingCatalog($event)"
+        [control]="form.controls.accountingCatalogName"
+        [data]="cb_accountingCatalogs()"
+        label="Cuenta Afectada"
+        placeholder="Escribe para buscar cuenta contable"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <!-- CUARTA FILA -->
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <custom-input-textarea-signal
+        [control]="form.controls.activity"
+        label="Actividad"
+        placeholder="Actividad"
+        rows="10"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <custom-input-textarea-signal
+        [control]="form.controls.observation"
+        label="Observaciones"
+        placeholder="Observaciones"
+        rows="10"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <!-- BOTÓN -->
+  <div class="d-flex justify-content-end mt-4">
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>
