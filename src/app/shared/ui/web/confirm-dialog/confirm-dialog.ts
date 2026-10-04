@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { ConfirmDialogBase } from "@ui/core/confirm-dialog.base";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export type { ConfirmType } from "@ui/core/confirm-dialog.base";
 
 @Component({
   selector: "app-confirm-dialog",
-  imports: [WebButtonLabel, AppIcon],
+  imports: [ButtonWeb, AppIcon],
   template: `
     <div
       class="modal fade"
@@ -27,8 +27,8 @@ export type { ConfirmType } from "@ui/core/confirm-dialog.base";
             </div>
           </div>
           <div class="modal-footer">
-            <il-button [label]="cancelLabel()" severity="secondary" variant="outline" (clicked)="onCancel()" />
-            <il-button [label]="confirmLabel()" [severity]="config().severity" (clicked)="onConfirm()" />
+            <lux-button-web displayMode="both" [label]="cancelLabel()" severity="secondary" variant="outline" (clicked)="onCancel()" />
+            <lux-button-web displayMode="both" [label]="confirmLabel()" [severity]="config().severity" (clicked)="onConfirm()" />
           </div>
         </div>
       </div>
