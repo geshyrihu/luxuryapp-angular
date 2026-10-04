@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
 import { AuthService } from "@core/auth/services/auth.service";
 import { ProfielService } from "@core/auth/services/profiel-service";
@@ -24,7 +24,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-profile",
-  imports: [LxCard, AppIcon, IonInputPassword, MobileButtonLabelSave],
+  imports: [LxCard, AppIcon, IonInputPassword, ButtonMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-profile.html",
 })
@@ -170,4 +170,3 @@ export class CommitteeProfile implements OnDestroy {
     };
   }
 }
-

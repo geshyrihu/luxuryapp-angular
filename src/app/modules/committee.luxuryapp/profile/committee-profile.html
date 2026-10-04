@@ -64,9 +64,10 @@
         />
       </div>
 
-      <ili-button-save
+      <lux-button-mobile
+        kind="save"
         expand="block"
-        [submitting]="submitting()"
+        [loading]="submitting()"
         (clicked)="updatePassword()"
       />
     </div>
