@@ -31,4 +31,7 @@ export class WebButtonIconEdit extends BaseButton {
     "soft",
   );
   override severity = input<any>("info");
+  override size = input<"small" | "large" | "sm" | "md" | "lg">("small");
+  override tooltip = input<string>("Editar");
+  override ariaLabel = input<string>("Editar");
 }

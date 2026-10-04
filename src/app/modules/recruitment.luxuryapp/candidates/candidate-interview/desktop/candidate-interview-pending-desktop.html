@@ -64,8 +64,6 @@
       </td>
       <td class="no-print">
         <iw-button-edit
-          size="sm"
-          class="btn--circle"
           [attr.aria-label]="'Llenar retroalimentacion de ' + item.candidateName"
           (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
         />

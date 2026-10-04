@@ -40,6 +40,9 @@ export class WebButtonIconDelete extends BaseButton {
     "soft",
   );
   override severity = input<any>("danger");
+  override size = input<"small" | "large" | "sm" | "md" | "lg">("small");
+  override tooltip = input<string>("Eliminar");
+  override ariaLabel = input<string>("Eliminar");
 
   private readonly confirmSvc = inject(ConfirmService);
 

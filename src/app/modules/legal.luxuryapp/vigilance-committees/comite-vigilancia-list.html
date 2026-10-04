@@ -59,14 +59,10 @@
       <td class="no-print">
         <div class="d-flex gap-1">
           <iw-button-edit
-            size="sm"
-            class="btn--circle"
             [attr.aria-label]="'Editar comité ' + item.nameProperty"
             (clicked)="onModalForm({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
           />
           <iw-button-delete
-            size="sm"
-            class="btn--circle"
             [attr.aria-label]="'Eliminar comité ' + item.nameProperty"
             (confirmed)="onDelete(item.id)"
           />
