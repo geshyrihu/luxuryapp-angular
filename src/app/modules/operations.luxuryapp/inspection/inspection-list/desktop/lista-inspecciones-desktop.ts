@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -7,27 +7,19 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { TableFooter } from "@ui/web/table-footer/table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "@ui/web/table/table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppToolbar } from "@ui/web/toolbar/toolbar";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppCard } from "@ui/web/card/card";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
+import { AppSortableColumn, AppSorticon, AppTable } from "@ui/web/table/table";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import {
   InspectionListItem,
   InspectionSummary,
@@ -49,14 +41,13 @@ type InspectionTableRow = InspectionSummary & {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    TableEmptyMessage,
-    TableFooter,
     WebButtonLabel,
     WebButtonIconDelete,
     WebButtonIconEdit,
     WebButtonIconItem,
     AppToolbar,
     AppCard,
+    TableEmptyMessage,
   ],
 })
 export class ListaInspeccionesDesktop {

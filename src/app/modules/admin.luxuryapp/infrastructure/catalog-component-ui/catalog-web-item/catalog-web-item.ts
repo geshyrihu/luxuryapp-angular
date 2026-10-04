@@ -58,30 +58,25 @@ import {
   CustomInputSelectSignal,
   CustomInputTextAreaSignal,
   CustomInputTextSignal,
-  CustomInputSelectBool,
-  CustomInputSwitch,
-  CustomInputDecimal,
-  CustomInputPassword,
-  CustomInputTime
 } from "@ui/inputs/web";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
-import { AppPopover } from "@ui/web/popover/popover";
-import { AppSelectButton } from "@ui/web/select-button/select-button";
-import { AppTable } from "@ui/web/table/table";
-import { Tabs } from "@ui/web/tabs/tabs";
-import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppBadge } from "@ui/web/badge/badge";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppDivider } from "@ui/web/divider/divider";
 import { AppMessage } from "@ui/web/message/message";
+import { AppPopover } from "@ui/web/popover/popover";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTable } from "@ui/web/table/table";
+import { Tabs } from "@ui/web/tabs/tabs";
 import { AppTag } from "@ui/web/tag/tag";
+import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
 import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
 import { MobileFeedback } from "../catalog-mobile/mobile-feedback/mobile-feedback";
@@ -171,12 +166,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputMultiselectSignal,
     CustomInputCheckSignal,
     CustomInputTextAreaSignal,
-    CustomInputSelectBool,
-    CustomInputSwitch,
-    CustomInputDecimal,
-    CustomInputPassword,
-    CustomInputTime,
-
     Accordion,
     AccordionPanel,
     WebButtonLabel,
@@ -256,13 +245,25 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [items]="[
                       { id: '0', title: 'Sección 1' },
                       { id: '1', title: 'Sección 2' },
-                      { id: '2', title: 'Sección 3' }
+                      { id: '2', title: 'Sección 3' },
                     ]"
                     [(expandedIds)]="accordionExpandedIds"
                   >
-                    <ng-template accordionPanel="0"><p class="m-0">Contenido de la primera sección.</p></ng-template>
-                    <ng-template accordionPanel="1"><p class="m-0">Contenido de la segunda sección.</p></ng-template>
-                    <ng-template accordionPanel="2"><p class="m-0">Contenido de la tercera sección.</p></ng-template>
+                    <ng-template accordionPanel="0"
+                      ><p class="m-0">
+                        Contenido de la primera sección.
+                      </p></ng-template
+                    >
+                    <ng-template accordionPanel="1"
+                      ><p class="m-0">
+                        Contenido de la segunda sección.
+                      </p></ng-template
+                    >
+                    <ng-template accordionPanel="2"
+                      ><p class="m-0">
+                        Contenido de la tercera sección.
+                      </p></ng-template
+                    >
                   </app-accordion>
                 </div>
               </div>
@@ -395,16 +396,28 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <!-- Ejemplo visual -->
                     <div class="d-flex align-items-center gap-3 mb-4">
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:menu" class="text-xl" />
+                        <app-icon
+                          icon="material-symbols-light:menu"
+                          class="text-xl"
+                        />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:notifications" class="text-xl" />
+                        <app-icon
+                          icon="material-symbols-light:notifications"
+                          class="text-xl"
+                        />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="material-symbols-light:search" class="text-xl" />
+                        <app-icon
+                          icon="material-symbols-light:search"
+                          class="text-xl"
+                        />
                       </button>
                       <button type="button" class="ds-icon-btn" disabled>
-                        <app-icon icon="material-symbols-light:settings" class="text-xl" />
+                        <app-icon
+                          icon="material-symbols-light:settings"
+                          class="text-xl"
+                        />
                       </button>
                     </div>
 
@@ -504,7 +517,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <div class="card-body">
                       header="Con Subheader" subheader="Subtitulo">
                       <p class="m-0">Card con subheader y footer opcional.</p>
-                      <ng-template #footer><il-button label="Accion" /></ng-template>
+                      <ng-template #footer
+                        ><il-button label="Accion"
+                      /></ng-template>
                     </div>
                   </div>
                 </div>
@@ -550,16 +565,44 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Dialog - p-dialog</h3>
                 </div>
                 <div class="card-body">
-                  <il-button label="Abrir Dialog" (clicked)="dialogVisible.set(true)" />
-                  <div class="modal fade" [class.show]="dialogVisible()" [style.display]="dialogVisible() ? 'block' : 'none'" tabindex="-1" role="dialog" [attr.aria-hidden]="!dialogVisible()">
-                    <div class="modal-dialog modal-dialog-centered" style="max-width: min(92vw, 30rem);">
+                  <il-button
+                    label="Abrir Dialog"
+                    (clicked)="dialogVisible.set(true)"
+                  />
+                  <div
+                    class="modal fade"
+                    [class.show]="dialogVisible()"
+                    [style.display]="dialogVisible() ? 'block' : 'none'"
+                    tabindex="-1"
+                    role="dialog"
+                    [attr.aria-hidden]="!dialogVisible()"
+                  >
+                    <div
+                      class="modal-dialog modal-dialog-centered"
+                      style="max-width: min(92vw, 30rem);"
+                    >
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title">Ejemplo de Dialog</h5>
-                          <button type="button" class="btn-close" aria-label="Cerrar" (click)="dialogVisible.set(false)"></button>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            aria-label="Cerrar"
+                            (click)="dialogVisible.set(false)"
+                          ></button>
                         </div>
-                        <div class="modal-body"><p>Contenido del dialog. Reservalo para decisiones breves.</p></div>
-                        <div class="modal-footer"><il-button label="Cerrar" (clicked)="dialogVisible.set(false)" /></div>
+                        <div class="modal-body">
+                          <p>
+                            Contenido del dialog. Reservalo para decisiones
+                            breves.
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <il-button
+                            label="Cerrar"
+                            (clicked)="dialogVisible.set(false)"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -576,9 +619,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <p>Contenido superior</p>
-                   <app-divider />
+                  <app-divider />
                   <p>Contenido inferior</p>
-                   <app-divider><b>Izquierda</b></app-divider>
+                  <app-divider><b>Izquierda</b></app-divider>
                   <p>Texto con divider alineado.</p>
                 </div>
               </div>
@@ -643,7 +686,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <app-message severity="success" text="Operacion exitosa" />
                     <app-message severity="warn" text="Advertencia" />
                     <app-message severity="danger" text="Error critico" />
-                    <app-message severity="secondary" text="Mensaje secundario" />
+                    <app-message
+                      severity="secondary"
+                      text="Mensaje secundario"
+                    />
                     <app-message severity="secondary" text="Contraste" />
                   </div>
                 </div>
@@ -814,7 +860,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <ng-template #body let-row>
                       <tr>
                         <td>{{ row.name }}</td>
-                        <td><app-tag [value]="row.status" severity="info" /></td>
+                        <td>
+                          <app-tag [value]="row.status" severity="info" />
+                        </td>
                         <td>
                           <il-button icon="material-symbols-light:visibility" />
                         </td>
@@ -834,7 +882,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [tabs]="[
                       { id: '0', label: 'General' },
                       { id: '1', label: 'Detalle' },
-                      { id: '2', label: 'Documentos' }
+                      { id: '2', label: 'Documentos' },
                     ]"
                     [(activeId)]="webItemTabActiveId"
                   >
@@ -918,21 +966,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <ng-template #toolbarLeft
-                      ><strong>Toolbar Title</strong></ng-template
-                    >
+                    ><strong>Toolbar Title</strong></ng-template
+                  >
                   <ng-template #toolbarRight>
-                      <div class="d-flex gap-2">
-                        <il-button
-                          label="Nuevo"
-                          size="sm"
-                          icon="material-symbols-light:add"
-                        />
-                        <il-button
-                          label="Exportar"
-                          severity="secondary"
-                          size="sm"
-                        />
-                      </div>
+                    <div class="d-flex gap-2">
+                      <il-button
+                        label="Nuevo"
+                        size="sm"
+                        icon="material-symbols-light:add"
+                      />
+                      <il-button
+                        label="Exportar"
+                        severity="secondary"
+                        size="sm"
+                      />
+                    </div>
                   </ng-template>
                   <app-toolbar
                     [leftTemplate]="toolbarLeft"
@@ -1044,18 +1092,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       label="Notas"
                       placeholder="Escribe aqui..."
                     />
-                    
+
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                      <il-button 
-                        label="Restablecer" 
-                        severity="secondary" 
-                        variant="outlined" 
-                        (clicked)="customInputsForm.reset()" 
+                      <il-button
+                        label="Restablecer"
+                        severity="secondary"
+                        variant="outlined"
+                        (clicked)="customInputsForm.reset()"
                       />
-                      <il-button 
-                        label="Simular Errores" 
+                      <il-button
+                        label="Simular Errores"
                         iconClass="material-symbols-light:error"
-                        (clicked)="customInputsForm.markAllAsTouched()" 
+                        (clicked)="customInputsForm.markAllAsTouched()"
                       />
                     </div>
                   </form>
@@ -1169,7 +1217,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         <span class="catalog-helper-text text-sm">success</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <app-tag value="Solo local (historico)" severity="info" />
+                        <app-tag
+                          value="Solo local (historico)"
+                          severity="info"
+                        />
                         <span class="catalog-helper-text text-sm">info</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">

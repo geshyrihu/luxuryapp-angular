@@ -23,7 +23,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { InspectionQrPrintService } from "@maintenance.luxuryapp/inspection/inspection-qr-print.service";
+import { InspectionQrPrintService } from "@operations.luxuryapp/inspection/inspection-qr-print.service";
 import { BitacoraIndividual } from "@maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { EquipmentContentsList } from "@maintenance.luxuryapp/machinery/equipment-content/equipment-content-list";
 import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/activos-form";

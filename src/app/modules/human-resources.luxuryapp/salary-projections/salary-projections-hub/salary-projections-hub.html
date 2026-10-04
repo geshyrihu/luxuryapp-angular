@@ -27,34 +27,15 @@
 
   <div class="row g-4">
     @for (option of options; track option.route) {
-    <div class="col-12 col-sm-6 col-md-3">
-      <lux-card
-        class="card card--interactive card--elevated h-full"
-        (click)="navigateTo(option.route)"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div class="d-flex align-items-center justify-content-between">
-            <div
-              class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
-              [style.backgroundColor]="option.backgroundColor"
-            >
-              <app-icon [icon]="option.icon" [style.color]="option.color" />
-            </div>
-            <app-icon
-              icon="material-symbols-light:north-east"
-              class="text-body-secondary"
-            />
-          </div>
-          <div>
-            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
-              {{ option.title }}
-            </h3>
-            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-              {{ option.description }}
-            </p>
-          </div>
-        </div>
-      </lux-card>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="option.title"
+        [description]="option.description"
+        [icon]="option.icon"
+        [color]="option.color"
+        [bgColor]="option.backgroundColor"
+        (cardClick)="navigateTo(option.route)"
+      ></lux-widget-card>
     </div>
     }
   </div>

@@ -32,43 +32,15 @@
 
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-      <lux-card
-        class="card card--interactive card--elevated h-full position-relative overflow-hidden"
-        (click)="navigateTo(module.route)"
-        [ngbPopover]="module.description"
-        popoverTitle="Info del módulo"
-        triggers="mouseenter:mouseleave"
-        placement="top"
-        container="body"
-      >
-        <!-- Watermark Decorativo sutil a la derecha -->
-        <div class="position-absolute" style="right: -15px; bottom: -20px; opacity: 0.04; transform: rotate(-15deg); pointer-events: none;">
-          <app-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 8rem;" />
-        </div>
-
-        <!-- Contenedor Horizontal (Flex Row) -->
-        <div class="d-flex align-items-center p-3 gap-3 h-100 z-1 position-relative">
-          <!-- Columna Izquierda: Icono Enorme -->
-          <div
-            class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
-            [style.backgroundColor]="module.bgColor"
-            style="width: 64px; height: 64px;"
-          >
-            <app-icon [icon]="module.icon" [style.color]="module.color" style="font-size: 2.25rem;" />
-          </div>
-          
-          <!-- Columna Derecha: Textos -->
-          <div class="flex-grow-1">
-            <h3 class="m-0 fw-bold text-body text-base line-height-2">
-              {{ module.title }}
-            </h3>
-            <span class="text-xs fw-semibold mt-1 d-inline-block" [style.color]="module.color">
-              Acceder &rarr;
-            </span>
-          </div>
-        </div>
-      </lux-card>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="module.title"
+        [description]="module.description"
+        [icon]="module.icon"
+        [color]="module.color"
+        [bgColor]="module.bgColor"
+        (cardClick)="navigateTo(module.route)"
+      ></lux-widget-card>
     </div>
     }
   </div>

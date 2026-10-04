@@ -8,17 +8,16 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppDivider } from "@ui/web/divider/divider";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppTable } from "@ui/web/table/table";
-import { Tabs } from "@ui/web/tabs/tabs";
-import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppDivider } from "@ui/web/divider/divider";
+import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
+import { AppTable } from "@ui/web/table/table";
+import { Tabs } from "@ui/web/tabs/tabs";
 
 import { AppCard } from "@ui/web/card/card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 
 const PATTERNS_LABELS: Record<string, string> = {
@@ -37,7 +36,6 @@ const PATTERNS_LABELS: Record<string, string> = {
   imports: [
     FormsModule,
     WebButtonLabel,
-    WebButtonIcon,
     AppDivider,
     CustomInputTextSignal,
     AppTable,
@@ -65,7 +63,10 @@ const PATTERNS_LABELS: Record<string, string> = {
                 </div>
               </ng-template>
               <ng-template #end>
-                <il-button label="Nueva Orden" iconClass="material-symbols-light:add" />
+                <il-button
+                  label="Nueva Orden"
+                  iconClass="material-symbols-light:add"
+                />
               </ng-template>
             </app-toolbar>
 
@@ -73,14 +74,29 @@ const PATTERNS_LABELS: Record<string, string> = {
               <ng-template #content>
                 <div class="row g-3">
                   <div class="col-12 col-md-4">
-                    <custom-input-text-signal [(ngModel)]="mockFilter" placeholder="Buscar por folio..." />
+                    <custom-input-text-signal
+                      [(ngModel)]="mockFilter"
+                      placeholder="Buscar por folio..."
+                    />
                   </div>
                   <div class="col-12 col-md-3">
-                    <custom-input-text-signal [(ngModel)]="mockFilter" placeholder="Filtrar fecha" />
+                    <custom-input-text-signal
+                      [(ngModel)]="mockFilter"
+                      placeholder="Filtrar fecha"
+                    />
                   </div>
-                  <div class="col-12 col-md-5 d-flex gap-2 justify-content-end align-items-end">
-                    <il-button variant="outlined" label="Limpiar" severity="secondary" />
-                    <il-button label="Buscar" iconClass="material-symbols-light:search" />
+                  <div
+                    class="col-12 col-md-5 d-flex gap-2 justify-content-end align-items-end"
+                  >
+                    <il-button
+                      variant="outlined"
+                      label="Limpiar"
+                      severity="secondary"
+                    />
+                    <il-button
+                      label="Buscar"
+                      iconClass="material-symbols-light:search"
+                    />
                   </div>
                 </div>
               </ng-template>
@@ -105,7 +121,10 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <td>{{ row.total }}</td>
                       <td><app-status-badge [status]="EStatus.Aprobado" /></td>
                       <td class="text-end">
-                        <iw-button-icon icon="material-symbols-light:visibility" variant="text" />
+                        <iw-button-icon
+                          icon="material-symbols-light:visibility"
+                          variant="text"
+                        />
                       </td>
                     </tr>
                   </ng-template>
@@ -127,10 +146,15 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">$125,000</h3>
                     </div>
                     <div class="bg-success-light text-success p-2 rounded">
-                      <app-icon icon="material-symbols-light:trending-up" class="text-xl" />
+                      <app-icon
+                        icon="material-symbols-light:trending-up"
+                        class="text-xl"
+                      />
                     </div>
                   </div>
-                  <p class="text-xs text-secondary mt-3 m-0">+14% respecto al mes anterior</p>
+                  <p class="text-xs text-secondary mt-3 m-0">
+                    +14% respecto al mes anterior
+                  </p>
                 </ng-template>
               </app-card>
               <app-card class="flex-grow-1" [elevated]="true">
@@ -141,10 +165,15 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <h3 class="m-0 mt-2 text-2xl font-bold">42</h3>
                     </div>
                     <div class="bg-primary-light text-primary p-2 rounded">
-                      <app-icon icon="material-symbols-light:shopping-cart" class="text-xl" />
+                      <app-icon
+                        icon="material-symbols-light:shopping-cart"
+                        class="text-xl"
+                      />
                     </div>
                   </div>
-                  <p class="text-xs text-secondary mt-3 m-0">5 requieren atención</p>
+                  <p class="text-xs text-secondary mt-3 m-0">
+                    5 requieren atención
+                  </p>
                 </ng-template>
               </app-card>
             </div>
@@ -152,7 +181,12 @@ const PATTERNS_LABELS: Record<string, string> = {
             <div class="col-12 col-md-8">
               <app-card class="h-100" [elevated]="true">
                 <ng-template #content>
-                  <app-chart-wrapper type="bar" [data]="mockChartData" height="300px" title="Ingresos Mensuales" />
+                  <app-chart-wrapper
+                    type="bar"
+                    [data]="mockChartData"
+                    height="300px"
+                    title="Ingresos Mensuales"
+                  />
                 </ng-template>
               </app-card>
             </div>
@@ -164,15 +198,23 @@ const PATTERNS_LABELS: Record<string, string> = {
             <div class="col-12 col-md-8">
               <app-card header="Detalles del Ticket #4502" [elevated]="true">
                 <ng-template #content>
-                  <p class="text-secondary">El aire acondicionado de la sala de juntas principal no está enfriando. Se requiere revisión urgente antes de la reunión de consejo.</p>
+                  <p class="text-secondary">
+                    El aire acondicionado de la sala de juntas principal no está
+                    enfriando. Se requiere revisión urgente antes de la reunión
+                    de consejo.
+                  </p>
                   <app-divider />
                   <div class="row">
                     <div class="col-6 mb-3">
-                      <span class="text-sm text-secondary d-block">Reportado por</span>
+                      <span class="text-sm text-secondary d-block"
+                        >Reportado por</span
+                      >
                       <strong class="text-primary">Juan Pérez</strong>
                     </div>
                     <div class="col-6 mb-3">
-                      <span class="text-sm text-secondary d-block">Ubicación</span>
+                      <span class="text-sm text-secondary d-block"
+                        >Ubicación</span
+                      >
                       <strong>Sala de Juntas A</strong>
                     </div>
                   </div>
@@ -185,10 +227,18 @@ const PATTERNS_LABELS: Record<string, string> = {
                   <div class="timeline-simple">
                     <div class="d-flex gap-3 mb-3">
                       <div class="d-flex flex-column align-items-center">
-                        <div class="rounded-full bg-primary text-white p-1 d-flex">
-                          <app-icon icon="material-symbols-light:check" class="text-sm" />
+                        <div
+                          class="rounded-full bg-primary text-white p-1 d-flex"
+                        >
+                          <app-icon
+                            icon="material-symbols-light:check"
+                            class="text-sm"
+                          />
                         </div>
-                        <div class="flex-grow-1 border-start border-2 border-primary mt-1 mb-1" style="min-height: 20px;"></div>
+                        <div
+                          class="flex-grow-1 border-start border-2 border-primary mt-1 mb-1"
+                          style="min-height: 20px;"
+                        ></div>
                       </div>
                       <div>
                         <p class="m-0 text-sm font-bold">Ticket Asignado</p>
@@ -197,8 +247,13 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                     <div class="d-flex gap-3">
                       <div class="d-flex flex-column align-items-center">
-                        <div class="rounded-full bg-surface border border-2 border-secondary text-secondary p-1 d-flex">
-                          <app-icon icon="material-symbols-light:pending" class="text-sm" />
+                        <div
+                          class="rounded-full bg-surface border border-2 border-secondary text-secondary p-1 d-flex"
+                        >
+                          <app-icon
+                            icon="material-symbols-light:pending"
+                            class="text-sm"
+                          />
                         </div>
                       </div>
                       <div>
@@ -296,7 +351,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <app-tabs
                 [tabs]="[
                   { id: '0', label: 'Dashboard' },
-                  { id: '1', label: 'Reportes' }
+                  { id: '1', label: 'Reportes' },
                 ]"
                 [(activeId)]="patternsTabActiveId"
               >
@@ -402,7 +457,10 @@ const PATTERNS_LABELS: Record<string, string> = {
                           <code>app-icon</code> con
                           <code>[style.color]="card.color"</code>
                         </li>
-                        <li>Flecha <code>material-symbols-light:north-east</code> en gris</li>
+                        <li>
+                          Flecha
+                          <code>material-symbols-light:north-east</code> en gris
+                        </li>
                         <li>
                           Label en <code>font-bold text-900 text-sm</code>
                         </li>
@@ -503,11 +561,13 @@ export class CatalogPatternsItem {
   ];
   mockChartData = {
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
-    datasets: [{
-      label: "Ingresos",
-      data: [65000, 59000, 80000, 81000, 56000, 125000],
-      backgroundColor: "var(--ds-primary)"
-    }]
+    datasets: [
+      {
+        label: "Ingresos",
+        data: [65000, 59000, 80000, 81000, 56000, 125000],
+        backgroundColor: "var(--ds-primary)",
+      },
+    ],
   };
 
   // --- Navigation Hub Page demo data ---------------------------
@@ -592,6 +652,10 @@ interface DashboardGroup {
       icon: "material-symbols-light:wallet",
       route: "/contabilidad",
     },
-    { label: "Cobranza Nativa", icon: "material-symbols-light:paid", route: "/cobranza-nativa" },
+    {
+      label: "Cobranza Nativa",
+      icon: "material-symbols-light:paid",
+      route: "/cobranza-nativa",
+    },
   ];
 }

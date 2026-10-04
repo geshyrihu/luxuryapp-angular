@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -85,7 +85,7 @@ export class ListaInspecciones {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<PagedResultDto<InspectionListItem>>(
+      .onGetList<InspectionListItem[]>(
         Endpoints.Inspections.listByCustomer(
           this.customerIdS.customerId(),
           1,
@@ -93,10 +93,10 @@ export class ListaInspecciones {
         ),
       )
       .then((result) => {
-        const data = result?.items ?? [];
+        const data = result ?? [];
         this.inspeccionesOriginalesSignal.set(data);
 
-        // Extraer áreas responsables del arreglo y eliminar duplicados
+        // Extraer Ã¡reas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
           areas.map((area) => ({
@@ -115,7 +115,7 @@ export class ListaInspecciones {
       });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -129,3 +129,6 @@ export class ListaInspecciones {
       });
   }
 }
+
+
+

@@ -7,8 +7,8 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./master-dashboard/master-dashboard").then(
-        (m) => m.MasterDashboard,
+      import("./accounting-hub/accounting-hub").then(
+        (m) => m.AccountingHub,
       ),
   },
 

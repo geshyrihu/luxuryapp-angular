@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -16,6 +16,25 @@ import { CustomToastService } from "@core/services/custom-toast.service";
   imports: [LxCard],
 })
 export class UpdateDataBase {
+  runSeedInspectionCriteriaCatalog() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo("Sembrando catálogo de inspecciones...", "Espere un momento");
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedInspectionCriteriaCatalog, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess("Éxito", res.message || "Catálogo de inspecciones sembrado.");
+        this.loading.set(false);
+      })
+      .catch((err: any) => {
+        this.result.set(err);
+        this.customToastS.showError("Error", "No se pudo sembrar el catálogo de inspecciones");
+        this.loading.set(false);
+      });
+  }
+
   apiResponseS = inject(ApiResponseService);
   customToastS = inject(CustomToastService);
   loading = signal(false);
@@ -681,3 +700,5 @@ this.loading.set(false);
       });
   }
 }
+
+

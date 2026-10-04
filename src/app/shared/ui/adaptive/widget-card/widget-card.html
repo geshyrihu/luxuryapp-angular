@@ -1,0 +1,43 @@
+<!-- Pasamos [padded]="false" para que LxCard no duplique los paddings,
+     ya que nosotros manejaremos el espaciado interno (p-3) -->
+<lux-card
+  class="card card--interactive card--elevated h-full position-relative overflow-hidden cursor-pointer"
+  [padded]="false"
+  (click)="onClick()"
+  [ngbPopover]="description || ''"
+  popoverTitle="Info del módulo"
+  triggers="mouseenter:mouseleave"
+  placement="top"
+  container="body"
+  [disablePopover]="!description"
+>
+  <!-- Watermark Decorativo sutil a la derecha -->
+  <div class="position-absolute" style="right: -15px; bottom: -20px; opacity: 0.04; transform: rotate(-15deg); pointer-events: none;">
+    <app-icon [icon]="icon" [style.color]="color" style="font-size: 8rem;" />
+  </div>
+
+  <!-- Contenedor Horizontal (Flex Row) con padding ajustado -->
+  <!-- Bootstrap p-3 + padding base 0 de la tarjeta da un tamaño perfecto -->
+  <div class="d-flex align-items-center p-3 gap-3 h-100 z-1 position-relative">
+    
+    <!-- Columna Izquierda: Icono -->
+    <div
+      class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+      [style.backgroundColor]="bgColor"
+      style="width: 56px; height: 56px;" 
+    >
+      <app-icon [icon]="icon" [style.color]="color" style="font-size: 2rem;" />
+    </div>
+    
+    <!-- Columna Derecha: Textos -->
+    <div class="flex-grow-1">
+      <h3 class="m-0 fw-bold text-body text-base line-height-2">
+        {{ title }}
+      </h3>
+      <span class="text-xs fw-semibold mt-1 d-inline-block" [style.color]="color">
+        {{ actionText }} &rarr;
+      </span>
+    </div>
+
+  </div>
+</lux-card>

@@ -30,34 +30,15 @@
 
   <div class="row g-4">
     @for (module of group.cards; track module.route) {
-    <div class="col-12 col-sm-6 col-md-3">
-      <lux-card
-        class="card card--interactive card--elevated h-full"
-        (click)="navigateTo(module.route)"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div class="d-flex align-items-center justify-content-between">
-            <div
-              class="d-flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
-              [style.backgroundColor]="module.bgColor"
-            >
-              <app-icon [icon]="module.icon" [style.color]="module.color" />
-            </div>
-            <app-icon
-              icon="material-symbols-light:north-east"
-              class="text-body-secondary"
-            />
-          </div>
-          <div>
-            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
-              {{ module.title }}
-            </h3>
-            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
-              {{ module.description }}
-            </p>
-          </div>
-        </div>
-      </lux-card>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <lux-widget-card
+        [title]="module.title"
+        [description]="module.description"
+        [icon]="module.icon"
+        [color]="module.color"
+        [bgColor]="module.bgColor"
+        (cardClick)="navigateTo(module.route)"
+      ></lux-widget-card>
     </div>
     }
   </div>

@@ -1,21 +1,19 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { LxCard } from "@ui/adaptive/card/card";
+import { LxWidgetCard } from "@ui/adaptive/widget-card/widget-card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AdminModuleGroup } from "./interfaces/admin-module-group.interface";
 import { ADMIN_MODULES } from "./admin-modules";
 
-import { NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
-
 @Component({
-  selector: "app-admin-wrapper",
-  imports: [AppIcon, LxCard, MobileListItem, NgbPopoverModule],
+  selector: "app-admin-hub",
+  imports: [AppIcon, LxWidgetCard, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: "./admin-wrapper.html",
+  templateUrl: "./admin-hub.html",
 })
-export class AdminWrapper {
+export class AdminHub {
   private router = inject(Router);
   private aspRoleS = inject(AspRoleService);
 

@@ -11,7 +11,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
 import {
   SegmentedControl,
   SegmentItem,
@@ -24,7 +23,7 @@ import { DirectorioContactDetail } from "./contact-detail/directorio-contact-det
   selector: "app-committee-directorio",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./directorio.html",
-  imports: [AppImageFallback, SegmentedControl, AppRealtimeIndicator, AppIcon],
+  imports: [AppImageFallback, SegmentedControl, AppIcon],
 })
 export class CommitteeDirectorio implements OnInit {
   apiResponseS = inject(ApiResponseService);

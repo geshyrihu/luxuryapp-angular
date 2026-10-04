@@ -102,8 +102,8 @@
 
 // Compact button variant
 .btn-compact {
-  padding: 8px 12px !important;
-  font-size: 12px !important;
+  padding: var(--ds-space-sm, 8px) var(--ds-space-md, 12px) !important;
+  font-size: var(--ds-font-sm, 12px) !important;
   min-height: 32px !important;
 }
 
@@ -148,8 +148,8 @@
   .btn-compact-mobile {
     grid-column: 1 / -1;
     width: 100%;
-    padding: 8px 12px !important;
-    font-size: 12px !important;
+    padding: var(--ds-space-sm, 8px) var(--ds-space-md, 12px) !important;
+    font-size: var(--ds-font-sm, 12px) !important;
     min-height: 32px !important;
   }
 }
