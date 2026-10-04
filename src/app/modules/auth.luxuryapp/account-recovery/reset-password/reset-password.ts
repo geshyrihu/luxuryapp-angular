@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -35,7 +35,7 @@ interface IResetPasswordForm {
   imports: [
     ReactiveFormsModule,
     CustomInputPassword,
-    WebButtonLabel,
+    ButtonWeb,
     RouterModule,
     AppIcon,
   ],
@@ -100,7 +100,8 @@ interface IResetPasswordForm {
               </div>
 
               <div class="mt-4 w-full">
-                <il-button
+                <lux-button-web
+                  displayMode="both"
                   type="submit"
                   label="CAMBIAR CONTRASEÑA"
                   [loading]="submitting()"
@@ -284,4 +285,3 @@ export class ResetPassword implements OnInit, OnDestroy {
       });
   }
 }
-
