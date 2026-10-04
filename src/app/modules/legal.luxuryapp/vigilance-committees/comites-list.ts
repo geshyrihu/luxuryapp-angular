@@ -23,7 +23,7 @@ import {
   CommitteeDirectoryGroup,
   CommitteeDirectoryMember,
 } from "@core/interfaces/comite-vigilancia.interface";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 type CommitteeDirectoryFlatItem = CommitteeDirectoryMember & {
   customerName: string;

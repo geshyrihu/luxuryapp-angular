@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RadioButtonBase } from "@ui/base/radio-button.base";
+import { RadioButtonBase } from "@ui/core/radio-button.base";
 import { IonRadio } from "@ionic/angular";
 
 @Component({

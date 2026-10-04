@@ -15,7 +15,7 @@ import {
 } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 
 /**
  * 🔽 WEB INPUT SELECT (Bootstrap) — interno del delegador `custom-input-select-signal`.

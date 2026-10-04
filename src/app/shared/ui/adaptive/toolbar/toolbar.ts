@@ -1,6 +1,6 @@
 import { Component, ContentChild, inject, TemplateRef } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ToolbarBase } from "@ui/base/toolbar.base";
+import { ToolbarBase } from "@ui/core/toolbar.base";
 import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 

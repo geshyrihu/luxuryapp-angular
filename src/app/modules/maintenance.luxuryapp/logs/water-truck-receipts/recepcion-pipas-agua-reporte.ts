@@ -29,7 +29,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { TableEmptyMessage } from "@ui/web/table-empty-message/table-empty-message";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",

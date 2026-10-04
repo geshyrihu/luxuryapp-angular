@@ -14,7 +14,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { PlatformService } from "@core/services/platform.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 export interface UploadFile {
   name: string;

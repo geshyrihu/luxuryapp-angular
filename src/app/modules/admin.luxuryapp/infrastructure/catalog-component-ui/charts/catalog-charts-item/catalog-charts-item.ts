@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ThemeService } from "@core/services/theme.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
 

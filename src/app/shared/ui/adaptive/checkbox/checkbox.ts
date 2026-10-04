@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { CheckboxBase } from "@ui/base/checkbox.base";
+import { CheckboxBase } from "@ui/core/checkbox.base";
 import { IliCheckbox } from "@ui/mobile/checkbox/checkbox";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 

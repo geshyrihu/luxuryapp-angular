@@ -17,7 +17,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PrintService } from "@core/services/print.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { DiagramPreviewComponent } from "./diagram-preview";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";

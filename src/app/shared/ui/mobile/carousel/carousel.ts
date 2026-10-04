@@ -1,6 +1,6 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { CarouselBase } from "@ui/base/carousel.base";
+import { CarouselBase } from "@ui/core/carousel.base";
 
 @Component({
   selector: "ili-carousel",

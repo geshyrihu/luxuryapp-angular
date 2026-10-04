@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
+import { BreadcrumbsBase } from "@ui/core/breadcrumbs.base";
 import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 

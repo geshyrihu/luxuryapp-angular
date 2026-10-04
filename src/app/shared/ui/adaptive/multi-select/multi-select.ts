@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { MultiSelectBase } from "@ui/base/multi-select.base";
+import { MultiSelectBase } from "@ui/core/multi-select.base";
 import { MobileMultiSelect } from "@ui/mobile/multi-select/multi-select";
 import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
 

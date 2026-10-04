@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { StepperBase } from "@ui/base/stepper.base";
+import { StepperBase } from "@ui/core/stepper.base";
 import { MobileStepper } from "@ui/mobile/stepper/stepper";
 
 @Component({

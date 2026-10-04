@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { ConfirmDialogBase } from "@ui/core/confirm-dialog.base";
 import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
 import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
 

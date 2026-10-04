@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonSpinner } from "@ionic/angular";
-import { LoaderBase } from "../../base/loader.base";
+import { LoaderBase } from "../../core/loader.base";
 
 @Component({
   selector: "ili-loader",

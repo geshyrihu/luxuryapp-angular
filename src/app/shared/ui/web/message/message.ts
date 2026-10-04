@@ -3,8 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { MessageBase } from "@ui/base/message.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { MessageBase } from "@ui/core/message.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-message",

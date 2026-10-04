@@ -4,9 +4,9 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { SplitButtonBase } from "@ui/base/split-button.base";
+import { SplitButtonBase } from "@ui/core/split-button.base";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-split-button",

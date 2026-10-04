@@ -35,7 +35,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,

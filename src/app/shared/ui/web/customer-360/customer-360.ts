@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { AppDivider } from "@ui/web/divider/divider";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export interface Customer360Data {
   // Identity

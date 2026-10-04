@@ -18,7 +18,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 @Component({

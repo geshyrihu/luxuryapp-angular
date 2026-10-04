@@ -1,8 +1,8 @@
 import { Component, inject, input } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 /**
  * Wrapper multiplataforma de Icon. Renderiza `app-icon` (iconify) o

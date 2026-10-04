@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { TagBase } from "@ui/base/tag.base";
+import { TagBase } from "@ui/core/tag.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

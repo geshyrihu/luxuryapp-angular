@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   computed
 } from "@angular/core";
-import { ProgressBarBase } from "@ui/base/progress-bar.base";
+import { ProgressBarBase } from "@ui/core/progress-bar.base";
 
 /**
  * AppProgressBar — `.progress`/`.progress-bar` de Bootstrap. `value` en 0..100.

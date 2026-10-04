@@ -5,7 +5,7 @@ import {
   PHONE_PREFIXES,
   PhonePrefix,
 } from "@core/data/phone-prefixes.data";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
   selector: "web-custom-input-phone-prefix",

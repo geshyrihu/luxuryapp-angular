@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { StepsBase } from "@ui/base/steps.base";
+import { StepsBase } from "@ui/core/steps.base";
 import { MobileSteps } from "@ui/mobile/steps/steps";
 import { AppSteps } from "@ui/web/steps/steps";
 

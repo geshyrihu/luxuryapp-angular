@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
+import { OfflineIndicatorBase } from "@ui/core/offline-indicator.base";
 import { MobileOfflineIndicator } from "@ui/mobile/offline-indicator/offline-indicator";
 import { OfflineIndicator } from "@ui/web/offline-indicator/offline-indicator";
 

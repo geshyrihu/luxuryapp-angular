@@ -22,7 +22,7 @@ import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { StorageService } from "@core/services/storage.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
 @Component({
   selector: "app-maintenance-reports",

@@ -16,7 +16,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
   selector: "web-custom-input-autocomplete-signal",

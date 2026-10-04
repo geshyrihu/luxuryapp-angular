@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TreeBase } from "@ui/base/tree.base";
+import { TreeBase } from "@ui/core/tree.base";
 import { MobileTree } from "@ui/mobile/tree/tree";
 import { Tree } from "@ui/web/tree/tree";
 

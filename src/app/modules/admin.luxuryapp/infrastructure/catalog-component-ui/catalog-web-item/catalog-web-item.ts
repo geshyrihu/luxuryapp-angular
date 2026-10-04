@@ -81,7 +81,7 @@ import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppTag } from "@ui/web/tag/tag";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
 import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
 import { MobileFeedback } from "../catalog-mobile/mobile-feedback/mobile-feedback";

@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { AccordionBase } from "@ui/base/accordion.base";
+import { AccordionBase } from "@ui/core/accordion.base";
 import { MobileAccordion } from "@ui/mobile/accordion/accordion";
 import { Accordion } from "@ui/web/accordion/accordion";
 

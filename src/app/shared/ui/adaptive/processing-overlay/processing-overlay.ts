@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
+import { ProcessingOverlayBase } from "@ui/core/processing-overlay.base";
 import { MobileProcessingOverlay } from "@ui/mobile/processing-overlay/processing-overlay";
 import { AppProcessingOverlay } from "@ui/web/processing-overlay/processing-overlay";
 

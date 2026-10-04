@@ -8,8 +8,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
-import { AccordionBase } from "@ui/base/accordion.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AccordionBase } from "@ui/core/accordion.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * Marca el contenido de un panel del accordion. Se proyecta como

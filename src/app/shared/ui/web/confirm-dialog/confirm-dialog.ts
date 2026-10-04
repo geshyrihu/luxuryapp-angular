@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
+import { ConfirmDialogBase } from "@ui/core/confirm-dialog.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
-export type { ConfirmType } from "@ui/base/confirm-dialog.base";
+export type { ConfirmType } from "@ui/core/confirm-dialog.base";
 
 @Component({
   selector: "app-confirm-dialog",

@@ -8,7 +8,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 
 export interface DetailEvent {

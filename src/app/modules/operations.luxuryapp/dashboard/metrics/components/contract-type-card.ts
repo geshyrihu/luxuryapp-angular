@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { AppIcon as AppIconComponent } from "@ui/shared/app-icon/app-icon";
-import { AppIcon, AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconComponent } from "@ui/primitives/app-icon/app-icon";
+import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { ContractsExpiringTypeItemDTO } from "../interfaces/contracts-expiring.dto";
 
 @Component({

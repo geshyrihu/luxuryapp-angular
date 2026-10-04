@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
   computed,
 } from "@angular/core";
-import { ChipBase } from "@ui/base/chip.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { ChipBase } from "@ui/core/chip.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppChip — CSS propio (badge redondeado). Renderiza icono (`app-icon`),

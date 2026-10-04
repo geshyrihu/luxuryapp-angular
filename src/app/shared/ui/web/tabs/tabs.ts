@@ -8,8 +8,8 @@ import {
   viewChild,
 } from "@angular/core";
 import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
-import { TabsBase } from "@ui/base/tabs.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { TabsBase } from "@ui/core/tabs.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 /**
  * AppTabs — Wrapper con navegación Bootstrap. El contenido se proyecta en un

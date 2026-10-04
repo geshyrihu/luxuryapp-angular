@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { RoleType } from "@core/enums/role-type.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Roles } from "@core/interfaces/roles.interface";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
 import { AuthService } from "@core/auth/services/auth.service";
 

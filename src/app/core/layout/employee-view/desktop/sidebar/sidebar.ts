@@ -20,7 +20,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { SubMenuItem } from "@core/interfaces/menu.interface";
 import { LayoutService } from "@core/services/layout.service";
 import { MenuService } from "@core/services/menu.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 

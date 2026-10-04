@@ -15,7 +15,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ITaskMessageDTO, ITaskResultDTO } from "./interfaces/task-message.dto";
 
 interface ITaskAreaGroup {

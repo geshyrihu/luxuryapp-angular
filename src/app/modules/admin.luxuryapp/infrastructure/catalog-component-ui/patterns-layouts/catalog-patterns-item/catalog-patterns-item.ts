@@ -13,8 +13,8 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "@ui/web/table/table";
 import { Tabs } from "@ui/web/tabs/tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 import { AppCard } from "@ui/web/card/card";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";

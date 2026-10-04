@@ -15,7 +15,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { CandidateStatus } from "@core/enums/candidate-status";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { MappedPTag } from "../../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
 import { CandidateListItem } from "../interfaces/candidate.dto";

@@ -22,7 +22,7 @@ import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SwalService } from "@core/services/swal.service";
 
 interface IResetPasswordForm {

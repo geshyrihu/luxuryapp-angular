@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
-import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { AppRealtimeIndicator } from "@ui/primitives/realtime-indicator/realtime-indicator";
 import { AppImageFallback } from "@ui/web/image-fallback/image-fallback";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CommitteeDirectorioDTO } from "../../interfaces/committee-directorio.dto";
 
 @Component({

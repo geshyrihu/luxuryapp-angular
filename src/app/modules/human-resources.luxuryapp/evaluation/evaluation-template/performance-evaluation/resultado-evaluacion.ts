@@ -24,7 +24,7 @@ import {
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-resultado-evaluacion",

@@ -17,7 +17,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Directive({
   selector: "[appSortableColumn]",

@@ -4,7 +4,7 @@ import {
   inject,
   ViewEncapsulation,
 } from "@angular/core";
-import { FileUploadBase, FileUploadEvent } from "@ui/base/file-upload.base";
+import { FileUploadBase, FileUploadEvent } from "@ui/core/file-upload.base";
 import { IonButton, IonIcon } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { cloudUploadOutline } from "ionicons/icons";

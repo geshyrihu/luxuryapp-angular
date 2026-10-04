@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { FileUploadBase } from "@ui/base/file-upload.base";
+import { FileUploadBase } from "@ui/core/file-upload.base";
 import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
 import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
 

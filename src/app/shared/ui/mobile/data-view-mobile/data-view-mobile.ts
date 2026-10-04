@@ -35,8 +35,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/angular";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { filter, map, startWith } from "rxjs";
 import { MobileEmptyState } from "../empty-state/empty-state";
 

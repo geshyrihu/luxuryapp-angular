@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { StatusBadgeBase } from "@ui/base/status-badge.base";
+import { StatusBadgeBase } from "@ui/core/status-badge.base";
 import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 

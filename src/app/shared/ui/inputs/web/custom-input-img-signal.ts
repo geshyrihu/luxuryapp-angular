@@ -11,7 +11,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../core/base-input-signal";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 @Component({

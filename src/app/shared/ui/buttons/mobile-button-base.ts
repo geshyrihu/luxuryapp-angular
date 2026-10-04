@@ -1,6 +1,6 @@
-import { AppIcon as AppIconCatalog } from "../shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconCatalog } from "../primitives/app-icon/app-icon.catalog";
 import { Directive, computed, input } from "@angular/core";
-import type { AppIconName } from "../shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "../primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { BaseIonicButton } from "./base/base-ionic-button";
 

@@ -1,8 +1,8 @@
 import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { BreadcrumbsBase } from "@ui/core/breadcrumbs.base";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { MenuItem } from "@core/interfaces/menu-item.interface";
 
 @Component({

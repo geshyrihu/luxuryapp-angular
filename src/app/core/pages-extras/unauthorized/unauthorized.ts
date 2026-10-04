@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppDivider } from "@ui/web/divider/divider";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-unauthorized",
   imports: [AppDivider, AppIcon, WebButtonLabel],

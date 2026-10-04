@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-table-empty-message",

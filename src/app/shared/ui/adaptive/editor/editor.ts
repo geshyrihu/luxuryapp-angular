@@ -1,7 +1,7 @@
 import { Component, forwardRef, inject } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "@core/services/platform.service";
-import { EditorBase } from "@ui/base/editor.base";
+import { EditorBase } from "@ui/core/editor.base";
 import { MobileEditor } from "@ui/mobile/editor/editor";
 import { AppEditor } from "@ui/web/editor/editor";
 

@@ -10,7 +10,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 // Definimos una interfaz para la respuesta de la API.
 // Esto es opcional pero MUY RECOMENDADO para tener un código mós seguro y autocompletado.
 interface PendingMinutesResponse {

@@ -16,7 +16,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { GeolocationService } from "@core/services/geolocation.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PanicAlertCreateDto } from "../interfaces/panic-alert-create.dto";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 

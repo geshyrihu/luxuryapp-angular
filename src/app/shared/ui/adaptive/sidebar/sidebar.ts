@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { SidebarBase } from "@ui/base/sidebar.base";
+import { SidebarBase } from "@ui/core/sidebar.base";
 import { MobileSidebar } from "@ui/mobile/sidebar/sidebar";
 import { Sidebar } from "@ui/web/sidebar/sidebar";
 

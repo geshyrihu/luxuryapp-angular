@@ -12,7 +12,7 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/angular";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../core/base-ionic-input";
 
 @Component({
   selector: "ion-input-autocomplete",

@@ -12,7 +12,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { UpdatePasswordDto } from "@core/interfaces/user-info.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-update-password-account",

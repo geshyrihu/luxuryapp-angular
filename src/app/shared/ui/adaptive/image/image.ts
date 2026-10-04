@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ImageBase } from "@ui/base/image.base";
+import { ImageBase } from "@ui/core/image.base";
 import { MobileImage } from "@ui/mobile/image/image";
 import { AppImage } from "@ui/web/image/image";
 

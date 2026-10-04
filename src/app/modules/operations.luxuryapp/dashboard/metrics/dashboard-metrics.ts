@@ -9,8 +9,8 @@ import { SwalService } from "@core/services/swal.service";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { AppIcon as AppIconComponent } from "@ui/shared/app-icon/app-icon";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconComponent } from "@ui/primitives/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon.catalog";
 import { MaintenanceCategoryCardComponent } from "./components/maintenance-category-card";
 import { TicketsByGroupDTO } from "./interfaces/tickets-by-group.dto";
 import { TicketsByGroupCardComponent } from "./components/tickets-by-group-card";

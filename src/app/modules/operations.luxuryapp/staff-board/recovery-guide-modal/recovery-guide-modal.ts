@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-recovery-guide-modal",

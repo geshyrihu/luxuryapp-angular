@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, computed } from "@angular/core";
-import { PaginatorBase } from "@ui/base/paginator.base";
+import { PaginatorBase } from "@ui/core/paginator.base";
 
 @Component({
   selector: "app-paginator",

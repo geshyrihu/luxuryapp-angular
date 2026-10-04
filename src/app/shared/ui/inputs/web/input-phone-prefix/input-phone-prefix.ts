@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { PhonePrefix } from "@core/data/phone-prefixes.data";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
 
 @Component({

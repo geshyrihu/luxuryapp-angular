@@ -10,12 +10,12 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
-import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AppRealtimeIndicator } from "@ui/primitives/realtime-indicator/realtime-indicator";
 import {
   SegmentedControl,
   SegmentItem,
-} from "@ui/shared/segmented-control/segmented-control";
+} from "@ui/primitives/segmented-control/segmented-control";
 import { AppImageFallback } from "@ui/web/image-fallback/image-fallback";
 import { CommitteeDirectorioDTO } from "../interfaces/committee-directorio.dto";
 import { DirectorioContactDetail } from "./contact-detail/directorio-contact-detail";

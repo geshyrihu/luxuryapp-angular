@@ -6,7 +6,7 @@ import {
 import {
   SelectButtonBase,
   SelectButtonOption,
-} from "@ui/base/select-button.base";
+} from "@ui/core/select-button.base";
 
 @Component({
   selector: "app-select-button",

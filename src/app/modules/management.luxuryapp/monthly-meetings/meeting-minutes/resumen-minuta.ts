@@ -26,7 +26,7 @@ import { ReportService } from "@core/services/report.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-resumen-minuta",

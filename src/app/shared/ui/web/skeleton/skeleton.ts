@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { SkeletonBase } from "@ui/base/skeleton.base";
+import { SkeletonBase } from "@ui/core/skeleton.base";
 
 @Component({
   selector: "app-skeleton",

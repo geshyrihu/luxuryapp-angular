@@ -1,4 +1,4 @@
-import { TagSeverity } from "@ui/base/tag.base";
+import { TagSeverity } from "@ui/core/tag.base";
 
 export interface TipoSolicitudTagOption {
   value: number;

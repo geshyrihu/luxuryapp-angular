@@ -29,7 +29,7 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { TabItem } from "@ui/base/tabs.base";
+import { TabItem } from "@ui/core/tabs.base";
 import {
   IncidentTypeListDTO,
   SanctionTypeListDTO,

@@ -10,7 +10,7 @@ import {
   signal,
 } from "@angular/core";
 import { IonImg } from "@ionic/angular";
-import { ImageBase } from "@ui/base/image.base";
+import { ImageBase } from "@ui/core/image.base";
 
 /** MobileImage — Wrapper sobre ion-img con preview accesible propio. */
 @Component({

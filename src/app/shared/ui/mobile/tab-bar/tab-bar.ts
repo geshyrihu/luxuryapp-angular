@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
-import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export interface TabBarItem {
   id: string;

@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "@core/services/platform.service";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { IonInputToggle } from "../../mobile/ion-input-toggle";
 import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle-switch";
 

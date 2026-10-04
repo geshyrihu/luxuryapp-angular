@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
+import { PullToRefreshBase } from "@ui/core/pull-to-refresh.base";
 import { MobilePullToRefresh } from "@ui/mobile/pull-to-refresh/pull-to-refresh";
 import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
 

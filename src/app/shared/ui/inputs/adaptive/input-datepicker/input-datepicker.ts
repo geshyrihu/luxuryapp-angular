@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { PlatformService } from "@core/services/platform.service";
-import { BaseInputSignal } from "../../base/base-input-signal";
+import { BaseInputSignal } from "../../core/base-input-signal";
 import { IonInputDatepicker } from "../../mobile/ion-input-datepicker";
 import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker";
 

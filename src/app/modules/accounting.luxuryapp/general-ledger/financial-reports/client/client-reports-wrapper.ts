@@ -8,7 +8,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import type { TabItem } from "@ui/base/tabs.base";
+import type { TabItem } from "@ui/core/tabs.base";
 import { map } from "rxjs/operators";
 import { AnalisisCobranzaClienteComponent } from "./client-collection-analysis/analisis-cobranza-cliente";
 import { BancosInversionesClienteComponent } from "./client-banks-investments/bancos-inversiones-cliente";

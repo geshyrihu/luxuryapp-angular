@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
+import { BreadcrumbsBase } from "@ui/core/breadcrumbs.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { TimelineBase } from "@ui/base/timeline.base";
+import { TimelineBase } from "@ui/core/timeline.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

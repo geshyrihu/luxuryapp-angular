@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
+import { ProcessingOverlayBase } from "@ui/core/processing-overlay.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 /**

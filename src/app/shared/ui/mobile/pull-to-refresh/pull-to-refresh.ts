@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
+import { PullToRefreshBase } from "@ui/core/pull-to-refresh.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

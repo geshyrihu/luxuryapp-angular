@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MenubarBase } from "@ui/base/menubar.base";
+import { MenubarBase } from "@ui/core/menubar.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({

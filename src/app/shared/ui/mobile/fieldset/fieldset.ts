@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { FieldsetBase } from "@ui/base/fieldset.base";
+import { FieldsetBase } from "@ui/core/fieldset.base";
 
 @Component({
   selector: "ili-fieldset",

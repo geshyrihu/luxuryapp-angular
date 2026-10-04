@@ -33,7 +33,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { RatingBase } from "@ui/base/rating.base";
+import { RatingBase } from "@ui/core/rating.base";
 import { MobileRating } from "@ui/mobile/rating/rating";
 import { AppRating } from "@ui/web/rating/rating";
 

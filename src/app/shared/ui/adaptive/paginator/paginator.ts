@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { PaginatorBase } from "@ui/base/paginator.base";
+import { PaginatorBase } from "@ui/core/paginator.base";
 import { MobilePaginator } from "@ui/mobile/paginator/paginator";
 
 @Component({

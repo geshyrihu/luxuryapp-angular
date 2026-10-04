@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, contentChild, inject, TemplateRef } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { CardBase } from "@ui/base/card.base";
+import { CardBase } from "@ui/core/card.base";
 import { MobileCard } from "@ui/mobile/card/card";
 import { AppCard } from "@ui/web/card/card";
 

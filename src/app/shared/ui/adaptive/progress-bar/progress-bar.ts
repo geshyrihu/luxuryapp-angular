@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { ProgressBarBase } from "@ui/base/progress-bar.base";
+import { ProgressBarBase } from "@ui/core/progress-bar.base";
 import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 

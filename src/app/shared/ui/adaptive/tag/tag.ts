@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { PlatformService } from "@core/services/platform.service";
-import { TagBase } from "@ui/base/tag.base";
+import { TagBase } from "@ui/core/tag.base";
 import { MobileTag } from "@ui/mobile/tag/tag";
 import { AppTag } from "@ui/web/tag/tag";
 

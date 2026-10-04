@@ -14,7 +14,7 @@ import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { lastValueFrom } from "rxjs";
-import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { environment } from "src/environments/environment";
 import { HistoryEntry } from "./interfaces/history-entry.interface";
 import { KeyValuePair } from "./interfaces/key-value-pair.interface";

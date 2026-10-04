@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceOrdersCategoryItemDto } from '../interfaces/maintenance-orders.dto';
-import { AppIcon as AppIconComponent } from "@ui/shared/app-icon/app-icon";
-import { AppIcon, AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
+import { AppIcon as AppIconComponent } from "@ui/primitives/app-icon/app-icon";
+import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
   selector: 'app-maintenance-category-card',

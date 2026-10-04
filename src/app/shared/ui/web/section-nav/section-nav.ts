@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AppIcon, type AppIconName } from "../../shared/app-icon/app-icon";
+import { AppIcon, type AppIconName } from "../../primitives/app-icon/app-icon";
 
 export interface LxSectionNavItem {
   label: string;

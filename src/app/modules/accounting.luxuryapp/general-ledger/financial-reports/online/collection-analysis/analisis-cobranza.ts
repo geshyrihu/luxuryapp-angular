@@ -1,6 +1,6 @@
 import { CommonModule, formatNumber } from "@angular/common";
 import { Component, computed, effect, inject } from "@angular/core";
-import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CobranzaOnlineAdvances } from "@collections.luxuryapp/online-collections/advances/cobranza-online-advances";
