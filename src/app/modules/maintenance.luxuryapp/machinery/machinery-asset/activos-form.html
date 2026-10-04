@@ -1,7 +1,5 @@
 @if (category == 1 || category == 6 || category == 5) {
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="row g-4">
         <!-- Primera columna -->
         <div class="col-12 col-md-3">
@@ -108,14 +106,10 @@
       <div class="d-flex justify-content-end mt-4">
         <il-button-save [disabled]="form.invalid || submitting()" />
       </div>
-    </form>
-  </div>
-</div>
+  </form>
 } @if (category == 2 || category == 3 || category == 4 || category == 8 ||
 category == 7) {
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="row g-4">
         <!-- Columna 1 -->
         <div class="col-12 col-md-3">
@@ -204,7 +198,5 @@ category == 7) {
       <div class="d-flex justify-content-end mt-4">
         <il-button-save [disabled]="form.invalid || submitting()" />
       </div>
-    </form>
-  </div>
-</div>
+  </form>
 }

@@ -1,7 +1,5 @@
 @if (formReady()) {
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="row col-12 align-items-center mb-4 g-4">
         <label class="col-12 col-md-3 mb-2 mb-md-0">Producto</label>
         <div class="col-12 col-md-9">
@@ -53,7 +51,5 @@
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>
 }

@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
       <div class="mb-4">
         @if(cb_providers().length == 0){
         <div class="text-center">
@@ -49,6 +47,4 @@
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>

@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="row g-4">
         <!-- Columna izquierda: datos del camion y tiempos -->
         <div class="col-12 col-md-6">
@@ -219,6 +217,4 @@
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>

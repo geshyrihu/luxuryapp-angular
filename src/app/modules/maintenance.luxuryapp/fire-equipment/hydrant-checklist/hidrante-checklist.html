@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-date-signal [control]="form.controls.date" label="Fecha" />
       <custom-input-time-signal [control]="form.controls.hour" label="Hora" />
       <custom-input-check-signal [control]="form.controls.labelPresent" label="Etiqueta Presente" />
@@ -17,6 +15,4 @@
       />
       <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
       <il-button-save [propertyId]="id" [disabled]="form.invalid" [submitting]="submitting()" />
-    </form>
-  </div>
-</div>
+  </form>

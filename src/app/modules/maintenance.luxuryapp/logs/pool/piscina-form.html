@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- Img -->
       <div class="row mb-4 g-4">
         <label class="col-12 col-sm-3 d-block mb-2">Imagen</label>
@@ -41,6 +39,4 @@
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>

@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
       <custom-input-text-signal
         [control]="form.controls.id"
         hidden
@@ -26,6 +24,4 @@
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>

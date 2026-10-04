@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- Id -->
       <div class="row mb-4 g-4" hidden>
         <label class="col-12 col-sm-3">Id</label>
@@ -46,6 +44,4 @@
       <il-button-save
         [disabled]="form.invalid || laLecturaEsMenor || submitting()"
       />
-    </form>
-  </div>
-</div>
+  </form>

@@ -1,6 +1,4 @@
-<div class="card">
-  <div class="card-body">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-select-signal
         placeholder="--Selecciona la vacante que cubre--"
         [control]="form.controls.positionRequestId"
@@ -46,6 +44,4 @@
         [submitting]="submitting()"
         label="Solicitar alta"
       />
-    </form>
-  </div>
-</div>
+  </form>
