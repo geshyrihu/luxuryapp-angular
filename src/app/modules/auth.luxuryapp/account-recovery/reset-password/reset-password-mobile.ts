@@ -15,7 +15,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
 import { MobilePage } from "@ui/mobile/page/page";
 import { catchError, finalize, throwError } from "rxjs";
@@ -29,7 +29,7 @@ import { ROUTES } from "src/app/routing/route-paths";
   imports: [
     ReactiveFormsModule,
     MobilePage,
-    MobileButtonLabel,
+    ButtonMobile,
     IonInputPassword,
   ],
   template: `
@@ -91,7 +91,8 @@ import { ROUTES } from "src/app/routing/route-paths";
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ili-button
+                <lux-button-mobile
+                  displayMode="both"
                   expand="block"
                   type="submit"
                   label="Cambiar Contraseña"

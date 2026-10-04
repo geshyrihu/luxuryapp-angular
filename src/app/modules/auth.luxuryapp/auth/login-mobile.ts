@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { MobilePage } from "@ui/mobile/page/page";
@@ -38,7 +38,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     MobilePage,
     IonInputText,
     IonInputPassword,
-    MobileButtonLabel,
+    ButtonMobile,
   ],
   template: `
     <ili-page background="var(--ds-primary)">
@@ -97,7 +97,8 @@ import { ROUTES } from "src/app/routing/route-paths";
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ili-button
+                <lux-button-mobile
+                  displayMode="both"
                   type="submit"
                   expand="block"
                   label="INICIAR SESIÓN"

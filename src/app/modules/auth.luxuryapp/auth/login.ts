@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -39,7 +39,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     ReactiveFormsModule,
     RouterModule,
-    WebButtonLabel,
+    ButtonWeb,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputPassword,

@@ -17,7 +17,7 @@ import {
 import { Router } from "@angular/router";
 import { catchError, finalize, throwError } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { MobilePage } from "@ui/mobile/page/page";
 import { LoginSliderService } from "@core/auth/services/login-slider.service";
@@ -40,7 +40,7 @@ interface ICodeForm {
   imports: [
     ReactiveFormsModule,
     MobilePage,
-    MobileButtonLabel,
+    ButtonMobile,
     IonInputText,
   ],
   template: `
@@ -90,7 +90,8 @@ interface ICodeForm {
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ili-button
+                <lux-button-mobile
+                  displayMode="both"
                   expand="block"
                   type="submit"
                   label="Enviar Código"
@@ -122,7 +123,8 @@ interface ICodeForm {
               }
 
               <div class="lm-btn-wrapper mt-4">
-                <ili-button
+                <lux-button-mobile
+                  displayMode="both"
                   expand="block"
                   type="submit"
                   label="Verificar Código"
