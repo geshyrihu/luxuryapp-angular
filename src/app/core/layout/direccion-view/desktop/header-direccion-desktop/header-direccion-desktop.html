@@ -35,7 +35,8 @@
 
 <ng-template #right>
   <div class="d-flex align-items-center gap-1 px-3">
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       (clicked)="onBack()"
       icon="material-symbols-light:chevron-left"
       variant="text"
@@ -44,7 +45,8 @@
       tooltipPosition="bottom"
       size="sm"
     />
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       (clicked)="onForward()"
       icon="material-symbols-light:chevron-right"
       variant="text"
@@ -53,7 +55,8 @@
       tooltipPosition="bottom"
       size="sm"
     />
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       (clicked)="onHome()"
       icon="material-symbols-light:home"
       variant="text"
@@ -62,7 +65,8 @@
       tooltipPosition="bottom"
       size="sm"
     />
-    <iw-button
+    <lux-button-web
+      displayMode="icon"
       (clicked)="toggleTheme()"
       [icon]="getThemeIcon()"
       variant="text"

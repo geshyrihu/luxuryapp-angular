@@ -15,7 +15,7 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
+import { ButtonWeb } from "@ui/buttons/web";
 import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
@@ -38,7 +38,7 @@ import { Profiledesktop } from "../../../employee-view/desktop/profile-desktop/p
     RouterModule,
     AppToolbar,
     LxTooltipDirective,
-    WebButtonIcon,
+    ButtonWeb,
   ],
   templateUrl: "./header-direccion-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
