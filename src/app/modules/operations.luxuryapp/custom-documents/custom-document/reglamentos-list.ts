@@ -10,65 +10,31 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppMessage } from "@ui/web/message/message";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { ReglamentosListDesktop } from "./desktop/reglamentos-list-desktop";
+import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
 
 @Component({
   selector: "app-reglamentos",
   imports: [
-    WebButtonIcon,
-    LxTooltipDirective,
-    WebButtonIconViewPdf,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    AppReorderableRow,
-    AppReorderableRowHandle,
-    WebButtonLabel,
-    NgbTooltipModule,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    WebButtonLabelViewPdf,
+    ReglamentosListDesktop,
+    ReglamentosListMobile,
     LxModal,
+    AppMessage,
     CustomInputTextAreaSignal,
     ReactiveFormsModule,
-    WebButtonLabelViewPdf,
-    MobileListItem,
+    WebButtonLabel,
     AppIcon,
-    AppMessage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",
@@ -79,6 +45,7 @@ export class Reglamentos {
   customerIdS = inject(CustomerIdService);
   authS = inject(AuthService);
   aiService = inject(AiService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -87,8 +54,6 @@ export class Reglamentos {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   filterText: string = "";
 
   constructor() {

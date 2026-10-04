@@ -1,0 +1,142 @@
+<lux-table
+  [value]="data()"
+  #dt
+  class="custom-table card"
+  groupRowsBy="typeOfContract"
+  initialSortField="typeOfContract"
+  sortMode="single"
+  [globalFilterFields]="globalFilterFields()"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #caption>
+    <div class="row col-12 g-4">
+      <div class="col-10">
+        <lux-table-caption
+          (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-2">
+        <iw-button-active-desactive
+          [state]="isCurrent()"
+          (stateChange)="selectActive.emit($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Encabezado de las columnas (define qué columnas se mostrarón para cada item) -->
+  <ng-template #header>
+    <tr>
+      <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
+      <th>ID</th>
+      <th class="table-col-20" appSortableColumn="description">
+        <!-- Cambiado a Description -->
+        Servicio
+        <app-sorticon field="description" />
+      </th>
+      <th class="table-col-20" appSortableColumn="provider">
+        <!-- Cambiado a Provider -->
+        Proveedor
+        <app-sorticon field="Provider" />
+      </th>
+      <th appSortableColumn="startDateFilter">
+        Inicio
+        <app-sorticon field="startDateFilter" />
+      </th>
+      <th appSortableColumn="endDateFilter">
+        término
+        <app-sorticon field="endDateFilter" />
+      </th>
+      <th appSortableColumn="tagLabel">
+        <!-- Cambiado a tagLabel -->
+        Estado
+        <app-sorticon field="tagLabel" />
+      </th>
+      <th appSortableColumn="validity">
+        <!-- Cambiado a validity -->
+        Vigencia
+        <app-sorticon field="validity" />
+      </th>
+      <th>Documento</th>
+      <th></th>
+      <!-- Aóadido encabezado para columna de opciones -->
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el encabezado de CADA GRUPO -->
+  <ng-template #groupheader let-group>
+    <tr>
+      <!-- La celda abarca todas las columnas definidas en el header -->
+      <td [attr.colspan]="9">
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
+        <!-- Muestra el nombre del grupo -->
+        <strong class="fw-bold ms-2 p-0 font-size-24">
+          {{ group.typeOfContract }}
+        </strong>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el cuerpo (filas de datos dentro de cada grupo) -->
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <!-- item es un objeto del array 'Contracts' -->
+    <tr>
+      <td>
+        {{ rowIndex + 1 }}
+        <!-- Muestra el ID del contrato -->
+      </td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.provider }}</td>
+      <td>
+        {{ item.startDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        {{ item.endDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        <lux-tag
+          [severity]="getTagSeverity(item.tagLabel)"
+          fluid
+          [value]="item.tagLabel"
+        />
+      </td>
+      <td>{{ item.validity }}</td>
+      <td class="text-center">
+        <!-- Alineación opcional -->
+        @if (item.document) {
+        <iw-button-view-pdf
+          iconClass="material-symbols-light:picture-as-pdf"
+          [url]="item.pathDocument"
+          fileName="Poliza | Contrato"
+          lxTooltip="Ver documento"
+          tooltipPosition="top"
+          class="text-xl"
+        />
+        }
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          @if (item.document) {
+          <iw-button-delete
+            lxTooltip="Eliminar documento"
+            tooltipPosition="top"
+            ngbTooltip="Eliminar documento"
+            (confirmed)="deleteDocument.emit(item.id)"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="9" />
+  </ng-template>
+</lux-table>

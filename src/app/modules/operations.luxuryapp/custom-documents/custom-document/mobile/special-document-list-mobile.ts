@@ -1,0 +1,15 @@
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+
+@Component({
+  selector: "app-special-document-list-mobile",
+  templateUrl: "./special-document-list-mobile.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [WebButtonLabelViewPdf, DataViewMobile, MobileListItem, AppIcon],
+})
+export class SpecialDocumentListMobile {
+  data = input.required<any[]>();
+}

@@ -8,68 +8,28 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { PolicyContractListDesktop } from "./desktop/policy-contract-list-desktop";
+import { PolicyContractListMobile } from "./mobile/policy-contract-list-mobile";
 import { PolicyContractForm } from "./policy-contract-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-policy-contract-list",
   templateUrl: "./policy-contract-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconActiveDesactive,
-    WebButtonIconViewPdf,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelViewPdf,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    LuxTableCaption,
-    DataViewMobile,
-  ],
+  imports: [PolicyContractListDesktop, PolicyContractListMobile],
 })
 export class PolicyContractList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
   groupedData: any = {};
 
@@ -80,8 +40,6 @@ export class PolicyContractList {
   });
   loading = signal(true);
   isCurrent: boolean = true;
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ref: DynamicDialogRef;
 
@@ -151,16 +109,5 @@ export class PolicyContractList {
   onSelectActive(isCurrent: boolean): any {
     this.isCurrent = isCurrent;
     this.onLoadData(isCurrent);
-  }
-  getTagSeverity(tagLabel: string | null): "success" | "warn" | "danger" {
-    if (tagLabel === "Vigente") {
-      return "success"; // Si no hay etiqueta, consideramos que está vigente
-    }
-    if (tagLabel === "Próximo a vencer") {
-      return "warn"; // Si no hay etiqueta, consideramos que está vigente
-    }
-    if (tagLabel === "Vencido") {
-      return "danger"; // Si no hay etiqueta, consideramos que está vigente
-    }
   }
 }

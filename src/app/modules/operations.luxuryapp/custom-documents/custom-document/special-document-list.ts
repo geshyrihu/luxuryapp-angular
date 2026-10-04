@@ -10,47 +10,18 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { DocumentoPersonalizadoForm } from "@legal.luxuryapp/legal/custom-documents/documento-personalizado-form";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { SpecialDocumentListDesktop } from "./desktop/special-document-list-desktop";
+import { SpecialDocumentListMobile } from "./mobile/special-document-list-mobile";
+
 @Component({
   selector: "app-special-document-list",
-  imports: [
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    AppReorderableRow,
-    AppReorderableRowHandle,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    WebButtonLabelViewPdf,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [SpecialDocumentListDesktop, SpecialDocumentListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./special-document-list.html",
 })
@@ -60,6 +31,7 @@ export class SpecialDocumentList {
   customerIdS = inject(CustomerIdService);
   authS = inject(AuthService);
   private activatedRoute = inject(ActivatedRoute);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
   documentType: EDocumentType;
   title: string = "";
@@ -70,8 +42,6 @@ export class SpecialDocumentList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   filterText: string = "";
 
   constructor() {

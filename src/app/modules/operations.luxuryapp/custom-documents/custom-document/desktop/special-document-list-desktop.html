@@ -1,0 +1,57 @@
+<lux-table
+  [reorderableRows]="true"
+  [reorderableColumns]="true"
+  (onRowReorder)="rowReorder.emit($event)"
+  [globalFilterFields]="globalFilterFields()"
+  [value]="data()"
+  #dt
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+      [title]="title()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5rem"></th>
+      <th class="text-white text-center" appSortableColumn="folio">
+        Folio
+        <app-sorticon field="folio" />
+      </th>
+      <th class="bg-gradient text-white text-center">Fecha</th>
+      <th class="text-center" appSortableColumn="name">
+        Nombre
+        <app-sorticon field="name" />
+      </th>
+      <th class="text-center">Descargar</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-index="rowIndex">
+    <tr [pReorderableRow]="index">
+      <td>
+        <div>
+          <app-icon
+            icon="material-symbols-light:menu"
+            class="icon"
+            pReorderableRowHandle
+          />
+        </div>
+      </td>
+      <td class="text-center">{{ item.folio }}</td>
+      <td class="text-center">{{ item.createAt }}</td>
+      <td class="text-center text-break">{{ item.name }}</td>
+      <td class="text-center">
+        lxTooltip="Descargar" [urlFile]="item.path" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>
