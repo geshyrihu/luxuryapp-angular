@@ -1,0 +1,126 @@
+// ============================================================
+// _fullcalendar-overrides.scss
+// Overrides para FullCalendar unificando el estilo corporativo
+// ============================================================
+
+.calendar-shell, .fc {
+  background: var(--ds-surface-card, #ffffff);
+  border-radius: 4px; // Regla de 4px unificada
+  overflow: hidden;
+  box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07); // Sombra estilo Lagos
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: var(--ds-outline, #E2E8F0);
+}
+
+.fc-header-toolbar {
+  padding: 16px 20px;
+  background: var(--ds-surface, #F8F9FC);
+  border-bottom: 1px solid var(--ds-outline, #E2E8F0);
+  margin-bottom: 0 !important;
+
+  .fc-toolbar-title {
+    font-size: 1.25rem !important;
+    font-weight: 600;
+    color: var(--ds-on-surface, #1A2634);
+  }
+
+  .fc-button-primary {
+    background-color: var(--ds-primary, #003152) !important;
+    border-color: var(--ds-primary, #003152) !important;
+    border-radius: 4px;
+    text-transform: capitalize;
+    
+    &:not(:disabled):active,
+    &:not(:disabled).fc-button-active {
+      background-color: var(--ds-primary-dark, #00253D) !important;
+      border-color: var(--ds-primary-dark, #00253D) !important;
+    }
+  }
+}
+
+.fc-col-header-cell {
+  background: var(--ds-surface-dim, #E8EEF6);
+  
+  .fc-col-header-cell-cushion {
+    color: var(--ds-on-surface-secondary, #5A6878);
+    font-weight: 600;
+    padding: 8px 0;
+    text-decoration: none;
+  }
+}
+
+.fc-daygrid-day-number {
+  color: var(--ds-on-surface, #1A2634);
+  font-weight: 600;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.fc-day-today {
+  background: var(--primary-50, #e6f0fa) !important;
+}
+
+.fc-event {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 2px 4px;
+  padding: 2px 4px;
+  overflow: hidden;
+
+  .fc-event-main {
+    padding: 2px;
+  }
+}
+
+// Clases semánticas de colores para los eventos (Evitar hex en TS)
+.event-vacation, .fc-event-info {
+  background-color: #0b76bc !important;
+  color: #ffffff !important;
+}
+
+.event-permission, .fc-event-warning {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+}
+
+.event-holiday, .fc-event-success {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+}
+
+.event-default, .fc-event-secondary {
+  background-color: #94a3b8 !important;
+  color: #ffffff !important;
+}
+
+.fc-event-primary {
+  background-color: var(--ds-primary, #003152) !important;
+  color: #ffffff !important;
+}
+
+// Responsive
+@media screen and (max-width: 768px) {
+  .fc-header-toolbar {
+    flex-direction: column !important;
+    gap: 12px;
+    align-items: stretch !important;
+    padding: 16px 12px;
+
+    .fc-toolbar-chunk {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      
+      &:nth-child(2) {
+        order: -1;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

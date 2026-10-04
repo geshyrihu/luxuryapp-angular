@@ -1,0 +1,76 @@
+// ============================================================
+// _modals.scss
+// Design System | Angular 22 + Bootstrap 5.3 + Ionic 9 | SCSS
+// Overrides para NgbModal
+// ============================================================
+
+@use "../core/mixins";
+
+.modal-content {
+  border-radius: var(--ds-radius-md, 4px);
+  border: none;
+  box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+  background-color: var(--ds-surface-card, #ffffff);
+
+  .modal-header {
+    border-bottom: 1px solid var(--ds-outline, #E2E8F0); 
+    padding: 20px 24px;
+    align-items: center;
+
+    .modal-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ds-on-surface, #1A2634);
+      margin: 0;
+    }
+
+    .btn-close {
+      padding: 1rem;
+      margin: -1rem -1rem -1rem auto;
+      
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  // AQUI arreglamos el scrollbar feo de Windows
+  .modal-body {
+    padding: 24px;
+    color: var(--ds-on-surface-secondary, #5A6878);
+    
+    // Aplicamos el mixin de scrollbar delgado y elegante (estilo Mac/Lagos)
+    @include mixins.custom-scrollbar(6px);
+  }
+
+  .modal-footer {
+    border-top: 1px solid var(--ds-outline, #E2E8F0);
+    padding: 16px 24px;
+  }
+}
+
+// Overlay elegante
+.modal-backdrop {
+  background-color: var(--ds-primary-dark, #00253D);
+  
+  &.fade {
+    opacity: 0;
+  }
+  
+  &.show {
+    opacity: 0.35 !important;
+    backdrop-filter: blur(3px);
+  }
+}
+
+// Animación de entrada suave
+.modal.fade .modal-dialog {
+  transform: scale(0.95) translateY(-10px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}

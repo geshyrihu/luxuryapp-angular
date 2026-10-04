@@ -105,6 +105,10 @@ body {
 /* Figtree variable self-hosted — CSP-safe, font-display: swap. */
 @import "core/fonts";
 
+html {
+  font-size: 14px !important;
+}
+
 body {
   font-family:
     var(--ds-font-family-base), "Segoe UI Emoji", "Apple Color Emoji",

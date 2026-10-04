@@ -1,0 +1,312 @@
+// ============================================================
+// _lagos-ui-kits.scss
+// UI Kits esenciales importados de Lagos, adaptados a LuxuryApp
+// ============================================================
+
+// ── 1. AVATARS Y GRUPOS DE AVATARES ─────────────────────────
+.avatar {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  width: auto;
+
+  &:last-child { margin-right: 0; }
+
+  img {
+    object-fit: cover;
+    // Lagos usa distintas clases .b-r-* para el border-radius
+  }
+
+  &.b-r-8 { img { border-radius: 8px; } }
+  &.b-r-15 { img { border-radius: 15px; } }
+  &.b-r-25 { img { border-radius: 25px; } }
+  &.b-r-30 { img { border-radius: 30px; } }
+  &.b-r-35 { img { border-radius: 35px; } }
+  &.rounded-circle { img { border-radius: 50%; } }
+
+  .status {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    bottom: 2px;
+    right: 2px;
+    border: 2px solid var(--ds-surface-card, #ffffff);
+  }
+  
+  .status-offline { background-color: var(--ds-danger, #dc3545); }
+  .status-online { background-color: var(--ds-success, #198754); }
+  .status-dnd { background-color: var(--ds-warning, #ffc107); }
+
+  // Tamaños fijos tipo Lagos
+  .img-100 { width: 100px !important; height: 100px !important; }
+  .img-90 { width: 90px !important; height: 90px !important; }
+  .img-80 { width: 80px !important; height: 80px !important; }
+  .img-70 { width: 70px !important; height: 70px !important; }
+  .img-60 { width: 60px !important; height: 60px !important; }
+  .img-50 { width: 50px !important; height: 50px !important; }
+  .img-40 { width: 40px !important; height: 40px !important; }
+  .img-30 { width: 30px !important; height: 30px !important; }
+}
+
+// Avatar Group (Imágenes solapadas)
+.customers.avatar-group ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    margin-left: -12px;
+    &:first-child { margin-left: 0; }
+    
+    img {
+      border: 2px solid var(--ds-surface-card, #ffffff);
+      transition: 0.3s ease;
+      &:hover {
+        transform: translateY(-4px) scale(1.05);
+        z-index: 10;
+        position: relative;
+      }
+    }
+  }
+}
+
+
+// ── 2. SWITCHES ESTILO LAGOS ────────────────────────────────
+.form-switch {
+  .form-check-input {
+    height: 1.25rem;
+    width: 2.25rem;
+    cursor: pointer;
+    
+    &:checked {
+      // Usa el color primario de LuxuryApp, no el morado de Lagos
+      background-color: var(--ds-primary, #003152);
+      border-color: var(--ds-primary, #003152);
+    }
+  }
+}
+
+
+// ── 3. BADGES ───────────────────────────────────────────────
+.badge {
+  padding: 0.44rem 0.7rem;
+  font-weight: 600;
+  border-radius: 4px; // Estandarizado a 4px como acordamos
+  
+  &-primary { background-color: var(--ds-primary, #003152); color: #fff; }
+  &-secondary { background-color: var(--ds-secondary, #6c757d); color: #fff; }
+  &-success { background-color: var(--ds-success, #198754); color: #fff; }
+  &-danger { background-color: var(--ds-danger, #dc3545); color: #fff; }
+  &-warning { background-color: var(--ds-warning, #ffc107); color: #000; }
+  &-info { background-color: var(--ds-info, #0dcaf0); color: #000; }
+}
+
+
+// ── 4. TABS ─────────────────────────────────────────────────
+.nav-tabs, .nav-pills {
+  border-bottom-color: var(--ds-outline, #E2E8F0);
+  
+  .nav-link {
+    font-weight: 500;
+    color: var(--ds-on-surface-secondary, #5A6878);
+    transition: all 0.3s ease;
+    
+    &.active {
+      color: var(--ds-primary, #003152);
+      font-weight: 600;
+    }
+  }
+
+  &.nav-primary .nav-link.active {
+    background-color: var(--ds-primary, #003152);
+    color: #fff;
+  }
+}
+
+
+// ── 5. HELPERS / UTILITIES FRECUENTES DE LAGOS ──────────────
+// Border Radius
+.b-r-4 { border-radius: 4px !important; }
+.b-r-5 { border-radius: 5px !important; }
+.b-r-8 { border-radius: 8px !important; }
+.b-r-10 { border-radius: 10px !important; }
+.b-r-15 { border-radius: 15px !important; }
+.b-r-50 { border-radius: 50% !important; }
+
+// Font Weights
+.f-w-400 { font-weight: 400 !important; }
+.f-w-500 { font-weight: 500 !important; }
+.f-w-600 { font-weight: 600 !important; }
+.f-w-700 { font-weight: 700 !important; }
+.f-w-900 { font-weight: 900 !important; }
+
+// Colores de texto rápidos
+.font-primary { color: var(--ds-primary, #003152) !important; }
+.font-secondary { color: var(--ds-secondary, #6c757d) !important; }
+.font-success { color: var(--ds-success, #198754) !important; }
+.font-danger { color: var(--ds-danger, #dc3545) !important; }
+.font-warning { color: var(--ds-warning, #ffc107) !important; }
+
+// Colores de fondo rápidos
+.bg-primary { background-color: var(--ds-primary, #003152) !important; }
+.bg-secondary { background-color: var(--ds-secondary, #6c757d) !important; }
+.bg-success { background-color: var(--ds-success, #198754) !important; }
+.bg-danger { background-color: var(--ds-danger, #dc3545) !important; }
+.bg-warning { background-color: var(--ds-warning, #ffc107) !important; }
+
+
+// ── 6. ACCORDION ────────────────────────────────────────────
+.accordion-item {
+  border: 1px solid var(--ds-outline, #E2E8F0);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  
+  .accordion-button {
+    font-weight: 600;
+    color: var(--ds-on-surface, #1A2634);
+    background-color: transparent;
+    box-shadow: none;
+    
+    &:not(.collapsed) {
+      color: var(--ds-primary, #003152);
+      background-color: rgba(0, 49, 82, 0.05); // Efecto sutil Primary
+    }
+    
+    &:focus { box-shadow: none; }
+  }
+}
+
+// ── 7. RADIO & CHECKBOX (Estilos Lagos) ─────────────────────
+.checkbox, .radio {
+  label {
+    cursor: pointer;
+    padding-left: 5px;
+  }
+}
+// Variantes de color
+.checkbox-primary input[type="checkbox"]:checked + label::before,
+.radio-primary input[type="radio"]:checked + label::before {
+  background-color: var(--ds-primary, #003152);
+  border-color: var(--ds-primary, #003152);
+}
+
+// ── 8. PROGRESS BARS ────────────────────────────────────────
+.progress {
+  border-radius: 50px; // Estilo redondeado característico de Lagos
+  background-color: var(--ds-surface-dim, #E8EEF6);
+  
+  .progress-bar {
+    border-radius: 50px;
+    background-color: var(--ds-primary, #003152);
+    
+    &.bg-secondary { background-color: var(--ds-secondary, #6c757d) !important; }
+    &.bg-success { background-color: var(--ds-success, #198754) !important; }
+    &.bg-danger { background-color: var(--ds-danger, #dc3545) !important; }
+    &.bg-warning { background-color: var(--ds-warning, #ffc107) !important; }
+    &.bg-info { background-color: var(--ds-info, #0dcaf0) !important; }
+  }
+}
+
+// ── 9. RIBBONS ──────────────────────────────────────────────
+.ribbon-wrapper {
+  position: relative;
+  overflow: hidden;
+  
+  .ribbon {
+    padding: 5px 15px;
+    position: absolute;
+    top: 15px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 4px;
+    z-index: 1;
+    
+    &.ribbon-primary { background-color: var(--ds-primary, #003152); }
+    &.ribbon-secondary { background-color: var(--ds-secondary, #6c757d); }
+    &.ribbon-success { background-color: var(--ds-success, #198754); }
+    &.ribbon-warning { background-color: var(--ds-warning, #ffc107); color: #000; }
+    &.ribbon-danger { background-color: var(--ds-danger, #dc3545); }
+    
+    &.ribbon-right {
+      right: -5px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    &.ribbon-left {
+      left: -5px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+// ── 10. LIST GROUP ──────────────────────────────────────────
+.list-group {
+  .list-group-item {
+    border-color: var(--ds-outline, #E2E8F0);
+    &.active {
+      background-color: var(--ds-primary, #003152);
+      border-color: var(--ds-primary, #003152);
+      color: #fff;
+    }
+  }
+}
+
+// ── 11. TOOLTIPS & POPOVERS ─────────────────────────────────
+.tooltip-inner {
+  background-color: var(--ds-primary, #003152);
+  border-radius: 4px;
+}
+.bs-tooltip-top .tooltip-arrow::before { border-top-color: var(--ds-primary, #003152); }
+.bs-tooltip-bottom .tooltip-arrow::before { border-bottom-color: var(--ds-primary, #003152); }
+
+.popover {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-size: 13px; // Lagos usa fuentes mucho más pequeñas por defecto
+  
+  .popover-header {
+    // Lagos usa un fondo súper suave (10% de opacidad) con texto del color primario
+    background-color: rgba(0, 49, 82, 0.05); 
+    color: var(--ds-primary, #003152);
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 14px; // Forzar el tamaño pequeño que usa Lagos
+    border-radius: 6px 6px 0 0;
+    padding: 12px 15px;
+  }
+  
+  .popover-body {
+    color: var(--ds-on-surface-secondary, #5A6878);
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+}
+
+// Ajustes de las flechas del Popover
+.bs-popover-top > .popover-arrow::before,
+.bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before {
+  border-top-color: transparent;
+}
+.bs-popover-top > .popover-arrow::after,
+.bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::after {
+  border-top-color: #ffffff; 
+}
+
+.bs-popover-bottom > .popover-arrow::before,
+.bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::before {
+  border-bottom-color: transparent;
+}
+.bs-popover-bottom > .popover-arrow::after,
+.bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after {
+  border-bottom-color: rgba(0, 49, 82, 0.05); // La flecha toca el header claro
+}
+
+// ── 12. SPINERS & LOADERS ───────────────────────────────────
+.spinner-border, .spinner-grow {
+  &.text-primary { color: var(--ds-primary, #003152) !important; }
+}

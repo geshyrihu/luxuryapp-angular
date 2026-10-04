@@ -7,9 +7,11 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AdminModuleGroup } from "./interfaces/admin-module-group.interface";
 import { ADMIN_MODULES } from "./admin-modules";
 
+import { NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
+
 @Component({
   selector: "app-admin-wrapper",
-  imports: [AppIcon, LxCard, MobileListItem],
+  imports: [AppIcon, LxCard, MobileListItem, NgbPopoverModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./admin-wrapper.html",
 })
