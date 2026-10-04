@@ -2,11 +2,12 @@
 <ion-toolbar class="approval-rules-mobile-toolbar">
   <ion-title>Matriz de aprobación</ion-title>
   <ion-buttons slot="end">
-    <ili-button-save
+    <lux-button-mobile
+      kind="save"
       label="Guardar Cambios"
       [disabled]="loading() || saving()"
-      [submitting]="saving()"
-      (click)="onSave()"
+      [loading]="saving()"
+      (clicked)="onSave()"
     />
   </ion-buttons>
 </ion-toolbar>
@@ -56,11 +57,15 @@
           Seleccione el alcance de la aprobación para cada par de roles.
         </p>
       </div>
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        displayMode="both"
+        severity="info"
+        variant="soft"
         label="Guardar Cambios"
         [disabled]="loading() || saving()"
-        [submitting]="saving()"
-        (click)="onSave()"
+        [loading]="saving()"
+        (clicked)="onSave()"
       />
     </div>
   </ng-template>

@@ -26,8 +26,8 @@ import {
 } from "@ionic/angular";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
@@ -51,8 +51,8 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     CustomInputSelectButton,
     LxSkeleton,
     AppIcon,
-    WebButtonLabelSave,
-    MobileButtonLabelSave,
+    ButtonWeb,
+    ButtonMobile,
     IonButtons,
     IonCard,
     IonCardContent,
