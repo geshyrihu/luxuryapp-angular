@@ -1,0 +1,147 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataEmergencyContact()"
+  #dt
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="
+        add.emit({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 0,
+        })
+      "
+      [showSearch]="dataEmergencyContact().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataEmergencyContact().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="d-flex justify-content-center">
+          @if (!isReadOnly()) {
+          <iw-button
+            iconClass="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              edit.emit({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 0,
+              })
+            "
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
+            iconClass="trash"
+            severity="danger"
+            ngbTooltip="Eliminar"
+            (confirmed)="delete.emit({ id: item.id, typeContact: 0 })"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataEmergencyContact().length === 0) {
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+  }
+</lux-table>
+
+<hr />
+
+<lux-table
+  #dt
+  [value]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="
+        add.emit({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 1,
+        })
+      "
+      [showSearch]="dataBeneficiary().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataBeneficiary().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="d-flex justify-content-center">
+          @if (!isReadOnly()) {
+          <iw-button
+            iconClass="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              edit.emit({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 1,
+              })
+            "
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
+            iconClass="trash"
+            severity="danger"
+            ngbTooltip="Eliminar"
+            (confirmed)="delete.emit({ id: item.id, typeContact: 1 })"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataBeneficiary().length === 0) {
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="4">No hay beneficiarios</td>
+    </tr>
+  </ng-template>
+  }
+</lux-table>

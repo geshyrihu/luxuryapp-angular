@@ -1,96 +1,20 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [value]="dataSignal()"
-  #dt
-  class="custom-table card d-none d-md-block"
-  [loading]="loading()"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario' })"
-      [showSearch]="dataSignal().length > 0"
-      [dt]="dt"
-    />
-  </ng-template>
-
-  @if (dataSignal().length !== 0) {
-  <ng-template #header>
-    <tr>
-      <th>Banco</th>
-      <th>No. Cuenta</th>
-      <th>CLABE</th>
-      <th class="table-col-5 no-print"></th>
-    </tr>
-  </ng-template>
-  }
-
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.bankName }}</td>
-      <td>{{ item.bankAccount }}</td>
-      <td>{{ item.bankKey }}</td>
-      <td class="no-print">
-        <div class="d-flex justify-content-center">
-          @if (!isReadOnly()) {
-          <iw-button
-            iconClass="edit"
-            ngbTooltip="Editar"
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario' })"
-          />
-          } @if (!isReadOnly()) {
-          <iw-button-confirm
-            iconClass="trash"
-            severity="danger"
-            ngbTooltip="Eliminar"
-            (confirmed)="onDelete(item.id)"
-          />
-          }
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-
-  @if (dataSignal().length === 0) {
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="4" />
-  </ng-template>
-  }
-</lux-table>
-
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-employee-bank-data-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
+  [isReadOnly]="isReadOnly()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario' })"
-  [showAdd]="!isReadOnly()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:account-balance-outline"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <h3>{{ item.bankName }}</h3>
-      <p>{{ item.bankAccount }} | {{ item.bankKey }}</p>
-
-      @if (!isReadOnly()) {
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario' })"
-            label="Editar"
-            iconName="create-outline"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-      }
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-employee-bank-data-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [isReadOnly]="isReadOnly()"
+  [loading]="loading()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario' })"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+}

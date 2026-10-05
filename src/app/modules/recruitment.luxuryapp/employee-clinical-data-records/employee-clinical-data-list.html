@@ -1,88 +1,20 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [value]="dataSignal()"
-  #dt
-  class="custom-table card d-none d-md-block"
-  [loading]="loading()"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
-      [showSearch]="dataSignal().length > 0"
-      [dt]="dt"
-    />
-  </ng-template>
-
-  @if (dataSignal().length !== 0) {
-   <ng-template #header>
-     <tr>
-       <th>NOMBRE</th>
-       <th>DESCRIPCIÓN</th>
-       <th class="table-col-5 no-print"></th>
-     </tr>
-   </ng-template>
-  }
-
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.description }}</td>
-      <td class="no-print">
-        <div class="d-flex justify-content-center">
-          @if (!isReadOnly()) {
-          <iw-button
-            iconClass="edit"
-            ngbTooltip="Editar"
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
-          />
-          } @if (!isReadOnly()) {
-          <iw-button-confirm
-            icon="trash"
-            ngbTooltip="Eliminar"
-            (confirmed)="onDelete(item.id)"
-          />
-          }
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-
-  @if (dataSignal().length === 0) {
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="3" />
-  </ng-template>
-  }
-</lux-table>
-
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-employee-clinical-data-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
+  [isReadOnly]="isReadOnly()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
-  [showAdd]="!isReadOnly()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:medical-services" />
-      </div>
-
-      <h3>{{ item.name }}</h3>
-      <p>{{ item.description }}</p>
-
-      @if (!isReadOnly()) {
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-      }
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-employee-clinical-data-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [isReadOnly]="isReadOnly()"
+  [loading]="loading()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro Clinico' })"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+}

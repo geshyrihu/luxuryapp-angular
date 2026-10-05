@@ -8,67 +8,28 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+import { PlatformService } from "@core/services/platform.service";
 import { addIcons } from "ionicons";
 import { personOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { ProviderSupportDesktop } from "./desktop/provider-support-desktop";
+import { ProviderSupportMobile } from "./mobile/provider-support-mobile";
 import { ProviderSupportForm } from "./provider-support-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-provider-support",
   templateUrl: "./provider-support.html",
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    AppAvatar,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    LuxTableCaption,
-    DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [ProviderSupportDesktop, ProviderSupportMobile],
 })
 export class ProviderSupport implements OnInit {
+  platformS = inject(PlatformService);
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   // Declaración e inicialización de variables
   dataSignal = signal<ProviderSupportList[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     addIcons({ personOutline });

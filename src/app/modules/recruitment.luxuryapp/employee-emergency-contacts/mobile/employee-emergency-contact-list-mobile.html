@@ -1,0 +1,72 @@
+<app-data-view-mobile
+  [data]="dataEmergencyContact()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
+  [showAdd]="!isReadOnly()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon
+          icon="material-symbols-light:call-outline"
+          class="text-xl text-red-500"
+        />
+      </div>
+
+      <h3>{{ item.nameContact }}</h3>
+      <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
+
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit({ id: item.id, typeContact: 0 })"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />
+
+<app-data-view-mobile
+  [data]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
+  [showAdd]="!isReadOnly()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon icon="material-symbols-light:group-outline" />
+      </div>
+
+      <h3>{{ item.nameContact }}</h3>
+      <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
+
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit({ id: item.id, typeContact: 1 })"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />

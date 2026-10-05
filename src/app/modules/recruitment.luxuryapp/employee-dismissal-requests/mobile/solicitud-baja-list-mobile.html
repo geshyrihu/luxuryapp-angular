@@ -1,0 +1,30 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
+      >
+        <app-icon
+          icon="material-symbols-light:person-remove"
+          class="text-xl text-red-600"
+        />
+      </div>
+
+      <h3>{{ item.nameEmployee }}</h3>
+      <p>{{ item.nameCustomer }} - {{ item.applicationRole }}</p>
+      <p>Baja: {{ item.executionDate }} - {{ item.status }}</p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -15,62 +15,23 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppAvatar } from "@ui/web/avatar/avatar";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { EmployeeExternalListDesktop } from "./desktop/employee-external-list-desktop";
 import { EmployeeExternalAppUser } from "./employee-external-app-user";
 import { EmployeeExternalForm } from "./employee-external-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { EmployeeExternalListMobile } from "./mobile/employee-external-list-mobile";
 
 @Component({
   selector: "app-employee-external-list",
   templateUrl: "./employee-external-list.html",
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    AppAvatar,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [EmployeeExternalListDesktop, EmployeeExternalListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],
 })
 export class EmployeeExternalList {
-  // employeeAddOrEditService = inject(EmployeeAddOrEditService);
+  platformS = inject(PlatformService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -82,13 +43,10 @@ export class EmployeeExternalList {
   getAllEmployeeActive: any = [];
   ref: DynamicDialogRef;
 
-  // óCAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
-        // El effect se encarga de la carga inicial de datos
-        // tan pronto como el customerId esté disponible.
         this.onLoadData();
       }
     });

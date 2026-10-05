@@ -1,0 +1,84 @@
+<div class="d-none d-md-block"></div>
+<lux-table
+  #dt
+  [value]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  class="custom-table card"
+>
+  <!-- class="p-datatable-sm" -->
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-15" appSortableColumn="nameCustomer">
+        Cliente
+        <app-sorticon field="nameCustomer" />
+      </th>
+      <th colspan="2" class="table-col-30" appSortableColumn="nameComercial">
+        Proveedor
+        <app-sorticon field="nameComercial" />
+      </th>
+
+      <th class="table-col-20" appSortableColumn="fullName">
+        Nombre
+        <app-sorticon field="fullName" />
+      </th>
+
+      <th appSortableColumn="applicationRoleName">
+        Puesto
+        <app-sorticon field="applicationRoleName" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameCustomer }}</td>
+      <td>
+        <app-avatar
+          [image]="item.pathPhoto"
+          alt="noImg"
+          shape="square"
+          size="large"
+          styleClass="b-r-8 img-70"
+        />
+      </td>
+      <td>
+        <h4 class="m-0 h4">{{ item.nameComercial }}</h4>
+        <p>{{ item.nameProvider }}</p>
+      </td>
+
+      <td>
+        {{ item.fullName }}
+
+        <b>
+          <i>{{ item.email }}</i>
+        </b>
+        <br />
+        <b>
+          <i>{{ item.phoneNumber }}</i>
+        </b>
+      </td>
+      <td>{{ item.applicationRoleName }}</td>
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+</lux-table>

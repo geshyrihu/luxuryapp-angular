@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { vi } from "vitest";
 import { EmployeeInternalService } from "../employee/employee-internal.service";
 import { EmployeeClinicalDataList } from "./employee-clinical-data-list";
@@ -32,6 +33,7 @@ describe("EmployeeClinicalDataList", () => {
       providers: [
         { provide: EmployeeInternalService, useValue: mockEmployeeInternalS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
       ],
     });
 

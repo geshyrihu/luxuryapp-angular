@@ -6,55 +6,32 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { EStatus } from "@ui/core/status-badge.base";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidates/candidate-applications/candidate-process-hiring-modal";
 import { CandidateDetail } from "../candidates/candidate-core/candidate-detail";
-import {
-  requestStatusBorderColor,
-  requestStatusTagSeverity,
-} from "../recruitment-shared/request-status-style";
+import { SolicitudAltaListDesktop } from "./desktop/solicitud-alta-list-desktop";
+import { SolicitudAltaListMobile } from "./mobile/solicitud-alta-list-mobile";
 import { SolicitudAltaStatusForm } from "./solicitud-alta-status-form";
 
-interface SolicitudAltaListItem {
+export interface SolicitudAltaListItem {
   id: string;
   employeeId: string | null;
   applicationUserId?: string | null;
@@ -81,24 +58,10 @@ interface SolicitudAltaListItem {
   selector: "app-solicitud-alta-list",
   templateUrl: "./solicitud-alta-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MobileActionMenu,
-    MobileButtonLabel,
-    MobileButtonLabelConfirm,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-    WebButtonLabel,
-    WebButtonLabelConfirm,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [SolicitudAltaListDesktop, SolicitudAltaListMobile],
 })
 export class SolicitudAltaList implements OnInit {
+  platformS = inject(PlatformService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   dateS = inject(DateService);
@@ -106,9 +69,6 @@ export class SolicitudAltaList implements OnInit {
   private router = inject(Router);
   authS = inject(AuthService);
   public statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
-  tableScrollHeightS = inject(TableScrollHeightService);
-  readonly requestStatusBorderColor = requestStatusBorderColor;
-  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   dataSignal = signal<SolicitudAltaListItem[]>([]);
 
@@ -118,11 +78,7 @@ export class SolicitudAltaList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild("dt") dt?: AppTable;
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   paramsEmit$ = toSignal(this.filterRequestsService.getParams$());
 
@@ -131,10 +87,6 @@ export class SolicitudAltaList implements OnInit {
     effect(() => {
       this.paramsEmit$();
       this.onLoadData();
-    });
-    effect(() => {
-      const term = this.filterRequestsService.searchTerm();
-      this.dt?.filterGlobal(term, "contains");
     });
   }
 

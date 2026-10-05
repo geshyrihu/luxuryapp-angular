@@ -10,41 +10,21 @@ import {
 
 import { globalFilterFields } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { EmployeeBeneficiaryForm } from "./employee-beneficiary-form";
+import { EmployeeBeneficiaryListDesktop } from "./desktop/employee-beneficiary-list-desktop";
 import { IEmployeeBeneficiary } from "./interfaces/employee-beneficiary.interface";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { EmployeeBeneficiaryListMobile } from "./mobile/employee-beneficiary-list-mobile";
 
 @Component({
   selector: "employee-beneficiary-list",
   templateUrl: "./employee-beneficiary-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    WebButtonIcon,
-    WebButtonIconConfirm,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    LuxTableCaption,
-    DataViewMobile,
-  ],
+  imports: [EmployeeBeneficiaryListDesktop, EmployeeBeneficiaryListMobile],
 })
 export class EmployeeBeneficiaryList {
+  platformS = inject(PlatformService);
   isReadOnly = input<boolean>(false);
   private readonly employeeInternalS = inject(EmployeeInternalService);
   private readonly dialogHandlerS = inject(DialogHandlerService);

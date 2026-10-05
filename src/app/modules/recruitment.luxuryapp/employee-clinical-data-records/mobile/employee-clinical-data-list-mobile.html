@@ -1,0 +1,32 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro Clinico' })"
+  [showAdd]="!isReadOnly()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:medical-services" />
+      </div>
+
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Registro Clinico' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

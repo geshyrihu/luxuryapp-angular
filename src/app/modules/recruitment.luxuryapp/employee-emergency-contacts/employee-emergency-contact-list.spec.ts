@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { vi } from "vitest";
 import { EmployeeEmergencyContactList } from "./employee-emergency-contact-list";
 
@@ -36,6 +37,7 @@ describe("EmployeeEmergencyContactList", () => {
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
       ],
     });
 

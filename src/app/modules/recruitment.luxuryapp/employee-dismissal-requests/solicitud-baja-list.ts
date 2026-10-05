@@ -6,48 +6,24 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { addIcons } from "ionicons";
 import { personRemoveOutline } from "ionicons/icons";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
+import { SolicitudBajaListDesktop } from "./desktop/solicitud-baja-list-desktop";
+import { SolicitudBajaListMobile } from "./mobile/solicitud-baja-list-mobile";
 import { SolicitudBajaUpdateStatus } from "./solicitud-baja-update-status";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import {
-  requestStatusBorderColor,
-  requestStatusTagSeverity,
-} from "../recruitment-shared/request-status-style";
-
-interface SolicitudBajaListItem {
+export interface SolicitudBajaListItem {
   id: string;
   title?: string;
   folio: string;
@@ -64,31 +40,14 @@ interface SolicitudBajaListItem {
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [SolicitudBajaListDesktop, SolicitudBajaListMobile],
 })
 export class SolicitudBajaList implements OnInit {
+  platformS = inject(PlatformService);
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   filterRequestsService = inject(FilterRequestsService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
-  readonly requestStatusBorderColor = requestStatusBorderColor;
-  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   dataSignal = signal<SolicitudBajaListItem[]>([]);
 
@@ -98,11 +57,7 @@ export class SolicitudBajaList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild("dt") dt?: AppTable;
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   paramsEmit$ = toSignal(this.filterRequestsService.getParams$());
 
@@ -111,10 +66,6 @@ export class SolicitudBajaList implements OnInit {
     effect(() => {
       this.paramsEmit$();
       this.onLoadData();
-    });
-    effect(() => {
-      const term = this.filterRequestsService.searchTerm();
-      this.dt?.filterGlobal(term, "contains");
     });
   }
 

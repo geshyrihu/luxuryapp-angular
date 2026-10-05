@@ -11,49 +11,26 @@ import {
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PlatformService } from "@core/services/platform.service";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-// import { EmployeeAddOrEditService } from './employee-form.service';
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
-
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { EmployeeEmergencyContactListDesktop } from "./desktop/employee-emergency-contact-list-desktop";
+import { EmployeeEmergencyContactListMobile } from "./mobile/employee-emergency-contact-list-mobile";
 
 @Component({
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconConfirm,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    LuxTableCaption,
-
-    DataViewMobile,
+    EmployeeEmergencyContactListDesktop,
+    EmployeeEmergencyContactListMobile,
   ],
 })
 export class EmployeeEmergencyContactList implements OnInit {
+  platformS = inject(PlatformService);
   isReadOnly = input<boolean>(false);
-  // employeeAddOrEditService = inject(EmployeeAddOrEditService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
 

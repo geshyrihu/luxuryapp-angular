@@ -1,0 +1,48 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:badge-outline"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+      <p class="text-medium text-body-secondary m-0">
+        {{ item.applicationRoleName }} | {{ item.personalCellPhone }}
+      </p>
+      <p class="text-medium text-body-secondary m-0">
+        {{ item.personalEmail }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-item
+            iconName="person-outline"
+            label="Usuario App"
+            (clicked)="userApp.emit(item.applicationUserId)"
+          />
+          <ili-button-delete
+            (confirmed)="removeFromCustomer.emit(item.applicationUserId)"
+            label="Quitar del cliente"
+            confirmHeader="Quitar del cliente"
+            confirmMessage="Estas seguro de quitar a este colaborador externo del cliente actual? Dejara de tener acceso a este cliente. Si no tiene otros clientes, tambien se le bloqueara el acceso a la app."
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,0 +1,80 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
+      >
+        <app-icon
+          icon="material-symbols-light:person-add-outline"
+          class="text-xl text-green-600"
+        />
+      </div>
+
+      <h3>{{ item.nameEmployee }}</h3>
+      <p>
+        {{ item.nameCustomer }} - {{ item.profession || item.applicationRole }}
+      </p>
+      <p>{{ item.executionDate }} - {{ item.status }}</p>
+      <p>{{ documentationSentTooltip(item) }}</p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button
+            (clicked)="sendHiringDocs.emit(item)"
+            [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
+            iconClass="material-symbols-light:send"
+          />
+          @if (canCompleteAlta(item)) {
+          <ili-button
+            (clicked)="completeAlta.emit(item)"
+            label="Completar Alta"
+            iconClass="material-symbols-light:person-add"
+          />
+          <ili-button
+            (clicked)="abortHiring.emit(item)"
+            label="Cancelar"
+            iconClass="material-symbols-light:cancel"
+            color="danger"
+          />
+          } @else if (canManageLinkedAlta(item)) {
+          <ili-button
+            (clicked)="goToEmployeeFile.emit(item)"
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+          />
+          <ili-button-confirm
+            (confirmed)="concludeHiring.emit(item.id)"
+            swalText="¿Estás seguro de concluir el alta del empleado administrativamente?"
+            label="Concluir Alta"
+            iconClass="material-symbols-light:check"
+            color="success"
+          />
+          <ili-button
+            (clicked)="abortHiring.emit(item)"
+            label="Abortar Alta"
+            iconClass="material-symbols-light:cancel"
+            color="danger"
+          />
+          } @else if (canOpenCompletedFile(item)) {
+          <ili-button
+            (clicked)="goToEmployeeFile.emit(item)"
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+          />
+          } @else if (isCancelled(item)) {
+          <ili-button
+            (clicked)="viewRequestDetails.emit(item)"
+            label="Ver Detalles"
+            iconClass="material-symbols-light:visibility"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
