@@ -39,7 +39,7 @@ import { ProductModalAdd } from "@purchases.luxuryapp/purchase-requests/details/
 import { SolicitudCompraDetalle } from "@purchases.luxuryapp/purchase-requests/details/solicitud-compra-detalle";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -72,7 +72,7 @@ export interface ISolicitudCompraForm {
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     ProductAdd,
     SolicitudCompraDetalle,
     WebButtonLabel,
