@@ -17,7 +17,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 // import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -33,7 +33,7 @@ import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.i
     AppIcon,
     ReactiveFormsModule,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-provider-form.html",
@@ -149,4 +149,3 @@ export class CustomerProviderForm implements OnInit {
     });
   }
 }
-
