@@ -30,7 +30,7 @@
 import fs from "fs";
 import path from "path";
 
-const CATALOGO = "src/app/shared/ui/shared/app-icon/app-icon.catalog.ts";
+const CATALOGO = "src/app/shared/ui/primitives/app-icon/app-icon.catalog.ts";
 const RAIZ = "src";
 
 // Nombres que pueden aparecer fuera del catálogo. Cada alta exige una razón.
