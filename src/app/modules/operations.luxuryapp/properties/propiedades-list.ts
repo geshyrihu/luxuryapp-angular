@@ -11,7 +11,11 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { globalFilterFields } from "@core/helpers/table-options";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tableRows,
+} from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Property } from "@core/interfaces/property.interface";
 import {
@@ -42,6 +46,8 @@ export class PropiedadesList {
   public AspRole = ApplicationRole;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
+  tableRows: number = tableRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   canManage = computed(() =>
