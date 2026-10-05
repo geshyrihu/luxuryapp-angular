@@ -10,7 +10,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -37,7 +37,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxMessage,
     CustomInputSelectSignal,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
     MobileListItem,
     MobileActionMenu,
     MobileButtonLabelEdit,

@@ -20,10 +20,15 @@
       />
     </div>
     <div class="w-full d-flex justify-content-end">
-      <il-button-save
-        [propertyId]="id"
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
         [disabled]="form.invalid"
-        [submitting]="submitting()"
+        [loading]="submitting()"
       />
     </div>
   </div>

@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -34,7 +34,7 @@ interface IITaskMessageDTOReopenForm {
   selector: "app-task-reopen",
   templateUrl: "./task-reopen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, ButtonWeb],
 })
 export class TaskReopen implements OnInit {
   private authS = inject(AuthService);

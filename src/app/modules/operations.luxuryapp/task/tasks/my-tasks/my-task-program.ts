@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -17,7 +17,7 @@ import { DateService } from "@core/services/date.service";
   selector: "app-my-task-program",
   templateUrl: "./my-task-program.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputDateSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, ButtonWeb],
 })
 export class MyTaskProgram implements OnInit {
   private apiResponseS = inject(ApiResponseService);

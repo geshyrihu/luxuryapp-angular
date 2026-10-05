@@ -17,7 +17,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -54,7 +54,7 @@ interface ITicketMessageFollowupForm {
     AppIcon,
     ReactiveFormsModule,
     FormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabelDelete,
     AppSpinner,
     CustomInputTextAreaSignal,
