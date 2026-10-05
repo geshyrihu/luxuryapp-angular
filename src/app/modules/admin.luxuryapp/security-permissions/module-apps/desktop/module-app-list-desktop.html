@@ -1,0 +1,97 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+  groupRowsBy="pathParent"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #groupheader let-item>
+    <tr>
+      <td colspan="7" class="p-3">
+        <span class="fw-bold"
+          >{{ item.pathParent ? item.pathParent : "Módulos Principales"
+          }}</span
+        >
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="nameModule">
+        Nombre
+        <app-sorticon field="nameModule" />
+      </th>
+      <th appSortableColumn="label">
+        Etiqueta
+        <app-sorticon field="label" />
+      </th>
+      <th appSortableColumn="icon">
+        Icono
+        <app-sorticon field="icon" />
+      </th>
+      <th appSortableColumn="routerLink">
+        Enlace de ruta
+        <app-sorticon field="routerLink" />
+      </th>
+      <th appSortableColumn="viewMobil">
+        Módulo móvil
+        <app-sorticon field="viewMobil" />
+      </th>
+      <th appSortableColumn="rolLevel">
+        Nivel
+        <app-sorticon field="rolLevel" />
+      </th>
+
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-index="rowIndex">
+    <tr>
+      <td>{{ item.nameModule }}</td>
+      <td>{{ item.label }}</td>
+      <td>{{ item.icon }}</td>
+      <td>{{ item.routerLink }}</td>
+      <td class="text-center">
+        <lux-tag
+          [value]="item.viewMobil ? 'Sí' : 'No'"
+          [severity]="item.viewMobil ? 'success' : 'danger'"
+          class="p-2"
+        />
+      </td>
+      <td>
+        {{ item.rolLevel == "Administrador" ? "Super Usuario" : "Cliente" }}
+      </td>
+
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

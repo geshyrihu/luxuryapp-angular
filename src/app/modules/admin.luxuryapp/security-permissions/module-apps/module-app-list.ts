@@ -5,74 +5,34 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ModuleAppListDesktop } from "./desktop/module-app-list-desktop";
 import { ModuleAppDto } from "./interfaces/module-app.dto";
+import { ModuleAppListMobile } from "./mobile/module-app-list-mobile";
 import { ModuleAppForm } from "./module-app-form";
+
 @Component({
   selector: "app-module-app-list",
-  imports: [
-    AppIcon,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileActionMenu,
-    RouterModule,
-    MobileListItem,
-  ],
+  imports: [ModuleAppListDesktop, ModuleAppListMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./module-app-list.html",
 })
 export class ModuleAppList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   constructor() {}
 
   // Declaración e inicialización de variables
   dataSignal = signal<ModuleAppDto[]>([]);
-
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();

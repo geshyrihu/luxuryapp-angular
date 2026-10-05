@@ -5,70 +5,31 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ModuleAppRolListDesktop } from "./desktop/module-app-rol-list-desktop";
 import { ModuleAppRolDto } from "./interfaces/module-app-rol.dto";
+import { ModuleAppRolListMobile } from "./mobile/module-app-rol-list-mobile";
 import { ModuleAppRolUpdate } from "./module-app-rol-update";
+
 @Component({
   selector: "app-module-app-rol",
-  imports: [
-    AppIcon,
-    RouterModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-
-    MobileListItem,
-  ],
+  imports: [ModuleAppRolListDesktop, ModuleAppRolListMobile],
   templateUrl: "./module-app-rol-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-      :host ::ng-deep ion-item-divider {
-        --background: var(--blue-50);
-        --color: var(--blue-700);
-        font-weight: bold;
-        border-bottom: 1px solid var(--blue-100);
-      }
-    `,
-  ],
 })
 export class ModuleAppRol {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<ModuleAppRolDto[]>([]);
-
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),

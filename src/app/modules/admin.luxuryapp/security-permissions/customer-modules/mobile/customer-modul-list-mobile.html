@@ -1,0 +1,52 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [trackByProperty]="'customerId'"
+>
+  <div customFilters>
+    <div class="px-4 py-2">
+      <h5 class="m-0 mb-3 text-secondary text-xs text-uppercase tracking-wider">
+        Filtrar por Estado
+      </h5>
+      <iw-button-active-desactive
+        fluid
+        [state]="state()"
+        (stateChange)="selectActive.emit($event)"
+      />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-customer>
+    <ili-list-item
+      button
+      (click)="select.emit({ customerId: customer.customerId, nameCustomer: customer.nameCustomer })"
+      lines="full"
+      class="ion-no-padding"
+      detail="true"
+    >
+      <ion-avatar slot="start" class="mobile-avatar-slot">
+        @if (customer.photoPath) {
+        <img
+          [src]="customer.photoPath"
+          [alt]="customer.nameCustomer"
+          class="mobile-avatar-img"
+        />
+        } @else {
+        <app-icon icon="material-symbols-light:domain" />
+        }
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <p class="fw-semibold m-0 text-body">{{ customer.nameCustomer }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          #{{ customer.numeroCliente }}
+        </p>
+      </ion-label>
+      <div slot="end" class="d-flex align-items-center me-2">
+        @if (customer.isAssigned) {
+        <lux-tag severity="success" value="Asignado"></lux-tag>
+        } @else {
+        <lux-tag severity="danger" value="No Asignado"></lux-tag>
+        }
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,100 +1,13 @@
-@if (dataSignal()) {
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-
-<lux-table
-  #dt1
-  [value]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  class="custom-table card d-none d-md-block"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  initialSortField="roleType"
-  groupRowsBy="roleType"
-  [sortOrder]="1"
->
-  <ng-template #caption>
-    <lux-table-caption [dt]="dt1" />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-70">Rol</th>
-      <th class="table-col-20 text-center" appSortableColumn="modules">
-        Módulos asignados
-        <app-sorticon field="modules" />
-      </th>
-      <th class="table-col-10"></th>
-    </tr>
-  </ng-template>
-  <ng-template #groupheader let-item>
-    <tr>
-      <td colspan="3" class="bg-blue-50">
-        <div class="d-flex align-items-center py-2 px-3">
-          <app-icon
-            [icon]="'material-symbols-light:bookmark'"
-            class="me-2 text-blue-500"
-          />
-          <span class="fw-bold text-blue-900">{{ item.roleType }}</span>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr
-      class="cursor-pointer"
-      (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
-    >
-      <td>
-        <h5 class="m-0 text-lg fw-medium">{{ item.roleName }}</h5>
-      </td>
-      <td class="text-center">
-        <lux-tag [value]="item.modules + ' Módulos'" severity="info"></lux-tag>
-      </td>
-      <td class="text-end">
-        <app-icon [icon]="'material-symbols-light:chevron-right'" />
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!-- 📱 INICIO: Vista para móviles -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [showAdd]="false"
-  [isGrouped]="true"
-  [groupedData]="groupedData()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item
-      (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
-    >
-      <ion-avatar
-        slot="start"
-        class="ion-margin-end"
-        style="
-          background: var(--ion-color-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <app-icon
-          icon="material-symbols-light:view-module"
-          style="font-size: 24px; color: var(--ion-color-primary)"
-        />
-      </ion-avatar>
-      <ion-label>
-        <h2 class="ion-text-wrap">{{ item.roleName }}</h2>
-      </ion-label>
-      <ion-note slot="end" color="medium">{{ item.modules }} módulos</ion-note>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-module-app-rol-list-mobile
+    [data]="dataSignal()"
+    [groupedData]="groupedData()"
+    (select)="onModalForm($event)"
+  />
+} @else {
+  <app-module-app-rol-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (select)="onModalForm($event)"
+  />
 }

@@ -13,49 +13,26 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { CustomerLocationForm } from "./customer-location-form";
+import { CustomerLocationListDesktop } from "./desktop/customer-location-list-desktop";
 import {
   CustomerLocationType,
   CustomerLocationTypeLabels,
 } from "./interfaces/customer-location-type.enum";
 import { CustomerLocationDto } from "./interfaces/customer-location.dto";
+import { CustomerLocationListMobile } from "./mobile/customer-location-list-mobile";
 
 @Component({
   selector: "app-customer-location-list",
   templateUrl: "./customer-location-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    DataViewMobile,
-    LuxTableCaption,
-    TableEmptyMessage,
-    TableFooter,
-    AppTable,
-    NgbTooltipModule,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileListItem,
-  ],
+  imports: [CustomerLocationListDesktop, CustomerLocationListMobile],
 })
 export class CustomerLocationList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
@@ -64,8 +41,6 @@ export class CustomerLocationList implements OnInit {
 
   readonly tableRows: number = tableRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   readonly globalFilterFields = signal<string[]>([
     "name",

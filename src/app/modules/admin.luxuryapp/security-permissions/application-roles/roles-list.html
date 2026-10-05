@@ -1,145 +1,17 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  #dt
-  class="card d-none d-md-block custom-table"
-  groupRowsBy="roleTypeOrder"
-  initialSortField="roleTypeOrder"
-  sortMode="single"
->
-  <ng-template #caption>
-    <lux-table-caption
-      title="Roles de Aplicación"
-      (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
-      [dt]="dt"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="sortOrder">
-        Orden <app-sorticon field="sortOrder" />
-      </th>
-      <th appSortableColumn="name">
-        Nombre Interno <app-sorticon field="name" />
-      </th>
-      <th appSortableColumn="displayName">
-        Nombre para mostrar <app-sorticon field="displayName" />
-      </th>
-      <th appSortableColumn="code">Código <app-sorticon field="code" /></th>
-      <th appSortableColumn="departament">
-        Departamento <app-sorticon field="departament" />
-      </th>
-      <th appSortableColumn="isActive">
-        Activo <app-sorticon field="isActive" />
-      </th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #groupheader let-item>
-    <tr class="p-rowgroup-header">
-      <td colspan="7">
-        <span class="fw-bold">{{ item.roleType }}</span>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.sortOrder }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.displayName }}</td>
-      <td>
-        @if (item.code) {
-        <span
-          [ngStyle]="{
-              'background-color': item.colorHex || '#64748b',
-              color: '#fff',
-            }"
-          class="px-2 py-1 rounded fw-semibold"
-        >
-          {{ item.code }}
-        </span>
-        }
-      </td>
-      <td>{{ item.departament }}</td>
-      <td class="text-center">
-        <custom-input-check-signal
-          [ngModel]="item.isActive"
-          [readonly]="true"
-          [horizontal]="false"
-          noMargin
-        ></custom-input-check-signal>
-      </td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Rol' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="7" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
-  [globalFilterFields]="globalFilterFields()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <ion-avatar
-        slot="start"
-        class="ion-margin-end"
-        style="
-          background: var(--ion-color-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <app-icon
-          icon="material-symbols-light:shield-person"
-          style="font-size: 24px; color: var(--ion-color-primary)"
-        />
-      </ion-avatar>
-      <ion-label>
-        <h2 class="ion-text-wrap d-flex align-items-center gap-2">
-          <span>{{ item.displayName || item.name }}</span>
-          @if (item.code) {
-          <span
-            [ngStyle]="{
-                 'background-color': item.colorHex || '#64748b',
-                 color: '#fff',
-               }"
-            class="px-2 py-1 rounded text-xs fw-semibold"
-          >
-            {{ item.code }}
-          </span>
-          }
-        </h2>
-        <p class="ion-text-wrap">
-          {{ item.roleType }} - {{ item.departament }}
-        </p>
-        <p class="ion-text-wrap">Orden: {{ item.sortOrder }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Rol' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-roles-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-roles-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+}

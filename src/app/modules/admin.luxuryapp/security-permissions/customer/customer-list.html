@@ -1,189 +1,29 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
-    >
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-        [dt]="dt"
-        [noPadding]="true"
-        [noMargin]="true"
-      />
-      <div class="flex-shrink-0">
-        <iw-button-active-desactive
-          [state]="state"
-          (stateChange)="onSortChange($event)"
-        />
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>ID</th>
-      <th>NO CLIENTE</th>
-      <th colspan="2" appSortableColumn="nameCustomer">
-        NOMBRE
-        <app-sorticon field="nameCustomer" />
-      </th>
-      <th>ESTADO</th>
-       <th>TELÉFONOS</th>
-      <th class="table-col-10"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-rowIndex="rowIndex">
-    <tr>
-      <td>{{ item.id }}</td>
-      <td class="text-center">{{ item.numeroCliente }}</td>
-      <td class="text-center">
-        <lux-avatar
-          [image]="item.photoPath"
-          alt=""
-          shape="square"
-          class="b-r-8 img-40"
-        />
-      </td>
-      <td>{{ item.nameCustomer }}</td>
-      <td>{{ getStateLabel(item.state) }}</td>
-      <td>
-        {{ item.phoneOne }}
-        <br />
-        {{ item.phoneTwo }}
-      </td>
-
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-item
-            lxTooltip="Imagenes"
-            tooltipPosition="top"
-            iconClass="material-symbols-light:photo"
-            (clicked)="onUpdateImages(item.id)"
-          />
-          <iw-button-item
-            lxTooltip="Dirección"
-            tooltipPosition="top"
-            iconClass="material-symbols-light:location-on"
-            (clicked)="onUpdateAddress(item.id)"
-          />
-          <iw-button-item
-            lxTooltip="Ubicaciones"
-            tooltipPosition="top"
-            iconClass="material-symbols-light:location-on"
-            (clicked)="onManageLocations(item.id, item.nameCustomer)"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <div customFilters>
-    <div class="mb-3 d-flex mt-1 mb-1">
-      <div class="m-0">
-        <iw-button-active-desactive
-          fluid
-          [state]="state"
-          (stateChange)="onSortChange($event)"
-        />
-      </div>
-    </div>
-  </div>
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" detail="false">
-      <!-- Logo / avatar del cliente -->
-      <ion-avatar slot="start" class="customer-logo-slot">
-        @if (item.photoPath) {
-        <img
-          [src]="item.photoPath"
-          [alt]="item.nameCustomer"
-          class="customer-logo-img"
-        />
-        } @else {
-        <app-icon icon="material-symbols-light:domain" class="text-xl" />
-        }
-      </ion-avatar>
-
-      <ion-label class="ion-text-wrap">
-        <p class="fw-semibold m-0 text-body">{{ item.nameCustomer }}</p>
-        <p class="text-xs m-0 mt-1 text-body-secondary">
-          Estado: {{ getStateLabel(item.state) }}
-        </p>
-        <p class="text-xs m-0 mt-1 text-body-secondary">
-          {{ item.phoneOne }}{{ item.phoneTwo ? ' - ' + item.phoneTwo : '' }}
-        </p>
-      </ion-label>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-item
-            iconClass="material-symbols-light:photo-library-outline"
-            label="Imígenes"
-            (clicked)="onUpdateImages(item.id)"
-          />
-          <ili-button-item
-            iconClass="material-symbols-light:location-on-outline"
-            label="Dirección"
-            (clicked)="onUpdateAddress(item.id)"
-          />
-          <ili-button-item
-            iconClass="material-symbols-light:location-on"
-            label="Ubicaciones"
-            (clicked)="onManageLocations(item.id, item.nameCustomer)"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
-
-<style>
-  .customer-logo-slot {
-    width: 48px;
-    height: 40px;
-    margin: 0 10px 0 16px;
-    border-radius: var(--ds-radius-sm, 6px);
-    overflow: hidden;
-    background: var(--ds-bg-sunken, #e8edff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .customer-logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-</style>
+@if (platformS.isMobile()) {
+  <app-customer-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [state]="state"
+    [stateOptions]="stateOptions()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (updateImages)="onUpdateImages($event)"
+    (updateAddress)="onUpdateAddress($event)"
+    (manageLocations)="onManageLocations($event.id, $event.name)"
+    (sortChange)="onSortChange($event)"
+  />
+} @else {
+  <app-customer-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [state]="state"
+    [stateOptions]="stateOptions()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (updateImages)="onUpdateImages($event)"
+    (updateAddress)="onUpdateAddress($event)"
+    (manageLocations)="onManageLocations($event.id, $event.name)"
+    (sortChange)="onSortChange($event)"
+  />
+}

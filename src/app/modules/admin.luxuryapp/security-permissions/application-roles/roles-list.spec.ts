@@ -5,12 +5,16 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/serv
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { RolesList } from './roles-list';
+import { PlatformService } from '@core/services/platform.service';
 
 describe('RolesList', () => {
   let component: RolesList;
   let fixture: ComponentFixture<RolesList>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(RolesList, {
+      set: { template: '<div></div>', imports: [] },
+    });
     await TestBed.configureTestingModule({
       imports: [RolesList],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,6 +24,7 @@ describe('RolesList', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();

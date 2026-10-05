@@ -1,146 +1,17 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="d-none d-md-block">
-  <div class="p-3">
-    <lux-table
-      [value]="dataSignal()"
-      class="custom-table"
-      [paginator]="true"
-      [rows]="tableRows"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [showCurrentPageReport]="true"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      [globalFilterFields]="globalFilterFields()"
-      [scrollable]="true"
-      [scrollHeight]="scrollHeight()"
-      #dt
-    >
-      <ng-template #caption>
-        <div
-          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between p-2 gap-3 g-4"
-        >
-          <!-- Parte Izquierda: Título y bósqueda -->
-          <div class="flex-grow-1">
-            <lux-table-caption
-              [showAdd]="false"
-              [dt]="dt"
-              [noPadding]="true"
-              [noMargin]="true"
-            />
-          </div>
-
-          <!-- Parte Derecha: Filtros adicionales -->
-          <div
-            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
-          >
-            <div>
-              <iw-button-active-desactive
-                [state]="state"
-                (stateChange)="onSelectActive($event)"
-              />
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th class="table-col-40">Cliente</th>
-          <th class="table-col-20">Número Cliente</th>
-          <th class="table-col-20">Registrado</th>
-          <th class="table-col-15">Estado</th>
-          <th class="table-col-5"></th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr
-          class="cursor-pointer"
-          (click)="onModalForm({ customerId: item.customerId, nameCustomer:  item.nameCustomer })"
-        >
-          <td>
-            <div class="d-flex align-items-center">
-              <lux-avatar
-                [image]="item.photoPath"
-                [alt]="item.nameCustomer"
-                size="normal"
-                shape="circle"
-                class="me-2"
-              />
-              <span class="m-0 fw-medium">{{ item.nameCustomer }}</span>
-            </div>
-          </td>
-          <td class="text-xs">{{ item.numeroCliente }}</td>
-          <td class="text-xs">{{ item.register }}</td>
-          <td>
-            @if (item.isAssigned) {
-            <lux-tag severity="success" value="Activo"></lux-tag>
-            } @else {
-            <lux-tag severity="danger" value="Inactivo"></lux-tag>
-            }
-          </td>
-          <td class="text-end">
-            <app-icon [icon]="'material-symbols-light:chevron-right'" />
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="5" />
-      </ng-template>
-      <ng-template #paginatorleft>
-        <lux-table-footer [data]="dataSignal()" />
-      </ng-template>
-    </lux-table>
-  </div>
-</div>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  [trackByProperty]="'customerId'"
->
-  <div customFilters>
-    <div class="px-4 py-2">
-      <h5 class="m-0 mb-3 text-secondary text-xs text-uppercase tracking-wider">
-        Filtrar por Estado
-      </h5>
-      <iw-button-active-desactive
-        fluid
-        [state]="state"
-        (stateChange)="onSelectActive($event)"
-      />
-    </div>
-  </div>
-  <ng-template #listItemTemplate let-customer>
-    <ili-list-item
-      button
-      (click)="onModalForm({ customerId: customer.customerId, nameCustomer:  customer.nameCustomer })"
-      lines="full"
-      class="ion-no-padding"
-      detail="true"
-    >
-      <ion-avatar slot="start" class="mobile-avatar-slot">
-        @if (customer.photoPath) {
-        <img
-          [src]="customer.photoPath"
-          [alt]="customer.nameCustomer"
-          class="mobile-avatar-img"
-        />
-        } @else {
-        <app-icon icon="material-symbols-light:domain" />
-        }
-      </ion-avatar>
-      <ion-label class="ion-text-wrap">
-        <p class="fw-semibold m-0 text-body">{{ customer.nameCustomer }}</p>
-        <p class="text-xs m-0 mt-1 text-body-secondary">
-          #{{ customer.numeroCliente }}
-        </p>
-      </ion-label>
-      <div slot="end" class="d-flex align-items-center me-2">
-        @if (customer.isAssigned) {
-        <lux-tag severity="success" value="Asignado"></lux-tag>
-        } @else {
-        <lux-tag severity="danger" value="No Asignado"></lux-tag>
-        }
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-customer-modul-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [state]="state"
+    (selectActive)="onSelectActive($event)"
+    (select)="onModalForm($event)"
+  />
+} @else {
+  <app-customer-modul-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [state]="state"
+    (selectActive)="onSelectActive($event)"
+    (select)="onModalForm($event)"
+  />
+}

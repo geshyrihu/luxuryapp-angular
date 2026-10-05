@@ -1,0 +1,54 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Rol' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <ion-avatar
+        slot="start"
+        class="ion-margin-end"
+        style="
+          background: var(--ion-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <app-icon
+          icon="material-symbols-light:shield-person"
+          style="font-size: 24px; color: var(--ion-color-primary)"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap d-flex align-items-center gap-2">
+          <span>{{ item.displayName || item.name }}</span>
+          @if (item.code) {
+          <span
+            [ngStyle]="{
+                 'background-color': item.colorHex || '#64748b',
+                 color: '#fff',
+               }"
+            class="px-2 py-1 rounded text-xs fw-semibold"
+          >
+            {{ item.code }}
+          </span>
+          }
+        </h2>
+        <p class="ion-text-wrap">
+          {{ item.roleType }} - {{ item.departament }}
+        </p>
+        <p class="ion-text-wrap">Orden: {{ item.sortOrder }}</p>
+      </ion-label>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Rol' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

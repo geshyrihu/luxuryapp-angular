@@ -1,0 +1,30 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:devices-other"
+        [color]="item.viewMobil ? 'success' : 'medium'"
+        style="font-size: 24px; margin-right: 16px"
+      />
+      <ion-label>
+        <h2 class="ion-text-wrap">{{ item.nameModule }}</h2>
+        <p class="ion-text-wrap">{{ item.label }}</p>
+      </ion-label>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

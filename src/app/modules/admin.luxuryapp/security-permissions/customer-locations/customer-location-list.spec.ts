@@ -8,6 +8,7 @@ import { CustomerLocationList } from './customer-location-list';
 import { ApiResponseService } from '@core/http/services/api-response.service';
 import { DialogHandlerService } from '@core/services/dialog-handler.service';
 import { TableScrollHeightService } from '@core/services/table-scroll-height.service';
+import { PlatformService } from '@core/services/platform.service';
 import { EndpointsAdmin } from '@core/constants/endpoints/admin.endpoints';
 import { CustomerLocationDto } from './interfaces/customer-location.dto';
 import { CustomerLocationType, CustomerLocationTypeLabels } from './interfaces/customer-location-type.enum';
@@ -58,6 +59,7 @@ describe('CustomerLocationList', () => {
         { provide: ApiResponseService, useValue: mockApiResponseService },
         { provide: DialogHandlerService, useValue: mockDialogHandlerService },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightService },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: EndpointsAdmin, useValue: mockEndpoints },
         CustomerLocationList,
       ],

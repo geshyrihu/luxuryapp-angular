@@ -1,0 +1,32 @@
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [isGrouped]="true"
+  [groupedData]="groupedData()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item
+      (click)="select.emit({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
+    >
+      <ion-avatar
+        slot="start"
+        class="ion-margin-end"
+        style="
+          background: var(--ion-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <app-icon
+          icon="material-symbols-light:view-module"
+          style="font-size: 24px; color: var(--ion-color-primary)"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap">{{ item.roleName }}</h2>
+      </ion-label>
+      <ion-note slot="end" color="medium">{{ item.modules }} módulos</ion-note>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

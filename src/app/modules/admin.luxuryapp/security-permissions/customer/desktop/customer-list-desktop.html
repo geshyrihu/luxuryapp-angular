@@ -1,0 +1,98 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
+    >
+      <lux-table-caption
+        (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [noPadding]="true"
+        [noMargin]="true"
+      />
+      <div class="flex-shrink-0">
+        <iw-button-active-desactive
+          [state]="state()"
+          (stateChange)="sortChange.emit($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>ID</th>
+      <th>NO CLIENTE</th>
+      <th colspan="2" appSortableColumn="nameCustomer">
+        NOMBRE
+        <app-sorticon field="nameCustomer" />
+      </th>
+      <th>ESTADO</th>
+       <th>TELÉFONOS</th>
+      <th class="table-col-10"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ item.id }}</td>
+      <td class="text-center">{{ item.numeroCliente }}</td>
+      <td class="text-center">
+        <lux-avatar
+          [image]="item.photoPath"
+          alt=""
+          shape="square"
+          class="b-r-8 img-40"
+        />
+      </td>
+      <td>{{ item.nameCustomer }}</td>
+      <td>{{ getStateLabel(item.state) }}</td>
+      <td>
+        {{ item.phoneOne }}
+        <br />
+        {{ item.phoneTwo }}
+      </td>
+
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-item
+            lxTooltip="Imagenes"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:photo"
+            (clicked)="updateImages.emit(item.id)"
+          />
+          <iw-button-item
+            lxTooltip="Dirección"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:location-on"
+            (clicked)="updateAddress.emit(item.id)"
+          />
+          <iw-button-item
+            lxTooltip="Ubicaciones"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:location-on"
+            (clicked)="manageLocations.emit({ id: item.id, name: item.nameCustomer })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

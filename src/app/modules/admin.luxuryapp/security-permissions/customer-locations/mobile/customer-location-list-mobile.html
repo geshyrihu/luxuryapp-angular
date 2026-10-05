@@ -1,0 +1,23 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" detail="false">
+      <ion-label class="ion-text-wrap">
+        <p class="fw-semibold m-0 text-body">{{ item.name }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          {{ getLocationTypeLabel(item.locationType) }} - {{ item.phoneOne }}
+        </p>
+      </ion-label>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <ili-button-delete (clicked)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

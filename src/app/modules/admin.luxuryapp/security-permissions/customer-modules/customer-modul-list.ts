@@ -6,52 +6,27 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CustomerModulEdit } from "./customer-modul-edit";
+import { CustomerModulListDesktop } from "./desktop/customer-modul-list-desktop";
+import { CustomerModulListMobile } from "./mobile/customer-modul-list-mobile";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MobileListItem,
-    TableEmptyMessage,
-    RouterModule,
-    AppTable,
-    LxAvatar,
-    LxTag,
-    DataViewMobile,
-    TableFooter,
-    LuxTableCaption,
-    WebButtonIconActiveDesactive,
-    AppIcon,
-  ],
+  imports: [CustomerModulListDesktop, CustomerModulListMobile],
 })
 export class CustomerModulList implements OnInit {
   apiResponseS = inject(ApiResponseService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   dialogHandlerS = inject(DialogHandlerService);
+  platformS = inject(PlatformService);
 
   constructor() {
     addIcons({ chevronForwardOutline });
@@ -67,10 +42,7 @@ export class CustomerModulList implements OnInit {
   });
 
   loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   state: boolean = true;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData(this.state);

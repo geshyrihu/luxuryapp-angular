@@ -5,12 +5,16 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/serv
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { CustomerList } from './customer-list';
+import { PlatformService } from '@core/services/platform.service';
 
 describe('CustomerList', () => {
   let component: CustomerList;
   let fixture: ComponentFixture<CustomerList>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(CustomerList, {
+      set: { template: '<div></div>', imports: [] },
+    });
     await TestBed.configureTestingModule({
       imports: [CustomerList],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,6 +24,7 @@ describe('CustomerList', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();
