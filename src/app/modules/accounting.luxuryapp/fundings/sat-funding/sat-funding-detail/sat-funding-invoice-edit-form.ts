@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -41,7 +41,7 @@ interface ISatFundingInvoiceEditForm {
     FormsModule,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextSignal,
   ],
 })

@@ -22,11 +22,16 @@
           </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
-          <il-button-save
-            [submitting]="submitting()"
+          <lux-button-web
+            kind="save"
+            type="submit"
+            severity="info"
+            variant="soft"
+            displayMode="both"
             label="Iniciar Descarga y Procesamiento"
             [disabled]="form.invalid"
-          ></il-button-save>
+            [loading]="submitting()"
+          />
         </div>
       </form>
     </lux-card>
