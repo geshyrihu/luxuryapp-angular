@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputDateTime } from "@ui/inputs/adaptive/input-date-time/input-date-time";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -44,7 +44,7 @@ interface IPrestamoHerramientaForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     InputAutocomplete,
     InputDateTime,
     CustomInputTextSignal,
