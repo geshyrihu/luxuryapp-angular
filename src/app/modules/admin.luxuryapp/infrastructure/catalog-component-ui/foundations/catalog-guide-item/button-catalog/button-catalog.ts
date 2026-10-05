@@ -31,11 +31,11 @@ import {
   WebButtonLabelDownload,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-  WebButtonLabelSave,
   WebButtonLabelSendEmail,
   WebButtonLabelTracking,
   WebButtonLabelViewPdf,
 } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import {
   MobileButtonLabelActiveDesactive,
@@ -377,7 +377,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     WebButtonLabelAdd,
     WebButtonLabelEdit,
     WebButtonLabelDelete,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabelDownload,
     WebButtonLabelConfirm,
     WebButtonLabelSendEmail,
@@ -535,8 +535,12 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                     />
                   }
                   @case ("il-save") {
-                    <il-button-save
-                      [size]="webSize()"
+                    <lux-button-web
+                      kind="save"
+                      type="button"
+                      severity="info"
+                      variant="soft"
+                      displayMode="both"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />

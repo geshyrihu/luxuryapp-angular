@@ -35,6 +35,7 @@ import {
   WebButtonIconTracking,
   WebButtonIconViewPdf,
 } from "@ui/buttons/web-icon";
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   WebButtonLabel,
   WebButtonLabelActiveDesactive,
@@ -44,7 +45,6 @@ import {
   WebButtonLabelDownload,
   WebButtonLabelEdit,
   WebButtonLabelItem,
-  WebButtonLabelSave,
   WebButtonLabelSendEmail,
   WebButtonLabelTracking,
   WebButtonLabelViewPdf,
@@ -196,7 +196,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     WebButtonLabelDownload,
     WebButtonLabelEdit,
     WebButtonLabelItem,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabelSendEmail,
     WebButtonLabelTracking,
     WebButtonLabelViewPdf,
@@ -345,7 +345,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       <il-button label="Genórico" />
                       <il-button-add label="Crear" />
                       <il-button-edit label="Editar" />
-                      <il-button-save label="Guardar" />
+                       <lux-button-web
+                         kind="save"
+                         type="button"
+                         severity="info"
+                         variant="soft"
+                         displayMode="both"
+                         label="Guardar"
+                       />
                       <il-button-delete label="Eliminar" />
                       <il-button-confirm label="Aprobar" />
                       <il-button-active-desactive

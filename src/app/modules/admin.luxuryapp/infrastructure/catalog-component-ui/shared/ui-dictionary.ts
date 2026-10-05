@@ -458,10 +458,10 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
     path: "shared/ui/buttons/web-label/button-item.ts",
   },
   {
-    selector: "il-button-save",
-    className: "WebButtonLabelSave",
+    selector: "lux-button-web",
+    className: "ButtonWeb",
     category: "buttons",
-    path: "shared/ui/buttons/web-label/button-save.ts",
+    path: "shared/ui/buttons/web/button.ts",
   },
   {
     selector: "il-button-send-email",

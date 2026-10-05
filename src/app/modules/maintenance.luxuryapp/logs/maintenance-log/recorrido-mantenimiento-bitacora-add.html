@@ -17,10 +17,15 @@
         label="Emergencia"
       />
     </div>
-    <il-button-save
-      [propertyId]="0"
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
       [disabled]="form.invalid"
-      [submitting]="submitting()"
+      [loading]="submitting()"
     />
   </form>
 </div>
