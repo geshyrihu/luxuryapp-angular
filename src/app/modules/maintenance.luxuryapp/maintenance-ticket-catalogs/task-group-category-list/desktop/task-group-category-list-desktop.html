@@ -1,0 +1,88 @@
+<lux-table
+  [value]="data()"
+  #dt
+  class="custom-table"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [initialSortField]="'departament'"
+  rowGroupMode="subheader"
+  groupRowsBy="departament"
+  [initialSortOrder]="1"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [title]="'Categorias de grupos'"
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="code">
+        Codigo
+        <app-sorticon field="code" />
+      </th>
+      <th>Icono</th>
+      <th>Color</th>
+      <th appSortableColumn="name">
+        Nombre
+        <app-sorticon field="name" />
+      </th>
+      <th appSortableColumn="description">
+        Descripción
+        <app-sorticon field="description" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td colspan="6" class="bg-blue-50">
+        <div class="d-flex align-items-center py-2 px-3">
+          <app-icon
+            [icon]="'material-symbols-light:label'"
+            class="me-2 text-blue-500"
+          />
+          <span class="fw-bold text-blue-900">{{ item.departament }}</span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.code }}</td>
+      <td class="text-xl">{{ item.emoji }}</td>
+      <td>
+        <div
+          class="w-8 h-8 rounded-md"
+          [style.backgroundColor]="item.color"
+        ></div>
+      </td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.description }}</td>
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

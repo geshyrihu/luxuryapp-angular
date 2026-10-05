@@ -6,54 +6,23 @@ import {
   signal,
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { CatalogoRevisionesInspeccionForm } from "./catalogo-revisiones-inspeccion-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { CatalogoRevisionesInspeccionDesktop } from "./desktop/catalogo-revisiones-inspeccion-desktop";
+import { CatalogoRevisionesInspeccionMobile } from "./mobile/catalogo-revisiones-inspeccion-mobile";
 
 @Component({
   selector: "app-catalogo-revisiones-inspeccion",
   imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
+    CatalogoRevisionesInspeccionDesktop,
+    CatalogoRevisionesInspeccionMobile,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./catalogo-revisiones-inspeccion.html",
@@ -61,7 +30,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 export class CatalogoRevisionesInspeccion {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   // Declaración e inicialización de variables
   dataSignal = signal<any>(null);
   cb_departament = signal<SelectItemDto[]>([]);
@@ -71,9 +40,6 @@ export class CatalogoRevisionesInspeccion {
   */
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
   /*
   /PRIME NG TABLE OPTIONS
   */
@@ -104,13 +70,6 @@ export class CatalogoRevisionesInspeccion {
       .then((result: any) => {
         this.cb_departament.set(result);
       });
-  }
-
-  getDepartamentLabel(value: number): string {
-    return (
-      this.cb_departament().find((x) => x.value === value)?.label ??
-      "Sin departamento"
-    );
   }
 
   // Funcion para eliminar un banco y refres

@@ -1,136 +1,17 @@
-<!-- Contenido visible solo en pantallas medianas y grandes -->
-<lux-table
-  [value]="dataSignal()"
-  #dt
-  class="custom-table d-none d-md-block"
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  [initialSortField]="'departament'"
-  rowGroupMode="subheader"
-  groupRowsBy="departament"
-  [initialSortOrder]="1"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [title]="'Categorias de grupos'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="code">
-        Codigo
-        <app-sorticon field="code" />
-      </th>
-      <th>Icono</th>
-      <th>Color</th>
-      <th appSortableColumn="name">
-        Nombre
-        <app-sorticon field="name" />
-      </th>
-      <th appSortableColumn="description">
-        Descripción
-        <app-sorticon field="description" />
-      </th>
-      <th class="no-print"></th>
-    </tr>
-  </ng-template>
-
-  <ng-template #groupheader let-item>
-    <tr pRowGroupHeader>
-      <td colspan="6" class="bg-blue-50">
-        <div class="d-flex align-items-center py-2 px-3">
-          <app-icon
-            [icon]="'material-symbols-light:label'"
-            class="me-2 text-blue-500"
-          />
-          <span class="fw-bold text-blue-900">{{ item.departament }}</span>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.code }}</td>
-      <td class="text-xl">{{ item.emoji }}</td>
-      <td>
-        <div
-          class="w-8 h-8 rounded-md"
-          [style.backgroundColor]="item.color"
-        ></div>
-      </td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.description }}</td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!-- Componente adaptado para version movil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:label-outline"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <div class="d-flex align-items-center">
-        <span class="text-xl">{{ item.emoji }}</span>
-        <div class="ms-2">
-          <p class="fw-semibold m-0 text-body">{{ item.name }}</p>
-          <p class="text-xs m-0 text-body-secondary">
-            {{ item.code }} | {{ item.departament | uppercase }}
-          </p>
-        </div>
-        <div
-          class="w-6 h-6 rounded-md flex-shrink-0 ms-auto"
-          [style.backgroundColor]="item.color"
-        ></div>
-      </div>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-task-group-category-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-task-group-category-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+}
