@@ -95,12 +95,12 @@
   font-weight: 600;
   border-radius: 4px; // Estandarizado a 4px como acordamos
   
-  &-primary { background-color: var(--ds-primary, #003152); color: #fff; }
-  &-secondary { background-color: var(--ds-secondary, #6c757d); color: #fff; }
-  &-success { background-color: var(--ds-success, #198754); color: #fff; }
-  &-danger { background-color: var(--ds-danger, #dc3545); color: #fff; }
-  &-warning { background-color: var(--ds-warning, #ffc107); color: #000; }
-  &-info { background-color: var(--ds-info, #0dcaf0); color: #000; }
+  &-primary { background-color: var(--ds-primary); color: var(--ds-on-primary); }
+  &-secondary { background-color: var(--ds-secondary); color: var(--ds-on-primary); }
+  &-success { background-color: var(--ds-success); color: var(--ds-text-inverse); }
+  &-danger { background-color: var(--ds-danger); color: var(--ds-text-inverse); }
+  &-warning { background-color: var(--ds-warning); color: var(--ds-text-inverse); }
+  &-info { background-color: var(--ds-info); color: var(--ds-text-inverse); }
 }
 
 
@@ -120,8 +120,8 @@
   }
 
   &.nav-primary .nav-link.active {
-    background-color: var(--ds-primary, #003152);
-    color: #fff;
+    background-color: var(--ds-primary);
+    color: var(--ds-primary-text);
   }
 }
 
@@ -170,8 +170,8 @@
     box-shadow: none;
     
     &:not(.collapsed) {
-      color: var(--ds-primary, #003152);
-      background-color: rgba(0, 49, 82, 0.05); // Efecto sutil Primary
+      color: var(--ds-primary);
+      background-color: color-mix(in srgb, var(--ds-primary) 5%, var(--ds-bg-surface)); // Efecto sutil Primary
     }
     
     &:focus { box-shadow: none; }
@@ -219,15 +219,15 @@
     position: absolute;
     top: 15px;
     font-weight: 600;
-    color: #fff;
+    color: var(--ds-primary-text);
     border-radius: 4px;
     z-index: 1;
     
-    &.ribbon-primary { background-color: var(--ds-primary, #003152); }
-    &.ribbon-secondary { background-color: var(--ds-secondary, #6c757d); }
-    &.ribbon-success { background-color: var(--ds-success, #198754); }
-    &.ribbon-warning { background-color: var(--ds-warning, #ffc107); color: #000; }
-    &.ribbon-danger { background-color: var(--ds-danger, #dc3545); }
+    &.ribbon-primary { background-color: var(--ds-primary); }
+    &.ribbon-secondary { background-color: var(--ds-secondary); }
+    &.ribbon-success { background-color: var(--ds-success); }
+    &.ribbon-warning { background-color: var(--ds-warning); color: var(--ds-text-inverse); }
+    &.ribbon-danger { background-color: var(--ds-danger); }
     
     &.ribbon-right {
       right: -5px;
@@ -248,9 +248,9 @@
   .list-group-item {
     border-color: var(--ds-outline, #E2E8F0);
     &.active {
-      background-color: var(--ds-primary, #003152);
-      border-color: var(--ds-primary, #003152);
-      color: #fff;
+      background-color: var(--ds-primary);
+      border-color: var(--ds-primary);
+      color: var(--ds-primary-text);
     }
   }
 }
@@ -271,8 +271,8 @@
   
   .popover-header {
     // Lagos usa un fondo súper suave (10% de opacidad) con texto del color primario
-    background-color: rgba(0, 49, 82, 0.05); 
-    color: var(--ds-primary, #003152);
+    background-color: color-mix(in srgb, var(--ds-primary) 5%, var(--ds-bg-surface)); 
+    color: var(--ds-primary);
     border-bottom: none;
     font-weight: 600;
     font-size: 14px; // Forzar el tamaño pequeño que usa Lagos
@@ -294,7 +294,7 @@
 }
 .bs-popover-top > .popover-arrow::after,
 .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::after {
-  border-top-color: #ffffff; 
+  border-top-color: var(--ds-bg-surface); 
 }
 
 .bs-popover-bottom > .popover-arrow::before,
@@ -303,7 +303,7 @@
 }
 .bs-popover-bottom > .popover-arrow::after,
 .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after {
-  border-bottom-color: rgba(0, 49, 82, 0.05); // La flecha toca el header claro
+  border-bottom-color: color-mix(in srgb, var(--ds-primary) 5%, var(--ds-bg-surface)); // La flecha toca el header claro
 }
 
 // ── 12. SPINERS & LOADERS ───────────────────────────────────

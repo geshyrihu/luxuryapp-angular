@@ -60,19 +60,19 @@
       // Estado Hover o Marcado con el teclado (Fondo ultra-suave)
       &:hover,
       &.ng-option-marked {
-        background-color: rgba(0, 49, 82, 0.04) !important; // Tinte primario sutil
+        background-color: color-mix(in srgb, var(--ds-primary) 4%, var(--ds-bg-surface)) !important; // Tinte primario sutil
         color: var(--ds-text-primary, var(--bs-body-color)) !important;
       }
 
       // Estado Seleccionado (Marcado PrimeNG)
       &.ng-option-selected {
-        background-color: rgba(0, 49, 82, 0.08) !important;
+        background-color: color-mix(in srgb, var(--ds-primary) 8%, var(--ds-bg-surface)) !important;
         color: var(--ds-primary) !important;
         font-weight: 600 !important;
         
         // Hover sobre seleccionado
         &.ng-option-marked {
-          background-color: rgba(0, 49, 82, 0.12) !important;
+          background-color: color-mix(in srgb, var(--ds-primary) 12%, var(--ds-bg-surface)) !important;
         }
 
         .ng-option-label {

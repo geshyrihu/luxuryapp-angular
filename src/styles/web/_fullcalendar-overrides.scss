@@ -80,28 +80,28 @@
 
 // Clases semánticas de colores para los eventos (Evitar hex en TS)
 .event-vacation, .fc-event-info {
-  background-color: #0b76bc !important;
-  color: #ffffff !important;
+  background-color: var(--ds-info) !important;
+  color: var(--ds-text-inverse) !important;
 }
 
 .event-permission, .fc-event-warning {
-  background-color: #f59e0b !important;
-  color: #ffffff !important;
+  background-color: var(--ds-warning) !important;
+  color: var(--ds-text-inverse) !important;
 }
 
 .event-holiday, .fc-event-success {
-  background-color: #28a745 !important;
-  color: #ffffff !important;
+  background-color: var(--ds-success) !important;
+  color: var(--ds-text-inverse) !important;
 }
 
 .event-default, .fc-event-secondary {
-  background-color: #94a3b8 !important;
-  color: #ffffff !important;
+  background-color: var(--ds-secondary) !important;
+  color: var(--ds-text-inverse) !important;
 }
 
 .fc-event-primary {
-  background-color: var(--ds-primary, #003152) !important;
-  color: #ffffff !important;
+  background-color: var(--ds-primary) !important;
+  color: var(--ds-on-primary) !important;
 }
 
 // Responsive
