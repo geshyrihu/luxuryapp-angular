@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **97** |
-| ⏳ Pendiente | **65** |
+| ✅ Refactorizado | **106** |
+| ⏳ Pendiente | **56** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **212** |
 
@@ -97,21 +97,21 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 67 | `online-collections/other-charges/cobranza-online-otros-cargos.html` | collections | · | · | ✅ | Omitido por decisión |
 | 68 | `online-collections/towers/cobranza-online-towers.html` | collections | · | · | ✅ | Omitido por decisión |
 | 69 | `online-collections/transactions/cobranza-online-movimientos.html` | collections | · | · | ✅ | Omitido por decisión |
-| 70 | `employee-time-clock/chekador-list.html` | human-resources | · | ✅ | · |  |
-| 71 | `evaluation/evaluation-template/lista-plantilla-evaluacion.html` | human-resources | · | ✅ | · |  |
-| 72 | `evaluation/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html` | human-resources | · | ✅ | · |  |
-| 73 | `hr-admin/incident-type-list/incident-type-list.html` | human-resources | · | ✅ | · |  |
-| 74 | `hr-admin/sanction-type-list/sanction-type-list.html` | human-resources | · | ✅ | · |  |
+| 70 | `employee-time-clock` | human-resources | ✅ | · | · |  |
+| 71 | `evaluation/evaluation-template` | human-resources | ✅ | · | · |  |
+| 72 | `evaluation/evaluation-template/performance-evaluation` | human-resources | ✅ | · | · |  |
+| 73 | `hr-admin/incident-type-list` | human-resources | ✅ | · | · |  |
+| 74 | `hr-admin/sanction-type-list` | human-resources | ✅ | · | · |  |
 | 75 | `payroll/details/nomina-detalle.html` | human-resources | · | ✅ | · |  |
 | 76 | `payroll/headers/nominas.html` | human-resources | · | ✅ | · |  |
 | 77 | `payroll/incidents/incidencias-nomina.html` | human-resources | · | ✅ | · |  |
 | 78 | `payroll/loans/prestamos-empleado.html` | human-resources | · | ✅ | · |  |
 | 79 | `payroll/overtime/tiempo-extra.html` | human-resources | · | ✅ | · |  |
 | 80 | `payroll/periods/periodos-nomina.html` | human-resources | · | ✅ | · |  |
-| 81 | `time-off/admin-vacaciones-balance/admin-vacaciones-balance.html` | human-resources | · | ✅ | · |  |
-| 82 | `time-off/leave-request/mis-permisos-listado.html` | human-resources | · | ✅ | · |  |
-| 83 | `time-off/my-vacation-requests/mis-vacaciones-listado.html` | human-resources | · | ✅ | · |  |
-| 84 | `time-off/request-history/solicitudes-historial.html` | human-resources | · | ✅ | · |  |
+| 81 | `time-off/admin-vacaciones-balance` | human-resources | ✅ | · | · |  |
+| 82 | `time-off/leave-request` | human-resources | ✅ | · | · |  |
+| 83 | `time-off/my-vacation-requests` | human-resources | ✅ | · | · |  |
+| 84 | `time-off/request-history` | human-resources | ✅ | · | · |  |
 | 85 | `employee-contracts/addendum-template/addendum-template-list.html` | legal | · | ✅ | · |  |
 | 86 | `employee-contracts/contract-addendum/contract-addendum-list.html` | legal | · | ✅ | · |  |
 | 87 | `employee-contracts/contract-template/contract-template-list.html` | legal | · | ✅ | · |  |
