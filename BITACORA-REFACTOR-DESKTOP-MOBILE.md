@@ -20,8 +20,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | Estado | Total |
 |---|:---:|
 | ✅ Refactorizado | **81** |
-| ⏳ Pendiente | **103** |
-| ⛔ Omitido / no candidato | **28** |
+| ⏳ Pendiente | **81** |
+| ⛔ Omitido / no candidato | **50** |
 | **Total** | **212** |
 
 ---
@@ -75,28 +75,28 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 45 | `system-configuration/knowledge-base/ai-knowledge-base-list.html` | admin | · | ✅ | · |  |
 | 46 | `system-configuration/vault-secrets/vault-secrets-list.html` | admin | · | ✅ | · |  |
 | 47 | `password-manager/password-list.html` | auth | · | ✅ | · |  |
-| 48 | `native-collections/core/approvals/approval-inbox.html` | collections | · | ✅ | · |  |
-| 49 | `native-collections/core/audit/financial-audit-log.html` | collections | · | ✅ | · |  |
-| 50 | `native-collections/core/charge-templates/charge-template-list.html` | collections | · | ✅ | · |  |
-| 51 | `native-collections/core/charge-types/charge-type-list.html` | collections | · | ✅ | · |  |
-| 52 | `native-collections/core/charges/charge-list.html` | collections | · | ✅ | · |  |
-| 53 | `native-collections/core/collection-cases/collection-case-list.html` | collections | · | ✅ | · |  |
-| 54 | `native-collections/core/initial-balance/initial-balance.html` | collections | · | ✅ | · |  |
-| 55 | `native-collections/core/invoices/invoice-list.html` | collections | · | ✅ | · |  |
-| 56 | `native-collections/core/late-fee-policies/late-fee-policy-list.html` | collections | · | ✅ | · |  |
-| 57 | `native-collections/core/ledger/ledger-viewer.html` | collections | · | ✅ | · |  |
-| 58 | `native-collections/core/members/member-list.html` | collections | · | ✅ | · |  |
-| 59 | `native-collections/core/payments/payment-list.html` | collections | · | ✅ | · |  |
-| 60 | `native-collections/core/period-closures/period-closure-dashboard.html` | collections | · | ✅ | · |  |
-| 61 | `native-collections/core/property-fines/property-fine-list.html` | collections | · | ✅ | · |  |
-| 62 | `native-collections/core/reconciliation/reconciliation-dashboard.html` | collections | · | ✅ | · |  |
-| 63 | `native-collections/core/regulation-articles/regulation-article-list.html` | collections | · | ✅ | · |  |
-| 64 | `online-collections/condo-owners-detail/cobranza-online-detalle-condominos.html` | collections | · | ✅ | · |  |
-| 65 | `online-collections/exclusions/cobranza-online-exclusions.html` | collections | · | ✅ | · |  |
-| 66 | `online-collections/inspection/cobranza-online-inspection.html` | collections | · | ✅ | · |  |
-| 67 | `online-collections/other-charges/cobranza-online-otros-cargos.html` | collections | · | ✅ | · |  |
-| 68 | `online-collections/towers/cobranza-online-towers.html` | collections | · | ✅ | · |  |
-| 69 | `online-collections/transactions/cobranza-online-movimientos.html` | collections | · | ✅ | · |  |
+| 48 | `native-collections/core/approvals/approval-inbox.html` | collections | · | · | ✅ | Omitido por decisión |
+| 49 | `native-collections/core/audit/financial-audit-log.html` | collections | · | · | ✅ | Omitido por decisión |
+| 50 | `native-collections/core/charge-templates/charge-template-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 51 | `native-collections/core/charge-types/charge-type-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 52 | `native-collections/core/charges/charge-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 53 | `native-collections/core/collection-cases/collection-case-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 54 | `native-collections/core/initial-balance/initial-balance.html` | collections | · | · | ✅ | Omitido por decisión |
+| 55 | `native-collections/core/invoices/invoice-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 56 | `native-collections/core/late-fee-policies/late-fee-policy-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 57 | `native-collections/core/ledger/ledger-viewer.html` | collections | · | · | ✅ | Omitido por decisión |
+| 58 | `native-collections/core/members/member-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 59 | `native-collections/core/payments/payment-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 60 | `native-collections/core/period-closures/period-closure-dashboard.html` | collections | · | · | ✅ | Omitido por decisión |
+| 61 | `native-collections/core/property-fines/property-fine-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 62 | `native-collections/core/reconciliation/reconciliation-dashboard.html` | collections | · | · | ✅ | Omitido por decisión |
+| 63 | `native-collections/core/regulation-articles/regulation-article-list.html` | collections | · | · | ✅ | Omitido por decisión |
+| 64 | `online-collections/condo-owners-detail/cobranza-online-detalle-condominos.html` | collections | · | · | ✅ | Omitido por decisión |
+| 65 | `online-collections/exclusions/cobranza-online-exclusions.html` | collections | · | · | ✅ | Omitido por decisión |
+| 66 | `online-collections/inspection/cobranza-online-inspection.html` | collections | · | · | ✅ | Omitido por decisión |
+| 67 | `online-collections/other-charges/cobranza-online-otros-cargos.html` | collections | · | · | ✅ | Omitido por decisión |
+| 68 | `online-collections/towers/cobranza-online-towers.html` | collections | · | · | ✅ | Omitido por decisión |
+| 69 | `online-collections/transactions/cobranza-online-movimientos.html` | collections | · | · | ✅ | Omitido por decisión |
 | 70 | `employee-time-clock/chekador-list.html` | human-resources | · | ✅ | · |  |
 | 71 | `evaluation/evaluation-template/lista-plantilla-evaluacion.html` | human-resources | · | ✅ | · |  |
 | 72 | `evaluation/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html` | human-resources | · | ✅ | · |  |
