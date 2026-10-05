@@ -1,0 +1,65 @@
+<div class="card">
+  <lux-table
+    [globalFilterFields]="globalFilterFields()"
+    [showCurrentPageReport]="true"
+    [value]="data()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        [viewNavigateButton]="false"
+        [showAdd]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Folio</th>
+        <th>Justificación del gasto</th>
+        <th>Proveedor</th>
+        <th>Estatus</th>
+        <th>Total</th>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="5" />
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          {{ item.folio }}
+          <app-icon
+            [icon]="'material-symbols-light:back-hand'"
+            ngbTooltip="Ver"
+            placement="top"
+            class="icon icon- pointer"
+            (click)="viewOrder.emit(item.ordenCompraId)"
+          />
+          <!-- {{ item.folio }} -->
+        </td>
+        <td>{{ item.justificacion }}</td>
+        <td>{{ item.provider }}</td>
+        <td>
+          <span
+            class="badge p-2"
+            [class.bg-danger]="item.statuspago == 'No Pagada'"
+            [class.bg-success]="item.statuspago == 'Pagada'"
+          >
+            {{ item.statuspago }}
+          </span>
+        </td>
+        <td>{{ item.total | currency }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <lux-table-footer [data]="data()" />
+    </ng-template>
+  </lux-table>
+</div>
+
+<div class="p-3">
+  <h2>Pagos registrados: {{ pagadas() | currency }}</h2>
+  <h2>Pagos no registrados: {{ noPagadas() | currency }}</h2>
+</div>

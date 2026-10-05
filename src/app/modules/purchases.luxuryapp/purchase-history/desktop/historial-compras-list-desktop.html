@@ -1,0 +1,83 @@
+<section class="card p-3 p-md-4">
+  <lux-table
+    #dt
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="data()"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        [title]="'Compras pagadas'"
+        [showAdd]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="table-col-3">No</th>
+        <th class="table-col-6" appSortableColumn="fechaSolicitud">
+          Fecha
+          <app-sorticon field="fechaSolicitud" />
+        </th>
+        <th class="table-col-6" appSortableColumn="folio">
+          Folio
+          <app-sorticon field="folio" />
+        </th>
+        <th class="table-col-8" appSortableColumn="tipoOrdenLabel">
+          Tipo de orden
+          <app-sorticon field="tipoOrdenLabel" />
+        </th>
+        <th class="table-col-6" appSortableColumn="factura">
+          Factura
+          <app-sorticon field="factura" />
+        </th>
+        <th class="table-col-20" appSortableColumn="proveedor">
+          Proveedor
+          <app-sorticon field="proveedor" />
+        </th>
+        <th class="table-col-25" appSortableColumn="justificacionGasto">
+          Justificacion
+          <app-sorticon field="justificacionGasto" />
+        </th>
+        <th class="table-col-10" appSortableColumn="total">
+          Total
+          <app-sorticon field="total" />
+        </th>
+        <th class="table-col-5">Ver</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item let-ri="rowIndex">
+      <tr>
+        <td>{{ ri + 1 }}</td>
+        <td>{{ item.fechaSolicitud | apiDate }}</td>
+        <td>{{ item.folio }}</td>
+        <td>{{ item.tipoOrdenLabel }}</td>
+        <td>{{ item.factura }}</td>
+        <td>{{ item.proveedor }}</td>
+        <td class="p-text-justify">
+          {{ item.equipoOInstalacion }} {{ item.justificacionGasto }}
+        </td>
+        <td>{{ item.total | number: '1.2-2' }}</td>
+        <td class="text-center">
+          <iw-button-edit (clicked)="viewOrder.emit(item.id)" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="9" />
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <lux-table-footer [data]="data()" />
+    </ng-template>
+  </lux-table>
+</section>

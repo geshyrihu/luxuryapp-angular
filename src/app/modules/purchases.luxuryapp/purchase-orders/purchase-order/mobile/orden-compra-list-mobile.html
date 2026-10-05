@@ -1,0 +1,100 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <div customFilters>
+    <div class="px-3 pb-2 d-flex flex-column gap-3">
+      <!-- Filtros de Tipo de Gasto -->
+      <div>
+        <p class="text-xs fw-bold mb-2 text-uppercase text-body-secondary">
+          Tipo de Gasto
+        </p>
+        <div class="row p-0 align-items-stretch g-4">
+          @for (tipo of tiposDeGasto(); track tipo.id) {
+          <div class="col-4 d-flex p-1">
+            <div
+              (click)="selectTipoGasto.emit(tipo.id)"
+              [class.bg-primary]="tipo.id === tipoGasto()"
+              [class.border-primary]="tipo.id === tipoGasto()"
+              [class.text-white]="tipo.id === tipoGasto()"
+              [class.bg-body]="tipo.id !== tipoGasto()"
+              [class.border]="tipo.id !== tipoGasto()"
+              class="border-1 rounded-md p-2 w-full d-flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
+            >
+              <i
+                [class]="tipo.iconClass"
+                class="mb-1 text-xl"
+                [class.text-primary]="tipo.id !== tipoGasto()"
+              ></i>
+              <span
+                class="text-xs text-center line-height-2"
+                [class.text-700]="tipo.id !== tipoGasto()"
+              >
+                {{ tipo.label }}
+              </span>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- Filtros de Estado -->
+      <div>
+        <p class="text-xs fw-bold mb-2 text-uppercase text-body-secondary">
+          Estado de Orden
+        </p>
+        <div class="d-flex gap-1">
+          <il-button
+            class="flex-fill"
+            label="Denegadas"
+            (clicked)="selectStatus.emit(1)"
+            [variant]="statusCompra() !== 1 ? 'outlined' : null"
+            [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+          <il-button
+            class="flex-fill"
+            label="Autorizadas"
+            (clicked)="selectStatus.emit(0)"
+            [variant]="statusCompra() !== 0 ? 'outlined' : null"
+            [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+          <il-button
+            class="flex-fill"
+            label="Pendientes"
+            (clicked)="selectStatus.emit(2)"
+            [variant]="statusCompra() !== 2 ? 'outlined' : null"
+            [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon
+          [icon]="'material-symbols-light:shopping-bag'"
+          class="text-xl text-yellow-700"
+        />
+      </div>
+
+      <h3>{{ item.equipoOInstalacion }}</h3>
+      <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
+      <p>
+        Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
+        apiDate:'d MMM yyyy' }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="addOrEdit.emit(item.id)" label="Editar" />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

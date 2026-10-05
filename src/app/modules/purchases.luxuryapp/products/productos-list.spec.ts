@@ -4,6 +4,7 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { vi } from "vitest";
 import { ProductosList } from "./productos-list";
@@ -46,6 +47,7 @@ describe("ProductosList", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
+        { provide: PlatformService, useValue: { isMobile: signal(false) } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });

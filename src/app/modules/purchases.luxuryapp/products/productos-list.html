@@ -1,137 +1,37 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="filteredDataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [title]="'Productos'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="nombreProducto">
-        Imagen
-        <app-sorticon field="nombreProducto" />
-      </th>
-      <th appSortableColumn="nombreProducto">
-        Nombre
-        <app-sorticon field="nombreProducto" />
-      </th>
-      <th appSortableColumn="category">
-        Categoria
-        <app-sorticon field="category" />
-      </th>
-      <th appSortableColumn="marca">
-        Marca
-        <app-sorticon field="marca" />
-      </th>
-      <th appSortableColumn="modelo">
-        Modelo
-        <app-sorticon field="modelo" />
-      </th>
-      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.JefeMantenimiento,
-      AspRole.SuperUsuario, AspRole.Administrador, ]) ) {
-      <th class="table-col-5"></th>
-      }
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td class="text-center">
-        <img
-          [src]="item.urlImagen"
-          alt="."
-          width="80px"
-          height="70px"
-          class="img-fluid img-thumbnail"
-        />
-      </td>
-      <td>
-        <span> {{ item.nombreProducto }} </span>
-      </td>
-      <td>
-        <span>{{ item.category }}</span>
-      </td>
-      <td>
-        <span>{{ item.marca }}</span>
-      </td>
-      <td>
-        <span>{{ item.modelo }}</span>
-      </td>
-      <td class="no-print">
-        <div class="d-flex">
-          @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
-          AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
-          account_id ) {
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          }
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="filteredDataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="mobileDataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
-  [enablePagination]="true"
-  (nextPage)="loadNextPage($event)"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:package"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
-      <p class="text-medium text-body-secondary m-0">
-        {{ item.category }} | {{ item.marca }}
-      </p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
-          AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
-          account_id ) {
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          }
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-productos-list-mobile
+    [data]="mobileDataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [accountId]="account_id"
+    [canManage]="aspRoleS.hasAny([
+      AspRole.JefeMantenimiento,
+      AspRole.SuperUsuario,
+      AspRole.Administrador
+    ])"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (nextPage)="loadNextPage($event)"
+  />
+} @else {
+  <app-productos-list-desktop
+    [data]="filteredDataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [scrollHeight]="scrollHeight"
+    [accountId]="account_id"
+    [canManage]="aspRoleS.hasAny([
+      AspRole.JefeMantenimiento,
+      AspRole.SuperUsuario,
+      AspRole.Administrador
+    ])"
+    [showActionsColumn]="aspRoleS.hasAny([
+      AspRole.Asistente,
+      AspRole.JefeMantenimiento,
+      AspRole.SuperUsuario,
+      AspRole.Administrador
+    ])"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+}

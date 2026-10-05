@@ -1,0 +1,62 @@
+<div class="d-flex flex-column h-screen">
+  <app-data-view-mobile
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields()"
+    class="flex-grow-1"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item (click)="viewOrder.emit(item.ordenCompraId)" button>
+        <div
+          start
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        >
+          <app-icon icon="material-symbols-light:wallet" />
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="text-xs fw-bold text-body-secondary"
+            >Folio: {{item.folio}}</span
+          >
+          <lux-badge
+            [color]="item.statuspago == 'Pagada' ? 'success' : 'danger'"
+            [value]="item.statuspago"
+          />
+        </div>
+        <h3 class="text-base fw-bold m-0 text-body">{{ item.provider }}</h3>
+        <p class="text-sm text-body mb-1">{{ item.justificacion }}</p>
+        <div class="text-end">
+          <span class="text-lg fw-bold text-primary"
+            >{{ item.total | currency }}</span
+          >
+        </div>
+
+        <app-icon
+          icon="material-symbols-light:chevron-right"
+          end
+          color="medium"
+        />
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
+
+  <div class="flex-none p-3 bg-body-tertiary border-top-1 border-200">
+    <div class="row m-0 g-4">
+      <div class="col-6 p-1">
+        <div class="text-xs text-text-uppercase text-body-secondary mb-1">
+          Pagadas
+        </div>
+        <div class="text-lg fw-bold text-success">
+          {{ pagadas() | currency }}
+        </div>
+      </div>
+      <div class="col-6 p-1">
+        <div class="text-xs text-text-uppercase text-body-secondary mb-1">
+          Por Pagar
+        </div>
+        <div class="text-lg fw-bold text-danger">
+          {{ noPagadas() | currency }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

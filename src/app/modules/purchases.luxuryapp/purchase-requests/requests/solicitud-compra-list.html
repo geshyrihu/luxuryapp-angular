@@ -1,317 +1,39 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  [globalFilterFields]="globalFilterFields"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="data()"
-  [reorderableRows]="true"
-  (onRowReorder)="onRowReorder($event)"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [tableStyle]="{ 'table-layout': 'fixed', 'min-width': 'auto' }"
-  class="custom-table custom-table-fixed card d-none d-md-block"
->
-  <ng-template #caption>
-    <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
-    >
-      <div class="flex-grow-1">
-        <lux-table-caption
-          (add)="onSolicitudCompra(0)"
-          [dt]="dt"
-          [noPadding]="true"
-          [noMargin]="true"
-        />
-      </div>
-      <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
-        <il-button
-          iconClass="material-symbols-light:close"
-          label="Denegadas"
-          (clicked)="onSelectStatus(1); statusCompra.set(1)"
-          [variant]="statusCompra() !== 1 ? 'outlined' : undefined"
-          [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
-          size="small"
-        />
-        <il-button
-          iconClass="material-symbols-light:check"
-          label="Autorizadas"
-          (clicked)="onSelectStatus(0); statusCompra.set(0)"
-          [variant]="statusCompra() !== 0 ? 'outlined' : undefined"
-          [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
-          size="small"
-        />
-        <il-button
-          iconClass="material-symbols-light:hourglass-empty"
-          label="Pendientes"
-          (clicked)="onSelectStatus(2); statusCompra.set(2)"
-          [variant]="statusCompra() !== 2 ? 'outlined' : undefined"
-          [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
-          size="small"
-        />
-        <il-button
-          iconClass="material-symbols-light:play-lesson"
-          label="Modo presentacion"
-          (clicked)="onPresentationMode()"
-          severity="contrast"
-          variant="outline"
-          size="small"
-          [disabled]="selectedSolicitudIds().length === 0"
-        />
-        <il-button
-          iconClass="material-symbols-light:link"
-          label="Actualizar Referencias"
-          (clicked)="onManageLinks()"
-          severity="warn"
-          size="small"
-        />
-      </div>
-    </div>
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th class="table-col-5 text-center"></th>
-      <th class="table-col-5 text-center">
-        <input
-          type="checkbox"
-          [checked]="areAllVisibleSelected()"
-          [disabled]="!isPendingView()"
-          (change)="onToggleAllVisible($any($event.target).checked)"
-        />
-      </th>
-      <th class="table-col-10" appSortableColumn="folio">
-        FOLIO
-        <app-sorticon field="folio" />
-      </th>
-      <th class="table-col-7" appSortableColumn="fechaSolicitud">
-        FECHA
-        <app-sorticon field="fechaSolicitud" />
-      </th>
-      <th class="table-col-12" appSortableColumn="solicita">
-        SOLICITA
-        <app-sorticon field="solicita" />
-      </th>
-      <th class="table-col-44">DESCRIPCIÓN</th>
-      <th class="table-col-10">TIPO</th>
-      <th class="table-col-10">PRIORIDAD</th>
-      <th class="table-col-5 text-center">COT</th>
-      <th class="table-col-13">OC</th>
-      <th class="table-col-10">PRES.</th>
-      <th class="table-col-10"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-rowIndex="rowIndex">
-    <tr [pReorderableRow]="rowIndex">
-      <td class="table-col-5 text-center pointer">
-        <app-icon
-          [icon]="'material-symbols-light:menu'"
-          class="cursor-move text-body-secondary"
-          pReorderableRowHandle
-        />
-      </td>
-      <td class="table-col-5 text-center">
-        <input
-          type="checkbox"
-          [checked]="isInPresentation(item.id)"
-          [disabled]="!isPendingView()"
-          (change)="onToggleSelection(item.id, $any($event.target).checked)"
-        />
-      </td>
-      <td class="table-col-10">{{ item.folio }}</td>
-      <td class="table-col-7">{{ item.fechaSolicitud | apiDate }}</td>
-      <td class="table-col-12">{{ item.solicita }}</td>
-      <td class="table-col-44 table-col-description">
-        <div class="fw-bold truncate">{{ item.equipoOInstalacion }}</div>
-        <div
-          class="text-body-secondary truncate-2"
-          [title]="item.justificacionGasto"
-        >
-          {{ item.justificacionGasto }}
-        </div>
-      </td>
-
-      <td class="table-col-10">
-        <lux-tag
-          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
-          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
-          [rounded]="true"
-        />
-      </td>
-
-      <td class="table-col-10">
-        <lux-tag
-          [value]="getPrioridadLabel(item.prioridad)"
-          [severity]="getPrioridadSeverity(item.prioridad)"
-          [rounded]="true"
-        />
-      </td>
-
-      <td class="table-col-5 text-center">
-        <iw-button
-          iconClass="material-symbols-light:description-outline"
-          [lxTooltip]="item.cotizacionesCount"
-          tooltipPosition="top"
-          (clicked)="onCuadroComparativo(item.id)"
-          size="small"
-          severity="help"
-          [rounded]="true"
-          [text]="true"
-          tooltip="Ver Cuadro Comparativo"
-        />
-      </td>
-
-      <td class="table-col-13">
-        @for (orden of item.ordenesRelacionadas; track orden.id) {
-        <div class="d-inline-flex align-items-center mb-1 me-1">
-          <il-button
-            [label]="orden.folio"
-            [lxTooltip]="orden.folio"
-            tooltipPosition="top"
-            (clicked)="onViewPurchaseOrder(orden.id)"
-            variant="soft"
-            severity="warning"
-            size="small"
-            rounded
-            customClass="no-print"
-          />
-          <app-icon
-            icon="material-symbols-light:close"
-            class="cursor-pointer text-red-500 hover:text-red-700 ms-1"
-            (click)="$event.stopPropagation(); onUnlinkPurchaseOrder(orden.id)"
-            title="Desvincular Orden de Compra"
-          />
-        </div>
-        }
-      </td>
-
-      <td class="table-col-10 text-center">
-        @if (isInPresentation(item.id)) {
-        <lux-tag
-          value="En presentación"
-          severity="info"
-          [rounded]="true"
-          size="small"
-        />
-        }
-      </td>
-
-      <td class="table-col-10">
-        <div class="d-flex">
-          @if (isAuthorizedView()) {
-          <iw-button
-            iconClass="material-symbols-light:info"
-            (clicked)="onAuthorizationDetail(item)"
-            size="small"
-            severity="info"
-            [rounded]="true"
-            [text]="true"
-            tooltip="Ver detalle de autorización"
-          />
-          <iw-button
-            iconClass="material-symbols-light:undo"
-            (clicked)="onDesauthorize(item)"
-            size="small"
-            severity="warning"
-            [rounded]="true"
-            [text]="true"
-            tooltip="Desautorizar solicitud"
-          />
-          }
-          <iw-button-edit (clicked)="onSolicitudCompra(item.id)" />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="11" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="data()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="data()"
-  [globalFilterFields]="globalFilterFields"
-  (add)="onSolicitudCompra(0)"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start class="d-flex align-items-center justify-content-center">
-        <input
-          type="checkbox"
-          [checked]="isInPresentation(item.id)"
-          [disabled]="!isPendingView()"
-          (change)="onToggleSelection(item.id, $any($event.target).checked)"
-        />
-      </div>
-      <div start>
-        <app-icon
-          icon="material-symbols-light:shopping-cart-outline"
-          class="text-xl text-yellow-500"
-        />
-      </div>
-
-      <h3>{{ item.equipoOInstalacion }}</h3>
-      <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
-      <p>{{ item.fechaSolicitud | apiDate }}</p>
-      <div class="d-flex gap-2 mt-1">
-        <lux-tag
-          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
-          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
-          [rounded]="true"
-        />
-        <lux-tag
-          [value]="getPrioridadLabel(item.prioridad)"
-          [severity]="getPrioridadSeverity(item.prioridad)"
-          [rounded]="true"
-        />
-        @if (isInPresentation(item.id)) {
-        <lux-tag
-          value="En presentación"
-          severity="info"
-          [rounded]="true"
-          size="small"
-        />
-        }
-      </div>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onSolicitudCompra(item.id)"
-            label="Editar"
-          />
-          @if (isAuthorizedView()) {
-          <il-button
-            iconClass="material-symbols-light:info"
-            label="Ver autorización"
-            (clicked)="onAuthorizationDetail(item)"
-          />
-          <il-button
-            iconClass="material-symbols-light:undo"
-            label="Desautorizar"
-            (clicked)="onDesauthorize(item)"
-          />
-          }
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
-
-<div class="d-md-none mt-3 d-flex justify-content-end">
-  <il-button
-    iconClass="material-symbols-light:play-lesson"
-    label="Modo presentacion"
-    (clicked)="onPresentationMode()"
-    severity="contrast"
-    variant="outline"
-    size="small"
-    [disabled]="selectedSolicitudIds().length === 0"
+@if (platformS.isMobile()) {
+  <app-solicitud-compra-list-mobile
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields"
+    [isPendingView]="isPendingView()"
+    [isAuthorizedView]="isAuthorizedView()"
+    [selectedSolicitudIds]="selectedSolicitudIds()"
+    (add)="onSolicitudCompra(0)"
+    (toggleSelection)="onToggleSelection($event.id, $event.checked)"
+    (edit)="onSolicitudCompra($event)"
+    (authorizationDetail)="onAuthorizationDetail($event)"
+    (desauthorize)="onDesauthorize($event)"
+    (delete)="onDelete($event)"
+    (presentationMode)="onPresentationMode()"
   />
-</div>
+} @else {
+  <app-solicitud-compra-list-desktop
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields"
+    [statusCompra]="statusCompra()"
+    [isPendingView]="isPendingView()"
+    [isAuthorizedView]="isAuthorizedView()"
+    [selectedSolicitudIds]="selectedSolicitudIds()"
+    (add)="onSolicitudCompra(0)"
+    (selectStatus)="onSelectStatus($event); statusCompra.set($event)"
+    (presentationMode)="onPresentationMode()"
+    (manageLinks)="onManageLinks()"
+    (toggleAllVisible)="onToggleAllVisible($event)"
+    (toggleSelection)="onToggleSelection($event.id, $event.checked)"
+    (rowReorder)="onRowReorder($event)"
+    (cuadroComparativo)="onCuadroComparativo($event)"
+    (viewPurchaseOrder)="onViewPurchaseOrder($event)"
+    (unlinkPurchaseOrder)="onUnlinkPurchaseOrder($event)"
+    (authorizationDetail)="onAuthorizationDetail($event)"
+    (desauthorize)="onDesauthorize($event)"
+    (edit)="onSolicitudCompra($event)"
+    (delete)="onDelete($event)"
+  />
+}

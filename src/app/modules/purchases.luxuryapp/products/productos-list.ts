@@ -20,46 +20,17 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { ProductosListDesktop } from "./desktop/productos-list-desktop";
+import { ProductosListMobile } from "./mobile/productos-list-mobile";
 import { ProductosForm } from "./productos-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-productos-list",
   templateUrl: "./productos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [ProductosListDesktop, ProductosListMobile],
 })
 export class ProductosList implements OnInit {
   authS = inject(AuthService);
@@ -67,6 +38,7 @@ export class ProductosList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   // Signals
   dataSignal = signal<any[]>([]);
   filteredDataSignal = signal<any[]>([]);

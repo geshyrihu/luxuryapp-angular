@@ -1,0 +1,238 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [reorderableRows]="true"
+  (onRowReorder)="rowReorder.emit($event)"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [tableStyle]="{ 'table-layout': 'fixed', 'min-width': 'auto' }"
+  class="custom-table custom-table-fixed card"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
+    >
+      <div class="flex-grow-1">
+        <lux-table-caption
+          (add)="add.emit()"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
+        <il-button
+          iconClass="material-symbols-light:close"
+          label="Denegadas"
+          (clicked)="selectStatus.emit(1)"
+          [variant]="statusCompra() !== 1 ? 'outlined' : undefined"
+          [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
+          size="small"
+        />
+        <il-button
+          iconClass="material-symbols-light:check"
+          label="Autorizadas"
+          (clicked)="selectStatus.emit(0)"
+          [variant]="statusCompra() !== 0 ? 'outlined' : undefined"
+          [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
+          size="small"
+        />
+        <il-button
+          iconClass="material-symbols-light:hourglass-empty"
+          label="Pendientes"
+          (clicked)="selectStatus.emit(2)"
+          [variant]="statusCompra() !== 2 ? 'outlined' : undefined"
+          [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
+          size="small"
+        />
+        <il-button
+          iconClass="material-symbols-light:play-lesson"
+          label="Modo presentacion"
+          (clicked)="presentationMode.emit()"
+          severity="contrast"
+          variant="outline"
+          size="small"
+          [disabled]="selectedSolicitudIds().length === 0"
+        />
+        <il-button
+          iconClass="material-symbols-light:link"
+          label="Actualizar Referencias"
+          (clicked)="manageLinks.emit()"
+          severity="warn"
+          size="small"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5 text-center"></th>
+      <th class="table-col-5 text-center">
+        <input
+          type="checkbox"
+          [checked]="areAllVisibleSelected()"
+          [disabled]="!isPendingView()"
+          (change)="toggleAllVisible.emit($any($event.target).checked)"
+        />
+      </th>
+      <th class="table-col-10" appSortableColumn="folio">
+        FOLIO
+        <app-sorticon field="folio" />
+      </th>
+      <th class="table-col-7" appSortableColumn="fechaSolicitud">
+        FECHA
+        <app-sorticon field="fechaSolicitud" />
+      </th>
+      <th class="table-col-12" appSortableColumn="solicita">
+        SOLICITA
+        <app-sorticon field="solicita" />
+      </th>
+      <th class="table-col-44">DESCRIPCIÓN</th>
+      <th class="table-col-10">TIPO</th>
+      <th class="table-col-10">PRIORIDAD</th>
+      <th class="table-col-5 text-center">COT</th>
+      <th class="table-col-13">OC</th>
+      <th class="table-col-10">PRES.</th>
+      <th class="table-col-10"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [pReorderableRow]="rowIndex">
+      <td class="table-col-5 text-center pointer">
+        <app-icon
+          [icon]="'material-symbols-light:menu'"
+          class="cursor-move text-body-secondary"
+          pReorderableRowHandle
+        />
+      </td>
+      <td class="table-col-5 text-center">
+        <input
+          type="checkbox"
+          [checked]="isInPresentation(item.id)"
+          [disabled]="!isPendingView()"
+          (change)="
+            toggleSelection.emit({
+              id: item.id,
+              checked: $any($event.target).checked,
+            })
+          "
+        />
+      </td>
+      <td class="table-col-10">{{ item.folio }}</td>
+      <td class="table-col-7">{{ item.fechaSolicitud | apiDate }}</td>
+      <td class="table-col-12">{{ item.solicita }}</td>
+      <td class="table-col-44 table-col-description">
+        <div class="fw-bold truncate">{{ item.equipoOInstalacion }}</div>
+        <div
+          class="text-body-secondary truncate-2"
+          [title]="item.justificacionGasto"
+        >
+          {{ item.justificacionGasto }}
+        </div>
+      </td>
+
+      <td class="table-col-10">
+        <lux-tag
+          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
+          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
+          [rounded]="true"
+        />
+      </td>
+
+      <td class="table-col-10">
+        <lux-tag
+          [value]="getPrioridadLabel(item.prioridad)"
+          [severity]="getPrioridadSeverity(item.prioridad)"
+          [rounded]="true"
+        />
+      </td>
+
+      <td class="table-col-5 text-center">
+        <iw-button
+          iconClass="material-symbols-light:description-outline"
+          [lxTooltip]="item.cotizacionesCount"
+          tooltipPosition="top"
+          (clicked)="cuadroComparativo.emit(item.id)"
+          size="small"
+          severity="help"
+          [rounded]="true"
+          [text]="true"
+          tooltip="Ver Cuadro Comparativo"
+        />
+      </td>
+
+      <td class="table-col-13">
+        @for (orden of item.ordenesRelacionadas; track orden.id) {
+        <div class="d-inline-flex align-items-center mb-1 me-1">
+          <il-button
+            [label]="orden.folio"
+            [lxTooltip]="orden.folio"
+            tooltipPosition="top"
+            (clicked)="viewPurchaseOrder.emit(orden.id)"
+            variant="soft"
+            severity="warning"
+            size="small"
+            rounded
+            customClass="no-print"
+          />
+          <app-icon
+            icon="material-symbols-light:close"
+            class="cursor-pointer text-red-500 hover:text-red-700 ms-1"
+            (click)="$event.stopPropagation(); unlinkPurchaseOrder.emit(orden.id)"
+            title="Desvincular Orden de Compra"
+          />
+        </div>
+        }
+      </td>
+
+      <td class="table-col-10 text-center">
+        @if (isInPresentation(item.id)) {
+        <lux-tag
+          value="En presentación"
+          severity="info"
+          [rounded]="true"
+          size="small"
+        />
+        }
+      </td>
+
+      <td class="table-col-10">
+        <div class="d-flex">
+          @if (isAuthorizedView()) {
+          <iw-button
+            iconClass="material-symbols-light:info"
+            (clicked)="authorizationDetail.emit(item)"
+            size="small"
+            severity="info"
+            [rounded]="true"
+            [text]="true"
+            tooltip="Ver detalle de autorización"
+          />
+          <iw-button
+            iconClass="material-symbols-light:undo"
+            (clicked)="desauthorize.emit(item)"
+            size="small"
+            severity="warning"
+            [rounded]="true"
+            [text]="true"
+            tooltip="Desautorizar solicitud"
+          />
+          }
+          <iw-button-edit (clicked)="edit.emit(item.id)" />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="11" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

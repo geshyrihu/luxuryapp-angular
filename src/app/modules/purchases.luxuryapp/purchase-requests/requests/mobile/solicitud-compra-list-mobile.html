@@ -1,0 +1,87 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start class="d-flex align-items-center justify-content-center">
+        <input
+          type="checkbox"
+          [checked]="isInPresentation(item.id)"
+          [disabled]="!isPendingView()"
+          (change)="
+            toggleSelection.emit({
+              id: item.id,
+              checked: $any($event.target).checked,
+            })
+          "
+        />
+      </div>
+      <div start>
+        <app-icon
+          icon="material-symbols-light:shopping-cart-outline"
+          class="text-xl text-yellow-500"
+        />
+      </div>
+
+      <h3>{{ item.equipoOInstalacion }}</h3>
+      <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
+      <p>{{ item.fechaSolicitud | apiDate }}</p>
+      <div class="d-flex gap-2 mt-1">
+        <lux-tag
+          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
+          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
+          [rounded]="true"
+        />
+        <lux-tag
+          [value]="getPrioridadLabel(item.prioridad)"
+          [severity]="getPrioridadSeverity(item.prioridad)"
+          [rounded]="true"
+        />
+        @if (isInPresentation(item.id)) {
+        <lux-tag
+          value="En presentación"
+          severity="info"
+          [rounded]="true"
+          size="small"
+        />
+        }
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit(item.id)"
+            label="Editar"
+          />
+          @if (isAuthorizedView()) {
+          <il-button
+            iconClass="material-symbols-light:info"
+            label="Ver autorización"
+            (clicked)="authorizationDetail.emit(item)"
+          />
+          <il-button
+            iconClass="material-symbols-light:undo"
+            label="Desautorizar"
+            (clicked)="desauthorize.emit(item)"
+          />
+          }
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<div class="mt-3 d-flex justify-content-end">
+  <il-button
+    iconClass="material-symbols-light:play-lesson"
+    label="Modo presentacion"
+    (clicked)="presentationMode.emit()"
+    severity="contrast"
+    variant="outline"
+    size="small"
+    [disabled]="selectedSolicitudIds().length === 0"
+  />
+</div>

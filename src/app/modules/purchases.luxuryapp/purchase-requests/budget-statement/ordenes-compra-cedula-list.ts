@@ -1,65 +1,35 @@
-import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { LxBadge } from "@ui/adaptive/badge/badge";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { OrdenesCompraCedulaListDesktop } from "./desktop/ordenes-compra-cedula-list-desktop";
+import { OrdenesCompraCedulaListMobile } from "./mobile/ordenes-compra-cedula-list-mobile";
+
 @Component({
   selector: "app-ordenes-compra-cedula-list",
   templateUrl: "./ordenes-compra-cedula-list.html",
-  imports: [
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTooltipDirective,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-    LxBadge,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [OrdenesCompraCedulaListDesktop, OrdenesCompraCedulaListMobile],
 })
 export class OrdenesCompraCedulaListComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   dialogHandlerS = inject(DialogHandlerService);
   ref = inject(DynamicDialogRef);
+  platformS = inject(PlatformService);
   globalFilterFieldsOption = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   dataSignal = signal<any[]>([]);
   id: string = "";

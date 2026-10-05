@@ -11,80 +11,32 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TagSeverity } from "@ui/core/tag.base";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { SolicitudCompraService } from "./services/solicitud-compra.service";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { TagSeverity } from "@ui/core/tag.base";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { SolicitudCompraListDesktop } from "./desktop/solicitud-compra-list-desktop";
+import { SolicitudCompraListMobile } from "./mobile/solicitud-compra-list-mobile";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
+import { SolicitudCompraService } from "./services/solicitud-compra.service";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
 @Component({
   selector: "app-solicitud-compra-list",
   templateUrl: "./solicitud-compra-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppReorderableRow,
-    AppReorderableRowHandle,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LxTooltipDirective,
-    WebButtonLabel,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    AppIcon,
-    MobileListItem,
-    LxTag,
-  ],
+  imports: [SolicitudCompraListDesktop, SolicitudCompraListMobile],
 })
 export class SolicitudCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -96,6 +48,7 @@ export class SolicitudCompraList {
   router = inject(Router);
   solicitudCompraService = inject(SolicitudCompraService);
   ordenCompraService = inject(OrdenCompraService);
+  platformS = inject(PlatformService);
 
   public AspRole = ApplicationRole;
 
@@ -107,8 +60,6 @@ export class SolicitudCompraList {
     "ordenesRelacionadas.folio",
   ];
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
   subRef$: Subscription;
   statusCompra = signal<number>(

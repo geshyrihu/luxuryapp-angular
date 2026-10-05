@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,41 +6,26 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { ROUTES } from "src/app/routing/route-paths";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
+import { Router } from "@angular/router";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { StatusOrdenCompra } from "@core/enums/status-orden-compra.enum";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CreateOrdenCompra } from "./create-orden-compra";
+import { OrdenCompraListDesktop } from "./desktop/orden-compra-list-desktop";
+import { OrdenCompraListMobile } from "./mobile/orden-compra-list-mobile";
 import { OrdenCompra } from "./orden-compra";
 import { PurchaseOrderListItem } from "./purchase-order.types";
 
@@ -69,126 +53,11 @@ const tipoGastoIcons: { [key: number]: string } = {
   [TipoGasto.Impuestos]: "material-symbols-light:receipt",
 };
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-
 @Component({
   selector: "app-orden-compra-list",
   templateUrl: "./orden-compra-list.html",
-  styles: [
-    `
-      :host ::ng-deep .orden-compra-table .lux-table-table {
-        table-layout: fixed;
-        width: 100%;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-identificadores {
-        width: 9rem;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-seguimiento {
-        width: 11rem;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-descripcion {
-        width: 28%;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-partida {
-        width: 18%;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-proveedor {
-        width: 14%;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-total {
-        width: 7rem;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-observaciones,
-      :host ::ng-deep .orden-compra-table .oc-col-autoriza {
-        width: 10%;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-col-actions {
-        width: 4rem;
-      }
-
-      :host
-        ::ng-deep
-        .orden-compra-table
-        .lux-table-tbody
-        > tr
-        > td.oc-cell-wrap {
-        white-space: normal;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-      }
-
-      :host
-        ::ng-deep
-        .orden-compra-table
-        .lux-table-tbody
-        > tr
-        > td.oc-cell-total,
-      :host
-        ::ng-deep
-        .orden-compra-table
-        .lux-table-thead
-        > tr
-        > th:nth-child(6) {
-        text-align: right;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-cell-actions {
-        white-space: normal;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-actions-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.25rem;
-      }
-
-      :host ::ng-deep .orden-compra-table .oc-cell-wrap ul {
-        margin: 0;
-        padding-left: 1rem;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    RouterModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    WebButtonLabel,
-    LuxTableCaption,
-    TableFooter,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
-    DataViewMobile,
-    ActionMenu,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [OrdenCompraListDesktop, OrdenCompraListMobile],
 })
 export class OrdenCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -198,6 +67,7 @@ export class OrdenCompraList {
   ordenCompraService = inject(OrdenCompraService);
   customerIdS = inject(CustomerIdService);
   pdfGenerationService = inject(PdfGenerationService);
+  platformS = inject(PlatformService);
 
   data = signal<PurchaseOrderListItem[]>([]);
   loading = signal(true);
@@ -222,8 +92,6 @@ export class OrdenCompraList {
     });
 
   globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   constructor() {

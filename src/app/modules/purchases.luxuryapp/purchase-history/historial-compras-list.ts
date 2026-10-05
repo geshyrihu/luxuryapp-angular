@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,41 +7,25 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import {
   type SegmentItem,
   SegmentedControl,
 } from "@ui/primitives/segmented-control/segmented-control";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { addIcons } from "ionicons";
 import { checkmarkCircleOutline } from "ionicons/icons";
 import { startWith } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { HistorialComprasListDesktop } from "./desktop/historial-compras-list-desktop";
 import { HistorialComprasItem } from "./interfaces/historial-compras-item.interface";
+import { HistorialComprasListMobile } from "./mobile/historial-compras-list-mobile";
 
 const TIPO_COMPRA_OPTIONS: SegmentItem[] = [
   { label: "Todas", value: "all" },
@@ -87,29 +70,17 @@ type HistorialComprasDateFilterForm = {
   templateUrl: "./historial-compras-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    TableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileListItem,
-    AppIcon,
     SegmentedControl,
     CustomInputDateSignal,
+    HistorialComprasListDesktop,
+    HistorialComprasListMobile,
   ],
 })
 export class HistorialComprasList {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly customerIdS = inject(CustomerIdService);
   private readonly router = inject(Router);
+  readonly platformS = inject(PlatformService);
 
   readonly dataSignal = signal<HistorialComprasItem[]>([]);
   readonly loading = signal(true);
@@ -131,8 +102,6 @@ export class HistorialComprasList {
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
-  readonly tableRows = tableRows();
-  readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly filterForm = new FormGroup<HistorialComprasDateFilterForm>({
     fechaInicio: new FormControl<Date | string | null>(null),
     fechaFin: new FormControl<Date | string | null>(null),
