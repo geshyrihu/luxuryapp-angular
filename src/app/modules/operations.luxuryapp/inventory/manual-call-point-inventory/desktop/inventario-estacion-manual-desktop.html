@@ -38,11 +38,15 @@
           tooltipPosition="top"
           tooltip="Descargar plantilla Excel"
         />
-        <iw-button-download
-          (clicked)="fileInput.click()"
-          lxTooltip="Importar"
-          tooltipPosition="top"
+        <lux-button-web
+          kind="custom"
+          displayMode="icon"
+          iconClass="material-symbols-light:upload"
+          severity="secondary"
+          variant="soft"
           tooltip="Importar desde Excel"
+          ariaLabel="Importar"
+          (clicked)="fileInput.click()"
         />
         <input
           type="file"
