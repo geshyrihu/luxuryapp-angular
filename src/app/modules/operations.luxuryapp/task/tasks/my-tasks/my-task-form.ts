@@ -22,7 +22,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -41,7 +41,7 @@ import { TaskGroupService } from "../task.service";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabel,
-    WebButtonLabelSave,
+    ButtonWeb,
     ImageAnalysisDialogComponent,
     LxFileUpload,
     AppIcon,
