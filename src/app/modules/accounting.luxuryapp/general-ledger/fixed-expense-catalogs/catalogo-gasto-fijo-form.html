@@ -93,11 +93,16 @@
     />
 
     }
-    <il-button-save
-      [propertyId]="id()"
-      customClass="mt-0"
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id() ? 'Actualizar' : 'Guardar'"
       [disabled]="form.invalid"
-      [submitting]="submitting()"
+      [loading]="submitting()"
+      class="mt-0"
     />
   </div>
 </form>
