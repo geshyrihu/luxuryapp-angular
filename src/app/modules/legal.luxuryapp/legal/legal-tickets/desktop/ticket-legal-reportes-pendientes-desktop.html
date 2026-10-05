@@ -1,0 +1,151 @@
+@if (dataExternal().length > 0) {
+<div class="card mb-4">
+  <lux-table
+    #dtExternal
+    [value]="dataExternal()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        title="Pendientes Externos"
+        [showAdd]="false"
+        [dt]="dtExternal"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-10">FOLIO</th>
+        <th class="table-col-10">FECHA SOLICITUD</th>
+        <th class="table-col-10">CLIENTE</th>
+        <th class="table-col-30">SOLICITUD</th>
+        <th class="table-col-10">RESPONSABLE</th>
+        <th class="table-col-5">DÍAS</th>
+        <th class="table-col-30">SEGUIMIENTO</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-ticket>
+      <tr>
+        <td>{{ ticket.folio }}</td>
+        <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
+        <td>{{ ticket.nombreCorto }}</td>
+        <td [innerHTML]="ticket.request"></td>
+        <td>{{ ticket.fullName }}</td>
+        <td
+          class="text-center"
+          [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+        >
+          {{ ticket.diasTrasncurridos }}
+        </td>
+        <td>{{ ticket.seguimiento }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="d-flex align-items-center justify-content-between">
+        En total hay {{ dataExternal().length }} pendientes externos.
+      </div>
+    </ng-template>
+  </lux-table>
+</div>
+} @if (dataInternal().length > 0) {
+<div class="card mb-4">
+  <lux-table
+    #dtInternal
+    [value]="dataInternal()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        title="Pendientes Internos"
+        [showAdd]="false"
+        [dt]="dtInternal"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-10">FOLIO</th>
+        <th class="table-col-10">FECHA SOLICITUD</th>
+        <th class="table-col-10">CLIENTE</th>
+        <th class="table-col-30">SOLICITUD</th>
+        <th class="table-col-10">RESPONSABLE</th>
+        <th class="table-col-5">DÍAS</th>
+        <th class="table-col-30">SEGUIMIENTO</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-ticket>
+      <tr>
+        <td>{{ ticket.folio }}</td>
+        <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
+        <td>{{ ticket.nombreCorto }}</td>
+        <td [innerHTML]="ticket.request"></td>
+        <td>{{ ticket.fullName }}</td>
+        <td
+          class="text-center"
+          [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+        >
+          {{ ticket.diasTrasncurridos }}
+        </td>
+        <td>{{ ticket.seguimiento }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="d-flex align-items-center justify-content-between">
+        En total hay {{ dataInternal().length }} pendientes internos.
+      </div>
+    </ng-template>
+  </lux-table>
+</div>
+} @if (unassignedData().length > 0) {
+<div class="card mb-4">
+  <lux-table
+    #dtUnassigned
+    [value]="unassignedData()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        title="Pendientes sin Asignar"
+        [showAdd]="false"
+        [dt]="dtUnassigned"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-10">FOLIO</th>
+        <th class="table-col-10">FECHA SOLICITUD</th>
+        <th class="table-col-10">CLIENTE</th>
+        <th class="table-col-55">SOLICITUD</th>
+        <th class="table-col-10">RESPONSABLE</th>
+        <th class="table-col-5">DÍAS</th>
+        <th class="table-col-30">SEGUIMIENTO</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-ticket>
+      <tr>
+        <td>{{ ticket.folio }}</td>
+        <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
+        <td>{{ ticket.nombreCorto }}</td>
+        <td [innerHTML]="ticket.request"></td>
+        <td>{{ ticket.fullName }}</td>
+        <td
+          class="text-center"
+          [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+        >
+          {{ ticket.diasTrasncurridos }}
+        </td>
+        <td>{{ ticket.seguimiento }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="d-flex align-items-center justify-content-between">
+        En total hay {{ unassignedData().length }} pendientes sin asignar.
+      </div>
+    </ng-template>
+  </lux-table>
+</div>
+}

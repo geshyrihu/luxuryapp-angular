@@ -1,0 +1,65 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-container customFilters>
+    <il-button
+      (clicked)="categoryForm.emit({ id: '', title: 'Agregar categoria' })"
+      label="Agregar Categoróa"
+      icon="add-outline"
+      customClass="w-full mb-2"
+    />
+  </ng-container>
+
+  <ng-template #listItemTemplate let-category>
+    <div class="bg-body mb-3 rounded">
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:balance"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div class="p-3 border-bottom-1 border">
+        <div class="d-flex justify-content-between align-items-center w-full">
+          <span class="fw-bold text-lg">{{ category.name }}</span>
+          <div class="d-flex">
+            <ili-button-edit
+              (clicked)="categoryForm.emit({ id: category.id, title: 'Editar' })"
+            />
+            <ili-button-delete
+              (confirmed)="categoryDelete.emit(category.id)"
+            />
+          </div>
+        </div>
+      </div>
+
+      @for (legalMatter of category.legalMatters; track legalMatter) {
+      <ili-list-item>
+        <h3 class="fw-bold text-wrap">{{ legalMatter.title }}</h3>
+        <p class="text-small text-body-secondary">
+          {{ legalMatter.isInternal ? "Interno" : "Externo" }}
+        </p>
+
+        <ili-action-menu end>
+          <ng-container actions>
+            <ili-button-edit
+              (clicked)="edit.emit({ id: legalMatter.id, title: 'Editar' })"
+              label="Editar"
+              []="true"
+            />
+            <ili-button-delete
+              (confirmed)="delete.emit(legalMatter.id)"
+              label="Eliminar"
+              []="true"
+            />
+          </ng-container>
+        </ili-action-menu>
+      </ili-list-item>
+      }
+    </div>
+  </ng-template>
+</app-data-view-mobile>

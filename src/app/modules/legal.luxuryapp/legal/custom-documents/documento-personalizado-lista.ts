@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -19,51 +19,18 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { DocumentoPersonalizadoListaDesktop } from "./desktop/documento-personalizado-lista-desktop";
+import { DocumentoPersonalizadoListaMobile } from "./mobile/documento-personalizado-lista-mobile";
 
 @Component({
   selector: "app-documento-personalizado-lista",
   imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconViewPdf,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    ReactiveFormsModule,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
+    DocumentoPersonalizadoListaDesktop,
+    DocumentoPersonalizadoListaMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-lista.html",
@@ -74,10 +41,10 @@ export class DocumentoPersonalizadoLista implements OnInit {
   customerIdS = inject(CustomerIdService);
   route = inject(ActivatedRoute);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
   documentType: EDocumentType | undefined;
   pageTitle: string = "";
 

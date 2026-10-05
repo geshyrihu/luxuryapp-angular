@@ -1,102 +1,17 @@
-<div class="card p-0 p-md-4">
-  <lux-table
-    [globalFilterFields]="globalFilterFields()"
-    [value]="dataSignal()"
-    [scrollable]="true"
-    [scrollHeight]="scrollHeight"
-    #dt
-    class="custom-table d-none d-md-block"
-  >
-    <ng-template #caption>
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-        [dt]="dt"
-      />
-    </ng-template>
-    <ng-template #header>
-      <tr>
-        <th
-          class="bg-gradient text-white text-center"
-          appSortableColumn="folio"
-        >
-          Folio
-          <app-sorticon field="folio" />
-        </th>
-        <th class="bg-gradient text-white text-center">Fecha</th>
-        <th class="text-center" appSortableColumn="name">
-          Nombre
-          <app-sorticon field="name" />
-        </th>
-        <th class="text-center">Descargar</th>
-        <th class="text-center no-print table-col-5"></th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-item>
-      <tr>
-        <td class="text-center">{{ item.folio }}</td>
-        <td class="text-center">{{ item.createAt }}</td>
-        <td class="text-center text-break">{{ item.name }}</td>
-        <td class="text-center">
-          <iw-button-view-pdf [url]="item.path" fileName="Documento" />
-        </td>
-        <td class="text-center no-print">
-          <div class="d-flex">
-            <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              lxTooltip="Editar"
-              tooltipPosition="top"
-            />
-            <iw-button-delete
-              (confirmed)="onDelete(item.id)"
-              lxTooltip="Eliminar"
-              tooltipPosition="top"
-            >
-            </iw-button-delete>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #emptymessage>
-      <lux-table-empty-message [colspan]="5" />
-    </ng-template>
-    <ng-template #paginatorleft>
-      <lux-table-footer [data]="dataSignal()" />
-    </ng-template>
-  </lux-table>
-</div>
-
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-documento-personalizado-lista-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div start>
-        <app-icon icon="material-symbols-light:description-outline" />
-      </div>
-
-      <h3 class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
-        {{ item.name }}
-      </h3>
-      <p class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
-        Folio: {{ item.folio }} - {{ item.createAt }}
-      </p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-            []="true"
-          />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-            []="true"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-documento-personalizado-lista-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+}

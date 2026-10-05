@@ -1,173 +1,19 @@
-@if (dataSignal()) {
-<!-- ??? Pantallas medianas y grandes -->
-<div class="d-none d-md-block">
-  <div class="card">
-    <lux-table
-      [globalFilterFields]="globalFilterFields()"
-      [paginator]="true"
-      [rows]="tableRows"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [showCurrentPageReport]="true"
-      [value]="dataSignal()"
-      [scrollable]="true"
-      [scrollHeight]="scrollHeight"
-      #dt
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table"
-    >
-      <ng-template #caption>
-        <lux-table-caption
-          (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
-          [dt]="dt"
-        />
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th class="table-col-10 font-size-12">FOLIO</th>
-          <th class="table-col-10 font-size-12">FECHA SOLICITUD</th>
-          <th class="table-col-10 font-size-12">SOLICITA</th>
-          <th class="table-col-10 font-size-12">ASUNTO</th>
-          <th class="table-col-10 font-size-12">DESCRIPCIÓN</th>
-          <th class="table-col-10 font-size-12">ESTATUS</th>
-          <th class="table-col-10 font-size-12">FECHA DE CONCLUSIÓN</th>
-          <th class="table-col-10 font-size-12">DÍAS</th>
-          <th class="table-col-10 font-size-12">SEGUIMIENTO</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr>
-          <td>{{ item.folio }}</td>
-          <td>{{ item.requestDate }}</td>
-          <td>{{ item.creator }}</td>
-          <td>{{ item.title }}</td>
-          <td class="text-center">
-            @if (item.description && item.description.length > 0) {
-            <app-icon
-              [icon]="'material-symbols-light:book'"
-              class="icon-xl cursor-pointer"
-              (click)="onModalViewDetail({ id: item.id })"
-              lxTooltip="Ver detalles"
-            />
-            }
-          </td>
-          <td class="text-center">
-            <lux-tag
-              class="p-2 cursor-pointer"
-              lxTooltip="Actualizar estatus"
-              (click)="onModalUpdateStatus({ id: item.id })"
-              [severity]="
-                item.status === 0 ? 'danger' :
-                item.status === 1 ? 'info' :
-                item.status === 2 ? 'success' :
-                item.status === 4 ? 'secondary' : 'warn'
-              "
-              [value]="
-                item.status === 0 ? 'PENDIENTE' :
-                item.status === 1 ? 'EN PROCESO' :
-                item.status === 2 ? 'CONCLUIDO' :
-                item.status === 4 ? 'CANCELADO' : 'OTRO'
-              "
-            />
-          </td>
-          <td>{{ item.completionDate }}</td>
-          <td class="text-center">{{ item.diferenciaDias }}</td>
-          <td class="text-center">
-            <iw-button-tracking
-              [ticketId]="item.id"
-              [badgeCount]="item.tracking"
-              (clickTracking)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
-            />
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="9" />
-      </ng-template>
-      <ng-template #paginatorleft>
-        <lux-table-footer [data]="dataSignal()" />
-      </ng-template>
-    </lux-table>
-  </div>
-</div>
-
-<!-- ?? Versión móvil -->
-<div class="d-block d-md-none">
-  <div class="card">
-    <app-data-view-mobile
-      [data]="dataSignal()"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [globalFilterFields]="globalFilterFields()"
-    >
-      <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <div
-            start
-            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-            class="w-3rem h-3rem bg-primary-50"
-          >
-            <app-icon
-              icon="material-symbols-light:confirmation-number"
-              class="text-xl text-primary"
-            />
-          </div>
-
-          <div class="d-flex justify-content-between align-items-start mb-2">
-            <div class="d-flex flex-column">
-              <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
-              <small class="text-body-secondary">
-                Folio: {{ item.folio }} | {{ item.requestDate }}
-              </small>
-            </div>
-          </div>
-          <p class="text-body-secondary m-0 text-wrap">
-            Solicita: {{ item.creator }}
-          </p>
-          <div class="d-flex justify-content-between align-items-center mt-2">
-            <lux-tag
-              (click)="onModalUpdateStatus({ id: item.id })"
-              class="p-2 cursor-pointer"
-              [severity]="
-                  item.status === 0 ? 'danger' :
-                  item.status === 1 ? 'info' :
-                  item.status === 2 ? 'success' :
-                  item.status === 4 ? 'secondary' : 'warn'
-                "
-              [value]="
-                  item.status === 0 ? 'PENDIENTE' :
-                  item.status === 1 ? 'EN PROCESO' :
-                  item.status === 2 ? 'CONCLUIDO' :
-                  item.status === 4 ? 'CANCELADO' : 'OTRO'
-                "
-            />
-            <div class="text-end">
-              <p class="m-0">
-                Conclusión: {{ item.completionDate ?? "Pendiente" }}
-              </p>
-              <p class="m-0 fw-bold">Días: {{ item.diferenciaDias }}</p>
-            </div>
-          </div>
-
-          <ili-action-menu slot="end">
-            <ng-container actions>
-              <ili-button-item
-                iconName="book-outline"
-                label="Ver detalles"
-                (clicked)="onModalViewDetail({ id: item.id })"
-                [disabled]="!item.description || item.description.length === 0"
-                []="true"
-              />
-              <ili-button-item
-                iconName="ellipsis-horizontal-outline"
-                label="Seguimiento"
-                (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
-              >
-                <lux-badge [value]="item.tracking" color="danger" />
-              </ili-button-item>
-            </ng-container>
-          </ili-action-menu>
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
-  </div>
-</div>
-}
+@if (dataSignal()) { @if (platformS.isMobile()) {
+<app-ticket-legal-lista-cliente-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  (updateStatus)="onModalUpdateStatus($event)"
+  (seguimientoCliente)="onModalSeguimientoCliente($event)"
+  (viewDetail)="onModalViewDetail($event)"
+/>
+} @else {
+<app-ticket-legal-lista-cliente-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+  (updateStatus)="onModalUpdateStatus($event)"
+  (seguimientoCliente)="onModalSeguimientoCliente($event)"
+  (viewDetail)="onModalViewDetail($event)"
+/>
+} }

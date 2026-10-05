@@ -1,0 +1,139 @@
+@if (dataExternal().length > 0) {
+<div class="card mb-4">
+  <h5 class="p-4 m-0">Pendientes Externos</h5>
+  <app-data-view-mobile [data]="dataExternal()" [showAdd]="false">
+    <ng-template #listItemTemplate let-ticket>
+      <ili-list-item>
+        <div
+          start
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+          class="w-3rem h-3rem bg-primary-50"
+        >
+          <app-icon
+            icon="material-symbols-light:confirmation-number"
+            class="text-xl text-primary"
+          />
+        </div>
+
+        <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+        <p class="mt-0 mb-1">
+          <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Responsable:</strong> {{ ticket.fullName }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Días:</strong>
+          <span
+            [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+            >{{ ticket.diasTrasncurridos }}</span
+          >
+        </p>
+        <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+        <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
+        <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+        <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
+      </ili-list-item>
+    </ng-template>
+    <ng-template #footer>
+      <div class="p-3 text-center text-sm">
+        {{ dataExternal().length }} pendientes externos
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+} @if (dataInternal().length > 0) {
+<div class="card mb-4">
+  <h5 class="p-4 m-0">Pendientes Internos</h5>
+  <app-data-view-mobile [data]="dataInternal()" [showAdd]="false">
+    <ng-template #listItemTemplate let-ticket>
+      <ili-list-item>
+        <div
+          start
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+          class="w-3rem h-3rem bg-primary-50"
+        >
+          <app-icon
+            icon="material-symbols-light:confirmation-number"
+            class="text-xl text-primary"
+          />
+        </div>
+
+        <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+        <p class="mt-0 mb-1">
+          <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Responsable:</strong> {{ ticket.fullName }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Días:</strong>
+          <span
+            [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+            >{{ ticket.diasTrasncurridos }}</span
+          >
+        </p>
+        <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+        <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
+        <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+        <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
+      </ili-list-item>
+    </ng-template>
+    <ng-template #footer>
+      <div class="p-3 text-center text-sm">
+        {{ dataInternal().length }} pendientes internos
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+} @if (unassignedData().length > 0) {
+<div class="card mb-4">
+  <h5 class="p-4 m-0">Pendientes sin Asignar</h5>
+  <app-data-view-mobile [data]="unassignedData()" [showAdd]="false">
+    <ng-template #listItemTemplate let-ticket>
+      <ili-list-item>
+        <div
+          start
+          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+          class="w-3rem h-3rem bg-yellow-100"
+        >
+          <app-icon icon="material-symbols-light:confirmation-number" />
+        </div>
+
+        <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+        <p class="mt-0 mb-1">
+          <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Responsable:</strong> {{ ticket.fullName }}
+        </p>
+        <p class="mt-0 mb-1">
+          <strong>Días:</strong>
+          <span
+            [style.color]="ticket.diasTrasncurridos > 10 ? 'var(--ds-danger)' : null"
+            >{{ ticket.diasTrasncurridos }}</span
+          >
+        </p>
+        <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+        <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
+        <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+        <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
+      </ili-list-item>
+    </ng-template>
+    <ng-template #footer>
+      <div class="p-3 text-center text-sm">
+        {{ unassignedData().length }} pendientes sin asignar
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+}

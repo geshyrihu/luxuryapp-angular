@@ -7,38 +7,30 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { PlatformService } from "@core/services/platform.service";
 import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { TicketLegalReportesPendientesDesktop } from "./desktop/ticket-legal-reportes-pendientes-desktop";
+import { TicketLegalReportesPendientesMobile } from "./mobile/ticket-legal-reportes-pendientes-mobile";
+
 @Component({
   selector: "app-ticket-legal-reportes-pendientes",
   templateUrl: "./ticket-legal-reportes-pendientes.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    ApiDatePipe,
-    AppTable,
-    AppIcon,
-    DataViewMobile,
     LxEmptyState,
     PageTitleReport,
-    LuxTableCaption,
-    MobileListItem,
+    TicketLegalReportesPendientesDesktop,
+    TicketLegalReportesPendientesMobile,
   ],
 })
 export class TicketLegalReportesPendientes implements OnInit {
   apiResponseS = inject(ApiResponseService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   dataExternal = signal<any[]>([]);
   dataInternal = signal<any[]>([]);
   unassignedData = signal<any[]>([]);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadDataExternal();

@@ -1,0 +1,35 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon icon="material-symbols-light:description-outline" />
+      </div>
+
+      <h3 class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
+        {{ item.name }}
+      </h3>
+      <p class="ion-text-wrap text-overflow-ellipsis overflow-hidden">
+        Folio: {{ item.folio }} - {{ item.createAt }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+            []="true"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit(item.id)"
+            label="Eliminar"
+            []="true"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

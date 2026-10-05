@@ -1,0 +1,73 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:confirmation-number"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div class="d-flex flex-column">
+          <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
+          <small class="text-body-secondary">
+            Folio: {{ item.folio }} | {{ item.requestDate }}
+          </small>
+        </div>
+      </div>
+      <p class="text-body-secondary m-0 text-wrap">
+        Solicita: {{ item.creator }}
+      </p>
+      <div class="d-flex justify-content-between align-items-center mt-2">
+        <lux-tag
+          (click)="updateStatus.emit({ id: item.id })"
+          class="p-2 cursor-pointer"
+          [severity]="
+              item.status === 0 ? 'danger' :
+              item.status === 1 ? 'info' :
+              item.status === 2 ? 'success' :
+              item.status === 4 ? 'secondary' : 'warn'
+            "
+          [value]="
+              item.status === 0 ? 'PENDIENTE' :
+              item.status === 1 ? 'EN PROCESO' :
+              item.status === 2 ? 'CONCLUIDO' :
+              item.status === 4 ? 'CANCELADO' : 'OTRO'
+            "
+        />
+        <div class="text-end">
+          <p class="m-0">Conclusión: {{ item.completionDate ?? "Pendiente" }}</p>
+          <p class="m-0 fw-bold">Días: {{ item.diferenciaDias }}</p>
+        </div>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            iconName="book-outline"
+            label="Ver detalles"
+            (clicked)="viewDetail.emit({ id: item.id })"
+            [disabled]="!item.description || item.description.length === 0"
+            []="true"
+          />
+          <ili-button-item
+            iconName="ellipsis-horizontal-outline"
+            label="Seguimiento"
+            (clicked)="seguimientoCliente.emit({ ticketId: item.id, title: 'Seguimiento' })"
+          >
+            <lux-badge [value]="item.tracking" color="danger" />
+          </ili-button-item>
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

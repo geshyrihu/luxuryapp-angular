@@ -6,7 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import {
@@ -17,69 +16,32 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit, WebButtonIconTracking } from "@ui/buttons";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AspRoleService } from "../../../../core/auth/services/asp-role.service";
+import { TicketLegalListaDesktop } from "./desktop/ticket-legal-lista-desktop";
+import { TicketLegalListaMobile } from "./mobile/ticket-legal-lista-mobile";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimiento-solicitud-detalle";
 
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AspRoleService } from "../../../../core/auth/services/asp-role.service";
-
 @Component({
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CustomInputSelectSignal,
-    WebButtonIconDownload,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    FormsModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LxTooltipDirective,
-    LxTag,
-    LuxTableCaption,
-    TableFooter,
-    WebButtonIconEdit,
-    DataViewMobile,
-    WebButtonIconTracking,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [TicketLegalListaDesktop, TicketLegalListaMobile],
 })
 export class TicketLegalLista implements OnInit {
   private dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   isSuperUser = this.aspRoleS.hasRole(ApplicationRole.SuperUsuario);
   canChangeCustomer =
     this.isSuperUser || this.aspRoleS.hasRole(ApplicationRole.Legal);

@@ -1,216 +1,25 @@
-<!-- ??? Pantallas medianas y grandes -->
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table custom-table-fixed card d-none d-md-block"
->
-  <ng-template #caption>
-    <div class="d-flex align-items-center justify-content-between gap-2">
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
-        [dt]="dt"
-      />
-      <iw-button-download
-        lxTooltip="Excel"
-        tooltipPosition="top"
-        (clicked)="exportToExcel()"
-        lxTooltip="Descargar Excel para PowerPoint"
-        tooltipPosition="bottom"
-      />
-      <div class="d-flex align-items-center gap-3 mb-3">
-        <label class="fw-semibold text-sm text-body-secondary text-nowrap"
-          >Filtrar por cliente:</label
-        >
-        <custom-input-select-signal
-          [data]="cb_customer()"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="-- Todos los clientes --"
-          [showClear]="true"
-          (selectionChange)="onCustomerFilter($event.value)"
-        />
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #colgroup>
-    <colgroup>
-      <col class="table-col-8" />
-      <col class="table-col-12" />
-      <col class="table-col-8" />
-      <col class="table-col-30" />
-      <col class="table-col-12" />
-      <col class="table-col-10" />
-      <col class="table-col-10" />
-      <col class="table-col-3" />
-      <col class="table-col-5" />
-      <col class="table-col-2" />
-    </colgroup>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-8">FOLIO</th>
-      <th class="table-col-12" appSortableColumn="requestDate">
-        FECHA SOLICITUD
-        <app-sorticon field="requestDate" />
-      </th>
-      <th class="table-col-8" appSortableColumn="customer">
-        CLIENTE
-        <app-sorticon field="customer" />
-      </th>
-      <th class="table-col-30">ASUNTO</th>
-      <th class="table-col-12">RESPONSABLE</th>
-      <th class="table-col-10" appSortableColumn="status">
-        ESTATUS
-        <app-sorticon field="status" />
-      </th>
-      <th class="table-col-10">FECHA CONCLUSIÓN</th>
-      <th class="table-col-3">DÍAS</th>
-      <th colspan="2" class="table-col-7">SEGUIMIENTO</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.folio }}</td>
-      <td>{{ item.requestDate }}</td>
-      <td>
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ item.customer }}</span>
-          <button
-            *ngIf="canChangeCustomer"
-            (click)="onReasignarCliente(item)"
-            class="p-link text-primary ms-2"
-            lxTooltip="Corregir Cliente"
-          >
-            <app-icon icon="material-symbols-light:edit-square" />
-          </button>
-        </div>
-      </td>
-      <td>
-        {{ item.title }}
-        <br />
-        <span>{{ item.description }}</span>
-      </td>
-      <td>
-        <app-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
-        item.assignee }}
-      </td>
-      <td class="text-center">
-        <lux-tag
-          (click)="onModalUpdateStatus({ id: item.id })"
-          class="p-2 cursor-pointer"
-          lxTooltip="Actualizar estatus"
-          [severity]="
-            item.status === 0 ? 'danger' :
-            item.status === 1 ? 'info' :
-            item.status === 2 ? 'success' :
-            item.status === 4 ? 'secondary' : 'warn'
-          "
-          [value]="
-            item.status === 0 ? 'PENDIENTE' :
-            item.status === 1 ? 'EN PROCESO' :
-            item.status === 2 ? 'CONCLUIDO' :
-            item.status === 4 ? 'CANCELADO' : 'OTRO'
-          "
-        />
-      </td>
-      <td>{{ item.completionDate }}</td>
-      <td class="text-center">{{ item.diferenciaDias }}</td>
-      <td class="text-center">
-        <iw-button-tracking
-          [ticketId]="item.id"
-          [badgeCount]="item.tracking"
-          (clickTracking)="onModalSeguimiento($event)"
-        />
-      </td>
-      <td class="no-print">
-        <div class="d-flex justify-content-center">
-          <iw-button-edit
-            (clicked)="onModalEdit({ id: item.id, title: 'EDITAR TICKET LEGAL' })"
-          />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="10" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!-- ?? Versión móvil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-ticket-legal-lista-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:confirmation-number"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mb-1">
-        <p class="font-normal m-0 text-xs text-body-secondary">
-          {{ item.folio }} | {{ item.requestDate }}
-        </p>
-        <p class="font-normal m-0 text-xs text-end">{{ item.customer }}</p>
-      </div>
-      <h2 class="text-sm fw-semibold m-0 text-wrap mb-1">{{ item.title }}</h2>
-      <div class="d-flex flex-wrap mt-1">
-        <span
-          class="text-xs"
-          [class.text-red-500]="item.status === 0"
-          [class.text-blue-500]="item.status === 1"
-          [class.text-green-500]="item.status === 2"
-          [class.text-gray-500]="item.status === 4"
-        >
-          {{ item.status === 0 ? 'PENDIENTE' : item.status === 1 ? 'EN PROCESO'
-          : item.status === 2 ? 'CONCLUIDO' : item.status === 4 ? 'CANCELADO' :
-          '' }}
-        </span>
-      </div>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-item
-            *ngIf="canChangeCustomer"
-            iconName="sync-outline"
-            label="Corregir Cliente"
-            (clicked)="onReasignarCliente(item)"
-            []="true"
-          />
-          <ili-button-item
-            iconName="clipboard-outline"
-            label="Seguimiento"
-            (clicked)="onModalSeguimiento({ ticketId: item.id, title: 'Seguimiento' })"
-            []="true"
-          />
-          <ili-button-item
-            iconName="refresh-outline"
-            label="Status"
-            (clicked)="onModalUpdateStatus({ id: item.id })"
-            []="true"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [canChangeCustomer]="canChangeCustomer"
+  (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+  (reasignarCliente)="onReasignarCliente($event)"
+  (seguimiento)="onModalSeguimiento($event)"
+  (updateStatus)="onModalUpdateStatus($event)"
+/>
+} @else {
+<app-ticket-legal-lista-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [cbCustomer]="cb_customer()"
+  [canChangeCustomer]="canChangeCustomer"
+  (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+  (edit)="onModalEdit($event)"
+  (updateStatus)="onModalUpdateStatus($event)"
+  (seguimiento)="onModalSeguimiento($event)"
+  (reasignarCliente)="onReasignarCliente($event)"
+  (exportExcel)="exportToExcel()"
+  (customerFilter)="onCustomerFilter($event)"
+/>
+}

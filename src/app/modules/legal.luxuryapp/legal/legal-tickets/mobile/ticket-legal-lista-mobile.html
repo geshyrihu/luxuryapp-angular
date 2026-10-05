@@ -1,0 +1,65 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:confirmation-number"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <p class="font-normal m-0 text-xs text-body-secondary">
+          {{ item.folio }} | {{ item.requestDate }}
+        </p>
+        <p class="font-normal m-0 text-xs text-end">{{ item.customer }}</p>
+      </div>
+      <h2 class="text-sm fw-semibold m-0 text-wrap mb-1">{{ item.title }}</h2>
+      <div class="d-flex flex-wrap mt-1">
+        <span
+          class="text-xs"
+          [class.text-red-500]="item.status === 0"
+          [class.text-blue-500]="item.status === 1"
+          [class.text-green-500]="item.status === 2"
+          [class.text-gray-500]="item.status === 4"
+        >
+          {{ item.status === 0 ? 'PENDIENTE' : item.status === 1 ? 'EN PROCESO'
+          : item.status === 2 ? 'CONCLUIDO' : item.status === 4 ? 'CANCELADO' :
+          '' }}
+        </span>
+      </div>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-item
+            *ngIf="canChangeCustomer()"
+            iconName="sync-outline"
+            label="Corregir Cliente"
+            (clicked)="reasignarCliente.emit(item)"
+            []="true"
+          />
+          <ili-button-item
+            iconName="clipboard-outline"
+            label="Seguimiento"
+            (clicked)="seguimiento.emit({ ticketId: item.id, title: 'Seguimiento' })"
+            []="true"
+          />
+          <ili-button-item
+            iconName="refresh-outline"
+            label="Status"
+            (clicked)="updateStatus.emit({ id: item.id })"
+            []="true"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

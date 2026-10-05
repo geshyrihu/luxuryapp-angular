@@ -1,0 +1,147 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table custom-table-fixed card"
+>
+  <ng-template #caption>
+    <div class="d-flex align-items-center justify-content-between gap-2">
+      <lux-table-caption
+        (add)="add.emit({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+        [dt]="dt"
+      />
+      <iw-button-download
+        lxTooltip="Excel"
+        tooltipPosition="top"
+        (clicked)="exportExcel.emit()"
+        lxTooltip="Descargar Excel para PowerPoint"
+        tooltipPosition="bottom"
+      />
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <label class="fw-semibold text-sm text-body-secondary text-nowrap"
+          >Filtrar por cliente:</label
+        >
+        <custom-input-select-signal
+          [data]="cbCustomer()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="-- Todos los clientes --"
+          [showClear]="true"
+          (selectionChange)="customerFilter.emit($event.value)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-8" />
+      <col class="table-col-12" />
+      <col class="table-col-8" />
+      <col class="table-col-30" />
+      <col class="table-col-12" />
+      <col class="table-col-10" />
+      <col class="table-col-10" />
+      <col class="table-col-3" />
+      <col class="table-col-5" />
+      <col class="table-col-2" />
+    </colgroup>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-8">FOLIO</th>
+      <th class="table-col-12" appSortableColumn="requestDate">
+        FECHA SOLICITUD
+        <app-sorticon field="requestDate" />
+      </th>
+      <th class="table-col-8" appSortableColumn="customer">
+        CLIENTE
+        <app-sorticon field="customer" />
+      </th>
+      <th class="table-col-30">ASUNTO</th>
+      <th class="table-col-12">RESPONSABLE</th>
+      <th class="table-col-10" appSortableColumn="status">
+        ESTATUS
+        <app-sorticon field="status" />
+      </th>
+      <th class="table-col-10">FECHA CONCLUSIÓN</th>
+      <th class="table-col-3">DÍAS</th>
+      <th colspan="2" class="table-col-7">SEGUIMIENTO</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.requestDate }}</td>
+      <td>
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ item.customer }}</span>
+          <button
+            *ngIf="canChangeCustomer()"
+            (click)="reasignarCliente.emit(item)"
+            class="p-link text-primary ms-2"
+            lxTooltip="Corregir Cliente"
+          >
+            <app-icon icon="material-symbols-light:edit-square" />
+          </button>
+        </div>
+      </td>
+      <td>
+        {{ item.title }}
+        <br />
+        <span>{{ item.description }}</span>
+      </td>
+      <td>
+        <app-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
+        item.assignee }}
+      </td>
+      <td class="text-center">
+        <lux-tag
+          (click)="updateStatus.emit({ id: item.id })"
+          class="p-2 cursor-pointer"
+          lxTooltip="Actualizar estatus"
+          [severity]="
+            item.status === 0 ? 'danger' :
+            item.status === 1 ? 'info' :
+            item.status === 2 ? 'success' :
+            item.status === 4 ? 'secondary' : 'warn'
+          "
+          [value]="
+            item.status === 0 ? 'PENDIENTE' :
+            item.status === 1 ? 'EN PROCESO' :
+            item.status === 2 ? 'CONCLUIDO' :
+            item.status === 4 ? 'CANCELADO' : 'OTRO'
+          "
+        />
+      </td>
+      <td>{{ item.completionDate }}</td>
+      <td class="text-center">{{ item.diferenciaDias }}</td>
+      <td class="text-center">
+        <iw-button-tracking
+          [ticketId]="item.id"
+          [badgeCount]="item.tracking"
+          (clickTracking)="seguimiento.emit($event)"
+        />
+      </td>
+      <td class="no-print">
+        <div class="d-flex justify-content-center">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'EDITAR TICKET LEGAL' })"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="10" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

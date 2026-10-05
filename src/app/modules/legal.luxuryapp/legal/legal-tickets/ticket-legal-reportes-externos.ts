@@ -9,39 +9,30 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { TicketLegalReportesExternosDesktop } from "./desktop/ticket-legal-reportes-externos-desktop";
+import { TicketLegalReportesExternosMobile } from "./mobile/ticket-legal-reportes-externos-mobile";
+
 @Component({
   selector: "app-ticket-legal-reportes-externos",
   templateUrl: "./ticket-legal-reportes-externos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    ApiDatePipe,
-    AppTable,
-    AppIcon,
-    DataViewMobile,
-    LxEmptyState,
     PageTitleReport,
-    LuxTableCaption,
     TaskDateRangeSelector,
-    MobileListItem,
-    LxTag,
+    TicketLegalReportesExternosDesktop,
+    TicketLegalReportesExternosMobile,
   ],
 })
 export class TicketLegalReportesExternos implements OnInit {
   apiResponseS = inject(ApiResponseService);
   datePipe = inject(DatePipe);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   // Declaración e inicialización de variables con signals
   reportData = signal<any>(null);

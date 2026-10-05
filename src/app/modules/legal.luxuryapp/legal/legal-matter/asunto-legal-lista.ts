@@ -12,56 +12,24 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { AsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/asunto-legal-form";
 import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/categoria-asunto-legal-form";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { AsuntoLegalListaDesktop } from "./desktop/asunto-legal-lista-desktop";
+import { AsuntoLegalListaMobile } from "./mobile/asunto-legal-lista-mobile";
 
 @Component({
   selector: "app-asunto-legal-lista",
   templateUrl: "./asunto-legal-lista.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    NgbTooltipModule,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    ActionMenu,
-    LuxTableCaption,
-    DataViewMobile,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-  ],
+  imports: [AsuntoLegalListaDesktop, AsuntoLegalListaMobile],
 })
 export class AsuntoLegalLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  platformS = inject(PlatformService);
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
   // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
