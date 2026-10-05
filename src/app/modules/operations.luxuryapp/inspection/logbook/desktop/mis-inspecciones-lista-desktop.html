@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="container-fluid p-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="text-title-md m-0">
+        Inspecciones para:
+        <small class="text-body-sm">
+          <em>{{ dateSelectControl().value | apiDate : "EEEE dd-MMM-yyyy" }}</em>
+        </small>
+      </h4>
+    </div>
+    <!-- Bindeo bidireccional -->
+    <div class="w-full md:w-6">
+      <custom-input-date-signal
+        [control]="dateSelectControl()"
+        mode="single"
+        dateFormat="Y-m-d"
+        altFormat="l d-M-Y"
+        (change)="dateChange.emit($event)"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <lux-table [value]="data()" class="custom-table">
+    <ng-template #header>
+      <tr>
+        <th>Estado</th>
+        <th>Inspección</th>
+        <th>Departamento</th>
+        <th>Frecuencia</th>
+        <th class="table-col-10"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          @if (item.isRealized) {
+          <app-icon [icon]="'material-symbols-light:check'" />
+          Realizada } @else {
+          <app-icon [icon]="'material-symbols-light:close'" />
+          Pendiente }
+        </td>
+        <td>{{ item.nameInspection }}</td>
+        <td>{{ item.departament }}</td>
+        <td>{{ item.frequency }}</td>
+        <td>
+          <div class="d-flex">
+            @if (item.isRealized) {
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              ngbTooltip="Ver resultado"
+              (click)="resultado.emit(item.id)"
+            >
+              <app-icon [icon]="'material-symbols-light:book'"></app-icon>
+            </button>
+            }
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              ngbTooltip="Inspeccionar"
+              (click)="inspeccionar.emit(item.id)"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:chevron-right'"
+              ></app-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="5" />
+    </ng-template>
+  </lux-table>
+</div>

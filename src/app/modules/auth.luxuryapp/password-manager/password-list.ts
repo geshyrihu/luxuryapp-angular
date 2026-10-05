@@ -6,32 +6,14 @@ import {
   signal,
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ButtonWeb } from "@ui/buttons/web";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { PasswordForm } from "./password-form";
+import { PasswordListDesktop } from "./desktop/password-list-desktop";
+import { PasswordListMobile } from "./mobile/password-list-mobile";
 
 interface PasswordTablePageEvent {
   first: number;
@@ -43,42 +25,18 @@ interface PasswordTablePageEvent {
   selector: "app-password-list",
   templateUrl: "./password-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileActionMenu,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileListItem,
-    ApiDatePipe,
-    AppIcon,
-    ButtonWeb,
-    LxTooltipDirective,
-  ],
+  imports: [PasswordListDesktop, PasswordListMobile],
 })
 export class PasswordList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   data = signal<CredentialDetailDto[]>([]);
   totalRecords = signal(0);
   loading = signal(false);
 
-  rows = tableRows();
-  rowsPerPage = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
-
   lastLoadEvent: PasswordTablePageEvent | null = null;
-
-  private visiblePasswords = new Set<string>();
 
   ngOnInit(): void {}
 
@@ -109,7 +67,6 @@ export class PasswordList implements OnInit {
       Endpoints.PasswordManager.Credentials.delete(id),
     );
     if (success && this.lastLoadEvent) {
-      this.visiblePasswords.delete(id);
       this.loadData(this.lastLoadEvent);
     }
   }
@@ -124,38 +81,6 @@ export class PasswordList implements OnInit {
 
     if (result && this.lastLoadEvent) {
       this.loadData(this.lastLoadEvent);
-    }
-  }
-
-  isPasswordVisible(id: string): boolean {
-    return this.visiblePasswords.has(id);
-  }
-
-  togglePasswordVisibility(id: string): void {
-    if (this.visiblePasswords.has(id)) {
-      this.visiblePasswords.delete(id);
-    } else {
-      this.visiblePasswords.add(id);
-    }
-  }
-
-  getPasswordDisplay(id: string, password: string): string {
-    return this.isPasswordVisible(id) ? password : "••••••••";
-  }
-
-  async copyPassword(password: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(password);
-    } catch {
-      // Fallback: crear textarea temporal
-      const textarea = document.createElement("textarea");
-      textarea.value = password;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
     }
   }
 }

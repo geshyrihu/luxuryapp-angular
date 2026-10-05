@@ -14,44 +14,23 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { ContractsPoliciesDesktop } from "./desktop/contracts-policies-desktop";
+import { ContractsPoliciesMobile } from "./mobile/contracts-policies-mobile";
 
 @Component({
   selector: "app-contracts-policies",
   templateUrl: "./contracts-policies.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    DataViewMobile,
-    MobileListItem,
-    MobileActionMenu,
-    MobileButtonLabelViewPdf,
-    WebButtonIconViewPdf,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ContractsPoliciesDesktop, ContractsPoliciesMobile],
 })
 export class ContractsPolicies {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

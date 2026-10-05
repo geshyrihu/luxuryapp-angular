@@ -1,0 +1,57 @@
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+  [isGrouped]="true"
+  [groupedData]="data()"
+>
+  <div customFilters>
+    @if (showDepartmentFilter()) {
+    <div class="d-flex flex-wrap gap-1 p-2">
+      @for (item of departamentos(); track item) {
+      <ili-button-item
+        [iconClass]="item.value == selectedDepartamento() ? 'material-symbols-light:check' : ''"
+        [label]="item.value"
+        (clicked)="departamentoChange.emit(item.value)"
+      />
+      }
+    </div>
+    }
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-body-secondary">
+        {{ item.observaciones }} · {{ item.estatus === 1 ? 'Activo' : 'Inactivo'
+        }}
+      </p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          @if (item.archivo && item.superviso === '') {
+          <ili-button-item
+            iconClass="material-symbols-light:check"
+            label="Validar"
+            (clicked)="validar.emit(item.id)"
+          />
+          } @if (item.archivo && item.superviso !== '') {
+          <ili-button-item
+            iconClass="material-symbols-light:arrow-back"
+            label="Revocar"
+            (clicked)="invalidar.emit(item.id)"
+          />
+          } @if (item.archivo !== '') {
+          <ili-button-delete
+            label="Eliminar archivo"
+            (confirmed)="deleteFile.emit(item.id)"
+          />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

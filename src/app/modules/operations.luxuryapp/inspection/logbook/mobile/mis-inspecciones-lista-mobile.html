@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="container-fluid p-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="text-title-md m-0">
+        Inspecciones para:
+        <small class="text-body-sm">
+          <em>{{ dateSelectControl().value | apiDate : "EEEE dd-MMM-yyyy" }}</em>
+        </small>
+      </h4>
+    </div>
+    <!-- Bindeo bidireccional -->
+    <div class="w-full md:w-6">
+      <custom-input-date-signal
+        [control]="dateSelectControl()"
+        mode="single"
+        dateFormat="Y-m-d"
+        altFormat="l d-M-Y"
+        (change)="dateChange.emit($event)"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <app-data-view-mobile
+    [data]="data()"
+    [showAdd]="false"
+    [globalFilterFields]="['nameInspection', 'departament', 'frequency']"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item>
+        <div
+          start
+          class="d-flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
+        >
+          <app-icon
+            icon="material-symbols-light:manage-search"
+            class="text-xl text-primary-700"
+          />
+        </div>
+
+        <div class="d-flex flex-column gap-2 flex-grow-1">
+          <div class="d-flex align-items-center gap-2">
+            @if (item.isRealized) {
+            <app-icon
+              [icon]="'material-symbols-light:check-circle'"
+              class="text-success-600"
+            />
+            } @else {
+            <app-icon
+              [icon]="'material-symbols-light:error-outline'"
+              class="text-danger-600"
+            />
+            }
+            <h2 class="text-title-md m-0 text-on-surface">
+              {{ item.nameInspection }}
+            </h2>
+          </div>
+          <p class="text-body-sm text-on-surface-secondary m-0">
+            {{ item.departament }}
+          </p>
+          <p class="text-body-sm text-on-surface-secondary m-0">
+            Frecuencia: {{ item.frequency }}
+          </p>
+        </div>
+
+        <ili-action-menu slot="end">
+          <ng-container actions>
+            @if (item.isRealized) {
+            <ili-button-item
+              label="Ver resultado"
+              iconName="book-outline"
+              (clicked)="resultado.emit(item.id)"
+            />
+            }
+            <ili-button-item
+              label="Inspeccionar"
+              iconName="chevron-forward-outline"
+              (clicked)="inspeccionar.emit(item.id)"
+            />
+          </ng-container>
+        </ili-action-menu>
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

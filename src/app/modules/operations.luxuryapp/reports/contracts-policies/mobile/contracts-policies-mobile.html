@@ -1,0 +1,20 @@
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <p class="fw-semibold m-0 text-body">{{ item.description }}</p>
+      <p class="text-xs m-0 text-body-secondary">
+        {{ item.provider }} · {{ item.endDate }}
+      </p>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-view-pdf [url]="item.path" fileName="Poliza | Contrato" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

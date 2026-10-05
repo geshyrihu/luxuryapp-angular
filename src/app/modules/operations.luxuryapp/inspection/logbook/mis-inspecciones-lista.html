@@ -1,142 +1,17 @@
-<div class="card">
-  <div class="container-fluid p-4">
-    <!-- Encabezado -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h4 class="text-title-md m-0">
-        Inspecciones para:
-        <small class="text-body-sm">
-          <em>{{ dateSelectControl.value | apiDate : "EEEE dd-MMM-yyyy" }}</em>
-        </small>
-      </h4>
-    </div>
-    <!-- Bindeo bidireccional -->
-    <div class="w-full md:w-6">
-      <custom-input-date-signal
-        [control]="dateSelectControl"
-        mode="single"
-        dateFormat="Y-m-d"
-        altFormat="l d-M-Y"
-        (change)="onDateChange($event)"
-        [horizontal]="false"
-      />
-    </div>
-  </div>
-  @if (dataSignal()) {
-  <h5 class="text-title-md text-on-surface-secondary px-4 pb-2">{{ area }}</h5>
-
-  <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <div class="d-none d-md-block">
-    <lux-table [value]="dataSignal()" class="custom-table">
-      <ng-template #header>
-        <tr>
-          <th>Estado</th>
-          <th>Inspección</th>
-          <th>Departamento</th>
-          <th>Frecuencia</th>
-          <th class="table-col-10"></th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr>
-          <td>
-            @if (item.isRealized) {
-            <app-icon [icon]="'material-symbols-light:check'" />
-            Realizada } @else {
-            <app-icon [icon]="'material-symbols-light:close'" />
-            Pendiente }
-          </td>
-          <td>{{ item.nameInspection }}</td>
-          <td>{{ item.departament }}</td>
-          <td>{{ item.frequency }}</td>
-          <td>
-            <div class="d-flex">
-              @if (item.isRealized) {
-              <a
-                [routerLink]="ROUTES.INSPECCIONES.RESULTADO(item.id)"
-                class="btn btn-secondary btn-sm"
-                ngbTooltip="Ver resultado"
-                ><app-icon [icon]="'material-symbols-light:book'"></app-icon
-              ></a>
-              }
-              <a
-                [routerLink]="ROUTES.BITACORAS.MI_INSPECCION(item.id)"
-                class="btn btn-secondary btn-sm"
-                ngbTooltip="Inspeccionar"
-                ><app-icon
-                  [icon]="'material-symbols-light:chevron-right'"
-                ></app-icon
-              ></a>
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="5" />
-      </ng-template>
-    </lux-table>
-  </div>
-
-  <!--📲INICIO: Componente adaptado para versión móvil -->
-  <app-data-view-mobile
-    [data]="dataSignal()"
-    [showAdd]="false"
-    [globalFilterFields]="['nameInspection', 'departament', 'frequency']"
-  >
-    <ng-template #listItemTemplate let-item>
-      <ili-list-item>
-        <div
-          start
-          class="d-flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
-        >
-          <app-icon
-            icon="material-symbols-light:manage-search"
-            class="text-xl text-primary-700"
-          />
-        </div>
-
-        <div class="d-flex flex-column gap-2 flex-grow-1">
-          <div class="d-flex align-items-center gap-2">
-            @if (item.isRealized) {
-            <app-icon
-              [icon]="'material-symbols-light:check-circle'"
-              class="text-success-600"
-            />
-            } @else {
-            <app-icon
-              [icon]="'material-symbols-light:error-outline'"
-              class="text-danger-600"
-            />
-            }
-            <h2 class="text-title-md m-0 text-on-surface">
-              {{ item.nameInspection }}
-            </h2>
-          </div>
-          <p class="text-body-sm text-on-surface-secondary m-0">
-            {{ item.departament }}
-          </p>
-          <p class="text-body-sm text-on-surface-secondary m-0">
-            Frecuencia: {{ item.frequency }}
-          </p>
-        </div>
-
-        <ili-action-menu slot="end">
-          <ng-container actions>
-            @if (item.isRealized) {
-            <ili-button-item
-              label="Ver resultado"
-              iconName="book-outline"
-              (clicked)="navigateToResultado(item.id)"
-            />
-            }
-            <ili-button-item
-              label="Inspeccionar"
-              iconName="chevron-forward-outline"
-              (clicked)="navigateToMiInspeccion(item.id)"
-            />
-          </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
-    </ng-template>
-  </app-data-view-mobile>
-  }
-</div>
+@if (platformS.isMobile()) {
+<app-mis-inspecciones-lista-mobile
+  [data]="dataSignal()"
+  [dateSelectControl]="dateSelectControl"
+  (dateChange)="onDateChange($event)"
+  (resultado)="navigateToResultado($event)"
+  (inspeccionar)="navigateToMiInspeccion($event)"
+/>
+} @else {
+<app-mis-inspecciones-lista-desktop
+  [data]="dataSignal()"
+  [dateSelectControl]="dateSelectControl"
+  (dateChange)="onDateChange($event)"
+  (resultado)="navigateToResultado($event)"
+  (inspeccionar)="navigateToMiInspeccion($event)"
+/>
+}

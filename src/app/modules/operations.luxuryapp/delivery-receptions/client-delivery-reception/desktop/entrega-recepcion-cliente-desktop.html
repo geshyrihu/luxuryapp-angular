@@ -1,0 +1,126 @@
+@if (showDepartmentFilter()) { @for (item of departamentos(); track item) {
+<il-button
+  styleClass=" mb-1"
+  [label]="item.value"
+  [severity]="item.value == selectedDepartamento() ? 'primary' : 'info'"
+  [variant]="item.value == selectedDepartamento() ? 'outline' : 'soft'"
+  (clicked)="departamentoChange.emit(item.value)"
+/>
+}
+<hr />
+}
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="data()"
+  #dt
+  groupRowsBy="grupo"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit()"
+      [showAdd]="false"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-4">ID</th>
+      <th class="table-col-6">ESTATUS</th>
+      <th class="table-col-30">DESCRIPCIÓN</th>
+      <th class="table-col-25">OBSERVACION</th>
+      <th class="table-col-9">ARCHIVO</th>
+      <th class="table-col-9">SUBIO</th>
+      <th class="table-col-9">SUPERVISO</th>
+      <th class="table-col-8">ACTUALIZAR</th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-customer>
+    <tr>
+      <td colspan="5">
+        <span class="fw-bold ms-2">{{ customer.grupo }}</span>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>
+        <span> {{ item.folioId }} </span>
+      </td>
+      <td class="text-center">
+        <span
+          class="badge p-1"
+          [class.bg-danger]="item.estatus === 0"
+          [class.bg-success]="item.estatus === 1"
+        >
+          @if (item.estatus === 0) {
+          <app-icon
+            [icon]="'material-symbols-light:close'"
+            class="icon icon-"
+          />
+          } @if (item.estatus === 1) {
+          <app-icon
+            [icon]="'material-symbols-light:check'"
+            class="icon icon-"
+          />
+          }
+        </span>
+      </td>
+      <td>
+        <span> {{ item.descripcion }} </span>
+      </td>
+      <td>
+        <span> {{ item.observaciones }} </span>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center">
+          @if (item.archivo) {
+          <iw-button-view-pdf
+            [url]="item.archivo"
+            fileName="Entrega | Recepción"
+          />
+          }
+        </div>
+      </td>
+      <td>
+        <span class="truncate">{{ item.cargo }}</span>
+        <span>{{ item.fechaCarga }}</span>
+      </td>
+      <td>
+        <span class="truncate">{{ item.superviso }}</span>
+        <span>{{ item.fechaSupervision }}</span>
+      </td>
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <il-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            @if (item.archivo && item.superviso === "") {
+            <il-button-item
+              iconClass="material-symbols-light:check"
+              label="Validar"
+              (clicked)="validar.emit(item.id)"
+            />
+            } @if (item.archivo && item.superviso !== "") {
+            <il-button-item
+              iconClass="material-symbols-light:arrow-back"
+              label="Revocar"
+              (clicked)="invalidar.emit(item.id)"
+            />
+            } @if (item.archivo !== "") {
+            <il-button-delete
+              label="Eliminar archivo"
+              (confirmed)="deleteFile.emit(item.id)"
+            />
+            }
+          </ng-container>
+        </app-action-menu>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+</lux-table>

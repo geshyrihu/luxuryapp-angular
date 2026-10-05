@@ -1,85 +1,13 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="d-none d-md-block"></div>
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption [showAdd]="false" />
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th>#</th>
-      <th appSortableColumn="provider">
-        Proveedor
-        <app-sorticon field="provider" />
-      </th>
-      <th appSortableColumn="description">
-        DESCRIPCIÓN
-        <app-sorticon field="description" />
-      </th>
-      <th appSortableColumn="startDateFilter">
-        Fecha Contratación
-        <app-sorticon field="startDateFilter" />
-      </th>
-      <th appSortableColumn="endDateFilter">
-        Fecha de Término
-        <app-sorticon field="endDateFilter" />
-      </th>
-      <th>Documento</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-i="rowIndex">
-    <tr>
-      <td>{{ i + 1 }}</td>
-      <td>{{ item.provider }}</td>
-      <td>{{ item.description }}</td>
-      <td>{{ item.startDate }}</td>
-      <td class="text-center">
-        <span
-          class="badge p-2 w-75"
-          [class.bg-danger-subtle]="isCloseToEndDate(item.endDateFilter)"
-          [class.text-danger]="isCloseToEndDate(item.endDateFilter)"
-          [class.bg-success-subtle]="!isCloseToEndDate(item.endDateFilter)"
-          [class.text-success]="!isCloseToEndDate(item.endDateFilter)"
-        >
-          {{ item.endDate }}
-        </span>
-      </td>
-      <td class="text-center">
-        <iw-button-view-pdf [url]="item.path" fileName="Poliza | Contrato" />
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!-- 📱 MOBILE -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-contracts-policies-mobile
   [data]="dataSignal()"
-  [showAdd]="false"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <p class="fw-semibold m-0 text-body">{{ item.description }}</p>
-      <p class="text-xs m-0 text-body-secondary">
-        {{ item.provider }} · {{ item.endDate }}
-      </p>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-view-pdf [url]="item.path" fileName="Poliza | Contrato" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+/>
+} @else {
+<app-contracts-policies-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [scrollHeight]="scrollHeight()"
+  [isCloseToEndDate]="isCloseToEndDate"
+/>
+}

@@ -12,57 +12,22 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PlatformService } from "@core/services/platform.service";
 import { EntregaRecepcionClienteForm } from "src/app/modules/operations.luxuryapp/delivery-receptions/delivery-reception/entrega-recepcion-cliente-form";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { EntregaRecepcionClienteListaDesktop } from "./desktop/entrega-recepcion-cliente-desktop";
+import { EntregaRecepcionClienteListaMobile } from "./mobile/entrega-recepcion-cliente-mobile";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonLabelEdit,
-    AppIcon,
-    WebButtonIconViewPdf,
-    TableEmptyMessage,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
-    AppTable,
-
-    WebButtonLabel,
-    ActionMenu,
-    LuxTableCaption,
-    DataViewMobile,
-    MobileListItem,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [EntregaRecepcionClienteListaDesktop, EntregaRecepcionClienteListaMobile],
 })
 export class EntregaRecepcionClienteLista {
   // --- INYECCIONES (sin cambios) ---
@@ -73,6 +38,7 @@ export class EntregaRecepcionClienteLista {
   route = inject(Router);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
   data = signal<any[]>([]);
   loading = signal(true);
   // óMEJORA! El departamento ahora es un signal.
@@ -80,8 +46,9 @@ export class EntregaRecepcionClienteLista {
 
   // --- PROPIEDADES ESTÁTICAS (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly isJefeMantenimiento = this.aspRoleS.roleSignal(
+    ApplicationRole.JefeMantenimiento,
+  );
   cb_departamento = [
     { value: "JURIDICO" },
     { value: "ADMINISTRACIÓN Y FINANZAS" },
@@ -120,7 +87,7 @@ export class EntregaRecepcionClienteLista {
 
   // óMEJORA! Este mótodo ahora es sóper simple. Solo actualiza el signal.
   // El effect se encargaré de llamar a onLoadData.
-  onChangDepartamento(departamento: string): void {
+  onChangeDepartamento(departamento: string): void {
     this.departamento.set(departamento);
   }
 
