@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **51** |
-| ⏳ Pendiente | **130** |
+| ✅ Refactorizado | **58** |
+| ⏳ Pendiente | **123** |
 | ⛔ Omitido / no candidato | **28** |
 | **Total** | **209** |
 
@@ -145,13 +145,13 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 115 | `maintenance-planning/maintenance-calendar-master/calendario-maestro-lista.html` | maintenance | · | ✅ | · |  |
 | 116 | `maintenance-planning/master-equipment-calendar/calendario-maestro-equipo.html` | maintenance | · | ✅ | · |  |
 | 117 | `maintenance-reports/maintenance-reports-list.html` | maintenance | · | ✅ | · |  |
-| 118 | `maintenance-ticket-catalogs/asset-catalog-list/catalogo-activo-lista.html` | maintenance | · | ✅ | · |  |
-| 119 | `maintenance-ticket-catalogs/delivery-reception-catalog/catalogo-descripcion-list.html` | maintenance | · | ✅ | · |  |
-| 120 | `maintenance-ticket-catalogs/inspection-revision-catalog/catalogo-revisiones-inspeccion.html` | maintenance | · | ✅ | · |  |
-| 121 | `maintenance-ticket-catalogs/machinery-classification/machinery-classification-list.html` | maintenance | · | ✅ | · |  |
-| 122 | `maintenance-ticket-catalogs/meter-category/meter-category-list.html` | maintenance | · | ✅ | · |  |
-| 123 | `maintenance-ticket-catalogs/product-category/product-category-list.html` | maintenance | · | ✅ | · |  |
-| 124 | `maintenance-ticket-catalogs/task-group-category-list/task-group-category-list.html` | maintenance | · | ✅ | · |  |
+| 118 | `maintenance-ticket-catalogs/asset-catalog-list` | maintenance | ✅ | · | · |  |
+| 119 | `maintenance-ticket-catalogs/delivery-reception-catalog` | maintenance | ✅ | · | · |  |
+| 120 | `maintenance-ticket-catalogs/inspection-revision-catalog` | maintenance | ✅ | · | · |  |
+| 121 | `maintenance-ticket-catalogs/machinery-classification` | maintenance | ✅ | · | · |  |
+| 122 | `maintenance-ticket-catalogs/meter-category` | maintenance | ✅ | · | · |  |
+| 123 | `maintenance-ticket-catalogs/product-category` | maintenance | ✅ | · | · |  |
+| 124 | `maintenance-ticket-catalogs/task-group-category-list` | maintenance | ✅ | · | · |  |
 | 125 | `monthly-meetings/meeting-minutes/resumen-minuta.html` | management | · | ✅ | · |  |
 | 126 | `monthly-meetings/meeting-minutes/seguimiento-minutas.html` | management | · | ✅ | · |  |
 | 127 | `monthly-meetings/presentation/presentacion-junta-comite-contador.html` | management | · | ✅ | · |  |
