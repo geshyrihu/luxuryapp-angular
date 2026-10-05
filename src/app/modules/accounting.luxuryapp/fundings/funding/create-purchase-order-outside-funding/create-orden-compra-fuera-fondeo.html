@@ -33,8 +33,14 @@
     placeholder="Indicar por qué el pago no puede seguir el proceso normal de fondeo"
   />
 
-  <il-button-save
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
     [disabled]="form.invalid || !providerId()"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>

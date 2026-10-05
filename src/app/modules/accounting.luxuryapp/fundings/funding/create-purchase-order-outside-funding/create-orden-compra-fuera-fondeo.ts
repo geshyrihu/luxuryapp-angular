@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -45,7 +45,7 @@ const tipoGastoLabels: { [key: number]: string } = {
     InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class CreateOrdenCompraFueraFondeo implements OnInit {
