@@ -2,7 +2,7 @@ import { AppIcon as AppIconCatalog } from "../../primitives/app-icon/app-icon.ca
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../primitives/app-icon/app-icon";
-import { BaseButton } from "../base/base-button";
+import { BaseButton, type ButtonDisplayMode } from "../base/base-button";
 
 @Component({
   selector: "il-button-edit",
@@ -17,15 +17,21 @@ import { BaseButton } from "../base/base-button";
       [lxTooltip]="tooltipText()"
       [tooltipPosition]="tooltipPosition()"
       [tooltipDisabled]="!tooltipText()"
+      [attr.aria-label]="ariaLabel() || title() || label() || 'Editar'"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" />
-      <span>{{ label() || "Editar" }}</span>
+      @if (displayMode() !== "label") {
+        <app-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" />
+      }
+      @if (displayMode() !== "icon") {
+        <span>{{ label() || "Editar" }}</span>
+      }
     </button>
   `,
 })
 export class WebButtonLabelEdit extends BaseButton {
   protected readonly IconCatalog = AppIconCatalog;
+  override displayMode = input<ButtonDisplayMode>("both");
   override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
     "soft",
   );

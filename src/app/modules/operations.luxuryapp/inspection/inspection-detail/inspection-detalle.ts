@@ -63,7 +63,7 @@ import { InspectionEdit } from "../models/inspection.model";
       } @else if (inspection()) {
         <div class="d-none d-md-block">
           <lux-card>
-            <div class="d-flex justify-between items-start mb-6">
+            <div class="d-flex justify-content-between align-items-start gap-3 mb-6">
               <div>
                 <h1 class="text-3xl fw-bold mb-1">{{ inspection().name }}</h1>
                 <p class="text-sm text-body-secondary m-0 mb-3">
@@ -112,8 +112,18 @@ import { InspectionEdit } from "../models/inspection.model";
                 </div>
               </div>
               <div class="d-flex gap-2">
-                <il-button-edit (clicked)="onEdit()" label="Editar" />
-                <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
+                <il-button-edit
+                  (clicked)="onEdit()"
+                  label="Editar"
+                  displayMode="icon"
+                  size="sm"
+                />
+                <il-button-delete
+                  (confirmed)="onDelete()"
+                  label="Eliminar"
+                  displayMode="icon"
+                  size="sm"
+                />
               </div>
             </div>
           </lux-card>
@@ -127,6 +137,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 <il-button
                   iconClass="material-symbols-light:add-circle"
                   label="Agregar Equipo"
+                  size="sm"
                   (clicked)="onAddEquipment()"
                 />
               }
@@ -160,10 +171,12 @@ import { InspectionEdit } from "../models/inspection.model";
                         <ng-container actions>
                           <il-button-edit
                             label="Editar"
+                            size="sm"
                             (clicked)="onEditEquipment(item)"
                           />
                           <il-button-delete
                             label="Eliminar"
+                            size="sm"
                             (confirmed)="
                               onDeleteArea(item.inspectionCondominiumAssetId)
                             "
@@ -190,6 +203,8 @@ import { InspectionEdit } from "../models/inspection.model";
                           </div>
                           <il-button-delete
                             label="Eliminar"
+                            displayMode="icon"
+                            size="sm"
                             (confirmed)="
                               onDeleteReview(
                                 review.id,
@@ -221,6 +236,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 <il-button
                   label="Agregar el primer equipo"
                   iconClass="material-symbols-light:add-circle"
+                  size="sm"
                   (clicked)="onAddEquipment()"
                 />
               </div>
@@ -278,8 +294,18 @@ import { InspectionEdit } from "../models/inspection.model";
                 </div>
               </div>
               <div class="d-flex gap-2 flex-wrap">
-                <il-button-edit (clicked)="onEdit()" label="Editar" />
-                <il-button-delete (confirmed)="onDelete()" label="Eliminar" />
+                <il-button-edit
+                  (clicked)="onEdit()"
+                  label="Editar"
+                  displayMode="icon"
+                  size="sm"
+                />
+                <il-button-delete
+                  (confirmed)="onDelete()"
+                  label="Eliminar"
+                  displayMode="icon"
+                  size="sm"
+                />
               </div>
             </div>
           </lux-card>
@@ -293,6 +319,7 @@ import { InspectionEdit } from "../models/inspection.model";
                   <il-button
                     iconClass="material-symbols-light:add-circle"
                     label="Agregar Equipo"
+                    size="sm"
                     (clicked)="onAddEquipment()"
                   />
                 }
@@ -316,7 +343,9 @@ import { InspectionEdit } from "../models/inspection.model";
                           {{ item.name | uppercase }}
                         </h3>
                       </div>
-                      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <div
+                        class="d-flex align-items-center gap-2 flex-shrink-0"
+                      >
                         <app-tag
                           [value]="(item.reviews?.length ?? 0) + ' criterios'"
                           severity="secondary"
@@ -356,6 +385,8 @@ import { InspectionEdit } from "../models/inspection.model";
                             </div>
                             <il-button-delete
                               label="Eliminar"
+                              displayMode="icon"
+                              size="sm"
                               (confirmed)="
                                 onDeleteReview(
                                   review.id,
@@ -387,6 +418,7 @@ import { InspectionEdit } from "../models/inspection.model";
                   <il-button
                     label="Agregar el primer equipo"
                     iconClass="material-symbols-light:add-circle"
+                    size="sm"
                     (clicked)="onAddEquipment()"
                   />
                 </div>

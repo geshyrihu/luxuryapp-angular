@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../primitives/app-icon/app-icon";
-import { BaseButton } from "../base/base-button";
+import { BaseButton, type ButtonDisplayMode } from "../base/base-button";
 import { ConfirmService } from "../shared/confirm.service";
 
 @Component({
@@ -24,10 +24,15 @@ import { ConfirmService } from "../shared/confirm.service";
       [lxTooltip]="tooltipText()"
       [tooltipPosition]="tooltipPosition()"
       [tooltipDisabled]="!tooltipText()"
+      [attr.aria-label]="ariaLabel() || title() || label() || 'Eliminar'"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
-      <span>{{ label() || "Eliminar" }}</span>
+      @if (displayMode() !== "label") {
+        <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
+      }
+      @if (displayMode() !== "icon") {
+        <span>{{ label() || "Eliminar" }}</span>
+      }
     </button>
   `,
 })
@@ -37,6 +42,7 @@ export class WebButtonLabelDelete extends BaseButton {
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");
   confirmed = output<void>();
 
+  override displayMode = input<ButtonDisplayMode>("both");
   override variant = input<"solid" | "outline" | "soft" | "text" | "link">(
     "soft",
   );
