@@ -1,0 +1,97 @@
+<!-- Mobile View -->
+<app-data-view-mobile [data]="data()" [showAdd]="false">
+  <div customFilters>
+    <div class="d-flex flex-wrap gap-1 p-2">
+      <il-button
+        label="Pendientes"
+        [severity]="statusFiltro() == 0 ? 'primary' : 'info'"
+        [variant]="statusFiltro() != 0 ? 'text' : null"
+        size="sm"
+        (clicked)="filtrar.emit(0)"
+      />
+      <il-button
+        label="Concluidos"
+        [severity]="statusFiltro() == 1 ? 'primary' : 'info'"
+        [variant]="statusFiltro() != 1 ? 'text' : null"
+        size="sm"
+        (clicked)="filtrar.emit(1)"
+      />
+      <il-button
+        label="No Autorizados"
+        [severity]="statusFiltro() == 2 ? 'primary' : 'info'"
+        [variant]="statusFiltro() != 2 ? 'text' : null"
+        size="sm"
+        (clicked)="filtrar.emit(2)"
+      />
+      <il-button
+        label="Todos"
+        [severity]="statusFiltro() == 4 ? 'primary' : 'info'"
+        [variant]="statusFiltro() != 4 ? 'text' : null"
+        size="sm"
+        (clicked)="filtrar.emit(4)"
+      />
+    </div>
+  </div>
+
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:timeline"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="fw-bold">{{ item.areaResponsable }}</h2>
+      <p class="text-sm text-body-secondary">
+        {{ item.fechaSolicitud }} {{ item.titulo }}
+      </p>
+      <div
+        class="text-sm text-body-secondary my-1"
+        [innerHTML]="item.pendiente | sanitizeHtml"
+      ></div>
+      <p class="text-sm">
+        <lux-tag
+          [severity]="
+              item.status == 0
+                ? 'danger'
+                : item.status == 1
+                ? 'success'
+                : 'secondary'
+            "
+          [value]="
+              item.status == 0
+                ? 'Pendiente'
+                : item.status == 1
+                ? 'Concluido'
+                : 'No Autorizado'
+            "
+          class="text-xs"
+        />
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            label="Ver seguimientos"
+            iconName="list-outline"
+            (clicked)="todosSeguimientos.emit(item.id)"
+          />
+          <ili-button-item
+            label="Agregar Seguimiento"
+            iconName="add-circle-outline"
+            (clicked)="addSeguimiento.emit(item.id)"
+          />
+          <ili-button-item
+            label="Editar"
+            iconName="create-outline"
+            (clicked)="edit.emit({ id: item.id, header: 'Editar Asunto' })"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

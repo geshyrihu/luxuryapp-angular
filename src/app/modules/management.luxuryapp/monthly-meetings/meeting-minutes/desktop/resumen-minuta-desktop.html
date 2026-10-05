@@ -1,0 +1,200 @@
+<div class="fadein resumen-minuta-page">
+  <!-- 🏛️ CABECERA EJECUTIVA -->
+  <div
+    class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-4 mb-5 g-4"
+  >
+    <div class="d-flex align-items-center gap-3">
+      <div
+        class="rounded-xl bg-primary shadow d-flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:schedule'"
+          class="text-white text-3xl"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl fw-bold m-0 text-body tracking-tight">
+          Resumen de Minutas de Comité
+        </h2>
+        <p class="text-body-secondary m-0 mt-1 text-lg">
+          Control de compromisos, acuerdos y seguimiento de requerimientos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📊 CONTENIDO PRINCIPAL -->
+  @if (data()) {
+  <div class="card shadow-sm rounded-xl overflow-hidden p-0 border-0">
+    <lux-table
+      #dt
+      [value]="data()"
+      [rows]="tableRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [paginator]="true"
+      [loading]="loading()"
+      [globalFilterFields]="['title', 'requestService']"
+      class="resumen-minuta-table p-datatable-sm p-datatable-gridlines font-sm border-0"
+      size="small"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+    >
+      <ng-template #colgroup>
+        <col class="resumen-minuta-col-request" />
+        <col class="resumen-minuta-col-followup" />
+        <col class="resumen-minuta-col-status" />
+      </ng-template>
+
+      <!-- CAPTION PERSONALIZADO -->
+      <ng-template #caption>
+        <div
+          class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-bg-body-tertiary border-bottom-1 border g-4"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <app-icon
+              [icon]="'material-symbols-light:fact-check'"
+              class="text-primary text-xl"
+            />
+            <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
+          </div>
+          <lux-table-caption [showAdd]="false" [dt]="dt" />
+        </div>
+      </ng-template>
+
+      <!-- CABECERA DE TABLA -->
+      <ng-template #header>
+        <tr class="text-sm text-uppercase text-body bg-bg-body-tertiary">
+          <th appSortableColumn="title" class="ps-4 py-3">
+            <div class="d-flex align-items-center">
+              Requerimiento <app-sorticon field="title" />
+            </div>
+          </th>
+          <th class="py-3">
+            <div class="d-flex align-items-center">
+              <app-icon
+                [icon]="'material-symbols-light:history'"
+                class="me-2"
+              />
+              Último Seguimiento
+            </div>
+          </th>
+          <th appSortableColumn="status" class="text-center pe-4 py-3">
+            <div class="d-flex align-items-center justify-content-center">
+              Estatus <app-sorticon field="status" />
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+
+      <!-- CUERPO DE TABLA -->
+      <ng-template #body let-item>
+        <tr
+          class="transition-all hover:bg-bg-body-tertiary border-bottom-1 border"
+        >
+          <!-- Columna: Requerimiento -->
+          <td class="vertical-align-top py-4 ps-4">
+            <div class="d-flex flex-column gap-2">
+              <span
+                class="resumen-minuta-title fw-bold text-body line-height-2 tracking-tight"
+              >
+                {{ item.title | uppercase }}
+              </span>
+              <div
+                class="resumen-minuta-request-service text-body-secondary line-height-3"
+                [innerHTML]="item.requestService | sanitizeHtml"
+              ></div>
+            </div>
+          </td>
+
+          <!-- Columna: Seguimiento -->
+          <td class="vertical-align-top py-4">
+            @if (item.meetingDetailsFollowUps &&
+            item.meetingDetailsFollowUps.length > 0) {
+            <div
+              class="resumen-minuta-followup d-flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
+            >
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-2">
+                  <app-icon
+                    [icon]="'material-symbols-light:event-available'"
+                    class="text-primary text-xs"
+                  />
+                  <span class="fw-bold text-xs text-primary-700 text-uppercase">
+                    {{ item.meetingDetailsFollowUps[0].fecha | apiDate:
+                    'mediumDate' }}
+                  </span>
+                </div>
+              </div>
+              <div
+                class="resumen-minuta-followup-text text-body line-height-2 italic relative ps-3 border-left-2 border-primary-200"
+                [lxTooltip]="item.meetingDetailsFollowUps[0].seguimiento"
+                tooltipPosition="top"
+              >
+                "{{ item.meetingDetailsFollowUps[0].seguimiento }}"
+              </div>
+            </div>
+            } @else {
+            <div
+              class="d-flex align-items-center justify-content-center gap-2 text-body-secondary italic py-3 opacity-60"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:forum-outline'"
+                class="text-xl"
+              />
+              <span>Sin seguimiento registrado</span>
+            </div>
+            }
+          </td>
+
+          <!-- Columna: Estatus -->
+          <td class="text-center vertical-align-top py-4 pe-4">
+            <div class="d-flex flex-column align-items-center gap-3">
+              <lux-tag
+                [value]="getSeverityText(item.status)"
+                [severity]="getSeverity(item.status)"
+                [rounded]="true"
+                class="resumen-minuta-status-tag px-3 py-1 fw-bold shadow-sm"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- MENSAJE SIN DATOS -->
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="3" class="text-center p-5 bg-bg-body-tertiary">
+            <div class="d-flex flex-column align-items-center gap-4 py-4">
+              <div
+                class="rounded-circle bg-bg-body-tertiary p-5 d-flex align-items-center justify-content-center shadow-sm"
+              >
+                <app-icon
+                  [icon]="'material-symbols-light:task-alt'"
+                  class="text-7xl text-primary opacity-50"
+                />
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <span class="fw-bold text-2xl text-body"
+                  >¡Agenda Despejada!</span
+                >
+                <span class="text-body-secondary text-lg"
+                  >No hay minutas pendientes de revisión en este momento.</span
+                >
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- FOOTER / PAGINADOR -->
+      <ng-template #paginatorleft>
+        <div class="d-flex align-items-center gap-3 py-2">
+          <lux-table-footer [data]="data()" />
+        </div>
+      </ng-template>
+    </lux-table>
+  </div>
+  }
+</div>

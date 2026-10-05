@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,39 +19,16 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
+import { PresentacionJuntaComiteDesktop } from "./desktop/presentacion-junta-comite-desktop";
+import { PresentacionJuntaComiteMobile } from "./mobile/presentacion-junta-comite-mobile";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({
   selector: "app-presentacion-junta-comite",
   templateUrl: "./presentacion-junta-comite.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    CommonModule,
-    WebButtonLabel,
-    NgbTooltipModule,
-    LxTag,
-    LxFieldset,
-    DataViewMobile,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelConfirm,
-    WebButtonLabelViewPdf,
-    WebButtonLabelConfirm,
-    WebButtonLabelViewPdf,
-    AppIcon,
-  ],
+  imports: [PresentacionJuntaComiteDesktop, PresentacionJuntaComiteMobile],
 })
 export class PresentacionJuntaComite {
   apiResponseS = inject(ApiResponseService);
@@ -63,6 +39,7 @@ export class PresentacionJuntaComite {
   customToastS = inject(CustomToastService);
   dateS = inject(DateService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
 
   ref: DynamicDialogRef;
   applicationUserId: string =

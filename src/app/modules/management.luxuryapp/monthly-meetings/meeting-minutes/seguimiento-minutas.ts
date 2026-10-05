@@ -1,5 +1,4 @@
 import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pending-minutes/cont-minuta-seguimientos";
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,53 +20,18 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { SeguimientoMinutasDesktop } from "./desktop/seguimiento-minutas-desktop";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "./minuta-detalle-form";
+import { SeguimientoMinutasMobile } from "./mobile/seguimiento-minutas-mobile";
 
 @Component({
   selector: "app-seguimiento-minutas",
   templateUrl: "./seguimiento-minutas.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    WebButtonLabelItem,
-    CommonModule,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    WebButtonLabel,
-    LuxTableCaption,
-    TableFooter,
-    ActionMenu,
-    SanitizeHtmlPipe,
-    DataViewMobile,
-    LxTag,
-    AppIcon,
-    MobileListItem,
-  ],
+  imports: [SeguimientoMinutasDesktop, SeguimientoMinutasMobile],
 })
 export class SeguimientoMinuta {
   apiResponseS = inject(ApiResponseService);
@@ -75,6 +39,7 @@ export class SeguimientoMinuta {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));

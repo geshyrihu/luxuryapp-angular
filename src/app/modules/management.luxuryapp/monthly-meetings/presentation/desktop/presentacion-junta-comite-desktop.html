@@ -1,0 +1,377 @@
+<div class="d-flex flex-column gap-3">
+  <!-- Header Section -->
+  <div
+    class="card p-3 shadow-sm rounded-xl bg-body d-flex justify-content-between align-items-center border-left-3 border-blue-500"
+  >
+    <div class="d-flex align-items-center gap-3">
+      <div
+        class="p-3 rounded-circle bg-blue-50 text-blue-600 d-flex align-items-center justify-content-center"
+      >
+        <app-icon icon="material-symbols-light:co-present" class="text-2xl" />
+      </div>
+      <div>
+        <h5 class="m-0 fw-bold text-body">Presentaciones de Junta</h5>
+        <span class="text-body-secondary text-sm"
+          >Gestión centralizada de documentos y validaciones</span
+        >
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <il-button
+        variant="outline"
+        iconClass="material-symbols-light:add"
+        label="NUEVA PRESENTACIÓN"
+        size="sm"
+        (clicked)="add.emit()"
+      />
+    </div>
+  </div>
+
+  <!-- Rows Container (Full Width Row-Cards) -->
+  <div class="d-flex flex-column gap-3">
+    @for (item of data(); track item.id) {
+    <div
+      class="card p-0 shadow-sm rounded-xl bg-body overflow-hidden border-left-3 transition-all hover:shadow-sm"
+      [style.border-left-color]="item.archivoFinal ? 'var(--ds-success)' : 'var(--ds-primary)'"
+    >
+      <!-- Row Header (Status & Periods) -->
+      <div
+        class="p-3 bg-gray-50 border-bottom-1 border d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center gap-5">
+          <div class="d-flex flex-column">
+            <span
+              class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              >Periodo</span
+            >
+            <span class="fw-bold text-body text-lg text-uppercase"
+              >{{ item.fechaCorrespondiente }}</span
+            >
+          </div>
+          <div class="d-flex flex-column">
+            <span
+              class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              >Fecha de Junta</span
+            >
+            <div class="d-flex align-items-center gap-2 text-body">
+              <app-icon
+                icon="material-symbols-light:calendar-clock"
+                class="text-blue-500"
+              />
+              <span class="fw-medium"
+                >{{ item.fechaJunta }} {{ item.horaJunta }}</span
+              >
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <span
+              class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
+              >Enviado Comité</span
+            >
+            <div class="d-flex align-items-center gap-2">
+              <lux-tag
+                [value]="item.enviadoComite ? 'Sí' : 'NO'"
+                [severity]="item.enviadoComite ? 'success' : 'warning'"
+                class="text-xs"
+              />
+              @if (item.enviadoComite) {
+              <app-icon
+                icon="material-symbols-light:check-circle"
+                class="text-green-500"
+              />
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 align-items-center">
+          @if (item.archivoFinal) {
+          <div
+            class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg fw-bold border-1 border-green-100"
+          >
+            <app-icon icon="material-symbols-light:lock" />
+            <span>VERSIÓN FINAL</span>
+          </div>
+          } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
+          AspRole.SuperUsuario])()) {
+          <div class="d-flex gap-1 bg-white p-1 rounded-lg shadow-sm">
+            <il-button-edit
+              (clicked)="edit.emit(item.id)"
+              variant="text"
+              size="sm"
+            />
+            <il-button-delete
+              (confirmed)="deleteItem.emit(item.id)"
+              variant="text"
+              size="sm"
+            />
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- Row Body (Sections as Columns) -->
+      <div class="p-3">
+        <div class="row align-items-center g-4">
+          <!-- Portada Section -->
+          <div class="col-12 col-md-3 border-right-1 border">
+            <div class="d-flex align-items-center gap-3">
+              <div class="p-2 rounded bg-blue-50 text-blue-500">
+                <app-icon
+                  icon="material-symbols-light:filter-frames"
+                  class="text-2xl"
+                />
+              </div>
+              <div class="d-flex flex-column flex-grow-1">
+                <span class="fw-bold text-body text-sm">PORTADA</span>
+                @if (item.archivoPortada) {
+                <div class="d-flex flex-column gap-1">
+                  <il-button-view-pdf
+                    [url]="item.archivoPortada"
+                    fileName="Portada"
+                    size="sm"
+                    variant="text"
+                    label="Ver archivo"
+                  />
+                  <div class="d-flex flex-column">
+                    <small class="text-body-secondary fw-medium"
+                      >Por: {{ item.applicationUserPortada }}</small
+                    >
+                    <small class="text-body-secondary"
+                      >{{ item.fechaCargaPortada }}</small
+                    >
+                  </div>
+                </div>
+                } @else if (!item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Administrador,
+                AspRole.SuperUsuario])()) {
+                <il-button
+                  iconClass="material-symbols-light:upload"
+                  label="Cargar"
+                  variant="outline"
+                  size="sm"
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Portada' })"
+                />
+                } @else {
+                <span class="text-body-secondary italic text-sm"
+                  >Sin carga</span
+                >
+                }
+              </div>
+              @if (item.archivoPortada && !item.archivoFinal &&
+              aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
+              <il-button-delete
+                (confirmed)="deleteFile.emit({ id: item.id, area: 'Portada' })"
+                size="sm"
+                variant="text"
+              />
+              }
+            </div>
+          </div>
+
+          <!-- Contabilidad Section -->
+          <div class="col-12 col-md-3 border-right-1 border px-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="p-2 rounded bg-cyan-50 text-cyan-500">
+                <app-icon
+                  icon="material-symbols-light:area-chart"
+                  class="text-2xl"
+                />
+              </div>
+              <div class="d-flex flex-column flex-grow-1">
+                <span class="fw-bold text-body text-sm">CONTABILIDAD</span>
+                @if (item.archivoContable) {
+                <div class="d-flex flex-column gap-1">
+                  <il-button-view-pdf
+                    [url]="item.archivoContable"
+                    fileName="Contabilidad"
+                    size="sm"
+                    variant="text"
+                    label="Ver archivo"
+                    severity="info"
+                  />
+                  <div class="d-flex flex-column">
+                    <small class="text-body-secondary fw-medium"
+                      >Por: {{ item.applicationUserContable }}</small
+                    >
+                    <small class="text-body-secondary"
+                      >{{ item.fechaCargaContable }}</small
+                    >
+                  </div>
+                </div>
+                } @else if (!item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
+                <il-button
+                  iconClass="material-symbols-light:upload"
+                  label="Cargar"
+                  variant="outline"
+                  severity="info"
+                  size="sm"
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
+                />
+                } @else {
+                <span class="text-body-secondary italic text-sm"
+                  >Sin carga</span
+                >
+                }
+              </div>
+              @if (item.archivoContable && !item.archivoFinal &&
+              aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
+              <il-button-delete
+                (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
+                size="sm"
+                variant="text"
+              />
+              }
+            </div>
+          </div>
+
+          <!-- Operaciones Section -->
+          <div class="col-12 col-md-3 border-right-1 border px-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="p-2 rounded bg-orange-50 text-orange-500">
+                <app-icon
+                  icon="material-symbols-light:settings-overscan"
+                  class="text-2xl"
+                />
+              </div>
+              <div class="d-flex flex-column flex-grow-1">
+                <span class="fw-bold text-body text-sm">OPERACIONES</span>
+                @if (item.archivoJunta) {
+                <div class="d-flex flex-column gap-1">
+                  <il-button-view-pdf
+                    [url]="item.archivoJunta"
+                    fileName="Operaciones"
+                    size="sm"
+                    variant="text"
+                    label="Ver archivo"
+                    severity="warning"
+                  />
+                  <div class="d-flex flex-column">
+                    <small class="text-body-secondary fw-medium"
+                      >Por: {{ item.applicationUser }}</small
+                    >
+                    <small class="text-body-secondary"
+                      >{{ item.fechaCarga }}</small
+                    >
+                  </div>
+                </div>
+                } @else if (!item.archivoFinal &&
+                aspRoleS.anyOf([AspRole.Administrador,
+                AspRole.SuperUsuario])()) {
+                <il-button
+                  iconClass="material-symbols-light:upload"
+                  label="Cargar"
+                  variant="outline"
+                  severity="warning"
+                  size="sm"
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Operaciones' })"
+                />
+                } @else {
+                <span class="text-body-secondary italic text-sm"
+                  >Sin carga</span
+                >
+                }
+              </div>
+              @if (item.archivoJunta && !item.archivoFinal &&
+              aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
+              <il-button-delete
+                (confirmed)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
+                size="sm"
+                variant="text"
+              />
+              }
+            </div>
+          </div>
+
+          <!-- Validation/Final Section -->
+          <div class="col-12 col-md-3 ps-4">
+            @if (item.archivoFinal) {
+            <div class="d-flex flex-column gap-1">
+              <il-button-view-pdf
+                [url]="item.archivoFinal"
+                fileName="Presentacion_Final"
+                label="DESCARGAR FINAL"
+                severity="success"
+                [fluid]="true"
+                iconClass="material-symbols-light:workspace-premium"
+                customClass="justify-content-start px-3"
+              />
+              <div
+                class="d-flex align-items-center justify-content-between mt-1"
+              >
+                <div class="d-flex flex-column">
+                  <small class="text-body-secondary fw-medium"
+                    >Validé: {{ item.applicationUserSupervisor }}</small
+                  >
+                  <small class="text-body-secondary"
+                    >{{ item.fechaCargaSupervisor }}</small
+                  >
+                </div>
+                @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+                <il-button-delete
+                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Final' })"
+                  size="sm"
+                  variant="text"
+                />
+                }
+              </div>
+            </div>
+            } @else if (aspRoleS.anyOf([AspRole.SupervisionOperativa,
+            AspRole.SuperUsuario])() && item.archivoPortada &&
+            item.archivoContable && item.archivoJunta) {
+            <div class="d-flex flex-column gap-2">
+              <il-button-confirm
+                iconClass="material-symbols-light:send"
+                label="ENVIAR COMITÉ"
+                [fluid]="true"
+                swalTitle="óEnviar presentación?"
+                swalText="Se notificaré a todos los miembros."
+                swalConfirmButtonText="Sí, enviar"
+                customClass="justify-content-start px-3"
+                (confirmed)="validar.emit(item.id)"
+              />
+              <il-button-confirm
+                iconClass="material-symbols-light:check"
+                label="VALIDAR"
+                [fluid]="true"
+                severity="secondary"
+                swalTitle="óValidar sin enviar?"
+                swalText="Se generaré la versión final sin enviar correos."
+                customClass="justify-content-start px-3"
+                (confirmed)="onlyValidate.emit(item.id)"
+              />
+            </div>
+            } @else {
+            <div
+              class="p-2 rounded bg-gray-50 text-center border-1 border-dashed border-300"
+            >
+              <span class="text-body-secondary text-xs fw-bold"
+                >CARGAS PENDIENTES</span
+              >
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div
+      class="card p-5 shadow-sm rounded-xl bg-body d-flex flex-column align-items-center justify-content-center text-center gap-3"
+    >
+      <app-icon
+        icon="material-symbols-light:manage-search"
+        class="text-6xl text-body-secondary"
+      />
+      <div>
+        <h6 class="m-0 fw-bold text-body">
+          No hay presentaciones registradas
+        </h6>
+        <p class="text-body-secondary">
+          Las presentaciones se vinculan a las sesiones de junta mensuales.
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+</div>

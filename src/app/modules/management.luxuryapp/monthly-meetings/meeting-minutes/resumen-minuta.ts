@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,42 +15,18 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import { PlatformService } from "@core/services/platform.service";
 import { ReportService } from "@core/services/report.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { ResumenMinutaDesktop } from "./desktop/resumen-minuta-desktop";
+import { ResumenMinutaMobile } from "./mobile/resumen-minuta-mobile";
 
 @Component({
   selector: "app-resumen-minuta",
   templateUrl: "./resumen-minuta.html",
   styleUrl: "./resumen-minuta.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    DataViewMobile,
-    // ResumenMinutaGrafico,
-    CommonModule,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    SanitizeHtmlPipe,
-    LxTag,
-    LxTooltipDirective,
-    LuxTableCaption,
-    TableFooter,
-    AppIcon,
-  ],
+  imports: [ResumenMinutaDesktop, ResumenMinutaMobile],
 })
 export class ResumenMinuta implements OnInit {
   reportService = inject(ReportService);
@@ -59,6 +34,7 @@ export class ResumenMinuta implements OnInit {
   dateS = inject(DateService);
   activatedRoute = inject(ActivatedRoute);
   tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));

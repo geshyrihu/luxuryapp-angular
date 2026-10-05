@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,18 +19,9 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
+import { PresentacionJuntaComiteContadorDesktop } from "./desktop/presentacion-junta-comite-contador-desktop";
+import { PresentacionJuntaComiteContadorMobile } from "./mobile/presentacion-junta-comite-contador-mobile";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({
@@ -39,18 +29,8 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
   templateUrl: "./presentacion-junta-comite-contador.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
-    WebButtonLabel,
-    NgbTooltipModule,
-    LxTag,
-    LxFieldset,
-    DataViewMobile,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonLabelViewPdf,
-    WebButtonLabelConfirm,
-    WebButtonLabelViewPdf,
-    AppIcon,
+    PresentacionJuntaComiteContadorDesktop,
+    PresentacionJuntaComiteContadorMobile,
   ],
 })
 export class PresentacionJuntaComiteContador {
@@ -62,6 +42,7 @@ export class PresentacionJuntaComiteContador {
   customToastS = inject(CustomToastService);
   dateS = inject(DateService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
 
   ref: DynamicDialogRef;
   applicationUserId: string =

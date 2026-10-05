@@ -1,0 +1,224 @@
+<div class="mb-3 p-3 rounded bg-blue-50 text-body text-sm">
+  La presentacion ya no se crea directamente aqui. Primero registra la agenda
+  de la junta para generar la sesión mensual y la presentación relacionada.
+</div>
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <div class="card p-3 mb-2 border-1 border shadow-sm rounded-xl">
+      <!-- Header -->
+      <div class="border-bottom-1 border pb-2 mb-2">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <h6 class="m-0 fw-bold text-body text-uppercase">
+              PERIODO: {{ item.fechaCorrespondiente | uppercase }}
+            </h6>
+            <small class="text-body-secondary d-block mt-1"
+              >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
+              item.horaJunta ? ", HORA: " + item.horaJunta : "" }}</small
+            >
+          </div>
+          @if ( aspRoleS.anyOf([AspRole.Administrador,
+          AspRole.SuperUsuario])() && !item.archivoFinal ) {
+          <div class="d-flex gap-1">
+            <il-button-edit (clicked)="edit.emit(item.id)" />
+            <il-button-delete (confirmed)="deleteItem.emit(item.id)" />
+          </div>
+          }
+        </div>
+        <lux-tag
+          [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
+          [severity]="item.enviadoComite ? 'success' : 'warning'"
+          class="text-xs"
+        />
+      </div>
+
+      <!-- Body -->
+      <div class="row g-4">
+        <!-- Portada -->
+        <div class="col-12 col-sm-6">
+          <lux-fieldset
+            legend="Portada"
+            [toggleable]="true"
+            [collapsed]="true"
+            class="mb-2"
+          >
+            @if ( !item.archivoPortada &&
+            aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])() ) {
+            <il-button
+              label="Cargar archivo"
+              iconClass="material-symbols-light:upload"
+              size="sm"
+              [fluid]="true"
+              (clicked)="upload.emit({ id: item.id, titulo: 'Portada' })"
+            />
+            } @else if (item.archivoPortada) {
+            <div class="d-flex justify-content-between align-items-center">
+              <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
+              @if ( aspRoleS.anyOf([ AspRole.Administrador,
+              AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+              <div class="d-flex gap-1">
+                <il-button-edit
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Portada' })"
+                />
+                <il-button-delete
+                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Portada' })"
+                />
+              </div>
+              }
+            </div>
+            <p class="m-0 text-xs text-body-secondary mt-2">
+              {{ item.applicationUserPortada }} - {{ item.fechaCargaPortada }}
+            </p>
+            } @else {
+            <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
+            }
+          </lux-fieldset>
+        </div>
+
+        <!-- Contable -->
+        <div class="col-12 col-sm-6">
+          <lux-fieldset
+            legend="Contable"
+            [toggleable]="true"
+            [collapsed]="true"
+            class="mb-2"
+          >
+            @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
+            AspRole.SuperUsuario])() ) {
+            <il-button
+              label="Cargar archivo"
+              iconClass="material-symbols-light:upload"
+              size="sm"
+              [fluid]="true"
+              (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
+            />
+            } @else if (item.archivoContable) {
+            <div class="d-flex justify-content-between align-items-center">
+              <il-button-view-pdf
+                [url]="item.archivoContable"
+                pdf="Contabilidad"
+              />
+              @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
+              && !item.archivoFinal && !item.applicationUserSupervisorContable
+              ) {
+              <div class="d-flex gap-1">
+                <il-button-edit
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
+                />
+                <il-button-delete
+                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
+                />
+              </div>
+              }
+            </div>
+            <p class="m-0 text-xs text-body-secondary mt-2">
+              {{ item.applicationUserContable }} - {{ item.fechaCargaContable
+              }}
+            </p>
+            } @else {
+            <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
+            }
+          </lux-fieldset>
+        </div>
+
+        <!-- Operaciones -->
+        <div class="col-12 col-sm-6">
+          <lux-fieldset
+            legend="Operaciones"
+            [toggleable]="true"
+            [collapsed]="true"
+            class="mb-2"
+          >
+            @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])() ) {
+            <il-button
+              label="Cargar archivo"
+              iconClass="material-symbols-light:upload"
+              size="sm"
+              [fluid]="true"
+              (clicked)="upload.emit({ id: item.id, titulo: 'Operaciones' })"
+            />
+            } @else if (item.archivoJunta) {
+            <div class="d-flex justify-content-between align-items-center">
+              <il-button-view-pdf
+                [url]="item.archivoJunta"
+                pdf="Operaciones"
+              />
+              @if ( aspRoleS.anyOf([ AspRole.Administrador,
+              AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+              <div class="d-flex gap-1">
+                <il-button-edit
+                  (clicked)="upload.emit({ id: item.id, titulo: 'Operaciones' })"
+                />
+                <il-button-delete
+                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
+                />
+              </div>
+              }
+            </div>
+            <p class="m-0 text-xs text-body-secondary mt-2">
+              {{ item.applicationUser }} - {{ item.fechaCarga }}
+            </p>
+            } @else {
+            <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
+            }
+          </lux-fieldset>
+        </div>
+
+        <!-- Final -->
+        <div class="col-12 col-sm-6">
+          <lux-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+            @if ( !item.archivoFinal && aspRoleS.anyOf([
+            AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
+            item.archivoPortada && item.archivoContable && item.archivoJunta )
+            {
+            <div class="d-flex flex-column gap-2">
+              <il-button-confirm
+                icon="material-symbols-light:send"
+                label="Validar y enviar a comite"
+                swalTitle="óEnviar presentación?"
+                swalText="La presentación seré enviada al Comité."
+                swalConfirmButtonText="Sí, enviar"
+                swalIcon="warning"
+                (confirmed)="validar.emit(item.id)"
+                customClass="w-100"
+              />
+              <il-button-confirm
+                icon="material-symbols-light:check-circle"
+                label="Solo validar"
+                swalTitle="óValidar presentación?"
+                swalText="Confirmo que la presentación es correcta y se crearé versión final."
+                swalConfirmButtonText="Sí, esté correcta, validar"
+                swalIcon="info"
+                (confirmed)="onlyValidate.emit(item.id)"
+                customClass="w-full btn-secondary"
+              />
+            </div>
+            } @else if (item.archivoFinal) {
+            <div class="d-flex justify-content-between align-items-center">
+              <il-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
+              @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+              <il-button-delete
+                (confirmed)="deleteFile.emit({ id: item.id, area: 'Final' })"
+              />
+              }
+            </div>
+            <p class="m-0 text-xs text-body-secondary mt-2">
+              {{ item.applicationUserSupervisor }} - {{
+              item.fechaCargaSupervisor }}
+            </p>
+            } @else {
+            <p class="text-body-secondary text-sm italic m-0">
+              Sin archivo o faltan documentos
+            </p>
+            }
+          </lux-fieldset>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</app-data-view-mobile>
