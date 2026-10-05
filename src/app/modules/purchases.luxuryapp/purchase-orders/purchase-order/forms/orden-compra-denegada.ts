@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -30,7 +30,7 @@ export interface IOrdenCompraDenegadaForm {
   selector: "app-orden-compra-denegada",
   templateUrl: "./orden-compra-denegada.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, ButtonWeb],
 })
 export class OrdenCompraDenegada implements OnInit {
   apiResponseS = inject(ApiResponseService);

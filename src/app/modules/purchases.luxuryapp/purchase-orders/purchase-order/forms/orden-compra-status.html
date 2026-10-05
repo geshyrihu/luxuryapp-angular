@@ -17,9 +17,14 @@
     />
 
     <div class="d-flex justify-content-end mt-4">
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         [disabled]="form.invalid"
-        [submitting]="submitting()"
+        [loading]="submitting()"
         label="Guardar Cambios de Estatus"
       />
     </div>

@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -43,7 +43,7 @@ export interface IOrdenCompraStatusForm {
     ReactiveFormsModule,
     CustomInputCheckSignal,
     CustomInputTextSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class OrdenCompraStatus implements OnInit {
