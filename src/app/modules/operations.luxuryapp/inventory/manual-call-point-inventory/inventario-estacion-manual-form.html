@@ -35,9 +35,14 @@
         description="MCP = Estación Manual de Llamada (Manual Call Point) · Zona (2 dígitos) · Número de equipo (3 dígitos)"
       />
 
-      <il-button-save
-        [propertyId]="id"
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        [label]="id ? 'Actualizar' : 'Guardar'"
         [disabled]="form.invalid"
-        [submitting]="submitting()"
+        [loading]="submitting()"
       />
   </form>

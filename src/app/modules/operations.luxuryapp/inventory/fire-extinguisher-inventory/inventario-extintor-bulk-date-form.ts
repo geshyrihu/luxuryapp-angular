@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -26,7 +26,7 @@ interface IBulkDateForm {
   selector: "app-inventario-extintor-bulk-date-form",
   templateUrl: "./inventario-extintor-bulk-date-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputDateSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, ButtonWeb],
 })
 export class InventarioExtintorBulkDateForm {
   apiResponseS = inject(ApiResponseService);
