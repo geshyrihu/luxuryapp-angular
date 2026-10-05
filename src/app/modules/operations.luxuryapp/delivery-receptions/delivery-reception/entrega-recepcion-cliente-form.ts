@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -35,7 +35,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EntregaRecepcionClienteForm implements OnInit {

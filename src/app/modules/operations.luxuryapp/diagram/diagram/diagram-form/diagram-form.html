@@ -46,6 +46,14 @@
   </div>
 
   <div class="d-flex justify-content-end mt-4">
-    <il-button-save [loading]="submitting()" />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [loading]="submitting()"
+    />
   </div>
 </form>

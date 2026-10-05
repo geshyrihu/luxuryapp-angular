@@ -16,7 +16,7 @@ import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -43,7 +43,7 @@ interface SelectItem {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     LxListbox,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
