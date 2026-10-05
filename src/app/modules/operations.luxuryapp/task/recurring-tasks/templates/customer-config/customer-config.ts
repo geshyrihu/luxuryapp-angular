@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -26,7 +26,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     CustomInputSelectSignal,
     LxFieldset,
     CustomInputCheckSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class CustomerConfig implements OnInit {

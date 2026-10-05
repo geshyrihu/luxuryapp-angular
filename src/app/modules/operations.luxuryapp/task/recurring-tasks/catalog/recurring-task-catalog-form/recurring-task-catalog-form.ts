@@ -15,7 +15,7 @@ import {
   ValidatorFn,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -59,7 +59,7 @@ interface RecurringTaskCatalogFormGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputCheckSignal,
     CustomInputDatepicker,
     CustomInputNumberSignal,

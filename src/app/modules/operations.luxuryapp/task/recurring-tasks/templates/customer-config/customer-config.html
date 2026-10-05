@@ -37,9 +37,14 @@
       </lux-fieldset>
       }
       <div class="d-flex justify-content-end mt-4">
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="button"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           (clicked)="onSave()"
-          [submitting]="submitting()"
+          [loading]="submitting()"
           label="Guardar Configuración"
         />
       </div>
