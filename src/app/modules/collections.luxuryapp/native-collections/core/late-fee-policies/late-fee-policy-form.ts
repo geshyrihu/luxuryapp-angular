@@ -22,7 +22,7 @@ import {
   UpdateLateFeePolicyDTO,
 } from "../../interfaces/late-fee-policy.dto";
 
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -44,7 +44,7 @@ interface ILateFeePolicyForm {
     CustomInputDecimal,
     CustomInputSelectSignal,
     CustomInputCheckSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./late-fee-policy-form.html",

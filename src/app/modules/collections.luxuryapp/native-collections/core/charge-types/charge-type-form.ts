@@ -24,7 +24,7 @@ import {
   CreateChargeTypeCatalogDTO,
   UpdateChargeTypeCatalogDTO,
 } from "../../interfaces/charge-type-catalog.dto";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
@@ -40,7 +40,7 @@ interface IChargeTypeForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -33,7 +33,7 @@ import {
   EDiscountType,
   Recurrence,
 } from "../../interfaces/enums";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -69,7 +69,7 @@ interface IChargeTemplateForm {
     CustomInputCheckSignal,
     CustomInputDateSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
