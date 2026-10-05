@@ -1,0 +1,169 @@
+<lux-card>
+  <div class="mt-3">
+    <lux-table
+      #dt
+      [value]="groupedData()"
+      [loading]="loading()"
+      [lazy]="true"
+      (onPage)="pageChange.emit($event)"
+      [totalRecords]="totalRecords()"
+      [paginator]="true"
+      [rows]="rows()"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [globalFilterFields]="globalFilterFields()"
+      class="custom-table"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template #caption>
+        <div
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
+        >
+          <div class="flex-grow-1">
+            <lux-table-caption
+              [dt]="dt"
+              (search)="search.emit($event)"
+              [showAdd]="false"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
+          >
+            <div>
+              <custom-input-select-signal
+                [data]="operationOptions()"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Operación"
+                [control]="filterOperationControl()"
+                customClass="w-100"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div>
+              <custom-input-select-signal
+                [data]="entityOptions()"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Entidad"
+                [control]="filterEntityControl()"
+                customClass="w-100"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div>
+              <custom-input-date-signal
+                [control]="filterDateRangeControl()"
+                mode="range"
+                dateFormat="Y-m-d"
+                altFormat="d/m/Y"
+                placeholder="Rango de fecha"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="d-flex flex-shrink-0 gap-2">
+              <il-button
+                label="Buscar"
+                iconClass="material-symbols-light:search"
+                (clicked)="loadData.emit()"
+              />
+              <iw-button
+                iconClass="material-symbols-light:refresh"
+                variant="outline"
+                size="small"
+                (clicked)="loadData.emit()"
+              />
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th></th>
+          <th appSortableColumn="changedAt">
+            Fecha <app-sorticon field="changedAt" />
+          </th>
+          <th appSortableColumn="entityName">
+            Entidad <app-sorticon field="entityName" />
+          </th>
+          <th appSortableColumn="operationType">
+            Operación <app-sorticon field="operationType" />
+          </th>
+          <th appSortableColumn="userName">
+            Usuario <app-sorticon field="userName" />
+          </th>
+          <th>Detalle</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            @if (item.operationType === 'Update') {
+            <iw-button
+              iconClass="material-symbols-light:chevron-right"
+              variant="text"
+              size="sm"
+              (clicked)="toggleExpand.emit(item)"
+              [customClass]="item.expanded ? 'rotate-90' : ''"
+            />
+            }
+          </td>
+          <td>{{ item.changedAt | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>{{ item.entityName }}</td>
+          <td>
+            <lux-tag
+              [value]="item.operationType"
+              [severity]="getOperationSeverity(item.operationType)"
+            />
+          </td>
+          <td>{{ item.userName }}</td>
+          <td class="text-wrap max-w-400">
+            @if (item.operationType === 'Create') { Creación de registro }
+            <!-- Se deja comentario para ajustar el fi -->
+            @else if (item.operationType === 'Delete') { Eliminación de registro
+            } @else if (item.operationType === 'Update') { {{
+            getGroupItems(item.groupKey!).length }} campo(s) modificado(s) }
+          </td>
+        </tr>
+        @if (item.expanded && item.groupKey) {
+        <tr>
+          <td></td>
+          <td colspan="5" class="bg-body-tertiary p-3">
+            <lux-table
+              [value]="getGroupItems(item.groupKey!)"
+              class="custom-table nested-table"
+            >
+              <ng-template #header>
+                <tr>
+                  <th>Propiedad</th>
+                  <th>Valor Anterior</th>
+                  <th>Valor Nuevo</th>
+                </tr>
+              </ng-template>
+              <ng-template #body let-prop>
+                <tr>
+                  <td><strong>{{ prop.propertyName }}</strong></td>
+                  <td class="text-body-secondary">
+                    {{ prop.oldValue || '(vacío)' }}
+                  </td>
+                  <td class="text-primary">{{ prop.newValue || '(vacío)' }}</td>
+                </tr>
+              </ng-template>
+            </lux-table>
+          </td>
+        </tr>
+        }
+      </ng-template>
+      <ng-template #emptymessage>
+        <lux-table-empty-message [colspan]="6" />
+      </ng-template>
+    </lux-table>
+  </div>
+</lux-card>

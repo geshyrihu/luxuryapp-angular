@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/serv
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { FlatpickrDefaults } from 'angularx-flatpickr';
+import { PlatformService } from '@core/services/platform.service';
 import { LogApiReport } from './log-api-report';
 
 describe('LogApiReport', () => {
@@ -21,8 +22,11 @@ describe('LogApiReport', () => {
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
         { provide: FlatpickrDefaults, useValue: {} },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(LogApiReport, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(LogApiReport);
     component = fixture.componentInstance;

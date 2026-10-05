@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,56 +6,20 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { LogEntry } from "./interfaces/log-entry.interface";
+import { LogApiReportDesktop } from "./desktop/log-api-report-desktop";
+import { LogApiReportMobile } from "./mobile/log-api-report-mobile";
 
 @Component({
   selector: "app-log-api-report",
-  imports: [
-    TableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxCard,
-    LxTag,
-    WebButtonLabel,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    WebButtonIcon,
-    DataViewMobile,
-    MobileListItem,
-    LuxTableCaption,
-    AppIcon,
-  ],
+  imports: [LogApiReportDesktop, LogApiReportMobile],
   templateUrl: "./log-api-report.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["./log-api-report.scss"],
@@ -64,6 +27,7 @@ import { LogEntry } from "./interfaces/log-entry.interface";
 export class LogApiReport implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dateS = inject(DateService);
+  platformS = inject(PlatformService);
 
   data = signal<LogEntry[]>([]);
   loading = signal(true);
@@ -90,8 +54,6 @@ export class LogApiReport implements OnInit {
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   /**
    * Valida si el botón de búsqueda debe estar deshabilitado
@@ -196,23 +158,6 @@ export class LogApiReport implements OnInit {
     if (result) {
       this.data.set([]);
       this.totalRecords.set(0);
-    }
-  }
-
-  /**
-   * Obtiene la severidad del tag según el nivel del log
-   */
-  getLevelSeverity(level: string): "success" | "info" | "warn" | "danger" {
-    switch (level?.toLowerCase()) {
-      case "information":
-        return "info";
-      case "warning":
-        return "warn";
-      case "error":
-      case "critical":
-        return "danger";
-      default:
-        return "info";
     }
   }
 }

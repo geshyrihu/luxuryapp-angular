@@ -299,10 +299,15 @@
   </div>
 
   <div class="d-flex justify-content-end pt-4">
-    <il-button-save
-      [propertyId]="id() || ''"
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
       [disabled]="form.invalid || scheduleForm.invalid || !scheduleLoaded()"
-      [submitting]="submitting() || scheduleSaving()"
+      [loading]="submitting() || scheduleSaving()"
     />
   </div>
 </form>

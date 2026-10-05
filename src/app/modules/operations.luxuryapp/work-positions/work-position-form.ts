@@ -14,7 +14,7 @@ import {
 } from "@core/services/dialog-handler.service";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -82,7 +82,7 @@ const scheduleValidator: ValidatorFn = (control: AbstractControl): ValidationErr
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     LxMessage,
   ],
 })

@@ -23,7 +23,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -53,7 +53,7 @@ interface IPropiedadesForm {
     CustomInputTextSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class PropiedadesForm implements OnInit {

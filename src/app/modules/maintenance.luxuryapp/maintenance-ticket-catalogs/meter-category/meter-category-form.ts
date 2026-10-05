@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,7 +27,7 @@ import { MeterCategoryFormGroup } from "./interfaces/meter-category-form.interfa
   selector: "app-meter-category-form",
   templateUrl: "./meter-category-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
 })
 export class MeterCategoryForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -1,241 +1,27 @@
-<!-- Panel de Filtros -->
-<lux-card>
-  <!-- VISTA DE ESCRITORIO -->
-  <div class="d-none d-md-block mt-3">
-    <lux-table
-      #dt
-      [value]="data()"
-      [loading]="loading()"
-      [lazy]="true"
-      (onPage)="onPageChange($event)"
-      [totalRecords]="totalRecords()"
-      [paginator]="true"
-      [rows]="rows()"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [globalFilterFields]="globalFilterFields()"
-      class="custom-table"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      [showCurrentPageReport]="true"
-    >
-      <ng-template #caption>
-        <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
-        >
-          <div class="flex-grow-1">
-            <lux-table-caption
-              [dt]="dt"
-              (search)="onSearch($event)"
-              [showAdd]="false"
-              [noPadding]="true"
-              [noMargin]="true"
-            />
-          </div>
-          <div
-            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
-          >
-            <div>
-              <custom-input-select-signal
-                [data]="levelOptions"
-                optionLabel="label"
-                optionValue="value"
-                placeholder="Nivel"
-                [control]="filterLevelControl"
-                customClass="w-100"
-                [horizontal]="false"
-                [filter]="true"
-                [noMargin]="true"
-              />
-            </div>
-            <div>
-              <custom-input-date-signal
-                [control]="filterDateRangeControl"
-                mode="range"
-                dateFormat="Y-m-d"
-                altFormat="d/m/Y"
-                placeholder="Rango de fecha"
-                [horizontal]="false"
-                [noMargin]="true"
-              />
-            </div>
-            <div class="d-flex flex-shrink-0 gap-2">
-              <il-button
-                label="Buscar"
-                iconClass="material-symbols-light:search"
-                (clicked)="onLoadData(true)"
-                [disabled]="isSearchDisabled"
-              />
-              <iw-button
-                iconClass="material-symbols-light:refresh"
-                variant="outline"
-                size="small"
-                (clicked)="onLoadData(true)"
-              />
-              <iw-button
-                iconClass="material-symbols-light:delete-outline"
-                variant="outline"
-                size="small"
-                (clicked)="onDeleteAll()"
-              />
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th></th>
-          <th appSortableColumn="timestamp">
-            Fecha y Hora
-            <app-sorticon field="timestamp" />
-          </th>
-          <th appSortableColumn="level">
-            Nivel
-            <app-sorticon field="level" />
-          </th>
-          <th appSortableColumn="userName">
-            Usuario
-            <app-sorticon field="userName" />
-          </th>
-          <th>Mensaje</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <!-- Fila 1: Datos principales -->
-        <tr>
-          <td>
-            <iw-button
-              iconClass="material-symbols-light:chevron-right"
-              variant="text"
-              size="sm"
-              (clicked)="toggleExpand(item)"
-              [customClass]="item.expanded ? 'rotate-90' : ''"
-            />
-          </td>
-          <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
-          <td>
-            <lux-tag
-              [value]="item.level"
-              [severity]="getLevelSeverity(item.level)"
-            ></lux-tag>
-          </td>
-          <td>{{ item.userName || 'N/A' }}</td>
-          <td class="max-w-400 text-wrap">{{ item.message }}</td>
-        </tr>
-        <!-- Fila 2: Propiedades (solo si está expandido) -->
-        <tr [ngStyle]="{ display: item.expanded ? '' : 'none' }">
-          <td></td>
-          <td colspan="4" class="bg-body-tertiary p-3">
-            <div class="d-flex align-items-center mb-2">
-              <app-icon
-                [icon]="'material-symbols-light:info'"
-                class="text-primary"
-              />
-              <strong >Propiedades:</strong>
-            </div>
-            <pre class="text-xs bg-body p-3 rounded overflow-auto max-h-200">
-{{ item.properties }}</pre>
-          </td>
-        </tr>
-        <!-- Fila 3: Excepción (solo si está expandido y existe) -->
-        <tr
-          [ngStyle]="{ display: item.expanded && item.exception ? '' : 'none' }"
-        >
-          <td></td>
-          <td colspan="4" class="bg-red-50 p-3">
-            <div class="d-flex align-items-center mb-2">
-              <app-icon
-                [icon]="'material-symbols-light:warning'"
-                class="text-red-600"
-              />
-              <strong class="text-red-600">Excepción:</strong>
-            </div>
-            <pre
-              class="text-xs bg-body p-3 rounded border-1 border-red-200 overflow-auto max-h-300 text-red-700"
-            >
-{{ item.exception }}</pre>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="5" />
-      </ng-template>
-    </lux-table>
-  </div>
-
-  <!-- VISTA MóVIL -->
-  <div class="d-block d-md-none mt-3">
-    <app-data-view-mobile
-      [data]="data()"
-      [globalFilterFields]="globalFilterFields()"
-      (search)="onSearch($event)"
-      [showAdd]="false"
-    >
-      <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <lux-tag
-            slot="start"
-            [value]="item.level.charAt(0).toUpperCase()"
-            [severity]="getLevelSeverity(item.level)"
-          ></lux-tag>
-          <ion-label>
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
-              <p class="text-medium text-body-secondary m-0 text-sm">
-                <app-icon
-                  [icon]="'material-symbols-light:schedule'"
-                  class="me-1 text-xs"
-                />
-                {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
-              </p>
-            </div>
-
-            @if (item.userName) {
-            <p class="text-sm text-body-secondary m-0 mb-1">
-              <app-icon
-                [icon]="'material-symbols-light:person'"
-                class="me-1 text-xs"
-              />
-              {{ item.userName }}
-            </p>
-            }
-
-            <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
-
-            @if (item.properties) {
-            <div class="mb-2">
-              <span class="text-xs d-flex align-items-center gap-1 mb-1">
-                <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
-              </span>
-              <pre class="text-xs bg-light p-2 border-radius overflow-auto">
-{{ item.properties }}</pre>
-            </div>
-            } @if (item.exception) {
-            <div>
-              <span
-                class="text-xs text-danger d-flex align-items-center gap-1 mb-1"
-              >
-                <app-icon [icon]="'material-symbols-light:warning'" />
-                Excepción:
-              </span>
-              <pre
-                class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
-              >
-{{ item.exception }}</pre>
-            </div>
-            }
-          </ion-label>
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
-
-    @if (data().length < totalRecords()) {
-    <il-button
-      label="Cargar más"
-      severity="secondary"
-      [fluid]="true"
-      customClass="mt-3"
-      (clicked)="loadMore()"
-      [loading]="loading()"
-    />
-    }
-  </div>
-</lux-card>
+@if (platformS.isMobile()) {
+<app-log-api-report-mobile
+  [data]="data()"
+  [loading]="loading()"
+  [totalRecords]="totalRecords()"
+  [globalFilterFields]="globalFilterFields()"
+  (search)="onSearch($event)"
+  (loadMore)="loadMore()"
+/>
+} @else {
+<app-log-api-report-desktop
+  [data]="data()"
+  [loading]="loading()"
+  [totalRecords]="totalRecords()"
+  [rows]="rows()"
+  [globalFilterFields]="globalFilterFields()"
+  [levelOptions]="levelOptions"
+  [filterLevelControl]="filterLevelControl"
+  [filterDateRangeControl]="filterDateRangeControl"
+  [isSearchDisabled]="isSearchDisabled"
+  (pageChange)="onPageChange($event)"
+  (search)="onSearch($event)"
+  (loadData)="onLoadData(true)"
+  (deleteAll)="onDeleteAll()"
+  (toggleExpand)="toggleExpand($event)"
+/>
+}

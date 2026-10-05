@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/serv
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { FlatpickrDefaults } from 'angularx-flatpickr';
+import { PlatformService } from '@core/services/platform.service';
 import { UserActivityHistory } from './user-activity-history';
 
 describe('UserActivityHistory', () => {
@@ -21,8 +22,11 @@ describe('UserActivityHistory', () => {
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
         { provide: FlatpickrDefaults, useValue: {} },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(UserActivityHistory, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(UserActivityHistory);
     component = fixture.componentInstance;

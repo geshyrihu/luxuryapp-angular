@@ -1,200 +1,27 @@
-<!-- Panel de Filtros -->
-<lux-card>
-  <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-  <div class="d-none d-md-block mt-3">
-    <lux-table
-      #dt
-      [value]="data()"
-      [loading]="loading()"
-      [lazy]="true"
-      (onPage)="onPageChange($event)"
-      [totalRecords]="totalRecords()"
-      [paginator]="true"
-      [rows]="rows()"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [globalFilterFields]="globalFilterFields()"
-      class="custom-table"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      [showCurrentPageReport]="true"
-    >
-      <ng-template #caption>
-        <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
-        >
-          <div class="flex-grow-1">
-            <lux-table-caption
-              [dt]="dt"
-              (search)="onSearch($event)"
-              [showAdd]="false"
-              [noPadding]="true"
-              [noMargin]="true"
-            />
-          </div>
-          <div
-            class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
-          >
-            <div>
-              <custom-input-select-signal
-                [data]="customerOptions"
-                optionLabel="label"
-                optionValue="value"
-                placeholder="Cliente"
-                [control]="filterCustomerIdControl"
-                customClass="w-100"
-                [horizontal]="false"
-                [filter]="true"
-                [noMargin]="true"
-              />
-            </div>
-            <div>
-              <custom-input-select-signal
-                [data]="userTypeOptions"
-                optionLabel="label"
-                optionValue="value"
-                placeholder="Tipo de usuario"
-                [control]="filterUserTypeControl"
-                customClass="w-100"
-                [horizontal]="false"
-                [filter]="true"
-                [noMargin]="true"
-              />
-            </div>
-            <div>
-              <custom-input-date-signal
-                [control]="filterDateRangeControl"
-                mode="range"
-                dateFormat="Y-m-d"
-                altFormat="d/m/Y"
-                placeholder="Rango de fecha"
-                [horizontal]="false"
-                [noMargin]="true"
-              />
-            </div>
-            <div class="d-flex flex-shrink-0">
-              <span
-                [tooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
-              >
-                <il-button
-                  label="Buscar"
-                  iconClass="material-symbols-light:search"
-                  (clicked)="onLoadData(true)"
-                  [disabled]="isSearchDisabled"
-                />
-              </span>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th appSortableColumn="timestamp">
-            Fecha y Hora
-            <app-sorticon field="timestamp" />
-          </th>
-          <th appSortableColumn="userName">
-            Usuario
-            <app-sorticon field="userName" />
-          </th>
-          <th appSortableColumn="userType">
-            Tipo
-            <app-sorticon field="userType" />
-          </th>
-          <th appSortableColumn="activityType">
-            Actividad
-            <app-sorticon field="activityType" />
-          </th>
-          <th appSortableColumn="module">
-            Módulo
-            <app-sorticon field="module" />
-          </th>
-          <th>Detalles</th>
-          <th appSortableColumn="ipAddress">
-            IP / Ubicación
-            <app-sorticon field="ipAddress" />
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr>
-          <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
-          <td>{{ item.userName }}</td>
-          <td>
-            <lux-tag [value]="item.userType"></lux-tag>
-          </td>
-          <td>
-            <lux-tag [value]="item.activityType" severity="info"></lux-tag>
-          </td>
-          <td>{{ item.module }}</td>
-          <td>{{ item.details }}</td>
-          <td>
-            <div>{{ item.ipAddress }}</div>
-            <span class="text-body-secondary">{{ item.location }}</span>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <tr>
-          <td colspan="7" class="text-center">
-            No se encontraron registros con los filtros aplicados.
-          </td>
-        </tr>
-      </ng-template>
-    </lux-table>
-  </div>
-
-  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
-  <div class="d-block d-md-none mt-3">
-    <app-data-view-mobile
-      [data]="data()"
-      [globalFilterFields]="globalFilterFields()"
-      (search)="onSearch($event)"
-      [showAdd]="false"
-    >
-      <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <ion-avatar slot="start" class="mobile-avatar-slot">
-            <span>{{ item.userName.charAt(0).toUpperCase() }}</span>
-          </ion-avatar>
-          <ion-label>
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <h2 class="fw-bold m-0 text-base">{{ item.userName }}</h2>
-              <lux-tag [value]="item.userType"></lux-tag>
-            </div>
-
-            <p class="text-medium text-body-secondary m-0 text-sm mb-1">
-              <app-icon
-                [icon]="'material-symbols-light:schedule'"
-                class="me-1 text-xs"
-              />
-              {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
-            </p>
-
-            <div class="d-flex align-items-center gap-2 mb-1">
-              <span class="fw-bold text-sm">{{ item.module }}</span>
-              <lux-tag
-                [value]="item.activityType"
-                severity="info"
-                class="text-xs"
-              ></lux-tag>
-            </div>
-
-            <p class="text-sm text-body-secondary m-0 text-wrap">
-              {{ item.details }}
-            </p>
-          </ion-label>
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
-
-    @if (data().length < totalRecords()) {
-    <il-button
-      label="Cargar más"
-      severity="secondary"
-      [fluid]="true"
-      [loading]="loading()"
-      customClass="mt-3"
-      (clicked)="loadMore()"
-    />
-    }
-  </div>
-</lux-card>
+@if (platformS.isMobile()) {
+<app-user-activity-history-mobile
+  [data]="data()"
+  [loading]="loading()"
+  [totalRecords]="totalRecords()"
+  [globalFilterFields]="globalFilterFields()"
+  (search)="onSearch($event)"
+  (loadMore)="loadMore()"
+/>
+} @else {
+<app-user-activity-history-desktop
+  [data]="data()"
+  [loading]="loading()"
+  [totalRecords]="totalRecords()"
+  [rows]="rows()"
+  [globalFilterFields]="globalFilterFields()"
+  [customerOptions]="customerOptions"
+  [userTypeOptions]="userTypeOptions"
+  [filterCustomerIdControl]="filterCustomerIdControl"
+  [filterUserTypeControl]="filterUserTypeControl"
+  [filterDateRangeControl]="filterDateRangeControl"
+  [isSearchDisabled]="isSearchDisabled"
+  (pageChange)="onPageChange($event)"
+  (search)="onSearch($event)"
+  (loadData)="onLoadData(true)"
+/>
+}

@@ -6,55 +6,23 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { provideFlatpickrDefaults } from "angularx-flatpickr";
+import { UserActivityHistoryDesktop } from "./desktop/user-activity-history-desktop";
+import { UserActivityHistoryMobile } from "./mobile/user-activity-history-mobile";
 
 @Component({
   selector: "app-user-activity-history",
-  imports: [
-    ApiDatePipe,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxCard,
-    LxTag,
-    FlatpickrModule,
-    WebButtonLabel,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    DataViewMobile,
-    MobileListItem,
-    LuxTableCaption,
-    AppIcon,
-  ],
+  imports: [UserActivityHistoryDesktop, UserActivityHistoryMobile],
   templateUrl: "./user-activity-history.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -69,10 +37,11 @@ export class UserActivityHistory implements OnInit {
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
   dateS = inject(DateService);
+  platformS = inject(PlatformService);
   data = signal<any[]>([]);
   loading = signal(true);
 
-  // Signals para paginación y bósqueda
+  // Signals para paginación y búsqueda
   totalRecords = signal(0);
   rows = signal(tableRows());
   searchTerm = signal<string>("");
@@ -92,7 +61,6 @@ export class UserActivityHistory implements OnInit {
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ngOnInit(): void {
     this.isUserAdmin = this.aspRoleS.hasAny([
@@ -187,7 +155,7 @@ export class UserActivityHistory implements OnInit {
   onPageChange(event: any): void {
     this.rows.set(event.rows);
     this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva bósqueda
+    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva búsqueda
   }
 
   onSearch(term: string): void {
