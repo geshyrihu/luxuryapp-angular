@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **118** |
-| ⏳ Pendiente | **50** |
+| ✅ Refactorizado | **126** |
+| ⏳ Pendiente | **42** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **218** |
 
@@ -223,18 +223,18 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 193 | `candidates/candidate-applications` | recruitment | ✅ | · | · |  |
 | 194 | `candidates/candidate-core` | recruitment | ✅ | · | · |  |
 | 195 | `candidates/candidate-interview` | recruitment | ✅ | · | · |  |
-| 196 | `employee-bank-data-records/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 197 | `employee-beneficiaries/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 198 | `employee-clinical-data-records/employee-clinical-data-list.html` | recruitment | · | ✅ | · |  |
-| 199 | `employee-dismissal-requests/solicitud-baja-list.html` | recruitment | · | ✅ | · |  |
-| 200 | `employee-emergency-contacts/employee-emergency-contact-list.html` | recruitment | · | ✅ | · |  |
+| 196 | `employee-bank-data-records` | recruitment | ✅ | · | · |  |
+| 197 | `employee-beneficiaries` | recruitment | ✅ | · | · |  |
+| 198 | `employee-clinical-data-records` | recruitment | ✅ | · | · |  |
+| 199 | `employee-dismissal-requests` | recruitment | ✅ | · | · |  |
+| 200 | `employee-emergency-contacts` | recruitment | ✅ | · | · |  |
 | 201 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
 | 202 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
 | 203 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
 | 204 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
-| 205 | `employee-registration-requests/solicitud-alta-list.html` | recruitment | · | ✅ | · |  |
-| 206 | `external-staffs/employee-external-list.html` | recruitment | · | ✅ | · |  |
-| 207 | `provider-supports/provider-support.html` | recruitment | · | ✅ | · |  |
+| 205 | `employee-registration-requests` | recruitment | ✅ | · | · |  |
+| 206 | `external-staffs` | recruitment | ✅ | · | · |  |
+| 207 | `provider-supports` | recruitment | ✅ | · | · |  |
 | 208 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
 | 209 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
 | 210 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
