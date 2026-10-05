@@ -17,7 +17,16 @@
     </div>
 
     <div class="col-12 d-flex justify-content-end mt-4">
-      <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
     </div>
   </div>
 </form>

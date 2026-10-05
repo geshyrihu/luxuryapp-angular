@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -32,7 +32,7 @@ import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.i
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EmployeeClinicalDataForm implements OnInit {

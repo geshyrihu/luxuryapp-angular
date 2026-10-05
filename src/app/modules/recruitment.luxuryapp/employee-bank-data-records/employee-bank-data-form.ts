@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -36,7 +36,7 @@ import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface
     CustomInputTextSignal,
     CustomInputSelectSignal,
     InputMask,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EmployeeBankDataForm implements OnInit {
