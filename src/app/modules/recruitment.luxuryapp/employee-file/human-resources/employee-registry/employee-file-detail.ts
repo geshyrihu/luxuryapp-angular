@@ -19,8 +19,8 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/core/tabs.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   EmployeeFileBankDataDTO,
   EmployeeFileBeneficiaryDTO,

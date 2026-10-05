@@ -9,61 +9,33 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { EmployeeFileListDesktop } from "./desktop/employee-file-list-desktop";
 import { EmployeeFileSummaryDTO } from "./interfaces/employee-file.interfaces";
-
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { EmployeeFileListMobile } from "./mobile/employee-file-list-mobile";
 
 @Component({
   selector: "app-employee-file-list",
   templateUrl: "./employee-file-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    AppTable,
-    LuxTableCaption,
-    TableFooter,
     CustomInputSelectSignal,
-    DataViewMobile,
+    EmployeeFileListDesktop,
+    EmployeeFileListMobile,
   ],
 })
 export class EmployeeFileList {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   router = inject(Router);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<EmployeeFileSummaryDTO[]>([]);
   isActiveFilter = signal<boolean | null>(null);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -103,11 +75,5 @@ export class EmployeeFileList {
 
   onViewFile(item: EmployeeFileSummaryDTO): void {
     this.router.navigate(ROUTES.RECURSOS_HUMANOS.EXPEDIENTE(item.id));
-  }
-
-  getStatusBadge(isActive: boolean): string {
-    return isActive
-      ? "bg-green-100 text-green-700 border-green-200"
-      : "bg-slate-100 text-slate-600 border-slate-200";
   }
 }

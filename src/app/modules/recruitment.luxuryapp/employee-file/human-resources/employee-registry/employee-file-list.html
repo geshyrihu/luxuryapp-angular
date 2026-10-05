@@ -12,123 +12,16 @@
     />
   </div>
 
-  <lux-table
+  @if (platformS.isMobile()) {
+  <app-employee-file-list-mobile
+    [data]="dataSignal()"
+    (viewFile)="onViewFile($event)"
+  />
+  } @else {
+  <app-employee-file-list-desktop
+    [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
-    [paginator]="true"
-    [rows]="tableRows"
-    [rowsPerPageOptions]="rowsPerPageOptions"
-    [scrollable]="true"
-    [scrollHeight]="scrollHeight()"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [value]="dataSignal()"
-    #dt
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table card d-none d-md-block"
-  >
-    <ng-template #caption>
-      <lux-table-caption [showAdd]="false" [dt]="dt" />
-    </ng-template>
-
-    <ng-template #header>
-      <tr>
-        <th class="table-col-sm">Foto</th>
-        <th class="table-col-lg">Nombre</th>
-        <th class="table-col-sm">No. Emp.</th>
-        <th class="table-col-lg">Puesto</th>
-        <th class="table-col-md">Departamento</th>
-        <th class="table-col-sm text-center">Estatus</th>
-        <th class="table-col-actions">Acciones</th>
-      </tr>
-    </ng-template>
-
-    <ng-template #body let-item>
-      <tr>
-        <td>
-          @if (item.photoUrl) {
-          <img
-            [src]="item.photoUrl"
-            [alt]="item.fullName"
-            class="w-3rem h-3rem rounded-circle object-cover"
-          />
-          } @else {
-          <div
-            class="w-3rem h-3rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center text-body-secondary fw-bold"
-          >
-            {{ item.fullName.charAt(0) }}
-          </div>
-          }
-        </td>
-        <td class="fw-medium">{{ item.fullName }}</td>
-        <td>{{ item.numberEmployee ?? 'é' }}</td>
-        <td>{{ item.puesto || 'é' }}</td>
-        <td>{{ item.departamento || 'é' }}</td>
-        <td class="text-center">
-          <span
-            [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
-          >
-            {{ item.isActive ? 'Activo' : 'Inactivo' }}
-          </span>
-        </td>
-        <td class="text-center">
-          <iw-button-item
-            iconClass="material-symbols-light:folder-open"
-            lxTooltip="Ver Expediente"
-            tooltipPosition="top"
-            (click)="onViewFile(item)"
-          />
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #emptymessage>
-      <lux-table-empty-message [colspan]="7" />
-    </ng-template>
-
-    <ng-template #paginatorleft>
-      <lux-table-footer [data]="dataSignal()" />
-    </ng-template>
-  </lux-table>
-
-  <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
-    <ng-template #listItemTemplate let-item>
-      <ili-list-item>
-        <div
-          start
-          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-          class="w-3rem h-3rem bg-primary-50"
-        >
-          <app-icon
-            icon="material-symbols-light:folder-shared"
-            class="text-xl text-primary"
-          />
-        </div>
-
-        <h2 class="fw-bold">{{ item.fullName }}</h2>
-        <p class="text-sm text-body-secondary">
-          No. {{ item.numberEmployee ?? 'é' }}
-        </p>
-        <p class="text-sm text-body-secondary">{{ item.puesto || 'é' }}</p>
-        <p class="text-sm text-body-secondary">
-          {{ item.departamento || 'é' }}
-        </p>
-        <p class="text-sm">
-          <span
-            [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
-          >
-            {{ item.isActive ? 'Activo' : 'Inactivo' }}
-          </span>
-        </p>
-
-        <ili-action-menu slot="end">
-          <ng-container actions>
-            <ili-button-item
-              label="Ver Expediente"
-              iconName="folder-open-outline"
-              (clicked)="onViewFile(item)"
-            />
-          </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
-    </ng-template>
-  </app-data-view-mobile>
+    (viewFile)="onViewFile($event)"
+  />
+  }
 </div>

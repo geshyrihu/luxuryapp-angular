@@ -1,0 +1,56 @@
+<app-data-view-mobile
+  (add)="add.emit()"
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  trackByProperty="employeeId"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start class="mobile-avatar-slot">
+        @if (item.photoPath) {
+        <img
+          [src]="item.photoPath"
+          [alt]="item.fullName"
+          class="mobile-avatar-img"
+        />
+        } @else {
+        <app-icon icon="material-symbols-light:badge-outline" />
+        }
+      </div>
+
+      <p class="fw-semibold m-0 text-body">{{ item.fullName }}</p>
+      <div class="mt-1">
+        @if (item.isOverdueDocuments) {
+        <lux-tag
+          severity="danger"
+          value="Vencido > 24h"
+          icon="material-symbols-light:warning"
+          class="text-xs"
+        ></lux-tag>
+        } @else if (item.hasPendingDocuments) {
+        <lux-tag
+          severity="warning"
+          value="Pendientes"
+          icon="material-symbols-light:schedule"
+          class="text-xs"
+        ></lux-tag>
+        }
+      </div>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
+        {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
+        item.celularPersonal : '' }}
+      </p>
+      <p class="text-xs m-0 text-body-secondary">{{ item.correoPersonal }}</p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="editEmpleado.emit({ applicationUserId: item.applicationUserId, employeeId: item.employeeId, fullName: item.fullName })"
+            label="Editar"
+            iconName="create-outline"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

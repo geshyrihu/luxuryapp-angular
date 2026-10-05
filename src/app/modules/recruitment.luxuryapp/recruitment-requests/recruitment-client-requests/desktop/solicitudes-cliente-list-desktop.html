@@ -1,0 +1,115 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="fechaSolicitud">
+        FECHA DE SOLICITUD
+        <app-sorticon field="fechaSolicitud" />
+      </th>
+      <th appSortableColumn="folio">
+        FOLIO
+        <app-sorticon field="folio" />
+      </th>
+      <th appSortableColumn="tipoSolicitud">
+        SOLICITUD
+        <app-sorticon field="tipoSolicitud" />
+      </th>
+      <th appSortableColumn="nombreEmpleado">
+        NOMBRE
+        <app-sorticon field="nombreEmpleado" />
+      </th>
+      <th appSortableColumn="status">
+        ESTATUS
+        <app-sorticon field="status" />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.fechaSolicitud }}</td>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.tipoSolicitud }}</td>
+      <td>{{ item.nombreEmpleado }}</td>
+      <td>
+        <lux-tag
+          [value]="item.status"
+          [severity]="getTagSeverity(item.status)"
+          [rounded]="true"
+          class="w-full md:w-auto"
+        />
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div>
+          @switch (item.tipoSolicitud) { @case ('Alta') {
+          <div class="body-card">
+            <!-- Contenido específico para el caso 'pesificacion' -->
+            <iw-button-edit
+              (clicked)="editSolicitudAlta.emit({
+                          id: item.id,
+                          })"
+            />
+          </div>
+          } @case ('Vacante') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+            <iw-button-edit
+              (clicked)="editVacante.emit({
+                          id: item.id,
+                          })"
+            />
+          </div>
+          } @case ('Baja') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+
+            <iw-button-edit
+              (clicked)="
+                          editSolicitudBaja.emit({
+                          id: item.id,
+                          })
+                          "
+            />
+          </div>
+          } @case ('Modificacion') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+            <iw-button-item
+              iconClass="material-symbols-light:attach-money"
+              (clicked)="
+                          editModificacionSalario.emit({
+                          id: item.id,
+                          })
+                          "
+            />
+          </div>
+          }
+          <!-- Agrega más casos según tus necesidades -->
+          }
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

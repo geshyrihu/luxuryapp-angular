@@ -1,0 +1,23 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
+      >
+        <app-icon
+          icon="material-symbols-light:group-outline"
+          class="text-xl text-purple-600"
+        />
+      </div>
+
+      <h3>{{ item.nombreEmpleado }}</h3>
+      <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
+      <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

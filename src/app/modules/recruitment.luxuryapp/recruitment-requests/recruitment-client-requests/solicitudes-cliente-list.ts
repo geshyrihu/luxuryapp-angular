@@ -7,62 +7,32 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { addIcons } from "ionicons";
-import { peopleOutline } from "ionicons/icons";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { addIcons } from "ionicons";
+import { peopleOutline } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
+import { SolicitudesClienteListDesktop } from "./desktop/solicitudes-cliente-list-desktop";
+import { SolicitudesClienteListMobile } from "./mobile/solicitudes-cliente-list-mobile";
 
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [SolicitudesClienteListDesktop, SolicitudesClienteListMobile],
 })
 export class SolicitudesClienteList {
   apiResponseS = inject(ApiResponseService);
@@ -71,7 +41,7 @@ export class SolicitudesClienteList {
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   router = inject(Router);
   authS = inject(AuthService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
@@ -81,10 +51,7 @@ export class SolicitudesClienteList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     addIcons({ peopleOutline });
@@ -171,20 +138,5 @@ export class SolicitudesClienteList {
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
-  }
-  getTagSeverity(
-    status: string,
-  ): "success" | "warning" | "danger" | "secondary" {
-    switch (status) {
-      case "Concluido":
-        return "success";
-      case "Proceso":
-      case "Pendiente":
-        return "warning";
-      case "Cancelado":
-        return "danger";
-      default:
-        return "secondary";
-    }
   }
 }

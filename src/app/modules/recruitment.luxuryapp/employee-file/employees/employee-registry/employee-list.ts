@@ -11,97 +11,37 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import { Department } from "@core/enums/department.enum";
 import { globalFilterFields } from "@core/helpers/table-options";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { EmployeeProviderForm } from "@shared/integration/supplier";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { EmployeeInternalService } from "../../../employees/employee-internal.service";
 import { CardEmployee } from "./card-employee";
+import { EmployeeListDesktop } from "./desktop/employee-list-desktop";
 import { IEmployee } from "./interfaces/employee.interface";
-
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { EmployeeListMobile } from "./mobile/employee-list-mobile";
 
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    LxTag,
-    LxAvatar,
-    AppIcon,
-    MobileListItem,
-    WebButtonIconActiveDesactive,
-    WebButtonIconItem,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [EmployeeListDesktop, EmployeeListMobile],
 })
 export class EmployeeList {
   authS = inject(AuthService);
-  // apiResponseS = inject(ApiResponseService); // Removed
-  employeeS = inject(EmployeeInternalService); // Added
+  employeeS = inject(EmployeeInternalService);
   aspRoleS = inject(AspRoleService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   rutaActiva = inject(ActivatedRoute);
   router = inject(Router);
+  platformS = inject(PlatformService);
   public AspRole = ApplicationRole;
   activo = signal<boolean>(true);
 
-  readonly departamentLabels: Record<number, string> = {
-    [Department.Administracion]: "Administración",
-    [Department.Legal]: "Legal",
-    [Department.Contabilidad]: "Contabilidad",
-    [Department.Mantenimiento]: "Mantenimiento",
-    [Department.Limpieza]: "Limpieza",
-    [Department.Operaciones]: "Operaciones",
-    [Department.Jardineria]: "Jardinería",
-    [Department.Sistemas]: "Sistemas",
-    [Department.Seguridad]: "Seguridad",
-    [Department.Constructora]: "Constructora",
-    [Department.Supervision]: "Supervisión",
-    [Department.Direcciones]: "Dirección",
-    [Department.RecursosHumanos]: "Recursos Humanos",
-    [Department.Reclutamiento]: "Reclutamiento",
-    [Department.Recepcion]: "Recepción",
-    [Department.Mensajeria]: "Mensajería",
-    [Department.Ludoteca]: "Ludoteca",
-    [Department.NA]: "Sin Departamento",
-  };
-
-  getDepartamentLabel(value: number | null | undefined): string {
-    if (value === null || value === undefined) return "Sin Departamento";
-    return this.departamentLabels[value] ?? "Sin Departamento";
-  }
   dataSignal = signal<IEmployee[]>([]);
 
   globalFilterFields = computed(() => {

@@ -1,141 +1,15 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="d-none d-md-block"></div>
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption [showAdd]="false" [dt]="dt" />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="fechaSolicitud">
-        FECHA DE SOLICITUD
-        <app-sorticon field="fechaSolicitud" />
-      </th>
-      <th appSortableColumn="folio">
-        FOLIO
-        <app-sorticon field="folio" />
-      </th>
-      <th appSortableColumn="tipoSolicitud">
-        SOLICITUD
-        <app-sorticon field="tipoSolicitud" />
-      </th>
-      <th appSortableColumn="nombreEmpleado">
-        NOMBRE
-        <app-sorticon field="nombreEmpleado" />
-      </th>
-      <th appSortableColumn="status">
-        ESTATUS
-        <app-sorticon field="status" />
-      </th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.fechaSolicitud }}</td>
-      <td>{{ item.folio }}</td>
-      <td>{{ item.tipoSolicitud }}</td>
-      <td>{{ item.nombreEmpleado }}</td>
-      <td>
-        <lux-tag
-          [value]="item.status"
-          [severity]="getTagSeverity(item.status)"
-          [rounded]="true"
-          class="w-full md:w-auto"
-        />
-      </td>
-      <!-- Opciones -->
-      <td>
-        <div>
-          @switch (item.tipoSolicitud) { @case ('Alta') {
-          <div class="body-card">
-            <!-- Contenido específico para el caso 'pesificacion' -->
-            <iw-button-edit
-              (clicked)="onModalEditSolicitudAlta({
-                          id: item.id,
-                          })"
-            />
-          </div>
-          } @case ('Vacante') {
-          <div class="body-card">
-            <!-- Contenido específico para otro caso -->
-            <iw-button-edit
-              (clicked)="onModalEditVacante({
-                          id: item.id,
-                          })"
-            />
-          </div>
-          } @case ('Baja') {
-          <div class="body-card">
-            <!-- Contenido específico para otro caso -->
-
-            <iw-button-edit
-              (clicked)="
-                          onModalEditSolicitudBaja({
-                          id: item.id,
-                          })
-                          "
-            />
-          </div>
-          } @case ('Modificacion') {
-          <div class="body-card">
-            <!-- Contenido específico para otro caso -->
-            <iw-button-item
-              iconClass="material-symbols-light:attach-money"
-              (clicked)="
-                          onModalEditModificacionSalario({
-                          id: item.id,
-                          })
-                          "
-            />
-          </div>
-          }
-          <!-- Agrega más casos según tus necesidades -->
-          }
-        </div>
-      </td>
-      <!-- Opciones -->
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-solicitudes-cliente-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  [showAdd]="false"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
-      >
-        <app-icon
-          icon="material-symbols-light:group-outline"
-          class="text-xl text-purple-600"
-        />
-      </div>
-
-      <h3>{{ item.nombreEmpleado }}</h3>
-      <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
-      <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+/>
+} @else {
+<app-solicitudes-cliente-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (editSolicitudAlta)="onModalEditSolicitudAlta($event)"
+  (editVacante)="onModalEditVacante($event)"
+  (editSolicitudBaja)="onModalEditSolicitudBaja($event)"
+  (editModificacionSalario)="onModalEditModificacionSalario($event)"
+/>
+}

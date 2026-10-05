@@ -1,163 +1,26 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
-      <th appSortableColumn="requestDateFilter">
-        SOLICITUD <app-sorticon field="requestDateFilter" />
-      </th>
-      <th>CLIENTE</th>
-      <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
-      </th>
-      <th>SUELDO</th>
-      <th>DÍAS</th>
-      <th appSortableColumn="status">
-        ESTATUS <app-sorticon field="status" />
-      </th>
-      <th>CANDIDATO</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td
-        class="text-center fw-semibold"
-        [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
-      >
-        {{ item.folio }}
-      </td>
-      <td>{{ item.requestDate }}</td>
-      <td
-        class="text-nowrap overflow-hidden text-truncate max-w-0"
-        [title]="item.customer"
-      >
-        {{ item.customer }}
-      </td>
-      <td
-        class="text-nowrap overflow-hidden text-truncate max-w-0"
-        [title]="item.applicationRoleName"
-      >
-        {{ item.applicationRoleName }}
-      </td>
-      <td class="text-end">
-        {{ item.sueldoMensualLibre | currency:'MXN':'symbol-narrow':'1.0-0' }}
-      </td>
-      <td class="text-center">{{ item.daysPassed }}</td>
-      <td class="text-center">
-        <lux-tag
-          [value]="item.status"
-          [severity]="requestStatusTagSeverity(item.status)"
-        />
-      </td>
-      <td class="text-center">
-        @if (canManageVacancyCandidates()) {
-        <iw-button-item
-          iconClass="material-symbols-light:group-outline"
-          lxTooltip="Ver candidatos de la vacante"
-          tooltipPosition="top"
-          (clicked)="goToVacancyCandidates(item.workPositionId, item.id)"
-        />
-        }
-      </td>
-      <td class="no-print">
-        <div class="d-flex gap-1">
-          <iw-button-edit (clicked)="onModalForm({ id: item.id })" />
-          <iw-button-item
-            iconClass="material-symbols-light:info"
-            lxTooltip="Detalle del puesto"
-            tooltipPosition="top"
-            (clicked)="onModalDetail(item.workPositionId)"
-          />
-          <iw-button-item
-            iconClass="material-symbols-light:description"
-            lxTooltip="Descripción del puesto"
-            tooltipPosition="top"
-            (clicked)="onModalJobDescription(item.workPositionId)"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-          @if (isSuperUser()) {
-          <iw-button-item
-            iconClass="material-symbols-light:delete"
-            severity="danger"
-            lxTooltip="Eliminar definitivamente"
-            tooltipPosition="top"
-            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
-            (clicked)="onDeletePermanente(item.id)"
-          />
-          }
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="9" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-vacantes-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  [showAdd]="false"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
-      >
-        <app-icon
-          icon="material-symbols-light:work-outline"
-          class="text-xl text-green-600"
-        />
-      </div>
-
-      <h3>{{ item.applicationRoleName }}</h3>
-      <p>{{ item.customer }} - {{ item.requestDate }}</p>
-      <p>{{ item.status }}</p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-          <ili-button-item
-            (clicked)="onModalDetail(item.workPositionId)"
-            label="Detalle del puesto"
-            iconClass="material-symbols-light:info"
-          />
-          <ili-button-item
-            (clicked)="onModalJobDescription(item.workPositionId)"
-            label="Descripción del puesto"
-            iconClass="material-symbols-light:description"
-          />
-          @if (isSuperUser()) {
-          <ili-button-item
-            (clicked)="onDeletePermanente(item.id)"
-            label="Eliminar definitivamente"
-            color="danger"
-            iconClass="material-symbols-light:delete"
-            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
-          />
-          }
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [isSuperUser]="isSuperUser()"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (deletePermanente)="onDeletePermanente($event)"
+  (detail)="onModalDetail($event)"
+  (jobDescription)="onModalJobDescription($event)"
+/>
+} @else {
+<app-vacantes-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [searchTerm]="filterRequestsService.searchTerm()"
+  [isSuperUser]="isSuperUser()"
+  [canManageCandidates]="canManageVacancyCandidates()"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (deletePermanente)="onDeletePermanente($event)"
+  (detail)="onModalDetail($event)"
+  (jobDescription)="onModalJobDescription($event)"
+  (candidates)="goToVacancyCandidates($event.workPositionId, $event.requestPositionId)"
+/>
+}

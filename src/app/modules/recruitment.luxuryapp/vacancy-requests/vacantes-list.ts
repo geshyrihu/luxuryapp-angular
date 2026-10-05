@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,58 +6,31 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { addIcons } from "ionicons";
-import { briefcaseOutline } from "ionicons/icons";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { SweetAlertIcon } from "@core/enums/sweetalert-icon.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { addIcons } from "ionicons";
+import { briefcaseOutline } from "ionicons/icons";
+import { VacantesListDesktop } from "./desktop/vacantes-list-desktop";
+import { VacantesListMobile } from "./mobile/vacantes-list-mobile";
+import { StatusSolicitudVacanteService } from "./services/status-solicitud-vacante.service";
 import { VacanteCandidatesModal } from "./vacante-candidates-modal";
 import { VacanteDetailModal } from "./vacante-detail-modal";
 import { VacanteForm } from "./vacante-form";
 import { VacanteJobDescriptionModal } from "./vacante-job-description-modal";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import {
-  requestStatusBorderColor,
-  requestStatusTagSeverity,
-} from "../recruitment-shared/request-status-style";
-import { StatusSolicitudVacanteService } from "./services/status-solicitud-vacante.service";
 
 interface VacanteListItem {
   id: string;
@@ -89,26 +61,7 @@ interface RequestPositionDeleteImpact {
   selector: "app-vacantes-list",
   templateUrl: "./vacantes-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    TableFooter,
-    DataViewMobile,
-    LxTag,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [VacantesListDesktop, VacantesListMobile],
 })
 export class VacantesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -117,11 +70,9 @@ export class VacantesList implements OnInit {
   aspRoleS = inject(AspRoleService);
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
-  readonly requestStatusBorderColor = requestStatusBorderColor;
-  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   canManageVacancyCandidates(): boolean {
     return (
@@ -133,11 +84,7 @@ export class VacantesList implements OnInit {
   dataSignal = signal<VacanteListItem[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild("dt") dt?: AppTable;
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   paramsEmit$ = toSignal(this.filterRequestsService.getParams$());
 
@@ -146,10 +93,6 @@ export class VacantesList implements OnInit {
     effect(() => {
       this.paramsEmit$();
       this.onLoadData();
-    });
-    effect(() => {
-      const term = this.filterRequestsService.searchTerm();
-      this.dt?.filterGlobal(term, "contains");
     });
   }
 

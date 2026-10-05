@@ -1,106 +1,19 @@
 <div class="card">
-  <lux-table
-    #dt
-    [value]="dataSignal()"
-    [rows]="tableRows"
-    [paginator]="true"
-    [globalFilterFields]="globalFilterFields()"
-    [rowsPerPageOptions]="rowsPerPageOptions"
-    class="custom-table d-none d-md-block"
-    [scrollable]="true"
-    [scrollHeight]="scrollHeight"
-    [loading]="loading()"
-    groupRowsBy="employeeName"
-  >
-    <ng-template #caption>
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
-        [dt]="dt"
-      />
-    </ng-template>
-
-    <ng-template #header>
-      <tr>
-        <th>Banco</th>
-        <th>No. Cuenta</th>
-        <th>CLABE</th>
-        <th></th>
-      </tr>
-    </ng-template>
-
-    <ng-template #groupheader let-item>
-      <tr>
-        <td colspan="4">
-          <span class="fw-bold ms-2">
-            ?? {{ item.employeeName }} ({{ item.numberEmployee }})
-          </span>
-        </td>
-      </tr>
-    </ng-template>
-
-    <ng-template #body let-item>
-      <tr>
-        <td>{{ item.bankName }}</td>
-        <td>{{ item.bankAccount }}</td>
-        <td>{{ item.bankKey }}</td>
-        <td class="text-center">
-          <div class="d-flex gap-2">
-            <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
-            />
-            <iw-button-delete (confirmed)="onDelete(item.id)" />
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #emptymessage>
-      <lux-table-empty-message [colspan]="4" />
-    </ng-template>
-
-    <ng-template #paginatorleft>
-      <lux-table-footer [data]="dataSignal()" />
-    </ng-template>
-  </lux-table>
-
-  <!-- Mobile View -->
-  <app-data-view-mobile
-    [dt]="dt"
+  @if (platformS.isMobile()) {
+  <app-employee-bank-data-list-mobile
     [data]="dataSignal()"
     (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
-  >
-    <ng-template #listItemTemplate let-item>
-      <ili-list-item>
-        <div
-          start
-          class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-          class="w-3rem h-3rem bg-primary-50"
-        >
-          <app-icon
-            icon="material-symbols-light:account-balance-outline"
-            class="text-xl text-primary"
-          />
-        </div>
-
-        <h2 class="fw-bold">{{ item.employeeName }}</h2>
-        <p class="text-sm text-body-secondary">
-          ?? {{ item.bankName }} | {{ item.bankAccount }}
-        </p>
-
-        <ili-action-menu slot="end">
-          <ng-container actions>
-            <ili-button-item
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
-              label="Editar"
-              iconName="create-outline"
-            />
-            <ili-button-item
-              (clicked)="onDelete(item.id)"
-              label="Eliminar"
-              iconName="delete-outline"
-            />
-          </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
-    </ng-template>
-  </app-data-view-mobile>
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+  } @else {
+  <app-employee-bank-data-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+  }
 </div>

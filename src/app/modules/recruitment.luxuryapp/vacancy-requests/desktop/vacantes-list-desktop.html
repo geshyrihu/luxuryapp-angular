@@ -1,0 +1,110 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="requestDateFilter">
+        SOLICITUD <app-sorticon field="requestDateFilter" />
+      </th>
+      <th>CLIENTE</th>
+      <th appSortableColumn="applicationRoleName">
+        PUESTO <app-sorticon field="applicationRoleName" />
+      </th>
+      <th>SUELDO</th>
+      <th>DÍAS</th>
+      <th appSortableColumn="status">
+        ESTATUS <app-sorticon field="status" />
+      </th>
+      <th>CANDIDATO</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td
+        class="text-center fw-semibold"
+        [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
+      >
+        {{ item.folio }}
+      </td>
+      <td>{{ item.requestDate }}</td>
+      <td
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
+        [title]="item.customer"
+      >
+        {{ item.customer }}
+      </td>
+      <td
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
+        [title]="item.applicationRoleName"
+      >
+        {{ item.applicationRoleName }}
+      </td>
+      <td class="text-end">
+        {{ item.sueldoMensualLibre | currency:'MXN':'symbol-narrow':'1.0-0' }}
+      </td>
+      <td class="text-center">{{ item.daysPassed }}</td>
+      <td class="text-center">
+        <lux-tag
+          [value]="item.status"
+          [severity]="requestStatusTagSeverity(item.status)"
+        />
+      </td>
+      <td class="text-center">
+        @if (canManageCandidates()) {
+        <iw-button-item
+          iconClass="material-symbols-light:group-outline"
+          lxTooltip="Ver candidatos de la vacante"
+          tooltipPosition="top"
+          (clicked)="candidates.emit({ workPositionId: item.workPositionId, requestPositionId: item.id })"
+        />
+        }
+      </td>
+      <td class="no-print">
+        <div class="d-flex gap-1">
+          <iw-button-edit (clicked)="edit.emit({ id: item.id })" />
+          <iw-button-item
+            iconClass="material-symbols-light:info"
+            lxTooltip="Detalle del puesto"
+            tooltipPosition="top"
+            (clicked)="detail.emit(item.workPositionId)"
+          />
+          <iw-button-item
+            iconClass="material-symbols-light:description"
+            lxTooltip="Descripción del puesto"
+            tooltipPosition="top"
+            (clicked)="jobDescription.emit(item.workPositionId)"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          @if (isSuperUser()) {
+          <iw-button-item
+            iconClass="material-symbols-light:delete"
+            severity="danger"
+            lxTooltip="Eliminar definitivamente"
+            tooltipPosition="top"
+            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+            (clicked)="deletePermanente.emit(item.id)"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="9" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

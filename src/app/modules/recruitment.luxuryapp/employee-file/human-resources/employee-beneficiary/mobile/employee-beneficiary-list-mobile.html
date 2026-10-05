@@ -1,0 +1,40 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Agregar Beneficiario' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:person-outline"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="fw-bold">{{ item.employeeName }}</h2>
+      <p class="text-sm text-body-secondary">?? {{ item.fullName }}</p>
+      <p class="text-sm text-body-secondary">
+        ?? {{ item.relationName }} | {{ item.phoneNumber }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Beneficiario' })"
+            label="Editar"
+            iconName="create-outline"
+          />
+          <ili-button-item
+            (clicked)="delete.emit(item.id)"
+            label="Eliminar"
+            iconName="delete-outline"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
