@@ -2,7 +2,6 @@ import { Directive, ElementRef, HostListener, inject } from "@angular/core";
 @Directive({
   // Esta directiva se aplica directamente en el elemento HTML sin necesidad de un prefijo.
   // Por ejemplo, <textarea appAutosize></textarea>
-
   selector: "[appAutosize]",
 })
 export class AutosizeDirective {
@@ -33,12 +32,3 @@ export class AutosizeDirective {
       this.elementRef.nativeElement.scrollHeight + "px";
   }
 }
-
-
-
-
-
-
-
-
-

@@ -26,10 +26,14 @@
    ningún estilo. Se restauran aquí con valores y tokens del DS.
    ------------------------------------------------------------ */
 
-/* Tamaños fijos: w-1rem .. w-12rem / h-1rem .. h-12rem */
+/* Tamaños fijos: w-1rem .. w-12rem / h-1rem .. h-12rem
+   y cotas máximas max-h-1rem .. max-h-12rem (p. ej. logos de
+   reportes en task-weekly-report-preview). Igual que el resto de
+   esta sección, restaura clases inertes tras la migración a Bootstrap. */
 @for $i from 1 through 12 {
   .w-#{$i}rem { width: #{$i}rem; }
   .h-#{$i}rem { height: #{$i}rem; }
+  .max-h-#{$i}rem { max-height: #{$i}rem; }
 }
 
 .w-full { width: 100%; }

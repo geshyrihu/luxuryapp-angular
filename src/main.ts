@@ -11,7 +11,6 @@ const iosStandalone =
   (navigator as Navigator & { standalone?: boolean }).standalone === true;
 const standalonePwa =
   window.matchMedia("(display-mode: standalone)").matches || iosStandalone;
-
 if (standalonePwa) {
   document.documentElement.classList.add("pwa-standalone");
 
@@ -23,20 +22,8 @@ if (standalonePwa) {
     { capture: true, passive: false },
   );
 }
-
 registerLocaleData(localeEsMX);
 if (environment.production) {
   enableProdMode();
 }
 bootstrapApplication(App, appConfig).catch((err) => console.error(err));
-
-
-
-
-
-
-
-
-
-
-

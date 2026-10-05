@@ -7,7 +7,6 @@ export class SolicitudCompraService {
   textoFiltro: string = "";
   statusFiltro: number = 2;
   private deleteProduct = new Subject();
-
   deleteProduct$ = this.deleteProduct.asObservable();
 
   onDeleteProduct() {
@@ -29,12 +28,3 @@ export class SolicitudCompraService {
     return this.statusFiltro;
   }
 }
-
-
-
-
-
-
-
-
-

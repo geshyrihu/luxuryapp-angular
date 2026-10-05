@@ -36,12 +36,3 @@ export class StatusSolicitudVacanteService {
     return this.workPositionId;
   }
 }
-
-
-
-
-
-
-
-
-
