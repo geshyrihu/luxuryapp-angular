@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **93** |
-| ⏳ Pendiente | **69** |
+| ✅ Refactorizado | **97** |
+| ⏳ Pendiente | **65** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **212** |
 
@@ -60,16 +60,16 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 30 | `general-ledger/pending-minutes` | accounting | ✅ | · | · |  |
 | 31 | `email-configuration/customer-data-companies` | admin | ✅ | · | · |  |
 | 32 | `email-configuration/email-data` | admin | ✅ | · | · |  |
-| 33 | `reports/customer-provider/mis-proveedores-list.html` | admin | · | ✅ | · |  |
+| 33 | `reports/customer-provider` | admin | ✅ | · | · |  |
 | 34 | `security-permissions/application-roles` | admin | ✅ | · | · |  |
 | 35 | `security-permissions/customer` | admin | ✅ | · | · |  |
 | 36 | `security-permissions/customer-locations` | admin | ✅ | · | · |  |
 | 37 | `security-permissions/customer-modules` | admin | ✅ | · | · |  |
 | 38 | `security-permissions/module-app-roles` | admin | ✅ | · | · |  |
 | 39 | `security-permissions/module-apps` | admin | ✅ | · | · |  |
-| 40 | `system-audit-logs/audit-entries/audit-entries.html` | admin | · | ✅ | · |  |
-| 41 | `system-audit-logs/log-api-report/log-api-report.html` | admin | · | ✅ | · |  |
-| 42 | `system-audit-logs/user-activity-history/user-activity-history.html` | admin | · | ✅ | · |  |
+| 40 | `system-audit-logs/audit-entries` | admin | ✅ | · | · |  |
+| 41 | `system-audit-logs/log-api-report` | admin | ✅ | · | · |  |
+| 42 | `system-audit-logs/user-activity-history` | admin | ✅ | · | · |  |
 | 43 | `system-configuration/assembly-checklist-templates` | admin | ✅ | · | · |  |
 | 44 | `system-configuration/database-backup` | admin | ✅ | · | · |  |
 | 45 | `system-configuration/knowledge-base` | admin | ✅ | · | · |  |
