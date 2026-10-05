@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **81** |
-| ⏳ Pendiente | **81** |
+| ✅ Refactorizado | **87** |
+| ⏳ Pendiente | **75** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **212** |
 
@@ -61,12 +61,12 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 31 | `email-configuration/customer-data-companies/customer-data-company-list.html` | admin | · | ✅ | · |  |
 | 32 | `email-configuration/email-data/email-data-list.html` | admin | · | ✅ | · |  |
 | 33 | `reports/customer-provider/mis-proveedores-list.html` | admin | · | ✅ | · |  |
-| 34 | `security-permissions/application-roles/roles-list.html` | admin | · | ✅ | · |  |
-| 35 | `security-permissions/customer-locations/customer-location-list.html` | admin | · | ✅ | · |  |
-| 36 | `security-permissions/customer-modules/customer-modul-list.html` | admin | · | ✅ | · |  |
-| 37 | `security-permissions/customer/customer-list.html` | admin | · | ✅ | · |  |
-| 38 | `security-permissions/module-app-roles/module-app-rol-list.html` | admin | · | ✅ | · |  |
-| 39 | `security-permissions/module-apps/module-app-list.html` | admin | · | ✅ | · |  |
+| 34 | `security-permissions/application-roles` | admin | ✅ | · | · |  |
+| 35 | `security-permissions/customer` | admin | ✅ | · | · |  |
+| 36 | `security-permissions/customer-locations` | admin | ✅ | · | · |  |
+| 37 | `security-permissions/customer-modules` | admin | ✅ | · | · |  |
+| 38 | `security-permissions/module-app-roles` | admin | ✅ | · | · |  |
+| 39 | `security-permissions/module-apps` | admin | ✅ | · | · |  |
 | 40 | `system-audit-logs/audit-entries/audit-entries.html` | admin | · | ✅ | · |  |
 | 41 | `system-audit-logs/log-api-report/log-api-report.html` | admin | · | ✅ | · |  |
 | 42 | `system-audit-logs/user-activity-history/user-activity-history.html` | admin | · | ✅ | · |  |
