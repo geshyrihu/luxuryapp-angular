@@ -229,9 +229,14 @@
   </section>
 
   <div class="d-flex justify-content-end pt-2">
-    <il-button-save
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
       [disabled]="form.invalid"
-      [submitting]="submitting()"
+      [loading]="submitting()"
       label="Solicitar vacante"
     />
   </div>

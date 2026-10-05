@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -74,7 +74,7 @@ interface SolicitudModificacionSalarioFormValue {
     CustomInputNumberSignal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextAreaSignal,
     InputAutocomplete,
   ],

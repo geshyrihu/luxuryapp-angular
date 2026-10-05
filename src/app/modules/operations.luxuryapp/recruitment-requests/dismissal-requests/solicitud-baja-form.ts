@@ -19,7 +19,7 @@ import {
 import { Router } from "@angular/router";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -95,7 +95,7 @@ interface SolicitudBajaFormValue {
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -465,4 +465,3 @@ export class SolicitudBajaForm implements OnInit {
     }
   }
 }
-

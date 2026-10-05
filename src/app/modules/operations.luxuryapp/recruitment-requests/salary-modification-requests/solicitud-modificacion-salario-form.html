@@ -120,9 +120,14 @@
 
       <!-- Botón -->
       <div class="d-flex justify-content-end mt-4">
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           [disabled]="form.invalid || maxSizeExceeded()"
-          [submitting]="submitting()"
+          [loading]="submitting()"
           label="Solicitar modificación"
         />
       </div>
