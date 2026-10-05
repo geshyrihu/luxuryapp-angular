@@ -10,7 +10,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -53,7 +53,7 @@ interface ISanctionChangeStatusForm {
     CustomInputDateSignal,
     CustomInputSwitch,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
   ],
 })

@@ -17,10 +17,13 @@
   />
   <div class="d-flex justify-content-end mt-2 gap-2">
     <il-button label="Cancelar" (clicked)="onCancel()" />
-    <il-button-save
-      [propertyId]="sanctionId()"
+    <lux-button-web
+      kind="save"
+      severity="info"
+      variant="soft"
+      displayMode="both"
       [disabled]="changeStatusForm.invalid"
-      [submitting]="false"
+      [loading]="false"
       label="Actualizar Estatus"
       type="submit"
     />
@@ -74,9 +77,13 @@
   </div>
   <div class="col-12 d-flex justify-content-end gap-2">
     <il-button label="Cancelar" (clicked)="onCancel()" />
-    <il-button-save
+    <lux-button-web
+      kind="save"
+      severity="info"
+      variant="soft"
+      displayMode="both"
       [disabled]="form.invalid"
-      [submitting]="false"
+      [loading]="false"
       label="Aplicar Sancion"
       type="submit"
     />

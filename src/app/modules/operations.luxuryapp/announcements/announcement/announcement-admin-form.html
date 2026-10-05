@@ -323,10 +323,15 @@
     </div>
   </div>
 
-  <il-button-save
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id() ? 'Actualizar' : 'Guardar'"
     class="mt-3 d-block w-full"
-    [propertyId]="id()"
     [disabled]="form.invalid"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>

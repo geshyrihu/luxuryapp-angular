@@ -33,7 +33,7 @@ import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -61,7 +61,7 @@ import { ImageGenerationDialog } from "./image-generation-dialog/image-generatio
     CustomInputSelectSignal,
     CustomInputDateSignal,
     WebButtonLabelDelete,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputToggleSwitch,
     LxDivider,
     LxEditor,
