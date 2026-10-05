@@ -31,10 +31,15 @@
     con la agenda mensual y con la minuta vinculada.
   </div>
 
-  <il-button-save
-    [propertyId]="id"
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
     [disabled]="form.invalid"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
   <hr />
 </form>

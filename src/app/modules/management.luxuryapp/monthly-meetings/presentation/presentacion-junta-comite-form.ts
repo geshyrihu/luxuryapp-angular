@@ -11,7 +11,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -39,7 +39,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     WebButtonIcon,
     ReactiveFormsModule,
     InputFile,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class PresentacionJuntaComiteForm implements OnInit {

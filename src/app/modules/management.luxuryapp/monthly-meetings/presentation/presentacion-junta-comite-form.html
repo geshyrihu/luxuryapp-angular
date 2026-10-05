@@ -25,9 +25,14 @@
     }
   </div>
 
-  <il-button-save
-    [propertyId]="id"
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
     [disabled]="form.invalid || !selectedFileName()"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>
