@@ -70,7 +70,7 @@
           (clicked)="edit.emit(item)"
         />
         } @if (item.pdfUrl) {
-        <iw-button-view-pdf [url]="item.pdfUrl" fileName="Contrato" />
+        <lux-pdf-viewer-trigger [url]="item.pdfUrl" fileName="Contrato" displayMode="icon" />
         } @if (item.status === 'Borrador' || item.status === 'Activo' ||
         item.status === 'PendienteFirma') {
         <iw-button-item

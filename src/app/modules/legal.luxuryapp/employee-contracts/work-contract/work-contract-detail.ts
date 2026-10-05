@@ -12,13 +12,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { EmployeeWorkContractDetailDTO } from "./interfaces/work-contract.dto";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 
 @Component({
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, ApiDatePipe, CurrencyPipe, WebButtonIconViewPdf],
+  imports: [AppIcon, ApiDatePipe, CurrencyPipe, PdfViewerTrigger],
 })
 export class WorkContractDetailComponent implements OnInit {
   apiS = inject(ApiResponseService);

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -25,7 +25,7 @@ import {
   templateUrl: "./documento-personalizado-lista-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconViewPdf,
+    PdfViewerTrigger,
     ButtonWeb,
     WebButtonIconDelete,
     LxTooltipDirective,

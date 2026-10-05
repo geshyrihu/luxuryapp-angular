@@ -12,7 +12,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -28,7 +28,7 @@ import { EmployeeWorkContractListDTO } from "../interfaces/work-contract.dto";
     WebButtonIconItem,
     ButtonWeb,
     WebButtonIconDelete,
-    WebButtonIconViewPdf,
+    PdfViewerTrigger,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,

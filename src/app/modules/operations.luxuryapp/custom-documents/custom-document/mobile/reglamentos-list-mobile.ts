@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -17,7 +17,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIcon,
-    WebButtonLabelViewPdf,
+    PdfViewerTrigger,
     LxTooltipDirective,
     DataViewMobile,
     MobileListItem,

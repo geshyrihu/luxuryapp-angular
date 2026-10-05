@@ -19,8 +19,7 @@ import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -38,7 +37,7 @@ import {
   templateUrl: "./presentaciones-juntas-comite.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconViewPdf,
+    PdfViewerTrigger,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
@@ -47,10 +46,7 @@ import {
     NgbTooltipModule,
     LuxTableCaption,
     DataViewMobile,
-    WebButtonLabelViewPdf,
     CustomInputTextSignal,
-
-    WebButtonLabelViewPdf,
     MobileListItem,
     AppIcon,
   ],

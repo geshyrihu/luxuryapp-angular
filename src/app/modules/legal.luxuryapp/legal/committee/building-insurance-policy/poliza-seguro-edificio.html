@@ -49,7 +49,7 @@
 
     @if (policy.pathDocument) {
     <div class="committee-card-panel__footer">
-      <il-button-view-pdf
+      <lux-pdf-viewer-trigger
         [url]="policy.pathDocument"
         fileName="Póliza | Contrato"
       />
