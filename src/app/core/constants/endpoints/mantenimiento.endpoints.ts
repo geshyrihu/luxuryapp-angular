@@ -247,6 +247,8 @@ export const EndpointsMantenimiento = {
     getAll: "inspection-reviews-catalog",
     getById: (id: string) => `inspection-reviews-catalog/${id}`,
     selectItems: "inspection-review-catalogs",
+    byEquipment: (equipmentId: string) =>
+      `inspection-reviews-catalog/select-items/by-equipment/${equipmentId}`,
     update: (id: string) => `inspection-reviews-catalog/${id}`,
   },
   RecepcionPipasAgua: {
