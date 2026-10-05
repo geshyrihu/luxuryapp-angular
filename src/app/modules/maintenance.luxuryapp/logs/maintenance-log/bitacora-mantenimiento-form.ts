@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -33,7 +33,7 @@ interface IBitacoraMantenimientoForm {
   templateUrl: "./bitacora-mantenimiento-form.html",
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     InputAutocomplete,
     CustomInputCheckSignal,
     CustomInputTextAreaSignal,
