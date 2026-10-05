@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -58,7 +58,7 @@ interface IManualTemplateForm {
     CustomInputTextAreaSignal,
     LxListbox,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputMultiselectSignal,
     AppIcon,
   ],
@@ -236,4 +236,3 @@ export class ManualsAndProcessesForm implements OnInit {
     });
   }
 }
-

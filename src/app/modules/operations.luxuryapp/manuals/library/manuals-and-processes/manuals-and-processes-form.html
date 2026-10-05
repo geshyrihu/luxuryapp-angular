@@ -194,7 +194,15 @@
           </div>
         </div>
 
-        <il-button-save [loading]="submitting()" />
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
+          label="Guardar"
+          [loading]="submitting()"
+        />
       </div>
     </div>
     <div class="col-12 col-lg-7">

@@ -15,7 +15,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
@@ -27,7 +27,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputFile,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class TemplatesForm implements OnInit {
