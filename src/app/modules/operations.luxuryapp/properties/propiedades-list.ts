@@ -24,6 +24,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { OwnerForm } from "../owner/owner-form";
 import { PropiedadesListDesktop } from "./desktop/propiedades-list-desktop";
 import { PropiedadesListMobile } from "./mobile/propiedades-list-mobile";
@@ -42,6 +43,7 @@ export class PropiedadesList {
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<Property[]>([]);
   public AspRole = ApplicationRole;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -81,8 +83,12 @@ export class PropiedadesList {
     return digits.match(/.{1,3}/g)?.join("-") ?? digits;
   }
 
-  onDelete(id: any) {
-    return this.apiResponseS
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta propiedad?",
+    );
+    if (!confirmed) return;
+    await this.apiResponseS
       .onDelete(Endpoints.Properties.delete(id))
       .then((result: boolean) => {
         if (result)

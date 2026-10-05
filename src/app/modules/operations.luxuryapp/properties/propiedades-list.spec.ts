@@ -5,6 +5,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { PropiedadesList } from "./propiedades-list";
 
@@ -18,6 +19,7 @@ describe("PropiedadesList", () => {
   let mockAspRoleS: any;
   let mockCustomerIdS: any;
   let mockDialogHandlerS: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -33,6 +35,7 @@ describe("PropiedadesList", () => {
       openDialog: vi.fn().mockResolvedValue(true),
       sizeLg: "1200px",
     };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(PropiedadesList, {
@@ -46,6 +49,7 @@ describe("PropiedadesList", () => {
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -83,6 +87,16 @@ describe("PropiedadesList", () => {
     expect(mockApiResponseS.onDelete).toHaveBeenCalledWith("properties/1");
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");
+  });
+
+  it("onDelete should not delete when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    component.dataSignal.set([{ id: "1", fullName: "Prop A" }]);
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().length).toBe(1);
   });
 });
 

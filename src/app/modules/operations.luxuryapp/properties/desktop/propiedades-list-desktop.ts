@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
@@ -34,7 +33,6 @@ import {
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
-    WebButtonIconDelete,
     WebButtonIconItem,
     WebButtonLabel,
   ],
