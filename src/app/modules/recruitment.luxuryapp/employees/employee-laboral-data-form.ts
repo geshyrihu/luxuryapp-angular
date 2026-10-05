@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -41,7 +41,7 @@ import { IEmployeeLaboralDataForm } from "./interfaces/employee-laboral-data-for
     CustomInputDateSignal,
     CustomInputCurrencySignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EmployeeLaboralDataForm implements OnInit {

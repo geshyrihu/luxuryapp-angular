@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -37,7 +37,7 @@ interface IEmployeePrincipalDataForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     InputMask,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EmployeePrincipalDataForm implements OnInit {

@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -40,7 +40,7 @@ import { IEmployeePersonalDataForm } from "./interfaces/employee-personal-data-f
     InputMask,
     CustomInputDateSignal,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideFlatpickrDefaults()],
