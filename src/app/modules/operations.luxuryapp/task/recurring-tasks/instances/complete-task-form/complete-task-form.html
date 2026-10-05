@@ -15,9 +15,14 @@
     />
   </div>
 
-  <il-button-save
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
     label="Marcar como Completada"
     [disabled]="form.invalid"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>

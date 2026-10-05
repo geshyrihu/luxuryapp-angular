@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -31,7 +31,7 @@ interface ICompleteTaskForm {
     ReactiveFormsModule,
     CustomInputTextAreaSignal,
     LxFileUpload,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class CompleteTaskForm implements OnInit {
