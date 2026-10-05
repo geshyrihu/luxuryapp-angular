@@ -13,10 +13,10 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   WebButtonLabelAdd,
   WebButtonLabelDelete,
-  WebButtonLabelEdit,
 } from "@ui/buttons/web-label";
 import type { TabItem } from "@ui/core/tabs.base";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -26,7 +26,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -37,15 +36,14 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   imports: [
     LxTooltipDirective,
     WebButtonIcon,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     ApiDatePipe,
     RouterModule,
     AppTable,
     LxTabs,
     WebButtonLabelAdd,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
+    ButtonWeb,
     DataViewMobile,
     LxTag,
   ],

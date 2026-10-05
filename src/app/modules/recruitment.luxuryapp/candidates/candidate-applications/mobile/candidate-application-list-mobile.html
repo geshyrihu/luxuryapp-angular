@@ -46,10 +46,10 @@
             (clicked)="completeHiring.emit(item.id)"
           />
         }
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
+          [ariaLabel]="'Editar proceso de ' + item.candidateName"
           (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
-          label="Editar"
-          [attr.aria-label]="'Editar proceso de ' + item.candidateName"
         />
       </ili-action-menu>
     </ili-list-item>

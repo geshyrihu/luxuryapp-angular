@@ -13,7 +13,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SolicitudCompraService } from "@purchases.luxuryapp/purchase-requests/requests/services/solicitud-compra.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
+
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ProductoEdit } from "./producto-edit";
@@ -23,7 +24,7 @@ import { ProductoEdit } from "./producto-edit";
   templateUrl: "./solicitud-compra-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,

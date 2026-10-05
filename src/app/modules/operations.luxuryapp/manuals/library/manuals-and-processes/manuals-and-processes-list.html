@@ -169,7 +169,12 @@
             <!-- Botones de Acción -->
             <div class="d-flex align-items-center gap-1">
               @if (isAdmin()) {
-              <il-button-edit (clicked)="onModalForm({ id: manual.id })" />
+              <lux-button-web
+                kind="edit"
+                severity="info"
+                variant="soft"
+                (clicked)="onModalForm({ id: manual.id })"
+              />
               <il-button
                 iconClass="material-symbols-light:settings"
                 label="Editor"
@@ -242,7 +247,12 @@
           (click)="$event.stopPropagation()"
         >
           @if (isAdmin()) {
-          <il-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <lux-button-web
+            kind="edit"
+            severity="info"
+            variant="soft"
+            (clicked)="onModalForm({ id: item.id })"
+          />
           <il-button-delete (confirmed)="onDelete(item)" />
           }
         </div>

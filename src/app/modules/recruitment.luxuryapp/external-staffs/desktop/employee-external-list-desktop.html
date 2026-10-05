@@ -69,7 +69,14 @@
       <td>{{ item.personalEmail }}</td>
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="edit.emit({ userId: item.applicationUserId, title: 'Editar' })"
           />
           <iw-button-item

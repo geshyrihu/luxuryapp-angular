@@ -7,7 +7,7 @@ import {
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -23,6 +23,7 @@ import {
   templateUrl: "./owner-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     AppIcon,
     TableEmptyMessage,
     AppTable,
@@ -32,7 +33,6 @@ import {
     LuxTableCaption,
     TableFooter,
     ActionMenu,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
   ],
 })

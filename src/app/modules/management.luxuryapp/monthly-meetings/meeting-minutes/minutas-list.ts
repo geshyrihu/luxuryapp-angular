@@ -22,9 +22,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import {
   WebButtonLabelConfirm,
   WebButtonLabelDelete,
-  WebButtonLabelEdit,
   WebButtonLabelItem,
 } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MeetingDetailForm } from "./meeting-detail-form";
@@ -46,7 +46,7 @@ interface JuntaVisual {
     WebButtonLabel,
     WebButtonLabelConfirm,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
+    ButtonWeb,
     WebButtonLabelItem,
     ActionMenu,
     LxTooltipDirective,

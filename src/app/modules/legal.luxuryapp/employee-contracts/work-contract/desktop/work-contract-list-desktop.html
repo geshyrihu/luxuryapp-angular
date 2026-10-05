@@ -59,7 +59,16 @@
         />
         @if (item.status === 'Borrador' || item.status === 'Activo' ||
         item.status === 'PendienteFirma') {
-        <iw-button-edit (clicked)="edit.emit(item)" />
+        <lux-button-web
+          kind="edit"
+          displayMode="icon"
+          severity="info"
+          variant="soft"
+          size="sm"
+          tooltip="Editar"
+          ariaLabel="Editar"
+          (clicked)="edit.emit(item)"
+        />
         } @if (item.pdfUrl) {
         <iw-button-view-pdf [url]="item.pdfUrl" fileName="Contrato" />
         } @if (item.status === 'Borrador' || item.status === 'Activo' ||

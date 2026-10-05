@@ -16,7 +16,7 @@ import {
 } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
@@ -29,7 +29,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
     LxTag,
     LxFieldset,
     DataViewMobile,
-    WebButtonLabelEdit,
+    ButtonWeb,
     WebButtonLabelDelete,
     WebButtonLabelConfirm,
     WebButtonLabelViewPdf,

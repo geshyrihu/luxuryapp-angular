@@ -9,7 +9,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,7 +34,7 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
     WebButtonLabel,
     LxTag,
     LuxTableCaption,
-    WebButtonIconEdit,
+    ButtonWeb,
     TableEmptyMessage,
   ],
 })

@@ -10,8 +10,8 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -110,13 +110,13 @@ import {
     `,
   ],
   imports: [
+    ButtonWeb,
     CommonModule,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
     WebButtonLabelItem,
     LuxTableCaption,

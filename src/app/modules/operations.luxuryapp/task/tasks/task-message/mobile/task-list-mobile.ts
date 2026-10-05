@@ -11,8 +11,8 @@ import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonIcon } from "@ui/buttons/mobile-icon/button";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -29,6 +29,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
   templateUrl: "./task-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     LxTag,
     IonButton,
     IonInputSelect,
@@ -36,7 +37,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     MobileActionMenu,
     MobileListItem,
     MobileButtonLabelItem,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     MobileButtonIcon,
     TaskStatus,

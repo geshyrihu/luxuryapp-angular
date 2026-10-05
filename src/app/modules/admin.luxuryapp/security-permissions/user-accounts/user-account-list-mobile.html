@@ -85,7 +85,10 @@
               iconName="person-outline"
               (clicked)="permissions.emit({ id: item.id, email: item.email })"
             />
-            <ili-button-edit label="Editar" (clicked)="edit.emit(item.id)" />
+            <lux-button-mobile
+              kind="edit"
+              (clicked)="edit.emit(item.id)"
+            />
             <ili-button-delete
               label="Eliminar"
               (confirmed)="delete.emit(item.id)"

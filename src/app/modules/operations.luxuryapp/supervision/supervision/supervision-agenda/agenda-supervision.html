@@ -115,9 +115,11 @@
           <ng-container actions>
             @if (applicationUserId == item.applicationUserId ||
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <il-button-edit
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
             />
             <il-button-delete
               (confirmed)="onDelete(item.id)"
@@ -169,9 +171,9 @@
         <ng-container actions>
           @if (applicationUserId == item.applicationUserId ||
           aspRoleS.hasRole(AspRole.SuperUsuario)) {
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
           }

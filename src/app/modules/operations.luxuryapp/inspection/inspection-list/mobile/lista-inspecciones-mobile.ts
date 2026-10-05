@@ -9,9 +9,9 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileButtonLabel } from "@ui/buttons";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { InspectionListItem } from "../../models/inspection.model";
 
@@ -21,12 +21,12 @@ import { InspectionListItem } from "../../models/inspection.model";
   styleUrls: ["../lista-inspecciones.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     FormsModule,
     CustomInputSelectSignal,
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelDelete,
-    MobileButtonLabelEdit,
     MobileButtonLabelItem,
     MobileButtonLabel,
   ],

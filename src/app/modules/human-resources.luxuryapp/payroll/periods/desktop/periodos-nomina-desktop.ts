@@ -11,9 +11,9 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -32,7 +32,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     ApiDatePipe,
     LxTag,
     WebButtonIcon,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,

@@ -171,9 +171,9 @@
             (clicked)="suspend.emit(item)"
           />
           }
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })"
-            label="Editar"
           />
           <ili-button-delete
             (confirmed)="delete.emit(item.id)"

@@ -18,12 +18,12 @@ import { IncidentWitnessListDTO } from "../interfaces/incident.interfaces";
 import { IncidentWitnessFormComponent } from "./incident-witness-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-incident-witnesses",
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,

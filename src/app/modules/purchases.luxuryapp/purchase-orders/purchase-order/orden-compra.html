@@ -169,7 +169,14 @@
           <td>{{ item.amount | number: '1.2-2' }}</td>
           <td>
             <div class="d-flex">
-              <iw-button-edit
+              <lux-button-web
+                kind="edit"
+                displayMode="icon"
+                severity="info"
+                variant="soft"
+                size="sm"
+                tooltip="Editar"
+                ariaLabel="Editar"
                 (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
               />
               <iw-button-delete
@@ -298,7 +305,16 @@
       <td>
         @if (canEditBudget()) {
         <div class="d-flex">
-          <iw-button-edit (clicked)="onModalEditarDetalle(item)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="onModalEditarDetalle(item)"
+          />
           <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
         </div>
         }

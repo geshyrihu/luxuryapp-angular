@@ -95,10 +95,12 @@
           } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
           AspRole.SuperUsuario])()) {
           <div class="d-flex gap-1 bg-white p-1 rounded-lg shadow-sm">
-            <il-button-edit
-              (clicked)="edit.emit(item.id)"
+            <lux-button-web
+              kind="edit"
+              severity="info"
               variant="text"
               size="sm"
+              (clicked)="edit.emit(item.id)"
             />
             <il-button-delete
               (confirmed)="deleteItem.emit(item.id)"

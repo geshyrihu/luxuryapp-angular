@@ -146,7 +146,14 @@
               accept="application/pdf,.pdf"
               (change)="onFileSelected($event, doc.documentCatalogId)"
             />
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
               [disabled]="uploadingType() === doc.documentCatalogId"
               (clicked)="updateInput.click()"
             />

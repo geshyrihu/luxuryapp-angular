@@ -5,9 +5,9 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -27,7 +27,7 @@ import {
     ActionMenu,
     WebButtonIconDownload,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
+    ButtonWeb,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,

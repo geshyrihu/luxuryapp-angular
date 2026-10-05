@@ -12,7 +12,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -46,7 +46,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
     DataViewMobile,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

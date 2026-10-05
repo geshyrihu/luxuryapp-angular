@@ -63,12 +63,27 @@
         <td class="text-center">
           <div class="d-flex justify-content-center gap-1">
             @if (canIssueCharge(item.status)) {
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Generar cargo financiero"
+              ariaLabel="Generar cargo financiero"
               (clicked)="onIssueCharge(item)"
-              title="Generar cargo financiero"
             />
             } @if (canEdit(item.status)) {
-            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
+              (clicked)="onModalForm(item.id)"
+            />
             } @if (canVoid(item.status)) {
             <iw-button-delete
               (customClick)="onVoid(item)"
@@ -113,9 +128,15 @@
       <ili-action-menu slot="end">
         <ng-container actions>
           @if (canIssueCharge(item.status)) {
-          <ili-button-edit (clicked)="onIssueCharge(item)" label="Editar" />
+          <lux-button-mobile
+            kind="edit"
+            (clicked)="onIssueCharge(item)"
+          />
           } @if (canEdit(item.status)) {
-          <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
+          <lux-button-mobile
+            kind="edit"
+            (clicked)="onModalForm(item.id)"
+          />
           } @if (canVoid(item.status)) {
           <ili-button-delete (confirmed)="onVoid(item)" label="Eliminar" />
           }

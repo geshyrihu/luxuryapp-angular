@@ -5,8 +5,8 @@ import {
   output,
 } from "@angular/core";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -20,7 +20,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppIcon,
     MobileListItem,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelDelete,
     DataViewMobile,
   ],

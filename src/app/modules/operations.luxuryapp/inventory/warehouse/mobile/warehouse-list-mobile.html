@@ -31,9 +31,9 @@
             label="Descargar Inventario"
             iconName="document-text-outline"
           />
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
         </ng-container>

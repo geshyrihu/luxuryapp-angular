@@ -56,7 +56,14 @@
       <!-- Opciones -->
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Conocimiento' })"
           />
           <iw-button-delete (confirmed)="delete.emit(item.id!)" />

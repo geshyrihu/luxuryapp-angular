@@ -63,8 +63,14 @@
         }
       </td>
       <td class="no-print">
-        <iw-button-edit
-          [attr.aria-label]="'Llenar retroalimentacion de ' + item.candidateName"
+        <lux-button-web
+          kind="edit"
+          displayMode="icon"
+          severity="info"
+          variant="soft"
+          size="sm"
+          tooltip="Editar"
+          [ariaLabel]="'Llenar retroalimentacion de ' + item.candidateName"
           (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
         />
       </td>

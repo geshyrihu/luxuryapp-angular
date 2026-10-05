@@ -9,7 +9,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -23,7 +23,7 @@ import { ContractAddendumListDTO } from "../interfaces/contract-addendum.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     ApiDatePipe,

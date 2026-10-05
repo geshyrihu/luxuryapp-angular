@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -20,7 +20,7 @@ import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interv
   imports: [
     DataViewMobile,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelViewPdf,
     MobileListItem,
     CandidateStageBadge,

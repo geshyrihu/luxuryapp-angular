@@ -5,8 +5,8 @@ import {
   output,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -23,7 +23,7 @@ import {
   templateUrl: "./employee-external-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
     WebButtonIconDelete,
     LxTooltipDirective,

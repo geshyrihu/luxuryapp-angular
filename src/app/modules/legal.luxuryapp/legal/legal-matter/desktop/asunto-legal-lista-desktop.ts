@@ -6,10 +6,9 @@ import {
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -20,13 +19,12 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./asunto-legal-lista-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     NgbTooltipModule,
     WebButtonLabel,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
     ActionMenu,
     LuxTableCaption,

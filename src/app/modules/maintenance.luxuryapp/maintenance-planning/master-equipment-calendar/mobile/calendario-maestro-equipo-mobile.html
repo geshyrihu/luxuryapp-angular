@@ -13,7 +13,8 @@
 
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
           <ili-button-delete (confirmed)="delete.emit(item.id)" />

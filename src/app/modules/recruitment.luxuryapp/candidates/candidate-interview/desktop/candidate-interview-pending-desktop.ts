@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -33,7 +33,7 @@ import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interv
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconViewPdf,
     CandidateStageBadge,
   ],

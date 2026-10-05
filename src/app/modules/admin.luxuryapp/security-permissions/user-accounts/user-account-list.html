@@ -155,7 +155,16 @@
               lxTooltip="Permisos"
               tooltipPosition="top"
             />
-            <iw-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
+              (clicked)="onModalForm(item.id, 'Editar')"
+            />
             <iw-button-delete (confirmed)="DeleteUserId(item.id)" />
           </div>
         </td>

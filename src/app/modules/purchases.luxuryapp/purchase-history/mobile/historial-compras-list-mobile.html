@@ -20,7 +20,11 @@
       </p>
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-edit (clicked)="viewOrder.emit(item.id)" label="Ver" />
+          <lux-button-mobile
+            kind="edit"
+            label="Ver"
+            (clicked)="viewOrder.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

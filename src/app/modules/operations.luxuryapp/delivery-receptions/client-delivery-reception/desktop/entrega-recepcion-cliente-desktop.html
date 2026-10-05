@@ -93,9 +93,11 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-              label="Editar"
             />
             @if (item.archivo && item.superviso === "") {
             <il-button-item

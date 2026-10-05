@@ -28,7 +28,10 @@
       </div>
 
       <div end class="d-flex gap-1">
-        <il-button-edit (clicked)="edit.emit(item)" />
+        <lux-button-mobile
+          kind="edit"
+          (clicked)="edit.emit(item)"
+        />
         <il-button-delete (confirmed)="delete.emit(item)" />
       </div>
     </ili-list-item>

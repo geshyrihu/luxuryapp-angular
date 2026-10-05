@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -19,9 +19,9 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
   templateUrl: "./customer-data-company-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     FormsModule,
     ReactiveFormsModule,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
     MobileActionMenu,

@@ -545,7 +545,12 @@
                 (clicked)="reopen.emit(item.id)"
               />
               }
-              <il-button-edit (clicked)="edit.emit(item)" label="Editar" />
+              <lux-button-web
+                kind="edit"
+                severity="info"
+                variant="soft"
+                (clicked)="edit.emit(item)"
+              />
               @if (isSuperUser()) {
               <il-button-delete
                 (confirmed)="delete.emit(item.id)"

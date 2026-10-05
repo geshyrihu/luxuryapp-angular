@@ -72,9 +72,13 @@
               </div>
             </div>
             <div class="mm-followup__actions">
-              <iw-button-edit
+              <lux-button-web
+                kind="edit"
+                displayMode="icon"
+                severity="info"
+                variant="soft"
+                size="sm"
                 [tooltip]="'Editar seguimiento'"
-                tooltipPosition="top"
                 (clicked)="onEditSeguimiento(detail.id, seg.id)"
               />
               <iw-button-delete
@@ -105,8 +109,10 @@
                 label="Agregar seguimiento"
                 (clicked)="onAddSeguimiento(detail.id)"
               />
-              <il-button-edit
-                label="Editar"
+              <lux-button-web
+                kind="edit"
+                severity="info"
+                variant="soft"
                 (clicked)="onEditDetail(detail.id)"
               />
               <il-button-delete

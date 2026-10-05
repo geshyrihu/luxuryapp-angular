@@ -24,10 +24,9 @@
       @if (!isReadOnly()) {
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Beneficiario' })"
-            label="Editar"
-            iconName="create-outline"
           />
           <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
         </ng-container>

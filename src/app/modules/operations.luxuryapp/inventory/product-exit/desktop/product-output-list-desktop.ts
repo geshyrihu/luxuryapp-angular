@@ -12,8 +12,8 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -29,9 +29,9 @@ import {
   templateUrl: "./product-output-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     WebButtonIcon,
     WebButtonIconDownload,
-    WebButtonIconEdit,
     WebButtonIconItem,
     WebButtonIconDelete,
     LxTooltipDirective,

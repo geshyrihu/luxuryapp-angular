@@ -161,7 +161,10 @@
                   (clicked)="reopen.emit(item.id)"
                 />
                 }
-                <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+                <lux-button-mobile
+                  kind="edit"
+                  (clicked)="edit.emit(item)"
+                />
                 @if (isSuperUser()) {
                 <ili-button-delete
                   (confirmed)="delete.emit(item.id)"

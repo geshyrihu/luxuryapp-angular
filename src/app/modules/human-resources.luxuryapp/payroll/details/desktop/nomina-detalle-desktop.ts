@@ -9,8 +9,8 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -28,7 +28,7 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
   imports: [
     CommonModule,
     WebButtonIcon,
-    WebButtonIconEdit,
+    ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

@@ -130,13 +130,15 @@
       </h2>
     </div>
     <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
-      <il-button-download
+      <lux-button-web
+        kind="download"
         label="Excel"
         iconClass="material-symbols-light:table-view"
         severity="success"
         (clicked)="exportExcel()"
       />
-      <il-button-download
+      <lux-button-web
+        kind="download"
         label="PDF"
         iconClass="material-symbols-light:picture-as-pdf"
         severity="danger"

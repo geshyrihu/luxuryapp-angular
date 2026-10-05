@@ -9,8 +9,8 @@ import { FormsModule } from "@angular/forms";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -25,11 +25,11 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   templateUrl: "./catalogo-gastos-fijos-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     FormsModule,
     LxAccordion,
     LxTabs,
     MobileButtonLabel,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     IonInputCheckbox,
     IonInputSelect,

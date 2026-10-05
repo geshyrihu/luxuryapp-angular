@@ -45,7 +45,16 @@
       <td>{{ item.customerIdAspelId }}</td>
       <td class="text-center">
         <div class="d-flex justify-content-center">
-          <iw-button-edit (clicked)="modalForm.emit(item)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="modalForm.emit(item)"
+          />
           <iw-button-delete (confirmed)="delete.emit(item.id)" />
         </div>
       </td>

@@ -15,11 +15,8 @@ import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
+import { WebButtonLabelDelete, WebButtonLabelItem } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
@@ -80,6 +77,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     `,
   ],
   imports: [
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
     AppReorderableRow,
@@ -100,7 +98,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     LxPopover,
     LxImage,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
     WebButtonLabelItem,
     InitialsAbbrPipe,
     AppIcon,

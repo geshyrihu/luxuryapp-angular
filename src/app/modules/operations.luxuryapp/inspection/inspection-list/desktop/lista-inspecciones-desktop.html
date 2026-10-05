@@ -110,8 +110,14 @@
           <td>{{ item.recurrenceUnitDisplayName }}</td>
           <td class="no-print text-end">
             <div class="d-flex gap-1 justify-content-end">
-              <iw-button-edit
-                [attr.aria-label]="'Editar ' + item.name"
+              <lux-button-web
+                kind="edit"
+                displayMode="icon"
+                severity="info"
+                variant="soft"
+                size="sm"
+                tooltip="Editar"
+                [ariaLabel]="'Editar ' + item.name"
                 (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
               />
               <iw-button-item

@@ -41,9 +41,9 @@
             fileName="Poliza | Contrato"
             label="Ver PDF"
           />
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
           @if (item.document) {

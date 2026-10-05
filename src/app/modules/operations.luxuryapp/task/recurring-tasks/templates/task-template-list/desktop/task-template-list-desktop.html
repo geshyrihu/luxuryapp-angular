@@ -48,7 +48,16 @@
             tooltipPosition="top"
             (clicked)="manageItems.emit(template.id)"
           />
-          <iw-button-edit (clicked)="edit.emit(template)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="edit.emit(template)"
+          />
           <iw-button-delete (confirmed)="delete.emit(template.id)" />
         </div>
       </td>

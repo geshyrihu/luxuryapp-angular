@@ -67,7 +67,16 @@
         </td>
         <td>{{ item.total | number: '1.2-2' }}</td>
         <td class="text-center">
-          <iw-button-edit (clicked)="viewOrder.emit(item.id)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="viewOrder.emit(item.id)"
+          />
         </td>
       </tr>
     </ng-template>

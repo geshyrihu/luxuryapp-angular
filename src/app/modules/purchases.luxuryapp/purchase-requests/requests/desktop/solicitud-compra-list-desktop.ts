@@ -11,7 +11,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { TagSeverity } from "@ui/core/tag.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -32,6 +32,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
   templateUrl: "./solicitud-compra-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     ApiDatePipe,
     AppTable,
     AppReorderableRow,
@@ -41,7 +42,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIcon,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,

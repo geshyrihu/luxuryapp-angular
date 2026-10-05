@@ -52,8 +52,8 @@ import { CandidateInterviewerQueueService } from "@shared/integration/reclutamie
 import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";
 
 @Component({
@@ -62,7 +62,7 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
   styleUrl: "./staff-board-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,

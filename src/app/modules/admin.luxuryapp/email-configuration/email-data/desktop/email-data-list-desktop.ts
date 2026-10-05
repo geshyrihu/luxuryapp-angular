@@ -8,8 +8,8 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { EmailDataFormDto } from "@core/interfaces/email-data-form.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -24,11 +24,11 @@ import {
   templateUrl: "./email-data-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconEdit,
     WebButtonIconSendEmail,
     LuxTableCaption,
     TableFooter,

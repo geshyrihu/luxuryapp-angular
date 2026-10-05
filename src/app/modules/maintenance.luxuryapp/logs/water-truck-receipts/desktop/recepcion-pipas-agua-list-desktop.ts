@@ -9,8 +9,8 @@ import {
 import { RouterModule } from "@angular/router";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
@@ -31,7 +31,7 @@ import { IRecepcionPipaAgua } from "../recepcion-pipas-agua.interfaces";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     CommonModule,
     ApiDatePipe,

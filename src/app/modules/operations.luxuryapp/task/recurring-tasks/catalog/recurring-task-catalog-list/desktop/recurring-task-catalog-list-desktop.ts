@@ -9,7 +9,7 @@ import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/r
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -19,8 +19,8 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./recurring-task-catalog-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     WebButtonIconActiveDesactive,
-    WebButtonIconEdit,
     LxTooltipDirective,
     TableEmptyMessage,
     LuxTableCaption,

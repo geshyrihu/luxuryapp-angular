@@ -5,7 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -17,10 +17,10 @@ import { VaultSecretSummary } from "../interfaces/vault-secret.model";
   templateUrl: "./vault-secrets-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     AppIcon,
     MobileListItem,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
   ],

@@ -12,8 +12,8 @@ import {
 import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -45,7 +45,7 @@ interface Equipo {
     SanitizeHtmlPipe,
     WebButtonLabel,
     WebButtonIconDelete,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
   ],
   template: `
@@ -118,7 +118,16 @@ interface Equipo {
                       variant="text"
                       (clicked)="onCopyMantenimiento(order)"
                     />
-                    <iw-button-edit (clicked)="onEditMantenimiento(order)" />
+                    <lux-button-web
+                      kind="edit"
+                      displayMode="icon"
+                      severity="info"
+                      variant="soft"
+                      size="sm"
+                      tooltip="Editar"
+                      ariaLabel="Editar"
+                      (clicked)="onEditMantenimiento(order)"
+                    />
                     <iw-button-delete
                       (confirmed)="onDeleteMantenimiento(order.id)"
                       [isLinked]="order.hasServiceOrder"

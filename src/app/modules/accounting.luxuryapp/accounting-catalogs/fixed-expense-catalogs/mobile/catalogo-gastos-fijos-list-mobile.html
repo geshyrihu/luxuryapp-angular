@@ -107,10 +107,10 @@
           @if (canManage()) {
           <ili-action-menu slot="end">
             <ng-container actions>
-              <ili-button-edit
+              <lux-button-mobile
+                kind="edit"
                 (clicked)="modal.emit({ id: item.id, title: 'Editar' })"
-                label="Editar"
-              ></ili-button-edit>
+              />
               <ili-button-delete
                 (confirmed)="delete.emit(item.id)"
               ></ili-button-delete>

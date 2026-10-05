@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -29,10 +28,9 @@ export interface SeguimientoEvent {
     AppIcon,
     WebButtonIconAdd,
     WebButtonIconConfirm,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     WebButtonLabelItem,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
     LxTooltipDirective,
     ActionMenu,

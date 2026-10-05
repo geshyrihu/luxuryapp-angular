@@ -8,7 +8,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { TagSeverity } from "@ui/core/tag.base";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -22,10 +22,10 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
   templateUrl: "./solicitud-compra-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     ApiDatePipe,
     WebButtonLabel,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
     AppIcon,

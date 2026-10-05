@@ -58,9 +58,9 @@
           "
         />
 
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-          label="Editar"
         />
         @if (item.existencia <= 0) {
         <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />

@@ -10,7 +10,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -26,7 +26,7 @@ import { EmployeeWorkContractListDTO } from "../interfaces/work-contract.dto";
   imports: [
     CurrencyPipe,
     WebButtonIconItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     WebButtonIconViewPdf,
     TableEmptyMessage,

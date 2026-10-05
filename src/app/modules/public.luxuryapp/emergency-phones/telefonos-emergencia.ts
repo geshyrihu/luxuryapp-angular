@@ -12,9 +12,9 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -29,7 +29,7 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
     AppAvatar,
     WebButtonLabelAdd,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
+    ButtonWeb,
     CustomSearchInput,
     LxTooltipDirective,
   ],

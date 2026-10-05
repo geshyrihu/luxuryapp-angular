@@ -5,7 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -21,6 +21,7 @@ import {
   templateUrl: "./mis-proveedores-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
@@ -28,7 +29,6 @@ import {
     AppAvatar,
     LuxTableCaption,
     ActionMenu,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
   ],
 })

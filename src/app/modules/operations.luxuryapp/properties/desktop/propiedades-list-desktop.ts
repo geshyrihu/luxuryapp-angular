@@ -8,9 +8,9 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -25,6 +25,7 @@ import {
   templateUrl: "./propiedades-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     CommonModule,
     AppTable,
     AppSortableColumn,
@@ -33,7 +34,6 @@ import {
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonIconItem,
     WebButtonLabel,

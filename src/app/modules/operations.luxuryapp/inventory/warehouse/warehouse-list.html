@@ -56,7 +56,14 @@
             tooltipPosition="top"
             iconClass="material-symbols-light:picture-as-pdf"
           />
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
@@ -108,9 +115,9 @@
             label="Descargar Inventario"
             iconName="document-text-outline"
           />
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>

@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -36,7 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectButton,
     LxSpinner,
     WebButtonLabel,
-    WebButtonLabelDownload,
+    ButtonWeb,
     CustomSearchInput,
     AppIcon,
   ],

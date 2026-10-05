@@ -43,7 +43,16 @@
           [icon]="item.isActive ? 'material-symbols-light:toggle-on' : 'material-symbols-light:toggle-off'"
           (clicked)="toggleActive.emit(item)"
         />
-        <iw-button-edit (clicked)="edit.emit(item)" />
+        <lux-button-web
+          kind="edit"
+          displayMode="icon"
+          severity="info"
+          variant="soft"
+          size="sm"
+          tooltip="Editar"
+          ariaLabel="Editar"
+          (clicked)="edit.emit(item)"
+        />
         <iw-button-delete (confirmed)="delete.emit(item.id)" />
       </td>
     </tr>

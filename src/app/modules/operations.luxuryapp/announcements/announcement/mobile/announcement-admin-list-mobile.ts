@@ -9,8 +9,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -23,8 +23,8 @@ import { IAnnouncementAdminList } from "../announcement.model";
   templateUrl: "./announcement-admin-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     MobileButtonLabelItem,
     ApiDatePipe,

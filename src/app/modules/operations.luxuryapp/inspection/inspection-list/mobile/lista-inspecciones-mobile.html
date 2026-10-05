@@ -55,9 +55,9 @@
         <span class="text-body-sm text-on-surface-secondary">{{ item.recurrenceUnitDisplayName ?? 'N/A' }}</span>
       </span>
       <ili-action-menu end>
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-          label="Editar"
         />
         <ili-button-item
           icon="search"

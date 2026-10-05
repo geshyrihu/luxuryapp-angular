@@ -13,7 +13,7 @@ import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -42,7 +42,7 @@ import { CandidateApplicationListItem } from "../interfaces/candidate-applicatio
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconViewPdf,
     WebButtonLabelItem,
     CandidateStageBadge,

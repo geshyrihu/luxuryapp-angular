@@ -47,10 +47,10 @@
           label="Ver detalle"
           [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
         />
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
+          [ariaLabel]="'Editar candidato ' + item.fullName"
           (clicked)="edit.emit({ id: item.id, title: 'Editar Candidato' })"
-          label="Editar"
-          [attr.aria-label]="'Editar candidato ' + item.fullName"
         />
         @if (item.status === candidateStatus.Active) {
           <ili-button-delete

@@ -8,7 +8,7 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -23,6 +23,7 @@ import {
   templateUrl: "./product-entry-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     ApiDatePipe,
     TableEmptyMessage,
     AppTable,
@@ -30,7 +31,6 @@ import {
     AppSorticon,
     LuxTableCaption,
     TableFooter,
-    WebButtonIconEdit,
     WebButtonIconDelete,
   ],
 })

@@ -13,11 +13,9 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-} from "@ui/buttons/web-label";
+import { WebButtonLabelDelete } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -44,11 +42,11 @@ interface DeptGroup {
   templateUrl: "./manuals-and-processes-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
     CommonModule,
     CustomSearchInput,
     WebButtonLabel,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
     DataViewMobile,
     AppIcon,
     MobileListItem,

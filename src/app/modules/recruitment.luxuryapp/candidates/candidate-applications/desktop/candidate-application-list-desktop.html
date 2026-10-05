@@ -94,8 +94,14 @@
             (clicked)="completeHiring.emit(item.id)"
           />
           }
-          <iw-button-edit
-            [attr.aria-label]="'Editar proceso de ' + item.candidateName"
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            [ariaLabel]="'Editar proceso de ' + item.candidateName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
           />
         </div>

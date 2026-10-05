@@ -55,7 +55,14 @@
       </td>
       <td class="text-center">
         <div class="d-flex justify-content-center">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
           />
           <iw-button-delete (confirmed)="onDelete(Item.id)" />
@@ -98,9 +105,9 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>

@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -19,7 +19,7 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
     CommonModule,
     AppIcon,
     MobileListItem,
-    WebButtonLabelEdit,
+    ButtonMobile,
     DataViewMobile,
   ],
 })

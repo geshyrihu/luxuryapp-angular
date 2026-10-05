@@ -165,7 +165,10 @@
                 (clicked)="reopen.emit(item.id)"
               />
               } @if (item.status !== "Completed") {
-              <il-button-edit
+              <lux-button-web
+                kind="edit"
+                severity="info"
+                variant="soft"
                 (clicked)="
                       edit.emit({
                         id: item.id,
@@ -173,7 +176,6 @@
                         ticketGroupId: item.ticketGroupId,
                       })
                     "
-                label="Editar"
               />
               }
             </ng-container>

@@ -27,7 +27,6 @@ import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -44,8 +43,9 @@ import { MantenimientoPreventivoForm } from "../preventive-maintenance/mantenimi
 const date = new Date();
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
@@ -54,11 +54,11 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   templateUrl: "./listado-anual-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
+    ButtonMobile,
     WebButtonIconItem,
     WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelItem,
     MobileButtonLabelDelete,
     TableEmptyMessage,

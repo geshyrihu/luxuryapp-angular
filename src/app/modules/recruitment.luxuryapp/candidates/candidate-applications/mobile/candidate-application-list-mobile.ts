@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -26,7 +26,7 @@ import { CandidateApplicationListItem } from "../interfaces/candidate-applicatio
     ReactiveFormsModule,
     DataViewMobile,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelItem,
     MobileButtonLabelViewPdf,
     MobileListItem,

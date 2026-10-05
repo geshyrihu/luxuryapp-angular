@@ -48,7 +48,14 @@
       </td>
       <td>
         <div class="d-flex justify-content-center">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="categoryForm.emit({ id: category.id, title: 'Editar' })"
           />
           <iw-button-delete (confirmed)="categoryDelete.emit(category.id)" />
@@ -69,10 +76,11 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <il-button-edit
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
               (clicked)="edit.emit({ id: legalMatter.id, title: 'Editar' })"
-              label="Editar"
-              []="true"
             />
             <il-button-delete
               (confirmed)="delete.emit(legalMatter.id)"

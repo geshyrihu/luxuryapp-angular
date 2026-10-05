@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -24,9 +24,9 @@ import { AiKnowledgeBaseDto } from "@core/interfaces/ai-knowledge-base.dto";
   templateUrl: "./ai-knowledge-base-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     AppTag,
     AppIcon,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,

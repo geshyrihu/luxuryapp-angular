@@ -14,9 +14,9 @@
       <p>{{ item.email }}</p>
 
       <ili-action-menu slot="end">
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-          label="Editar"
         />
         <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
       </ili-action-menu>

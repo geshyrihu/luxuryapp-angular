@@ -10,8 +10,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -21,9 +21,9 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./task-template-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,

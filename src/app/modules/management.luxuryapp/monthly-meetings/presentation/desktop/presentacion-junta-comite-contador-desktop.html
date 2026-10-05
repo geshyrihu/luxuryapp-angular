@@ -121,10 +121,12 @@
                   />
                   @if (!item.archivoFinal) {
                   <div class="d-flex gap-1 ms-auto">
-                    <il-button-edit
-                      (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
+                    <lux-button-web
+                      kind="edit"
+                      severity="info"
                       variant="text"
                       size="sm"
+                      (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
                     />
                     <il-button-delete
                       (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"

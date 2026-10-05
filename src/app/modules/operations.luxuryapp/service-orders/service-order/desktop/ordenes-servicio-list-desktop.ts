@@ -11,9 +11,9 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -30,12 +30,12 @@ import {
   templateUrl: "./ordenes-servicio-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     CommonModule,
     RouterModule,
     CustomInputTextSignal,
     WebButtonIcon,
     WebButtonIconItem,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonLabel,
     LuxTableCaption,

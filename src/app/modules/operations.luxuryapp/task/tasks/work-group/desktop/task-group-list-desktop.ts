@@ -9,9 +9,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
@@ -24,6 +24,7 @@ import { WorkGroupDTO } from "../task-group-list";
   templateUrl: "./task-group-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     LxTag,
     WebButtonLabelAdd,
     StatusBadge,
@@ -31,7 +32,6 @@ import { WorkGroupDTO } from "../task-group-list";
     WebButtonIcon,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     EmptyState,
     CustomSearchInput,

@@ -28,9 +28,9 @@
 
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           @if (item.archivo && item.superviso === '') {
           <ili-button-item

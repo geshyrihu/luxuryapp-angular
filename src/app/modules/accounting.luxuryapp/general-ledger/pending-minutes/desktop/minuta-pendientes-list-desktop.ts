@@ -10,7 +10,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -36,7 +36,7 @@ import {
     AppSorticon,
     LxTooltipDirective,
     CustomInputSelectSignal,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
     WebButtonLabel,
     LuxTableCaption,

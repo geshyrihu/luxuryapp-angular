@@ -17,7 +17,14 @@
       <td>{{ item.unidadMedida }}</td>
       <td class="no-print">
         <div class="fluid">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="
                 editProduct({
                   purchasesolicitaId: solicitudCompraId(),

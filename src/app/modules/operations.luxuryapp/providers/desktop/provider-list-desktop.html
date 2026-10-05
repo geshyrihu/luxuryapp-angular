@@ -155,7 +155,14 @@
         @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
         roles.Administrador, roles.SuperUsuario, roles.SupervisionOperativa,
         roles.Legal, ]) && item.id != 109 ) {
-        <iw-button-edit
+        <lux-button-web
+          kind="edit"
+          displayMode="icon"
+          severity="info"
+          variant="soft"
+          size="sm"
+          tooltip="Editar"
+          ariaLabel="Editar"
           (clicked)="edit.emit({ id: item.providerId, title: 'Editar' })"
         />
         } @if (item.activo) {

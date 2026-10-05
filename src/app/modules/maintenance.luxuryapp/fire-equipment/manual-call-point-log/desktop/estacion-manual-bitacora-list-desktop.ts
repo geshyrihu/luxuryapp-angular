@@ -7,9 +7,9 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -26,7 +26,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconDownload,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,

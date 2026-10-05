@@ -79,7 +79,16 @@
           {{ item.activities.length }}
         </td>
         <td class="text-center">
-          <iw-button-edit (clicked)="openDetail(item)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="openDetail(item)"
+          />
         </td>
       </tr>
     </ng-template>
@@ -115,7 +124,10 @@
         </div>
         <ili-action-menu slot="end">
           <ng-container actions>
-            <ili-button-edit (clicked)="openDetail(item)" label="Editar" />
+            <lux-button-mobile
+              kind="edit"
+              (clicked)="openDetail(item)"
+            />
           </ng-container>
         </ili-action-menu>
       </ili-list-item>

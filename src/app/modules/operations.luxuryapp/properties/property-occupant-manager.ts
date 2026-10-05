@@ -21,8 +21,8 @@ import {
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
@@ -34,12 +34,12 @@ import {
 @Component({
   selector: "app-property-occupant-manager",
   imports: [
+    ButtonWeb,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     CustomInputTextSignal,
     CustomInputCheckSignal,

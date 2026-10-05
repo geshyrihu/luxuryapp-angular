@@ -61,7 +61,16 @@
               iconClass="material-symbols-light:visibility-outline"
               ngbTooltip="Ver reporte"
             />
-            <iw-button-edit (clicked)="editar(r.id)" />
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
+              (clicked)="editar(r.id)"
+            />
             <iw-button-delete
               [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'"
               (confirmed)="eliminar(r.id)"
@@ -102,7 +111,16 @@
             iconClass="material-symbols-light:visibility-outline"
             (clicked)="ver(r.id)"
           />
-          <il-button-edit (clicked)="editar(r.id)" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="editar(r.id)"
+          />
           <il-button-delete
             [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'"
             (confirmed)="eliminar(r.id)"

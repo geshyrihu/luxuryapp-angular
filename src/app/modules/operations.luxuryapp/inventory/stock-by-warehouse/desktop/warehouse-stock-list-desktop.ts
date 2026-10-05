@@ -7,8 +7,8 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -23,6 +23,7 @@ import {
   templateUrl: "./warehouse-stock-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     AppAvatar,
     LuxTableCaption,
     TableEmptyMessage,
@@ -31,7 +32,6 @@ import {
     AppSorticon,
     LxTooltipDirective,
     WebButtonIconDelete,
-    WebButtonIconEdit,
     WebButtonIconItem,
   ],
 })

@@ -11,8 +11,8 @@ import { LeaveRequestMyDTO } from "@human-resources.luxuryapp/interfaces/leave-r
 import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -31,7 +31,7 @@ import {
   imports: [
     AppIcon,
     WebButtonIconItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     LxTooltipDirective,
     AppTable,

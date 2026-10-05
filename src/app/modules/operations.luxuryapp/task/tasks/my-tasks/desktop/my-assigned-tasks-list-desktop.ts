@@ -13,8 +13,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -29,8 +29,8 @@ import { TaskStatus } from "../../task-status/task-status";
   templateUrl: "./my-assigned-tasks-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     TableEmptyMessage,
-    WebButtonLabelEdit,
     WebButtonLabelItem,
     WebButtonLabel,
     TaskStatus,

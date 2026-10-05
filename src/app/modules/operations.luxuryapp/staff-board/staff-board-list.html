@@ -252,10 +252,15 @@
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
           />
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            lxTooltip="Asignar rol al puesto"
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Asignar rol al puesto"
             ariaLabel="Asignar rol al puesto"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
           />
         </div>
         } @else {

@@ -24,7 +24,12 @@
           @if ( aspRoleS.anyOf([AspRole.Administrador,
           AspRole.SuperUsuario])() && !item.archivoFinal ) {
           <div class="d-flex gap-1">
-            <il-button-edit (clicked)="edit.emit(item.id)" />
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
+              (clicked)="edit.emit(item.id)"
+            />
             <il-button-delete (confirmed)="deleteItem.emit(item.id)" />
           </div>
           }
@@ -61,7 +66,10 @@
               @if ( aspRoleS.anyOf([ AspRole.Administrador,
               AspRole.SuperUsuario ])() && !item.archivoFinal ) {
               <div class="d-flex gap-1">
-                <il-button-edit
+                <lux-button-web
+                  kind="edit"
+                  severity="info"
+                  variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Portada' })"
                 />
                 <il-button-delete
@@ -106,7 +114,10 @@
               && !item.archivoFinal && !item.applicationUserSupervisorContable
               ) {
               <div class="d-flex gap-1">
-                <il-button-edit
+                <lux-button-web
+                  kind="edit"
+                  severity="info"
+                  variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
                 />
                 <il-button-delete
@@ -151,7 +162,10 @@
               @if ( aspRoleS.anyOf([ AspRole.Administrador,
               AspRole.SuperUsuario ])() && !item.archivoFinal ) {
               <div class="d-flex gap-1">
-                <il-button-edit
+                <lux-button-web
+                  kind="edit"
+                  severity="info"
+                  variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Operaciones' })"
                 />
                 <il-button-delete

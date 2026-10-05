@@ -22,7 +22,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -39,8 +38,9 @@ import { WarehouseForm } from "./warehouse-form";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
@@ -49,15 +49,15 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   templateUrl: "./warehouse-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
+    ButtonMobile,
     AppIcon,
     MobileListItem,
     WebButtonIconItem,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelItem,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     TableEmptyMessage,
     AppTable,

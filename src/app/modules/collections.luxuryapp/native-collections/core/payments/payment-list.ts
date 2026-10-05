@@ -10,11 +10,10 @@ import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -41,18 +40,17 @@ import { PaymentForm } from "./payment-form";
   selector: "app-payment-list",
   imports: [
     WebButtonIcon,
-    WebButtonIconEdit,
+    ButtonWeb,
     LxTooltipDirective,
     LxTag,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     TableEmptyMessage,
     LuxTableCaption,
     WebButtonLabel,
-    WebButtonLabelEdit,
     DecimalPipe,
     ApiDatePipe,
     DataViewMobile,

@@ -25,10 +25,11 @@
             [attr.aria-label]="'Ver CV de ' + item.candidateName"
           />
         }
-        <ili-button-edit
-          (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
+        <lux-button-mobile
+          kind="edit"
           label="Retroalimentacion"
-          [attr.aria-label]="'Llenar retroalimentacion de ' + item.candidateName"
+          [ariaLabel]="'Llenar retroalimentacion de ' + item.candidateName"
+          (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
         />
       </ili-action-menu>
     </ili-list-item>

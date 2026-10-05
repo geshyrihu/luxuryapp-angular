@@ -34,7 +34,10 @@
             iconName="list-outline"
           />
           <ili-button-download (clicked)="downloadQr.emit(item)" label="QR" />
-          <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+          <lux-button-mobile
+            kind="edit"
+            (clicked)="edit.emit(item)"
+          />
           <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>

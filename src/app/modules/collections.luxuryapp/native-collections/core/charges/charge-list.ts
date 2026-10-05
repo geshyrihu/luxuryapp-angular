@@ -18,10 +18,10 @@ import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -48,11 +48,11 @@ import { downloadInitialBalanceTemplate } from "./initial-balance-template.helpe
     AppIcon,
     MobileListItem,
     WebButtonIcon,
-    WebButtonIconEdit,
+    ButtonWeb,
     LxTooltipDirective,
     LxTag,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     AppTable,
     TableEmptyMessage,
     LuxTableCaption,

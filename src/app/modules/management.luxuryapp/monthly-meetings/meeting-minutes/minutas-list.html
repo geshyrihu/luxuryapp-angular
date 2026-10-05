@@ -214,8 +214,10 @@
               label="Resumen minuta"
               (clicked)="resumenMinuta(item.id)"
             />
-            <il-button-edit
-              label="Editar"
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
               (clicked)="
                 showModalAddOrEditMeeting({ id: item.id, title: 'Editar' })
               "

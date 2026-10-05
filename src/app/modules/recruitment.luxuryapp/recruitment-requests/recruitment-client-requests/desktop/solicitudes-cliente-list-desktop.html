@@ -59,7 +59,14 @@
           @switch (item.tipoSolicitud) { @case ('Alta') {
           <div class="body-card">
             <!-- Contenido específico para el caso 'pesificacion' -->
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
               (clicked)="editSolicitudAlta.emit({
                           id: item.id,
                           })"
@@ -68,7 +75,14 @@
           } @case ('Vacante') {
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
               (clicked)="editVacante.emit({
                           id: item.id,
                           })"
@@ -78,7 +92,14 @@
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
 
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
               (clicked)="
                           editSolicitudBaja.emit({
                           id: item.id,

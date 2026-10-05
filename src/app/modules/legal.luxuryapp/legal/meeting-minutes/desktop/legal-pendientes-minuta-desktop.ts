@@ -11,7 +11,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -30,7 +30,7 @@ import {
   imports: [
     CommonModule,
     TableEmptyMessage,
-    WebButtonLabelEdit,
+    ButtonWeb,
     WebButtonLabelAdd,
     AppTable,
     AppSortableColumn,

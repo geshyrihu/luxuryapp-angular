@@ -126,9 +126,15 @@
             value="Actualizar puesto"
             icon="material-symbols-light:warning"
           />
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Asignar rol al puesto"
+            ariaLabel="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            lxTooltip="Asignar rol al puesto"
           />
         </div>
         } @else {

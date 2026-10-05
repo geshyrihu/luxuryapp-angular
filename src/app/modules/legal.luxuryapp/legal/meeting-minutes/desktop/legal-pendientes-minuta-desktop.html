@@ -104,11 +104,11 @@
               label="Agregar Seguimiento"
               []="true"
             />
-            <il-button-edit
+            <lux-button-web
+              kind="edit"
+              severity="info"
+              variant="soft"
               (clicked)="editMinuta.emit(item.id)"
-              label="Editar"
-              iconClass="material-symbols-light:edit"
-              []="true"
             />
           </ng-container>
         </app-action-menu>

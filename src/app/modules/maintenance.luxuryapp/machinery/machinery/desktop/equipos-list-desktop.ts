@@ -8,9 +8,9 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
@@ -34,7 +34,7 @@ import {
     AppIcon,
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     AppTable,
     AppSortableColumn,

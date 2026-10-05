@@ -67,26 +67,30 @@
   @if (canDownloadAccountDocuments()) {
   <div class="d-flex justify-content-end flex-wrap gap-2">
     @if (mode() === 'detalle-cobranza-rango') {
-    <il-button-download
+    <lux-button-web
+      kind="download"
       label="Aviso de cobro"
       iconClass="material-symbols-light:picture-as-pdf"
       severity="danger"
       (clicked)="downloadAvisoCobroPdf()"
     />
-    <il-button-download
+    <lux-button-web
+      kind="download"
       label="Aviso de cobro Aspel"
       iconClass="material-symbols-light:picture-as-pdf"
       severity="contrast"
       (clicked)="downloadAvisoCobroPdfAspel()"
     />
     } @if (mode() === 'estado-cuenta-rango') {
-    <il-button-download
+    <lux-button-web
+      kind="download"
       label="Estado de cuenta"
       iconClass="material-symbols-light:picture-as-pdf"
       severity="info"
       (clicked)="downloadEstadoCuentaPdf()"
     />
-    <il-button-download
+    <lux-button-web
+      kind="download"
       label="Estado de cuenta Aspel"
       iconClass="material-symbols-light:picture-as-pdf"
       severity="contrast"

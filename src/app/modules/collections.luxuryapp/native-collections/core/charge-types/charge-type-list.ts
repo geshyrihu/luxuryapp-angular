@@ -13,9 +13,9 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -39,9 +39,9 @@ import { ChargeTypeForm } from "./charge-type-form";
     MobileListItem,
     MobileActionMenu,
     AppIcon,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelDelete,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

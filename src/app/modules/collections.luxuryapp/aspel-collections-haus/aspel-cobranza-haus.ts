@@ -30,7 +30,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -69,7 +69,7 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-busines
     AppSortableColumn,
     AppSorticon,
     AppIcon,
-    WebButtonLabelDownload,
+    ButtonWeb,
     LuxTableCaption,
     TableFooter,
     AspelCobranzaHausQueryPanel,

@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { ProviderSupportList } from "@core/interfaces/provider-support-list.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -23,7 +23,7 @@ import {
   templateUrl: "./provider-support-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,

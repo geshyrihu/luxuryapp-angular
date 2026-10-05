@@ -66,13 +66,13 @@
       </div>
 
       <ili-action-menu slot="end">
-        <ili-button-edit
+        <lux-button-mobile
+          kind="edit"
           (clicked)="edit.emit({
                   id: item.id,
                   title: 'Editar',
                   ticketGroupId: item.ticketGroupId,
                 })"
-          label="Editar"
         />
 
         <ili-button-item

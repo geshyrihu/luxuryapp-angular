@@ -6,8 +6,8 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -18,10 +18,10 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   templateUrl: "./policy-contract-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     LxTag,
     MobileActionMenu,
     MobileButtonLabelViewPdf,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     DataViewMobile,
     MobileListItem,

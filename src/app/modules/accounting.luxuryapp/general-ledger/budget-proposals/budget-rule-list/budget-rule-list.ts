@@ -36,21 +36,21 @@ import { BudgetAccountRuleDataDTO } from "../../aspel-web-budget/presupuestos.in
 import { BudgetRuleForm } from "./budget-rule-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-budget-rule-list",
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
+    ButtonMobile,
     WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     AppTable,
     LuxTableCaption,

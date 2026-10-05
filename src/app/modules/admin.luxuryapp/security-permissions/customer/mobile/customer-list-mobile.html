@@ -40,9 +40,9 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
-            label="Editar"
           />
           <ili-button-item
             iconClass="material-symbols-light:photo-library-outline"

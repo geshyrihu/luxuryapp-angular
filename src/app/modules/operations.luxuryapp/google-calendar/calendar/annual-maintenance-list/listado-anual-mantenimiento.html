@@ -131,7 +131,14 @@
       AspRole.SuperUsuario, ]) ) {
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -235,7 +242,8 @@
       AspRole.SuperUsuario])) {
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -244,7 +252,6 @@
                     header: 'Editar registro ' + item.id,
                   })
                 "
-            label="Editar"
           />
           <ili-button-item
             (clicked)="

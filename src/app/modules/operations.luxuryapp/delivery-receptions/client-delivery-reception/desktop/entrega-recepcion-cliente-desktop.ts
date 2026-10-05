@@ -8,8 +8,8 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -21,7 +21,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./entrega-recepcion-cliente-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonLabelEdit,
+    ButtonWeb,
     AppIcon,
     WebButtonIconViewPdf,
     TableEmptyMessage,

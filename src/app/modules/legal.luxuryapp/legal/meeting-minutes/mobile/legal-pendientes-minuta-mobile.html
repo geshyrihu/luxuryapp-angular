@@ -80,11 +80,9 @@
             (clicked)="addTracking.emit(item.id)"
             []="true"
           />
-          <ili-button-edit
-            label="Editar"
-            iconClass="material-symbols-light:edit"
+          <lux-button-mobile
+            kind="edit"
             (clicked)="editMinuta.emit(item.id)"
-            []="true"
           />
         </ng-container>
       </ili-action-menu>

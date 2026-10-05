@@ -5,8 +5,8 @@ import {
   input,
   output,
 } from "@angular/core";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -29,7 +29,7 @@ import { CandidateListItem } from "../interfaces/candidate.dto";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelDelete,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelItem,
     MobileButtonLabelViewPdf,
     MobileListItem,

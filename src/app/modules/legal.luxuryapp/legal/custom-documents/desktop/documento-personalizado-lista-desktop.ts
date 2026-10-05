@@ -8,7 +8,7 @@ import {
 import { ReactiveFormsModule } from "@angular/forms";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -26,7 +26,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconViewPdf,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,

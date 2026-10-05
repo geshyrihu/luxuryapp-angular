@@ -32,6 +32,7 @@ import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-des
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
@@ -57,7 +58,6 @@ import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 // import { WorkPositionHours } from "../../../../shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-hours/work-position-hours";
 
@@ -67,7 +67,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
   styleUrl: "./recruitment-staff-board.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,

@@ -143,7 +143,14 @@
             tooltipPosition="top"
             (clicked)="agregarSeguimiento.emit({ meetingDetailsId: item.id, idMeetingSeguimiento: 0 })"
           />
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar asunto"
+            ariaLabel="Editar asunto"
             (clicked)="verDetalle.emit({ id: item.id, title: 'Editar asunto' })"
           />
         </div>

@@ -6,8 +6,8 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -27,7 +27,7 @@ import {
   imports: [
     LxTooltipDirective,
     WebButtonLabel,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconItem,
     WebButtonIconDelete,
     ApiDatePipe,

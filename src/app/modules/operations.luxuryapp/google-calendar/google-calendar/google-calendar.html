@@ -130,7 +130,16 @@
           </td>
           @if (canManageItem(item)) {
           <td class="d-flex gap-2">
-            <iw-button-edit (clicked)="onModalForm(item.id)" />
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
+              (clicked)="onModalForm(item.id)"
+            />
             <iw-button-delete (confirmed)="onDelete(item.id)" />
           </td>
           }
@@ -237,9 +246,9 @@
           <ili-action-menu end>
             <ng-container actions>
               @if (canManageItem(item)) {
-              <ili-button-edit
+              <lux-button-mobile
+                kind="edit"
                 (clicked)="onModalForm(item.id)"
-                label="Editar"
               />
               <ili-button-delete
                 (confirmed)="onDelete(item.id)"

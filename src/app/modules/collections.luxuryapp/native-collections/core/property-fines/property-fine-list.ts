@@ -31,21 +31,21 @@ type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-property-fine-list",
   imports: [
     AppIcon,
     LxTag,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelDelete,
     MobileListItem,
     TableEmptyMessage,

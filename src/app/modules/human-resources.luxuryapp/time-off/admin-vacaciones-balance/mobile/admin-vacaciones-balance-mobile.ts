@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -20,7 +20,7 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
   imports: [
     LxConfirmDialog,
     LxTag,
-    WebButtonLabelEdit,
+    ButtonMobile,
     DataViewMobile,
     MobileListItem,
     AppIcon,

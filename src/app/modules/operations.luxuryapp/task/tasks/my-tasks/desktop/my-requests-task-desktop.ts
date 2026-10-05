@@ -10,7 +10,8 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonLabelEdit, WebButtonLabelItem } from "@ui/buttons/web-label";
+import { WebButtonLabelItem } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppImage } from "@ui/web/image/image";
@@ -27,6 +28,7 @@ import { TaskStatus } from "../../task-status/task-status";
   templateUrl: "./my-requests-task-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -34,7 +36,6 @@ import { TaskStatus } from "../../task-status/task-status";
     ActionMenu,
     TaskStatus,
     AppImage,
-    WebButtonLabelEdit,
     WebButtonLabelItem,
     AppIcon,
   ],

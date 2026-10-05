@@ -16,7 +16,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppTag } from "@ui/web/tag/tag";
@@ -29,6 +29,7 @@ import { InspectionEdit } from "../models/inspection.model";
   selector: "app-inspection-detalle",
 
   imports: [
+    ButtonWeb,
     CommonModule,
     RouterModule,
     LxCard,
@@ -36,7 +37,6 @@ import { InspectionEdit } from "../models/inspection.model";
     AppTag,
     AppIcon,
     WebButtonLabel,
-    WebButtonLabelEdit,
     WebButtonLabelDelete,
     ActionMenu,
   ],
@@ -112,11 +112,13 @@ import { InspectionEdit } from "../models/inspection.model";
                 </div>
               </div>
               <div class="d-flex gap-2">
-                <il-button-edit
-                  (clicked)="onEdit()"
-                  label="Editar"
+                <lux-button-web
+                  kind="edit"
                   displayMode="icon"
+                  severity="info"
+                  variant="soft"
                   size="sm"
+                  (clicked)="onEdit()"
                 />
                 <il-button-delete
                   (confirmed)="onDelete()"
@@ -169,8 +171,10 @@ import { InspectionEdit } from "../models/inspection.model";
                       />
                       <app-action-menu>
                         <ng-container actions>
-                          <il-button-edit
-                            label="Editar"
+                          <lux-button-web
+                            kind="edit"
+                            severity="info"
+                            variant="soft"
                             size="sm"
                             (clicked)="onEditEquipment(item)"
                           />
@@ -294,11 +298,13 @@ import { InspectionEdit } from "../models/inspection.model";
                 </div>
               </div>
               <div class="d-flex gap-2 flex-wrap">
-                <il-button-edit
-                  (clicked)="onEdit()"
-                  label="Editar"
+                <lux-button-web
+                  kind="edit"
                   displayMode="icon"
+                  severity="info"
+                  variant="soft"
                   size="sm"
+                  (clicked)="onEdit()"
                 />
                 <il-button-delete
                   (confirmed)="onDelete()"
@@ -352,8 +358,10 @@ import { InspectionEdit } from "../models/inspection.model";
                         />
                         <app-action-menu>
                           <ng-container actions>
-                            <il-button-edit
-                              label="Editar"
+                            <lux-button-web
+                              kind="edit"
+                              severity="info"
+                              variant="soft"
                               (clicked)="onEditEquipment(item)"
                             />
                             <il-button-delete

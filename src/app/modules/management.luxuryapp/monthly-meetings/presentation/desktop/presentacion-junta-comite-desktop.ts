@@ -14,7 +14,7 @@ import {
 } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
@@ -24,7 +24,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     WebButtonLabel,
     LxTag,
-    WebButtonLabelEdit,
+    ButtonWeb,
     WebButtonLabelDelete,
     WebButtonLabelConfirm,
     WebButtonLabelViewPdf,

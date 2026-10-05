@@ -99,7 +99,14 @@
               (clicked)="addSalida.emit({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
             />
 
-            <iw-button-edit
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              severity="info"
+              variant="soft"
+              size="sm"
+              tooltip="Editar"
+              ariaLabel="Editar"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
             @if (item.existencia <= 0) {

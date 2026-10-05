@@ -58,8 +58,14 @@
 
       <td class="no-print">
         <div class="d-flex gap-1">
-          <iw-button-edit
-            [attr.aria-label]="'Editar comité ' + item.nameProperty"
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            [tooltip]="'Editar comité ' + item.nameProperty"
+            [ariaLabel]="'Editar comité ' + item.nameProperty"
             (clicked)="edit.emit({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
           />
           <iw-button-delete

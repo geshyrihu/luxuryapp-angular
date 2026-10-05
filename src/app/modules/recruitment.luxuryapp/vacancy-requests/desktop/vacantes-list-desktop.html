@@ -73,7 +73,16 @@
       </td>
       <td class="no-print">
         <div class="d-flex gap-1">
-          <iw-button-edit (clicked)="edit.emit({ id: item.id })" />
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
+            (clicked)="edit.emit({ id: item.id })"
+          />
           <iw-button-item
             iconClass="material-symbols-light:info"
             lxTooltip="Detalle del puesto"

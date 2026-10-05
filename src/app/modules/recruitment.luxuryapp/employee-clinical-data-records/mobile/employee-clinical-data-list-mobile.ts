@@ -4,8 +4,8 @@ import {
   input,
   output,
 } from "@angular/core";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -18,7 +18,7 @@ import { IEmployeeClinicalData } from "../interfaces/employee-clinical-data.inte
   imports: [
     AppIcon,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     MobileButtonLabelDelete,
     DataViewMobile,
   ],

@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { ComiteVigilancia } from "@core/interfaces/comite-vigilancia.interface";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileButtonLabelSendEmail } from "@ui/buttons/mobile-label/button-send-email";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -27,8 +27,8 @@ export interface ComiteVigilanciaFormData {
     AppIcon,
     MobileListItem,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
+    ButtonMobile,
     MobileButtonLabelSendEmail,
     DataViewMobile,
   ],

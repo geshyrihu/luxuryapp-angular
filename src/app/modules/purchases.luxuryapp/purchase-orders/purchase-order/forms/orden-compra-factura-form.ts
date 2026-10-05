@@ -34,7 +34,7 @@ export interface IOrdenCompraFacturaForm {
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
@@ -42,7 +42,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   templateUrl: "./orden-compra-factura-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     TableEmptyMessage,
     ReactiveFormsModule,

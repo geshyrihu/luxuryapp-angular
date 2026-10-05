@@ -75,7 +75,10 @@
 
     <!-- Lado derecho: acciones -->
     <ili-action-menu slot="end">
-      <ili-button-edit (clicked)="onEditParticipant(item)" label="Editar" />
+      <lux-button-mobile
+        kind="edit"
+        (clicked)="onEditParticipant(item)"
+      />
       <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
     </ili-action-menu>
   </ili-list-item>

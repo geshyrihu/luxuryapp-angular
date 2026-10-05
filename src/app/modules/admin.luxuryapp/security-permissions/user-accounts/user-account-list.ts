@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
 import { firstValueFrom } from "rxjs";
 import {
@@ -42,11 +42,13 @@ import { UserAccountForm } from "./user-account-form";
 import { UserAccountListMobile } from "./user-account-list-mobile";
 
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-user-account-list",
   templateUrl: "./user-account-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     UserAccountListMobile,
     WebButtonIconItem,
     TableEmptyMessage,
@@ -55,7 +57,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     AppSortableColumn,
     AppSorticon,
     LxAvatar,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonLabelActiveDesactive,
     LuxTableCaption,

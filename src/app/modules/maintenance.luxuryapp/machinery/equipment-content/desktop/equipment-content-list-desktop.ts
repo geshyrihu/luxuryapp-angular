@@ -5,8 +5,8 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -23,7 +23,7 @@ import { EquipmentContentDto } from "../interfaces/equipment-content.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconDelete,
-    WebButtonIconEdit,
+    ButtonWeb,
     AppImage,
     AppTable,
     AppSortableColumn,

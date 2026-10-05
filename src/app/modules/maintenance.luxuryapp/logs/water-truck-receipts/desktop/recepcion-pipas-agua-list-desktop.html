@@ -141,7 +141,14 @@
             tooltip="Descargar soporte PDF"
             (clicked)="downloadPdf.emit(item)"
           />
-          <iw-button-edit
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
+            tooltip="Editar"
+            ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Recepcion' })"
           />
           <iw-button-delete (confirmed)="delete.emit(item.id)" />

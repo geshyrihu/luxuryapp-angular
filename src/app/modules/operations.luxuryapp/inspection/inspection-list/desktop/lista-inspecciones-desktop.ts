@@ -12,9 +12,9 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -38,6 +38,7 @@ type InspectionTableRow = InspectionSummary & {
   styleUrl: "./lista-inspecciones-desktop.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     FormsModule,
     LxTooltipDirective,
     CustomInputSelectSignal,
@@ -46,7 +47,6 @@ type InspectionTableRow = InspectionSummary & {
     AppSorticon,
     WebButtonLabel,
     WebButtonIconDelete,
-    WebButtonIconEdit,
     WebButtonIconItem,
     TableEmptyMessage,
   ],

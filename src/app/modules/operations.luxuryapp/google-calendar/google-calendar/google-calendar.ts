@@ -65,15 +65,15 @@ interface IGoogleCalendarEventListItem {
 }
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 
 @Component({
   selector: "app-google-calendar",
@@ -144,13 +144,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
     `,
   ],
   imports: [
+    ButtonWeb,
+    ButtonMobile,
     WebButtonLabel,
     WebButtonIcon,
     LxTooltipDirective,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     TableEmptyMessage,
     FullCalendarModule,

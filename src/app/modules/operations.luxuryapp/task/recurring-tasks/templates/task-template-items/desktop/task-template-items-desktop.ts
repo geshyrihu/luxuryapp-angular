@@ -9,7 +9,7 @@ import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -25,7 +25,7 @@ import {
   templateUrl: "./task-template-items-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIconDelete,
     LuxTableCaption,
     TableFooter,

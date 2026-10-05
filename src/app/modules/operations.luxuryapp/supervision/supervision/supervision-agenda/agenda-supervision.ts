@@ -28,7 +28,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -48,12 +49,13 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
   templateUrl: "./agenda-supervision.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
+    ButtonMobile,
     ActionMenu,
     WebButtonIcon,
     LxTooltipDirective,
     TableEmptyMessage,
     WebButtonLabelDelete,
-    WebButtonLabelEdit,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,

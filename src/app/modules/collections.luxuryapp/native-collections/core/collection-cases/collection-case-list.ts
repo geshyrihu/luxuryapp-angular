@@ -15,8 +15,8 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -37,9 +37,9 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
     LxCard,
     LxTag,
     MobileListItem,
-    WebButtonIconEdit,
+    ButtonWeb,
     MobileActionMenu,
-    MobileButtonLabelEdit,
+    ButtonMobile,
     TableEmptyMessage,
     AppTable,
     LuxTableCaption,

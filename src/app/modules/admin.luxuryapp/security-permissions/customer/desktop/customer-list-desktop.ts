@@ -13,8 +13,8 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -30,6 +30,7 @@ import { CustomerDto } from "../interfaces/customer.dto";
   templateUrl: "./customer-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,
@@ -38,7 +39,6 @@ import { CustomerDto } from "../interfaces/customer.dto";
     AppSorticon,
     LxAvatar,
     NgbTooltipModule,
-    WebButtonIconEdit,
     WebButtonIconDelete,
     WebButtonIconActiveDesactive,
     LuxTableCaption,

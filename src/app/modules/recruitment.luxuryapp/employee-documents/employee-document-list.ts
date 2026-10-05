@@ -18,7 +18,8 @@ import { SwalService } from "@core/services/swal.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
@@ -57,7 +58,7 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonLabel,
     WebButtonLabelViewPdf,
     WebButtonLabelConfirm,
-    WebButtonIconEdit,
+    ButtonWeb,
     WebButtonIcon,
     LxTag,
     AppTable,

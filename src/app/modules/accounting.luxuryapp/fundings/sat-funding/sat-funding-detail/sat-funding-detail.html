@@ -147,9 +147,16 @@
             <td>{{ invoice.bankShortName }}</td>
             <td>
               <!-- Edit controls -->
-              <iw-button-edit
+              <lux-button-web
+                kind="edit"
+                displayMode="icon"
+                severity="info"
+                variant="soft"
+                size="sm"
+                tooltip="Editar"
+                ariaLabel="Editar"
                 (clicked)="onRowEditInit(invoice)"
-              ></iw-button-edit>
+              />
             </td>
           </tr>
         </ng-template>

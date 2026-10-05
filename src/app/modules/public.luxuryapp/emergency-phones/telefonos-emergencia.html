@@ -121,7 +121,10 @@
       <div
         class="d-flex justify-content-end gap-1 p-2 border-top-1 border"
       >
-        <il-button-edit
+        <lux-button-web
+          kind="edit"
+          severity="info"
+          variant="soft"
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
         <il-button-delete (confirmed)="onDelete(item.id)" />

@@ -230,10 +230,11 @@
               (clicked)="ordenCompraModal.emit(item.id)"
               variant="text"
             />
-            <il-button-edit
-              (clicked)="addOrEdit.emit(item.id)"
+            <lux-button-web
+              kind="edit"
+              severity="info"
               variant="text"
-              label="Editar"
+              (clicked)="addOrEdit.emit(item.id)"
             />
 
             @if (statusCompra() === 0) {

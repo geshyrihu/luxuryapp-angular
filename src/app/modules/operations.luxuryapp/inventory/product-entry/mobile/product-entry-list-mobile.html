@@ -25,14 +25,14 @@
       @if (isSuperUsuario()) {
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({
                     id: item.id,
                     idProducto: item.productoId,
                     nombreProducto: item.nombreProducto,
                     almacenId: item.almacenId
                   })"
-            label="Editar"
           />
           <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
         </ng-container>
