@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **76** |
-| ⏳ Pendiente | **108** |
+| ✅ Refactorizado | **81** |
+| ⏳ Pendiente | **103** |
 | ⛔ Omitido / no candidato | **28** |
 | **Total** | **212** |
 
@@ -143,11 +143,11 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 113 | `logs/pool-logbook` | maintenance | ✅ | · | · |  |
 | 114 | `logs/tool-loan` | maintenance | ✅ | · | · |  |
 | 115 | `logs/water-truck-receipts` | maintenance | ✅ | · | · |  |
-| 116 | `machinery/equipment-content/equipment-content-list.html` | maintenance | · | ✅ | · |  |
-| 117 | `machinery/machinery/equipos-list.html` | maintenance | · | ✅ | · |  |
-| 118 | `maintenance-planning/maintenance-calendar-master/calendario-maestro-lista.html` | maintenance | · | ✅ | · |  |
-| 119 | `maintenance-planning/master-equipment-calendar/calendario-maestro-equipo.html` | maintenance | · | ✅ | · |  |
-| 120 | `maintenance-reports/maintenance-reports-list.html` | maintenance | · | ✅ | · |  |
+| 116 | `machinery/equipment-content` | maintenance | ✅ | · | · |  |
+| 117 | `machinery/machinery` | maintenance | ✅ | · | · |  |
+| 118 | `maintenance-planning/maintenance-calendar-master` | maintenance | ✅ | · | · |  |
+| 119 | `maintenance-planning/master-equipment-calendar` | maintenance | ✅ | · | · |  |
+| 120 | `maintenance-reports` | maintenance | ✅ | · | · |  |
 | 121 | `maintenance-ticket-catalogs/asset-catalog-list` | maintenance | ✅ | · | · |  |
 | 122 | `maintenance-ticket-catalogs/delivery-reception-catalog` | maintenance | ✅ | · | · |  |
 | 123 | `maintenance-ticket-catalogs/inspection-revision-catalog` | maintenance | ✅ | · | · |  |
