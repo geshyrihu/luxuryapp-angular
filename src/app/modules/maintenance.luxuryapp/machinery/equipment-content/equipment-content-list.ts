@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,62 +8,36 @@ import {
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { EndpointsMantenimiento } from "@core/constants/endpoints/mantenimiento.endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "@core/services/dialog-handler.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { EquipmentContentListDesktop } from "./desktop/equipment-content-list-desktop";
 import { EquipmentContentForm } from "./equipment-content-form";
 import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import { EquipmentContentsDialogData } from "./interfaces/equipment-content.interface";
+import { EquipmentContentListMobile } from "./mobile/equipment-content-list-mobile";
 
 @Component({
   selector: "app-equipment-content-list",
   templateUrl: "./equipment-content-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    AppImage,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    WebButtonIconDelete,
-    WebButtonIconEdit,
-    AppIcon,
-  ],
+  imports: [EquipmentContentListDesktop, EquipmentContentListMobile],
 })
 export class EquipmentContentsList implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly config = inject(DynamicDialogConfig);
   readonly aspRoleS = inject(AspRoleService);
+  platformS = inject(PlatformService);
 
   readonly ApplicationRole = ApplicationRole;
   readonly data = signal<EquipmentContentDto[]>([]);
   readonly loading = signal(true);
   readonly globalFilterFields = () => globalFilterFields(this.data());
-  readonly tableRows = tableRows();
-  readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly contentManagementRoles = [
     ApplicationRole.JefeMantenimiento,
     ApplicationRole.Administrador,

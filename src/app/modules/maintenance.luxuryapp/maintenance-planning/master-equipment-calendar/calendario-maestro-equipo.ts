@@ -7,60 +7,34 @@ import {
   signal,
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
+import { CalendarioMaestroEquipoDesktop } from "./desktop/calendario-maestro-equipo-desktop";
+import { CalendarioMaestroEquipoMobile } from "./mobile/calendario-maestro-equipo-mobile";
 
 @Component({
   selector: "app-calendario-maestro-equipo",
   templateUrl: "./calendario-maestro-equipo.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    DataViewMobile,
-    LuxTableCaption,
-    TableFooter,
-  ],
+  imports: [CalendarioMaestroEquipoDesktop, CalendarioMaestroEquipoMobile],
 })
 export class CalendarioMaestroEquipo implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
   loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData();

@@ -7,39 +7,29 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
+import { PlatformService } from "@core/services/platform.service";
 import { StorageService } from "@core/services/storage.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { MaintenanceReportsDesktop } from "./desktop/maintenance-reports-list-desktop";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
+import { MaintenanceReportsMobile } from "./mobile/maintenance-reports-list-mobile";
 @Component({
   selector: "app-maintenance-reports",
   templateUrl: "./maintenance-reports-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
-    MobileListItem,
     FormsModule,
-    RouterModule,
     NgbTooltipModule,
-    AppTable,
-    LuxTableCaption,
     PageTitleReport,
     CustomInputTextSignal,
-    DataViewMobile,
-    TableEmptyMessage,
+    MaintenanceReportsDesktop,
+    MaintenanceReportsMobile,
   ],
 })
 export class MaintenanceReports {
@@ -48,7 +38,7 @@ export class MaintenanceReports {
   private storageS = inject(StorageService);
   PeriodMonthService = inject(PeriodMonthService);
   customerIdS = inject(CustomerIdService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   menu = signal<any>(MenuReportMaintenance);
 
   // Convertimos el observable a signal
@@ -56,7 +46,6 @@ export class MaintenanceReports {
 
   private storageKey = "selectedPeriodo";
   periodo = signal<string>("");
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     // Inicializar periodo desde localStorage

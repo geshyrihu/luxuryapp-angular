@@ -1,0 +1,73 @@
+<div class="row g-4">
+  @for (item of data(); track item; let i = $index) {
+  <div class="col-12 col-md-3">
+    <div
+      class="d-flex justify-content-between align-items-center p-3 fw-bold text-primary bg-body-tertiary rounded mb-2"
+    >
+      <div class="d-flex align-items-center gap-2">
+        <span>{{ item.month }}</span>
+        @if (item.items?.length > 0) {
+        <lux-tag
+          [value]="item.items.length"
+          severity="secondary"
+          class="text-xs"
+        />
+        }
+      </div>
+      @if (canManage()) {
+      <il-button-add (clicked)="add.emit({ id: 0, mes: item.eMonth })" />
+      }
+    </div>
+
+    <div class="d-flex flex-column gap-2">
+      @for (evento of item.items; track evento; let i = $index) {
+      <div
+        class="p-3 border-1 border rounded hover:bg-body-tertiary transition-colors transition-duration-200"
+      >
+        <div class="d-flex align-items-start gap-2">
+          @if (canManage()) {
+          <div class="flex-shrink-0">
+            <lux-menu #menu [model]="menuItems()" [popup]="true"></lux-menu>
+            <il-button-item
+              iconClass="material-symbols-light:menu"
+              (clicked)="selectItem.emit({ item: evento, menu: menu })"
+            />
+          </div>
+          }
+          <div
+            class="flex-fill cursor-pointer"
+            (click)="datosServicio.emit(evento)"
+            lxTooltip="Ver detalles del servicio"
+            tooltipPosition="right"
+          >
+            <div class="fw-medium text-body mb-1">
+              {{ evento.nombreEquipo }}
+            </div>
+            @if (evento.task) {
+            <div class="text-body-secondary text-sm mb-2">
+              {{ evento.task }}
+            </div>
+            } @if (evento.frequency) {
+            <lux-tag
+              [value]="evento.frequency"
+              severity="info"
+              icon="material-symbols-light:schedule"
+              class="text-xs"
+            />
+            }
+          </div>
+          <app-icon
+            [icon]="'material-symbols-light:chevron-right'"
+            class="text-body-secondary flex-shrink-0 mt-1"
+          />
+        </div>
+      </div>
+      } @empty {
+      <div class="text-center text-body-secondary text-sm py-3">
+        Sin actividades
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,65 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  dataKey="id"
+  styleClass="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [title]="'Contenidos de ' + equipmentName()"
+      [dt]="dt"
+      [showAdd]="canManage()"
+      [rolAuth]="canManage()"
+      (add)="add.emit()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Imagen</th>
+      <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
+      <th appSortableColumn="typeDisplayName">
+        Tipo <app-sorticon field="typeDisplayName" />
+      </th>
+      <th appSortableColumn="quantity">
+        Cantidad <app-sorticon field="quantity" />
+      </th>
+      <th>Notas</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        @if (item.photoUrl) {
+        <app-image
+          [src]="item.photoUrl"
+          [alt]="item.name"
+          width="64"
+          [preview]="true"
+        />
+        }
+      </td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.typeDisplayName }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.notes }}</td>
+      <td class="no-print">
+        @if (canManage()) {
+        <div class="d-flex gap-1">
+          <iw-button-edit (clicked)="edit.emit(item)" />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

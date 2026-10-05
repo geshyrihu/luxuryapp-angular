@@ -1,223 +1,53 @@
 <div class="card">
-  <!-- ================================================================== -->
-  <!-- VISTA ESCRITORIO                                                     -->
-  <!-- ================================================================== -->
-  <div class="d-none d-md-block">
-    @if (data()) {
-    <lux-table
-      [globalFilterFields]="globalFilterFields()"
-      [paginator]="true"
-      [rows]="tableRows"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [showCurrentPageReport]="true"
-      [value]="data()"
-      #dt
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      dataKey="equipoClasificacion"
-      class="custom-table"
-      rowGroupMode="subheader"
-      groupRowsBy="equipoClasificacion"
-      sortField="equipoClasificacion"
-      sortMode="single"
-    >
-      <!-- Caption: selector de categorías + controles -->
-      <ng-template #caption>
-        <div class="d-flex flex-column gap-3 mb-2 mt-1">
-          <!-- Categorías -->
-          <div class="d-flex flex-wrap gap-2">
-            @for (category of categories; track category.id) {
-            <div
-              class="d-flex align-items-center gap-2 px-3 py-1 border-1 rounded-2xl cursor-pointer transition-all transition-duration-200 text-nowrap"
-              [ngClass]="
-                inventoryCategoryId() === category.id
-                  ? 'bg-primary border-primary text-white'
-                  : 'bg-body-tertiary border-300 text-color-secondary hover:bg-body-tertiary hover:border-primary-300'
-              "
-              (click)="onSelectCategory(category.id)"
-            >
-              <app-icon [icon]="category.emoji" />
-              <span class="fw-medium text-sm">{{ category.name }}</span>
-            </div>
-            }
-          </div>
-
-          <!-- Barra de herramientas (Búsqueda y Acciones) -->
-          <div
-            class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
-          >
-            <div class="flex-grow-1">
-              <lux-table-caption
-                [title]="title()"
-                (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
-                [dt]="dt"
-                [noPadding]="true"
-                [noMargin]="true"
-              />
-            </div>
-            <div class="d-flex align-items-center gap-2">
-              <il-button
-                label="Calendario Guia"
-                iconClass="material-symbols-light:calendar-today"
-                [severity]="'secondary'"
-                [variant]="'outlined'"
-                (clicked)="calendarioGuiaVisible.set(true)"
-                lxTooltip="Ver calendario de mantenimiento"
-                tooltipPosition="top"
-              />
-              <il-button
-                label="PDF"
-                iconClass="material-symbols-light:picture-as-pdf"
-                [severity]="'danger'"
-                [variant]="'outlined'"
-                (clicked)="onDownloadPdf()"
-                lxTooltip="Descargar Inventario PDF"
-                tooltipPosition="top"
-              />
-              <il-button
-                label="QR Global"
-                iconClass="material-symbols-light:qr-code"
-                [severity]="'secondary'"
-                [variant]="'outlined'"
-                (clicked)="onDownloadInspectionQrBatch()"
-                lxTooltip="Imprimir QR activos de los equipos visibles"
-                tooltipPosition="top"
-              />
-              <div class="flex-shrink-0">
-                <iw-button-active-desactive
-                  [state]="stateFilter() === 0"
-                  (stateChange)="onSelectState($event ? 0 : 1)"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-
-      <!-- Encabezado de grupo -->
-      <ng-template #groupheader let-item>
-        <tr pRowGroupHeader class="animate__fadeIn">
-          <td [attr.colspan]="mostrarPreventivos() ? 6 : 5">
-            <span class="fw-bold">{{ item.equipoClasificacion }}</span>
-          </td>
-        </tr>
-      </ng-template>
-
-      <!-- Cabecera de columnas -->
-      <ng-template #header>
-        <tr class="animate__fadeIn">
-          <th class="table-col-5">IMG</th>
-          <th class="table-col-20" appSortableColumn="nameMachinery">
-            NOMBRE
-            <app-sorticon field="nameMachinery" />
-          </th>
-          <th class="table-col-20" appSortableColumn="equipoClasificacion">
-            SISTEMA
-            <app-sorticon field="equipoClasificacion" />
-          </th>
-          <th class="table-col-20" appSortableColumn="ubication">
-            UBICACIÓN
-            <app-sorticon field="ubication" />
-          </th>
-          @if (mostrarPreventivos()) {
-          <th class="table-col-10" appSortableColumn="maintenanceCalendars">
-            SERVICIOS
-            <app-sorticon field="maintenanceCalendars" />
-          </th>
-          }
-          <th class="table-col-10 no-print"></th>
-        </tr>
-      </ng-template>
-
-      <!-- Filas de datos -->
-      <ng-template #body let-item>
-        <tr class="animate__fadeIn">
-          <td>
-            <app-image
-              [src]="item.photoPath"
-              alt="."
-              width="70"
-              styleClass="shadow"
-              [preview]="true"
-            ></app-image>
-          </td>
-          <td>{{ item.nameMachinery }}</td>
-          <td>{{ item.equipoClasificacion }}</td>
-          <td>{{ item.ubication }}</td>
-          @if (mostrarPreventivos()) {
-          <td class="text-center">
-            <lux-tag
-              [value]="item.maintenanceCalendars?.toString()"
-              severity="info"
-              class="cursor-pointer"
-              (click)="openMantenimientosDialog(item)"
-              tooltip="Ver Mantenimientos"
-            />
-          </td>
-          }
-          <td class="no-print">
-            <div class="d-flex">
-              <iw-button-item
-                (clicked)="onDocumentos(item.id)"
-                iconClass="material-symbols-light:picture-as-pdf"
-                lxTooltip="Documentos"
-                tooltipPosition="top"
-                variant="text"
-              />
-              <iw-button-item
-                (clicked)="onServiceHistory(item.id)"
-                iconClass="material-symbols-light:description"
-                lxTooltip="Histórico de servicios"
-                tooltipPosition="top"
-                variant="text"
-              />
-              <iw-button-item
-                (clicked)="onBitacoraIndividual(item.id)"
-                iconClass="material-symbols-light:book"
-                lxTooltip="Bitácora"
-                tooltipPosition="top"
-                variant="text"
-              />
-              <iw-button-item
-                (clicked)="showModalFichatecnica(item.id)"
-                iconClass="material-symbols-light:article"
-                lxTooltip="Ficha técnica"
-                tooltipPosition="top"
-                variant="text"
-              />
-              @if (showContents()) {
-              <iw-button-item
-                (clicked)="onEquipmentContents(item)"
-                iconClass="material-symbols-light:inventory-2"
-                lxTooltip="Contenidos"
-                tooltipPosition="top"
-                variant="text"
-              />
-              } @if (!mostrarPreventivos()) {
-              <iw-button-item
-                (clicked)="openMantenimientosDialog(item)"
-                iconClass="material-symbols-light:build"
-                lxTooltip="Mantenimientos"
-                tooltipPosition="top"
-                variant="text"
-              />
-              } @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
-              AspRole.Administrador, AspRole.SuperUsuario])) {
-              <iw-button-edit
-                (clicked)="onModalAddOrEdit({ id: item.id, title: 'Editar registro ' + item.id })"
-              />
-              <iw-button-delete (confirmed)="onDelete(item.id)" />
-              }
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-
-      <ng-template #paginatorleft>
-        <lux-table-footer [data]="data()" />
-      </ng-template>
-    </lux-table>
-    }
-  </div>
+  @if (platformS.isMobile()) {
+  <app-equipos-list-mobile
+    [data]="data()"
+    [loading]="loading()"
+    [title]="title()"
+    [globalFilterFields]="globalFilterFields()"
+    [categories]="categories"
+    [showContents]="showContents()"
+    [canManage]="canManage()"
+    (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
+    (downloadPdf)="onDownloadPdf()"
+    (downloadQr)="onDownloadInspectionQrBatch()"
+    (documentos)="onDocumentos($event)"
+    (serviceHistory)="onServiceHistory($event)"
+    (bitacora)="onBitacoraIndividual($event)"
+    (fichaTecnica)="showModalFichatecnica($event)"
+    (equipmentContents)="onEquipmentContents($event)"
+    (maintenanceCalendar)="showModalMaintenanceCalendar($event)"
+    (deleteOrder)="onDeleteOrder($event)"
+    (edit)="onModalAddOrEdit($event)"
+    (delete)="onDelete($event)"
+  />
+  } @else {
+  <app-equipos-list-desktop
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields()"
+    [categories]="categories"
+    [selectedCategoryId]="inventoryCategoryId()"
+    [title]="title()"
+    [active]="stateFilter() === 0"
+    [mostrarPreventivos]="mostrarPreventivos()"
+    [showContents]="showContents()"
+    [canManage]="canManage()"
+    (selectCategory)="onSelectCategory($event)"
+    (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
+    (openCalendar)="calendarioGuiaVisible.set(true)"
+    (downloadPdf)="onDownloadPdf()"
+    (downloadQr)="onDownloadInspectionQrBatch()"
+    (stateChange)="onSelectState($event)"
+    (openMaintenances)="openMantenimientosDialog($event)"
+    (documentos)="onDocumentos($event)"
+    (serviceHistory)="onServiceHistory($event)"
+    (bitacora)="onBitacoraIndividual($event)"
+    (fichaTecnica)="showModalFichatecnica($event)"
+    (equipmentContents)="onEquipmentContents($event)"
+    (edit)="onModalAddOrEdit($event)"
+    (delete)="onDelete($event)"
+  />
+  }
 
   <!-- ================================================================== -->
   <!-- DRAWER: Calendario General de Mantenimiento (solo consulta)        -->
@@ -230,260 +60,4 @@
   >
     <app-calendario-maestro-readonly />
   </lux-sidebar>
-
-  <!-- ================================================================== -->
-  <!-- VISTA MÓVIL                                                          -->
-  <!-- ================================================================== -->
-  <div class="d-block d-md-none">
-    <!-- Selector de categorías móvil -->
-    <div class="d-flex overflow-x-auto pb-2 no-scrollbar mb-2">
-      @for (category of categories; track category.id) {
-      <div
-        class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
-      >
-        <span class="d-flex align-items-center">
-          <app-icon [icon]="category.emoji" />
-          {{ category.name }}
-        </span>
-      </div>
-      }
-    </div>
-
-    @if (data()) {
-    <app-data-view-mobile
-      [data]="data()"
-      [loading]="loading()"
-      (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
-      [title]="title()"
-      [globalFilterFields]="globalFilterFields()"
-    >
-      <ng-template select="[customFilters]">
-        <div class="px-2 pb-2">
-          <il-button
-            label="Descargar PDF"
-            iconClass="material-symbols-light:picture-as-pdf"
-            [severity]="'danger'"
-            [size]="'small'"
-            [isFullWidth]="true"
-            (clicked)="onDownloadPdf()"
-          />
-          <il-button
-            label="QR Global"
-            iconClass="material-symbols-light:qr-code"
-            [severity]="'secondary'"
-            [size]="'small'"
-            [isFullWidth]="true"
-            (clicked)="onDownloadInspectionQrBatch()"
-          />
-        </div>
-      </ng-template>
-      <ng-template #listItemTemplate let-item>
-        <div
-          class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
-        >
-          <div slot="start" class="mobile-avatar-slot">
-            @if (item.photoPath) {
-            <img
-              [src]="item.photoPath"
-              [alt]="item.name"
-              class="mobile-avatar-img"
-            />
-            } @else {
-            <app-icon icon="material-symbols-light:hvac" />
-            }
-          </div>
-          <span class="">
-            <h2>{{ item.nameMachinery }}</h2>
-            <h3>{{ item.equipoClasificacion }}</h3>
-            <p>{{ item.ubication }}</p>
-
-            <div class="d-flex flex-wrap mt-2">
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="onDocumentos(item.id)"
-              >
-                <app-icon
-                  icon="material-symbols-light:description"
-                  slot="icon-only"
-                />
-              </button>
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="onServiceHistory(item.id)"
-              >
-                <app-icon
-                  icon="material-symbols-light:schedule"
-                  slot="icon-only"
-                />
-              </button>
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="onBitacoraIndividual(item.id)"
-              >
-                <app-icon
-                  icon="material-symbols-light:menu-book-outline"
-                  slot="icon-only"
-                />
-              </button>
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="showModalFichatecnica(item.id)"
-              >
-                <app-icon
-                  icon="material-symbols-light:article-outline"
-                  slot="icon-only"
-                />
-              </button>
-              @if (showContents()) {
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="onEquipmentContents(item)"
-                aria-label="Administrar contenidos"
-              >
-                <app-icon
-                  icon="material-symbols-light:inventory-2"
-                  slot="icon-only"
-                />
-              </button>
-              }
-              <button
-                class="btn btn-rounded btn-text-primary btn-sm"
-                (click)="item.expanded = !item.expanded"
-              >
-                <app-icon
-                  icon="material-symbols-light:handyman"
-                  slot="icon-only"
-                />
-              </button>
-            </div>
-
-            @if (item.expanded) {
-            <div
-              class="w-full mt-3 border-top-1 border pt-2 animate__animated animate__fadeIn"
-            >
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
-              >
-                <span class="text-primary fw-bold">Servicios Programados</span>
-                <button
-                  class="btn btn-rounded btn-text-primary btn-sm"
-                  (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
-                >
-                  <app-icon
-                    icon="material-symbols-light:add-circle-outline"
-                    slot="start"
-                  />
-                  Agregar
-                </button>
-              </div>
-
-              @if (item.maintenanceCalendar?.length > 0) {
-              <div class="d-flex flex-column gap-2">
-                @for (service of item.maintenanceCalendar; track service.id) {
-                <div class="bg-body-tertiary p-2 rounded">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <span
-                      class="fw-bold flex-fill me-2"
-                      [innerHTML]="service.activity | sanitizeHtml"
-                    ></span>
-                    <span
-                      [innerHTML]="service.hasServiceOrder ? '🛠️' : '⚪'"
-                    ></span>
-                  </div>
-                  <div class="row text-sm text-body-secondary mt-1 g-4">
-                    <div class="col-6 py-1">
-                      <span class="fw-semibold">Prov:</span> {{
-                      service.nameProvider }}
-                    </div>
-                    <div class="col-6 py-1">
-                      <span class="fw-semibold">Freq:</span> {{
-                      service.recurrence }}
-                    </div>
-                    <div class="col-6 py-1">
-                      <span class="fw-semibold">Mes:</span> {{ service.month }}
-                    </div>
-                    <div class="col-6 py-1">
-                      <span class="fw-semibold">Costo:</span> {{ service.price |
-                      CurrencyMexicoPipe }}
-                    </div>
-                  </div>
-
-                  @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
-                  AspRole.Administrador, AspRole.SuperUsuario])) {
-                  <div
-                    class="d-flex justify-content-end gap-1 mt-2 border-top-1 border pt-1"
-                  >
-                    <button
-                      class="btn btn-rounded btn-text-secondary btn-sm"
-                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
-                    >
-                      <app-icon
-                        icon="material-symbols-light:content-copy"
-                        slot="icon-only"
-                      />
-                    </button>
-                    <button
-                      class="btn btn-rounded btn-text-primary btn-sm"
-                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
-                    >
-                      <app-icon
-                        icon="material-symbols-light:edit-outline"
-                        slot="icon-only"
-                      />
-                    </button>
-                    <button
-                      class="btn btn-rounded btn-text-danger btn-sm"
-                      (click)="onDeleteOrder(service.id)"
-                    >
-                      <app-icon
-                        icon="material-symbols-light:delete-outline"
-                        slot="icon-only"
-                      />
-                    </button>
-                  </div>
-                  }
-                </div>
-                }
-              </div>
-              } @else {
-              <div
-                class="text-center text-body-secondary p-2 italic bg-body-tertiary rounded"
-              >
-                Sin servicios registrados
-              </div>
-              }
-            </div>
-            }
-          </span>
-
-          <div slot="end" class="d-flex flex-column gap-1">
-            @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
-            AspRole.Administrador, AspRole.SuperUsuario])) {
-            <button
-              class="btn btn-rounded btn-text-primary btn-sm"
-              (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
-            >
-              <app-icon
-                icon="material-symbols-light:edit-outline"
-                slot="icon-only"
-              />
-            </button>
-            <button
-              class="btn btn-rounded btn-text-danger btn-sm"
-              (click)="onDelete(item.id)"
-            >
-              <app-icon
-                icon="material-symbols-light:delete-outline"
-                slot="icon-only"
-              />
-            </button>
-            }
-          </div>
-        </div>
-      </ng-template>
-    </app-data-view-mobile>
-    }
-  </div>
 </div>

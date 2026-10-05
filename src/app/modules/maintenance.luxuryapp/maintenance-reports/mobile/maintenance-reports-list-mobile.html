@@ -1,0 +1,18 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="['name']"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-xl text-yellow-500"
+        />
+      </div>
+
+      <h3>{{ item.name }}</h3>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

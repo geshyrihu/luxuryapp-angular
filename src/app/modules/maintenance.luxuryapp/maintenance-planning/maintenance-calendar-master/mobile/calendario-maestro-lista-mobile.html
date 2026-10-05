@@ -1,0 +1,31 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:event-available" />
+      </div>
+
+      <h2>{{ item.nombreEquipo }}</h2>
+      <p>{{ item.month }} | {{ item.task }}</p>
+      <p>Frecuencia: {{ item.frequency }}</p>
+
+      @if (canManage()) {
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, mes: item.eMonth })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+      }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

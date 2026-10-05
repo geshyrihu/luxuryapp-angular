@@ -16,49 +16,41 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMenu } from "@ui/adaptive/menu/menu";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
+import { CalendarioMaestroListaDesktop } from "./desktop/calendario-maestro-lista-desktop";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
+import { CalendarioMaestroListaMobile } from "./mobile/calendario-maestro-lista-mobile";
 
 @Component({
   selector: "app-calendario-maestro-lista",
   templateUrl: "./calendario-maestro-lista.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
     LxDivider,
-    WebButtonLabelAdd,
-    WebButtonLabelItem,
-    LxTooltipDirective,
-    LxMenu,
-    LxTag,
-    DataViewMobile,
-    AppIcon,
+    CalendarioMaestroListaDesktop,
+    CalendarioMaestroListaMobile,
   ],
 })
 export class CalendarioMaestroLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
+  platformS = inject(PlatformService);
   public AspRole = ApplicationRole;
   data = signal<any[]>([]);
   flatData = signal<any[]>([]);
   selectedItem = signal<any>(null);
   menuItems = signal<MenuItem[]>([]);
   ref: DynamicDialogRef;
+
+  readonly isSuperUsuario = this.aspRoleS.roleSignal(
+    ApplicationRole.SuperUsuario,
+  );
 
   globalFilterFields = computed(() => {
     const data = this.flatData();

@@ -1,0 +1,53 @@
+<app-data-view-mobile
+  [data]="data()"
+  [loading]="loading()"
+  [title]="title()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="canManage()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <article class="bg-body p-3 mb-2 shadow-sm rounded">
+      <div class="d-flex gap-3 align-items-start">
+        @if (item.photoUrl) {
+        <img
+          [src]="item.photoUrl"
+          [alt]="item.name"
+          class="rounded object-fit-cover"
+          width="72"
+          height="72"
+        />
+        } @else {
+        <app-icon icon="material-symbols-light:inventory-2" />
+        }
+        <div class="flex-grow-1">
+          <h3 class="h6 mb-1">{{ item.name }}</h3>
+          <div class="text-body-secondary">
+            {{ item.typeDisplayName }} · {{ item.quantity }}
+          </div>
+          @if (item.notes) {
+          <p class="small mb-0 mt-1">{{ item.notes }}</p>
+          }
+        </div>
+      </div>
+      @if (canManage()) {
+      <div class="d-flex justify-content-end gap-2 mt-2">
+        <button
+          type="button"
+          class="btn btn-rounded btn-text-primary btn-sm"
+          (click)="edit.emit(item)"
+        >
+          <app-icon icon="material-symbols-light:edit-outline" />
+        </button>
+        <button
+          type="button"
+          class="btn btn-rounded btn-text-danger btn-sm"
+          (click)="delete.emit(item.id)"
+        >
+          <app-icon icon="material-symbols-light:delete-outline" />
+        </button>
+      </div>
+      }
+    </article>
+  </ng-template>
+</app-data-view-mobile>

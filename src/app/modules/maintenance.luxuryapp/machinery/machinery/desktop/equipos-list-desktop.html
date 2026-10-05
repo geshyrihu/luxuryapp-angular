@@ -1,0 +1,213 @@
+@if (data()) {
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  dataKey="equipoClasificacion"
+  class="custom-table"
+  rowGroupMode="subheader"
+  groupRowsBy="equipoClasificacion"
+  sortField="equipoClasificacion"
+  sortMode="single"
+>
+  <!-- Caption: selector de categorías + controles -->
+  <ng-template #caption>
+    <div class="d-flex flex-column gap-3 mb-2 mt-1">
+      <!-- Categorías -->
+      <div class="d-flex flex-wrap gap-2">
+        @for (category of categories(); track category.id) {
+        <div
+          class="d-flex align-items-center gap-2 px-3 py-1 border-1 rounded-2xl cursor-pointer transition-all transition-duration-200 text-nowrap"
+          [ngClass]="
+            selectedCategoryId() === category.id
+              ? 'bg-primary border-primary text-white'
+              : 'bg-body-tertiary border-300 text-color-secondary hover:bg-body-tertiary hover:border-primary-300'
+          "
+          (click)="selectCategory.emit(category.id)"
+        >
+          <app-icon [icon]="category.emoji" />
+          <span class="fw-medium text-sm">{{ category.name }}</span>
+        </div>
+        }
+      </div>
+
+      <!-- Barra de herramientas (Búsqueda y Acciones) -->
+      <div
+        class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
+      >
+        <div class="flex-grow-1">
+          <lux-table-caption
+            [title]="title()"
+            (add)="add.emit({ id: 0, title: 'Nuevo Registro' })"
+            [dt]="dt"
+            [noPadding]="true"
+            [noMargin]="true"
+          />
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <il-button
+            label="Calendario Guia"
+            iconClass="material-symbols-light:calendar-today"
+            [severity]="'secondary'"
+            [variant]="'outlined'"
+            (clicked)="openCalendar.emit()"
+            lxTooltip="Ver calendario de mantenimiento"
+            tooltipPosition="top"
+          />
+          <il-button
+            label="PDF"
+            iconClass="material-symbols-light:picture-as-pdf"
+            [severity]="'danger'"
+            [variant]="'outlined'"
+            (clicked)="downloadPdf.emit()"
+            lxTooltip="Descargar Inventario PDF"
+            tooltipPosition="top"
+          />
+          <il-button
+            label="QR Global"
+            iconClass="material-symbols-light:qr-code"
+            [severity]="'secondary'"
+            [variant]="'outlined'"
+            (clicked)="downloadQr.emit()"
+            lxTooltip="Imprimir QR activos de los equipos visibles"
+            tooltipPosition="top"
+          />
+          <div class="flex-shrink-0">
+            <iw-button-active-desactive
+              [state]="active()"
+              (stateChange)="stateChange.emit($event ? 0 : 1)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Encabezado de grupo -->
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader class="animate__fadeIn">
+      <td [attr.colspan]="mostrarPreventivos() ? 6 : 5">
+        <span class="fw-bold">{{ item.equipoClasificacion }}</span>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Cabecera de columnas -->
+  <ng-template #header>
+    <tr class="animate__fadeIn">
+      <th class="table-col-5">IMG</th>
+      <th class="table-col-20" appSortableColumn="nameMachinery">
+        NOMBRE
+        <app-sorticon field="nameMachinery" />
+      </th>
+      <th class="table-col-20" appSortableColumn="equipoClasificacion">
+        SISTEMA
+        <app-sorticon field="equipoClasificacion" />
+      </th>
+      <th class="table-col-20" appSortableColumn="ubication">
+        UBICACIÓN
+        <app-sorticon field="ubication" />
+      </th>
+      @if (mostrarPreventivos()) {
+      <th class="table-col-10" appSortableColumn="maintenanceCalendars">
+        SERVICIOS
+        <app-sorticon field="maintenanceCalendars" />
+      </th>
+      }
+      <th class="table-col-10 no-print"></th>
+    </tr>
+  </ng-template>
+
+  <!-- Filas de datos -->
+  <ng-template #body let-item>
+    <tr class="animate__fadeIn">
+      <td>
+        <app-image
+          [src]="item.photoPath"
+          alt="."
+          width="70"
+          styleClass="shadow"
+          [preview]="true"
+        ></app-image>
+      </td>
+      <td>{{ item.nameMachinery }}</td>
+      <td>{{ item.equipoClasificacion }}</td>
+      <td>{{ item.ubication }}</td>
+      @if (mostrarPreventivos()) {
+      <td class="text-center">
+        <lux-tag
+          [value]="item.maintenanceCalendars?.toString()"
+          severity="info"
+          class="cursor-pointer"
+          (click)="openMaintenances.emit(item)"
+          tooltip="Ver Mantenimientos"
+        />
+      </td>
+      }
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-item
+            (clicked)="documentos.emit(item.id)"
+            iconClass="material-symbols-light:picture-as-pdf"
+            lxTooltip="Documentos"
+            tooltipPosition="top"
+            variant="text"
+          />
+          <iw-button-item
+            (clicked)="serviceHistory.emit(item.id)"
+            iconClass="material-symbols-light:description"
+            lxTooltip="Histórico de servicios"
+            tooltipPosition="top"
+            variant="text"
+          />
+          <iw-button-item
+            (clicked)="bitacora.emit(item.id)"
+            iconClass="material-symbols-light:book"
+            lxTooltip="Bitácora"
+            tooltipPosition="top"
+            variant="text"
+          />
+          <iw-button-item
+            (clicked)="fichaTecnica.emit(item.id)"
+            iconClass="material-symbols-light:article"
+            lxTooltip="Ficha técnica"
+            tooltipPosition="top"
+            variant="text"
+          />
+          @if (showContents()) {
+          <iw-button-item
+            (clicked)="equipmentContents.emit(item)"
+            iconClass="material-symbols-light:inventory-2"
+            lxTooltip="Contenidos"
+            tooltipPosition="top"
+            variant="text"
+          />
+          } @if (!mostrarPreventivos()) {
+          <iw-button-item
+            (clicked)="openMaintenances.emit(item)"
+            iconClass="material-symbols-light:build"
+            lxTooltip="Mantenimientos"
+            tooltipPosition="top"
+            variant="text"
+          />
+          } @if (canManage()) {
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar registro ' + item.id })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>
+}

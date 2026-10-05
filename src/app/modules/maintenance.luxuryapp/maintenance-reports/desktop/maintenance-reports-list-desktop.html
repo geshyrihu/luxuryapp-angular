@@ -1,0 +1,36 @@
+<lux-table
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  class="custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [title]="'REPORTES'"
+      [showAdd]="false"
+      [showSearch]="false"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-70">REPORTE</th>
+      <th class="table-col-30">VER</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td class="text-center">
+        <a [routerLink]="[item.route]">
+          ver
+          <app-icon [icon]="'material-symbols-light:back-hand'" />
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="2" />
+  </ng-template>
+</lux-table>
