@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -37,7 +37,7 @@ import { AsambleaChecklistTemplateFormGroup } from "./interfaces/asamblea-checkl
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class AsambleaChecklistTemplateForm implements OnInit {
