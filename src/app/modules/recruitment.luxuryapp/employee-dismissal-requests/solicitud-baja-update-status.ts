@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -35,7 +35,7 @@ interface ISolicitudBajaUpdateStatusForm {
   selector: "app-solicitud-baja-update-status",
   templateUrl: "./solicitud-baja-update-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, ButtonWeb],
 })
 export class SolicitudBajaUpdateStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

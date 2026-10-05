@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -35,7 +35,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ApiDatePipe,
     ReactiveFormsModule,
     WebButtonLabel,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
   ],
@@ -162,4 +162,3 @@ export default class EvidenciasNomina {
     window.open(filePath, "_blank");
   }
 }
-

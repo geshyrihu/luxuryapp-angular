@@ -39,11 +39,16 @@
       />
     </div>
     <div class="col-12 col-md-1 d-flex align-items-end">
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="button"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         label="Subir"
         iconClass="material-symbols-light:upload"
         (clicked)="onSubir()"
-        [submitting]="uploading()"
+        [loading]="uploading()"
         [disabled]="!archivoSeleccionado()"
       />
     </div>

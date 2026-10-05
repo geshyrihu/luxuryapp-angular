@@ -12,7 +12,15 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-end">
-        <il-button-save [propertyId]="id" [disabled]="form.invalid" />
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
+          label="Guardar"
+          [disabled]="form.invalid"
+        />
       </div>
     </div>
   </div>
