@@ -14,7 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { firstValueFrom } from "rxjs";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -49,7 +49,7 @@ interface IComiteVigilanciaForm {
     CustomInputTextSignal,
     CustomInputSelectSignal,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class ComiteVigilanciaForm implements OnInit {

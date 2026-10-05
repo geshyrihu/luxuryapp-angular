@@ -24,7 +24,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
@@ -54,7 +54,7 @@ interface ILegalTaskClienteForm {
     ReactiveFormsModule,
     InputAutocomplete,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
   ],
 })

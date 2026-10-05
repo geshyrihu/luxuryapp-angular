@@ -23,7 +23,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -58,7 +58,7 @@ interface ILegalTaskForm {
     CustomInputSelectSignal,
     InputAutocomplete,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
   ],
 })

@@ -5,7 +5,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -15,7 +15,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-categoria-asunto-legal-form",
   templateUrl: "./categoria-asunto-legal-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
 })
 export class CategoriaAsuntoLegalForm {
   private apiResponseS = inject(ApiResponseService);

@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -49,7 +49,7 @@ interface ILegalEditarForm {
     InputAutocomplete,
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class TicketLegalEditar implements OnInit {

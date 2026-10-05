@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -39,7 +39,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ReactiveFormsModule,
     FormsModule,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class TicketLegalSeguimiento implements OnInit, OnDestroy {
@@ -133,4 +133,3 @@ export class TicketLegalSeguimiento implements OnInit, OnDestroy {
     }
   }
 }
-
