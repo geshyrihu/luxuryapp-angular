@@ -12,7 +12,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconTracking } from "@ui/buttons";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -44,7 +43,6 @@ import {
     LuxTableCaption,
     TableFooter,
     ButtonWeb,
-    WebButtonIconTracking,
     AppIcon,
   ],
 })

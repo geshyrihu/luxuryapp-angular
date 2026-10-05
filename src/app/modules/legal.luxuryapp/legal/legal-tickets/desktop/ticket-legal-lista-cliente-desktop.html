@@ -68,10 +68,16 @@
       <td>{{ item.completionDate }}</td>
       <td class="text-center">{{ item.diferenciaDias }}</td>
       <td class="text-center">
-        <iw-button-tracking
-          [ticketId]="item.id"
+        <lux-button-web
+          kind="tracking"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          iconClass="material-symbols-light:warning"
           [badgeCount]="item.tracking"
-          (clickTracking)="seguimientoCliente.emit({ ticketId: item.id, title: 'Seguimiento' })"
+          tooltip="Seguimiento"
+          ariaLabel="Seguimiento"
+          (clicked)="seguimientoCliente.emit({ ticketId: item.id, title: 'Seguimiento' })"
         />
       </td>
     </tr>

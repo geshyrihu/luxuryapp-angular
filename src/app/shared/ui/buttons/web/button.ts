@@ -7,6 +7,7 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "../../primitives/app-icon/app-icon";
 import type { AppIconName } from "../../primitives/app-icon/app-icon.catalog";
+import { AppBadge } from "../../web/badge/badge";
 import { AppSpinner } from "../../web/spinner/spinner";
 import { BaseButton, type ButtonDisplayMode } from "../base/base-button";
 
@@ -52,7 +53,7 @@ const DEFAULTS: Record<
 
 @Component({
   selector: "lux-button-web",
-  imports: [AppIcon, AppSpinner, LxTooltipDirective],
+  imports: [AppIcon, AppBadge, AppSpinner, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
@@ -69,7 +70,14 @@ const DEFAULTS: Record<
         <app-spinner [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
       } @else {
         @if (displayMode() !== "label") {
-          <app-icon [icon]="resolvedButtonIcon()" />
+          @if (badgeCount()) {
+            <span class="button-badge-anchor">
+              <app-icon [icon]="resolvedButtonIcon()" />
+              <app-badge [value]="badgeCount()!" color="danger" size="small" />
+            </span>
+          } @else {
+            <app-icon [icon]="resolvedButtonIcon()" />
+          }
         }
         @if (displayMode() !== "icon") {
           <span>{{ resolvedLabel() }}</span>
@@ -77,9 +85,28 @@ const DEFAULTS: Record<
       }
     </button>
   `,
+  styles: [
+    `
+      .button-badge-anchor {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button-badge-anchor app-badge {
+        position: absolute;
+        top: -0.35rem;
+        right: -0.45rem;
+        font-size: 0.6rem;
+        line-height: 1rem;
+      }
+    `,
+  ],
 })
 export class ButtonWeb extends BaseButton {
   kind = input<WebButtonKind>("custom");
+  badgeCount = input<number | null | undefined>(undefined);
   override displayMode = input<ButtonDisplayMode>("both");
   private readonly defaults = computed(
     () => DEFAULTS[this.kind() as Exclude<WebButtonKind, "custom">],

@@ -139,11 +139,16 @@
       </td>
       <td class="text-center">
         <div class="d-flex justify-content-center">
-          <iw-button-tracking
+          <lux-button-web
+            kind="tracking"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             iconClass="material-symbols-light:format-list-bulleted"
-            ngbTooltip="Seguimiento"
             [badgeCount]="item.ticketMessageFollowUp"
-            (clickTracking)="onFollowUp(item.id)"
+            tooltip="Seguimiento"
+            ariaLabel="Seguimiento"
+            (clicked)="onFollowUp(item.id)"
           />
         </div>
       </td>
