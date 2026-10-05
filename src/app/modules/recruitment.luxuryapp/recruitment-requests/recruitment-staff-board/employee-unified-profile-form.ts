@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
@@ -115,7 +115,7 @@ interface EmployeeUnifiedProfileFormControls {
     CustomInputPhonePrefix,
     InputToggleSwitch,
     InputImg,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   providers: [provideFlatpickrDefaults()],
 })

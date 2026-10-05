@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -21,7 +21,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class StatusRequestDismissalDiscountForm implements OnInit {

@@ -39,9 +39,14 @@
         label="Comentarios adicionales"
         placeholder="comentarios adicionales"
       />
-      <il-button-save
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         label="Solicitar alta"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
       />
   </form>
