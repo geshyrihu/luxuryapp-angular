@@ -21,7 +21,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -45,7 +45,7 @@ import {
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
     InputImg,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class EquipmentContentForm implements OnInit {
