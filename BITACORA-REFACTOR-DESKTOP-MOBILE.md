@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **126** |
-| ⏳ Pendiente | **42** |
+| ✅ Refactorizado | **133** |
+| ⏳ Pendiente | **35** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **218** |
 
@@ -228,16 +228,16 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 198 | `employee-clinical-data-records` | recruitment | ✅ | · | · |  |
 | 199 | `employee-dismissal-requests` | recruitment | ✅ | · | · |  |
 | 200 | `employee-emergency-contacts` | recruitment | ✅ | · | · |  |
-| 201 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
-| 202 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 203 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 204 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
+| 201 | `employee-file/employees/employee-registry` | recruitment | ✅ | · | · |  |
+| 202 | `employee-file/human-resources/employee-bank-data` | recruitment | ✅ | · | · |  |
+| 203 | `employee-file/human-resources/employee-beneficiary` | recruitment | ✅ | · | · |  |
+| 204 | `employee-file/human-resources/employee-registry` | recruitment | ✅ | · | · |  |
 | 205 | `employee-registration-requests` | recruitment | ✅ | · | · |  |
 | 206 | `external-staffs` | recruitment | ✅ | · | · |  |
 | 207 | `provider-supports` | recruitment | ✅ | · | · |  |
-| 208 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
-| 209 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
-| 210 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
+| 208 | `recruitment-requests/recruitment-client-requests` | recruitment | ✅ | · | · |  |
+| 209 | `salary-modification-requests` | recruitment | ✅ | · | · |  |
+| 210 | `vacancy-requests` | recruitment | ✅ | · | · |  |
 | 211 | `catalogs/banks` | shared | ✅ | · | · |  |
 | 212 | `catalogs/cfdi-usage` | shared | ✅ | · | · |  |
 | 213 | `catalogs/document-catalog` | shared | ✅ | · | · |  |
