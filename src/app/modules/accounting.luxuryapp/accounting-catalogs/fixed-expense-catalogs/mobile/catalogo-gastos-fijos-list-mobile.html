@@ -1,0 +1,124 @@
+<div class="d-flex flex-column vh-100 overflow-hidden">
+  <div class="px-2 pt-2 flex-shrink-0">
+    <lux-accordion
+      [items]="genAccordionItems"
+      [(expandedIds)]="genExpanded"
+      class="mb-2 d-block"
+    >
+      <div class="ion-padding" accordion="generation">
+        <!-- Year and Month -->
+        <ion-input-select
+          [ngModel]="fundingYear()"
+          (selectionChange)="yearChange.emit($event)"
+          [data]="cbFundingYear()"
+          optionLabel="label"
+          optionValue="value"
+          label="Año"
+          interfaceMode="popover"
+          class="mb-2"
+        ></ion-input-select>
+
+        <p class="mb-1 text-sm fw-bold ms-1">Mes de Fondeo</p>
+        <lux-tabs
+          [tabs]="monthTabs()"
+          [activeId]="selectedMonthName() ?? ''"
+          (tabChange)="selectMonth.emit($event.id)"
+          class="mb-3 d-block"
+        />
+
+        <!-- Generate Buttons -->
+        <div class="d-flex flex-column">
+          <div>
+            <ili-button
+              expand="block"
+              color="success"
+              iconClass="material-symbols-light:event"
+              label="Gen. 1ra Q"
+              [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
+              (clicked)="generateQuincena.emit(0)"
+            />
+          </div>
+          <div>
+            <ili-button
+              expand="block"
+              color="tertiary"
+              iconClass="material-symbols-light:event"
+              label="Gen. 2da Q"
+              [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
+              (clicked)="generateQuincena.emit(1)"
+            />
+          </div>
+        </div>
+      </div>
+    </lux-accordion>
+
+    <!-- Quick Selection Actions -->
+    <div class="d-flex justify-content-between mb-2">
+      <ili-button
+        size="small"
+        fill="outline"
+        label="Marcar 1ra Q"
+        styleClass="flex-1"
+        (clicked)="selectByQuincena.emit(0)"
+      />
+      <ili-button
+        size="small"
+        fill="outline"
+        label="Marcar 2da Q"
+        styleClass="flex-1"
+        (clicked)="selectByQuincena.emit(1)"
+      />
+    </div>
+  </div>
+
+  <!-- Main List using DataViewMobile -->
+  <div class="flex-grow-1 position-relative">
+    <!-- absolute positioning can help force child to fill parent -->
+    <app-data-view-mobile
+      [data]="data()"
+      (add)="create.emit()"
+      [globalFilterFields]="globalFilterFields()"
+      (onRefresh)="loadData.emit()"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ili-list-item>
+          <ion-input-checkbox
+            [ngModel]="item.crearOrdenCompra"
+            (checkChange)="itemCheckChange.emit({ item: item, checked: $event })"
+          ></ion-input-checkbox>
+
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <ili-badge
+              [color]="item.quincena === 0 ? 'success' : 'info'"
+              [value]="item.quincena === 0 ? '1ra Q' : '2da Q'"
+            />
+            <span class="text-xs text-body-secondary"
+              >Folio: {{item.idFondeo}}</span
+            >
+          </div>
+          <h2 class="text-base fw-bold">{{ item.equipoOInstalacion }}</h2>
+          <p class="text-sm text-body">{{ item.justificacionGasto }}</p>
+          <p class="text-xs text-body-secondary mt-1 text-uppercase">
+            <app-icon icon="material-symbols-light:work-outline" class="me-1" />
+            {{ item.provider }}
+          </p>
+
+          <!-- Actions Slide/Popover -->
+          @if (canManage()) {
+          <ili-action-menu slot="end">
+            <ng-container actions>
+              <ili-button-edit
+                (clicked)="modal.emit({ id: item.id, title: 'Editar' })"
+                label="Editar"
+              ></ili-button-edit>
+              <ili-button-delete
+                (confirmed)="delete.emit(item.id)"
+              ></ili-button-delete>
+            </ng-container>
+          </ili-action-menu>
+          }
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>

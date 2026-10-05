@@ -1,0 +1,39 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="modalForm.emit({ id: '', title: 'Nueva Configuración' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:domain"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div class="flex-fill min-w-0">
+        <h2>{{ item.customerName }}</h2>
+        <div class="d-flex align-items-center gap-2 mt-1">
+          <app-status-badge
+            [status]="item.empresa"
+            [isEmpresa]="true"
+            [clickable]="false"
+          />
+          <span class="text-sm text-body-secondary"
+            >- ID Aspel: {{ item.customerIdAspelId }}</span
+          >
+        </div>
+      </div>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="modalForm.emit(item)" label="Editar" />
+          <ili-button-delete (clicked)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

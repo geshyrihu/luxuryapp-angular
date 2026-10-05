@@ -15,53 +15,23 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ETypeEmpresa, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ETypeEmpresa } from "@ui/web/status-badge/status-badge";
 import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { AspelCustomerEmpresaListDesktop } from "./desktop/aspel-customer-empresa-list-desktop";
+import { AspelCustomerEmpresaListMobile } from "./mobile/aspel-customer-empresa-list-mobile";
 
 @Component({
   selector: "app-aspel-customer-empresa-list",
   templateUrl: "./aspel-customer-empresa-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    DataViewMobile,
-    TableEmptyMessage,
-    LuxTableCaption,
-    TableFooter,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    StatusBadge,
-  ],
+  imports: [AspelCustomerEmpresaListDesktop, AspelCustomerEmpresaListMobile],
 })
 export class AspelCustomerEmpresaList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdService = inject(CustomerIdService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<any[]>([]);
   customerId = this.customerIdService.customerId;
@@ -106,7 +76,4 @@ export class AspelCustomerEmpresaList implements OnInit {
         if (res) this.onLoadData();
       });
   }
-}
-function getGlobalFilterFields(data: void): any {
-  throw new Error("Function not implemented.");
 }

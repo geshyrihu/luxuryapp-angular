@@ -25,62 +25,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { firstValueFrom } from "rxjs";
-import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxAccordion } from "@ui/adaptive/accordion/accordion";
-import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
-import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
-import { MobileBadge } from "@ui/mobile/badge/badge";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
+import { CatalogoGastosFijosListDesktop } from "./desktop/catalogo-gastos-fijos-list-desktop";
+import { CatalogoGastosFijosListMobile } from "./mobile/catalogo-gastos-fijos-list-mobile";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonLabel,
-    IonInputCheckbox,
-    IonInputSelect,
-    DataViewMobile,
-    LuxTableCaption,
-    TableEmptyMessage,
-    TableFooter,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    AppIcon,
-    LxAccordion,
-    LxTabs,
-    LxCheckbox,
-    MobileBadge,
-    MobileButtonLabel,
-    ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,
-    LxMessage,
-    InputSelect,
-    MobileListItem,
-  ],
+  imports: [CatalogoGastosFijosListDesktop, CatalogoGastosFijosListMobile],
 })
 export class CatalogoGastosFijosList {
   apiResponseS = inject(ApiResponseService);
@@ -91,6 +45,7 @@ export class CatalogoGastosFijosList {
   routerS = inject(Router);
   customToastS = inject(CustomToastService);
   enumSelectS = inject(EnumSelectService); // Inject EnumSelectService
+  platformS = inject(PlatformService);
 
   dataSignal = signal<any[]>([]);
   public selectedItems = signal<any[]>([]);
@@ -204,6 +159,13 @@ export class CatalogoGastosFijosList {
         (item) => item.quincena === 1 && item.crearOrdenCompra,
       ) ?? false,
   );
+
+  /** Acciones de administración visibles en móvil. */
+  canManageActions = this.aspRoleS.anyOf([
+    ApplicationRole.Asistente,
+    ApplicationRole.Administrador,
+    ApplicationRole.SuperUsuario,
+  ]);
 
   constructor() {
     effect(() => {

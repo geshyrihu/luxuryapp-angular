@@ -1,0 +1,60 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="card custom-table"
+  size="small"
+  [scrollable]="true"
+  scrollHeight="750px"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="modalForm.emit({ id: '', title: 'Nueva Configuración' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="customerName">
+        Cliente <app-sorticon field="customerName" />
+      </th>
+      <th appSortableColumn="empresa">
+        Empresa <app-sorticon field="empresa" />
+      </th>
+      <th appSortableColumn="customerIdAspelId">
+        ID Aspel <app-sorticon field="customerIdAspelId" />
+      </th>
+      <th class="table-col-10">Opciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.customerName }}</td>
+      <td>
+        <app-status-badge
+          [status]="item.empresa"
+          [isEmpresa]="true"
+          [clickable]="false"
+        />
+      </td>
+      <td>{{ item.customerIdAspelId }}</td>
+      <td class="text-center">
+        <div class="d-flex justify-content-center">
+          <iw-button-edit (clicked)="modalForm.emit(item)" />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="4" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

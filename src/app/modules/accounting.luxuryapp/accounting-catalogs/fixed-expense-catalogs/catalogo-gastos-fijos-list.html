@@ -1,393 +1,47 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  [globalFilterFields]="globalFilterFields"
-  [value]="dataSignal()"
-  #dt
-  class="custom-table card d-none d-md-block"
-  size="small"
-  [scrollable]="true"
-  scrollHeight="750px"
->
-  <ng-template #caption>
-    <div class="d-flex">
-      <!-- Sección de controles principales -->
-      <div class="d-flex align-items-start flex-grow-1">
-        <custom-input-select-signal
-          [data]="cb_fundingYear"
-          [ngModel]="fundingYear()"
-          (ngModelChange)="fundingYear.set($event)"
-          placeholder="Selecciona el Año"
-          optionLabel="label"
-          optionValue="value"
-          [showClear]="true"
-          customClass="w-36"
-          size="small"
-          [horizontal]="false"
-          [filter]="true"
-        />
-
-        <!-- Grupo 1ra Quincena -->
-
-        <il-button
-          (clicked)="selectByQuincena(0)"
-          label="Marcar 1ra Quincena"
-          size="small"
-          [severity]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
-          [outlined]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
-          [iconClass]="isFirstQuincenaSelected() ?  'material-symbols-light:check' : 'material-symbols-light:close'"
-        />
-
-        <il-button
-          (clicked)="generateOrdenesPorQuincena(0)"
-          label="Generar 1ra Quincena"
-          iconClass="material-symbols-light:calendar-today"
-          size="small"
-          severity="success"
-          [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isFirstQuincenaGenerationBlocked()"
-        />
-
-        <!-- Grupo 2da Quincena -->
-
-        <il-button
-          (clicked)="selectByQuincena(1)"
-          label="Marcar 2da Quincena"
-          lxTooltip="Seleccionar ótems de 2da Quincena"
-          size="small"
-          [severity]="isSecondQuincenaSelected() ? 'info' : 'secondary'"
-          [outlined]="!isSecondQuincenaSelected()"
-          [iconClass]="isSecondQuincenaSelected() ?'material-symbols-light:check' : 'material-symbols-light:close'"
-        />
-
-        <il-button
-          [label]="'Generar 2da Quincena'"
-          (clicked)="generateOrdenesPorQuincena(1)"
-          iconClass="material-symbols-light:calendar-today"
-          size="small"
-          severity="info"
-          [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isSecondQuincenaGenerationBlocked()"
-        />
-      </div>
-
-      <!-- botón Agregar -->
-      <lux-table-caption
-        (add)="onModal( {id: '', title: 'Nuevo Registro' })"
-        [dt]="dt"
-      />
-    </div>
-
-    <!-- Meses y quincenas -->
-    <div class="d-flex flex-column w-100">
-      <div class="d-flex flex-wrap gap-1 w-100 g-4">
-        @for (month of fundingPeriodsByMonth(); track month.monthName) {
-        <div class="p-1">
-          <il-button
-            (clicked)="selectMonth(month.monthName)"
-            [label]="month.monthName | uppercase"
-            [variant]="selectedMonthName() === month.monthName ? null : 'outlined'"
-            [severity]="selectedMonthName() === month.monthName ? 'success' : 'secondary'"
-            [raised]="true"
-            [iconClass]="selectedMonthName() === month.monthName ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-            customClass="w-full text-xs"
-            size="small"
-          />
-        </div>
-        }
-      </div>
-    </div>
-
-    <!-- Indicador de estado del fondeo para el mes seleccionado -->
-    @if (selectedMonthName() && selectedFundingStatus()) { @if
-    (selectedFundingStatus()!.firstQNA?.isVerified) {
-    <lux-message severity="warn" class="mb-1"
-      >1ra Quincena de {{ selectedMonthName() }} ya fue verificada é no se
-      pueden generar órdenes de compra.</lux-message
-    >
-    } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
-    <lux-message severity="success" class="mb-1"
-      >1ra Quincena de {{ selectedMonthName() }} esté confirmada.</lux-message
-    >
-    } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
-    <lux-message severity="info" class="mb-1"
-      >1ra Quincena de {{ selectedMonthName() }} esté autorizada.</lux-message
-    >
-    } @if (selectedFundingStatus()!.secondQNA?.isVerified) {
-    <lux-message severity="warn" class="mb-1"
-      >2da Quincena de {{ selectedMonthName() }} ya fue verificada é no se
-      pueden generar órdenes de compra.</lux-message
-    >
-    } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
-    <lux-message severity="success" class="mb-1"
-      >2da Quincena de {{ selectedMonthName() }} esté confirmada.</lux-message
-    >
-    } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
-    <lux-message severity="info" class="mb-1"
-      >2da Quincena de {{ selectedMonthName() }} esté autorizada.</lux-message
-    >
-    } }
-
-    <!-- Guía de generación -->
-    <div
-      class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded bg-body-tertiary border-start border-3 border-warning mb-2 shadow-sm"
-    >
-      <div class="d-flex align-items-center text-body">
-        <app-icon
-          [icon]="'material-symbols-light:info'"
-          class="text-orange-500 fw-bold"
-        />
-        <span class="fw-bold text-sm text-uppercase">Guía de Generación:</span>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <span
-          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
-          >1</span
-        >
-        <span class="text-sm fw-medium">Marcar registros en la tabla</span>
-      </div>
-
-      <app-icon
-        [icon]="'material-symbols-light:chevron-right'"
-        class="text-body-secondary text-xs d-none d-md-block"
-      />
-
-      <div class="d-flex align-items-center">
-        <span
-          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
-          >2</span
-        >
-        <span class="text-sm fw-medium">Seleccionar Año y Mes de Fondeo</span>
-      </div>
-
-      <app-icon
-        [icon]="'material-symbols-light:chevron-right'"
-        class="text-body-secondary text-xs d-none d-md-block"
-      />
-
-      <div class="d-flex align-items-center">
-        <span
-          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
-          >3</span
-        >
-        <span class="text-sm fw-medium fw-bold">Presionar botón Generar</span>
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-10">
-        <div class="d-flex align-items-center justify-content-center">
-          <lux-checkbox
-            [checked]="isAllSelected()"
-            (checkedChange)="toggleSelectAll($event)"
-          />
-        </div>
-      </th>
-      <th class="table-col-7" appSortableColumn="idFondeo">
-        Id Fondeo
-        <app-sorticon field="idFondeo" />
-      </th>
-      <th class="table-col-10" appSortableColumn="quincenaText">
-        Quincena
-        <app-sorticon field="quincenaText" />
-      </th>
-      <th appSortableColumn="equipoOInstalacion" class="table-col-20">
-        DESCRIPCIÓN
-        <app-sorticon field="equipoOInstalacion" />
-      </th>
-      <th appSortableColumn="provider" class="table-col-20">
-        PROVEEDOR
-        <app-sorticon field="provider" />
-      </th>
-
-      <th appSortableColumn="largeName" class="table-col-20">
-        Producto o Servicio
-        <app-sorticon field="largeName" />
-      </th>
-      <th appSortableColumn="largeName" class="table-col-20">
-        Partida Presupuestal
-        <app-sorticon field="largeName" />
-      </th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td class="text-center">
-        <lux-checkbox
-          [checked]="item.crearOrdenCompra"
-          (checkedChange)="onItemCheckChange(item, $event)"
-        />
-      </td>
-      <td>{{ item.idFondeo }}</td>
-      <td>{{ item.quincenaText | uppercase }}</td>
-      <td>
-        <span class="text-body-secondary">
-          {{ item.equipoOInstalacion | uppercase }}
-        </span>
-        <br />
-        {{ item.justificacionGasto | uppercase }}
-      </td>
-      <td>{{ item.provider | uppercase }}</td>
-
-      <td>
-        @for (producto of item.detalles; track producto) {
-        <div>
-          {{ producto.productName | uppercase }}
-          <br />
-        </div>
-        }
-      </td>
-      <td>
-        @for (item2 of item.presupuesto; track item2) {
-        <p class="m-1">
-          {{ item2.accountNumber }} | {{ item2.accountName }}
-        </p>
-
-        }
-      </td>
-
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            [routerLink]="['/purchases/catalogo-gastos-fijos-form', item.id]"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<div class="d-flex d-md-none flex-column vh-100 overflow-hidden">
-  <div class="px-2 pt-2 flex-shrink-0">
-    <lux-accordion
-      [items]="genAccordionItems"
-      [(expandedIds)]="genExpanded"
-      class="mb-2 d-block"
-    >
-      <div class="ion-padding" accordion="generation">
-        <!-- Year and Month -->
-        <ion-input-select
-          [ngModel]="fundingYear()"
-          (selectionChange)="fundingYear.set($event)"
-          [data]="cb_fundingYear"
-          optionLabel="label"
-          optionValue="value"
-          label="Año"
-          interfaceMode="popover"
-          class="mb-2"
-        ></ion-input-select>
-
-        <p class="mb-1 text-sm fw-bold ms-1">Mes de Fondeo</p>
-        <lux-tabs
-          [tabs]="monthTabs()"
-          [activeId]="selectedMonthName() ?? ''"
-          (tabChange)="selectMonth($event.id)"
-          class="mb-3 d-block"
-        />
-
-        <!-- Generate Buttons -->
-        <div class="d-flex flex-column">
-          <div>
-            <ili-button
-              expand="block"
-              color="success"
-              iconClass="material-symbols-light:event"
-              label="Gen. 1ra Q"
-              [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
-              (clicked)="generateOrdenesPorQuincena(0)"
-            />
-          </div>
-          <div>
-            <ili-button
-              expand="block"
-              color="tertiary"
-              iconClass="material-symbols-light:event"
-              label="Gen. 2da Q"
-              [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
-              (clicked)="generateOrdenesPorQuincena(1)"
-            />
-          </div>
-        </div>
-      </div>
-    </lux-accordion>
-
-    <!-- Quick Selection Actions -->
-    <div class="d-flex justify-content-between mb-2">
-      <ili-button
-        size="small"
-        fill="outline"
-        label="Marcar 1ra Q"
-        styleClass="flex-1"
-        (clicked)="selectByQuincena(0)"
-      />
-      <ili-button
-        size="small"
-        fill="outline"
-        label="Marcar 2da Q"
-        styleClass="flex-1"
-        (clicked)="selectByQuincena(1)"
-      />
-    </div>
-  </div>
-
-  <!-- Main List using DataViewMobile -->
-  <div class="flex-grow-1 position-relative">
-    <!-- absolute positioning can help force child to fill parent -->
-    <app-data-view-mobile
-      [data]="dataSignal()"
-      (add)="onCreate()"
-      [globalFilterFields]="globalFilterFields()"
-      (onRefresh)="onLoadData()"
-    >
-      <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <ion-input-checkbox
-            [ngModel]="item.crearOrdenCompra"
-            (checkChange)="onItemCheckChange(item, $event)"
-          ></ion-input-checkbox>
-
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <ili-badge
-              [color]="item.quincena === 0 ? 'success' : 'info'"
-              [value]="item.quincena === 0 ? '1ra Q' : '2da Q'"
-            />
-            <span class="text-xs text-body-secondary"
-              >Folio: {{item.idFondeo}}</span
-            >
-          </div>
-          <h2 class="text-base fw-bold">{{ item.equipoOInstalacion }}</h2>
-          <p class="text-sm text-body">{{ item.justificacionGasto }}</p>
-          <p class="text-xs text-body-secondary mt-1 text-uppercase">
-            <app-icon icon="material-symbols-light:work-outline" class="me-1" />
-            {{ item.provider }}
-          </p>
-
-          <!-- Actions Slide/Popover -->
-          @if ( aspRoleS.anyOf([ AspRole.Asistente, AspRole.Administrador,
-          AspRole.SuperUsuario, ])() ) {
-          <ili-action-menu slot="end">
-            <ng-container actions>
-              <ili-button-edit
-                (clicked)="onModal({ id: item.id, title: 'Editar' })"
-                label="Editar"
-              ></ili-button-edit>
-              <ili-button-delete
-                (confirmed)="onDelete(item.id)"
-              ></ili-button-delete>
-            </ng-container>
-          </ili-action-menu>
-          }
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
-  </div>
-</div>
-```
+@if (platformS.isMobile()) {
+  <app-catalogo-gastos-fijos-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [fundingYear]="fundingYear()"
+    [cbFundingYear]="cb_fundingYear"
+    [monthTabs]="monthTabs()"
+    [selectedMonthName]="selectedMonthName()"
+    [isGenerationParamsSelected]="isGenerationParamsSelected()"
+    [isFirstQuincenaGenerationBlocked]="isFirstQuincenaGenerationBlocked()"
+    [isSecondQuincenaGenerationBlocked]="isSecondQuincenaGenerationBlocked()"
+    [canManage]="canManageActions()"
+    (yearChange)="fundingYear.set($event)"
+    (selectMonth)="selectMonth($event)"
+    (generateQuincena)="generateOrdenesPorQuincena($event)"
+    (selectByQuincena)="selectByQuincena($event)"
+    (create)="onCreate()"
+    (loadData)="onLoadData()"
+    (itemCheckChange)="onItemCheckChange($event.item, $event.checked)"
+    (modal)="onModal($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-catalogo-gastos-fijos-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [fundingYear]="fundingYear()"
+    [cbFundingYear]="cb_fundingYear"
+    [fundingPeriodsByMonth]="fundingPeriodsByMonth()"
+    [selectedMonthName]="selectedMonthName()"
+    [selectedFundingStatus]="selectedFundingStatus()"
+    [isFirstQuincenaSelected]="isFirstQuincenaSelected()"
+    [isSecondQuincenaSelected]="isSecondQuincenaSelected()"
+    [isGenerationParamsSelected]="isGenerationParamsSelected()"
+    [isFirstQuincenaGenerationBlocked]="isFirstQuincenaGenerationBlocked()"
+    [isSecondQuincenaGenerationBlocked]="isSecondQuincenaGenerationBlocked()"
+    [isAllSelected]="isAllSelected()"
+    (yearChange)="fundingYear.set($event)"
+    (selectByQuincena)="selectByQuincena($event)"
+    (generateQuincena)="generateOrdenesPorQuincena($event)"
+    (selectMonth)="selectMonth($event)"
+    (toggleSelectAll)="toggleSelectAll($event)"
+    (itemCheckChange)="onItemCheckChange($event.item, $event.checked)"
+    (delete)="onDelete($event)"
+    (modal)="onModal($event)"
+  />
+}

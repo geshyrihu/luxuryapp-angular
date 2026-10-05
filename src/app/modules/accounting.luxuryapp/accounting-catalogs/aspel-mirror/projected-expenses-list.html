@@ -1,120 +1,17 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-@if (dataSignal()) {
-<div class="d-none d-md-block">
-  <div class="card">
-    <lux-table
-      [globalFilterFields]="globalFilterFields()"
-      [paginator]="true"
-      [rows]="tableRows"
-      [rowsPerPageOptions]="rowsPerPageOptions"
-      [showCurrentPageReport]="true"
-      [value]="dataSignal()"
-      [loading]="loading()"
-      [scrollable]="true"
-      [scrollHeight]="scrollHeight"
-      #dt
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      class="custom-table"
-    >
-      <ng-template #caption>
-        <lux-table-caption
-          (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
-          [dt]="dt"
-        />
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th appSortableColumn="executionMonth">
-            Mes <app-sorticon field="executionMonth" />
-          </th>
-          <th appSortableColumn="accountingCatalog">
-            Cuenta <app-sorticon field="accountingCatalog" />
-          </th>
-          <th appSortableColumn="concept">
-            Concepto <app-sorticon field="concept" />
-          </th>
-          <th appSortableColumn="description">
-            DESCRIPCIÓN <app-sorticon field="description" />
-          </th>
-          <th appSortableColumn="budgetedAmount">
-            Monto Presupuestado <app-sorticon field="budgetedAmount" />
-          </th>
-          <th appSortableColumn="expenseTypeName">
-            Tipo de Gasto <app-sorticon field="expenseTypeName" />
-          </th>
-          <th class="table-col-10"></th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-item>
-        <tr>
-          <td>{{ item.executionMonthName }}</td>
-          <td>{{ item.accountingCatalog }}</td>
-          <td>{{ item.concept }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.budgetedAmount | number: "1.0-0" }}</td>
-          <td>{{ item.expenseTypeName }}</td>
-          <td class="text-center">
-            <div class="d-flex">
-              @if (!item.isFromCalendar) {
-
-              <iw-button-edit
-                (clicked)="
-                onModal({ id: item.id, title: 'Editar Ejecución' })
-                "
-              />
-              <iw-button-delete (confirmed)="onDelete(item.id)" />
-              }
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="7" />
-      </ng-template>
-    </lux-table>
-  </div>
-</div>
-}
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-@if (dataSignal()) {
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModal({ id: '', title: 'Nueva Ejecución Presupuestaria' })"
-  [globalFilterFields]="globalFilterFields()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:table"
-          class="text-xl text-primary"
-        />
-      </div>
-      <div class="flex-fill min-w-0 ion-text-wrap">
-        <h6 class="mb-0">{{ item.concept }}</h6>
-        <small class="text-body-secondary"
-          >{{ item.accountingCatalog }} - {{ item.executionMonthName }}</small
-        >
-        <span class="fw-bold text-lg"
-          >{{ item.budgetedAmount | number: "1.0-0" }}
-        </span>
-      </div>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModal({ id: item.id, title: 'Editar Ejecución' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-projected-expenses-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (modal)="onModal($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-projected-expenses-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    [scrollHeight]="scrollHeight()"
+    (modal)="onModal($event)"
+    (delete)="onDelete($event)"
+  />
 }
