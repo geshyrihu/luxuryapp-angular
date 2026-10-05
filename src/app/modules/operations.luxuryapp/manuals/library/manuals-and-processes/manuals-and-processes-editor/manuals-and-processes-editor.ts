@@ -27,8 +27,8 @@ import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   WebButtonLabelDelete,
-  WebButtonLabelSave,
 } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
@@ -96,7 +96,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxFileUpload,
     WebButtonLabel,
     WebButtonLabelDelete,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputMultiselectSignal,

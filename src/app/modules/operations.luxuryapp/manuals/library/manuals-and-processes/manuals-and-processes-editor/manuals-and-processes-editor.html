@@ -231,7 +231,15 @@
           </div>
 
           <div class="d-flex justify-content-end">
-            <il-button-save [loading]="savingPaso()" />
+            <lux-button-web
+              kind="save"
+              type="submit"
+              severity="info"
+              variant="soft"
+              displayMode="both"
+              label="Guardar"
+              [loading]="savingPaso()"
+            />
           </div>
         </form>
 
@@ -530,7 +538,15 @@
               size="small"
               (clicked)="showVersionForm.set(false)"
             />
-            <il-button-save [loading]="savingVersion()" />
+            <lux-button-web
+              kind="save"
+              type="submit"
+              severity="info"
+              variant="soft"
+              displayMode="both"
+              label="Guardar"
+              [loading]="savingVersion()"
+            />
           </div>
         </form>
       </div>
