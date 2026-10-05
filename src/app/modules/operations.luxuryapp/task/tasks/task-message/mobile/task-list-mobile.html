@@ -1,0 +1,240 @@
+<app-data-view-mobile
+  [data]="data()"
+  [loading]="loading()"
+  (add)="add.emit()"
+  [globalFilterFields]="['title', 'description', 'folio']"
+  [serverSideFilter]="true"
+  [enablePagination]="true"
+  (search)="search.emit($event)"
+  (nextPage)="nextPage.emit($event)"
+>
+  <ng-container customFilters>
+    <div class="px-2 pb-2">
+      <div class="d-flex flex-column align-items-center mb-2">
+        <div class="text-xs text-center fw-bold text-secondary mb-1">
+          GRUPO: {{ nameGroup() }}
+        </div>
+        <app-task-status (statusChange)="statusChange.emit($event)" />
+      </div>
+
+      <div class="d-flex gap-2 w-full mb-2">
+        <div class="flex-fill">
+          <ion-input-select
+            [data]="cbAssignee()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Todos"
+            label="Responsable"
+            [control]="assigneeControl()"
+            (selectionChange)="responsibleChange.emit($event)"
+          />
+        </div>
+        <div class="flex-fill">
+          <ion-input-text
+            type="week"
+            [control]="weekInputValueControl()"
+            (change)="weekChange.emit($event)"
+            label="Semana"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 overflow-x-auto w-full hide-scrollbar mt-2">
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="pendingBoard.emit()"
+        >
+          <app-icon
+            icon="material-symbols-light:grid-view-outline"
+            slot="start"
+          ></app-icon>
+          Tablero
+        </ion-button>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="previewWorkPlan.emit()"
+        >
+          <app-icon
+            icon="material-symbols-light:article-outline"
+            slot="start"
+          ></app-icon>
+          Plan
+        </ion-button>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="previewWeeklyReport.emit()"
+        >
+          <app-icon
+            icon="material-symbols-light:visibility-outline"
+            slot="start"
+          ></app-icon>
+          Previa
+        </ion-button>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-shrink-0"
+          (click)="sendWeeklyReport.emit()"
+        >
+          <app-icon
+            icon="material-symbols-light:send-outline"
+            slot="start"
+          ></app-icon>
+          Reporte
+        </ion-button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item
+      [alignTop]="true"
+      [style.border-left]="'5px solid ' + statusBorderVar(item.status)"
+    >
+      <div class="d-flex flex-column w-full gap-1 min-w-0">
+        <!-- Cabecera de la Tarjeta (Top Row) -->
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 w-full gap-2"
+        >
+          <!-- Izquierda: Avatar, Folio y Foro -->
+          <div class="d-flex align-items-center gap-2">
+            <app-avatar
+              [image]="item.assigneeImg"
+              [label]="!item.assigneeImg ? (item.assignee | initialsAbbr) : ''"
+              alt="avatar"
+              shape="circle"
+              size="normal"
+            />
+            <span
+              class="text-xs fw-semibold text-body-secondary d-flex align-items-center gap-1"
+            >
+              {{ item.folio }}
+            </span>
+          </div>
+
+          <!-- Derecha: Estado, Días y 3 puntos -->
+          <div class="d-flex align-items-center gap-2">
+            <lux-tag
+              [severity]="item.status === 'Completed' ? 'success' : item.status === 'InProgress' ? 'info' : item.status === 'Reopened' ? 'warning' : 'secondary'"
+              [value]="item.status === 'Completed' ? 'Terminado' : item.status === 'InProgress' ? 'En Proceso' : item.status === 'Reopened' ? 'Reabierto' : 'No Iniciado'"
+            />
+            <span
+              class="text-xs fw-bold"
+              [class.text-red-500]="item.daysDifference > 7"
+            >
+              {{ item.daysDifference }} días
+            </span>
+
+            <ili-action-menu slot="end">
+              <ng-container actions>
+                <ili-button-item
+                  iconClass="material-symbols-light:chat"
+                  [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
+                  (clicked)="followUp.emit(item.id)"
+                />
+                <ili-button-item
+                  iconClass="material-symbols-light:calendar-today"
+                  label="Programar"
+                  (clicked)="program.emit(item.id)"
+                />
+                @if (item.status !== 'Completed') {
+                <ili-button-item
+                  iconClass="material-symbols-light:lock"
+                  label="Cerrar"
+                  (clicked)="closed.emit(item.id)"
+                />
+                } @if (item.status !== 'InProgress') {
+                <ili-button-item
+                  iconClass="material-symbols-light:sync"
+                  label="En proceso"
+                  (clicked)="progress.emit(item.id)"
+                />
+                } @if (item.status === 'Completed') {
+                <ili-button-item
+                  iconClass="material-symbols-light:lock-open"
+                  label="Reabrir"
+                  (clicked)="reopen.emit(item.id)"
+                />
+                }
+                <ili-button-edit (clicked)="edit.emit(item)" label="Editar" />
+                @if (isSuperUser()) {
+                <ili-button-delete
+                  (confirmed)="delete.emit(item.id)"
+                  label="Eliminar"
+                />
+                }
+              </ng-container>
+            </ili-action-menu>
+          </div>
+        </div>
+
+        <!-- Dependencias y Pasos -->
+        <div class="d-flex flex-wrap gap-1 mb-1">
+          @if (chainedTaskIds().has(item.id)) {
+          <span
+            class="px-2 py-1 rounded text-xs fw-semibold inline-block"
+            [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
+            [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
+            >Paso {{ chainStepMap().get(item.id) }}</span
+          >
+          } @if (item.dependsOnTaskFolio) {
+          <span
+            class="text-purple-500 text-xs cursor-pointer py-1"
+            (click)="clearDependency.emit(item.id)"
+          >
+            <app-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
+            item.dependsOnTaskFolio }}
+          </span>
+          }
+        </div>
+
+        <!-- Cuerpo: Título, DESCRIPCIÓN, Imágenes -->
+        <h6 class="text-sm fw-semibold m-0 text-wrap text-body">
+          @if (item.daysDifference > 15 && !item.scheduledAt) {
+          <app-icon
+            [icon]="'material-symbols-light:schedule'"
+            class="text-orange-600 me-1"
+          />
+          } {{ item.title }}
+        </h6>
+        <p class="text-xs text-body-secondary m-0 text-wrap truncate">
+          {{ item.description }}
+        </p>
+
+        <!-- Toggle de relevancia para reporte -->
+        <div class="d-flex align-items-center gap-2 mt-1">
+          <span class="text-xs text-body-secondary">Incluir en reporte</span>
+          <custom-input-toggle-switch-signal
+            [(ngModel)]="item.isRelevant"
+            (toggleChange)="updateStateTicket.emit(item)"
+            size="small"
+          />
+        </div>
+
+        <!-- Evidencias (Antes y Después + imágenes adicionales) -->
+        <div class="d-flex gap-1 mt-2">
+          <ii-button
+            iconClass="material-symbols-light:photo-camera"
+            variant="ghost"
+            size="small"
+            ariaLabel="Ver fotos antes y después"
+            [disabled]="!item.beforeWork && !item.afterWork"
+            (clicked)="viewPhotos.emit(item)"
+          />
+          <ii-button
+            iconClass="material-symbols-light:photo-library"
+            variant="ghost"
+            size="small"
+            ariaLabel="Ver imágenes adicionales"
+            (clicked)="viewAdditionalImages.emit(item)"
+          />
+        </div>
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

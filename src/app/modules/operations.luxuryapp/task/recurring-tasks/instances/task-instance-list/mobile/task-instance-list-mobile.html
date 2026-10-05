@@ -1,0 +1,40 @@
+<app-data-view-mobile [data]="data()" [showAdd]="false">
+  <ng-template #listItemTemplate let-task>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:repeat"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h5 class="mb-2">{{ task.title }}</h5>
+      <p class="text-sm text-gray-500">
+        {{ task.scheduledDate | apiDate : "medium" }}
+      </p>
+      <app-status-badge
+        [value]="task.status"
+        [status]="task.statusDescription"
+      />
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            label="Completar"
+            (clicked)="complete.emit(task)"
+            [disabled]="task.status === 1"
+          />
+          <ili-button-confirm
+            label="Reabrir"
+            (confirmed)="reopen.emit(task.id)"
+            [disabled]="task.status !== 1"
+            confirmMessage="óEstés seguro de reabrir esta tarea?"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

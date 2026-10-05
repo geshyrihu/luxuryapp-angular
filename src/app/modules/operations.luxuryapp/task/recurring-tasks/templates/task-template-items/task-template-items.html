@@ -1,128 +1,21 @@
 @if (templateInfo(); as template) {
 
-<!-- Desktop View -->
-<lux-table
-  #dt
-  [value]="items()"
-  [rows]="10"
-  [paginator]="true"
-  [reorderableRows]="true"
-  [reorderableColumns]="true"
-  (onRowReorder)="onRowReorder($event)"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  class="d-none d-md-block custom-table"
->
-  <ng-template #caption>
-    <div
-      class="d-flex flex-wrap justify-content-between align-items-center gap-2"
-    >
-      <!-- Textos a la izquierda -->
-      <div class="d-flex flex-column gap-1">
-        <h5 class="m-0 text-body">Items de Plantilla: {{ template.name }}</h5>
-        <small class="text-body-secondary">
-          Rol Asignado: {{ template.roleName }}
-        </small>
-      </div>
-
-      <!-- Caption a la derecha -->
-      <div class="d-flex align-items-center">
-        <lux-table-caption (add)="showItemForm()" [dt]="dt" />
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-3rem"></th>
-      <!-- Reorder Handle Column -->
-      <th>Título</th>
-      <th>Prioridad</th>
-      <th>Regla de Recurrencia</th>
-      <th class="table-col-15">Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item let-rowIndex="rowIndex">
-    <tr [pReorderableRow]="rowIndex">
-      <td>
-        <app-icon
-          [icon]="'material-symbols-light:menu'"
-          class="icon icon-"
-          pReorderableRowHandle
-        />
-      </td>
-      <td>{{ item.title }}</td>
-      <td>
-        <app-status-badge
-          [value]="item.priority"
-          [status]="getPriorityDisplay(item.priority).text"
-          [severity]="getPriorityDisplay(item.priority).severity"
-        />
-      </td>
-      <td>{{ formatRecurrenceRule(item.recurrenceRule) }}</td>
-      <td>
-        <iw-button-edit (clicked)="showItemForm(item)" />
-        <iw-button-delete (confirmed)="onDeleteItem(item.id)" />
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <tr>
-      <td colspan="4">No se encontraron items para esta plantilla.</td>
-    </tr>
-  </ng-template>
-  <ng-template #summary>
-    <lux-table-footer
-      [totalRecords]="items().length"
-      [emptyMessage]="'No se encontraron items para esta plantilla.'"
-    />
-  </ng-template>
-</lux-table>
-
-<!-- Mobile View -->
-@if (items().length === 0 && !items()) {
-<div class="d-block d-md-none p-4 text-center">
-  No se encontraron items para esta plantilla.
-</div>
-} @else {
-<app-data-view-mobile
-  [data]="items()"
-  [dt]="dt"
+@if (platformS.isMobile()) {
+<app-task-template-items-mobile
+  [items]="items()"
   (add)="showItemForm()"
-  class="d-block d-md-none"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:description"
-          class="text-xl text-primary"
-        />
-      </div>
+  (edit)="showItemForm($event)"
+  (delete)="onDeleteItem($event)"
+/>
+} @else {
+<app-task-template-items-desktop
+  [items]="items()"
+  [template]="template"
+  (add)="showItemForm()"
+  (edit)="showItemForm($event)"
+  (delete)="onDeleteItem($event)"
+  (rowReorder)="onRowReorder($event)"
+/>
+}
 
-      <h5 class="mb-2">{{ item.title }}</h5>
-      <app-status-badge
-        [value]="item.priority"
-        [status]="getPriorityDisplay(item.priority).text"
-        [severity]="getPriorityDisplay(item.priority).severity"
-      />
-      <p class="text-sm text-body-secondary mt-2">
-        {{ formatRecurrenceRule(item.recurrenceRule) }}
-      </p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit label="Editar" (clicked)="showItemForm(item)" />
-          <ili-button-delete
-            (confirmed)="onDeleteItem(item.id)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
-} }
+}

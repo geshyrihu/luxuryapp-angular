@@ -1,458 +1,59 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  scrollHeight="calc(100vh - 230px)"
-  #dt
-  class="custom-table card d-none d-md-block"
-  groupRowsBy="equipoClasificacion"
->
-  <ng-template #caption>
-    <div
-      class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3"
-    >
-      <custom-input-text-signal
-        [control]="fechaControl"
-        type="month"
-        customClass=""
-        style="width: 15rem"
-        (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-        lxTooltip="Seleccionar Mes y Año"
-        tooltipPosition="top"
-        [horizontal]="false"
-        [noMargin]="true"
-      />
-      <div
-        class="d-flex align-items-center flex-wrap gap-1 p-1 rounded bg-body-tertiary"
-      >
-        @for (item of filtroEquipos; track item) {
-        <iw-button
-          [lxTooltip]="'Ver ' + item.nombre"
-          tooltipPosition="bottom"
-          [iconClass]="item.icon"
-          size="sm"
-          [variant]="filtroEquiposValue == item.nombre ? 'solid' : 'outline'"
-          [severity]="filtroEquiposValue == item.nombre ? 'primary' : 'secondary'"
-          (clicked)="onReloadOrdenes(item.id, item.nombre)"
-        />
-        }
-      </div>
-      <iw-button
-        iconClass="material-symbols-light:help"
-        size="sm"
-        variant="outline"
-        severity="help"
-        lxTooltip="Guía del módulo de Órdenes de Servicio"
-        tooltipPosition="bottom"
-        (clicked)="onModalAyuda()"
-      />
-      <div class="d-flex align-items-center flex-wrap gap-2">
-        <il-button
-          iconClass="material-symbols-light:description"
-          label="Reporte de órdenes"
-          size="sm"
-          (click)="onNavigateToReport()"
-          variant="outline"
-        />
-        <il-button
-          iconClass="material-symbols-light:table"
-          label="Reporte por categoria"
-          size="sm"
-          (click)="onNavigateToReportTabla()"
-          variant="outline"
-        />
-        <il-button
-          iconClass="material-symbols-light:precision-manufacturing"
-          label="Reporte por equipo"
-          size="sm"
-          (click)="onNavigateToReportPorEquipo()"
-          variant="outline"
-        />
-      </div>
-      <div class="ms-auto">
-        <lux-table-caption
-          [title]="filtroEquiposValue | titlecase"
-          (add)="
-        onEdit({
-          id: 0,
-          title: 'Nuevo Registro',
-          machineryId: 0,
-          providerId: 0
-        })
-      "
-          [dt]="dt"
-          [noMargin]="true"
-          [noPadding]="true"
-        />
-      </div>
-    </div>
-    <div
-      class="d-flex align-items-center justify-content-between text-sm text-body-secondary pt-2 px-3 border-top-1 border-200"
-    >
-      Servicios Totales: {{ dataSignal() ? dataSignal().length : 0 }} .
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-15" appSortableColumn="folio">
-        Folio
-        <app-sorticon field="folio" class="no-print" />
-      </th>
-      <th class="table-col-15" appSortableColumn="machinery">
-        Equipo
-        <app-sorticon field="machinery" class="no-print" />
-      </th>
-      <th class="table-col-10" appSortableColumn="typeMaintance">
-        Servicio
-        <app-sorticon field="typeMaintance" class="no-print" />
-      </th>
-      <th class="table-col-15" appSortableColumn="provider">
-        Proveedor
-        <app-sorticon field="provider" class="no-print" />
-      </th>
-      <th class="table-col-10" appSortableColumn="status">
-        Estatus
-        <app-sorticon field="status" class="no-print" />
-      </th>
-      <th class="table-col-10" appSortableColumn="serviceOrderImg.length">
-        Fotos
-        <app-sorticon field="serviceOrderImg.length" class="no-print" />
-      </th>
-      <th class="table-col-10" appSortableColumn="serviceOrderDocument.length">
-        Reporte
-        <app-sorticon field="serviceOrderDocument.length" class="no-print" />
-      </th>
-      <th class="table-col-15 no-print"></th>
-    </tr>
-  </ng-template>
-  <ng-template #groupheader let-item>
-    <tr>
-      <td colspan="8" class="fw-bold bg-body-tertiary px-3 py-2">
-        {{ item.equipoClasificacion || 'Sin Categoróa' }}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td><span>{{ item.folio || "Sin folio" }}</span></td>
-      <!-- {{ item.machineryId }} | -->
-      <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
-      <td>
-        <div class="cursor-pointer font-center">
-          <lux-tag
-            [value]="item.typeMaintanceFilter"
-            class="ms-auto"
-            (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
-            [severity]="
-              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
-              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
-              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
-            "
-          />
-        </div>
-      </td>
-      <td>
-        {{ item.isInternalExecution ? "Personal interno" : (item.provider ||
-        "Sin proveedor asignado") }}
-      </td>
-      <td>
-        <lux-tag
-          [value]="getStatusLabel(item.status)"
-          [severity]="getBadgeSeverity(item.status)"
-        />
-        @if (item.isSuspended) {
-        <lux-tag
-          value="Detenida"
-          severity="warning"
-          [lxTooltip]="item.suspensionReason || 'Suspendida'"
-          tooltipPosition="top"
-        />
-        }
-      </td>
-      <td class="text-center">
-        <lux-tag
-          (click)="onModalFotos(item.id)"
-          [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
-          [value]="item.serviceOrderImg.length"
-        />
-      </td>
-      <td class="text-center">
-        <lux-tag
-          (click)="onModalRpeorteProveedor(item.id)"
-          [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
-          [value]="item.serviceOrderDocument.length"
-        />
-      </td>
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-item
-            iconClass="material-symbols-light:print"
-            lxTooltip="Imprimir soporte"
-            tooltipPosition="top"
-            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-            variant="outline"
-          />
-
-          <iw-button-item
-            iconClass="material-symbols-light:photo"
-            lxTooltip="Cargar imagen"
-            tooltipPosition="top"
-            (clicked)="onModalFormUploadImg(item.id)"
-            variant="outline"
-          />
-
-          <iw-button-item
-            iconClass="material-symbols-light:attach-file"
-            lxTooltip="Cargar documentos"
-            tooltipPosition="top"
-            (clicked)="onModalFormUploadDoc(item.id)"
-            variant="outline"
-          />
-
-          <iw-button-item
-            iconClass="material-symbols-light:forum"
-            lxTooltip="Seguimiento"
-            tooltipPosition="top"
-            (clicked)="onModalSeguimiento(item.id)"
-            variant="outline"
-          />
-
-          @if (item.isSuspended) {
-          <iw-button-item
-            iconClass="material-symbols-light:play-circle"
-            lxTooltip="Reanudar"
-            tooltipPosition="top"
-            (clicked)="onResume(item.id)"
-            variant="outline"
-          />
-          } @else {
-          <iw-button-item
-            iconClass="material-symbols-light:pause-circle"
-            lxTooltip="Suspender"
-            tooltipPosition="top"
-            (clicked)="onModalSuspension(item)"
-            variant="outline"
-          />
-          }
-          <iw-button-edit
-            (clicked)="onEdit({
-                  id: item.id,
-                  title: 'Editar',
-                  machineryId: item.machineryId,
-                  providerId: item.providerId
-                })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-ordenes-servicio-list-mobile
   [data]="dataSignal()"
-  (add)="
-    onEdit({
-      id: 0,
-      title: 'Nuevo Registro',
-      machineryId: 0,
-      providerId: 0
-    })
-  "
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-container customFilters>
-    <ion-accordion-group class="px-2 pb-2">
-      <ion-accordion value="opciones" class="bg-transparent border rounded">
-        <ion-item slot="header" color="light">
-          <ion-label class="text-sm fw-bold">Opciones y Filtros</ion-label>
-        </ion-item>
-        <div class="p-2" slot="content">
-          <!-- Filtro de Fecha -->
-          <div class="d-flex align-items-center mb-3">
-            <span class="fw-bold me-2"
-              >{{ filtroEquiposValue | titlecase }}</span
-            >
-            <custom-input-text-signal
-              [control]="fechaControl"
-              name="fecha"
-              type="month"
-              customClass="flex-grow-1"
-              (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
-              [horizontal]="false"
-            />
-          </div>
-
-          <!-- Filtro de Equipos -->
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            @for (item of filtroEquipos; track item) {
-            <ion-button
-              size="small"
-              [fill]="filtroEquiposValue === item.nombre ? 'solid' : 'outline'"
-              (click)="onReloadOrdenes(item.id, item.nombre)"
-            >
-              <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
-              {{ item.nombre | titlecase }}
-            </ion-button>
-            }
-          </div>
-
-          <!-- Botones de Reporte -->
-          <div class="d-flex flex-column gap-2">
-            <ion-button
-              expand="block"
-              fill="outline"
-              (click)="onNavigateToReport()"
-              >Reporte de órdenes</ion-button
-            >
-            <ion-button
-              expand="block"
-              fill="outline"
-              (click)="onNavigateToReportTabla()"
-              >Reporte por categoría</ion-button
-            >
-            <ion-button
-              expand="block"
-              fill="outline"
-              (click)="onNavigateToReportPorEquipo()"
-              >Reporte por equipo</ion-button
-            >
-          </div>
-
-          <div class="text-end text-sm text-body-secondary mt-2">
-            Servicios Totales:
-            <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong>
-          </div>
-        </div>
-      </ion-accordion>
-    </ion-accordion-group>
-  </ng-container>
-
-  <!-- Lista de órdenes de servicio en formato de tarjeta -->
-  <ng-template #listItemTemplate let-item>
-    <ion-item>
-      <ion-avatar
-        slot="start"
-        style="
-          background: var(--ion-color-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <app-icon
-          icon="material-symbols-light:build"
-          class="text-xl text-yellow-500"
-        ></app-icon>
-      </ion-avatar>
-      <ion-label>
-        <h2 class="ion-text-wrap fw-bold m-0">
-          {{ item.machineryId }} - {{ item.machinery }}
-        </h2>
-        <p class="ion-text-wrap text-sm text-body-secondary mb-1">
-          Folio: {{ item.folio || "Sin folio" }}
-        </p>
-
-        <div class="d-flex flex-wrap gap-1 mb-1">
-          <lux-tag
-            [value]="item.typeMaintanceFilter"
-            [severity]="
-              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
-              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
-              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
-            "
-          />
-          <span class="text-xs text-body-secondary align-self-center">
-            ({{ item.isInternalExecution ? "Personal interno" : (item.provider
-            || "Sin proveedor asignado") }})
-          </span>
-        </div>
-
-        <div class="d-flex flex-wrap gap-1">
-          <lux-tag
-            [value]="getStatusLabel(item.status)"
-            [severity]="getBadgeSeverity(item.status)"
-          />
-          @if (item.isSuspended) {
-          <lux-tag value="Detenida" severity="warning" />
-          }
-          <lux-tag
-            (click)="onModalFotos(item.id)"
-            [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
-            [value]="item.serviceOrderImg.length + ' Fotos'"
-          />
-          <lux-tag
-            (click)="onModalRpeorteProveedor(item.id)"
-            [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
-            [value]="item.serviceOrderDocument.length + ' Reportes'"
-          />
-        </div>
-      </ion-label>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-item
-            iconName="print-outline"
-            label="Imprimir soporte"
-            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-          />
-          <ili-button-item
-            iconName="image-outline"
-            label="Cargar imagen"
-            (clicked)="onModalFormUploadImg(item.id)"
-          />
-          <ili-button-item
-            iconName="ellipsis-horizontal-outline"
-            label="Cargar documentos"
-            (clicked)="onModalFormUploadDoc(item.id)"
-            variant="outline"
-          />
-          <ili-button-item
-            iconName="chatbubbles-outline"
-            label="Seguimiento"
-            (clicked)="onModalSeguimiento(item.id)"
-          />
-          @if (item.isSuspended) {
-          <ili-button-item
-            iconName="play-circle-outline"
-            label="Reanudar"
-            (clicked)="onResume(item.id)"
-          />
-          } @else {
-          <ili-button-item
-            iconName="pause-circle-outline"
-            label="Suspender"
-            (clicked)="onModalSuspension(item)"
-          />
-          }
-          <ili-button-edit
-            (clicked)="onEdit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ion-item>
-  </ng-template>
-</app-data-view-mobile>
+  [fechaControl]="fechaControl"
+  [filtroEquiposValue]="filtroEquiposValue"
+  [filtroId]="filtroId"
+  [filtroEquipos]="filtroEquipos"
+  (reloadOrdenes)="onReloadOrdenes($event.id, $event.value)"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (report)="onNavigateToReport()"
+  (reportTabla)="onNavigateToReportTabla()"
+  (reportPorEquipo)="onNavigateToReportPorEquipo()"
+  (photos)="onModalFotos($event)"
+  (providerReport)="onModalRpeorteProveedor($event)"
+  (uploadImg)="onModalFormUploadImg($event)"
+  (uploadDoc)="onModalFormUploadDoc($event)"
+  (followUp)="onModalSeguimiento($event)"
+  (resume)="onResume($event)"
+  (suspend)="onModalSuspension($event)"
+/>
+} @else {
+<app-ordenes-servicio-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [fechaControl]="fechaControl"
+  [filtroEquiposValue]="filtroEquiposValue"
+  [filtroId]="filtroId"
+  [filtroEquipos]="filtroEquipos"
+  (reloadOrdenes)="onReloadOrdenes($event.id, $event.value)"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (help)="onModalAyuda()"
+  (report)="onNavigateToReport()"
+  (reportTabla)="onNavigateToReportTabla()"
+  (reportPorEquipo)="onNavigateToReportPorEquipo()"
+  (photos)="onModalFotos($event)"
+  (providerReport)="onModalRpeorteProveedor($event)"
+  (uploadImg)="onModalFormUploadImg($event)"
+  (uploadDoc)="onModalFormUploadDoc($event)"
+  (followUp)="onModalSeguimiento($event)"
+  (resume)="onResume($event)"
+  (suspend)="onModalSuspension($event)"
+  (navigateMessage)="onNavigateMessage($event.id, $event.status, $event.nameGroup)"
+/>
+}
 
 <style>
   @media print {
-    /* 1. Reset Global Layout */
     body {
       visibility: visible !important;
       background-color: white !important;
       color: black !important;
     }
 
-    /* Ocultar todo lo que no queremos imprimir */
     app-topbar,
     app-footer,
     app-sidebar,
@@ -462,34 +63,26 @@
       display: none !important;
     }
 
-    /* 2. Forzar visualización de la Tabla */
     .custom-table {
       display: block !important;
       visibility: visible !important;
       width: 100% !important;
     }
 
-    /* Resetear las clases de ocultamiento para impresión */
     .hidden.md\:block {
       display: block !important;
     }
 
-    /* 3. Ocultar Vista Mívil */
     app-data-view-mobile {
       display: none !important;
     }
 
-    /* 4. Limpieza de UI de la Tabla */
     .p-datatable-header,
-    /* El Caption con filtros */
     .p-paginator-bottom,
-    /* Paginación */
     .no-print {
-      /* Clase utilitaria para columnas específicas */
       display: none !important;
     }
 
-    /* Ajustes de Tabla */
     .p-datatable table {
       width: 100% !important;
       border-collapse: collapse !important;
@@ -500,20 +93,16 @@
       border: 1px solid #ddd !important;
       padding: 4px !important;
       font-size: 10px !important;
-      /* Reducir fuente para que quepa */
     }
 
-    /* Ajustes de Badges/Tags para que se vea el color */
     .p-tag {
       border: 1px solid #000;
       color: black !important;
       font-weight: bold;
     }
 
-    /* Configuración de Página */
     @page {
       size: landscape;
-      /* Sugerir horizontal para tablas anchas */
       margin: 1cm;
     }
   }

@@ -1,0 +1,52 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
+import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { EITaskMessageDTOStatus } from "../../shared/enums/task-message-status.enum";
+import { WorkGroupDTO } from "../task-group-list";
+
+@Component({
+  selector: "app-task-group-list-mobile",
+  templateUrl: "./task-group-list-mobile.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MobileActionMenu,
+    MobileButtonLabelActiveDesactive,
+    MobileButtonLabelItem,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    StatusBadge,
+    DataViewMobile,
+    AppIcon,
+  ],
+})
+export class TaskGroupListMobile {
+  data = input.required<WorkGroupDTO[]>();
+  globalFilterFields = input<string[]>([]);
+  loading = input<boolean>(false);
+  value = input<boolean>(true);
+  hasSuperUsuario = input<boolean>(false);
+  customerId = input<string>("");
+
+  add = output<void>();
+  change = output<boolean>();
+  navigateMessage = output<{
+    ticketGroupId: string;
+    status: EITaskMessageDTOStatus;
+  }>();
+  participants = output<WorkGroupDTO>();
+  report = output<WorkGroupDTO>();
+  edit = output<{ id: string; title: string }>();
+  toggleStatus = output<string>();
+  delete = output<string>();
+}

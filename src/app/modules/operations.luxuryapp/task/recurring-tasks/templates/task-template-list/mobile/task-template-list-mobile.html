@@ -1,0 +1,46 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit()"
+>
+  <div customFilters>
+    <div class="px-4 py-2">
+      <ili-button-active-desactive
+        fluid
+        [state]="state()"
+        (stateChange)="changeState.emit($event)"
+      />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-template>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h5 class="mb-2">{{ template.name }}</h5>
+      <p class="text-sm text-body-secondary">
+        Rol: {{ template.roleName }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            label="Administrar Items"
+            (clicked)="manageItems.emit(template.id)"
+          />
+          <ili-button-item label="Editar" (clicked)="edit.emit(template)" />
+          <ili-button-delete
+            (confirmed)="delete.emit(template.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

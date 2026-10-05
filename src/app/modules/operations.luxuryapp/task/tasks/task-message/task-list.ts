@@ -8,34 +8,21 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { LxImage } from "@ui/adaptive/image/image";
-import { LxPopover } from "@ui/adaptive/popover/popover";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+import { PlatformService } from "@core/services/platform.service";
+import { PrintService } from "@core/services/print.service";
+import { SwalService } from "@core/services/swal.service";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -57,49 +44,20 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
-import { PrintService } from "@core/services/print.service";
-import { CardEmployee } from "@shared/integration/recursos-humanos";
-
-import { SwalService } from "@core/services/swal.service";
-
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
-import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
-import {
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { SendOperationReport } from "../send-operation-report/send-operation-report";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskProgram } from "../task-program";
 import { TaskReadList } from "../task-read-list";
 import { TaskReopen } from "../task-reopen";
-import { TaskStatus } from "../task-status/task-status";
 import { ITaskMessageDTO, ITaskResultDTO } from "./interfaces/task-message.dto";
 import { TaskForm } from "./task-form";
 import { TaskPhotosViewer } from "./task-photos-viewer/task-photos-viewer";
 import { TaskSummaryReport } from "./task-summary-report/task-summary-report";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonIcon } from "@ui/buttons/mobile-icon/button";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
-import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { TaskListDesktop } from "./desktop/task-list-desktop";
+import { TaskListMobile } from "./mobile/task-list-mobile";
 
 @Component({
   selector: "app-task-list",
@@ -112,80 +70,10 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
         height: 100%;
         overflow: hidden;
       }
-      :host ::ng-deep lux-table-caption > div {
-        margin-bottom: 0 !important;
-      }
-      :host ::ng-deep app-task-status > div {
-        margin-bottom: 0 !important;
-      }
-      :host ::ng-deep base-input-signal .field {
-        margin-bottom: 0 !important;
-      }
-      :host ::ng-deep tr.task-link-source > td {
-        opacity: 0.55;
-      }
-      :host ::ng-deep tr.task-link-target > td {
-        background-color: color-mix(
-          in srgb,
-          var(--ds-ai) 10%,
-          transparent
-        ) !important;
-        outline: 2px dashed color-mix(in srgb, var(--ds-ai) 55%, transparent);
-        outline-offset: -2px;
-      }
-      :host ::ng-deep tr.task-chain-member > td:nth-child(2) {
-        border-left: 3px solid color-mix(in srgb, var(--ds-ai) 45%, transparent);
-      }
-      :host ::ng-deep .task-evidence-thumb {
-        display: block;
-        width: 2.75rem;
-        height: 2.75rem;
-        object-fit: cover;
-        border-radius: 0.375rem;
-        border: 1px solid var(--ds-border, #dee2e6);
-      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    LxTag,
-    IonInputSelect,
-    IonInputText,
-    MobileActionMenu,
-    MobileListItem,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonIcon,
-    TableEmptyMessage,
-    AppTable,
-    AppReorderableRow,
-    AppReorderableRowHandle,
-    AppSortableColumn,
-    AppSorticon,
-    ActionMenu,
-    CustomInputTextSignal,
-    TaskStatus,
-    CustomInputSelectSignal,
-    WebButtonLabel,
-    WebButtonIcon,
-    AppAvatar,
-    CustomInputToggleSwitch,
-    FormsModule,
-    ReactiveFormsModule,
-    LuxTableCaption,
-    DataViewMobile,
-    LxTooltipDirective,
-    LxPopover,
-    LxImage,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    InitialsAbbrPipe,
-    AppIcon,
-  ],
+  imports: [TaskListDesktop, TaskListMobile],
 })
 export class TaskList implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
@@ -194,20 +82,18 @@ export class TaskList implements OnInit {
   private readonly customerIdS = inject(CustomerIdService);
   private readonly customToastS = inject(CustomToastService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
+  platformS = inject(PlatformService);
 
   private readonly router = inject(Router);
   private readonly taskGroupS = inject(TaskGroupService);
   private readonly aspRoleS = inject(AspRoleService);
   private readonly printS = inject(PrintService);
 
-  // User and Data Setup
   readonly applicationUser = this.authS.applicationUserId;
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  // Task-list tiene caption doble (título + filtros + leyenda), de ahí el
-  // offset mayor al estándar del servicio.
   private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
@@ -267,10 +153,6 @@ export class TaskList implements OnInit {
     this.printS.printElement(undefined, "Reporte de Tareas Pendientes");
   }
 
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-
-  // Signals para estado de la lista
   readonly page = signal(1);
   readonly pageSize = signal(30);
   readonly searchTerm = signal("");
@@ -294,7 +176,6 @@ export class TaskList implements OnInit {
   readonly assigneeControl = new FormControl<string | null>(null);
   cb_assignee: SelectItemDto[] = [];
 
-  // Week Info
   readonly year = signal(this.taskGroupS.year || 0);
   readonly numeroSemana = signal(this.taskGroupS.numeroSemana || 0);
   readonly wekklyIsNullOrEmpty = signal(true);
@@ -438,8 +319,6 @@ export class TaskList implements OnInit {
     this.page.set(Math.floor(first / rows) + 1);
     this.pageSize.set(rows);
 
-    // El filtro de texto se maneja con (search): no se sobreescribe aquí
-    // para no borrar el filtro por responsable al cambiar de página.
     if (event?.sortField) {
       this.sortField.set(event.sortField);
       this.sortOrder.set(event.sortOrder ?? 1);
@@ -772,9 +651,6 @@ export class TaskList implements OnInit {
     if (!movedItem) return;
     items.splice(event.dropIndex, 0, movedItem);
 
-    // BFS: collect ALL transitive dependents —
-    //   parentTaskId === currentId  (true child tasks)
-    //   dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
     const queue = [movedItem.id];
     const visited = new Set<string>([movedItem.id]);
@@ -792,7 +668,6 @@ export class TaskList implements OnInit {
     }
 
     if (dependentIds.size > 0) {
-      // Preserve the relative order of dependents as they appeared before
       const dependents = items.filter((i) => dependentIds.has(i.id));
       const rest = items.filter((i) => !dependentIds.has(i.id));
       const parentIdx = rest.findIndex((i) => i.id === movedItem.id);
@@ -806,8 +681,6 @@ export class TaskList implements OnInit {
       items.map((i) => i.id),
     );
   }
-
-  // --- Chain step computation (visual Gantt-style ordering) ---
 
   readonly chainStepMap = computed(() => {
     const items = this.dataSignal().items;
@@ -845,8 +718,6 @@ export class TaskList implements OnInit {
         .map((i) => i.id),
     );
   });
-
-  // --- Drag-to-link (asignación de predecesora por arrastre) ---
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);

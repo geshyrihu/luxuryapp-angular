@@ -1,0 +1,59 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
+import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { EITaskMessageDTOStatus } from "../../shared/enums/task-message-status.enum";
+import { WorkGroupDTO } from "../task-group-list";
+
+@Component({
+  selector: "app-task-group-list-desktop",
+  templateUrl: "./task-group-list-desktop.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    LxTag,
+    WebButtonLabelAdd,
+    StatusBadge,
+    AppIcon,
+    WebButtonIcon,
+    WebButtonIconActiveDesactive,
+    WebButtonIconItem,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
+    EmptyState,
+    CustomSearchInput,
+    LxTooltipDirective,
+  ],
+})
+export class TaskGroupListDesktop {
+  data = input.required<WorkGroupDTO[]>();
+  value = input<boolean>(true);
+  hasSuperUsuario = input<boolean>(false);
+  customerId = input<string>("");
+
+  add = output<void>();
+  change = output<boolean>();
+  searchChange = output<string>();
+  navigateMessage = output<{
+    ticketGroupId: string;
+    status: EITaskMessageDTOStatus;
+  }>();
+  participants = output<WorkGroupDTO>();
+  report = output<WorkGroupDTO>();
+  edit = output<{ id: string; title: string }>();
+  toggleStatus = output<string>();
+  delete = output<string>();
+}

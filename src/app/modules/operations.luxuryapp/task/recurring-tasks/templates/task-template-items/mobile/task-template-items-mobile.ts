@@ -1,100 +1,38 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
-  inject,
-  signal,
+  input,
+  output,
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template-item.interface";
-import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { PlatformService } from "@core/services/platform.service";
-import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
-import { TaskTemplateItemsDesktop } from "./desktop/task-template-items-desktop";
-import { TaskTemplateItemsMobile } from "./mobile/task-template-items-mobile";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 @Component({
-  selector: "app-task-template-items",
-  templateUrl: "./task-template-items.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TaskTemplateItemsDesktop, TaskTemplateItemsMobile],
+  selector: "app-task-template-items-mobile",
+  templateUrl: "./task-template-items-mobile.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    DataViewMobile,
+    StatusBadge,
+    MobileListItem,
+    AppIcon,
+  ],
 })
-export class TaskTemplateItems implements OnInit {
-  private apiResponseS = inject(ApiResponseService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
-  public dialogHandlerS = inject(DialogHandlerService);
-  platformS = inject(PlatformService);
-  templateInfo = signal<TaskTemplate | null>(null);
-  items = signal<TaskTemplateItem[]>([]);
-  templateId: string = "";
+export class TaskTemplateItemsMobile {
+  items = input.required<TaskTemplateItem[]>();
 
-  ngOnInit(): void {
-    this.templateId = this.route.snapshot.paramMap.get("id")!;
-    if (this.templateId) {
-      this.loadTemplateInfo();
-      this.loadItems();
-    }
-  }
-
-  loadTemplateInfo() {
-    this.apiResponseS
-      .onGetItem<TaskTemplate>(
-        Endpoints.RecurringTasks.Templates.getById(this.templateId),
-      )
-      .then((response) => this.templateInfo.set(response));
-  }
-
-  loadItems() {
-    this.apiResponseS
-      .onGetList<TaskTemplateItem[]>(
-        Endpoints.RecurringTasks.Templates.itemsByTemplate(this.templateId),
-      )
-      .then((response) => this.items.set(response || []));
-  }
-
-  onDeleteItem(itemId: string) {
-    this.apiResponseS
-      .onDelete(Endpoints.RecurringTasks.Templates.itemById(itemId))
-      .then((result: boolean) => {
-        if (result) {
-          this.loadItems();
-        }
-      });
-  }
-
-  showItemForm(item?: TaskTemplateItem) {
-    this.dialogHandlerS
-      .openDialog(
-        TaskTemplateItemForm,
-        { templateId: this.templateId, item },
-        item ? "Editar Item" : "Nuevo Item",
-        this.dialogHandlerS.sizeXl,
-      )
-      .then((result: boolean) => {
-        if (result) this.loadItems();
-      });
-  }
-
-  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
-    const reordered = [...this.items()];
-    const [moved] = reordered.splice(event.dragIndex, 1);
-    if (!moved) return;
-    reordered.splice(event.dropIndex, 0, moved);
-    this.items.set(reordered);
-    const itemIdsInOrder = reordered.map((item) => item.id);
-    this.apiResponseS
-      .onPut(Endpoints.RecurringTasks.Templates.reorderItems(this.templateId), {
-        itemIdsInOrder,
-      })
-      .then((result) => {
-        if (result) {
-        }
-      });
-  }
+  add = output<void>();
+  edit = output<TaskTemplateItem>();
+  delete = output<string>();
 
   getPriorityDisplay(priority: number): { text: string; severity: string } {
     switch (priority) {

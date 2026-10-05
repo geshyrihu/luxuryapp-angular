@@ -1,0 +1,61 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [rows]="10"
+  [paginator]="true"
+  [loading]="loading()"
+  size="small"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  class="custom-table"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
+    >
+      <lux-table-caption
+        (add)="add.emit()"
+        [dt]="dt"
+        [noPadding]="true"
+        [noMargin]="true"
+      />
+      <div class="flex-shrink-0">
+        <iw-button-active-desactive
+          [state]="activeOnly()"
+          (stateChange)="changeState.emit($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Título</th>
+      <th>Grupo</th>
+      <th>Criticidad</th>
+      <th>Estatus</th>
+      <th class="table-col-15">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-template>
+    <tr>
+      <td>{{ template.title }}</td>
+      <td>{{ template.workGroupName }}</td>
+      <td>{{ template.criticality }}</td>
+      <td>{{ template.status }}</td>
+      <td>
+        <div class="d-flex">
+          <iw-button-edit (clicked)="edit.emit(template)" />
+          <iw-button-active-desactive
+            [state]="isActive(template)"
+            lxTooltip="Activar/Pausar"
+            tooltipPosition="top"
+            (stateChange)="toggleStatus.emit(template.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+</lux-table>

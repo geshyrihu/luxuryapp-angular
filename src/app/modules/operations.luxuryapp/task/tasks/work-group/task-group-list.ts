@@ -12,20 +12,12 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { TaskGroupParticipant } from "@operations.luxuryapp/task/tasks/participants/task-group-participant";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -36,69 +28,30 @@ import {
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
+import { TaskGroupListDesktop } from "./desktop/task-group-list-desktop";
+import { TaskGroupListMobile } from "./mobile/task-group-list-mobile";
 import { TaskGroupForm } from "./task-group-form";
-
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 @Component({
   selector: "app-task-group-list",
   templateUrl: "./task-group-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    LxTag,
-    WebButtonLabelAdd,
-    StatusBadge,
-    AppIcon,
-    WebButtonIcon,
-    WebButtonIconActiveDesactive,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelActiveDesactive,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    EmptyState,
-    CustomSearchInput,
-    DataViewMobile,
-
-    LxTooltipDirective,
-  ],
+  imports: [TaskGroupListDesktop, TaskGroupListMobile],
 })
 export class TaskGroupList {
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollHeightS = inject(TableScrollHeightService);
-  router = inject(Router); // Injectamos Router.
+  router = inject(Router);
   TaskGroupService = inject(TaskGroupService);
   aspRoleS = inject(AspRoleService);
+  platformS = inject(PlatformService);
   error: string = "";
   dataSignal = signal<any[]>([]);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
   hasLegal = this.aspRoleS.roleSignal(ApplicationRole.Legal);
   hasSuperUsuario = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
-  /*
-  /PRIME NG TABLE OPTIONS
-  */
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
@@ -118,11 +71,7 @@ export class TaskGroupList {
     );
   });
   loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  /*
-  /PRIME NG TABLE OPTIONS
-  */
+
   readonly value = signal<boolean>(true);
 
   constructor() {

@@ -10,58 +10,26 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskTemplateForm } from "../task-template-form/task-template-form";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TaskTemplateListDesktop } from "./desktop/task-template-list-desktop";
+import { TaskTemplateListMobile } from "./mobile/task-template-list-mobile";
 
 @Component({
   selector: "app-task-template-list",
   templateUrl: "./task-template-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconActiveDesactive,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelActiveDesactive,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    DataViewMobile,
-    LuxTableCaption,
-    AppTable,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [TaskTemplateListDesktop, TaskTemplateListMobile],
 })
 export class TaskTemplateList implements OnInit {
-  // private recurringTasksService = inject(RecurringTasksService); // REMOVED
   private apiResponseS = inject(ApiResponseService);
   private router = inject(Router);
   public dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
-  data = signal<TaskTemplate[]>([]); // Converted to signal
+  platformS = inject(PlatformService);
+  data = signal<TaskTemplate[]>([]);
   loading = signal(true);
   state = signal<boolean>(true);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData();
@@ -74,15 +42,14 @@ export class TaskTemplateList implements OnInit {
       .onGetList<TaskTemplate[]>(urlApi)
       .then((response) => {
         if (response) {
-          // onGetList returns T | null, so if truthy, it's successful data
-          this.data.set(response); // Update signal
+          this.data.set(response);
         } else {
-          this.data.set([]); // Set to empty array on error
+          this.data.set([]);
         }
       })
       .catch((error) => {
         console.error("Request Error:", error);
-        this.data.set([]); // Set to empty array on network error
+        this.data.set([]);
       })
       .finally(() => this.loading.set(false));
   }
@@ -92,18 +59,13 @@ export class TaskTemplateList implements OnInit {
   }
 
   onDelete(id: string) {
-    // Implement confirmation dialog before deleting
     const urlApi = Endpoints.RecurringTasks.Templates.delete(id);
     this.apiResponseS
       .onDelete(urlApi)
       .then((result: boolean) => {
-        // onDelete returns boolean
         if (result) {
-          // if true, deletion was successful
           this.onLoadData();
-          // Show success toast (handled by ApiResponseService)
         }
-        // No else needed, error handling and toasts are done by ApiResponseService
       })
       .catch((error) => {
         console.error("Request Error:", error);

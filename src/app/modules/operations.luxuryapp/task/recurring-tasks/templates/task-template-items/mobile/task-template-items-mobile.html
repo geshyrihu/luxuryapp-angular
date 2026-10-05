@@ -1,0 +1,38 @@
+<app-data-view-mobile
+  [data]="items()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h5 class="mb-2">{{ item.title }}</h5>
+      <app-status-badge
+        [value]="item.priority"
+        [status]="getPriorityDisplay(item.priority).text"
+        [severity]="getPriorityDisplay(item.priority).severity"
+      />
+      <p class="text-sm text-body-secondary mt-2">
+        {{ formatRecurrenceRule(item.recurrenceRule) }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit label="Editar" (clicked)="edit.emit(item)" />
+          <ili-button-delete
+            (confirmed)="delete.emit(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

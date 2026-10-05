@@ -1,0 +1,570 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [showCurrentPageReport]="true"
+  (onLazyLoad)="lazyLoad.emit($event)"
+  [lazy]="true"
+  [loading]="loading()"
+  [reorderableRows]="true"
+  (onRowReorder)="rowReorder.emit($event)"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [totalRecords]="totalRecords()"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex align-items-center justify-content-between flex-wrap gap-2"
+    >
+      <h4 class="m-0 fw-semibold text-body">
+        GRUPO DE TRABAJO | {{ nameGroup() }}
+      </h4>
+      <div class="d-flex align-items-center gap-2">
+        <lux-table-caption
+          (add)="add.emit()"
+          (search)="search.emit($event)"
+          [dt]="dt"
+        />
+        <app-task-status (statusChange)="statusChange.emit($event)" />
+      </div>
+    </div>
+
+    <hr class="my-2 border" />
+
+    <div class="d-flex align-items-end flex-wrap gap-3 mb-1">
+      <div class="flex-shrink-0 w-12rem">
+        <custom-input-select-signal
+          [data]="cbAssignee()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Todos"
+          label="Responsable"
+          [control]="assigneeControl()"
+          (selectionChange)="responsibleChange.emit($event.value)"
+          size="small"
+          [horizontal]="false"
+          [filter]="true"
+        />
+      </div>
+
+      <div class="flex-shrink-0 w-11rem">
+        <custom-input-text-signal
+          type="week"
+          [control]="weekInputValueControl()"
+          (change)="weekChange.emit($event)"
+          size="small"
+          [horizontal]="false"
+          label="Semana"
+        />
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <il-button
+          iconClass="material-symbols-light:grid-view"
+          label="Tablero"
+          variant="outline"
+          severity="secondary"
+          size="small"
+          (clicked)="pendingBoard.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:article"
+          label="Plan de trabajo"
+          variant="outline"
+          severity="secondary"
+          size="small"
+          (clicked)="previewWorkPlan.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:visibility-outline"
+          label="Vista previa"
+          variant="outline"
+          severity="secondary"
+          size="small"
+          (clicked)="previewWeeklyReport.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:send"
+          label="Enviar reporte"
+          variant="outline"
+          size="small"
+          [disabled]="wekklyIsNullOrEmpty()"
+          (clicked)="sendWeeklyReport.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:print"
+          label="Imprimir pendientes"
+          variant="outline"
+          severity="secondary"
+          size="small"
+          (clicked)="printReport.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:summarize"
+          label="Resumen copiable"
+          variant="outline"
+          severity="secondary"
+          size="small"
+          (clicked)="summaryReport.emit()"
+        />
+      </div>
+
+      <div class="d-flex align-items-center gap-3 ms-auto">
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
+          <span
+            class="inline-block rounded w-1rem h-1rem"
+            [style.background]="'var(--task-not-started)'"
+          ></span>
+          No iniciado
+        </span>
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
+          <span
+            class="inline-block rounded w-1rem h-1rem"
+            [style.background]="'var(--task-in-progress)'"
+          ></span>
+          En proceso
+        </span>
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
+          <span
+            class="inline-block rounded w-1rem h-1rem"
+            [style.background]="'var(--task-completed)'"
+          ></span>
+          Completado
+        </span>
+        <span
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
+        >
+          <span
+            class="inline-block rounded w-1rem h-1rem"
+            [style.background]="'var(--task-reopened)'"
+          ></span>
+          Reabierto
+        </span>
+
+        <!-- Ayuda de interacciones -->
+        <il-button
+          label="?"
+          variant="soft"
+          size="small"
+          class="rounded-circle border-1 border-300 bg-body text-body-secondary hover:text-primary hover:border-primary transition-colors transition-duration-200 task-help-btn"
+          lxTooltip="Ayuda de interacciones"
+          tooltipPosition="top"
+          (clicked)="helpPopover.toggle($event)"
+        />
+
+        <lux-popover #helpPopover styleClass="shadow">
+          <div>
+            <p
+              class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:info'"
+                class="text-primary me-1"
+              />
+              Como interactuar con las tareas
+            </p>
+
+            <div class="d-flex flex-column gap-3">
+              <!-- Reordenar -->
+              <div class="d-flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
+                >
+                  <app-icon
+                    [icon]="'material-symbols-light:menu'"
+                    class="text-primary"
+                  />
+                </span>
+                <div>
+                  <p class="m-0 fw-semibold text-body text-xs">
+                    Reordenar tareas
+                  </p>
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
+                    Arrastra el icono <strong>&#9776;</strong> de la columna
+                    izquierda hacia arriba o abajo para cambiar el orden. Si la
+                    tarea tiene subtareas, estas se mueven automaticamente con
+                    ella.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Predecesora -->
+              <div class="d-flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 rounded-circle bg-purple-100 d-flex align-items-center justify-content-center"
+                >
+                  <app-icon
+                    [icon]="'material-symbols-light:link'"
+                    class="text-purple-600"
+                  />
+                </span>
+                <div>
+                  <p class="m-0 fw-semibold text-body text-xs">
+                    Asignar predecesora
+                  </p>
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
+                    Arrastra el icono <strong>&#128279;</strong> de una tarea y
+                    sueltalo sobre otra para marcarla como predecesora. La tarea
+                    arrastrada no puede iniciar hasta que la predecesora este
+                    completa.
+                  </p>
+                  <p class="m-0 text-xs text-body-secondary mt-1">
+                    Click en <strong>&#8594; FOLIO</strong> para quitar la
+                    dependencia.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tarea hija -->
+              <div class="d-flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 rounded-circle bg-orange-100 d-flex align-items-center justify-content-center"
+                >
+                  <app-icon
+                    [icon]="'material-symbols-light:account-tree'"
+                    class="text-orange-600"
+                  />
+                </span>
+                <div>
+                  <p class="m-0 fw-semibold text-body text-xs">
+                    Tareas padre e hijos
+                  </p>
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
+                    Las tareas con el icono
+                    <app-icon
+                      [icon]="'material-symbols-light:account-tree'"
+                      class="text-primary"
+                    />
+                    tienen subtareas. Las tareas con
+                    <app-icon
+                      [icon]="'material-symbols-light:keyboard-double-arrow-down'"
+                      class="text-body-secondary"
+                    />
+                    son hijas de otra. Al crear o editar una tarea puedes
+                    asignarle una tarea padre.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </lux-popover>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th></th>
+      <th appSortableColumn="createdAtFilter">
+        SOLICITUD <app-sorticon field="createdAtFilter" />
+      </th>
+      <th appSortableColumn="responsableNombre">
+        RESP. <app-sorticon field="responsableNombre" />
+      </th>
+      <th appSortableColumn="scheduledAtFilter">
+        FECHAS <app-sorticon field="scheduledAtFilter" />
+      </th>
+      <th>EVIDENCIAS</th>
+      <th appSortableColumn="daysDifference">
+        DÍAS <app-sorticon field="daysDifference" />
+      </th>
+      <th appSortableColumn="isRelevant">
+        REPORTE <app-sorticon field="isRelevant" />
+      </th>
+      <th>ULTIMO SEGUIMIENTO</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr
+      [pReorderableRow]="rowIndex"
+      [class.task-link-source]="linkDragSourceId() === item.id"
+      [class.task-link-target]="linkDragTargetId() === item.id"
+      [class.task-chain-member]="chainedTaskIds().has(item.id)"
+      [class.row-status-completed]="item.status === 'Completed'"
+      [class.row-status-in-progress]="item.status === 'InProgress'"
+      [class.row-status-reopened]="item.status === 'Reopened'"
+      [class.row-status-not-started]="item.status === 'NotStarted'"
+      (dragover)="linkDragOver.emit({ event: $event, id: item.id })"
+      (dragleave)="linkDragLeave.emit({ event: $event, id: item.id })"
+      (drop)="linkDrop.emit({ event: $event, id: item.id })"
+    >
+      <td class="text-center">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          <app-icon
+            [icon]="'material-symbols-light:menu'"
+            class="cursor-move text-body-secondary"
+            pReorderableRowHandle
+            lxTooltip="Arrastra para reordenar la tarea"
+            tooltipPosition="top"
+          />
+          <app-icon
+            [icon]="'material-symbols-light:link'"
+            class="text-body-secondary cursor-grab"
+            draggable="true"
+            [class.text-purple-500]="linkDragSourceId() === item.id"
+            (dragstart)="linkDragStart.emit({ event: $event, id: item.id })"
+            (dragend)="linkDragEnd.emit()"
+            lxTooltip="Arrastra sobre otra tarea para asignar predecesora"
+            tooltipPosition="top"
+          />
+        </div>
+      </td>
+      <td>
+        <div
+          class="d-flex align-items-start"
+          [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
+        >
+          @if (item.parentTaskId) {
+          <app-icon
+            [icon]="'material-symbols-light:keyboard-double-arrow-down'"
+            class="text-body-secondary flex-shrink-0 me-1"
+            lxTooltip="Tarea hija"
+            tooltipPosition="top"
+          />
+          } @if (item.hasSubTasks) {
+          <app-icon
+            [icon]="'material-symbols-light:account-tree'"
+            class="text-primary flex-shrink-0 me-1"
+            lxTooltip="Tiene subtareas"
+            tooltipPosition="top"
+          />
+          }
+          <app-avatar
+            (click)="cardEmployee.emit(item.creatorId)"
+            [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
+            alt="Creador"
+            shape="circle"
+            size="normal"
+            styleClass="cursor-pointer flex-shrink-0"
+          />
+          <div class="min-w-0">
+            <p
+              class="m-0 text-xs text-body-secondary d-flex align-items-center gap-1 flex-wrap"
+            >
+              {{ item.folio }} | {{ item.createdAtDate }} @if
+              (chainedTaskIds().has(item.id)) {
+              <span
+                class="px-1 rounded text-xs fw-semibold"
+                [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
+                [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
+                [lxTooltip]="'Secuencia: paso ' + chainStepMap().get(item.id)"
+              >
+                Paso {{ chainStepMap().get(item.id) }}
+              </span>
+              } @if (item.dependsOnTaskFolio) {
+              <span
+                class="text-purple-600 cursor-pointer"
+                (click)="clearDependency.emit(item.id)"
+                lxTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
+              >
+                <app-icon
+                  [icon]="'material-symbols-light:arrow-forward'"
+                  class="text-xs"
+                />
+                {{ item.dependsOnTaskFolio }}
+              </span>
+              }
+            </p>
+            <p
+              class="m-0 fw-semibold text-xs text-body d-flex align-items-center gap-1"
+            >
+              @if (item.daysDifference > 15 && !item.scheduledAt) {
+              <app-icon
+                [icon]="'material-symbols-light:schedule'"
+                class="text-orange-600"
+                lxTooltip="Urgente: Más de 15 días sin programar"
+              />
+              } @if (item.priority === 'High') {
+              <app-icon
+                [icon]="'material-symbols-light:star-outline'"
+                class="text-primary cursor-pointer"
+                (click)="updatePriority.emit(item.id)"
+                lxTooltip="Alta prioridad - click para cambiar"
+              />
+              } @if (item.priority === 'Low') {
+              <app-icon
+                [icon]="'material-symbols-light:warning'"
+                class="text-red-500 cursor-pointer"
+                (click)="updatePriority.emit(item.id)"
+                lxTooltip="Baja prioridad - click para cambiar"
+              />
+              } {{ item.title }}
+            </p>
+            <p class="m-0 text-xs text-body">{{ item.description }}</p>
+          </div>
+        </div>
+      </td>
+
+      <td class="text-center">
+        @if (item.assigneeId) {
+        <app-avatar
+          (click)="cardEmployee.emit(item.assigneeId)"
+          [image]="item.assigneeImg || 'assets/images/default-avatar.jpg'"
+          alt="Responsable"
+          shape="circle"
+          size="normal"
+          styleClass="cursor-pointer"
+          [lxTooltip]="item.assignee"
+          tooltipPosition="top"
+        />
+        <p class="m-0 text-xs text-body-secondary mt-1 fw-semibold">
+          {{ item.assignee | initialsAbbr }}
+        </p>
+        }
+      </td>
+
+      <td>
+        <p class="m-0 text-xs text-body-secondary">
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="me-1"
+          />{{ item.scheduledAt }}
+        </p>
+        @if (item.closedAtDate) {
+        <p class="m-0 text-xs text-body-secondary mt-1">
+          <app-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
+          item.closedAtDate }}
+        </p>
+        }
+      </td>
+
+      <td>
+        <div class="d-flex align-items-center justify-content-center gap-2">
+          @if (item.beforeWork) {
+          <figure class="m-0 text-center">
+            <lux-image
+              [src]="item.beforeWork"
+              alt="."
+              [preview]="true"
+              imageClass="task-evidence-thumb"
+            />
+            <figcaption class="text-xs text-body-secondary mt-1">
+              Antes
+            </figcaption>
+          </figure>
+          } @if (item.afterWork) {
+          <figure class="m-0 text-center">
+            <lux-image
+              [src]="item.afterWork"
+              alt="."
+              [preview]="true"
+              imageClass="task-evidence-thumb"
+            />
+            <figcaption class="text-xs text-body-secondary mt-1">
+              Después
+            </figcaption>
+          </figure>
+          } @if (!item.beforeWork && !item.afterWork) {
+          <span class="text-xs text-body-secondary">—</span>
+          }
+          <iw-button
+            icon="material-symbols-light:photo-library"
+            variant="soft"
+            size="small"
+            ariaLabel="Ver imágenes adicionales"
+            (clicked)="viewAdditionalImages.emit(item)"
+          />
+        </div>
+      </td>
+
+      <td class="text-center">
+        <strong  [class.text-red-500]="item.daysDifference > 7"
+          >{{ item.daysDifference }}</strong
+        >
+      </td>
+
+      <td class="text-center no-print">
+        <custom-input-toggle-switch-signal
+          [(ngModel)]="item.isRelevant"
+          (toggleChange)="updateStateTicket.emit(item)"
+          size="small"
+        />
+      </td>
+
+      <td>
+        @if (item.lastFollowUp) {
+        <span class="text-xs text-body-secondary fw-medium d-block mb-1"
+          >{{ item.lastFollowUpDate }}</span
+        >
+        <p class="m-0 text-xs text-body">{{ item.lastFollowUp }}</p>
+        }
+      </td>
+
+      <td class="text-center no-print">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          <a
+            (click)="followUp.emit(item.id)"
+            class="cursor-pointer d-flex align-items-center gap-1 text-decoration-none"
+            lxTooltip="Seguimientos"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:forum'"
+              class="text-blue-500"
+            />
+            <span class="badge bg-info px-2 py-1 text-xs fw-semibold">
+              {{ item.ticketMessageFollowUp }}
+            </span>
+          </a>
+          <app-action-menu>
+            <ng-container actions>
+              <il-button-item
+                iconClass="material-symbols-light:calendar-today"
+                label="Programar"
+                (clicked)="program.emit(item.id)"
+              />
+              @if (item.status !== 'Completed') {
+              <il-button-item
+                iconClass="material-symbols-light:lock"
+                label="Cerrar"
+                (clicked)="closed.emit(item.id)"
+              />
+              } @if (item.status !== 'InProgress') {
+              <il-button-item
+                iconClass="material-symbols-light:sync"
+                label="En proceso"
+                (clicked)="progress.emit(item.id)"
+              />
+              } @if (item.status === 'Completed') {
+              <il-button-item
+                iconClass="material-symbols-light:lock-open"
+                label="Reabrir"
+                (clicked)="reopen.emit(item.id)"
+              />
+              }
+              <il-button-edit (clicked)="edit.emit(item)" label="Editar" />
+              @if (isSuperUser()) {
+              <il-button-delete
+                (confirmed)="delete.emit(item.id)"
+                label="Eliminar"
+              />
+              }
+            </ng-container>
+          </app-action-menu>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="17" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <div class="d-flex align-items-center no-print">
+      En total hay {{ totalRecords() }} registros.
+    </div>
+  </ng-template>
+</lux-table>

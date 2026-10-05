@@ -1,0 +1,80 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Agregar' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <div customFilters class="my-2 px-2 w-full">
+    <app-task-status (statusChange)="statusChange.emit($event)" />
+  </div>
+
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item alignTop="true" class="w-full">
+      <div slot="start">
+        <app-avatar
+          [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
+          [alt]="item.title"
+          size="large"
+          shape="circle"
+        />
+      </div>
+
+      <div class="d-flex flex-column gap-1">
+        <div class="d-flex justify-content-between align-items-center mt-1">
+          <small class="text-body-secondary text-xs"
+            >{{ item.folio }} | {{ item.createdAtDate }}</small
+          >
+          <span
+            class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs fw-bold"
+            >{{ item.daysDifference }} d</span
+          >
+        </div>
+        <p
+          class="fw-semibold m-0 text-body line-height-2 text-sm ticket-title text-truncate overflow-hidden text-nowrap"
+        >
+          {{ item.title }}
+        </p>
+        <p
+          class="text-xs m-0 text-body-secondary ticket-description two-lines"
+        >
+          {{ item.description }}
+        </p>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ili-button-item
+          iconName="clipboard-outline"
+          label="Seguimiento"
+          (clicked)="followUp.emit(item.id)"
+        />
+        @if (item.status !== "Completed") {
+        <ili-button-edit
+          (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          label="Editar"
+        />
+        <ili-button-item
+          iconName="calendar-outline"
+          label="Programar"
+          (clicked)="program.emit(item.id)"
+        />
+        <ili-button-item
+          iconName="sync-outline"
+          label="En proceso"
+          (clicked)="progress.emit(item.id)"
+        />
+        } @if (item.status !== "Completed") {
+        <ili-button-item
+          iconName="lock-closed-outline"
+          label="Cerrar"
+          (clicked)="closed.emit(item.id)"
+        />
+        } @if (item.status === "Completed") {
+        <ili-button-item
+          iconName="lock-open-outline"
+          label="Re abrir"
+          (clicked)="reopen.emit(item.id)"
+        />
+        }
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

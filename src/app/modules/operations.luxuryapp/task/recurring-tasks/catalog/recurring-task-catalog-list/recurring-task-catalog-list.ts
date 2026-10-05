@@ -10,50 +10,26 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/recurring-task-template-catalog.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { RecurringTaskCatalogListDesktop } from "./desktop/recurring-task-catalog-list-desktop";
+import { RecurringTaskCatalogListMobile } from "./mobile/recurring-task-catalog-list-mobile";
 import { RecurringTaskCatalogForm } from "../recurring-task-catalog-form/recurring-task-catalog-form";
 
 @Component({
   selector: "app-recurring-task-catalog-list",
   templateUrl: "./recurring-task-catalog-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconActiveDesactive,
-    WebButtonIconEdit,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelActiveDesactive,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    DataViewMobile,
-    LuxTableCaption,
-    AppTable,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [RecurringTaskCatalogListDesktop, RecurringTaskCatalogListMobile],
 })
 export class RecurringTaskCatalogList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   public dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   data = signal<RecurringTaskTemplateCatalog[]>([]);
   loading = signal(true);
   activeOnly = signal<boolean>(true);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     void this.onLoadData();
@@ -107,10 +83,5 @@ export class RecurringTaskCatalogList implements OnInit {
       .then((result: boolean) => {
         if (result) void this.onLoadData();
       });
-  }
-
-  isActive(template: RecurringTaskTemplateCatalog): boolean {
-    const status = String(template.status).toLowerCase();
-    return status === "active" || status === "activo" || status === "true";
   }
 }

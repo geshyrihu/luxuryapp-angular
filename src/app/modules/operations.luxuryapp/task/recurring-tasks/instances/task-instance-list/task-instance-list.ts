@@ -5,84 +5,37 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { LxToolbar } from "@ui/adaptive/toolbar/toolbar";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
-
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TaskInstanceListDesktop } from "./desktop/task-instance-list-desktop";
+import { TaskInstanceListMobile } from "./mobile/task-instance-list-mobile";
 
 @Component({
   selector: "app-task-instance-list",
   templateUrl: "./task-instance-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIcon,
-    WebButtonIconConfirm,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelConfirm,
-    TableEmptyMessage,
-    ActionMenu,
-    ApiDatePipe,
-    WebButtonLabel,
-    WebButtonLabelConfirm,
-    WebButtonLabelItem,
-    DataViewMobile,
-    CustomInputDateSignal,
-    ReactiveFormsModule,
-    StatusBadge,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
     LxToolbar,
-    LuxTableCaption,
-    TableFooter,
-
-    WebButtonLabelConfirm,
-    WebButtonLabelItem,
-    MobileListItem,
-    AppIcon,
+    CustomInputDateSignal,
+    TaskInstanceListDesktop,
+    TaskInstanceListMobile,
   ],
 })
 export class TaskInstanceList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   public dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
   private dateS = inject(DateService);
+  platformS = inject(PlatformService);
   data = signal<TaskInstance[]>([]);
   loading = signal(true);
   selectedDateControl = new FormControl<string>(this.dateS.getDateNow());
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.selectedDateControl.valueChanges.subscribe(() => this.onLoadData());
@@ -98,10 +51,9 @@ export class TaskInstanceList implements OnInit {
       )
       .then((response) => {
         if (response) {
-          // onGetList returns T | null
           this.data.set(response);
         } else {
-          this.data.set([]); // Set to empty array on error
+          this.data.set([]);
         }
       })
       .finally(() => this.loading.set(false));
@@ -124,12 +76,9 @@ export class TaskInstanceList implements OnInit {
     this.apiResponseS
       .onPost<any>(`recurring-tasks/instances/${id}/reopen`, {})
       .then((result) => {
-        // onPost returns T | false
         if (result) {
           this.onLoadData();
-          // Show success toast (handled by ApiResponseService)
         }
-        // No else needed, error handling and toasts are done by ApiResponseService
       });
   }
 }

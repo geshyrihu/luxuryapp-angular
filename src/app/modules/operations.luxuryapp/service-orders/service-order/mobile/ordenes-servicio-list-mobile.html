@@ -1,0 +1,186 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="
+    edit.emit({
+      id: 0,
+      title: 'Nuevo Registro',
+      machineryId: 0,
+      providerId: 0
+    })
+  "
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-container customFilters>
+    <ion-accordion-group class="px-2 pb-2">
+      <ion-accordion value="opciones" class="bg-transparent border rounded">
+        <ion-item slot="header" color="light">
+          <ion-label class="text-sm fw-bold">Opciones y Filtros</ion-label>
+        </ion-item>
+        <div class="p-2" slot="content">
+          <!-- Filtro de Fecha -->
+          <div class="d-flex align-items-center mb-3">
+            <span class="fw-bold me-2"
+              >{{ filtroEquiposValue() | titlecase }}</span
+            >
+            <custom-input-text-signal
+              [control]="fechaControl()"
+              name="fecha"
+              type="month"
+              customClass="flex-grow-1"
+              (change)="reloadOrdenes.emit({ id: filtroId(), value: filtroEquiposValue() })"
+              [horizontal]="false"
+            />
+          </div>
+
+          <!-- Filtro de Equipos -->
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            @for (item of filtroEquipos(); track item) {
+            <ion-button
+              size="small"
+              [fill]="filtroEquiposValue() === item.nombre ? 'solid' : 'outline'"
+              (click)="reloadOrdenes.emit({ id: item.id, value: item.nombre })"
+            >
+              <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+              {{ item.nombre | titlecase }}
+            </ion-button>
+            }
+          </div>
+
+          <!-- Botones de Reporte -->
+          <div class="d-flex flex-column gap-2">
+            <ion-button expand="block" fill="outline" (click)="report.emit()"
+              >Reporte de órdenes</ion-button
+            >
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="reportTabla.emit()"
+              >Reporte por categoría</ion-button
+            >
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="reportPorEquipo.emit()"
+              >Reporte por equipo</ion-button
+            >
+          </div>
+
+          <div class="text-end text-sm text-body-secondary mt-2">
+            Servicios Totales:
+            <strong>{{ data() ? data().length : 0 }}</strong>
+          </div>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ng-container>
+
+  <!-- Lista de órdenes de servicio en formato de tarjeta -->
+  <ng-template #listItemTemplate let-item>
+    <ion-item>
+      <ion-avatar
+        slot="start"
+        style="
+          background: var(--ion-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <app-icon
+          icon="material-symbols-light:build"
+          class="text-xl text-yellow-500"
+        ></app-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap fw-bold m-0">
+          {{ item.machineryId }} - {{ item.machinery }}
+        </h2>
+        <p class="ion-text-wrap text-sm text-body-secondary mb-1">
+          Folio: {{ item.folio || "Sin folio" }}
+        </p>
+
+        <div class="d-flex flex-wrap gap-1 mb-1">
+          <lux-tag
+            [value]="item.typeMaintanceFilter"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+          <span class="text-xs text-body-secondary align-self-center">
+            ({{ item.isInternalExecution ? "Personal interno" : (item.provider
+            || "Sin proveedor asignado") }})
+          </span>
+        </div>
+
+        <div class="d-flex flex-wrap gap-1">
+          <lux-tag
+            [value]="getStatusLabel(item.status)"
+            [severity]="getBadgeSeverity(item.status)"
+          />
+          @if (item.isSuspended) {
+          <lux-tag value="Detenida" severity="warning" />
+          }
+          <lux-tag
+            (click)="photos.emit(item.id)"
+            [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderImg.length + ' Fotos'"
+          />
+          <lux-tag
+            (click)="providerReport.emit(item.id)"
+            [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderDocument.length + ' Reportes'"
+          />
+        </div>
+      </ion-label>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            iconName="print-outline"
+            label="Imprimir soporte"
+            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+          />
+          <ili-button-item
+            iconName="image-outline"
+            label="Cargar imagen"
+            (clicked)="uploadImg.emit(item.id)"
+          />
+          <ili-button-item
+            iconName="ellipsis-horizontal-outline"
+            label="Cargar documentos"
+            (clicked)="uploadDoc.emit(item.id)"
+            variant="outline"
+          />
+          <ili-button-item
+            iconName="chatbubbles-outline"
+            label="Seguimiento"
+            (clicked)="followUp.emit(item.id)"
+          />
+          @if (item.isSuspended) {
+          <ili-button-item
+            iconName="play-circle-outline"
+            label="Reanudar"
+            (clicked)="resume.emit(item.id)"
+          />
+          } @else {
+          <ili-button-item
+            iconName="pause-circle-outline"
+            label="Suspender"
+            (clicked)="suspend.emit(item)"
+          />
+          }
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

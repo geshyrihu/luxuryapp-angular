@@ -10,57 +10,22 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonLabelEdit, WebButtonLabelItem } from "@ui/buttons/web-label";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { PlatformService } from "@core/services/platform.service";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
-import { TaskStatus } from "../task-status/task-status";
 import { TaskGroupService } from "../task.service";
+import { MyRequestsTaskDesktop } from "./desktop/my-requests-task-desktop";
+import { MyRequestsTaskMobile } from "./mobile/my-requests-task-mobile";
 
 @Component({
   selector: "app-my-requests-task",
   templateUrl: "./my-requests-task.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelItem,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    DataViewMobile,
-    ActionMenu,
-    TaskStatus,
-    AppImage,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [MyRequestsTaskDesktop, MyRequestsTaskMobile],
 })
 export class MyRequestsTask implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -69,16 +34,13 @@ export class MyRequestsTask implements OnInit {
   TaskGroupService = inject(TaskGroupService);
   customerIdS = inject(CustomerIdService);
   customToastService = inject(CustomToastService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   activatedRoute = inject(ActivatedRoute);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   status: string = this.TaskGroupService.taskGroupMessageStatus;
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit() {
     this.onLoadData(this.status);

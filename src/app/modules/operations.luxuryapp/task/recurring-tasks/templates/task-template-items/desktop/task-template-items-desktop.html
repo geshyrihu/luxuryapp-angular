@@ -1,0 +1,76 @@
+<lux-table
+  #dt
+  [value]="items()"
+  [rows]="10"
+  [paginator]="true"
+  [reorderableRows]="true"
+  [reorderableColumns]="true"
+  (onRowReorder)="rowReorder.emit($event)"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  class="custom-table"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-wrap justify-content-between align-items-center gap-2"
+    >
+      <!-- Textos a la izquierda -->
+      <div class="d-flex flex-column gap-1">
+        <h5 class="m-0 text-body">Items de Plantilla: {{ template().name }}</h5>
+        <small class="text-body-secondary">
+          Rol Asignado: {{ template().roleName }}
+        </small>
+      </div>
+
+      <!-- Caption a la derecha -->
+      <div class="d-flex align-items-center">
+        <lux-table-caption (add)="add.emit()" [dt]="dt" />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-3rem"></th>
+      <!-- Reorder Handle Column -->
+      <th>Título</th>
+      <th>Prioridad</th>
+      <th>Regla de Recurrencia</th>
+      <th class="table-col-15">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [pReorderableRow]="rowIndex">
+      <td>
+        <app-icon
+          [icon]="'material-symbols-light:menu'"
+          class="icon icon-"
+          pReorderableRowHandle
+        />
+      </td>
+      <td>{{ item.title }}</td>
+      <td>
+        <app-status-badge
+          [value]="item.priority"
+          [status]="getPriorityDisplay(item.priority).text"
+          [severity]="getPriorityDisplay(item.priority).severity"
+        />
+      </td>
+      <td>{{ formatRecurrenceRule(item.recurrenceRule) }}</td>
+      <td>
+        <iw-button-edit (clicked)="edit.emit(item)" />
+        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="4">No se encontraron items para esta plantilla.</td>
+    </tr>
+  </ng-template>
+  <ng-template #summary>
+    <lux-table-footer
+      [totalRecords]="items().length"
+      [emptyMessage]="'No se encontraron items para esta plantilla.'"
+    />
+  </ng-template>
+</lux-table>

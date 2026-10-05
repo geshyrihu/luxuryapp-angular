@@ -1,0 +1,254 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  scrollHeight="calc(100vh - 230px)"
+  #dt
+  class="custom-table card"
+  groupRowsBy="equipoClasificacion"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3"
+    >
+      <custom-input-text-signal
+        [control]="fechaControl()"
+        type="month"
+        customClass=""
+        style="width: 15rem"
+        (change)="reloadOrdenes.emit({ id: filtroId(), value: filtroEquiposValue() })"
+        lxTooltip="Seleccionar Mes y Año"
+        tooltipPosition="top"
+        [horizontal]="false"
+        [noMargin]="true"
+      />
+      <div
+        class="d-flex align-items-center flex-wrap gap-1 p-1 rounded bg-body-tertiary"
+      >
+        @for (item of filtroEquipos(); track item) {
+        <iw-button
+          [lxTooltip]="'Ver ' + item.nombre"
+          tooltipPosition="bottom"
+          [iconClass]="item.icon"
+          size="sm"
+          [variant]="filtroEquiposValue() == item.nombre ? 'solid' : 'outline'"
+          [severity]="filtroEquiposValue() == item.nombre ? 'primary' : 'secondary'"
+          (clicked)="reloadOrdenes.emit({ id: item.id, value: item.nombre })"
+        />
+        }
+      </div>
+      <iw-button
+        iconClass="material-symbols-light:help"
+        size="sm"
+        variant="outline"
+        severity="help"
+        lxTooltip="Guía del módulo de Órdenes de Servicio"
+        tooltipPosition="bottom"
+        (clicked)="help.emit()"
+      />
+      <div class="d-flex align-items-center flex-wrap gap-2">
+        <il-button
+          iconClass="material-symbols-light:description"
+          label="Reporte de órdenes"
+          size="sm"
+          (click)="report.emit()"
+          variant="outline"
+        />
+        <il-button
+          iconClass="material-symbols-light:table"
+          label="Reporte por categoria"
+          size="sm"
+          (click)="reportTabla.emit()"
+          variant="outline"
+        />
+        <il-button
+          iconClass="material-symbols-light:precision-manufacturing"
+          label="Reporte por equipo"
+          size="sm"
+          (click)="reportPorEquipo.emit()"
+          variant="outline"
+        />
+      </div>
+      <div class="ms-auto">
+        <lux-table-caption
+          [title]="filtroEquiposValue() | titlecase"
+          (add)="
+        edit.emit({
+          id: 0,
+          title: 'Nuevo Registro',
+          machineryId: 0,
+          providerId: 0
+        })
+      "
+          [dt]="dt"
+          [noMargin]="true"
+          [noPadding]="true"
+        />
+      </div>
+    </div>
+    <div
+      class="d-flex align-items-center justify-content-between text-sm text-body-secondary pt-2 px-3 border-top-1 border-200"
+    >
+      Servicios Totales: {{ data() ? data().length : 0 }} .
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-15" appSortableColumn="folio">
+        Folio
+        <app-sorticon field="folio" class="no-print" />
+      </th>
+      <th class="table-col-15" appSortableColumn="machinery">
+        Equipo
+        <app-sorticon field="machinery" class="no-print" />
+      </th>
+      <th class="table-col-10" appSortableColumn="typeMaintance">
+        Servicio
+        <app-sorticon field="typeMaintance" class="no-print" />
+      </th>
+      <th class="table-col-15" appSortableColumn="provider">
+        Proveedor
+        <app-sorticon field="provider" class="no-print" />
+      </th>
+      <th class="table-col-10" appSortableColumn="status">
+        Estatus
+        <app-sorticon field="status" class="no-print" />
+      </th>
+      <th class="table-col-10" appSortableColumn="serviceOrderImg.length">
+        Fotos
+        <app-sorticon field="serviceOrderImg.length" class="no-print" />
+      </th>
+      <th class="table-col-10" appSortableColumn="serviceOrderDocument.length">
+        Reporte
+        <app-sorticon field="serviceOrderDocument.length" class="no-print" />
+      </th>
+      <th class="table-col-15 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr>
+      <td colspan="8" class="fw-bold bg-body-tertiary px-3 py-2">
+        {{ item.equipoClasificacion || 'Sin Categoróa' }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td><span>{{ item.folio || "Sin folio" }}</span></td>
+      <!-- {{ item.machineryId }} | -->
+      <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
+      <td>
+        <div class="cursor-pointer font-center">
+          <lux-tag
+            [value]="item.typeMaintanceFilter"
+            class="ms-auto"
+            (click)="navigateMessage.emit({ id: item.id, status: 0, nameGroup: item.nameGroup })"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+        </div>
+      </td>
+      <td>
+        {{ item.isInternalExecution ? "Personal interno" : (item.provider ||
+        "Sin proveedor asignado") }}
+      </td>
+      <td>
+        <lux-tag
+          [value]="getStatusLabel(item.status)"
+          [severity]="getBadgeSeverity(item.status)"
+        />
+        @if (item.isSuspended) {
+        <lux-tag
+          value="Detenida"
+          severity="warning"
+          [lxTooltip]="item.suspensionReason || 'Suspendida'"
+          tooltipPosition="top"
+        />
+        }
+      </td>
+      <td class="text-center">
+        <lux-tag
+          (click)="photos.emit(item.id)"
+          [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderImg.length"
+        />
+      </td>
+      <td class="text-center">
+        <lux-tag
+          (click)="providerReport.emit(item.id)"
+          [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderDocument.length"
+        />
+      </td>
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-item
+            iconClass="material-symbols-light:print"
+            lxTooltip="Imprimir soporte"
+            tooltipPosition="top"
+            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+            variant="outline"
+          />
+
+          <iw-button-item
+            iconClass="material-symbols-light:photo"
+            lxTooltip="Cargar imagen"
+            tooltipPosition="top"
+            (clicked)="uploadImg.emit(item.id)"
+            variant="outline"
+          />
+
+          <iw-button-item
+            iconClass="material-symbols-light:attach-file"
+            lxTooltip="Cargar documentos"
+            tooltipPosition="top"
+            (clicked)="uploadDoc.emit(item.id)"
+            variant="outline"
+          />
+
+          <iw-button-item
+            iconClass="material-symbols-light:forum"
+            lxTooltip="Seguimiento"
+            tooltipPosition="top"
+            (clicked)="followUp.emit(item.id)"
+            variant="outline"
+          />
+
+          @if (item.isSuspended) {
+          <iw-button-item
+            iconClass="material-symbols-light:play-circle"
+            lxTooltip="Reanudar"
+            tooltipPosition="top"
+            (clicked)="resume.emit(item.id)"
+            variant="outline"
+          />
+          } @else {
+          <iw-button-item
+            iconClass="material-symbols-light:pause-circle"
+            lxTooltip="Suspender"
+            tooltipPosition="top"
+            (clicked)="suspend.emit(item)"
+            variant="outline"
+          />
+          }
+          <iw-button-edit
+            (clicked)="edit.emit({
+                  id: item.id,
+                  title: 'Editar',
+                  machineryId: item.machineryId,
+                  providerId: item.providerId
+                })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+</lux-table>

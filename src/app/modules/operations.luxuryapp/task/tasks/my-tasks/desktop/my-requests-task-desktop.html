@@ -1,0 +1,153 @@
+<div class="p-3">
+  <lux-table
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="data()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        (add)="
+            add.emit({
+              id: '',
+              title: 'Agregar',
+            })
+          "
+        [dt]="dt"
+      />
+      <div class="mt-2">
+        <app-task-status (statusChange)="statusChange.emit($event)" />
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-6">FOLIO</th>
+        <th class="table-col-8" appSortableColumn="createdAtFilter">
+          FECHA SOL.
+          <app-sorticon field="createdAtFilter" />
+        </th>
+        <th class="table-col-30" appSortableColumn="responsibleArea">
+          SOLICITUD
+          <app-sorticon field="responsibleArea" />
+        </th>
+        <th>EVIDENCIA</th>
+        <th class="table-col-8" appSortableColumn="priority">
+          PRIORIDAD
+          <app-sorticon field="priority" />
+        </th>
+        <th class="table-col-10" appSortableColumn="scheduledAtFilter">
+          PROGRAMACIÓN
+          <app-sorticon field="scheduledAtFilter" />
+        </th>
+        <th class="table-col-10" appSortableColumn="dateFinishedFiltro">
+          FECHA CIERRE
+          <app-sorticon field="dateFinishedFiltro" />
+        </th>
+        <th>EVIDENCIA</th>
+        <th class="table-col-10" appSortableColumn="daysDifference">
+          DÍAS
+          <app-sorticon field="daysDifference" />
+        </th>
+        <th class="table-col-10"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.folio }}</td>
+        <td>
+          {{ item.createdAtDate }}
+          <br />
+          {{ item.createdAtHour }}
+        </td>
+        <td>
+          <h4 class="card-title text-xl">{{ item.title }}</h4>
+          <p class="card-text text-base">{{ item.description }}</p>
+        </td>
+        <td class="text-center">
+          <div class="d-flex justify-content-center align-items-center">
+            @if (item.beforeWork) {
+            <app-image
+              [src]="
+                    item.beforeWork
+                      ? item.beforeWork
+                      : 'assets/images/default-avatar.png'
+                  "
+              alt="."
+              width="40"
+              styleClass="mr-2 border border-danger"
+              [preview]="true"
+            ></app-image>
+            }
+          </div>
+        </td>
+        <td class="text-center">
+          @if (item.priority === "High") {
+          <app-icon
+            [icon]="'material-symbols-light:star-outline'"
+            (click)="updatePriority.emit(item.id)"
+            class="icon icon- icon-xl pointer text-primary"
+          />
+          } @if (item.priority === "Low") {
+          <app-icon
+            [icon]="'material-symbols-light:star-outline'"
+            (click)="updatePriority.emit(item.id)"
+            class="icon icon- icon-xl pointer text-primary"
+          />
+          }
+        </td>
+        <td>{{ item.scheduledAt }}</td>
+        <td>{{ item.closedAtDate }}</td>
+        <td class="text-center">
+          <div class="d-flex justify-content-center align-items-center">
+            @if (item.afterWork) {
+            <app-image
+              [src]="
+                    item.afterWork
+                      ? item.afterWork
+                      : 'assets/images/default-avatar.png'
+                  "
+              alt="."
+              width="40"
+              styleClass="mr-2 border border-success"
+              [preview]="true"
+            ></app-image>
+            }
+          </div>
+        </td>
+        <td class="text-center">
+          <p>
+            <strong> {{ item.daysDifference }} </strong>
+          </p>
+        </td>
+        <!-- Opciones -->
+        <td class="text-center">
+          <app-action-menu>
+            <ng-container actions>
+              <il-button-edit
+                (clicked)="edit.emit({
+                    id: item.id,
+                    title: 'Editar',
+                    ticketGroupId: item.ticketGroupId,
+                  })"
+                label="Editar"
+              />
+
+              <il-button-item
+                iconClass="material-symbols-light:comment"
+                label="Seguimiento"
+                (clicked)="followUp.emit(item.id)"
+              />
+            </ng-container>
+          </app-action-menu>
+        </td>
+      </tr>
+    </ng-template>
+  </lux-table>
+</div>

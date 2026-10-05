@@ -6,73 +6,31 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { PrintService } from "@core/services/print.service";
 import { SwalService } from "@core/services/swal.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReopen } from "../task-reopen";
-import { TaskStatus } from "../task-status/task-status";
+import { MyAssignedTasksListDesktop } from "./desktop/my-assigned-tasks-list-desktop";
+import { MyAssignedTasksListMobile } from "./mobile/my-assigned-tasks-list-mobile";
 import { MyTaskProgram } from "./my-task-program";
-
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
 @Component({
   selector: "app-my-assigned-tasks-list",
   templateUrl: "./my-assigned-tasks-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    TableEmptyMessage,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-    TaskStatus,
-    AppTable,
-    DataViewMobile,
-    MobileListItem,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelItem,
-    ActionMenu,
-    WebButtonLabel,
-    FormsModule,
-    LxTooltipDirective,
-    AppImage,
-    AppAvatar,
-    LuxTableCaption,
-    InitialsAbbrPipe,
-    AppIcon,
-  ],
+  imports: [MyAssignedTasksListDesktop, MyAssignedTasksListMobile],
 })
 export class MyAssignedTasksList {
   apiResponseS = inject(ApiResponseService);
@@ -80,9 +38,9 @@ export class MyAssignedTasksList {
   dialogHandlerS = inject(DialogHandlerService);
   TaskGroupService = inject(TaskGroupService);
   customerIdS = inject(CustomerIdService);
-  tableScrollHeightS = inject(TableScrollHeightService);
   activatedRoute = inject(ActivatedRoute);
   printS = inject(PrintService);
+  platformS = inject(PlatformService);
   status: string = this.TaskGroupService.taskGroupMessageStatus;
 
   constructor() {
@@ -95,11 +53,8 @@ export class MyAssignedTasksList {
   }
 
   dataSignal = signal<any[]>([]);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   searchTextSignal = signal("");
 
   readonly today = new Date().toLocaleDateString("es-MX", {
@@ -291,7 +246,6 @@ export class MyAssignedTasksList {
             Endpoints.Tasks.inProgress(id, this.authS.applicationUserId),
           )
           .then(() => {
-            // Actualizamos el valor del signal con los datos recibidos
             this.onLoadData(this.status);
           });
       }

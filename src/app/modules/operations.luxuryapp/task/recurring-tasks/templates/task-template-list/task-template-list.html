@@ -3,121 +3,27 @@
     <h3 class="card-title">Plantillas de Tareas Recurrentes</h3>
   </div>
   <div class="card-body">
-    <!-- Desktop View -->
-    <lux-table
-      #dt
-      [value]="data()"
-      [rows]="10"
-      [paginator]="true"
-      [loading]="loading()"
-      size="small"
-      [scrollable]="true"
-      [scrollHeight]="scrollHeight"
-      class="d-none d-md-block custom-table"
-    >
-      <ng-template #caption>
-        <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-end p-2 gap-2 g-4"
-        >
-          <lux-table-caption
-            (add)="showForm()"
-            [dt]="dt"
-            [noPadding]="true"
-            [noMargin]="true"
-          />
-          <div class="flex-shrink-0">
-            <iw-button-active-desactive
-              [state]="state()"
-              (stateChange)="onChangeState($event)"
-            />
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th>Nombre</th>
-          <th>DESCRIPCIÓN</th>
-          <th>Rol Asignado</th>
-          <th class="table-col-15">Acciones</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-template>
-        <tr>
-          <td>{{ template.name }}</td>
-          <td>{{ template.description }}</td>
-          <td>{{ template.roleName }}</td>
-          <td>
-            <div class="d-flex">
-              <iw-button-item
-                [iconClass]="'material-symbols-light:description'"
-                lxTooltip="Items"
-                tooltipPosition="top"
-                (clicked)="onManageItems(template.id)"
-              />
-              <iw-button-edit (clicked)="showForm(template)" />
-              <iw-button-delete (confirmed)="onDelete(template.id)" />
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <tr>
-          <td colspan="4">No se encontraron plantillas.</td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <lux-table-empty-message [colspan]="4" />
-      </ng-template>
-    </lux-table>
-    <!-- Mobile View -->
-    <app-data-view-mobile
+    @if (platformS.isMobile()) {
+    <app-task-template-list-mobile
       [data]="data()"
+      [state]="state()"
       (add)="showForm()"
-      [dt]="dt"
-      class="d-block d-md-none"
-    >
-      <div customFilters>
-        <div class="px-4 py-2">
-          <ili-button-active-desactive
-            fluid
-            [state]="state()"
-            (stateChange)="onChangeState($event)"
-          />
-        </div>
-      </div>
-      <ng-template #listItemTemplate let-template>
-        <ili-list-item>
-          <div
-            start
-            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-            class="w-3rem h-3rem bg-primary-50"
-          >
-            <app-icon
-              icon="material-symbols-light:description"
-              class="text-xl text-primary"
-            />
-          </div>
-
-          <h5 class="mb-2">{{ template.name }}</h5>
-          <p class="text-sm text-body-secondary">
-            Rol: {{ template.roleName }}
-          </p>
-
-          <ili-action-menu slot="end">
-            <ng-container actions>
-              <ili-button-item
-                label="Administrar Items"
-                (clicked)="onManageItems(template.id)"
-              />
-              <ili-button-item label="Editar" (clicked)="showForm(template)" />
-              <ili-button-delete
-                (confirmed)="onDelete(template.id)"
-                label="Eliminar"
-              />
-            </ng-container>
-          </ili-action-menu>
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
+      (manageItems)="onManageItems($event)"
+      (edit)="showForm($event)"
+      (delete)="onDelete($event)"
+      (changeState)="onChangeState($event)"
+    />
+    } @else {
+    <app-task-template-list-desktop
+      [data]="data()"
+      [loading]="loading()"
+      [state]="state()"
+      (add)="showForm()"
+      (manageItems)="onManageItems($event)"
+      (edit)="showForm($event)"
+      (delete)="onDelete($event)"
+      (changeState)="onChangeState($event)"
+    />
+    }
   </div>
 </div>

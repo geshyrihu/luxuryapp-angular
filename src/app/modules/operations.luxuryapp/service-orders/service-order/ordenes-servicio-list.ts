@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,8 +6,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -20,87 +19,27 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PlatformService } from "@core/services/platform.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
-import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonAvatar,
-  IonButton,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebButtonLabel
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { AyudaOrdenesServicio } from "./ayuda-ordenes-servicio";
+import { OrdenesServicioListDesktop } from "./desktop/ordenes-servicio-list-desktop";
+import { OrdenesServicioListMobile } from "./mobile/ordenes-servicio-list-mobile";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
 import { SeguimientoOrdenServicio } from "./seguimiento-orden-servicio";
 import { ServiceOrderForm } from "./service-order-form";
+import { ReporteOrdenesServicioService } from "./services/reporte-ordenes-servicio.service";
 import { SuspensionOrdenServicio } from "./suspension-orden-servicio";
 import { UploadImgForm } from "./upload-img-form";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { ReporteOrdenesServicioService } from "./services/reporte-ordenes-servicio.service";
 
 @Component({
   selector: "app-ordenes-servicio-list",
   templateUrl: "./ordenes-servicio-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    CommonModule,
-    WebButtonLabel,
-    // AñadirWebButtonLabel a imports
-
-    DataViewMobile,
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    LuxTableCaption,
-    RouterModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    LxTooltipDirective,
-    AppIcon,
-    IonItem,
-    IonLabel,
-    IonAvatar,
-    IonAccordionGroup,
-    IonAccordion,
-    IonButton,
-  ],
+  imports: [OrdenesServicioListDesktop, OrdenesServicioListMobile],
 })
 export class OrdenesServicio {
   apiResponseS = inject(ApiResponseService);
@@ -111,8 +50,9 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
+  periodMonthService = inject(PeriodMonthService);
   pdfService = inject(OrdenesServicioListPdfService);
+  platformS = inject(PlatformService);
 
   mm: number;
   fechaControl = new FormControl<string>("");
@@ -127,7 +67,6 @@ export class OrdenesServicio {
   observations: [""];
   ref: DynamicDialogRef;
 
-  // urlImg: string = '';
   nameCarpetaFecha = "";
 
   filtroEquiposValue: any = "todos";
@@ -162,7 +101,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || "");
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -172,7 +111,7 @@ export class OrdenesServicio {
   }
 
   constructor() {
-    const date = new Date(); // Inicializar date dentro del constructor
+    const date = new Date();
     this.mm = date.getMonth() + 1;
     const initialFecha = [
       date.getFullYear(),
@@ -181,7 +120,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
+    this.periodMonthService.setPeriodo(initialFecha);
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
@@ -191,7 +130,6 @@ export class OrdenesServicio {
     });
   }
 
-  // Descargar reporte PDF directamente
   onNavigateToReport() {
     this.periodMonthService.setPeriodo(this.fechaControl.value || "");
     const converToDate = this.parseFechaControl();
@@ -435,40 +373,6 @@ export class OrdenesServicio {
           );
         }
       });
-  }
-
-  getStatusLabel(status: number): string {
-    switch (status) {
-      case 0:
-        return "Pendiente";
-      case 1:
-        return "Concluido";
-      case 2:
-        return "No Autorizado";
-      case 3:
-        return "Proceso";
-      case 4:
-        return "Cancelado";
-      default:
-        return "Sin estatus";
-    }
-  }
-
-  getBadgeSeverity(status: number): string {
-    switch (status) {
-      case 0:
-        return "danger"; // bg-danger en Bootstrap
-      case 1:
-        return "success"; // bg-success en Bootstrap
-      case 2:
-        return "secondary"; // bg-secondary en Bootstrap
-      case 3:
-        return "info";
-      case 4:
-        return "secondary"; // bg-secondary en Bootstrap
-      default:
-        return "secondary";
-    }
   }
 
   onNavigateMessage(id: any, status: number, nameGroup: string) {
