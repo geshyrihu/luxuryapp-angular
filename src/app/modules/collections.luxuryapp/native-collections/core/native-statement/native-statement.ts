@@ -24,8 +24,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   NativeStatementResponseDTO,
   SendNativeStatementBatchResponseDTO,

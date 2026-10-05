@@ -26,7 +26,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { firstValueFrom } from "rxjs";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 /**
  * Detalle completo de un candidato de la cola de entrevistador (info personal,

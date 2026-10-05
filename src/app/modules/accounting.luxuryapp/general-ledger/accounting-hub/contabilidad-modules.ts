@@ -28,6 +28,24 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
       },
       {
+        title: "Descarga Masiva de CFDI",
+        description: "Descarga, lista y exporta los CFDI recibidos del SAT; carga la e.firma y cruza contra el padrón EFOS.",
+        route: "/accounting/cfdi-download",
+        icon: "material-symbols-light:receipt-long",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+        roles: [
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Contador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
+          ApplicationRole.GerenteMantenimiento,
+          ApplicationRole.SupervisionOperativa,
+        ],
+      },
+      {
         title: "END PIONTS Aspel",
         description:
           "Consulta pendientes por concepto de cobranza Haus desde Aspel COI.",

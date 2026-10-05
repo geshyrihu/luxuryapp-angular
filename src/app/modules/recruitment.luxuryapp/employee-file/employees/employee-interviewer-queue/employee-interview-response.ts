@@ -26,8 +26,8 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { firstValueFrom } from "rxjs";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-employee-interview-response",

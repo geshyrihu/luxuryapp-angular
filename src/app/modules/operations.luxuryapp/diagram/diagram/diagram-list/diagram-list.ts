@@ -18,13 +18,13 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
   AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { DiagramForm } from "../diagram-form/diagram-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

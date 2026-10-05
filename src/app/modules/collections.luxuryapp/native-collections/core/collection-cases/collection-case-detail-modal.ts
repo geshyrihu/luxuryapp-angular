@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,8 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -17,7 +14,10 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { WebButtonLabel } from "@ui/buttons/web-label";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
 @Component({
@@ -81,4 +81,3 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.ref.close(false);
   }
 }
-

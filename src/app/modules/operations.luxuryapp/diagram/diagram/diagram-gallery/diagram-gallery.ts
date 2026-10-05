@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,12 +8,13 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -81,7 +81,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       </div>
 
       @if (diagrams().length > pageSize()) {
-        <div class="d-flex justify-content-center align-items-center mt-3 gap-2">
+        <div
+          class="d-flex justify-content-center align-items-center mt-3 gap-2"
+        >
           <il-button
             iconClass="material-symbols-light:chevron-left"
             variant="text"
@@ -167,4 +169,3 @@ export class DiagramGallery implements OnInit {
     this.currentPage.set(1);
   }
 }
-

@@ -16,7 +16,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 // Bootstrap Modules
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";

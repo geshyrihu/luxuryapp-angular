@@ -28,6 +28,12 @@ export const operationsRoutes: Routes = [
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
+          ApplicationRole.GerenteMantenimiento,
+          ApplicationRole.SupervisionOperativa,
         ]),
     ],
     data: {
@@ -45,8 +51,14 @@ export const operationsRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
           ApplicationRole.Direccion,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
+          ApplicationRole.GerenteMantenimiento,
+          ApplicationRole.SupervisionOperativa,
         ]),
     ],
     data: {
@@ -65,6 +77,12 @@ export const operationsRoutes: Routes = [
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
+          ApplicationRole.GerenteMantenimiento,
+          ApplicationRole.SupervisionOperativa,
         ]),
     ],
     data: {
@@ -83,6 +101,12 @@ export const operationsRoutes: Routes = [
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.GerenteAtencion,
+          ApplicationRole.Asistente,
+          ApplicationRole.GerenteMantenimiento,
+          ApplicationRole.SupervisionOperativa,
         ]),
     ],
     data: {

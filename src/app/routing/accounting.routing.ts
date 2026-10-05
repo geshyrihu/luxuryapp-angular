@@ -2,6 +2,17 @@ import { Routes } from "@angular/router";
 import { authGuard } from "@core/auth/guards/auth.guard";
 export const accountingRoutes: Routes = [
   {
+    path: "cfdi-download",
+    loadChildren: () =>
+      import("@accounting.luxuryapp/cfdi-download/cfdi-download.routes").then(
+        (m) => m.cfdiDownloadRoutes,
+      ),
+    data: {
+      title: "Descarga Masiva de CFDI",
+      breadcrumb: "CFDI del SAT",
+    },
+  },
+  {
     path: "budget", // Ruta anterior: 'presupuesto'
     loadComponent: () =>
       import("@accounting.luxuryapp/general-ledger/aspel-web-budget/wrapper").then(

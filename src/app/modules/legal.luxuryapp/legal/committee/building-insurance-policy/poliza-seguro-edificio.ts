@@ -15,7 +15,7 @@ import {
   folderOpenOutline,
   warningOutline,
 } from "ionicons/icons";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 @Component({
   selector: "app-poliza-seguro-edificio",
   imports: [ApiDatePipe, WebButtonLabelViewPdf, AppIcon],

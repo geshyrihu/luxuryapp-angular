@@ -271,6 +271,30 @@ export const EndpointsContabilidad = {
     validate: (id: string) => `funding/validate/${id}`,
     authorize: (id: string) => `funding/authorize/${id}`,
   },
+  CfdiDownload: {
+    credential: (customerId: string) => `accounting/cfdi-download/credential/${customerId}`,
+    uploadCredential: (customerId: string) => `accounting/cfdi-download/credential/${customerId}`,
+    requestDownload: (customerId: string) => `accounting/cfdi-download/requests/${customerId}`,
+    checkStatus: (customerId: string, requestId: string) =>
+      `accounting/cfdi-download/requests/${customerId}/${requestId}/status`,
+    list: (customerId: string, fechaInicio?: string, fechaFin?: string) => {
+      const params = new URLSearchParams();
+      if (fechaInicio) params.set("fechaInicio", fechaInicio);
+      if (fechaFin) params.set("fechaFin", fechaFin);
+      const query = params.toString();
+      return `accounting/cfdi-download/cfdi/${customerId}${query ? `?${query}` : ""}`;
+    },
+    pdf: (customerId: string, cfdiId: string) =>
+      `accounting/cfdi-download/cfdi/${customerId}/${cfdiId}/pdf`,
+    exportExcel: (customerId: string, fechaInicio?: string, fechaFin?: string) => {
+      const params = new URLSearchParams();
+      if (fechaInicio) params.set("fechaInicio", fechaInicio);
+      if (fechaFin) params.set("fechaFin", fechaFin);
+      const query = params.toString();
+      return `accounting/cfdi-download/cfdi/${customerId}/export-excel${query ? `?${query}` : ""}`;
+    },
+    importEfos: "accounting/cfdi-download/efos/import",
+  },
   SatFunding: {
     details: (id: string) => `SatFunding/${id}`,
     forCustomer: (customerId: string) => `SatFunding/ForCustomer/${customerId}`,

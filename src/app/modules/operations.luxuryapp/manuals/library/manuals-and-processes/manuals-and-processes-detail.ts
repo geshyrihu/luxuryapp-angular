@@ -8,17 +8,17 @@ import {
 } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppImage } from "@ui/web/image/image";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PrintService } from "@core/services/print.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { AppImage } from "@ui/web/image/image";
+import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { DiagramPreviewComponent } from "./diagram-preview";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
 
@@ -289,4 +289,3 @@ export class ManualsAndProcessesDetail implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
-

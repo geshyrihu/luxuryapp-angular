@@ -84,19 +84,40 @@ export class InspeccionActivoCondominio implements OnInit {
   }
 
   async onLoadSelectItems(): Promise<void> {
-    const [activos, reviewsCatalog] = await Promise.all([
-      this.apiResponseS.onGetItem<SelectItemDto[]>(
-        Endpoints.Inspections.equipmentByCustomer(
-          this.customerIdS.customerId(),
-        ),
-      ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.InspectionReviewCatalog.selectItems,
-      ),
-    ]);
+    const activos = await this.apiResponseS.onGetItem<SelectItemDto[]>(
+      Endpoints.Inspections.equipmentByCustomer(this.customerIdS.customerId()),
+    );
 
-    this.cb_activos.set(activos as SelectItemDto[]);
-    this.cb_inspection_reviews_catalog.set(reviewsCatalog as SelectItemDto[]);
+    this.cb_activos.set((activos as SelectItemDto[]) ?? []);
+    // Hasta elegir un equipo no se conocen sus revisiones (dependen de su clasificación).
+    this.selectedReviewControl.disable({ emitEvent: false });
+  }
+
+  /**
+   * Al elegir un equipo/área se recargan SOLO los criterios de su misma
+   * clasificación (EquipoClasificacionId).
+   */
+  async onEquipmentSelected(item: SelectItemDto): Promise<void> {
+    this.form.patchValue({
+      condominiumAssetId: item?.value,
+      condominiumAssetName: item?.label,
+    });
+
+    // Cambió el equipo: las revisiones previas ya no aplican.
+    this.reviewsControl.clear();
+    this.cb_inspection_reviews_catalog.set([]);
+    this.selectedReviewControl.setValue(null, { emitEvent: false });
+
+    if (!item?.value) {
+      this.selectedReviewControl.disable({ emitEvent: false });
+      return;
+    }
+
+    const reviews = await this.apiResponseS.onGetList<SelectItemDto[]>(
+      Endpoints.InspectionReviewCatalog.byEquipment(item.value),
+    );
+    this.cb_inspection_reviews_catalog.set(reviews ?? []);
+    this.selectedReviewControl.enable({ emitEvent: false });
   }
 
   loadInspectionReviews(reviews: any[]) {
@@ -167,10 +188,7 @@ export class InspeccionActivoCondominio implements OnInit {
   }
 
   saveCondominiumAsset = (item: SelectItemDto) => {
-    this.form.patchValue({
-      condominiumAssetId: item?.value,
-      condominiumAssetName: item?.label,
-    });
+    void this.onEquipmentSelected(item);
   };
 
   onSubmit() {

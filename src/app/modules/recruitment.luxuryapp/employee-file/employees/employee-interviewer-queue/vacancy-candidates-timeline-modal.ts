@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,12 +5,13 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 interface VacancyTimelineDialogData {
   requestPositionId: string;
@@ -75,4 +75,3 @@ export class VacancyCandidatesTimelineModal implements OnInit {
     }
   }
 }
-

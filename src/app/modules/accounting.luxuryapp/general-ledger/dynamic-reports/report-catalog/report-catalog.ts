@@ -21,8 +21,8 @@ import {
 import type { TabItem } from "@ui/core/tabs.base";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

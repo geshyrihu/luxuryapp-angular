@@ -80,22 +80,43 @@ export class InspeccionActivoCondominioEditar implements OnInit {
   }
 
   async onLoadSelectItems(): Promise<void> {
-    const [activos, reviewsCatalog] = await Promise.all([
-      this.apiResponseS.onGetItem<SelectItemDto[]>(
-        Endpoints.Inspections.equipmentByCustomer(
-          this.customerIdS.customerId(),
-        ),
-      ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.InspectionReviewCatalog.selectItems,
-      ),
-    ]);
-
-    this.cb_activos.set(activos as SelectItemDto[]);
-    this.cb_inspection_reviews_catalog.set(reviewsCatalog as SelectItemDto[]);
-    this.cb_inspection_reviews_catalog_original.set(
-      reviewsCatalog as SelectItemDto[],
+    const activos = await this.apiResponseS.onGetItem<SelectItemDto[]>(
+      Endpoints.Inspections.equipmentByCustomer(this.customerIdS.customerId()),
     );
+
+    this.cb_activos.set((activos as SelectItemDto[]) ?? []);
+  }
+
+  /**
+   * Carga los criterios del catálogo que aplican a la clasificación del equipo
+   * indicado (mismo EquipoClasificacionId).
+   */
+  private async loadCatalogForEquipment(
+    equipmentId: string | null,
+  ): Promise<void> {
+    if (!equipmentId) {
+      this.cb_inspection_reviews_catalog.set([]);
+      this.cb_inspection_reviews_catalog_original.set([]);
+      return;
+    }
+
+    const reviews = await this.apiResponseS.onGetList<SelectItemDto[]>(
+      Endpoints.InspectionReviewCatalog.byEquipment(equipmentId),
+    );
+    const list = reviews ?? [];
+    this.cb_inspection_reviews_catalog.set([...list]);
+    this.cb_inspection_reviews_catalog_original.set([...list]);
+  }
+
+  async onEquipmentSelected(item: SelectItemDto): Promise<void> {
+    this.form.patchValue({
+      condominiumAssetId: item?.value,
+      condominiumAssetName: item?.label,
+    });
+
+    // Cambió el equipo: las revisiones previas ya no aplican a su clasificación.
+    this.reviewsControl.clear();
+    await this.loadCatalogForEquipment(item?.value ?? null);
   }
 
   async loadInspectionCondominiumAsset(): Promise<void> {
@@ -121,6 +142,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
         position: resp.position || 1,
       });
 
+      await this.loadCatalogForEquipment(condominiumAssetId ?? null);
       this.loadInspectionReviews(resp.inspectionReviews || []);
     }
   }
@@ -199,10 +221,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
   }
 
   saveCondominiumAsset = (item: SelectItemDto) => {
-    this.form.patchValue({
-      condominiumAssetId: item?.value,
-      condominiumAssetName: item?.label,
-    });
+    void this.onEquipmentSelected(item);
   };
 
   onSubmit() {

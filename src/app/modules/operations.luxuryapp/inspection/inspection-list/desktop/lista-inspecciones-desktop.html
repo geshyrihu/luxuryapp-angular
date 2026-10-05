@@ -3,7 +3,6 @@
     <div class="inspection-filters">
       <div class="inspection-filters__group">
         <il-button
-          iconClass="material-symbols-light:add-circle"
           label="Nuevo Recorrido"
           size="sm"
           lxTooltip="Nuevo Recorrido"
@@ -14,6 +13,7 @@
           label="Reportes"
           size="sm"
           severity="secondary"
+          variant="outline"
           tooltip="Ver reportes de inspección"
           (clicked)="reportes.emit()"
         />
@@ -51,11 +51,13 @@
           label="Limpiar filtros"
           severity="secondary"
           variant="outline"
+          size="sm"
           iconClass="material-symbols-light:filter-alt-off"
           (clicked)="clearFilters.emit()"
         />
         <il-button
           label="Aplicar filtros"
+          size="sm"
           iconClass="material-symbols-light:filter-alt"
           (clicked)="applyFilters.emit()"
         />
