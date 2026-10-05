@@ -83,9 +83,14 @@
             tooltip="Ver historial de inspecciones"
             [iconClass]="'material-symbols-light:format-list-bulleted'"
           />
-          <iw-button-download
-            (clicked)="downloadQr.emit(item)"
+          <lux-button-web
+            kind="download"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             tooltip="Descargar QR"
+            ariaLabel="Descargar QR"
+            (clicked)="downloadQr.emit(item)"
           />
           <lux-button-web
             kind="edit"

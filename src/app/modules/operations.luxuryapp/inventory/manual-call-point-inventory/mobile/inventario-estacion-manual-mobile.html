@@ -47,7 +47,7 @@
             iconClass="material-symbols-light:picture-as-pdf"
             label="PDF"
           />
-          <ili-button-download (clicked)="downloadQr.emit(item)" label="QR" />
+          <lux-button-mobile kind="download" label="QR" (clicked)="downloadQr.emit(item)" />
           <lux-button-mobile
             kind="edit"
             (clicked)="edit.emit(item)"

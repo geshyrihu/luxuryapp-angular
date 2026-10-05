@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { InventarioHidranteDto } from "@core/interfaces/inventario-hidrante.interface";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelDownload } from "@ui/buttons/mobile-label/button-download";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -22,7 +21,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     AppIcon,
     MobileActionMenu,
     MobileButtonLabelItem,
-    MobileButtonLabelDownload,
     MobileButtonLabelDelete,
     DataViewMobile,
   ],
