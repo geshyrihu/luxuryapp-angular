@@ -12,9 +12,9 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -28,7 +28,6 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
     AppIcon,
     AppAvatar,
     WebButtonLabelAdd,
-    WebButtonLabelDelete,
     ButtonWeb,
     CustomSearchInput,
     LxTooltipDirective,
@@ -38,6 +37,7 @@ export class TelefonosEmergencia {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   aspRoleS = inject(AspRoleService);
+  confirmS = inject(ConfirmService);
   AspRole = ApplicationRole;
 
   dataSignal = signal<any[]>([]);
@@ -65,7 +65,11 @@ export class TelefonosEmergencia {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este teléfono de emergencia?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.EmergencyPhones.delete(id))
       .then((result: boolean) => {
