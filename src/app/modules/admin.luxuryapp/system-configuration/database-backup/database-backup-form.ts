@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
@@ -32,7 +32,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
