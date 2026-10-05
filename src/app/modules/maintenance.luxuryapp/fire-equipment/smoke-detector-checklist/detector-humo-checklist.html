@@ -7,5 +7,14 @@
       <custom-input-check-signal [control]="form.controls.ledStatusOk" label="Indicador LED en Estado Normal" />
       <custom-input-check-signal [control]="form.controls.mountingSecure" label="Montaje Seguro" />
       <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
-      <il-button-save [propertyId]="id" [disabled]="form.invalid" [submitting]="submitting()" />
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
   </form>

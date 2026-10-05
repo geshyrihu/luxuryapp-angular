@@ -6,9 +6,14 @@
       <custom-input-check-signal [control]="form.controls.labelsOk" label="Etiquetas Legibles" />
       <custom-input-check-signal [control]="form.controls.noPhysicalDamage" label="Sin Daños Físicos" />
       <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
-      <il-button-save
-        [propertyId]="id"
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
         [disabled]="form.invalid"
-        [submitting]="submitting()"
+        [loading]="submitting()"
       />
   </form>
