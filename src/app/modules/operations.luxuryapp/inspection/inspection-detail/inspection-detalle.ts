@@ -123,11 +123,13 @@ import { InspectionEdit } from "../models/inspection.model";
               <h2 class="text-xl fw-bold m-0">
                 Equipos y criterios de revisión
               </h2>
-              <il-button
-                iconClass="material-symbols-light:add-circle"
-                label="Agregar Equipo"
-                (clicked)="onAddEquipment()"
-              />
+              @if (equipmentItems().length > 0) {
+                <il-button
+                  iconClass="material-symbols-light:add-circle"
+                  label="Agregar Equipo"
+                  (clicked)="onAddEquipment()"
+                />
+              }
             </div>
 
             @if (equipmentItems().length > 0) {
@@ -137,36 +139,38 @@ import { InspectionEdit } from "../models/inspection.model";
               ) {
                 <lux-card class="mb-4">
                   <div
-                    class="d-flex justify-content-between align-items-center mb-4"
+                    class="d-flex justify-content-between align-items-center mb-4 gap-3"
                   >
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-3 min-w-0">
                       <div
-                        class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
+                        class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2 flex-shrink-0"
                       >
                         <app-icon icon="material-symbols-light:settings" />
                       </div>
-                      <h3 class="text-lg fw-bold m-0">
+                      <h3 class="text-lg fw-bold m-0 text-truncate">
                         {{ item.name | uppercase }}
                       </h3>
                     </div>
-                    <app-tag
-                      [value]="(item.reviews?.length ?? 0) + ' criterios'"
-                      severity="secondary"
-                    />
-                    <app-action-menu>
-                      <ng-container actions>
-                        <il-button-edit
-                          label="Editar"
-                          (clicked)="onEditEquipment(item)"
-                        />
-                        <il-button-delete
-                          label="Eliminar"
-                          (confirmed)="
-                            onDeleteArea(item.inspectionCondominiumAssetId)
-                          "
-                        />
-                      </ng-container>
-                    </app-action-menu>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <app-tag
+                        [value]="(item.reviews?.length ?? 0) + ' criterios'"
+                        severity="secondary"
+                      />
+                      <app-action-menu>
+                        <ng-container actions>
+                          <il-button-edit
+                            label="Editar"
+                            (clicked)="onEditEquipment(item)"
+                          />
+                          <il-button-delete
+                            label="Eliminar"
+                            (confirmed)="
+                              onDeleteArea(item.inspectionCondominiumAssetId)
+                            "
+                          />
+                        </ng-container>
+                      </app-action-menu>
+                    </div>
                   </div>
 
                   @if (item.reviews && item.reviews.length > 0) {
@@ -285,11 +289,13 @@ import { InspectionEdit } from "../models/inspection.model";
                 <h2 class="text-xl fw-bold m-0">
                   Equipos y criterios de revisión
                 </h2>
-                <il-button
-                  iconClass="material-symbols-light:add-circle"
-                  label="Agregar Equipo"
-                  (clicked)="onAddEquipment()"
-                />
+                @if (equipmentItems().length > 0) {
+                  <il-button
+                    iconClass="material-symbols-light:add-circle"
+                    label="Agregar Equipo"
+                    (clicked)="onAddEquipment()"
+                  />
+                }
               </div>
               @if (equipmentItems().length > 0) {
                 @for (
@@ -300,9 +306,9 @@ import { InspectionEdit } from "../models/inspection.model";
                     <div
                       class="d-flex justify-content-between align-items-start gap-2 mb-3"
                     >
-                      <div class="d-flex align-items-center gap-2">
+                      <div class="d-flex align-items-center gap-2 min-w-0">
                         <div
-                          class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2"
+                          class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2 flex-shrink-0"
                         >
                           <app-icon icon="material-symbols-light:settings" />
                         </div>
@@ -310,24 +316,26 @@ import { InspectionEdit } from "../models/inspection.model";
                           {{ item.name | uppercase }}
                         </h3>
                       </div>
-                      <app-tag
-                        [value]="(item.reviews?.length ?? 0) + ' criterios'"
-                        severity="secondary"
-                      />
-                      <app-action-menu>
-                        <ng-container actions>
-                          <il-button-edit
-                            label="Editar"
-                            (clicked)="onEditEquipment(item)"
-                          />
-                          <il-button-delete
-                            label="Eliminar"
-                            (confirmed)="
-                              onDeleteArea(item.inspectionCondominiumAssetId)
-                            "
-                          />
-                        </ng-container>
-                      </app-action-menu>
+                      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <app-tag
+                          [value]="(item.reviews?.length ?? 0) + ' criterios'"
+                          severity="secondary"
+                        />
+                        <app-action-menu>
+                          <ng-container actions>
+                            <il-button-edit
+                              label="Editar"
+                              (clicked)="onEditEquipment(item)"
+                            />
+                            <il-button-delete
+                              label="Eliminar"
+                              (confirmed)="
+                                onDeleteArea(item.inspectionCondominiumAssetId)
+                              "
+                            />
+                          </ng-container>
+                        </app-action-menu>
+                      </div>
                     </div>
                     @if (item.reviews && item.reviews.length > 0) {
                       <div class="d-flex flex-column gap-2">
