@@ -19,9 +19,9 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **153** |
-| ⏳ Pendiente | **8** |
-| ⛔ Omitido / no candidato | **49** |
+| ✅ Refactorizado | **155** |
+| ⏳ Pendiente | **4** |
+| ⛔ Omitido / no candidato | **51** |
 | **Total** | **210** |
 
 ---
@@ -37,8 +37,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 7 | `fundings/sat-funding/sat-funding-list` | accounting | ✅ | · | · |  |
 | 8 | `general-ledger/accounting-accounts` | accounting | ✅ | · | · |  |
 | 9 | `general-ledger/accounting-catalog` | accounting | ✅ | · | · |  |
-| 10 | `general-ledger/aspel-customer-company/aspel-customer-empresa-list.html` | accounting | · | ✅ | · |  |
-| 11 | `general-ledger/aspel-mirror/projected-expenses-list.html` | accounting | · | ✅ | · |  |
+| 10 | `general-ledger/aspel-customer-company/aspel-customer-empresa-list.html` | accounting | · | · | ✅ | Código muerto (comentado, sin rutas) |
+| 11 | `general-ledger/aspel-mirror` | accounting | ✅ | · | · |  |
 | 12 | `general-ledger/aspel-web-budget` | accounting | ✅ | · | · |  |
 | 13 | `general-ledger/budget-proposals/budget-rule-list/budget-rule-list.html` | accounting | · | · | ✅ | Protegido: autorización Ing. Ricardo Marques |
 | 14 | `general-ledger/dynamic-reports/report-catalog/report-catalog.html` | accounting | · | · | ✅ | Página con tabs + 2 listas (caso especial) |
@@ -55,8 +55,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 25 | `general-ledger/financial-reports/online/income-statement/estado-resultados.html` | accounting | · | · | ✅ | Reporte denso (evaluar aparte) |
 | 26 | `general-ledger/financial-reports/online/monthly-balance/balance-mensual.html` | accounting | · | · | ✅ | Reporte denso (evaluar aparte) |
 | 27 | `general-ledger/financial-statements` | accounting | ✅ | · | · |  |
-| 28 | `general-ledger/fixed-expense-catalogs/catalogo-gastos-fijos-list.html` | accounting | · | ✅ | · |  |
-| 29 | `general-ledger/funding-accounting/funding-accounting-list.html` | accounting | · | ✅ | · |  |
+| 28 | `general-ledger/fixed-expense-catalogs/catalogo-gastos-fijos-list.html` | accounting | · | · | ✅ | Código muerto (comentado, sin rutas) |
+| 29 | `general-ledger/funding-accounting` | accounting | ✅ | · | · |  |
 | 30 | `general-ledger/pending-minutes` | accounting | ✅ | · | · |  |
 | 31 | `email-configuration/customer-data-companies` | admin | ✅ | · | · |  |
 | 32 | `email-configuration/email-data` | admin | ✅ | · | · |  |
